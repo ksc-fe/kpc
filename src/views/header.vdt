@@ -1,0 +1,35 @@
+<header>
+    <div class="logo-wrapper">
+        <a href="/" target="_blank" class="header-logo bgi-ks" title="官网首页"></a>
+        <b:logoConsole>
+            <span class="c-v-line"></span>
+            <a href="/console/index" class="header-logo bgi-home" title="控制台首页"></a>
+        </b:logoConsole>
+    </div>
+
+    <div class="docker-wrapper">
+        <div class="docker-item">
+            <a href="/console/subaccount/list">子账号管理</a>
+        </div>
+        <div class="docker-item">
+            <div id="chat_link_wrapper">
+                <i class="c-icon c-icon-mic"></i>
+            </div>
+        </div>
+        <div class="docker-item">
+            <i class="c-icon c-icon-phone"></i>
+            技术支持 4000289900
+        </div>
+        <div class="docker-item">
+            <a target="_blank" href={{ typeof helpLink === 'undefined' ? '/doc/guide/index.html' : helpLink }}>
+                <i class="c-icon c-icon-help"></i>
+                帮助中心
+            </a>
+        </div>
+        <div class="docker-item">
+            <div class="user-wrapper">
+                <i class="c-icon c-icon-user"></i>
+            </div>
+        </div>
+    </div>
+</header>

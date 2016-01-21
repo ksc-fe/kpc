@@ -1,0 +1,3 @@
+var Button = require('../src/components/button/index')
+
+<t:Button arguments />

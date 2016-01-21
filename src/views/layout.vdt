@@ -1,0 +1,25 @@
+var header = require('../src/views/header');
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title><b:title /></title>
+    <b:css>
+        <link rel="stylesheet" type="type/css" href="/src/all.css" />
+    </b:css>
+</head>
+<body class={{ <b:bodyClass />[0] }}>
+    <b:body>
+        <b:header>
+            <t:header arguments />
+        </b:header>
+        <b:main>
+            <article class="c-main">
+                <b:sidebar>
+                </b:sidebar>
+            </article>
+        </b:main>
+    </b:body>
+    <b:js />
+</body>
+</html>
