@@ -1,0 +1,9 @@
+.cache/
+bower_components/
+node_modules/
+app/
+config/
+lib/
+log/
+views/
+*.pyc

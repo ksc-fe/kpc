@@ -1,0 +1,5 @@
+const Button = props => {
+    return h(self.get('tagName') || 'button', props, props.children);
+};
+
+<Button {{ ...self.get() }}></Button>
