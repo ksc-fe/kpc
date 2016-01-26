@@ -1,4 +1,5 @@
 {
+  "name": "kpc",
   "devDependencies": {
     "advanced": "^0.3.5",
     "stylus": "^0.53.0"

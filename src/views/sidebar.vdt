@@ -1,3 +1,116 @@
-<aside>
+var navData = [
+    {
+        "title": "计算资源",
+        "icon": "compute",
+        'index': 'compute',
+        'href': '/console/vm/instance/list',
+        "subNav": [
+            {
+                "title": "云主机",
+                "href": "/console/vm/instance/list",
+                "index": "list"
+            },
+            {
+                "title": "镜像",
+                "href": "/console/snapshot/list",
+                "index": "image"
+            }
+        ]
+    }, 
+    {
+        "title": "网络资源",
+        "icon": "network",
+        'index': 'network',
+        'href': '/console/eip/list',
+        "subNav": [
+            {
+                "title": "弹性IP",
+                "href": "/console/eip/list",
+                "index": "eip"
+            },
+            {
+                "title": "负载均衡",
+                "href": "/console/lb/instance/list",
+                "icon": ""
+            },
+            {
+                "title": "VPC",
+                "href": "/console/vpc/list",
+                "index":"vpc",
+                "icon": ""
+            }
+        ]
+    }, 
+    {
+        "title": "数据库",
+        "icon": "rds",
+        'index': 'db',
+        'href': '/console/rds/instances/list',
+        "subNav": [
+            {
+                "title": "关系型数据库",
+                "href": "/console/rds/instances/list",
+                "index": "rds"
+            }, 
+            {
+                "title": "缓存",
+                "href": "/console/kcs/list",
+                "index": "kcs"
+            }
+        ]
+    },
+    {
+        "title": "安全",
+        "icon": "safe",
+        "index": "safe",
+        'href': '/console/firewall/list',
+        "subNav": [
+            {
+                "title": "防火墙",
+                "href": "/console/firewall/list",
+                "index": "firewall"
+            }
+        ]
+    }, 
+    {
+        "title": "CDN",
+        "icon": "cdn",
+        "href": "/console/cdn/domain/list",
+        "subNav": [
+            {
+                "title": "加速管理",
+                "href": "/console/cdn/domain/list",
+                "index": "domain"
+            },
+            {
+                "title": "日志下载",
+                "href": "/console/cdn/flow/getLogs",
+                "index": "log"
+            }
+        ]
+    }, 
+    {
+        "title": "云硬盘",
+        "icon": "hd",
+        "href": "/console/ebs/instances/list",
+        "index": "disk",
+        "subNav": [
+            {
+                "title": "数据盘",
+                "href": "/console/ebs/instances/list",
+                "index": "disk"
+            },
+            {
+                "title": "快照",
+                "href": "/console/ebs/instances/snapshots",
+                "index": "snapshots"
+            }
+        ]
+    }
+];
 
+<aside>
+    <div class="nav-wrapper">
+                
+    </div>
 </aside>
