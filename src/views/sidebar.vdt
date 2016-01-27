@@ -2,13 +2,12 @@ var navData = [
     {
         "title": "计算资源",
         "icon": "compute",
-        'index': 'compute',
         'href': '/console/vm/instance/list',
         "subNav": [
             {
                 "title": "云主机",
                 "href": "/console/vm/instance/list",
-                "index": "list"
+                "index": "kvm"
             },
             {
                 "title": "镜像",
@@ -20,7 +19,6 @@ var navData = [
     {
         "title": "网络资源",
         "icon": "network",
-        'index': 'network',
         'href': '/console/eip/list',
         "subNav": [
             {
@@ -31,20 +29,18 @@ var navData = [
             {
                 "title": "负载均衡",
                 "href": "/console/lb/instance/list",
-                "icon": ""
+                "index": "lbs"
             },
             {
                 "title": "VPC",
                 "href": "/console/vpc/list",
                 "index":"vpc",
-                "icon": ""
             }
         ]
     }, 
     {
         "title": "数据库",
         "icon": "rds",
-        'index': 'db',
         'href': '/console/rds/instances/list',
         "subNav": [
             {
@@ -62,7 +58,6 @@ var navData = [
     {
         "title": "安全",
         "icon": "safe",
-        "index": "safe",
         'href': '/console/firewall/list',
         "subNav": [
             {
@@ -93,7 +88,6 @@ var navData = [
         "title": "云硬盘",
         "icon": "hd",
         "href": "/console/ebs/instances/list",
-        "index": "disk",
         "subNav": [
             {
                 "title": "数据盘",
@@ -109,8 +103,34 @@ var navData = [
     }
 ];
 
-<aside>
+<aside id="sidebar">
     <div class="nav-wrapper">
-                
+        {{ _.map(navData, function(item) {
+            var subNav,
+                actived = false;
+            if (item.subNav) {
+                subNav = <ul>
+                    {{ _.map(item.subNav, function(subNav) {
+                        var className;
+                        if (typeof navIndex !== 'undefined' && navIndex === subNav.index) {
+                            actived = true;
+                            className = 'active';
+                        }
+                        return <li class={{ className }}>
+                            <i class="c-icon c-icon-dot"></i>
+                            <a href={{ subNav.href || 'javascript:;' }} class="c-ellipsis">{{ subNav.title }}</a>
+                        </li>
+                    }) }}
+                </ul>
+            }
+            return <div class={{ 'nav-item' + (typeof navIndex !== 'undefined' && navIndex === item.index || actived ? ' active' : '') }}>
+                <a href={{ item.href || "javascript:;" }} title={{ item.title }} class="title">
+                    <i class={{ "c-icon c-icon-" + item.icon }}></i>
+                    <span class="nav-title c-ellipsis">{{ item.title }}</span>
+                    <i class="c-icon c-icon-nav-arrow"></i>
+                </a>
+                {{ subNav }}
+            </div>
+        }) }}     
     </div>
 </aside>

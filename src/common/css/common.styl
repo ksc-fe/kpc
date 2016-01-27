@@ -3,7 +3,24 @@ a
     cursor pointer
     outline 0
     text-decoration none
+ul, ol, li
+    list-style none
+    margin 0
+
 .c-v-line
     display inline-block
     border-left 1px solid #b7b7b7
     height 26px
+.c-ellipsis
+    white-space nowrap
+    overflow hidden
+    text-overflow ellipsis
+.c-clearfix
+    zoom 1
+    &:after
+        clear both
+        content ''
+        display block
+        font-size 0
+        height 0
+        visibility hidden

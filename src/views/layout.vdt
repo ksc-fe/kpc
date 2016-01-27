@@ -1,11 +1,12 @@
-var header = require('../src/views/header');
+var header = require('../node_modules/kpc/src/views/header'),
+    sidebar = require('../node_modules/kpc/src/views/sidebar');
 
 <html>
 <head>
     <meta charset="utf-8" />
     <title><b:title /></title>
     <b:css>
-        <link rel="stylesheet" type="type/css" href="/src/all.css" />
+        <link rel="stylesheet" type="type/css" href="/node_modules/kpc/src/all.css" />
     </b:css>
 </head>
 <body class={{ <b:bodyClass />[0] }}>
@@ -14,9 +15,15 @@ var header = require('../src/views/header');
             <t:header arguments />
         </b:header>
         <b:main>
-            <article class="c-main">
+            <article id="main">
                 <b:sidebar>
+                    <t:sidebar arguments />
                 </b:sidebar>
+                <section id="content">
+                    <div class="container">
+                        <b:content />
+                    </div>
+                </section>
             </article>
         </b:main>
     </b:body>

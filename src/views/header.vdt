@@ -1,4 +1,4 @@
-<header>
+<header id="header">
     <div class="logo-wrapper">
         <a href="/" target="_blank" class="header-logo bgi-ks" title="官网首页"></a>
         <b:logoConsole>
