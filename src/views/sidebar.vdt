@@ -86,7 +86,7 @@ var navData = [
     }, 
     {
         "title": "云硬盘",
-        "icon": "hd",
+        "icon": "ebs",
         "href": "/console/ebs/instances/list",
         "subNav": [
             {
@@ -117,7 +117,7 @@ var navData = [
                             className = 'active';
                         }
                         return <li class={{ className }}>
-                            <i class="c-icon c-icon-dot"></i>
+                            <i class={{ "c-icon " + (className === 'active' ? "c-icon-dot-hover" : "c-icon-dot") }}></i>
                             <a href={{ subNav.href || 'javascript:;' }} class="c-ellipsis">{{ subNav.title }}</a>
                         </li>
                     }) }}
@@ -125,9 +125,9 @@ var navData = [
             }
             return <div class={{ 'nav-item' + (typeof navIndex !== 'undefined' && navIndex === item.index || actived ? ' active' : '') }}>
                 <a href={{ item.href || "javascript:;" }} title={{ item.title }} class="title">
-                    <i class={{ "c-icon c-icon-" + item.icon }}></i>
+                    <i class={{ "c-icon c-icon-" + item.icon + (actived ? '-hover' : '') }}></i>
                     <span class="nav-title c-ellipsis">{{ item.title }}</span>
-                    <i class="c-icon c-icon-nav-arrow"></i>
+                    <i class={{ "c-icon arrow " + (actived ? "c-icon-nav-arrow-down-hover" : "c-icon-nav-arrow-right") }}></i>
                 </a>
                 {{ subNav }}
             </div>
