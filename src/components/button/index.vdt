@@ -1,0 +1,18 @@
+var self;
+if (this.type === 'Widget') {
+    self = this;
+} else {
+    obj.get = function(name) { return obj[name]; };
+    self = obj;
+}
+
+var Button = function(attrs) {
+    return h(self.get('tagName') || 'a', attrs, attrs.children);
+}
+
+<Button class={{ "c-btn c-btn-" + (self.get('type') || '') + ' ' + (self.get('className') || '') }} href={{ self.get('href') || 'javascript:;' }} attributes={{ options.attributes }}>
+    {{ _.isEmpty(self.get('children')) ?
+        [self.get('icon') ? <i class={{ "c-icon c-icon-" + self.get('icon') }}></i> : null, self.get('text')] :
+        self.get('children')
+    }}
+</Button>

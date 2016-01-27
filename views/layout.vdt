@@ -1,0 +1,14 @@
+var layout = require('../src/views/layout'),
+    header = require('../src/views/header');
+
+<t:layout>
+    <b:title>layout</b:title>
+    <b:header>
+        <t:header>
+            <b:logoConsole>
+                {{ parent() }}
+                test
+            </b:logoConsole>
+        </t:header>
+    </b:header>
+</t:layout>

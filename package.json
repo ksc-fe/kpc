@@ -1,0 +1,45 @@
+{
+  "_args": [
+    [
+      "kpc@git+ssh://git@git.op.ksyun.com/ksc-console/kpc.git",
+      "/home/javey/Workspace/ksc-node-monitor"
+    ]
+  ],
+  "_from": "git+ssh://git@git.op.ksyun.com/ksc-console/kpc.git",
+  "_id": "kpc@0.0.1",
+  "_inCache": true,
+  "_location": "/kpc",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "kpc",
+    "raw": "kpc@git+ssh://git@git.op.ksyun.com/ksc-console/kpc.git",
+    "rawSpec": "git+ssh://git@git.op.ksyun.com/ksc-console/kpc.git",
+    "scope": null,
+    "spec": "ssh://git@git.op.ksyun.com/ksc-console/kpc.git",
+    "type": "git"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "git+ssh://git@git.op.ksyun.com/ksc-console/kpc.git#afd01512f192cd3b6bdf9255ba271a90d2dd8b08",
+  "_shasum": "b67892007681823e97d6a5e59ff70692f2215f39",
+  "_shrinkwrap": null,
+  "_spec": "kpc@git+ssh://git@git.op.ksyun.com/ksc-console/kpc.git",
+  "_where": "/home/javey/Workspace/ksc-node-monitor",
+  "dependencies": {
+    "vdt": "^0.6.4"
+  },
+  "devDependencies": {
+    "advanced": "^0.3.5",
+    "stylus": "^0.53.0"
+  },
+  "gitHead": "afd01512f192cd3b6bdf9255ba271a90d2dd8b08",
+  "installable": true,
+  "name": "kpc",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "version": "0.0.1"
+}

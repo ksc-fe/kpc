@@ -1,0 +1,83 @@
+html
+    font-family 'Microsoft Yahei'
+    -webkit-text-size-adjust 100%
+    -ms-text-size-adjust 100%
+    height 100%
+body
+    margin 0
+    font-size 14px
+    color #333
+    background #efefef
+    height 100%
+
+// layout
+#header
+    height 47px
+    line-height 47px
+    border-bottom 1px solid #d7d7d7
+    background #fff
+    .logo-wrapper
+        float left
+        margin 0 8px
+        height 47px
+    .header-logo
+        display inline-block
+        width 26px
+        height 26px
+        margin 11px 8px 0
+    .bgi-ks
+        background url(root + '/common/images/logo-ks.png') no-repeat
+    .bgi-home
+        background url(root + '/common/images/logo-home.png') no-repeat
+
+    .docker-wrapper
+        float right
+        .docker-item
+            float left
+            margin-right 24px 
+
+#main
+    height 100%
+    height calc(100% - 48px)
+
+#sidebar
+    width 200px
+    min-height 100%
+    background #2f323a
+    float left
+    a
+        color #8d93a3
+    .active
+        .title 
+            color #fff
+    .title
+        display block
+        padding 0 16px
+        border-bottom 1px solid #25272e
+        font-weight bold
+        height 64px
+        line-height 64px
+    ul
+        display none
+        padding 0 16px
+        border-bottom 1px solid #25272e
+    .active
+        ul
+            display block
+    li
+        height 32px
+        line-height 32px
+        margin 18px 0 18px 4px
+        a
+            padding-left 28px
+    li.active
+        border-left 3px solid #148cec
+        background #3f4249
+        margin 18px 0
+        a
+            color #fff
+
+#content
+    overflow hidden
+    .container
+        padding 16px 24px
