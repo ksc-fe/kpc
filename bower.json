@@ -1,0 +1,27 @@
+{
+  "name": "kpc",
+  "version": "0.0.1",
+  "authors": [
+    "Javey <zoujiawei@kingsoft.com>"
+  ],
+  "description": "Kingsoft Public Components",
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "requirejs": "~2.1.22",
+    "jquery": "~2.2.0",
+    "vdt": "~0.7.0",
+    "intact": "~1.0.4",
+    "underscore": "~1.8.3",
+    "jquery-ui": "~1.11.4",
+    "director": "~1.2.8"
+  },
+  "install": {
+    "path": {
+      "js": "src/common/js/lib{XXX}"
+    }
+  }
+}

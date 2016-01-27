@@ -27,7 +27,7 @@
   "_spec": "kpc@git+ssh://git@git.op.ksyun.com/ksc-console/kpc.git",
   "_where": "/home/javey/Workspace/ksc-node-monitor",
   "dependencies": {
-    "vdt": "^0.6.4"
+    "vdt": "^0.7.0"
   },
   "devDependencies": {
     "advanced": "^0.3.5",

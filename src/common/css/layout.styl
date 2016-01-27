@@ -6,7 +6,7 @@ html
 body
     margin 0
     font-size 14px
-    color #333
+    color defaultFontColor 
     background #efefef
     height 100%
 
@@ -35,6 +35,38 @@ body
         .docker-item
             float left
             margin-right 24px 
+    .user-wrapper
+        display block
+        .c-icon-arrow-down
+            border-color #5fafe4 transparent transparent transparent
+    .user-layer
+        display none
+        position absolute
+        background #fff
+        width 140px
+        border 1px solid #d7d7d7
+        border-top 1px solid #cde5ff
+        a
+            color #898989
+            display block
+        .c-icon
+            margin 0 5px 0 15px
+        .arrow
+            position absolute
+            width 10px
+            height 14px
+            background url(root + '/common/images/user-layer.png') no-repeat
+            right -5px
+            top -14px
+        li
+            border-bottom 1px solid #eee
+        li:hover
+            background #148cec
+            a
+                color #fff
+    #chat_link_wrapper
+        a
+            color defaultFontColor
 
 #main
     height 100%
@@ -57,6 +89,14 @@ body
         font-weight bold
         height 64px
         line-height 64px
+    .nav-title
+        margin-left 5px
+    .arrow
+        float right
+    .c-icon-nav-arrow-right
+        margin 28px 2px 0 0
+    .c-icon-nav-arrow-down-hover
+        margin 30px 0 0
     ul
         display none
         padding 0 16px
@@ -68,8 +108,8 @@ body
         height 32px
         line-height 32px
         margin 18px 0 18px 4px
-        a
-            padding-left 28px
+        .c-icon
+            margin 0 10px
     li.active
         border-left 3px solid #148cec
         background #3f4249

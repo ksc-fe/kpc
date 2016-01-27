@@ -27,8 +27,17 @@
             </a>
         </div>
         <div class="docker-item">
-            <div class="user-wrapper">
+            <a class="user-wrapper">
                 <i class="c-icon c-icon-user"></i>
+                {{ user.name || user.email }}
+                <i class="c-icon c-icon-arrow-down"></i>
+            </a>
+            <div class="user-layer">
+                <i class="c-icon arrow"></i>
+                <ul>
+                    <li class="c-hover"><a href="/ucenter/info"><i class="c-icon c-icon-user-circle"></i>个人中心</a></li>
+                    <li class="c-hover"><a href="/user/logout"><i class="c-icon c-icon-logout"></i>退出登录</a></li>
+                </ul>
             </div>
         </div>
     </div>
