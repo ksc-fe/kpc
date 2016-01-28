@@ -1,4 +1,4 @@
-var Advanced = require('advanced');
+var Advanced = require(__ROOT + '/node_modules/advanced/lib/index');
 
 module.exports = Advanced.Controller.extend({
     // 拿用户信息

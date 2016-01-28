@@ -8,6 +8,10 @@ ul, ol, li
     margin 0
     padding 0
 
+select, input, button, textarea
+    border 0
+    outline none
+
 .c-v-line
     display inline-block
     border-left 1px solid #b7b7b7
@@ -32,3 +36,12 @@ ul, ol, li
     display block
 .c-invisible
     visibility hidden
+
+for name in relative absolute fixed static
+    .c-{name}
+        position name
+
+.c-select
+    height 40px
+    border-bottom 1px solid #dcdcdc
+    background #fff
