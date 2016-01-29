@@ -40,3 +40,17 @@ select, input, button, textarea
 for name in relative absolute fixed static
     .c-{name}
         position name
+
+for size in 5 10 15 20 25 30
+    .c-p-{size}
+        padding unit(size, 'px')
+    .c-m-{size}
+        margin unit(size, 'px')
+    for direction in top right bottom left
+        .c-p-{substr(direction, 0, 1)}-{size}
+            padding-{direction} unit(size, 'px')
+        .c-m-{substr(direction, 0, 1)}-{size}
+            margin-{direction} unit(size, 'px')
+
+.c-bg-white
+    background-color #fff

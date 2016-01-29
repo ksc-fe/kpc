@@ -20,7 +20,7 @@ var header = require('../node_modules/kpc/src/views/header'),
                     <t:sidebar arguments />
                 </b:sidebar>
                 <section id="content">
-                    <div class="container">
+                    <div id="container">
                         <b:content />
                     </div>
                 </section>
