@@ -21,7 +21,7 @@
             技术支持 4000289900
         </div>
         <div class="docker-item">
-            <a target="_blank" href={{ typeof helpLink === 'undefined' ? '/doc/guide/index.html' : helpLink }}>
+            <a target="_blank" href={{ self.get('helpLink') || '/doc/guide/index.html' }}>
                 <i class="c-icon c-icon-help"></i>
                 帮助中心
             </a>
@@ -29,7 +29,7 @@
         <div class="docker-item">
             <a class="user-wrapper">
                 <i class="c-icon c-icon-user"></i>
-                {{ user.name || user.email }}
+                {{ self.get('user') && (user.name || user.email) }}
                 <i class="c-icon c-icon-arrow-down"></i>
             </a>
             <div class="user-layer">
