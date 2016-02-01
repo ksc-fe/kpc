@@ -1,0 +1,21 @@
+<table class="c-table">
+    <thead>
+        <tr>
+            <th>First Name</th> 
+            <th>First Name</th> 
+            <th>First Name</th> 
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="odd">
+            <td>Javey</td>
+            <td>Javey</td>
+            <td>Javey</td>
+        </tr>
+        <tr class="even">
+            <td>Javey</td>
+            <td>Javey</td>
+            <td>Javey</td>
+        </tr>
+    </tbody>
+</table>
