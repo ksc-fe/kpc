@@ -100,7 +100,19 @@ var navData = [
                 "index": "snapshots"
             }
         ]
-    }
+    },
+    {
+            "title": "云监控",
+            "icon": "monitor",
+            "href": "/console/monitor/instances/list",
+            "subNav": [
+                {
+                    "title": "云主机KEC",
+                    "href": "/console/monitor/instances/list",
+                    "index": "kec"
+                }
+            ]
+        }
 ];
 
 <aside id="sidebar">
