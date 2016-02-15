@@ -1,3 +1,0 @@
-var Searchbox = require('../src/components/button/index')
-
-<t:Searchbox arguments />
