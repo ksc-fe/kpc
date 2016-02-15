@@ -2,6 +2,7 @@
   "name": "kpc",
   "version": "0.0.1",
   "dependencies": {
+    "lodash": "^4.0.0",
     "vdt": "^0.7.0"
   },
   "devDependencies": {

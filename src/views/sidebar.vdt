@@ -102,17 +102,34 @@ var navData = [
         ]
     },
     {
-            "title": "云监控",
-            "icon": "monitor",
-            "href": "/console/monitor/instances/list",
-            "subNav": [
-                {
-                    "title": "云主机KEC",
-                    "href": "/console/monitor/instances/list",
-                    "index": "kec"
-                }
-            ]
-        }
+        "title": "云监控",
+        "icon": "monitor",
+        "href": "/console/monitor/instances/list",
+        "subNav": [
+            {
+                "title": "云主机KEC",
+                "href": "/console/monitor/instances/list",
+                "index": "kec"
+            }
+        ]
+    },
+    {
+        "title": "云安全",
+        "icon": "safe",
+        'href': '/console/security/basic',
+        "subNav": [
+            {
+                "title": "基础防护",
+                "href": "/console/security/basic",
+                "index": "security-basic"
+            },
+            {
+                "title": "高仿IP",
+                "href": "/console/security/ips",
+                "index": "security-ips"
+            }
+        ]
+    }
 ];
 
 <aside id="sidebar">
