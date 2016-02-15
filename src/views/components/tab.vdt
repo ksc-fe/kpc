@@ -1,0 +1,9 @@
+<div class={{ "c-tab " + (self.get('className') || '') }}>
+    <ul class="tabs-wrapper">
+        {{ _.map(self.get('data'), function(item) {
+            return <li class={{ "tab-item" + (item.value == self.get('value') ? ' active' : '') }}>
+                <a href={{ item.href || 'javascript:;' }}>{{ item.text }}</a>
+            </li>
+        }) }}
+    </ul>
+</div>

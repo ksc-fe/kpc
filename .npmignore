@@ -1,4 +1,8 @@
 .cache/
 bower_components/
 node_modules/
-.idea/
+app/
+config/
+lib/
+log/
+views/

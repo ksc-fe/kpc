@@ -1,0 +1,15 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>500</title>
+</head>
+<body>
+    {{ env == 'development' ?
+        <pre>
+            {{ err.stack }}
+        </pre> :
+        <h1>Something broke!</h1>
+    }}
+</body>
+</html>
+

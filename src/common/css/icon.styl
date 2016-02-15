@@ -1,13 +1,53 @@
 .c-icon
     display inline-block
-    width 20px
-    height 20px
     vertical-align middle
     background-repeat no-repeat
-for name in mic phone help user
-    .c-icon-{name}
-        background-image url('/src/common/images/icons/' + name + '.png')
+    width 20px
+    height 20px
 
-.c-icon-user
+for name in mic phone help user search
+    .c-icon-{name}
+        background-image url(root + '/common/images/icons/' + name + '.png')
+
+.c-icon-user-circle
     width 22px
     height 22px
+
+.c-icon-search
+    width 25px
+    height 25px
+
+for name in compute network cdn ebs monitor rds safe services nav-arrow-down nav-arrow-right user-circle logout
+    .c-icon-{name}    
+        background-image url(root + '/common/images/icons/' + name + '.png')
+    .c-icon-{name}-hover
+    .c-hover:hover .c-icon-{name}
+        background-image url(root + '/common/images/icons/' + name + '-hover.png')
+
+.c-icon-nav-arrow-down-hover
+    width 8px
+    height 5px
+.c-icon-nav-arrow-right
+    width 5px
+    height 8px
+.c-icon-logout
+.c-icon-logout-hover
+    width 23px
+
+for name in dot
+    .c-icon-{name}
+        background-image url(root + '/common/images/icons/' + name + '.png')
+        width 4px
+        height 4px
+    .c-icon-{name}-hover
+        background-image url(root + '/common/images/icons/' + name + '-hover.png')
+        width 4px
+        height 4px
+
+.c-icon-arrow-down
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    border-width: 5px 5px 0 5px;
+    border-color: #858585 transparent transparent transparent;
+    border-style: solid;

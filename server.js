@@ -13,7 +13,7 @@ var app = Advanced(function(app) {
 
     Vdt.setDefaults('delimiters', ['{{', '}}']);
 
-    app.use(require('./lib/stylus')({
+    app.use(require('./src/lib/stylus')({
         src: __dirname,
         dest: __dirname + '/.cache'
     }));

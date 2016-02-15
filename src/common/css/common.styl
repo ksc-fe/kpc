@@ -3,7 +3,61 @@ a
     cursor pointer
     outline 0
     text-decoration none
+ul, ol, li
+    list-style none
+    margin 0
+    padding 0
+
+select, input, button, textarea
+    border 0
+    outline none
+
+table
+    border-collapse collapse
+    border-spacing 0
+
 .c-v-line
     display inline-block
     border-left 1px solid #b7b7b7
     height 26px
+.c-ellipsis
+    white-space nowrap
+    overflow hidden
+    text-overflow ellipsis
+.c-clearfix
+    zoom 1
+    &:after
+        clear both
+        content ''
+        display block
+        font-size 0
+        height 0
+        visibility hidden
+.c-hidden
+    display none
+    visibility hidden
+.c-show
+    display block
+.c-invisible
+    visibility hidden
+.c-inline-block
+    display inline-block
+    vertical-align middle
+
+for name in relative absolute fixed static
+    .c-{name}
+        position name
+
+for size in 5 10 15 20 25 30
+    .c-p-{size}
+        padding unit(size, 'px')
+    .c-m-{size}
+        margin unit(size, 'px')
+    for direction in top right bottom left
+        .c-p-{substr(direction, 0, 1)}-{size}
+            padding-{direction} unit(size, 'px')
+        .c-m-{substr(direction, 0, 1)}-{size}
+            margin-{direction} unit(size, 'px')
+
+.c-bg-white
+    background-color #fff

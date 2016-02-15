@@ -1,4 +1,4 @@
-<header>
+<header id="header">
     <div class="logo-wrapper">
         <a href="/" target="_blank" class="header-logo bgi-ks" title="官网首页"></a>
         <b:logoConsole>
@@ -21,14 +21,23 @@
             技术支持 4000289900
         </div>
         <div class="docker-item">
-            <a target="_blank" href={{ typeof helpLink === 'undefined' ? '/doc/guide/index.html' : helpLink }}>
+            <a target="_blank" href={{ self.get('helpLink') || '/doc/guide/index.html' }}>
                 <i class="c-icon c-icon-help"></i>
                 帮助中心
             </a>
         </div>
         <div class="docker-item">
-            <div class="user-wrapper">
+            <a class="user-wrapper">
                 <i class="c-icon c-icon-user"></i>
+                {{ self.get('user') && (user.name || user.email) }}
+                <i class="c-icon c-icon-arrow-down"></i>
+            </a>
+            <div class="user-layer">
+                <i class="c-icon arrow"></i>
+                <ul>
+                    <li class="c-hover"><a href="/ucenter/info"><i class="c-icon c-icon-user-circle"></i>个人中心</a></li>
+                    <li class="c-hover"><a href="/user/logout"><i class="c-icon c-icon-logout"></i>退出登录</a></li>
+                </ul>
             </div>
         </div>
     </div>
