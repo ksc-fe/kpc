@@ -11,6 +11,8 @@ ul, ol, li
 select, input, button, textarea
     border 0
     outline none
+    margin 0
+    padding 0
 
 table
     border-collapse collapse
@@ -48,16 +50,21 @@ for name in relative absolute fixed static
     .c-{name}
         position name
 
-for size in 5 10 15 20 25 30
+for size in 0 5 10 15 20 25 30
     .c-p-{size}
-        padding unit(size, 'px')
+        padding unit(size, 'px') !important
     .c-m-{size}
-        margin unit(size, 'px')
+        margin unit(size, 'px') !important
     for direction in top right bottom left
         .c-p-{substr(direction, 0, 1)}-{size}
-            padding-{direction} unit(size, 'px')
+            padding-{direction} unit(size, 'px') !important
         .c-m-{substr(direction, 0, 1)}-{size}
-            margin-{direction} unit(size, 'px')
+            margin-{direction} unit(size, 'px') !important
 
 .c-bg-white
     background-color #fff
+
+.c-float-r
+    float right
+.c-float-l
+    float left

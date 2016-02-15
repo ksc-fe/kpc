@@ -1,0 +1,55 @@
+.c-pagination
+    width:100%
+    text-align:center
+    margin 20px 0
+    .m-pagination
+        display: inline-block;
+        font-size 0
+    a
+        display:inline-block;
+        font-size 14px
+        margin 0 2px
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        color: #898989;
+        background: #f6f6f6;
+        border-bottom:1px solid #cecece;
+        &:hover
+            background: #5faded;
+            color: #fff;
+        &:hover, &:active, &:link, &:visited
+            text-decoration: none;
+        &.dot
+            cursor default
+            &:hover
+                background #f6f6f6;
+                color #898989
+        &.disabled
+            cursor default
+    .page-prev,
+    .page-next
+        color: #e9eef9;
+        background: #5faded;
+    .page-cur
+        color: #fff;
+        background:#148cec
+        &:hover
+            background: #148cec;
+            color: #fff;
+    label
+        display:inline-block;
+        line-height: 40px;
+        text-align: center;
+        color: #898989;
+        font-size: 14px;
+    .page-number
+        width: 30px;
+        text-align: center;
+        line-height: 20px;
+        height: 20px;
+        background: #fff;
+        border: 1px solid #cecece;
+        color: #78829d;
+        padding: 0 5px

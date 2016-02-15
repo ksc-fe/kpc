@@ -1,21 +1,52 @@
-<table class="c-table">
+var Checkbox = require('node_modules/kpc/src/components/checkbox');
+
+<table class={{ "c-table " + (self.get('className') || "") }} >
     <thead>
         <tr>
-            <th>First Name</th> 
-            <th>First Name</th> 
-            <th>First Name</th> 
+            {{ self.get('isShowCheckbox') ? 
+                 <th width="40">
+                     <Checkbox class="c-m-l-20" ev-changed={{ _.bind(self._clickCheckAll, self) }} checked={{ self.isCheckedAll() }}/>
+                </th> :
+                null
+            }}
+            {{ _.map(self.get('scheme'), function(item) {
+                return <th>{{ _.isObject(item) ? item.title : item }}</th>
+            }) }}
         </tr>
     </thead>
     <tbody>
-        <tr class="odd">
-            <td>Javey</td>
-            <td>Javey</td>
-            <td>Javey</td>
-        </tr>
-        <tr class="even">
-            <td>Javey</td>
-            <td>Javey</td>
-            <td>Javey</td>
-        </tr>
+        {{ _.map(self.get('data'), function(value, index) {
+            return <tr class={{ index % 2 ? "even" : "odd" }}>
+                {{ self.get('isShowCheckbox') ? 
+                    <td><Checkbox class="c-m-l-20" ev-changed={{ _.bind(self._clickCheckSingle, self, index) }} checked={{ self.get('checkedIndex')[index] }} /></td> :
+                    null
+                }}
+                {{ _.map(self.get('scheme'), function(item, key) {
+                    var td;
+                    if (_.isObject(item)) {
+                        if (_.isFunction(item.template)) {
+                            td = item.template.call(self, value);
+                        } else {
+                            td = item.template;
+                        }
+                    } else if (value[key] !== undefined) {
+                        td = value[key];
+                    } else {
+                        var object = item,
+                            keys = key.split('.'),
+                            index = 0;
+                        while (object != null && index < keys.length) {
+                            object = object[keys[index++]];
+                        }
+                        td = (index && index === keys.length) ? object : null;
+                    }
+                    if (_.isString(td) || _.isNumber(td)) {
+                        return <td innerHTML={{ td }}></td>
+                    } else {
+                        return <td>{{ td }}</td>
+                    }
+                }) }}
+            </tr>
+        }) }}
     </tbody>
 </table>
