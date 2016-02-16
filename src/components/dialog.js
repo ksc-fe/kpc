@@ -16,7 +16,6 @@ define(function() {
                     'class': 'c-btn c-btn-blue-border cancel'
                 }
             ]
-            
         },
 
         template: Vdt.compile('<div>{{ self.get("children") }}</div>'),
