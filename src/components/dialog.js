@@ -5,6 +5,7 @@ define(function() {
             title: '提示',
             modal: true,
             closeText: '关闭',
+            autoOpen: false,
             buttons: [
                 {
                     text: "确定",
@@ -24,12 +25,14 @@ define(function() {
             
         },
 
-        template: Vdt.compile('<div></div>'),
+        template: Vdt.compile('<div>{{ self.get("children") }}</div>'),
 
         _create: function() {
             var self = this;
-            $(this.element).dialog(this.get());
-            this.show();
+            setTimeout(function() {
+                $(self.element).dialog(self.get());
+                self.trigger('created');
+            })
         },
 
         _update: function() {
@@ -37,7 +40,15 @@ define(function() {
         },
 
         show: function() {
-            $(this.element).dialog("open");
+            function show() {
+                $(this.element).dialog("open");
+            }
+            if (this.rendered) {
+                show.call(this);
+            } else {
+                this.off('created', show).on('created', show);
+                this.init();
+            }
         },
 
         destroy: function() {
