@@ -22,6 +22,19 @@ define(function() {
                     'class': 'c-btn c-btn-blue-border cancel'
                 }
             ],
+            show: {
+                effect: "drop",
+                direction: 'up',
+                duration: 300,
+                distance: 20
+            },
+            hide: {
+                effect: 'drop',
+                direction: 'up',
+                duration: 300,
+                distance: 20
+            },
+
             destroyOnClose: true
         },
 
