@@ -5,7 +5,18 @@ define(function() {
             title: '提示',
             modal: true,
             closeText: '关闭',
-            autoOpen: false
+            autoOpen: false,
+            buttons: [
+                {
+                    text: "确定",
+                    'class': 'c-btn c-btn-light-blue ok'
+                },
+                {
+                    text: "取消",
+                    'class': 'c-btn c-btn-blue-border cancel'
+                }
+            ]
+            
         },
 
         template: Vdt.compile('<div>{{ self.get("children") }}</div>'),
