@@ -1,0 +1,68 @@
+icon(width, height, url, imerge)
+    width width
+    height height
+    background url(root+url) no-repeat
+    imerge imerge
+
+.ui-front {
+    z-index: 100;
+}
+.ui-dialog
+    position: absolute;
+    outline 0
+    background #fff
+    box-shadow 0 0 20px 0 #666
+
+.ui-dialog-titlebar
+    height 42px
+    line-height 42px
+    border-bottom 1px solid #ebebeb
+    color #8d93a3
+    position: relative
+    padding-left 15px
+    .ui-button-text
+        display block
+        text-indent -9999px
+    .ui-dialog-titlebar-close
+        background transparent
+        position absolute
+        right: 15px
+        top 0
+        width 40px
+        height 100%
+        cursor pointer
+        &:hover
+            background #db524b
+            .ui-button-icon-primary
+                background url(root + '/common/images/icons/close-hover.png') no-repeat
+                imerge icon
+    .ui-button-icon-primary
+        icon(17px, 17px,'/common/images/icons/close-hover.png', 'icon')
+        margin-top 13px
+
+.ui-widget-overlay
+    position fixed
+    top 0
+    left 0
+    width 100%
+    height 100%
+    background #000
+    opacity 0.5
+    filter s('Alpha(opacity=50)')
+
+.ui-dialog-buttonpane
+    overflow hidden
+    padding 16px
+
+.ui-dialog-buttonset
+    float right
+    .cancel
+        margin-left 8px
+    .ui-button-text
+        font-size 14px
+
+.ui-dialog-content
+    padding 16px
+    .header
+        span
+            font-size 16px
