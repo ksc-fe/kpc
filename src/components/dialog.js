@@ -9,16 +9,10 @@ define(function() {
             buttons: [
                 {
                     text: "确定",
-                    click: function() {
-
-                    },
                     'class': 'c-btn c-btn-light-blue ok'
                 },
                 {
                     text: "取消",
-                    click: function() {
-
-                    },
                     'class': 'c-btn c-btn-blue-border cancel'
                 }
             ],
@@ -35,10 +29,24 @@ define(function() {
                 distance: 20
             },
 
-            destroyOnClose: true
+            destroyOnClose: true,
+            ok: function() {
+                $(this).dialog('close');
+            },
+            cancel: function() {
+                $(this).dialog('close');
+            }
         },
 
         template: Vdt.compile('<div>{{ self.get("children") }}</div>'),
+
+        _init: function() {
+            var buttons = this.get('buttons');
+            if (!_.isEmpty(buttons)) {
+                buttons[0].click = this.get('ok');
+                buttons[1].click = this.get('cancel');
+            }
+        },
 
         _create: function() {
             var self = this;

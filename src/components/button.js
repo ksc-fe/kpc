@@ -7,7 +7,6 @@ define(['node_modules/kpc/src/views/components/button'], function(template) {
             attributes:'',
             icon:'',
             text:'这是一个按钮'
-
         },
 
         template: template,
