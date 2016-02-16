@@ -31,14 +31,10 @@ icon(width, height, url, imerge)
         width 40px
         height 100%
         cursor pointer
+        background url(root + '/common/images/icons/close.png') no-repeat 12px
         &:hover
-            background #db524b
-            .ui-button-icon-primary
-                background url(root + '/common/images/icons/close-hover.png') no-repeat
-                imerge icon
-    .ui-button-icon-primary
-        icon(17px, 17px,'/common/images/icons/close-hover.png', 'icon')
-        margin-top 13px
+            background url(root + '/common/images/icons/close-hover.png') no-repeat 12px #db524b
+
 
 .ui-widget-overlay
     position fixed
