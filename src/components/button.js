@@ -21,12 +21,16 @@ define(['node_modules/kpc/src/views/components/button'], function(template) {
 
         },
 
-        btnDisable:function(){
-            this.set("className","c-button-disabled");
+        disable: function() {
+            this.set("className", "c-button-disabled");
         },
 
-        btnEnable:function(){
-            this.set("className"," ");
+        enable: function() {
+            this.set("className", "");
+        },
+
+        _click: function(e) {
+            this.trigger('click', e);
         }
     });
 });

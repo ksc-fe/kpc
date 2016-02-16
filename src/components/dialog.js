@@ -1,16 +1,19 @@
-define(['node_modules/kpc/src/views/components/dialog'], function(template) {
+define(function() {
     return Intact.extend({
         defaults: {
-
+            width: 872,
+            title: '提示',
+            modal: true,
+            closeText: '关闭',
+            
         },
 
-        template: template,
+        template: Vdt.compile('<div></div>'),
 
         _create: function() {
             var self = this;
-            $(this.element).dialog({width:500,height:500});
+            $(this.element).dialog(this.get());
             this.show();
-
         },
 
         _update: function() {
