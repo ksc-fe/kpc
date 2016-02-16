@@ -8,10 +8,16 @@ define(function() {
             buttons: [
                 {
                     text: "确定",
+                    click: function() {
+
+                    },
                     'class': 'c-btn c-btn-light-blue ok'
                 },
                 {
                     text: "取消",
+                    click: function() {
+
+                    },
                     'class': 'c-btn c-btn-blue-border cancel'
                 }
             ]
