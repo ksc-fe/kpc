@@ -21,7 +21,8 @@ define(function() {
                     },
                     'class': 'c-btn c-btn-blue-border cancel'
                 }
-            ]
+            ],
+            destroyOnClose: true
         },
 
         template: Vdt.compile('<div>{{ self.get("children") }}</div>'),
@@ -29,13 +30,14 @@ define(function() {
         _create: function() {
             var self = this;
             setTimeout(function() {
-                $(self.element).dialog(self.get());
+                var $element = $(self.element).dialog(self.get());
+                if (self.get('destroyOnClose')) {
+                    $element.on('dialogclose', function() {
+                        self.destroy();
+                    })
+                }
                 self.trigger('created');
             })
-        },
-
-        _update: function() {
-
         },
 
         show: function() {
@@ -48,6 +50,10 @@ define(function() {
                 this.off('created', show).on('created', show);
                 this.init();
             }
+        },
+
+        close: function() {
+            $(this.element).dialog("close");
         },
 
         destroy: function() {
