@@ -1,0 +1,33 @@
+.c-loading
+    width 28px
+    height 28px
+    text-align center
+    padding 14px
+    border-radius 50%
+    position fixed
+    top 105px
+    left 50%
+    margin-left -28px
+    background #fff
+    box-shadow 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12)
+    &:after
+        content ''
+        display inline-block
+        width 26px
+        height 26px
+        margin: 0;
+        background: transparent !important;
+        border: 2px solid #00bcd4;
+        border-bottom-color: transparent !important;
+        border-radius: 100%;
+        animation: ball-clip-rotate 0.75s linear infinite;
+
+@keyframes ball-clip-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }    
+}
+
