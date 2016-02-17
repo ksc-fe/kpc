@@ -24,6 +24,10 @@ define(['node_modules/kpc/src/views/components/select'], function(template) {
 
         _update: function() {
             $(this.element).find('.c-select').selectmenu('refresh');
+        },
+
+        _destroy: function() {
+            $(this.element).find('.c-select').selectmenu('destroy');
         }
     });
 });
