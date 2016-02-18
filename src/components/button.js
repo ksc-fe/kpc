@@ -22,7 +22,7 @@ define(['node_modules/kpc/src/views/components/button'], function(template) {
 
         _click: function(e) {
             // disabled状态不触发click事件
-            if (!self.get('disabled')) {
+            if (!this.get('disabled')) {
                 this.trigger('click', e);
             }
         }
