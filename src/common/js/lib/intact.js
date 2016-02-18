@@ -183,7 +183,6 @@
                 this.vdt.tree = prevWidget.vdt.tree;
             }
             this.prevWidget = prevWidget;
-            this.widgets = {};
             this.element = this.vdt.update(this);
             this.rendered = true;
             this._update(prevWidget, domNode);
@@ -638,6 +637,7 @@
                 element = this.element;
 
             addClass(element, transition +'-leave');
+            element.offsetWidth = element.offsetWidth;
             addClass(element, transition + '-leave-active');
             TransitionEvents.one(element, function(e) {
                 e.stopPropagation();

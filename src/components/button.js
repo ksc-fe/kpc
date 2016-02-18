@@ -6,30 +6,25 @@ define(['node_modules/kpc/src/views/components/button'], function(template) {
             href:'',
             attributes:'',
             icon:'',
-            text:'这是一个按钮'
+            text:'这是一个按钮',
+            disabled: false
         },
 
         template: template,
 
-        _create: function() {
-            var self = this;
-            //$(this.element).find('select')
-        },
-
-        _update: function() {
-
-        },
-
         disable: function() {
-            this.set("className", "c-button-disabled");
+            this.set('disabled', true);
         },
 
         enable: function() {
-            this.set("className", "");
+            this.set('disabled', false);
         },
 
         _click: function(e) {
-            this.trigger('click', e);
+            // disabled状态不触发click事件
+            if (!self.get('disabled')) {
+                this.trigger('click', e);
+            }
         }
     });
 });
