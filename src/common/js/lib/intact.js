@@ -230,15 +230,15 @@
             }
 
             if (changes.length) {
-                options.change && options.change.call(this);
-                !options.silent && this.trigger('change', this);
-
                 var eventName;
                 for (var i = 0, l = changes.length; i < l; i++) {
                     eventName = 'change:' + changes[i];
                     options[eventName] && options[eventName].call(this, current[changes[i]]);
                     !options.silent && this.trigger(eventName, this, current[changes[i]]);
                 }
+
+                options.change && options.change.call(this);
+                !options.silent && this.trigger('change', this);
             }
 
             return this;
