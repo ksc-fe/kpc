@@ -1239,6 +1239,9 @@ function getListener(target, type) {
     var allHandler = events.event
 
     if (!handler && !allHandler) {
+        if (type === 'mouseenter' || type === 'mouseleave') {
+            return null;
+        }
         return getListener(target.parentNode, type)
     }
 
