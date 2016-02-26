@@ -45,8 +45,13 @@ define(function() {
         _init: function() {
             var buttons = this.get('buttons');
             if (!_.isEmpty(buttons)) {
-                buttons[0].click = this.get('ok');
-                buttons[1].click = this.get('cancel');
+                for (var i=0 ;i < buttons.length; i++){
+                    if(buttons[i]["title"] == "确定") {
+                        buttons[i].click = this.get('ok');
+                    }else if(buttons[i]["title"] == "确定" || buttons[i]["title"] == "关闭") {
+                        buttons[i].click = this.get('cancel');
+                    }
+                }
             }
         },
 
