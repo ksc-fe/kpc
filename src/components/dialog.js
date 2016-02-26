@@ -81,6 +81,18 @@ define(function() {
 
         destroy: function() {
             $(this.element).dialog("destroy");
+        },
+
+        disable: function() {
+            $(this.element).dialog({
+                modal: true
+            });
+        },
+
+        enable: function() {
+            $(this.element).dialog({
+                modal: false
+            });
         }
 
     });
