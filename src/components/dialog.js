@@ -84,24 +84,12 @@ define(function() {
         },
 
         disable: function() {
-            var buttons = this.get("buttons");
-            var status = buttons[0].disabled;
-            this.set("buttons", [
-                {
-                    disable: true
-                }
-            ]);
-            if (!status) {
-                this.trigger('click', e);
-            }
+            this.set("buttons", []);
+            this._init();
         },
 
         enable: function() {
-           this.set("buttons", [
-               {
-                   disable: false
-               }
-           ]);
+           this._init();
         }
 
     });
