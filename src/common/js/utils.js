@@ -265,6 +265,23 @@ kpc.utils = {
     },
 
     /**
+     * @brief 生成一个map函数，通过key获取对应的值，如果没有则返回原key 
+     *
+     * @param map {Object} map
+     *
+     * @return 
+     */
+    keyMap: function(map) {
+        return function(key) {
+            if (!arguments.length) { 
+                return map; 
+            } else {
+                return map[key] || key;
+            }
+        };
+    },
+
+    /**
      * 错误码
      */
     ERR_CODE: {
