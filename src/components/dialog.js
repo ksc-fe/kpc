@@ -81,6 +81,14 @@ define(function() {
 
         destroy: function() {
             $(this.element).dialog("destroy");
+        },
+
+        disable: function(num) {
+            jQuery('.ui-dialog button:nth-child('+num+')').button('disable');
+        },
+
+        enable: function(num) {
+            jQuery('.ui-dialog button:nth-child('+num+')').button('enable');
         }
 
     });
