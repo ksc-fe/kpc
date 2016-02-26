@@ -10,6 +10,11 @@ define(['node_modules/kpc/src/views/components/table'], function(template) {
         template: template,
 
         _init: function() {
+            this._updateCheckedIndex();
+            this.on('change:data', this._updateCheckedIndex);
+        },
+
+        _updateCheckedIndex: function() {
             this.amount = this.get('data').length;
             this.set('checkedIndex', new Array(this.amount), {silent: true});
         },
