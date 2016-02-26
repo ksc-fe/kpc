@@ -81,15 +81,6 @@ define(function() {
 
         destroy: function() {
             $(this.element).dialog("destroy");
-        },
-
-        disable: function() {
-            this.set("buttons", []);
-            this._init();
-        },
-
-        enable: function() {
-           this._init();
         }
 
     });
