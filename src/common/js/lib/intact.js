@@ -82,7 +82,7 @@
             this.widget = previous.widget;
             this.widget.children = this.attributes.children;
             delete this.attributes.children;
-            _.extend(this.widget.attributes, this.attributes);
+            this.widget.set(this.attributes, {global: false});
         }
         return this.widget;
     };
@@ -110,6 +110,7 @@
         this._contextWidgets = contextWidgets || {};
         this._widget = this.attributes.widget || _.uniqueId('widget');
 
+        // for debug
         this.displayName = this.displayName;
 
         this._constructor();
@@ -216,7 +217,10 @@
                 (attrs = {})[key] = val;
             }
 
-            options || (options = {});
+            options = _.extend({
+                silent: false,
+                global: true
+            }, options);
 
             var current = this.attributes,
                 changes = [];
@@ -238,7 +242,7 @@
                 }
 
                 options.change && options.change.call(this);
-                !options.silent && this.trigger('change', this);
+                !options.silent && options.global && this.trigger('change', this);
             }
 
             return this;

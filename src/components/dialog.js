@@ -43,22 +43,20 @@ define(function() {
         _init: function() {
             var buttons = this.get('buttons');
             if (!_.isEmpty(buttons)) {
-                buttons[0].click = this.get('ok');
-                buttons[1].click = this.get('cancel');
+                buttons[0].click = this.ok ? _.bind(this.ok, this) : this.get('ok');
+                buttons[1].click = this.cancel ? _.bind(this.cancel, this) : this.get('cancel');
             }
         },
 
         _create: function() {
             var self = this;
-            setTimeout(function() {
-                var $element = $(self.element).dialog(self.get());
-                if (self.get('destroyOnClose')) {
-                    $element.on('dialogclose', function() {
-                        self.destroy();
-                    })
-                }
-                self.trigger('created');
-            })
+            var $element = $(self.element).dialog(self.get());
+            if (self.get('destroyOnClose')) {
+                $element.on('dialogclose', function() {
+                    self.destroy();
+                });
+            }
+            self.trigger('created');
         },
 
         show: function() {
@@ -77,9 +75,12 @@ define(function() {
             $(this.element).dialog("close");
         },
 
-        destroy: function() {
+        _destroy: function() {
             $(this.element).dialog("destroy");
-        }
+        },
 
+        widget: function() {
+            return $(this.element).dialog('widget');
+        }
     });
 });

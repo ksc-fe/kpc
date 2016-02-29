@@ -4,6 +4,7 @@ define(['node_modules/kpc/src/views/components/table'], function(template) {
             scheme: {},
             data: [],
             isShowCheckbox: true,
+            isRowCheck: false, // 整行点击选中
             checkedIndex: []
         },
 
@@ -24,7 +25,7 @@ define(['node_modules/kpc/src/views/components/table'], function(template) {
         },
 
         _clickCheckSingle: function(index, e) {
-            this._checkUncheckIndex(index, $(e.target).prop('checked'));
+            this._checkUncheckIndex(index, !this.get('checkedIndex')[index]);
         },
 
         isCheckedAll: function() {

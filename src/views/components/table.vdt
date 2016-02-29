@@ -14,9 +14,9 @@ var Checkbox = require('node_modules/kpc/src/components/checkbox');
             }) }}
         </tr>
     </thead>
-    <tbody>
+    <tbody class={{ self.get('isRowCheck') ? 'row-checkable' : '' }}>
         {{ _.map(self.get('data'), function(value, index) {
-            return <tr class={{ index % 2 ? "even" : "odd" }}>
+            return <tr class={{ index % 2 ? "even" : "odd" }} ev-click={{ self.get('isRowCheck') ? _.bind(self._clickCheckSingle, self, index) : undefined }}>
                 {{ self.get('isShowCheckbox') ? 
                     <td><Checkbox class="c-m-l-20" ev-changed={{ _.bind(self._clickCheckSingle, self, index) }} checked={{ self.get('checkedIndex')[index] }} /></td> :
                     null

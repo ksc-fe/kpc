@@ -282,6 +282,20 @@ kpc.utils = {
     },
 
     /**
+     * @brief 用vdt模板中，自动绑定model->view
+     *
+     * @param component
+     * @param name
+     *
+     * @return 
+     */
+    valueLink: function(component, name) {
+        return function(e) {
+            component.set(name, e.target.value);
+        };
+    },
+
+    /**
      * 错误码
      */
     ERR_CODE: {
