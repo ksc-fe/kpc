@@ -25,7 +25,7 @@ var Checkbox = require('node_modules/kpc/src/components/checkbox');
                     var td;
                     if (_.isObject(item)) {
                         if (_.isFunction(item.template)) {
-                            td = item.template.call(self, value);
+                            td = item.template.call(self, value, index);
                         } else {
                             td = item.template;
                         }

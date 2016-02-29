@@ -61,6 +61,7 @@ define(function() {
                     self.destroy();
                 });
             }
+            this.$dialog = $element.dialog('widget');
             self.trigger('created');
         },
 
@@ -85,11 +86,11 @@ define(function() {
         },
 
         disable: function(num) {
-            $(this.element).find('button:nth-child(' + num + ')').button('disable');
+            this.$dialog.find('.ui-dialog-buttonset button').eq(num - 1).button('disable');
         },
 
         enable: function(num) {
-            $(this.element).find('button:nth-child(' + num + ')').button('enable');
+            this.$dialog.find('.ui-dialog-buttonset button').eq(num - 1).button('enable');
         },
 
         widget: function() {
