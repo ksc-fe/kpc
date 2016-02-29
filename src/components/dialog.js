@@ -9,11 +9,13 @@ define(function() {
             buttons: [
                 {
                     text: "确定",
-                    'class': 'c-btn c-btn-light-blue ok'
+                    'class': 'c-btn c-btn-light-blue ok',
+                    'disabled' : false
                 },
                 {
                     text: "取消",
-                    'class': 'c-btn c-btn-blue-border cancel'
+                    'class': 'c-btn c-btn-blue-border cancel',
+                    'disabled' : false
                 }
             ],
             show: {
@@ -42,10 +44,13 @@ define(function() {
 
         _init: function() {
             var buttons = this.get('buttons');
-            if (!_.isEmpty(buttons)) {
-                buttons[0].click = this.ok ? _.bind(this.ok, this) : this.get('ok');
-                buttons[1].click = this.cancel ? _.bind(this.cancel, this) : this.get('cancel');
-            }
+            _.each(buttons, function(button, i) {
+                if (i === 0) {
+                    button.click = this.ok ? _.bind(this.ok, this) : this.get('ok');
+                } else {
+                    button.click = this.cancel ? _.bind(this.cancel, this) : this.get('cancel');
+                }
+            }, this);
         },
 
         _create: function() {
@@ -77,6 +82,14 @@ define(function() {
 
         _destroy: function() {
             $(this.element).dialog("destroy");
+        },
+
+        disable: function(num) {
+            $(this.element).find('button:nth-child(' + num + ')').button('disable');
+        },
+
+        enable: function(num) {
+            $(this.element).find('button:nth-child(' + num + ')').button('enable');
         },
 
         widget: function() {
