@@ -51,7 +51,7 @@ define(['node_modules/kpc/src/views/components/table'], function(template) {
         },
 
         getCheckedData: function() {
-            var data = this.get('body');
+            var data = this.get('data');
             return _.reduce(this.getCheckedIndexes(), function(memo, index) {
                 memo.push(data[index]);
                 return memo;

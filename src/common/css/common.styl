@@ -35,6 +35,8 @@ table
         font-size 0
         height 0
         visibility hidden
+
+// 隐藏 & 显示
 .c-hidden
     display none
     visibility hidden
@@ -46,10 +48,12 @@ table
     display inline-block
     vertical-align middle
 
+// position
 for name in relative absolute fixed static
     .c-{name}
         position name
 
+// padding & margin
 for size in 0 5 10 15 20 25 30
     .c-p-{size}
         padding unit(size, 'px') !important
@@ -61,14 +65,25 @@ for size in 0 5 10 15 20 25 30
         .c-m-{substr(direction, 0, 1)}-{size}
             margin-{direction} unit(size, 'px') !important
 
+// 背景颜色
 .c-bg-white
     background-color #fff
 
+// 浮动
 .c-float-r
     float right
 .c-float-l
     float left
 
+// 字体颜色
+.c-color-light-blue
+    color #7e8d9e
+.c-color-white
+    color #fff
+.c-color-light-black
+    color #333
+
+// 动画
 .animate-enter
     opacity 0
     filter s('alpha(opacity=0)')

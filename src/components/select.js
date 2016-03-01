@@ -17,7 +17,7 @@ define(['node_modules/kpc/src/views/components/select'], function(template) {
             $(this.element).find('select')
                 .selectmenu({width: this.get('width')})
                 .on('selectmenuchange', function(e, ui) {
-                    self.set('value', ui.item.label, {silent: true});
+                    self.set('value', ui.item.value, {silent: true});
                     self.trigger('change', e, ui);
                 });
         },
