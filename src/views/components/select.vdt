@@ -1,5 +1,5 @@
 <div class={{ "c-select " + (self.get('className') || '') }}>
-    <select class="c-select" disabled={{ !!self.get('disabled') }}>
+    <select class="c-select" disabled={{ !!self.get('disabled') }} name={{ self.get('name') }}>
         {{ _.map(this.get('data'), function(item) {
             return <option value={{ item.value }} selected={{ item.value == self.get('value') }}>{{ item.text }}</option>
         }) }}

@@ -5,6 +5,7 @@ define(['node_modules/kpc/src/views/components/select'], function(template) {
             value: null,
             disabled: false,
             className: '',
+            name: undefined,
             width: 200,
             parent: null,
             model: null

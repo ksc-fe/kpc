@@ -6,7 +6,12 @@ define(function() {
             loading: true
         },
 
-        template: Vdt.compile('<Animate>{{ this.get("view") }}{{ this.get("loading") ? <Animate class="c-loading" key="loading" widget="test"></Animate> : undefined }}</Animate>'),
+        template: Vdt.compile('<Animate><div key="view">{{ this.get("view") }}</div>{{ this.get("loading") ? <Animate class="c-loading" key="loading" widget="test"></Animate> : undefined }}</Animate>'),
+
+        _init: function() {
+            // 一个全局对象，用于存放全局数据
+            this.locals = {};
+        },
 
         load: function(page, data) {
             var self = this;
@@ -14,6 +19,8 @@ define(function() {
             require(['static/js/pages/' + page], this._current = function callee(Widget) {
                 if (callee !== self._current) return;
                 var widget = new Widget(data);
+                // for debug
+                window.__widget__ = widget;
                 if (widget.inited) {
                     self.set({'view': widget, 'loading': false});
                 } else {
@@ -39,8 +46,16 @@ define(function() {
                 cache[page] = true;
             });
             return this;
+        },
+
+        showLoading: function() {
+            this.set('loading', true);
+        },
+
+        hideLoading: function() {
+            this.set('loading', false);
         }
     });
 
-    return Intact.mount(App, $('#container')[0]);
+    return window.App = Intact.mount(App, $('#container')[0]);
 });

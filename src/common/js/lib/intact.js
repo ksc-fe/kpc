@@ -79,10 +79,12 @@
         if (!previous || previous.Widget !== this.Widget || previous.key !== this.key) {
             this.widget = new this.Widget(this.attributes, this.contextWidget);
         } else if (previous.Widget === this.Widget) {
-            this.widget = previous.widget;
-            this.widget.children = this.attributes.children;
+            var widget = this.widget = previous.widget;
+            widget.children = this.attributes.children;
             delete this.attributes.children;
-            this.widget.set(this.attributes, {global: false});
+            widget._removeEvents();
+            widget.set(this.attributes, {global: false});
+            widget._addEvents();
         }
         return this.widget;
     };
@@ -122,13 +124,8 @@
         type: 'Widget',
 
         _constructor: function() {
-            // 所有以'ev-'开头的属性，都转化为事件
             var self = this;
-            _.each(this.attributes, function(value, key) {
-                if (key.substring(0, 3) === 'ev-' && _.isFunction(value)) {
-                    self.on(key.substring(3), value);
-                }
-            });
+            this._addEvents(); 
             this.children = this.get('children');
             delete this.attributes.children;
             // 存在widget名称引用属性，则注入所处上下文的widgets中
@@ -168,6 +165,27 @@
 
         _destroy: function(domNode) {},
 
+        _removeEvents: function() {
+            // 解绑所有事件
+            var self = this;
+            _.each(this.attributes, function(value, key) {
+                if (key.substring(0, 3) === 'ev-' && _.isFunction(value)) {
+                    self.off(key.substring(3), value);
+                    delete self.attributes[key];
+                }
+            });
+        },
+
+        _addEvents: function() {
+            // 所有以'ev-'开头的属性，都转化为事件
+            var self = this;
+            _.each(this.attributes, function(value, key) {
+                if (key.substring(0, 3) === 'ev-' && _.isFunction(value)) {
+                    self.on(key.substring(3), value);
+                }
+            });
+        },
+
         init: function() {
             this.element = this.vdt.render(this);
             this.rendered = true;
@@ -192,6 +210,7 @@
 
         destroy: function(domNode) {
             delete this._contextWidgets[this._widget];
+            this.off();
             _.each(this.widgets, function(widget) {
                 widget.destroy();
             });
@@ -641,14 +660,14 @@
                 element = this.element;
 
             addClass(element, transition +'-leave');
-            element.offsetWidth = element.offsetWidth;
-            addClass(element, transition + '-leave-active');
             TransitionEvents.one(element, function(e) {
                 e.stopPropagation();
                 removeClass(element, transition + '-leave');
                 removeClass(element, transition + '-leave-active');
                 done();
             });
+            element.offsetWidth = element.offsetWidth;
+            addClass(element, transition + '-leave-active');
         }
     });
 
