@@ -44,28 +44,25 @@ define(function() {
 
         _init: function() {
             var buttons = this.get('buttons');
-            if (!_.isEmpty(buttons)) {
-                for (var i=0 ;i < buttons.length; i++){
-                    if(buttons[i]["text"] == "确定") {
-                        buttons[i].click = this.get('ok');
-                    }else if(buttons[i]["text"] == "确定" || buttons[i]["text"] == "关闭") {
-                        buttons[i].click = this.get('cancel');
-                    }
+            _.each(buttons, function(button, i) {
+                if (i === 0) {
+                    button.click = this.ok ? _.bind(this.ok, this) : this.get('ok');
+                } else {
+                    button.click = this.cancel ? _.bind(this.cancel, this) : this.get('cancel');
                 }
-            }
+            }, this);
         },
 
         _create: function() {
             var self = this;
-            setTimeout(function() {
-                var $element = $(self.element).dialog(self.get());
-                if (self.get('destroyOnClose')) {
-                    $element.on('dialogclose', function() {
-                        self.destroy();
-                    })
-                }
-                self.trigger('created');
-            })
+            var $element = $(self.element).dialog(self.get());
+            if (self.get('destroyOnClose')) {
+                $element.on('dialogclose', function() {
+                    self.destroy();
+                });
+            }
+            this.$dialog = $element.dialog('widget');
+            self.trigger('created');
         },
 
         show: function() {
@@ -84,17 +81,20 @@ define(function() {
             $(this.element).dialog("close");
         },
 
-        destroy: function() {
+        _destroy: function() {
             $(this.element).dialog("destroy");
         },
 
         disable: function(num) {
-            jQuery('.ui-dialog button:nth-child('+num+')').button('disable');
+            this.$dialog.find('.ui-dialog-buttonset button').eq(num - 1).button('disable');
         },
 
         enable: function(num) {
-            jQuery('.ui-dialog button:nth-child('+num+')').button('enable');
-        }
+            this.$dialog.find('.ui-dialog-buttonset button').eq(num - 1).button('enable');
+        },
 
+        widget: function() {
+            return $(this.element).dialog('widget');
+        }
     });
 });

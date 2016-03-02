@@ -7,6 +7,12 @@ require.config({
         director: {
             exports: 'Router'
         }
+    },
+
+    map: {
+        '*': {
+            app: 'node_modules/kpc/src/common/js/app'
+        }
     }
 });
 

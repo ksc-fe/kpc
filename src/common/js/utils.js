@@ -174,7 +174,7 @@ kpc.utils = {
      * @param timeout 自动消失间隔
      */
     showTip: function(type, text, callback, timeout){
-        require(['component/tip'], function(Tip) {
+        require(['node_modules/kpc/src/common/js/widgets/tip'], function(Tip) {
             Tip({ 
                 type: type,
                 text: text,
@@ -190,20 +190,16 @@ kpc.utils = {
      * 操作成功tip
      * @param message
      */
-    showSuccessTip: function(message) {
-        this.showTip('success', message || '操作成功', function() {
-            setTimeout(function() {
-                window.location.reload();
-            }, 3000);
-        });
+    showSuccessTip: function(message, callback) {
+        this.showTip('success', message || '操作成功', callback);
     },
 
     /**
      * 操作失败tip
      * @param message
      */
-    showErrorTip: function(message) {
-        this.showTip('error', message || '操作失败', null, 2500);
+    showErrorTip: function(message, callback) {
+        this.showTip('error', message || '操作失败', callback, 2500);
     },
 
     /**
@@ -278,6 +274,20 @@ kpc.utils = {
             } else {
                 return map[key] || key;
             }
+        };
+    },
+
+    /**
+     * @brief 用vdt模板中，自动绑定model->view
+     *
+     * @param component
+     * @param name
+     *
+     * @return 
+     */
+    valueLink: function(component, name) {
+        return function(e) {
+            component.set(name, e.target.value);
         };
     },
 
