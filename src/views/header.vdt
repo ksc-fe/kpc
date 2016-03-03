@@ -6,6 +6,7 @@
             <a href="/console/index" class="header-logo bgi-home" title="控制台首页"></a>
         </b:logoConsole>
     </div>
+    <input type="hidden" id="ksc-user-id" value="user.user_id">
 
     <div class="docker-wrapper">
         <div class="docker-item">
