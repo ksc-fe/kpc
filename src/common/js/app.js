@@ -55,6 +55,13 @@ define(function() {
 
         hideLoading: function() {
             this.set('loading', false);
+        },
+
+        notFound: function() {
+            this.set('loading', false);
+            this.set('view', new (Intact.extend({
+                template: '<div style={{ {fontSize: "80px", textAlign: "center"} }}>404</div>'
+            })));
         }
     });
 
