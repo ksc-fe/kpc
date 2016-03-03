@@ -15,38 +15,43 @@ var Checkbox = require('node_modules/kpc/src/components/checkbox');
         </tr>
     </thead>
     <tbody class={{ self.get('isRowCheck') ? 'row-checkable' : '' }}>
-        {{ _.map(self.get('data'), function(value, index) {
-            return <tr class={{ index % 2 ? "even" : "odd" }} ev-click={{ self.get('isRowCheck') ? _.bind(self._clickCheckSingle, self, index) : undefined }}>
-                {{ self.get('isShowCheckbox') ? 
-                    <td><Checkbox class="c-m-l-20" ev-changed={{ _.bind(self._clickCheckSingle, self, index) }} checked={{ self.get('checkedIndex')[index] }} /></td> :
-                    null
-                }}
-                {{ _.map(self.get('scheme'), function(item, key) {
-                    var td;
-                    if (_.isObject(item)) {
-                        if (_.isFunction(item.template)) {
-                            td = item.template.call(self, value, index);
+        {{ !_.isEmpty(self.get('data')) ? 
+            _.map(self.get('data'), function(value, index) {
+                return <tr class={{ index % 2 ? "even" : "odd" }} ev-click={{ self.get('isRowCheck') ? _.bind(self._clickCheckSingle, self, index) : undefined }}>
+                    {{ self.get('isShowCheckbox') ? 
+                        <td><Checkbox class="c-m-l-20" ev-changed={{ _.bind(self._clickCheckSingle, self, index) }} checked={{ self.get('checkedIndex')[index] }} /></td> :
+                        null
+                    }}
+                    {{ _.map(self.get('scheme'), function(item, key) {
+                        var td;
+                        if (_.isObject(item)) {
+                            if (_.isFunction(item.template)) {
+                                td = item.template.call(self, value, index);
+                            } else {
+                                td = item.template;
+                            }
+                        } else if (value[key] !== undefined) {
+                            td = value[key];
                         } else {
-                            td = item.template;
+                            var object = item,
+                                keys = key.split('.'),
+                                index = 0;
+                            while (object != null && index < keys.length) {
+                                object = object[keys[index++]];
+                            }
+                            td = (index && index === keys.length) ? object : null;
                         }
-                    } else if (value[key] !== undefined) {
-                        td = value[key];
-                    } else {
-                        var object = item,
-                            keys = key.split('.'),
-                            index = 0;
-                        while (object != null && index < keys.length) {
-                            object = object[keys[index++]];
+                        if (_.isString(td) || _.isNumber(td)) {
+                            return <td innerHTML={{ td }}></td>
+                        } else {
+                            return <td>{{ td }}</td>
                         }
-                        td = (index && index === keys.length) ? object : null;
-                    }
-                    if (_.isString(td) || _.isNumber(td)) {
-                        return <td innerHTML={{ td }}></td>
-                    } else {
-                        return <td>{{ td }}</td>
-                    }
-                }) }}
+                    }) }}
+                </tr>
+            }) :
+            <tr class="odd">
+                <td colSpan={{ _.size(self.get('scheme')) + (self.get('isShowCheckbox') ? 1 : 0) }} class="c-center">/(ㄒoㄒ)/~~ 没有找到亲要的数据哦~</td>
             </tr>
-        }) }}
+        }}
     </tbody>
 </table>
