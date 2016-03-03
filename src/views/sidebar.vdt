@@ -104,11 +104,11 @@ var navData = [
     {
         "title": "云监控",
         "icon": "monitor",
-        "href": "/console/monitor/instances/list",
+        "href": "/console/kec",
         "subNav": [
             {
                 "title": "云主机KEC",
-                "href": "/console/monitor/instances/list",
+                "href": "/console/kec",
                 "index": "kec"
             }
         ]
