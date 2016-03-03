@@ -1,5 +1,6 @@
 define(function() {
-    var cache = {};
+    var cache = {},
+        isFirst = true;
     var App = Intact.extend({
         defaults: {
             view: '',
@@ -31,7 +32,7 @@ define(function() {
                     });
                 }
 
-                if (cache[page]) {
+                if (!isFirst) {
                     // 强制页面进入时调用_create方法
                     if (widget.rendered) {
                         widget._create();
@@ -43,6 +44,7 @@ define(function() {
                         });
                     }
                 }
+                isFirst = false;
                 cache[page] = true;
             });
             return this;

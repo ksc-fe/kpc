@@ -7,7 +7,7 @@ var header = require('../node_modules/kpc/src/views/header'),
     <title><b:title /></title>
     <link rel="shortcut icon" href="/node_modules/kpc/src/common/images/favicon.ico" type="image/x-icon" />
     <b:css>
-        <link rel="stylesheet" type="type/css" href="/node_modules/kpc/src/all.css" />
+        <link rel="stylesheet" href="/node_modules/kpc/src/all.css" />
     </b:css>
 </head>
 <body class={{ <b:bodyClass />[0] }}>
