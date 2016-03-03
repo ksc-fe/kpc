@@ -276,6 +276,24 @@ kpc.utils = {
             }
         };
     },
+    /**
+     * @brief 校验一个字符串（是否由1-40个字符组成），返回一个布尔值
+     *
+     * @param String
+     *
+     * @return Boolean
+     */
+
+    validate :function(string){
+        var reg = /^[0-9a-zA-Z\u4e00-\u9fa5_-]{1,40}$/;
+        var judge = reg.test(string);
+        if (judge) {
+            return true;
+        } else {
+            this.showErrorTip("由1-40个字符组成");
+        }
+
+    },
 
     /**
      * @brief 用vdt模板中，自动绑定model->view
