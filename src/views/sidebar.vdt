@@ -125,8 +125,8 @@ var navData = [
             },
             {
                 "title": "高仿IP",
-                "href": "/console/security/ips",
-                "index": "security-ips"
+                "href": "/console/security/kad",
+                "index": "security-kad"
             }
         ]
     }

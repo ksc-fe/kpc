@@ -1,5 +1,4 @@
 define(function() {
-    var cache = {};
     var isFirst = true;
     var App = Intact.extend({
         defaults: {
@@ -46,7 +45,6 @@ define(function() {
                     }
                 }
                 isFirst = false;
-                // cache[page] = true;
             });
             return this;
         },
