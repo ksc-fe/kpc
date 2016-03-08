@@ -6,3 +6,4 @@ config/
 lib/
 log/
 views/
+*.pyc
