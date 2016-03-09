@@ -1,4 +1,0 @@
-<div class="c-search search-block">
-    <input class="c-input list-input-search" type="text" id="searchQuery" placeholder={{this.get("placeholder")}} value="" autocomplete="off">
-    <button class="list-search-btn" type="submit"><i class="c-icon c-icon-search"></i></button>
-</div>

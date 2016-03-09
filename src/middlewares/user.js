@@ -32,5 +32,24 @@ module.exports = Advanced.Controller.extend({
         } else {
             return this.next();
         }
+    },
+
+    
+    /**
+     * @brief 获取用户数据写入res.locals，不用区分请求类型
+     *
+     * @return 
+     */
+    getUserInfo: function() {
+        this.res.locals.req = this.req;
+
+        this.request({
+            info: '/user/user_info'
+        }).then(function(data) {
+            if (data.info && data.info.status == 0) {
+                this.res.locals.user = data.info.data;
+            }
+            this.next();
+        }.bind(this));
     }
 });

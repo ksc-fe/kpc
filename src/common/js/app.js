@@ -1,13 +1,12 @@
 define(function() {
-    var cache = {},
-        isFirst = true;
+    var isFirst = true;
     var App = Intact.extend({
         defaults: {
             view: '',
             loading: true
         },
 
-        template: Vdt.compile('<Animate><div key="view">{{ this.get("view") }}</div>{{ this.get("loading") ? <Animate class="c-loading" key="loading" widget="test"></Animate> : undefined }}</Animate>'),
+        template: Vdt.compile('<Animate><div key="view">{{ this.get("view") }}</div>{{ this.get("loading") ? <Animate class="c-loading" key="loading"></Animate> : undefined }}</Animate>'),
 
         _init: function() {
             // 一个全局对象，用于存放全局数据
@@ -19,6 +18,7 @@ define(function() {
             this.set('loading', true);
             require(['static/js/pages/' + page], this._current = function callee(Widget) {
                 if (callee !== self._current) return;
+                if (self.get('view')) self.get('view')._destroy();
                 var widget = new Widget(data);
                 // for debug
                 window.__widget__ = widget;
@@ -45,7 +45,6 @@ define(function() {
                     }
                 }
                 isFirst = false;
-                cache[page] = true;
             });
             return this;
         },
@@ -56,6 +55,13 @@ define(function() {
 
         hideLoading: function() {
             this.set('loading', false);
+        },
+
+        notFound: function() {
+            this.set('loading', false);
+            this.set('view', new (Intact.extend({
+                template: '<div style={{ {fontSize: "80px", textAlign: "center"} }}>404</div>'
+            })));
         }
     });
 
