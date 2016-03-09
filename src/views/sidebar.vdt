@@ -113,7 +113,7 @@ var navData = [
             },
             {
                 "title": "联系人管理",
-                "href": "/console/linkman",
+                "href": "/#/linkman",
                 "index": "linkman"
             }
         ]
