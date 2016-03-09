@@ -2,10 +2,10 @@
   "name": "kpc",
   "version": "0.0.1",
   "dependencies": {
-    "lodash": "^4.0.0",
-    "vdt": "^0.7.0"
   },
   "devDependencies": {
+    "lodash": "^4.0.0",
+    "vdt": "^0.7.0",
     "advanced": "^0.3.5",
     "stylus": "^0.53.0",
     "bluebird": "^3.3.3",

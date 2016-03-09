@@ -22,11 +22,6 @@ var nocacheConf = {
     outputContext: './build/'
 };
 
-module.exports = {
-    paths: paths,
-    nocacheConf: nocacheConf
-};
-
 gulp.task('clean', function() {
     return Promise.all([
         rimraf(paths.dest),
