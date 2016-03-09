@@ -7,13 +7,21 @@ define(['node_modules/kpc/src/views/components/button'], function(template) {
             attributes:'',
             icon:'',
             text:'这是一个按钮',
-            disabled: false
+            disabled: false,
+            showLoading: false
         },
 
         template: template,
 
-        disable: function() {
-            this.set('disabled', true);
+        /**
+         * @brief 
+         *
+         * @param showLoading 是否disable时展示loading动画
+         *
+         * @return 
+         */
+        disable: function(showLoading) {
+            this.set({disabled: true, showLoading: !!showLoading});
         },
 
         enable: function() {

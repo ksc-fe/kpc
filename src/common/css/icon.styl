@@ -21,7 +21,7 @@ for name in compute network cdn ebs monitor rds safe services nav-arrow-down nav
     .c-icon-{name}    
         background-image url(root + '/common/images/icons/' + name + '.png')
     .c-icon-{name}-hover
-    .c-hover:hover .c-icon-{name}
+    .c-hover:not(.c-btn-disabled):hover .c-icon-{name}
         background-image url(root + '/common/images/icons/' + name + '-hover.png')
 
 .c-icon-nav-arrow-down-hover
@@ -51,3 +51,8 @@ for name in dot
     border-width: 5px 5px 0 5px;
     border-color: #858585 transparent transparent transparent;
     border-style: solid;
+
+.c-icon-loading
+    background-image url(root + '/common/images/loading.gif')
+    background-position center center
+    background-repeat no-repeat
