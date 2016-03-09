@@ -129,7 +129,7 @@ var navData = [
                 "index": "security-basic"
             },
             {
-                "title": "高仿IP",
+                "title": "高防IP",
                 "href": "/console/security/kad",
                 "index": "security-kad"
             }
