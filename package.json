@@ -7,6 +7,20 @@
   },
   "devDependencies": {
     "advanced": "^0.3.5",
-    "stylus": "^0.53.0"
+    "stylus": "^0.53.0",
+    "bluebird": "^3.3.3",
+    "fs-extra": "^0.26.5",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.3",
+    "gulp-copy": "0.0.2",
+    "gulp-document-write": "0.0.5",
+    "gulp-imerge": "0.0.4",
+    "gulp-nocache": "0.0.9",
+    "gulp-sequence": "^0.4.5",
+    "gulp-stylus": "^2.3.0",
+    "gulp-tap": "git://github.com/Javey/gulp-tap.git#master",
+    "gulp-uglify": "^1.5.3",
+    "gulp-vdt": "^0.0.4",
+    "rimraf": "^2.5.2"
   }
 }

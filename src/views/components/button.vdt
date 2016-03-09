@@ -3,13 +3,20 @@ var Button = function(attrs) {
 }
 
 <Button 
-    class={{ "c-btn c-btn-" + (self.get('type') || '') + ' ' + (self.get('className') || '') + (self.get('disabled') ? ' c-btn-disabled' : '') }} 
+    class={{ "c-btn c-btn-" + 
+        (self.get('type') || '') + 
+        ' ' + 
+        (self.get('className') || '') + 
+        (self.get('disabled') ? ' c-btn-disabled' : '') + 
+        (self.get('showLoading') ? ' c-icon-loading' : '') 
+    }} 
     href={{ self.get('href') || 'javascript:;' }} 
     attributes={{ self.get('attributes') }} 
     ev-click={{ _.bind(self._click, self) }}
 >
-    {{ _.isEmpty(self.get('children')) ?
-        [self.get('icon') ? <i class={{ "c-icon c-icon-" + self.get('icon') }}></i> : null, self.get('text')] :
-        self.get('children')
+    {{ !self.get('showLoading') ? (_.isEmpty(self.get('children')) ?
+           [self.get('icon') ? <i class={{ "c-icon c-icon-" + self.get('icon') }}></i> : null, self.get('text')] :
+           self.get('children')
+       ) : undefined
     }}
 </Button>
