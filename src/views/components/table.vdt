@@ -10,7 +10,11 @@ var Checkbox = require('node_modules/kpc/src/components/checkbox');
                 null
             }}
             {{ _.map(self.get('scheme'), function(item) {
-                return <th>{{ _.isObject(item) ? item.title : item }}</th>
+                   if (_.isObject(item)){
+                       return <th width={{ item.width ? item.width : null }}>{{ item.title }}</th>
+                   } else {
+                       return <th>{{ item }}</th>
+                   }
             }) }}
         </tr>
     </thead>

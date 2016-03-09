@@ -110,6 +110,11 @@ var navData = [
                 "title": "云主机KEC",
                 "href": "/console/kec",
                 "index": "kec"
+            },
+            {
+                "title": "联系人管理",
+                "href": "/#/linkman",
+                "index": "linkman"
             }
         ]
     },
