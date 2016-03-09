@@ -85,8 +85,8 @@ define(function() {
             $(this.element).dialog("destroy");
         },
 
-        disable: function(num) {
-            this.$dialog.find('.ui-dialog-buttonset button').eq(num - 1).button('disable');
+        disable: function(num, showLoading) {
+            this.$dialog.find('.ui-dialog-buttonset button').eq(num - 1).button('disable', showLoading);
         },
 
         enable: function(num) {

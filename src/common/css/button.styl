@@ -11,9 +11,12 @@
     font-size 12px
     .c-icon
         margin-right 10px
-    &:not(.c-btn-disabled):hover
+    &:not(.c-btn-disabled):not(.ui-button-disabled):hover
         background-color #148cec
         color #fff
+    &.c-icon-loading
+        overflow hidden
+        text-indent -1000px
 
 .c-btn-white
     background-color #fff
@@ -27,8 +30,12 @@
     background-color #148cec
     color #fff
 
+.c-btn-light-blue
+    background-color #5faded
+    color #fff
 
 .c-btn-disabled
+.ui-button-disabled
     background-color #f3f3f3 !important
     cursor not-allowed !important
     color #898989 !important
