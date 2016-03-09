@@ -152,7 +152,7 @@ var navData = [
                         }
                         return <li class={{ className }}>
                             <i class={{ "c-icon " + (className === 'active' ? "c-icon-dot-hover" : "c-icon-dot") }}></i>
-                            <a href={{ subNav.href || 'javascript:;' }} class="c-ellipsis">{{ subNav.title }}</a>
+                            <a href={{ className === 'active' ? '#/' : (subNav.href || 'javascript:;') }} class="c-ellipsis">{{ subNav.title }}</a>
                         </li>
                     }) }}
                 </ul>
