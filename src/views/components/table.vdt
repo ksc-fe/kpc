@@ -4,7 +4,7 @@ var Checkbox = require('node_modules/kpc/src/components/checkbox');
     <thead>
         <tr>
             {{ self.get('isShowCheckbox') ? 
-                 <th width="40">
+                <th width="40">
                      <Checkbox class="c-m-l-20" ev-changed={{ _.bind(self._clickCheckAll, self) }} checked={{ self.isCheckedAll() }}/>
                 </th> :
                 null
