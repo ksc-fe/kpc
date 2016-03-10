@@ -292,6 +292,27 @@ kpc.utils = {
     },
 
     /**
+     * @brief 高亮某个导航，vdt模板可以前后端通用
+     * 
+     * @param index 要高亮的索引
+     *
+     * @param 
+     */
+    highlightNav: (function() {
+        var vdt;
+        return function(index) {
+            if (!vdt) {
+                require(['node_modules/kpc/src/views/sidebar'], function(template) {
+                    vdt = Vdt(template); 
+                    $('#sidebar').replaceWith(vdt.render({navIndex: index}));
+                });
+            } else {
+                vdt.update({navIndex: index});
+            }
+        };
+    })(),
+
+    /**
      * 错误码
      */
     ERR_CODE: {
