@@ -13,11 +13,12 @@
   "dependencies": {
     "requirejs": "~2.1.22",
     "jquery": "~2.2.0",
-    "vdt": "~0.7.0",
-    "intact": "~1.0.4",
+    "vdt": "~0.8.1",
+    "intact": "~1.0.7",
     "underscore": "~1.8.3",
     "jquery-ui": "~1.11.4",
-    "director": "~1.2.8"
+    "director": "~1.2.8",
+    "bootstrap-switch": "~3.3.2"
   },
   "install": {
     "path": {

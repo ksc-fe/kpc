@@ -2177,7 +2177,6 @@ var EvStore = require('ev-store');
 var Delegator = require('dom-delegator');
 
 var delegator = new Delegator({defaultEvents: false});
-window.delegator = delegator;
 
 module.exports = EvHook;
 
@@ -2195,7 +2194,6 @@ EvHook.prototype.hook = function (node, propertyName) {
     
     delegator.listenTo(propName);
     es[propName] = this.value;
-    // console.log('hook', node, es);
 };
 
 EvHook.prototype.unhook = function(node, propertyName) {
@@ -2204,7 +2202,6 @@ EvHook.prototype.unhook = function(node, propertyName) {
 
     delegator.unlistenTo(propName);
     es[propName] = undefined;
-    // console.log('unhook', node, es);
 };
 
 },{"dom-delegator":3,"ev-store":25}],39:[function(require,module,exports){
