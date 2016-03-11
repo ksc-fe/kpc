@@ -5,9 +5,10 @@
     width 20px
     height 20px
 
-for name in mic phone help user search
-    .c-icon-{name}
-        background-image url(root + '/common/images/icons/' + name + '.png')
+for $name in mic phone help user search warn
+    urlStr = '/common/images/icons/%s.png' % $name
+    .c-icon-{$name}
+        background-image url(root + urlStr)
 
 .c-icon-user-circle
     width 22px
@@ -17,7 +18,11 @@ for name in mic phone help user search
     width 25px
     height 25px
 
-for name in compute network cdn ebs monitor rds safe services nav-arrow-down nav-arrow-right user-circle logout add refresh delete
+.c-icon-warn
+    width 45px
+    height 45px
+
+for name in compute network cdn ebs monitor rds safe services nav-arrow-down nav-arrow-right user-circle logout add refresh delete edit
     .c-icon-{name}    
         background-image url(root + '/common/images/icons/' + name + '.png')
     .c-icon-{name}-hover

@@ -1,0 +1,9 @@
+<div class={{ "c-editable " + self.get('className') + (self.get('isEditing') ? ' editing' : '') }}>
+    <i class="c-icon c-icon-edit" title="编辑" ev-click={{ _.bind(self._editing, self) }}></i>
+    <div class="c-ellipsis">
+        {{ !self.get('isEditing') ? 
+            (self.subTemplate ? self.subTemplate.call(self, self) : self.get('children')) : 
+            <input ev-blur={{ _.bind(self._onBlur, self) }} ev-keydown={{ _.bind(self._onKeydown, self) }} class="c-input" type="text" value={{ self.get('text') }} />
+        }}
+    </div>
+</div>

@@ -26,6 +26,15 @@ define(['node_modules/kpc/src/common/js/lib/bootstrap-switch'], function() {
                 });
         },
 
+        _destroy: function() {
+            console.log('destroy switch');
+        },
+
+        /**
+         * @brief 代理方法到bootstrapSwitch
+         *
+         * @return 
+         */
         method: function() {
             this.$input.bootstrapSwitch.apply(this.$input, arguments);
         }

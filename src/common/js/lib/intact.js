@@ -211,9 +211,16 @@
         destroy: function(domNode) {
             delete this._contextWidgets[this._widget];
             this.off();
-            _.each(this.widgets, function(widget) {
-                widget.destroy();
-            });
+            function destroy(children) {
+                _.each(children, function(child) {
+                    if (child.hasThunks) {
+                        destroy(child.children);
+                    } else if (child.type === 'Thunk') {
+                        child.widget.destroy();
+                    }
+                });
+            }
+            destroy([this.vdt.tree]);
             this._destroy(domNode);
         },
 
