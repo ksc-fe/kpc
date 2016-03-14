@@ -12359,7 +12359,9 @@ var selectmenu = $.widget( "ui.selectmenu", {
 
 	refresh: function() {
 		this._refreshMenu();
-		this._setText( this.buttonText, this._getSelectedItem().text() );
+        if ( this.menuItems ) {
+            this._setText( this.buttonText, this._getSelectedItem().text() );
+        }
 		if ( !this.options.width ) {
 			this._resizeButton();
 		}

@@ -1,0 +1,46 @@
+.c-arrow-nav-bar
+    li
+        height 36px
+        line-height 36px
+        box-sizing border-box
+        width 273px
+        margin-right 10px
+        float right 
+        text-align center
+        border 1px solid #8d93a3
+        position relative
+    .active
+        background #8d93a3
+        color #fff
+        .after:after
+            border-color transparent transparent transparent #8d93a3
+        .after:before
+            border-color transparent transparent transparent #8d93a3
+        .before:before
+            border-color transparent transparent transparent #8d93a3
+    .last
+        margin 0
+    .arrow
+        position absolute
+        width 36px
+        height 36px
+        top -1px
+    .arrow.before
+        left -1px
+    .arrow.after
+        right -36px
+    .arrow:after
+        content ''
+        display block
+        position absolute
+        border-width 17px
+        border-color transparent transparent transparent #fff
+        border-style solid
+        top 1px
+    .arrow:before
+        content ''
+        display block
+        position absolute
+        border-width 18px
+        border-color transparent transparent transparent #565B67
+        border-style solid

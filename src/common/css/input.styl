@@ -1,10 +1,15 @@
 .c-input
     display inline-block
-    height 38px
+    box-sizing border-box
+    height 40px
+    width 172px
     background #fff
     border 1px solid #e5e5e5
     vertical-align middle
     padding 0 10px
+.c-input.no-border
+    border 0
+    border-bottom 1px solid #e5e5e5
 
 .c-input-group
     position relative
@@ -24,3 +29,25 @@
         display inline-block
         line-height 38px
         width 40px
+
+.c-form-group
+    zoom 1
+    margin-bottom 20px
+    &:after
+        clear both
+        content ''
+        display block
+        font-size 0
+        height 0
+        visibility hidden
+    .label
+        display block
+        float left
+        line-height 40px
+        width 100px
+        text-align right
+        margin-right 20px
+    .interaction
+        float left
+        .c-input
+            width 300px

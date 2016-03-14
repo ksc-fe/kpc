@@ -1,0 +1,15 @@
+<ul class={{ "c-arrow-nav-bar c-clearfix " + (self.get('className') || '') }}>
+    {{ _.map((self.get('data') || []).reverse(), function(item, index) {
+        var classNames = [], 
+            length = self.get('data').length;
+
+        if (index === 0) classNames.push('last');
+        if (index === length - self.get('index') - 1) classNames.push('active');
+
+        return <li class={{ classNames.join(' ') }}>
+            {{ index !== length - 1 ? <i class="arrow before"></i> : undefined }}
+            {{ item }}
+            {{ index !== 0 ? <i class="arrow after"></i> : undefined }}
+        </li>
+    }) }}
+</ul>
