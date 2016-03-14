@@ -1,0 +1,8 @@
+<div class={{ "c-spinner " + self.get('className') + (self.get('disabled') ? ' c-spinner-disabled' : '')}}
+        attributes={{ self.get('attributes') }} >
+    <button type="button" class={{"c-spinner-btn c-dec" + (self.get('value') <= self.get('min') ? ' disabled' : '' ) }} ev-click={{ _.bind(self._decrease, self) }} disabled>-</button>{{
+            self.get('disabled') ?
+            <input type="text" class="c-spinner-input" value={{ self.get('value') }} ev-change={{ _.bind(self._change, self) }} attributes={{ {'disabled': true} }}>
+            : <input type="text" class="c-spinner-input" value={{ self.get('value') }} ev-change={{ _.bind(self._change, self) }}>
+    }}<button type="button" class={{"c-spinner-btn c-inc" + (self.get('value') >= self.get('max') ? ' disabled' : '' )}} ev-click={{ _.bind(self._increase, self) }} disabled>+</button>
+</div>

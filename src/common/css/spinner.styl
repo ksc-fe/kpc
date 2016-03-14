@@ -1,0 +1,28 @@
+.c-spinner
+    display inline-block
+    padding 0
+    margin 0
+    white-space nowrap
+    .c-spinner-btn
+        color #fff
+        font-weight 200
+        height 30px
+        width 30px
+        background-color #489aeb
+        cursor pointer
+        &.disabled
+            background-color #c8c8c8
+            cursor not-allowed
+    .c-spinner-input
+        border none
+        text-align center
+        height 30px
+        width 40px
+        padding 0
+        margin 0
+    &.c-spinner-disabled
+        .c-spinner-btn
+            background-color #c8c8c8
+            cursor not-allowed
+        .c-spinner-input
+            background-color #fafafa
