@@ -75,8 +75,20 @@ transition-duration()
     transition-duration arguments
 
 background-image()
+    i = 0
+    for arg in arguments
+        i = i + 1
+    if arguments[i - 1] != false 
+        imerge kpc
+    else
+        arguments[i - 1] = null
     background-image arguments
-    imerge kpc
 background()
+    i = 0
+    for arg in arguments
+        i = i + 1
+    if arguments[i - 1] != false 
+        imerge kpc
+    else
+        arguments[i - 1] = null
     background arguments
-    imerge kpc

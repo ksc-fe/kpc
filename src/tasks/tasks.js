@@ -158,22 +158,29 @@ gulp.task('build-install', sequence('clean', 'copy', 'node_modules:install', 'co
 gulp.task('build-copy', sequence('clean', 'copy', 'node_modules:copy', 'config', 'build:media', 'build:css', 'build:js', 'build:requirejs', 'build:tpl'));
 
 gulp.task('dev', function() {
+    console.log('通过copy依赖的方式，编译开发测试代码');
     process.env.NODE_ENV = 'development';
     gulp.start('build-copy');
 });
 gulp.task('dev-install', function() {
+    console.log('通过在线install依赖的方式，编译开发测试代码');
     process.env.NODE_ENV = 'development';
     gulp.start('build-install');
 });
 gulp.task('default', function() {
+    gulp.start('build');
+});
+gulp.task('build', function() {
+    console.log('通过copy依赖的方式，编译上线发布代码');
     process.env.NODE_ENV = 'production';
     nocacheConf.cdn = ['//ksc-console-static.ks3-cn-center-1.ksyun.com'];
     gulp.start('build-copy');
 });
-gulp.task('build', function() {
+gulp.task('build-install', function() {
+    console.log('通过在线install依赖的方式，编译上线发布代码');
     process.env.NODE_ENV = 'production';
     nocacheConf.cdn = ['//ksc-console-static.ks3-cn-center-1.ksyun.com'];
-    gulp.start('build-install');
+    gulp.start('build-insall');
 });
 
 function exec(command) {
