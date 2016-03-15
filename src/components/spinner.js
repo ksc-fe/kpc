@@ -55,7 +55,7 @@ define(['node_modules/kpc/src/views/components/spinner'], function(template) {
             }
         },
 
-        _changeValue(newval) {
+        _changeValue: function (newval) {
             var val = this.get('value'),
                 v = Math.min(this.get('max'), Math.max(this.get('min'), newval));
             if (v === val) {

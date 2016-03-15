@@ -25,7 +25,7 @@ define(['node_modules/kpc/src/views/components/button'], function(template) {
         },
 
         enable: function() {
-            this.set('disabled', false);
+            this.set({disabled: false, showLoading: false});
         },
 
         _click: function(e) {
