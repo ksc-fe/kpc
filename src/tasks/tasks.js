@@ -167,20 +167,20 @@ gulp.task('dev-install', function() {
     process.env.NODE_ENV = 'development';
     gulp.start('build-install');
 });
-gulp.task('default', function() {
-    gulp.start('build');
-});
 gulp.task('build', function() {
-    console.log('通过copy依赖的方式，编译上线发布代码');
+    console.log('通过copy依赖的方式，编译发布上线代码');
     process.env.NODE_ENV = 'production';
     nocacheConf.cdn = ['//ksc-console-static.ks3-cn-center-1.ksyun.com'];
     gulp.start('build-copy');
 });
 gulp.task('build-install', function() {
-    console.log('通过在线install依赖的方式，编译上线发布代码');
+    console.log('通过在线install依赖的方式，编译发布上线代码');
     process.env.NODE_ENV = 'production';
     nocacheConf.cdn = ['//ksc-console-static.ks3-cn-center-1.ksyun.com'];
     gulp.start('build-insall');
+});
+gulp.task('default', function() {
+    gulp.start('build');
 });
 
 function exec(command) {
