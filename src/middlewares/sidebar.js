@@ -236,7 +236,7 @@ module.exports = Advanced.Controller.extend({
                         },
                         {
                             "title": "联系人管理",
-                            "href": "/#/linkman",
+                            "href": "/console/linkman",
                             "index": "linkman"
                         }
                     ]
