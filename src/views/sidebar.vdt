@@ -1,5 +1,3 @@
-
-
 <aside id="sidebar">
     <div class="nav-wrapper">
         {{ _.map(navData, function(item) {
