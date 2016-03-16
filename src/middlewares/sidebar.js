@@ -114,7 +114,7 @@ module.exports = Advanced.Controller.extend({
                         "index": "security-basic"
                     },
                     {
-                        "title": "高仿IP",
+                        "title": "高防IP",
                         "href": "/console/security/kad",
                         "index": "security-kad"
                     }
@@ -247,7 +247,7 @@ module.exports = Advanced.Controller.extend({
                             "index": "security-basic"
                         },
                         {
-                            "title": "高仿IP",
+                            "title": "高防IP",
                             "href": "/console/security/kad",
                             "index": "security-kad"
                         }
