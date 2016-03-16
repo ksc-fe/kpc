@@ -1,0 +1,7 @@
+<div class='slider-container'>
+    <span class='ui-slider-min'>{{ self.get('min') }}</span>
+    <div class='slider' style={{ {'width': this.get('width')+'px'} }}></div>
+    <span class='ui-slider-max'>{{ self.get('max') }}</span>
+    <input type='text' class='c-input val' height='20px' value={{ self.get('value') }} ev-blur={{ _.bind(self._validateInput, self) }}/>
+    <span class='unit'>{{ self.get('unit') }}</span>
+</div>
