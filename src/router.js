@@ -6,6 +6,8 @@ var Router = require(__ROOT + '/node_modules/advanced/lib/index').Router;
 router.get(/^(?!(\/static\/|\/res\/|\/node_modules\/)).*$/, runCtrl('./middlewares/user', 'userInfo'));
 // 所有/console页面都需要登录访问
 router.get('/console/*', runCtrl('./middlewares/user', 'needLogin'));
+router.get('/console/*', runCtrl('./middlewares/sidebar', 'getNavData'));
+
 
 function runCtrl(path, method) {
     var Ctrl = require(path);
