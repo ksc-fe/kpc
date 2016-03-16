@@ -127,7 +127,7 @@ module.exports = Advanced.Controller.extend({
             }
         ];
 
-        if(Advanced.Utils.c('env') === 'development'){
+        if(Advanced.Utils.isDev()){
             navData = [
                 {
                     "title": "计算资源",
@@ -236,12 +236,12 @@ module.exports = Advanced.Controller.extend({
                     "subNav": [
                         {
                             "title": "云主机KEC",
-                            "href": "/console/kec",
+                            "href": "#/",
                             "index": "kec"
                         },
                         {
                             "title": "联系人管理",
-                            "href": "/console/linkman",
+                            "href": "#/linkman",
                             "index": "linkman"
                         }
                     ]

@@ -29,6 +29,9 @@ var header = require('../node_modules/kpc/src/views/header'),
         </b:main>
     </b:body>
     <b:js>
+        <script type="text/javascript">
+            var navData = {{ JSON.stringify(navData) }};
+        </script>
         <script type="text/javascript" src="/node_modules/kpc/src/all.js"></script>
         <div class="c-hidden">
             <script src="http://chat32.live800.com/live800/chatClient/textButton.js?jid=1949975560&companyID=462131&configID=56872&codeType=custom"></script>
