@@ -41,7 +41,6 @@ var header = require('../node_modules/kpc/src/views/header'),
                         window.onerror = function() {return false;}
                     }
                 })();
-
             </script>
         </div>
     </b:js>

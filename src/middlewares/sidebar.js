@@ -48,7 +48,12 @@ module.exports = Advanced.Controller.extend({
                     {
                         "title": "VPC",
                         "href": "/console/vpc/list",
-                        "index":"vpc",
+                        "index":"vpc"
+                    },
+                    {
+                        "title": "共享带宽",
+                        "href": "/console/bandwidth/list",
+                        "index":"bandwidth"
                     }
                 ]
             },
@@ -164,7 +169,12 @@ module.exports = Advanced.Controller.extend({
                         {
                             "title": "VPC",
                             "href": "/console/vpc/list",
-                            "index":"vpc",
+                            "index":"vpc"
+                        },
+                        {
+                            "title": "共享带宽",
+                            "href": "/console/bandwidth/list",
+                            "index":"bandwidth"
                         }
                     ]
                 },
@@ -231,7 +241,7 @@ module.exports = Advanced.Controller.extend({
                         },
                         {
                             "title": "联系人管理",
-                            "href": "/#/linkman",
+                            "href": "/console/linkman",
                             "index": "linkman"
                         }
                     ]
