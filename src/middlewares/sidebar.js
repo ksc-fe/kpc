@@ -143,6 +143,18 @@ module.exports = Advanced.Controller.extend({
                             "index": "linkman"
                         }
                     ]
+                },
+                {
+                    "title": "数据分析",
+                    "icon": "analytics",
+                    "href": "/console/kmr#/clusters",
+                    "subNav": [
+                        {
+                            "title": "KMR",
+                            "href": "#/clusters",
+                            "index": "kmr"
+                        }
+                    ]
                 }
             ];
         }
