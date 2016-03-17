@@ -18,9 +18,9 @@
                     }) }}
                 </ul>
             }
-            return <div class={{ 'nav-item' + (typeof navIndex !== 'undefined' && navIndex === item.index || actived ? ' active' : '') }}>
+            return <div class={{ 'nav-item' + (typeof navIndex !== 'undefined' && navIndex === item.index || actived ? ' active' : '') + (item.expand ? ' expand' : '') }}>
                 <a href={{ item.href || "javascript:;" }} title={{ item.title }} class="title">
-                    <i class={{ "c-icon c-icon-" + item.icon + (actived ? '-hover' : '') }}></i>
+                    <i class={{ "c-icon icon c-icon-" + item.icon + (actived ? '-hover' : '') }}></i>
                     <span class="nav-title c-ellipsis">{{ item.title }}</span>
                     <i class={{ "c-icon arrow " + (actived ? "c-icon-nav-arrow-down-hover" : "c-icon-nav-arrow-right") }}></i>
                 </a>
