@@ -16,11 +16,6 @@
             <a href="http://www.ksyun.com/workorder">工单服务</a>
         </div>
         <div class="docker-item">
-            <div id="chat_link_wrapper">
-                <i class="c-icon c-icon-mic"></i>
-            </div>
-        </div>
-        <div class="docker-item">
             <i class="c-icon c-icon-phone"></i>
             技术支持 4000289900
         </div>
