@@ -14,7 +14,7 @@ define(['node_modules/kpc/src/common/js/lib/bootstrap-switch'], function() {
 
         _init: function() {
             this.on('change:state', function(component, state) {
-                self.set('state', state, {silent: true});
+                this.set('state', state, {silent: true});
                 this.method('state', state);
             });
         },
