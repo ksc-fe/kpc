@@ -22,6 +22,7 @@ define(['node_modules/kpc/src/common/js/lib/bootstrap-switch'], function() {
             var self = this;
             this.$input = $(this.element).find('input').bootstrapSwitch(this.get())
                 .on('switchChange.bootstrapSwitch', function(e, state) {
+                    self.set('state', state, {silent: true});
                     self.trigger('changed', e, state); 
                 });
         },
