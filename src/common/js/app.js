@@ -1,5 +1,5 @@
 define(function() {
-    var isFirst = true;
+    // var isFirst = true;
     var App = Intact.extend({
         defaults: {
             view: '',
@@ -32,19 +32,19 @@ define(function() {
                     });
                 }
 
-                if (!isFirst) {
-                    // 强制页面进入时调用_create方法
-                    if (widget.rendered) {
-                        widget._create();
-                    } else {
-                        widget.on('rendered', function() {
-                            if (callee === self._current) {
-                                widget._create();
-                            }
-                        });
-                    }
-                }
-                isFirst = false;
+                // if (!isFirst) {
+                    // // 强制页面进入时调用_create方法
+                    // if (widget.rendered) {
+                        // widget._create();
+                    // } else {
+                        // widget.on('rendered', function() {
+                            // if (callee === self._current) {
+                                // widget._create();
+                            // }
+                        // });
+                    // }
+                // }
+                // isFirst = false;
             });
             return this;
         },

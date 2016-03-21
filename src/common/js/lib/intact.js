@@ -103,11 +103,13 @@
 
         this.vdt = Vdt(this.template);
         this.set(attrs, {silent: true});
+        this.key = attrs.key;
 
         this.widgets = {};
 
         this.inited = false;
         this.rendered = false;
+        this._hasCalledInit = false;
 
         this._contextWidgets = contextWidgets || {};
         this._widget = this.attributes.widget || _.uniqueId('widget');
@@ -189,6 +191,7 @@
         init: function() {
             this.element = this.vdt.render(this);
             this.rendered = true;
+            this._hasCalledInit = true;
             this.trigger('rendered', this);
             this._create();
             return this.element;
@@ -203,7 +206,12 @@
             }
             this.prevWidget = prevWidget;
             this.element = this.vdt.update(this);
-            this.rendered = true;
+            if (!this._hasCalledInit) {
+                this.rendered = true;
+                this._hasCalledInit = true;
+                this.trigger('rendered', this);
+                this._create();
+            }
             this._update(prevWidget, domNode);
             return this.element;
         },
