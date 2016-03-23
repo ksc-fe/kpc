@@ -15,10 +15,10 @@
      */
     function inherit(Parent, prototype) {
         var Child = function() {
-            if (!(this instanceof Child)) {
+            if (!(this instanceof Child || this.prototype instanceof Child)) {
                 return Parent.apply(Child, arguments);
             }
-            Parent.apply(this, arguments);
+            return Parent.apply(this, arguments);
         };
 
         Child.prototype = _.create(Parent.prototype);

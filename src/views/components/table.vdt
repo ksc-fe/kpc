@@ -1,13 +1,14 @@
-var Checkbox = require('node_modules/kpc/src/components/checkbox');
+var Checkbox = require('node_modules/kpc/src/components/checkbox'),
+    Radio = require('node_modules/kpc/src/components/radio');
 
 <table class={{ "c-table " + (self.get('className') || "") }} >
     <thead>
         <tr>
-            {{ self.get('isShowCheckbox') ? 
+            {{ self.get('isShowCheckbox') && self.get('checkType') !== 'radio' ? 
                 <th width="40">
                      <Checkbox class="c-m-l-20" ev-changed={{ _.bind(self._clickCheckAll, self) }} checked={{ self.isCheckedAll() }}/>
                 </th> :
-                null
+                (self.get('checkType') === 'radio' ? <th width="40"></th> : undefined)
             }}
             {{ _.map(self.get('scheme'), function(item) {
                    if (_.isObject(item)){
@@ -22,9 +23,9 @@ var Checkbox = require('node_modules/kpc/src/components/checkbox');
         {{ !_.isEmpty(self.get('data')) ? 
             _.map(self.get('data'), function(value, index) {
                 return <tr class={{ index % 2 ? "even" : "odd" }} ev-click={{ self.get('isRowCheck') ? _.bind(self._clickCheckSingle, self, index) : undefined }}>
-                    {{ self.get('isShowCheckbox') ? 
+                    {{ self.get('isShowCheckbox') && self.get('checkType') !== 'radio' ? 
                         <td><Checkbox class="c-m-l-20" ev-changed={{ _.bind(self._clickCheckSingle, self, index) }} checked={{ self.get('checkedIndex')[index] }} /></td> :
-                        null
+                        (self.get('checkType') === 'radio' ? <td><Radio ev-click={{ _.bind(self._clickCheckSingle, self, index) }} checked={{ self.get('checkedIndex')[index] }} /></td> : undefined)
                     }}
                     {{ _.map(self.get('scheme'), function(item, key) {
                         var td;

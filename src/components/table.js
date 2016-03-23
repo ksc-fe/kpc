@@ -4,6 +4,7 @@ define(['node_modules/kpc/src/views/components/table'], function(template) {
             scheme: {},
             data: [],
             isShowCheckbox: true,
+            checkType: 'checkbox', // radio / checkbox
             isRowCheck: false, // 整行点击选中
             checkedIndex: []
         },
@@ -25,7 +26,16 @@ define(['node_modules/kpc/src/views/components/table'], function(template) {
         },
 
         _clickCheckSingle: function(index, e) {
-            this._checkUncheckIndex(index, !this.get('checkedIndex')[index]);
+            var checkedIndex = this.get('checkedIndex');
+            if (this.get('checkType') === 'radio') {
+                _.find(checkedIndex, function(item, i) {
+                    if (item) {
+                        i !== index && (checkedIndex[i] = false);
+                        return true;
+                    }
+                });
+            }
+            this._checkUncheckIndex(index, !checkedIndex[index]);
         },
 
         isCheckedAll: function() {
