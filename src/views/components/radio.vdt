@@ -1,4 +1,4 @@
-<div class={{ "c-radio" + (self.get('checked') ? " checked " : "") + (self.get('className') ? self.get('className') : '') }} ev-click={{ _.bind(self._click, self) }}>
+<div class={{ "c-radio " + (self.get('checked') ? " checked " : "") + (self.get('className') ? self.get('className') : '') }} ev-click={{ _.bind(self._click, self) }}>
     <label>
         <div class="input-wrapper">
             <input type="radio" checked={{ self.get('checked') }} ev-change={{ _.bind(self._change, self) }}/>

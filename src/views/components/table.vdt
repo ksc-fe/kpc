@@ -25,7 +25,7 @@ var Checkbox = require('node_modules/kpc/src/components/checkbox'),
                 return <tr class={{ index % 2 ? "even" : "odd" }} ev-click={{ self.get('isRowCheck') ? _.bind(self._clickCheckSingle, self, index) : undefined }}>
                     {{ self.get('isShowCheckbox') && self.get('checkType') !== 'radio' ? 
                         <td><Checkbox class="c-m-l-20" ev-changed={{ _.bind(self._clickCheckSingle, self, index) }} checked={{ self.get('checkedIndex')[index] }} /></td> :
-                        (self.get('checkType') === 'radio' ? <td><Radio ev-click={{ _.bind(self._clickCheckSingle, self, index) }} checked={{ self.get('checkedIndex')[index] }} /></td> : undefined)
+                        (self.get('checkType') === 'radio' ? <td><Radio class="c-m-l-15" ev-click={{ _.bind(self._clickCheckSingle, self, index) }} checked={{ self.get('checkedIndex')[index] }} /></td> : undefined)
                     }}
                     {{ _.map(self.get('scheme'), function(item, key) {
                         var td;
