@@ -96,8 +96,7 @@
         var attrs = attributes || {};
         attrs = _.extend({
             children: null
-        }, _.result(this, 'defaults'), attrs);
-
+        }, _.result(this, 'defaults'), attrs); 
         this._events = {};
         this.attributes = {};
 

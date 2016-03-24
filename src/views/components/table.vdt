@@ -40,11 +40,11 @@ var Checkbox = require('node_modules/kpc/src/components/checkbox'),
                         } else {
                             var object = item,
                                 keys = key.split('.'),
-                                index = 0;
-                            while (object != null && index < keys.length) {
-                                object = object[keys[index++]];
+                                i = 0;
+                            while (object != null && i < keys.length) {
+                                object = object[keys[i++]];
                             }
-                            td = (index && index === keys.length) ? object : null;
+                            td = (i && i === keys.length) ? object : null;
                         }
                         if (_.isString(td) || _.isNumber(td)) {
                             return <td innerHTML={{ td }}></td>

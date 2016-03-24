@@ -1,5 +1,5 @@
 <div class={{ "c-editable " + self.get('className') + (self.get('isEditing') ? ' editing' : '') }}>
-    <i class="c-icon c-icon-edit" title="编辑" ev-click={{ _.bind(self._editing, self) }}></i>
+    {{ !self.get('isEditing') ? <i class="c-icon c-icon-edit" title="编辑" ev-click={{ _.bind(self._editing, self) }}></i> : undefined }}
     <div class="c-ellipsis">
         {{ !self.get('isEditing') ? 
             (self.subTemplate ? self.subTemplate.call(self, self) : self.get('children')) : 
