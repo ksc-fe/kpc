@@ -16,7 +16,7 @@ define(['node_modules/kpc/src/views/components/select'], function(template) {
         _create: function() {
             var self = this;
             var appendTo = self.get('appendTo');
-            $(this.element).find('select')
+            var $select = $(this.element).find('select')
                 .selectmenu({
                     width: this.get('width'),
                     appendTo: appendTo === 'self' ? this.element : appendTo,
@@ -25,6 +25,9 @@ define(['node_modules/kpc/src/views/components/select'], function(template) {
                 .on('selectmenuchange', function(e, ui) {
                     self.set('value', ui.item.value, {silent: true});
                     self.trigger('change', e, ui);
+                    self.trigger('changed', e, ui);
+                    // 这个事件用于jquery.validate验证合法性
+                    $select.trigger('focusout'); 
                 });
         },
 

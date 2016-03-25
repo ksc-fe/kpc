@@ -46,11 +46,11 @@ var Checkbox = require('node_modules/kpc/src/components/checkbox'),
                             }
                             td = (i && i === keys.length) ? object : null;
                         }
-                        if (_.isString(td) || _.isNumber(td)) {
-                            return <td innerHTML={{ td }}></td>
-                        } else {
+                        // if (_.isString(td) || _.isNumber(td)) {
+                            // return <td innerHTML={{ td }}></td>
+                        // } else {
                             return <td>{{ td }}</td>
-                        }
+                        // }
                     }) }}
                 </tr>
             }) :

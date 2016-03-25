@@ -6,6 +6,15 @@
         factory( jQuery );
     }
 }(function(jQuery) {
+    jQuery.validator.setDefaults({
+        // validator会忽略所有隐藏元素，这里让它不忽略select，因为模拟的select都是隐藏的
+        ignore: 'textarea:hidden',
+        
+        // 模拟selectmenu放在模拟元素下面
+        errorPlacement: function(place, $element) {
+            place.insertAfter($element[0].tagName.toLowerCase() === 'select' ? $element.next('.ui-selectmenu-button') : $element);
+        }
+    });
 
     jQuery.extend(jQuery.validator.messages, {
         required: "必须填写",
@@ -74,6 +83,11 @@
         
         return 'pending';
     });
+
+    // select必选，默认是'null'字符串
+    jQuery.validator.addMethod('selectRequired', function(value, element) {
+        return value !== 'null' && value !== '';
+    }, '请选择');
 
     /*
      * 邮箱验证，原函数@符号后未验证域名

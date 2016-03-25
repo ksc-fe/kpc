@@ -1,7 +1,7 @@
 <div class={{ "c-checkbox " + (self.get('checked') ? " checked " : "") + (self.get('className') ? self.get('className') : '') }} ev-click={{ _.noop }}>
     <label>
         <div class="input-wrapper">
-            <input type="checkbox" checked={{ self.get('checked') }} ev-change={{ _.bind(self._change, self) }}/>
+            <input type="checkbox" checked={{ self.get('checked') }} name={{ self.get('name') }} ev-change={{ _.bind(self._change, self) }} attributes={{ self.get('attributes') }}/>
         </div>
         {{ !_.isEmpty(self.get('children')) ? <div class="label-wrapper">{{ self.get('children') }}</div> : undefined }}
     </label>
