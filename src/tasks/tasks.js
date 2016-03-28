@@ -153,39 +153,44 @@ gulp.task('cdn', function() {
 });
 
 // build任务
-gulp.task('build-install', sequence('clean', 'copy', 'node_modules:install', 'config', 'build:media', 'build:css', 'build:js', 'build:requirejs', 'build:tpl'));
+gulp.task('build:install', sequence('clean', 'copy', 'node_modules:install', 'config', 'build:media', 'build:css', 'build:js', 'build:requirejs', 'build:tpl'));
 // 如果网络不好安装不了依赖，可以使用下面命令
-gulp.task('build-copy', sequence('clean', 'copy', 'node_modules:copy', 'config', 'build:media', 'build:css', 'build:js', 'build:requirejs', 'build:tpl'));
+gulp.task('build:copy', sequence('clean', 'copy', 'node_modules:copy', 'config', 'build:media', 'build:css', 'build:js', 'build:requirejs', 'build:tpl'));
+// 别名
+gulp.task('build-copy', sequence('build:copy'));
 
-gulp.task('dev', function() {
+// 不能使用gulp.start，否则这些任务不能再被串联
+gulp.task('_dev', function() {
     console.log('通过copy依赖的方式，编译开发测试代码');
     process.env.NODE_ENV = 'development';
-    gulp.start('build-copy');
 });
-gulp.task('dev-install', function() {
+gulp.task('dev', sequence('_dev', 'build:copy'));
+
+gulp.task('_dev-install', function() {
     console.log('通过在线install依赖的方式，编译开发测试代码');
     process.env.NODE_ENV = 'development';
-    gulp.start('build-install');
 });
-gulp.task('build', function() {
+gulp.task('dev-install', sequence('_dev-install', 'build:install'));
+
+gulp.task('_build', function() {
     console.log('通过copy依赖的方式，编译发布上线代码');
-    process.env.NODE_ENV = 'production';
     nocacheConf.cdn = ['//ksc-console-static.ks3-cn-center-1.ksyun.com'];
-    gulp.start('build-copy');
+    process.env.NODE_ENV = 'production';
 });
-gulp.task('build-install', function() {
+gulp.task('build', sequence('_build', 'build:copy'));
+
+gulp.task('_build-install', function() {
     console.log('通过在线install依赖的方式，编译发布上线代码');
-    process.env.NODE_ENV = 'production';
     nocacheConf.cdn = ['//ksc-console-static.ks3-cn-center-1.ksyun.com'];
-    gulp.start('build-insall');
+    process.env.NODE_ENV = 'production';
 });
-gulp.task('default', function() {
-    gulp.start('build');
-});
+gulp.task('build-install', sequence('_build-install', 'build:install'));
+
+gulp.task('default', sequence('build'));
 
 function exec(command) {
     return new Promise(function(resolve, reject) {
-        var cmd = childProcess.exec(command, function(err, stdout) {
+        var cmd = childProcess.exec(command, {maxBuffer: 50000 * 1024}, function(err, stdout) {
             if (err) {
                 reject(err);
             } else {
@@ -204,3 +209,9 @@ function isDev() {
 function logFile(file) {
     console.log('compile:', file.path);
 }
+
+module.exports = {
+    exec: exec,
+    isDev: isDev,
+    logFile: logFile
+};
