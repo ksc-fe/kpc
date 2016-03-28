@@ -19,7 +19,8 @@
     "jquery-ui": "~1.11.4",
     "director": "~1.2.8",
     "bootstrap-switch": "~3.3.2",
-    "jquery-validation": "~1.15.0"
+    "jquery-validation": "~1.15.0",
+    "store2": "store#~2.3.2"
   },
   "install": {
     "path": {
