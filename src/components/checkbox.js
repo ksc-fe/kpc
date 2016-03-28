@@ -1,7 +1,8 @@
 define(['node_modules/kpc/src/views/components/checkbox'], function(template) {
     return Intact.extend({
         defaults: {
-            checked: false
+            checked: false,
+            disabled: false
         },
 
         template: template,
