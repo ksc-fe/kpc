@@ -130,7 +130,7 @@ module.exports = Advanced.Controller.extend({
                 {
                     "title": "云监控",
                     "icon": "monitor",
-                    "href": "/console/kec",
+                    "href": "/console/kingeyes",
                     "subNav": [
                         {
                             "title": "云主机KEC",

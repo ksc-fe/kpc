@@ -36,6 +36,7 @@ define(['node_modules/kpc/src/views/components/select'], function(template) {
         },
 
         _destroy: function() {
+            console.log('destory');
             $(this.element).find('.c-select').selectmenu('destroy');
         }
     });

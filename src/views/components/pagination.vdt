@@ -13,65 +13,65 @@ var self = this,
 
 var showCount = get('showCount') || 5;
 
+var totalPages = Math.ceil(get('total') / get('size'));
+
+if (totalPages <= 1) {
+    return <!-- pagination -->;
+}
+
 <div class={{ "c-pagination " + (self.get('className') || '') }}>
     {{ (function() {
-        var totalPages = Math.ceil(get('total') / get('size'));
+        var liItems = [];
+        var minCount = Math.ceil(get('showCount') / 2),
+            maxCount = totalPages - minCount,
+            prevPage = get('current') - 1;
 
-        if (totalPages <= 1) {
-            return null;
+        if (prevPage < 1) {
+            liItems.push(<a href="javascript:;" className="page-prev disabled">{{ '<' }}</a>);
         } else {
-            var liItems = [];
-            var minCount = Math.ceil(get('showCount') / 2),
-                maxCount = totalPages - minCount,
-                prevPage = get('current') - 1;
-
-            if (prevPage < 1) {
-                liItems.push(<a href="javascript:;" className="page-prev disabled">{{ '<' }}</a>);
-            } else {
-                liItems.push(<a href={{ paginationUrl(prevPage) }} title="上一页" className="page-prev" ev-click={{ _.bind(self.setIndex, self, prevPage) }}>{{ '<' }}</a>);
-            }
-
-            if (totalPages > showCount) {
-                if (get('current') <= minCount) {
-                    var max = showCount - 2;
-                    liItems = liItems.concat(_.map(_.range(1, max + 1), paginationButton));
-                    liItems.push(paginationDot());
-                    liItems.push(paginationButton(totalPages));
-
-                } else if (get('current') > minCount && get('current') <= maxCount) {
-                    liItems.push(paginationButton(1))
-                    liItems.push(paginationDot())
-
-                    var midCount = showCount - 4,
-                        mid = Math.floor(midCount / 2),
-                        min = get('current') - mid,
-                        max = midCount % 2 === 1 ? get('current') + mid : get('current') + mid - 1;
-                    liItems = liItems.concat(_.map(_.range(min, max + 1), paginationButton));
-
-                    liItems.push(paginationDot());
-                    liItems.push(paginationButton(totalPages));
-
-                } else {
-                    liItems.push(paginationButton(1));
-                    liItems.push(paginationDot());
-
-                    var min = totalPages - showCount + 3;
-                    liItems = liItems.concat(_.map(_.range(min, totalPages + 1), paginationButton));
-
-                }
-
-            } else {
-                liItems = liItems.concat(_.map(_.range(1, totalPages + 1), paginationButton));
-            }
-
-            var nextPage = get('current') + 1;
-            if (nextPage > totalPages) {
-                liItems.push(<a href="javascript:;" className="page-next disabled">{{ '>' }}</a>);
-            } else {
-                liItems.push(<a href={{ paginationUrl(nextPage) }} title="下一页" className="page-next" ev-click={{ _.bind(self.setIndex, self, nextPage) }}>{{ '>' }}</a>);
-            }
-
-            return <p className="m-pagination">{{ liItems }}</p>;
+            liItems.push(<a href={{ paginationUrl(prevPage) }} title="上一页" className="page-prev" ev-click={{ _.bind(self.setIndex, self, prevPage) }}>{{ '<' }}</a>);
         }
+
+        if (totalPages > showCount) {
+            if (get('current') <= minCount) {
+                var max = showCount - 2;
+                liItems = liItems.concat(_.map(_.range(1, max + 1), paginationButton));
+                liItems.push(paginationDot());
+                liItems.push(paginationButton(totalPages));
+
+            } else if (get('current') > minCount && get('current') <= maxCount) {
+                liItems.push(paginationButton(1))
+                liItems.push(paginationDot())
+
+                var midCount = showCount - 4,
+                    mid = Math.floor(midCount / 2),
+                    min = get('current') - mid,
+                    max = midCount % 2 === 1 ? get('current') + mid : get('current') + mid - 1;
+                liItems = liItems.concat(_.map(_.range(min, max + 1), paginationButton));
+
+                liItems.push(paginationDot());
+                liItems.push(paginationButton(totalPages));
+
+            } else {
+                liItems.push(paginationButton(1));
+                liItems.push(paginationDot());
+
+                var min = totalPages - showCount + 3;
+                liItems = liItems.concat(_.map(_.range(min, totalPages + 1), paginationButton));
+
+            }
+
+        } else {
+            liItems = liItems.concat(_.map(_.range(1, totalPages + 1), paginationButton));
+        }
+
+        var nextPage = get('current') + 1;
+        if (nextPage > totalPages) {
+            liItems.push(<a href="javascript:;" className="page-next disabled">{{ '>' }}</a>);
+        } else {
+            liItems.push(<a href={{ paginationUrl(nextPage) }} title="下一页" className="page-next" ev-click={{ _.bind(self.setIndex, self, nextPage) }}>{{ '>' }}</a>);
+        }
+
+        return <p className="m-pagination">{{ liItems }}</p>;
     })() }}
 </div>
