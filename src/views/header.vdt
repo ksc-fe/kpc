@@ -1,9 +1,9 @@
 <header id="header">
     <div class="logo-wrapper">
-        <a href="/" target="_blank" class="header-logo bgi-ks" title="官网首页"></a>
+        <a href="/" target="_blank" class="header-logo bgi-home" title="官网首页"></a>
         <b:logoConsole>
             <span class="c-v-line"></span>
-            <a href="/console/index" class="header-logo bgi-home" title="控制台首页"></a>
+            <a href="/console/index" class="header-logo bgi-ks" title="控制台首页"></a>
         </b:logoConsole>
     </div>
     <input type="hidden" id="ksc-user-id" value={{ self.get('user') && user.user_id }}>
