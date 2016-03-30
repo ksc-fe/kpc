@@ -111,8 +111,13 @@ gulp.task('build:requirejs', function() {
                     newMap[key.replace(sourceContext, '').replace(/\\/g, '/')] = nocache.utils.addCdn(value.replace(outputContext, '').replace(/\\/g, '/'), nocacheConf.cdn);
                 }
             });
+            // 对map进行排序，保证同一份输入，同一份输出
+            var sortMap = {};
+            _.each(_.sortBy(_.keys(newMap)), function(key) {
+                sortMap[key] = newMap[key];
+            });
             var contents = file.contents.toString();
-            var extraContent = 'var _HASH_MAP = ' + JSON.stringify(newMap) + ';\n';
+            var extraContent = 'var _HASH_MAP = ' + JSON.stringify(sortMap) + ';\n';
             var load = "\n(function() { \
                 var oldLoad = require.load; \
                 require.load = function(context, moduleName, url) { \
