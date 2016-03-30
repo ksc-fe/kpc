@@ -16,6 +16,9 @@ define(['node_modules/kpc/src/common/js/lib/bootstrap-switch'], function() {
             this.on('change:state', function(component, state) {
                 this.method('state', state);
             });
+            this.on('change:disabled', function(component, disabled) {
+                this.method('disabled', disabled);
+            });
         },
 
         _create: function() {
