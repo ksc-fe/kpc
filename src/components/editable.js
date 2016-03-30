@@ -29,12 +29,8 @@ define(['node_modules/kpc/src/views/components/editable'], function(template) {
 
         _init: function() {
             if (this.get('text') === undefined) {
-                // 默认将子元素作为text
-                this.set('text', _.filter(this.get('children'), function(child) {
-                    if (_.isString(child) && $.trim(child)) {
-                        return true;
-                    }
-                }).join(''));
+                this._useChildren = true;
+                this._setTextByChildren();
             }
             if (this.get('template') != undefined) {
                 this.subTemplate = Vdt.compile(this.get('template'));
@@ -43,6 +39,15 @@ define(['node_modules/kpc/src/views/components/editable'], function(template) {
             }
 
             this.oldText = this.get('text');
+        },
+
+        _setTextByChildren: function() {
+            // 将子元素作为text
+            this.set('text', _.filter(this.get('children'), function(child) {
+                if (_.isString(child) && $.trim(child) || _.isNumber(child)) {
+                    return true;
+                }
+            }).join(''), {silent: true});
         },
 
         _onBlur: function(e) {
@@ -94,6 +99,12 @@ define(['node_modules/kpc/src/views/components/editable'], function(template) {
                 this.trigger('changed', this, text, this.oldText);
             }
             this.set({isEditing: false, text: text});
+        },
+
+        _beforeUpdate: function() {
+            if (this._useChildren) {
+                this._setTextByChildren();
+            }
         },
 
         /**
