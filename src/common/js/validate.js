@@ -48,13 +48,25 @@
             this.settings.messages[element.name] = {};
         }
 
+        var previous = this.previousValue(element, 'promise'),
+            optionDataString;
+
+        previous.originalMessage = previous.originalMessage || this.settings.messages[element.name].promise;
+        this.settings.messages[element.name].promise = previous.message;
+
+        if ( previous.old === value) {
+            return previous.valid;
+        }
+        previous.old = value;
+
         var data = {}, validator = this;
         data[element.name] = value;
 
         function showError(response) {
             var errors = {};
-            message = response || validator.defaultMessage(element, 'remote');
+            message = response || validator.defaultMessage(element, 'promise');
             errors[element.name] = message;
+            previous.message = message;
             validator.invalid[element.name] = true;
             validator.showErrors(errors);
         }
@@ -75,8 +87,10 @@
             } else {
                 showError(response);
             }
+            previous.valid = valid;
             validator.stopRequest(element, valid);
         }, function(data) {
+            previous.valid = false;
             showError(data && data.message || data);
             validator.stopRequest(element, false);
         });
