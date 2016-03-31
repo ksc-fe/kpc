@@ -1,9 +1,9 @@
 <header id="header">
     <div class="logo-wrapper">
-        <a href="/" target="_blank" class="header-logo bgi-ks" title="官网首页"></a>
+        <a href="/" target="_blank" class="header-logo bgi-home" title="官网首页"></a>
         <b:logoConsole>
             <span class="c-v-line"></span>
-            <a href="/console/index" class="header-logo bgi-home" title="控制台首页"></a>
+            <a href="/console/index" class="header-logo bgi-ks" title="控制台首页"></a>
         </b:logoConsole>
     </div>
     <input type="hidden" id="ksc-user-id" value={{ self.get('user') && user.user_id }}>
@@ -13,12 +13,7 @@
             <a href="/console/subaccount/list">子账号管理</a>
         </div>
         <div class="docker-item">
-            <a href="">工单服务</a>
-        </div>
-        <div class="docker-item">
-            <div id="chat_link_wrapper">
-                <i class="c-icon c-icon-mic"></i>
-            </div>
+            <a href="http://www.ksyun.com/workorder">工单服务</a>
         </div>
         <div class="docker-item">
             <i class="c-icon c-icon-phone"></i>

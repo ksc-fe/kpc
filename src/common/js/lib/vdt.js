@@ -2162,6 +2162,8 @@ function updateWidget(a, b) {
     if (isWidget(a) && isWidget(b)) {
         if ("name" in a && "name" in b) {
             return a.id === b.id
+        } else if (!a.constructor instanceof a.constructor || !b.constructor instanceof b.constructor) {
+            return a.constructor === b.constructor
         } else {
             return a.init === b.init
         }
@@ -2191,7 +2193,7 @@ function EvHook(value) {
 EvHook.prototype.hook = function (node, propertyName) {
     var es = EvStore(node);
     var propName = propertyName.substr(3);
-    
+
     delegator.listenTo(propName);
     es[propName] = this.value;
 };

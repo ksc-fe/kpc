@@ -15,10 +15,10 @@
      */
     function inherit(Parent, prototype) {
         var Child = function() {
-            if (!(this instanceof Child)) {
+            if (!(this instanceof Child || this.prototype instanceof Child)) {
                 return Parent.apply(Child, arguments);
             }
-            Parent.apply(this, arguments);
+            return Parent.apply(this, arguments);
         };
 
         Child.prototype = _.create(Parent.prototype);
@@ -96,18 +96,19 @@
         var attrs = attributes || {};
         attrs = _.extend({
             children: null
-        }, _.result(this, 'defaults'), attrs);
-
+        }, _.result(this, 'defaults'), attrs); 
         this._events = {};
         this.attributes = {};
 
         this.vdt = Vdt(this.template);
         this.set(attrs, {silent: true});
+        this.key = attrs.key;
 
         this.widgets = {};
 
         this.inited = false;
         this.rendered = false;
+        this._hasCalledInit = false;
 
         this._contextWidgets = contextWidgets || {};
         this._widget = this.attributes.widget || _.uniqueId('widget');
@@ -189,6 +190,7 @@
         init: function() {
             this.element = this.vdt.render(this);
             this.rendered = true;
+            this._hasCalledInit = true;
             this.trigger('rendered', this);
             this._create();
             return this.element;
@@ -203,7 +205,12 @@
             }
             this.prevWidget = prevWidget;
             this.element = this.vdt.update(this);
-            this.rendered = true;
+            if (!this._hasCalledInit) {
+                this.rendered = true;
+                this._hasCalledInit = true;
+                this.trigger('rendered', this);
+                this._create();
+            }
             this._update(prevWidget, domNode);
             return this.element;
         },

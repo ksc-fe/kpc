@@ -72,8 +72,12 @@ define(function() {
             if (this.rendered) {
                 show.call(this);
             } else {
-                this.off('created', show).on('created', show);
-                this.init();
+                this.on('created', show);
+                if (this.inited) {
+                    this.init();
+                } else {
+                    this.on('inited', function() { this.init(); });
+                }
             }
         },
 

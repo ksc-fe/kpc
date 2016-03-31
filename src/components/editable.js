@@ -29,12 +29,8 @@ define(['node_modules/kpc/src/views/components/editable'], function(template) {
 
         _init: function() {
             if (this.get('text') === undefined) {
-                // 默认将子元素作为text
-                this.set('text', _.filter(this.get('children'), function(child) {
-                    if (_.isString(child) && $.trim(child)) {
-                        return true;
-                    }
-                }).join(''));
+                this._useChildren = true;
+                this._setTextByChildren(true);
             }
             if (this.get('template') != undefined) {
                 this.subTemplate = Vdt.compile(this.get('template'));
@@ -43,6 +39,17 @@ define(['node_modules/kpc/src/views/components/editable'], function(template) {
             }
 
             this.oldText = this.get('text');
+        },
+
+        _setTextByChildren: function(previous) {
+            // 将子元素作为text
+            if (previous) {
+                this.set('text', _.filter(this.get('children'), function(child) {
+                    if (_.isString(child) && $.trim(child) || _.isNumber(child)) {
+                        return true;
+                    }
+                }).join(''), {silent: true});
+            }
         },
 
         _onBlur: function(e) {
@@ -93,7 +100,14 @@ define(['node_modules/kpc/src/views/components/editable'], function(template) {
             if (this.oldText !== text) {
                 this.trigger('changed', this, text, this.oldText);
             }
+            // 标识是否是自己触发的更新，以区分与父级变更触发的更新
             this.set({isEditing: false, text: text});
+        },
+
+        _beforeUpdate: function(previous) {
+            if (this._useChildren) {
+                this._setTextByChildren(previous);
+            }
         },
 
         /**

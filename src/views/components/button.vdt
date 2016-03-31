@@ -11,7 +11,8 @@ var Button = function(attrs) {
         (self.get('showLoading') ? ' c-icon-loading' : '') 
     }} 
     href={{ self.get('href') || 'javascript:;' }} 
-    attributes={{ self.get('attributes') }} 
+    attributes={{ self.get('attributes') }}
+    style={{ self.get('style') }}
     ev-click={{ _.bind(self._click, self) }}
 >
     {{ !self.get('showLoading') ? (_.isEmpty(self.get('children')) ?

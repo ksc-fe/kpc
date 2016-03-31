@@ -16,14 +16,20 @@ define(['node_modules/kpc/src/common/js/lib/bootstrap-switch'], function() {
             this.on('change:state', function(component, state) {
                 this.method('state', state);
             });
+            this.on('change:disabled', function(component, disabled) {
+                this.method('disabled', disabled);
+            });
         },
 
         _create: function() {
             var self = this;
-            this.$input = $(this.element).find('input').bootstrapSwitch(this.get())
-                .on('switchChange.bootstrapSwitch', function(e, state) {
-                    self.trigger('changed', e, state); 
-                });
+            // _.defer(_.bind(function() {
+                this.$input = $(this.element).find('input').bootstrapSwitch(this.get())
+                    .on('switchChange.bootstrapSwitch', function(e, state) {
+                        self.set('state', state, {silent: true});
+                        self.trigger('changed', e, state); 
+                    });
+            // }, this));
         },
 
         /**

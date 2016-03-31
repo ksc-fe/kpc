@@ -29,21 +29,10 @@ var header = require('../node_modules/kpc/src/views/header'),
         </b:main>
     </b:body>
     <b:js>
+        <script type="text/javascript">
+            var navData = {{ JSON.stringify(navData) }};
+        </script>
         <script type="text/javascript" src="/node_modules/kpc/src/all.js"></script>
-        <div class="c-hidden">
-            <script src="http://chat32.live800.com/live800/chatClient/textButton.js?jid=1949975560&companyID=462131&configID=56872&codeType=custom"></script>
-            <script>
-                (function() {
-                    var link = $('#live800iconlink');
-                    if (link.length) {
-                        $('#chat_link_wrapper').append(link.text('在线客服')).fadeIn();
-                        // 蛋疼的live800,屏蔽了所有错误
-                        window.onerror = function() {return false;}
-                    }
-                })();
-
-            </script>
-        </div>
     </b:js>
 </body>
 </html>
