@@ -49,7 +49,7 @@ var Checkbox = require('node_modules/kpc/src/components/checkbox'),
                         // if (_.isString(td) || _.isNumber(td)) {
                             // return <td innerHTML={{ td }}></td>
                         // } else {
-                            return <td>{{ td }}</td>
+                            return <td title={{ _.isString(td) || _.isNumber(td) ? td : undefined }}>{{ td }}</td>
                         // }
                     }) }}
                 </tr>
