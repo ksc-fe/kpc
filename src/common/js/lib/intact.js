@@ -76,15 +76,20 @@
     };
     Thunk.prototype.type = 'Thunk';
     Thunk.prototype.render = function(previous) {
-        if (!previous || previous.Widget !== this.Widget || previous.key !== this.key) {
+        if (!previous || !previous.widget || previous.Widget !== this.Widget || previous.key !== this.key) {
             this.widget = new this.Widget(this.attributes, this.contextWidget);
         } else if (previous.Widget === this.Widget) {
             var widget = this.widget = previous.widget;
             widget.children = this.attributes.children;
             delete this.attributes.children;
+            // 如果存在arguments属性，则将其拆开赋给attributes
+            if (this.attributes.arguments) {
+                _.extend(this.attributes, _.result(this.attributes, 'arguments'));
+                delete this.attributes.arguments;
+            }
             widget._removeEvents();
+            widget._addEvents(this.attributes);
             widget.set(this.attributes, {global: false});
-            widget._addEvents();
         }
         return this.widget;
     };
@@ -96,7 +101,8 @@
         var attrs = attributes || {};
         attrs = _.extend({
             children: null
-        }, _.result(this, 'defaults'), attrs); 
+        }, _.result(this, 'defaults'), attrs);
+
         this._events = {};
         this.attributes = {};
 
@@ -177,10 +183,11 @@
             });
         },
 
-        _addEvents: function() {
+        _addEvents: function(attrs) {
             // 所有以'ev-'开头的属性，都转化为事件
             var self = this;
-            _.each(this.attributes, function(value, key) {
+            attrs || (attrs = this.attributes);
+            _.each(attrs, function(value, key) {
                 if (key.substring(0, 3) === 'ev-' && _.isFunction(value)) {
                     self.on(key.substring(3), value);
                 }

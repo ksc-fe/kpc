@@ -27,7 +27,7 @@ kpc.utils = {
             data: dataPost,
             cache: false
         }, options)).done(function(res) {
-            if (res && res.status == utils.ERR_CODE.SUCCESS || res.status == 200) {
+            if (res && res.status == kpc.utils.ERR_CODE.SUCCESS || res.status == 200) {
                 // 操作成功时,才会执行done回调
                 // setTimeout(function() {
                    // def.resolve(res)

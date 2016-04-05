@@ -1,8 +1,7 @@
 {
   "name": "kpc",
-  "version": "0.0.1",
-  "dependencies": {
-  },
+  "version": "0.1.2",
+  "dependencies": {},
   "devDependencies": {
     "lodash": "^4.0.0",
     "vdt": "^0.7.0",
@@ -22,5 +21,11 @@
     "gulp-uglify": "^1.5.3",
     "gulp-vdt": "^0.0.4",
     "rimraf": "^2.5.2"
+  },
+  "scripts": {
+    "release": "npm run release-patch",
+    "release-patch": "git checkout master && npm version patch && git push origin master --tags && node publish.js",
+    "release-minor": "git checkout master && npm version minor && git push origin master --tags && node publish.js",
+    "release-major": "git checkout master && npm version major && git push origin master --tags && node publish.js"
   }
 }

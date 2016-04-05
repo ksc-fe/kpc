@@ -18,7 +18,7 @@ define(['node_modules/kpc/src/views/components/table'], function(template) {
 
         _updateCheckedIndex: function() {
             this.amount = this.get('data') && this.get('data').length || 0;
-            this.set('checkedIndex', new Array(this.amount), {silent: true});
+            this.set('checkedIndex', new Array(this.amount));
         },
 
         _clickCheckAll: function(e) {
