@@ -1,8 +1,7 @@
 {
   "name": "kpc",
-  "version": "0.1.0",
-  "dependencies": {
-  },
+  "version": "0.1.1",
+  "dependencies": {},
   "devDependencies": {
     "lodash": "^4.0.0",
     "vdt": "^0.7.0",
@@ -24,9 +23,9 @@
     "rimraf": "^2.5.2"
   },
   "scripts": {
-      "release": "npm run release-patch",
-      "release-patch": "git checkout master && npm version patch && git push origin master --tags",
-      "release-minor": "git checkout master && npm version minor && git push origin master --tags",
-      "release-major": "git checkout master && npm version major && git push origin master --tags"
+    "release": "npm run release-patch",
+    "release-patch": "git checkout master && npm version patch && git push origin master --tags",
+    "release-minor": "git checkout master && npm version minor && git push origin master --tags",
+    "release-major": "git checkout master && npm version major && git push origin master --tags"
   }
 }
