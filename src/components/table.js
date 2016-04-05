@@ -12,13 +12,13 @@ define(['node_modules/kpc/src/views/components/table'], function(template) {
         template: template,
 
         _init: function() {
-            this._updateCheckedIndex();
+            this._updateCheckedIndex(true);
             this.on('change:data', this._updateCheckedIndex);
         },
 
-        _updateCheckedIndex: function() {
+        _updateCheckedIndex: function(silent) {
             this.amount = this.get('data') && this.get('data').length || 0;
-            this.set('checkedIndex', new Array(this.amount));
+            this.set('checkedIndex', new Array(this.amount), {silent: silent === true});
         },
 
         _clickCheckAll: function(e) {

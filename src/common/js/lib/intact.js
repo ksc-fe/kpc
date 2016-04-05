@@ -76,9 +76,10 @@
     };
     Thunk.prototype.type = 'Thunk';
     Thunk.prototype.render = function(previous) {
-        if (!previous || !previous.widget || previous.Widget !== this.Widget || previous.key !== this.key) {
+        if (!previous || previous.Widget !== this.Widget || previous.key !== this.key) {
             this.widget = new this.Widget(this.attributes, this.contextWidget);
         } else if (previous.Widget === this.Widget) {
+            if (!previous.widget) throw new Error('Don\'t update when updating.');
             var widget = this.widget = previous.widget;
             widget.children = this.attributes.children;
             delete this.attributes.children;
@@ -147,7 +148,7 @@
             this.Animate = Animate;
 
             // change事件，自动更新
-            this.on('change', function() { self.update(); });
+            this.on('change', function() { _.defer(_.bind(self.update, self)); });
 
             var ret = this._init();
             // support promise
