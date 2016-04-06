@@ -62,8 +62,8 @@ define(['node_modules/kpc/src/views/components/spinner'], function(template) {
                 //强制刷新文本框数据
                 this.update();
             } else {
-                this.trigger('changed', this, v);
                 this.set('value', v);
+                this.trigger('changed', this, v);
             }
         },
 
