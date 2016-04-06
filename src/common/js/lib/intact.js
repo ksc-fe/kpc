@@ -147,8 +147,20 @@
             // 注入组件，在模板中可以直接使用
             this.Animate = Animate;
 
-            // change事件，自动更新
-            this.on('change', function() { _.defer(_.bind(self.update, self)); });
+            // change事件，自动更新，当一个更新操作正在进行中，下一个更新操作必须等其完成
+            this._updateCount = 0;
+            var handleUpdate = function() {
+                if (this._updateCount > 0) {
+                    this.update();
+                    this._updateCount--;
+                    handleUpdate.call(this);
+                }
+            };
+            this.on('change', function() { 
+                if (++this._updateCount === 1) {
+                    handleUpdate.call(this);
+                }
+            });
 
             var ret = this._init();
             // support promise
