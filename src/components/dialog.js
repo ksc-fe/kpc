@@ -1,4 +1,5 @@
 define(function() {
+    var map = {};
     return Intact.extend({
         defaults: {
             width: 872,
@@ -66,6 +67,10 @@ define(function() {
         },
 
         show: function() {
+            if (this.get('key')) {
+                if (map[this.get('key')]) return;
+                map[this.get('key')] = true;
+            }
             function show() {
                 $(this.element).dialog("open");
             }
@@ -87,6 +92,9 @@ define(function() {
 
         _destroy: function() {
             $(this.element).dialog("destroy");
+            if (this.get('key')) {
+                map[this.get('key')] = false;
+            }
         },
 
         disable: function(num, showLoading) {
