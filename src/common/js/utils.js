@@ -291,6 +291,12 @@ kpc.utils = {
         };
     },
 
+    proxyEvent: function(component, name) {
+        return function(e) {
+            component.trigger(name, e);
+        };
+    },
+
     /**
      * @brief 高亮某个导航，vdt模板可以前后端通用
      * 

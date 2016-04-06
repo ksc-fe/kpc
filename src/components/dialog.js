@@ -93,7 +93,7 @@ define(function() {
         _destroy: function() {
             $(this.element).dialog("destroy");
             if (this.get('key')) {
-                map[this.get('key')] = false;
+                delete map[this.get('key')];
             }
         },
 
