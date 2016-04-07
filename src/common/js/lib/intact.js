@@ -91,6 +91,7 @@
             widget._removeEvents();
             widget._addEvents(this.attributes);
             widget.set(this.attributes, {global: false});
+            this.contextWidget[this.widget._widget] = this.widget;
         }
         return this.widget;
     };
