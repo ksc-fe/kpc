@@ -32,7 +32,14 @@ define(['node_modules/kpc/src/views/components/select'], function(template) {
         },
 
         _update: function() {
-            $(this.element).find('.c-select').selectmenu('refresh');
+            var $select = $(this.element).find('.c-select'),
+                $option = $select.find('option:selected'),
+                value = $option.val();
+            $select.selectmenu('refresh');
+            // 如果更新操作导致之前选中的选项不存在了，也触发一个change事件
+            if (value != this.get('value')) {
+                $select.trigger('selectmenuchange', [{item: {value: value, label: $option.text()}}]);
+            }
         },
 
         _destroy: function() {
