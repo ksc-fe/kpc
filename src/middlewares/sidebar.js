@@ -16,7 +16,7 @@ module.exports = Advanced.Controller.extend({
                     'href': '/console/vm/instance/list',
                     "subNav": [
                         {
-                            "title": "云主机",
+                            "title": "云服务器",
                             "href": "/console/vm/instance/list",
                             "index": "kvm"
                         },
@@ -133,7 +133,7 @@ module.exports = Advanced.Controller.extend({
                     "href": "/console/kingeyes",
                     "subNav": [
                         {
-                            "title": "云主机",
+                            "title": "云服务器",
                             "href": "#/",
                             "index": "kec"
                         },
