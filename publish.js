@@ -3,8 +3,8 @@ var _package = require('./package.json'),
 
 var minor = _package.version.replace(/((?:\d+\.){2})(\d+)/, '$1x'),
     major = _package.version.replace(/(\d+\.)(\d+\.)(\d+)/, '$1x.x');
-exec('git tag -a "v' + minor + '" -m "' + minor + '" --force').then(function() {
-    return exec('git tag -a "v' + major + '" -m "' + major + '" --force');
+exec('git tag -a "v' + minor + '" -m "' + _package.version + '" --force').then(function() {
+    return exec('git tag -a "v' + major + '" -m "' + _package.version + '" --force');
 }).then(function() {
     return exec('git push --tags --force');
 });
