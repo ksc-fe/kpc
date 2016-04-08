@@ -90,6 +90,11 @@ module.exports = Advanced.Controller.extend({
                             "title": "高防IP",
                             "href": "/console/security/kad",
                             "index": "security-kad"
+                        },
+                        {
+                            "title": "服务器安全",
+                            "href": "/console/security/khs",
+                            "index": "security-khs"
                         }
                     ]
                 },
