@@ -23,8 +23,8 @@ module.exports = Advanced.Controller.extend({
                 }
             }
         }).then(function(data) {
-            if (data.info && data.info.status == 0) {
-                this.res.locals.user = data.info.data;
+            if (data.info && data.info.user) {
+                this.res.locals.user = data.info.user;
             }
             this.next();
         }.bind(this));
