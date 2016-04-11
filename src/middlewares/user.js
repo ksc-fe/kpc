@@ -2,21 +2,29 @@ var Advanced = require(__ROOT + '/node_modules/advanced/lib/index');
 
 module.exports = Advanced.Controller.extend({
     // 拿用户信息
-    userInfo: function() {
+    userInfo: function(force) {
         // 某些地方需要这个变量，如：region
         this.res.locals.req = this.req;
 
-        if (this.req.xhr) return this.next();
+        if (!force && this.req.xhr) return this.next();
 
+        var token = this.req.cookies.kscdigest;
         this.request({
-            info: '/user/user_info',
-            account: '/user/user_balance'
+            info: {
+                uri: (Advanced.Utils.c('isMock') ? '' : 'http://api.passport.ksyun.com') + '/login_tokens/' + token,
+                headers: {
+                    'content-type': 'application/json',
+                    'X-Entry': 'com.ksyun.console',
+                    'X-Entry-Secret': '4a03491c8252370318cafe4cb4e77a67',
+                    'X-Version': 1,
+                    'X-Timestamp': new Date().getTime(),
+                    'X-Client-Ip': this.req.ip,
+                    'Authorization': 'login_token ' + token
+                }
+            }
         }).then(function(data) {
             if (data.info && data.info.status == 0) {
                 this.res.locals.user = data.info.data;
-            }
-            if (data.account && data.account.status == 0) {
-                this.res.locals.account = data.account.data;
             }
             this.next();
         }.bind(this));
@@ -33,7 +41,6 @@ module.exports = Advanced.Controller.extend({
             return this.next();
         }
     },
-
     
     /**
      * @brief 获取用户数据写入res.locals，不用区分请求类型
@@ -41,15 +48,6 @@ module.exports = Advanced.Controller.extend({
      * @return 
      */
     getUserInfo: function() {
-        this.res.locals.req = this.req;
-
-        this.request({
-            info: '/user/user_info'
-        }).then(function(data) {
-            if (data.info && data.info.status == 0) {
-                this.res.locals.user = data.info.data;
-            }
-            this.next();
-        }.bind(this));
+        this.userInfo(true);
     }
 });
