@@ -1,7 +1,7 @@
 var paths = {
     css: ['./static/**/*.@(css|styl)', './node_modules/kpc/src/all.styl'],
     images: ['./static/images/**/*.*', './node_modules/kpc/src/common/images/**/*.*'],
-    js: ['./static/js/**/*.js', './views/@(pages|components)/**/*.vdt', './node_modules/kpc/src/views/components/**/*.vdt', './node_modules/kpc/src/**/*.js'],
+    js: ['./static/js/**/*.js', './views/@(pages|components)/**/*.vdt', './node_modules/kpc/src/views/**/*.vdt', './node_modules/kpc/src/**/*.js'],
     requirejs: './node_modules/kpc/src/all.js',
     tpl: ['./views/*.vdt', './node_modules/kpc/src/views/*.vdt'],
     other: ['./*.@(js|json)', './app/**/*.*', './config/**/*.*'],
