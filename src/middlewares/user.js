@@ -20,7 +20,8 @@ module.exports = Advanced.Controller.extend({
                     'X-Timestamp': new Date().getTime(),
                     'X-Client-Ip': this.req.ip,
                     'Authorization': 'login_token ' + token
-                }
+                },
+                method: 'get'
             }
         }).then(function(data) {
             if (data.info && data.info.user) {
