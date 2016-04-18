@@ -6,7 +6,8 @@ define(['node_modules/kpc/src/views/components/table'], function(template) {
             isShowCheckbox: true,
             checkType: 'checkbox', // radio / checkbox
             isRowCheck: false, // 整行点击选中
-            checkedIndex: []
+            checkedIndex: [],
+            resizable: false
         },
 
         template: template,
@@ -14,6 +15,33 @@ define(['node_modules/kpc/src/views/components/table'], function(template) {
         _init: function() {
             this._updateCheckedIndex(true);
             this.on('change:data', this._updateCheckedIndex);
+        },
+
+        _create: function(){
+
+            var $table = $(this.element);
+            var eventId = '.resize-table-col';
+            var minWidth = 12;
+
+            $table.find('.th-resizable').on('mousedown', function(e){
+                $th = $(e.target).parent();
+                var originWidth = $th.width();
+                var tableWidth = $table.width;
+                var startX = e.clientX;
+
+                $(document).on('mousemove' + eventId, function(e){
+                    var diff = e.clientX - startX;
+                    var w = originWidth + diff;
+                    if(w > minWidth){
+                        $th.width(w);
+                        $table.width(tableWidth + diff);
+                    }
+                }).on('mouseup' + eventId, function(){
+                    $(document)
+                        .off('mousemove' + eventId)
+                        .off('mouseup' + eventId);
+                })
+            });
         },
 
         _updateCheckedIndex: function(silent) {

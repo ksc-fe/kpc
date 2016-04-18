@@ -12,9 +12,9 @@ var Checkbox = require('node_modules/kpc/src/components/checkbox'),
             }}
             {{ _.map(self.get('scheme'), function(item) {
                    if (_.isObject(item)){
-                       return <th width={{ item.width ? item.width : undefined }}>{{ item.title }}</th>
+                       return <th width={{ item.width ? item.width : undefined }}>{{ item.title }}{{self.get('resizable') ? <span class='th-resizable'>|</span> : undefined }}</th>
                    } else {
-                       return <th>{{ item }}</th>
+                       return <th>{{ item }}{{self.get('resizable') ? <span class='th-resizable'>|</span> : undefined }}</th>
                    }
             }) }}
         </tr>
