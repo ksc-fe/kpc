@@ -26,8 +26,13 @@ define(['node_modules/kpc/src/views/components/table'], function(template) {
             $table.find('.th-resizable').on('mousedown', function(e){
                 $th = $(e.target).parent();
                 var originWidth = $th.width();
-                var tableWidth = $table.width;
+                var tableWidth = $table.width();
                 var startX = e.clientX;
+                $table.find('thead').css({
+                    '-wekbit-user-select': 'none',
+                    '-moz-user-select': 'none',
+                    '-ms-user-select': 'none'
+                });
 
                 $(document).on('mousemove' + eventId, function(e){
                     var diff = e.clientX - startX;
@@ -37,6 +42,11 @@ define(['node_modules/kpc/src/views/components/table'], function(template) {
                         $table.width(tableWidth + diff);
                     }
                 }).on('mouseup' + eventId, function(){
+                    $table.find('thead').css({
+                        '-wekbit-user-select': '',
+                        '-moz-user-select': '',
+                        '-ms-user-select': ''
+                    });
                     $(document)
                         .off('mousemove' + eventId)
                         .off('mouseup' + eventId);
