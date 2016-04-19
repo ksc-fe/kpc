@@ -12,9 +12,11 @@
         <div class="docker-item">
             <a href="/console/subaccount/list">子账号管理</a>
         </div>
-        <div class="docker-item">
-            <a href="http://www.ksyun.com/workorder">工单服务</a>
-        </div>
+        {{
+            /*<div class="docker-item">
+                  <a href="http://www.ksyun.com/workorder">工单服务</a>
+              </div>*/
+        }}
         <div class="docker-item">
             <i class="c-icon c-icon-phone"></i>
             技术支持 4000289900
