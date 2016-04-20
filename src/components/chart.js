@@ -1,4 +1,5 @@
-define(['node_modules/kpc/src/views/components/chart'], function(template) {
+define(['node_modules/kpc/src/views/components/chart',
+    'node_modules/kpc/src/common/js/lib/highcharts'], function(template) {
     var timeOut;
     return Intact.extend({
         defaults: {
