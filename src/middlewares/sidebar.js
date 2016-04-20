@@ -77,6 +77,19 @@ module.exports = Advanced.Controller.extend({
                     ]
                 },
                 {
+                    "title": "数据分析",
+                    "icon": "analytics",
+                    "index": "analytics",
+                    "href": "/console/kmr/clusters/list",
+                    "subNav": [
+                        {
+                            "title": "托管Hadoop",
+                            "href": "/console/kmr/clusters/list",
+                            "index": "kmr"
+                        }
+                    ]
+                }, 
+                {
                     "title": "云安全",
                     "icon": "safe",
                     'href': '/console/security/basic',
