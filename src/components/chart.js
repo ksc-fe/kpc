@@ -1,6 +1,39 @@
 define(['node_modules/kpc/src/views/components/chart',
     'node_modules/kpc/src/common/js/lib/highcharts'], function(template) {
-    var timeOut;
+    var numericSymbols = ['k', 'M', 'G', 'T', 'P', 'E'];
+    function yaxisFormat(numericSymbolDetector, decide) {
+        if(decide == undefined) {
+            decide = -1;
+        }
+        var i = numericSymbols.length;
+        var multi;
+        var ret;
+        if (i && numericSymbolDetector >= 1000) {
+            while (i-- && ret === undefined) {
+                multi = Math.pow(1000, i + 1);
+                if (numericSymbolDetector >= multi && numericSymbols[i] !== null) {
+                    ret = Highcharts.numberFormat(numericSymbolDetector/ multi, decide)  + numericSymbols[i];
+                }
+            }
+            return ret;
+        }
+        return numericSymbolDetector;
+    }
+    function dateTimeFormat(dateTime) {
+        var date = new Date(dateTime);
+        var Y = date.getFullYear(),
+            _M = date.getMonth() + 1,
+            _D = date.getDate(),
+            _h = date.getHours(),
+            _m = date.getMinutes(),
+            _s = date.getSeconds(),
+            _M = _M < 10 ? ('0' + _M) : _M;
+            _D = _D < 10 ? ('0' + _D) : _D;
+            _h = _h < 10 ? ('0' + _h) : _h;
+            _m = _m < 10 ? ('0' + _m) : _m;
+            _s = _s < 10 ? ('0' + _s) : _s;
+        return _M+"月"+_D+"日"+" "+_h+":"+_m+":"+_s;
+    }
     return Intact.extend({
         defaults: {
             data: null, //列表数据
@@ -107,7 +140,6 @@ define(['node_modules/kpc/src/views/components/chart',
             var series = this.generateSeries(_x[0], _y, settings);
             this.drawHighcharts(settings, series);
         },
-
         generateSeries: function(start, yaxais, settings) {
             var series = [];
             for(var y in yaxais){
@@ -132,6 +164,7 @@ define(['node_modules/kpc/src/views/components/chart',
             return series;
         },
         drawHighcharts: function (settings, series) {
+            var self = this;
             var options = {
                 lang: {
                     resetZoom: '重置',
@@ -155,7 +188,20 @@ define(['node_modules/kpc/src/views/components/chart',
                 },
                 tooltip: {
                     shared: true,
-                    headerFormat: '<small>{point.key: %m月%d日 %H:%M:%S}</small> <br/>',
+                    //headerFormat: '<small>{point.key: %m月%d日 %H:%M:%S}</small> <br/>',
+                    formatter: function() {
+                        var s = '<b>' + dateTimeFormat(this.x) + '</b>';
+                        $.each(this.points, function () {
+                            s += '<br/><span style="color:'+this.series.color+'">\u25CF</span>' + this.series.name + ': ';
+                            if(self.get('unit') == "bytes"){
+                                s = s + yaxisFormat(this.y, 2)
+                            } else {
+                                s = s + this.y;
+                            }
+
+                        });
+                        return s;
+                    },
                     //valueDecimals: 2,
                     valueSuffix: settings.unit // unit 选项 : 悬浮框, y 轴数值单位
                 },
@@ -200,6 +246,17 @@ define(['node_modules/kpc/src/views/components/chart',
                     }
                 },
                 yAxis: {
+                    //type: 'logarithmic',
+                    //min: 0,
+                    labels: {
+                        formatter: function() {
+                            if(self.get('unit') == "bytes") {
+                                return yaxisFormat(this.value);
+                            } else {
+                                return this.value;
+                            }
+                        }
+                    },
                     title: {
                         align: 'high',
                         offset: 0,
