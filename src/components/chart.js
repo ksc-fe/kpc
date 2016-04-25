@@ -112,7 +112,7 @@ define(['node_modules/kpc/src/views/components/chart',
                 $(self.element).find('.spinner').hide();
                 //失败则绘制空表 不回弹出提示
                 //if(e.status && e.status === 1) {
-                //    renderEmpty();
+                    renderEmpty();
                 //} else if(e.statusText != "abort") {
                 //    utils.showErrorTip("获取监控数据失败！");
                 //}
