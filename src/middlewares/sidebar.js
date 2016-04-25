@@ -163,16 +163,10 @@ module.exports = Advanced.Controller.extend({
                     ]
                 },
                 {
-                    "title": "数据分析",
-                    "icon": "analytics",
-                    "href": "/console/kmr#/clusters",
-                    "subNav": [
-                        {
-                            "title": "KMR",
-                            "href": "#/clusters",
-                            "index": "kmr"
-                        }
-                    ]
+                    "title": "更多服务",
+                    "icon": "services",
+                    "index": "services",
+                    "href": "/console/services/list"
                 }
             ];
         }
