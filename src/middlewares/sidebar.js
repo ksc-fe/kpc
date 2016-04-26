@@ -112,6 +112,23 @@ module.exports = Advanced.Controller.extend({
                     ]
                 },
                 {
+                    "title": "云监控",
+                    "icon": "monitor",
+                    "href": "/console/kingeyes",
+                    "subNav": [
+                        {
+                            "title": "云服务器",
+                            "href": "#/",
+                            "index": "kec"
+                        },
+                        {
+                            "title": "联系人管理",
+                            "href": "#/linkman",
+                            "index": "linkman"
+                        }
+                    ]
+                },
+                {
                     "title": "CDN",
                     "icon": "cdn",
                     "href": "/console/cdn/domain/list",
@@ -145,23 +162,7 @@ module.exports = Advanced.Controller.extend({
                         }
                     ]
                 },
-                {
-                    "title": "云监控",
-                    "icon": "monitor",
-                    "href": "/console/kingeyes",
-                    "subNav": [
-                        {
-                            "title": "云服务器",
-                            "href": "#/",
-                            "index": "kec"
-                        },
-                        {
-                            "title": "联系人管理",
-                            "href": "#/linkman",
-                            "index": "linkman"
-                        }
-                    ]
-                },
+                
                 {
                     "title": "更多服务",
                     "icon": "services",
