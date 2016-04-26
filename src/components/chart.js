@@ -1,7 +1,8 @@
 define(['node_modules/kpc/src/views/components/chart',
     'node_modules/kpc/src/common/js/lib/highcharts'], function(template) {
-    var numericSymbols = ['k', 'M', 'G', 'T', 'P', 'E'];
-    function yaxisFormat(numericSymbolDetector, decide) {
+    var bytesSymbols = ['k', 'M', 'G', 'T', 'P', 'E'];
+    var bytesSpeedSymbols = ['k/s', 'M/s', 'G/s', 'T/s', 'P/s', 'E/s'];
+    function yaxisFormat(numericSymbolDetector, decide, numericSymbols) {
         if(decide == undefined) {
             decide = -1;
         }
@@ -40,6 +41,7 @@ define(['node_modules/kpc/src/views/components/chart',
             resetZoom: false, //是否可以图表缩放
             type: 'line', //图类型 默认line
             monitorAjax:null, //获取图表信息异步请求
+            allowDecimals:true, //中坐标是否可以显示小数
             pointNumber: 100 //默认查询图表点的数量
         },
         template: template,
@@ -134,7 +136,7 @@ define(['node_modules/kpc/src/views/components/chart',
             var settings = {};
             settings.title = this.get('_title');
             settings.unit = this.get('unit')?'(' + this.get('unit') + ')':"";
-            settings.allowDecimals = true;
+            settings.allowDecimals = this.get("allowDecimals");
             settings.pointInterval = this.get('interval');
 
             var series = this.generateSeries(_x[0], _y, settings);
@@ -194,8 +196,10 @@ define(['node_modules/kpc/src/views/components/chart',
                         $.each(this.points, function () {
                             s += '<br/><span style="color:'+this.series.color+'">\u25CF</span>' + this.series.name + ': ';
                             if(self.get('unit') == "bytes"){
-                                s = s + yaxisFormat(this.y, 2)
-                            } else {
+                                s = s + yaxisFormat(this.y, 2, bytesSymbols)
+                            } if(self.get('unit') == "bytes/s") {
+                                s = s + yaxisFormat(this.y, 2, bytesSpeedSymbols)
+                            }else {
                                 s = s + this.y;
                             }
 
