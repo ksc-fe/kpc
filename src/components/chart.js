@@ -199,7 +199,8 @@ define(['node_modules/kpc/src/views/components/chart',
                             if(self.get('unit') == "bytes"){
                                 s = s + yaxisFormat(this.y, bytesSymbols, 2)
                             } else if(self.get('unit') == "bytes/s") {
-                                s = s + yaxisFormat(this.y, bytesSpeedSymbols, 2)
+                                //s = s + yaxisFormat(this.y, bytesSpeedSymbols, 2)
+                                s = s + yaxisFormat(this.y, bytesSymbols, 2)
                             }else {
                                 s = s + this.y;
                             }
@@ -258,7 +259,8 @@ define(['node_modules/kpc/src/views/components/chart',
                             if(self.get('unit') == "bytes"){
                                 return yaxisFormat(this.value, bytesSymbols);
                             } if(self.get('unit') == "bytes/s") {
-                                return yaxisFormat(this.value, bytesSpeedSymbols);
+                                //return yaxisFormat(this.value, bytesSpeedSymbols);
+                                return yaxisFormat(this.value, bytesSymbols);
                             }else {
                                 return this.value;
                             }
