@@ -2,7 +2,7 @@ define(['node_modules/kpc/src/views/components/chart',
     'node_modules/kpc/src/common/js/lib/highcharts'], function(template) {
     var bytesSymbols = ['k', 'M', 'G', 'T', 'P', 'E'];
     var bytesSpeedSymbols = ['k/s', 'M/s', 'G/s', 'T/s', 'P/s', 'E/s'];
-    function yaxisFormat(numericSymbolDetector, decide, numericSymbols) {
+    function yaxisFormat(numericSymbolDetector, numericSymbols, decide) {
         if(decide == undefined) {
             decide = -1;
         }
@@ -195,10 +195,11 @@ define(['node_modules/kpc/src/views/components/chart',
                         var s = '<b>' + dateTimeFormat(this.x) + '</b>';
                         $.each(this.points, function () {
                             s += '<br/><span style="color:'+this.series.color+'">\u25CF</span>' + this.series.name + ': ';
+
                             if(self.get('unit') == "bytes"){
-                                s = s + yaxisFormat(this.y, 2, bytesSymbols)
-                            } if(self.get('unit') == "bytes/s") {
-                                s = s + yaxisFormat(this.y, 2, bytesSpeedSymbols)
+                                s = s + yaxisFormat(this.y, bytesSymbols, 2)
+                            } else if(self.get('unit') == "bytes/s") {
+                                s = s + yaxisFormat(this.y, bytesSpeedSymbols, 2)
                             }else {
                                 s = s + this.y;
                             }
@@ -254,9 +255,11 @@ define(['node_modules/kpc/src/views/components/chart',
                     //min: 0,
                     labels: {
                         formatter: function() {
-                            if(self.get('unit') == "bytes") {
-                                return yaxisFormat(this.value);
-                            } else {
+                            if(self.get('unit') == "bytes"){
+                                return yaxisFormat(this.value, bytesSymbols);
+                            } if(self.get('unit') == "bytes/s") {
+                                return yaxisFormat(this.value, bytesSpeedSymbols);
+                            }else {
                                 return this.value;
                             }
                         }
