@@ -1,7 +1,7 @@
 var Button = require('node_modules/kpc/src/components/button');
 
 <div class="date-show">
-    <input name="timeResult" attributes={{ {'UNSELECTABLE' :'on'} }} class="c-input time-result" value={{ self.get('resultValue') }} type="text" readOnly={{true}}/><span class="icon-angle" ev-click={{_.bind(self.showDate, self)}}></span>
+    <input name="timeResult" placeholder="自定义间隔" attributes={{ {'UNSELECTABLE' :'on'} }} class="c-input time-result" value={{ self.get('resultValue') }} type="text" readOnly={{true}}/><span class="icon-angle" ev-click={{_.bind(self.showDate, self)}}></span>
     <div class="date-content">
         <span><input attributes={{ {'UNSELECTABLE' :'on'} }} class="c-input date-input date-from" type="text" readOnly={{true}} value={{self.get('from')}}/></span>
         <input class="c-input time-input" value={{self.get('from-hour')}} ev-input={{ utils.valueLink(self, 'from-hour') }} ev-blur={{_.bind(self.valdate,self,0,23,'from-hour')}} style="width: 50px" type="number" max="23" min="0" name="from-hour"/>:<input class="c-input time-input" style="width: 50px" ev-blur={{_.bind(self.valdate,self,0,59,'from-minute')}} ev-input={{ utils.valueLink(self, 'from-minute') }} value={{self.get('from-minute')}} type="number" max="59" min="0" name="from-minute"/>
