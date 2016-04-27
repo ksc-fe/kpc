@@ -9,9 +9,11 @@ module.exports = Advanced.Controller.extend({
         if (!force && this.req.xhr) return this.next();
 
         var token = this.req.cookies.kscdigest;
-        this.request({
+
+        var params = {
             info: {
                 uri: (Advanced.Utils.c('isMock') ? '' : 'http://api.passport.ksyun.com') + '/login_tokens/' + token,
+                method: 'GET',
                 headers: {
                     'content-type': 'application/json',
                     'X-Entry': 'com.ksyun.console',
@@ -20,12 +22,26 @@ module.exports = Advanced.Controller.extend({
                     'X-Timestamp': new Date().getTime(),
                     'X-Client-Ip': this.req.ip,
                     'Authorization': 'login_token ' + token
-                },
-                method: 'get'
-            }
-        }).then(function(data) {
+                }
+            },
+            account: '/user/user_balance'
+        };
+        if (!_.isEmpty(this.req.cookies.subdigest)) {
+            // 子账号，使用老接口
+            params.info = '/user/user_info';
+        }
+        this.request(params).then(function(data) {
             if (data.info && data.info.user) {
+                // data from new passport service
+                data.info.user.user_id = data.info.user.id;
                 this.res.locals.user = data.info.user;
+            } else if (data.info && data.info.status == 0) {
+                // data from old account service
+                data.info.data.id = data.info.data.user_id;
+                this.res.locals.user = data.info.data;
+            }
+            if (data.account && data.account.status == 0) {
+                this.res.locals.account = data.account.data;
             }
             this.next();
         }.bind(this));
