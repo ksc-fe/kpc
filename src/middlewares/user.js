@@ -1,5 +1,5 @@
 var Advanced = require(__ROOT + '/node_modules/advanced/lib/index'),
-    _ = require(__ROOT + '/node_modules/kpc/src/common/js/lib/underscore');
+    _ = require('lodash');
 
 module.exports = Advanced.Controller.extend({
     // 拿用户信息
