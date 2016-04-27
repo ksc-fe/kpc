@@ -24,8 +24,9 @@ module.exports = Advanced.Controller.extend({
                     'X-Client-Ip': this.req.ip,
                     'Authorization': 'login_token ' + token
                 }
-            },
-            account: '/user/user_balance'
+            }
+            //,
+            //account: '/user/user_balance'
         };
         if (!_.isEmpty(this.req.cookies.subdigest)) {
             // 子账号，使用老接口
@@ -41,9 +42,9 @@ module.exports = Advanced.Controller.extend({
                 data.info.data.id = data.info.data.user_id;
                 this.res.locals.user = data.info.data;
             }
-            if (data.account && data.account.status == 0) {
-                this.res.locals.account = data.account.data;
-            }
+            //if (data.account && data.account.status == 0) {
+            //    this.res.locals.account = data.account.data;
+            //}
             this.next();
         }.bind(this));
     },
