@@ -29,6 +29,16 @@ module.exports = Advanced.Controller.extend({
                             "title": "防火墙",
                             "href": "/console/firewall/list",
                             "index": "firewall"
+                        },
+                        {
+                            "title": "本地盘",
+                            "href": "/console/localdisk/list",
+                            "index": "localdisk"
+                        },
+                        {
+                            "title": "本地盘快照",
+                            "href": "/console/localdisk/snapshot/list",
+                            "index": "localdisk_snapshot"
                         }
                     ]
                 },
