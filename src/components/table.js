@@ -19,39 +19,49 @@ define(['node_modules/kpc/src/views/components/table'], function(template) {
 
         _create: function(){
 
-            var $table = $(this.element);
+            var $table = $(this.element).find('table');
             var eventId = '.resize-table-col';
-            var minWidth = 12;
-
-            $table.find('.th-resizable').on('mousedown', function(e){
-                $th = $(e.target).parent();
-                var originWidth = $th.width();
-                var tableWidth = $table.width();
-                var startX = e.clientX;
-                $table.find('thead').css({
-                    '-wekbit-user-select': 'none',
-                    '-moz-user-select': 'none',
-                    '-ms-user-select': 'none'
-                });
-
-                $(document).on('mousemove' + eventId, function(e){
-                    var diff = e.clientX - startX;
-                    var w = originWidth + diff;
-                    if(w > minWidth){
-                        $th.width(w);
-                        $table.width(tableWidth + diff);
+            var minWidth = 30;
+            setTimeout(function() {
+                var arr={};
+                $.each($table.find('th'), function(index, obj) {
+                    if($(obj).attr('name') !== undefined) {
+                        arr[$(obj).attr('name')] = $(obj).width();
                     }
-                }).on('mouseup' + eventId, function(){
+                });
+                $table.find('.th-resizable').on('mousedown', function(e){
+                    $th = $(e.target).parent();
+                    var originWidth = $th.width();
+                    var tableWidth = $table.width();
+                    var startX = e.clientX;
                     $table.find('thead').css({
-                        '-wekbit-user-select': '',
-                        '-moz-user-select': '',
-                        '-ms-user-select': ''
+                        '-wekbit-user-select': 'none',
+                        '-moz-user-select': 'none',
+                        '-ms-user-select': 'none'
                     });
-                    $(document)
-                        .off('mousemove' + eventId)
-                        .off('mouseup' + eventId);
-                })
-            });
+
+                    //console.log(document.setCapture())
+
+                    $(document).on('mousemove' + eventId, function(e){
+                        var diff = e.clientX - startX;
+                        var w = originWidth + diff;
+                        minWidth = arr[$th.attr('name')];
+                        if(w >= minWidth){
+                            $th.width(w);
+                            $table.width(tableWidth+diff);
+                        }
+                    }).on('mouseup' + eventId, function(){
+                        $table.find('thead').css({
+                            '-wekbit-user-select': '',
+                            '-moz-user-select': '',
+                            '-ms-user-select': ''
+                        });
+                        $(document)
+                            .off('mousemove' + eventId)
+                            .off('mouseup' + eventId);
+                    })
+                });
+            })
         },
 
         _updateCheckedIndex: function(silent) {

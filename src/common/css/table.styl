@@ -11,6 +11,7 @@
         white-space nowrap
         text-overflow ellipsis
     th
+        position relative
         padding 15px 10px
         font-size 14px
         text-align left
@@ -23,10 +24,12 @@
         tr
             cursor pointer
     .th-resizable
-        float right
+        position absolute
+        right 5px
         padding 0 3px;
         cursor col-resize
-
+.c-table-container
+    overflow-x auto
 
 .c-table.border-gray
     border 1px solid #e5e5e5
