@@ -24,6 +24,7 @@ define(['node_modules/kpc/src/views/components/table'], function(template) {
             var minWidth = 30;
             setTimeout(function() {
                 var arr={};
+                var initWidth = $table.width();
                 $.each($table.find('th'), function(index, obj) {
                     if($(obj).attr('name') !== undefined) {
                         arr[$(obj).attr('name')] = $(obj).width();
@@ -31,8 +32,8 @@ define(['node_modules/kpc/src/views/components/table'], function(template) {
                 });
                 $table.find('.th-resizable').on('mousedown', function(e){
                     $th = $(e.target).parent();
-                    var originWidth = $th.width();
-                    var tableWidth = $table.width();
+                    var originWidth = $th.width();  //每个th初始化宽度
+                    var tableWidth = $table.width(); //table初始化 宽度
                     var startX = e.clientX;
                     $table.find('thead').css({
                         '-wekbit-user-select': 'none',
@@ -50,7 +51,14 @@ define(['node_modules/kpc/src/views/components/table'], function(template) {
                             $th.width(w);
                             $table.width(tableWidth+diff);
                         }
-                    }).on('mouseup' + eventId, function(){
+                    }).on('mouseup' + eventId, function(e){
+                        var diff = e.clientX - startX;
+                        var w = originWidth + diff;
+                        minWidth = arr[$th.attr('name')];
+                        if(w < minWidth){
+                            $th.width(minWidth);
+                            $table.width(initWidth);
+                        }
                         $table.find('thead').css({
                             '-wekbit-user-select': '',
                             '-moz-user-select': '',
