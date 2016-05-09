@@ -15,19 +15,19 @@
                 "index": "image"
             },
             {
-                "title": "防火墙",
-                "href": "/console/firewall/list",
-                "index": "firewall"
-            },
-            {
-                "title": "本地盘",
+                "title": "硬盘",
                 "href": "/console/localdisk/list",
                 "index": "localdisk"
             },
             {
-                "title": "本地盘快照",
+                "title": "快照",
                 "href": "/console/localdisk/snapshot/list",
                 "index": "localdisk_snapshot"
+            },
+            {
+                "title": "防火墙",
+                "href": "/console/firewall/list",
+                "index": "firewall"
             }
         ]
     },
