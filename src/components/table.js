@@ -27,7 +27,7 @@ define(['node_modules/kpc/src/views/components/table'], function(template) {
                     initTable();
                     function initTable() {
                         var arr={};
-                        var initWidth = $table.width();
+                        //var initWidth = $table.width();
                         $.each($table.find('th'), function(index, obj) {
                             if($(obj).attr('name') !== undefined) {
                                 arr[$(obj).attr('name')] = $(obj).width();
@@ -37,13 +37,14 @@ define(['node_modules/kpc/src/views/components/table'], function(template) {
                             $th = $(e.target).parent();
                             var originWidth = $th.width();  //每个th初始化宽度
                             var tableWidth = $table.width(); //table初始化 宽度
+                            //console.log(tableWidth)
                             var startX = e.clientX;
                             minWidth = arr[$th.attr('name')];
-
-                            $table.find('thead').css({
+                            $table.css({
                                 '-wekbit-user-select': 'none',
                                 '-moz-user-select': 'none',
-                                '-ms-user-select': 'none'
+                                '-ms-user-select': 'none',
+                                'user-select': 'none'
                             });
 
                             $(document).on('mousemove' + eventId, function(e){
@@ -55,16 +56,29 @@ define(['node_modules/kpc/src/views/components/table'], function(template) {
                                     $table.width(tableWidth+diff);
                                 }
                             }).on('mouseup' + eventId, function(e){
+                                //获取当前其他th的宽度 table的宽度 作为参考并不准确
+                                var arr2 = {};
+                                $.each($table.find('th'), function(index, obj) {
+                                    if($(obj).attr('name') !== undefined) {
+                                        arr2[$(obj).attr('name')] = $(obj).width();
+                                    }
+                                });
+                                _.map(_.keys(_.omit(arr2, $th.attr('name'))), function(obj) {
+                                    $table.find('th[name='+obj+']').width(arr2[obj]);
+
+                                });
+
                                 var diff = e.clientX - startX;
                                 var w = originWidth + diff;
-                                if(w < minWidth){
+                                if(w < minWidth) {
+                                    $table.removeAttr('style')
                                     $th.width(minWidth);
-                                    $table.width(initWidth);
                                 }
-                                $table.find('thead').css({
+                                $table.css({
                                     '-wekbit-user-select': '',
                                     '-moz-user-select': '',
-                                    '-ms-user-select': ''
+                                    '-ms-user-select': '',
+                                    'user-select': ''
                                 });
                                 $(document)
                                     .off('mousemove' + eventId)
