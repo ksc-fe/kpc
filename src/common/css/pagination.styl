@@ -44,6 +44,7 @@
         text-align: center;
         color: #898989;
         font-size: 14px;
+        margin 0px 5px
     .page-number
         width: 30px;
         text-align: center;
@@ -53,3 +54,49 @@
         border: 1px solid #cecece;
         color: #78829d;
         padding: 0 5px
+//
+.c-pagination-bar
+    position: relative;
+    width 400px
+    margin 0 auto
+    //text-align:center
+    label
+        display:inline-block;
+        line-height: 40px;
+        text-align: center;
+        color: #898989;
+        font-size: 14px;
+        margin 0px 5px
+    a
+        display:inline-block;
+        font-size 14px
+        margin 0 2px
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        color: #898989;
+        background: #f6f6f6;
+        border-bottom:1px solid #cecece;
+        &:hover
+            background: #5faded;
+            color: #fff;
+        &:hover, &:active, &:link, &:visited
+            text-decoration: none;
+        &.dot
+            cursor default
+            &:hover
+                background #f6f6f6;
+                color #898989
+        &.disabled
+            cursor default
+    .page-prev,
+    .page-next
+        color: #e9eef9;
+        background: #5faded;
+.page-input
+    line-height: 38px;
+    border: 1px solid #e6e4e4;
+    width: 50px;
+    border-radius: 2px;
+    text-align: center;
