@@ -132,6 +132,16 @@ module.exports = Advanced.Controller.extend({
                             "index": "kec"
                         },
                         {
+                            "title": "告警管理",
+                            "href": "#/rule",
+                            "index": "rule"
+                        },
+                        {
+                            "title": "实例组管理",
+                            "href": "#/group",
+                            "index": "group"
+                        },
+                        {
                             "title": "联系人管理",
                             "href": "#/linkman",
                             "index": "linkman"
