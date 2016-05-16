@@ -118,6 +118,11 @@ module.exports = Advanced.Controller.extend({
                             "title": "服务器安全",
                             "href": "/console/security/khs",
                             "index": "security-khs"
+                        },
+                        {
+                            "title": "漏洞扫描",
+                            "href": "/console/security/kvs",
+                            "index": "security-kvs"
                         }
                     ]
                 },
