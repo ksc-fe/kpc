@@ -43,7 +43,7 @@ module.exports = Advanced.Controller.extend({
                     ]
                 },
                 {
-                    "title": "网络资源",
+                    "title": "网络",
                     "icon": "network",
                     'href': '/console/eip/list',
                     "subNav": [
