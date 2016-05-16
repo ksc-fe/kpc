@@ -17,7 +17,7 @@ define(['node_modules/kpc/src/views/components/paginationBar'], function(templat
             this._super();
             this.set({
                 size: this.get("defaultSize")
-            })
+            }, {silent: true})
         },
         template: template,
 
