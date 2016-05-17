@@ -43,7 +43,7 @@ module.exports = Advanced.Controller.extend({
                     ]
                 },
                 {
-                    "title": "网络资源",
+                    "title": "网络",
                     "icon": "network",
                     'href': '/console/eip/list',
                     "subNav": [
@@ -118,6 +118,11 @@ module.exports = Advanced.Controller.extend({
                             "title": "服务器安全",
                             "href": "/console/security/khs",
                             "index": "security-khs"
+                        },
+                        {
+                            "title": "漏洞扫描",
+                            "href": "/console/security/kvs",
+                            "index": "security-kvs"
                         }
                     ]
                 },
