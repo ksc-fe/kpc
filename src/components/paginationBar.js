@@ -11,10 +11,16 @@ define(['node_modules/kpc/src/views/components/paginationBar'], function(templat
                 {text: '20行', value: '20'},
                 {text: '50行', value: '50'},
                 {text: '100行', value: '100'},
-            ]
+            ],
+            flag:0
         },
         _init: function(){
             this._super();
+            //if(this.get("total") == 0){
+            //    this.set({
+            //        total: 1
+            //    }, {silent: true})
+            //}
             this.set({
                 size: this.get("defaultSize")
             }, {silent: true})
@@ -35,16 +41,21 @@ define(['node_modules/kpc/src/views/components/paginationBar'], function(templat
         setCurrent: function(e) {
             e.preventDefault();
             var totalPages = Math.ceil(this.get('total') / this.get('size'));
-            var t = /^[0-9]+$/;
+            if(totalPages == 0) {
+                totalPages = 1;
+            }
+            var t = /^[1-9]+[0-9]*$/;
             var cpage = $(this.element).find(".page-input").val();
             if(t.test(cpage)) {
                 if(cpage < 1) {
                     this.set({
-                        current: 1
+                        current: 1,
+                        flag : this.get('flag')+1
                     });
                 } else if(cpage > totalPages) {
                     this.set({
-                        current: totalPages
+                        current: totalPages,
+                        flag : this.get('flag')+1
                     });
                 } else {
                     this.set({
