@@ -1,6 +1,6 @@
 {
   "name": "kpc",
-  "version": "0.3.18",
+  "version": "0.3.19",
   "dependencies": {},
   "devDependencies": {
     "lodash": "^4.0.0",
