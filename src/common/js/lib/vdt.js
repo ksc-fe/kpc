@@ -669,7 +669,7 @@ var Utils = require('./utils'),
     Type = Utils.Type,
     TypeName = Utils.TypeName;
 
-var elementNameRegexp = /^<\w+:?\s*[\w>]/;
+var elementNameRegexp = /^<\w+:?\s*[\w\/>]/;
 
 function isJSXIdentifierPart(ch) {
     return (ch === 58) || (ch === 95) || (ch === 45) ||  // : and _ (underscore) and -
@@ -1699,7 +1699,11 @@ function removeProperty(node, propName, propValue, previous) {
             } else if (typeof previousValue === "string") {
                 node[propName] = ""
             } else {
-                node[propName] = null
+                try {
+                    node[propName] = null
+                } catch (e) {
+                    node.removeAttribute(propName.toLowerCase());
+                }
             }
         } else if (previousValue.unhook) {
             previousValue.unhook(node, propName, propValue)
@@ -2162,7 +2166,7 @@ function updateWidget(a, b) {
     if (isWidget(a) && isWidget(b)) {
         if ("name" in a && "name" in b) {
             return a.id === b.id
-        } else if (!a.constructor instanceof a.constructor || !b.constructor instanceof b.constructor) {
+        } else if (!(a.constructor instanceof a.constructor) || !(b.constructor instanceof b.constructor)) {
             return a.constructor === b.constructor
         } else {
             return a.init === b.init
