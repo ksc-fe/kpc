@@ -22,54 +22,77 @@ define(['node_modules/kpc/src/views/components/table'], function(template) {
             var $table = $(this.element).find('table');
             var eventId = '.resize-table-col';
             var minWidth = 30;
-            setTimeout(function() {
-                var arr={};
-                var initWidth = $table.width();
-                $.each($table.find('th'), function(index, obj) {
-                    if($(obj).attr('name') !== undefined) {
-                        arr[$(obj).attr('name')] = $(obj).width();
-                    }
-                });
-                $table.find('.th-resizable').on('mousedown', function(e){
-                    $th = $(e.target).parent();
-                    var originWidth = $th.width();  //每个th初始化宽度
-                    var tableWidth = $table.width(); //table初始化 宽度
-                    var startX = e.clientX;
-                    $table.find('thead').css({
-                        '-wekbit-user-select': 'none',
-                        '-moz-user-select': 'none',
-                        '-ms-user-select': 'none'
-                    });
-
-                    //console.log(document.setCapture())
-
-                    $(document).on('mousemove' + eventId, function(e){
-                        var diff = e.clientX - startX;
-                        var w = originWidth + diff;
-                        minWidth = arr[$th.attr('name')];
-                        if(w >= minWidth){
-                            $th.width(w);
-                            $table.width(tableWidth+diff);
-                        }
-                    }).on('mouseup' + eventId, function(e){
-                        var diff = e.clientX - startX;
-                        var w = originWidth + diff;
-                        minWidth = arr[$th.attr('name')];
-                        if(w < minWidth){
-                            $th.width(minWidth);
-                            $table.width(initWidth);
-                        }
-                        $table.find('thead').css({
-                            '-wekbit-user-select': '',
-                            '-moz-user-select': '',
-                            '-ms-user-select': ''
+            if(this.get('resizable')) {
+                setTimeout(function() {
+                    initTable();
+                    function initTable() {
+                        var arr={};
+                        //var initWidth = $table.width();
+                        $.each($table.find('th'), function(index, obj) {
+                            if($(obj).attr('name') !== undefined) {
+                                arr[$(obj).attr('name')] = $(obj).width();
+                            }
                         });
-                        $(document)
-                            .off('mousemove' + eventId)
-                            .off('mouseup' + eventId);
+                        $table.find('.th-resizable').on('mousedown', function(e){
+                            $th = $(e.target).parent();
+                            var originWidth = $th.width();  //每个th初始化宽度
+                            var tableWidth = $table.width(); //table初始化 宽度
+                            //console.log(tableWidth)
+                            var startX = e.clientX;
+                            minWidth = arr[$th.attr('name')];
+                            $table.css({
+                                '-wekbit-user-select': 'none',
+                                '-moz-user-select': 'none',
+                                '-ms-user-select': 'none',
+                                'user-select': 'none'
+                            });
+
+                            $(document).on('mousemove' + eventId, function(e){
+                                var diff = e.clientX - startX;
+                                var w = originWidth + diff;
+
+                                if(w >= minWidth){
+                                    $th.width(w);
+                                    $table.width(tableWidth+diff);
+                                }
+                            }).on('mouseup' + eventId, function(e){
+                                //获取当前其他th的宽度 table的宽度 作为参考并不准确
+                                var arr2 = {};
+                                $.each($table.find('th'), function(index, obj) {
+                                    if($(obj).attr('name') !== undefined) {
+                                        arr2[$(obj).attr('name')] = $(obj).width();
+                                    }
+                                });
+                                _.map(_.keys(_.omit(arr2, $th.attr('name'))), function(obj) {
+                                    $table.find('th[name='+obj+']').width(arr2[obj]);
+
+                                });
+
+                                var diff = e.clientX - startX;
+                                var w = originWidth + diff;
+                                if(w < minWidth) {
+                                    $table.removeAttr('style')
+                                    $th.width(minWidth);
+                                }
+                                $table.css({
+                                    '-wekbit-user-select': '',
+                                    '-moz-user-select': '',
+                                    '-ms-user-select': '',
+                                    'user-select': ''
+                                });
+                                $(document)
+                                    .off('mousemove' + eventId)
+                                    .off('mouseup' + eventId);
+                            })
+                        });
+                    }
+                    $(window).resize(function() {
+                        $table.find('th').removeAttr('style');
+                        $table.width("100%");
+                        initTable();
                     })
-                });
-            })
+                })
+            }
         },
 
         _updateCheckedIndex: function(silent) {

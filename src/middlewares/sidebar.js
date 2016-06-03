@@ -26,24 +26,24 @@ module.exports = Advanced.Controller.extend({
                             "index": "image"
                         },
                         {
-                            "title": "防火墙",
-                            "href": "/console/firewall/list",
-                            "index": "firewall"
-                        },
-                        {
-                            "title": "本地盘",
+                            "title": "硬盘",
                             "href": "/console/localdisk/list",
                             "index": "localdisk"
                         },
                         {
-                            "title": "本地盘快照",
+                            "title": "快照",
                             "href": "/console/localdisk/snapshot/list",
                             "index": "localdisk_snapshot"
+                        },
+                        {
+                            "title": "防火墙",
+                            "href": "/console/firewall/list",
+                            "index": "firewall"
                         }
                     ]
                 },
                 {
-                    "title": "网络资源",
+                    "title": "网络",
                     "icon": "network",
                     'href': '/console/eip/list',
                     "subNav": [
@@ -123,6 +123,11 @@ module.exports = Advanced.Controller.extend({
                             "title": "服务器安全",
                             "href": "/console/security/khs",
                             "index": "security-khs"
+                        },
+                        {
+                            "title": "漏洞扫描",
+                            "href": "/console/security/kvs",
+                            "index": "security-kvs"
                         }
                     ]
                 },
@@ -135,6 +140,16 @@ module.exports = Advanced.Controller.extend({
                             "title": "云服务器",
                             "href": "#/",
                             "index": "kec"
+                        },
+                        {
+                            "title": "告警管理",
+                            "href": "#/rule",
+                            "index": "rule"
+                        },
+                        {
+                            "title": "实例组管理",
+                            "href": "#/group",
+                            "index": "group"
                         },
                         {
                             "title": "联系人管理",

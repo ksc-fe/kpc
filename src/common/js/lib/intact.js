@@ -91,6 +91,8 @@
             widget._removeEvents();
             widget._addEvents(this.attributes);
             widget.set(this.attributes, {global: false});
+            // 当一个组件，用同一个组件的另一个实例，去更新自己，由于子组件都相同
+            // 所以子组件不会新建，也就写入不了新实例的widgets引用中，这里强制设置一遍
             this.contextWidget[this.widget._widget] = this.widget;
         }
         return this.widget;
@@ -100,9 +102,14 @@
         if (!(this instanceof Intact)) {
             return new Thunk(this, attributes, contextWidgets);
         }
+
+        if (!this.template) {
+            throw new Error('Can not instantiate when this.template does not exist.');
+        }
+
         var attrs = attributes || {};
         attrs = _.extend({
-            children: null
+            children: undefined 
         }, _.result(this, 'defaults'), attrs);
 
         this._events = {};
@@ -160,6 +167,8 @@
             this.on('change', function() { 
                 if (++this._updateCount === 1) {
                     handleUpdate.call(this);
+                } else if (this._updateCount > 10) {
+                    throw new Error('Too many recursive update.');
                 }
             });
 
@@ -208,8 +217,8 @@
             });
         },
 
-        init: function() {
-            this.element = this.vdt.render(this);
+        init: function(isUpdate/* for private */) {
+            !isUpdate && (this.element = this.vdt.render(this));
             this.rendered = true;
             this._hasCalledInit = true;
             this.trigger('rendered', this);
@@ -227,17 +236,17 @@
             this.prevWidget = prevWidget;
             this.element = this.vdt.update(this);
             if (!this._hasCalledInit) {
-                this.rendered = true;
-                this._hasCalledInit = true;
-                this.trigger('rendered', this);
-                this._create();
+                this.init(true);
             }
             this._update(prevWidget, domNode);
             return this.element;
         },
 
         destroy: function(domNode) {
-            delete this._contextWidgets[this._widget];
+            // 如果只是移动了一个组件，会先执行创建，再销毁，所以需要判断父组件引用的是不是自己
+            if (this._contextWidgets[this._widget] === this) {
+                delete this._contextWidgets[this._widget];
+            }
             this.off();
             function destroy(children) {
                 _.each(children, function(child) {
@@ -296,6 +305,7 @@
                 }
 
                 options.change && options.change.call(this);
+                !options.silent && this.trigger('beforeChange', this);
                 !options.silent && options.global && this.trigger('change', this);
             }
 
@@ -354,6 +364,7 @@
      * @returns {Function}
      */
     Intact.extend = function(prototype) {
+        prototype || (prototype = {});
         _.defaults(prototype.defaults, this.prototype.defaults);
         return inherit(this, prototype);
     };
