@@ -66,6 +66,11 @@ module.exports = Advanced.Controller.extend({
                             "title": "共享带宽",
                             "href": "/console/bandwidth/list",
                             "index":"bandwidth"
+                        },
+                        {
+                            "title": "证书管理",
+                            "href": "/console/manager/list",
+                            "index":"manager"
                         }
                     ]
                 },
@@ -140,6 +145,16 @@ module.exports = Advanced.Controller.extend({
                             "title": "云服务器",
                             "href": "#/",
                             "index": "kec"
+                        },
+                        {
+                            "title": "告警管理",
+                            "href": "#/rule",
+                            "index": "rule"
+                        },
+                        {
+                            "title": "实例组管理",
+                            "href": "#/group",
+                            "index": "group"
                         },
                         {
                             "title": "联系人管理",

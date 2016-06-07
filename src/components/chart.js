@@ -209,7 +209,8 @@ define(['node_modules/kpc/src/views/components/chart',
                         return s;
                     },
                     //valueDecimals: 2,
-                    valueSuffix: settings.unit // unit 选项 : 悬浮框, y 轴数值单位
+                    valueSuffix: settings.unit
+                     // unit 选项 : 悬浮框, y 轴数值单位
                 },
                 plotOptions: {
                     area: {

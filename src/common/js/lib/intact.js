@@ -91,6 +91,9 @@
             widget._removeEvents();
             widget._addEvents(this.attributes);
             widget.set(this.attributes, {global: false});
+            // 当一个组件，用同一个组件的另一个实例，去更新自己，由于子组件都相同
+            // 所以子组件不会新建，也就写入不了新实例的widgets引用中，这里强制设置一遍
+            this.contextWidget[this.widget._widget] = this.widget;
         }
         return this.widget;
     };

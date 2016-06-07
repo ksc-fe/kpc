@@ -8,7 +8,7 @@ define(['node_modules/kpc/src/views/components/select'], function(template) {
             name: undefined,
             width: 200,
             appendTo: undefined,
-            position: undefined
+            position: { my: "left top", at: "left bottom", collision: "fit flip" }
         },
 
         template: template,

@@ -2,48 +2,36 @@ var Select = require('node_modules/kpc/src/components/select');
 var self = this,
     paginationUrl = function(index) {
         return get('url').replace('{index}', index).replace('{size}', get('size'));
-    },
-
-    paginationButton = function(index) {
-        return <a href={{ paginationUrl(index) }} className={{ index === get('current') ? 'page-cur' : '' }} ev-click={{ self.setIndex.bind(self, index) }}>{{ index }}</a>
-    },
-
-    paginationDot = function() {
-        return <a href="javascript:;" className="dot">...</a>
     };
-
 var showCount = get('showCount') || 5;
-
 var totalPages = Math.ceil(get('total') / get('size'));
 
 <div class={{ "c-pagination-bar " + (self.get('className') || '') }}>
     <form ev-submit={{ _.bind(self.setCurrent, self) }}>
-    {{ (function() {
-        var liItems = [];
-        var minCount = Math.ceil(get('showCount') / 2),
-            maxCount = totalPages - minCount,
-            prevPage = get('current') - 1;
+        {{ (function() {
+            var liItems = [];
+            var prevPage = get('current') - 1;
 
-        if (prevPage < 1) {
-            liItems.push(<a href="javascript:;" className="page-prev disabled">{{ '<' }}</a>);
-        } else {
-            liItems.push(<a href={{ paginationUrl(prevPage) }} title="上一页" className="page-prev" ev-click={{ _.bind(self.setIndex, self, prevPage) }}>{{ '<' }}</a>);
-        }
-            liItems.push(<input class="page-input" type="text" value={{ get('current') }}/>);
-            liItems.push(<label>/{{totalPages}}</label>);
+            if (prevPage < 1) {
+                liItems.push(<a href="javascript:;" className="page-prev disabled">{{ '<' }}</a>);
+            } else {
+                liItems.push(<a href={{ paginationUrl(prevPage) }} title="上一页" className="page-prev" ev-click={{ _.bind(self.setIndex, self, prevPage) }}>{{ '<' }}</a>);
+            }
+                liItems.push(<input class="page-input" type="text" value={{ get('current') }}/>);
+                liItems.push(<label>/{{totalPages == 0 ? 1 : totalPages}}</label>);
 
-        var nextPage = get('current') + 1;
-        if (nextPage > totalPages) {
-            liItems.push(<a href="javascript:;" className="page-next disabled">{{ '>' }}</a>);
-        } else {
-            liItems.push(<a href={{ paginationUrl(nextPage) }} title="下一页" className="page-next" ev-click={{ _.bind(self.setIndex, self, nextPage) }}>{{ '>' }}</a>);
-        }
-            liItems.push(<label>每页</label>);
-            liItems.push(<Select name="pageSize" appendTo='self' width={{85}} data={{ get('pageSizes').concat(_.map(self.get('groups'), function(item) {
-                                         return {text: item.groupName, value: item.groupName}
-                                     })) }} ev-change={{ _.bind(self.changePageSize, self) }} value={{get("size")}}/>);
-             liItems.push(<label>共 {{get('total')}} 条</label>);
-        return <p className="m-pagination">{{ liItems }}</p>;
-    })() }}
+            var nextPage = get('current') + 1;
+            if (nextPage > totalPages) {
+                liItems.push(<a href="javascript:;" className="page-next disabled">{{ '>' }}</a>);
+            } else {
+                liItems.push(<a href={{ paginationUrl(nextPage) }} title="下一页" className="page-next" ev-click={{ _.bind(self.setIndex, self, nextPage) }}>{{ '>' }}</a>);
+            }
+                liItems.push(<label>每页</label>);
+                liItems.push(<Select name="pageSize" appendTo='self' width={{85}} data={{ get('pageSizes').concat(_.map(self.get('groups'), function(item) {
+                                             return {text: item.groupName, value: item.groupName}
+                                         })) }} ev-change={{ _.bind(self.changePageSize, self) }} value={{get("size")}}/>);
+                 liItems.push(<label>共 {{get('total')}} 条</label>);
+            return <p className="m-pagination">{{ liItems }}</p>;
+        })() }}
     </form>
 </div>
