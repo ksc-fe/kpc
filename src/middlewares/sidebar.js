@@ -105,6 +105,11 @@ module.exports = Advanced.Controller.extend({
                     'href': '/console/security/basic',
                     "subNav": [
                         {
+                            "title": "概览",
+                            "href": "/console/security/view",
+                            "index": "security-view"
+                        },
+                        {
                             "title": "基础防护",
                             "href": "/console/security/basic",
                             "index": "security-basic"
