@@ -66,6 +66,11 @@ module.exports = Advanced.Controller.extend({
                             "title": "共享带宽",
                             "href": "/console/bandwidth/list",
                             "index":"bandwidth"
+                        },
+                        {
+                            "title": "证书管理",
+                            "href": "/console/manager/list",
+                            "index":"manager"
                         }
                     ]
                 },
