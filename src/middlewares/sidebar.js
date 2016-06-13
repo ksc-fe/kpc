@@ -143,22 +143,27 @@ module.exports = Advanced.Controller.extend({
                     "subNav": [
                         {
                             "title": "云服务器",
-                            "href": "#/",
+                            "href": "/console/kingeyes#/",
                             "index": "kec"
                         },
                         {
+                            "title": "RDS数据库",
+                            "href": "/console/rds/kingeyes#/rds",
+                            "index": "krds"
+                        },
+                        {
                             "title": "告警管理",
-                            "href": "#/rule",
+                            "href": "/console/kingeyes#/rule",
                             "index": "rule"
                         },
                         {
                             "title": "实例组管理",
-                            "href": "#/group",
+                            "href": "/console/kingeyes#/group",
                             "index": "group"
                         },
                         {
                             "title": "联系人管理",
-                            "href": "#/linkman",
+                            "href": "/console/kingeyes#/linkman",
                             "index": "linkman"
                         }
                     ]
