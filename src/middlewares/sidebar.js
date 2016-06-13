@@ -142,7 +142,7 @@ module.exports = Advanced.Controller.extend({
                     "href": "/console/kingeyes",
                     "subNav": [
                         {
-                            "title": "云服务器1",
+                            "title": "云服务器",
                             "href": "/console/kingeyes#/",
                             "index": "kec"
                         },
