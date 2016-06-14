@@ -107,7 +107,7 @@ module.exports = Advanced.Controller.extend({
                 {
                     "title": "云安全",
                     "icon": "safe",
-                    'href': '/console/security/basic',
+                    'href': '/console/security/index',
                     "subNav": [
                         {
                             "title": "概览",
