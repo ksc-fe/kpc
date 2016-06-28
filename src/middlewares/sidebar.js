@@ -152,6 +152,11 @@ module.exports = Advanced.Controller.extend({
                             "index": "krds"
                         },
                         {
+                            "title": "KCS缓存",
+                            "href": "/console/kcs/kingeyes#/kcs",
+                            "index": "kcsa"
+                        },
+                        {
                             "title": "告警管理",
                             "href": "/console/kingeyes#/rule",
                             "index": "rule"
