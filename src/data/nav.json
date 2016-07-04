@@ -55,6 +55,11 @@
                 "title": "共享带宽",
                 "href": "/console/bandwidth/list",
                 "index":"bandwidth"
+            },
+            {
+                "title": "证书管理",
+                "href": "/console/manager/list",
+                "index":"manager"
             }
         ]
     },
@@ -91,7 +96,7 @@
     {
         "title": "云安全",
         "icon": "safe",
-        "href": "/console/security/basic",
+        "href": "/console/security/index",
         "subNav": [
             {
                 "title": "概览",

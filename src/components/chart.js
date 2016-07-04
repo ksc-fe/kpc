@@ -178,7 +178,7 @@ define(['node_modules/kpc/src/views/components/chart',
                 credits: {
                     enabled: false
                 },
-                colors :  ['#74bcef', '#ff7f00',  '#64E572', '#6AF9C4', '#FF9655', '#24CBE5', '#DDDF00', '#ED561B',  '#FFF263'],
+                colors :  ['#74bcef', '#ff7f00', '#64E572', '#6AF9C4', '#FF9655', '#24CBE5', '#DDDF00', '#ED561B',  '#FFF263'],
                 title: {
                     text: settings.title,
                     align: 'left',
