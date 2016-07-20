@@ -134,22 +134,32 @@
         "subNav": [
             {
                 "title": "云服务器",
-                "href": "#/",
+                "href": "/console/kingeyes#/",
                 "index": "kec"
             },
-          {
-            "title": "告警管理",
-            "href": "#/rule",
-            "index": "rule"
-          },
-          {
-            "title": "实例组管理",
-            "href": "#/group",
-            "index": "group"
-          },
+            {
+                "title": "RDS数据库",
+                "href": "/console/rds/kingeyes#/rds",
+                "index": "krds"
+            },
+            {
+                "title": "KCS缓存",
+                "href": "/console/kcs/kingeyes#/kcs",
+                "index": "kcsa"
+            },
+            {
+                "title": "告警管理",
+                "href": "/console/kingeyes#/rule",
+                "index": "rule"
+            },
+            {
+                "title": "实例组管理",
+                "href": "/console/kingeyes#/group",
+                "index": "group"
+            },
             {
                 "title": "联系人管理",
-                "href": "#/linkman",
+                "href": "/console/kingeyes#/linkman",
                 "index": "linkman"
             }
         ]

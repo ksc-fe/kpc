@@ -4,4 +4,4 @@ module.exports = Advanced.Controller.extend({
     layout: function() {
         this.render('layout')
     }
-})
+});
