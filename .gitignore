@@ -5,3 +5,4 @@ node_modules/
 *.pyc
 npm-debug.log
 *.swp
+log/

@@ -68,8 +68,13 @@ define(['node_modules/kpc/src/views/components/chart',
             $(self.element).find('.spinner').show();
 
             //绘制空表
-            var loadDate = { xaxais: [], yaxais: {} };
-            loadDate['yaxais'][self.get('chartTitle')] = null;
+            var loadDate = { xaxais: [], yaxais: {} },
+                _lines = self.get('lines');
+            _.map(_lines, function(item){
+                loadDate['yaxais'][item.legend] = null;
+            });
+
+            //loadDate['yaxais'][self.get('chartTitle')] = null;
             self.set({
                 '_title': self.get('chartTitle'),
                 'data': loadDate
@@ -81,13 +86,16 @@ define(['node_modules/kpc/src/views/components/chart',
                 "pointNumber":self.get('pointNumber'),
                 "instance":self.get('instance'),
                 "lines":self.get('lines')
-            })
+            });
             self.set('monitorAjax',monitorAjax);
 
             function renderEmpty(){
-                var key = self.get("chartTitle");
                 var obj = {};
-                obj[key] = [0];
+                //var key = self.get("chartTitle");
+                //obj[key] = [0];
+                _.map(self.get('lines'), function(item){
+                    obj[item.legend] = [0];
+                });
                 loadDate["xaxais"] = 0;
                 loadDate["yaxais"] = obj;
                 self.set({
@@ -257,13 +265,14 @@ define(['node_modules/kpc/src/views/components/chart',
                     //min: 0,
                     labels: {
                         formatter: function() {
-                            if(self.get('unit') == "bytes"){
+                            var value = (this.value).toLocaleString();
+                            if (self.get('unit') == "bytes") {
                                 return yaxisFormat(this.value, bytesSymbols);
-                            } if(self.get('unit') == "bytes/s") {
+                            } else if (self.get('unit') == "bytes/s") {
                                 //return yaxisFormat(this.value, bytesSpeedSymbols);
                                 return yaxisFormat(this.value, bytesSymbols);
-                            }else {
-                                return this.value;
+                            } else {
+                                return value;
                             }
                         }
                     },
@@ -294,7 +303,7 @@ define(['node_modules/kpc/src/views/components/chart',
                     //}
                 },
                 series: series
-            }
+            };
 
             if(this.get('resetZoom')){
                 chartOption.chart.zoomType = 'x';
