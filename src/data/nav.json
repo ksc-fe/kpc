@@ -148,14 +148,11 @@
                 "index": "kcsa"
             },
             {
-<<<<<<< HEAD
                 "title": "弹性IP",
                 "href": "/console/network_monit/eip#/",
-                "index": "eip"
+                "index": "eipmonitor"
             },
             {
-=======
->>>>>>> 821b5e600130746918b523785d4f56480215f18e
                 "title": "告警管理",
                 "href": "/console/kingeyes#/rule",
                 "index": "rule"
