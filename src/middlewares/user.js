@@ -37,6 +37,8 @@ module.exports = Advanced.Controller.extend({
                 // data from new passport service
                 data.info.user.user_id = data.info.user.id;
                 this.res.locals.user = data.info.user;
+                // 添加用户类型字段
+                data.info.user.userType = data.info.type;
             } else if (data.info && data.info.status == 0) {
                 // data from old account service
                 data.info.data.id = data.info.data.user_id;
@@ -53,7 +55,8 @@ module.exports = Advanced.Controller.extend({
     needLogin: function() {
         if (this.req.xhr) return this.next();
 
-        if (!this.res.locals.user) {
+        // 新子账号不支持
+        if (!this.res.locals.user || this.res.locals.user.userType === 'iam') {
             this.res.redirect('http://www.ksyun.com/user/login?callback=' +
                 encodeURIComponent(this.req.protocol + '://' + (this.req.get('x-forwarded-host') || this.req.get('host')) + this.req.originalUrl));
         } else {
