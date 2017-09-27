@@ -1,0 +1,77 @@
+@require('./themes/default.styl')
+
+/****************************
+            Reset
+*****************************/
+
+*, *:before, *:after
+    box-sizing inherit
+html
+    box-sizing border-box
+
+// iPad Input Shadows
+input
+    -webkit-appearance none
+    -moz-appearance none
+
+ul, ol, li
+    list-style none
+    margin 0
+    padding 0
+
+
+/****************************
+            Page
+*****************************/
+
+html
+body
+    height 100%
+html
+    font-size $font-size 
+body
+    font-family $font-family
+    margin 0
+    padding 0
+    color $text-color
+
+
+/****************************
+            Headers
+*****************************/
+
+h1, h2, h3, h4, h5
+    font-family $header-font-family
+    margin $header-margin
+    font-weight $header-font-weight
+    padding 0
+h1
+    min-height 1rem
+for type in 1 2 3 4 5
+    h{type}
+        font-size lookup('$h' + type)
+    h{type}:first-child
+        margin-top 0
+    h{type}:last-child
+        margin-bottom 0
+
+
+/****************************
+            Link
+*****************************/
+
+a 
+    color $link-color
+    text-decoration $link-underline
+    cursor pointer
+    &:hover
+        color $link-hover-color
+        text-decoration $link-hover-underline
+
+
+/****************************
+            Code 
+*****************************/
+
+code, kbd, pre, samp
+    font-family $code-font-family

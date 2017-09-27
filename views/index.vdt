@@ -2,6 +2,7 @@
 <head>
     <meta charset="utf-8" />
     <title>KPC 4.0</title>
+    {{= self.style }}
 </head>
 <body>
     <div id="app" innerHTML={{ self.content }}></div>

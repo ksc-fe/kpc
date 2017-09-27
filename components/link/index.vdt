@@ -1,0 +1,1 @@
+<a {{ ...self.get() }} ev-click={{ self.to.bind(self) }}>{{ self.get('children') }}</a>

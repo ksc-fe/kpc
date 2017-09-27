@@ -1,0 +1,1 @@
+<div>{{ self.get('view') }}</div>

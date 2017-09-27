@@ -1,5 +1,15 @@
 const Button = props => {
-    return h(self.get('tagName') || 'button', props, props.children);
+    let tagName = props.tagName;
+    if (!tagName && props.href) {
+        tagName = 'a';
+    }
+    return h(tagName || 'button', props, props.children);
 };
 
-<Button {{ ...self.get() }}></Button>
+const className = `k-btn k-${self.get('type')} ${self.get('className') || ''}` +
+    ` ${self.get('disabled') ? 'k-disabled' : ''}`;
+
+<Button 
+    class={{ className }}
+    {{ ...self.get() }}
+/>

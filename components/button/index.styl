@@ -1,0 +1,31 @@
+@require('./variables.styl')
+
+.k-btn
+    cursor pointer
+    display inline-block
+    height $btn-height
+    line-height $btn-line-height
+    padding $btn-padding
+    outline none
+    border none
+    vertical-align middle
+    color $btn-default-color
+    background-color $btn-default-bg-color
+    text-align center
+    border-radius $btn-border-radius
+    transition all .3s @ease-in-out
+    &.k-primary
+        background-color $btn-primary-bg-color
+        color $btn-primary-color
+        &:hover
+            background-color lighten($btn-primary-bg-color, 10)
+    &.k-default
+        border 1px solid $btn-border-color
+        &:hover
+            border-color $btn-primary-bg-color
+            color $btn-primary-bg-color
+    &.k-warning
+        background-color $btn-warning-bg-color
+        color $btn-warning-color
+        &:hover
+            background-color lighten(@background-color, 10)

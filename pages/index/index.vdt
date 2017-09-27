@@ -1,0 +1,6 @@
+const Link = require('components/link');
+
+<div>
+    {{ self.get('test') }}
+    <Link href="/" class="aaa">go home</Link>
+</div>

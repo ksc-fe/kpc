@@ -1,15 +1,10 @@
 const webpack = require('webpack');
 const path = require('path');
-const nodeExternal = require('webpack-node-externals');
 
 module.exports = {
-    entry: {
-        server: './core/server.js',
-    },
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: '[name].js',
-        chunkFilename: 'static/chunk/[chunkhash].js'
     },
     module: {
         rules: [
@@ -46,17 +41,15 @@ module.exports = {
             {
                 test: /\.(styl|css)$/,
                 use: [
-                    {loader: 'style-loader'},
                     {loader: 'css-loader'},
-                    {loader: 'stylus-loader', options: {'include css': true}}
+                    {loader: 'stylus-loader', options: {
+                        'include css': true,
+                        // 'import': path.resolve(__dirname, 'styles/themes/test.styl'),
+                    }}
                 ]
-            }
+            },
         ]
     },
-    target: 'node',
-    externals: [nodeExternal({
-        whitelist: ['universal-router']
-    })],
     resolve: {
         modules: [__dirname, 'node_modules'],
         extensions: ['.mjs', '.js', '.vdt'],
@@ -71,8 +64,4 @@ module.exports = {
             Intact: 'intact'
         }),
     ],
-    node: {
-        __dirname: false,
-        __filename: false,
-    },
-}
+};

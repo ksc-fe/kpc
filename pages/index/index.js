@@ -1,3 +1,5 @@
+import template from './index.vdt';
+
 export default class extends Intact {
-    get template() { return '<div>{{ self.get("test") }}</div>'; }
+    get template() { return template; }
 }

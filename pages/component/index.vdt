@@ -1,3 +1,8 @@
 const Button = require('components/button');
+const Link = require('components/link');
 
-<div>test<Button>aaa</Button></div>
+<div class="component-page">
+    <Button type="default">default</Button>
+    <Button type="primary">primary</Button>
+    <Button type="warning">warning</Button>
+</div>
