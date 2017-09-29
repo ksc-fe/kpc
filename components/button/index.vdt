@@ -6,10 +6,17 @@ const Button = props => {
     return h(tagName || 'button', props, props.children);
 };
 
-const className = `k-btn k-${self.get('type')} ${self.get('className') || ''}` +
-    ` ${self.get('disabled') ? 'k-disabled' : ''}`;
+const {type, className, size, icon, circle, ...rest} = self.get();
+const classNameObj = {
+    'k-btn': true,
+    [`k-${type}`]: type !== 'default',
+    'k-btn-icon': icon,
+    [`k-${size}`]: size !== 'default',
+    [className]: className, 
+    [`k-circle`]: circle,
+};
 
 <Button 
-    class={{ className }}
-    {{ ...self.get() }}
+    class={{ classNameObj }}
+    {{ ...rest }}
 />

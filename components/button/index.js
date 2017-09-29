@@ -7,7 +7,10 @@ export default class extends Intact {
 
     defaults() {
         return {
-            type: 'default'
+            type: 'default',
+            size: 'default',
+            icon: false,
+            circle: false
         };
     }
 }

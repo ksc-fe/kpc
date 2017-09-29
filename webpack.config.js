@@ -41,7 +41,9 @@ module.exports = {
             {
                 test: /\.(styl|css)$/,
                 use: [
-                    {loader: 'css-loader'},
+                    {loader: 'css-loader', options: {
+                        url: false
+                    }},
                     {loader: 'stylus-loader', options: {
                         'include css': true,
                         // 'import': path.resolve(__dirname, 'styles/themes/test.styl'),

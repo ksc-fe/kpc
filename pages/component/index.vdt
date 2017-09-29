@@ -2,7 +2,36 @@ const Button = require('components/button');
 const Link = require('components/link');
 
 <div class="component-page">
-    <Button type="default">default</Button>
+    <Button type="default" ev-click={{ self.click.bind(self) }}>default</Button>
     <Button type="primary">primary</Button>
     <Button type="warning">warning</Button>
+    <Button type="danger">danger</Button>
+    <Button icon>X</Button>
+    <Button type="none">none</Button>
+    <br />
+    <Button>default</Button>
+    <Button type="primary" size="small">small</Button>
+    <Button type="warning" size="mini">mini</Button>
+    <Button icon size="mini">X</Button>
+    <br />
+    <Button circle>default</Button>
+    <Button size="small" circle>small</Button>
+    <Button size="mini" circle>mini</Button>
+    <Button icon circle>X</Button>
+    <Button icon circle size="mini">X</Button>
+    <Button icon type="none">X</Button>
+    <Button icon type="primary" circle>X</Button>
+    <br />
+    <Button disabled ev-click={{ self.clickDisabled.bind(self) }}>default disabled</Button>
+    <Button type="primary" disabled>primary disabled</Button>
+    <Button type="warning" disabled>warning disabled</Button>
+    <Button type="danger" disabled>danger disabled</Button>
+    <Button type="none" disabled>none disabled</Button>
+    <Button icon disabled circle>X</Button>
+    <br />
+    <Button><i class="k-icon icon-boot"></i>开机</Button>
+    <Button type="primary" circle><i class="k-icon icon-boot"></i>开机</Button>
+    <Button icon><i class="k-icon icon-boot"></i></Button>
+    <Button icon circle><i class="k-icon icon-boot"></i></Button>
+    <Button icon circle size="mini"><i class="k-icon icon-boot"></i></Button>
 </div>

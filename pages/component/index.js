@@ -7,4 +7,12 @@ export default class extends Intact {
     _init() {
 
     }
+
+    clickDisabled() {
+        console.log('click disabled');
+    }
+
+    click() {
+        console.log('click');
+    }
 }

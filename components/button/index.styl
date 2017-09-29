@@ -4,28 +4,64 @@
     cursor pointer
     display inline-block
     height $btn-height
-    line-height $btn-line-height
+    line-height 1
     padding $btn-padding
     outline none
     border none
     vertical-align middle
-    color $btn-default-color
-    background-color $btn-default-bg-color
+    color $btn-color
+    background-color $btn-bg-color
     text-align center
     border-radius $btn-border-radius
     transition all .3s @ease-in-out
-    &.k-primary
-        background-color $btn-primary-bg-color
-        color $btn-primary-color
+    border 1px solid $btn-border-color
+    &:hover
+        border-color $btn-primary-bg-color
+        color $btn-primary-bg-color
+    for type in primary warning danger
+        &.k-{type}
+            background-color lookup('$btn-' + type + '-bg-color')
+            color lookup('$btn-' + type + '-color')
+            border-color lookup('$btn-' + type + '-border-color')
+            &:hover
+                background-color lighten(@background-color, 10)
+                border-color lighten(@border-color, 10)
+    &[disabled]
+        &, &:hover
+            color $btn-disabled-color 
+            background-color $btn-disabled-bg-color 
+            border-color $btn-disabled-border-color 
+            cursor not-allowed
+    &.k-none
+        border-color transparent
+        background-color transparent
         &:hover
-            background-color lighten($btn-primary-bg-color, 10)
-    &.k-default
-        border 1px solid $btn-border-color
-        &:hover
-            border-color $btn-primary-bg-color
-            color $btn-primary-bg-color
-    &.k-warning
-        background-color $btn-warning-bg-color
-        color $btn-warning-color
-        &:hover
-            background-color lighten(@background-color, 10)
+            border-color transparent
+            background-color transparent
+
+    // icon
+    .k-icon
+        font-size inherit
+        margin-right $btn-icon-margin-right 
+    &.k-btn-icon
+        width @height
+        padding 0
+        .k-icon
+            margin 0
+            font-size $btn-btn-icon-font-size
+
+    // size
+    &.k-small
+        font-size $btn-small-font-size
+    &.k-mini
+        font-size $btn-mini-font-size
+        height $btn-mini-height
+        padding $btn-mini-padding
+        &.k-btn-icon
+            width @height
+            padding 0
+            line-height @height
+
+    // shape
+    &.k-circle
+        border-radius unit(@height / 2, em)
