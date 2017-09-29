@@ -15,4 +15,11 @@ export default class extends Intact {
     click() {
         console.log('click');
     }
+
+    loading(name) {
+        this.set(name, true);
+        setTimeout(() => {
+            this.set(name, false);
+        }, 5000);
+    }
 }

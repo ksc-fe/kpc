@@ -10,7 +10,8 @@ export default class extends Intact {
             type: 'default',
             size: 'default',
             icon: false,
-            circle: false
+            circle: false,
+            loading: false,
         };
     }
 }

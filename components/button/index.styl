@@ -1,4 +1,8 @@
 @require('./variables.styl')
+@require('../../styles/mixin.styl')
+
+types = primary warning danger
+sizes = small mini
 
 .k-btn
     cursor pointer
@@ -14,18 +18,20 @@
     text-align center
     border-radius $btn-border-radius
     transition all .3s @ease-in-out
+    // transition-delay 50000s
     border 1px solid $btn-border-color
+    font-size $btn-font-size
     &:hover
         border-color $btn-primary-bg-color
         color $btn-primary-bg-color
-    for type in primary warning danger
+    for type in types 
         &.k-{type}
             background-color lookup('$btn-' + type + '-bg-color')
             color lookup('$btn-' + type + '-color')
             border-color lookup('$btn-' + type + '-border-color')
             &:hover
-                background-color lighten(@background-color, 10)
-                border-color lighten(@border-color, 10)
+                background-color lighten(@background-color, 20%)
+                border-color lighten(@border-color, 20%)
     &[disabled]
         &, &:hover
             color $btn-disabled-color 
@@ -39,6 +45,15 @@
             border-color transparent
             background-color transparent
 
+    // size
+    for size in sizes 
+        &.k-{size}
+            font-size lookup('$btn-' + size + '-font-size')
+            height lookup('$btn-' + size + '-height')
+            padding lookup('$btn-' + size + '-padding')
+            &.k-btn-icon
+                width @height
+
     // icon
     .k-icon
         font-size inherit
@@ -50,18 +65,28 @@
             margin 0
             font-size $btn-btn-icon-font-size
 
-    // size
-    &.k-small
-        font-size $btn-small-font-size
-    &.k-mini
-        font-size $btn-mini-font-size
-        height $btn-mini-height
-        padding $btn-mini-padding
-        &.k-btn-icon
-            width @height
-            padding 0
-            line-height @height
-
     // shape
     &.k-circle
         border-radius unit(@height / 2, em)
+
+    // loading
+    &.k-loading
+        &, &:hover
+            background-color lighten($btn-bg-color, 50%)
+            color lighten($btn-color, 50%)
+            border-color lighten($btn-border-color, 50%)
+        .k-icon:not(.icon-loading)
+            display none
+        for type in types 
+            &.k-{type}
+                &, &:hover
+                    background-color lighten(lookup('$btn-' + type + '-bg-color'), 50%)
+                    color lighten(lookup('$btn-' + type + '-color'), 50%)
+                    border-color lighten(lookup('$btn-' + type + '-border-color'), 50%)
+        &:not(.k-btn-icon):not(.k-has-icon)
+            padding-left unit(getLeft($btn-padding) + 1, em)
+            .icon-loading
+                margin-left -1em
+            for size in sizes 
+                &.k-{size}
+                    padding-left unit(getLeft(lookup('$btn-' + size + '-padding')) + 1, em)

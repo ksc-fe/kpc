@@ -33,5 +33,26 @@ const Link = require('components/link');
     <Button type="primary" circle><i class="k-icon icon-boot"></i>开机</Button>
     <Button icon><i class="k-icon icon-boot"></i></Button>
     <Button icon circle><i class="k-icon icon-boot"></i></Button>
+    <Button icon circle size="small"><i class="k-icon icon-boot"></i></Button>
     <Button icon circle size="mini"><i class="k-icon icon-boot"></i></Button>
+    <br />
+    <Button loading>loading</Button>
+    <Button loading={{ self.get('loading0') }}
+        ev-click={{ self.loading.bind(self, 'loading0') }}
+        type="primary"
+    >开机</Button>
+    <Button loading={{ self.get('loading1') }}
+        ev-click={{ self.loading.bind(self, 'loading1') }}
+        type="primary"
+    ><i class="k-icon icon-boot"></i>开机</Button>
+    <Button loading type="danger" size="small"
+        loading={{ self.get('loading2') }}
+        ev-click={{ self.loading.bind(self, 'loading2') }}
+    >关机</Button>
+    <Button loading type="danger" size="small"
+        loading={{ self.get('loading3') }}
+        ev-click={{ self.loading.bind(self, 'loading3') }}
+    ><i class="k-icon icon-boot"></i>关机</Button>
+    <Button loading circle icon><i class="k-icon icon-boot"></i></Button>
+    <Button loading circle icon type="danger" size="mini"><i class="k-icon icon-boot"></i></Button>
 </div>
