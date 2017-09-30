@@ -8,11 +8,13 @@ const Link = require('components/link');
     <Button type="danger">danger</Button>
     <Button icon>X</Button>
     <Button type="none">none</Button>
+
     <br />
     <Button>default</Button>
     <Button type="primary" size="small">small</Button>
     <Button type="warning" size="mini">mini</Button>
     <Button icon size="mini">X</Button>
+
     <br />
     <Button circle>default</Button>
     <Button size="small" circle>small</Button>
@@ -21,6 +23,7 @@ const Link = require('components/link');
     <Button icon circle size="mini">X</Button>
     <Button icon type="none">X</Button>
     <Button icon type="primary" circle>X</Button>
+    
     <br />
     <Button disabled ev-click={{ self.clickDisabled.bind(self) }}>default disabled</Button>
     <Button type="primary" disabled>primary disabled</Button>
@@ -28,6 +31,7 @@ const Link = require('components/link');
     <Button type="danger" disabled>danger disabled</Button>
     <Button type="none" disabled>none disabled</Button>
     <Button icon disabled circle>X</Button>
+
     <br />
     <Button><i class="k-icon icon-boot"></i>开机</Button>
     <Button type="primary" circle><i class="k-icon icon-boot"></i>开机</Button>
@@ -35,6 +39,7 @@ const Link = require('components/link');
     <Button icon circle><i class="k-icon icon-boot"></i></Button>
     <Button icon circle size="small"><i class="k-icon icon-boot"></i></Button>
     <Button icon circle size="mini"><i class="k-icon icon-boot"></i></Button>
+
     <br />
     <Button loading>loading</Button>
     <Button loading={{ self.get('loading0') }}
@@ -45,14 +50,52 @@ const Link = require('components/link');
         ev-click={{ self.loading.bind(self, 'loading1') }}
         type="primary"
     ><i class="k-icon icon-boot"></i>开机</Button>
-    <Button loading type="danger" size="small"
+    <Button type="danger" size="small"
         loading={{ self.get('loading2') }}
         ev-click={{ self.loading.bind(self, 'loading2') }}
     >关机</Button>
-    <Button loading type="danger" size="small"
+    <Button type="danger" size="small"
         loading={{ self.get('loading3') }}
         ev-click={{ self.loading.bind(self, 'loading3') }}
     ><i class="k-icon icon-boot"></i>关机</Button>
-    <Button loading circle icon><i class="k-icon icon-boot"></i></Button>
+    <Button circle icon
+        loading={{ self.get('loading4') }} 
+        ev-click={{ self.loading.bind(self, 'loading4') }}
+    ><i class="k-icon icon-boot"></i></Button>
     <Button loading circle icon type="danger" size="mini"><i class="k-icon icon-boot"></i></Button>
+
+    <br />
+    <div class="k-btns">
+        <Button>cancel</Button>
+        <Button type="primary">confirm</Button>
+    </div>
+    <div class="k-btns">
+        <Button>开机</Button>
+        <Button>关机</Button>
+        <Button>重启</Button>
+    </div>
+    <div class="k-btns">
+        <Button size="small"><i class="k-icon icon-boot"></i>开机</Button>
+        <Button size="small"
+            loading={{ self.get('loading5') }}
+            ev-click={{ self.loading.bind(self, 'loading5') }}
+        >关机</Button>
+        <Button size="small"
+            loading={{ self.get('loading6') }}
+            ev-click={{ self.loading.bind(self, 'loading6') }}
+        ><i class="k-icon icon-boot"></i>重启</Button>
+    </div>
+    <div class="k-btns">
+        <Button size="small" type="primary"><i class="k-icon icon-boot"></i>开机</Button>
+        <Button size="small" type="primary"><i class="k-icon icon-boot"></i>关机</Button>
+        <Button size="small" type="primary"><i class="k-icon icon-boot"></i>重启</Button>
+    </div>
+    <div class="k-btns">
+        <Button size="small" type="warning" circle><i class="k-icon icon-boot"></i>开机</Button>
+        <Button size="small" type="warning" circle><i class="k-icon icon-boot"></i>关机</Button>
+        <Button size="small" type="warning" circle><i class="k-icon icon-boot"></i>重启</Button>
+    </div>
+    <div class="k-btns">
+        <Button size="small" type="danger" circle><i class="k-icon icon-boot"></i>开机</Button>
+    </div>
 </div>

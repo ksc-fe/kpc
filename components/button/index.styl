@@ -8,7 +8,7 @@ sizes = small mini
     cursor pointer
     display inline-block
     height $btn-height
-    line-height 1
+    // line-height 1
     padding $btn-padding
     outline none
     border none
@@ -32,16 +32,17 @@ sizes = small mini
             &:hover
                 background-color lighten(@background-color, 20%)
                 border-color lighten(@border-color, 20%)
+    // disabled
     &[disabled]
         &, &:hover
             color $btn-disabled-color 
             background-color $btn-disabled-bg-color 
             border-color $btn-disabled-border-color 
             cursor not-allowed
+
+    // none
     &.k-none
-        border-color transparent
-        background-color transparent
-        &:hover
+        &, &:hover
             border-color transparent
             background-color transparent
 
@@ -90,3 +91,27 @@ sizes = small mini
             for size in sizes 
                 &.k-{size}
                     padding-left unit(getLeft(lookup('$btn-' + size + '-padding')) + 1, em)
+
+// buttons
+.k-btns
+    display inline-block
+    > .k-btn
+        margin 0
+        &:not(:first-of-type)
+            margin-left -1px
+            &:not(:last-of-type)
+                border-radius 0
+        &:not(:only-of-type):first-of-type
+            border-top-right-radius 0
+            border-bottom-right-radius 0
+        &:not(:only-of-type):last-of-type
+            border-top-left-radius 0
+            border-bottom-left-radius 0
+        &:hover
+            z-index 1
+            position relative
+        for type in types
+            &.k-{type}:not(:first-of-type)
+                border-left-color lookup('$btns-' + type + '-border-color')
+            &.k-{type}:not(:last-of-type)
+                border-right-color lookup('$btns-' + type + '-border-color')
