@@ -96,6 +96,33 @@ const Link = require('components/link');
         <Button size="small" type="warning" circle><i class="k-icon icon-boot"></i>重启</Button>
     </div>
     <div class="k-btns">
+        <Button size="small" circle icon><i class="k-icon icon-boot"></i></Button>
+        <Button size="small" circle icon><i class="k-icon icon-boot"></i></Button>
+        <Button size="small" circle icon><i class="k-icon icon-boot"></i></Button>
+    </div>
+    <div class="k-btns">
+        <Button size="small" icon><i class="k-icon icon-boot"></i></Button>
+        <Button size="small" icon><i class="k-icon icon-boot"></i></Button>
+        <Button size="small" icon><i class="k-icon icon-boot"></i></Button>
+    </div>
+    <div class="k-btns">
         <Button size="small" type="danger" circle><i class="k-icon icon-boot"></i>开机</Button>
+    </div>
+
+    <br />
+    <div class="k-btns k-vertical">
+        <Button size="small" type="warning"><i class="k-icon icon-boot"></i>开机</Button>
+        <Button size="small" type="warning"><i class="k-icon icon-boot"></i>关机</Button>
+        <Button size="small" type="warning"><i class="k-icon icon-boot"></i>重启</Button>
+    </div>
+    <div class="k-btns k-vertical">
+        <Button size="small"><i class="k-icon icon-boot"></i>开机</Button>
+        <Button size="small"><i class="k-icon icon-boot"></i>关机</Button>
+        <Button size="small"><i class="k-icon icon-boot"></i>重启</Button>
+    </div>
+    <div class="k-btns k-vertical">
+        <Button size="small" icon><i class="k-icon icon-boot"></i></Button>
+        <Button size="small" icon><i class="k-icon icon-refresh"></i></Button>
+        <Button size="small" icon><i class="k-icon icon-export"></i></Button>
     </div>
 </div>

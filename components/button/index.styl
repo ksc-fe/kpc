@@ -95,23 +95,50 @@ sizes = small mini
 // buttons
 .k-btns
     display inline-block
+    vertical-align middle
     > .k-btn
         margin 0
-        &:not(:first-of-type)
-            margin-left -1px
-            &:not(:last-of-type)
-                border-radius 0
-        &:not(:only-of-type):first-of-type
-            border-top-right-radius 0
-            border-bottom-right-radius 0
-        &:not(:only-of-type):last-of-type
-            border-top-left-radius 0
-            border-bottom-left-radius 0
         &:hover
             z-index 1
             position relative
-        for type in types
-            &.k-{type}:not(:first-of-type)
-                border-left-color lookup('$btns-' + type + '-border-color')
-            &.k-{type}:not(:last-of-type)
-                border-right-color lookup('$btns-' + type + '-border-color')
+
+    // horizontal
+    &:not(.k-vertical)
+        > .k-btn
+            &:not(:first-of-type)
+                margin-left -1px
+                &:not(:last-of-type)
+                    border-radius 0
+            &:not(:only-of-type):first-of-type
+                border-top-right-radius 0
+                border-bottom-right-radius 0
+            &:not(:only-of-type):last-of-type
+                border-top-left-radius 0
+                border-bottom-left-radius 0
+            for type in types
+                &.k-{type}:not(:first-of-type)
+                    border-left-color lookup('$btns-' + type + '-border-color')
+                &.k-{type}:not(:last-of-type)
+                    border-right-color lookup('$btns-' + type + '-border-color')
+
+    // vertical
+    &.k-vertical
+        > .k-btn
+            display block
+            &:not(.k-btn-icon)
+                width 100%
+            &:not(:first-of-type)
+                margin-top -1px
+                &:not(:last-of-type)
+                    border-radius 0
+            &:not(:only-of-type):first-of-type
+                border-bottom-left-radius 0
+                border-bottom-right-radius 0
+            &:not(:only-of-type):last-of-type
+                border-top-left-radius 0
+                border-top-right-radius 0
+            for type in types
+                &.k-{type}:not(:first-of-type)
+                    border-top-color lookup('$btns-' + type + '-border-color')
+                &.k-{type}:not(:last-of-type)
+                    border-bottom-color lookup('$btns-' + type + '-border-color')
