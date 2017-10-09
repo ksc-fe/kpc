@@ -7,7 +7,7 @@ import {collectInitial} from 'node-style-loader/collect';
 
 const app = Advanced((app) => {
     app.engine('vdt', Vdt.__express);
-    app.set('views', path.resolve(__dirname, 'views'));
+    app.set('views', path.resolve(process.cwd(), 'views'));
     app.set('view engine', 'vdt');
     Vdt.configure('delimiters', ['{{', '}}']);
 
@@ -29,7 +29,29 @@ const app = Advanced((app) => {
         });
     });
 
-    app.use('/static', Advanced.Express.static(path.resolve(__dirname, 'static')));
+    const webpack = require('webpack');
+    const webpackConfig = require('../webpack.config.client');
+    const webpackDevMiddleware = require('webpack-dev-middleware');
+    const webpackHotMiddleware = require('webpack-hot-middleware');
+    const compiler = webpack(webpackConfig);
+
+    app.use(webpackDevMiddleware(compiler, {
+        publicPath: '/',
+        stats: {
+            colors: true
+        }
+    }));
+    app.use(webpackHotMiddleware(compiler));
+
+    // app.use('/static', Advanced.Express.static(path.resolve(__dirname, 'static')));
 });
 
 app.listen(3000);
+
+if (module.hot) {
+    module.hot.accept('./router', () => {
+        console.log('aaa');
+    });
+}
+
+export default app;

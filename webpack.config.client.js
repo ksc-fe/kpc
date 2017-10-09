@@ -1,14 +1,18 @@
 const webpack = require('webpack');
 const path = require('path');
-const webpackConfig = require('./webpack.config');
+const webpackConfig = require('./webpack.config.common');
 const merge = require('webpack-merge');
 
 module.exports = merge.smartStrategy({
     'module.rules.use': 'prepend'
 })(webpackConfig, {
     entry: {
-        'static/client': './core/client.js',
+        'static/client': [
+            'webpack-hot-middleware/client',
+            './core/client.js',
+        ],
     },
+    devtool: '#inline-source-map',
     output: {
         chunkFilename: 'static/chunk/[chunkhash].js'
     },
@@ -21,7 +25,14 @@ module.exports = merge.smartStrategy({
                 ]
             },
         ]
-    }
+    },
+    plugins: [
+        new webpack.optimize.CommonsChunkPlugin({
+            children: true,
+            async: true,
+            minChunks: 3
+        }),
+    ],
 });
 
 // const util = require('util');
