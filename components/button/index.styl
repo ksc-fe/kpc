@@ -58,7 +58,11 @@ sizes = small mini
     // icon
     .k-icon
         font-size inherit
-        margin-right $btn-icon-margin-right 
+        + span
+            margin-left $btn-icon-margin-right 
+    &.k-icon-right
+        .k-icon
+            margin-left $btn-icon-margin-right 
     &.k-btn-icon
         width @height
         padding 0
@@ -84,7 +88,7 @@ sizes = small mini
                     background-color lighten(lookup('$btn-' + type + '-bg-color'), 50%)
                     color lighten(lookup('$btn-' + type + '-color'), 50%)
                     border-color lighten(lookup('$btn-' + type + '-border-color'), 50%)
-        &:not(.k-btn-icon):not(.k-has-icon)
+        &:not(.k-btn-icon):not(.k-icon-left):not(.k-icon-right)
             padding-left unit(getLeft($btn-padding) + 1, em)
             .icon-loading
                 margin-left -1em

@@ -1,4 +1,4 @@
-const {type, className, size, icon, circle, children, loading, ...rest} = self.get();
+let {type, className, size, icon, circle, children, loading, ...rest} = self.get();
 const classNameObj = {
     'k-btn': true,
     [`k-${type}`]: type !== 'default',
@@ -19,16 +19,33 @@ const Button = props => {
     return h(tagName || 'button', props, props.children);
 };
 
-// hack for loading width transition
+// hack for loading transition of width
 if (!icon && Array.isArray(children)) {
-    const firstChild = children[0];
-    if (firstChild && firstChild.className.indexOf('icon') > -1) {
-        classNameObj['k-has-icon'] = true;
-    }
+    children.forEach((child, index) => {
+        if (child) {
+            if (child.type === 1) {
+                // is a text node
+                children[index] = <span>{{ child }}</span>
+            }
+            if (index === 0) {
+                if (child.className && child.className.indexOf('icon') > -1) {
+                    classNameObj['k-icon-left'] = true;
+                }
+            } else if (index === children.length - 1) {
+                if (child.className && child.className.indexOf('icon') > -1) {
+                    classNameObj['k-icon-right'] = true;
+                }
+            }
+        }
+    });
+} else if (typeof children === 'string' || typeof children === 'number') {
+    children = <span>{{ children }}</span>
 }
 
 <Button class={{ classNameObj }} {{ ...rest }}>{{ 
     loading ? 
-        [<i class="k-icon icon-loading"></i>, children] :
+        classNameObj['k-icon-right'] ?
+            [children, <i class="k-icon icon-loading"></i>] :
+            [<i class="k-icon icon-loading"></i>, children] :
         children 
 }}</Button>

@@ -14,7 +14,7 @@ const app = Advanced((app) => {
     app.use((req, res, next) => {
         router.resolve({pathname: req.path}).then(({Page, data})=> {
             const $app = new App();
-            $app.render(Page, data).then(() => {
+            return $app.render(Page, data).then(() => {
                 res.render('index', {
                     content: $app.toString(),
                     style: collectInitial()

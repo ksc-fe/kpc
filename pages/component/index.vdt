@@ -70,6 +70,13 @@ const Link = require('components/link');
         <Button type="primary">confirm</Button>
     </div>
     <div class="k-btns">
+        <Button type="primary"><i class="k-icon icon-boot"></i>上一页</Button>
+        <Button type="primary"
+            loading={{ self.get('loading7') }}
+            ev-click={{ self.loading.bind(self, 'loading7') }}
+        >上一页<i class="k-icon icon-boot"></i></Button>
+    </div>
+    <div class="k-btns">
         <Button>开机</Button>
         <Button>关机</Button>
         <Button>重启</Button>
