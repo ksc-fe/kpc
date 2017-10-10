@@ -8,7 +8,7 @@ module.exports = merge.smartStrategy({
 })(webpackConfig, {
     entry: {
         'static/client': [
-            'webpack-hot-middleware/client',
+            'webpack-hot-middleware/client?reload=true',
             './core/client.js',
         ],
     },

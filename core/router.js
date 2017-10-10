@@ -6,8 +6,8 @@ export default new Router([
         const Page = await import('pages/component');
         return {Page};
     }},
-    {path: '/a/:test', action: async (context, {test}) => {
-        const Page = await import('pages/index');
-        return {Page, data: {test}};
+    {path: '/components/button', action: async () => {
+        const Page = await import('pages/component');
+        return {Page};
     }},
 ]);

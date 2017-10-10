@@ -29,6 +29,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.26.0",
     "css-loader": "^0.28.7",
+    "dynamic-middleware": "^4.0.1",
     "history": "^4.7.2",
     "memory-fs": "^0.4.1",
     "node-style-loader": "0.0.1-alpha",

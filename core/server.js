@@ -4,14 +4,10 @@ import path from 'path';
 import router from './router';
 import App from 'components/app';
 import {collectInitial} from 'node-style-loader/collect';
+import DynamicMiddleware from 'dynamic-middleware';
 
-const app = Advanced((app) => {
-    app.engine('vdt', Vdt.__express);
-    app.set('views', path.resolve(process.cwd(), 'views'));
-    app.set('view engine', 'vdt');
-    Vdt.configure('delimiters', ['{{', '}}']);
-
-    app.use((req, res, next) => {
+function createRouterMiddleware(router, App) {
+    return function(req, res, next) {
         router.resolve({pathname: req.path}).then(({Page, data})=> {
             const $app = new App();
             return $app.render(Page, data).then(() => {
@@ -27,7 +23,18 @@ const app = Advanced((app) => {
                 next(e);
             }
         });
-    });
+    }
+}
+
+let routerMiddleware = DynamicMiddleware.create(createRouterMiddleware(router, App));
+
+const app = Advanced((app) => {
+    app.engine('vdt', Vdt.__express);
+    app.set('views', path.resolve(process.cwd(), 'views'));
+    app.set('view engine', 'vdt');
+    Vdt.configure('delimiters', ['{{', '}}']);
+
+    app.use(routerMiddleware.handler());
 
     const webpack = require('webpack');
     const webpackConfig = require('../webpack.config.client');
@@ -49,8 +56,10 @@ const app = Advanced((app) => {
 app.listen(3000);
 
 if (module.hot) {
-    module.hot.accept('./router', () => {
-        console.log('aaa');
+    module.hot.accept(['./router', 'components/app'], () => {
+        const router = require('./router');
+        const App = require('components/app');
+        routerMiddleware.replace(createRouterMiddleware(router, App));
     });
 }
 
