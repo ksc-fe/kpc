@@ -1,12 +1,22 @@
 const Button = require('../button');
 
-<div class="k-dialog">
-    <div class="k-header">{{ self.get('title') }}</div>
-    <div class="k-body">
-        
-    </div>
-    <div class="k-footer">
-        <Button>取消</Button>
-        <Button type="primary">确定</Button>
+<div class="k-dialog-wrapper">
+    <div class="k-overlay"></div>
+    <div class={{ {"k-dialog": true, 'k-dragging': self.get('_dragging')} }}
+        ref={{ dom => self._dialog = dom }}
+    >
+        <div class="k-header"
+             ev-mousedown={{ self._dragStart.bind(self) }}
+        >
+            <span class="k-title">{{ self.get('title') }}</span>
+            <Button type="none" icon title="关闭" class="k-close">
+                <i class="k-icon icon-close">X</i>
+            </Button>
+        </div>
+        <div class="k-body">{{ self.get('children') }}</div>
+        <div class="k-footer">
+            <Button>取消</Button>
+            <Button type="primary">确定</Button>
+        </div>
     </div>
 </div>

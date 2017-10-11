@@ -42,13 +42,27 @@ module.exports = {
             {
                 test: /\.(styl|css)$/,
                 use: [
-                    {loader: 'css-loader', options: {
-                        url: false
-                    }},
-                    {loader: 'stylus-loader', options: {
-                        'include css': true,
-                        // 'import': path.resolve(__dirname, 'styles/themes/test.styl'),
-                    }}
+                    {
+                        loader: 'css-loader', 
+                        options: {
+                            url: true 
+                        }
+                    },
+                    {
+                        loader: 'stylus-loader', 
+                        options: {
+                            'include css': true,
+                            // 'import': path.resolve(__dirname, 'styles/themes/test.styl'),
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                    }
                 ]
             },
         ]

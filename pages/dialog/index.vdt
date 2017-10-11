@@ -3,5 +3,7 @@ const Button = require('components/button');
 
 <div>
     <Button>Show</Button>
-    <Dialog />
+    <Dialog isShow={{ false }}>
+        test
+    </Dialog>
 </div>

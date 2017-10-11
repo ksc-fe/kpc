@@ -21,7 +21,9 @@ module.exports = merge.smartStrategy({
             {
                 test: /\.(styl|css)$/,
                 use: [
-                    {loader: 'style-loader'},
+                    {
+                        loader: 'style-loader',
+                    },
                 ]
             },
         ]

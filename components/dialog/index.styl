@@ -1,0 +1,52 @@
+@require('./variables.styl');
+
+.k-dialog-wrapper
+    position fixed
+    top 0
+    left 0
+    width 100%
+    height 100%
+    // overlay
+    .k-overlay
+        @extend .k-dialog-wrapper
+        background #000
+        opacity 0.5
+
+.k-dialog
+    position absolute 
+    width $dialog-width 
+    border-radius $dialog-border-radius 
+    background $dialog-bg-color 
+    font-size $dialog-font-size
+    color $dialog-color
+
+    // header
+    .k-header
+        padding 0 $dialog-padding
+        border-bottom $dialog-title-border 
+        position relative
+    .k-title
+        height $dialog-title-height
+        line-height $dialog-title-height
+        font-size $dialog-title-font-size
+        color $dialog-title-color
+    .k-close
+        position absolute
+        right $dialog-close-right 
+        top $dialog-close-top 
+
+    // body
+    .k-body
+        padding $dialog-body-padding
+
+    // footer
+    .k-footer
+        text-align right
+        border-top $dialog-footer-border 
+        padding $dialog-footer-padding
+        .k-btn
+            margin-left $dialog-footer-btn-margin 
+
+    // drag
+    &.k-dragging
+        cursor default
