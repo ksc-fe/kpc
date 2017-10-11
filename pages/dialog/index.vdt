@@ -1,6 +1,7 @@
 const Dialog = require('components/dialog');
+const Button = require('components/button');
 
 <div>
-sfsdf
+    <Button>Show</Button>
     <Dialog />
 </div>
