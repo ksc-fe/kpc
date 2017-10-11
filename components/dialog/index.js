@@ -16,9 +16,9 @@ export default class extends Intact {
     }
 
     _mount() {
-        // move element to body
         const element = this.element;
-        document.body.appendChild(element);
+        // move element to body
+        // document.body.appendChild(element);
         this._move = this._move.bind(this);
         this._dragEnd = this._dragEnd.bind(this);
     }

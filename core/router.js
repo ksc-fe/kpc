@@ -5,7 +5,7 @@ export default new Router([
     {
         path: '/', 
         action: async () => {
-            const Page = await import('pages/component');
+            const Page = await import('pages/index');
             return {Page};
         }
     },
