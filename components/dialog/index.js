@@ -21,6 +21,11 @@ export default class extends Intact {
 
         this._move = this._move.bind(this);
         this._dragEnd = this._dragEnd.bind(this);
+        this._escClose = this._escClose.bind(this);
+    }
+
+    _mount() {
+        document.addEventListener('keydown', this._escClose);
     }
 
     close() {
@@ -51,6 +56,7 @@ export default class extends Intact {
                 this.init(); 
                 document.body.appendChild(this.element);
                 this._triggerMountedQueue();
+                this.mount();
                 this.set('value', true);
             }
             if (this.inited) {
@@ -59,6 +65,11 @@ export default class extends Intact {
                 this.on('$inited', show);
             }
         }
+    }
+
+    _escClose(e) {
+        // Esc
+        if (e.keyCode === 27) this.close();
     }
 
     _detectAndRemove() {
@@ -116,5 +127,9 @@ export default class extends Intact {
             document.removeEventListener('mousemove', this._move);
             document.removeEventListener('mouseup', this._dragEnd);
         }
+    }
+
+    _destroy() {
+        document.removeEventListener('keydown', this._escClose);
     }
 }
