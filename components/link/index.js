@@ -3,6 +3,7 @@ import template from './index.vdt';
 export default class Link extends Intact {
     static history = undefined;
 
+    @Intact.template()
     get template() { return template; }
 
     to(e) {

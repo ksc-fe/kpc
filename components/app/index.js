@@ -2,6 +2,7 @@ import template from './index.vdt';
 import serverStyleCleanup from 'node-style-loader/clientCleanup';
 
 export default class extends Intact {
+    @Intact.template()
     get template() { return template; }
 
     defaults() {

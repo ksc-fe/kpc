@@ -1,6 +1,6 @@
 @require('../../styles/themes/default.styl')
 
-$dialog-width := 450px
+$dialog-width := 670px
 $dialog-bg-color := #fff
 $dialog-border-radius := 2px
 $dialog-padding := unit(30 / 14, rem)
@@ -19,6 +19,13 @@ $dialog-close-right := 5px
 $dialog-body-padding := unit(18 / 14, rem) $dialog-padding
 
 // footer
-$dialog-footer-border := $dialog-title-border
-$dialog-footer-padding := $dialog-padding
+$dialog-footer-padding := unit(24 / 14, rem) $dialog-padding
 $dialog-footer-btn-margin := unit(12 / 14, rem)
+
+// animation
+$dialog-transform := translateY(-10px) scale(1.05)
+
+// mini size
+$dialog-small-width := 450px
+
+

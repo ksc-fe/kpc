@@ -1,16 +1,24 @@
 @require('./variables.styl');
 
 .k-dialog-wrapper
-    position fixed
+    position absolute
+    z-index 999
     top 0
     left 0
-    width 100%
-    height 100%
     // overlay
     .k-overlay
-        @extend .k-dialog-wrapper
+        position fixed
+        top 0
+        left 0
+        width 100%
+        height 100%
         background #000
-        opacity 0.5
+        opacity 0.5 
+        transition opacity 0.2s ease-in-out
+        // overlay animation
+        &.animate-enter
+        &.animate-leave
+            opacity 0
 
 .k-dialog
     position absolute 
@@ -42,7 +50,6 @@
     // footer
     .k-footer
         text-align right
-        border-top $dialog-footer-border 
         padding $dialog-footer-padding
         .k-btn
             margin-left $dialog-footer-btn-margin 
@@ -50,3 +57,16 @@
     // drag
     &.k-dragging
         cursor default
+
+    // animation
+    &.animate-enter-active
+    &.animate-leave-active
+        transition all 0.25s ease-in-out
+    &.animate-enter
+    &.animate-leave
+        transform $dialog-transform 
+        opacity 0
+
+    // small size
+    &.k-small
+        width $dialog-small-width

@@ -1,22 +1,36 @@
 const Button = require('../button');
 
 <div class="k-dialog-wrapper">
-    <div class="k-overlay"></div>
-    <div class={{ {"k-dialog": true, 'k-dragging': self.get('_dragging')} }}
+    <Animate class="k-overlay" v-if={{ self.get('value') }}></Animate>
+    <Animate 
+        class={{ {
+            "k-dialog": true, 
+            'k-dragging': self.get('_dragging'),
+            "k-small": self.get('type') === 'small',
+            [self.get('classname') || '']: true,
+        } }}
         ref={{ dom => self._dialog = dom }}
+        v-if={{ self.get('value') }}
+        ev-a:leaveEnd={{ self._detectAndRemove.bind(self) }}
     >
         <div class="k-header"
              ev-mousedown={{ self._dragStart.bind(self) }}
         >
-            <span class="k-title">{{ self.get('title') }}</span>
-            <Button type="none" icon title="关闭" class="k-close">
+            <b:header>
+                <span class="k-title">{{ self.get('title') }}</span>
+            </b:header>
+            <Button type="none" icon title="关闭" class="k-close"
+                ev-click={{ self.close.bind(self) }}
+            >
                 <i class="k-icon icon-close">X</i>
             </Button>
         </div>
-        <div class="k-body">{{ self.get('children') }}</div>
+        <div class="k-body"><b:body>{{ self.get('children') }}</b:body></div>
         <div class="k-footer">
-            <Button>取消</Button>
-            <Button type="primary">确定</Button>
+            <b:footer>
+                <Button ev-click={{ self.cancel.bind(self) }}>取消</Button>
+                <Button type="primary" ev-click={{ self.ok.bind(self) }}>确定</Button>
+            </b:footer>
         </div>
-    </div>
+    </Animate>
 </div>

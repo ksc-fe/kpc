@@ -2,8 +2,13 @@ const Dialog = require('components/dialog');
 const Button = require('components/button');
 
 <div>
-    <Button>Show</Button>
-    <Dialog isShow={{ false }}>
+    <Button ev-click={{ self.showDialog.bind(self, 'isShow') }}>Show</Button>
+    <Button ev-click={{ self.showDialog.bind(self, 'isShowSmall') }}>Show small</Button>
+    <Button ev-click={{ self.showDialogInstance.bind(self) }}>Show Dialog Instance</Button>
+    <Dialog v-model="isShow" title="Dialog Demo">
         test
+    </Dialog>
+    <Dialog v-model="isShowSmall" type="small">
+        small
     </Dialog>
 </div>
