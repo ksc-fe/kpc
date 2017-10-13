@@ -1,0 +1,6 @@
+const Table = require('components/table');
+
+<Table data={{ [{test: 1, aa: 'aa'}, {test: 1, aa: 'aa'}] }} scheme={{ {
+    test: 'aaa',
+    aa: 'bbb',
+} }} />

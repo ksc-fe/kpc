@@ -21,5 +21,17 @@ export default new Router([
         action: async () => {
             return {Page: await import('pages/dialog')};
         }
-    }
+    },
+    {
+        path: '/components/table',
+        action: async () => {
+            return {Page: await import('pages/table')};
+        }
+    },
+    {
+        path: '/components/checkbox',
+        action: async () => {
+            return {Page: await import('pages/checkbox')};
+        }
+    },
 ]);

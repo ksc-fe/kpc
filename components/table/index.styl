@@ -1,0 +1,36 @@
+@require('./variables.styl');
+
+.k-table
+    font-size $table-font-size
+    table-layout fixed
+    width 100%
+    background $table-bg-color
+    border-collapse collapse
+    border-spacing 0
+    color $table-color
+
+    // thead
+    thead
+        background $table-thead-bg-color
+        font-size $table-thead-font-size
+        color $table-thead-color
+        border-top $table-border-top
+        border-bottom $table-border-bottom
+    th
+        padding $table-th-padding
+        text-align $table-th-text-align 
+        font-weight $table-th-font-weight
+
+    // tbody
+    tbody
+        tr
+            border-bottom $table-border-bottom
+            &:hover
+                background $table-tr-hover-bg-color
+    td
+        padding $table-td-padding
+
+    // checkbox
+    .k-th-checkbox
+        width $table-checkbox-width
+

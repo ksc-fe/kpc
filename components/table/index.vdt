@@ -1,7 +1,9 @@
+const Checkbox = require('../checkbox');
+
 const thead = <thead>
     <tr>
         <th v-if={{ self.get('checkType') === 'checkbox' }} class="k-th-checkbox">
-            <input type="checkbox" /> 
+            <Checkbox>test</Checkbox>
         </th>
         <th v-else-if={{ self.get('checkType') === 'radio' }} class="k-th-radio">
             <input type="radio" />
@@ -23,7 +25,7 @@ const thead = <thead>
 
 const tbody = <tbody>
     <tr v-for={{ self.get('data') }} v-for-key="index"
-        key={{ self.get('keyCallback').call(self, value, index) }}
+        key={{ self.get('rowKey').call(self, value, index) }}
     >
         <td v-if={{ self.get('checkType') === 'checkbox' }}>
             <input type="checkbox" />
@@ -31,6 +33,35 @@ const tbody = <tbody>
         <td v-else-if={{ self.get('checkType') === 'radio' }}>
             <input type="radio" />
         </td>
-        {{ __u.map() }}
+        {{ __u.map(self.get('scheme'), (item, key) => {
+            let td;
+            if (__u.isObject(item) && item.template) {
+                if (typeof item.template === 'function') {
+                    td = item.template.call(self, value, index);
+                } else {
+                    td = item.template;
+                }
+            } else if (value[key] !== undefined) {
+                td = value[key];
+            } else {
+                let obj = item,
+                    keys = key.spilt('.'),
+                    i = 0;
+                while (obj != null && i < keys.length) {
+                    obj = obj[keys[i++]];
+                }
+                td = (i && i === keys.length) ? obj : null;
+            }
+            return <td title={{ typeof td === 'string' || typeof td === 'number' ? 
+                td : undefined 
+            }}>{{ td }}</td>
+        }) }}
     </tr>
 </tbody>
+
+<div class="k-table-wrapper">
+    <table class="k-table">
+        {{ thead }}
+        {{ tbody }}
+    </table>
+</div>

@@ -1,0 +1,24 @@
+const {
+    className, disabled, falseValue, 
+    children, value, trueValue, 
+    ref, key, ...rest
+} = self.get();
+
+const classNameObj = {
+    'k-checkbox': true,
+    'k-disabled': disabled,
+    'k-checked': __u.isArray(value) ? value.indexOf(trueValue) > -1 : value  === trueValue,
+};
+
+<label class={{ classNameObj }}>
+    <span class="k-wrapper">
+        <input type="checkbox" disabled={{ disabled }}
+            v-model="value"
+            value={{ trueValue }}
+            v-model-true={{ trueValue }}
+            v-model-false={{ falseValue }}
+            {{ ...rest }}
+        />
+    </span>
+    <span class="k-text" v-if={{ children }}>{{ children }}</span>
+</label>
