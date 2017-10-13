@@ -22,6 +22,23 @@ describe('Dialog unit test:', () => {
     it('should show dialog correctly', () => {
         component = render(Dialog);
         component.show();
-        expect(component.element.children.length).to.equal(2);
+        const element = component.element;
+        expect(element.children.length).to.equal(2);
+        expect(element.children[0].classList.contains('k-overlay')).to.be.true;
+        expect(element.children[1].classList.contains('k-dialog')).to.be.true;
+    });
+
+    it('should render children correclty', () => {
+        class Component extends Intact {
+            get template() { 
+                return `var Dialog = self.Dialog; 
+                    <Dialog v-model="show">test</Dialog>`;
+            }
+            _init() { this.Dialog = Dialog; }
+        }
+        component = render(Component);
+        component.set('show', true);
+        const element = component.element;
+        expect(element.children[1].children[1].innerHTML).to.equal('test');
     });
 });
