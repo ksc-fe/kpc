@@ -1,8 +1,8 @@
 const Checkbox = require('components/checkbox');
 
 <div>
-    <Checkbox name="a" ref={{ i => window.i = i }}>test</Checkbox>
-    <Checkbox name="a" disabled>disabled</Checkbox>
+    <Checkbox>test</Checkbox>
+    <Checkbox disabled>disabled</Checkbox>
     <Checkbox value={{ true }} disabled>disabled checked</Checkbox>
 
     <br />
