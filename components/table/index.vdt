@@ -1,0 +1,36 @@
+const thead = <thead>
+    <tr>
+        <th v-if={{ self.get('checkType') === 'checkbox' }} class="k-th-checkbox">
+            <input type="checkbox" /> 
+        </th>
+        <th v-else-if={{ self.get('checkType') === 'radio' }} class="k-th-radio">
+            <input type="radio" />
+        </th>
+        {{ __u.map(self.get('scheme'), (item) => {
+            if (!__u.isObject(item)) {
+                item = {title: item};
+            }
+
+            return <th width={{ item.width }}
+                title={{ item.title }}
+                class={{ {'k-sortable': item.sortable} }}
+            >
+                <div v-if={{ !item.groups }}>{{ item.title }}</div>
+            </th>
+        }) }}
+    </tr>
+</thead>
+
+const tbody = <tbody>
+    <tr v-for={{ self.get('data') }} v-for-key="index"
+        key={{ self.get('keyCallback').call(self, value, index) }}
+    >
+        <td v-if={{ self.get('checkType') === 'checkbox' }}>
+            <input type="checkbox" />
+        </td>
+        <td v-else-if={{ self.get('checkType') === 'radio' }}>
+            <input type="radio" />
+        </td>
+        {{ __u.map() }}
+    </tr>
+</tbody>

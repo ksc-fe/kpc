@@ -8,11 +8,12 @@ export default class extends Intact {
 
     defaults() {
         return {
-            type: 'default',
-            size: 'default',
+            type: 'default', // primary | warning | danger
+            size: 'default', // small | mini
             icon: false,
             circle: false,
             loading: false,
+            disabled: false,
         };
     }
 }

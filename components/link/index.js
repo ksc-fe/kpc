@@ -1,3 +1,4 @@
+import Intact from 'intact';
 import template from './index.vdt';
 
 export default class Link extends Intact {
