@@ -36,9 +36,5 @@ module.exports = function (config) {
 	  logLevel: config.LOG_INFO,
 	  singleRun: true,
     port: 9876,
-    // captureTimeout: 60000,
-    // browserNoActivityTimeout: 360000,
-    // browser: ["Chrome"]
-
   })
 };

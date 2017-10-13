@@ -30,11 +30,12 @@ describe('Button unit test:', () => {
     buttonVM = getRenderedInstance(Button, {
         type: "primary"
     });
-    let type = buttonVM.get('type');
-    expect(type).to.equal("primary");
-    // let buttonEle = buttonVM.init();
-    // console.log('buttonEle', buttonEle);
-    // expect(buttonEle.classList.contains('k-primary')).to.be.true;
+    // let type = buttonVM.get('type');
+    // expect(type).to.equal("primary");
+    buttonVM.init();
+    let buttonEle = buttonVM.element;
+    console.log('buttonEle', buttonEle);
+    expect(buttonEle.classList.contains('k-primary')).to.be.true;
   });
 
 })
