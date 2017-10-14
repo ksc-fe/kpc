@@ -7,7 +7,7 @@ const thead = <thead>
         <th v-if={{ checkType === 'checkbox' }} class="k-th-checkbox">
             <Checkbox value={{ checkedKeys.length === data.length }}
                 ev-$change:value={{ self.toggleCheckAll.bind(self) }}
-            ></Checkbox>
+            />
         </th>
         <th v-else-if={{ checkType === 'radio' }} class="k-th-radio"></th>
         {{ __u.map(scheme, (item) => {
@@ -34,7 +34,7 @@ const tbody = <tbody>
             <td v-if={{ checkType === 'checkbox' }}>
                 <Checkbox v-model="checkedKeys" name="k-table-checkbox"
                     trueValue={{ key }}
-                ></Checkbox>
+                />
             </td>
             <td v-else-if={{ checkType === 'radio' }}>
                 <input type="radio" />
