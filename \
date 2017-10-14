@@ -1,8 +1,0 @@
-@require('../../styles/themes/default.styl')
-
-// checkbox
-$table-checkbox-width := unit(30 / 14, rem)
-
-// thead
-$table-thead-bg-color := linear-gradient(to bottom, #fff, #fafafa)
-$table-thead-font-size := unit(16 / 14, rem)
