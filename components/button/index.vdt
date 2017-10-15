@@ -1,5 +1,5 @@
 let {type, className, size, icon, circle, 
-    fluid, children, loading, ...rest
+    tagName, fluid, children, loading, ...rest
 } = self.get();
 
 const classNameObj = {
@@ -14,7 +14,6 @@ const classNameObj = {
 };
 
 const Button = props => {
-    let tagName = props.tagName;
     if (!tagName && props.href) {
         tagName = 'a';
     }
