@@ -14,6 +14,7 @@ export default class extends Intact {
             circle: false,
             loading: false,
             disabled: false,
+            fluid: false,
         };
     }
 }

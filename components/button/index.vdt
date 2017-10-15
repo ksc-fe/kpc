@@ -1,4 +1,7 @@
-let {type, className, size, icon, circle, children, loading, ...rest} = self.get();
+let {type, className, size, icon, circle, 
+    fluid, children, loading, ...rest
+} = self.get();
+
 const classNameObj = {
     'k-btn': true,
     [`k-${type}`]: type !== 'default',
@@ -6,7 +9,8 @@ const classNameObj = {
     [`k-${size}`]: size !== 'default',
     [className]: className, 
     'k-circle': circle,
-    'k-loading': loading
+    'k-loading': loading,
+    'k-fluid': fluid,
 };
 
 const Button = props => {
