@@ -6,11 +6,8 @@ sizes = small mini
 
 .k-btn
     cursor pointer
-    // display inline-block
-    display table-cell
-    vertical-align middle
+    display inline-block
     height $btn-height
-    // line-height $btn-height
     // line-height 1
     padding $btn-padding
     outline none
@@ -54,7 +51,6 @@ sizes = small mini
         &.k-{size}
             font-size lookup('$btn-' + size + '-font-size')
             height lookup('$btn-' + size + '-height')
-            // line-height @height
             padding lookup('$btn-' + size + '-padding')
             &.k-btn-icon
                 width @height
