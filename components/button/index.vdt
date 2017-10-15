@@ -1,4 +1,4 @@
-let {type, className, size, icon, circle, 
+let {type, className, size, icon, circle, ref, key,
     tagName, fluid, children, loading, ...rest
 } = self.get();
 
