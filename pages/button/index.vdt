@@ -132,4 +132,8 @@ const Link = require('components/link');
         <Button size="small" icon><i class="k-icon icon-refresh"></i></Button>
         <Button size="small" icon><i class="k-icon icon-export"></i></Button>
     </div>
+
+    <br />
+    <Button tagName={{ Link }} href="/"><i class="k-icon icon-boot"></i>Link</Button>
+    <Button tagName={{ Link }} href="/" icon size="small"><i class="k-icon icon-boot"></i></Button>
 </div>

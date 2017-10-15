@@ -55,6 +55,13 @@ sizes = small mini
             &.k-btn-icon
                 width @height
 
+    // tagName is not button
+    &:not(button)
+        line-height $btn-height
+        for size in sizes
+            &.k{size}
+                line-height lookup('$btn-' + size + '-height')
+
     // icon
     .k-icon
         font-size inherit
