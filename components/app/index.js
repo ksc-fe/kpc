@@ -1,6 +1,7 @@
 import Intact from 'intact';
 import template from './index.vdt';
 import serverStyleCleanup from 'node-style-loader/clientCleanup';
+import './index.styl';
 
 export default class extends Intact {
     @Intact.template()

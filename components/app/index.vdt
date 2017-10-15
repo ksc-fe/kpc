@@ -1,1 +1,1 @@
-<div>{{ self.get('view') }}</div>
+<div class="k-app">{{ self.get('view') }}</div>
