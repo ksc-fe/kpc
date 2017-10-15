@@ -17,4 +17,20 @@ export default class extends Intact {
             fluid: false,
         };
     }
+
+    showLoading() {
+        this.set('loading', true);
+    }
+
+    hideLoading() {
+        this.set('loading', false);
+    }
+
+    disable() {
+        this.set('disabled', true);
+    }
+
+    enable() {
+        this.set('disabled', false);
+    }
 }
