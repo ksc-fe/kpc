@@ -7,7 +7,7 @@ const thead = <thead>
     <tr>
         <th v-if={{ checkType === 'checkbox' }} class="k-th-check">
             <Checkbox value={{ checkedKeys.length === data.length }}
-                ev-$change:value={{ self.toggleCheckAll.bind(self) }}
+                ev-$change:value={{ self._toggleCheckAll.bind(self) }}
             />
         </th>
         <th v-else-if={{ checkType === 'radio' }} class="k-th-check"></th>

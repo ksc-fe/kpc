@@ -27,14 +27,6 @@ export default class extends Intact {
         });
     }
 
-    toggleCheckAll(c, checked) {
-        if (checked) {
-            this.checkAll();
-        } else {
-            this.uncheckAll();
-        }
-    }
-
     checkAll() {
         const rowKey = this.get('rowKey');
         this.set('checkedKeys', this.get('data').map((value, index) => {
@@ -70,6 +62,14 @@ export default class extends Intact {
             });
         } else {
             return [];
+        }
+    }
+
+    _toggleCheckAll(c, checked) {
+        if (checked) {
+            this.checkAll();
+        } else {
+            this.uncheckAll();
         }
     }
 
