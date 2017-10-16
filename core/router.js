@@ -35,10 +35,9 @@ export default new Router([
         }
     },
     {
-        path: '/components/radio',
+        path: '/components/progress',
         action: async () => {
-            return {Page: await import('pages/radio')};
+            return {Page: await import('pages/progress')};
         }
-    },
-
+    }
 ]);

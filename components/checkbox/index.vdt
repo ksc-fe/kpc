@@ -4,6 +4,8 @@ const {
     ref, key, ...rest
 } = self.get();
 
+console.log('test' ,self.get());
+
 const classNameObj = {
     'k-checkbox': true,
     'k-disabled': disabled,

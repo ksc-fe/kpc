@@ -1,0 +1,5 @@
+const Progress = require('components/progress');
+
+<div class='progress-demo'>
+    <Progress></Progress>
+</div>

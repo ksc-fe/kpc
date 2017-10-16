@@ -1,0 +1,17 @@
+let {type, className, percentage, status, progressHeight, ref, key, ...rest} = self.get();
+
+console.log('test', self.get());
+
+const classNameObj = {
+    'k-progress' : true,
+    [`k-progress-${type}`]: !!type,
+    [`k-progress-${status}`]: !!status,
+}
+
+
+<div class={{classNameObj}}>
+    <div class='progress-bar' v-if={{ type == 'line'}} >
+        <div class='progress-bar-container'>
+        </div>
+    </div>
+</div>
