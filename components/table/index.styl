@@ -30,7 +30,24 @@
     td
         padding $table-td-padding
 
-    // checkbox
+    // checkbox or radio
     .k-th-check
         width $table-check-width
 
+    // no data
+    .k-no-data
+        text-align center
+
+.k-table-wrapper
+    // fix header
+    .k-fixed
+        position relative
+        z-index 1
+        border-top $table-border-top
+        border-bottom $table-border-bottom
+        thead
+            border none
+    .k-scroll
+        overflow auto
+        table
+            margin-top $table-fixed-margin-top 

@@ -34,6 +34,9 @@ module.exports = merge.smartStrategy({
             async: true,
             minChunks: 3
         }),
+        new webpack.DefinePlugin({
+            'process.browser': true
+        }),
     ],
 });
 

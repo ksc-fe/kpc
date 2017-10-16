@@ -14,4 +14,14 @@ const scheme = {
     <Table data={{ self.get('data') }} scheme={{ scheme }} checkType="radio"
         ref={{ i => self.radioTable = i }}
     />
+
+    <Table 
+        data={{ Array.apply(null, {length: 100}).map((item, index) => {
+            return {a: index, b: index};
+        }) }}
+        scheme={{ {a: 'A', b: 'B'} }}
+        fixHeader={{ 300 }}
+    />
+
+    <Table />
 </div>

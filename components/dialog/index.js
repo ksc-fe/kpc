@@ -11,7 +11,8 @@ export default class extends Intact {
             title: '提示',
             value: false,
             type: 'default', // default | small
-            _dragging: false 
+            fixHeader: false,
+            _dragging: false,
         }
     }
 

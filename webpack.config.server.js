@@ -42,5 +42,8 @@ module.exports = merge.smartStrategy({
             raw: true, 
             entryOnly: false,
         }),
+        new webpack.DefinePlugin({
+            'process.node': true
+        }),
     ]
 });

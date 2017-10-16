@@ -1,17 +1,23 @@
 const Checkbox = require('../checkbox');
 const Radio = require('../radio');
 
-const {checkType, scheme, checkedKeys, data, rowKey} = self.get();
+const {checkType, scheme, checkedKeys, data, rowKey, 
+    className, fixHeader, noDataTemplate
+} = self.get();
+
+let colSpan = checkType === 'checkbox' || checkType === 'radio' ? 1 : 0;
 
 const thead = <thead>
     <tr>
         <th v-if={{ checkType === 'checkbox' }} class="k-th-check">
-            <Checkbox value={{ checkedKeys.length === data.length }}
+            <Checkbox value={{ self.isCheckAll() }}
                 ev-$change:value={{ self._toggleCheckAll.bind(self) }}
             />
         </th>
         <th v-else-if={{ checkType === 'radio' }} class="k-th-check"></th>
         {{ __u.map(scheme, (item) => {
+            colSpan++;
+
             if (!__u.isObject(item)) {
                 item = {title: item};
             }
@@ -27,51 +33,78 @@ const thead = <thead>
 </thead>
 
 const tbody = <tbody>
-    {{ __u.map(data, (value, index) => {
-        const key = rowKey.call(self, value, index);
-        return <tr key={{ key }}
-            ev-click={{ self._rowCheck.bind(self, value, index) }}
-        >
-            <td v-if={{ checkType === 'checkbox' }}>
-                <Checkbox v-model="checkedKeys" name="k-table-checkbox"
-                    trueValue={{ key }}
-                />
-            </td>
-            <td v-else-if={{ checkType === 'radio' }}>
-                <Radio v-model="checkedKey" name="k-table-radio"
-                    trueValue={{ key }}
-                />
-            </td>
-            {{ __u.map(scheme, (item, key) => {
-                let td;
-                if (__u.isObject(item) && item.template) {
-                    if (typeof item.template === 'function') {
-                        td = item.template.call(self, value, index);
+    {{ data && data.length ? 
+        __u.map(data, (value, index) => {
+            const key = rowKey.call(self, value, index);
+            return <tr key={{ key }}
+                ev-click={{ self._rowCheck.bind(self, value, index) }}
+            >
+                <td v-if={{ checkType === 'checkbox' }}>
+                    <Checkbox v-model="checkedKeys" name="k-table-checkbox"
+                        trueValue={{ key }}
+                    />
+                </td>
+                <td v-else-if={{ checkType === 'radio' }}>
+                    <Radio v-model="checkedKey" name="k-table-radio"
+                        trueValue={{ key }}
+                    />
+                </td>
+                {{ __u.map(scheme, (item, key) => {
+                    let td;
+                    if (__u.isObject(item) && item.template) {
+                        if (typeof item.template === 'function') {
+                            td = item.template.call(self, value, index);
+                        } else {
+                            td = item.template;
+                        }
+                    } else if (value[key] !== undefined) {
+                        td = value[key];
                     } else {
-                        td = item.template;
+                        let obj = item,
+                            keys = key.spilt('.'),
+                            i = 0;
+                        while (obj != null && i < keys.length) {
+                            obj = obj[keys[i++]];
+                        }
+                        td = (i && i === keys.length) ? obj : null;
                     }
-                } else if (value[key] !== undefined) {
-                    td = value[key];
-                } else {
-                    let obj = item,
-                        keys = key.spilt('.'),
-                        i = 0;
-                    while (obj != null && i < keys.length) {
-                        obj = obj[keys[i++]];
-                    }
-                    td = (i && i === keys.length) ? obj : null;
-                }
-                return <td title={{ typeof td === 'string' || typeof td === 'number' ? 
-                    td : undefined 
-                }}>{{ td }}</td>
-            }) }}
+                    return <td title={{ typeof td === 'string' || typeof td === 'number' ? 
+                        td : undefined 
+                    }}>{{ td }}</td>
+                }) }}
+            </tr>
+        }) :
+        <tr key="table_no_data">
+            <td colspan={{ colSpan }} class="k-no-data">
+                {{ noDataTemplate }}
+            </td>
         </tr>
-    }) }}
+    }}
 </tbody>
 
+const table = <table class={{ {'k-table': true, [className || '']: true} }}
+    ref={{ dom => self.table = dom }}
+>
+    {{ thead }}
+    {{ tbody }}
+</table>
+
 <div class="k-table-wrapper">
-    <table class="k-table">
-        {{ thead }}
-        {{ tbody }}
-    </table>
+    <div v-if={{ fixHeader }} class="k-fixed"
+        style={{ {paddingRight: self.get('_padding') + 'px'} }}
+        ref={{ dom => self.header = dom }}
+    >
+        <table class={{ {'k-table': true, [className || '']: true} }}>
+            {{ thead }}
+        </table>
+    </div>
+    {{ fixHeader ? 
+        <div class="k-scroll"
+            style={{ typeof fixHeader === 'number' || typeof fixHeader === 'string' ?
+                {maxHeight: `${fixHeader}px`} : undefined
+            }}
+            ref={{ dom => self.scroll = dom }}
+        >{{ table }}</div> :
+        table
+    }}
 </div>

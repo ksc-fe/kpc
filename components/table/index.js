@@ -2,6 +2,34 @@ import Intact from 'intact';
 import template from './index.vdt';
 import './index.styl';
 
+// reference: http://stackoverflow.com/questions/13382516/getting-scroll-bar-width-using-javascript
+function getScrollbarWidth() {
+    var outer = document.createElement("div");
+    outer.style.visibility = "hidden";
+    outer.style.width = "100px";
+    outer.style.msOverflowStyle = "scrollbar"; // needed for WinJS apps
+
+    document.body.appendChild(outer);
+
+    var widthNoScroll = outer.offsetWidth;
+    // force scrollbars
+    outer.style.overflow = "scroll";
+
+    // add innerdiv
+    var inner = document.createElement("div");
+    inner.style.width = "100%";
+    outer.appendChild(inner);
+
+    var widthWithScroll = inner.offsetWidth;
+
+    // remove divs
+    outer.parentNode.removeChild(outer);
+
+    return widthNoScroll - widthWithScroll;
+}
+
+let scrollBarWidth = undefined;
+
 export default class extends Intact {
     @Intact.template()
     get template() { return template; }
@@ -9,11 +37,16 @@ export default class extends Intact {
     defaults() {
         return {
             data: [],
+            scheme: {},
             checkType: 'checkbox', // radio | none 
             rowKey(value, index) { return index; },
             checkedKeys: [], // for checkbox
             checkedKey: undefined, // for radio
             rowCheckable: true, // click row to check
+            noDataTemplate: '/(ㄒoㄒ)/~~ 没有找到亲要的数据哦~',
+            disableRow(data, index) { return false },
+
+            _padding: 0,
         }
     }
 
@@ -25,6 +58,23 @@ export default class extends Intact {
         this.on('$change:checkedKey', (c, newValue, oldValue) => {
             this.trigger('$change:checked', c, [newValue], [oldValue]);
         });
+        // calculate padding of header when some props have changed
+        ['data', 'fixHeader'].forEach(item => {
+            this.on(`$changed:${item}`, this._calcHeaderPadding);
+        });
+    }
+
+    _mount() {
+        if (scrollBarWidth === undefined) {
+            scrollBarWidth = getScrollbarWidth();
+        }
+        this._calcHeaderPadding();
+    }
+
+    isCheckAll() {
+        const checkedKeys = this.get('checkedKeys');
+        const data = this.get('data');
+        return checkedKeys.length && checkedKeys.length === data.length;
     }
 
     checkAll() {
@@ -62,6 +112,15 @@ export default class extends Intact {
             });
         } else {
             return [];
+        }
+    }
+
+    _calcHeaderPadding() {
+        if (this.get('fixHeader')) {
+            const tableHeight = this.table.offsetHeight;
+            const containerHeight = this.scroll.offsetHeight;
+            const headerHeight = this.header.offsetHeight;
+            this.set('_padding', tableHeight - headerHeight > containerHeight ? scrollBarWidth : 0);
         }
     }
 
