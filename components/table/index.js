@@ -47,6 +47,7 @@ export default class extends Intact {
             disableRow(data, index) { return false },
 
             _padding: 0,
+            _disabledAmount: 0,
         }
     }
 
@@ -62,6 +63,11 @@ export default class extends Intact {
         ['data', 'fixHeader'].forEach(item => {
             this.on(`$changed:${item}`, this._calcHeaderPadding);
         });
+        // update disabled amount when some props have changed
+        ['data', 'disableRow'].forEach(item => {
+            this.on(`$change:${item}`, this._updateDisabledAmount);
+        });
+        this._updateDisabledAmount();
     }
 
     _mount() {
@@ -73,15 +79,22 @@ export default class extends Intact {
 
     isCheckAll() {
         const checkedKeys = this.get('checkedKeys');
-        const data = this.get('data');
-        return checkedKeys.length && checkedKeys.length === data.length;
+        const dataLength = this.get('data').length;
+        const disabledAmount = this.get("_disabledAmount");
+        const amount = dataLength - disabledAmount;
+        return amount && checkedKeys.length === amount; 
     }
 
     checkAll() {
         const rowKey = this.get('rowKey');
-        this.set('checkedKeys', this.get('data').map((value, index) => {
-            return rowKey.call(this, value, index); 
-        }));
+        const disableRow = this.get('disableRow');
+        const checkedKeys = [];
+        this.get('data').forEach((value, index) => {
+            if (!disableRow.call(this, value, index)) {
+                checkedKeys.push(rowKey.call(this, value, index));
+            }
+        });
+        this.set('checkedKeys', checkedKeys);
     }
 
     uncheckAll() {
@@ -124,6 +137,17 @@ export default class extends Intact {
         }
     }
 
+    _updateDisabledAmount() {
+        let disabledAmount = 0;
+        const disableRow = this.get('disableRow');
+        this.get('data').forEach((item, index) => {
+            if (disableRow.call(this, item, index)) {
+                disabledAmount++;
+            }
+        });
+        this.set('_disabledAmount', disabledAmount);
+    }
+
     _toggleCheckAll(c, checked) {
         if (checked) {
             this.checkAll();
@@ -133,7 +157,7 @@ export default class extends Intact {
     }
 
     _rowCheck(value, index, e) {
-        // if is from checkbox then do nothing
+        // if is from checkbox or radio then do nothing
         if (e.target.tagName.toLowerCase() === 'input') return;
 
         if (this.get('rowCheckable')) {
@@ -150,6 +174,8 @@ export default class extends Intact {
     }
 
     _checkUncheckRow(value, index, isCheck = false, isToggle = true) {
+        if (this.get('disableRow').call(this, value, index)) return;
+
         const checkType = this.get('checkType');
         const key = this.get('rowKey').call(this, value, index);
         if (checkType === 'checkbox') {

@@ -2,7 +2,7 @@ const Checkbox = require('../checkbox');
 const Radio = require('../radio');
 
 const {checkType, scheme, checkedKeys, data, rowKey, 
-    className, fixHeader, noDataTemplate
+    className, fixHeader, noDataTemplate, disableRow
 } = self.get();
 
 let colSpan = checkType === 'checkbox' || checkType === 'radio' ? 1 : 0;
@@ -36,17 +36,21 @@ const tbody = <tbody>
     {{ data && data.length ? 
         __u.map(data, (value, index) => {
             const key = rowKey.call(self, value, index);
+            const disabled = disableRow.call(self, value, index);
             return <tr key={{ key }}
                 ev-click={{ self._rowCheck.bind(self, value, index) }}
+                class={{ {'k-disabled': disabled} }}
             >
                 <td v-if={{ checkType === 'checkbox' }}>
                     <Checkbox v-model="checkedKeys" name="k-table-checkbox"
                         trueValue={{ key }}
+                        disabled={{ disabled }}
                     />
                 </td>
                 <td v-else-if={{ checkType === 'radio' }}>
                     <Radio v-model="checkedKey" name="k-table-radio"
                         trueValue={{ key }}
+                        disabled={{ disabled }}
                     />
                 </td>
                 {{ __u.map(scheme, (item, key) => {

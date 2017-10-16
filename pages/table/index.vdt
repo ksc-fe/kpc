@@ -24,4 +24,8 @@ const scheme = {
     />
 
     <Table />
+
+    <Table data={{ self.get('data') }} scheme={{ scheme }}
+        disableRow={{ (value, index) => index === 1 }}
+    />
 </div>
