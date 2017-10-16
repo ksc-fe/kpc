@@ -8,6 +8,7 @@ const classNameObj = {
     'k-checkbox': true,
     'k-disabled': disabled,
     'k-checked': self.isChecked(),
+    [className || '']: true,
 };
 
 <label class={{ classNameObj }}>
