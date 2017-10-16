@@ -1,0 +1,26 @@
+const Radio = require('components/radio');
+const Checkbox = require('components/checkbox');
+const Button = require('components/button');
+
+<div>
+    <Radio>test</Radio>
+    <Radio disabled>disabled</Radio>
+    <Radio value={{ true }} disabled>disabled checked</Radio>
+    <Checkbox disabled>test</Checkbox>
+    <Checkbox value={{ true }} disabled={{ true }}>test</Checkbox>
+
+    <br />
+    <Radio name="group" trueValue="Javascript" v-model="language">Javascript</Radio>
+    <Radio name="group" trueValue="C++" v-model="language">C++</Radio>
+    <Radio name="group" trueValue="PHP" v-model="language" v-if={{ !self.get('removePHP') }}>PHP</Radio>
+    language: {{ self.get('language') }}
+    <Button ev-click={{ self.set.bind(self, 'removePHP', !self.get('removePHP')) }}>toggle php</Button>
+
+    <br />
+    <Radio name="single1" v-model="single1">single1</Radio> 
+    single1: {{ JSON.stringify(self.get('single1')) }}
+    <Radio name="single2" v-model="single2" trueValue="single2">single2</Radio>
+    single2: {{ JSON.stringify(self.get('single2')) }}
+    <Radio name="single3" v-model="single3" trueValue={{ 0 }}>single3</Radio>
+    single3: {{ JSON.stringify(self.get('single3')) }}
+</div>

@@ -1,22 +1,19 @@
 const {
-    className, disabled, falseValue, 
-    children, value, trueValue, 
-    ref, key, ...rest
+    className, disabled, trueValue,
+    children, value, ref, key, ...rest
 } = self.get();
 
 const classNameObj = {
-    'k-checkbox': true,
+    'k-radio': true,
     'k-disabled': disabled,
     'k-checked': self.isChecked(),
 };
 
 <label class={{ classNameObj }}>
     <span class="k-wrapper">
-        <input type="checkbox" disabled={{ disabled }}
+        <input type="radio" disabled={{ disabled }}
             v-model="value"
             value={{ trueValue }}
-            v-model-true={{ trueValue }}
-            v-model-false={{ falseValue }}
             {{ ...rest }}
         />
     </span>

@@ -1,4 +1,5 @@
 const Checkbox = require('components/checkbox');
+const Button = require('components/button');
 
 <div>
     <Checkbox>test</Checkbox>
@@ -8,8 +9,9 @@ const Checkbox = require('components/checkbox');
     <br />
     <Checkbox name="group" trueValue="Javascript" v-model="languages">Javascript</Checkbox>
     <Checkbox name="group" trueValue="C++" v-model="languages">C++</Checkbox>
-    <Checkbox name="group" trueValue="PHP" v-model="languages">PHP</Checkbox>
+    <Checkbox name="group" trueValue="PHP" v-model="languages" v-if={{ !self.get('removePHP') }}>PHP</Checkbox>
     languages: {{ JSON.stringify(self.get('languages')) }}
+    <Button ev-click={{ self.set.bind(self, 'removePHP', !self.get('removePHP')) }}>toggle php</Button>
 
     <br />
     <Checkbox name="single1" v-model="single1">single1</Checkbox> 

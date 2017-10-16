@@ -8,11 +8,23 @@ export default class extends Intact {
 
     defaults() {
         return {
+            data: [],
             checkType: 'checkbox', // radio | none 
             rowKey(value, index) { return index; },
-            checkedKeys: [],
+            checkedKeys: [], // for checkbox
+            checkedKey: undefined, // for radio
             rowCheckable: true, // click row to check
         }
+    }
+
+    _init() {
+        // keep the event consistent
+        this.on('$change:checkedKeys', (c, newValue, oldValue) => {
+            this.trigger('$change:checked', c, newValue, oldValue);
+        });
+        this.on('$change:checkedKey', (c, newValue, oldValue) => {
+            this.trigger('$change:checked', c, [newValue], [oldValue]);
+        });
     }
 
     toggleCheckAll(c, checked) {
@@ -34,6 +46,33 @@ export default class extends Intact {
         this.set('checkedKeys', []);
     }
 
+    /**
+     * @brief get the checked data
+     * @return {Array}
+     */
+    getCheckedData() {
+        const rowKey = this.get('rowKey');
+        const checkType = this.get('checkType');
+        if (checkType === 'checkbox') {
+            const checkedKeys = this.get('checkedKeys');
+            const checkedKeysMap = {};
+            checkedKeys.forEach((item) => {
+                checkedKeysMap[item] = true;
+            });
+            return this.get('data').filter((value, index) => {
+                const key = rowKey.call(this, value, index);
+                return checkedKeysMap[key];
+            });
+        } else if (checkType === 'radio') {
+            const checkedKey = this.get('checkedKey');
+            return this.get('data').filter((value, index) => {
+                return rowKey.call(this, value, index) === checkedKey;
+            });
+        } else {
+            return [];
+        }
+    }
+
     _rowCheck(value, index, e) {
         // if is from checkbox then do nothing
         if (e.target.tagName.toLowerCase() === 'input') return;
@@ -52,15 +91,20 @@ export default class extends Intact {
     }
 
     _checkUncheckRow(value, index, isCheck = false, isToggle = true) {
-        const checkedKeys = this.get('checkedKeys').slice(0);
+        const checkType = this.get('checkType');
         const key = this.get('rowKey').call(this, value, index);
-        const i = checkedKeys.indexOf(key);
-        if ((!isCheck || isToggle) && i > -1) {
-            checkedKeys.splice(i, 1);
-            this.set('checkedKeys', checkedKeys);
-        } else if (isCheck || isToggle) {
-            checkedKeys.push(key);
-            this.set('checkedKeys', checkedKeys);
+        if (checkType === 'checkbox') {
+            const checkedKeys = this.get('checkedKeys').slice(0);
+            const i = checkedKeys.indexOf(key);
+            if ((!isCheck || isToggle) && i > -1) {
+                checkedKeys.splice(i, 1);
+                this.set('checkedKeys', checkedKeys);
+            } else if (isCheck || isToggle) {
+                checkedKeys.push(key);
+                this.set('checkedKeys', checkedKeys);
+            }
+        } else if (checkType === 'radio') {
+            this.set('checkedKey', key);
         }
     }
 }

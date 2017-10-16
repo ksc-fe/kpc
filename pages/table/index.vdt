@@ -1,6 +1,17 @@
 const Table = require('components/table');
+const Button = require('components/button');
 
-<Table data={{ [{test: 1, aa: 'aa'}, {test: 1, aa: 'aa'}] }} scheme={{ {
+const scheme = {
     test: 'aaa',
     aa: 'bbb',
-} }} />
+};
+
+<div>
+    <Button ev-click={{ self.remove.bind(self) }}>remove the last row</Button>
+    <Button ev-click={{ self.getCheckedData.bind(self) }}>get checked data</Button>
+    <Table data={{ self.get('data') }} scheme={{ scheme }} ref={{ i => self.table = i }}/>
+
+    <Table data={{ self.get('data') }} scheme={{ scheme }} checkType="radio"
+        ref={{ i => self.radioTable = i }}
+    />
+</div>

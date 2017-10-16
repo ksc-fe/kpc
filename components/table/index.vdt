@@ -1,15 +1,16 @@
 const Checkbox = require('../checkbox');
+const Radio = require('../radio');
 
 const {checkType, scheme, checkedKeys, data, rowKey} = self.get();
 
 const thead = <thead>
     <tr>
-        <th v-if={{ checkType === 'checkbox' }} class="k-th-checkbox">
+        <th v-if={{ checkType === 'checkbox' }} class="k-th-check">
             <Checkbox value={{ checkedKeys.length === data.length }}
                 ev-$change:value={{ self.toggleCheckAll.bind(self) }}
             />
         </th>
-        <th v-else-if={{ checkType === 'radio' }} class="k-th-radio"></th>
+        <th v-else-if={{ checkType === 'radio' }} class="k-th-check"></th>
         {{ __u.map(scheme, (item) => {
             if (!__u.isObject(item)) {
                 item = {title: item};
@@ -37,7 +38,9 @@ const tbody = <tbody>
                 />
             </td>
             <td v-else-if={{ checkType === 'radio' }}>
-                <input type="radio" />
+                <Radio v-model="checkedKey" name="k-table-radio"
+                    trueValue={{ key }}
+                />
             </td>
             {{ __u.map(scheme, (item, key) => {
                 let td;

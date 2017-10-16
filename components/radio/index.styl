@@ -1,0 +1,52 @@
+@require('./variables.styl');
+
+.k-radio
+    display inline-block
+    cursor pointer
+    .k-wrapper
+        display inline-block
+        width $radio-width
+        height $radio-width
+        vertical-align middle
+        border 1px solid $radio-border-color
+        border-radius 50%
+        transition all .2s ease-in-out
+        position relative
+        // inner
+        &:before
+            content ""
+            display block
+            position absolute
+            width $radio-inner-width
+            height $radio-inner-width
+            top unit(($radio-width - $radio-inner-width) / 2 - 1, px)
+            left unit(($radio-width - $radio-inner-width) / 2 - 1, px)
+            border-radius 50%
+            background-color $radio-checked-color
+            transform scale(0)
+            transition all .2s ease-in-out
+
+    input
+        width 100%
+        height 100%
+        opacity 0
+        cursor pointer
+    .k-text
+        vertical-align middle
+        margin-left $radio-text-margin-left
+
+    // checked
+    &.k-checked
+        .k-wrapper
+            border-color $radio-checked-color
+            &:before
+                transform scale(1)
+    // disabled
+    &.k-disabled
+        color $radio-disabled-color
+        cursor not-allowed
+        .k-wrapper
+            border-color $radio-disabled-border-color
+            background $radio-disabled-bg-color
+            &:before
+                background $radio-disabled-inner-color

@@ -34,4 +34,11 @@ export default new Router([
             return {Page: await import('pages/checkbox')};
         }
     },
+    {
+        path: '/components/radio',
+        action: async () => {
+            return {Page: await import('pages/radio')};
+        }
+    },
+
 ]);
