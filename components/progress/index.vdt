@@ -17,6 +17,10 @@ const classNameObj = {
             </div>
         </div>
     </div>
+    <div class='k-circle' v-if={{ type == 'circle'}}>
+
+       
+    </div>
     <div class='k-text' v-if={{ showText && !innerText}}>
         <span v-if={{ status !='success' && status !='error'}}> {{ percent }} %</span>
         <span v-if={{ status == 'success' }}>100%</span>
