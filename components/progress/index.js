@@ -11,7 +11,7 @@ export default class extends Intact{
         return {
             type: 'line',
             percent: 70, //[0~100]
-            size: 'mini', // small mini
+            size: 'default', // small mini
             showText: true,
             innerText: false,
             status: 'normal' // success | error | active | normal

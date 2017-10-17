@@ -1,5 +1,7 @@
 @require('./variables.styl')
-sizes= mini small;
+@require('../../styles/mixin.styl')
+
+sizes = mini small default
 
 .k-progress
     position relative
@@ -51,6 +53,14 @@ sizes= mini small;
         .k-small
             height $progress-small-height
             font-size $progress-small-font-size
+    &.k-circle
+        //.k-circle-default
+        //    height 120px
+        //    width 120px
+        for size in sizes
+            .k-{size}
+                height lookup('$progress-' + size + '-circle')
+                width lookup('$progress-' + size + '-circle')
 
     .k-text
         display inline-block
