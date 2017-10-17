@@ -1,17 +1,22 @@
-let {type, className, percentage, status, progressHeight, ref, key, ...rest} = self.get();
+let {type, className, percent, status, progressHeight, showText, innerText, ref, key, ...rest} = self.get();
 
 console.log('test', self.get());
 
 const classNameObj = {
     'k-progress' : true,
-    [`k-progress-${type}`]: !!type,
-    [`k-progress-${status}`]: !!status,
+    [`k-${type}`]: !!type,
 }
 
-
 <div class={{classNameObj}}>
-    <div class='progress-bar' v-if={{ type == 'line'}} >
-        <div class='progress-bar-container'>
+    <div class='k-bar' v-if={{ type == 'line'}} >
+        <div class='k-container' style={{'height:' + progressHeight + 'px'}}>
+            <div  class='k-content'>
+                <div style={{'width:' + percent + '%'}} class={{ 'k-bg' + (status!= 'normal'?  [` k-${status}`] : '' ) }}>
+                     <div class='k-innerText' v-if={{ showText && innerText}}>{{ percent }} %</div>
+                </div>
+
+            </div>
         </div>
     </div>
+    <div class='k-text' v-if={{ showText && !innerText}}>{{ percent }} %</div>
 </div>

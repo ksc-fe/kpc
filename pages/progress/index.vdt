@@ -1,5 +1,6 @@
 const Progress = require('components/progress');
 
 <div class='progress-demo'>
-    <Progress></Progress>
+    <Progress percent={{self.get('percent')}}></Progress>
+    <input ev-change={{ self.getValue.bind(self) }}>
 </div>

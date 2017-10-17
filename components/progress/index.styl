@@ -3,18 +3,61 @@
 .k-progress
     position relative
     line-height 1
-    .progress-bar
+    .k-bar
         padding-right $progress-padding-right
         display inline-block
         vertical-align middle
         width: 100%
         margin-right $progress-margin-right
         box-sizing border-box
-        .progress-bar-container
-            height 6px
+        .k-container
             border-radius 100px
-            background-color #e4e8f1
+            background-color $progress-bgcolor
             overflow hidden
             position relative
             vertical-align middle
+            .k-content
+                position relative
+                left 0
+                top 0
+                background-color $progress-bgcolor
+                white-space nowrap
+                width 100%
+                height 100%
+                border-radius 100px
+                .k-bg
+                    background-color $progress-content-bgcolor
+                    height 100%
+                    border-radius 100px
+                    transition all 0.2s linear
+                .k-success
+                    background-color $progress-bgcolor-success
+                .k-error
+                    background-color $progress-bgcolor-error
+                .k-active
+                    transition all 0.2s linear
+                    &:before
+                        content " ",
+                        opacity 0
+                        position absolute
+                        top 0
+                        left 0
+                        right 0
+                        bottom 0
+                .k-innerText
+                    display inline-block
+                    vertical-align middle
+                    color #ffffff
+                    margin 2px 5px
+                    width 100%
+                    text-align right
+                    padding-right 10px
+
+    .k-text
+        display inline-block
+        margin-left 15px
+        line-height 1
+        vertical-align middle
+        color $progress-font-color
+
 

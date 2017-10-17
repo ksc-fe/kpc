@@ -10,9 +10,21 @@ export default class extends Intact{
     defaults() {
         return {
             type: 'line',
-            percentage: 0,
-            progressHeight: 10
-
+            percent: 70, //[0~100]
+            progressHeight: 18,
+            showText: true,
+            innerText: true,
+            status: 'active' // success | error | active | normal
         }
+
     }
+
+    _init(){
+        this.on('$change:percent', function(comp, percentage) {
+            let status =  percentage == 100 ?  'success' : 'normal';
+            this.set ('status', status)
+
+        });
+    }
+
 }
