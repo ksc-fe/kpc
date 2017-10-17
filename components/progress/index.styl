@@ -1,4 +1,5 @@
 @require('./variables.styl')
+sizes= mini small;
 
 .k-progress
     position relative
@@ -11,11 +12,13 @@
         margin-right $progress-margin-right
         box-sizing border-box
         .k-container
+            height $progress-height
             border-radius 100px
             background-color $progress-bgcolor
             overflow hidden
             position relative
             vertical-align middle
+            font-size $progress-innertext-font-size
             .k-content
                 position relative
                 left 0
@@ -34,24 +37,20 @@
                     background-color $progress-bgcolor-success
                 .k-error
                     background-color $progress-bgcolor-error
-                .k-active
-                    transition all 0.2s linear
-                    &:before
-                        content " ",
-                        opacity 0
-                        position absolute
-                        top 0
-                        left 0
-                        right 0
-                        bottom 0
                 .k-innerText
                     display inline-block
                     vertical-align middle
                     color #ffffff
-                    margin 2px 5px
+                    margin $progress-innertext-margin
                     width 100%
                     text-align right
                     padding-right 10px
+        .k-mini
+            height  $progress-mini-height
+            font-size $progress-mini-font-size
+        .k-small
+            height $progress-small-height
+            font-size $progress-small-font-size
 
     .k-text
         display inline-block
