@@ -39,5 +39,18 @@ export default new Router([
         action: async () => {
             return {Page: await import('pages/progress')};
         }
+    },
+    {
+        path: '/components/radio',
+        action: async () => {
+            return {Page: await import('pages/radio')};
+        }
+    },
+    {
+        path: '/components/slider',
+        action: async () => {
+            return {Page: await import('pages/slider')}
+        }
     }
+
 ]);

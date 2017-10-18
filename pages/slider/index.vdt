@@ -1,0 +1,4 @@
+const Slider = require('components/slider');
+<div>
+    <Slider></Slider>
+</div>
