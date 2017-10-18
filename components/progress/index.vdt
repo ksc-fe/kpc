@@ -1,27 +1,48 @@
-let {type, className, percent, status, size, showText, innerText, ref, key, ...rest} = self.get();
-
-console.log('test', self.get());
+const {
+    type, className, percent, status, size, 
+    showText, innerText, ref, key, strokeWidth,
+    ...rest
+} = self.get();
 
 const classNameObj = {
     'k-progress' : true,
-    [`k-${type}`]: !!type,
+    [`k-${type}`]: type,
+    [className]: className,
+    [`k-${status}`]: status !== 'normal',
+    [`k-${size}`]: size !== 'default',
 }
 
-<div class={{classNameObj}}>
-    <div class='k-bar' v-if={{ type === 'line'}} >
-        <div class={{ 'k-container' + (size!='default'? [` k-${size}`] : '') }}>
+<div class={{ classNameObj }}>
+    <div class="k-canvas" v-if={{ type === 'bar' }}>
+        <div class="k-container">
             <div  class='k-content'>
-                <div style={{'width:' + percent + '%'}} class={{ 'k-bg' + (status !== 'normal'?  [` k-${status}`] : '' ) }}>
-                     <div class='k-innerText' v-if={{ showText && innerText }}>{{ percent }} %</div>
+                <div class="k-bg" style={{ {width: percent + '%'} }}>
+                    <div class='k-inner-text' v-if={{ innerText }}>
+                        {{ percent }} %
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class={{ `k-${size}` }}  v-if={{ type === 'circle'}}>
+    <svg class="k-canvas" viewBox="0 0 120 120" v-if={{ type === 'circle' }}>
+        {{ do {
+            const r = (120 - strokeWidth) / 2;
+            const circumference = 2 * Math.PI * r;
 
-    </div>
-    <div class='k-text' v-if={{ showText && !innerText}}>
-        <span v-if={{ status !== 'success' && status !== 'error' }}> {{ percent }} %</span>
+            [
+                <circle class="k-meter" cx="60" cy="60" r={{ r }}
+                    stroke-width={{ strokeWidth }}
+                />,
+                <circle class="k-value" cx="60" cy="60" r={{ r }}
+                    stroke-dashoffset={{ circumference * (1 - percent / 100) }} 
+                    stroke-dasharray={{ circumference }}
+                    stroke-width={{ strokeWidth }}
+                />
+            ]
+        } }}
+    </svg>
+    <div class='k-text' v-if={{ showText }}>
+        <span v-if={{ status !== 'success' && status !== 'error' }}> {{ percent }}%</span>
         <span v-if={{ status === 'success' }}>100%</span>
         <span v-if={{ status === 'error' }}></span>
     </div>

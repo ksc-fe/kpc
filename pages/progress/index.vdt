@@ -3,9 +3,13 @@ const Button = require('components/button');
 
 
 <div class='progress-demo'>
-    <Progress percent={{self.get('percent')}}></Progress>
+    <Progress percent={{ self.get('percent') }}></Progress>
     <div class='k-btns'>
         <Button size='mini' class='k-btn' type="default" ev-click={{self.add.bind(self)}}>+</Button>
         <Button size='mini' class='k-btn' type="default" ev-click={{self.min.bind(self)}}>-</Button>
     </div>
+
+    <Progress percent={{ self.get('percent') }} type="circle" />
+    <Progress percent={{ self.get('percent') }} type="circle" size="small" />
+    <Progress percent={{ self.get('percent') }} type="circle" size="mini" />
 </div>

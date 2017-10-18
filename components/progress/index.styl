@@ -1,72 +1,107 @@
 @require('./variables.styl')
-@require('../../styles/mixin.styl')
 
-sizes = mini small default
+sizes = mini small
 
 .k-progress
     position relative
     line-height 1
-    .k-bar
-        padding-right $progress-padding-right
-        display inline-block
-        vertical-align middle
-        width: 100%
-        margin-right $progress-margin-right
-        box-sizing border-box
+
+    // bar
+    &.k-bar
+        .k-canvas
+            padding-right $progress-padding-right
+            display inline-block
+            vertical-align middle
+            width: 100%
+            margin-right $progress-margin-right
         .k-container
             height $progress-height
-            border-radius 100px
-            background-color $progress-bgcolor
+            border-radius $progress-height
+            background-color $progress-stroke-color
             overflow hidden
             position relative
             vertical-align middle
             font-size $progress-innertext-font-size
-            .k-content
-                position relative
-                left 0
-                top 0
-                background-color $progress-bgcolor
-                white-space nowrap
-                width 100%
-                height 100%
-                border-radius 100px
-                .k-bg
-                    background-color $progress-content-bgcolor
-                    height 100%
-                    border-radius 100px
-                    transition all 0.2s linear
-                .k-success
-                    background-color $progress-bgcolor-success
-                .k-error
-                    background-color $progress-bgcolor-error
-                .k-innerText
-                    display inline-block
-                    vertical-align middle
-                    color #ffffff
-                    margin $progress-innertext-margin
-                    width 100%
-                    text-align right
-                    padding-right 10px
-        .k-mini
+        .k-content
+            position relative
+            left 0
+            top 0
+            white-space nowrap
+            width 100%
+            height 100%
+            border-radius $progress-height 
+        .k-bg
+            background-color $progress-normal-color
+            height 100%
+            border-radius $progress-height 
+            transition $progress-transition
+        .k-innerText
+            display inline-block
+            vertical-align middle
+            color #ffffff
+            margin $progress-innertext-margin
+            width 100%
+            text-align right
+            padding-right 10px
+            
+        // status
+        &.k-success
+            .k-bg
+                background $progress-success-color
+        &.k-error
+            .k-bg
+                background $progress-error-color
+
+        // size
+        &.k-mini
             height  $progress-mini-height
             font-size $progress-mini-font-size
-        .k-small
+        &.k-small
             height $progress-small-height
             font-size $progress-small-font-size
+
+        .k-text
+            display inline-block
+            margin-left 15px
+            line-height 1
+            vertical-align middle
+            color $progress-font-color
+
+    // circle
     &.k-circle
-        //.k-circle-default
-        //    height 120px
-        //    width 120px
+        width $progress-circle-width
+        height @width 
+        font-size $progress-circle-font-size
+        .k-canvas
+            transform rotate(-90deg)
+        .k-meter
+        .k-value
+            fill none
+        .k-meter
+            stroke $progress-stroke-color 
+        .k-value
+            stroke $progress-normal-color 
+            stroke-linecap round
+            transition $progress-transition
+        .k-text
+            position absolute
+            top 50%
+            text-align center
+            width 100%
+            transform translateY(-50%)
+
+        // status 
+        &.k-success
+            .k-value
+                stroke $progress-success-color
+        &.k-error
+            .k-value
+                stroke $progress-error-color
+
+        // size
         for size in sizes
-            .k-{size}
-                height lookup('$progress-' + size + '-circle')
-                width lookup('$progress-' + size + '-circle')
-
-    .k-text
-        display inline-block
-        margin-left 15px
-        line-height 1
-        vertical-align middle
-        color $progress-font-color
-
+            &.k-{size}
+                width lookup('$progress-circle-' + size + '-width')
+                height lookup('$progress-circle-' + size + '-width')
+                font-size lookup('$progress-circle-' + size + '-font-size')
 

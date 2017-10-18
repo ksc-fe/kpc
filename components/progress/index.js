@@ -5,25 +5,24 @@ import template from './index.vdt';
 import './index.styl'
 
 export default class extends Intact{
-    get template() { return template;}
+    get template() { return template; }
 
     defaults() {
         return {
-            type: 'line',
+            type: 'bar',
             percent: 70, //[0~100]
             size: 'default', // small mini
             showText: true,
-            innerText: false,
-            status: 'normal' // success | error | active | normal
-        }
-
+            innerText: false, // FIXME: 布尔型取值用is开头 isShowInnerText 见README
+            status: 'normal', // success | error | active | normal
+            strokeWidth: 10, 
+        };
     }
 
-    _init(){
-        this.on('$change:percent', function(comp, percentage) {
-            let status =  percentage == 100 ?  'success' : 'normal';
-            this.set ('status', status)
+    _init() {
+        this.on('$change:percent', function(c, percent) {
+            const status = percent === 100 ? 'success' : 'normal';
+            this.set('status', status)
         });
     }
-
 }
