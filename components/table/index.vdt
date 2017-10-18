@@ -1,13 +1,15 @@
 const Checkbox = require('../checkbox');
 const Radio = require('../radio');
 
-const {checkType, scheme, checkedKeys, data, rowKey, 
-    className, fixHeader, noDataTemplate, disableRow
+const {
+    checkType, scheme, checkedKeys, data, rowKey, 
+    className, fixHeader, noDataTemplate, disableRow,
+    groups, resizable
 } = self.get();
 
 let colSpan = checkType === 'checkbox' || checkType === 'radio' ? 1 : 0;
 
-const thead = <thead>
+const thead = () => <thead>
     <tr>
         <th v-if={{ checkType === 'checkbox' }} class="k-th-check">
             <Checkbox value={{ self.isCheckAll() }}
@@ -15,7 +17,7 @@ const thead = <thead>
             />
         </th>
         <th v-else-if={{ checkType === 'radio' }} class="k-th-check"></th>
-        {{ __u.map(scheme, (item) => {
+        {{ __u.map(scheme, (item, key) => {
             colSpan++;
 
             if (!__u.isObject(item)) {
@@ -25,8 +27,25 @@ const thead = <thead>
             return <th width={{ item.width }}
                 title={{ item.title }}
                 class={{ {'k-sortable': item.sortable} }}
+                ev-click={{ item.sortable ? self._sort.bind(self, key, item) : undefined }}
             >
-                <div v-if={{ !item.groups }}>{{ item.title }}</div>
+                <div v-if={{ resizable }} class="k-resize" ev-mousedown={{ self._dragStart.bind(self) }}></div>
+                <div class="k-th">
+                    <div v-if={{ !item.groups }} class="c-ellipsis">{{ item.title }}</div>
+                    {{ do {
+                        if (item.sortable) {
+                            const sort = self.get('sort');
+                            const type = key === sort.key ? sort.type : ''; // 'desc' | ''
+                            <div class={{ {'k-sort': true, [`k-${type}`]: type} }}>
+                                <i class={{ {
+                                    'k-icon': true, 
+                                    [`icon-${type}`]: type,
+                                    'icon-sortable': !type
+                                } }}></i>
+                            </div>
+                        }
+                    } }}
+                </div>
             </th>
         }) }}
     </tr>
@@ -89,7 +108,7 @@ const tbody = <tbody>
 const table = <table class={{ {'k-table': true, [className || '']: true} }}
     ref={{ dom => self.table = dom }}
 >
-    {{ thead }}
+    {{ thead() }}
     {{ tbody }}
 </table>
 
@@ -99,7 +118,7 @@ const table = <table class={{ {'k-table': true, [className || '']: true} }}
         ref={{ dom => self.header = dom }}
     >
         <table class={{ {'k-table': true, [className || '']: true} }}>
-            {{ thead }}
+            {{ thead() }}
         </table>
     </div>
     {{ fixHeader ? 

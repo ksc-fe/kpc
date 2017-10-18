@@ -28,4 +28,45 @@ const scheme = {
     <Table data={{ self.get('data') }} scheme={{ scheme }}
         disableRow={{ (value, index) => index === 1 }}
     />
+
+    <Table data={{ self.get('data') }} 
+        scheme={{ {
+            test: {
+                title: 'aaa',
+                sortable: true
+            },
+            aa: {
+                title: 'bb',
+                sortable: true
+            }
+        } }}
+    />
+
+    <Table data={{ self.get('data') }}
+        scheme={{ {
+            test: {
+                title: 'aaa',
+                sortable: true
+            },
+            aa: {
+                title: 'bb',
+                sortable: true
+            }
+        } }}
+        resizable
+    />
+    <Table data={{ self.get('data') }}
+        scheme={{ {
+            test: {
+                title: 'aaa',
+                sortable: true
+            },
+            aa: {
+                title: 'bb',
+                sortable: true
+            }
+        } }}
+        resizable
+        fixHeader="300"
+    />
 </div>

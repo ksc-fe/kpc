@@ -17,7 +17,7 @@
   "author": "Javey",
   "license": "MIT",
   "peerDependencies": {
-    "intact": "^2.0.6"
+    "intact": "^2.1.1"
   },
   "devDependencies": {
     "advanced": "^0.4.5",
@@ -34,7 +34,7 @@
     "dynamic-middleware": "^4.0.1",
     "file-loader": "^1.1.5",
     "history": "^4.7.2",
-    "intact": "^2.0.8",
+    "intact": "^2.1.1",
     "jasmine-core": "^2.8.0",
     "karma": "^1.4.1",
     "karma-chrome-launcher": "^2.2.0",
@@ -58,7 +58,7 @@
     "stylus-loader": "^3.0.1",
     "universal-router": "^4.2.0",
     "url-loader": "^0.6.2",
-    "vdt": "^1.0.10",
+    "vdt": "^1.1.1",
     "vdt-loader": "^1.2.1",
     "webpack": "^3.6.0",
     "webpack-dev-middleware": "^1.12.0",

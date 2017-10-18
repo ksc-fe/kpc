@@ -20,6 +20,26 @@
         padding $table-th-padding
         text-align $table-th-text-align 
         font-weight $table-th-font-weight
+        position relative
+    .k-th
+        display flex
+
+    // sortable
+    .k-sortable
+        cursor pointer
+    .k-sort
+        margin-left $table-sort-margin-left
+        .k-icon
+            font-size $table-sort-icon-font-size 
+
+    // resizable
+    .k-resize
+        height 100%
+        width $table-resize-width 
+        position absolute
+        top 0
+        left 0
+        cursor ew-resize
 
     // tbody
     tbody
@@ -29,6 +49,7 @@
                 background $table-tr-hover-bg-color
     td
         padding $table-td-padding
+        word-break break-word
 
     // checkbox or radio
     .k-th-check
@@ -39,6 +60,7 @@
         text-align center
 
 .k-table-wrapper
+    overflow auto
     // fix header
     .k-fixed
         position relative

@@ -30,6 +30,9 @@ function getScrollbarWidth() {
 
 let scrollBarWidth = undefined;
 
+const MIN_WIDTH = 40;
+const slice = Array.prototype.slice;
+
 export default class extends Intact {
     @Intact.template()
     get template() { return template; }
@@ -45,6 +48,9 @@ export default class extends Intact {
             rowCheckable: true, // click row to check
             noDataTemplate: '/(ㄒoㄒ)/~~ 没有找到亲要的数据哦~',
             disableRow(data, index) { return false },
+            sort: {},
+            groups: {},
+            resizable: false,
 
             _padding: 0,
             _disabledAmount: 0,
@@ -68,6 +74,9 @@ export default class extends Intact {
             this.on(`$change:${item}`, this._updateDisabledAmount);
         });
         this._updateDisabledAmount();
+
+        this._move = this._move.bind(this);
+        this._dragEnd = this._dragEnd.bind(this);
     }
 
     _mount() {
@@ -191,5 +200,78 @@ export default class extends Intact {
         } else if (checkType === 'radio') {
             this.set('checkedKey', key);
         }
+    }
+
+    _sort(key, value) {
+        const sort = Object.assign({}, this.get('sort'));
+        sort.key = key;
+        sort.type = sort.type === 'desc' ? 'asc' : 'desc';
+        this.set('sort', sort);
+    }
+
+    _dragStart(e) {
+        // left key
+        if (e.which !== 1) return;
+
+        this._resizing = true;
+        this._containerWidth = this.element.offsetWidth;
+        this._x = e.clientX;
+
+        const currentTh = e.target.parentNode;
+        const prevTh = currentTh.previousElementSibling;
+
+        this._currentThs = [currentTh];
+        this._prevThs = [prevTh];
+        this._tables = [this.table];
+
+        if (this.get('fixHeader')) {
+            const ths = this.table.children[0].getElementsByTagName('th');
+            const fixThs = currentTh.parentNode.children;
+            const index = slice.call(fixThs).indexOf(currentTh);
+            this._currentThs.push(ths[index]);
+            this._prevThs.push(ths[index - 1]);
+            this._tables.push(this.header.children[0]);
+        }
+
+        document.addEventListener('mousemove', this._move);
+        document.addEventListener('mouseup', this._dragEnd);
+    }
+
+    _move(e) {
+        if (this._resizing) {
+            const delX = e.clientX - this._x;
+            const prevWidth = this._prevThs[0].offsetWidth + delX;
+            const tableWidth = this.table.offsetWidth + delX;
+            
+            if (prevWidth < MIN_WIDTH) return;
+
+            this._prevThs.forEach(item => {
+                item.style.width = prevWidth + 'px';
+            });
+
+            if (this._containerWidth >= tableWidth) {
+                this._tables.forEach(item => {
+                    item.style.width = '100%';
+                });
+            } else {
+                this._tables.forEach(item => {
+                    item.style.width = tableWidth + 'px';
+                });
+            }
+
+            this._x = e.clientX;
+        }
+    }
+
+    _dragEnd(e) {
+        if (this._resizing) {
+            this._resizing = false;
+            document.removeEventListener('mousemove', this._move);
+            document.removeEventListener('mouseup', this._dragEnd);
+        }
+    }
+
+    _destroy() {
+        this._dragEnd();
     }
 }

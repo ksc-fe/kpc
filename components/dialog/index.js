@@ -133,5 +133,6 @@ export default class extends Intact {
 
     _destroy() {
         document.removeEventListener('keydown', this._escClose);
+        this._dragEnd();
     }
 }
