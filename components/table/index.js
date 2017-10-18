@@ -46,11 +46,14 @@ export default class extends Intact {
             checkedKeys: [], // for checkbox
             checkedKey: undefined, // for radio
             rowCheckable: true, // click row to check
+            rowExpandable: true, // click row to expand
             noDataTemplate: '/(ㄒoㄒ)/~~ 没有找到亲要的数据哦~',
             disableRow(data, index) { return false },
             sort: {},
             groups: {},
             resizable: false,
+            expand: undefined, // expand template callback
+            expandedKeys: [], 
 
             _padding: 0,
             _disabledAmount: 0,
@@ -165,12 +168,17 @@ export default class extends Intact {
         }
     }
 
-    _rowCheck(value, index, e) {
+    _clickRow(value, index, e) {
         // if is from checkbox or radio then do nothing
         if (e.target.tagName.toLowerCase() === 'input') return;
+        if (this.get('disableRow').call(this, value, index)) return;
 
         if (this.get('rowCheckable')) {
             this._checkUncheckRow(value, index);
+        }
+
+        if (this.get('rowExpandable')) {
+            this._expandShrinkRow(value, index); 
         }
     }
 
@@ -183,8 +191,6 @@ export default class extends Intact {
     }
 
     _checkUncheckRow(value, index, isCheck = false, isToggle = true) {
-        if (this.get('disableRow').call(this, value, index)) return;
-
         const checkType = this.get('checkType');
         const key = this.get('rowKey').call(this, value, index);
         if (checkType === 'checkbox') {
@@ -199,6 +205,25 @@ export default class extends Intact {
             }
         } else if (checkType === 'radio') {
             this.set('checkedKey', key);
+        }
+    }
+
+    _shrinkRow(value, index) {
+        this._expandShrinkRow(value, index, false, false);
+    }
+
+    _expandShrinkRow(value, index, isExpand = false, isToggle = true) {
+        if (typeof this.get('expand') !== 'function') return;
+
+        const key = this.get('rowKey').call(this, value, index);
+        const expandedKeys = this.get('expandedKeys').slice(0);
+        const i = expandedKeys.indexOf(key);
+        if ((!isExpand || isToggle) && i > -1) {
+            expandedKeys.splice(i, 1);
+            this.set('expandedKeys', expandedKeys);
+        } else if (isExpand || isToggle) {
+            expandedKeys.push(key);
+            this.set('expandedKeys', expandedKeys);
         }
     }
 

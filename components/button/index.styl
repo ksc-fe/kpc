@@ -111,8 +111,8 @@ sizes = small mini
 .k-btns
     display inline-block
     vertical-align middle
-    > .k-btn
-        margin 0
+    .k-btn
+        margin 0 !important
         &:hover
             z-index 1
             position relative
@@ -121,7 +121,7 @@ sizes = small mini
     &:not(.k-vertical)
         > .k-btn
             &:not(:first-of-type)
-                margin-left -1px
+                margin-left -1px !important
                 &:not(:last-of-type)
                     border-radius 0
             &:not(:only-of-type):first-of-type
@@ -143,7 +143,7 @@ sizes = small mini
             &:not(.k-btn-icon)
                 width 100%
             &:not(:first-of-type)
-                margin-top -1px
+                margin-top -1px !important
                 &:not(:last-of-type)
                     border-radius 0
             &:not(:only-of-type):first-of-type

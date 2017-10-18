@@ -1,15 +1,17 @@
 const Checkbox = require('../checkbox');
 const Radio = require('../radio');
+const Row = require('./row');
 
 const {
     checkType, scheme, checkedKeys, data, rowKey, 
     className, fixHeader, noDataTemplate, disableRow,
-    groups, resizable
+    groups, resizable, expand, expandedKeys
 } = self.get();
 
 let colSpan = checkType === 'checkbox' || checkType === 'radio' ? 1 : 0;
+const expandable = typeof expand === 'function';
 
-const thead = () => <thead>
+const theadCreator = () => <thead>
     <tr>
         <th v-if={{ checkType === 'checkbox' }} class="k-th-check">
             <Checkbox value={{ self.isCheckAll() }}
@@ -51,14 +53,17 @@ const thead = () => <thead>
     </tr>
 </thead>
 
+const thead = theadCreator();
+
 const tbody = <tbody>
     {{ data && data.length ? 
         __u.map(data, (value, index) => {
             const key = rowKey.call(self, value, index);
             const disabled = disableRow.call(self, value, index);
-            return <tr key={{ key }}
-                ev-click={{ self._rowCheck.bind(self, value, index) }}
+            const tr = <Row key={{ key }}
+                ev-click={{ self._clickRow.bind(self, value, index) }}
                 class={{ {'k-disabled': disabled} }}
+                ev-$destroyed={{ self._shrinkRow.bind(self, value, index) }}
             >
                 <td v-if={{ checkType === 'checkbox' }}>
                     <Checkbox v-model="checkedKeys" name="k-table-checkbox"
@@ -95,7 +100,18 @@ const tbody = <tbody>
                         td : undefined 
                     }}>{{ td }}</td>
                 }) }}
-            </tr>
+            </Row>;
+
+            if (expandable && expandedKeys.indexOf(key) > -1) {
+                return [
+                    tr,
+                    <tr class="k-expand" key={{ `${key}.expand` }}>
+                        <td colspan={{ colSpan }}>{{ expand.call(self, value, index) }}</td>
+                    </tr>
+                ]
+            } else {
+                return tr;
+            }
         }) :
         <tr key="table_no_data">
             <td colspan={{ colSpan }} class="k-no-data">
@@ -108,7 +124,7 @@ const tbody = <tbody>
 const table = <table class={{ {'k-table': true, [className || '']: true} }}
     ref={{ dom => self.table = dom }}
 >
-    {{ thead() }}
+    {{ thead }}
     {{ tbody }}
 </table>
 
@@ -118,7 +134,7 @@ const table = <table class={{ {'k-table': true, [className || '']: true} }}
         ref={{ dom => self.header = dom }}
     >
         <table class={{ {'k-table': true, [className || '']: true} }}>
-            {{ thead() }}
+            {{ theadCreator() }}
         </table>
     </div>
     {{ fixHeader ? 

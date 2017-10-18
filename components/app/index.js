@@ -17,6 +17,10 @@ export default class extends Intact {
     render(Page, data) {
         return new Promise((resolve, reject) => {
             const page = new Page(data);
+            // for debug
+            if (process.browser) {
+                window.__page = page;
+            }
             page.$app = this;
             if (page.inited) {
                 this.set('view', page);

@@ -8,6 +8,7 @@ const scheme = {
 
 <div>
     <Button ev-click={{ self.remove.bind(self) }}>remove the last row</Button>
+    <Button ev-click={{ self.add.bind(self) }}>add the last row</Button>
     <Button ev-click={{ self.getCheckedData.bind(self) }}>get checked data</Button>
     <Table data={{ self.get('data') }} scheme={{ scheme }} ref={{ i => self.table = i }}/>
 
@@ -68,5 +69,8 @@ const scheme = {
         } }}
         resizable
         fixHeader="300"
+        expand={{ (data) => {
+            return <div>{{ JSON.stringify(data) }}</div>
+        } }}
     />
 </div>
