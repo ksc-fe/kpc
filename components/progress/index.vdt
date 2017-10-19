@@ -43,7 +43,7 @@ const classNameObj = {
     </svg>
     <div class='k-text' v-if={{ showText }}>
         <span v-if={{ status !== 'success' && status !== 'error' }}> {{ percent }}%</span>
-        <span v-if={{ status === 'success' }}>100%</span>
-        <span v-if={{ status === 'error' }}></span>
+        <span v-else-if={{ status === 'success' }}>100%</span>
+        <span v-else-if={{ status === 'error' }}></span>
     </div>
 </div>

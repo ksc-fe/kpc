@@ -2,7 +2,7 @@
  * Created by sylvia on 2017/10/16.
  */
 import template from './index.vdt';
-import './index.styl'
+import './index.styl';
 
 export default class extends Intact{
     get template() { return template; }
@@ -10,7 +10,7 @@ export default class extends Intact{
     defaults() {
         return {
             type: 'bar',
-            percent: 70, //[0~100]
+            percent: 70, //[0~100
             size: 'default', // small mini
             showText: true,
             innerText: false, // FIXME: 布尔型取值用is开头 isShowInnerText 见README
