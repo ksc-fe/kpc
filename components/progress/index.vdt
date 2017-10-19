@@ -1,7 +1,7 @@
 const {
     type, className, percent, status, size, 
     showText, innerText, ref, key, strokeWidth,
-    ...rest
+    children, ...rest
 } = self.get();
 
 const classNameObj = {
@@ -41,7 +41,8 @@ const classNameObj = {
             ]
         } }}
     </svg>
-    <div class='k-text' v-if={{ showText }}>
+    <div class="k-text" v-if={{ children }}>{{ children }}</div>
+    <div class="k-text" v-else-if={{ showText }}>
         <span v-if={{ status !== 'success' && status !== 'error' }}>{{ percent }}%</span>
         <span v-if={{ status === 'success' }}>100%</span>
         <span v-if={{ status === 'error' }}></span>
