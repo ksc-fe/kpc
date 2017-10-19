@@ -47,15 +47,9 @@ export default new Router([
         }
     },
     {
-        path: '/components/slider',
+        path: 'components/select',
         action: async () => {
-            return {Page: await import('pages/slider')}
-        }
-    },
-    {
-        path: '/components/spinner',
-        action: async () => {
-            return {Page: await import('pages/spinner')}
+            return {Page: await import('pages/select')}
         }
     }
 
