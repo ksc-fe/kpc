@@ -14,9 +14,9 @@ const classNameObj = {
 
 <div class={{ classNameObj }}>
     <div class="k-container" v-if={{ type === 'bar' }}>
-        <div  class='k-content'>
+        <div  class="k-content">
             <div class="k-bg" style={{ {width: percent + '%'} }}>
-                <div class='k-inner-text' v-if={{ isInnerText }}>
+                <div class="k-inner-text" v-if={{ isInnerText }}>
                     {{ percent }} %
                 </div>
             </div>

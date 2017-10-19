@@ -4,11 +4,14 @@ const Button = require('components/button');
 
 <div class='progress-demo'>
     <div class='progress-container'>
-        <Progress percent={{ self.get('percent') }}></Progress>
+        <Progress percent={{ self.get('percent') }} size="mini"></Progress>
+        <Progress percent={{ self.get('percent') }} ></Progress>
+        <Progress percent={{ self.get('percent') }} size="small"></Progress>
+        <Progress percent={{ self.get('percent') }} isInnerText ></Progress>
     </div>
     <div class='k-btns'>
-        <Button size='mini' class='k-btn' type="default" ev-click={{self.add.bind(self)}}>+</Button>
-        <Button size='mini' class='k-btn' type="default" ev-click={{self.min.bind(self)}}>-</Button>
+        <Button size="mini" class="k-btn" type="default" ev-click={{self.add.bind(self)}}>+</Button>
+        <Button size="mini" class="k-btn" type="default" ev-click={{self.min.bind(self)}}>-</Button>
     </div>
 
     <Progress percent={{ self.get('percent') }} type="circle" />

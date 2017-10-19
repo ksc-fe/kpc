@@ -9,6 +9,7 @@ sizes = mini small
     // bar
     &.k-bar
         display flex
+        align-items center
         .k-container
             height $progress-height
             border-radius $progress-height
@@ -17,8 +18,7 @@ sizes = mini small
             position relative
             vertical-align middle
             font-size $progress-innertext-font-size
-            display inline-block
-            width: 100%
+            flex 1
         .k-content
             position relative
             left 0
@@ -50,19 +50,20 @@ sizes = mini small
                 background $progress-error-color
 
         // size
-        &.k-mini
-            height  $progress-mini-height
-            font-size $progress-mini-font-size
-        &.k-small
-            height $progress-small-height
-            font-size $progress-small-font-size
+        for size in sizes
+            &.k-{size}
+                font-size lookup('$progress-' + size + '-font-size')
+                .k-container
+                    height lookup('$progress-' + size + '-height')
+
+
+
 
         .k-text
-            display inline-block
             margin-left 15px
-            line-height 1
-            vertical-align middle
-            color $progress-font-color
+            width $progress-text-width
+
+
 
     // circle
     &.k-circle
