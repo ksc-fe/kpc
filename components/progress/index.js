@@ -13,7 +13,7 @@ export default class extends Intact{
             percent: 70, //[0~100
             size: 'default', // small mini
             isOuterText: true,
-            isInnerText: true, // FIXME: 布尔型取值用is开头 isShowInnerText 见README
+            isInnerText: false, // FIXME: 布尔型取值用is开头 isShowInnerText 见README
             status: 'normal', // success | error | active | normal
             strokeWidth: 10, 
         };
