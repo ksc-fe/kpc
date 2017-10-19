@@ -3,7 +3,9 @@ const Button = require('components/button');
 
 
 <div class='progress-demo'>
-    <Progress percent={{ self.get('percent') }}></Progress>
+    <div class='progress-container'>
+        <Progress percent={{ self.get('percent') }}></Progress>
+    </div>
     <div class='k-btns'>
         <Button size='mini' class='k-btn' type="default" ev-click={{self.add.bind(self)}}>+</Button>
         <Button size='mini' class='k-btn' type="default" ev-click={{self.min.bind(self)}}>-</Button>
@@ -22,4 +24,5 @@ const Button = require('components/button');
             上传完成
         </div>
     </Progress>
+
 </div>

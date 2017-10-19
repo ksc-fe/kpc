@@ -12,8 +12,8 @@ export default class extends Intact{
             type: 'bar',
             percent: 70, //[0~100
             size: 'default', // small mini
-            showText: true,
-            innerText: false, // FIXME: 布尔型取值用is开头 isShowInnerText 见README
+            isOuterText: true,
+            isInnerText: true, // FIXME: 布尔型取值用is开头 isShowInnerText 见README
             status: 'normal', // success | error | active | normal
             strokeWidth: 10, 
         };

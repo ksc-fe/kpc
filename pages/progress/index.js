@@ -10,6 +10,7 @@ export default class extends Intact{
     defaults() {
         return {
             percent:20,
+            percentage: 10
         }
     }
 
@@ -32,4 +33,5 @@ export default class extends Intact{
         this.set('percent',percent);
 
     }
+
 }

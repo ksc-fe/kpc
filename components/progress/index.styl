@@ -8,12 +8,7 @@ sizes = mini small
 
     // bar
     &.k-bar
-        .k-canvas
-            padding-right $progress-padding-right
-            display inline-block
-            vertical-align middle
-            width: 100%
-            margin-right $progress-margin-right
+        display flex
         .k-container
             height $progress-height
             border-radius $progress-height
@@ -22,6 +17,8 @@ sizes = mini small
             position relative
             vertical-align middle
             font-size $progress-innertext-font-size
+            display inline-block
+            width: 100%
         .k-content
             position relative
             left 0
@@ -35,7 +32,7 @@ sizes = mini small
             height 100%
             border-radius $progress-height 
             transition $progress-transition
-        .k-innerText
+        .k-inner-text
             display inline-block
             vertical-align middle
             color #ffffff

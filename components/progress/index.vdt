@@ -1,6 +1,6 @@
 const {
     type, className, percent, status, size, 
-    showText, innerText, ref, key, strokeWidth,
+    isOuterText, isInnerText, ref, key, strokeWidth,
     children, ...rest
 } = self.get();
 
@@ -13,13 +13,11 @@ const classNameObj = {
 }
 
 <div class={{ classNameObj }}>
-    <div class="k-canvas" v-if={{ type === 'bar' }}>
-        <div class="k-container">
-            <div  class='k-content'>
-                <div class="k-bg" style={{ {width: percent + '%'} }}>
-                    <div class='k-inner-text' v-if={{ innerText }}>
-                        {{ percent }} %
-                    </div>
+    <div class="k-container" v-if={{ type === 'bar' }}>
+        <div  class='k-content'>
+            <div class="k-bg" style={{ {width: percent + '%'} }}>
+                <div class='k-inner-text' v-if={{ isInnerText }}>
+                    {{ percent }} %
                 </div>
             </div>
         </div>
@@ -42,9 +40,9 @@ const classNameObj = {
         } }}
     </svg>
     <div class="k-text" v-if={{ children }}>{{ children }}</div>
-    <div class="k-text" v-else-if={{ showText }}>
+    <div class="k-text" v-else-if={{ isOuterText }}>
         <span v-if={{ status !== 'success' && status !== 'error' }}>{{ percent }}%</span>
-        <span v-if={{ status === 'success' }}>100%</span>
-        <span v-if={{ status === 'error' }}></span>
+        <span v-else-if={{ status === 'success' }}>100%</span>
+        <span v-else-if={{ status === 'error' }}></span>
     </div>
 </div>
