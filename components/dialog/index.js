@@ -26,8 +26,38 @@ export default class extends Intact {
         this._escClose = this._escClose.bind(this);
     }
 
-    _mount() {
+    _create() {
+        // use as component
+        if (this.parentVNode) {
+            this._useAsComponent = true;
+        }
+    }
+
+    _mount(lastVNode, nextVNode) {
+        // for debug
+        window.__dialog = this;
+
+        // move to body
+        if (this._useAsComponent) {
+            const element = this.element;
+            this._placeholder = document.createComment("dialog");
+            this.parentNode = element.parentNode;
+            this.parentNode.replaceChild(this._placeholder, element);
+            document.body.appendChild(element);
+
+            // fake the vNode.dom
+            nextVNode.dom = this._placeholder;
+        }
+
+        this._center();
+
         document.addEventListener('keydown', this._escClose);
+    }
+
+    // fake update method
+    update(...args) {
+        super.update(...args);
+        return this._placeholder;
     }
 
     close() {
@@ -47,7 +77,7 @@ export default class extends Intact {
     show() {
         if (this.get('value')) return;
         // use as component
-        if (this.vdt.vNode && this.vdt.vNode.parentVNode) {
+        if (this._useAsComponent) {
             return this.set('value', true);
         }
         if (this.rendered) {
@@ -76,14 +106,13 @@ export default class extends Intact {
 
     _detectAndRemove() {
         // use as instance 
-        if (!this.vdt.vNode.parentVNode) {
+        if (!this._useAsComponent) {
             document.body.removeChild(this.element);
         }
     }
 
     _center() {
-        // for debug
-        window.__dialog__ = this;
+        if (!this.mounted || !this.get('value')) return;
         // move to center
         const body = document.body
         const dialog = this._dialog.element;
@@ -131,8 +160,13 @@ export default class extends Intact {
         }
     }
 
-    _destroy() {
+    _destroy(vNode) {
+        if (this._useAsComponent) {
+            this.parentNode.replaceChild(this.element, this._placeholder);
+            vNode.dom = this.element;
+        }
         document.removeEventListener('keydown', this._escClose);
+        this.close();
         this._dragEnd();
     }
 }
