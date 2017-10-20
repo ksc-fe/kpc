@@ -4,8 +4,9 @@ sizes = mini small
 
 @keyframes progress-bar-animation
     from
-        opacity 0.4
-        width 0
+        opacity 0.2
+        width 1rem
+        margin-left -1rem
     to
         opacity 0
         width 100%
@@ -67,7 +68,8 @@ sizes = mini small
                     right 0
                     left 0
                     background-color #ffffff
-                    animation progress-bar-animation 3s linear infinite
+                    animation progress-bar-animation 2s ease infinite
+                    border-radius 14px
 
         // size
         for size in sizes
@@ -99,7 +101,7 @@ sizes = mini small
             stroke-linecap round
             transition $progress-transition
         .k-animate
-            stroke #fff
+            stroke red
             stroke-linecap round
             transition $progress-transition
             fill none
