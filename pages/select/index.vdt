@@ -1,0 +1,7 @@
+const Select = require('components/select');
+
+<div>
+   <Select title="bb" 
+    value={{ [{ 'text':'星期一', 'value': 'Monday'},{ 'text': '星期二', 'value': 'Thusday'}] }}>
+</Select>
+</div>
