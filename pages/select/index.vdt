@@ -1,7 +1,13 @@
 const Select = require('components/select');
 
 <div>
-   <Select title="bb" 
-    value={{ [{ 'text':'星期一', 'value': 'Monday'},{ 'text': '星期二', 'value': 'Thusday'}] }}>
-</Select>
+    <div style="display:inline-block">
+        <Select title="bb" 
+            data={{ [{ 'text':'星期一', 'value': 'Monday'},{ 'text': '星期二', 'value': 'Thusday'}] }}
+            ev-click={{ self.onClick.bind(self) }}>
+        </Select>
+        <span style="float:right;">You selected value：{{ self.get('value') }}</span>
+            
+    </div>
+    
 </div>

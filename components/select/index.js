@@ -8,23 +8,21 @@ export default class extends Intact{
 
     defaults() {
         return {
-            value:[
+            data:[
                 { text:'北京',value:"beijing" },
                 { text:'上海',value:'shanghai' }
             ],
-            show:false
+            show: false,
+            value:''
         }
     }
 
     _init() {
-        console.log(this.get('test'))
     }
 
-    // toggleDrop(){
-    //     this.set('show',!this.get('show'))
-    // }
-
     onClick(data){
-        console.log(data)
+        this.set('value',data.text)
+        this.trigger('click',data)
+
     }
 }
