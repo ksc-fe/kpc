@@ -20,6 +20,7 @@ const btnRightClass = {
 
 <div class={{ classNameObj }}>
     <button class={{ btnLeftClass }} ev-click={{ self._decrease.bind(self) }}>-</button>
+    <!-- FIXME 注意缩进，input支持v-model，无需设置value -->
         <input type="text" disabled={{ disabled }}
             v-model="value"
             value={{ value }}

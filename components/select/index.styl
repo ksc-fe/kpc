@@ -1,11 +1,13 @@
 @require('./variables.styl');
 
 .k-select
+    // FIXME 可变属性值，应该提取成变量
     width 200px
     display inline-block
     height 32px
     border 1px solid #d9d9d9
     cursor pointer
+    // FIXME 样式名尽量简短，k-input即可，无需再加select限定，因为前面k-select已经限定了命名空间
     .k-select-input
         font-size $select-input-font
         padding $select-padding

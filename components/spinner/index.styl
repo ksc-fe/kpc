@@ -2,12 +2,14 @@
 
 .k-spinner
     display inline-block
+    // FIXME 尽量不要使用标签选择器，class选择器性能更高
     button
         color $spinner-button-color
         font-weight 200
         border 1px solid $spinner-button-border-color
         background-color $spinner-button-bg-color
         outline 0
+        // FIXME 对于可变属性，应该提取成统一变量
         height 32px
         width 34px
         float left
@@ -30,6 +32,7 @@
         padding 0
 
     // disabled
+    // FIXME 设计上两边应该是对称的，所以可以合并来写，节省代码量
     .btn-right-disabled
         background-color $spinner-button-disabled-bg-color
         border-color $spinner-button-disabled-border-color
