@@ -1,0 +1,11 @@
+const Spinner = require('components/spinner');
+
+<div>
+    <Spinner value={{6}} max={{10}} min={{2}}></Spinner>
+    <br/>
+    <Spinner disabled={{ true }}></Spinner>
+    <br/>
+    <Spinner value={{self.get('value')}} max={{5}} min={{1}} 
+    ev-changed={{self.changeValue.bind(self)}}></Spinner>
+    <span>{{"当前值： " + self.get('value')}}</span>
+</div>

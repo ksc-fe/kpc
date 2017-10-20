@@ -1,0 +1,33 @@
+const {
+    className, disabled, max, min, step,
+    children, value, ref, key, ...rest
+} = self.get();
+
+const classNameObj = {
+    'k-spinner': true,
+    [className || '']: true,
+};
+const btnLeftClass = {
+    'btn-left-disabled': disabled || value <= min  || value - min < step,
+    [className || '']: true,
+};
+
+const btnRightClass = {
+    'btn-right-disabled': disabled || value >= max || max - value < step,
+    [className || '']: true,
+};
+
+
+<div class={{ classNameObj }}>
+    <button class={{ btnLeftClass }} ev-click={{ self._decrease.bind(self) }}>-</button>
+        <input type="text" disabled={{ disabled }}
+            v-model="value"
+            value={{ value }}
+            max={{ max }}
+            min={{ min }}
+            step={{ step }}
+            ev-change={{self._changeValue.bind(self)}}
+            {{ ...rest }}
+        />
+    <button class={{ btnRightClass }} ev-click={{ self._increase.bind(self) }}>+</button>
+</div>
