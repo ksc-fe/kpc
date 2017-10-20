@@ -14,14 +14,14 @@ export default class extends Intact{
             size: 'default', // small mini
             isOuterText: true,
             isInnerText: false, // FIXME: 布尔型取值用is开头 isShowInnerText 见README
-            status: 'normal', // success | error | active | normal
+            status: 'active', // success | error | active | normal
             strokeWidth: 10, 
         };
     }
 
     _init() {
         this.on('$change:percent', function(c, percent) {
-            const status = percent === 100 ? 'success' : 'normal';
+            const status = percent === 100 ? 'success' : this.get('status');
             this.set('status', status)
         });
     }

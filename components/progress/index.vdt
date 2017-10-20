@@ -32,10 +32,25 @@ const classNameObj = {
                     stroke-width={{ strokeWidth }}
                 />,
                 <circle class="k-value" cx="60" cy="60" r={{ r }}
-                    stroke-dashoffset={{ circumference * (1 - percent / 100) }} 
+                    stroke-dashoffset={{ circumference * (1 - percent / 100) }}
                     stroke-dasharray={{ circumference }}
                     stroke-width={{ strokeWidth }}
-                />
+                />,
+                <circle class="k-animate" cx="60" cy="60" r={{ r }}
+                    stroke-width={{ strokeWidth }}
+                    stroke-dasharray={{ circumference }}
+                    stroke-dashoffset={{ circumference }}
+                >
+                    <animate
+                        attributeName="stroke-dashoffset"
+                        begin="0s"
+                        dur="2s"
+                        from={{circumference}}
+                        to={{ circumference * (1 - percent / 100)}}
+                        fill="freeze"
+                       >
+                    </animate>
+                </circle>
             ]
         } }}
     </svg>
