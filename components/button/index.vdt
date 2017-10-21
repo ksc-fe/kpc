@@ -19,8 +19,7 @@ const Button = props => {
     }
     // disable button when loading
     if (loading) props.disabled = true;
-    const {children, ...rest} = props;
-    return h(tagName || 'button', rest, children);
+    return h(tagName || 'button', props, props.children);
 };
 
 // hack for loading transition of width
