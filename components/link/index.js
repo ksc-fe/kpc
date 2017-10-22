@@ -10,6 +10,9 @@ export default class Link extends Intact {
     to(e) {
         e.preventDefault();
         this.trigger('click', e);
-        Link.history.push(this.get('href'));
+        const href = this.get('href');
+        if (href != null) {
+            Link.history.push(href);
+        }
     }
 }
