@@ -8,14 +8,14 @@ const classNameObj = {
     [className || '']: true,
 };
 const btnLeftClass = {
-    'spiner-button': true,
-    'spinner-button-disabled': disabled || value <= min  || value - min < step,
+    'k-spiner-button': true,
+    'k-spinner-button-disabled': disabled || value <= min  || value - min < step,
     [className || '']: true,
 };
 
 const btnRightClass = {
-    'spiner-button': true,
-    'spinner-button-disabled': disabled || value >= max || max - value < step,
+    'k-spiner-button': true,
+    'k-spinner-button-disabled': disabled || value >= max || max - value < step,
     [className || '']: true,
 };
 
@@ -24,7 +24,7 @@ const btnRightClass = {
     <!-- FIXME 这里是否利用Button组件更好 -->
     <button class={{ btnLeftClass }} ev-click={{ self._decrease.bind(self) }}>-</button>
     <!-- FIXME 注意缩进，input支持v-model，无需设置value -->
-    <input class="spiner-input" type="text" disabled={{ disabled }}
+    <input class="k-spiner-input" type="text" disabled={{ disabled }}
         v-model="value"
         max={{ max }}
         min={{ min }}

@@ -1,11 +1,11 @@
 const Spinner = require('components/spinner');
 
 <div>
-    <Spinner value={{6}} max={{10}} min={{0}}></Spinner>
+    <Spinner value={{6}} max={{10}} min={{-10}}></Spinner>
     <br/>
     <Spinner disabled={{ true }}></Spinner>
     <br/>
-    <Spinner value={{4}} min={{-2}}></Spinner>
+    <Spinner value={{4}}></Spinner>
     <br/>
     <Spinner v-model="rangeValue" max={{15}} min={{1}}></Spinner>
     <span>{{"当前值： " + self.get('rangeValue')}}</span>
