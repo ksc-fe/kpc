@@ -3,26 +3,26 @@
 .k-spinner
     display inline-block
     // FIXME 尽量不要使用标签选择器，class选择器性能更高
-    button
+    .spiner-button
         color $spinner-button-color
         font-weight 200
         border 1px solid $spinner-button-border-color
         background-color $spinner-button-bg-color
         outline 0
         // FIXME 对于可变属性，应该提取成统一变量
-        height 32px
-        width 34px
+        height $spinner-button-height
+        width $spinner-button-width
         float left
         cursor pointer
-        &:not(.btn-left-disabled):not(.btn-right-disabled):hover
+        &:not(.spinner-button-disabled):hover
             border-color $spinner-button-hover-border-color
             color $spinner-button-hover-color
             background-color $spinner-button-hover-bg-color
-    input
+    .spiner-input
         background-color $spinner-input-bg-color
         border 1px solid $spinner-input-border-color
-        height 32px
-        width 46px
+        height $spinner-input-height
+        width $spinner-input-width
         text-align center
         float left
         margin 0
@@ -33,14 +33,10 @@
 
     // disabled
     // FIXME 设计上两边应该是对称的，所以可以合并来写，节省代码量
-    .btn-right-disabled
+    .spinner-button-disabled
         background-color $spinner-button-disabled-bg-color
         border-color $spinner-button-disabled-border-color
         color $spinner-button-disabled-color
         cursor not-allowed
-    .btn-left-disabled
-        background-color $spinner-button-disabled-bg-color
-        border-color $spinner-button-disabled-border-color
-        color $spinner-button-disabled-color
-        cursor not-allowed
+
 

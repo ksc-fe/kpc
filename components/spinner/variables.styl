@@ -1,19 +1,24 @@
 @require('../../styles/themes/default.styl')
 
-// FIXME $radio-width?
-$radio-width := 14px
+$spinner-button-width := unit(34 / 14, em)
+$spinner-button-height := unit(32 / 14, em)
+$spinner-input-width := unit(46 / 14, em)
+$spinner-input-height := unit(32 / 14, em)
+
 // FIXME 主体default.styl文件定义的是全局通用变量，每个组件自己的变量，应该定义在各个variable.styl中
 // 然后其他主题文件可以复写这里定义的变量
-$spinner-button-color := $spinner-button-color
-$spinner-button-bg-color := $spinner-button-bg-color
-$spinner-button-border-color := $spinner-button-border-color
-$spinner-input-bg-color := $spinner-input-bg-color 
-$spinner-input-border-color := $spinner-input-border-color
+$spinner-button-color := #333333
+$spinner-button-border-color := #d9d9d9
+$spinner-button-bg-color := #fafafa
 // hover
-$spinner-button-hover-color := $spinner-button-hover-color
-$spinner-button-hover-border-color := $spinner-button-hover-border-color
-$spinner-button-hover-bg-color := $spinner-button-hover-bg-color
+$spinner-button-hover-color := #5faded
+$spinner-button-hover-bg-color := #ebf5fe
+$spinner-button-hover-border-color := #289AF4
 // disabled
-$spinner-button-disabled-color := $spinner-button-disabled-color
-$spinner-button-disabled-border-color := $spinner-disabled-button-border-color
-$spinner-button-disabled-bg-color := $spinner-disabled-button-bg-color
+$spinner-button-disabled-color := #dedede
+$spinner-button-disabled-border-color := #e7e7e7
+$spinner-button-disabled-bg-color := #fafafa
+
+$spinner-input-bg-color := #ffffff
+$spinner-input-border-color := #d9d9d9
+
