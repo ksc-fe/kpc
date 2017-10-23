@@ -13,4 +13,4 @@ history.listen(async ({pathname}, action) => {
     const {Page, data} = await router.resolve({pathname});
     $app.load(Page, data);
 });
-history.push(location);
+history.replace(location);
