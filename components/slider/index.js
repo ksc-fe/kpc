@@ -17,8 +17,18 @@ export default class extends Intact{
             unit: '',
             isShowEnd: true,
             isShowInput: true,
-            step: 1,
+            step: 10,
         }
+    }
+
+    _init() {
+        //如有步长不为1时，调整value值
+       if(this.get('step')!== 1) {
+           let initValue = this.get('value'),
+               step = this.get('step'),
+               value = Math.round(initValue / step) * step;
+           this.set('value', value);
+       }
     }
 
     clickWrapper(e) {
@@ -27,13 +37,14 @@ export default class extends Intact{
             boundingPostion = this.$slider.getBoundingClientRect().left,
             percent = (currentPosition - boundingPostion) / this.$slider.offsetWidth,
             sliderValue = this.get('max') - this.get('min'),
+            step = this.get('step'),
             value;
             if(percent <= 0 ) {
                 value = this.get ('min')
             } else if (percent >= 1) {
                 value = this.get ('max')
             } else {
-                value = sliderValue * percent;
+                value = Math.round(sliderValue * percent / step) * step ;
             }
         if(!this.get('isRange')) {
                 this.set('value', value);
