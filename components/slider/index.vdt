@@ -2,7 +2,7 @@ const {
     value, min, max, className, size,
     disabled, isRange, isInnerText,
     isShowInput, isShowEnd, unit,
-    step,
+    step, ref,
     ...rest
 } = self.get();
 
@@ -16,18 +16,20 @@ const classNameObj = {
 
 
 <div class={{ classNameObj }}>
-    <div class="k-wrapper">
+    <div class="k-wrapper"  ev-click={{ self.clickWrapper.bind(self) }} ref={{ function(comp) {self.$slider= comp;} }}>
         <div class="k-bar"
         style={{ isRange? { width: (value[1] - value[0]) / (max - min) * 100 + '%', left: (value[0] - min) / (max - min) * 100 + '%'}
-            : { width: (value - min) / (max - min) * 100 + '%'}  }}></div>
+            : { width: (value - min) / (max - min) * 100 + '%'} }} ></div>
             <div class="k-button-wrapper"
-                style={{ { left: isRange ?  (value[0] - min) / (max - min) * 100 + '%'  : (value - min) / (max - min) * 100 + '%'} }}>
+                style={{ { left: isRange ?  (value[0] - min) / (max - min) * 100 + '%'  : (value - min) / (max - min) * 100 + '%'} }}
+                ref={{ function(comp) {self.$sliderFirstBtn= comp;} }}>
                     <div class="k-button">
                         <div v-if={{ isInnerText }}>{{ isRange ? value : value[0]}}</div>
                     </div>
             </div>
             <div class="k-button-wrapper"
                  v-if={{ isRange }}
+                 ref={{ function(comp) {self.$sliderSecondBtn= comp;} }}
                  style={{ {left: (value[1] - min) / (max - min) * 100 + '%'} }}>
                     <div class="k-button">
                         <div v-if={{ isInnerText }}>{{ value[1] }}</div>
