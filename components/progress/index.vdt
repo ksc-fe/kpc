@@ -7,7 +7,7 @@ const {
 const classNameObj = {
     'k-progress' : true,
     [`k-${type}`]: type,
-    [className]: className,
+    [className || '']: true,
     [`k-${status}`]: status !== 'normal',
     [`k-${size}`]: size !== 'default',
 }
@@ -44,10 +44,10 @@ const classNameObj = {
                     <animate
                         attributeName="stroke-dashoffset"
                         begin="0s"
-                        dur="2s"
+                        dur="5s"
+                        repeatCount="indefinite"
                         from={{circumference}}
                         to={{ circumference * (1 - percent / 100)}}
-                        fill="freeze"
                        >
                     </animate>
                 </circle>

@@ -1,0 +1,51 @@
+@require('./variables.styl')
+
+sizes = small mini
+
+.k-slider
+    .k-wrapper
+        width 100%
+        height $slider-height
+        background-color $slider-color
+        margin $slider-margin
+        border-radius $slider-height
+        cursor pointer
+        position relative
+        .k-bar
+            background-color $slider-bar-color
+            position absolute
+            height $slider-height
+            border-radius $slider-height
+        .k-button-wrapper
+            height $slider-button-height
+            width @height
+            position absolute
+            transform translateX(-50%)
+            top $slider-button-top
+            text-align center
+            .k-button
+                width 100%
+                height 100%
+                border 2px solid $slider-bar-color
+                border-radius 50%
+                background-color #fff
+            .k-text
+                width 100%
+                height 100%
+                top $slider-button-top
+                position absolute
+                color $slider-bar-color
+        .k-box
+            position absolute
+            top $slider-height
+            padding $slider-box-padding
+            width 100%
+            :last-child
+                float right
+
+
+
+
+
+
+

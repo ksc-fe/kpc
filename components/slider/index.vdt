@@ -1,1 +1,43 @@
-<div> lijia test slider</div>
+const {
+    value, min, max, className, size,
+    disabled, isRange, isInnerText,
+    isShowInput, isShowEnd, unit,
+    step,
+    ...rest
+} = self.get();
+
+const classNameObj = {
+    'k-slider': true,
+    'k-disabled': disabled,
+    [`k-${size}`]: size !== 'default',
+    [className || '']: true,
+}
+
+
+
+<div class={{ classNameObj }}>
+    <div class="k-wrapper">
+        <div class="k-bar"
+        style={{ isRange? { width: (value[1] - value[0]) / (max - min) * 100 + '%', left: (value[0] - min) / (max - min) * 100 + '%'}
+            : { width: (value - min) / (max - min) * 100 + '%'}  }}></div>
+            <div class="k-button-wrapper"
+                style={{ { left: isRange ?  (value[0] - min) / (max - min) * 100 + '%'  : (value - min) / (max - min) * 100 + '%'} }}>
+                    <div class="k-button">
+                        <div v-if={{ isInnerText }}>{{ isRange ? value : value[0]}}</div>
+                    </div>
+            </div>
+            <div class="k-button-wrapper"
+                 v-if={{ isRange }}
+                 style={{ {left: (value[1] - min) / (max - min) * 100 + '%'} }}>
+                    <div class="k-button">
+                        <div v-if={{ isInnerText }}>{{ value[1] }}</div>
+                    </div>
+            </div>
+        <input class="slider-input" v-if={{ isShowInput }} />
+        <div class="k-box" v-if={{ isShowEnd }}>
+            <span>{{ min + unit }} </span>
+            <span> {{max + unit }}</span>
+        </div>
+
+    </div>
+</div>
