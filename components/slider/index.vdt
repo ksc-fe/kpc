@@ -42,8 +42,8 @@ const classNameObj = {
             <span> {{max + unit }}</span>
         </div>
     </div>
-    <div class="k-input-wrapper" v-if={{ isShowInput }}>
-            <Spinner></Spinner>
+    <div class="k-input-wrapper" v-if={{ isShowInput && !isRange }}>
+            <Spinner max={{ max }} min={{ min }} v-model="value" step={{ step }} ></Spinner>
     </div>
 
 </div>

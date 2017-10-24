@@ -12,11 +12,12 @@ export default class extends Intact{
             size: 'default',// default | small | mini
             max: 100,
             min: 0,
-            value: [20, 50],
-            isRange: true,
+            value: 30,
+            isRange: false,
             unit: '',
             isShowEnd: true,
-            isShowInput: true
+            isShowInput: true,
+            step: 1,
         }
     }
 
