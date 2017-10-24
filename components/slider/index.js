@@ -15,7 +15,8 @@ export default class extends Intact{
             value: [20, 50],
             isRange: true,
             unit: '',
-            isShowEnd: true
+            isShowEnd: true,
+            isShowInput: true
         }
     }
 

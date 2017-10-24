@@ -3,13 +3,17 @@
 sizes = small mini
 
 .k-slider
+    position relative
+    display flex
     .k-wrapper
-        width 100%
         height $slider-height
         background-color $slider-color
         border-radius $slider-height
         cursor pointer
         position relative
+        display inline-block
+        flex 1
+        margin-right $slider-margin
         .k-bar
             background-color $slider-bar-color
             position absolute
@@ -42,6 +46,12 @@ sizes = small mini
             width 100%
             :last-child
                 float right
+    &.k-slider-input
+        .k-input-wrapper
+            float right
+            margin-top -0.75rem
+
+
 
 
 

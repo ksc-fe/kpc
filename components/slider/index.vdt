@@ -5,13 +5,15 @@ const {
     step, ref,
     ...rest
 } = self.get();
-
+const Spinner = require('components/spinner')
 const classNameObj = {
     'k-slider': true,
     'k-disabled': disabled,
     [`k-${size}`]: size !== 'default',
     [className || '']: true,
-}
+    'k-slider-input': isShowInput
+};
+
 
 
 
@@ -35,11 +37,13 @@ const classNameObj = {
                         <div v-if={{ isInnerText }}>{{ value[1] }}</div>
                     </div>
             </div>
-        <input class="slider-input" v-if={{ isShowInput }} />
         <div class="k-box" v-if={{ isShowEnd }}>
             <span>{{ min + unit }} </span>
             <span> {{max + unit }}</span>
         </div>
-
     </div>
+    <div class="k-input-wrapper" v-if={{ isShowInput }}>
+            <Spinner></Spinner>
+    </div>
+
 </div>
