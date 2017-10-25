@@ -32,27 +32,32 @@ export default class extends Intact{
     }
 
     clickWrapper(e) {
-        if(this.get('disabled')) return;
+        if (this.get('disabled')) return;
         let currentPosition = e.clientX,
             boundingPostion = this.$slider.getBoundingClientRect().left,
             percent = (currentPosition - boundingPostion) / this.$slider.offsetWidth,
             sliderValue = this.get('max') - this.get('min'),
             step = this.get('step'),
             value;
-            if(percent <= 0 ) {
+            if (percent <= 0 ) {
                 value = this.get ('min')
             } else if (percent >= 1) {
                 value = this.get ('max')
             } else {
                 value = Math.round(sliderValue * percent / step) * step ;
             }
-        if(!this.get('isRange')) {
+        if (!this.get('isRange')) {
                 this.set('value', value);
         } else {
             let leftBtnPosition = this.$sliderFirstBtn.getBoundingClientRect().left,
                 rightBtnPosition = this.$sliderSecondBtn.getBoundingClientRect().left,
                 valueArr = this.get('value');
-            Math.abs(leftBtnPosition - currentPosition) <= Math.abs(rightBtnPosition -currentPosition)   ? valueArr[0] = value: valueArr[1] = value;
+            if (Math.abs(leftBtnPosition - currentPosition) <= Math.abs(rightBtnPosition -currentPosition))  {
+                valueArr[0] = value;
+            } else {
+                valueArr[1] = value;
+            }
+
             this.set('value', valueArr);
             this.update();
         }
