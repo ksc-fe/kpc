@@ -12,4 +12,8 @@ export default class extends Intact{
         return {
         }
     }
+
+    stop(val) {
+        console.log(val);
+    }
 }

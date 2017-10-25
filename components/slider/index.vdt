@@ -2,7 +2,7 @@ const {
     value, min, max, className, size,
     disabled, isRange, isInnerText,
     isShowInput, isShowEnd, unit,
-    step, ref,
+    step, ref, _isDragging,
     ...rest
 } = self.get();
 const Spinner = require('components/spinner')
@@ -11,7 +11,8 @@ const classNameObj = {
     'k-disabled': disabled,
     [`k-${size}`]: size !== 'default',
     [className || '']: true,
-    'k-slider-input': isShowInput
+    'k-slider-input': isShowInput,
+    'k-isDragging': _isDragging
 };
 
 
@@ -24,7 +25,8 @@ const classNameObj = {
             : { width: (value - min) / (max - min) * 100 + '%'} }} ></div>
             <div class="k-button-wrapper"
                 style={{ { left: isRange ?  (value[0] - min) / (max - min) * 100 + '%'  : (value - min) / (max - min) * 100 + '%'} }}
-                ref={{ function(comp) {self.$sliderFirstBtn= comp;} }}>
+                ref={{ function(comp) {self.$sliderFirstBtn= comp;} }}
+                ev-mousedown={{ self.onDragBtn.bind(self) }}>
                     <div class="k-button">
                         <div v-if={{ isInnerText }}>{{ isRange ? value : value[0]}}</div>
                     </div>
@@ -43,7 +45,7 @@ const classNameObj = {
         </div>
     </div>
     <div class="k-input-wrapper" v-if={{ isShowInput && !isRange }}>
-            <Spinner max={{ max }} min={{ min }} v-model="value" step={{ step }} ></Spinner>
+            <Spinner max={{ max }} min={{ min }} v-model="_inputValue" step={{ step }} ></Spinner>
     </div>
 
 </div>
