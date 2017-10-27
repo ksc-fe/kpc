@@ -87,7 +87,7 @@ export default class extends Intact {
         // use as instance or use as component but it has be destroyed
         // then remove the element
         if (!this._useAsComponent || this._useAsComponent && this.destroyed) {
-            document.body.removeChild(this.wrapper);
+            this.vdt.vNode.children.$destroy();
         }
     }
 
@@ -141,12 +141,13 @@ export default class extends Intact {
         }
     }
 
-    _destroy(vNode) {
+    _destroy() {
         document.removeEventListener('keydown', this._escClose);
         if (this.get('value')) {
             this.close();
         } else {
-            document.body.removeChild(this.wrapper);
+            // this.vdt.vNode.children === MoveWrapper
+            this.vdt.vNode.children.$destroy();
         }
         this._dragEnd();
     }

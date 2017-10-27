@@ -31,12 +31,13 @@ export default class MoveWrapper extends Intact {
 
     destroy(...args) {
         if (this.get('autoDestroy')) {
-            this.container.removeChild(this.element);
-            return super.destroy(...args);
+            this.$destroy(...args);
         }
-        this.destroyed = true;
-        this.trigger('$destroyed', this);
-        this.off();
+    }
+
+    $destroy(...args) {
+        this.container.removeChild(this.element);
+        super.destroy(...args);
     }
 
     _mount(lastVNode, nextVNode) {
