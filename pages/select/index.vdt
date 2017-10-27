@@ -1,13 +1,50 @@
 const Select = require('components/select');
 
 <div>
+    
     <div style="display:inline-block">
-        <Select title="bb" 
+        <span style="float:left;text-align:center;width:100px">标准：</span>
+        <Select
             data={{ [{ 'text':'星期一', 'value': 'Monday'},{ 'text': '星期二', 'value': 'Thusday'}] }}
             ev-click={{ self.onClick.bind(self) }}>
         </Select>
-        <span style="float:right;">You selected value：{{ self.get('value') }}</span>
-            
+        <span style="float:right;">You selected value：{{ self.get('value') }}</span>       
+    </div>
+    <br>
+    
+    <div style="display:inline-block;margin-top:10px;">
+        <span style="float:left;text-align:center;width:100px">禁止所有：</span>
+        <Select
+            disabled
+            data={{ [{ 'text':'星期一', 'value': 'Monday'},{ 'text': '星期二', 'value': 'Thusday'}] }}
+            ev-click={{ self.onClick.bind(self) }}>
+        </Select>     
+    </div>
+    <br>
+    <div style="display:inline-block;margin-top:10px;">
+        <span style="float:left;text-align:center;width:100px">禁止某一项：</span>
+        <Select
+            data={{ [{ 'text':'星期一', 'value': 'Monday'},{ 'text': '星期二', 'value': 'Thusday','disabled':true},{'text':'星期三','value':'Wednesday'}] }}
+            ev-click={{ self.onClick.bind(self) }}>
+        </Select>     
+    </div>
+    <br>
+    <div style="display:inline-block;margin-top:10px;">
+            <span style="float:left;text-align:center;width:100px">删除已选项：</span>
+            <Select
+                clearable
+                data={{ [{ 'text':'星期一', 'value': 'Monday'},{ 'text': '星期二', 'value': 'Thusday'},{'text':'星期三','value':'Wednesday'}] }}
+                ev-click={{ self.onClick.bind(self) }}>
+            </Select>     
+    </div>
+    <br>
+    <div style="display:inline-block;margin-top:10px;">
+            <span style="float:left;text-align:center;width:100px">支持多选项：</span>
+            <Select
+                multiple
+                data={{ [{ 'text':'星期一', 'value': 'Monday'},{ 'text': '星期二', 'value': 'Thusday'},{'text':'星期三','value':'Wednesday'}] }}
+                ev-click={{ self.onClick.bind(self) }}>
+            </Select>     
     </div>
     
 </div>

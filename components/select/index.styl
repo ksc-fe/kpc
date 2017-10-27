@@ -2,35 +2,55 @@
 
 .k-select
     // FIXME 可变属性值，应该提取成变量
-    width 200px
+    width $select-wrapper-width
     display inline-block
-    height 32px
-    border 1px solid #d9d9d9
+    height $select-wrapper-height
     cursor pointer
     // FIXME 样式名尽量简短，k-input即可，无需再加select限定，因为前面k-select已经限定了命名空间
-    .k-select-input
+    .k-input
         font-size $select-input-font
         padding $select-padding
         height 100%
+        border 1px solid $disabled-border-color
+        &:hover
+            border-color $selected-status
+            /* box-shadow 0 0 0 2px rgba(45,140,240,.2)    */
     .k-icon
         border-left 5px solid transparent
         border-right 5px solid transparent
         border-top 5px solid #595959
         margin-top $select-arrow-m-t
+        float right   
+    .disabled
+        cursor not-allowed  
+        border-color #d9d9d9 !important
+        color $disabled-color
+        bacground-color $disabled-bg-color
+    .li-seleced
+        color $selected-status
+    .li-disabled
+        background-color $disabled-bg-color
+        color $disabled-color
+        cursor not-allowed
+    .clear-icon
         float right
-.k-select-dropdown
-    .animate-enter
-    .animate-leave 
-        opacity 0
-        transform translateY(-1px)
-    .animate-enter-active
-    .animate-leave-active 
-        transition: all 0.4s
-    .k-select-list
-        border 1px solid #d9d9d9
-        li
-            padding $select-li-margin
-            border-top 0px 
-            &:hover    
-                background #f8f8f9
+        margin-right $select-icon-m-r
+        &:hover      
+            color $selected-status
+    .k-dropdown
+        .animate-enter
+        .animate-leave 
+            opacity 0
+            transform translateY(-1px)
+        .animate-enter-active
+        .animate-leave-active 
+            transition: all 0.4s
+        .k-list
+            border 1px solid $disabled-border-color
+            border-top 0px
+            li
+                padding $select-li-margin
+                border-top 0px 
+                &:hover    
+                    background #f8f8f9
     

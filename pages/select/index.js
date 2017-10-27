@@ -8,8 +8,6 @@ export default class extends Intact {
             value:''
         }
     }  
-    _init(){
-    }
     onClick(data){
         this.set('value',data.text)
     }

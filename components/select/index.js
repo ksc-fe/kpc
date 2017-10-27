@@ -9,20 +9,23 @@ export default class extends Intact{
     defaults() {
         return {
             data:[
-                { text:'北京',value:"beijing" },
-                { text:'上海',value:'shanghai' }
+                { text:'北京',value: 'beijing' },
+                { text:'上海',value: 'shanghai' },
+                { text:'东京', value: 'dongjing',disabled:true }
             ],
             show: false,
-            value:''
+            value:'',
+            disabled:false,
+            clearable:false, //删除按钮
+            multiple:false, //支持多选li
         }
     }
 
-    _init() {
-    }
-
     onClick(data){
-        this.set('value',data.text)
-        this.trigger('click',data)
-
+        if(data.disabled){
+            return 
+        }
+        this.set('value',data);
+        this.trigger('click',data);
     }
 }

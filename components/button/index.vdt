@@ -1,7 +1,6 @@
 let {type, className, size, icon, circle, ref, key,
     tagName, fluid, children, loading, ...rest
 } = self.get();
-
 const classNameObj = {
     'k-btn': true,
     [`k-${type}`]: type !== 'default',
