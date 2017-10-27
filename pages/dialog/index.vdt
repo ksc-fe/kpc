@@ -1,7 +1,7 @@
 const Dialog = require('components/dialog');
 const Button = require('components/button');
 
-<div>
+<div class="wrapper">
     <div v-if={{ self.get('test') }}>test</div>
     <Button ev-click={{ self.showDialog.bind(self, 'isShow') }}>Show</Button>
     <Button ev-click={{ self.showDialog.bind(self, 'isShowSmall') }}>Show small</Button>

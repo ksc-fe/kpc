@@ -37,27 +37,9 @@ export default class extends Intact {
         // for debug
         window.__dialog = this;
 
-        // move to body
-        if (this._useAsComponent) {
-            const element = this.element;
-            this._placeholder = document.createComment("dialog");
-            this.parentNode = element.parentNode;
-            this.parentNode.replaceChild(this._placeholder, element);
-            document.body.appendChild(element);
-
-            // fake the vNode.dom
-            nextVNode.dom = this._placeholder;
-        }
-
         this._center();
 
         document.addEventListener('keydown', this._escClose);
-    }
-
-    // fake update method
-    update(...args) {
-        super.update(...args);
-        return this._placeholder;
     }
 
     close() {
@@ -84,10 +66,7 @@ export default class extends Intact {
             this.set('value', true);
         } else {
             const show = () => {
-                this._initMountedQueue();
                 this.init(); 
-                document.body.appendChild(this.element);
-                this._triggerMountedQueue();
                 this.mount();
                 this.set('value', true);
             }
@@ -104,10 +83,11 @@ export default class extends Intact {
         if (e.keyCode === 27) this.close();
     }
 
-    _detectAndRemove() {
-        // use as instance 
-        if (!this._useAsComponent) {
-            document.body.removeChild(this.element);
+    _leaveEnd() {
+        // use as instance or use as component but it has be destroyed
+        // then remove the element
+        if (!this._useAsComponent || this._useAsComponent && this.destroyed) {
+            document.body.removeChild(this.wrapper);
         }
     }
 
@@ -131,6 +111,7 @@ export default class extends Intact {
         this._y = dialog.offsetTop - e.clientY;
         this._width = dialog.offsetWidth;
         this._height = dialog.offsetHeight;
+
         document.addEventListener('mousemove', this._move);
         document.addEventListener('mouseup', this._dragEnd);
     }
@@ -161,12 +142,12 @@ export default class extends Intact {
     }
 
     _destroy(vNode) {
-        if (this._useAsComponent) {
-            this.parentNode.replaceChild(this.element, this._placeholder);
-            vNode.dom = this.element;
-        }
         document.removeEventListener('keydown', this._escClose);
-        this.close();
+        if (this.get('value')) {
+            this.close();
+        } else {
+            document.body.removeChild(this.wrapper);
+        }
         this._dragEnd();
     }
 }
