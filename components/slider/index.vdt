@@ -1,3 +1,5 @@
+const Spinner = require('components/spinner');
+
 const {
     value, min, max, className, size,
     disabled, isRange, isInnerText,
@@ -5,47 +7,53 @@ const {
     step, ref, _isDragging,
     ...rest
 } = self.get();
-const Spinner = require('components/spinner')
+
 const classNameObj = {
     'k-slider': true,
     'k-disabled': disabled,
     [`k-${size}`]: size !== 'default',
     [className || '']: true,
     'k-slider-input': isShowInput,
-    'k-isDragging': _isDragging
+    'k-dragging': _isDragging
 };
 
-
-
+const sliderWidth = max - min;
 
 <div class={{ classNameObj }}>
-    <div class="k-wrapper"  ev-click={{ self.clickWrapper.bind(self) }} ref={{ function(comp) {self.$slider= comp;} }}>
+    <div class="k-wrapper"  ev-click={{ self.clickWrapper.bind(self) }} ref={{ dom => self.$slider = dom }}>
         <div class="k-bar"
-        style={{ isRange? { width: (value[1] - value[0]) / (max - min) * 100 + '%', left: (value[0] - min) / (max - min) * 100 + '%'}
-            : { width: (value - min) / (max - min) * 100 + '%'} }} ></div>
-            <div class="k-button-wrapper"
-                style={{ { left: isRange ?  (value[0] - min) / (max - min) * 100 + '%'  : (value - min) / (max - min) * 100 + '%'} }}
-                ref={{ function(comp) {self.$sliderFirstBtn= comp;} }}
-                ev-mousedown={{ self.onDragBtn.bind(self) }}>
-                    <div class="k-button">
-                        <div v-if={{ isInnerText }}>{{ isRange ? value : value[0]}}</div>
-                    </div>
+            style={{ isRange ?
+                {
+                    width: Math.abs(value[1] - value[0]) / sliderWidth * 100 + '%',
+                    left: (Math.min(value[0],value[1]) - min) / sliderWidth * 100 + '%'
+                } :
+                { width: (value - min) / sliderWidth * 100 + '%'}
+            }}
+        ></div>
+        <div class="k-button-wrapper"
+            style={{ { left: isRange ?  (Math.min(value[0],value[1]) - min) / sliderWidth * 100 + '%'  : (value - min) / sliderWidth * 100 + '%'} }}
+            ref={{ dom => self.$sliderFirstBtn = dom }}
+            ev-mousedown={{ isRange ? self.onDragFirstBtn.bind(self) : self.onDragBtn.bind(self)}}>
+                <div class="k-button">
+                    <div v-if={{ isInnerText }}>{{ isRange ? value : value[0]}}</div>
+                </div>
+        </div>
+        <div class="k-button-wrapper"
+             v-if={{ isRange }}
+             ref={{ dom => self.$sliderSecondBtn = dom }}
+             ev-mousedown={{ self.onDragSecondBtn.bind(self) }}
+             style={{ {left: (Math.max(value[0],value[1]) - min) / sliderWidth * 100 + '%'} }}
+        >
+            <div class="k-button">
+                <div v-if={{ isInnerText }}>{{ value[1] }}</div>
             </div>
-            <div class="k-button-wrapper"
-                 v-if={{ isRange }}
-                 ref={{ function(comp) {self.$sliderSecondBtn= comp;} }}
-                 style={{ {left: (value[1] - min) / (max - min) * 100 + '%'} }}>
-                    <div class="k-button">
-                        <div v-if={{ isInnerText }}>{{ value[1] }}</div>
-                    </div>
-            </div>
+        </div>
         <div class="k-box" v-if={{ isShowEnd }}>
             <span>{{ min + unit }} </span>
-            <span> {{max + unit }}</span>
+            <span>{{ max + unit }}</span>
         </div>
     </div>
     <div class="k-input-wrapper" v-if={{ isShowInput && !isRange }}>
-            <Spinner max={{ max }} min={{ min }} v-model="_inputValue" step={{ step }} ></Spinner>
+        <Spinner max={{ max }} min={{ min }} v-model="_inputValue" step={{ step }} ></Spinner>
     </div>
-
 </div>

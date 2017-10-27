@@ -56,11 +56,13 @@ sizes = big small
             float right
             margin-top -0.75rem
             margin-left $slider-margin
-    &.k-isDragging
+    &.k-dragging
         .k-wrapper
             .k-button
-                &:hover
-                    cursor -webkit-grabbing
+                cursor -webkit-grabbing
+                transform scale(1.5)
+                background-color $slider-bar-color
+
     //for size in sizes
     //    &.k-{size}
     //        .k-wrapper
