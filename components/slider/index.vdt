@@ -4,7 +4,8 @@ const {
     value, min, max, className, size,
     disabled, isRange, isInnerText,
     isShowInput, isShowEnd, unit,
-    step, ref, _isDragging,
+    step, ref, _isDragging, isFirst，
+    isSecond，
     ...rest
 } = self.get();
 
