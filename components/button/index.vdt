@@ -27,8 +27,10 @@ if (!icon && Array.isArray(children)) {
         if (child) {
             if (child.type === 1) {
                 // is a text node
+                // wrap text node with span
                 children[index] = <span>{{ child }}</span>
             }
+            // whether the icon is on the left side or right
             if (index === 0) {
                 if (child.className && child.className.indexOf('icon') > -1) {
                     classNameObj['k-icon-left'] = true;
@@ -41,6 +43,7 @@ if (!icon && Array.isArray(children)) {
         }
     });
 } else if (typeof children === 'string' || typeof children === 'number') {
+    // wrap text node with span
     children = <span>{{ children }}</span>
 }
 
