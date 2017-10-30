@@ -36,7 +36,7 @@ const sliderWidth = max - min;
                 (value[0] - min) / sliderWidth * 100 + '%' :
                 (value - min) / sliderWidth * 100 + '%'} }}
             ref={{ dom => self.$sliderFirstBtn = dom }}
-            ev-mousedown={{ isRange ? self.onDragFirstBtn.bind(self, '_isFirst') : self.onDragBtn.bind(self)}}>
+            ev-mousedown={{ isRange ? self.onRangeBtn.bind(self, '_isFirst') : self.onDragBtn.bind(self)}}>
                 <div class="k-button">
                     <div v-if={{ isInnerText }}>{{ isRange ? value : value[0]}}</div>
                 </div>
@@ -44,7 +44,7 @@ const sliderWidth = max - min;
         <div class={{ {"k-button-wrapper": true, "k-active": _isSecond && value[0] === self._min || _isFirst && value[1] !== self._max} }}
              v-if={{ isRange }}
              ref={{ dom => self.$sliderSecondBtn = dom }}
-             ev-mousedown={{ self.onDragSecondBtn.bind(self, "_isSecond") }}
+             ev-mousedown={{ self.onRangeBtn.bind(self, "_isSecond") }}
              style={{ {left: /*(Math.max(value[0],value[1]) - min)*/ (value[1] - min) / sliderWidth * 100 + '%'} }}
         >
             <div class="k-button">
