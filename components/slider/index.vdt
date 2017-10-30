@@ -36,7 +36,7 @@ const sliderWidth = max - min;
                 (value[0] - min) / sliderWidth * 100 + '%' :
                 (value - min) / sliderWidth * 100 + '%'} }}
             ref={{ dom => self.$sliderFirstBtn = dom }}
-            ev-mousedown={{ isRange ? self.onRangeBtn.bind(self, '_isFirst') : self.onDragBtn.bind(self)}}>
+            ev-mousedown={{ isRange ? self.onRangeBtn.bind(self, '_isFirst') : self.onRangeBtn.bind(self, undefined)}}>
                 <div class="k-button">
                     <div v-if={{ isInnerText }}>{{ isRange ? value : value[0]}}</div>
                 </div>
