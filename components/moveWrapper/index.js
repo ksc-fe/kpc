@@ -12,16 +12,14 @@ export default class MoveWrapper extends Intact {
         }
     }
 
-    init(lastVNode, vNode) {
-        this.placeholder = document.createComment("placeholder");
-        super.init(lastVNode, vNode);
-        return this.placeholder;
+    init(...args) {
+        super.init(...args);
+        return this.placeholder = document.createComment("placeholder");
     }
 
-    hydrate(lastVNode, vNode) {
-        this.placeholder = document.createComment('placeholder');
-        super.hydrate(lastVNode, vNode);
-        return this.placeholder;
+    hydrate(...args) {
+        super.hydrate(...args);
+        return this.placeholder = document.createComment('placeholder');
     }
 
     update(...args) {

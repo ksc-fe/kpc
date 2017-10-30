@@ -1,14 +1,18 @@
+const MoveWrapper = require('../moveWrapper');
+
 <div class="k-select" ev-click={{ self.set.bind(self, 'show', !self.get('show')) }}>
     <div class="k-select-input" >
         <input type="text" hidden>
         <span class="k-select-placeholder"> {{ self.get('value') || '请选择' }} </span>
         <i class="k-icon"></i>
     </div>
-    <div class="k-select-dropdown">
-        <Animate v-if={{ self.get('show') }}> 
-            <ul class="k-select-list">
-                    <li v-for={{ self.get('data') }} ev-click={{ self.onClick.bind(self,value) }}>{{ value.text }}</li>
-                </ul>
-        </Animate>  
-    </div>
+    <MoveWrapper>
+        <div class="k-select-dropdown">
+            <Animate v-if={{ self.get('show') }}> 
+                <ul class="k-select-list">
+                        <li v-for={{ self.get('data') }} ev-click={{ self.onClick.bind(self,value) }}>{{ value.text }}</li>
+                    </ul>
+            </Animate>  
+        </div>
+    </MoveWrapper>
 </div>
