@@ -12,7 +12,7 @@ export default class extends Intact {
             size: 'default',// default | small | mini
             max: 100,
             min: 0,
-            value: [20, 50],
+            value: [50, 80],
             isRange: true,
             unit: '',
             isShowEnd: true,
@@ -43,10 +43,6 @@ export default class extends Intact {
         this.set('_inputValue', this.get('value'));
         this._onSliding = this._onSliding.bind(this);
         this._onSlideEnd = this._onSlideEnd.bind(this);
-        this._onFirstBtnSliding = this._onFirstBtnSliding.bind(this);
-        this._onFinstBtnSlideEnd = this._onFinstBtnSlideEnd.bind(this);
-        this._onSecondBtnSliding = this._onSecondBtnSliding.bind(this);
-        this._onSecondBtnSlideEnd = this._onSecondBtnSlideEnd.bind(this);
         this.on("$change:_inputValue", (c, val) => {
             if (!this.get('_isDragging')) {
                 this.set('value', val);
@@ -81,7 +77,7 @@ export default class extends Intact {
 
     onDragBtn(e) {
         this.set('_isDragging', true);
-        window.addEventListener('mousemove', this._onSliding,);
+        window.addEventListener('mousemove', this._onSliding);
         window.addEventListener('mouseup', this._onSlideEnd)
     }
 
@@ -127,62 +123,68 @@ export default class extends Intact {
         return value;
     }
 
-    onDragFirstBtn(e) {
-        this.set('_isDragging', true);
-        this.set('_btnIndex','first')
-        window.addEventListener('mousemove', this._onFirstBtnSliding,);
-        window.addEventListener('mouseup', this._onFinstBtnSlideEnd)
+    onDragFirstBtn(indexFlag) {
+        this._min = this.get('value')[0];
+        this._max = this.get('value')[1];
+
+        this.set({
+            '_isDragging': true,
+            '_isFirst': true,
+            '_isSecond': false
+        });
+        this._onRangeSliding = this._onRangeSliding.bind(this, indexFlag);
+        this._onRangeSlideEnd = this._onRangeSlideEnd.bind(this,indexFlag);
+
+        window.addEventListener('mousemove', this._onRangeSliding);
+        window.addEventListener('mouseup', this._onRangeSlideEnd);
     }
 
-    _onFirstBtnSliding(e){
-        let tempValue = this._setNewValue(e.clientX, this.get('_isDragging')),
-            valueArr = this.get('value');
-            valueArr[0] = tempValue;
-        this.set('value', valueArr);
+    _onRangeSliding(indexFlag,e){
+        if (this.get('_isSecond')) return;
+        let tempValue = this._setNewValue(e.clientX, this.get('_isDragging'));
+        this.set('value', [Math.min(tempValue, this._max), Math.max(tempValue, this._max)]);
         this.update();
     }
 
-    _onFinstBtnSlideEnd(e){
-        if (this.get('_isDragging')) {
-            this.set('_isDragging', false);
-            this.set('_btnIndex',undefined)
-            let newValue = this._setNewValue(e.clientX, this.get('_isDragging')),
-                valueArr = this.get('value');
-                valueArr[0] = newValue;
-            this.set('value',valueArr);
-            this.trigger('stop', newValue);
-            this.update();
-            window.removeEventListener('mousemove', this._onFirstBtnSliding);
-            window.removeEventListener('mouseup', this._onFinstBtnSlideEnd);
-        }
-
+    _onRangeSlideEnd(e){
+        if (this.get('_isSecond') || !this.get('_isDragging')) return;
+        this.set('_isDragging', false);
+        this.set('_isFirst',false);
+        this.trigger('stop', this.get('value'));
+        window.removeEventListener('mousemove', this._onRangeSliding);
+        window.removeEventListener('mouseup', this._onRangeSlideEnd);
     }
 
-    onDragSecondBtn(e) {
-        this.set('_isDragging', true);
+    onDragSecondBtn(indexFlag) {
+        this._min = this.get('value')[0];
+        this._max = this.get('value')[1];
+        this.set({
+            '_isDragging': true,
+            '_isFirst': false,
+            '_isSecond': true
+        });
+        this._onSecondBtnSliding = this._onSecondBtnSliding.bind(this, indexFlag);
+        this._onSecondBtnSlideEnd = this._onSecondBtnSlideEnd.bind(this,indexFlag);
+
         window.addEventListener('mousemove', this._onSecondBtnSliding,);
         window.addEventListener('mouseup', this._onSecondBtnSlideEnd)
     }
 
-    _onSecondBtnSliding(e){
-        let tempValue = this._setNewValue(e.clientX, this.get('_isDragging')),
-            valueArr = this.get('value');
-        valueArr[1] = tempValue;
-        this.set('value', valueArr);
+    _onSecondBtnSliding(indexFlag,e){
+        if (this.get('_isFirst')) return;
+        let tempValue = this._setNewValue(e.clientX, this.get('_isDragging'));
+        const max = Math.max.apply(Math, [tempValue, this._min]);
+        const min = Math.min.apply(Math, [tempValue, this._min]);
+        this.set('value', [min, max]);
         this.update();
     }
 
     _onSecondBtnSlideEnd(e){
-        if (this.get('_isDragging')) {
-            this.set('_isDragging', false);
-            let newValue = this._setNewValue(e.clientX, this.get('_isDragging')),
-                valueArr = this.get('value');
-            valueArr[1] = newValue;
-            this.set('value',valueArr);
-            this.trigger('stop', newValue);
-            this.update();
-            window.removeEventListener('mousemove', this._onSecondBtnSliding);
-            window.removeEventListener('mouseup', this._onSecondBtnSlideEnd);
-        }
+        if (this.get('_isFirst') || !this.get('_isDragging')) return;
+        this.set('_isDragging', false);
+        this.set('_isSecond',false);
+        this.trigger('stop', this.get('value'));
+        window.removeEventListener('mousemove', this._onSecondBtnSliding);
+        window.removeEventListener('mouseup', this._onSecondBtnSlideEnd);
     }
 }
