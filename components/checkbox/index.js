@@ -37,6 +37,6 @@ export default class extends Intact {
         const trueValue = this.get('trueValue');
         return isArray(value) ? 
             value.indexOf(trueValue) > -1 : 
-            value  === trueValue;
+            value === trueValue;
     }
 }

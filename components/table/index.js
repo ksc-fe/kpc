@@ -43,6 +43,7 @@ export default class extends Intact {
             scheme: {},
             checkType: 'checkbox', // radio | none 
             rowKey(value, index) { return index; },
+            rowClassName(value, index) {  }, // add className for tr
             checkedKeys: [], // for checkbox
             checkedKey: undefined, // for radio
             rowCheckable: true, // click row to check
@@ -96,6 +97,16 @@ export default class extends Intact {
         const disabledAmount = this.get("_disabledAmount");
         const amount = dataLength - disabledAmount;
         return amount && checkedKeys.length === amount; 
+    }
+
+    isChecked(key) {
+        const {checkType, checkedKey, checkedKeys} = this.get();
+        if (checkType === 'checkbox') {
+            return ~checkedKeys.indexOf(key);
+        } else if (checkType === 'radio') {
+            return checkedKey === key;
+        }
+        return false
     }
 
     checkAll() {

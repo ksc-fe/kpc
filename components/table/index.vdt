@@ -6,7 +6,7 @@ const {
     checkType, scheme, checkedKeys, data, rowKey, 
     className, fixHeader, noDataTemplate, disableRow,
     groups, resizable, expand, expandedKeys, type,
-    style
+    style, rowClassName
 } = self.get();
 
 let colSpan = checkType === 'checkbox' || checkType === 'radio' ? 1 : 0;
@@ -61,9 +61,14 @@ const tbody = <tbody>
         __u.map(data, (value, index) => {
             const key = rowKey.call(self, value, index);
             const disabled = disableRow.call(self, value, index);
+            const className = rowClassName.call(self, value, index); 
             const tr = <Row key={{ key }}
                 ev-click={{ self._clickRow.bind(self, value, index, key) }}
-                class={{ {'k-disabled': disabled} }}
+                class={{ {
+                    'k-disabled': disabled,
+                    [className]: className,
+                    'k-checked': self.isChecked(key), 
+                } }}
                 ev-$destroyed={{ self.shrinkRow.bind(self, key) }}
             >
                 <td v-if={{ checkType === 'checkbox' }}>

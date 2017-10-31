@@ -83,5 +83,6 @@ const scheme = {
         fixHeader={{ 300 }}
         type="border"
         style="margin: 20px;"
+        rowClassName={{ (value, index) => index }}
     />
 </div>
