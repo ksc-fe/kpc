@@ -1,0 +1,6 @@
+const Pagination = require('components/pagination');
+
+
+<div>
+    <Pagination total={{ 100 }} current={{ 1 }} size={{ 10 }} opts={{ `[10,20,40,60]` }} />
+</div>

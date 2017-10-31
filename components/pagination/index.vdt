@@ -1,0 +1,37 @@
+const {
+    total, current, size, opts,
+    ...rest
+} = self.get();
+const Select = require('components/select')
+
+const classNameObj = {
+    
+};
+const Page = props => {
+    if (!tagName && props.href) {
+        tagName = 'a';
+    }
+    
+    return h(tagName || 'button', props, props.children);
+};
+
+<div class={{ classNameObj }}>
+    <p>lalalala</p>
+    <div>total: {{self.get('total')}}</div>
+
+    <ul>
+        <li>
+            <a href="javascript:;"></a>
+        </li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>right</li>
+    </ul>
+
+
+    <span>共{{self.get('total')}}条</span>
+
+    
+</div>
