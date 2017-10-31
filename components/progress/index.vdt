@@ -40,16 +40,23 @@ const classNameObj = {
                     stroke-width={{ strokeWidth }}
                     stroke-dasharray={{ circumference }}
                     stroke-dashoffset={{ circumference }}
+                    v-if={{ status === 'active' }}
                 >
                     <animate
                         attributeName="stroke-dashoffset"
                         begin="0s"
-                        dur="5s"
+                        dur="2s"
                         repeatCount="indefinite"
                         from={{circumference}}
                         to={{ circumference * (1 - percent / 100)}}
-                       >
-                    </animate>
+                    ></animate>
+                    <animate attributeName="opacity"
+                        begin="0s"
+                        dur="2s"
+                        repeatCount="indefinite"
+                        from="0.2"
+                        to="0"
+                    ></animate>
                 </circle>
             ]
         } }}

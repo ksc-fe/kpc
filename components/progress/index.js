@@ -20,9 +20,13 @@ export default class extends Intact{
     }
 
     _init() {
-        this.on('$change:percent', function(c, percent) {
-            const status = percent === 100 ? 'success' : this.get('status');
+        this._initStatus = this.get('status');
+        this.on('$change:percent', (c, percent) => {
+            const status = percent === 100 ? 'success' : this._initStatus;
             this.set('status', status)
+        });
+        this.on('$change:status', (c, status) => {
+            if (status !== 'success') this._initStatus = status;
         });
     }
 }
