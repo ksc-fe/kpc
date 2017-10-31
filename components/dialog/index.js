@@ -1,6 +1,7 @@
 import Intact from 'intact';
 import template from './index.vdt';
 import './index.styl';
+import position from '../moveWrapper/position';
 
 export default class extends Intact {
     @Intact.template()
@@ -94,11 +95,12 @@ export default class extends Intact {
     _center() {
         if (!this.mounted || !this.get('value')) return;
         // move to center
-        const body = document.body
-        const dialog = this._dialog.element;
-        const style = dialog.style;
-        style.top = Math.max((body.offsetHeight - dialog.offsetHeight) / 2, 0) + 'px';
-        style.left = Math.max((body.offsetWidth - dialog.offsetWidth) / 2, 0) + 'px';
+        position(this._dialog.element, {of: document.body});
+        // const body = document.body
+        // const dialog = this._dialog.element;
+        // const style = dialog.style;
+        // style.top = Math.max((body.offsetHeight - dialog.offsetHeight) / 2, 0) + 'px';
+        // style.left = Math.max((body.offsetWidth - dialog.offsetWidth) / 2, 0) + 'px';
     }
 
     _dragStart(e) {
