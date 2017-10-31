@@ -7,7 +7,7 @@ const {
 const classNameObj = {
     'k-progress' : true,
     [`k-${type}`]: type,
-    [className || '']: true,
+    [className]: className,
     [`k-${status}`]: status !== 'normal',
     [`k-${size}`]: size !== 'default',
 }
