@@ -26,12 +26,6 @@
         border-color #d9d9d9 !important
         color $disabled-color
         bacground-color $disabled-bg-color
-    .li-seleced
-        color $selected-status
-    .li-disabled
-        background-color $disabled-bg-color
-        color $disabled-color
-        cursor not-allowed
     .clear-icon
         float right
         margin-right $select-icon-m-r
@@ -50,6 +44,12 @@
     .k-list
         border 1px solid $disabled-border-color
         border-top 0px
+        .li-seleced
+            color $selected-status
+        .li-disabled
+            background-color $disabled-bg-color
+            color $disabled-color
+            cursor not-allowed
         li
             padding $select-li-margin
             border-top 0px 
