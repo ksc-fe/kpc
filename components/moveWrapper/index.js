@@ -1,8 +1,9 @@
 import Intact from 'intact';
 
 export default class MoveWrapper extends Intact {
-    template() {
-        return this.data.get('children');
+    template(self, Vdt) {
+        const children = self.get('children');
+        return children || Vdt.miss.hc('MoveWrapper');
     }
 
     defaults() {
@@ -22,8 +23,8 @@ export default class MoveWrapper extends Intact {
         return this.placeholder = document.createComment('placeholder');
     }
 
-    update(...args) {
-        super.update(...args);
+    update(lastVNode, nextVNode) {
+        super.update(lastVNode, nextVNode);
         return this.placeholder;
     }
 

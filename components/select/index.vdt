@@ -8,12 +8,12 @@ const MoveWrapper = require('../moveWrapper');
         <i v-if={{ self.get('clearable') && self.get('value').value }} ev-click={{ self.set.bind(self,'value','') }} class="clear-icon">x</i>
     </div>
     <MoveWrapper>
-        <div class="k-dropdown" ref={{ dom => self._dropdown = dom }}>
-            <Animate v-if={{ !self.get('disabled') && self.get('show') }}> 
-                <ul class="k-list">
-                        <li v-for={{ self.get('data') }} class={{ {'li-seleced': value.value == self.get('value').value,'li-disabled': value.disabled} }} ev-click={{ self.onClick.bind(self,value) }}>{{ value.text }}</li>
-                </ul>
-            </Animate>  
-        </div>
+        <Animate class="k-dropdown" ref={{ dom => self._dropdown = dom }}
+            v-if={{ !self.get('disabled') && self.get('show') }}
+        >
+            <ul class="k-list">
+                <li v-for={{ self.get('data') }} class={{ {'li-seleced': value.value == self.get('value').value,'li-disabled': value.disabled} }} ev-click={{ self.onClick.bind(self,value) }}>{{ value.text }}</li>
+            </ul>
+        </Animate>
     </MoveWrapper>
 </div>

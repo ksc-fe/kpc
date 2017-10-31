@@ -37,7 +37,7 @@ export default class extends Intact{
     }
 
     _position() {
-        this._dropdown.style.width = getComputedStyle(this.element).width;
-        position(this._dropdown, {my: 'left top', at: 'left bottom', of: this.element});
+        this._dropdown.element.style.width = getComputedStyle(this.element).width;
+        position(this._dropdown.element, {my: 'left top', at: 'left bottom', of: this.element});
     }
 }
