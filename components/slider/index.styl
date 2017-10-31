@@ -1,7 +1,5 @@
 @require('./variables.styl')
 
-sizes = big small
-index = first second
 
 .k-slider
     position relative
@@ -27,6 +25,7 @@ index = first second
             position absolute
             height 100%
             border-radius $slider-height
+            transition all 0.3s ease-in-out
         .k-button-wrapper
             height $slider-button-height
             width @height
@@ -34,13 +33,14 @@ index = first second
             transform translateX(-50%)
             top $slider-button-top
             text-align center
+            transition all 0.3s ease-in-out
         .k-button
             width 100%
             height 100%
             border 2px solid $slider-bar-color
             border-radius 50%
             background-color #fff
-            transition all 0.2s linear
+            transition all 0.3s ease-in-out
             &:hover
                 transform scale(1.5)
                 cursor -webkit-grab
@@ -52,18 +52,38 @@ index = first second
             top $slider-button-top
             position absolute
             color $slider-bar-color
+    &.k-dragging
+        .k-bar
+            transition none
+        .k-button-wrapper
+            transition none
+        .k-button
+            transition none
+        .k-active
+            .k-button
+                cursor -webkit-grabbing
+                transform scale(1.5)
+                background-color $slider-bar-color
 
     &.k-slider-input
         .k-input-wrapper
             float right
             margin-top -0.75rem
             margin-left $slider-margin
-        &.k-dragging
-            .k-active
-                .k-button
-                    cursor -webkit-grabbing
-                    transform scale(1.5)
-                    background-color $slider-bar-color
+    &.k-disabled
+        .k-wrapper
+            cursor not-allowed
+        .k-bar
+            background-color $slider-disabled-color
+        .k-button
+            border-color $slider-disabled-color
+            &:hover
+                background-color #fff
+                cursor not-allowed
+                transform none
+
+
+
 
 
 

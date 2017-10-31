@@ -9,17 +9,17 @@ export default class extends Intact {
 
     defaults() {
         return {
-            size: 'default',// default | small | mini
             max: 100,
             min: 0,
-            value: 20,
-            isRange: false,
+            value: [20,50],
+            isRange: true,
             unit: '',
             isShowEnd: true,
             isShowInput: true,
-            step: 5,
+            step: 25,
             _inputValue:0,
-            _isDragging: false
+            _isDragging: false,
+            disabled: true
         }
     }
 
@@ -70,38 +70,7 @@ export default class extends Intact {
             this.set('value', valueArr);
         }
     }
-
-    // onDragBtn(e) {
-    //     this.set('_isDragging', true);
-    //     window.addEventListener('mousemove', this._onSliding);
-    //     window.addEventListener('mouseup', this._onSlideEnd)
-    // }
-    //
-    //
-    //
-    // _onSliding(e) {
-    //     let tempValue = this._setNewValue(e.clientX, this.get('_isDragging')),
-    //         step = this.get('step');
-    //     this.set({
-    //         'value': tempValue,
-    //         '_inputValue': Math.round(tempValue / step) * step
-    //     });
-    //
-    // }
-    // _onSlideEnd(e) {
-    //     if (this.get('_isDragging')) {
-    //         this.set('_isDragging', false, {silent: true});
-    //         let newValue = this._setNewValue(e.clientX, this.get('_isDragging'));
-    //         this.set({
-    //             'value': newValue,
-    //             '_inputValue': newValue,
-    //         });
-    //         this.trigger('stop', newValue);
-    //         window.removeEventListener('mousemove', this._onSliding);
-    //         window.removeEventListener('mouseup', this._onSlideEnd);
-    //     }
-    // }
-
+    
     _setNewValue(startPos, isdragging) {
         let currentPosition = startPos,
             boundingPosition = this.$slider.getBoundingClientRect().left,
@@ -120,6 +89,7 @@ export default class extends Intact {
     }
 
     onRangeBtn(indexFlag) {
+        if (this.get('disabled')) return;
         if (indexFlag) {
             this._min = this.get('value')[0];
             this._max = this.get('value')[1];
@@ -147,6 +117,7 @@ export default class extends Intact {
     }
 
     _onRangeSliding(indexFlag, e){
+        if (this.get('disabled')) return;
         let tempValue = this._setNewValue(e.clientX, this.get('_isDragging'));
         if (indexFlag) {
             if (indexFlag === '_isFirst') {
@@ -167,6 +138,7 @@ export default class extends Intact {
     }
 
     _onRangeSlideEnd(indexFlag, e){
+        if (this.get('disabled')) return;
         if (this.get('_isDragging')) {
             this.set('_isDragging', false, {silent: true});
             let newValue = this._setNewValue(e.clientX, this.get('_isDragging'));

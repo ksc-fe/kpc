@@ -1,7 +1,7 @@
 const Spinner = require('components/spinner');
 
 const {
-    value, min, max, className, size,
+    value, min, max, className,
     disabled, isRange, isInnerText,
     isShowInput, isShowEnd, unit,
     step, ref, _isDragging, _isFirst,
@@ -12,7 +12,6 @@ const {
 const classNameObj = {
     'k-slider': true,
     'k-disabled': disabled,
-    [`k-${size}`]: size !== 'default',
     [className || '']: true,
     'k-slider-input': isShowInput,
     'k-dragging': _isDragging
@@ -57,6 +56,6 @@ const sliderWidth = max - min;
         </div>
     </div>
     <div class="k-input-wrapper" v-if={{ isShowInput && !isRange }}>
-        <Spinner max={{ max }} min={{ min }} v-model="_inputValue" step={{ step }} ></Spinner>
+        <Spinner disabled={{ disabled }} max={{ max }} min={{ min }} v-model="_inputValue" step={{ step }} ></Spinner>
     </div>
 </div>
