@@ -1,6 +1,7 @@
 import Intact from 'intact';
 import template from './index.vdt';
 import './index.styl';
+import position from '../moveWrapper/position';
 
 export default class extends Intact{
     @Intact.template()
@@ -21,11 +22,22 @@ export default class extends Intact{
         }
     }
 
+    _init() {
+        this.on('$changed:show', (c, isShow) => {
+            if (isShow) this._position();
+        });
+    }
+
     onClick(data){
         if(data.disabled){
             return 
         }
         this.set('value',data);
         this.trigger('click',data);
+    }
+
+    _position() {
+        this._dropdown.style.width = getComputedStyle(this.element).width;
+        position(this._dropdown, {my: 'left top', at: 'left bottom', of: this.element});
     }
 }

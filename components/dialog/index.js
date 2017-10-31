@@ -95,7 +95,7 @@ export default class extends Intact {
     _center() {
         if (!this.mounted || !this.get('value')) return;
         // move to center
-        position(this._dialog.element, {of: document.body});
+        position(this._dialog.element);
         // const body = document.body
         // const dialog = this._dialog.element;
         // const style = dialog.style;

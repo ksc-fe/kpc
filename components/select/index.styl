@@ -37,20 +37,22 @@
         margin-right $select-icon-m-r
         &:hover      
             color $selected-status
-    .k-dropdown
-        .animate-enter
-        .animate-leave 
-            opacity 0
-            transform translateY(-1px)
-        .animate-enter-active
-        .animate-leave-active 
-            transition: all 0.4s
-        .k-list
-            border 1px solid $disabled-border-color
-            border-top 0px
-            li
-                padding $select-li-margin
-                border-top 0px 
-                &:hover    
-                    background #f8f8f9
-    
+.k-dropdown
+    position absolute
+    background #fff
+    .animate-enter
+    .animate-leave 
+        opacity 0
+        transform translateY(-1px)
+    .animate-enter-active
+    .animate-leave-active 
+        transition: all 0.4s
+    .k-list
+        border 1px solid $disabled-border-color
+        border-top 0px
+        li
+            padding $select-li-margin
+            border-top 0px 
+            &:hover    
+                background #f8f8f9
+
