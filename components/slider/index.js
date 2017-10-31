@@ -11,15 +11,14 @@ export default class extends Intact {
         return {
             max: 100,
             min: 0,
-            value: [20,50],
-            isRange: true,
+            value: 20,
+            isRange: false,
             unit: '',
             isShowEnd: true,
             isShowInput: true,
-            step: 25,
+            step: 1,
             _inputValue:0,
             _isDragging: false,
-            disabled: true
         }
     }
 

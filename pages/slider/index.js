@@ -10,10 +10,15 @@ export default class extends Intact{
 
     defaults() {
         return {
+            'currentVal': 25,
+            'step': 5,
+            'isShowInput': false,
+            'valueArr': [30, 50],
+            'range': true,
         }
     }
 
     stop(val) {
-        console.log(val);
+       this.set('currentVal', val)
     }
 }
