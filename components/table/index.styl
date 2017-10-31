@@ -54,10 +54,14 @@
     // checkbox or radio
     .k-th-check
         width $table-check-width
+        // FixMe: force checkbox vertical algin
+        .k-checkbox
+            vertical-align 3px
 
     // no data
     .k-no-data
         text-align center
+
 
 .k-table-wrapper
     overflow auto
@@ -74,3 +78,14 @@
         overflow-x hidden
         table
             margin-top $table-fixed-margin-top 
+
+    // type: border
+    &.k-border
+        .k-fixed
+        thead
+            background $table-border-thead-bg-color
+        .k-table
+            border-left $table-border-left
+            border-right $table-border-right
+
+

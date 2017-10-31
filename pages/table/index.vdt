@@ -73,4 +73,15 @@ const scheme = {
             return <div>{{ JSON.stringify(data) }}</div>
         } }}
     />
+
+    <Table
+        resizable
+        data={{ Array.apply(null, {length: 100}).map((item, index) => {
+            return {a: index, b: index};
+        }) }}
+        scheme={{ {a: 'A', b: 'B'} }}
+        fixHeader={{ 300 }}
+        type="border"
+        style="margin: 20px;"
+    />
 </div>

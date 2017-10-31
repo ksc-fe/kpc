@@ -13,14 +13,16 @@ $table-check-width := unit(30 / 14, rem)
 $table-thead-bg-color := linear-gradient(to bottom, #fff, #fafafa)
 $table-thead-color := #3f3f3f
 $table-thead-font-size := unit(16 / 12, em)
-$table-th-padding := unit(12 / 14, rem) unit(5 / 14, rem) unit(12 / 14, rem) unit(12 / 14, rem)
+$table-th-padding := unit(11 / 14, rem) unit(5 / 14, rem) unit(11 / 14, rem) unit(12 / 14, rem)
 $table-th-text-align := left
 $table-th-font-weight := normal
 $table-border-top := 1px solid $table-border-color 
 $table-border-bottom := 1px solid $table-border-color
+$table-border-right := 1px solid $table-border-color 
+$table-border-left := 1px solid $table-border-color
 
 // tbody
-$table-td-padding := $table-th-padding
+$table-td-padding := unit(12 / 14, rem) unit(5 / 14, rem) unit(12 / 14, rem) unit(12 / 14, rem)
 $table-tr-hover-bg-color := #f4f8fb
 
 // fix header
@@ -32,3 +34,6 @@ $table-sort-icon-font-size := unit(12 / 16, em)
 
 // resizable
 $table-resize-width := unit(5 / 16, em)
+
+// type: border
+$table-border-thead-bg-color := #f7f7f7 

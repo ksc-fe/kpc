@@ -9,5 +9,5 @@ const Slider = require('components/slider');
     </div>
     <Slider isShowInput={{ self.get('isShowInput') }}></Slider>
     <Slider isRange={{ self.get('range') }} v-model="valueArr"></Slider>
-    <Slider disabled isRange={{ self.get('range') }} v-model="valueArr"></Slider>
+    <Slider disabled isRange={{ self.get('range') }} value={{ [40, 70] }}></Slider>
 </div>

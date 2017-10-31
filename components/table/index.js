@@ -54,6 +54,7 @@ export default class extends Intact {
             resizable: false,
             expand: undefined, // expand template callback
             expandedKeys: [], 
+            type: 'default', // default border
 
             _padding: 0,
             _disabledAmount: 0,
@@ -257,7 +258,9 @@ export default class extends Intact {
             const index = slice.call(fixThs).indexOf(currentTh);
             this._currentThs.push(ths[index]);
             this._prevThs.push(ths[index - 1]);
-            this._tables.push(this.header.children[0]);
+            // this._tables.push(this.header.children[0]);
+            // if fixHeader we should change the width of header and scroll
+            this._tables = [this.header, this.scroll];
         }
 
         document.addEventListener('mousemove', this._move);
@@ -268,7 +271,7 @@ export default class extends Intact {
         if (this._resizing) {
             const delX = e.clientX - this._x;
             const prevWidth = this._prevThs[0].offsetWidth + delX;
-            const tableWidth = this.table.offsetWidth + delX;
+            const tableWidth = this._tables[0].offsetWidth + delX;
             
             if (prevWidth < MIN_WIDTH) return;
 

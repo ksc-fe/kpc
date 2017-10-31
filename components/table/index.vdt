@@ -5,7 +5,8 @@ const Row = require('./row');
 const {
     checkType, scheme, checkedKeys, data, rowKey, 
     className, fixHeader, noDataTemplate, disableRow,
-    groups, resizable, expand, expandedKeys
+    groups, resizable, expand, expandedKeys, type,
+    style
 } = self.get();
 
 let colSpan = checkType === 'checkbox' || checkType === 'radio' ? 1 : 0;
@@ -121,19 +122,25 @@ const tbody = <tbody>
     }}
 </tbody>
 
-const table = <table class={{ {'k-table': true, [className || '']: true} }}
+const classNameObj = {
+    'k-table-wrapper': true,
+    [className]: className,
+    [`k-${type}`]: type !== 'default',
+};
+
+const table = <table class="k-table"
     ref={{ dom => self.table = dom }}
 >
     {{ thead }}
     {{ tbody }}
 </table>
 
-<div class="k-table-wrapper">
+<div class={{ classNameObj }} style={{ style }}>
     <div v-if={{ fixHeader }} class="k-fixed"
         style={{ {paddingRight: self.get('_padding') + 'px'} }}
         ref={{ dom => self.header = dom }}
     >
-        <table class={{ {'k-table': true, [className || '']: true} }}>
+        <table class="k-table">
             {{ theadCreator() }}
         </table>
     </div>
