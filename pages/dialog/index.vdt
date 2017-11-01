@@ -10,6 +10,15 @@ const Button = require('components/button');
         test {{ JSON.stringify(self.get('test')) }}
     </Dialog>
     <Dialog v-model="isShowSmall" type="small" key="b">
-        small
+        <b:header>
+            <span class="k-title">Custom Title</span>
+        </b:header>
+        
+        small dialog content
+
+        <b:footer>
+            small dialog footer
+            {{ parent() }}
+        </b:footer>
     </Dialog>
 </div>
