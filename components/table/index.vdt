@@ -94,7 +94,7 @@ const tbody = <tbody>
                     } else if (value[key] !== undefined) {
                         td = value[key];
                     } else {
-                        let obj = item,
+                        let obj = value,
                             keys = key.spilt('.'),
                             i = 0;
                         while (obj != null && i < keys.length) {
