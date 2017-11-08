@@ -51,6 +51,24 @@ export default new Router([
         action: async () => {
             return {Page: await import('pages/select')}
         }
+    },        
+    {
+        path: '/components/slider',
+        action: async () => {
+            return {Page: await import('pages/slider')}
+        }
+    },
+    {
+        path: '/components/spinner',
+        action: async () => {
+            return {Page: await import('pages/spinner')}
+        }
+    },
+    {
+        path: '/components/tooltip',
+        action: async () => {
+            return {Page: await import('pages/tooltip')}
+        }
     }
 
 ]);

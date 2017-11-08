@@ -1,7 +1,7 @@
 const Link = require('components/link');
 
 <ul>
-    <li v-for={{ ['button', 'dialog', 'checkbox', 'radio', 'table', 'progress', 'slider', 'spinner'] }}>
+    <li v-for={{ ['button', 'dialog', 'checkbox', 'radio', 'table', 'progress', 'slider','spinner','select', 'tooltip'] }}>
         <Link href={{ `/components/${value}` }}>{{ value }}</Link>
     </li>
 </ul>

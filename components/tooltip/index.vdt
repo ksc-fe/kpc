@@ -1,0 +1,27 @@
+const MoveWrapper = require('../moveWrapper');
+
+const {
+    children, _showToolTip, content,
+    refEvent, ...rest
+} = self.get();
+
+const classNameObj = {
+    'k-tooltip': true
+}
+
+const event = {};
+if (refEvent === 'click') {
+    event['ev-click'] = function() {console.log('click')}
+} else {
+    event['ev-mouseenter'] = self.showPop.bind(self);
+    event['ev-mouseleave'] = self.hidePop.bind(self);
+}
+
+<div class={{ classNameObj }} >
+   <span ref='refer' {{ ...event }}>{{ children }} </span>
+   <MoveWrapper>
+        <div class="k-content" ref="content" v-if={{ _showToolTip }}>{{ content }}
+            <div class="k-arrow"></div>
+        </div>
+   </MoveWrapper>
+</div>

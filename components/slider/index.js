@@ -165,7 +165,10 @@ export default class extends Intact {
             window.removeEventListener('mousemove', this.__onRangeSliding);
             window.removeEventListener('mouseup', this.__onRangeSlideEnd);
         }
+    }
 
+    _destory() {
+        this._onRangeSlideEnd()
     }
 
 }

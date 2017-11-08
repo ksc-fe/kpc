@@ -1,0 +1,8 @@
+const Tooltip = require('components/tooltip');
+const Button = require('components/button');
+
+<div class="tooltip-demo">
+   <Tooltip content="lijia">
+       <Button>test</Button>
+   </Tooltip>
+</div>
