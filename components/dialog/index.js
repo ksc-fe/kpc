@@ -12,7 +12,7 @@ export default class extends Intact {
             title: '提示',
             value: false,
             type: 'default', // default | small
-            fixHeader: false,
+
             _dragging: false,
         }
     }
@@ -63,6 +63,7 @@ export default class extends Intact {
         if (this._useAsComponent) {
             return this.set('value', true);
         }
+        // use as instance
         if (this.rendered) {
             this.set('value', true);
         } else {
@@ -95,12 +96,7 @@ export default class extends Intact {
     _center() {
         if (!this.mounted || !this.get('value')) return;
         // move to center
-        position(this._dialog.element);
-        // const body = document.body
-        // const dialog = this._dialog.element;
-        // const style = dialog.style;
-        // style.top = Math.max((body.offsetHeight - dialog.offsetHeight) / 2, 0) + 'px';
-        // style.left = Math.max((body.offsetWidth - dialog.offsetWidth) / 2, 0) + 'px';
+        position(this.dialog);
     }
 
     _dragStart(e) {
@@ -108,7 +104,7 @@ export default class extends Intact {
         if (e.which !== 1) return;
 
         this.set('_dragging', true);
-        const dialog = this._dialog.element;
+        const dialog = this.dialog;
         this._x = dialog.offsetLeft - e.clientX;
         this._y = dialog.offsetTop - e.clientY;
         this._width = dialog.offsetWidth;
@@ -120,15 +116,15 @@ export default class extends Intact {
 
     _move(e) {
         if (this.get('_dragging')) {
-            const style = this._dialog.element.style;
-            const body = document.body;
+            const style = this.dialog.style;
+            const doc = document.documentElement;
             const left = Math.min(
                 Math.max(this._x + e.clientX, 0),
-                Math.max(body.offsetWidth - this._width, 0)
+                Math.max(doc.clientWidth - this._width, 0)
             );
             const top = Math.min(
                 Math.max(this._y + e.clientY, 0),
-                Math.max(body.offsetHeight - this._height, 0)
+                Math.max(doc.clientHeight - this._height, 0)
             );
             style.left = `${left}px`;
             style.top = `${top}px`;
@@ -148,7 +144,6 @@ export default class extends Intact {
         if (this.get('value')) {
             this.close();
         } else {
-            // this.vdt.vNode.children === MoveWrapper
             this.vdt.vNode.children.$destroy();
         }
         this._dragEnd();

@@ -8,3 +8,4 @@ log/
 views/
 *.pyc
 .babelrc
+test/

@@ -2,7 +2,7 @@ const Button = require('../button');
 const MoveWrapper = require('../moveWrapper');
 
 <MoveWrapper autoDestroy={{ false }}>
-    <div class="k-dialog-wrapper">
+    <div class="k-dialog-wrapper" ref={{ dom => self.$element = dom }}>
         <Animate class="k-overlay" v-if={{ self.get('value') }}></Animate>
         <Animate 
             class={{ {
@@ -11,7 +11,7 @@ const MoveWrapper = require('../moveWrapper');
                 "k-small": self.get('type') === 'small',
                 [self.get('classname') || '']: true,
             } }}
-            ref={{ dom => self._dialog = dom }}
+            ref={{ i => self.dialog = i ? i.element : null }}
             v-if={{ self.get('value') }}
             ev-a:leaveEnd={{ self._leaveEnd.bind(self) }}
         >

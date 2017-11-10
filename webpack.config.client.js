@@ -39,6 +39,3 @@ module.exports = merge.smartStrategy({
         }),
     ],
 });
-
-// const util = require('util');
-// console.log(util.inspect(module.exports, {showHidden: true, depth: null}))

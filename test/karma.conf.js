@@ -1,4 +1,4 @@
-var webpackConfig = require('../webpack.config.test');
+var webpackConfig = require('../webpack.config.client');
 
 module.exports = function (config) {
     config.set({
@@ -40,9 +40,5 @@ module.exports = function (config) {
         },
         logLevel: config.LOG_INFO,
         singleRun: true,
-        // port: 9876, // use default port
-        // captureTimeout: 60000,
-        // browserNoActivityTimeout: 360000,
-        // browser: ["Chrome"]
     });
 };

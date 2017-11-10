@@ -56,6 +56,7 @@ export default class extends Intact {
             expand: undefined, // expand template callback
             expandedKeys: [], 
             type: 'default', // default border
+            fixHeader: false,
 
             _padding: 0,
             _disabledAmount: 0,
