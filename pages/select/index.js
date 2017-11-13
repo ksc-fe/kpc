@@ -5,10 +5,12 @@ export default class extends Intact {
     
     defaults(){
         return {
-            value:''
+            value:'',
+            value_multiple:''
         }
     }  
     onClick(data){
+        this.set('value_multiple',data.text)
         this.set('value',data.text)
     }
 }

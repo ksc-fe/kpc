@@ -4,7 +4,7 @@
     // FIXME 可变属性值，应该提取成变量
     width $select-wrapper-width
     display inline-block
-    height $select-wrapper-height
+    min-height $select-wrapper-height
     cursor pointer
     // FIXME 样式名尽量简短，k-input即可，无需再加select限定，因为前面k-select已经限定了命名空间
     .k-input
@@ -31,6 +31,15 @@
         margin-right $select-icon-m-r
         &:hover      
             color $selected-status
+    .k-multiple
+        display inline-block
+        max-width $select-max-width
+        .input-tag-checked
+            display inline-block
+            background #F0F2F9
+            padding $selected-tag-checked-p
+            margin $selceted-tag-checked-m
+            border-radius $selected-tag-checked-border-radius        
 .k-dropdown
     position absolute
     background #fff
@@ -44,7 +53,7 @@
     .k-list
         border 1px solid $disabled-border-color
         border-top 0px
-        .li-seleced
+        .li-selected
             color $selected-status
         .li-disabled
             background-color $disabled-bg-color

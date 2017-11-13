@@ -16,6 +16,7 @@ export default class extends Intact{
             ],
             show: false,
             value:'',
+            value_multiple:[],
             disabled:false,
             clearable:false, //删除按钮
             multiple:false, //支持多选li
@@ -29,11 +30,26 @@ export default class extends Intact{
     }
 
     onClick(data){
-        if(data.disabled){
-            return 
+        if(data.disabled) return 
+        if(this.get('multiple')){
+            let index = this.get('value_multiple').indexOf(data.text);
+            if(index != -1){
+                // 已选中
+                this.deleTag(index)
+            }else{
+                this.get('value_multiple').push(data.text);
+                this.update()
+            }
+        }else{
+            this.set('value',data);
         }
-        this.set('value',data);
         this.trigger('click',data);
+        this._position();
+    }
+
+    deleTag(index){
+        this.get('value_multiple').splice(index,1);
+        this.update()
     }
 
     _position() {

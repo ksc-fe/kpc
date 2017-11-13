@@ -3,7 +3,13 @@ const MoveWrapper = require('../moveWrapper');
 <div class="k-select" ev-click={{ self.set.bind(self, 'show', !self.get('show')) }} >
     <div class={{ self.get('disabled')? "k-input disabled" : "k-input"}}>
         <input type="text" hidden>
-        <span class="k-placeholder"> {{ self.get('value').text || '请选择' }} </span>
+        <span class="k-placeholder" v-if={{ !self.get('multiple') }}> {{ self.get('value').text || '请选择' }} </span>
+        <div class="k-multiple" v-if={{ self.get('multiple') }}>
+            <div class="input-tag-checked" v-for={{ self.get('value_multiple') }}>
+                {{ value }} 
+                <i ev-click={{ self.deleTag.bind(self,key) }}>x</i>
+            </div>
+        </div>
         <i class="k-icon"></i>
         <i v-if={{ self.get('clearable') && self.get('value').value }} ev-click={{ self.set.bind(self,'value','') }} class="clear-icon">x</i>
     </div>
@@ -11,8 +17,20 @@ const MoveWrapper = require('../moveWrapper');
         <Animate class="k-dropdown" ref={{ dom => self._dropdown = dom }}
             v-if={{ !self.get('disabled') && self.get('show') }}
         >
-            <ul class="k-list">
-                <li v-for={{ self.get('data') }} class={{ {'li-seleced': value.value == self.get('value').value,'li-disabled': value.disabled} }} ev-click={{ self.onClick.bind(self,value) }}>{{ value.text }}</li>
+            <ul class="k-list" v-if={{ !self.get('multiple') }}>
+                <li v-for={{ self.get('data') }} class={{ {'li-selected': value.value == self.get('value').value,'li-disabled': value.disabled} }}
+                    ev-click={{ self.onClick.bind(self,value) }}
+                 >  
+                    {{ value.text }}
+                </li>
+            </ul>
+            <ul class="k-list" v-if={{ self.get('multiple') }}>
+                <li v-for={{ self.get('data') }}
+                    class={{ {'li-selected': self.get('value_multiple').indexOf(value.text)!=-1 } }}
+                    ev-click={{ self.onClick.bind(self,value,key) }}
+                >
+                    {{ value.text }}
+                </li>
             </ul>
         </Animate>
     </MoveWrapper>

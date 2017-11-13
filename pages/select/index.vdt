@@ -42,9 +42,10 @@ const Select = require('components/select');
             <span style="float:left;text-align:center;width:100px">支持多选项：</span>
             <Select
                 multiple
-                data={{ [{ 'text':'星期一', 'value': 'Monday'},{ 'text': '星期二', 'value': 'Thusday'},{'text':'星期三','value':'Wednesday'}] }}
+                data={{ [{ 'text':'北京', 'value': 'goBJ'},{ 'text': '长沙', 'value': 'CSS'},{ 'text': '南京', 'value': 'NJ'},{ 'text':'上海','value':'SH'},{ 'text':"成都","value":'CH'},{ "text":'沈阳北',"value":'SHB'},{'text':'齐齐哈尔','value':'QQHAR'},{'text':'乌鲁木齐市','value':'WLMQS'}] }}
                 ev-click={{ self.onClick.bind(self) }}>
             </Select>     
+            <span style="float:right;">You selected value：{{ self.get('value_multiple') }}</span> 
     </div>
     
 </div>
