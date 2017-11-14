@@ -10,17 +10,27 @@
     .k-input
         font-size $select-input-font
         padding $select-padding
-        height 100%
+        min-height $select-wrapper-height
         border 1px solid $disabled-border-color
+        line-height $select-wrapper-height
+        position relative
         &:hover
             border-color $selected-status
             /* box-shadow 0 0 0 2px rgba(45,140,240,.2)    */
     .k-icon
-        border-left 5px solid transparent
-        border-right 5px solid transparent
-        border-top 5px solid #595959
-        margin-top $select-arrow-m-t
-        float right   
+        position absolute
+        top $select-icon-top
+        right $select-icon-right
+        margin-top $select-icon-m-t
+        
+    .k-icon-up
+        border-left $select-icon-b-l
+        border-right $select-icon-b-l
+        border-top $select-icon-b-top
+    .k-icon-down
+        border-left $select-icon-b-l
+        border-right $select-icon-b-l
+        border-bottom $select-icon-b-top
     .disabled
         cursor not-allowed  
         border-color #d9d9d9 !important
@@ -36,6 +46,8 @@
         max-width $select-max-width
         .input-tag-checked
             display inline-block
+            height $select-tag-checked-height
+            line-height $select-tag-checked-height
             background #F0F2F9
             padding $selected-tag-checked-p
             margin $selceted-tag-checked-m
@@ -71,6 +83,7 @@
         li
             padding $select-li-margin
             border-top $select-list-border-t 
+            font-size $select-li-font-size
             &:hover    
                 background #f8f8f9
 

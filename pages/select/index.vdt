@@ -1,9 +1,8 @@
 const Select = require('components/select');
 
 <div>
-    
+    <span style="float:left;text-align:center;width:120px;margin-top:16px">标准：</span>
     <div style="display:inline-block">
-        <span style="float:left;text-align:center;width:100px">标准：</span>
         <Select ev-click={{ self.onClick.bind(self) }}
             data={{ [{ 'text':'星期一', 'value': 'Monday'},{ 'text': '星期二', 'value': 'Thusday'}] }}
             >
@@ -11,33 +10,32 @@ const Select = require('components/select');
         <span style="float:right;">You selected value：{{ self.get('value') }}</span>       
     </div>
     <br>
-    
+    <span style="float:left;text-align:center;width:120px;margin-top:16px">禁止所有：</span>
     <div style="display:inline-block;margin-top:10px;">
-        <span style="float:left;text-align:center;width:100px">禁止所有：</span>
         <Select disabled ev-click={{ self.onClick.bind(self) }}
             data={{ [{ 'text':'星期一', 'value': 'Monday'},{ 'text': '星期二', 'value': 'Thusday'}] }}
         >
         </Select>     
     </div>
     <br>
+    <span style="float:left;text-align:center;width:120px;margin-top:16px">禁止某一项：</span>
     <div style="display:inline-block;margin-top:10px;">
-        <span style="float:left;text-align:center;width:100px">禁止某一项：</span>
         <Select ev-click={{ self.onClick.bind(self) }}
             data={{ [{ 'text':'星期一', 'value': 'Monday'},{ 'text': '星期二', 'value': 'Thusday','disabled':true},{'text':'星期三','value':'Wednesday'}] }}
         >
         </Select>     
     </div>
     <br>
+    <span style="float:left;text-align:center;width:120px;margin-top:16px">删除已选项：</span>
     <div style="display:inline-block;margin-top:10px;">
-            <span style="float:left;text-align:center;width:100px">删除已选项：</span>
             <Select clearable ev-click={{ self.onClick.bind(self) }}
                 data={{ [{ 'text':'星期一', 'value': 'Monday'},{ 'text': '星期二', 'value': 'Thusday'},{'text':'星期三','value':'Wednesday'}] }}
                 >
             </Select>     
     </div>
     <br>
+    <span style="float:left;text-align:center;width:120px;margin-top:16px">支持多选项：</span>
     <div style="display:inline-block;margin-top:10px;">
-            <span style="float:left;text-align:center;width:100px">支持多选项：</span>
             <Select multiple ev-click={{ self.onClick.bind(self) }}
                 data={{ [{ 'text':'北京', 'value': 'goBJ'},{ 'text': '长沙', 'value': 'CSS'},{ 'text': '南京', 'value': 'NJ'},{ 'text':'上海','value':'SH'},{ 'text':"成都","value":'CH'},{ "text":'沈阳北',"value":'SHB'},{'text':'齐齐哈尔','value':'QQHAR'},{'text':'乌鲁木齐市','value':'WLMQS'}] }}
             >
@@ -45,18 +43,19 @@ const Select = require('components/select');
             <span style="float:right;">You selected value：{{ self.get('value_multiple') }}</span> 
     </div>
     <br>
+    <span style="float:left;text-align:center;width:120px;margin-top:16px">自定义显示内容</span>
     <div style="display:inline-block;margin-top:10px;">
-            <span style="float:left;text-align:center;width:100px">自定义显示内容</span>
-            <Select multiple ev-click={{ self.onClick.bind(self) }}
+            <Select ev-click={{ self.onClick.bind(self) }}
                 data={{ [{ 'text':'北京', 'value': 'goBJ','label':'beijing'},{ 'text':'上海','value':'SH','label':'shanghai'},{ 'text':"成都","value":'CH','label':'chengdu'}] }}
             >
             </Select>      
     </div>
     <br>
+    <span style="float:left;text-align:center;width:120px;margin-top:16px">尺寸</span>
     <div style="display:inline-block;margin-top:10px;">
-            <span style="float:left;text-align:center;width:100px">尺寸</span>
+            
             <Select ev-click={{ self.onClick.bind(self) }}
-                size={{ 300 }}
+                size={{ {'width':'300','height':'42'} }}
                 data={{ [{ 'text':'长长长长长长长长', 'value': 'goBJ','label':'changchanghchang'},{ 'text':'上海','value':'SH','label':'shanghai'},{ 'text':"成都","value":'CH','label':'chengdu'}] }}
             >
             </Select>      

@@ -1,44 +1,46 @@
 const MoveWrapper = require('../moveWrapper');
+const width = Number(self.get('size').width)? (Number(self.get('size').width)/14) + 'rem':'';
+const height = Number(self.get('size').height)? (Number(self.get('size').height)/14) + 'rem':'';
+const line_hight = Number(self.get('size').height)? (Number(self.get('size').height)/14) + 'rem':'';
+const style = {'width':width,'height':height,'line-hight':line_hight};
 
-<div class="k-select" ev-click={{ self.set.bind(self, 'show', !self.get('show')) }} 
-    style={{ {'width':Number(self.get('size'))? (Number(self.get('size'))/14)+'rem':''} }}
->
-    <div class={{ self.get('disabled')? "k-input disabled" : "k-input"}}>
+<div class="k-select" ev-click={{ self.set.bind(self, 'show', !self.get('show')) }} style={{ style }} >
+    <div class={{ self.get('disabled')? "k-input disabled" : "k-input"}} style={{ style }}>
         <input type="text" hidden>
         <!-- 默认显示框 -->
         <span class="k-placeholder" v-if={{ !self.get('multiple') }}> {{ self.get('value').text || '请选择' }} </span>
         <!-- 多选 显示框 -->
         <div class="k-multiple" v-if={{ self.get('multiple') }}>
             <div class="input-tag-checked" v-for={{ self.get('value_multiple') }}>
-                {{ value }} 
+                {{ value == '' ? '请选择':value }} 
                 <i ev-click={{ self.deleTag.bind(self,key) }}>x</i>
             </div>
         </div>
-        <i class="k-icon"></i>
+        <i class={{ self.get('show')? "k-icon k-icon-down" :"k-icon k-icon-up" }}></i>
         <i v-if={{ self.get('clearable') && self.get('value').value }} ev-click={{ self.set.bind(self,'value','') }} class="clear-icon">x</i>
     </div>
     <MoveWrapper>
-        <Animate class="k-dropdown" ref={{ dom => self._dropdown = dom }}
-            v-if={{ !self.get('disabled') && self.get('show') }}
-        >
-            <!-- 默认下拉框 -->
-            <ul class="k-list" v-if={{ !self.get('multiple') }}>
-                <li v-for={{ self.get('data') }} ev-click={{ self.onClick.bind(self,value) }}
-                    class={{ {'li-selected': value.value == self.get('value').value,'li-disabled': value.disabled} }}
-                 >  
-                    {{ value.text }}
-                    <span class="li-label" v-show={{ value.label }}>{{ value.label }} </span>
-                </li>
-            </ul>
-            <!-- 多选先显示框 -->
-            <ul class="k-list" v-if={{ self.get('multiple') }}>
-                <li v-for={{ self.get('data') }} ev-click={{ self.onClick.bind(self,value,key) }}
-                    class={{ {'li-selected': self.get('value_multiple').indexOf(value.text)!=-1 } }}
-                >
-                    {{ value.text }}
-                    <span class="li-label" v-show={{ value.label }}>{{ value.label }} </span>
-                </li>
-            </ul>
-        </Animate>
-    </MoveWrapper>
+            <Animate class="k-dropdown" ref={{ dom => self._dropdown = dom }}
+                v-if={{ !self.get('disabled') && self.get('show') }}
+            >
+                <!-- 默认下拉框 -->
+                <ul class="k-list" v-if={{ !self.get('multiple') }}>
+                    <li v-for={{ self.get('data') }} ev-click={{ self.onClick.bind(self,value) }}
+                        class={{ {'li-selected': value.value == self.get('value').value,'li-disabled': value.disabled} }}
+                     >  
+                        {{ value.text }}
+                        <span class="li-label" v-show={{ value.label }}>{{ value.label }} </span>
+                    </li>
+                </ul>
+                <!-- 多选先显示框 -->
+                <ul class="k-list" v-if={{ self.get('multiple') }}>
+                    <li v-for={{ self.get('data') }} ev-click={{ self.onClick.bind(self,value,key) }}
+                        class={{ {'li-selected': self.get('value_multiple').indexOf(value.text)!=-1 } }}
+                    >
+                        {{ value.text }}
+                        <span class="li-label" v-show={{ value.label }}>{{ value.label }} </span>
+                    </li>
+                </ul>
+            </Animate>
+        </MoveWrapper>
 </div>
