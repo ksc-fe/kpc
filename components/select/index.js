@@ -20,10 +20,12 @@ export default class extends Intact{
             disabled:false,
             clearable:false, //删除按钮
             multiple:false, //支持多选li
+            size:''
         }
     }
 
     _init() {
+        
         this.on('$changed:show', (c, isShow) => {
             if (isShow) this._position();
         });

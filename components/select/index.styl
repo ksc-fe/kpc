@@ -52,16 +52,25 @@
         transition: all 0.4s
     .k-list
         border 1px solid $disabled-border-color
-        border-top 0px
+        border-top $select-list-border-t
         .li-selected
             color $selected-status
+            &:after
+                content "\2713"
+                position absolute
+                right $select-icon-yes
+                witdh 100%
+
         .li-disabled
             background-color $disabled-bg-color
             color $disabled-color
             cursor not-allowed
+        .li-label
+            float right    
+            margin-right $select-li-label-m-r
         li
             padding $select-li-margin
-            border-top 0px 
+            border-top $select-list-border-t 
             &:hover    
                 background #f8f8f9
 
