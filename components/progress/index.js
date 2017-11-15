@@ -4,6 +4,12 @@
 import template from './index.vdt';
 import './index.styl';
 
+function fixPercent(percent) {
+    if (percent > 100) percent = 100;
+    if (percent < 0) percent = 0;
+    return percent;
+}
+
 export default class extends Intact{
     get template() { return template; }
 
@@ -21,6 +27,7 @@ export default class extends Intact{
 
     _init() {
         this._initStatus = this.get('status');
+
         this.on('$change:percent', (c, percent) => {
             percent = fixPercent(percent);
             const status = percent === 100 ? 'success' : this._initStatus;
@@ -29,17 +36,10 @@ export default class extends Intact{
                 percent: percent,
             });
         });
-
         this.on('$change:status', (c, status) => {
             if (status !== 'success') this._initStatus = status;
         });
 
         this.set('percent', fixPercent(this.get('percent')));
-
-        function fixPercent(percent) {
-            if (percent > 100) percent = 100;
-            if (percent < 0) percent = 0;
-            return percent;
-        }
     }
 }
