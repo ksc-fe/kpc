@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "45611010470820ed8a12"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "a1db93fbca034c576c98"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -1123,12 +1123,25 @@ var _default = function (_Intact) {
 
             this._initStatus = this.get('status');
             this.on('$change:percent', function (c, percent) {
+                percent = fixPercent(percent);
                 var status = percent === 100 ? 'success' : _this2._initStatus;
-                _this2.set('status', status);
+                _this2.set({
+                    status: status,
+                    percent: percent
+                });
             });
+
             this.on('$change:status', function (c, status) {
                 if (status !== 'success') _this2._initStatus = status;
             });
+
+            this.set('percent', fixPercent(this.get('percent')));
+
+            function fixPercent(percent) {
+                if (percent > 100) percent = 100;
+                if (percent < 0) percent = 0;
+                return percent;
+            }
         }
     }, {
         key: 'template',
