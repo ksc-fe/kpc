@@ -15,6 +15,14 @@ module.exports = merge.smartStrategy({
         library: 'KPC',
         libraryTarget: 'umd',
     },
+    externals: {
+        intact: {
+            root: 'Intact',
+            commonjs2: 'intact',
+            commonjs: 'intact',
+            amd: 'intact',
+        }
+    },
     module: {
         rules: [
             {
