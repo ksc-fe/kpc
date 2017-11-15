@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "ddb6589d8ef8230108bd"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "45611010470820ed8a12"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -1184,6 +1184,8 @@ if(true) {
 "use strict";
 
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -1241,7 +1243,13 @@ module.exports = function (obj, _Vdt, blocks) {
         'k-progress': true
     }, _defineProperty(_classNameObj, 'k-' + type, type), _defineProperty(_classNameObj, className, className), _defineProperty(_classNameObj, 'k-' + status, status !== 'normal'), _defineProperty(_classNameObj, 'k-' + size, size !== 'default'), _classNameObj);
 
-    return h('div', null, [function () {
+    return h('div', _extends({}, function () {
+        try {
+            return [rest][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)), [function () {
         try {
             return [type === 'bar'][0];
         } catch (e) {
