@@ -1,5 +1,5 @@
 const {
-    type, className, percent, status, size, 
+    type, className, percent, status, size,
     isOuterText, isInnerText, ref, key, strokeWidth,
     children, ...rest
 } = self.get();
@@ -12,7 +12,7 @@ const classNameObj = {
     [`k-${size}`]: size !== 'default',
 }
 
-<div class={{ classNameObj }}>
+<div class={{ classNameObj }} {{ ...rest }}>
     <div class="k-container" v-if={{ type === 'bar' }}>
         <div  class="k-content">
             <div class="k-bg" style={{ {width: percent + '%'} }}>
