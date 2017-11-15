@@ -1,9 +1,10 @@
 const webpack = require('webpack');
 const path = require('path');
+const autoprefixer = require('autoprefixer');
 
 module.exports = {
     output: {
-        path: path.resolve(__dirname, './dist'),
+        path: path.resolve(__dirname, './.dev'),
         filename: '[name].js',
         publicPath: '/',
     },
@@ -45,7 +46,20 @@ module.exports = {
                     {
                         loader: 'css-loader', 
                         options: {
-                            url: true 
+                            url: true,
+                            sourceMap:true,
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: [autoprefixer({
+                                browsers: [
+                                    'last 2 versions',
+                                    'ie >= 9',
+                                ],
+                            })],
+                            sourceMap: true,
                         }
                     },
                     {

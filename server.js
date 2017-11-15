@@ -18,7 +18,7 @@ compiler.watch({
     console.log(stats.toString({
         colors: true
     }));
-    require('./dist/server');
+    require('./.dev/server');
 });
 
 

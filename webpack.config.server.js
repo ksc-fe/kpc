@@ -17,11 +17,10 @@ module.exports = merge.smartStrategy({
         chunkFilename: 'chunk/[chunkhash].js',
     },
     target: 'node',
-    externals: [nodeExternal({
-        whitelist: ['universal-router', 'webpack/hot/poll?1000']
-    }), {
-        '../webpack.config.client': 'commonjs ../webpack.config.client'
-    }],
+    externals: [nodeExternal(
+        {whitelist: ['universal-router', 'webpack/hot/poll?1000']}),
+        {'../webpack.config.client': 'commonjs ../webpack.config.client'}
+    ],
     node: {
         __dirname: false,
         __filename: false,
@@ -39,7 +38,7 @@ module.exports = merge.smartStrategy({
     plugins: [
         new webpack.BannerPlugin({
             banner: 'require("source-map-support").install();',
-            raw: true, 
+            raw: true,
             entryOnly: false,
         }),
         new webpack.DefinePlugin({

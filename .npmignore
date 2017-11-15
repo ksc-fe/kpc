@@ -6,6 +6,5 @@ config/
 lib/
 log/
 views/
-*.pyc
 .babelrc
 test/

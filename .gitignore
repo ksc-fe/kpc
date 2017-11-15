@@ -1,10 +1,9 @@
 bower_components/
 node_modules/
 .idea/
-*.pyc
 npm-debug*.log
 *.swp
 log/
 .log
-dist/
 test/coverage
+.dev/
