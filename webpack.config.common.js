@@ -2,6 +2,8 @@ const webpack = require('webpack');
 const path = require('path');
 const autoprefixer = require('autoprefixer');
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 module.exports = {
     output: {
         path: path.resolve(__dirname, './.dev'),
@@ -47,7 +49,7 @@ module.exports = {
                         loader: 'css-loader', 
                         options: {
                             url: true,
-                            sourceMap:true,
+                            sourceMap: !isProduction,
                         }
                     },
                     {
@@ -59,7 +61,7 @@ module.exports = {
                                     'ie >= 9',
                                 ],
                             })],
-                            sourceMap: true,
+                            sourceMap: !isProduction,
                         }
                     },
                     {

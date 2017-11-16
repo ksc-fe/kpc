@@ -35,9 +35,10 @@ module.exports = merge.smartStrategy({
             },
         ]
     },
-    plugins: [
-        new webpack.DefinePlugin({
-            'process.browser': true
-        }),
-    ]
 });
+
+module.exports.plugins = [
+    new webpack.DefinePlugin({
+        'process.browser': true
+    }),
+];
