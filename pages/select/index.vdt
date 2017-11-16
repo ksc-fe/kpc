@@ -28,36 +28,54 @@ const Select = require('components/select');
     <br>
     <span style="float:left;text-align:center;width:120px;margin-top:16px">删除已选项：</span>
     <div style="display:inline-block;margin-top:10px;">
-            <Select clearable ev-click={{ self.onClick.bind(self) }}
-                data={{ [{ 'text':'星期一', 'value': 'Monday'},{ 'text': '星期二', 'value': 'Thusday'},{'text':'星期三','value':'Wednesday'}] }}
-                >
-            </Select>     
+        <Select clearable ev-click={{ self.onClick.bind(self) }}
+            data={{ [{ 'text':'星期一', 'value': 'Monday'},{ 'text': '星期二', 'value': 'Thusday'},{'text':'星期三','value':'Wednesday'}] }}
+        >
+        </Select>     
     </div>
     <br>
     <span style="float:left;text-align:center;width:120px;margin-top:16px">支持多选项：</span>
     <div style="display:inline-block;margin-top:10px;">
-            <Select multiple ev-click={{ self.onClick.bind(self) }}
-                data={{ [{ 'text':'北京', 'value': 'goBJ'},{ 'text': '长沙', 'value': 'CSS'},{ 'text': '南京', 'value': 'NJ'},{ 'text':'上海','value':'SH'},{ 'text':"成都","value":'CH'},{ "text":'沈阳北',"value":'SHB'},{'text':'齐齐哈尔','value':'QQHAR'},{'text':'乌鲁木齐市','value':'WLMQS'}] }}
-            >
-            </Select>     
-            <span style="float:right;">You selected value：{{ self.get('value_multiple') }}</span> 
+        <Select multiple ev-click={{ self.onClick.bind(self) }}
+            data={{ [{ 'text':'北京', 'value': 'goBJ'},{ 'text': '长沙', 'value': 'CSS'},{ 'text': '南京', 'value': 'NJ'},{ 'text':'上海','value':'SH'},{ 'text':"成都","value":'CH'},{ "text":'沈阳北',"value":'SHB'},{'text':'齐齐哈尔','value':'QQHAR'},{'text':'乌鲁木齐市','value':'WLMQS'}] }}
+        >
+        </Select>     
+        <span style="float:right;">You selected value：{{ self.get('value_multiple') }}</span> 
     </div>
     <br>
     <span style="float:left;text-align:center;width:120px;margin-top:16px">自定义显示内容</span>
     <div style="display:inline-block;margin-top:10px;">
-            <Select ev-click={{ self.onClick.bind(self) }}
-                data={{ [{ 'text':'北京', 'value': 'goBJ','label':'beijing'},{ 'text':'上海','value':'SH','label':'shanghai'},{ 'text':"成都","value":'CH','label':'chengdu'}] }}
-            >
-            </Select>      
+        <Select ev-click={{ self.onClick.bind(self) }}
+            data={{ [{ 'text':'北京', 'value': 'goBJ','label':'beijing'},{ 'text':'上海','value':'SH','label':'shanghai'},{ 'text':"成都","value":'CH','label':'chengdu'}] }}
+        >
+        </Select>      
     </div>
     <br>
     <span style="float:left;text-align:center;width:120px;margin-top:16px">尺寸</span>
     <div style="display:inline-block;margin-top:10px;">
+        <Select ev-click={{ self.onClick.bind(self) }}
+            size={{ {'width':'300','height':'42'} }}
+            data={{ [{ 'text':'长长长长长长长长', 'value': 'goBJ','label':'changchanghchang'},{ 'text':'上海','value':'SH','label':'shanghai'},{ 'text':"成都","value":'CH','label':'chengdu'}] }}
+        >
+        </Select>      
+    </div>
+    <br>
+    <span style="float:left;text-align:center;width:120px;margin-top:16px">分组</span>
+    <div style="display:inline-block;margin-top:10px;">
+        <Select ev-click={{ self.onClick.bind(self) }}
+            data={{ [{ 'text':'北京', 'value': 'goBJ'},{ 'text': '长沙', 'value': 'CSS'},{ 'text': '南京', 'value': 'NJ'},{ 'text':'上海','value':'SH'},{ 'text':"成都","value":'CH'},{ "text":'沈阳北',"value":'SHB'},{'text':'齐齐哈尔','value':'QQHAR'},{'text':'乌鲁木齐市','value':'WLMQS'}] }}        
+            group={{ [
+                        {   'label':'一线城市',
+                            'data':[{ 'text':'北京', 'value': 'BJ'},{ 'text':'上海','value':'SH'}]
+                        },
+                        {
+                            'label':'二线城市',
+                            'data':[{'text':'沈阳','value':'SY'},{'text':'杭州','value':'HZ'}]
+                        }
             
-            <Select ev-click={{ self.onClick.bind(self) }}
-                size={{ {'width':'300','height':'42'} }}
-                data={{ [{ 'text':'长长长长长长长长', 'value': 'goBJ','label':'changchanghchang'},{ 'text':'上海','value':'SH','label':'shanghai'},{ 'text':"成都","value":'CH','label':'chengdu'}] }}
-            >
-            </Select>      
+                    ] }}
+            
+        > 
+        </Select>      
     </div>
 </div>

@@ -20,7 +20,8 @@ export default class extends Intact{
             disabled:false,
             clearable:false, //删除按钮
             multiple:false, //支持多选li
-            size:{'width':'','height':''}
+            size:{'width':'','height':''},
+            group:[],
         }
     }
 
