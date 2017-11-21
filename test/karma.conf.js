@@ -8,14 +8,14 @@ module.exports = function (config) {
         files: ['./index.js'],
         exclude: [],
         plugins : [
-            'karma-mocha', 
-            'karma-webpack', 
-            'karma-sourcemap-loader', 
+            'karma-mocha',
+            'karma-webpack',
+            'karma-sourcemap-loader',
             'karma-spec-reporter',
-            'karma-sinon-chai', 
-            'karma-coverage', 
-            'karma-jasmine', 
-            'karma-phantomjs-launcher', 
+            'karma-sinon-chai',
+            'karma-coverage',
+            // 'karma-jasmine', 
+            'karma-phantomjs-launcher',
             'karma-chrome-launcher'
         ],
         preprocessors: {
