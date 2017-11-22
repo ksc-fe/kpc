@@ -1,0 +1,21 @@
+const {
+    className, children, key, ref,
+    label, ...rest
+} = self.get();
+
+const classNameObj = {
+    'k-form-item': true,
+    [className]: className
+};
+
+<div class={{ classNameObj }} {{ ...rest }}>
+    <label>
+        <div class="k-label" v-if={{ label || blocks.label }}>
+            <b:label>{{ label }}</b:label>
+        </div>
+        <div class="k-content">
+            <b:content>{{ children }}</b:content>
+            <div v-if={{ !self.get('isValid') }} class="k-error">{{ 'error' }}</div>
+        </div>
+    </label>
+</div>

@@ -1,4 +1,4 @@
-const Spinner = require('components/spinner');
+const Spinner = require('../spinner');
 
 const {
     value, min, max, className,

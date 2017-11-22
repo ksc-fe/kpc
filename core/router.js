@@ -65,10 +65,9 @@ export default new Router([
         }
     },
     {
-        path: '/components/tooltip',
+        path: '/components/form',
         action: async () => {
-            return {Page: await import('pages/tooltip')}
+            return {Page: await import('pages/form')};
         }
-    }
-
+    },
 ]);

@@ -1,0 +1,7 @@
+const {Form, FormItem} = require('components/form');
+
+<Form model={{ self.get('model') }} ref="form">
+    <FormItem label="用户名" name="userName" rules={{ {required: true} }}>
+        <input v-model="model.userName" />
+    </FormItem>
+</Form>
