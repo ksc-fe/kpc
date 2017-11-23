@@ -1,21 +1,23 @@
 const {
     className, children, key, ref,
-    label, ...rest
+    label, style, isValid, isDirty
 } = self.get();
 
 const classNameObj = {
-    'k-form-item': true,
-    [className]: className
+    'k-form-item c-clearfix': true,
+    'k-invalid': isDirty && !isValid,
+    'k-valid': isDirty && isValid,
+    [className]: className,
 };
 
-<div class={{ classNameObj }} {{ ...rest }}>
+<div class={{ classNameObj }} style={{ style }} ev-focusout={{ self._focusout.bind(self) }}>
     <label>
         <div class="k-label" v-if={{ label || blocks.label }}>
             <b:label>{{ label }}</b:label>
         </div>
         <div class="k-content">
             <b:content>{{ children }}</b:content>
-            <div v-if={{ !self.get('isValid') }} class="k-error">{{ 'error' }}</div>
+            <div v-if={{ !self.get('isValid') }} class="k-error">{{ self.get('message') }}</div>
         </div>
     </label>
 </div>

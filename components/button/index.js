@@ -15,6 +15,8 @@ export default class extends Intact {
             loading: false,
             disabled: false,
             fluid: false,
+            htmlType: 'button',
+            tagName: 'button',
         };
     }
 

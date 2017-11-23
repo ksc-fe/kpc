@@ -1,5 +1,5 @@
 let {type, className, size, icon, circle, ref, key,
-    tagName, fluid, children, loading, ...rest
+    tagName, htmlType, fluid, children, loading, ...rest
 } = self.get();
 const classNameObj = {
     'k-btn': true,
@@ -13,12 +13,16 @@ const classNameObj = {
 };
 
 const Button = props => {
-    if (!tagName && props.href) {
+    if (props.href) {
         tagName = 'a';
+    }
+    if (tagName === 'button') {
+        // set type of html button
+        props.type = htmlType;
     }
     // disable button when loading
     if (loading) props.disabled = true;
-    return h(tagName || 'button', props, props.children);
+    return h(tagName, props, props.children);
 };
 
 // hack for loading transition of width

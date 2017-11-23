@@ -2,3 +2,23 @@
     white-space nowrap
     overflow hidden
     text-overflow ellipsis
+
+.c-clearfix
+    zoom 1
+    &:after
+        display table
+        clear both
+        content ''
+        height 0
+
+.c-input
+    display inline-block
+    width 100%
+    font-size $input-font-size
+    height $input-height
+    border $input-border 
+    padding $input-padding
+    background-color $input-bg-color 
+    &:focus
+        border $input-focus-border
+     

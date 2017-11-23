@@ -11,8 +11,18 @@ export default class extends Intact {
             value: undefined,
             name: undefined,
             rules: {},
-            isValid: true,
+            isValid: undefined,
+            isDirty: false,
+            message: '',
         }
+    }
+
+    _init() {
+        this.on('$changed:value', () => {
+            if (this.get('isDirty')) {
+                this.validate();
+            }
+        });
     }
 
     _mount() {
@@ -24,7 +34,37 @@ export default class extends Intact {
         const model = form.get('model');
         const items = form.get('items');
         items.push(this);
-        console.log(form);
+    }
+
+    getRules() {
+        const formRules = this.form.get(`rules.${this.get('name')}`);
+        const selfRules = this.get('rules');
+
+        return Object.assign({}, formRules, selfRules);
+    }
+
+    validate() {
+        const rules = this.getRules();
+        let isValid = true;
+        let method;
+        for (let key in rules) {
+            isValid = Form.methods[key].call(this.form, this.get('value'), this);
+            if (!isValid) {
+                method = key;
+                break;
+            }
+        }
+        this.set({
+            isDirty: true,
+            isValid: isValid,
+            message: Form.messages[method],
+        });
+    }
+
+    _focusout() {
+        if (!this.form.optional(this)) {
+            this.validate();
+        }
     }
 
     _destroy() {
