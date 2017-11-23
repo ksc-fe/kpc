@@ -1,5 +1,5 @@
 const {
-    className, disabled, trueValue,
+    className, disabled, trueValue, style,
     children, value, ref, key, ...rest
 } = self.get();
 
@@ -10,7 +10,7 @@ const classNameObj = {
     [className || '']: true,
 };
 
-<label class={{ classNameObj }}>
+<label class={{ classNameObj }} style={{ style }}>
     <span class="k-wrapper">
         <input type="radio" disabled={{ disabled }}
             v-model="value"

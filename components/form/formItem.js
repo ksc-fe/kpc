@@ -14,6 +14,7 @@ export default class extends Intact {
             isValid: undefined,
             isDirty: false,
             message: '',
+            isShowLabel: true,
         }
     }
 
@@ -44,6 +45,8 @@ export default class extends Intact {
     }
 
     validate() {
+        if (!this.get('name')) return;
+
         const rules = this.getRules();
         let isValid = true;
         let method;

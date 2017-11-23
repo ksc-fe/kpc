@@ -1,0 +1,24 @@
+@require('./variables.styl')
+
+// FormItem
+.k-form-item
+    margin $form-item-margin
+    display table 
+    width 100%
+    .k-label
+        display table-cell
+        width $form-item-label-width 
+        text-align $form-item-label-text-align 
+        padding-right $form-item-label-padding-right 
+    .k-content
+        display table-cell
+
+    // invalid 
+    .k-error
+        position absolute
+        color $form-item-error-color 
+        font-size $form-item-error-font-size 
+        margin $form-item-error-margin
+    &.k-invalid
+        .c-input
+            border $form-item-invalid-border

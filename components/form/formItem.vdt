@@ -1,23 +1,33 @@
 const {
-    className, children, key, ref,
-    label, style, isValid, isDirty
+    className, children, label, style, 
+    isValid, isDirty, isShowLabel
 } = self.get();
 
 const classNameObj = {
-    'k-form-item c-clearfix': true,
+    'k-form-item': true,
     'k-invalid': isDirty && !isValid,
     'k-valid': isDirty && isValid,
     [className]: className,
 };
 
-<div class={{ classNameObj }} style={{ style }} ev-focusout={{ self._focusout.bind(self) }}>
-    <label>
-        <div class="k-label" v-if={{ label || blocks.label }}>
-            <b:label>{{ label }}</b:label>
-        </div>
-        <div class="k-content">
-            <b:content>{{ children }}</b:content>
-            <div v-if={{ !self.get('isValid') }} class="k-error">{{ self.get('message') }}</div>
-        </div>
-    </label>
-</div>
+// vdt does not support return `v-if & v-else` element in root,
+// like: 
+//     '<div v-if={{ true }}>true</div>'
+//     '<label v-else>false</label>'
+// so wrap it.
+const Wrapper = (props) => {
+    return h(props._tagName, props, props.children); 
+}
+
+<Wrapper class={{ classNameObj }} style={{ style }}
+    ev-focusout={{ self._focusout.bind(self) }}
+    _tagName={{ label || blocks.label ? 'label' : 'div' }}
+>
+    <div class="k-label" v-if={{ isShowLabel }}>
+        <b:label>{{ label }}</b:label>
+    </div>
+    <div class="k-content">
+        <b:content>{{ children }}</b:content>
+        <div v-if={{ !self.get('isValid') }} class="k-error">{{ self.get('message') }}</div>
+    </div>
+</Wrapper>

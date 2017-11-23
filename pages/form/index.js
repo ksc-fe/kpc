@@ -2,7 +2,7 @@ import template from './index.vdt';
 import {Form} from 'components/form';
 
 Form.addMethod('isEqual', function(value, item) {
-    return this.optional(item) || value === 3;
+    return this.optional(item) || value == 3;
 }, '请输入3');
 
 export default class extends Intact {
@@ -12,6 +12,10 @@ export default class extends Intact {
         return {
             model: {}
         }
+    }
+
+    submit() {
+        this.refs.form.validate();
     }
 }
 
