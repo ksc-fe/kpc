@@ -19,11 +19,7 @@ export default class extends Intact {
     }
 
     _init() {
-        this.on('$changed:value', () => {
-            if (this.get('isDirty')) {
-                this.validate();
-            }
-        });
+        this.on('$changed:value', this.validateIfDirty);
     }
 
     _mount() {
@@ -32,9 +28,13 @@ export default class extends Intact {
             form = form.parentVNode;
         }
         this.form = form = form.children;
-        const model = form.get('model');
         const items = form.get('items');
         items.push(this);
+        this.set('value', this.form.get(`model.${this.get('name')}`), {silent: true});
+    }
+
+    _update() {
+        this.set('value', this.form.get(`model.${this.get('name')}`));
     }
 
     getRules() {
@@ -51,7 +51,12 @@ export default class extends Intact {
         let isValid = true;
         let method;
         for (let key in rules) {
-            isValid = Form.methods[key].call(this.form, this.get('value'), this);
+            let fn = Form.methods[key];
+            if (!fn) {
+                console.warn(`Can not find validate method: ${key}`);
+                continue;
+            }
+            isValid = fn.call(this.form, this.get('value'), this, rules[key]);
             if (!isValid) {
                 method = key;
                 break;
@@ -62,6 +67,12 @@ export default class extends Intact {
             isValid: isValid,
             message: Form.messages[method],
         });
+    }
+
+    validateIfDirty() {
+        if (this.get('isDirty')) {
+            this.validate();
+        }
     }
 
     _focusout() {

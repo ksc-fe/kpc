@@ -3,23 +3,29 @@ const Radio = require('components/radio');
 const Button = require('components/button');
 
 <Form model={{ self.get('model') }} ref="form" style="margin: 20px; width: 400px;">
-    <FormItem label="用户名" v-model="model.userName" name="userName" rules={{ {required: true} }}>
+    <FormItem label="用户名" name="userName" rules={{ {required: true} }}>
         <input class="c-input" v-model="model.userName" />
     </FormItem>
-    <FormItem label="性别" v-model="model.sex" name="sex" rules={{ {required: true} }}>
+    <FormItem label="性别" name="sex" rules={{ {required: true} }}>
         <Radio v-model="model.sex" trueValue="female" name="sex">女</Radio>
         <Radio v-model="model.sex" trueValue="man" name="sex" style="margin-left: 10px;">男</Radio>
     </FormItem>
-    <FormItem label="年龄" v-model="model.age" name="age" rules={{ {required: true, digits: true} }}>
+    <FormItem label="年龄" name="age" rules={{ {required: true, digits: true} }}>
         <input class="c-input" v-model="model.age" />
     </FormItem>
-    <FormItem label="邮箱" v-model="model.email" name="email" rules={{ {email: true} }}>
+    <FormItem label="邮箱" name="email" rules={{ {email: true} }}>
         <input class="c-input" v-model="model.email" />
     </FormItem>
-    <FormItem label="验证码" v-model="model.captcha" name="captcha" rules={{ {isEqual: true} }}>
+    <FormItem label="密码" name="password" rules={{ {required: true} }}>
+        <input class="c-input" type="password" v-model="model.password" />
+    </FormItem>
+    <FormItem v-if={{ !self.get('hide') }} label="确认密码" name="confirmPassword" rules={{ {required: true, equalTo: 'password'} }}>
+        <input class="c-input" type="password" v-model="model.confirmPassword" />
+    </FormItem>
+    <FormItem label="验证码" name="captcha" rules={{ {isEqual: true} }}>
+        <b:label>验证码 (<span style="color: red;">3</span>)</b:label>
         <input class="c-input" v-model="model.captcha" />
     </FormItem>
-
     <FormItem>
         <Button type="primary" ev-click={{ self.submit.bind(self) }}>提交</Button>
         <Button style="margin-left: 10px;">重置</Button>
