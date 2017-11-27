@@ -9,7 +9,7 @@ export default class extends Intact {
     defaults() {
         return {
             value: undefined,
-            name: undefined,
+            model: undefined,
             rules: {},
             isValid: undefined,
             isDirty: false,
@@ -23,6 +23,8 @@ export default class extends Intact {
     }
 
     _mount() {
+        if (!this.get('model')) return;
+
         let form = this.parentVNode;
         while (form.tag !== Form) {
             form = form.parentVNode;
@@ -30,22 +32,25 @@ export default class extends Intact {
         this.form = form = form.children;
         const items = form.get('items');
         items.push(this);
-        this.set('value', this.form.get(`model.${this.get('name')}`), {silent: true});
+        // const value = this.form.get(`value.${this.get('name')}`); 
+        // this.set('value', value, {silent: true});
     }
 
-    _update() {
-        this.set('value', this.form.get(`model.${this.get('name')}`));
-    }
+    // _update() {
+        // if (!this.get('name')) return;
+
+        // this.set('value', this.form.get(`value.${this.get('name')}`));
+    // }
 
     getRules() {
-        const formRules = this.form.get(`rules.${this.get('name')}`);
+        const formRules = this.form.get(`rules.${this.get('model')}`);
         const selfRules = this.get('rules');
 
         return Object.assign({}, formRules, selfRules);
     }
 
     validate() {
-        if (!this.get('name')) return;
+        if (!this.get('model')) return;
 
         const rules = this.getRules();
         let isValid = true;
@@ -75,14 +80,19 @@ export default class extends Intact {
         }
     }
 
-    _focusout() {
+    _dirty() {
+        if (!this.get('model')) return;
+
         if (!this.form.optional(this)) {
             this.validate();
         }
     }
 
     _destroy() {
+        if (!this.get('model')) return;
         const items = this.form.get('items');
         items.splice(items.indexOf(this), 1);
+        // this.form.set(`value.${this.get('model')}`, undefined);
+        this.set('value', undefined);
     }
 }

@@ -1,6 +1,6 @@
 const {
     className, children, label, style, 
-    isValid, isDirty, isShowLabel
+    isValid, isDirty, isShowLabel, htmlFor
 } = self.get();
 
 const classNameObj = {
@@ -15,19 +15,18 @@ const classNameObj = {
 //     '<div v-if={{ true }}>true</div>'
 //     '<label v-else>false</label>'
 // so wrap it.
-const Wrapper = (props) => {
-    return h(props._tagName, props, props.children); 
-}
+// const Wrapper = (props) => {
+//     return h(props._tagName, props, props.children); 
+// }
 
-<Wrapper class={{ classNameObj }} style={{ style }}
-    ev-focusout={{ self._focusout.bind(self) }}
-    _tagName={{ label || blocks.label ? 'label' : 'div' }}
+<div class={{ classNameObj }} style={{ style }}
+    ev-change={{ self._dirty.bind(self) }}
 >
-    <div class="k-label" v-if={{ isShowLabel }}>
+    <label for={{ htmlFor }} class="k-label" v-if={{ isShowLabel }}>
         <b:label>{{ label }}</b:label>
-    </div>
+    </label>
     <div class="k-content">
         <b:content>{{ children }}</b:content>
         <div v-if={{ !self.get('isValid') }} class="k-error">{{ self.get('message') }}</div>
     </div>
-</Wrapper>
+</div>

@@ -10,8 +10,16 @@ export default class extends Intact {
 
     defaults() {
         return {
-            model: {}
-        }
+            model: {
+                hobbies: []
+            }
+        };
+    }
+
+    _init() {
+        this.on('$change:model', (...args) => {
+            console.log(args);
+        });
     }
 
     submit() {

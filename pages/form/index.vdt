@@ -1,28 +1,34 @@
 const {Form, FormItem} = require('components/form');
 const Radio = require('components/radio');
 const Button = require('components/button');
+const Checkbox = require('components/checkbox');
 
-<Form model={{ self.get('model') }} ref="form" style="margin: 20px; width: 400px;">
-    <FormItem label="用户名" name="userName" rules={{ {required: true} }}>
+<Form ref="form" style="margin: 20px; width: 400px;">
+    <FormItem label="用户名" model="model.userName" rules={{ {required: true} }}>
         <input class="c-input" v-model="model.userName" />
     </FormItem>
-    <FormItem label="性别" name="sex" rules={{ {required: true} }}>
+    <FormItem label="性别" model="model.sex" rules={{ {required: true} }}>
         <Radio v-model="model.sex" trueValue="female" name="sex">女</Radio>
         <Radio v-model="model.sex" trueValue="man" name="sex" style="margin-left: 10px;">男</Radio>
     </FormItem>
-    <FormItem label="年龄" name="age" rules={{ {required: true, digits: true} }}>
+    <FormItem label="爱好" for="sport" model="model.hobbies" rules={{ {required: true, maxCount: 2} }}>
+        <Checkbox v-model="model.hobbies" trueValue="sport" name="hobbies" id="sport">运动</Checkbox>
+        <Checkbox v-model="model.hobbies" trueValue="music" name="hobbies" style="margin-left: 10px;">音乐</Checkbox>
+        <Checkbox v-model="model.hobbies" trueValue="coding" name="hobbies" style="margin-left: 10px;">写代码</Checkbox>
+    </FormItem>
+    <FormItem label="年龄" model="model.age" rules={{ {required: true, digits: true} }}>
         <input class="c-input" v-model="model.age" />
     </FormItem>
-    <FormItem label="邮箱" name="email" rules={{ {email: true} }}>
+    <FormItem label="邮箱" model="model.email" rules={{ {email: true} }}>
         <input class="c-input" v-model="model.email" />
     </FormItem>
-    <FormItem label="密码" name="password" rules={{ {required: true} }}>
+    <FormItem label="密码" model="model.password" rules={{ {required: true} }}>
         <input class="c-input" type="password" v-model="model.password" />
     </FormItem>
-    <FormItem v-if={{ !self.get('hide') }} label="确认密码" name="confirmPassword" rules={{ {required: true, equalTo: 'password'} }}>
+    <FormItem v-if={{ !self.get('hide') }} label="确认密码" model="model.confirmPassword" rules={{ {required: true, equalTo: 'model.password'} }}>
         <input class="c-input" type="password" v-model="model.confirmPassword" />
     </FormItem>
-    <FormItem label="验证码" name="captcha" rules={{ {isEqual: true} }}>
+    <FormItem label="验证码" model="model.captcha" rules={{ {isEqual: true} }}>
         <b:label>验证码 (<span style="color: red;">3</span>)</b:label>
         <input class="c-input" v-model="model.captcha" />
     </FormItem>

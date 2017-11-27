@@ -16,7 +16,7 @@ export default class Form extends Intact {
         },
 
         equalTo(value, item, params) {
-            const equalValue = item.form.get(`model.${params}`);
+            const equalValue = item.form.get('_context').data.get(params);
             const equalItem = item.form.getItem(params);
             if (!equalItem._hasBindEqualToCallback) {
                 item._equalToCallback = () => {
@@ -37,6 +37,10 @@ export default class Form extends Intact {
 
             return this.optional(item) || value === equalValue;
         },
+
+        maxCount(value, item, params) {
+            return this.optional(item) || value.length <= params;
+        },
     };
 
     static messages = {
@@ -44,6 +48,7 @@ export default class Form extends Intact {
         digits: '请输入数字',
         email: '请输入正确的邮箱地址',
         equalTo: '两次输入不一致',
+        maxCount: '最多选择两项',
     };
 
     static addMethod(name, method, message) {
@@ -57,23 +62,18 @@ export default class Form extends Intact {
     defaults() {
         return {
             items: [],
-            model: {},
+            // model: {},
+            value: {},
             rules: {},
         }
     }
-
-    // _init() {
-        // this.on('$changed:model', () => {
-            // this.validate();
-        // });
-    // }
 
     getRules() {
         const rules = this.get('rules');
         const items = this.get('items');
 
         items.forEach(item => {
-            rules[item.get('name')] = item.get('rules');
+            rules[item.get('model')] = item.get('rules');
         });
 
         return rules;
@@ -88,10 +88,10 @@ export default class Form extends Intact {
         });
     }
 
-    getItem(name) {
+    getItem(model) {
         const items = this.get('items');
-        if (name === undefined) return items;
-        return items.find(item => item.get('name') === name);
+        if (model === undefined) return items;
+        return items.find(item => item.get('model') === model);
     }
 
     optional(item) {

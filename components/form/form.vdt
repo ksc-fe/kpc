@@ -5,6 +5,6 @@ const classNameObj = {
     [className]: className
 };
 
-<form class={{ classNameObj }} style={{ style }} noValidate>
-    {{ children }}
-</form>
+<form class={{ classNameObj }} style={{ style }} 
+    noValidate
+>{{ children }}</form>
