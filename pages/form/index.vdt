@@ -10,10 +10,10 @@ const Checkbox = require('components/checkbox');
         <input class="c-input" v-model="model.userName" />
     </FormItem>
     <FormItem label="姓名">
-        <FormItem isShowLabel={{ false }} style="margin-right: 14px;" model="model.realUserName.firstName" rules={{ {ifRequired: 'model.realUserName.lastName'} }}>
+        <FormItem hideLabel style="margin-right: 14px;" model="model.realUserName.firstName" rules={{ {ifRequired: 'model.realUserName.lastName'} }}>
             <input class="c-input" v-model="model.realUserName.firstName" />
         </FormItem>
-        <FormItem isShowLabel={{ false }} model="model.realUserName.lastName" rules={{ {ifRequired: 'model.realUserName.firstName'} }}>
+        <FormItem hideLabel model="model.realUserName.lastName" rules={{ {ifRequired: 'model.realUserName.firstName'} }}>
             <input class="c-input" v-model="model.realUserName.lastName" />
         </FormItem>
     </FormItem>
@@ -37,6 +37,12 @@ const Checkbox = require('components/checkbox');
     </FormItem>
     <FormItem v-if={{ !self.get('hide') }} label="确认密码" model="model.confirmPassword" rules={{ {required: true, equalTo: 'model.password'} }}>
         <input class="c-input" type="password" v-model="model.confirmPassword" />
+    </FormItem>
+    <FormItem label="描述" class="descriptions">
+        <FormItem v-for={{ self.get('model.descriptions') }} model={{ `model.descriptions.${key}` }} hideLabel rules={{ {required: true} }}>
+            <input class="c-input" v-model={{ `model.descriptions.${key}` }} />
+        </FormItem>
+        <Button ev-click={{ self.add.bind(self) }}>添加</Button>
     </FormItem>
     <FormItem label="验证码" model="model.captcha" rules={{ {isEqual: true} }}>
         <b:label>验证码 (<span style="color: red;">3</span>)</b:label>

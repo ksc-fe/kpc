@@ -1,5 +1,6 @@
 import template from './index.vdt';
 import {Form} from 'components/form';
+import './index.styl';
 
 Form.addMethod('isEqual', function(value, item) {
     return this.optional(item) || value == 3;
@@ -16,7 +17,8 @@ export default class extends Intact {
     defaults() {
         return {
             model: {
-                hobbies: []
+                hobbies: [],
+                descriptions: [''],
             }
         };
     }
@@ -33,6 +35,12 @@ export default class extends Intact {
 
     reset() {
         this.refs.form.reset();
+    }
+
+    add() {
+        const descriptions = this.get('model.descriptions').slice(0);
+        descriptions.push('');
+        this.set('model.descriptions', descriptions);
     }
 }
 

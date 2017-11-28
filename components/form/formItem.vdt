@@ -1,6 +1,6 @@
 const {
     className, children, label, style, 
-    isValid, isDirty, isShowLabel, htmlFor
+    isValid, isDirty, hideLabel, htmlFor
 } = self.get();
 
 const classNameObj = {
@@ -22,7 +22,7 @@ const classNameObj = {
 <div class={{ classNameObj }} style={{ style }}
     ev-change={{ self._dirty.bind(self) }}
 >
-    <label for={{ htmlFor }} class="k-label" v-if={{ isShowLabel }}>
+    <label for={{ htmlFor }} class="k-label" v-if={{ !hideLabel }}>
         <b:label>{{ label }}</b:label>
     </label>
     <div class="k-content">

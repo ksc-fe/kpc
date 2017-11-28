@@ -15,7 +15,7 @@ export default class extends Intact {
             isDirty: false,
             message: '',
             messages: {},
-            isShowLabel: true,
+            hideLabel: false,
         }
     }
 
