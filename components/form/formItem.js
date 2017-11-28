@@ -51,33 +51,66 @@ export default class extends Intact {
 
     validate() {
         if (!this.get('model')) return;
+        
+        // cancel the last promise
+        if (this.promise) this.promise.cancelled = true;
 
         const rules = this.getRules();
-        let isValid = true;
-        let method;
+        const promises = [];
+        const keys = [];
+
         for (let key in rules) {
             let fn = Form.methods[key];
             if (!fn) {
                 console.warn(`Can not find validate method: ${key}`);
                 continue;
             }
-            isValid = fn.call(this.form, this.get('value'), this, rules[key]);
-            if (!isValid) {
-                method = key;
-                break;
-            }
+            promises.push(fn.call(this.form, this.get('value'), this, rules[key]));
+            keys.push(key);
         }
-        this.set({
-            isDirty: true,
-            isValid: isValid,
-            message: Form.messages[method],
-        });
+
+        const p = this.promise = Promise.all(promises)
+            .then(values => {
+                for (let index = 0; index < values.length; index++) {
+                    if (!values[index]) {
+                        return [false, Form.messages[keys[index]]];
+                    }
+                }
+                return [true, ''];
+            }, err => {
+                let message;
+                if (typeof err === 'string') {
+                    message = err;
+                } else if (err) {
+                    message = err.message || Form.messages[err.name];
+                }
+                return [false, message];
+            })
+            .then(([isValid, message]) => {
+                if (p.cancelled) return;
+                this.set({
+                    isDirty: true,
+                    isValid: isValid,
+                    message: message,
+                });
+                return isValid;
+            });
+
+        return p;
     }
 
     validateIfDirty() {
         if (this.get('isDirty')) {
             this.validate();
         }
+    }
+    
+    reset() {
+        this.set({
+            isDirty: false,
+            isValid: undefined,
+            value: undefined,
+        });
     }
 
     _dirty() {
@@ -92,7 +125,6 @@ export default class extends Intact {
         if (!this.get('model')) return;
         const items = this.form.get('items');
         items.splice(items.indexOf(this), 1);
-        // this.form.set(`value.${this.get('model')}`, undefined);
         this.set('value', undefined);
     }
 }

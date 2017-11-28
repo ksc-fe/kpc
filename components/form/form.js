@@ -40,7 +40,7 @@ export default class Form extends Intact {
 
         maxCount(value, item, params) {
             return this.optional(item) || value.length <= params;
-        },
+        }
     };
 
     static messages = {
@@ -62,8 +62,6 @@ export default class Form extends Intact {
     defaults() {
         return {
             items: [],
-            // model: {},
-            value: {},
             rules: {},
         }
     }
@@ -80,12 +78,16 @@ export default class Form extends Intact {
     }
 
     validate() {
-        const rules = this.getRules();
         const items = this.get('items');
 
-        items.forEach(item => {
-            item.validate();
+        return Promise.all(items.map(item => item.validate())).then(values => {
+            return values.every(value => value);
         });
+    }
+
+    reset() {
+        const items = this.get('items');
+        items.forEach(item => item.reset());
     }
 
     getItem(model) {
