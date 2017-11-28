@@ -9,7 +9,7 @@ const Checkbox = require('components/checkbox');
     <FormItem label="用户名" model="model.userName" rules={{ {required: true, checkName: true} }}>
         <input class="c-input" v-model="model.userName" />
     </FormItem>
-    <FormItem label="姓名">
+    <FormItem label="姓名" class="real-user-name">
         <FormItem hideLabel style="margin-right: 14px;" model="model.realUserName.firstName" rules={{ {ifRequired: 'model.realUserName.lastName'} }}>
             <input class="c-input" v-model="model.realUserName.firstName" />
         </FormItem>
@@ -42,7 +42,7 @@ const Checkbox = require('components/checkbox');
         <FormItem v-for={{ self.get('model.descriptions') }} model={{ `model.descriptions.${key}` }} hideLabel rules={{ {required: true} }}>
             <input class="c-input" v-model={{ `model.descriptions.${key}` }} />
         </FormItem>
-        <Button ev-click={{ self.add.bind(self) }}>添加</Button>
+        <Button ev-click={{ self.add.bind(self) }} size="small">添加</Button>
     </FormItem>
     <FormItem label="验证码" model="model.captcha" rules={{ {isEqual: true} }}>
         <b:label>验证码 (<span style="color: red;">3</span>)</b:label>
