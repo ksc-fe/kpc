@@ -28,9 +28,7 @@ export default class extends Intact {
     }
 
     submit() {
-        this.refs.form.validate().then(isValid => {
-            console.log(isValid);
-        });
+        console.log('submit');
     }
 
     reset() {

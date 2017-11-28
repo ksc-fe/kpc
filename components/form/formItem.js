@@ -64,14 +64,24 @@ export default class extends Intact {
         const promises = [];
         const keys = [];
 
-        for (let key in rules) {
-            let fn = Form.methods[key];
-            if (!fn) {
-                console.warn(`Can not find validate method: ${key}`);
-                continue;
+        // check required first
+        const required = Form.methods.required.call(this.form, this.get('value'), this);
+        if (rules.required) {
+            promises.push(required);
+            keys.push('required');
+        }
+        // if the field is not empty, then check other rules
+        if (required) {
+            for (let key in rules) {
+                if (key === 'required') continue;
+                let fn = Form.methods[key];
+                if (!fn) {
+                    console.warn(`Can not find validate method: ${key}`);
+                    continue;
+                }
+                promises.push(fn.call(this.form, this.get('value'), this, rules[key]));
+                keys.push(key);
             }
-            promises.push(fn.call(this.form, this.get('value'), this, rules[key]));
-            keys.push(key);
         }
 
         const p = this.promise = Promise.all(promises)
@@ -122,10 +132,9 @@ export default class extends Intact {
 
     _dirty() {
         if (!this.get('model')) return;
+        if (this.get('isDirty')) return;
 
-        if (!this.form.optional(this)) {
-            this.validate();
-        }
+        this.validate();
     }
 
     _cancel() {

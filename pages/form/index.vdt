@@ -3,7 +3,9 @@ const Radio = require('components/radio');
 const Button = require('components/button');
 const Checkbox = require('components/checkbox');
 
-<Form ref="form" style="margin: 20px; width: 400px;">
+<Form ref="form" style="margin: 20px; width: 400px;"
+    ev-submit={{ self.submit.bind(self) }}
+>
     <FormItem label="用户名" model="model.userName" rules={{ {required: true, checkName: true} }}>
         <input class="c-input" v-model="model.userName" />
     </FormItem>
@@ -11,12 +13,12 @@ const Checkbox = require('components/checkbox');
         <Radio v-model="model.sex" trueValue="female" name="sex">女</Radio>
         <Radio v-model="model.sex" trueValue="man" name="sex" style="margin-left: 10px;">男</Radio>
     </FormItem>
-    <FormItem label="爱好" for="sport" model="model.hobbies" rules={{ {required: true, maxCount: 2} }} messages={{ {required: '必须选择'} }}>
+    <FormItem label="爱好" for="sport" model="model.hobbies" rules={{ {required: true, maxLength: 2} }} messages={{ {required: '必须选择'} }}>
         <Checkbox v-model="model.hobbies" trueValue="sport" name="hobbies" id="sport">运动</Checkbox>
         <Checkbox v-model="model.hobbies" trueValue="music" name="hobbies" style="margin-left: 10px;">音乐</Checkbox>
         <Checkbox v-model="model.hobbies" trueValue="coding" name="hobbies" style="margin-left: 10px;">写代码</Checkbox>
     </FormItem>
-    <FormItem label="年龄" model="model.age" rules={{ {required: true, digits: true} }}>
+    <FormItem label="年龄" model="model.age" rules={{ {required: true, digits: true, min: 1} }}>
         <input class="c-input" v-model="model.age" />
     </FormItem>
     <FormItem label="邮箱" model="model.email" rules={{ {email: true} }}>
@@ -33,7 +35,7 @@ const Checkbox = require('components/checkbox');
         <input class="c-input" v-model="model.captcha" />
     </FormItem>
     <FormItem>
-        <Button type="primary" ev-click={{ self.submit.bind(self) }}>提交</Button>
+        <Button htmlType="submit" type="primary">提交</Button>
         <Button style="margin-left: 10px;" ev-click={{ self.reset.bind(self) }}>重置</Button>
     </FormItem>
 </Form>

@@ -53,4 +53,13 @@ export default class Form extends Intact {
         const value = item.get('value');
         return !Form.methods.required.call(this, value, item);
     }
+
+    submit(e) {
+        e.preventDefault();
+        this.validate().then(isValid => {
+            if (isValid) {
+                this.trigger('submit', e, this);
+            }
+        });
+    }
 }
