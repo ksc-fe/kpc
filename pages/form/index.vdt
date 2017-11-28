@@ -9,6 +9,14 @@ const Checkbox = require('components/checkbox');
     <FormItem label="用户名" model="model.userName" rules={{ {required: true, checkName: true} }}>
         <input class="c-input" v-model="model.userName" />
     </FormItem>
+    <FormItem label="姓名">
+        <FormItem isShowLabel={{ false }} style="margin-right: 14px;" model="model.realUserName.firstName" rules={{ {ifRequired: 'model.realUserName.lastName'} }}>
+            <input class="c-input" v-model="model.realUserName.firstName" />
+        </FormItem>
+        <FormItem isShowLabel={{ false }} model="model.realUserName.lastName" rules={{ {ifRequired: 'model.realUserName.firstName'} }}>
+            <input class="c-input" v-model="model.realUserName.lastName" />
+        </FormItem>
+    </FormItem>
     <FormItem label="性别" model="model.sex" rules={{ {required: true} }} messages={{ {required: '必须选择'} }}>
         <Radio v-model="model.sex" trueValue="female" name="sex">女</Radio>
         <Radio v-model="model.sex" trueValue="man" name="sex" style="margin-left: 10px;">男</Radio>

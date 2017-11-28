@@ -65,15 +65,21 @@ export default class extends Intact {
         const keys = [];
 
         // check required first
-        const required = Form.methods.required.call(this.form, this.get('value'), this);
+        let required = Form.methods.required.call(this.form, this.get('value'), this);
         if (rules.required) {
             promises.push(required);
             keys.push('required');
+        } else if (rules.ifRequired) {
+            // check ifRequired second
+            required = Form.methods.ifRequired.call(this.form, this.get('value'), this, rules['ifRequired']);
+            promises.push(required);
+            keys.push('ifRequired');
         }
+
         // if the field is not empty, then check other rules
         if (required) {
             for (let key in rules) {
-                if (key === 'required') continue;
+                if (key === 'required' || key === 'ifRequired') continue;
                 let fn = Form.methods[key];
                 if (!fn) {
                     console.warn(`Can not find validate method: ${key}`);
