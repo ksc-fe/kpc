@@ -27,6 +27,8 @@ const classNameObj = {
     </label>
     <div class="k-content">
         <b:content>{{ children }}</b:content>
-        <div v-if={{ self.get('isValid') === false }} class="k-error">{{ self.get('message') }}</div>
+        <Animate v-if={{ self.get('isValid') === false }} class="k-error"
+            a:transition="fade"
+        >{{ self.get('message') }}</Animate>
     </div>
 </div>

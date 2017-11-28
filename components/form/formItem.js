@@ -20,6 +20,7 @@ export default class extends Intact {
     }
 
     _init() {
+        this.initValue = this.get('value');
         this.on('$changed:value', this.validateIfDirty);
     }
 
@@ -132,7 +133,9 @@ export default class extends Intact {
         this.set({
             isDirty: false,
             isValid: undefined,
-            value: undefined,
+            value: Array.isArray(this.get('value')) ?
+                [].concat(this.initValue) : 
+                this.initValue,
         });
     }
 
@@ -154,6 +157,6 @@ export default class extends Intact {
         if (!this.get('model')) return;
         const items = this.form.get('items');
         items.splice(items.indexOf(this), 1);
-        this.set('value', undefined);
+        this.reset();
     }
 }

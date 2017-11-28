@@ -74,7 +74,6 @@ export const methods = {
         const equalItem = item.form.getItem(param);
         if (!equalItem._hasBindEqualToCallback) {
             item._equalToCallback = () => {
-                console.log('check')
                 item.validateIfDirty();
             };
             equalItem.on('$changed:value', item._equalToCallback);
@@ -98,7 +97,6 @@ export const methods = {
         const selfItemIsEmpty = this.optional(item); 
         if (!requiredItem._hasBindIfRequiredCallback) {
             item._ifRequiredCallback = () => {
-                console.log('check')
                 item.validateIfDirty();
             };
             requiredItem.on('$changed:value', item._ifRequiredCallback);
