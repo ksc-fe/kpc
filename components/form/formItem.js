@@ -32,15 +32,7 @@ export default class extends Intact {
         this.form = form = form.children;
         const items = form.get('items');
         items.push(this);
-        // const value = this.form.get(`value.${this.get('name')}`); 
-        // this.set('value', value, {silent: true});
     }
-
-    // _update() {
-        // if (!this.get('name')) return;
-
-        // this.set('value', this.form.get(`value.${this.get('name')}`));
-    // }
 
     getRules() {
         const formRules = this.form.get(`rules.${this.get('model')}`);
@@ -52,8 +44,7 @@ export default class extends Intact {
     validate() {
         if (!this.get('model')) return;
         
-        // cancel the last promise
-        if (this.promise) this.promise.cancelled = true;
+        this._cancel();
 
         const rules = this.getRules();
         const promises = [];
@@ -106,6 +97,8 @@ export default class extends Intact {
     }
     
     reset() {
+        this._cancel();
+
         this.set({
             isDirty: false,
             isValid: undefined,
@@ -118,6 +111,13 @@ export default class extends Intact {
 
         if (!this.form.optional(this)) {
             this.validate();
+        }
+    }
+
+    _cancel() {
+        // cancel the last promise
+        if (this.promise) {
+            this.promise.cancelled = true;
         }
     }
 
