@@ -4,9 +4,22 @@ const {
 } = self.get();
 const Select = require('components/select')
 
+
 const classNameObj = {
-    
+    'k-pagination': true,
+    [className || '']: true,
 };
+const btnFirstClass = {
+    'k-pagination-button': true,
+    [className || '']: true,
+};
+
+const btnLastClass = {
+    'k-pagination-button': true,
+    [className || '']: true,
+};
+
+
 const Page = props => {
     if (!tagName && props.href) {
         tagName = 'a';
@@ -20,8 +33,8 @@ const Page = props => {
     <div>total: {{self.get('total')}}</div>
 
     <ul>
-        <li>
-            <a href="javascript:;"></a>
+        <li class="k-pagination-button">
+            <a href="javascript:;">left</a>
         </li>
         <li>1</li>
         <li>2</li>
