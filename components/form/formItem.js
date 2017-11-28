@@ -14,6 +14,7 @@ export default class extends Intact {
             isValid: undefined,
             isDirty: false,
             message: '',
+            messages: {},
             isShowLabel: true,
         }
     }
@@ -40,6 +41,19 @@ export default class extends Intact {
 
         return Object.assign({}, formRules, selfRules);
     }
+    
+    getMessage(name) {
+        const defaultMessages = Form.messages; 
+        const customMessages = this.get('messages');
+        const message = customMessages[name] || defaultMessages[name];
+
+        if (typeof message === 'function') {
+            const rules = this.getRules();
+            return message.call(this.form, this.get('value'), this, rules[name]);
+        }
+
+        return message;
+    }
 
     validate() {
         if (!this.get('model')) return;
@@ -64,7 +78,7 @@ export default class extends Intact {
             .then(values => {
                 for (let index = 0; index < values.length; index++) {
                     if (!values[index]) {
-                        return [false, Form.messages[keys[index]]];
+                        return [false, this.getMessage(keys[index])];
                     }
                 }
                 return [true, ''];
@@ -73,7 +87,7 @@ export default class extends Intact {
                 if (typeof err === 'string') {
                     message = err;
                 } else if (err) {
-                    message = err.message || Form.messages[err.name];
+                    message = err.message || this.getMessage(err.name);
                 }
                 return [false, message];
             })
