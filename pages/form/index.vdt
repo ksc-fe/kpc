@@ -2,6 +2,7 @@ const {Form, FormItem} = require('components/form');
 const Radio = require('components/radio');
 const Button = require('components/button');
 const Checkbox = require('components/checkbox');
+const {Row, Col} = require('components/grid');
 
 <Form ref="form" style="margin: 20px; width: 400px;"
     ev-submit={{ self.submit.bind(self) }}
@@ -10,12 +11,18 @@ const Checkbox = require('components/checkbox');
         <input class="c-input" v-model="model.userName" />
     </FormItem>
     <FormItem label="姓名" class="real-user-name">
-        <FormItem hideLabel style="margin-right: 14px;" model="model.realUserName.firstName" rules={{ {required: self.get('model.realUserName.lastName')} }}>
-            <input class="c-input" v-model="model.realUserName.firstName" />
-        </FormItem>
-        <FormItem hideLabel model="model.realUserName.lastName" rules={{ {required: self.get('model.realUserName.firstName')} }}>
-            <input class="c-input" v-model="model.realUserName.lastName" />
-        </FormItem>
+        <Row gutter="16">
+            <Col span="12">
+                <FormItem hideLabel model="model.realUserName.firstName" rules={{ {required: self.get('model.realUserName.lastName')} }}>
+                    <input class="c-input" v-model="model.realUserName.firstName" />
+                </FormItem>
+            </Col>
+            <Col span="12">
+                <FormItem hideLabel model="model.realUserName.lastName" rules={{ {required: self.get('model.realUserName.firstName')} }}>
+                    <input class="c-input" v-model="model.realUserName.lastName" />
+                </FormItem>
+            </Col>
+        </Row>
     </FormItem>
     <FormItem label="性别" model="model.sex" rules={{ {required: true} }} messages={{ {required: '必须选择'} }}>
         <Radio v-model="model.sex" trueValue="female" name="sex">女</Radio>
