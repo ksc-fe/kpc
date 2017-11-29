@@ -90,26 +90,6 @@ export const methods = {
 
         return value === equalValue;
     },
-
-    ifRequired(value, item, param) {
-        const requiredItem = this.getItem(param);
-        const dependentItemIsEmtpy = this.optional(requiredItem); 
-        const selfItemIsEmpty = this.optional(item); 
-        if (!requiredItem._hasBindIfRequiredCallback) {
-            item._ifRequiredCallback = () => {
-                item.validateIfDirty();
-            };
-            requiredItem.on('$changed:value', item._ifRequiredCallback);
-            requiredItem._hasBindIfRequiredCallback = true;
-
-            item.on('$destroyed', () => {
-                requiredItem.off('$changed:value', item._ifRequiredCallback);
-                requiredItem._hasBindIfRequiredCallback = false;
-            });
-        }
-
-        return !dependentItemIsEmtpy ? !selfItemIsEmpty : true;
-    },
 };
 
 function count(num) {
@@ -158,7 +138,6 @@ export const messages = {
         return `请输入步长为${param}的数`;
     },
     equalTo: '两次输入不一致',
-    ifRequired: '必须填写',
 };
 
 export const addMethod = function(name, method, message) {

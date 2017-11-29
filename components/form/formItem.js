@@ -21,7 +21,8 @@ export default class extends Intact {
 
     _init() {
         this.initValue = this.get('value');
-        this.on('$changed:value', this.validateIfDirty);
+        this.on('$change:value', this.validateIfDirty);
+        this.on('$change:rules', this.validateIfDirty);
     }
 
     _mount() {
@@ -70,21 +71,22 @@ export default class extends Intact {
         if (rules.required) {
             promises.push(required);
             keys.push('required');
-        } else if (rules.ifRequired) {
-            // check ifRequired second
-            required = Form.methods.ifRequired.call(this.form, this.get('value'), this, rules['ifRequired']);
-            promises.push(required);
-            keys.push('ifRequired');
         }
 
         // if the field is not empty, then check other rules
         if (required) {
             for (let key in rules) {
-                if (key === 'required' || key === 'ifRequired') continue;
-                let fn = Form.methods[key];
-                if (!fn) {
-                    console.warn(`Can not find validate method: ${key}`);
-                    continue;
+                const rule = rules[key];
+                if (key === 'required' || rule === false) continue;
+                let fn;
+                if (typeof rule === 'function') {
+                    fn = rule;
+                } else {
+                    fn = Form.methods[key];
+                    if (!fn) {
+                        console.warn(`Can not find validate method: ${key}`);
+                        continue;
+                    }
                 }
                 promises.push(fn.call(this.form, this.get('value'), this, rules[key]));
                 keys.push(key);
@@ -94,8 +96,8 @@ export default class extends Intact {
         const p = this.promise = Promise.all(promises)
             .then(values => {
                 for (let index = 0; index < values.length; index++) {
-                    if (!values[index]) {
-                        return [false, this.getMessage(keys[index])];
+                    if (values[index] !== true) {
+                        return [false, values[index] || this.getMessage(keys[index])];
                     }
                 }
                 return [true, ''];
