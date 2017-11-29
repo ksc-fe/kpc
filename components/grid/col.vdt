@@ -1,0 +1,22 @@
+const gutterStyle = require('./utils');
+
+let {children, span, className, style, gutter, offset} = self.get();
+
+let hasGutter = gutter > 0;
+if (hasGutter) {
+    style = gutterStyle(gutter, style, 'padding');
+}
+
+const classNameObj = {
+    /* 'k-col': true, */
+    [`k-${span}`]: true,
+    [className]: className && !hasGutter,
+    [`k-offset-${offset}`]: offset > 0,
+};
+
+
+<div class={{ classNameObj }} style={{ style }}>{{
+    hasGutter ?
+        <div class={{ className }}>{{ children }}</div> :
+        children
+}}</div>

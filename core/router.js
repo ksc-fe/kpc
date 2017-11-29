@@ -70,4 +70,10 @@ export default new Router([
             return {Page: await import('pages/form')};
         }
     },
+    {
+        path: '/components/grid',
+        action: async () => {
+            return {Page: await import('pages/grid')};
+        }
+    },
 ]);

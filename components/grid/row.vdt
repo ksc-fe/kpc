@@ -1,0 +1,24 @@
+const gutterStyle = require('./utils');
+
+let {children, className, style, gutter} = self.get();
+
+let hasGutter = gutter > 0;
+if (hasGutter) {
+    style = gutterStyle(gutter, style);
+}
+
+const classNameObj = {
+    'k-row': true,
+    [className]: className,
+    'k-gutter': hasGutter,
+};
+
+<div class={{ classNameObj }} style={{ style }}>{{ hasGutter ? 
+    children.map(vNode => {
+        if (vNode) {
+            vNode.props.gutter = gutter;
+            return vNode;
+        }
+    }) :
+    children 
+}}</div>

@@ -1,0 +1,8 @@
+.c-row
+    display block
+    @extend .c-clearfix
+
+for col in (1..24)
+    .c-{col}
+        width percentage(col / 24)
+        float left

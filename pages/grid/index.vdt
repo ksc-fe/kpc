@@ -1,0 +1,14 @@
+const {Row, Col} = require('components/grid');
+
+<div>
+    <Row gutter="8">
+        <Col class="col" span="3">3 / 24</Col>
+        <Col class="col" span="8">8 / 24</Col>
+        <Col class="col" span="13">13 / 24</Col>
+    </Row>
+    <br />
+    <Row>
+        <Col class="col" span="3">3 / 24</Col>
+        <Col class="col" span="8" offset="13">8 / 24 offset 13 / 24</Col>
+    </Row>
+</div>

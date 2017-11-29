@@ -5,3 +5,12 @@ getLeft(args)
         args[1]
     else
         args
+
+clearfix()
+    zoom 1
+    &:after
+        display table
+        clear both
+        content ''
+        height 0
+
