@@ -59,6 +59,7 @@ if (width && height) {
         v-model-true={{ trueValue }}
         v-model-false={{ falseValue }}
     /> 
+    <div class="k-bar"></div>
     <div class="k-inner" style={{ innerStyle }}>
         <b:on v-if={{ value === trueValue }}>{{ on }}</b:on>
         <b:off v-else>{{ off }}</b:off>
