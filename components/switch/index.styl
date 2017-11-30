@@ -1,0 +1,64 @@
+@require('./variables.styl')
+
+.k-switch
+    display inline-block
+    vertical-align middle
+    background $switch-bg-color
+    position relative
+    transition background $transition
+    input
+        cursor pointer
+        width 100%
+        height 100%
+        opacity 0
+        position absolute
+        z-index 1
+    .k-handle
+        border-radius 100% 
+        background $switch-handle-bg-color 
+        position absolute
+        cursor pointer
+        transition left $transition 
+
+    // text
+    .k-inner
+        position absolute
+        font-size $switch-font-size
+        color $switch-color
+        text-align center
+
+    // on
+    &.k-checked
+        background $primary-color
+
+    // size
+    for size in default small mini
+        $handleWidth = lookup('$switch-' + size + '-height') - lookup('$switch-' + size + '-handle-gutter') * 2
+        &.k-{size}
+            width lookup('$switch-' + size + '-width')
+            height lookup('$switch-' + size + '-height')
+            line-height @height 
+            border-radius @height 
+            .k-handle
+                width $handleWidth 
+                height @width 
+                left lookup('$switch-' + size + '-handle-gutter')
+                top lookup('$switch-' + size + '-handle-gutter')
+            .k-inner
+                left lookup('$switch-' + size + '-handle-gutter') + $handleWidth 
+                right (lookup('$switch-' + size + '-height') / 3)
+            &.k-checked
+                .k-handle 
+                    left lookup('$switch-' + size + '-width') - lookup('$switch-' + size + '-handle-gutter') - $handleWidth 
+                .k-inner
+                    left (lookup('$switch-' + size + '-height') / 3) 
+                    right lookup('$switch-' + size + '-handle-gutter') + $handleWidth 
+
+    // disabled
+    &.k-disabled
+        background $switch-disabled-bg-color
+        input
+            cursor not-allowed
+
+                   
+

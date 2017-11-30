@@ -1,0 +1,67 @@
+const {addStyle} = require('../utils');
+
+let {
+    className, style, children,
+    name, on, off, value,
+    trueValue, falseValue, width,
+    height, size, disabled
+} = self.get();
+
+const classNameObj = {
+    'k-switch': true,
+    [className]: className,
+    'k-checked': value === trueValue, 
+    [`k-${size}`]: true,
+    'k-disabled': disabled,
+};
+
+
+let innerStyle;
+let handleStyle;
+const gutter = 2;
+if (width && height) {
+    style = addStyle(style, {
+        width: `${width}px`,
+        height: `${height}px`,
+        borderRadius: `${height}px`,
+        lineHeight: `${height}px`,
+    });
+    const handleWidth = `${height - gutter * 2}px`;
+    handleStyle = {
+        width: handleWidth,
+        height: handleWidth,
+        top: `${gutter}px`,
+    };
+    if (value === trueValue) {
+        innerStyle = {
+            left: `${height / 3}px`,
+            right: `${height - gutter}px`
+        };
+        Object.assign(handleStyle, {
+            left: `${width - height + gutter}px`,
+        });
+    } else {
+        innerStyle = {
+            left: `${height - gutter}px`, 
+            right: `${height / 3}px`
+        };
+        Object.assign(handleStyle, {
+            left: `${gutter}px`, 
+        });
+    }
+}
+
+<div class={{ classNameObj }} style={{ style }}>
+    <input type="checkbox" name={{ name }} 
+        disabled={{ disabled }}
+        v-model="value" 
+        value={{ trueValue }}
+        v-model-true={{ trueValue }}
+        v-model-false={{ falseValue }}
+    /> 
+    <div class="k-inner" style={{ innerStyle }}>
+        <b:on v-if={{ value === trueValue }}>{{ on }}</b:on>
+        <b:off v-else>{{ off }}</b:off>
+    </div>
+    <div class="k-handle" style={{ handleStyle }}></div>
+</div>

@@ -76,4 +76,10 @@ export default new Router([
             return {Page: await import('pages/grid')};
         }
     },
+    {
+        path: '/components/switch',
+        action: async () => {
+            return {Page: await import('pages/switch')};
+        }
+    },
 ]);

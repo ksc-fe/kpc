@@ -14,7 +14,7 @@
         height 100%
         background #000
         opacity 0.5 
-        transition opacity 0.2s ease-in-out
+        transition opacity $transition 
         // overlay animation
         &.animate-enter
         &.animate-leave
@@ -61,7 +61,7 @@
     // animation
     &.animate-enter-active
     &.animate-leave-active
-        transition all 0.25s ease-in-out
+        transition all $transition
     &.animate-enter
     &.animate-leave
         transform $dialog-transform 
