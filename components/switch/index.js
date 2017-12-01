@@ -58,7 +58,7 @@ export default class extends Intact {
 
         // treat mousedown -> mouseup as click
         if (this._x === e.clientX) {
-            this.toggle();
+            this._toggle();
         } else {
             const percent = (bar.clientWidth - this._height / 2) / this._maxWidth;
             
@@ -81,7 +81,7 @@ export default class extends Intact {
         document.removeEventListener('mouseup', this._dragEnd);
     }
 
-    toggle() {
+    _toggle() {
         if (this.get('disabled')) return;
 
         if (this.isChecked()) {

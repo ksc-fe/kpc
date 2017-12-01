@@ -9,6 +9,7 @@ const Switch = require('components/switch');
     <Switch width="100" height="30" v-model="status2"
         trueValue="on"
         falseValue="off"
+        class="big-switch"
     >
         <b:on>开启主机</b:on>
         <b:off>关闭主机</b:off>

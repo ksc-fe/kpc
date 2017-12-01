@@ -42,7 +42,7 @@ if (width && height) {
     };
 }
 
-<div class={{ classNameObj }} style={{ style }} ev-click={{ self.toggle.bind(self) }}>
+<div class={{ classNameObj }} style={{ style }} ev-click={{ self._toggle.bind(self) }}>
     <input type="checkbox" name={{ name }} 
         disabled={{ disabled }}
         v-model="value" 
@@ -59,7 +59,7 @@ if (width && height) {
             <b:on>{{ on }}</b:on>
         </div>
         <div class="k-wrapper">
-            <div class="k-handle" style={{ /* handleStyle */ }}
+            <div class="k-handle"
                 ev-click={{ self._handleClick.bind(self) }}
                 ev-mousedown={{ self._dragStart.bind(self) }}
                 ref="handle"
