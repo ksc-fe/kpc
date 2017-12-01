@@ -110,7 +110,7 @@ export default class extends Intact {
         }
 
         this.__onRangeSliding = this._onRangeSliding.bind(this, indexFlag);
-        this.__onRangeSlideEnd = this._onRangeSlideEnd.bind(this,indexFlag);
+        this.__onRangeSlideEnd = this._onRangeSlideEnd.bind(this, indexFlag);
         window.addEventListener('mousemove', this.__onRangeSliding);
         window.addEventListener('mouseup', this.__onRangeSlideEnd);
     }
@@ -152,7 +152,7 @@ export default class extends Intact {
                     if (this.get('_isFirst')) return;
                     this.set({
                         '_isSecond': false,
-                        'value': [Math.min (newValue, this._min), Math.max (newValue, this._min)]
+                        'value': [Math.min (newValue, this._min), Math.max(newValue, this._min)]
                     });
                 }
             } else {

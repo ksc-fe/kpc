@@ -5,72 +5,85 @@
     vertical-align middle
     background $switch-bg-color
     position relative
-    transition background $transition
+    cursor pointer
+    user-select none
+    overflow hidden
     input
-        cursor pointer
-        width 100%
-        height 100%
         opacity 0
         position absolute
+    .k-bar
+        position absolute
+        text-align right
+        background $switch-bg-color
+    .k-wrapper
+        display inline-block
+        position relative
         z-index 1
+        border-radius 100%
+    .k-bar
+    .k-wrapper
+        height 100%
+        transition all $transition
     .k-handle
         border-radius 100% 
         background $switch-handle-bg-color 
-        position absolute
+        height 100%
         cursor pointer
         transition left $transition 
-
+        display inline-block
+        img
+            height 100%
+            visibility hidden
     // text
-    .k-inner
+    .k-on
+    .k-off
         position absolute
         font-size $switch-font-size
-        color $switch-color
+        // color $switch-color
+        color red
         text-align center
 
-    // on
-    &.k-checked
-        background $primary-color
+    // dragging
+    &.k-dragging
+        .k-bar
+        .k-wrapper
+            background $primary-color
+            transition background $transition 
 
     // size
     for size in default small mini
-        $handleWidth = lookup('$switch-' + size + '-height') - lookup('$switch-' + size + '-handle-gutter') * 2
+        $left = (lookup('$switch-' + size + '-height') / 3)
         &.k-{size}
             width lookup('$switch-' + size + '-width')
             height lookup('$switch-' + size + '-height')
             line-height @height 
             border-radius @height 
-            .k-handle
-                width $handleWidth 
-                height @width 
-                left lookup('$switch-' + size + '-handle-gutter')
-                top lookup('$switch-' + size + '-handle-gutter')
-            .k-inner
-                left lookup('$switch-' + size + '-handle-gutter') + $handleWidth 
-                right (lookup('$switch-' + size + '-height') / 3)
-            &.k-checked
-                .k-handle 
-                    left lookup('$switch-' + size + '-width') - lookup('$switch-' + size + '-handle-gutter') - $handleWidth 
-                .k-inner
-                    left (lookup('$switch-' + size + '-height') / 3) 
-                    right lookup('$switch-' + size + '-handle-gutter') + $handleWidth 
+            .k-bar
+                width lookup('$switch-' + size + '-height')
+                border-radius lookup('$switch-' + size + '-height')
+            .k-wrapper
+                padding lookup('$switch-' + size + '-padding')
+            .k-on
+            .k-off
+                width lookup('$switch-' + size + '-width') - lookup('$switch-' + size + '-height') - $left
+            .k-on
+                left $left
+            .k-off
+                left lookup('$switch-' + size + '-height')
 
     // disabled
     &.k-disabled
         background $switch-disabled-bg-color
-        input
-            cursor not-allowed
+        cursor not-allowed
+        .k-bar
+        .k-wrapper
+            background $switch-disabled-bg-color
 
-    // bar
-    // .k-bar
-        // position absolute
-        // height 100%
-        // border-radius 24px
-        // width 24px
-        // background $primary-color
-        // transition width $transition
-    // &.k-checked
-        // .k-bar
-            // width 100%
-
-                   
+    // checked
+    &.k-checked
+        .k-bar
+        .k-wrapper
+            background $primary-color
+        .k-bar
+            width 100%
 

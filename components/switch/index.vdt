@@ -4,7 +4,7 @@ let {
     className, style, children,
     name, on, off, value,
     trueValue, falseValue, width,
-    height, size, disabled
+    height, size, disabled, _dragging
 } = self.get();
 
 const classNameObj = {
@@ -13,6 +13,7 @@ const classNameObj = {
     'k-checked': value === trueValue, 
     [`k-${size}`]: true,
     'k-disabled': disabled,
+    'k-dragging': _dragging,
 };
 
 
@@ -51,18 +52,28 @@ if (width && height) {
     }
 }
 
-<div class={{ classNameObj }} style={{ style }}>
+<div class={{ classNameObj }} style={{ style }} ev-click={{ self.toggle.bind(self) }}>
     <input type="checkbox" name={{ name }} 
         disabled={{ disabled }}
         v-model="value" 
         value={{ trueValue }}
         v-model-true={{ trueValue }}
         v-model-false={{ falseValue }}
+        ref="input"
     /> 
-    <div class="k-bar"></div>
-    <div class="k-inner" style={{ innerStyle }}>
-        <b:on v-if={{ value === trueValue }}>{{ on }}</b:on>
-        <b:off v-else>{{ off }}</b:off>
+    <div class="k-off" v-if={{ off || blocks.off }}>
+        <b:off>{{ off }}</b:off>
     </div>
-    <div class="k-handle" style={{ handleStyle }}></div>
+    <div class="k-bar" ref="bar">
+        <div class="k-on" v-if={{ on || blocks.on }}>
+            <b:on>{{ on }}</b:on>
+        </div>
+        <div class="k-wrapper">
+            <div class="k-handle" style={{ handleStyle }}
+                ev-click={{ self._handleClick.bind(self) }}
+                ev-mousedown={{ self._dragStart.bind(self) }}
+                ref="handle"
+            ><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></div>
+        </div>
+    </div>
 </div>
