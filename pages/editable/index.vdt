@@ -1,0 +1,5 @@
+const Editable = require('components/editable');
+
+<div>
+    <Editable>可编辑文字</Editable>
+</div>

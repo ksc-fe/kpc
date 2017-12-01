@@ -1,0 +1,23 @@
+const {
+    editing, value, validate,
+    disabled, style, tip,
+    children
+} = self.get();
+
+const classNameObj = {
+    'k-editable': true,
+    'k-editing': editing,
+    'k-disabled': disabled,
+};
+
+<div class={{ classNameObj }} style={{ style }}>
+    <i class="k-icon ion-edit k-edit" title={{ tip }}
+        v-if={{ !disabled && !editing }}
+        ev-click={{ self._edit.bind(self) }}
+    ></i>
+    <div class="c-ellipsis">
+        {{ !editing ? children :
+            <input class="c-input c-small" value={{ children }} />
+        }}
+    </div>
+</div>

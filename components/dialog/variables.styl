@@ -1,6 +1,6 @@
 @require('../../styles/themes/default.styl')
 
-$dialog-width := 670px
+$dialog-width := unit(670 / 14, rem) 
 $dialog-bg-color := #fff
 $dialog-border-radius := 2px
 $dialog-padding := unit(30 / 14, rem)
@@ -12,8 +12,9 @@ $dialog-title-font-size := 1rem
 $dialog-title-color := $title-color 
 $dialog-title-height := unit(60 / 14, em)
 $dialog-title-border := 1px solid $border-color
-$dialog-close-top := 10px
-$dialog-close-right := 5px
+$dialog-close-top := unit(10 / 14, em)
+$dialog-close-right := unit(5 / 14, em)
+$dialog-close-icon-font-size := unit(32 / 14, em)
 
 // body
 $dialog-body-padding := unit(18 / 14, rem) $dialog-padding
@@ -26,6 +27,6 @@ $dialog-footer-btn-margin := unit(12 / 14, rem)
 $dialog-transform := translateY(-10px) scale(1.05)
 
 // mini size
-$dialog-small-width := 450px
+$dialog-small-width := unit(450 / 14, rem)
 
 

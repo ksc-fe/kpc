@@ -82,4 +82,10 @@ export default new Router([
             return {Page: await import('pages/switch')};
         }
     },
+    {
+        path: '/components/editable',
+        action: async () => {
+            return {Page: await import('pages/editable')};
+        }
+    },
 ]);

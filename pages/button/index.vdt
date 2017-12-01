@@ -136,4 +136,8 @@ const Link = require('components/link');
     <br />
     <Button tagName={{ Link }} href="/"><i class="k-icon icon-boot"></i>Link</Button>
     <Button tagName={{ Link }} href="/" icon size="small"><i class="k-icon icon-boot"></i></Button>
+
+    <br />
+    <Button icon circle><i class="k-icon ion-android-close"></i></Button>
+    <Button icon circle><i class="k-icon ion-ios-search"></i></Button>
 </div>

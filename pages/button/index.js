@@ -18,9 +18,9 @@ export default class extends Intact {
 
     loading(name) {
         this.set(name, true);
-        setTimeout(() => {
-            this.set(name, false);
-        }, 5000);
+        // setTimeout(() => {
+            // this.set(name, false);
+        // }, 5000);
     }
 }
 

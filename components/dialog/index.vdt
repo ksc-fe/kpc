@@ -24,7 +24,7 @@ const MoveWrapper = require('../moveWrapper');
                 <Button type="none" icon title="关闭" class="k-close"
                     ev-click={{ self.close.bind(self) }}
                 >
-                    <i class="k-icon icon-close">X</i>
+                    <i class="k-icon ion-ios-close-empty"></i>
                 </Button>
             </div>
             <div class="k-body"><b:body>{{ self.get('children') }}</b:body></div>
