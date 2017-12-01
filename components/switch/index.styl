@@ -14,7 +14,7 @@
     .k-bar
         position absolute
         text-align right
-        background $switch-bg-color
+        overflow hidden
     .k-wrapper
         display inline-block
         position relative
@@ -23,6 +23,7 @@
     .k-bar
     .k-wrapper
         height 100%
+        background $switch-bg-color
         transition all $transition
     .k-handle
         border-radius 100% 
@@ -39,8 +40,7 @@
     .k-off
         position absolute
         font-size $switch-font-size
-        // color $switch-color
-        color red
+        color $switch-color
         text-align center
 
     // dragging
@@ -71,14 +71,6 @@
             .k-off
                 left lookup('$switch-' + size + '-height')
 
-    // disabled
-    &.k-disabled
-        background $switch-disabled-bg-color
-        cursor not-allowed
-        .k-bar
-        .k-wrapper
-            background $switch-disabled-bg-color
-
     // checked
     &.k-checked
         .k-bar
@@ -86,4 +78,12 @@
             background $primary-color
         .k-bar
             width 100%
+
+    // disabled
+    &.k-disabled
+        background $switch-disabled-bg-color
+        cursor not-allowed
+        .k-bar
+        .k-wrapper
+            background $switch-disabled-bg-color
 

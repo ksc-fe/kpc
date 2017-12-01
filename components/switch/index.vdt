@@ -17,9 +17,9 @@ const classNameObj = {
 };
 
 
-let innerStyle;
-let handleStyle;
-const gutter = 2;
+let onStyle;
+let offStyle;
+let barStyle;
 if (width && height) {
     style = addStyle(style, {
         width: `${width}px`,
@@ -27,29 +27,19 @@ if (width && height) {
         borderRadius: `${height}px`,
         lineHeight: `${height}px`,
     });
-    const handleWidth = `${height - gutter * 2}px`;
-    handleStyle = {
-        width: handleWidth,
-        height: handleWidth,
-        top: `${gutter}px`,
+    const textLeft = height / 3;
+    const textWidth = width - height - textLeft;
+    onStyle = {
+        left: `${textLeft}px`,
+        width: `${textWidth}px`,
     };
-    if (value === trueValue) {
-        innerStyle = {
-            left: `${height / 3}px`,
-            right: `${height - gutter}px`
-        };
-        Object.assign(handleStyle, {
-            left: `${width - height + gutter}px`,
-        });
-    } else {
-        innerStyle = {
-            left: `${height - gutter}px`, 
-            right: `${height / 3}px`
-        };
-        Object.assign(handleStyle, {
-            left: `${gutter}px`, 
-        });
-    }
+    offStyle = {
+        left: `${height}px`,
+        width: `${textWidth}px`,
+    };
+    barStyle = {
+        width: value === trueValue ? '100%' : `${height}px`,
+    };
 }
 
 <div class={{ classNameObj }} style={{ style }} ev-click={{ self.toggle.bind(self) }}>
@@ -61,15 +51,15 @@ if (width && height) {
         v-model-false={{ falseValue }}
         ref="input"
     /> 
-    <div class="k-off" v-if={{ off || blocks.off }}>
+    <div class="k-off" v-if={{ off || blocks.off }} style={{ offStyle }}>
         <b:off>{{ off }}</b:off>
     </div>
-    <div class="k-bar" ref="bar">
-        <div class="k-on" v-if={{ on || blocks.on }}>
+    <div class="k-bar" ref="bar" style={{ barStyle }}>
+        <div class="k-on" v-if={{ on || blocks.on }} style={{ onStyle }}>
             <b:on>{{ on }}</b:on>
         </div>
         <div class="k-wrapper">
-            <div class="k-handle" style={{ handleStyle }}
+            <div class="k-handle" style={{ /* handleStyle */ }}
                 ev-click={{ self._handleClick.bind(self) }}
                 ev-mousedown={{ self._dragStart.bind(self) }}
                 ref="handle"

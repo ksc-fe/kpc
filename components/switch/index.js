@@ -31,13 +31,10 @@ export default class extends Intact {
     _dragStart(e) {
         if (e.which !== 1) return;
 
-        console.log('start');
-
         this._x = e.clientX;
         this._height = this.refs.bar.clientHeight;
         this._width = this.refs.bar.clientWidth;
         this._maxWidth = this.element.clientWidth;
-        console.log(this._width);
 
         document.addEventListener('mousemove', this._move);
         document.addEventListener('mouseup', this._dragEnd);
@@ -46,7 +43,6 @@ export default class extends Intact {
     _move(e) {
         this.set('_dragging', true);
 
-        console.log('move');
         const left = e.clientX - this._x;
         const width = Math.min(
             Math.max(this._height, this._width + left),
@@ -72,8 +68,13 @@ export default class extends Intact {
                 } 
             } else if (percent < 0.5) {
                 this.uncheck();
+            } 
+            if (!this.isChecked() && this.get('width') && this.get('height')) {
+                // if is set width and height
+                bar.style.width = this.get('height') + 'px';
+            } else {
+                bar.style.width = '';
             }
-            bar.style.width = '';
         }
 
         document.removeEventListener('mousemove', this._move);
@@ -81,6 +82,8 @@ export default class extends Intact {
     }
 
     toggle() {
+        if (this.get('disabled')) return;
+
         if (this.isChecked()) {
             this.uncheck();
         } else {
