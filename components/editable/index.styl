@@ -2,7 +2,13 @@
 
 .k-editable
     display inline-block
+    line-height $editable-line-height
     .k-edit
         float right
         cursor pointer
         margin $editable-icon-margin
+
+    // invalid
+    &.k-invalid
+        .c-input
+            border $editable-invalid-border

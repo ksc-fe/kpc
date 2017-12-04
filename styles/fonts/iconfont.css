@@ -10,6 +10,7 @@
 .k-icon {
   font-family:"k-icon";
   font-size:16px;
+  /* font-size: 1.1428571428571428rem; */
   font-style:normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
