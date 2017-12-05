@@ -1,0 +1,21 @@
+const Button = require('./index');
+
+const {
+    className, vertical, style, 
+    children, radio, value
+} = self.get();
+
+const classNameObj = {
+    'k-btns': true,
+    'k-vertical': vertical,
+    [className]: className,
+};
+
+<div class={{ classNameObj }} style={{ style }}>{{ 
+    radio ? children.map(vNode => {
+        if (vNode.tag === Button) {
+            vNode.props._value = value;
+        }
+        return vNode;
+    }) : children
+}}</div>

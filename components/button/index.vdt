@@ -1,6 +1,9 @@
-let {type, className, size, icon, circle, ref, key,
-    tagName, htmlType, fluid, children, loading, ...rest
+let {
+    type, className, size, icon, circle, ref, key,
+    tagName, htmlType, fluid, children, loading,
+    value, _value, name, ...rest
 } = self.get();
+
 const classNameObj = {
     'k-btn': true,
     [`k-${type}`]: type !== 'default',
@@ -10,6 +13,7 @@ const classNameObj = {
     'k-circle': circle,
     'k-loading': loading,
     'k-fluid': fluid,
+    'k-active': value !== undefined && value === _value,
 };
 
 const Button = props => {
@@ -51,10 +55,17 @@ if (!icon && Array.isArray(children)) {
     children = <span>{{ children }}</span>
 }
 
-<Button class={{ classNameObj }} {{ ...rest }}>{{ 
-    loading ? 
+<Button class={{ classNameObj }} {{ ...rest }} 
+    ev-click={{ self._onClick.bind(self) }}
+>
+    {{ loading ? 
         classNameObj['k-icon-right'] ?
             [children, <i class="k-icon ion-load-c icon-loading"></i>] :
             [<i class="k-icon ion-load-c icon-loading"></i>, children] :
         children 
-}}</Button>
+    }}
+    <input type="radio" v-if={{ value !== undefined }}
+        name={{ name }} 
+        checked={{ value === _value }}
+    />
+</Button>

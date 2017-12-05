@@ -1,4 +1,5 @@
 const Button = require('components/button');
+const ButtonGroup = require('components/button/group');
 const Link = require('components/link');
 
 <div class="component-page">
@@ -140,4 +141,23 @@ const Link = require('components/link');
     <br />
     <Button icon circle><i class="k-icon ion-android-close"></i></Button>
     <Button icon circle><i class="k-icon ion-ios-search"></i></Button>
+
+    <br />
+    <ButtonGroup>
+        <Button size="small"><i class="k-icon icon-boot"></i>开机</Button>
+        <Button size="small"><i class="k-icon icon-boot"></i>关机</Button>
+        <Button size="small"><i class="k-icon icon-boot"></i>重启</Button>
+    </ButtonGroup>
+    <ButtonGroup radio v-model="city">
+        <Button size="small" value="beijing">北京</Button>
+        <Button size="small" value="shanghai" disabled>上海</Button>
+        <Button size="small" value="guangzhou">广州</Button>
+    </ButtonGroup>
+
+    <br />
+    <ButtonGroup vertical radio v-model="type">
+        <Button size="small" value={{ 0 }}><i class="k-icon icon-boot"></i>开机</Button>
+        <Button size="small" value={{ 1 }}><i class="k-icon icon-boot"></i>关机</Button>
+        <Button size="small" value={{ 2 }}><i class="k-icon icon-boot"></i>重启</Button>
+    </ButtonGroup>
 </div>

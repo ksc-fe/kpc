@@ -1,5 +1,6 @@
 import Intact from 'intact';
 import template from './index.vdt';
+import Group from './group';
 import './index.styl';
 
 export default class extends Intact {
@@ -17,7 +18,20 @@ export default class extends Intact {
             fluid: false,
             htmlType: 'button',
             tagName: 'button',
+            value: undefined,
+            name: undefined,
+            _value: undefined,
         };
+    }
+
+    _mount() {
+        let parentVNode = this.parentVNode;
+        if (parentVNode) {
+            parentVNode = parentVNode.parentVNode;
+        }
+        if (parentVNode && parentVNode.tag === Group) {
+            this.group = parentVNode.children;
+        }
     }
 
     showLoading() {
@@ -34,5 +48,12 @@ export default class extends Intact {
 
     enable() {
         this.set('disabled', false);
+    }
+
+    _onClick(e) {
+        if (this.group) {
+            this.group.set('value', this.get('value'));
+        }
+        this.trigger('click', e);
     }
 }

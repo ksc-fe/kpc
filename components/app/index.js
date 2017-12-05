@@ -48,7 +48,7 @@ export default class extends Intact {
 
     load(Page, data) {
         return this.render(Page, data).then(() => {
-            if (!this.rendered) {
+            if (process.ssr && process.browser) {
                 Intact.hydrate(this, this.get('container'));
                 serverStyleCleanup();
             }

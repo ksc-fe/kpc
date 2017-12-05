@@ -95,7 +95,7 @@ module.exports = {
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.DefinePlugin({
-            'process.ssr': false,
+            'process.ssr': true,
         }),
     ],
 };

@@ -4,6 +4,12 @@ import './index.styl';
 export default class extends Intact {
     get template() { return template; }
 
+    defaults() {
+        return {
+            city: 'beijing'
+        };
+    }
+
     _init() {
         console.log('aaaabb')
     }

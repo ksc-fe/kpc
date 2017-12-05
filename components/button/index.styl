@@ -1,7 +1,7 @@
 @require('./variables.styl')
 @require('../../styles/mixin.styl')
 
-types = primary warning danger
+types = primary warning danger active
 sizes = small mini
 
 .k-btn
@@ -162,3 +162,4 @@ sizes = small mini
                     border-top-color lookup('$btns-' + type + '-border-color')
                 &.k-{type}:not(:last-of-type)
                     border-bottom-color lookup('$btns-' + type + '-border-color')
+
