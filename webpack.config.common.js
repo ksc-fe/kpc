@@ -49,7 +49,7 @@ module.exports = {
                         loader: 'css-loader', 
                         options: {
                             url: true,
-                            sourceMap: !isProduction,
+                            // sourceMap: !isProduction,
                         }
                     },
                     {
@@ -61,13 +61,14 @@ module.exports = {
                                     'ie >= 9',
                                 ],
                             })],
-                            sourceMap: !isProduction,
+                            // sourceMap: !isProduction,
                         }
                     },
                     {
                         loader: 'stylus-loader', 
                         options: {
                             'include css': true,
+                            sourceMap: false,
                             // 'import': path.resolve(__dirname, 'styles/themes/test.styl'),
                         }
                     }
@@ -93,5 +94,8 @@ module.exports = {
         }),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
+        new webpack.DefinePlugin({
+            'process.ssr': false,
+        }),
     ],
 };

@@ -42,7 +42,7 @@ module.exports = merge.smartStrategy({
             entryOnly: false,
         }),
         new webpack.DefinePlugin({
-            'process.node': true
+            'process.node': true,
         }),
     ]
 });

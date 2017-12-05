@@ -16,7 +16,7 @@ function createRouterMiddleware(router, App) {
                     style: collectInitial()
                 });
             }).catch(e => {
-                res.render('index', {content: '<div></div>'});
+                res.render('index');
             });
         }).catch(e => {
             if (e.status === 404) {
