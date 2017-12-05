@@ -6,7 +6,7 @@ const Link = require('components/link');
         'radio', 'table', 'progress', 
         'slider','spinner','select',
         'form', 'grid', 'switch',
-        'editable',
+        'editable', 'tooltip'
     ] }}>
         <Link href={{ `/components/${value}` }}>{{ value }}</Link>
     </li>
