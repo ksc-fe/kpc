@@ -1,0 +1,24 @@
+@require('./variables.styl')
+
+.k-tabs
+    border-bottom 1px solid $border-color
+    .k-tab
+        height 59px
+        line-height @height
+        padding 0 8px
+        margin 0 10px
+        cursor pointer
+        display inline-block
+        text-align center
+        color $text-color
+        position relative
+        &.k-active
+            color $primary-color
+            &:after
+                content ''
+                display block
+                position absolute
+                height 2px
+                width 100%
+                background $primary-color
+                margin-left -8px

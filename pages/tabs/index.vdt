@@ -1,0 +1,18 @@
+const Tabs = require('components/tabs');
+
+<div>
+    <Tabs data={{ [
+        {
+            text: '入站规则',
+            value: 'rulein',
+        },
+        {
+            text: '出站规则',
+            value: 'ruleout',
+        },
+        {
+            text: '关联云主机',
+            value: 'relatedVM',
+        }
+    ] }}/>
+</div>

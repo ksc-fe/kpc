@@ -1,0 +1,14 @@
+const {className, data, value} = self.get();
+
+const classNameObj = {
+    'k-tabs': true,
+    [className]: className,
+};
+
+<div class={{ classNameObj }}>
+    <a class={{ {'k-tab': true, 'k-active': item.value === value} }}
+        v-for={{ data }}
+        v-for-value="item"
+        ev-click={{ self._changeTab.bind(self, item) }}
+    >{{ item.text }}</a>
+</div>
