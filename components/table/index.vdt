@@ -95,7 +95,7 @@ const tbody = <tbody>
                         td = value[key];
                     } else {
                         let obj = value,
-                            keys = key.spilt('.'),
+                            keys = key.split('.'),
                             i = 0;
                         while (obj != null && i < keys.length) {
                             obj = obj[keys[i++]];
