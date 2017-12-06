@@ -88,4 +88,10 @@ export default new Router([
             return {Page: await import('pages/editable')};
         }
     },
+    {
+        path: '/components/tabs',
+        action: async () => {
+            return {Page: await import('pages/tabs')};
+        }
+    },
 ]);

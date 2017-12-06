@@ -7,7 +7,7 @@
 		exports["KPC"] = factory(require("intact"));
 	else
 		root["KPC"] = factory(root["Intact"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_2__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -70,11 +70,17 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports) {
 
 /*
@@ -156,7 +162,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -202,7 +208,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(14);
+var	fixUrls = __webpack_require__(15);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -515,13 +521,153 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports) {
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _dec, _desc, _value, _class;
+
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _index = __webpack_require__(16);
+
+var _index2 = _interopRequireDefault(_index);
+
+var _group = __webpack_require__(17);
+
+var _group2 = _interopRequireDefault(_group);
+
+__webpack_require__(5);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
+
+    return desc;
+}
+
+var _default = (_dec = _intact2.default.template(), (_class = function (_Intact) {
+    _inherits(_default, _Intact);
+
+    function _default() {
+        _classCallCheck(this, _default);
+
+        return _possibleConstructorReturn(this, (_default.__proto__ || Object.getPrototypeOf(_default)).apply(this, arguments));
+    }
+
+    _createClass(_default, [{
+        key: 'defaults',
+        value: function defaults() {
+            return {
+                type: 'default', // primary | warning | danger
+                size: 'default', // small | mini
+                icon: false,
+                circle: false,
+                loading: false,
+                disabled: false,
+                fluid: false,
+                htmlType: 'button',
+                tagName: 'button',
+                value: undefined,
+                name: undefined,
+                _value: undefined
+            };
+        }
+    }, {
+        key: '_mount',
+        value: function _mount() {
+            var parentVNode = this.parentVNode;
+            if (parentVNode) {
+                parentVNode = parentVNode.parentVNode;
+            }
+            if (parentVNode && parentVNode.tag === _group2.default) {
+                this.group = parentVNode.children;
+            }
+        }
+    }, {
+        key: 'showLoading',
+        value: function showLoading() {
+            this.set('loading', true);
+        }
+    }, {
+        key: 'hideLoading',
+        value: function hideLoading() {
+            this.set('loading', false);
+        }
+    }, {
+        key: 'disable',
+        value: function disable() {
+            this.set('disabled', true);
+        }
+    }, {
+        key: 'enable',
+        value: function enable() {
+            this.set('disabled', false);
+        }
+    }, {
+        key: '_onClick',
+        value: function _onClick(e) {
+            if (this.group) {
+                this.group.set('value', this.get('value'));
+            }
+            this.trigger('click', e);
+        }
+    }, {
+        key: 'template',
+        get: function get() {
+            return _index2.default;
+        }
+    }]);
+
+    return _default;
+}(_intact2.default), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], Object.getOwnPropertyDescriptor(_class.prototype, 'template'), _class.prototype)), _class));
+
+exports.default = _default;
+module.exports = exports['default'];
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -536,7 +682,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _intact = __webpack_require__(2);
+var _intact = __webpack_require__(0);
 
 var _intact2 = _interopRequireDefault(_intact);
 
@@ -642,125 +788,38 @@ exports.default = MoveWrapper;
 module.exports = exports['default'];
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+// style-loader: Adds some css to the DOM by adding a <style> tag
 
+// load the styles
+var content = __webpack_require__(19);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _dec, _desc, _value, _class;
-
-var _intact = __webpack_require__(2);
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _index = __webpack_require__(15);
-
-var _index2 = _interopRequireDefault(_index);
-
-__webpack_require__(16);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-    var desc = {};
-    Object['ke' + 'ys'](descriptor).forEach(function (key) {
-        desc[key] = descriptor[key];
-    });
-    desc.enumerable = !!desc.enumerable;
-    desc.configurable = !!desc.configurable;
-
-    if ('value' in desc || desc.initializer) {
-        desc.writable = true;
-    }
-
-    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-        return decorator(target, property, desc) || desc;
-    }, desc);
-
-    if (context && desc.initializer !== void 0) {
-        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-        desc.initializer = undefined;
-    }
-
-    if (desc.initializer === void 0) {
-        Object['define' + 'Property'](target, property, desc);
-        desc = null;
-    }
-
-    return desc;
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(2)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js??ref--2-1!../../node_modules/postcss-loader/lib/index.js??ref--2-2!../../node_modules/stylus-loader/index.js??ref--2-3!./index.styl", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js??ref--2-1!../../node_modules/postcss-loader/lib/index.js??ref--2-2!../../node_modules/stylus-loader/index.js??ref--2-3!./index.styl");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
 }
 
-var _default = (_dec = _intact2.default.template(), (_class = function (_Intact) {
-    _inherits(_default, _Intact);
-
-    function _default() {
-        _classCallCheck(this, _default);
-
-        return _possibleConstructorReturn(this, (_default.__proto__ || Object.getPrototypeOf(_default)).apply(this, arguments));
-    }
-
-    _createClass(_default, [{
-        key: 'defaults',
-        value: function defaults() {
-            return {
-                type: 'default', // primary | warning | danger
-                size: 'default', // small | mini
-                icon: false,
-                circle: false,
-                loading: false,
-                disabled: false,
-                fluid: false
-            };
-        }
-    }, {
-        key: 'showLoading',
-        value: function showLoading() {
-            this.set('loading', true);
-        }
-    }, {
-        key: 'hideLoading',
-        value: function hideLoading() {
-            this.set('loading', false);
-        }
-    }, {
-        key: 'disable',
-        value: function disable() {
-            this.set('disabled', true);
-        }
-    }, {
-        key: 'enable',
-        value: function enable() {
-            this.set('disabled', false);
-        }
-    }, {
-        key: 'template',
-        get: function get() {
-            return _index2.default;
-        }
-    }]);
-
-    return _default;
-}(_intact2.default), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], Object.getOwnPropertyDescriptor(_class.prototype, 'template'), _class.prototype)), _class));
-
-exports.default = _default;
-module.exports = exports['default'];
-
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -914,7 +973,7 @@ function getOffsets(offsets, width, height) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -927,15 +986,15 @@ exports.default = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _intact = __webpack_require__(2);
+var _intact = __webpack_require__(0);
 
 var _intact2 = _interopRequireDefault(_intact);
 
-var _index = __webpack_require__(22);
+var _index = __webpack_require__(24);
 
 var _index2 = _interopRequireDefault(_index);
 
-__webpack_require__(23);
+__webpack_require__(25);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1006,7 +1065,7 @@ exports.default = _default;
 module.exports = exports['default'];
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1019,15 +1078,15 @@ exports.default = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _intact = __webpack_require__(2);
+var _intact = __webpack_require__(0);
 
 var _intact2 = _interopRequireDefault(_intact);
 
-var _index = __webpack_require__(25);
+var _index = __webpack_require__(27);
 
 var _index2 = _interopRequireDefault(_index);
 
-__webpack_require__(26);
+__webpack_require__(28);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1081,7 +1140,7 @@ exports.default = _default;
 module.exports = exports['default'];
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1094,15 +1153,15 @@ exports.default = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _intact = __webpack_require__(2);
+var _intact = __webpack_require__(0);
 
 var _intact2 = _interopRequireDefault(_intact);
 
-var _index = __webpack_require__(34);
+var _index = __webpack_require__(36);
 
 var _index2 = _interopRequireDefault(_index);
 
-__webpack_require__(35);
+__webpack_require__(37);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1225,7 +1284,7 @@ exports.default = _default;
 module.exports = exports['default'];
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1235,7 +1294,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _progress = __webpack_require__(10);
+var _progress = __webpack_require__(11);
 
 Object.defineProperty(exports, 'Progress', {
   enumerable: true,
@@ -1244,7 +1303,7 @@ Object.defineProperty(exports, 'Progress', {
   }
 });
 
-var _button = __webpack_require__(4);
+var _button = __webpack_require__(3);
 
 Object.defineProperty(exports, 'Button', {
   enumerable: true,
@@ -1253,7 +1312,7 @@ Object.defineProperty(exports, 'Button', {
   }
 });
 
-var _dialog = __webpack_require__(18);
+var _dialog = __webpack_require__(20);
 
 Object.defineProperty(exports, 'Dialog', {
   enumerable: true,
@@ -1262,7 +1321,7 @@ Object.defineProperty(exports, 'Dialog', {
   }
 });
 
-var _checkbox = __webpack_require__(6);
+var _checkbox = __webpack_require__(7);
 
 Object.defineProperty(exports, 'Checkbox', {
   enumerable: true,
@@ -1271,7 +1330,7 @@ Object.defineProperty(exports, 'Checkbox', {
   }
 });
 
-var _moveWrapper = __webpack_require__(3);
+var _moveWrapper = __webpack_require__(4);
 
 Object.defineProperty(exports, 'MoveWrapper', {
   enumerable: true,
@@ -1280,7 +1339,7 @@ Object.defineProperty(exports, 'MoveWrapper', {
   }
 });
 
-var _radio = __webpack_require__(7);
+var _radio = __webpack_require__(8);
 
 Object.defineProperty(exports, 'Radio', {
   enumerable: true,
@@ -1289,7 +1348,7 @@ Object.defineProperty(exports, 'Radio', {
   }
 });
 
-var _select = __webpack_require__(28);
+var _select = __webpack_require__(30);
 
 Object.defineProperty(exports, 'Select', {
   enumerable: true,
@@ -1298,7 +1357,7 @@ Object.defineProperty(exports, 'Select', {
   }
 });
 
-var _slider = __webpack_require__(32);
+var _slider = __webpack_require__(34);
 
 Object.defineProperty(exports, 'Slider', {
   enumerable: true,
@@ -1307,7 +1366,7 @@ Object.defineProperty(exports, 'Slider', {
   }
 });
 
-var _spinner = __webpack_require__(8);
+var _spinner = __webpack_require__(9);
 
 Object.defineProperty(exports, 'Spinner', {
   enumerable: true,
@@ -1316,7 +1375,7 @@ Object.defineProperty(exports, 'Spinner', {
   }
 });
 
-var _table = __webpack_require__(39);
+var _table = __webpack_require__(41);
 
 Object.defineProperty(exports, 'Table', {
   enumerable: true,
@@ -1328,7 +1387,7 @@ Object.defineProperty(exports, 'Table', {
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1341,11 +1400,11 @@ exports.default = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _index = __webpack_require__(11);
+var _index = __webpack_require__(12);
 
 var _index2 = _interopRequireDefault(_index);
 
-__webpack_require__(12);
+__webpack_require__(13);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1421,7 +1480,7 @@ exports.default = _default;
 module.exports = exports['default'];
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1674,13 +1733,13 @@ if (false) {
 }
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(13);
+var content = __webpack_require__(14);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -1688,7 +1747,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1)(content, options);
+var update = __webpack_require__(2)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -1705,10 +1764,10 @@ if(false) {
 }
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(0)(false);
+exports = module.exports = __webpack_require__(1)(undefined);
 // imports
 
 
@@ -1719,7 +1778,7 @@ exports.push([module.i, ".k-progress {\n  position: relative;\n  line-height: 1;
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports) {
 
 
@@ -1814,7 +1873,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1871,29 +1930,37 @@ module.exports = function (obj, _Vdt, blocks) {
         ref = _self$get.ref,
         key = _self$get.key,
         tagName = _self$get.tagName,
+        htmlType = _self$get.htmlType,
         fluid = _self$get.fluid,
         children = _self$get.children,
         loading = _self$get.loading,
-        rest = _objectWithoutProperties(_self$get, ['type', 'className', 'size', 'icon', 'circle', 'ref', 'key', 'tagName', 'fluid', 'children', 'loading']);
+        value = _self$get.value,
+        _value = _self$get._value,
+        name = _self$get.name,
+        rest = _objectWithoutProperties(_self$get, ['type', 'className', 'size', 'icon', 'circle', 'ref', 'key', 'tagName', 'htmlType', 'fluid', 'children', 'loading', 'value', '_value', 'name']);
 
     var classNameObj = (_classNameObj = {
         'k-btn': true
-    }, _defineProperty(_classNameObj, 'k-' + type, type !== 'default'), _defineProperty(_classNameObj, 'k-btn-icon', icon), _defineProperty(_classNameObj, 'k-' + size, size !== 'default'), _defineProperty(_classNameObj, className, className), _defineProperty(_classNameObj, 'k-circle', circle), _defineProperty(_classNameObj, 'k-loading', loading), _defineProperty(_classNameObj, 'k-fluid', fluid), _classNameObj);
+    }, _defineProperty(_classNameObj, 'k-' + type, type !== 'default'), _defineProperty(_classNameObj, 'k-btn-icon', icon), _defineProperty(_classNameObj, 'k-' + size, size !== 'default'), _defineProperty(_classNameObj, className, className), _defineProperty(_classNameObj, 'k-circle', circle), _defineProperty(_classNameObj, 'k-loading', loading), _defineProperty(_classNameObj, 'k-fluid', fluid), _defineProperty(_classNameObj, 'k-active', value !== undefined && value === _value), _classNameObj);
 
     var Button = function Button(props) {
-        if (!tagName && props.href) {
+        if (props.href) {
             tagName = 'a';
+        }
+        if (tagName === 'button') {
+            // set type of html button
+            props.type = htmlType;
         }
         // disable button when loading
         if (loading) props.disabled = true;
-        return h(tagName || 'button', props, props.children);
+        return h(tagName, props, props.children);
     };
 
     // hack for loading transition of width
     if (!icon && Array.isArray(children)) {
         children.forEach(function (child, index) {
             if (child) {
-                if (child.type === 1) {
+                if (child.type === 1 || typeof child === 'string' || typeof child === 'number') {
                     // is a text node
                     // wrap text node with span
                     children[index] = h('span', null, function () {
@@ -1939,13 +2006,37 @@ module.exports = function (obj, _Vdt, blocks) {
         } catch (e) {
             _e(e);
         }
-    }.call(this), { 'children': function () {
+    }.call(this), { 'ev-click': function () {
             try {
-                return [loading ? classNameObj['k-icon-right'] ? [children, h('i', null, null, 'k-icon icon-loading')] : [h('i', null, null, 'k-icon icon-loading'), children] : children][0];
+                return [self._onClick.bind(self)][0];
             } catch (e) {
                 _e(e);
             }
-        }.call(this), '_blocks': null }));
+        }.call(this), 'children': ['\n    ', function () {
+            try {
+                return [loading ? classNameObj['k-icon-right'] ? [children, h('i', null, null, 'k-icon ion-load-c icon-loading')] : [h('i', null, null, 'k-icon ion-load-c icon-loading'), children] : children][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), '\n    ', function () {
+            try {
+                return [value !== undefined][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) ? h('input', { 'type': 'radio', 'name': function () {
+                try {
+                    return [name][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'checked': function () {
+                try {
+                    return [value === _value][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this) }) : undefined], '_context': this }));
 };
 if (false) {
     var vdt = module.hot.data && module.hot.data.vdt;
@@ -1958,52 +2049,7 @@ if (false) {
 }
 
 /***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(17);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(1)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js??ref--2-1!../../node_modules/postcss-loader/lib/index.js??ref--2-2!../../node_modules/stylus-loader/index.js??ref--2-3!./index.styl", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js??ref--2-1!../../node_modules/postcss-loader/lib/index.js??ref--2-2!../../node_modules/stylus-loader/index.js??ref--2-3!./index.styl");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
 /* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(false);
-// imports
-
-
-// module
-exports.push([module.i, ".k-btn {\n  cursor: pointer;\n  display: inline-block;\n  height: 2.571428571428572em;\n  padding: 0 1.428571428571429em;\n  outline: none;\n  border: none;\n  color: #595959;\n  background-color: #fff;\n  text-align: center;\n  border-radius: 2px;\n  -webkit-transition: all 0.3s ease-in-out;\n  transition: all 0.3s ease-in-out;\n  border: 1px solid #cad0dd;\n  font-size: 1rem;\n}\n.k-btn:hover {\n  border-color: #0a5eee;\n  color: #0a5eee;\n}\n.k-btn.k-primary {\n  background-color: #0a5eee;\n  color: #fff;\n  border-color: #0a5eee;\n}\n.k-btn.k-primary:hover {\n  background-color: #367df7;\n  border-color: #367df7;\n}\n.k-btn.k-warning {\n  background-color: #ff8a00;\n  color: #fff;\n  border-color: #ff8a00;\n}\n.k-btn.k-warning:hover {\n  background-color: #ffa133;\n  border-color: #ffa133;\n}\n.k-btn.k-danger {\n  background-color: #db2828;\n  color: #fff;\n  border-color: #db2828;\n}\n.k-btn.k-danger:hover {\n  background-color: #e25353;\n  border-color: #e25353;\n}\n.k-btn[disabled],\n.k-btn[disabled]:hover {\n  color: #999;\n  background-color: #f7f7f7;\n  border-color: #d9d9d9;\n  cursor: not-allowed;\n}\n.k-btn.k-none,\n.k-btn.k-none:hover {\n  border: none;\n  background-color: transparent;\n}\n.k-btn.k-small {\n  font-size: 0.857142857142857rem;\n  height: 2.583333333333333em;\n  padding: 0 1.25em;\n}\n.k-btn.k-small.k-btn-icon {\n  width: 2.583333333333333em;\n}\n.k-btn.k-mini {\n  font-size: 0.857142857142857rem;\n  height: 2.166666666666667em;\n  padding: 0 0.833333333333333em;\n}\n.k-btn.k-mini.k-btn-icon {\n  width: 2.166666666666667em;\n}\n.k-btn:not(button) {\n  line-height: 2.571428571428572em;\n}\n.k-btn:not(button).ksmall {\n  line-height: 2.583333333333333em;\n}\n.k-btn:not(button).kmini {\n  line-height: 2.166666666666667em;\n}\n.k-btn .k-icon {\n  font-size: inherit;\n}\n.k-btn .k-icon + span {\n  margin-left: 0.357142857142857em;\n}\n.k-btn.k-icon-right .k-icon {\n  margin-left: 0.357142857142857em;\n}\n.k-btn.k-btn-icon {\n  width: 2.571428571428572em;\n  padding: 0;\n}\n.k-btn.k-btn-icon .k-icon {\n  margin: 0;\n  font-size: 1.142857142857143em;\n}\n.k-btn.k-fluid {\n  width: 100%;\n}\n.k-btn.k-circle {\n  border-radius: 1.285714285714286em;\n}\n.k-btn.k-loading,\n.k-btn.k-loading:hover {\n  background-color: #fff;\n  color: #acacac;\n  border-color: #e4e8ee;\n}\n.k-btn.k-loading .k-icon:not(.icon-loading) {\n  display: none;\n}\n.k-btn.k-loading.k-primary,\n.k-btn.k-loading.k-primary:hover {\n  background-color: #81aefa;\n  color: #fff;\n  border-color: #81aefa;\n}\n.k-btn.k-loading.k-warning,\n.k-btn.k-loading.k-warning:hover {\n  background-color: #ffc480;\n  color: #fff;\n  border-color: #ffc480;\n}\n.k-btn.k-loading.k-danger,\n.k-btn.k-loading.k-danger:hover {\n  background-color: #ed9494;\n  color: #fff;\n  border-color: #ed9494;\n}\n.k-btn.k-loading:not(.k-btn-icon):not(.k-icon-left):not(.k-icon-right) {\n  padding-left: 2.428571428571429em;\n}\n.k-btn.k-loading:not(.k-btn-icon):not(.k-icon-left):not(.k-icon-right) .icon-loading {\n  margin-left: -1em;\n}\n.k-btn.k-loading:not(.k-btn-icon):not(.k-icon-left):not(.k-icon-right).k-small {\n  padding-left: 2.25em;\n}\n.k-btn.k-loading:not(.k-btn-icon):not(.k-icon-left):not(.k-icon-right).k-mini {\n  padding-left: 1.833333333333333em;\n}\n.k-btns {\n  display: inline-block;\n  vertical-align: middle;\n}\n.k-btns .k-btn {\n  margin: 0 !important;\n}\n.k-btns .k-btn:hover {\n  z-index: 1;\n  position: relative;\n}\n.k-btns:not(.k-vertical) > .k-btn:not(:first-of-type) {\n  margin-left: -1px !important;\n}\n.k-btns:not(.k-vertical) > .k-btn:not(:first-of-type):not(:last-of-type) {\n  border-radius: 0;\n}\n.k-btns:not(.k-vertical) > .k-btn:not(:only-of-type):first-of-type {\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n}\n.k-btns:not(.k-vertical) > .k-btn:not(:only-of-type):last-of-type {\n  border-top-left-radius: 0;\n  border-bottom-left-radius: 0;\n}\n.k-btns:not(.k-vertical) > .k-btn.k-primary:not(:first-of-type) {\n  border-left-color: #0958e0;\n}\n.k-btns:not(.k-vertical) > .k-btn.k-primary:not(:last-of-type) {\n  border-right-color: #0958e0;\n}\n.k-btns:not(.k-vertical) > .k-btn.k-warning:not(:first-of-type) {\n  border-left-color: #f08200;\n}\n.k-btns:not(.k-vertical) > .k-btn.k-warning:not(:last-of-type) {\n  border-right-color: #f08200;\n}\n.k-btns:not(.k-vertical) > .k-btn.k-danger:not(:first-of-type) {\n  border-left-color: #d12323;\n}\n.k-btns:not(.k-vertical) > .k-btn.k-danger:not(:last-of-type) {\n  border-right-color: #d12323;\n}\n.k-btns.k-vertical > .k-btn {\n  display: block;\n}\n.k-btns.k-vertical > .k-btn:not(.k-btn-icon) {\n  width: 100%;\n}\n.k-btns.k-vertical > .k-btn:not(:first-of-type) {\n  margin-top: -1px !important;\n}\n.k-btns.k-vertical > .k-btn:not(:first-of-type):not(:last-of-type) {\n  border-radius: 0;\n}\n.k-btns.k-vertical > .k-btn:not(:only-of-type):first-of-type {\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n}\n.k-btns.k-vertical > .k-btn:not(:only-of-type):last-of-type {\n  border-top-left-radius: 0;\n  border-top-right-radius: 0;\n}\n.k-btns.k-vertical > .k-btn.k-primary:not(:first-of-type) {\n  border-top-color: #0958e0;\n}\n.k-btns.k-vertical > .k-btn.k-primary:not(:last-of-type) {\n  border-bottom-color: #0958e0;\n}\n.k-btns.k-vertical > .k-btn.k-warning:not(:first-of-type) {\n  border-top-color: #f08200;\n}\n.k-btns.k-vertical > .k-btn.k-warning:not(:last-of-type) {\n  border-bottom-color: #f08200;\n}\n.k-btns.k-vertical > .k-btn.k-danger:not(:first-of-type) {\n  border-top-color: #d12323;\n}\n.k-btns.k-vertical > .k-btn.k-danger:not(:last-of-type) {\n  border-bottom-color: #d12323;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2018,17 +2064,216 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _dec, _desc, _value, _class;
 
-var _intact = __webpack_require__(2);
+var _intact = __webpack_require__(0);
 
 var _intact2 = _interopRequireDefault(_intact);
 
-var _index = __webpack_require__(19);
+var _group = __webpack_require__(18);
+
+var _group2 = _interopRequireDefault(_group);
+
+__webpack_require__(5);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
+
+    return desc;
+}
+
+var _default = (_dec = _intact2.default.template(), (_class = function (_Intact) {
+    _inherits(_default, _Intact);
+
+    function _default() {
+        _classCallCheck(this, _default);
+
+        return _possibleConstructorReturn(this, (_default.__proto__ || Object.getPrototypeOf(_default)).apply(this, arguments));
+    }
+
+    _createClass(_default, [{
+        key: 'defaults',
+        value: function defaults() {
+            return {
+                vertical: false,
+                radio: false,
+                value: undefined
+            };
+        }
+    }, {
+        key: 'template',
+        get: function get() {
+            return _group2.default;
+        }
+    }]);
+
+    return _default;
+}(_intact2.default), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], Object.getOwnPropertyDescriptor(_class.prototype, 'template'), _class.prototype)), _class));
+
+exports.default = _default;
+module.exports = exports['default'];
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+module.exports = function (obj, _Vdt, blocks) {
+    if (false) {
+        var __this = this;
+        module.hot.dispose(function (data) {
+            data.vdt = __this;
+            data.isParent = __this.data === obj;
+        });
+    }
+
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = this._super;
+    var Button = __webpack_require__(3);
+
+    var _self$get = self.get(),
+        className = _self$get.className,
+        vertical = _self$get.vertical,
+        style = _self$get.style,
+        children = _self$get.children,
+        radio = _self$get.radio,
+        value = _self$get.value;
+
+    var classNameObj = _defineProperty({
+        'k-btns': true,
+        'k-vertical': vertical
+    }, className, className);
+
+    return h('div', { 'style': function () {
+            try {
+                return [style][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, function () {
+        try {
+            return [radio ? children.map(function (vNode) {
+                if (vNode.tag === Button) {
+                    vNode.props._value = value;
+                }
+                return vNode;
+            }) : children][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), _className(function () {
+        try {
+            return [classNameObj][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)));
+};
+if (false) {
+    var vdt = module.hot.data && module.hot.data.vdt;
+    if (vdt) {
+        if (module.hot.data.isParent) {
+            vdt.template = module.exports;
+            typeof window !== "undefined" && vdt.update();
+        }
+    }
+}
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".k-btn {\n  cursor: pointer;\n  display: inline-block;\n  height: 2.571428571428572em;\n  padding: 0 1.428571428571429em;\n  outline: none;\n  border: none;\n  color: #595959;\n  background-color: #fff;\n  text-align: center;\n  border-radius: 2px;\n  -webkit-transition: all 0.25s ease-in-out;\n  transition: all 0.25s ease-in-out;\n  border: 1px solid #cad0dd;\n  font-size: 1rem;\n}\n.k-btn:hover {\n  border-color: #0a5eee;\n  color: #0a5eee;\n}\n.k-btn.k-primary {\n  background-color: #0a5eee;\n  color: #fff;\n  border-color: #0a5eee;\n}\n.k-btn.k-primary:hover {\n  background-color: #367df7;\n  border-color: #367df7;\n}\n.k-btn.k-warning {\n  background-color: #ff8a00;\n  color: #fff;\n  border-color: #ff8a00;\n}\n.k-btn.k-warning:hover {\n  background-color: #ffa133;\n  border-color: #ffa133;\n}\n.k-btn.k-danger {\n  background-color: #db2828;\n  color: #fff;\n  border-color: #db2828;\n}\n.k-btn.k-danger:hover {\n  background-color: #e25353;\n  border-color: #e25353;\n}\n.k-btn.k-active {\n  background-color: #0a5eee;\n  color: #fff;\n  border-color: #0a5eee;\n}\n.k-btn.k-active:hover {\n  background-color: #367df7;\n  border-color: #367df7;\n}\n.k-btn[disabled],\n.k-btn[disabled]:hover {\n  color: #999;\n  background-color: #f7f7f7;\n  border-color: #d9d9d9;\n  cursor: not-allowed;\n}\n.k-btn.k-none,\n.k-btn.k-none:hover {\n  border: none;\n  background-color: transparent;\n}\n.k-btn.k-small {\n  font-size: 0.857142857142857rem;\n  height: 2.583333333333333em;\n  padding: 0 1.25em;\n}\n.k-btn.k-small.k-btn-icon {\n  width: 2.583333333333333em;\n}\n.k-btn.k-mini {\n  font-size: 0.857142857142857rem;\n  height: 2.166666666666667em;\n  padding: 0 0.833333333333333em;\n}\n.k-btn.k-mini.k-btn-icon {\n  width: 2.166666666666667em;\n}\n.k-btn:not(button) {\n  line-height: 2.571428571428572em;\n}\n.k-btn:not(button).ksmall {\n  line-height: 2.583333333333333em;\n}\n.k-btn:not(button).kmini {\n  line-height: 2.166666666666667em;\n}\n.k-btn .k-icon {\n  font-size: inherit;\n}\n.k-btn .k-icon:before {\n  font-size: inherit;\n}\n.k-btn .k-icon + span {\n  margin-left: 0.357142857142857em;\n}\n.k-btn.k-icon-right .k-icon {\n  margin-left: 0.357142857142857em;\n}\n.k-btn.k-btn-icon {\n  width: 2.571428571428572em;\n  padding: 0;\n}\n.k-btn.k-btn-icon .k-icon {\n  margin: 0;\n  font-size: 1.142857142857143em;\n}\n.k-btn.k-fluid {\n  width: 100%;\n}\n.k-btn.k-circle {\n  border-radius: 1.285714285714286em;\n}\n.k-btn.k-loading,\n.k-btn.k-loading:hover {\n  background-color: #fff;\n  color: #acacac;\n  border-color: #e4e8ee;\n}\n.k-btn.k-loading .k-icon:not(.icon-loading) {\n  display: none;\n}\n.k-btn.k-loading.k-primary,\n.k-btn.k-loading.k-primary:hover {\n  background-color: #81aefa;\n  color: #fff;\n  border-color: #81aefa;\n}\n.k-btn.k-loading.k-warning,\n.k-btn.k-loading.k-warning:hover {\n  background-color: #ffc480;\n  color: #fff;\n  border-color: #ffc480;\n}\n.k-btn.k-loading.k-danger,\n.k-btn.k-loading.k-danger:hover {\n  background-color: #ed9494;\n  color: #fff;\n  border-color: #ed9494;\n}\n.k-btn.k-loading.k-active,\n.k-btn.k-loading.k-active:hover {\n  background-color: #81aefa;\n  color: #fff;\n  border-color: #81aefa;\n}\n.k-btn.k-loading:not(.k-btn-icon):not(.k-icon-left):not(.k-icon-right) {\n  padding-left: 2.428571428571429em;\n}\n.k-btn.k-loading:not(.k-btn-icon):not(.k-icon-left):not(.k-icon-right) .icon-loading {\n  margin-left: -1em;\n}\n.k-btn.k-loading:not(.k-btn-icon):not(.k-icon-left):not(.k-icon-right).k-small {\n  padding-left: 2.25em;\n}\n.k-btn.k-loading:not(.k-btn-icon):not(.k-icon-left):not(.k-icon-right).k-mini {\n  padding-left: 1.833333333333333em;\n}\n.k-btns {\n  display: inline-block;\n  vertical-align: middle;\n}\n.k-btns .k-btn {\n  margin: 0 !important;\n  vertical-align: middle;\n}\n.k-btns .k-btn:hover {\n  z-index: 1;\n  position: relative;\n}\n.k-btns:not(.k-vertical) > .k-btn:not(:first-of-type) {\n  margin-left: -1px !important;\n}\n.k-btns:not(.k-vertical) > .k-btn:not(:first-of-type):not(:last-of-type) {\n  border-radius: 0;\n}\n.k-btns:not(.k-vertical) > .k-btn:not(:only-of-type):first-of-type {\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n}\n.k-btns:not(.k-vertical) > .k-btn:not(:only-of-type):last-of-type {\n  border-top-left-radius: 0;\n  border-bottom-left-radius: 0;\n}\n.k-btns:not(.k-vertical) > .k-btn.k-primary:not(:first-of-type) {\n  border-left-color: #0958e0;\n}\n.k-btns:not(.k-vertical) > .k-btn.k-primary:not(:last-of-type) {\n  border-right-color: #0958e0;\n}\n.k-btns:not(.k-vertical) > .k-btn.k-warning:not(:first-of-type) {\n  border-left-color: #f08200;\n}\n.k-btns:not(.k-vertical) > .k-btn.k-warning:not(:last-of-type) {\n  border-right-color: #f08200;\n}\n.k-btns:not(.k-vertical) > .k-btn.k-danger:not(:first-of-type) {\n  border-left-color: #d12323;\n}\n.k-btns:not(.k-vertical) > .k-btn.k-danger:not(:last-of-type) {\n  border-right-color: #d12323;\n}\n.k-btns:not(.k-vertical) > .k-btn.k-active:not(:first-of-type) {\n  border-left-color: ;\n}\n.k-btns:not(.k-vertical) > .k-btn.k-active:not(:last-of-type) {\n  border-right-color: ;\n}\n.k-btns.k-vertical > .k-btn {\n  display: block;\n}\n.k-btns.k-vertical > .k-btn:not(.k-btn-icon) {\n  width: 100%;\n}\n.k-btns.k-vertical > .k-btn:not(:first-of-type) {\n  margin-top: -1px !important;\n}\n.k-btns.k-vertical > .k-btn:not(:first-of-type):not(:last-of-type) {\n  border-radius: 0;\n}\n.k-btns.k-vertical > .k-btn:not(:only-of-type):first-of-type {\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n}\n.k-btns.k-vertical > .k-btn:not(:only-of-type):last-of-type {\n  border-top-left-radius: 0;\n  border-top-right-radius: 0;\n}\n.k-btns.k-vertical > .k-btn.k-primary:not(:first-of-type) {\n  border-top-color: #0958e0;\n}\n.k-btns.k-vertical > .k-btn.k-primary:not(:last-of-type) {\n  border-bottom-color: #0958e0;\n}\n.k-btns.k-vertical > .k-btn.k-warning:not(:first-of-type) {\n  border-top-color: #f08200;\n}\n.k-btns.k-vertical > .k-btn.k-warning:not(:last-of-type) {\n  border-bottom-color: #f08200;\n}\n.k-btns.k-vertical > .k-btn.k-danger:not(:first-of-type) {\n  border-top-color: #d12323;\n}\n.k-btns.k-vertical > .k-btn.k-danger:not(:last-of-type) {\n  border-bottom-color: #d12323;\n}\n.k-btns.k-vertical > .k-btn.k-active:not(:first-of-type) {\n  border-top-color: ;\n}\n.k-btns.k-vertical > .k-btn.k-active:not(:last-of-type) {\n  border-bottom-color: ;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _dec, _desc, _value, _class;
+
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _index = __webpack_require__(21);
 
 var _index2 = _interopRequireDefault(_index);
 
-__webpack_require__(20);
+__webpack_require__(22);
 
-var _position = __webpack_require__(5);
+var _position = __webpack_require__(6);
 
 var _position2 = _interopRequireDefault(_position);
 
@@ -2247,7 +2492,7 @@ exports.default = _default;
 module.exports = exports['default'];
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2287,8 +2532,8 @@ module.exports = function (obj, _Vdt, blocks) {
         scope = obj,
         Animate = self && self.Animate,
         parent = this._super;
-    var Button = __webpack_require__(4);
-    var MoveWrapper = __webpack_require__(3);
+    var Button = __webpack_require__(3);
+    var MoveWrapper = __webpack_require__(4);
 
     return h(MoveWrapper, { 'autoDestroy': function () {
             try {
@@ -2302,7 +2547,7 @@ module.exports = function (obj, _Vdt, blocks) {
             } catch (e) {
                 _e(e);
             }
-        }.call(this) ? h(Animate, { 'className': 'k-overlay', 'children': null, '_blocks': null }) : undefined, function () {
+        }.call(this) ? h(Animate, { 'className': 'k-overlay', 'children': null, '_context': this }) : undefined, function () {
             try {
                 return [self.get('value')][0];
             } catch (e) {
@@ -2363,7 +2608,7 @@ module.exports = function (obj, _Vdt, blocks) {
                     } catch (e) {
                         _e(e);
                     }
-                }.call(this), 'children': h('i', null, 'X', 'k-icon icon-close'), '_blocks': null })], 'k-header'), h('div', null, (_blocks.body = function (parent) {
+                }.call(this), 'children': h('i', null, null, 'k-icon ion-ios-close-empty'), '_context': this })], 'k-header'), h('div', null, (_blocks.body = function (parent) {
                 return function () {
                     try {
                         return [self.get('children')][0];
@@ -2383,19 +2628,19 @@ module.exports = function (obj, _Vdt, blocks) {
                         } catch (e) {
                             _e(e);
                         }
-                    }.call(this), 'children': '取消', '_blocks': null }), h(Button, { 'type': 'primary', 'ev-click': function () {
+                    }.call(this), 'children': '取消', '_context': this }), h(Button, { 'type': 'primary', 'ev-click': function () {
                         try {
                             return [self.ok.bind(self)][0];
                         } catch (e) {
                             _e(e);
                         }
-                    }.call(this), 'children': '确定', '_blocks': null })];
+                    }.call(this), 'children': '确定', '_context': this })];
             }) && (__blocks.footer = function (parent) {
                 var self = this;
                 return blocks.footer ? blocks.footer.call(this, function () {
                     return _blocks.footer.call(self, parent);
                 }) : _blocks.footer.call(this, parent);
-            }) && __blocks.footer.call(this), 'k-footer')], '_blocks': null }) : undefined], 'k-dialog-wrapper', null, function () {
+            }) && __blocks.footer.call(this), 'k-footer')], '_context': this }) : undefined], 'k-dialog-wrapper', null, function () {
             try {
                 return [function (dom) {
                     return self.$element = dom;
@@ -2403,7 +2648,7 @@ module.exports = function (obj, _Vdt, blocks) {
             } catch (e) {
                 _e(e);
             }
-        }.call(this)), '_blocks': null });
+        }.call(this)), '_context': this });
 };
 if (false) {
     var vdt = module.hot.data && module.hot.data.vdt;
@@ -2416,13 +2661,13 @@ if (false) {
 }
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(21);
+var content = __webpack_require__(23);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -2430,7 +2675,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1)(content, options);
+var update = __webpack_require__(2)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -2447,21 +2692,21 @@ if(false) {
 }
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(0)(false);
+exports = module.exports = __webpack_require__(1)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, ".k-dialog-wrapper {\n  position: absolute;\n  z-index: 999;\n  top: 0;\n  left: 0;\n}\n.k-dialog-wrapper .k-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: #000;\n  opacity: 0.5;\n  -webkit-transition: opacity 0.2s ease-in-out;\n  transition: opacity 0.2s ease-in-out;\n}\n.k-dialog-wrapper .k-overlay.animate-enter,\n.k-dialog-wrapper .k-overlay.animate-leave {\n  opacity: 0;\n}\n.k-dialog {\n  position: absolute;\n  width: 670px;\n  border-radius: 2px;\n  background: #fff;\n  font-size: 0.857142857142857rem;\n  color: #595959;\n}\n.k-dialog .k-header {\n  padding: 0 2.142857142857143rem;\n  border-bottom: 1px solid #cad0dd;\n  position: relative;\n}\n.k-dialog .k-title {\n  height: 4.285714285714286em;\n  line-height: 4.285714285714286em;\n  font-size: 1rem;\n  color: #404040;\n}\n.k-dialog .k-close {\n  position: absolute;\n  right: 5px;\n  top: 10px;\n}\n.k-dialog .k-body {\n  padding: 1.285714285714286rem 2.142857142857143rem;\n}\n.k-dialog .k-footer {\n  text-align: right;\n  padding: 1.714285714285714rem 2.142857142857143rem;\n}\n.k-dialog .k-footer .k-btn {\n  margin-left: 0.857142857142857rem;\n}\n.k-dialog.k-dragging {\n  cursor: default;\n}\n.k-dialog.animate-enter-active,\n.k-dialog.animate-leave-active {\n  -webkit-transition: all 0.25s ease-in-out;\n  transition: all 0.25s ease-in-out;\n}\n.k-dialog.animate-enter,\n.k-dialog.animate-leave {\n  -webkit-transform: translateY(-10px) scale(1.05);\n      -ms-transform: translateY(-10px) scale(1.05);\n          transform: translateY(-10px) scale(1.05);\n  opacity: 0;\n}\n.k-dialog.k-small {\n  width: 450px;\n}\n", ""]);
+exports.push([module.i, ".k-dialog-wrapper {\n  position: absolute;\n  z-index: 999;\n  top: 0;\n  left: 0;\n}\n.k-dialog-wrapper .k-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: #000;\n  opacity: 0.5;\n  -webkit-transition: opacity 0.25s ease-in-out;\n  transition: opacity 0.25s ease-in-out;\n}\n.k-dialog-wrapper .k-overlay.animate-enter,\n.k-dialog-wrapper .k-overlay.animate-leave {\n  opacity: 0;\n}\n.k-dialog {\n  position: absolute;\n  width: 47.857142857142854rem;\n  border-radius: 2px;\n  background: #fff;\n  font-size: 0.857142857142857rem;\n  color: #595959;\n}\n.k-dialog .k-header {\n  padding: 0 2.142857142857143rem;\n  border-bottom: 1px solid #cad0dd;\n  position: relative;\n}\n.k-dialog .k-title {\n  height: 4.285714285714286em;\n  line-height: 4.285714285714286em;\n  font-size: 1rem;\n  color: #404040;\n}\n.k-dialog .k-close {\n  position: absolute;\n  right: 0.357142857142857em;\n  top: 0.714285714285714em;\n}\n.k-dialog .k-close.k-btn .k-icon {\n  font-size: 2.285714285714286em;\n}\n.k-dialog .k-body {\n  padding: 1.285714285714286rem 2.142857142857143rem;\n}\n.k-dialog .k-footer {\n  text-align: right;\n  padding: 1.714285714285714rem 2.142857142857143rem;\n}\n.k-dialog .k-footer .k-btn {\n  margin-left: 0.857142857142857rem;\n}\n.k-dialog.k-dragging {\n  cursor: default;\n}\n.k-dialog.animate-enter-active,\n.k-dialog.animate-leave-active {\n  -webkit-transition: all 0.25s ease-in-out;\n  transition: all 0.25s ease-in-out;\n}\n.k-dialog.animate-enter,\n.k-dialog.animate-leave {\n  -webkit-transform: translateY(-10px) scale(1.05);\n      -ms-transform: translateY(-10px) scale(1.05);\n          transform: translateY(-10px) scale(1.05);\n  opacity: 0;\n}\n.k-dialog.k-small {\n  width: 32.142857142857146rem;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2513,9 +2758,10 @@ module.exports = function (obj, _Vdt, blocks) {
         children = _self$get.children,
         value = _self$get.value,
         trueValue = _self$get.trueValue,
+        style = _self$get.style,
         ref = _self$get.ref,
         key = _self$get.key,
-        rest = _objectWithoutProperties(_self$get, ['className', 'disabled', 'falseValue', 'children', 'value', 'trueValue', 'ref', 'key']);
+        rest = _objectWithoutProperties(_self$get, ['className', 'disabled', 'falseValue', 'children', 'value', 'trueValue', 'style', 'ref', 'key']);
 
     var classNameObj = _defineProperty({
         'k-checkbox': true,
@@ -2523,7 +2769,13 @@ module.exports = function (obj, _Vdt, blocks) {
         'k-checked': self.isChecked()
     }, className || '', true);
 
-    return h('label', null, [h('span', null, h('input', _extends({ 'type': 'checkbox', 'disabled': function () {
+    return h('label', { 'style': function () {
+            try {
+                return [style][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, [h('span', null, h('input', _extends({ 'type': 'checkbox', 'disabled': function () {
             try {
                 return [disabled][0];
             } catch (e) {
@@ -2592,13 +2844,13 @@ if (false) {
 }
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(24);
+var content = __webpack_require__(26);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -2606,7 +2858,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1)(content, options);
+var update = __webpack_require__(2)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -2623,21 +2875,21 @@ if(false) {
 }
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(0)(false);
+exports = module.exports = __webpack_require__(1)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, ".k-checkbox {\n  display: inline-block;\n  cursor: pointer;\n}\n.k-checkbox .k-wrapper {\n  display: inline-block;\n  width: 14px;\n  height: 14px;\n  vertical-align: middle;\n  border: 1px solid #979797;\n  border-radius: 2px;\n  position: relative;\n  -webkit-transition: all 0.2s ease-in-out;\n  transition: all 0.2s ease-in-out;\n}\n.k-checkbox .k-wrapper:before {\n  content: \"\";\n  display: block;\n  position: absolute;\n  width: 4px;\n  height: 8px;\n  top: 1px;\n  left: 4px;\n  border: 1px solid #fff;\n  border-top: 0;\n  border-left: 0;\n  -webkit-transform: rotate(45deg) scale(0);\n      -ms-transform: rotate(45deg) scale(0);\n          transform: rotate(45deg) scale(0);\n  -webkit-transition: all 0.2s ease-in-out;\n  transition: all 0.2s ease-in-out;\n}\n.k-checkbox input {\n  width: 100%;\n  height: 100%;\n  opacity: 0;\n  cursor: pointer;\n}\n.k-checkbox .k-text {\n  vertical-align: middle;\n  margin-left: 0.357142857142857em;\n}\n.k-checkbox.k-checked .k-wrapper {\n  border-color: #0a5eee;\n  background: #0a5eee;\n}\n.k-checkbox.k-checked .k-wrapper:before {\n  -webkit-transform: rotate(45deg) scale(1);\n      -ms-transform: rotate(45deg) scale(1);\n          transform: rotate(45deg) scale(1);\n}\n.k-checkbox.k-disabled {\n  color: #999;\n  cursor: not-allowed;\n}\n.k-checkbox.k-disabled .k-wrapper {\n  border-color: #d9d9d9;\n  background: #f7f7f7;\n}\n.k-checkbox.k-disabled .k-wrapper:before {\n  border-color: #999;\n}\n", ""]);
+exports.push([module.i, ".k-checkbox {\n  display: inline-block;\n  cursor: pointer;\n}\n.k-checkbox .k-wrapper {\n  display: inline-block;\n  width: 14px;\n  height: 14px;\n  vertical-align: middle;\n  border: 1px solid #979797;\n  border-radius: 2px;\n  position: relative;\n  -webkit-transition: all 0.25s ease-in-out;\n  transition: all 0.25s ease-in-out;\n}\n.k-checkbox .k-wrapper:before {\n  content: \"\";\n  display: block;\n  position: absolute;\n  width: 4px;\n  height: 8px;\n  top: 1px;\n  left: 4px;\n  border: 1px solid #fff;\n  border-top: 0;\n  border-left: 0;\n  -webkit-transform: rotate(45deg) scale(0);\n      -ms-transform: rotate(45deg) scale(0);\n          transform: rotate(45deg) scale(0);\n  -webkit-transition: all 0.25s ease-in-out;\n  transition: all 0.25s ease-in-out;\n}\n.k-checkbox input {\n  width: 100%;\n  height: 100%;\n  opacity: 0;\n  cursor: pointer;\n}\n.k-checkbox .k-text {\n  margin-left: 0.357142857142857em;\n  display: inline-block;\n}\n.k-checkbox.k-checked .k-wrapper {\n  border-color: #0a5eee;\n  background: #0a5eee;\n}\n.k-checkbox.k-checked .k-wrapper:before {\n  -webkit-transform: rotate(45deg) scale(1);\n      -ms-transform: rotate(45deg) scale(1);\n          transform: rotate(45deg) scale(1);\n}\n.k-checkbox.k-disabled {\n  color: #999;\n  cursor: not-allowed;\n}\n.k-checkbox.k-disabled .k-wrapper {\n  border-color: #d9d9d9;\n  background: #f7f7f7;\n}\n.k-checkbox.k-disabled .k-wrapper:before {\n  border-color: #999;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2686,11 +2938,12 @@ module.exports = function (obj, _Vdt, blocks) {
         className = _self$get.className,
         disabled = _self$get.disabled,
         trueValue = _self$get.trueValue,
+        style = _self$get.style,
         children = _self$get.children,
         value = _self$get.value,
         ref = _self$get.ref,
         key = _self$get.key,
-        rest = _objectWithoutProperties(_self$get, ['className', 'disabled', 'trueValue', 'children', 'value', 'ref', 'key']);
+        rest = _objectWithoutProperties(_self$get, ['className', 'disabled', 'trueValue', 'style', 'children', 'value', 'ref', 'key']);
 
     var classNameObj = _defineProperty({
         'k-radio': true,
@@ -2698,7 +2951,13 @@ module.exports = function (obj, _Vdt, blocks) {
         'k-checked': self.isChecked()
     }, className || '', true);
 
-    return h('label', null, [h('span', null, h('input', _extends({ 'type': 'radio', 'disabled': function () {
+    return h('label', { 'style': function () {
+            try {
+                return [style][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, [h('span', null, h('input', _extends({ 'type': 'radio', 'disabled': function () {
             try {
                 return [disabled][0];
             } catch (e) {
@@ -2761,13 +3020,13 @@ if (false) {
 }
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(27);
+var content = __webpack_require__(29);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -2775,7 +3034,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1)(content, options);
+var update = __webpack_require__(2)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -2792,21 +3051,21 @@ if(false) {
 }
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(0)(false);
+exports = module.exports = __webpack_require__(1)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, ".k-radio {\n  display: inline-block;\n  cursor: pointer;\n}\n.k-radio .k-wrapper {\n  display: inline-block;\n  width: 14px;\n  height: 14px;\n  vertical-align: middle;\n  border: 1px solid #979797;\n  border-radius: 50%;\n  -webkit-transition: all 0.2s ease-in-out;\n  transition: all 0.2s ease-in-out;\n  position: relative;\n}\n.k-radio .k-wrapper:before {\n  content: \"\";\n  display: block;\n  position: absolute;\n  width: 8px;\n  height: 8px;\n  top: 2px;\n  left: 2px;\n  border-radius: 50%;\n  background-color: #0a5eee;\n  -webkit-transform: scale(0);\n      -ms-transform: scale(0);\n          transform: scale(0);\n  -webkit-transition: all 0.2s ease-in-out;\n  transition: all 0.2s ease-in-out;\n}\n.k-radio input {\n  width: 100%;\n  height: 100%;\n  opacity: 0;\n  cursor: pointer;\n  position: absolute;\n}\n.k-radio .k-text {\n  vertical-align: middle;\n  margin-left: 0.357142857142857em;\n}\n.k-radio.k-checked .k-wrapper {\n  border-color: #0a5eee;\n}\n.k-radio.k-checked .k-wrapper:before {\n  -webkit-transform: scale(1);\n      -ms-transform: scale(1);\n          transform: scale(1);\n}\n.k-radio.k-disabled {\n  color: #999;\n  cursor: not-allowed;\n}\n.k-radio.k-disabled .k-wrapper {\n  border-color: #d9d9d9;\n  background: #f7f7f7;\n}\n.k-radio.k-disabled .k-wrapper:before {\n  background: #999;\n}\n", ""]);
+exports.push([module.i, ".k-radio {\n  display: inline-block;\n  cursor: pointer;\n}\n.k-radio .k-wrapper {\n  display: inline-block;\n  width: 14px;\n  height: 14px;\n  vertical-align: middle;\n  border: 1px solid #979797;\n  border-radius: 50%;\n  -webkit-transition: all 0.25s ease-in-out;\n  transition: all 0.25s ease-in-out;\n  position: relative;\n}\n.k-radio .k-wrapper:before {\n  content: \"\";\n  display: block;\n  position: absolute;\n  width: 8px;\n  height: 8px;\n  top: 2px;\n  left: 2px;\n  border-radius: 50%;\n  background-color: #0a5eee;\n  -webkit-transform: scale(0);\n      -ms-transform: scale(0);\n          transform: scale(0);\n  -webkit-transition: all 0.25s ease-in-out;\n  transition: all 0.25s ease-in-out;\n}\n.k-radio input {\n  width: 100%;\n  height: 100%;\n  opacity: 0;\n  cursor: pointer;\n  position: absolute;\n}\n.k-radio .k-text {\n  display: inline-block;\n  margin-left: 0.357142857142857em;\n}\n.k-radio.k-checked .k-wrapper {\n  border-color: #0a5eee;\n}\n.k-radio.k-checked .k-wrapper:before {\n  -webkit-transform: scale(1);\n      -ms-transform: scale(1);\n          transform: scale(1);\n}\n.k-radio.k-disabled {\n  color: #999;\n  cursor: not-allowed;\n}\n.k-radio.k-disabled .k-wrapper {\n  border-color: #d9d9d9;\n  background: #f7f7f7;\n}\n.k-radio.k-disabled .k-wrapper:before {\n  background: #999;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 28 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2821,17 +3080,17 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _dec, _desc, _value, _class;
 
-var _intact = __webpack_require__(2);
+var _intact = __webpack_require__(0);
 
 var _intact2 = _interopRequireDefault(_intact);
 
-var _index = __webpack_require__(29);
+var _index = __webpack_require__(31);
 
 var _index2 = _interopRequireDefault(_index);
 
-__webpack_require__(30);
+__webpack_require__(32);
 
-var _position2 = __webpack_require__(5);
+var _position2 = __webpack_require__(6);
 
 var _position3 = _interopRequireDefault(_position2);
 
@@ -2892,7 +3151,8 @@ var _default = (_dec = _intact2.default.template(), (_class = function (_Intact)
                 disabled: false,
                 clearable: false, //删除按钮
                 multiple: false, //支持多选li
-                size: { 'width': '', 'height': '' }
+                size: { 'width': '', 'height': '' },
+                group: []
             };
         }
     }, {
@@ -2949,7 +3209,7 @@ exports.default = _default;
 module.exports = exports['default'];
 
 /***/ }),
-/* 29 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2987,7 +3247,7 @@ module.exports = function (obj, _Vdt, blocks) {
         scope = obj,
         Animate = self && self.Animate,
         parent = this._super;
-    var MoveWrapper = __webpack_require__(3);
+    var MoveWrapper = __webpack_require__(4);
     var width = Number(self.get('size').width) ? Number(self.get('size').width) / 14 + 'rem' : '';
     var height = Number(self.get('size').height) ? Number(self.get('size').height) / 14 + 'rem' : '';
     var line_hight = Number(self.get('size').height) ? Number(self.get('size').height) / 14 + 'rem' : '';
@@ -3044,7 +3304,7 @@ module.exports = function (obj, _Vdt, blocks) {
     }.call(this), function (value, key) {
         return h('div', null, ['\n                ', function () {
             try {
-                return [value == '' ? '请选择' : value][0];
+                return [value][0];
             } catch (e) {
                 _e(e);
             }
@@ -3093,9 +3353,9 @@ module.exports = function (obj, _Vdt, blocks) {
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this), 'children': ['\n                ', hc(' 默认下拉框 '), function () {
+            }.call(this), 'children': ['   \n            ', hc(' 多选先显示框 '), function () {
                 try {
-                    return [!self.get('multiple')][0];
+                    return [self.get('multiple')][0];
                 } catch (e) {
                     _e(e);
                 }
@@ -3108,11 +3368,95 @@ module.exports = function (obj, _Vdt, blocks) {
             }.call(this), function (value, key) {
                 return h('li', { 'ev-click': function () {
                         try {
+                            return [self.onClick.bind(self, value, key)][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this) }, ['   ', function () {
+                    try {
+                        return [value.text][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), '\n                    ', h('span', { 'v-show': function () {
+                        try {
+                            return [value.label][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this) }, [function () {
+                    try {
+                        return [value.label][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), ' '], 'li-label')], _className(function () {
+                    try {
+                        return [{ 'li-selected': self.get('value_multiple').indexOf(value.text) != -1 }][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this)));
+            }, this), 'k-list') : function () {
+                try {
+                    return [self.get('group').length > 0][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this) ? h('ul', null, _Vdt.utils.map(function () {
+                try {
+                    return [self.get('group')][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), function (value, key) {
+                return h('div', null, [h('li', null, function () {
+                    try {
+                        return [value.label][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), 'li-disabled li-group-label'), _Vdt.utils.map(function () {
+                    try {
+                        return [value.data][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), function (value, key) {
+                    return h('li', { 'ev-click': function () {
+                            try {
+                                return [self.onClick.bind(self, value)][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(this) }, ['\n                        ', function () {
+                        try {
+                            return [value.text][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), '\n                    '], _className(function () {
+                        try {
+                            return [{ 'li-selected': value.value == self.get('value').value, 'li-disabled': value.disabled }][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this)));
+                }, this)]);
+            }, this), 'k-list') : h('ul', null, _Vdt.utils.map(function () {
+                try {
+                    return [self.get('data')][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), function (value, key) {
+                return h('li', { 'ev-click': function () {
+                        try {
                             return [self.onClick.bind(self, value)][0];
                         } catch (e) {
                             _e(e);
                         }
-                    }.call(this) }, ['  \n                        ', function () {
+                    }.call(this) }, ['  ', function () {
                     try {
                         return [value.text][0];
                     } catch (e) {
@@ -3137,51 +3481,7 @@ module.exports = function (obj, _Vdt, blocks) {
                         _e(e);
                     }
                 }.call(this)));
-            }, this), 'k-list') : undefined, '\n                ', hc(' 多选先显示框 '), function () {
-                try {
-                    return [self.get('multiple')][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this) ? h('ul', null, _Vdt.utils.map(function () {
-                try {
-                    return [self.get('data')][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), function (value, key) {
-                return h('li', { 'ev-click': function () {
-                        try {
-                            return [self.onClick.bind(self, value, key)][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this) }, ['\n                        ', function () {
-                    try {
-                        return [value.text][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this), '\n                        ', h('span', { 'v-show': function () {
-                        try {
-                            return [value.label][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this) }, [function () {
-                    try {
-                        return [value.label][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this), ' '], 'li-label')], _className(function () {
-                    try {
-                        return [{ 'li-selected': self.get('value_multiple').indexOf(value.text) != -1 }][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this)));
-            }, this), 'k-list') : undefined], '_blocks': null }) : undefined, '_blocks': null })], 'k-select');
+            }, this), 'k-list'), hc(' 分组 '), hc(' 默认下拉框 ')], '_context': this }) : undefined, '_context': this })], 'k-select');
 };
 if (false) {
     var vdt = module.hot.data && module.hot.data.vdt;
@@ -3194,13 +3494,13 @@ if (false) {
 }
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(31);
+var content = __webpack_require__(33);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -3208,7 +3508,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1)(content, options);
+var update = __webpack_require__(2)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -3225,21 +3525,21 @@ if(false) {
 }
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(0)(false);
+exports = module.exports = __webpack_require__(1)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, ".k-select {\n  width: 12.857142857142858rem;\n  display: inline-block;\n  min-height: 2.285714285714286rem;\n  cursor: pointer;\n}\n.k-select .k-input {\n  font-size: 0.928571428571429rem;\n  padding: 0rem 0.571428571428571rem;\n  min-height: 2.285714285714286rem;\n  border: 1px solid #d9d9d9;\n  line-height: 2.285714285714286rem;\n  position: relative;\n}\n.k-select .k-input:hover {\n  border-color: #57a3f3;\n/* box-shadow 0 0 0 2px rgba(45,140,240,.2)    */\n}\n.k-select .k-icon {\n  position: absolute;\n  top: 50%;\n  right: 0.428571428571429rem;\n  margin-top: -0.357142857142857rem;\n}\n.k-select .k-icon-up {\n  border-left: 0.357142857142857rem solid transparent;\n  border-right: 0.357142857142857rem solid transparent;\n  border-top: 0.357142857142857rem solid #595959;\n}\n.k-select .k-icon-down {\n  border-left: 0.357142857142857rem solid transparent;\n  border-right: 0.357142857142857rem solid transparent;\n  border-bottom: 0.357142857142857rem solid #595959;\n}\n.k-select .disabled {\n  cursor: not-allowed;\n  border-color: #d9d9d9 !important;\n  color: #999;\n  bacground-color: #f7f7f7;\n}\n.k-select .clear-icon {\n  float: right;\n  margin-right: 0.428571428571429rem;\n}\n.k-select .clear-icon:hover {\n  color: #57a3f3;\n}\n.k-select .k-multiple {\n  display: inline-block;\n  max-width: 80%;\n}\n.k-select .k-multiple .input-tag-checked {\n  display: inline-block;\n  height: 1.714285714285714rem;\n  line-height: 1.714285714285714rem;\n  background: #f0f2f9;\n  padding: 0rem 0.285714285714286rem;\n  margin: 0rem 0.428571428571429rem 0.071428571428571rem 0rem;\n  border-radius: 0.214285714285714rem;\n}\n.k-dropdown {\n  position: absolute;\n  background: #fff;\n}\n.k-dropdown.animate-enter,\n.k-dropdown.animate-leave {\n  opacity: 0;\n  -webkit-transform: translateY(-1px);\n      -ms-transform: translateY(-1px);\n          transform: translateY(-1px);\n}\n.k-dropdown.animate-enter-active,\n.k-dropdown.animate-leave-active {\n  -webkit-transition: all 0.4s;\n  transition: all 0.4s;\n}\n.k-dropdown .k-list {\n  border: 1px solid #d9d9d9;\n  border-top: 0rem;\n}\n.k-dropdown .k-list .li-selected {\n  color: #57a3f3;\n}\n.k-dropdown .k-list .li-selected:after {\n  content: \"\\2713\";\n  position: absolute;\n  right: 0.714285714285714rem;\n  witdh: 100%;\n}\n.k-dropdown .k-list .li-disabled {\n  background-color: #f7f7f7;\n  color: #999;\n  cursor: not-allowed;\n}\n.k-dropdown .k-list .li-label {\n  float: right;\n  margin-right: 0.571428571428571rem;\n}\n.k-dropdown .k-list li {\n  padding: 0.5rem 1.142857142857143rem;\n  border-top: 0rem;\n  font-size: 0.857142857142857rem;\n}\n.k-dropdown .k-list li:hover {\n  background: #f8f8f9;\n}\n", ""]);
+exports.push([module.i, ".k-select {\n  width: 12.857142857142858rem;\n  display: inline-block;\n  min-height: 2.285714285714286rem;\n  cursor: pointer;\n}\n.k-select .k-input {\n  font-size: 1rem;\n  padding: 0rem 0.571428571428571rem;\n  min-height: 2.285714285714286rem;\n  border: 1px solid #d9d9d9;\n  line-height: 2.285714285714286rem;\n  position: relative;\n}\n.k-select .k-input:hover {\n  border-color: #57a3f3;\n/* box-shadow 0 0 0 2px rgba(45,140,240,.2)    */\n}\n.k-select .k-icon {\n  position: absolute;\n  top: 50%;\n  right: 0.428571428571429rem;\n  margin-top: -0.357142857142857rem;\n}\n.k-select .k-icon-up {\n  border-left: 0.357142857142857rem solid transparent;\n  border-right: 0.357142857142857rem solid transparent;\n  border-top: 0.357142857142857rem solid #595959;\n}\n.k-select .k-icon-down {\n  border-left: 0.357142857142857rem solid transparent;\n  border-right: 0.357142857142857rem solid transparent;\n  border-bottom: 0.357142857142857rem solid #595959;\n}\n.k-select .disabled {\n  cursor: not-allowed;\n  border-color: #d9d9d9 !important;\n  color: #999;\n  bacground-color: #f7f7f7;\n}\n.k-select .clear-icon {\n  float: right;\n  margin-right: 1.071428571428571rem;\n}\n.k-select .clear-icon:hover {\n  color: #57a3f3;\n}\n.k-select .k-multiple {\n  display: inline-block;\n  max-width: 80%;\n}\n.k-select .k-multiple .input-tag-checked {\n  display: inline-block;\n  height: 1.714285714285714rem;\n  line-height: 1.714285714285714rem;\n  background: #f0f2f9;\n  padding: 0rem 0.285714285714286rem;\n  margin: 0rem 0.428571428571429rem 0.071428571428571rem 0rem;\n  border-radius: 0.214285714285714rem;\n}\n.k-dropdown {\n  position: absolute;\n  background: #fff;\n}\n.k-dropdown.animate-enter,\n.k-dropdown.animate-leave {\n  opacity: 0;\n  -webkit-transform: translateY(-1px);\n      -ms-transform: translateY(-1px);\n          transform: translateY(-1px);\n}\n.k-dropdown.animate-enter-active,\n.k-dropdown.animate-leave-active {\n  -webkit-transition: all 0.4s;\n  transition: all 0.4s;\n}\n.k-dropdown .k-list {\n  border: 1px solid #d9d9d9;\n  border-top: 0rem;\n}\n.k-dropdown .k-list .li-selected {\n  color: #57a3f3;\n}\n.k-dropdown .k-list .li-selected:after {\n  content: \"\\2713\";\n  position: absolute;\n  right: 0.714285714285714rem;\n  witdh: 100%;\n}\n.k-dropdown .k-list .li-disabled {\n  background-color: #f7f7f7;\n  color: #999;\n  cursor: not-allowed;\n}\n.k-dropdown .k-list .li-label {\n  float: right;\n  margin-right: 0.571428571428571rem;\n}\n.k-dropdown .k-list .li-group-label {\n  padding: 0.5rem 0.142857142857143rem;\n}\n.k-dropdown .k-list li {\n  padding: 0.5rem 1.142857142857143rem;\n  border-top: 0rem;\n  font-size: 0.857142857142857rem;\n}\n.k-dropdown .k-list li:hover {\n  background: #f8f8f9;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3252,11 +3552,11 @@ exports.default = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _index = __webpack_require__(33);
+var _index = __webpack_require__(35);
 
 var _index2 = _interopRequireDefault(_index);
 
-__webpack_require__(37);
+__webpack_require__(39);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3459,7 +3759,7 @@ exports.default = _default;
 module.exports = exports['default'];
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3503,7 +3803,7 @@ module.exports = function (obj, _Vdt, blocks) {
         scope = obj,
         Animate = self && self.Animate,
         parent = this._super;
-    var Spinner = __webpack_require__(8);
+    var Spinner = __webpack_require__(9);
 
     var _self$get = self.get(),
         value = _self$get.value,
@@ -3684,7 +3984,7 @@ module.exports = function (obj, _Vdt, blocks) {
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'children': null, '_blocks': null, value: _getModel(self, '_inputValue'), 'ev-$change:value': function ev$changeValue(__c, __n) {
+        }.call(this), 'children': null, '_context': this, value: _getModel(self, '_inputValue'), 'ev-$change:value': function ev$changeValue(__c, __n) {
             _setModel(self, '_inputValue', __n);
         } }), 'k-input-wrapper') : undefined], _className(function () {
         try {
@@ -3705,7 +4005,7 @@ if (false) {
 }
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3856,51 +4156,6 @@ if (false) {
 }
 
 /***/ }),
-/* 35 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(36);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(1)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js??ref--2-1!../../node_modules/postcss-loader/lib/index.js??ref--2-2!../../node_modules/stylus-loader/index.js??ref--2-3!./index.styl", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js??ref--2-1!../../node_modules/postcss-loader/lib/index.js??ref--2-2!../../node_modules/stylus-loader/index.js??ref--2-3!./index.styl");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(false);
-// imports
-
-
-// module
-exports.push([module.i, ".k-spinner {\n  display: inline-block;\n}\n.k-spinner .k-spiner-button {\n  color: #333;\n  font-weight: 200;\n  border: 1px solid #d9d9d9;\n  background-color: #fafafa;\n  outline: 0;\n  height: 2.285714285714286em;\n  width: 2.428571428571428em;\n  float: left;\n  cursor: pointer;\n}\n.k-spinner .k-spiner-button:not(.spinner-button-disabled):hover {\n  border-color: #289af4;\n  color: #5faded;\n  background-color: #ebf5fe;\n}\n.k-spinner .k-spiner-input {\n  background-color: #fff;\n  border: 1px solid #d9d9d9;\n  height: 2.285714285714286em;\n  width: 3.285714285714286em;\n  text-align: center;\n  float: left;\n  margin: 0;\n  border-left: none;\n  border-right: none;\n  outline: 0;\n  padding: 0;\n}\n.k-spinner .k-spinner-button-disabled {\n  background-color: #fafafa;\n  border-color: #e7e7e7;\n  color: #dedede;\n  cursor: not-allowed;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
 /* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3915,7 +4170,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1)(content, options);
+var update = __webpack_require__(2)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -3935,18 +4190,63 @@ if(false) {
 /* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(0)(false);
+exports = module.exports = __webpack_require__(1)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, ".k-slider {\n  position: relative;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n}\n.k-slider .k-wrapper {\n  height: 0.5rem;\n  background-color: #eaeef2;\n  border-radius: 0.5rem;\n  cursor: pointer;\n  position: relative;\n  display: inline-block;\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.k-slider .k-wrapper .k-box {\n  position: absolute;\n  top: 0.5rem;\n  padding: 5px 2px;\n  width: 100%;\n}\n.k-slider .k-wrapper .k-box :last-child {\n  float: right;\n}\n.k-slider .k-wrapper .k-bar {\n  background-color: #0a5eee;\n  position: absolute;\n  height: 100%;\n  border-radius: 0.5rem;\n  -webkit-transition: all 0.3s ease-in-out;\n  transition: all 0.3s ease-in-out;\n}\n.k-slider .k-wrapper .k-button-wrapper {\n  height: 1rem;\n  width: 1rem;\n  position: absolute;\n  -webkit-transform: translateX(-50%);\n      -ms-transform: translateX(-50%);\n          transform: translateX(-50%);\n  top: -0.25rem;\n  text-align: center;\n  -webkit-transition: all 0.3s ease-in-out;\n  transition: all 0.3s ease-in-out;\n}\n.k-slider .k-wrapper .k-button {\n  width: 100%;\n  height: 100%;\n  border: 2px solid #0a5eee;\n  border-radius: 50%;\n  background-color: #fff;\n  -webkit-transition: all 0.3s ease-in-out;\n  transition: all 0.3s ease-in-out;\n}\n.k-slider .k-wrapper .k-button:hover {\n  -webkit-transform: scale(1.5);\n      -ms-transform: scale(1.5);\n          transform: scale(1.5);\n  cursor: -webkit-grab;\n  cursor: -moz-grab;\n  background-color: #0a5eee;\n}\n.k-slider .k-wrapper .k-text {\n  width: 100%;\n  height: 100%;\n  top: -0.25rem;\n  position: absolute;\n  color: #0a5eee;\n}\n.k-slider.k-dragging .k-bar {\n  -webkit-transition: none;\n  transition: none;\n}\n.k-slider.k-dragging .k-button-wrapper {\n  -webkit-transition: none;\n  transition: none;\n}\n.k-slider.k-dragging .k-button {\n  -webkit-transition: none;\n  transition: none;\n}\n.k-slider.k-dragging .k-active .k-button {\n  cursor: -webkit-grabbing;\n  -webkit-transform: scale(1.5);\n      -ms-transform: scale(1.5);\n          transform: scale(1.5);\n  background-color: #0a5eee;\n}\n.k-slider.k-slider-input .k-input-wrapper {\n  float: right;\n  margin-top: -0.75rem;\n  margin-left: 1rem;\n}\n.k-slider.k-disabled .k-wrapper {\n  cursor: not-allowed;\n}\n.k-slider.k-disabled .k-bar {\n  background-color: #999;\n}\n.k-slider.k-disabled .k-button {\n  border-color: #999;\n}\n.k-slider.k-disabled .k-button:hover {\n  background-color: #fff;\n  cursor: not-allowed;\n  -webkit-transform: none;\n      -ms-transform: none;\n          transform: none;\n}\n", ""]);
+exports.push([module.i, ".k-spinner {\n  display: inline-block;\n}\n.k-spinner .k-spiner-button {\n  color: #333;\n  font-weight: 200;\n  border: 1px solid #d9d9d9;\n  background-color: #fafafa;\n  outline: 0;\n  height: 2.285714285714286em;\n  width: 2.428571428571428em;\n  float: left;\n  cursor: pointer;\n}\n.k-spinner .k-spiner-button:not(.spinner-button-disabled):hover {\n  border-color: #289af4;\n  color: #5faded;\n  background-color: #ebf5fe;\n}\n.k-spinner .k-spiner-input {\n  background-color: #fff;\n  border: 1px solid #d9d9d9;\n  height: 2.285714285714286em;\n  width: 3.285714285714286em;\n  text-align: center;\n  float: left;\n  margin: 0;\n  border-left: none;\n  border-right: none;\n  outline: 0;\n  padding: 0;\n}\n.k-spinner .k-spinner-button-disabled {\n  background-color: #fafafa;\n  border-color: #e7e7e7;\n  color: #dedede;\n  cursor: not-allowed;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 /* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(40);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(2)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js??ref--2-1!../../node_modules/postcss-loader/lib/index.js??ref--2-2!../../node_modules/stylus-loader/index.js??ref--2-3!./index.styl", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js??ref--2-1!../../node_modules/postcss-loader/lib/index.js??ref--2-2!../../node_modules/stylus-loader/index.js??ref--2-3!./index.styl");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".k-slider {\n  position: relative;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n}\n.k-slider .k-wrapper {\n  height: 0.5rem;\n  background-color: #eaeef2;\n  border-radius: 0.5rem;\n  cursor: pointer;\n  position: relative;\n  display: inline-block;\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.k-slider .k-wrapper .k-box {\n  position: absolute;\n  top: 0.5rem;\n  padding: 5px 2px;\n  width: 100%;\n}\n.k-slider .k-wrapper .k-box :last-child {\n  float: right;\n}\n.k-slider .k-wrapper .k-bar {\n  background-color: #0a5eee;\n  position: absolute;\n  height: 100%;\n  border-radius: 0.5rem;\n  -webkit-transition: all 0.25s ease-in-out;\n  transition: all 0.25s ease-in-out;\n}\n.k-slider .k-wrapper .k-button-wrapper {\n  height: 1rem;\n  width: 1rem;\n  position: absolute;\n  -webkit-transform: translateX(-50%);\n      -ms-transform: translateX(-50%);\n          transform: translateX(-50%);\n  top: -0.25rem;\n  text-align: center;\n  -webkit-transition: all 0.25s ease-in-out;\n  transition: all 0.25s ease-in-out;\n}\n.k-slider .k-wrapper .k-button {\n  width: 100%;\n  height: 100%;\n  border: 2px solid #0a5eee;\n  border-radius: 50%;\n  background-color: #fff;\n  -webkit-transition: all 0.25s ease-in-out;\n  transition: all 0.25s ease-in-out;\n}\n.k-slider .k-wrapper .k-button:hover {\n  -webkit-transform: scale(1.5);\n      -ms-transform: scale(1.5);\n          transform: scale(1.5);\n  cursor: -webkit-grab;\n  cursor: -moz-grab;\n  background-color: #0a5eee;\n}\n.k-slider .k-wrapper .k-text {\n  width: 100%;\n  height: 100%;\n  top: -0.25rem;\n  position: absolute;\n  color: #0a5eee;\n}\n.k-slider.k-dragging .k-bar {\n  -webkit-transition: none;\n  transition: none;\n}\n.k-slider.k-dragging .k-button-wrapper {\n  -webkit-transition: none;\n  transition: none;\n}\n.k-slider.k-dragging .k-button {\n  -webkit-transition: none;\n  transition: none;\n}\n.k-slider.k-dragging .k-active .k-button {\n  cursor: -webkit-grabbing;\n  -webkit-transform: scale(1.5);\n      -ms-transform: scale(1.5);\n          transform: scale(1.5);\n  background-color: #0a5eee;\n}\n.k-slider.k-slider-input .k-input-wrapper {\n  float: right;\n  margin-top: -0.75rem;\n  margin-left: 1rem;\n}\n.k-slider.k-disabled .k-wrapper {\n  cursor: not-allowed;\n}\n.k-slider.k-disabled .k-bar {\n  background-color: #999;\n}\n.k-slider.k-disabled .k-button {\n  border-color: #999;\n}\n.k-slider.k-disabled .k-button:hover {\n  background-color: #fff;\n  cursor: not-allowed;\n  -webkit-transform: none;\n      -ms-transform: none;\n          transform: none;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3961,15 +4261,15 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _dec, _desc, _value, _class;
 
-var _intact = __webpack_require__(2);
+var _intact = __webpack_require__(0);
 
 var _intact2 = _interopRequireDefault(_intact);
 
-var _index = __webpack_require__(40);
+var _index = __webpack_require__(42);
 
 var _index2 = _interopRequireDefault(_index);
 
-__webpack_require__(43);
+__webpack_require__(45);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4391,7 +4691,7 @@ exports.default = _default;
 module.exports = exports['default'];
 
 /***/ }),
-/* 40 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4434,9 +4734,9 @@ module.exports = function (obj, _Vdt, blocks) {
         scope = obj,
         Animate = self && self.Animate,
         parent = this._super;
-    var Checkbox = __webpack_require__(6);
-    var Radio = __webpack_require__(7);
-    var Row = __webpack_require__(41);
+    var Checkbox = __webpack_require__(7);
+    var Radio = __webpack_require__(8);
+    var Row = __webpack_require__(43);
 
     var _self$get = self.get(),
         checkType = _self$get.checkType,
@@ -4478,7 +4778,7 @@ module.exports = function (obj, _Vdt, blocks) {
                 } catch (e) {
                     _e(e);
                 }
-            }.call(_this), 'children': null, '_blocks': null }), 'k-th-check') : function () {
+            }.call(_this), 'children': null, '_context': _this }), 'k-th-check') : function () {
             try {
                 return [checkType === 'radio'][0];
             } catch (e) {
@@ -4637,7 +4937,7 @@ module.exports = function (obj, _Vdt, blocks) {
                             } catch (e) {
                                 _e(e);
                             }
-                        }.call(_this4), 'children': null, '_blocks': null, value: _getModel(self, 'checkedKeys'), 'ev-$change:value': function ev$changeValue(__c, __n) {
+                        }.call(_this4), 'children': null, '_context': _this4, value: _getModel(self, 'checkedKeys'), 'ev-$change:value': function ev$changeValue(__c, __n) {
                             _setModel(self, 'checkedKeys', __n);
                         } })) : function () {
                         try {
@@ -4657,7 +4957,7 @@ module.exports = function (obj, _Vdt, blocks) {
                             } catch (e) {
                                 _e(e);
                             }
-                        }.call(_this4), 'children': null, '_blocks': null, value: _getModel(self, 'checkedKey'), 'ev-$change:value': function ev$changeValue(__c, __n) {
+                        }.call(_this4), 'children': null, '_context': _this4, value: _getModel(self, 'checkedKey'), 'ev-$change:value': function ev$changeValue(__c, __n) {
                             _setModel(self, 'checkedKey', __n);
                         } })) : undefined, '\n                ', function () {
                         var _this5 = this;
@@ -4699,7 +4999,7 @@ module.exports = function (obj, _Vdt, blocks) {
                         } catch (e) {
                             _e(e);
                         }
-                    }.call(_this4), '\n            '], '_blocks': null });
+                    }.call(_this4), '\n            '], '_context': _this4 });
 
                 if (expandable && expandedKeys.indexOf(key) > -1) {
                     return [tr, h('tr', null, h('td', { 'colspan': function () {
@@ -4845,7 +5145,7 @@ if (false) {
 }
 
 /***/ }),
-/* 41 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4858,11 +5158,11 @@ exports.default = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _intact = __webpack_require__(2);
+var _intact = __webpack_require__(0);
 
 var _intact2 = _interopRequireDefault(_intact);
 
-var _row = __webpack_require__(42);
+var _row = __webpack_require__(44);
 
 var _row2 = _interopRequireDefault(_row);
 
@@ -4898,7 +5198,7 @@ exports.default = _default;
 module.exports = exports['default'];
 
 /***/ }),
-/* 42 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4963,13 +5263,13 @@ if (false) {
 }
 
 /***/ }),
-/* 43 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(44);
+var content = __webpack_require__(46);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -4977,7 +5277,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1)(content, options);
+var update = __webpack_require__(2)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -4994,10 +5294,10 @@ if(false) {
 }
 
 /***/ }),
-/* 44 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(0)(false);
+exports = module.exports = __webpack_require__(1)(undefined);
 // imports
 
 
