@@ -68,7 +68,7 @@
     "universal-router": "^4.2.0",
     "url-loader": "^0.6.2",
     "vdt": "^1.1.2-2",
-    "vdt-loader": "^1.2.1",
+    "vdt-loader": "^1.3.1",
     "webpack": "^3.6.0",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.19.1",

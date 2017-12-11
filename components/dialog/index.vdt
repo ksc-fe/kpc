@@ -1,5 +1,5 @@
-const Button = require('../button');
-const MoveWrapper = require('../moveWrapper');
+import Button from '../button';
+import MoveWrapper from '../moveWrapper';
 
 <MoveWrapper autoDestroy={{ false }}>
     <div class="k-dialog-wrapper" ref={{ dom => self.$element = dom }}>

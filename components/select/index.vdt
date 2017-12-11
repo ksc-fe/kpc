@@ -1,4 +1,5 @@
-const MoveWrapper = require('../moveWrapper');
+import MoveWrapper from '../moveWrapper';
+
 const width = Number(self.get('size').width)? (Number(self.get('size').width)/14) + 'rem':'';
 const height = Number(self.get('size').height)? (Number(self.get('size').height)/14) + 'rem':'';
 const line_hight = Number(self.get('size').height)? (Number(self.get('size').height)/14) + 'rem':'';

@@ -1,4 +1,4 @@
-const Spinner = require('../spinner');
+import Spinner from '../spinner';
 
 const {
     value, min, max, className,

@@ -1,4 +1,4 @@
-const Button = require('./index');
+import Button from './';
 
 const {
     className, vertical, style, 

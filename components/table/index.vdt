@@ -1,6 +1,6 @@
-const Checkbox = require('../checkbox');
-const Radio = require('../radio');
-const Row = require('./row');
+import Checkbox from '../checkbox';
+import Radio from '../radio';
+import Row from './row';
 
 const {
     checkType, scheme, checkedKeys, data, rowKey, 
