@@ -1,6 +1,7 @@
 /**
  * Created by sylvia on 2017/10/16.
  */
+import Intact from 'intact';
 import template from './index.vdt';
 import './index.styl';
 

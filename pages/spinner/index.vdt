@@ -1,4 +1,4 @@
-const Spinner = require('components/spinner');
+import Spinner from 'components/spinner';
 
 <div>
     <Spinner value={{6}} max={{10}} min={{-10}}></Spinner>

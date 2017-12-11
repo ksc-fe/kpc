@@ -1,4 +1,4 @@
-const Switch = require('components/switch');
+import Switch from 'components/switch';
 
 <div style="margin: 10px;">
     <Switch />

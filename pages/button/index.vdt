@@ -1,6 +1,6 @@
-const Button = require('components/button');
-const ButtonGroup = require('components/button/group');
-const Link = require('components/link');
+import Button from 'components/button';
+import ButtonGroup from 'components/button/group';
+import Link from 'components/link';
 
 <div class="component-page">
     <Button type="default" ev-click={{ self.click.bind(self) }}>default</Button>

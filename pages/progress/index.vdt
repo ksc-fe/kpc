@@ -1,5 +1,5 @@
-const Progress = require('components/progress');
-const Button = require('components/button');
+import Progress from 'components/progress';
+import Button from 'components/button';
 
 
 <div class='progress-demo'>

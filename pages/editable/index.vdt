@@ -1,4 +1,4 @@
-const Editable = require('components/editable');
+import Editable from 'components/editable';
 
 <div>
     <Editable v-model='text'>

@@ -1,5 +1,5 @@
-const Checkbox = require('components/checkbox');
-const Button = require('components/button');
+import Checkbox from 'components/checkbox';
+import Button from 'components/button';
 
 <div>
     <Checkbox>test</Checkbox>

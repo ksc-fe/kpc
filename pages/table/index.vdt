@@ -1,5 +1,5 @@
-const Table = require('components/table');
-const Button = require('components/button');
+import Table from 'components/table';
+import Button from 'components/button';
 
 const scheme = {
     test: 'aaa',

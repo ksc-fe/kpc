@@ -1,4 +1,4 @@
-const Tabs = require('components/tabs');
+import Tabs from 'components/tabs';
 
 <div>
     <Tabs data={{ [

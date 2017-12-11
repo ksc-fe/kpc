@@ -1,4 +1,4 @@
-const Link = require('components/link');
+import Link from 'components/link';
 
 <ul>
     <li v-for={{ [

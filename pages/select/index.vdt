@@ -1,4 +1,4 @@
-const Select = require('components/select');
+import Select from 'components/select';
 
 <div>
     <span style="float:left;text-align:center;width:120px;margin-top:16px">标准：</span>

@@ -1,5 +1,5 @@
-const Dialog = require('components/dialog');
-const Button = require('components/button');
+import Dialog from 'components/dialog';
+import Button from 'components/button';
 
 <div class="wrapper">
     <div v-if={{ self.get('test') }}>test</div>

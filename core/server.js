@@ -59,8 +59,8 @@ app.listen(3000);
 
 if (module.hot) {
     module.hot.accept(['./router', 'components/app'], () => {
-        const router = require('./router');
-        const App = require('components/app');
+        const router = require('./router').default;
+        const App = require('components/app').default;
         routerMiddleware.replace(createRouterMiddleware(router, App));
     });
 }

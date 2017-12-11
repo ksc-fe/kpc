@@ -1,4 +1,4 @@
-const {Row, Col} = require('components/grid');
+import {Row, Col} from 'components/grid';
 
 <div>
     <Row gutter="8">

@@ -1,6 +1,6 @@
-const Radio = require('components/radio');
-const Checkbox = require('components/checkbox');
-const Button = require('components/button');
+import Radio from 'components/radio';
+import Checkbox from 'components/checkbox';
+import Button from 'components/button';
 
 <div>
     <Radio>test</Radio>

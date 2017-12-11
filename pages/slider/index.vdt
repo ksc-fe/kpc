@@ -1,4 +1,4 @@
-const Slider = require('components/slider');
+import Slider from 'components/slider';
 
 <div class="slider-demo">
     <Slider></Slider>
