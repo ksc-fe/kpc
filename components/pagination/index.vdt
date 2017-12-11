@@ -11,18 +11,24 @@ const classNameObj = {
     'k-pagination': true,
     [className || '']: true,
 };
-const btnFirstClass = {
-    'k-pagination-button': true,
-    [className || '']: true,
-};
-
-const btnLastClass = {
-    'k-pagination-button': true,
-    [className || '']: true,
-};
 
 const active = {
     'k-pagination-active': true,
+    [className || '']: true,
+};
+
+const activeFirst = {
+    'k-pagination-active': current === 1,
+    [className || '']: true,
+};
+
+const activeEnd = {
+    'k-pagination-active': current === total,
+    [className || '']: true,
+};
+
+const disable = {
+    'disabled' : current === 1 || current === total,
     [className || '']: true,
 };
 
@@ -35,12 +41,12 @@ const active = {
             共{{ total }}条
         </span>
 
-        <li ev-click={{self.prev.bind(self)}} class={{ current === 1 ? 'disabled' : ''}}>
+        <li ev-click={{self.prev.bind(self)}} class={{ disable }}>
             <a>left</a>
         </li>
 
 
-        <li ev-click={{self.changePage.bind(self, 1)}} class={{ current === 1 ? 'k-pagination-active' : '' }}>
+        <li ev-click={{self.changePage.bind(self, 1)}} class={{ activeFirst }}>
             <a>{{ 1 }}</a>
         </li>
 
@@ -56,7 +62,7 @@ const active = {
             {{ current - 1 }}
         </li>
 
-        <li v-if={{ current != 1 && current != total}} ev-click={{self.changePage.bind(self, current)}} class="k-pagination-active">
+        <li v-if={{ current !== 1 && current !== total}} ev-click={{self.changePage.bind(self, current)}} class={{ active }}>
             <a>{{ current }}</a>
         </li>
 
@@ -72,11 +78,11 @@ const active = {
             <a>{{ '>>' }}</a>
         </li>
 
-        <li v-if={{ total > 1 }} ev-click={{self.changePage.bind(self, total)}} class={{ current === total ? 'k-pagination-active' : '' }}>
+        <li v-if={{ total > 1 }} ev-click={{self.changePage.bind(self, total)}} class={{ activeEnd }}>
             <a>{{ total }}</a>
         </li>
 
-        <li ev-click={{self.next.bind(self)}} class={{ current === total ? 'disabled' : ''}}>
+        <li ev-click={{self.next.bind(self)}} class={{ disable }}>
             <a>right</a>
         </li>
 

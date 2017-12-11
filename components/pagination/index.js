@@ -16,12 +16,13 @@ export default class extends Intact{
                 {text:'20行', value: 20},
                 {text:'50行', value: 50},
             ],
+            value: '',
+
             
         };
     }
 
     _init() {
-        console.log('aa=',this.get('opts'))
         if (this.get('current') > this.get('total')) {
             this.set('current', 1);
         }
