@@ -1,27 +1,19 @@
 @require('./variables.styl');
 
-li
-  	border 1px red solid
-  	display inline
-  	padding 5px 15px
-
-
-
-
-
-
-.k-pagination-button
-    color $spinner-button-color
-    font-weight 200
-    border 1px solid $spinner-button-border-color
-    background-color $spinner-button-bg-color
-    outline 0
-    // FIXME 对于可变属性，应该提取成统一变量
-    height $spinner-button-height
-    width $spinner-button-width
-    float left
+.k-pagination
+  li
+    border 1px #d9d9d9 solid
+    display inline
+    padding 5px 15px
     cursor pointer
-    /*&:not(.spinner-button-disabled):hover
-        border-color $spinner-button-hover-border-color
-        color $spinner-button-hover-color
-        background-color $spinner-button-hover-bg-color*/
+  a
+    color #333
+  .disabled
+    cursor not-allowed
+    a
+      cursor not-allowed
+  .k-pagination-active
+    color #fff
+    background-color #595959
+    a
+      color: #fff

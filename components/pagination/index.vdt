@@ -1,8 +1,10 @@
+const Select = require('../select');
+
 const {
-    total, current, size, opts,
+    total, current, size, opts, className,
+    showTotal,
     ...rest
 } = self.get();
-const Select = require('components/select')
 
 
 const classNameObj = {
@@ -19,32 +21,67 @@ const btnLastClass = {
     [className || '']: true,
 };
 
-
-const Page = props => {
-    if (!tagName && props.href) {
-        tagName = 'a';
-    }
-    
-    return h(tagName || 'button', props, props.children);
+const active = {
+    'k-pagination-active': true,
+    [className || '']: true,
 };
 
+
 <div class={{ classNameObj }}>
-    <p>lalalala</p>
-    <div>total: {{self.get('total')}}</div>
+
 
     <ul>
-        <li class="k-pagination-button">
-            <a href="javascript:;">left</a>
+        <span v-if={{ showTotal }}>
+            共{{ total }}条
+        </span>
+
+        <li ev-click={{self.prev.bind(self)}} class={{ current === 1 ? 'disabled' : ''}}>
+            <a>left</a>
         </li>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-        <li>right</li>
+
+
+        <li ev-click={{self.changePage.bind(self, 1)}} class={{ current === 1 ? 'k-pagination-active' : '' }}>
+            <a>{{ 1 }}</a>
+        </li>
+
+        <li v-if={{ current - 3 > 1 }} ev-click={{self.fastPrev.bind(self)}}>
+            <a>{{ '<<' }}</a>
+        </li>
+
+        <li v-if={{ current - 2 > 1}} ev-click={{self.changePage.bind(self, current - 2)}}>
+            {{ current - 2 }}
+        </li>
+
+        <li v-if={{ current - 1 > 1}} ev-click={{self.changePage.bind(self, current - 1)}}>
+            {{ current - 1 }}
+        </li>
+
+        <li v-if={{ current != 1 && current != total}} ev-click={{self.changePage.bind(self, current)}} class="k-pagination-active">
+            <a>{{ current }}</a>
+        </li>
+
+        <li v-if={{ current + 1 < total}} ev-click={{self.changePage.bind(self, current + 1)}}>
+            <a>{{ current + 1 }}</a>
+        </li>
+
+        <li v-if={{ current + 2 < total}} ev-click={{self.changePage.bind(self, current + 2)}}>
+            <a>{{ current + 2 }}</a>
+        </li>
+
+        <li v-if={{ current + 3 < total }} ev-click={{self.fastNext.bind(self)}}>
+            <a>{{ '>>' }}</a>
+        </li>
+
+        <li v-if={{ total > 1 }} ev-click={{self.changePage.bind(self, total)}} class={{ current === total ? 'k-pagination-active' : '' }}>
+            <a>{{ total }}</a>
+        </li>
+
+        <li ev-click={{self.next.bind(self)}} class={{ current === total ? 'disabled' : ''}}>
+            <a>right</a>
+        </li>
+
     </ul>
 
-
-    <span>共{{self.get('total')}}条</span>
 
     
 </div>
