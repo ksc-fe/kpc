@@ -100,6 +100,7 @@ export default class extends Intact {
     }
 
     _dragStart(e) {
+        document.body.style.height = '900px';
         // left key
         if (e.which !== 1) return;
 
@@ -115,16 +116,17 @@ export default class extends Intact {
     }
 
     _move(e) {
+        // TODO; drag out of screen
         if (this.get('_dragging')) {
             const style = this.dialog.style;
-            const doc = document.documentElement;
+            const body = document.body;
             const left = Math.min(
                 Math.max(this._x + e.clientX, 0),
-                Math.max(doc.clientWidth - this._width, 0)
+                Math.max(body.scrollWidth - this._width, 0)
             );
             const top = Math.min(
                 Math.max(this._y + e.clientY, 0),
-                Math.max(doc.clientHeight - this._height, 0)
+                Math.max(body.scrollHeight - this._height, 0)
             );
             style.left = `${left}px`;
             style.top = `${top}px`;
