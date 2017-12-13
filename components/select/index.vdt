@@ -8,15 +8,17 @@ const style = {'width':width,'height':height,'line-hight':line_hight};
 <div class="k-select" ev-click={{ self.set.bind(self, 'show', !self.get('show')) }} style={{ style }} >
     <div class={{ self.get('disabled')? "k-input disabled" : "k-input"}} style={{ style }}>
         <input type="text" hidden>
-        <!-- 默认显示框 -->
-        <span class="k-placeholder" v-if={{ !self.get('multiple') }}> {{ self.get('value').text || '请选择' }} </span>
+        <!-- 可搜索 -->
+        <input type="text" v-if={{ self.get('filterable') }} />
         <!-- 多选 显示框 -->
-        <div class="k-multiple" v-if={{ self.get('multiple') }}>
+        <div class="k-multiple" v-else-if={{ self.get('multiple') }}>
             <div class="input-tag-checked" v-for={{ self.get('value_multiple') }}>
                 {{ value }} 
                 <i ev-click={{ self.deleTag.bind(self,key) }}>x</i>
             </div>
         </div>
+        <!-- 默认显示框 -->
+        <span class="k-placeholder" v-else={{ !self.get('multiple') }}> {{ self.get('value').text || '请选择' }} </span>
         <i class={{ self.get('show')? "k-icon k-icon-down" :"k-icon k-icon-up" }}></i>
         <i v-if={{ self.get('clearable') && self.get('value').value }} ev-click={{ self.set.bind(self,'value','') }} class="clear-icon">x</i>
     </div>

@@ -63,9 +63,9 @@ import Select from 'components/select';
     <span style="float:left;text-align:center;width:120px;margin-top:16px">分组</span>
     <div style="display:inline-block;margin-top:10px;">
         <Select ev-click={{ self.onClick.bind(self) }}
-            data={{ [{ 'text':'北京', 'value': 'goBJ'},{ 'text': '长沙', 'value': 'CSS'},{ 'text': '南京', 'value': 'NJ'},{ 'text':'上海','value':'SH'},{ 'text':"成都","value":'CH'},{ "text":'沈阳北',"value":'SHB'},{'text':'齐齐哈尔','value':'QQHAR'},{'text':'乌鲁木齐市','value':'WLMQS'}] }}        
-            group={{ [
-                        {   'label':'一线城市',
+            group={{ [  
+                        {   
+                            'label':'一线城市',
                             'data':[{ 'text':'北京', 'value': 'BJ'},{ 'text':'上海','value':'SH'}]
                         },
                         {
@@ -74,8 +74,16 @@ import Select from 'components/select';
                         }
             
                     ] }}
-            
         > 
         </Select>      
     </div>
+    <br>
+    <span style="float:left;text-align:center;width:120px;margin-top:16px">可搜索</span>
+    <div style="display:inline-block;margin-top:10px;">
+        <Select ev-click={{ self.onClick.bind(self) }} filterable
+            data={{ [{ 'text':'北京', 'value': 'goBJ','label':'beijing'},{ 'text':'上海','value':'SH','label':'shanghai'},{ 'text':"成都","value":'CH','label':'chengdu'}] }}
+        >
+        </Select>      
+    </div>
+    <br>
 </div>
