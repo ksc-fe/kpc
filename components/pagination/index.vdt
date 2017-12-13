@@ -1,8 +1,8 @@
-const Select = require('../select');
+import Select from 'components/select'
 
 const {
     total, current, size, opts, className,
-    showTotal,
+    showTotal, Goto,
     ...rest
 } = self.get();
 
@@ -27,21 +27,29 @@ const activeEnd = {
     [className || '']: true,
 };
 
-const disable = {
-    'disabled' : current === 1 || current === total,
+const leftBtClass = {
+    'disabled' : current === 1,
+    [className || '']: true,
+};
+
+const rightBtClass = {
+    'disabled' : current === total,
+    [className || '']: true,
+};
+
+const goto = {
+    'k-pagination-go' : true,
     [className || '']: true,
 };
 
 
 <div class={{ classNameObj }}>
-
-
     <ul>
         <span v-if={{ showTotal }}>
             共{{ total }}条
         </span>
 
-        <li ev-click={{self.prev.bind(self)}} class={{ disable }}>
+        <li ev-click={{self.prev.bind(self)}} class={{ leftBtClass }}>
             <a>left</a>
         </li>
 
@@ -82,12 +90,20 @@ const disable = {
             <a>{{ total }}</a>
         </li>
 
-        <li ev-click={{self.next.bind(self)}} class={{ disable }}>
+        <li ev-click={{self.next.bind(self)}} class={{ rightBtClass }}>
             <a>right</a>
         </li>
 
+        <span v-if={{ Goto }}>
+            Goto
+            <input
+                v-model="value"
+                ev-change={{ self._goto.bind(self) }}
+                class={{ goto }}
+            />
+        </span>
+
+        select
+
     </ul>
-
-
-    
 </div>

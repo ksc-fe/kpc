@@ -17,6 +17,7 @@ export default class extends Intact{
                 {text:'50行', value: 50},
             ],
             value: '',
+            Goto: false
 
             
         };
@@ -32,6 +33,7 @@ export default class extends Intact{
     changePage(page) {
         if (this.get('current') !== page) {
             this.set('current', page);
+            this._update()
         }
     }
 
@@ -78,5 +80,18 @@ export default class extends Intact{
     onSize(pageSize) {
         //
         this.changePage(1);
+    }
+
+    _goto() {
+        let self = this;
+        const regu = /^[1-9]\d*$/;
+        let value = parseInt(self.get('value'));
+        let total = self.get('total');
+
+        if (regu.test(value) && value <= total) {
+            self.changePage(value);
+        } else {
+
+        }
     }
 }
