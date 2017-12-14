@@ -21,39 +21,39 @@
         </FormItem>
         <FormItem label="性别" model="model.sex" :rules="{required: true}" :messages="{required: '必须选择'}">
             <Radio v-model="model.sex" trueValue="female" name="sex">女</Radio>
-            <Radio v-model="model.sex" trueValue="man" name="sex" style="margin-left: 10px;">男</Radio>
+            <Radio v-model="model.sex" trueValue="male" name="sex" style="margin-left: 10px;">男</Radio>
         </FormItem>
-        <!-- <FormItem label="爱好" for="sport" model="model.hobbies" :rules="{required: true, maxLength: 2}" :messages="{required: '必须选择'}"> -->
-            <!-- <Checkbox v-model="model.hobbies" trueValue="sport" name="hobbies" id="sport">运动</Checkbox> -->
-            <!-- <Checkbox v-model="model.hobbies" trueValue="music" name="hobbies" style="margin-left: 10px;">音乐</Checkbox> -->
-            <!-- <Checkbox v-model="model.hobbies" trueValue="coding" name="hobbies" style="margin-left: 10px;">写代码</Checkbox> -->
-        <!-- </FormItem> -->
-        <!-- <FormItem label="年龄" model="model.age" rules={{ {required: true, digits: true, min: 1} }}> -->
-            <!-- <input class="c-input" v-model="model.age" /> -->
-        <!-- </FormItem> -->
-        <!-- <FormItem label="邮箱" model="model.email" rules={{ {email: true} }}> -->
-            <!-- <input class="c-input" v-model="model.email" /> -->
-        <!-- </FormItem> -->
-        <!-- <FormItem label="密码" model="model.password" rules={{ {required: true} }}> -->
-            <!-- <input class="c-input" type="password" v-model="model.password" /> -->
-        <!-- </FormItem> -->
-        <!-- <FormItem v-if={{ !self.get('hide') }} label="确认密码" model="model.confirmPassword" rules={{ {required: true, equal(value) { return value === self.get('model.password') || '两次密码输入不一致'; }} }}> -->
-            <!-- <input class="c-input" type="password" v-model="model.confirmPassword" /> -->
-        <!-- </FormItem> -->
-        <!-- <FormItem label="描述" class="descriptions"> -->
-            <!-- <FormItem v-for={{ self.get('model.descriptions') }} model={{ `model.descriptions.${key}` }} hideLabel rules={{ {required: true} }}> -->
-                <!-- <input class="c-input" v-model={{ `model.descriptions.${key}` }} /> -->
-            <!-- </FormItem> -->
-            <!-- <Button ev-click={{ self.add.bind(self) }} size="small">添加</Button> -->
-        <!-- </FormItem> -->
-        <!-- <FormItem label="验证码" model="model.captcha" rules={{ {isEqual: true} }}> -->
-            <!-- <b:label>验证码 (<span style="color: red;">3</span>)</b:label> -->
-            <!-- <input class="c-input" v-model="model.captcha" /> -->
-        <!-- </FormItem> -->
-        <!-- <FormItem> -->
-            <!-- <Button htmlType="submit" type="primary">提交</Button> -->
-            <!-- <Button style="margin-left: 10px;" @click="reset">重置</Button> -->
-        <!-- </FormItem> -->
+        <FormItem label="爱好" for="sport" model="model.hobbies" :rules="{required: true, maxLength: 2}" :messages="{required: '必须选择'}">
+            <Checkbox v-model="model.hobbies" trueValue="sport" name="hobbies" id="sport">运动</Checkbox>
+            <Checkbox v-model="model.hobbies" trueValue="music" name="hobbies" style="margin-left: 10px;">音乐</Checkbox>
+            <Checkbox v-model="model.hobbies" trueValue="coding" name="hobbies" style="margin-left: 10px;">写代码</Checkbox>
+        </FormItem>
+        <FormItem label="年龄" model="model.age" :rules="{required: true, digits: true, min: 1}">
+            <input class="c-input" v-model="model.age" />
+        </FormItem>
+        <FormItem label="邮箱" model="model.email" :rules="{email: true}">
+            <input class="c-input" v-model="model.email" />
+        </FormItem>
+        <FormItem label="密码" model="model.password" :rules="{required: true}">
+            <input class="c-input" type="password" v-model="model.password" />
+        </FormItem>
+        <FormItem v-if="!hide" label="确认密码" model="model.confirmPassword" :rules="{required: true, equal(value) { return value === model.password || '两次密码输入不一致'; }}">
+            <input class="c-input" type="password" v-model="model.confirmPassword" />
+        </FormItem>
+        <FormItem label="描述" class="descriptions">
+            <FormItem v-for="(value, key) in model.descriptions" :model="'model.descriptions.' + key" hideLabel :rules="{required: true}" :key="key">
+                <input class="c-input" v-model="model.descriptions[key]" />
+            </FormItem>
+            <Button @click="add" size="small">添加</Button>
+        </FormItem>
+        <FormItem label="验证码" model="model.captcha" :rules="{isEqual: true}">
+            <template slot="label">验证码 (<span style="color: red;">3</span>)</template>
+            <input class="c-input" v-model="model.captcha" />
+        </FormItem>
+        <FormItem>
+            <Button htmlType="submit" type="primary">提交</Button>
+            <Button style="margin-left: 10px;" @click="reset">重置</Button>
+        </FormItem>
     </Form>
 </template>
 
@@ -80,7 +80,10 @@ export default {
                     lastName: '',
                 },
                 sex: '',
-            }
+                hobbies: [],
+                descriptions: [''],
+            },
+            hide: false,
         }
     },
 
@@ -90,6 +93,9 @@ export default {
         },
         reset() {
 
+        },
+        add() {
+            this.model.descriptions.push('');
         }
     }
 }

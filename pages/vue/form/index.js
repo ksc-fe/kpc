@@ -1,5 +1,6 @@
 import Page from './index.vue';
 import Vue from 'vue';
+import 'pages/form/index.styl';
 
 export default class extends Intact {
     get template() { return '<div></div>'; }

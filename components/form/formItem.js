@@ -145,7 +145,12 @@ export default class extends Intact {
         if (!this.get('model')) return;
         if (this.get('isDirty')) return;
 
-        this.validate();
+        // for vue value will changed after event
+        if (this.$nextTick) {
+            this.$nextTick(this.validate);
+        } else {
+            this.validate();
+        }
     }
 
     _cancel() {

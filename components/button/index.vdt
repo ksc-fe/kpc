@@ -32,7 +32,6 @@ const Button = props => {
 // hack for loading transition of width
 if (!icon && Array.isArray(children)) {
     children.forEach((child, index) => {
-        console.log(child);
         if (child) {
             if (child.type === 1 || typeof child === 'string' || typeof child === 'number') {
                 // is a text node
