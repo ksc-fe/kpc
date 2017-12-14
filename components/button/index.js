@@ -24,6 +24,19 @@ export default class extends Intact {
         };
     }
 
+    static propTypes = {
+        type: String,
+        size: String,
+        icon: Boolean,
+        circle: Boolean,
+        loading: Boolean,
+        disabled: Boolean,
+        fluid: Boolean,
+        htmlType: String,
+        tagName: [String, Function],
+        name: String,
+    }
+
     _mount() {
         let parentVNode = this.parentVNode;
         if (parentVNode) {

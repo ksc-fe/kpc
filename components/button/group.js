@@ -13,5 +13,10 @@ export default class extends Intact {
             value: undefined,
         };
     }
+
+    static propTypes = {
+        vertical: Boolean,
+        radio: Boolean,
+    }
 }
 

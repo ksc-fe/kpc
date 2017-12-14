@@ -14,7 +14,7 @@ module.exports = {
         rules: [
             {
                 test: /\.m?js$/,
-                exclude: [/node_modules(?![\/\\]universal\-router)/],
+                exclude: [/node_modules(?!([\/\\]universal\-router)|([\/\\]intact\-vue))/],
                 use: [
                     {
                         loader: 'babel-loader',
@@ -82,10 +82,26 @@ module.exports = {
                     }
                 ]
             },
+            {
+                test: /\.vue$/,
+                use: [
+                    {
+                        loader: 'vue-loader',
+                        options: {
+                            preserveWhitespace: false,
+                        }
+                    }
+                ]
+            },
         ]
     },
     resolve: {
         modules: [__dirname, 'node_modules'],
+        alias: {
+            'vue$': 'vue/dist/vue.esm.js',
+            // for running in vue
+            'intact$': 'intact-vue/src/index.js',
+        },
         extensions: ['.mjs', '.js', '.vdt'],
     },
     plugins: [

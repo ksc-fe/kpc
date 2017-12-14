@@ -21,4 +21,3 @@ export function kebabCase(word) {
     }
     return _cache[word];
 }
-

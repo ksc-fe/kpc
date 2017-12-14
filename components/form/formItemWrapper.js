@@ -3,7 +3,7 @@ import FormItem from './formItem';
 
 const h = Intact.Vdt.miss.h;
 
-export default function(props) {
+function Wrapper(props) {
     let {key, _context, model, ...rest} = props;
     if (!key && model) {
         key = `$fi.${model}`;
@@ -17,4 +17,7 @@ export default function(props) {
         ...rest
     });
 }
+
+export default Intact.functionalWrapper ?
+    Intact.functionalWrapper(Wrapper) : Wrapper;
 
