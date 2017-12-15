@@ -19,6 +19,10 @@ export default class extends Intact {
         }
     }
 
+    static propTypes = {
+        hideLabel: Boolean,
+    }
+
     _init() {
         this.initValue = this.get('value');
         this.on('$change:value', this.validateIfDirty);
@@ -66,7 +70,7 @@ export default class extends Intact {
         const promises = [];
         const keys = [];
 
-        // check required first
+        // check required firstly
         let required = Form.methods.required.call(this.form, this.get('value'), this);
         if (rules.required) {
             promises.push(required);

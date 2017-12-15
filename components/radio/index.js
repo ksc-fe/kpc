@@ -13,6 +13,10 @@ export default class extends Intact {
         };
     }
 
+    static propTypes = {
+        disabled: Boolean,
+    }
+
     isChecked() {
         return this.get('value') === this.get('trueValue');
     }

@@ -6,7 +6,7 @@ import template from './index.vdt'
 import './index.styl'
 
 export default class extends Intact {
-    get template() { return template;}
+    get template() { return template; }
 
     defaults() {
         return {
@@ -18,9 +18,21 @@ export default class extends Intact {
             isShowEnd: true,
             isShowInput: true,
             step: 1,
+
             _inputValue:0,
             _isDragging: false,
         }
+    }
+
+    static propTypes = {
+        max: Number,
+        min: Number,
+        value: Number,
+        isRange: Boolean,
+        unit: String,
+        isShowEnd: Boolean,
+        isShowInput: Boolean,
+        step: Number,
     }
 
     _init() {

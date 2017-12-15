@@ -1,13 +1,18 @@
 import Link from 'components/link';
 
+const list = [
+    'button', 'dialog', 'checkbox', 
+    'radio', 'table', 'progress', 
+    'slider','spinner','select',
+    'form', 'grid', 'switch',
+    'editable', 'tabs',
+];
+
 <ul>
-    <li v-for={{ [
-        'button', 'dialog', 'checkbox', 
-        'radio', 'table', 'progress', 
-        'slider','spinner','select',
-        'form', 'grid', 'switch',
-        'editable', 'tabs',
-    ] }}>
+    <li v-for={{ list }}>
         <Link href={{ `/components/${value}` }}>{{ value }}</Link>
+    </li>
+    <li v-for={{ list }}>
+        <Link href={{ `/components/vue/${value}` }}>Vue: {{ value }}</Link>
     </li>
 </ul>

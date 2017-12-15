@@ -9,7 +9,9 @@
             <Row gutter="16">
                 <Col span="12">
                     <FormItem hideLabel model="model.realUserName.firstName" :rules="{required: model.realUserName.lastName}">
-                        <input class="c-input" v-model="model.realUserName.firstName" />
+                        <input 
+                            class="c-input" v-model="model.realUserName.firstName"
+                        />
                     </FormItem>
                 </Col>
                 <Col span="12">
@@ -64,6 +66,16 @@ import Button from 'components/button';
 import Checkbox from 'components/checkbox';
 import {Row, Col} from 'components/grid';
 
+Form.addMethod('isEqual', function(value, item) {
+    return this.optional(item) || value == 3;
+}, '请输入3');
+
+Form.addMethod('checkName', function(value, item) {
+    return this.optional(item) || new Promise((resolve, reject) => {
+        setTimeout(reject, 1000, {message: `用户名 ${value} 已被占用`});
+    });
+});
+
 export default {
     components: {
         Form, FormItem, Radio, Button, Checkbox,
@@ -89,10 +101,10 @@ export default {
 
     methods: {
         submit() {
-
+            console.log('submit');
         },
         reset() {
-
+            this.$refs.form.reset();
         },
         add() {
             this.model.descriptions.push('');

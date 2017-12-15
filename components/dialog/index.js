@@ -17,6 +17,10 @@ export default class extends Intact {
         }
     }
 
+    static propTypes = {
+        value: Boolean,
+    }
+
     _init() {
         this.on('$changed:value', (c, isShow) => {
             if (isShow) this._center();

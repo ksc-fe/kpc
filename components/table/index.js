@@ -63,6 +63,13 @@ export default class extends Intact {
         }
     }
 
+    static propTypes = {
+        rowCheckable: Boolean,
+        rowExpandable: Boolean,
+        resizable: Boolean,
+        fixHeader: Boolean,
+    }
+
     _init() {
         // keep the event consistent
         this.on('$change:checkedKeys', (c, newValue, oldValue) => {

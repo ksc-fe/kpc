@@ -16,6 +16,10 @@ export default class extends Intact {
         };
     }
 
+    static propTypes = {
+        disabled: Boolean,
+    }
+
     // set value to falseValue when destroy
     _destroy() {
         let value = this.get('value');

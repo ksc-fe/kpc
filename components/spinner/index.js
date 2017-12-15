@@ -15,6 +15,13 @@ export default class extends Intact {
         };
     }
 
+    static propTypes = {
+        disabled: Boolean,
+        max: Number,
+        min: Number,
+        step: Number
+    }
+
     _init() {
         this.set('initValue', this.get('value'));
     }

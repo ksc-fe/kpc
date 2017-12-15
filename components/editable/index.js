@@ -19,6 +19,15 @@ export default class extends Intact {
         };
     }
 
+    static propTypes = {
+        editing: Boolean,
+        required: Boolean,
+        disabled: Boolean,
+        tip: [String, Number],
+        trim: Boolean,
+        invalid: Boolean,
+    }
+
     _init() {
         this.initValue = this.get('value');
     }

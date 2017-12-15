@@ -16,6 +16,16 @@ const scheme = {
         ref={{ i => self.radioTable = i }}
     />
 
+    <Table data={{ self.get('data') }} scheme={{ {
+        test: {
+            title: 'aaa',
+            template(data) {
+                return <div><i class="ion-search"></i>{{ data.test }}</div>
+            }
+        },
+        aa: 'bbb'
+    } }} />
+
     <Table 
         data={{ Array.apply(null, {length: 100}).map((item, index) => {
             return {a: index, b: index};
