@@ -15,8 +15,7 @@ import Button from 'components/button';
 
 export default {
     data() {
-        const h = this._c;
-        const t = this._v;
+        const h = this.$createElement;
         return {
             scheme: {
                 test: 'aaa',
@@ -48,10 +47,10 @@ export default {
                     template(data) {
                         const vNode = h('div', null, [
                             h('i', {staticClass: 'ion-search'}),
-                            t(data.test)
+                            data.test
                         ]);
                         console.log(vNode);
-                        return Intact.normalize(vNode);
+                        return vNode;
                     }
                 },
                 aa: 'bbb'

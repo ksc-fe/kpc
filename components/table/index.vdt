@@ -1,6 +1,7 @@
 import Checkbox from '../checkbox';
 import Radio from '../radio';
 import Row from './row';
+import {normalize} from 'intact';
 
 const {
     checkType, scheme, checkedKeys, data, rowKey, 
@@ -88,6 +89,10 @@ const tbody = <tbody>
                     if (__u.isObject(item) && item.template) {
                         if (typeof item.template === 'function') {
                             td = item.template.call(self, value, index);
+                            // for Intact-Vue
+                            if (normalize) {
+                                td = normalize(td);
+                            }
                         } else {
                             td = item.template;
                         }
