@@ -7,6 +7,12 @@ const {
 } = self.get();
 
 
+// FIXME: 
+// 1. 为什么每个元素都要加上className，最外层父元素添加即可
+// 2. 可变属性最好采用如下写法（之前写法不合理）
+//    [className]: className, // 这样当className不存在时，不会在类名后添加空格
+//    [className || '']: true, // 这样会添加空格，因为取值为true（数组join(' ')）
+// 3. 对于不复杂的类名，没必要都提取变量，直接内联到元素中比较直观
 const classNameObj = {
     'k-pagination': true,
     [className || '']: true,

@@ -8,6 +8,7 @@ export default class extends Intact{
     defaults() {
         return {
             total: 0,
+            // FIXME: 小写驼峰
             'page-size': 10,
             current: 1,
             showTotal: true,
@@ -33,6 +34,7 @@ export default class extends Intact{
     changePage(page) {
         if (this.get('current') !== page) {
             this.set('current', page);
+            // FIXME: 这里需要强制更新？
             this._update()
         }
     }
@@ -83,6 +85,7 @@ export default class extends Intact{
     }
 
     _goto() {
+        // FIXME: 参考readme，对于不可变参数，使用const修饰
         let self = this;
         const regu = /^[1-9]\d*$/;
         let value = parseInt(self.get('value'));

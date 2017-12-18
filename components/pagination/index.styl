@@ -1,23 +1,29 @@
 @require('./variables.styl');
 
+// 风格统一，使用4个空格缩进
 .k-pagination
   li
+    // FIXME: 应该提取成变量
     border 1px #d9d9d9 solid
     display inline
+    // FIXME: 应该提取成变量
     padding 5px 15px
     cursor pointer
   a
+    // FIXME: 应该提取成变量
     color #333
   .disabled
     cursor not-allowed
     a
       cursor not-allowed
+  // FIXME: 参考readme命名规范，无需加入pagination限制，改为k-active
   .k-pagination-active
     color $pagination-active-color
     background-color $pagination-active-bg-color
     border-color $pagination-active-border-color
     a
       color: #fff
+// FIXME: 参考readme命名规范
 .k-pagination-go
   margin-left $pagination-input-margin-left
   background-color $pagination-input-bg-color
