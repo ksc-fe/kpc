@@ -3,7 +3,7 @@ import template from './index.vdt';
 import Group from './group';
 import './index.styl';
 
-export default class extends Intact {
+export default class Button extends Intact {
     @Intact.template()
     get template() { return template; }
 
@@ -70,3 +70,5 @@ export default class extends Intact {
         this.trigger('click', e);
     }
 }
+
+export {Button, Group as ButtonGroup};

@@ -1,0 +1,28 @@
+const {
+    width, title, key, 
+    sortable, groups, $parent
+} = self.get();
+const {sort, resizable} = $parent.get();
+
+<th width={{ width }} 
+    title={{ title }}
+    class={{ {'k-sortable': sortable} }}
+    ev-click={{ self.onClick.bind(self) }}
+>
+    <div v-if={{ resizable }} class="k-resize" ev-mousedown={{ self.onDragStart.bind(self) }}></div>
+    <div class="k-th">
+        <div v-if={{ !groups }} class="c-ellipsis">{{ title }}</div>
+        {{ do {
+            if (sortable) {
+                const type = key === sort.key ? sort.type : '';
+                <div class={{ {'k-sort': true, [`k-${type}`]: type} }}>
+                    <i class={{ {
+                        'k-icon': true,
+                        [`icon-${type}`]: type,
+                        'icon-sortable': !type,
+                    } }}></i>
+                </div>
+            }
+        } }}
+    </div>
+</th>

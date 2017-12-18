@@ -2,16 +2,18 @@ import Checkbox from '../checkbox';
 import Radio from '../radio';
 import Row from './row';
 import {normalize} from 'intact';
+import Column from './column';
 
 const {
     checkType, scheme, checkedKeys, data, rowKey, 
     className, fixHeader, noDataTemplate, disableRow,
     groups, resizable, expand, expandedKeys, type,
-    style, rowClassName
+    style, rowClassName, children, sort
 } = self.get();
 
 let colSpan = checkType === 'checkbox' || checkType === 'radio' ? 1 : 0;
 const expandable = typeof expand === 'function';
+const _scheme = {};
 
 const theadCreator = () => <thead>
     <tr>
@@ -28,29 +30,24 @@ const theadCreator = () => <thead>
                 item = {title: item};
             }
 
-            return <th width={{ item.width }}
-                title={{ item.title }}
-                class={{ {'k-sortable': item.sortable} }}
+            return <Column {{ ...item }}
+                key={{ key }}
+                $parent={{ self }} 
                 ev-click={{ item.sortable ? self._sort.bind(self, key, item) : undefined }}
-            >
-                <div v-if={{ resizable }} class="k-resize" ev-mousedown={{ self._dragStart.bind(self) }}></div>
-                <div class="k-th">
-                    <div v-if={{ !item.groups }} class="c-ellipsis">{{ item.title }}</div>
-                    {{ do {
-                        if (item.sortable) {
-                            const sort = self.get('sort');
-                            const type = key === sort.key ? sort.type : ''; // 'desc' | ''
-                            <div class={{ {'k-sort': true, [`k-${type}`]: type} }}>
-                                <i class={{ {
-                                    'k-icon': true, 
-                                    [`icon-${type}`]: type,
-                                    'icon-sortable': !type
-                                } }}></i>
-                            </div>
-                        }
-                    } }}
-                </div>
-            </th>
+                ev-dragStart={{ self._dragStart.bind(self) }}
+            />
+        }) }}
+        {{  // for using TableColumn as children
+            __u.map(children, vNode => {
+            if (vNode.tag === Column) {
+                const props = vNode.props;
+                props.$parent = self;
+                _scheme[props.key] = {
+                    title: props.title,
+                    template: props.template || props.default,
+                };
+                return vNode;
+            }
         }) }}
     </tr>
 </thead>
@@ -84,7 +81,7 @@ const tbody = <tbody>
                         disabled={{ disabled }}
                     />
                 </td>
-                {{ __u.map(scheme, (item, key) => {
+                {{ __u.map(__u.extend({}, scheme, _scheme), (item, key) => {
                     let td;
                     if (__u.isObject(item) && item.template) {
                         if (typeof item.template === 'function') {

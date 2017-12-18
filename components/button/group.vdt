@@ -13,9 +13,7 @@ const classNameObj = {
 
 <div class={{ classNameObj }} style={{ style }}>{{ 
     radio ? children.map(vNode => {
-        console.log('group', vNode);
         if (vNode.tag === Button) {
-            console.log('aaa')
             vNode.props._value = value;
         }
         return vNode;

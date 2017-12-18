@@ -44,7 +44,7 @@
     "file-loader": "^1.1.5",
     "history": "^4.7.2",
     "intact": "^2.2.0-2",
-    "intact-vue": "^0.1.2-0",
+    "intact-vue": "^0.2.0",
     "jasmine-core": "^2.8.0",
     "karma": "^1.4.1",
     "karma-chrome-launcher": "^2.2.0",

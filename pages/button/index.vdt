@@ -1,5 +1,4 @@
-import Button from 'components/button';
-import ButtonGroup from 'components/button/group';
+import Button, {ButtonGroup} from 'components/button';
 import Link from 'components/link';
 
 <div class="component-page">

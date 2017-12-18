@@ -1,39 +1,15 @@
 import Intact from 'intact';
 import template from './index.vdt';
 import './index.styl';
-
-// reference: http://stackoverflow.com/questions/13382516/getting-scroll-bar-width-using-javascript
-function getScrollbarWidth() {
-    var outer = document.createElement("div");
-    outer.style.visibility = "hidden";
-    outer.style.width = "100px";
-    outer.style.msOverflowStyle = "scrollbar"; // needed for WinJS apps
-
-    document.body.appendChild(outer);
-
-    var widthNoScroll = outer.offsetWidth;
-    // force scrollbars
-    outer.style.overflow = "scroll";
-
-    // add innerdiv
-    var inner = document.createElement("div");
-    inner.style.width = "100%";
-    outer.appendChild(inner);
-
-    var widthWithScroll = inner.offsetWidth;
-
-    // remove divs
-    outer.parentNode.removeChild(outer);
-
-    return widthNoScroll - widthWithScroll;
-}
+import Column from './column';
 
 let scrollBarWidth = undefined;
 
 const MIN_WIDTH = 40;
 const slice = Array.prototype.slice;
 
-export default class extends Intact {
+
+export default class Table extends Intact {
     @Intact.template()
     get template() { return template; }
 
@@ -324,3 +300,32 @@ export default class extends Intact {
         this._dragEnd();
     }
 }
+
+export {Table, Column as TableColumn};
+
+// reference: http://stackoverflow.com/questions/13382516/getting-scroll-bar-width-using-javascript
+function getScrollbarWidth() {
+    var outer = document.createElement("div");
+    outer.style.visibility = "hidden";
+    outer.style.width = "100px";
+    outer.style.msOverflowStyle = "scrollbar"; // needed for WinJS apps
+
+    document.body.appendChild(outer);
+
+    var widthNoScroll = outer.offsetWidth;
+    // force scrollbars
+    outer.style.overflow = "scroll";
+
+    // add innerdiv
+    var inner = document.createElement("div");
+    inner.style.width = "100%";
+    outer.appendChild(inner);
+
+    var widthWithScroll = inner.offsetWidth;
+
+    // remove divs
+    outer.parentNode.removeChild(outer);
+
+    return widthNoScroll - widthWithScroll;
+}
+

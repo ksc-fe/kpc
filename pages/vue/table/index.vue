@@ -1,5 +1,13 @@
 <template>
     <div>
+        <Table :data="data">
+            <TableColumn key="test" title="测试">
+                <template slot-scope="data, index">
+                    <div><i class="ion-search"></i>{{ data.test }}</div>
+                </template>
+            </TableColumn>
+            <TableColumn key="aa" title="标题" />
+        </Table>
         <Table :data="data" :scheme="scheme" />
         <Table :data="data" :scheme="scheme" checkType="radio" />
         <Table :data="data" :scheme="cunstomCellScheme" />
@@ -10,7 +18,7 @@
 </template>
 
 <script>
-import Table from 'components/table';
+import {Table, TableColumn} from 'components/table';
 import Button from 'components/button';
 
 export default {
@@ -59,7 +67,7 @@ export default {
     },
 
     components: {
-        Table, Button
+        Table, TableColumn, Button
     },
 }
 </script>

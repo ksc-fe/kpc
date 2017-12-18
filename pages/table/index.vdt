@@ -1,4 +1,4 @@
-import Table from 'components/table';
+import Table, {TableColumn} from 'components/table';
 import Button from 'components/button';
 
 const scheme = {
@@ -10,6 +10,16 @@ const scheme = {
     <Button ev-click={{ self.remove.bind(self) }}>remove the last row</Button>
     <Button ev-click={{ self.add.bind(self) }}>add the last row</Button>
     <Button ev-click={{ self.getCheckedData.bind(self) }}>get checked data</Button>
+
+    <Table data={{ self.get('data') }}>
+        <TableColumn title="aaa" key="test"
+            template={{ (data, index) => {
+                return <div><i class="ion-search"></i>{{ data.test }}</div>
+            } }}
+        />
+        <TableColumn title="标题" key="aa" />
+    </Table>
+
     <Table data={{ self.get('data') }} scheme={{ scheme }} ref={{ i => self.table = i }}/>
 
     <Table data={{ self.get('data') }} scheme={{ scheme }} checkType="radio"
