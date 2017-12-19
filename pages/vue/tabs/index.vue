@@ -1,11 +1,16 @@
 <template>
     <div>
         <Tabs :data="data" />
+        <Tabs v-model="tab">
+            <Tab value="rulein">入站规则</Tab>
+            <Tab value="ruleout">出站规则</Tab>
+            <Tab value="relatedVM">关联云主机</Tab>
+        </Tabs>
     </div>
 </template>
 
 <script>
-import Tabs from 'components/tabs';
+import Tabs, {Tab} from 'components/tabs';
 
 export default {
     data() {
@@ -23,12 +28,13 @@ export default {
                     text: '关联云主机',
                     value: 'relatedVM',
                 }
-            ]
+            ],
+            tab: '',
         }
     },
 
     components: {
-        Tabs
+        Tabs, Tab
     },
 }
 </script>

@@ -1,4 +1,6 @@
-const {className, data, value} = self.get();
+import Tab from './tab';
+
+const {className, data, value, children} = self.get();
 
 const classNameObj = {
     'k-tabs': true,
@@ -11,4 +13,12 @@ const classNameObj = {
         v-for-value="item"
         ev-click={{ self._changeTab.bind(self, item) }}
     >{{ item.text }}</a>
+    {{ __u.map(children, vNode => {
+        if (vNode.tag === Tab) {
+            const props = vNode.props;
+            props._value = value;
+            props._parent = self;
+        }
+        return vNode;
+    }) }}
 </div>

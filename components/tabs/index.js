@@ -1,8 +1,9 @@
 import Intact from 'intact';
+import Tab from './tab';
 import template from './index.vdt';
 import './index.styl';
 
-export default class extends Intact {
+export default class Tabs extends Intact {
     @Intact.template()
     get template() { return template; }
 
@@ -19,3 +20,5 @@ export default class extends Intact {
         } 
     }
 }
+
+export {Tabs, Tab};
