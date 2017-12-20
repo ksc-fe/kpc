@@ -106,7 +106,7 @@ const tbody = <tbody>
                     }
                     return <td title={{ typeof td === 'string' || typeof td === 'number' ? 
                         td : undefined 
-                    }}>{{ td }}</td>
+                    }}>{{ typeof td === 'boolean' ? String(td) : td }}</td>
                 }) }}
             </Row>;
 
