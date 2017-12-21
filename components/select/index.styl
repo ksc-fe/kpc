@@ -9,7 +9,7 @@
     // FIXME 样式名尽量简短，k-input即可，无需再加select限定，因为前面k-select已经限定了命名空间
     .k-input
         font-size $select-input-font
-        padding $select-padding
+        /* padding $select-padding */
         min-height $select-wrapper-height
         border 1px solid $disabled-border-color
         line-height $select-wrapper-height
@@ -38,6 +38,9 @@
         bacground-color $disabled-bg-color
     .clear-icon
         float right
+        position absolute
+        right $select-input-font :=unit(14/14, rem) 
+        top 0rem
         margin-right $select-icon-clear-m-r
         &:hover      
             color $selected-status
@@ -51,7 +54,12 @@
             background #F0F2F9
             padding $selected-tag-checked-p
             margin $selceted-tag-checked-m
-            border-radius $selected-tag-checked-border-radius        
+            border-radius $selected-tag-checked-border-radius  
+    .input              
+        border 0
+        width $select-input-width
+        height $select-wrapper-height
+        padding-left $select-icon-m-r :=unit(6/14,rem)
 .k-dropdown
     position absolute
     background #fff

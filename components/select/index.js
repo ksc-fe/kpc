@@ -22,7 +22,8 @@ export default class extends Intact{
             multiple:false, //支持多选li
             size:{'width':'','height':''},  //自定大小
             group:[], //分类
-            filterable:false // 搜索筛选
+            filterable:false, // 搜索筛选
+            inputValue:''
         }
     }
 
@@ -31,7 +32,12 @@ export default class extends Intact{
             if (isShow) this._position();
         });
     }
-
+    onBlur(){
+        this.set('show',false)
+    }
+    onInput(e){
+        this.set('inputValue',e.target.value)
+    }
     onClick(data){
         if(data.disabled) return 
         if(this.get('multiple')){
