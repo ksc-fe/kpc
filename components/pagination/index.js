@@ -90,7 +90,7 @@ export default class extends Intact{
         const regu = /^[1-9]\d*$/;
         let value = parseInt(self.get('value'));
         let total = self.get('total');
-
+        
         if (regu.test(value) && value <= total) {
             self.changePage(value);
         } else {
