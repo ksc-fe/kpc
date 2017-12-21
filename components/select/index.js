@@ -15,7 +15,7 @@ export default class extends Intact{
                 { text:'东京', value: 'dongjing',disabled:true }
             ],
             show: false,
-            value:'',
+            value:{ value:'',text:'' },
             value_multiple:[],
             disabled:false,
             clearable:false, //删除按钮
