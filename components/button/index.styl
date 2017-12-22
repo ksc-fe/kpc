@@ -121,6 +121,9 @@ sizes = small mini
         &:hover
             z-index 1
             position relative
+    // fluid
+    &.k-fluid
+        width 100%
 
     // horizontal
     &:not(.k-vertical)
@@ -140,6 +143,10 @@ sizes = small mini
                     border-left-color lookup('$btns-' + type + '-border-color')
                 &.k-{type}:not(:last-of-type)
                     border-right-color lookup('$btns-' + type + '-border-color')
+        &.k-fluid
+            display flex
+            > .k-btn
+                flex 1
 
     // vertical
     &.k-vertical

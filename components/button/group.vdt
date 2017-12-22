@@ -2,13 +2,14 @@ import Button from './';
 
 const {
     className, vertical, style, 
-    children, radio, value
+    children, radio, value, fluid
 } = self.get();
 
 const classNameObj = {
     'k-btns': true,
     'k-vertical': vertical,
     [className]: className,
+    'k-fluid': fluid,
 };
 
 <div class={{ classNameObj }} style={{ style }}>{{ 
