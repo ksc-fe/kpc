@@ -31,6 +31,16 @@ export default class extends Intact{
         this.on('$changed:show', (c, isShow) => {
             if (isShow) this._position();
         });
+        if(!this.get('value').hasOwnProperty('text') && this.get('value') !=''){
+            //判断用户给的默认值是否存在list中
+            let result = this.get('data').find(item=>{
+                return this.get('value') == item.text
+            })
+            if(result){
+                this.set('value', { text: result.text, value: result.value })
+            }
+            
+        }
     }
     onBlur(){
         this.set('show',false)
@@ -51,6 +61,8 @@ export default class extends Intact{
             }
         }else{
             this.set('value',data);
+            // this.get('value').text = data.text;
+            // this.get('value').value = data.value;
         }
         this.trigger('click',data);
         this._position();

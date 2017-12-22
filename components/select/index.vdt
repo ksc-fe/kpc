@@ -25,8 +25,8 @@ const style = {'width':width,'height':height,'line-hight':line_hight};
         </div>
         <!-- 默认显示框 -->
         <input type="text" class="input" v-else={{ !self.get('multiple') }} 
-            placeholder="请选择"
-            value={{ self.get('value').text }} readonly
+            placeholder="请选择" readonly
+            value={{ self.get('value').text  }} 
             ev-blur={{ self.onBlur.bind(self) }}
         />
         <!-- <span class="k-placeholder" v-else={{ !self.get('multiple') }}> {{ self.get('value').text || '请选择' }} </span> -->

@@ -5,6 +5,7 @@ import Select from 'components/select';
     <div style="display:inline-block">
         <Select ev-click={{ self.onClick.bind(self) }}
             data={{ [{ 'text':'星期一', 'value': 'Monday'},{ 'text': '星期二', 'value': 'Thusday'}] }}
+            value='星期一'
             >
         </Select>
         <span style="float:right;">You selected value：{{ self.get('value') }}</span>       
