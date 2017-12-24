@@ -49,17 +49,25 @@ const style = {'width':width,'height':height,'line-hight':line_hight};
             <ul class="k-list" v-else-if={{ self.get('group').length>0 }}>
                 <div v-for={{ self.get('group') }}>
                     <li class="li-disabled li-group-label">{{ value.label }}</li>
-                    <li v-for={{ value.data }} ev-click={{ self.onClick.bind(self,value) }}
-                        v-if={{ value.text.indexOf(self.get('inputValue')) !=-1 }}
-                        class={{ {'li-selected': value.value == self.get('value'),'li-disabled': value.disabled} }}>
+                    <li v-for={{ value.data.filter( item =>{
+                            if( item.text.indexOf(self.get('inputValue')) !=-1 ){
+                                return item
+                            }
+                        } ) }} 
+                        ev-click={{ self.onClick.bind(self, value) }}
+                        class={{ {'li-selected': value.text == self.get('value'),'li-disabled': value.disabled} }}>
                         {{ value.text }}
                     </li>
                 </div>
             </ul>
             <!-- 默认下拉框 -->
             <ul class="k-list" v-else>
-                <li v-for={{ self.get('data') }} ev-click={{ self.onClick.bind(self, value) }}
-                    v-if={{ value.text.indexOf(self.get('inputValue')) !== -1 }}
+                <li v-for={{ self.get('data').filter( item =>{
+                        if( item.text.indexOf(self.get('inputValue')) !=-1 ){
+                            return item
+                        }
+                    } ) }} 
+                    ev-click={{ self.onClick.bind(self, value) }}
                     class={{ {'li-selected': value.value == self.get('value'),'li-disabled': value.disabled} }}
                     >  {{ value.text }}
                     <span class="li-label" v-show={{ value.label }}>{{ value.label }} </span>
