@@ -6,16 +6,16 @@ const line_hight = Number(self.get('size').height)? (Number(self.get('size').hei
 const style = {'width':width,'height':height,'line-hight':line_hight};
 
 <div class="k-select" style={{ style }} 
-    ev-click={{ self.set.bind(self, 'show', !self.get('show')) }}  
+    ev-click={{ self.get('disabled')?'':self.set.bind(self, 'show', !self.get('show')) }}  
 >
-    <div class={{ self.get('disabled')? "k-input disabled" : "k-input"}} style={{ style }}>
-        
+    <!-- <div class={{ self.get('disabled')? "k-input disabled" : "k-input"}} style={{ style }}> -->
+    <div class="k-input" style={{ style }}>   
         <!-- 可搜索 -->
         <input type="text" class="input" v-if={{ self.get('filterable') }} placeholder="请选择"
             ev-input={{ self.onInput.bind(self) }}
             ev-blur={{ self.onBlur.bind(self) }}
-            value={{ self.get('value').text }}
-         />
+            value={{ self.get('value') }}
+        />
         <!-- 多选 显示框 -->
         <div class="k-multiple" v-else-if={{ self.get('multiple') }}>
             <div class="input-tag-checked" v-for={{ self.get('value_multiple') }}>
@@ -24,18 +24,18 @@ const style = {'width':width,'height':height,'line-hight':line_hight};
             </div>
         </div>
         <!-- 默认显示框 -->
-        <input type="text" class="input" v-else={{ !self.get('multiple') }} 
+        <input type="text" class="input" v-else 
             placeholder="请选择" readonly
-            value={{ self.get('value').text  }} 
+            value={{ self.get('value') }} 
             ev-blur={{ self.onBlur.bind(self) }}
         />
         <!-- <span class="k-placeholder" v-else={{ !self.get('multiple') }}> {{ self.get('value').text || '请选择' }} </span> -->
         <i class={{ self.get('show')? "k-icon k-icon-down" :"k-icon k-icon-up" }}></i>
-        <i v-if={{ self.get('clearable') && self.get('value').value }} ev-click={{ self.set.bind(self,'value','') }} class="clear-icon">x</i>
+        <i v-if={{ self.get('clearable') && self.get('value') }} ev-click={{ self.set.bind(self,'value','') }} class="clear-icon">x</i>
     </div>
     <MoveWrapper>
         <Animate class="k-dropdown" ref={{ dom => self._dropdown = dom }}
-            v-if={{ !self.get('disabled') && self.get('show') }}
+            v-if={{ self.get('show') }}
         >   
             <!-- 多选先显示框 -->
             <ul class="k-list" v-if={{ self.get('multiple') }}>
@@ -51,20 +51,20 @@ const style = {'width':width,'height':height,'line-hight':line_hight};
                     <li class="li-disabled li-group-label">{{ value.label }}</li>
                     <li v-for={{ value.data }} ev-click={{ self.onClick.bind(self,value) }}
                         v-if={{ value.text.indexOf(self.get('inputValue')) !=-1 }}
-                        class={{ {'li-selected': value.value == self.get('value').value,'li-disabled': value.disabled} }}>
+                        class={{ {'li-selected': value.value == self.get('value'),'li-disabled': value.disabled} }}>
                         {{ value.text }}
                     </li>
                 </div>
             </ul>
             <!-- 默认下拉框 -->
             <ul class="k-list" v-else>
-                    <li v-for={{ self.get('data') }} ev-click={{ self.onClick.bind(self,value) }}
-                        v-if={{ value.text.indexOf(self.get('inputValue')) !=-1 }}
-                        class={{ {'li-selected': value.value == self.get('value').value,'li-disabled': value.disabled} }}
-                        >  {{ value.text }}
-                        <span class="li-label" v-show={{ value.label }}>{{ value.label }} </span>
-                    </li>
-                </ul>
+                <li v-for={{ self.get('data') }} ev-click={{ self.onClick.bind(self, value) }}
+                    v-if={{ value.text.indexOf(self.get('inputValue')) !== -1 }}
+                    class={{ {'li-selected': value.value == self.get('value'),'li-disabled': value.disabled} }}
+                    >  {{ value.text }}
+                    <span class="li-label" v-show={{ value.label }}>{{ value.label }} </span>
+                </li>
+            </ul>
         </Animate>
     </MoveWrapper>
 </div>

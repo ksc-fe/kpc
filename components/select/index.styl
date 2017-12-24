@@ -19,7 +19,7 @@
             /* box-shadow 0 0 0 2px rgba(45,140,240,.2)    */
     .k-icon
         position absolute
-        top $select-icon-top
+        top $select-icon-position
         right $select-icon-right
         margin-top $select-icon-m-t
         
@@ -43,7 +43,7 @@
         top 0rem
         margin-right $select-icon-clear-m-r
         &:hover      
-            color $selected-status
+            color $selected-status 
     .k-multiple
         display inline-block
         max-width $select-max-width
@@ -81,11 +81,6 @@
                 position absolute
                 right $select-icon-yes
                 witdh 100%
-
-        .li-disabled
-            background-color $disabled-bg-color
-            color $disabled-color
-            cursor not-allowed
         .li-label
             float right    
             margin-right $select-li-label-m-r
@@ -97,4 +92,9 @@
             font-size $select-li-font-size
             &:hover    
                 background #f8f8f9
-
+                cursor pointer
+        .li-disabled
+            background-color $disabled-bg-color
+            color $disabled-color
+            &:hover
+                cursor not-allowed

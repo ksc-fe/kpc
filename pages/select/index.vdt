@@ -3,12 +3,11 @@ import Select from 'components/select';
 <div>
     <span style="float:left;text-align:center;width:120px;margin-top:16px">标准：</span>
     <div style="display:inline-block">
-        <Select ev-click={{ self.onClick.bind(self) }}
+        <Select v-model="value1"
             data={{ [{ 'text':'星期一', 'value': 'Monday'},{ 'text': '星期二', 'value': 'Thusday'}] }}
-            value='星期一'
-            >
+        >
         </Select>
-        <span style="float:right;">You selected value：{{ self.get('value') }}</span>       
+        <span style="float:right;">You selected value：{{ self.get('value1') }}</span>       
     </div>
     <br>
     <span style="float:left;text-align:center;width:120px;margin-top:16px">禁止所有：</span>

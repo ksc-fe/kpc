@@ -9,21 +9,23 @@ export default class extends Intact{
 
     defaults() {
         return {
-            data:[
+            data: [
                 { text:'北京',value: 'beijing' },
                 { text:'上海',value: 'shanghai' },
                 { text:'东京', value: 'dongjing',disabled:true }
             ],
-            show: false,
-            value:{ value:'',text:'' },
-            value_multiple:[],
-            disabled:false,
-            clearable:false, //删除按钮
-            multiple:false, //支持多选li
+            value: undefined,
+
+            value_multiple: [],
+            disabled: false,
+            clearable: false, //删除按钮
+            multiple: false, //支持多选li
             size:{'width':'','height':''},  //自定大小
             group:[], //分类
-            filterable:false, // 搜索筛选
-            inputValue:''
+            filterable: false, // 搜索筛选
+            inputValue:'',
+
+            show: false,
         }
     }
 
@@ -31,17 +33,20 @@ export default class extends Intact{
         this.on('$changed:show', (c, isShow) => {
             if (isShow) this._position();
         });
-        if(!this.get('value').hasOwnProperty('text') && this.get('value') !=''){
-            //判断用户给的默认值是否存在list中
-            let result = this.get('data').find(item=>{
-                return this.get('value') == item.text
-            })
-            if(result){
-                this.set('value', { text: result.text, value: result.value })
-            }
-            
-        }
+        // if(!this.get('value').hasOwnProperty('text') && this.get('value') !=''){
+        //     //判断用户给的默认值是否存在list中
+        //     let result = this.get('data').find(item=>{
+        //         return this.get('value') == item.text
+        //     })
+        //     if(result){
+        //         this.set('b', { text: result.text, value: result.value })
+        //     }
+        // }
     }
+    _create(){
+        
+    }
+
     onBlur(){
         this.set('show',false)
     }
@@ -50,6 +55,7 @@ export default class extends Intact{
     }
     onClick(data){
         if(data.disabled) return 
+
         if(this.get('multiple')){
             let index = this.get('value_multiple').indexOf(data.text);
             if(index != -1){
@@ -60,12 +66,10 @@ export default class extends Intact{
                 this.update()
             }
         }else{
-            this.set('value',data);
-            // this.get('value').text = data.text;
-            // this.get('value').value = data.value;
+            this.set('value', data.text);
         }
-        this.trigger('click',data);
-        this._position();
+        // this.trigger('click',data);
+        // this._position();
     }
 
     deleTag(index){
