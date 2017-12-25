@@ -5,7 +5,8 @@ const list = [
     'radio', 'table', 'progress', 
     'slider','spinner','select',
     'form', 'grid', 'switch',
-    'editable', 'tabs',
+    'editable', 'tabs', 'pagination',
+    'input',
 ];
 
 <ul>

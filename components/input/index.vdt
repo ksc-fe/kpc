@@ -1,0 +1,60 @@
+const {
+    type, name, value, placeholder,
+    readonly, clearable, disabled, size, 
+    rows, spellcheck
+} = self.get();
+
+const classNameObj = {
+    'k-input': true,
+    [`k-${size}`]: size !== 'default',
+    'k-group': blocks.prepend || blocks.append,
+    'k-disabled': disabled,
+    'k-with-prefix': blocks.prefix,
+    'k-with-suffix': blocks.suffix,
+    'k-clearable': clearable,
+}
+
+<div class={{ classNameObj }}>
+    <div class="k-prepend" v-if={{ blocks.prepend }}>
+        <b:prepend />
+    </div>
+    <div class="k-wrapper">
+        <div class="k-prefix" v-if={{ blocks.prefix }}>
+            <b:prefix />
+        </div>
+        <input v-if={{ type !== 'textarea' }}
+            class="k-inner" 
+            type={{ type }}
+            name={{ name }}
+            v-model="value"
+            readOnly={{ readonly }}
+            placeholder={{ placeholder }}
+            disabled={{ disabled }}
+            ref="input"
+        />
+        <textarea v-else 
+            class="k-inner k-textarea"
+            v-model="value"
+            name={{ name }}
+            readOnly={{ readonly }} 
+            placeholder={{ placeholder }}
+            disabled={{ disabled }}
+            ref="input"
+            rows={{ rows }}
+            spellcheck={{ spellcheck }}
+        ></textarea>
+        <div class="k-suffix" v-if={{ blocks.suffix || clearable }}>
+            <i v-if={{ clearable }}
+                class={{ {
+                    "k-clear k-icon ion-ios-close": true, 
+                    "k-show": value,
+                } }}
+                ev-click={{ self.clear.bind(self) }}
+            ></i>
+            <b:suffix />
+        </div>
+    </div>
+    <div class="k-append" v-if={{ blocks.append }}>
+        <b:append />
+    </div>
+</div>

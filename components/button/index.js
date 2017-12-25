@@ -20,6 +20,7 @@ export default class Button extends Intact {
             tagName: 'button',
             value: undefined,
             name: undefined,
+
             _value: undefined,
         };
     }

@@ -1,0 +1,56 @@
+import Input from 'components/input';
+import Button from 'components/button';
+
+<div class="input-page">
+    <Input v-model="basic" placeholder="please enter"/> {{ self.get('basic') }}
+    <br />
+    <Input disabled placeholder="disabled" />
+    <br />
+    <Input placeholder="please enter">
+        <b:prepend>http://</b:prepend>
+        <b:append>.com</b:append>
+    </Input>
+    <Input placeholder="please enter">
+        <b:append><Button icon type="none"><i class="ion-ios-search"></i></Button></b:append>
+    </Input>
+    <Input placeholder="please enter">
+        <b:append><Button icon type="primary"><i class="ion-ios-search"></i></Button></b:append>
+    </Input>
+    <Input placeholder="please enter">
+        <b:append><Button type="primary">Search</Button></b:append>
+    </Input>
+
+    <Input value="small" size="small" />
+    <Input size="small" placeholder="please enter">
+        <b:prepend>http://</b:prepend>
+        <b:append>.com</b:append>
+    </Input>
+    <Input size="small" placeholder="please enter">
+        <b:append><Button size="small" icon type="primary"><i class="ion-ios-search"></i></Button></b:append>
+    </Input>
+    <Input size="small" placeholder="please enter">
+        <b:append><Button type="primary" size="small">Search</Button></b:append>
+    </Input>
+
+    <Input placeholder="please enter">
+        <b:prefix><i class="ion-ios-search"></i></b:prefix>
+        <b:suffix><i class="ion-ios-search"></i></b:suffix>
+    </Input>
+    <Input placeholder="please enter">
+        <b:prepend>http://</b:prepend>
+        <b:append>.com</b:append>
+        <b:prefix><i class="ion-ios-search"></i></b:prefix>
+        <b:suffix><i class="ion-ios-search"></i></b:suffix>
+    </Input>
+
+    <Input clearable placeholder="please enter" />
+    <br />
+    <Input clearable placeholder="please enter">
+        <b:suffix><i class="ion-ios-search"></i></b:suffix>
+    </Input>
+    <br />
+    <Input size="small" clearable placeholder="please enter" />
+
+    <br />
+    <Input type="textarea" placeholder="please enter"/>
+</div>
