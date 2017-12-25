@@ -1,35 +1,43 @@
 @require('./variables.styl');
 
-// 风格统一，使用4个空格缩进
 .k-pagination
-  li
-    // FIXME: 应该提取成变量
-    border 1px #d9d9d9 solid
-    display inline
-    // FIXME: 应该提取成变量
-    padding 5px 15px
-    cursor pointer
-  a
-    // FIXME: 应该提取成变量
-    color #333
-  .disabled
-    cursor not-allowed
-    a
-      cursor not-allowed
-  // FIXME: 参考readme命名规范，无需加入pagination限制，改为k-active
-  .k-pagination-active
-    color $pagination-active-color
-    background-color $pagination-active-bg-color
-    border-color $pagination-active-border-color
-    a
-      color: #fff
-// FIXME: 参考readme命名规范
-.k-pagination-go
-  margin-left $pagination-input-margin-left
-  background-color $pagination-input-bg-color
-  border 1px solid $pagination-input-border-color
-  height $pagination-input-height
-  width $pagination-input-width
-  text-align center
-  outline 0
-  padding 0
+    .pager
+        display inline-block
+        a
+            border $pagination-a-border
+            border-radius $pagination-a-border-radius
+            padding $pagination-a-padding
+            margin-right $pagination-a-margin-right
+            font-size $pagination-a-font-size
+            font-family: $pagination-a-font-family
+            min-width $pagination-a-width
+            height $pagination-a-height
+            color $pagination-a-color
+            display inline-block
+            cursor pointer
+            text-align center
+            vertical-align middle
+            &:hover
+                border-color $pagination-a-hover-border-color
+                color $pagination-a-hover-color
+    .k-disabled
+        cursor not-allowed !important
+        color #d9d9d9 !important
+        &:hover
+            border-color #d9d9d9 !important
+            color #d9d9d9 !important
+    .k-active
+        background-color $pagination-active-bg-color !important
+        border-color $pagination-active-border-color !important
+        color: $pagination-active-a-color !important
+
+.k-go
+    margin-left $pagination-input-margin-left
+    background-color $pagination-input-bg-color
+    border $pagination-input-border
+    border-radius $pagination-input-border-radius
+    height $pagination-input-height
+    width $pagination-input-width
+    text-align center
+    //outline 0
+    //padding 0

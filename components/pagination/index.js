@@ -8,9 +8,8 @@ export default class extends Intact{
     defaults() {
         return {
             total: 0,
-            // FIXME: 小写驼峰
-            'page-size': 10,
             current: 1,
+            size: 10,
             showTotal: true,
             opts: [
                 {text:'10行', value: 10},
@@ -19,8 +18,6 @@ export default class extends Intact{
             ],
             value: '',
             Goto: false
-
-            
         };
     }
 
@@ -28,14 +25,11 @@ export default class extends Intact{
         if (this.get('current') > this.get('total')) {
             this.set('current', 1);
         }
-        
     }
 
     changePage(page) {
         if (this.get('current') !== page) {
             this.set('current', page);
-            // FIXME: 这里需要强制更新？
-            this._update()
         }
     }
 
@@ -75,26 +69,23 @@ export default class extends Intact{
         }
     }
 
-    onPage(current) {
-        this.changePage(current);
-    }
-
-    onSize(pageSize) {
-        //
-        this.changePage(1);
-    }
-
     _goto() {
-        // FIXME: 参考readme，对于不可变参数，使用const修饰
-        let self = this;
+        const self = this;
         const regu = /^[1-9]\d*$/;
         let value = parseInt(self.get('value'));
         let total = self.get('total');
-        
-        if (regu.test(value) && value <= total) {
-            self.changePage(value);
-        } else {
+        let size = self.get('size');
+        let page = value;
+        let totalPages = Math.ceil(total / size)
 
+        if (regu.test(value)) {
+            if (value <= 1) {
+                page = 1;
+            } else if (value > totalPages) {
+                page = totalPages;
+            }
+            self.set('value', page);
+            self.changePage(page);
         }
     }
 }

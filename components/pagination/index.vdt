@@ -6,110 +6,123 @@ const {
     ...rest
 } = self.get();
 
-
-// FIXME: 
-// 1. 为什么每个元素都要加上className，最外层父元素添加即可
-// 2. 可变属性最好采用如下写法（之前写法不合理）
-//    [className]: className, // 这样当className不存在时，不会在类名后添加空格
-//    [className || '']: true, // 这样会添加空格，因为取值为true（数组join(' ')）
-// 3. 对于不复杂的类名，没必要都提取变量，直接内联到元素中比较直观
 const classNameObj = {
     'k-pagination': true,
-    [className || '']: true,
+    [className]: className,
 };
 
-const active = {
-    'k-pagination-active': true,
-    [className || '']: true,
-};
+const totalPages = (Math.ceil(total / size)) || 0;
+const showCount = 7;
 
-const activeFirst = {
-    'k-pagination-active': current === 1,
-    [className || '']: true,
-};
+const paginationButton = function(index) {
+        return <a href="javascript:;" className={{ index === current ? 'k-active' : '' }} ev-click={{ self.changePage.bind(self, index) }}>{{ index }}</a>
+    };
 
-const activeEnd = {
-    'k-pagination-active': current === total,
-    [className || '']: true,
-};
-
-const leftBtClass = {
-    'disabled' : current === 1,
-    [className || '']: true,
-};
-
-const rightBtClass = {
-    'disabled' : current === total,
-    [className || '']: true,
-};
-
-const goto = {
-    'k-pagination-go' : true,
-    [className || '']: true,
-};
+const paginationDot = function() {
+        return <a href="javascript:;" className="ellipsis">...</a>
+    };
 
 
 <div class={{ classNameObj }}>
-    <ul>
+    <div>
         <span v-if={{ showTotal }}>
             共{{ total }}条
         </span>
 
-        <li ev-click={{self.prev.bind(self)}} class={{ leftBtClass }}>
-            <a>left</a>
-        </li>
+        {{
+            (function () {
+                let liItems = [];
+                let minCount = Math.ceil( showCount / 2);
+                let maxCount = totalPages - minCount;
+                let prevPage = current - 1;
+                let nextPage = current + 1;
+
+                if (prevPage < 1) {
+                    liItems.push(<a href="javascript:;" className="prev k-disabled"><span class="prev-caret"><</span></a>);
+                } else {
+                    liItems.push(<a href="javascript:;" className="prev" ev-click={{self.prev.bind(self)}}><span class="prev-caret"><</span></a>);
+                }
+
+                if (totalPages > showCount) {
+                    if (current <= minCount) {
+                        const max = showCount - 2;
+                        let btnArr = [];
+                        for (let i = 1; i < max + 1; i++) {
+                            btnArr.push(i);
+                        }
+                        btnArr.map(items => {
+                            liItems = liItems.concat(<a href="javascript:;" className={{ items === current ? 'k-active' : '' }} ev-click={{ self.changePage.bind(self, items) }}>{{ items }}</a>)
+                        });
+                        liItems.push(<a href="javascript:;" className="ellipsis">...</a>);
+                        liItems.push(<a href="javascript:;" className={{ totalPages === current ? 'k-active' : '' }} ev-click={{ self.changePage.bind(self, totalPages) }}>{{ totalPages }}</a>);
+                    } else if (current > minCount && current <= maxCount) {
+                        liItems.push(paginationButton(1));
+                        liItems.push(paginationDot());
+
+                        let midCount = showCount - 4,
+                            mid = Math.floor(midCount / 2),
+                            min = current - mid,
+                            max = midCount % 2 === 1 ? current + mid : current + mid - 1;
+
+                        let btnArr = [];
+                        for (let i = min; i < max + 1; i++) {
+                            btnArr.push(i);
+                        }
+                        btnArr.map(items => {
+                            liItems = liItems.concat(<a href="javascript:;" className={{ items === current ? 'k-active' : '' }} ev-click={{ self.changePage.bind(self, items) }}>{{ items }}</a>)
+                        });
+
+                        liItems.push(paginationDot());
+                        liItems.push(paginationButton(totalPages));
+
+                    } else {
+                        liItems.push(paginationButton(1));
+                        liItems.push(paginationDot());
+
+                        let min = totalPages - showCount + 3;
+                        let btnArr = [];
+                        for (let i = min; i < totalPages + 1; i++) {
+                            btnArr.push(i);
+                        }
+                        btnArr.map(items => {
+                            liItems = liItems.concat(<a href="javascript:;" className={{ items === current ? 'k-active' : '' }} ev-click={{ self.changePage.bind(self, items) }}>{{ items }}</a>)
+                        });
+
+                    }
+
+                } else {
+                    let btnArr = [];
+                    for (let i = 1; i <= totalPages + 1; i++) {
+                        btnArr.push(i);
+                    }
+                    btnArr.map(items => {
+                        liItems.push(<a href="javascript:;" className={{ items === current ? 'k-active' : '' }} ev-click={{ self.changePage.bind(self, items) }}>{{ items }}</a>);
+                    });
+                }
 
 
-        <li ev-click={{self.changePage.bind(self, 1)}} class={{ activeFirst }}>
-            <a>{{ 1 }}</a>
-        </li>
+                if (nextPage > totalPages) {
+                    liItems.push(<a href="javascript:;" className="next k-disabled"><span class="prev-caret">></span></a>);
+                } else {
+                    liItems.push(<a href="javascript:;" className="next" ev-click={{self.next.bind(self)}}><span class="prev-caret">></span></a>);
+                }
 
-        <li v-if={{ current - 3 > 1 }} ev-click={{self.fastPrev.bind(self)}}>
-            <a>{{ '<<' }}</a>
-        </li>
+                return <div className="pager">{{ liItems }}</div>;
 
-        <li v-if={{ current - 2 > 1}} ev-click={{self.changePage.bind(self, current - 2)}}>
-            {{ current - 2 }}
-        </li>
+            })()
 
-        <li v-if={{ current - 1 > 1}} ev-click={{self.changePage.bind(self, current - 1)}}>
-            {{ current - 1 }}
-        </li>
-
-        <li v-if={{ current !== 1 && current !== total}} ev-click={{self.changePage.bind(self, current)}} class={{ active }}>
-            <a>{{ current }}</a>
-        </li>
-
-        <li v-if={{ current + 1 < total}} ev-click={{self.changePage.bind(self, current + 1)}}>
-            <a>{{ current + 1 }}</a>
-        </li>
-
-        <li v-if={{ current + 2 < total}} ev-click={{self.changePage.bind(self, current + 2)}}>
-            <a>{{ current + 2 }}</a>
-        </li>
-
-        <li v-if={{ current + 3 < total }} ev-click={{self.fastNext.bind(self)}}>
-            <a>{{ '>>' }}</a>
-        </li>
-
-        <li v-if={{ total > 1 }} ev-click={{self.changePage.bind(self, total)}} class={{ activeEnd }}>
-            <a>{{ total }}</a>
-        </li>
-
-        <li ev-click={{self.next.bind(self)}} class={{ rightBtClass }}>
-            <a>right</a>
-        </li>
+        }}
 
         <span v-if={{ Goto }}>
             Goto
             <input
                 v-model="value"
                 ev-change={{ self._goto.bind(self) }}
-                class={{ goto }}
+                className="k-go"
             />
         </span>
 
         select
 
-    </ul>
+    </div>
 </div>
