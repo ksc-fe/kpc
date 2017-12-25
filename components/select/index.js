@@ -14,8 +14,7 @@ export default class extends Intact{
                 { text:'上海',value: 'shanghai' },
                 { text:'东京', value: 'dongjing',disabled:true }
             ],
-            value: undefined,
-
+            value: '',
             value_multiple: [],
             disabled: false,
             clearable: false, //删除按钮
@@ -24,15 +23,21 @@ export default class extends Intact{
             group:[], //分类
             filterable: false, // 搜索筛选
             inputValue:'',
-
             show: false,
+            class:undefined,
         }
     }
 
     _init() {
+        // this.set('inputValue',this.get('value'))
         this.on('$changed:show', (c, isShow) => {
             if (isShow) this._position();
         });
+        this.on('$change:value',function(){ 
+            if(this.get('filterable')){
+                this.set('show', true);
+            } 
+        })
         // if(!this.get('value').hasOwnProperty('text') && this.get('value') !=''){
         //     //判断用户给的默认值是否存在list中
         //     let result = this.get('data').find(item=>{
@@ -67,6 +72,7 @@ export default class extends Intact{
             }
         }else{
             this.set('value', data.text);
+            this.set('inputValue', data.text)
         }
         // this.trigger('click',data);
         // this._position();

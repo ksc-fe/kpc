@@ -4,17 +4,23 @@ const width = Number(self.get('size').width)? (Number(self.get('size').width)/14
 const height = Number(self.get('size').height)? (Number(self.get('size').height)/14) + 'rem':'';
 const line_hight = Number(self.get('size').height)? (Number(self.get('size').height)/14) + 'rem':'';
 const style = {'width':width,'height':height,'line-hight':line_hight};
+const  className  = self.get('className');
 
-<div class="k-select" style={{ style }} 
+const classObj ={
+    'k-select':true,
+    [className]:true
+}
+
+<div class={{ classObj }} style={{ style }} 
     ev-click={{ self.get('disabled')?'':self.set.bind(self, 'show', !self.get('show')) }}  
 >
-    <!-- <div class={{ self.get('disabled')? "k-input disabled" : "k-input"}} style={{ style }}> -->
     <div class="k-input" style={{ style }}>   
         <!-- 可搜索 -->
         <input type="text" class="input" v-if={{ self.get('filterable') }} placeholder="请选择"
             ev-input={{ self.onInput.bind(self) }}
             ev-blur={{ self.onBlur.bind(self) }}
-            value={{ self.get('value') }}
+           
+            v-model="value"
         />
         <!-- 多选 显示框 -->
         <div class="k-multiple" v-else-if={{ self.get('multiple') }}>
@@ -29,7 +35,6 @@ const style = {'width':width,'height':height,'line-hight':line_hight};
             value={{ self.get('value') }} 
             ev-blur={{ self.onBlur.bind(self) }}
         />
-        <!-- <span class="k-placeholder" v-else={{ !self.get('multiple') }}> {{ self.get('value').text || '请选择' }} </span> -->
         <i class={{ self.get('show')? "k-icon k-icon-down" :"k-icon k-icon-up" }}></i>
         <i v-if={{ self.get('clearable') && self.get('value') }} ev-click={{ self.set.bind(self,'value','') }} class="clear-icon">x</i>
     </div>
@@ -50,7 +55,7 @@ const style = {'width':width,'height':height,'line-hight':line_hight};
                 <div v-for={{ self.get('group') }}>
                     <li class="li-disabled li-group-label">{{ value.label }}</li>
                     <li v-for={{ value.data.filter( item =>{
-                            if( item.text.indexOf(self.get('inputValue')) !=-1 ){
+                            if( item.text.indexOf(self.get('value')) !=-1 ){
                                 return item
                             }
                         } ) }} 
@@ -58,20 +63,35 @@ const style = {'width':width,'height':height,'line-hight':line_hight};
                         class={{ {'li-selected': value.text == self.get('value'),'li-disabled': value.disabled} }}>
                         {{ value.text }}
                     </li>
+                    <li v-if={{ self.get('data').every( item =>{
+                                return  item.text.indexOf(self.get('value')) ==-1 
+                        } )  }}
+                    >无数据</li>
                 </div>
             </ul>
             <!-- 默认下拉框 -->
             <ul class="k-list" v-else>
-                <li v-for={{ self.get('data').filter( item =>{
-                        if( item.text.indexOf(self.get('inputValue')) !=-1 ){
-                            return item
+                <li  v-for={{ do{
+                        if(self.get('filterable')){
+                             self.get('data').filter( item =>{ 
+                                if( item.text.indexOf(self.get('value')) != -1 ){
+                                    return item
+                                }
+                            } ) 
+                        }else{
+                             self.get('data')
                         }
-                    } ) }} 
+                    } }}
                     ev-click={{ self.onClick.bind(self, value) }}
-                    class={{ {'li-selected': value.value == self.get('value'),'li-disabled': value.disabled} }}
+                    class={{ {'li-selected': value.text == self.get('value'),'li-disabled': value.disabled} }}
                     >  {{ value.text }}
                     <span class="li-label" v-show={{ value.label }}>{{ value.label }} </span>
                 </li>
+                <li v-if={{ self.get('data').every( item =>{
+                        return item.text.indexOf(self.get('value')) ==-1
+                         
+                    } )  }}
+                >无数据</li>
             </ul>
         </Animate>
     </MoveWrapper>

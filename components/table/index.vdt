@@ -59,7 +59,7 @@ const tbody = <tbody>
         __u.map(data, (value, index) => {
             const key = rowKey.call(self, value, index);
             const disabled = disableRow.call(self, value, index);
-            const className = rowClassName.call(self, value, index); 
+            const className = rowClassName.call(self, value, index);
             const tr = <Row key={{ key }}
                 ev-click={{ self._clickRow.bind(self, value, index, key) }}
                 class={{ {

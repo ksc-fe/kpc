@@ -6,7 +6,8 @@ export default class extends Intact {
     defaults(){
         return {
             value1: '星期一',
-            value_multiple:''
+            value_multiple:'',
+            valueSearch:'北京'
         }
     }  
 
