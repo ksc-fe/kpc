@@ -20,7 +20,7 @@
   "author": "Javey",
   "license": "MIT",
   "peerDependencies": {
-    "intact": "^2.1.1"
+    "intact": "^2.2.0"
   },
   "devDependencies": {
     "advanced": "^0.4.5",

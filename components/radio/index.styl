@@ -19,8 +19,10 @@
             position absolute
             width $radio-inner-width
             height $radio-inner-width
-            top unit(($radio-width - $radio-inner-width) / 2 - 1, px)
-            left unit(($radio-width - $radio-inner-width) / 2 - 1, px)
+            top 50%
+            left 50%
+            margin-left s('-%s', $radio-inner-width / 2)
+            margin-top @margin-left
             border-radius 50%
             background-color $radio-checked-color
             transform scale(0)

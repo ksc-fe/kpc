@@ -6,7 +6,7 @@ const list = [
     'slider','spinner','select',
     'form', 'grid', 'switch',
     'editable', 'tabs', 'pagination',
-    'input',
+    'input', 'message',
 ];
 
 <ul>
