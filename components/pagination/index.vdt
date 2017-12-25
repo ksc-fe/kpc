@@ -2,7 +2,7 @@ import Select from 'components/select'
 
 const {
     total, current, size, opts, className,
-    showTotal, Goto,
+    showTotal, Goto, sizeValue,
     ...rest
 } = self.get();
 
@@ -92,7 +92,7 @@ const paginationDot = function() {
 
                 } else {
                     let btnArr = [];
-                    for (let i = 1; i <= totalPages + 1; i++) {
+                    for (let i = 1; i < totalPages + 1; i++) {
                         btnArr.push(i);
                     }
                     btnArr.map(items => {
@@ -114,7 +114,7 @@ const paginationDot = function() {
         }}
 
         <span v-if={{ Goto }}>
-            Goto
+            跳转
             <input
                 v-model="value"
                 ev-change={{ self._goto.bind(self) }}
@@ -122,7 +122,16 @@ const paginationDot = function() {
             />
         </span>
 
-        select
+        <div class="k-drop">
+            <Select v-model="sizeValue" class="test"
+                        data={{ opts.map(item => {
+                        return {'value': item, 'text': item + '行'}
+                    }) }}
+                    value={{ size + '行' }}
+                    >
+            </Select>
+        </div>
+        size{{size}}
 
     </div>
 </div>

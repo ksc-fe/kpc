@@ -10,12 +10,9 @@ export default class extends Intact{
             total: 0,
             current: 1,
             size: 10,
+            sizeValue: 10,
             showTotal: true,
-            opts: [
-                {text:'10行', value: 10},
-                {text:'20行', value: 20},
-                {text:'50行', value: 50},
-            ],
+            opts: [10,20,50],
             value: '',
             Goto: false
         };
@@ -25,6 +22,12 @@ export default class extends Intact{
         if (this.get('current') > this.get('total')) {
             this.set('current', 1);
         }
+
+        this.on('$change:sizeValue', () => {
+            console.log(parseInt(this.get('sizeValue').replace('行','')))
+            this.set('current', 1);
+            this.set('size', parseInt(this.get('sizeValue').replace('行','')))
+        })
     }
 
     changePage(page) {
@@ -87,5 +90,12 @@ export default class extends Intact{
             self.set('value', page);
             self.changePage(page);
         }
+    }
+
+    _changeSize() {
+        console.log(this.get('sizeValue'))
+        debugger
+        this.set('current', 1);
+        this.set('size',this.get('sizeValue'))
     }
 }
