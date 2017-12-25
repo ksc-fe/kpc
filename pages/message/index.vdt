@@ -1,0 +1,5 @@
+import Button from 'components/button';
+
+<div>
+    <Button ev-click={{ self.showMessage.bind(self) }}>Show message</Button>
+</div>

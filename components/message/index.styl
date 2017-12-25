@@ -1,0 +1,27 @@
+@require('./variables.styl')
+
+.k-message
+    position fixed 
+    top 10px
+    width 100%
+    pointer-events none
+    .k-wrapper
+        text-align center
+        width 100%
+    .k-item
+        display inline-block
+        padding 10px 16px
+        box-shadow $box-shadow 
+        background #fff
+        border-radius 4px
+        margin-bottom 10px
+        pointer-events all
+    .animate-enter
+    .animate-leave
+        opacity 0
+        transform translateY(-20px)
+    .animate-enter-active
+    .animate-leave-active
+        transition all $transition
+    .animate-move
+        transition transform $transition

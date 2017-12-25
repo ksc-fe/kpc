@@ -1,0 +1,10 @@
+<Animate class="k-message">
+    <Animate v-for={{ self.get('items') }}
+        class="k-wrapper"
+        key={{ value.id }}
+        ev-click={{ self.delete.bind(self, value) }}
+        a:move={{ true }}
+    >
+        <div class="k-item" innerHTML={{ value.content }}></div>
+    </Animate>
+</Animate>
