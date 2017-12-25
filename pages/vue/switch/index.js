@@ -3,7 +3,3 @@ import createPage from '../utils';
 import 'pages/switch/index.styl';
 
 export default createPage(Page);
-
-if (module.hot) {
-    module.hot.accept();
-}

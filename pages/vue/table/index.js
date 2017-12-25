@@ -3,7 +3,3 @@ import createPage from '../utils';
 import 'pages/table/index.styl';
 
 export default createPage(Page);
-
-if (module.hot) {
-    module.hot.accept();
-}

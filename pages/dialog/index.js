@@ -26,7 +26,3 @@ export default class extends Intact {
         dialog.show();
     }
 }
-
-if (module.hot) {
-    module.hot.accept();
-}

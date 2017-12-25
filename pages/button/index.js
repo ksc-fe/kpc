@@ -29,13 +29,3 @@ export default class extends Intact {
         // }, 5000);
     }
 }
-
-if (module.hot) {
-    module.hot.accept();
-    // module.hot.data.Page = module.exports;
-    // console.log(module.hot.data.Page);
-    // module.hot.dispose((data) => {
-        // data.Page = module.exports.default;
-        // console.log('==============', data.Page)
-    // })
-}

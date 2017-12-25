@@ -22,7 +22,3 @@ export default class extends Intact {
         this.set(name, data.text)
     }
 }
-
-if (module.hot) {
-    module.hot.accept();
-}

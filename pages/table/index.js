@@ -30,7 +30,3 @@ export default class extends Intact {
         console.log(this.radioTable.getCheckedData());
     }
 }
-
-if (module.hot) {
-    module.hot.accept();
-}

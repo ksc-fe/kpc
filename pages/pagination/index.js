@@ -11,8 +11,3 @@ export default class extends Intact {
         }
     }
 }
-
-
-if (module.hot) {
-    module.hot.accept();
-}

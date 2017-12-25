@@ -43,7 +43,3 @@ export default class extends Intact {
         this.set('model.descriptions', descriptions);
     }
 }
-
-if (module.hot) {
-    module.hot.accept();
-}
