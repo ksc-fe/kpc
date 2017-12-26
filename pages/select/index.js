@@ -5,21 +5,22 @@ export default class extends Intact {
     
     defaults(){
         return {
-            value1: '星期一',
+            value1: 'Monday',
             value_multiple:'',
-            valueSearch:'北京'
+            valueSearch:'beijing'
         }
     }  
 
     _init() {
         this.on('$change:value1', () => {
-            console.log('sdfds')
+            console.log('changed :valu1', this.get('value1'))
         });
     }
 
-    onClick(name, data){
-        // this.update()
-        // this.set('value_multiple',data.text)
-        this.set(name, data.text)
+    onClick(data){
+        console.log(data)
+    }
+    multiple(data){
+        console.log(data)
     }
 }

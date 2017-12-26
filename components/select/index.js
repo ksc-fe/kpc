@@ -15,7 +15,7 @@ export default class extends Intact{
                 { text:'东京', value: 'dongjing',disabled:true }
             ],
             value: '',
-            value_multiple: [],
+            values: [],
             disabled: false,
             clearable: false, //删除按钮
             multiple: false, //支持多选li
@@ -24,62 +24,93 @@ export default class extends Intact{
             filterable: false, // 搜索筛选
             inputValue:'',
             show: false,
-            class:undefined,
+            class:'',
+            keywords:''
         }
     }
 
     _init() {
-        // this.set('inputValue',this.get('value'))
+        if(this.get('value')){
+            var result = this.get('data').find( item => {
+                return item.value == this.get('value')
+            });
+            if(result){
+                this.set('value',result.value);
+                if(this.get('filterable'))
+                    this.set('keywords', result.text);
+            }
+        }
+
+        this.on('$changed:keywords',function(){ 
+            this.onInput()
+        })
         this.on('$changed:show', (c, isShow) => {
             if (isShow) this._position();
         });
-        this.on('$change:value',function(){ 
-            if(this.get('filterable')){
-                this.set('show', true);
-            } 
-        })
-        // if(!this.get('value').hasOwnProperty('text') && this.get('value') !=''){
-        //     //判断用户给的默认值是否存在list中
-        //     let result = this.get('data').find(item=>{
-        //         return this.get('value') == item.text
-        //     })
-        //     if(result){
-        //         this.set('b', { text: result.text, value: result.value })
-        //     }
-        // }
-    }
-    _create(){
-        
+        // this.on('$change:value',function(){ 
+        //     // if(this.get('filterable')) this.set('show', true);
+        // })
     }
 
     onBlur(){
-        this.set('show',false)
+        // this.set('show',false)
     }
     onInput(e){
-        this.set('inputValue',e.target.value)
+        var result = this.get('data').find( item => {
+            return item.text  === this.get('keywords') 
+        })
+        if(result){
+            // this.set('value', result.value) 
+        }else{
+            this.set('value','');
+        }
     }
+
+    onFocusin(e) {
+        if (this.get('disabled')) return;
+        this.element.classList.add('tagFocusin')
+        this.set('show', true);
+    }
+
+    onFocusout() {
+        
+        this.element.classList.remove('tagFocusin')
+        if (this.get('multiple')) {
+            this.timer = setTimeout(() => {
+                this.set('show', false);            
+            }, 100);
+        } else {
+            this.set('show', false);
+        }       
+    }
+
     onClick(data){
         if(data.disabled) return 
-
         if(this.get('multiple')){
-            let index = this.get('value_multiple').indexOf(data.text);
+            let index = this.get('values').indexOf(data.value);
             if(index != -1){
-                // 已选中
                 this.deleTag(index)
             }else{
-                this.get('value_multiple').push(data.text);
-                this.update()
+                clearTimeout(this.timer);
+                this.get('values').push(data.value);
+                this.update();
+                this._position();
+                this.trigger('click',this.get('values'));
+                this.element.focus();
             }
         }else{
-            this.set('value', data.text);
-            this.set('inputValue', data.text)
-        }
-        // this.trigger('click',data);
-        // this._position();
+            this.set({
+                'value': data.value,        
+            });
+            this.get('filterable')? this.set({'keywords': data.text}):undefined;
+            this.trigger('click',data);
+        } 
+        
     }
 
     deleTag(index){
-        this.get('value_multiple').splice(index,1);
+        this.get('values').splice(index,1);
+        this.trigger('click',this.get('values'));
         this.update()
     }
 

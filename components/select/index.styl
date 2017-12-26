@@ -6,14 +6,15 @@
     display inline-block
     min-height $select-wrapper-height
     cursor pointer
+    outline none
     // FIXME 样式名尽量简短，k-input即可，无需再加select限定，因为前面k-select已经限定了命名空间
     .k-input
         font-size $select-input-font
-        /* padding $select-padding */
         min-height $select-wrapper-height
         border 1px solid $disabled-border-color
         line-height $select-wrapper-height
         position relative
+        outline none
         &:hover
             border-color $selected-status
             /* box-shadow 0 0 0 2px rgba(45,140,240,.2)    */
@@ -22,7 +23,6 @@
         top $select-icon-position
         right $select-icon-right
         margin-top $select-icon-m-t
-        
     .k-icon-up
         border-left $select-icon-b-l
         border-right $select-icon-b-l
@@ -60,6 +60,15 @@
         width $select-input-width
         height $select-wrapper-height
         padding-left $select-icon-m-r :=unit(6/14,rem)
+.k-select-disabled &:hover 
+        cursor not-allowed !important
+.k-select-disabled    
+    .k-input
+        &:hover
+            border-color #d9d9d9  
+.tagFocusin  
+    .k-input
+        border-color #0a5eee                
 .k-dropdown
     position absolute
     background #fff
@@ -67,12 +76,13 @@
     &.animate-enter
     &.animate-leave 
         opacity 0
-        transform translateY(-1px)
+        transform translateY(-10px)
     &.animate-enter-active
     &.animate-leave-active 
-        transition: all 0.4s
+        transition: all 0.6s
     .k-list
-        border 1px solid $disabled-border-color
+        /* border 1px solid $disabled-border-color */
+        box-shadow 0 1px 5px rgba(0,0,0,.2)
         border-top $select-list-border-t
         .li-selected
             color $selected-status
@@ -84,15 +94,23 @@
         .li-label
             float right    
             margin-right $select-li-label-m-r
-        .li-group-label
-            padding $select-li-group-label    
+        
         li
             padding $select-li-margin
             border-top $select-list-border-t 
             font-size $select-li-font-size
             &:hover    
-                background #f8f8f9
+                background #0a5eee
+                color #fff
                 cursor pointer
+        .li-group-label
+            padding $select-li-group-label  
+            background #f8f8f9
+            
+            &:hover     
+                cursor text     
+                background #f8f8f9
+                color #595959  
         .li-disabled
             background-color $disabled-bg-color
             color $disabled-color
