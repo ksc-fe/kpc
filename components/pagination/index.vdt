@@ -38,9 +38,9 @@ const paginationDot = function() {
                 let nextPage = current + 1;
 
                 if (prevPage < 1) {
-                    liItems.push(<a href="javascript:;" className="prev k-disabled"><span class="prev-caret"><</span></a>);
+                    liItems.push(<a href="javascript:;" className="prev k-disabled"><span class="ion-ios-arrow-left"></span></a>);
                 } else {
-                    liItems.push(<a href="javascript:;" className="prev" ev-click={{self.prev.bind(self)}}><span class="prev-caret"><</span></a>);
+                    liItems.push(<a href="javascript:;" className="prev" ev-click={{self.prev.bind(self)}}><span class="ion-ios-arrow-left"></span></a>);
                 }
 
                 if (totalPages > showCount) {
@@ -102,9 +102,9 @@ const paginationDot = function() {
 
 
                 if (nextPage > totalPages) {
-                    liItems.push(<a href="javascript:;" className="next k-disabled"><span class="prev-caret">></span></a>);
+                    liItems.push(<a href="javascript:;" className="next k-disabled"><span class="ion-ios-arrow-right"></span></a>);
                 } else {
-                    liItems.push(<a href="javascript:;" className="next" ev-click={{self.next.bind(self)}}><span class="prev-caret">></span></a>);
+                    liItems.push(<a href="javascript:;" className="next" ev-click={{self.next.bind(self)}}><span class="ion-ios-arrow-right"></span></a>);
                 }
 
                 return <div className="pager">{{ liItems }}</div>;
