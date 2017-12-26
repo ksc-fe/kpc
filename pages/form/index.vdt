@@ -59,11 +59,11 @@ import Input from 'components/input';
             }
         } }}>
             <Row gutter="16">
-                <Col span="16">
+                <Col span="18">
                     <Input v-model={{ `model.descriptions.${key}` }} />
                 </Col>
-                <Col span="8">
-                    <Button ev-click={{ self.delete.bind(self, key) }}>删除</Button>
+                <Col span="6">
+                    <Button fluid ev-click={{ self.delete.bind(self, key) }}>删除</Button>
                 </Col>
             </Row>
         </FormItem>
