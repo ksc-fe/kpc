@@ -1,5 +1,22 @@
 import Button from 'components/button';
+import Progress from 'components/progress';
+import Message from 'components/message';
+import MoveWrapper from 'components/moveWrapper';
 
 <div>
-    <Button ev-click={{ self.showMessage.bind(self) }}>Show message</Button>
+    <Button ev-click={{ self.showMessage.bind(self, value) }}
+        v-for={{ ['info', 'error', 'success', 'warning'] }}
+    >Show {{ value }} message</Button>
+    <br />
+    <Button ev-click={{ self.showStickMessage.bind(self) }}>
+        Show stick message
+    </Button>
+    <br />
+    <Button ev-click={{ () => self.set('show', true) }}
+    >Show message with custom template</Button>
+    <MoveWrapper container=".k-messages">
+        <Message v-model="show" key="key1">
+            <Progress percent={{ self.get('percent') }} style="width: 200px" />
+        </Message>
+    </MoveWrapper>
 </div>

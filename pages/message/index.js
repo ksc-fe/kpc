@@ -5,7 +5,26 @@ export default class extends Intact {
     @Intact.template()
     static template = template;
 
-    showMessage() {
-        Message.notice('aaaa sdjfls 撒大家分类及士大夫');
+    defaults() {
+        return {
+            percent: 40
+        }
+    }
+
+    showMessage(type) {
+        // Message[type](type);
+        Message.notice(new Message({content: 'test'}));
+    }
+
+    showStickMessage() {
+        Message.error('stick error message', 0);
+    }
+
+    showTemplate(template) {
+        Message.info(template, 0);
+    }
+
+    onClick() {
+        console.log('click');
     }
 }

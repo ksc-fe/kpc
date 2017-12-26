@@ -168,6 +168,6 @@ export default class extends Intact {
         if (!this.get('model')) return;
         const items = this.form.get('items');
         items.splice(items.indexOf(this), 1);
-        this.reset();
+        // this.reset();
     }
 }

@@ -1,21 +1,12 @@
 @require('./variables.styl')
 
-.k-message
+.k-messages
     position fixed 
     top 10px
     width 100%
     pointer-events none
-    .k-wrapper
-        text-align center
-        width 100%
-    .k-item
-        display inline-block
-        padding 10px 16px
-        box-shadow $box-shadow 
-        background #fff
-        border-radius 4px
-        margin-bottom 10px
-        pointer-events all
+
+    // animation
     .animate-enter
     .animate-leave
         opacity 0
@@ -24,4 +15,37 @@
     .animate-leave-active
         transition all $transition
     .animate-move
+
         transition transform $transition
+.k-message
+    text-align center
+    width 100%
+    > .k-container
+        display inline-block
+        // padding 10px 16px
+        box-shadow $box-shadow 
+        background #fff
+        border-radius 4px
+        margin-bottom 10px
+        pointer-events all
+        > .k-icon
+            display inline-block
+            vertical-align middle
+            padding-left 10px
+            color $primary-color
+            &:before
+                font-size 18px
+        > .k-content
+            display inline-block
+            padding-left 10px
+            vertical-align middle
+        > .k-close
+            vertical-align middle
+            .k-icon:before
+                font-size 24px
+
+    // type
+    for type in danger success warning
+        &.k-{type} > .k-container > .k-icon
+            color lookup('$' + type + '-color')
+

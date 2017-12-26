@@ -47,8 +47,25 @@ import Input from 'components/input';
         <Input type="password" v-model="model.confirmPassword" />
     </FormItem>
     <FormItem label="描述" class="descriptions">
-        <FormItem v-for={{ self.get('model.descriptions') }} model={{ `model.descriptions.${key}` }} hideLabel rules={{ {required: true} }}>
-            <Input v-model={{ `model.descriptions.${key}` }} />
+        <FormItem v-for={{ self.get('model.descriptions') }} model={{ `model.descriptions.${key}` }} hideLabel rules={{ {
+            required: true,
+            unique(value) {
+                let count = 0;
+                self.get('model.descriptions').find(item => {
+                    if (item === value) count++;
+                    return count > 1;
+                });
+                return count === 1 || '不能相同';
+            }
+        } }}>
+            <Row gutter="16">
+                <Col span="16">
+                    <Input v-model={{ `model.descriptions.${key}` }} />
+                </Col>
+                <Col span="8">
+                    <Button ev-click={{ self.delete.bind(self, key) }}>删除</Button>
+                </Col>
+            </Row>
         </FormItem>
         <Button ev-click={{ self.add.bind(self) }} size="small">添加</Button>
     </FormItem>

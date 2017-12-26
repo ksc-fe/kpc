@@ -42,4 +42,10 @@ export default class extends Intact {
         descriptions.push('');
         this.set('model.descriptions', descriptions);
     }
+
+    delete(index) {
+        const descriptions = this.get('model.descriptions').slice(0);
+        descriptions.splice(index, 1);
+        this.set('model.descriptions', descriptions);
+    }
 }
