@@ -2,7 +2,7 @@ import template from './index.vdt'
 import './index.styl'
 import Intact from 'intact'
 
-export default class extends Intact{
+export default class Pagination extends Intact {
     get template() { return template; }
 
     defaults() {
@@ -94,7 +94,6 @@ export default class extends Intact{
 
     _changeSize() {
         console.log(this.get('sizeValue'))
-        debugger
         this.set('current', 1);
         this.set('size',this.get('sizeValue'))
     }
