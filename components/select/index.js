@@ -111,7 +111,8 @@ export default class extends Intact{
     deleTag(index){
         this.get('values').splice(index,1);
         this.trigger('click',this.get('values'));
-        this.update()
+        this.update();
+        this._position();
     }
 
     _position() {
