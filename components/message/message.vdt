@@ -3,13 +3,9 @@ import MoveWrapper from '../moveWrapper';
 
 const {type, content, children, key} = self.get();
 
-<div
-    class={{ {"k-message": true, [`k-${type}`]: type !== 'info'} }}
-    a:move={{ true }}
+<div class={{ {"k-message": true, [`k-${type}`]: type !== 'info'} }}
     ev-mouseenter={{ self.onMouseEnter.bind(self) }}
     ev-mouseleave={{ self.onMouseLeave.bind(self) }}
-    v-if={{ self.get('value') }}
-    key={{ self.get('key') }}
 >
     <div class="k-container">
         <i class="k-icon ion-ios-information"></i>

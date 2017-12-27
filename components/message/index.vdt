@@ -1,5 +1,7 @@
+const MessageAnimate = self.MessageAnimate;
+
 <Animate class="k-messages">
-    <Animate v-for={{ self.get('messages') }}
+    <MessageAnimate v-for={{ self.get('messages') }}
         a:tag={{ value }} 
         key={{ value.get('key') }} 
     />

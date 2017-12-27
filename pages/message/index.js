@@ -12,8 +12,7 @@ export default class extends Intact {
     }
 
     showMessage(type) {
-        // Message[type](type);
-        Message.notice(new Message({content: 'test'}));
+        Message[type](type);
     }
 
     showStickMessage() {
@@ -26,5 +25,9 @@ export default class extends Intact {
 
     onClick() {
         console.log('click');
+        this.set('percent', this.get('percent') + 5)
+        if (this.get('percent') === 100) {
+            this.set('show', false);
+        }
     }
 }
