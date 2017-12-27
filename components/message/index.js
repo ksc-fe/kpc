@@ -57,21 +57,30 @@ export default class Message extends Intact {
 
     init(...args) {
         if (!this.get('value')) {
+            // when use as component, render the component
+            // but don't append it to parentDom, use a
+            // placeholder instead of
             this.parentDom = null;
             super.init(...args);
             return this.placeholder = document.createComment("message");
         } else if (this.element) {
+            // Messages render this component, return the 
+            // original dom
             return this.element;
         }
         return super.init(...args);
     }
 
     hydrate(vNode) {
+        // don't hydrate it, but initialize it
         this.init(null, vNode);
         return this.placeholder = document.createComment('message');
     }
 
     update(lastVNode, nextVNode) {
+        // when this updating is from original parent,
+        // update the original dom, but return the placeholder,
+        // otherwise return the original dom which has been updated
         if (
             !lastVNode || 
             lastVNode.parentVNode.tag === MessageAnimate 
@@ -83,6 +92,7 @@ export default class Message extends Intact {
     }
 
     toString() {
+        // return the placehoder string for ssr
         return '<!--message-->';
     }
 
@@ -172,4 +182,5 @@ class Messages extends Intact {
     }
 }
 
+// MessageAniamte type for type checking
 class MessageAnimate extends Intact.Animate {  }
