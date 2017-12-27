@@ -1,5 +1,5 @@
-const Tooltip = require('components/tooltip');
-const Button = require('components/button');
+import Tooltip from 'components/tooltip';
+import Button from 'components/button';
 
 <div class="tooltip-demo">
    <Tooltip content="lijia">

@@ -55,7 +55,14 @@ export default class extends Intact {
         this.set('_inputValue', this.get('value'));
         this.on("$change:_inputValue", (c, val) => {
             if (!this.get('_isDragging')) {
-                this.set('value', val);
+                if (val > this.get('max')) {
+                    this.set('value', this.get('max'));
+                } else if (val < this.get('min')) {
+                    this.set('value', this.get('min'));
+                } else {
+                    this.set('value', val);
+                }
+
             }
         })
 
