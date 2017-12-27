@@ -51,6 +51,7 @@ export default class Message extends Intact {
             key: id++,
             value: false,
 
+            // if this component is used as instance or not
             _isInstance: false,
         };
     }
@@ -92,7 +93,7 @@ export default class Message extends Intact {
     }
 
     toString() {
-        // return the placehoder string for ssr
+        // return the placeholder string for ssr
         return '<!--message-->';
     }
 
