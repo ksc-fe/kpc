@@ -12,8 +12,12 @@ import MoveWrapper from 'components/moveWrapper';
         Show stick message
     </Button>
     <br />
-    <Button ev-click={{ () => self.set('show', true) }}
-    >Show message with custom template</Button>
+    <Button ev-click={{ () => self.set('show', true) }}>
+        Show stick message with custom template
+    </Button>
+    <Button ev-click={{ () => self.set('show2', true) }}>
+        Show message with custom template
+    </Button>
     <Message v-model="show" key="key1" duration={{ 0 }}>
         <Progress percent={{ self.get('percent') }} 
             style="width: 200px" 
