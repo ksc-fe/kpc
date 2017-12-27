@@ -10,7 +10,7 @@ const list = [
 ];
 
 <ul>
-    <li v-for={{ ['button', 'dialog', 'checkbox', 'radio', 'table', 'progress', 'slider','spinner','select','pagination'] }}>
+    <li v-for={{ list }}>
         <Link href={{ `/components/${value}` }}>{{ value }}</Link>
     </li>
     <li v-for={{ list }}>
