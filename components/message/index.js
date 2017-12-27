@@ -2,7 +2,6 @@ import Intact from 'intact';
 import template from './index.vdt';
 import message from './message.vdt';
 import './index.styl';
-import MoveWrapper from '../moveWrapper';
 
 let messages;
 let id = 0;
@@ -60,7 +59,7 @@ export default class Message extends Intact {
         if (!this.get('value')) {
             this.parentDom = null;
             super.init(...args);
-            return this.placeholder = document.createComment("placeholder");
+            return this.placeholder = document.createComment("message");
         } else if (this.element) {
             return this.element;
         }
@@ -69,7 +68,7 @@ export default class Message extends Intact {
 
     hydrate(vNode) {
         this.init(null, vNode);
-        return this.placeholder = document.createComment('placeholder');
+        return this.placeholder = document.createComment('message');
     }
 
     update(lastVNode, nextVNode) {
@@ -84,7 +83,7 @@ export default class Message extends Intact {
     }
 
     toString() {
-        return '<!--placeholder-->';
+        return '<!--message-->';
     }
 
     _init() {
