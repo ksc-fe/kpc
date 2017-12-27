@@ -55,7 +55,10 @@ const app = Advanced((app) => {
     // app.use('/static', Advanced.Express.static(path.resolve(__dirname, 'static')));
 });
 
-app.listen(3000);
+const port = 3000;
+app.listen(port, () => {
+    Advanced.Logger.log(`App is listening on the port ${port}`);
+});
 
 if (module.hot) {
     module.hot.accept(['./router'], () => {

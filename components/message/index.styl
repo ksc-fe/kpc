@@ -2,7 +2,7 @@
 
 .k-messages
     position fixed 
-    top 10px
+    top $message-top
     width 100%
     pointer-events none
 
@@ -10,7 +10,7 @@
     .animate-enter
     .animate-leave
         opacity 0
-        transform translateY(-20px)
+        transform $message-transform 
     .animate-enter-active
     .animate-leave-active
         transition all $transition
@@ -22,27 +22,26 @@
     width 100%
     > .k-container
         display inline-block
-        // padding 10px 16px
         box-shadow $box-shadow 
         background #fff
-        border-radius 4px
-        margin-bottom 10px
+        border-radius $message-border-radius
+        margin-bottom $message-margin-bottom 
         pointer-events all
         > .k-icon
             display inline-block
             vertical-align middle
-            padding-left 10px
+            padding-left $message-icon-padding-left 
             color $primary-color
             &:before
-                font-size 18px
+                font-size $message-icon-font-size 
         > .k-content
             display inline-block
-            padding 10px
+            padding $message-content-padding 
             vertical-align middle
         > .k-close
             vertical-align middle
             .k-icon:before
-                font-size 24px
+                font-size $message-close-font-size 
 
     // type
     for type in danger success warning
