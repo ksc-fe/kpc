@@ -1,7 +1,7 @@
 import Button from '../button';
 import MoveWrapper from '../moveWrapper';
 
-const {type, content, children, key} = self.get();
+const {type, content, children, closable} = self.get();
 
 <div class={{ {"k-message": true, [`k-${type}`]: type !== 'info'} }}
     ev-mouseenter={{ self.onMouseEnter.bind(self) }}
@@ -13,7 +13,9 @@ const {type, content, children, key} = self.get();
             class="k-content" innerHTML={{ content }}
         ></div>
         <div v-else class="k-content">{{ children }}</div>
-        <Button type="none" icon class="k-close"
+        <Button 
+            v-if={{ closable }}
+            type="none" icon class="k-close"
             ev-click={{ self.close.bind(self) }}
         >
             <i class="k-icon ion-ios-close-empty"></i>

@@ -15,10 +15,14 @@ export default class Message extends Intact {
             messages = Intact.mount(Messages, document.body);
         }
 
+        if (content !== null && typeof content === 'object' && !content.tag) {
+            content = Object.assign({}, content, {type}); 
+        } else {
+            content = {content, duration, type};
+        }
+
         const message = new Message({
-            content,
-            duration,
-            type,
+            ...content,
             value: true,
             _isInstance: true,
         });
@@ -50,6 +54,7 @@ export default class Message extends Intact {
             type: 'info',
             key: id++,
             value: false,
+            closable: true,
 
             // if this component is used as instance or not
             _isInstance: false,
