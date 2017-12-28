@@ -28,6 +28,8 @@ export default class Message extends Intact {
         });
 
         messages.notice(message); 
+        
+        return message;
     }
 
     static info = (content, duration) => {

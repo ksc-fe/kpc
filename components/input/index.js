@@ -18,6 +18,7 @@ export default class extends Intact {
             type: 'text', // text | textarea
             name: undefined,
             value: undefined,
+            defaultValue: undefined,
             placeholder: undefined,
             readonly: false,
             clearable: false,
@@ -30,6 +31,18 @@ export default class extends Intact {
 
     clear() {
         this.set('value', '');
+        this.focus();
+    }
+
+    select() {
+        this.refs.input.select();
+    }
+
+    focus() {
         this.refs.input.focus();
+    }
+
+    _proxyEvent(name, e) {
+        this.trigger(name, e);
     }
 }

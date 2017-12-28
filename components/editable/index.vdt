@@ -1,3 +1,5 @@
+import Input from '../input';
+
 const {
     editing, value, validate,
     disabled, style, tip,
@@ -18,7 +20,7 @@ const classNameObj = {
     ></i>
     <div class="c-ellipsis" v-if={{ value || editing }}>
         {{ !editing ? children :
-            <input class="c-input c-small" defaultValue={{ value }} 
+            <Input size="small" defaultValue={{ value }} 
                 ev-blur={{ self._onBlur.bind(self) }}
                 ev-keydown={{ self._onKeydown.bind(self) }}
                 ref="input"

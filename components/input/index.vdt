@@ -1,7 +1,7 @@
 const {
     type, name, value, placeholder,
     readonly, clearable, disabled, size, 
-    rows, spellcheck
+    rows, spellcheck, defaultValue
 } = self.get();
 
 const classNameObj = {
@@ -13,6 +13,14 @@ const classNameObj = {
     'k-with-suffix': blocks.suffix,
     'k-clearable': clearable,
 }
+
+const events = [
+    'click', 'keydown', 'keyup', 'change',
+    'keypress', 'focus', 'blur', 'input'
+].reduce((memo, name) => {
+    memo[`ev-${name}`] = self._proxyEvent.bind(self, name);
+    return memo;
+}, {});
 
 <div class={{ classNameObj }}>
     <div class="k-prepend" v-if={{ blocks.prepend }}>
@@ -27,14 +35,17 @@ const classNameObj = {
             type={{ type }}
             name={{ name }}
             v-model="value"
+            defaultValue={{ defaultValue }}
             readOnly={{ readonly }}
             placeholder={{ placeholder }}
             disabled={{ disabled }}
             ref="input"
+            {{ ...events }}
         />
         <textarea v-else 
             class="k-inner k-textarea"
             v-model="value"
+            defaultValue={{ defaultValue }}
             name={{ name }}
             readOnly={{ readonly }} 
             placeholder={{ placeholder }}
@@ -42,6 +53,7 @@ const classNameObj = {
             ref="input"
             rows={{ rows }}
             spellcheck={{ spellcheck }}
+            {{ ...events }}
         ></textarea>
         <div class="k-suffix" v-if={{ blocks.suffix || clearable }}>
             <i v-if={{ clearable }}
