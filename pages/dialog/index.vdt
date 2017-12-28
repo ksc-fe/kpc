@@ -17,6 +17,7 @@ import Button from 'components/button';
         small dialog content
 
         <b:footer>
+               
             small dialog footer
             {{ parent() }}
         </b:footer>
