@@ -1,0 +1,26 @@
+@require('./variables.styl')
+
+.k-dropdown-menu
+    position absolute
+    min-width 100px
+    background #fff
+    border-radius 4px
+    box-shadow $box-shadow
+    // top 40px
+    // left 10px
+    font-size 12px
+    z-index 1001 
+    > .k-item
+        padding 8px 16px
+        cursor pointer
+        &:hover
+            background $primary-color
+            color #fff
+        &:first-of-type
+            border-radius 4px 4px 0 0
+        &:last-of-type
+            border-radius 0 0 4px 4px
+    &.dropdown-leave-active
+        pointer-events none
+
+

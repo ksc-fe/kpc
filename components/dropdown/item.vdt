@@ -1,0 +1,9 @@
+import {proxyEvent} from '../utils';
+
+const {children} = self.get();
+
+<div class="k-item"
+    ev-click={{ self.onClick.bind(self) }}
+    ev-mouseenter={{ proxyEvent(self, 'mouseenter') }}
+    ev-mouseleave={{ proxyEvent(self, 'mouseleave') }}
+>{{ children }}</div>

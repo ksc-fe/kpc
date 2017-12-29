@@ -1,0 +1,18 @@
+const {children, trigger} = self.get();
+
+const props = children.props;
+
+switch (trigger) {
+    case 'click':
+        props['ev-click'] = self.show.bind(self, props._evClick);
+        break;
+    default:
+        props['ev-mouseenter'] = self.show.bind(self, props._evEnter);
+        props['ev-mouseleave'] = self.hide.bind(self, props._evLeave);
+}
+
+function Wrapper() {
+    return children;
+}
+
+<Wrapper />

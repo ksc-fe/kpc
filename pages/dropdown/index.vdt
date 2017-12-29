@@ -1,0 +1,55 @@
+import Dropdown, {DropdownMenu, DropdownItem} from 'components/dropdown';
+import Button from 'components/button';
+
+<div class="dropdown-page">
+    <Dropdown>
+        <Button>test</Button>
+        <DropdownMenu>
+            <DropdownItem>content</DropdownItem>
+            <DropdownItem>content</DropdownItem>
+            <DropdownItem>content</DropdownItem>
+        </DropdownMenu>
+    </Dropdown>
+    <Dropdown trigger="click">
+        <Button>test</Button>
+        <DropdownMenu>
+            <DropdownItem>content</DropdownItem>
+            <DropdownItem>content</DropdownItem>
+            <DropdownItem>content</DropdownItem>
+            <DropdownItem>content</DropdownItem>
+            <DropdownItem>中文</DropdownItem>
+        </DropdownMenu>
+    </Dropdown>
+    <br />
+    <Dropdown trigger="click">
+        <Button ev-click={{ () => console.log('click') }}>test</Button>
+        <DropdownMenu>
+            <DropdownItem>content</DropdownItem>
+            <DropdownItem>content</DropdownItem>
+            <DropdownItem>content</DropdownItem>
+            <Dropdown position={{ {my: 'left top', at: 'right top'} }}>
+                <DropdownItem>
+                    <span class="c-middle" style="margin-right: 10px">嵌套菜单</span>
+                    <i class="c-middle ion-ios-arrow-right"></i>
+                </DropdownItem>
+                <DropdownMenu>
+                    <DropdownItem>子菜单 {{ self.get('a') }}</DropdownItem>
+                    <DropdownItem>Sub Menu</DropdownItem>
+                </DropdownMenu>
+            </Dropdown>
+            <Dropdown name="a" trigger="click" position={{ {my: 'left top', at: 'right top'} }}>
+                <DropdownItem>
+                    <span class="c-middle" style="margin-right: 10px">嵌套菜单</span>
+                    <i class="c-middle ion-ios-arrow-right"></i>
+                </DropdownItem>
+                <DropdownMenu>
+                    <DropdownItem>子菜单 {{ self.get('a') }}</DropdownItem>
+                    <DropdownItem>Sub Menu</DropdownItem>
+                </DropdownMenu>
+            </Dropdown>
+            <DropdownItem>content</DropdownItem>
+            <DropdownItem>中文</DropdownItem>
+        </DropdownMenu>
+    </Dropdown>
+
+</div>

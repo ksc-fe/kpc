@@ -21,3 +21,7 @@ export function kebabCase(word) {
     }
     return _cache[word];
 }
+
+export function proxyEvent(component, name) {
+    return (e) => component.trigger(name, e);
+}

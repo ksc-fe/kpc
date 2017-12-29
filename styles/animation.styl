@@ -13,3 +13,12 @@
 .fade-leave-active
     transition opacity .2s ease-in-out
 
+.dropdown-enter
+.dropdown-leave
+    opacity 0
+    transform scaleY(.8)
+.dropdown-enter-active
+.dropdown-leave-active
+    transform-origin center top 0px 
+    transition opacity $transition, transform $transition
+
