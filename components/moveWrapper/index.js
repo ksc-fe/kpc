@@ -34,9 +34,30 @@ export default class MoveWrapper extends Intact {
         }
     }
 
+    
+    /**
+     * @brief override super destroy 
+     *
+     * MoveWraper component has changed the dom struction.
+     * It is always the top level dom, so we should 
+     * remove it from parent dom. By passing the container
+     * to remove function can do this. We can't remove it
+     * directly by calling removeChild method, beacause it
+     * maybe have leave animation.
+     *
+     * @param ...args
+     */
     $destroy(...args) {
-        this.container.removeChild(this.element);
-        super.destroy(...args);
+        if (this.destroyed) {
+            return console.warn('destroyed multiple times');
+        }
+        if (this.rendered) {
+            Intact.Vdt.miss.remove(this.vdt.vNode, this.container);
+        }
+        this._destroy(...args);
+        this.destroyed = true;
+        this.trigger('$destroyed', this);
+        this.off();
     }
 
     _mount(lastVNode, nextVNode) {

@@ -10,7 +10,8 @@ if (trigger === 'hover') {
 }
 
 <MoveWrapper ref="wrapper">
-    <DropdownAnimate v-if={{ show }} class="k-dropdown-menu"
+    <DropdownAnimate v-if={{ show }}
+        class="k-dropdown-menu"
         a:transition="dropdown"
         ref="menu"
         {{ ...events }}

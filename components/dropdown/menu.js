@@ -87,12 +87,12 @@ export default class DropdownMenu extends Intact {
         this.hide(true);
     }
 
-    destroy(...args) {
-        if (!this._isNested()) {
-            return super.destroy(...args);
-        }
+    // destroy(...args) {
+        // if (!this._isNested()) {
+            // return super.destroy(...args);
+        // }
 
-    }
+    // }
 
     _leaveEnd() {
         // if (this._isNested()) {
