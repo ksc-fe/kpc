@@ -151,7 +151,9 @@ export default class Message extends Intact {
     }
 
     destroy(vNode) {
-        if (vNode.parentVNode.tag === MessageAnimate && !this.get('_isInstance')) {
+        if (this._isVue && !vNode) {
+            messages.delete(this);
+        } else if (vNode.parentVNode.tag === MessageAnimate && !this.get('_isInstance')) {
             return;
         } else if (vNode.parentVNode.tag !== MessageAnimate) {
             messages.delete(this);
