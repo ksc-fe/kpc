@@ -9,7 +9,7 @@ if (trigger === 'hover') {
     events['ev-mouseleave'] = self.hide.bind(self, false);
 }
 
-<MoveWrapper ref="wrapper">
+<MoveWrapper ref="wrapper" _parent={{ self }}>
     <DropdownAnimate v-if={{ show }}
         class="k-dropdown-menu"
         a:transition="dropdown"

@@ -6,8 +6,6 @@
     background #fff
     border-radius 4px
     box-shadow $box-shadow
-    // top 40px
-    // left 10px
     font-size 12px
     z-index 1001 
     > .k-item
@@ -20,6 +18,13 @@
             border-radius 4px 4px 0 0
         &:last-of-type
             border-radius 0 0 4px 4px
+
+        // disabled
+        &.k-disabled
+            background $disabled-bg-color
+            color $disabled-color
+            cursor not-allowed
+
     &.dropdown-leave-active
         pointer-events none
 

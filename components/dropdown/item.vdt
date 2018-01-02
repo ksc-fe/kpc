@@ -1,8 +1,8 @@
 import {proxyEvent} from '../utils';
 
-const {children} = self.get();
+const {children, disabled} = self.get();
 
-<div class="k-item"
+<div class={{ {"k-item": true, "k-disabled": disabled} }}
     ev-click={{ self.onClick.bind(self) }}
     ev-mouseenter={{ proxyEvent(self, 'mouseenter') }}
     ev-mouseleave={{ proxyEvent(self, 'mouseleave') }}

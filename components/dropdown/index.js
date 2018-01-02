@@ -1,41 +1,16 @@
 import Intact from 'intact';
-import template from './index.vdt';
-import './index.styl';
+import Dropdown from './dropdown';
 import DropdownMenu from './menu';
 import DropdownItem from './item';
-
-export class Dropdown extends Intact {
-    @Intact.template()
-    static template = template;
-
-    defaults() {
-        return {
-            trigger: 'hover'
-        }
-    }
-
-    _mount() {
-        this.get('menu').children.dropdown = this;
-    }
-
-    show(fn, e) {
-        if (typeof fn === 'function') fn(e);
-
-        const menu = this.get('menu').children;
-        menu.show();
-    }
-
-    hide(fn, e) {
-        if (typeof fn === 'function') fn(e);
-
-        const menu = this.get('menu').children;
-        menu.hide();
-    }
-}
+import './index.styl';
 
 const h = Intact.Vdt.miss.h;
+
 export default function Wrapper(props) {
-    const {children, position, key, ref, trigger, ...rest} = props;
+    const {
+        children, position, key,
+        ref, trigger, ...rest
+    } = props;
     const element = children[0];
     const menu = children[1];
 
@@ -70,4 +45,4 @@ export default function Wrapper(props) {
     ];
 }
 
-export {DropdownMenu, DropdownItem};
+export {Dropdown, DropdownMenu, DropdownItem};

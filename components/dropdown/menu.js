@@ -15,7 +15,7 @@ export default class DropdownMenu extends Intact {
     }
 
     _init() {
-        console.log('init menu')
+        this.subDropdowns = [];
         this.DropdownAnimate = DropdownAnimate;
 
         this.on('$changed:show', (c, value) => {
@@ -31,14 +31,31 @@ export default class DropdownMenu extends Intact {
     }
 
     _mount() {
+        const parent = this._findParentDropdown();
+        if (parent) parent.subDropdowns.push(this);
+
         if (this.get('show')) {
             this._addDocumentClick();
+        }
+    }
+
+    _findParentDropdown() {
+        let parentVNode = this.parentVNode;
+        while (parentVNode) {
+            if (parentVNode.tag === DropdownMenu) {
+                return parentVNode.children;
+            }
+            parentVNode = parentVNode.parentVNode;
         }
     }
 
     show() {
         clearTimeout(this.timer);
         this.set('show', true);
+        const parent = this._findParentDropdown();
+        if (parent) {
+            parent.show();
+        }
     }
 
     hide(immediately) {
@@ -77,43 +94,40 @@ export default class DropdownMenu extends Intact {
     }
 
     _onDocumentClick(e) {
-        console.log(e);
         const target = e.target;
-        const element = this.refs.menu.element;
+        const menu = this.refs.menu.element;
 
         // is a dropdown menu
-        if (element === target || element.contains(target)) return;
+        if (menu === target || menu.contains(target)) return;
+        // is click on sub menu
+        if (this._isClickSubMenu(target, this.subDropdowns)) return;
 
         this.hide(true);
     }
 
-    // destroy(...args) {
-        // if (!this._isNested()) {
-            // return super.destroy(...args);
-        // }
-
-    // }
-
-    _leaveEnd() {
-        // if (this._isNested()) {
-            // this.vdt.vNode.children.$destroy();
-        // }
-    }
-
-    _isNested() {
-        // if we find the dropdown's parentVNode is in DropdownAnimate
-        // that is to say it is nested in a DropdownMenu component
-        // in this case we don't destroy chldren immediately, 
-        // but destroy it after animate end
-        let parentVNode = this.dropdown.parentVNode.parentVNode;
-        if (parentVNode) {
-            return parentVNode.tag === DropdownAnimate;
+    _isClickSubMenu(target, subMenus) {
+        let ret = false;
+        for (let i = 0; i < subMenus.length; i++) {
+            const subMenu = subMenus[i].refs.menu;
+            if (subMenu) {
+                if (target === subMenu.element || subMenu.element.contains(target)) {
+                    ret = true;
+                    break;
+                } else {
+                    ret = this._isClickSubMenu(target, subMenus[i].subDropdowns);
+                    if (ret) break;
+                }
+            }
         }
-        return false;
+        return ret;
     }
 
     _destroy() {
-        console.log('destroy menu')
+        const parent = this._findParentDropdown();
+        if (parent) {
+            const subDropdowns = parent.subDropdowns;
+            subDropdowns.splice(subDropdowns.indexOf(this), 1);
+        } 
         clearTimeout(this.timer);
         this._removeDocumentClick();
     }
