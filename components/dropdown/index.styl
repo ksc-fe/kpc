@@ -2,27 +2,27 @@
 
 .k-dropdown-menu
     position absolute
-    min-width 100px
-    background #fff
-    border-radius 4px
+    min-width $dropdown-min-width 
+    background $dropdown-bg-color 
+    border-radius $dropdown-border-radius 
     box-shadow $box-shadow
-    font-size 12px
+    font-size $dropdown-font-size 
     z-index 1001 
     > .k-item
-        padding 8px 16px
+        padding $dropdown-item-padding 
         cursor pointer
         &:hover
-            background $primary-color
-            color #fff
+            background $dropdown-item-hover-bg-color 
+            color $dropdown-item-hover-color 
         &:first-of-type
-            border-radius 4px 4px 0 0
+            border-radius $dropdown-border-radius $dropdown-border-radius 0 0 
         &:last-of-type
-            border-radius 0 0 4px 4px
+            border-radius 0 0 $dropdown-border-radius $dropdown-border-radius 
 
         // disabled
         &.k-disabled
-            background $disabled-bg-color
-            color $disabled-color
+            background $dropdown-item-disabled-bg-color 
+            color $dropdown-item-disabled-color 
             cursor not-allowed
 
     &.dropdown-leave-active
