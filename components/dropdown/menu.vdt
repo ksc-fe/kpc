@@ -1,7 +1,6 @@
 import MoveWrapper from '../moveWrapper';
 
 const {children, show, trigger} = self.get();
-const DropdownAnimate = self.DropdownAnimate;
 
 const events = {};
 if (trigger === 'hover') {
@@ -10,11 +9,11 @@ if (trigger === 'hover') {
 }
 
 <MoveWrapper ref="wrapper" _parent={{ self }}>
-    <DropdownAnimate v-if={{ show }}
+    <Animate v-if={{ show }}
         class="k-dropdown-menu"
         a:transition="dropdown"
         ref="menu"
         {{ ...events }}
         a:delayDestroy={{ false }}
-    >{{ children }}</DropdownAnimate>
+    >{{ children }}</Animate>
 </MoveWrapper>

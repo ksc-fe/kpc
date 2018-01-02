@@ -16,7 +16,6 @@ export default class DropdownMenu extends Intact {
 
     _init() {
         this.subDropdowns = [];
-        this.DropdownAnimate = DropdownAnimate;
 
         this.on('$changed:show', (c, value) => {
             if (value) {
@@ -132,5 +131,3 @@ export default class DropdownMenu extends Intact {
         this._removeDocumentClick();
     }
 }
-
-class DropdownAnimate extends Intact.Animate {  }
