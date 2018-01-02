@@ -1,5 +1,8 @@
-const {children, trigger} = self.get();
+let {children, trigger} = self.get();
 
+if (Array.isArray(children)) {
+    children = children[0];
+}
 const props = children.props;
 
 switch (trigger) {

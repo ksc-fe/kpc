@@ -1,5 +1,8 @@
 @require('./variables.styl')
 
+.k-dropdown
+    display inline-block
+
 .k-dropdown-menu
     position absolute
     min-width $dropdown-min-width 
@@ -8,7 +11,10 @@
     box-shadow $box-shadow
     font-size $dropdown-font-size 
     z-index 1001 
-    > .k-item
+    // nested dropdown
+    .k-dropdown
+        display block
+    .k-item
         padding $dropdown-item-padding 
         cursor pointer
         &:hover

@@ -6,11 +6,16 @@ import './index.styl';
 
 const h = Intact.Vdt.miss.h;
 
-export default function Wrapper(props) {
-    const {
+function Wrapper(props, inVue) {
+    let {
         children, position, key,
         ref, trigger, ...rest
     } = props;
+
+    if (inVue) {
+        children = Intact.normalize(children);
+    }
+
     const element = children[0];
     const menu = children[1];
 
@@ -32,17 +37,42 @@ export default function Wrapper(props) {
         elementProps._evLeave = elementProps['ev-mouseleave'];
     }
 
-    return [
-        h(Dropdown, {
-            key: key == null ? key : `${key}.trigger`,
-            ref: ref,
-            trigger,
-            children: element, 
-            menu: menu,
-            ...rest
-        }),
-        menu
-    ];
+    return !inVue ? 
+        [
+            h(Dropdown, {
+                key: key == null ? key : `${key}.trigger`,
+                ref: ref,
+                trigger,
+                children: element, 
+                menu: menu,
+                ...rest
+            }),
+            menu
+        ] :
+        h(VueWrapper, {
+            children: [
+                h(Dropdown, {
+                    key: key == null ? key : `${key}.trigger`,
+                    ref: ref,
+                    trigger,
+                    children: [element], 
+                    menu: menu,
+                    ...rest
+                }),
+                menu
+            ]
+        });
 }
 
-export {Dropdown, DropdownMenu, DropdownItem};
+class VueWrapper extends Intact {
+    template(data) {
+        return h('div', null, data.get('children'), 'k-dropdown');
+    }
+}
+
+const _Wrapper = Intact.functionalWrapper ?
+    Intact.functionalWrapper(Wrapper) : Wrapper;
+
+export default _Wrapper;
+
+export {_Wrapper as Dropdown, DropdownMenu, DropdownItem};
