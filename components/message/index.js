@@ -91,7 +91,8 @@ export default class Message extends Intact {
         // otherwise return the original dom which has been updated
         if (
             !lastVNode || 
-            lastVNode.parentVNode.tag === MessageAnimate 
+            // it may have not parentVNode in vue
+            (lastVNode.parentVNode && lastVNode.parentVNode.tag === MessageAnimate)
         ) {
             return this.element;
         }

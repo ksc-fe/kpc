@@ -19,10 +19,6 @@ export default class extends Intact {
         Message.error('stick error message', 0);
     }
 
-    showTemplate(template) {
-        Message.info(template, 0);
-    }
-
     onClick() {
         console.log('click');
         this.set('percent', this.get('percent') + 5)

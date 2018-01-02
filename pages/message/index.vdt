@@ -1,7 +1,6 @@
 import Button from 'components/button';
 import Progress from 'components/progress';
 import Message from 'components/message';
-import MoveWrapper from 'components/moveWrapper';
 
 <div>
     <Button ev-click={{ self.showMessage.bind(self, value) }}
