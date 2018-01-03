@@ -1,27 +1,25 @@
-const MoveWrapper = require('../moveWrapper');
+import MoveWrapper from '../moveWrapper';
 
-const {
-    children, _showToolTip, content,
-    refEvent, ...rest
-} = self.get();
+const {children, show, trigger, canHover, className} = self.get();
+
+const events = {};
+if (canHover && trigger === 'hover') {
+    events['ev-mouseenter'] = self.show.bind(self);
+    events['ev-mouseleave'] = self.hide.bind(self, false);
+}
 
 const classNameObj = {
-    'k-tooltip': true
-}
+    "k-tooltip-content": true, 
+    'k-cannot-hover': trigger === 'hover' && !canHover,
+    [className]: className,
+};
 
-const event = {};
-if (refEvent === 'click') {
-    event['ev-click'] = function() {console.log('click')}
-} else {
-    event['ev-mouseenter'] = self.showPop.bind(self);
-    event['ev-mouseleave'] = self.hidePop.bind(self);
-}
-
-<div class={{ classNameObj }} >
-   <span ref='refer' {{ ...event }}>{{ children }} </span>
-   <MoveWrapper>
-        <div class="k-content" ref="content" v-if={{ _showToolTip }}>{{ content }}
-            <div class="k-arrow"></div>
-        </div>
-   </MoveWrapper>
-</div>
+<MoveWrapper>
+    <Animate v-if={{ show }}
+        class={{ classNameObj }}
+        a:transition="fade"
+        ref="content"
+        {{ ...events }}
+        a:delayDestroy={{ false }}
+    >{{ children }}</Animate>
+</MoveWrapper>

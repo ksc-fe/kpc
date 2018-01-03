@@ -25,3 +25,12 @@ export function kebabCase(word) {
 export function proxyEvent(component, name) {
     return (e) => component.trigger(name, e);
 }
+
+export function isStringOrNumber(o) {
+    const type = typeof o;
+    return type === 'string' || type === 'number';
+}
+
+export function isTextVNode(o) {
+    return isStringOrNumber(o) || o.type === 1;
+}

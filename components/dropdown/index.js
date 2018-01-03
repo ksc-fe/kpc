@@ -9,12 +9,8 @@ const h = Intact.Vdt.miss.h;
 function Wrapper(props, inVue) {
     let {
         children, position, key,
-        ref, trigger, ...rest
+        ref, ...rest
     } = props;
-
-    if (inVue) {
-        children = Intact.normalize(children);
-    }
 
     const element = children[0];
     const menu = children[1];
@@ -25,24 +21,12 @@ function Wrapper(props, inVue) {
         ...rest,
         ...menu.props,
     };
-    if (trigger) {
-        menu.props.trigger = trigger;
-    }
-
-    const elementProps = element.props;
-    if (trigger === 'click' ) {
-        elementProps._evClick = elementProps['ev-click'];
-    } else {
-        elementProps._evEnter = elementProps['ev-mouseenter'];
-        elementProps._evLeave = elementProps['ev-mouseleave'];
-    }
 
     return !inVue ? 
         [
             h(Dropdown, {
                 key: key == null ? key : `${key}.trigger`,
                 ref: ref,
-                trigger,
                 children: element, 
                 menu: menu,
                 ...rest
@@ -54,7 +38,6 @@ function Wrapper(props, inVue) {
                 h(Dropdown, {
                     key: key == null ? key : `${key}.trigger`,
                     ref: ref,
-                    trigger,
                     children: [element], 
                     menu: menu,
                     ...rest

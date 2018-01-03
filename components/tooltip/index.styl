@@ -1,18 +1,29 @@
 @require('./variables.styl')
 
-.k-content
+.k-tooltip
+    display inline-block
+.k-tooltip-content
     position absolute
-    text-align center
-    background-color #2d2f33
-    color #ffffff
+    background-color $tooltip-bg-color 
+    box-shadow $box-shadow
     padding $tooltip-padding
-    border-radius 4px
-.k-arrow
-    position absolute
-    width 0
-    height 0
-    border-left:30px solid transparent;
-    border-right:30px solid transparent;
-    border-bottom:30px solid #fff;
-    top 86px
-    left 150px
+    border-radius $tooltip-border-radius 
+    font-size $tooltip-font-size
+    color $tooltip-color
+    line-height $tooltip-line-height
+    &:before
+    &:after
+        content ' '
+        display block
+        border-style solid
+        border-color transparent transparent $tooltip-arrow-border-color transparent
+        border-width $tooltip-arrow-width ($tooltip-arrow-width - 2px)
+        position absolute
+        left 50%
+        margin-left -($tooltip-arrow-width - 2px) 
+        top -(2 * $tooltip-arrow-width) 
+    &:after
+        border-bottom-color $tooltip-bg-color 
+        top -(2 * $tooltip-arrow-width) + 1px
+    &.k-cannot-hover
+        pointer-events none

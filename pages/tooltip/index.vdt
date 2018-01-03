@@ -1,8 +1,31 @@
 import Tooltip from 'components/tooltip';
-import Button from 'components/button';
+import Button, {ButtonGroup} from 'components/button';
+import Slider from 'components/slider';
 
 <div class="tooltip-demo">
-   <Tooltip content="lijia">
-       <Button>test</Button>
-   </Tooltip>
+    <Tooltip content="World" style="margin-bottom: 10px;">Hello</Tooltip>
+    <br />
+    <ButtonGroup>
+        <Tooltip content="lijia">
+            <Button>hover</Button>
+        </Tooltip>
+        <Tooltip canHover>
+            <Button>block</Button>
+            <b:content>关机</b:content>
+        </Tooltip>
+        <Tooltip trigger="click">
+            <Button>click</Button>
+            <b:content>Hello 关机</b:content>
+        </Tooltip>
+        <Tooltip trigger="click">
+            <Button>complex</Button>
+            <b:content>
+                <Slider v-model="percent" 
+                    style="width: 200px; padding: 10px" 
+                    isShowInput={{ false }}
+                    isShowEnd={{ false }}
+                />
+            </b:content>
+        </Tooltip>
+    </ButtonGroup>
 </div>

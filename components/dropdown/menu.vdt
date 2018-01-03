@@ -1,6 +1,6 @@
 import MoveWrapper from '../moveWrapper';
 
-const {children, show, trigger} = self.get();
+const {children, show, trigger, className} = self.get();
 
 const events = {};
 if (trigger === 'hover') {
@@ -10,7 +10,7 @@ if (trigger === 'hover') {
 
 <MoveWrapper ref="wrapper" _parent={{ self }}>
     <Animate v-if={{ show }}
-        class="k-dropdown-menu"
+        class={{ {"k-dropdown-menu": true, [className]: className} }}
         a:transition="dropdown"
         ref="menu"
         {{ ...events }}

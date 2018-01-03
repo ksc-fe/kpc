@@ -5,7 +5,7 @@ const {
     disabled, isRange, isInnerText,
     isShowInput, isShowEnd, unit,
     step, ref, _isDragging, _isFirst,
-    _isSecond, ...rest
+    _isSecond, style, ...rest
 } = self.get();
 
 const classNameObj = {
@@ -18,7 +18,7 @@ const classNameObj = {
 
 const sliderWidth = max - min;
 
-<div class={{ classNameObj }}>
+<div class={{ classNameObj }} style={{ style }}>
     <div class="k-wrapper"  ev-click={{ self.clickWrapper.bind(self) }} ref={{ dom => self.$slider = dom }}>
         <div class="k-bar"
             style={{ isRange ?

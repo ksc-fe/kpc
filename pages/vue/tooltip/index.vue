@@ -1,0 +1,47 @@
+<template>
+    <div class="tooltip-demo">
+        <Tooltip content="World" style="margin-bottom: 10px">Hello</Tooltip>
+        <br />
+        <ButtonGroup>
+            <Tooltip content="lijia">
+                <Button>hover</Button>
+            </Tooltip>
+            <Tooltip canHover>
+                <Button>block</Button>
+                <template slot="content">关机</template>
+            </Tooltip>
+            <Tooltip trigger="click">
+                <Button>click</Button>
+                <template slot="content">Hello 关机</template>
+            </Tooltip>
+            <Tooltip trigger="click">
+                <Button>complex</Button>
+                <template slot="content">
+                    <Slider v-model="percent" 
+                        style="width: 200px; padding: 10px" 
+                        :isShowInput="false"
+                        :isShowEnd="false"
+                    />
+                </template>
+            </Tooltip>
+        </ButtonGroup>
+    </div>
+</template>
+
+<script>
+import Tooltip from 'components/tooltip';
+import Button, {ButtonGroup} from 'components/button';
+import Slider from 'components/slider';
+
+export default {
+    components: {
+        Tooltip, Button, ButtonGroup, Slider
+    },
+
+    data() {
+        return {
+            percent: 40
+        }
+    }
+}
+</script>
