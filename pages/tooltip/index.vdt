@@ -3,6 +3,14 @@ import Button, {ButtonGroup} from 'components/button';
 import Slider from 'components/slider';
 
 <div class="tooltip-demo">
+    <div>
+        <Tooltip>
+            <button>test</button>
+            <b:content>
+                <div>message</div>  
+            </b:content>
+        </Tooltip>
+    </div>
     <Tooltip content="World" style="margin-bottom: 10px;">Hello</Tooltip>
     <br />
     <ButtonGroup>

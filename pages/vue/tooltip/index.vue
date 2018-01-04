@@ -1,5 +1,12 @@
 <template>
     <div class="tooltip-demo">
+        <div>
+            <Tooltip>
+                <button @click="onClick">test</button>
+                <div slot="content">message</div>  
+            </Tooltip>
+        </div>
+
         <Tooltip content="World" style="margin-bottom: 10px">Hello</Tooltip>
         <br />
         <ButtonGroup>
@@ -25,6 +32,16 @@
                 </template>
             </Tooltip>
         </ButtonGroup>
+        <br />
+        <ButtonGroup style="margin-top: 10px">
+            <Tooltip v-for="value in ['top', 'right', 'bottom', 'left']"
+                :content="value"
+                :position="value"
+                :key="value"
+            >
+                <Button>{{ value }}</Button> 
+            </Tooltip>
+        </ButtonGroup>
     </div>
 </template>
 
@@ -41,6 +58,12 @@ export default {
     data() {
         return {
             percent: 40
+        }
+    },
+
+    methods: {
+        onClick() {
+            console.log('click')
         }
     }
 }

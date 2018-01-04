@@ -88,7 +88,6 @@ class TooltipContent extends Intact {
             at: 'center top', 
             of: this.dropdown.element,
             using: (feedback) => {
-                console.log(feedback);
                 this.set('_feedback', feedback);
             },
             ...pos
@@ -154,6 +153,7 @@ function Wrapper(props, inVue) {
                     _context,
                     children: children,
                     menu: contentVNode,
+                    ...(props.trigger ? {trigger: props.trigger} : {}),
                 }),
                 contentVNode
             ],
