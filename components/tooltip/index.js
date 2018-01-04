@@ -25,6 +25,8 @@ class TooltipContent extends Intact {
             trigger: 'hover',
             canHover: false,
             positon: {},
+
+            _feedback: {},
         };
     }
 
@@ -63,11 +65,33 @@ class TooltipContent extends Intact {
     }
 
     position() {
-        position(this.refs.content.element, {
-            my: 'center top+10', 
-            at: 'center bottom', 
+        let pos = this.get('position');
+        if (typeof pos === 'string') {
+            switch (pos) {
+                case 'left':
+                    pos = {my: 'right-10 center', at: 'left center'};
+                    break;
+                case 'bottom':
+                    pos = {my: 'center top+10', at: 'center bottom'};
+                    break;
+                case 'right':
+                    pos = {my: 'left+10 center', at: 'right center'};
+                    break;
+                default:
+                    pos = {my: 'center bottom-10', at: 'center top'};
+                    break;
+            }
+        }
+        const element = this.refs.content.element;
+        position(element, {
+            my: 'center bottom-10', 
+            at: 'center top', 
             of: this.dropdown.element,
-            ...this.get('position')
+            using: (feedback) => {
+                console.log(feedback);
+                this.set('_feedback', feedback);
+            },
+            ...pos
         });
     }
 

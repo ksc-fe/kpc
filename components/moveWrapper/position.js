@@ -95,6 +95,29 @@ export default function position(elem, options) {
     }
     style.left = position.left + 'px';
     style.top = position.top + 'px';
+
+    if (options.using) {
+        const left = targetOffset.left - position.left;
+        const right = left + targetWidth - elemWidth;
+        const top = targetOffset.top - position.top;
+        const bottom = top + targetHeight - elemHeight;
+        const feedback = {
+            horizontal: right < 0 ? 'left' : left > 0 ? 'right' : 'center',
+            vertical: bottom < 0 ? 'top' : top > 0 ? 'bottom' : 'middle',
+        };
+        if (targetWidth < elemWidth && abs(left + right) < targetWidth) {
+            feedback.horizontal = 'center';
+        }
+        if (targetHeight < elemHeight && abs(top + bottom) < targetHeight) {
+            feedback.vertical = 'middle';
+        }
+        if (max(abs(left), abs(right)) > max(abs(top), abs(bottom))) {
+            feedback.important = 'horizontal';
+        } else {
+            feedback.important = 'vertical';
+        }
+        options.using(feedback);
+    }
 }
 
 function getDimensions(elem) {

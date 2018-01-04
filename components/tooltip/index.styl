@@ -1,5 +1,8 @@
 @require('./variables.styl')
 
+arrow-long = $tooltip-arrow-width
+arrow-short = $tooltip-arrow-width - 2px
+
 .k-tooltip
     display inline-block
 .k-tooltip-content
@@ -11,19 +14,60 @@
     font-size $tooltip-font-size
     color $tooltip-color
     line-height $tooltip-line-height
-    &:before
-    &:after
-        content ' '
-        display block
-        border-style solid
-        border-color transparent transparent $tooltip-arrow-border-color transparent
-        border-width $tooltip-arrow-width ($tooltip-arrow-width - 2px)
-        position absolute
-        left 50%
-        margin-left -($tooltip-arrow-width - 2px) 
-        top -(2 * $tooltip-arrow-width) 
-    &:after
-        border-bottom-color $tooltip-bg-color 
-        top -(2 * $tooltip-arrow-width) + 1px
+    z-index $max-z-index
+
+    // arrow
+    > .k-arrow
+        &:before, &
+            position absolute
+            display block
+            border-style solid
+            border-color transparent
+        &:before
+            content ' '
+        &.k-center
+            left 50%
+            margin-left -(arrow-short) 
+        &.k-top
+        &.k-bottom
+            &:before, &
+                border-width arrow-long arrow-short
+            &:before
+                left -(arrow-short)
+        &.k-top
+            top -(2 * arrow-long) 
+            border-bottom-color $tooltip-arrow-border-color
+            &:before
+                border-bottom-color $tooltip-bg-color 
+                top -(arrow-long - 1px)
+        &.k-bottom
+            bottom -(2 * arrow-long)
+            border-top-color $tooltip-arrow-border-color
+            &:before
+                border-top-color $tooltip-bg-color
+                bottom -(arrow-long - 1px)
+        &.k-middle
+            top 50%
+            margin-top -(arrow-short)
+        &.k-left
+        &.k-right
+            &:before, &
+                border-width arrow-short arrow-long
+            &:before
+                top -(arrow-short)
+        &.k-left
+            left -(2 * arrow-long)
+            border-right-color $tooltip-arrow-border-color
+            &:before
+                border-right-color $tooltip-bg-color
+                left -(arrow-long - 1px)
+        &.k-right
+            right -(2 * arrow-long)
+            border-left-color $tooltip-arrow-border-color
+            &:before
+                border-left-color $tooltip-bg-color
+                right -(arrow-long - 1px) 
+
+
     &.k-cannot-hover
         pointer-events none

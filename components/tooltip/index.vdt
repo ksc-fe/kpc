@@ -1,6 +1,9 @@
 import MoveWrapper from '../moveWrapper';
 
-const {children, show, trigger, canHover, className} = self.get();
+const {
+    children, show, trigger, 
+    canHover, className, _feedback
+} = self.get();
 
 const events = {};
 if (canHover && trigger === 'hover') {
@@ -21,5 +24,9 @@ const classNameObj = {
         ref="content"
         {{ ...events }}
         a:delayDestroy={{ false }}
-    >{{ children }}</Animate>
+    ><i class={{ {
+        "k-arrow": true,
+        [`k-${_feedback.vertical}`]: _feedback.vertical,
+        [`k-${_feedback.horizontal}`]: _feedback.horizontal,
+    } }}></i>{{ children }}</Animate>
 </MoveWrapper>
