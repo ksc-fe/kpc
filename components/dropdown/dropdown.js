@@ -32,13 +32,19 @@ export default class Dropdown extends Intact {
         }
 
         // save the original event
-        const props = {};
         const originProps = children.props;
+        if (!children._hasSaved) {
+            children._evClick = originProps['ev-click'];
+            children._evMouseEnter = originProps['ev-mouseenter'];
+            children._evMouseLeave = originProps['ev-mouseleave'];
+            children._hasSaved = true;
+        }
+        const props = {};
         if (trigger === 'click') {
-            props['ev-click'] = this.show.bind(this, originProps['ev-click']);
+            props['ev-click'] = this.show.bind(this, children._evClick);
         } else {
-            props['ev-mouseenter'] = this.show.bind(this, originProps['ev-mouseenter']);
-            props['ev-mouseleave'] = this.hide.bind(this, originProps['ev-mouseleave']);
+            props['ev-mouseenter'] = this.show.bind(this, children._evMouseEnter);
+            props['ev-mouseleave'] = this.hide.bind(this, children._evMouseLeave);
         }
         children.props = {...children.props, ...props};
         this.set('children', children, {silent: true});
