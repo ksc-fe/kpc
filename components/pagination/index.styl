@@ -1,46 +1,75 @@
 @require('./variables.styl');
 
 .k-pagination
-    .pager
+    font-size $pagination-font-size
+    .k-pages
+    .k-limits
+    .k-goto
+    .k-total
+        margin-left $pagination-gutter
         display inline-block
-        a
-            border $pagination-a-border
-            border-radius $pagination-a-border-radius
-            padding $pagination-a-padding
-            margin-right $pagination-a-margin-right
-            font-size $pagination-a-font-size
-            font-family: $pagination-a-font-family
-            min-width $pagination-a-width
-            height $pagination-a-height
-            color $pagination-a-color
+
+    .k-pages
+        margin-left 0
+        > div
             display inline-block
+            border $pagination-page-border
+            border-radius $pagination-page-border-radius
+            margin-right $pagination-page-margin-right
+            min-width $pagination-page-width
+            height $pagination-page-height
+            line-height s('calc(%s - 2px)', @height)
             cursor pointer
             text-align center
             vertical-align middle
-            &:hover
-                border-color $pagination-a-hover-border-color
-                color $pagination-a-hover-color
-    .k-disabled
-        cursor not-allowed !important
-        color #d9d9d9 !important
-        &:hover
-            border-color #d9d9d9 !important
-            color #d9d9d9 !important
-    .k-active
-        background-color $pagination-active-bg-color !important
-        border-color $pagination-active-border-color !important
-        color: $pagination-active-a-color !important
+            &:not(.k-active):not(.k-disabled):hover
+                border-color $pagination-page-hover-border-color
+                color $pagination-page-hover-color
+            &:last-of-type
+                margin-right 0
+        .k-active
+            background-color $pagination-page-active-bg-color
+            border-color $pagination-page-active-border-color
+            color $pagination-page-active-color
+        .k-disabled
+            cursor not-allowed
+            color $pagination-page-disabled-color
+            border-color $pagination-page-disabled-border-color
 
-.k-go
-    margin-left $pagination-input-margin-left
-    margin-right $pagination-input-margin-right
-    background-color $pagination-input-bg-color
-    border $pagination-input-border
-    border-radius $pagination-input-border-radius
-    height $pagination-input-height
-    width $pagination-input-width
-    text-align center
-    //outline 0
-    //padding 0
-.k-drop
-    display: inline-block
+    // goto   
+    .k-goto
+        .k-input
+            font-size inherit
+            width $pagination-goto-width
+            margin $pagination-goto-margin 
+
+    // size 
+    &.k-small
+        font-size $pagination-small-font-size
+        .k-goto
+            .k-input
+                .k-inner
+                    font-size $pagination-small-font-size
+                    height $pagination-page-height
+    &.k-mini
+        font-size $pagination-mini-font-size
+        .k-pages
+            > div
+                margin-right $pagination-mini-page-margin-right
+                min-width $pagination-mini-page-width
+                height $pagination-mini-page-height
+                line-height s('calc(%s - 2px)', @height)
+        .k-goto
+            .k-input
+                .k-inner
+                    font-size $pagination-mini-font-size
+                    height $pagination-mini-page-height
+
+    // FIXME: why should we have to set top 1px to vertical algin middle
+    .k-prev
+    .k-next
+        i
+            position relative
+            top 1px
+
+

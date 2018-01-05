@@ -2,5 +2,27 @@ const Pagination = require('components/pagination');
 
 
 <div style="padding: 200px 400px;">
-    <Pagination Goto={{ true }} total={{ 201 }} current={{ 5 }} size={{ 20 }} opts={{ [10,20,30,40,50] }} />
+    <Pagination 
+        total={{ 201 }} 
+        current={{ 5 }} 
+        limit={{ 20 }} 
+        limits={{ [10,20,30,40,50] }} 
+        showGoto
+    />
+    <Pagination 
+        total={{ 201 }} 
+        current={{ 5 }} 
+        limit={{ 20 }} 
+        limits={{ [10,20,30,40,50] }} 
+        size="small"
+        showGoto
+    />
+    <Pagination 
+        total={{ 201 }} 
+        current={{ 5 }} 
+        limit={{ 20 }} 
+        limits={{ [10,20,30,40,50] }} 
+        size="mini"
+        showGoto
+    />
 </div>
