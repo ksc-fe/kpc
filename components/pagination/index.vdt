@@ -114,11 +114,10 @@ const paginationDot = function(callback) {
         </span>
 
         <div class="k-drop">
-            <Select v-model="sizeValue" class="test"
+            <Select v-model="size" class="test"
                         data={{ opts.map(item => {
                         return {'value': item, 'text': item + '行'}
                     }) }}
-                    value={{ size + '行' }}
                     >
             </Select>
         </div>
