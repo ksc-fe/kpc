@@ -24,9 +24,11 @@ export default class Pagination extends Intact {
         // avoid setting incorrect value
         this.changePage(this.get('current'));
 
-        this.on('$change:limit', () => {
+        this.on('$change:sizeValue', () => {
+            let size = parseInt(this.get('sizeValue'));
             this.set('current', 1);
-        });
+            this.set('size', size);
+        })
     }
 
     changePage(page) {

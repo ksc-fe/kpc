@@ -1,12 +1,11 @@
 import Link from 'components/link';
 
 const list = [
-    'button', 'dialog', 'checkbox', 
-    'radio', 'table', 'progress', 
+    'button', 'dialog', 'checkbox',
+    'radio', 'table', 'progress',
     'slider','spinner','select',
     'form', 'grid', 'switch',
-    'input', 'message', 'dropdown',
-    'tooltip', 'pagination'
+    'input', 'message', 'dropdown','tooltip','pagination'
 ];
 
 <ul>

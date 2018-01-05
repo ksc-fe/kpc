@@ -98,10 +98,30 @@ const paginationDot = function(callback) {
         />
     </div>
 
-    <div class="k-goto" v-if={{ showGoto }}>
-        跳至<Input size={{ size }} value={{ current }}
-            ev-change={{ self._goto.bind(self) }}
-        />页
+                return <div className="pager">{{ liItems }}</div>;
+
+            })()
+
+        }}
+
+        <span v-if={{ Goto }}>
+            跳转
+            <input
+                v-model="value"
+                ev-change={{ self._goto.bind(self) }}
+                className="k-go"
+            />
+        </span>
+
+        <div class="k-drop">
+            <Select v-model="sizeValue" class="test"
+                        data={{ opts.map(item => {
+                        return {'value': item, 'text': item + '行'}
+                    }) }}
+                    value={{ size + '行' }}
+                    >
+            </Select>
+        </div>
     </div>
 
     <div v-if={{ showTotal }} class="k-total">共 {{ total }} 条</div>
