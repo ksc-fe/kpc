@@ -71,7 +71,7 @@ export default class Pagination extends Intact {
 
     _goto(e) {
         // const regexp = /^[1-9]\d*$/;
-        const value = parseInt(e.target.value);
+        const value = parseInt(e.target.value) || 1;
         this.changePage(value);
     }
 }
