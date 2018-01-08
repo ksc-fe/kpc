@@ -17,8 +17,7 @@
         border $input-border 
         padding $input-padding
         background-color $input-bg-color 
-        color $input-color
-        transition border .2s ease-in-out, background .2s ease-in-out, box-shadow .2s ease-in-out
+        transition border $transition, background $transition, box-shadow $transition 
         outline none
         &:focus
             border $input-focus-border
@@ -51,6 +50,7 @@
         cursor pointer
         opacity 0
         transition opacity $transition
+        pointer-events none
         &:hover
             color $primary-color
     &.k-with-suffix
@@ -62,6 +62,7 @@
     .k-inner:focus + .k-suffix .k-clear.k-show
     &:hover .k-clear.k-show
         opacity 1
+        pointer-events all
 
 
     // group

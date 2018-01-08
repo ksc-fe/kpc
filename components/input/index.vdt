@@ -1,7 +1,7 @@
 const {
     type, name, value, placeholder,
     readonly, clearable, disabled, size, 
-    rows, spellcheck, defaultValue
+    rows, spellcheck, defaultValue, style
 } = self.get();
 
 const classNameObj = {
@@ -15,14 +15,21 @@ const classNameObj = {
 }
 
 const events = [
-    'click', 'keydown', 'keyup', 'change',
-    'keypress', 'focus', 'blur', 'input'
+    'keydown', 'keyup', 'change',
+    'keypress', 'focus', 'blur', /* 'input' */
 ].reduce((memo, name) => {
     memo[`ev-${name}`] = self._proxyEvent.bind(self, name);
     return memo;
 }, {});
 
-<div class={{ classNameObj }}>
+const wrapperEvents = [
+    'click', 'mouseenter', 'mouseleave'
+].reduce((memo, name) => {
+    memo[`ev-${name}`] = self._proxyEvent.bind(self, name);
+    return memo;
+}, {});
+
+<div class={{ classNameObj }} style={{ style }} {{ ...wrapperEvents }}>
     <div class="k-prepend" v-if={{ blocks.prepend }}>
         <b:prepend />
     </div>
@@ -34,7 +41,8 @@ const events = [
             class="k-inner" 
             type={{ type }}
             name={{ name }}
-            v-model="value"
+            value={{ value }}
+            ev-input={{ self._onInput.bind(self) }}
             defaultValue={{ defaultValue }}
             readOnly={{ readonly }}
             placeholder={{ placeholder }}
@@ -44,7 +52,8 @@ const events = [
         />
         <textarea v-else 
             class="k-inner k-textarea"
-            v-model="value"
+            value={{ value }}
+            ev-input={{ self._onInput.bind(self) }}
             defaultValue={{ defaultValue }}
             name={{ name }}
             readOnly={{ readonly }} 

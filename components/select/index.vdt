@@ -1,27 +1,64 @@
 import MoveWrapper from '../moveWrapper';
+import Input from '../input';
+import Dropdown, {DropdownItem, DropdownMenu} from '../dropdown';
+import {isStringOrNumber} from '../utils';
 
-const  className  = self.get('className');
+const {
+    className, clearable, data, value,
+    disabled, filterable, keywords, _show
+} = self.get();
 
-const classObj ={
-    'k-select':true,
-    [className]:true,
-    'k-select-disabled':self.get('disabled')
+const classNameObj = {
+    'k-select': true,
+    [className]: className,
+    'k-disabled': disabled,
+    'k-show': _show,
+    'k-clearable': clearable,
+};
+
+const hasValue = value != null && value !== '';
+const isGroup = Array.isArray(self.get('data.0.data'));
+
+let label;
+
+const Options = props => {
+    const data = props.data;
+    return <DropdownItem 
+        v-for={{ !filterable || keywords == null ? data : data.filter(item => {
+            return ~item.text.indexOf(keywords) || 
+                (isStringOrNumber(item.value) && ~String(item.value).indexOf(keywords));
+        }) }}
+        v-for-value="item"
+        ev-select={{ self._onSelect.bind(self, item.value) }}
+        disabled={{ item.disabled }}
+        class={{ {'k-active': do { 
+            if (item.value === value) { 
+                // set label
+                label = item.text;
+                true;
+            } 
+        }} }}
+    >{{ item.template ? item.template(item, key) : item.text }}</DropdownItem>
 }
 
-<div class={{ classObj }}
-    tabindex="-1"
-    ev-focusin={{ self.onFocusin.bind(self) }}
-    ev-focusout={{ self.onFocusout.bind(self) }}
->
-    <div class="k-input">   
-        <!-- 可搜索 -->
-        <input type="text" class="input" v-if={{ self.get('filterable') }} placeholder="请选择"
-            ev-input={{ self.onInput.bind(self) }}
-            ev-blur={{ self.onBlur.bind(self) }}
-            v-model="keywords"
-        />
+const Menu = (
+    <DropdownMenu ev-$changed:show={{ self._position.bind(self) }}
+        ref="menu"
+        class="k-select-dropdown"
+        ev-$change:show={{ self._onChangeShow.bind(self) }}
+    >
+        <Options v-if={{ !isGroup }} data={{ data }} />
+        <div v-else class="k-group" v-for={{ data }}>
+            <div class="k-label">{{ value.label }}</div>
+            <Options data={{ value.data }} />
+        </div>
+    </DropdownMenu>
+);
+
+
+<div class={{ classNameObj }}>
         <!-- 多选 显示框 -->
-        <div class="k-multiple" v-else-if={{ self.get('multiple') }}>
+        <!--<div class="k-multiple" v-else-if={{ self.get('multiple') }}>
             <div class="input-tag-checked" v-for={{ self.get('values') }}  v-for-value="val">
                 {{ do{
                     self.get('data').find( item => {
@@ -31,9 +68,9 @@ const classObj ={
                 <i ev-click={{ self.deleTag.bind(self,key) }} v-if={{ self.get('multiple') }} class="ion-ios-close-outline"></i>
             </div>
             <input type="text" style="position: absolute; left: -10000px" ref="input"/>
-        </div>
+        </div>-->
         <!-- 分组 -->
-        <input type="text" class="input" v-else-if={{ self.get('group').length>0 }} 
+        <!--<input type="text" class="input" v-else-if={{ self.get('group').length>0 }} 
             placeholder="请选择" readonly
             value={{ do{
                 let group = [];
@@ -50,29 +87,37 @@ const classObj ={
                 }
             } }} 
             ev-blur={{ self.onBlur.bind(self) }}
-        />
-        <!-- 默认显示框 -->
-
-        <input type="text" class="input" v-else 
-            placeholder="请选择" readonly
-            value={{ do{
-                let result = self.get('data').find( item => {
-                    return item.value == self.get('value')
-                });
-                if(result){
-                    result.text
-                }
-            } }} 
-            ev-blur={{ self.onBlur.bind(self) }}
-        />
-        <i class={{ self.get('show')? "k-icon k-icon-down" :"k-icon k-icon-up" }}></i>
-        <i v-if={{ self.get('clearable') && self.get('value') }} ev-click={{ self.set.bind(self,'value','') }} class="clear-icon ion-ios-close-outline"></i>
-    </div>
-    <MoveWrapper>
+        />-->
+    <Dropdown
+        position={{ {my: 'left top', at: 'left bottom'} }} 
+        trigger="click"
+        disabled={{ disabled }}
+    >
+        <div class="k-wrapper">
+            <input type="hidden" value={{ value }} />
+            <input v-if={{ filterable }} type="text" class="k-select-input" 
+                value={{ keywords == null ? label : keywords }}
+                ev-input={{ self._onSearch.bind(self) }}
+                ev-blur={{ self._onBlur.bind(self) }}
+                disabled={{ disabled }}
+                placeholder="请选择"
+            />
+            <span class="k-placeholder" v-else-if={{ !hasValue }}>请选择</span>
+            <span class="k-value" v-else>{{ label }}</span>
+            <span class="k-suffix">
+                <i v-if={{ clearable }}
+                    class={{ {"k-clear ion-ios-close": true, "k-show": hasValue} }}
+                    ev-click={{ self._onClear.bind(self) }}
+                ></i>
+                <i class="ion-arrow-down-b"></i>
+            </span>
+        </div>{{ 
+        Menu 
+    }}</Dropdown>
+    <!--<MoveWrapper>
         <Animate class="k-dropdown" ref={{ dom => self._dropdown = dom }}
             v-if={{ self.get('show') }}
         >   
-            <!-- 多选先显示框 -->
             <ul class="k-list" v-if={{ self.get('multiple') }}>
                 <li v-for={{ self.get('data') }} ev-click={{ self.onClick.bind(self,value,key) }}
                     class={{ {'li-selected': self.get('values').indexOf(value.value)!=-1 } }}
@@ -80,7 +125,6 @@ const classObj ={
                     <span class="li-label" v-show={{ value.label }}>{{ value.label }} </span>
                 </li>
             </ul>
-            <!-- 分组 -->
             <ul class="k-list" v-else-if={{ self.get('group').length>0 }}>
                 <div v-for={{ self.get('group') }}>
                     <li class="li-group-label">{{ value.label }}</li>
@@ -97,7 +141,6 @@ const classObj ={
                     >无数据</li>
                 </div>
             </ul>
-            <!-- 默认下拉框 -->
             <ul class="k-list" v-else>
                 <li v-for={{ do{
                         if(self.get('filterable')){
@@ -119,5 +162,5 @@ const classObj ={
                 >无数据</li>
             </ul>
         </Animate>
-    </MoveWrapper>
+    </MoveWrapper>-->
 </div>

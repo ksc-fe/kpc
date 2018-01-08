@@ -1,36 +1,98 @@
 @require('./variables.styl');
 
 .k-select
-    // FIXME 可变属性值，应该提取成变量
-    width $select-wrapper-width
     display inline-block
-    min-height $select-wrapper-height
-    cursor pointer
-    outline none
-    // FIXME 样式名尽量简短，k-input即可，无需再加select限定，因为前面k-select已经限定了命名空间
-    .k-input
-        font-size $select-input-font
-        min-height $select-wrapper-height
-        border 1px solid $disabled-border-color
-        line-height $select-wrapper-height
-        position relative
+    position relative
+    .k-wrapper
+        height $select-height
+        line-height s('calc(%s - 2px)', @height)
+        width $select-width
+        cursor pointer
         outline none
-        &:hover
-            border-color $selected-status
-            /* box-shadow 0 0 0 2px rgba(45,140,240,.2)    */
-    .k-icon
+        vertical-align middle
+        border $select-border 
+        padding 0 $select-padding-right 0 $select-padding-left
+        background $select-bg-color
+        transition border $transition, background $transition, box-shadow $transition 
+    .k-suffix
         position absolute
-        top $select-icon-position
-        right $select-icon-right
-        margin-top $select-icon-m-t
-    .k-icon-up
-        border-left $select-icon-b-l
-        border-right $select-icon-b-l
-        border-top $select-icon-b-top
-    .k-icon-down
-        border-left $select-icon-b-l
-        border-right $select-icon-b-l
-        border-bottom $select-icon-b-top
+        right ($select-padding-right / 3)
+
+    // clearable
+    .k-clear
+        margin-right $select-clear-margin-right
+        opacity 0
+        transition opacity $transition
+        pointer-events none
+        &:hover
+            color $primary-color
+    &:hover
+        .k-clear.k-show
+            opacity 1
+            pointer-events all
+    &.k-clearable
+        .k-wrapper
+            padding-right ($select-padding-right + $select-clear-margin-right * 3)
+
+    // filterable
+    .k-select-input
+        width 100%
+        height s('calc(%s - 2px)', $select-height)
+        border none
+        line-height @height
+
+    .k-placeholder
+        color $select-placeholder-color
+
+    // show
+    &.k-show
+        .k-wrapper
+            border $select-focus-border
+
+    // disabled
+    &.k-disabled
+        .k-wrapper
+            color $select-disabled-color
+            cursor not-allowed
+            background $select-disabled-bg-color
+            border-color $select-disabled-border-color
+        .k-select-input
+            color $select-disabled-color
+            background $select-disabled-bg-color
+            cursor not-allowed
+
+.k-select-dropdown
+    .k-active
+        color $primary-color
+
+    // group
+    .k-group
+        > .k-label
+            color $select-group-label-color
+            padding $select-group-label-padding
+
+    // .k-input
+        // min-height $select-wrapper-height
+        // border 1px solid $disabled-border-color
+        // line-height $select-wrapper-height
+        // position relative
+        // outline none
+        // &:hover
+            // border-color $selected-status
+            // /* box-shadow 0 0 0 2px rgba(45,140,240,.2)    */
+    // .k-icon
+        // position absolute
+        // top $select-icon-position
+        // right $select-icon-right
+        // margin-top $select-icon-m-t
+    // .k-icon-up
+        // border-left $select-icon-b-l
+        // border-right $select-icon-b-l
+        // border-top $select-icon-b-top
+    // .k-icon-down
+        // border-left $select-icon-b-l
+        // border-right $select-icon-b-l
+        // border-bottom $select-icon-b-top
     .disabled
         cursor not-allowed  
         border-color #d9d9d9 !important

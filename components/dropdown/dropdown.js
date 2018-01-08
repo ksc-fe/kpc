@@ -11,7 +11,8 @@ export default class Dropdown extends Intact {
 
     defaults() {
         return {
-            trigger: 'hover'
+            trigger: 'hover',
+            disabled: false,
         }
     }
 
@@ -57,12 +58,16 @@ export default class Dropdown extends Intact {
     show(fn, e) {
         if (typeof fn === 'function') fn(e);
 
+        if (this.get('disabled')) return;
+
         const menu = this.get('menu').children;
         menu.show();
     }
 
     hide(fn, e) {
         if (typeof fn === 'function') fn(e);
+
+        if (this.get('disabled')) return;
 
         const menu = this.get('menu').children;
         menu.hide();

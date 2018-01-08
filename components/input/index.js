@@ -29,9 +29,10 @@ export default class extends Intact {
         }
     }
 
-    clear() {
+    clear(e) {
         this.set('value', '');
         this.focus();
+        this.trigger('clear', e);
     }
 
     select() {
@@ -40,6 +41,11 @@ export default class extends Intact {
 
     focus() {
         this.refs.input.focus();
+    }
+
+    _onInput(e) {
+        this.set('value', e.target.value);
+        this.trigger('input', e);
     }
 
     _proxyEvent(name, e) {

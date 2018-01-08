@@ -1,7 +1,26 @@
 @require('../../styles/themes/default.styl')
 
-$select-wrapper-width :=unit(180/14,rem)
-$select-wrapper-height :=unit(36/14,rem)
+$select-width := unit(200 / 14, rem)
+$select-height := unit($default-height / 14, rem)
+$select-border := 1px solid $border-color
+$select-bg-color := #fff
+$select-padding-right := unit(30 / 14, rem)
+$select-padding-left := unit(10 / 14, rem)
+$select-focus-border := 1px solid $primary-color
+
+$select-clear-margin-right := unit(5 / 14, rem)
+$select-placeholder-color := $disabled-color 
+
+// disabled
+$select-disabled-color := $disabled-color
+$select-disabled-bg-color := $disabled-bg-color
+$select-disabled-border-color := $disabled-border-color
+
+// group
+$select-group-label-color := $disabled-color
+$select-group-label-padding := unit(8 / 14, rem)
+
+// $select-font-size := unit(14 / 14, rem)
 $select-padding :=unit(0/14, rem) unit(8/14,rem)
 $select-input-font :=unit(14/14, rem) 
 $select-li-margin :=unit(7/14, rem) unit(16/14, rem)

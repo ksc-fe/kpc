@@ -1,3 +1,7 @@
+import Intact from 'intact';
+
+const utils = Intact.utils;
+
 export function addStyle(style, extra) {
     if (!style) return extra;
     if (!extra) return style;
@@ -34,3 +38,5 @@ export function isStringOrNumber(o) {
 export function isTextVNode(o) {
     return isStringOrNumber(o) || o.type === 1;
 }
+
+export const isObject = utils.isObject;
