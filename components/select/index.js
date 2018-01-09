@@ -9,15 +9,9 @@ export default class extends Intact{
 
     defaults() {
         return {
-            values: [],
-            multiple: false, //支持多选li
-            size:{'width':'','height':''},  //自定大小
-            group:[], //分类
-            inputValue:'',
-            show: false,
-
             data: [],
             value: '',
+            multiple: false, //支持多选li
             disabled: false,
             clearable: false, // 是否可清空 
             filterable: false, // 搜索筛选
@@ -29,28 +23,6 @@ export default class extends Intact{
     }
 
     _init() {
-        // if(this.get('value')){
-            // var result = this.get('data').find( item => {
-                // return item.value == this.get('value')
-            // });
-            // if(result){
-                // this.set('value',result.value);
-                // if(this.get('filterable'))
-                    // this.set('keywords', result.text);
-            // }
-        // }
-
-        // this.on('$changed:keywords',function(){ 
-            // this.onInput()
-        // })
-        // this.on('$changed:show', (c, isShow) => {
-            // if (isShow) this._position();
-        // });
-        // this.on('$change:value',function(){ 
-        //     // if(this.get('filterable')) this.set('show', true);
-        // })
-
-        // for multiple mode, we re-position the menu when value has changed
         this.on('$changed:value', () => {
             if (this.get('multiple') && this.get('_show')) {
                 this.refs.menu.position();
@@ -61,69 +33,6 @@ export default class extends Intact{
     _onClear(e) {
         e.stopPropagation();
         this.set('value', '');
-    }
-
-    onBlur(){
-        // this.set('show',false)
-    }
-    onInput(e){
-        var result = this.get('data').find( item => {
-            return item.text  === this.get('keywords') 
-        })
-        if(result){
-            // this.set('value', result.value) 
-        }else{
-            this.set('value','');
-        }
-    }
-
-    onFocusin(e) {
-        if (this.get('disabled')) return;
-        this.element.classList.add('tagFocusin')
-        this.set('show', true);
-    }
-
-    onFocusout() {
-        
-        this.element.classList.remove('tagFocusin')
-        if (this.get('multiple')) {
-            this.timer = setTimeout(() => {
-                this.set('show', false);            
-            }, 100);
-        } else {
-            this.set('show', false);
-        }       
-    }
-
-    onClick(data){
-        if(data.disabled) return 
-        if(this.get('multiple')){
-            let index = this.get('values').indexOf(data.value);
-            if(index != -1){
-                this.deleTag(index)
-            }else{
-                clearTimeout(this.timer);
-                this.get('values').push(data.value);
-                this.update();
-                this._position();
-                this.trigger('click',this.get('values'));
-                this.element.focus();
-            }
-        }else{
-            this.set({
-                'value': data.value,        
-            });
-            this.get('filterable')? this.set({'keywords': data.text}):undefined;
-            this.trigger('click',data);
-        } 
-        
-    }
-
-    deleTag(index){
-        this.get('values').splice(index,1);
-        this.trigger('click',this.get('values'));
-        this.update();
-        this._position();
     }
 
     _onSelect(value) {
@@ -144,6 +53,7 @@ export default class extends Intact{
                 values.push(value);
             }
             this.set('value', values);
+            this._focusInput();
         }
         this._resetSearch();
     }
@@ -152,6 +62,10 @@ export default class extends Intact{
         this.set('keywords', e.target.value);
         // always show menu on searching
         this.refs.menu.show();
+        // in multiple mode, it may lead the height to change
+        if (this.get('multiple')) {
+            this.refs.menu.position();
+        }
     }
 
     _resetSearch() {
@@ -168,11 +82,15 @@ export default class extends Intact{
      * in this case, we do nothing, otherwise we reset it
      */
     _onBlur() {
-        setTimeout(() => {
+        this.timer = setTimeout(() => {
             if (this.get('keywords') != null) {
-                this.set('keywords', undefined);
+                this._resetSearch();
             }
         }, 200);
+    }
+
+    _onFocus() {
+        clearTimeout(this.timer);
     }
 
     _delete(value, e) {
@@ -181,9 +99,10 @@ export default class extends Intact{
         const index = values.indexOf(value);
         values.splice(index, 1);
         this.set('value', values);
+        this._focusInput();
     }
 
-    _onClick() {
+    _focusInput() {
         if (this.get('filterable')) {
             this.refs.input.focus();
         }

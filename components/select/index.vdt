@@ -94,7 +94,7 @@ const Menu = (
         trigger="click"
         disabled={{ disabled }}
     >
-        <div class="k-wrapper" ev-click={{ self._onClick.bind(self) }}>
+        <div class="k-wrapper" ev-click={{ self._focusInput.bind(self) }}>
             <input type="hidden" value={{ value }} />
             <Input v-if={{ !multiple && filterable }}
                 value={{ keywords == null ? label : keywords }}
@@ -123,6 +123,7 @@ const Menu = (
                     value={{ keywords }}
                     ev-input={{ self._onSearch.bind(self) }}
                     ev-blur={{ self._onBlur.bind(self) }}
+                    ev-focus={{ self._onFocus.bind(self) }}
                     disabled={{ disabled }}
                     placeholder={{ !hasValue ? placeholder : '' }}
                     ref="input"
