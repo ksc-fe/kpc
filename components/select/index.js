@@ -22,6 +22,7 @@ export default class extends Intact{
             clearable: false, // 是否可清空 
             filterable: false, // 搜索筛选
             keywords: undefined,
+            placeholder: '请选择',
 
             _show: false,
         }
@@ -48,6 +49,13 @@ export default class extends Intact{
         // this.on('$change:value',function(){ 
         //     // if(this.get('filterable')) this.set('show', true);
         // })
+
+        // for multiple mode, we re-position the menu when value has changed
+        this.on('$changed:value', () => {
+            if (this.get('multiple') && this.get('_show')) {
+                this.refs.menu.position();
+            }
+        });
     }
 
     _onClear(e) {
@@ -119,7 +127,24 @@ export default class extends Intact{
     }
 
     _onSelect(value) {
-        this.set('value', value);
+        if (!this.get('multiple')) {
+            this.set('value', value);
+        } else {
+            let values = this.get('value');
+            if (!Array.isArray(values)) {
+                values = [];
+            } else {
+                values = values.slice(0);
+            }
+            const index = values.indexOf(value);
+            if (~index) {
+                // if find, delete it
+                values.splice(index, 1); 
+            } else {
+                values.push(value);
+            }
+            this.set('value', values);
+        }
         this._resetSearch();
     }
 
@@ -150,8 +175,21 @@ export default class extends Intact{
         }, 200);
     }
 
+    _delete(value, e) {
+        e.stopPropagation();
+        const values = this.get('value').slice(0);
+        const index = values.indexOf(value);
+        values.splice(index, 1);
+        this.set('value', values);
+    }
+
+    _onClick() {
+        if (this.get('filterable')) {
+            this.refs.input.focus();
+        }
+    }
+
     _position() {
-        console.log(this.refs.menu);
         const menuElement = this.refs.menu.vdt.vNode.children.element;
         const width = this.element.offsetWidth;
         const menuWidth = menuElement.offsetWidth;

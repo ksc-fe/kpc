@@ -2,6 +2,8 @@ import Intact from 'intact';
 import template from './index.vdt';
 import './index.styl';
 
+let fakeEl;
+
 export default class extends Intact {
     @Intact.template
     static template = template;
@@ -26,6 +28,22 @@ export default class extends Intact {
             size: 'default',
             rows: 2,
             spellcheck: false,
+            autoWidth: false,
+        }
+    }
+
+    _init() {
+        this.on('$changed:value', this._adjustWidth);
+    }
+
+    _mount() {
+        this._adjustWidth();
+    }
+
+    _adjustWidth() {
+        if (this.get('autoWidth')) {
+            const width = this.refs.fake.offsetWidth || 1;
+            this.refs.input.style.width = `${width}px`;
         }
     }
 

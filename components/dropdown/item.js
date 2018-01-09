@@ -9,19 +9,23 @@ export default class extends Intact {
 
     static propTypes = {
         disabled: Boolean,
+        hideOnSelect: Boolean,
     };
 
     defaults() {
         return {
             disabled: false,
+            hideOnSelect: true,
         };
     }
 
     _init() {
         // if selected hide all dropdown menu
         this.on('select', () => {
-            const parent = this._findAncestorDropdown();
-            parent.hide(true);
+            if (this.get('hideOnSelect')) {
+                const parent = this._findAncestorDropdown();
+                parent.hide(true);
+            }
         });
     }
 

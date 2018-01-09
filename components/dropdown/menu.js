@@ -71,7 +71,7 @@ export default class DropdownMenu extends Intact {
         this.set('show', !this.get('show'));
     }
 
-    position(dropdown) {
+    position() {
         position(this.refs.menu.element, {
             my: 'center top+5', 
             at: 'center bottom', 

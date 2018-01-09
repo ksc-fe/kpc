@@ -53,4 +53,7 @@ import Button from 'components/button';
 
     <br />
     <Input type="textarea" placeholder="please enter"/>
+
+    <br />
+    <Input placeholder="auto width" autoWidth />
 </div>

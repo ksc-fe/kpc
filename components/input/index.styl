@@ -101,3 +101,13 @@
             height $input-small-height
             font-size $input-small-font-size
 
+    // fake dom for get value's width
+    .k-fake
+        position absolute
+        visibility hidden
+        top 0
+        white-space nowrap
+    &.k-auto-width
+        width auto
+        .k-inner
+            box-sizing content-box

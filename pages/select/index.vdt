@@ -43,6 +43,17 @@ import Select from 'components/select';
         </Select>     
         <span style="float:right;">You selected value：{{ self.get('value_multiple') }}</span> 
     </div>
+    <br />
+    <span style="float:left;text-align:center;width:120px;margin-top:16px">多选+可搜索：</span>
+    <div style="display:inline-block;margin-top:10px;">
+        <Select multiple filterable ev-click={{ self.onClick.bind(self) }}
+            data={{ [{ 'text':'北京', 'value': 'goBJ'},{ 'text': '长沙', 'value': 'CSS'},{ 'text': '南京', 'value': 'NJ'},{ 'text':'上海','value':'SH'},{ 'text':"成都","value":'CH'},{ "text":'沈阳北',"value":'SHB'},{'text':'齐齐哈尔','value':'QQHAR'},{'text':'乌鲁木齐市','value':'WLMQS'}] }}
+            ev-click={{ self.multiple.bind(self) }}
+        >
+        </Select>     
+        <span style="float:right;">You selected value：{{ self.get('value_multiple') }}</span> 
+    </div>
+
     <br>
     <span style="float:left;text-align:center;width:120px;margin-top:16px">自定义显示内容</span>
     <div style="display:inline-block;margin-top:10px;">

@@ -1,7 +1,8 @@
 const {
     type, name, value, placeholder,
     readonly, clearable, disabled, size, 
-    rows, spellcheck, defaultValue, style
+    rows, spellcheck, defaultValue, style,
+    className, autoWidth
 } = self.get();
 
 const classNameObj = {
@@ -12,6 +13,8 @@ const classNameObj = {
     'k-with-prefix': blocks.prefix,
     'k-with-suffix': blocks.suffix,
     'k-clearable': clearable,
+    'k-auto-width': autoWidth,
+    [className]: className,
 }
 
 const events = [
@@ -74,6 +77,9 @@ const wrapperEvents = [
             ></i>
             <b:suffix />
         </div>
+        <div v-if={{ autoWidth }} class="k-fake"
+            ref="fake"
+        >{{ value == null || value === '' ? placeholder : value }}</div>
     </div>
     <div class="k-append" v-if={{ blocks.append }}>
         <b:append />

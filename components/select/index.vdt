@@ -4,8 +4,9 @@ import Dropdown, {DropdownItem, DropdownMenu} from '../dropdown';
 import {isStringOrNumber} from '../utils';
 
 const {
-    className, clearable, data, value,
-    disabled, filterable, keywords, _show
+    className, clearable, data, value, multiple,
+    disabled, filterable, keywords, _show,
+    placeholder
 } = self.get();
 
 const classNameObj = {
@@ -16,29 +17,60 @@ const classNameObj = {
     'k-clearable': clearable,
 };
 
-const hasValue = value != null && value !== '';
+const hasValue = value != null && (!multiple && value !== '' || multiple && value.length);
 const isGroup = Array.isArray(self.get('data.0.data'));
 
 let label;
+let labels = [];
 
 const Options = props => {
     const data = props.data;
-    return <DropdownItem 
-        v-for={{ !filterable || keywords == null ? data : data.filter(item => {
-            return ~item.text.indexOf(keywords) || 
-                (isStringOrNumber(item.value) && ~String(item.value).indexOf(keywords));
-        }) }}
-        v-for-value="item"
-        ev-select={{ self._onSelect.bind(self, item.value) }}
-        disabled={{ item.disabled }}
-        class={{ {'k-active': do { 
-            if (item.value === value) { 
+    let active = false;
+    const ret = [];
+    data.forEach((item, index) => {
+        // deprecate text, use label instead of
+        if (item.text) item.label = item.text;
+        
+        if (!multiple) {
+            if (item.value === value) {
                 // set label
-                label = item.text;
-                true;
-            } 
-        }} }}
-    >{{ item.template ? item.template(item, key) : item.text }}</DropdownItem>
+                label = item.label;
+                active = true;
+            } else {
+                active = false;
+            }
+        } else {
+            const index = value.indexOf(item.value);
+            if (~index) {
+                // keep order consistent
+                labels[index] = item.label;
+                active = true;
+            } else {
+                active = false;
+            }
+        }
+
+        if (
+            !filterable || 
+            keywords == null || 
+            ~item.label.indexOf(keywords) || 
+            (
+                isStringOrNumber(item.value) && 
+                ~String(item.value).indexOf(keywords)
+            )
+        ) {
+            ret.push(
+                <DropdownItem 
+                    ev-select={{ self._onSelect.bind(self, item.value) }}
+                    disabled={{ item.disabled }}
+                    class={{ {'k-active': active} }}
+                    hideOnSelect={{ !multiple }}
+                >{{ item.template ? item.template(item, index) : item.label }}</DropdownItem>
+            );
+        }
+    });
+
+    return ret;
 }
 
 const Menu = (
@@ -57,110 +89,54 @@ const Menu = (
 
 
 <div class={{ classNameObj }}>
-        <!-- 多选 显示框 -->
-        <!--<div class="k-multiple" v-else-if={{ self.get('multiple') }}>
-            <div class="input-tag-checked" v-for={{ self.get('values') }}  v-for-value="val">
-                {{ do{
-                    self.get('data').find( item => {
-                        return item.value == val;
-                    }).text
-                } }} 
-                <i ev-click={{ self.deleTag.bind(self,key) }} v-if={{ self.get('multiple') }} class="ion-ios-close-outline"></i>
-            </div>
-            <input type="text" style="position: absolute; left: -10000px" ref="input"/>
-        </div>-->
-        <!-- 分组 -->
-        <!--<input type="text" class="input" v-else-if={{ self.get('group').length>0 }} 
-            placeholder="请选择" readonly
-            value={{ do{
-                let group = [];
-                self.get('group').map( item => {
-                    item.data.map( i => {
-                        group.push(i)
-                    } )
-                })
-                let result = group.find( item => {
-                    return item.value == self.get('value')
-                });
-                if(result){
-                    result.text
-                }
-            } }} 
-            ev-blur={{ self.onBlur.bind(self) }}
-        />-->
     <Dropdown
         position={{ {my: 'left top', at: 'left bottom'} }} 
         trigger="click"
         disabled={{ disabled }}
     >
-        <div class="k-wrapper">
+        <div class="k-wrapper" ev-click={{ self._onClick.bind(self) }}>
             <input type="hidden" value={{ value }} />
-            <input v-if={{ filterable }} type="text" class="k-select-input" 
+            <Input v-if={{ !multiple && filterable }}
                 value={{ keywords == null ? label : keywords }}
                 ev-input={{ self._onSearch.bind(self) }}
                 ev-blur={{ self._onBlur.bind(self) }}
                 disabled={{ disabled }}
-                placeholder="请选择"
+                placeholder={{ placeholder }}
+                ref="input"
             />
-            <span class="k-placeholder" v-else-if={{ !hasValue }}>请选择</span>
-            <span class="k-value" v-else>{{ label }}</span>
+            <span class="k-placeholder" v-else-if={{ !filterable && !hasValue }}>{{ placeholder }}</span>
+            <span class="k-value" v-else-if={{ !multiple }}>{{ label }}</span>
+            <Animate a:tag="span" a:disabled class="k-values" v-else>
+                <Animate a:tag="span" class="k-tag" 
+                    v-for={{ labels }} 
+                    v-for-value="item"
+                    v-for-key="index"
+                    key={{ value[index] }}
+                    a:transition="fade"
+                >
+                    <span class="k-text">{{ item }}</span>
+                    <i class="k-icon ion-ios-close-empty"
+                        ev-click={{ self._delete.bind(self, value[index]) }}
+                    ></i>
+                </Animate>
+                <Input v-if={{ filterable }}
+                    value={{ keywords }}
+                    ev-input={{ self._onSearch.bind(self) }}
+                    ev-blur={{ self._onBlur.bind(self) }}
+                    disabled={{ disabled }}
+                    placeholder={{ !hasValue ? placeholder : '' }}
+                    ref="input"
+                    autoWidth
+                />
+            </Animate>
             <span class="k-suffix">
                 <i v-if={{ clearable }}
                     class={{ {"k-clear ion-ios-close": true, "k-show": hasValue} }}
                     ev-click={{ self._onClear.bind(self) }}
                 ></i>
-                <i class="ion-arrow-down-b"></i>
+                <i class="k-arrow ion-arrow-down-b"></i>
             </span>
         </div>{{ 
         Menu 
     }}</Dropdown>
-    <!--<MoveWrapper>
-        <Animate class="k-dropdown" ref={{ dom => self._dropdown = dom }}
-            v-if={{ self.get('show') }}
-        >   
-            <ul class="k-list" v-if={{ self.get('multiple') }}>
-                <li v-for={{ self.get('data') }} ev-click={{ self.onClick.bind(self,value,key) }}
-                    class={{ {'li-selected': self.get('values').indexOf(value.value)!=-1 } }}
-                >   {{ value.text }}
-                    <span class="li-label" v-show={{ value.label }}>{{ value.label }} </span>
-                </li>
-            </ul>
-            <ul class="k-list" v-else-if={{ self.get('group').length>0 }}>
-                <div v-for={{ self.get('group') }}>
-                    <li class="li-group-label">{{ value.label }}</li>
-                    <li v-for={{ value.data.filter( item =>{
-                            return item.text.indexOf(self.get('keywords')) != -1                            
-                        } ) }} 
-                        ev-click={{ self.onClick.bind(self, value) }}
-                        class={{ {'li-selected': value.value == self.get('value'),'li-disabled': value.disabled} }}>
-                        {{ value.text }}
-                    </li>
-                    <li v-if={{ value.data.every( item =>{
-                            return  item.text.indexOf(self.get('keywords')) ==-1 
-                        } )  }}
-                    >无数据</li>
-                </div>
-            </ul>
-            <ul class="k-list" v-else>
-                <li v-for={{ do{
-                        if(self.get('filterable')){
-                             self.get('data').filter( item =>{ 
-                                 return item.text.indexOf(self.get('keywords')) != -1 
-                            } ) 
-                        }else{
-                             self.get('data')
-                        }
-                    } }}
-                    ev-click={{ self.onClick.bind(self, value) }}
-                    class={{ {'li-selected': value.value == self.get('value'),'li-disabled': value.disabled} }}
-                    >  {{ value.text }}
-                    <span class="li-label" v-show={{ value.label }}>{{ value.label }} </span>
-                </li>
-                <li v-if={{ self.get('data').every( item =>{
-                        return item.text.indexOf(self.get('keywords')) ==-1
-                    } )  }}
-                >无数据</li>
-            </ul>
-        </Animate>
-    </MoveWrapper>-->
 </div>
