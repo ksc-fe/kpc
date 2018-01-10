@@ -46,7 +46,7 @@
             </FormItem>
             <Button @click="add" size="small">添加</Button>
         </FormItem>
-        <FormItem label="验证码" model="model.captcha" :rules="{isEqual: true}">
+        <FormItem model="model.captcha" :rules="{isEqual: true}">
             <template slot="label">验证码 (<span style="color: red;">3</span>)</template>
             <Input v-model="model.captcha" />
         </FormItem>

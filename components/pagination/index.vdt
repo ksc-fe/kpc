@@ -92,7 +92,7 @@ const paginationDot = function(callback) {
     <div class="k-limits">
         <Select v-model="limit"
             data={{ limits.map(item => {
-                return {'value': item, 'text': item + ' 条 / 页'}
+                return {'value': item, 'label': item + ' 条 / 页'}
             }) }}
             size={{ size }}
         />

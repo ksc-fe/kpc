@@ -6,6 +6,10 @@ export default class Pagination extends Intact {
     @Intact.template()
     static template = template;
 
+    static propTypes = {
+        showGoto: Boolean,
+    };
+
     defaults() {
         return {
             total: 0,

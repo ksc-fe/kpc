@@ -6,7 +6,7 @@ import {isStringOrNumber} from '../utils';
 const {
     className, clearable, data, value, multiple,
     disabled, filterable, keywords, _show,
-    placeholder
+    placeholder, size, style, name
 } = self.get();
 
 const classNameObj = {
@@ -15,9 +15,10 @@ const classNameObj = {
     'k-disabled': disabled,
     'k-show': _show,
     'k-clearable': clearable,
+    [`k-${size}`]: size !== 'default',
 };
 
-const hasValue = value != null && (!multiple && value !== '' || multiple && value.length);
+let hasValue = value != null && (!multiple && value !== '' || multiple && value.length);
 const isGroup = Array.isArray(self.get('data.0.data'));
 
 let label;
@@ -88,15 +89,19 @@ const Menu = (
     </DropdownMenu>
 );
 
+// if the value is not in options, then set hasValue to false
+if (hasValue && !label && !labels.length) {
+    hasValue = false;
+}
 
-<div class={{ classNameObj }}>
+<div class={{ classNameObj }} style={{ style }}>
     <Dropdown
         position={{ {my: 'left top', at: 'left bottom'} }} 
         trigger="click"
         disabled={{ disabled }}
     >
         <div class="k-wrapper" ev-click={{ self._focusInput.bind(self) }}>
-            <input type="hidden" value={{ value }} />
+            <input type="hidden" value={{ value }} name={{ name }} />
             <Input v-if={{ !multiple && filterable }}
                 value={{ keywords == null ? label : keywords }}
                 ev-input={{ self._onSearch.bind(self) }}
@@ -104,6 +109,7 @@ const Menu = (
                 disabled={{ disabled }}
                 placeholder={{ placeholder }}
                 ref="input"
+                size={{ size }}
             />
             <span class="k-placeholder" v-else-if={{ !filterable && !hasValue }}>{{ placeholder }}</span>
             <span class="k-value" v-else-if={{ !multiple }}>{{ label }}</span>
@@ -129,6 +135,7 @@ const Menu = (
                     placeholder={{ !hasValue ? placeholder : '' }}
                     ref="input"
                     autoWidth
+                    size={{ size }}
                 />
             </Animate>
             <span class="k-suffix">

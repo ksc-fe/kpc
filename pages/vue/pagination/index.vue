@@ -1,29 +1,21 @@
 <template>
     <div>
-        <pagination :Goto="true" :total="total" :current="current" :size="size" :opts="opts"></pagination>
+        <Pagination 
+            :total="201"
+            :current="5"
+            :limit="20"
+            :limits="[10,20,30,40,50]"
+            showGoto
+        />
     </div>
 </template>
 
 <script>
-    import Pagination from 'components/pagination';
+import Pagination from 'components/pagination';
 
-    export default {
-        data() {
-            return {
-                total: 201,
-                current: 5,
-                size: 10,
-                opts: [10,20,30,40,50,60],
-
-            };
-        },
-
-        components: {
-            Pagination,
-        },
-
-        methods: {
-
-        }
-    }
+export default {
+    components: {
+        Pagination,
+    },
+}
 </script>

@@ -5,7 +5,14 @@ import position from '../moveWrapper/position';
 
 export default class extends Intact{
     @Intact.template()
-    get template() { return template; }
+    static template = template;
+
+    static propTypes = {
+        multiple: Boolean,
+        disabled: Boolean,
+        clearable: Boolean,
+        filterable: Boolean,
+    };
 
     defaults() {
         return {
@@ -17,6 +24,7 @@ export default class extends Intact{
             filterable: false, // 搜索筛选
             keywords: undefined,
             placeholder: '请选择',
+            size: 'default',
 
             _show: false,
         }

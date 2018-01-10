@@ -2,6 +2,7 @@
 
 .k-select
     display inline-block
+    vertical-align middle
     position relative
     width 100%
     > .k-wrapper
@@ -85,24 +86,44 @@
     // multiple
     .k-values
         display inline-block
-        margin-top 5px
+        margin-top $select-multiple-values-margin 
         .k-input
-            margin-top -5px
+            margin-top -($select-multiple-values-margin) 
     .k-tag
-        padding 2px 5px
+        padding $select-multiple-tag-padding 
         background $disabled-bg-color
         // border 1px solid $disabled-border-color
-        border-radius 2px
-        margin 0 5px 5px 0
+        border-radius $select-multiple-tag-border-radius 
+        margin $select-multiple-tag-margin 
         &
         .k-text
         .k-icon
             display inline-block
             vertical-align middle
         .k-icon
-            margin-left 5px
+            margin-left $select-multiple-tag-delete-icon-margin-left 
             &:before
-                font-size 20px
+                font-size $select-multiple-tag-delete-icon-font-size 
+
+    // size
+    for size in small mini
+        &.k-{size}
+            > .k-wrapper
+                min-height lookup('$select-' + size + '-height')
+                font-size lookup('$select-' + size + '-font-size')
+                .k-input
+                .k-placeholder
+                .k-value
+                    line-height s('calc(%s - 2px)', lookup('$select-' + size + '-height'))
+                .k-input
+                    .k-inner
+                        height s('calc(%s - 2px)', lookup('$select-' + size + '-height'))
+                .k-values
+                    margin-top lookup('$select-' + size + '-multiple-values-margin')
+                    .k-input
+                        margin-top -(lookup('$select-' + size + '-multiple-values-margin')) 
+                .k-tag
+                    margin lookup('$select-' + size + '-multiple-tag-margin')
 
 .k-select-dropdown
     .k-active
@@ -113,112 +134,3 @@
         > .k-label
             color $select-group-label-color
             padding $select-group-label-padding
-
-    // .k-input
-        // min-height $select-wrapper-height
-        // border 1px solid $disabled-border-color
-        // line-height $select-wrapper-height
-        // position relative
-        // outline none
-        // &:hover
-            // border-color $selected-status
-            // /* box-shadow 0 0 0 2px rgba(45,140,240,.2)    */
-    // .k-icon
-        // position absolute
-        // top $select-icon-position
-        // right $select-icon-right
-        // margin-top $select-icon-m-t
-    // .k-icon-up
-        // border-left $select-icon-b-l
-        // border-right $select-icon-b-l
-        // border-top $select-icon-b-top
-    // .k-icon-down
-        // border-left $select-icon-b-l
-        // border-right $select-icon-b-l
-        // border-bottom $select-icon-b-top
-    .disabled
-        cursor not-allowed  
-        border-color #d9d9d9 !important
-        color $disabled-color
-        bacground-color $disabled-bg-color
-    .clear-icon
-        float right
-        position absolute
-        right $select-input-font :=unit(14/14, rem) 
-        top 0rem
-        margin-right $select-icon-clear-m-r
-        &:hover      
-            color $selected-status 
-    .k-multiple
-        display inline-block
-        max-width $select-max-width
-        .input-tag-checked
-            display inline-block
-            height $select-tag-checked-height
-            line-height $select-tag-checked-height
-            background #F0F2F9
-            padding $selected-tag-checked-p
-            margin $selceted-tag-checked-m
-            border-radius $selected-tag-checked-border-radius  
-    .input              
-        border 0
-        width $select-input-width
-        height $select-wrapper-height
-        padding-left $select-icon-m-r :=unit(6/14,rem)
-.k-select-disabled &:hover 
-        cursor not-allowed !important
-.k-select-disabled    
-    .k-input
-        &:hover
-            border-color #d9d9d9  
-.tagFocusin  
-    .k-input
-        border-color #0a5eee                
-.k-dropdown
-    position absolute
-    background #fff
-    z-index 1000
-    &.animate-enter
-    &.animate-leave 
-        opacity 0
-        transform translateY(-10px)
-    &.animate-enter-active
-    &.animate-leave-active 
-        transition: all 0.6s
-    .k-list
-        /* border 1px solid $disabled-border-color */
-        box-shadow 0 1px 5px rgba(0,0,0,.2)
-        border-top $select-list-border-t
-        .li-selected
-            color $selected-status
-            &:after
-                content "\2713"
-                position absolute
-                right $select-icon-yes
-                witdh 100%
-        .li-label
-            float right    
-            margin-right $select-li-label-m-r
-        
-        li
-            padding $select-li-margin
-            border-top $select-list-border-t 
-            font-size $select-li-font-size
-            &:hover    
-                background #0a5eee
-                color #fff
-                cursor pointer
-        .li-group-label
-            padding $select-li-group-label  
-            background #f8f8f9
-            &:hover     
-                cursor text     
-                background #f8f8f9
-                color #595959  
-        .li-disabled
-            background-color $disabled-bg-color
-            color $disabled-color
-            &:hover
-                cursor not-allowed
-                background #f8f8f9
-                color #595959  

@@ -56,4 +56,7 @@ import Button from 'components/button';
 
     <br />
     <Input placeholder="auto width" autoWidth />
+
+    <br />
+    <Input placeholder="mini" size="mini" />
 </div>

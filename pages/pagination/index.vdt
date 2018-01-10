@@ -1,7 +1,7 @@
 const Pagination = require('components/pagination');
 
 
-<div style="padding: 200px 400px;">
+<div class="pagination-page">
     <Pagination 
         total={{ 201 }} 
         current={{ 5 }} 

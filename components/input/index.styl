@@ -95,11 +95,12 @@
             cursor not-allowed
     
     // size
-    &.k-small
-        font-size $input-small-font-size
-        .k-inner
-            height $input-small-height
-            font-size $input-small-font-size
+    for size in small mini
+        &.k-{size}
+            font-size lookup('$input-' + size + '-font-size')
+            .k-inner
+                height lookup('$input-' + size + '-height')
+                font-size lookup('$input-' + size + '-font-size')
 
     // fake dom for get value's width
     .k-fake

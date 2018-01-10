@@ -73,4 +73,10 @@ const data = [
             ]
         ) }} />
     </FormItem>
+    <FormItem label="size：">
+        <Select data={{ data }} size="small" style="margin-bottom: 10px;"/>
+        <Select data={{ data }} size="small" filterable style="margin-bottom: 10px;"/>
+        <Select data={{ data }} size="small" filterable multiple style="margin-bottom: 10px;"/>
+        <Select data={{ data }} size="mini" />
+    </FormItem>
 </Form>

@@ -44,26 +44,15 @@
             margin $pagination-goto-margin 
 
     // size 
-    &.k-small
-        font-size $pagination-small-font-size
-        .k-goto
-            .k-input
-                .k-inner
-                    font-size $pagination-small-font-size
-                    height $pagination-page-height
-    &.k-mini
-        font-size $pagination-mini-font-size
-        .k-pages
-            > div
-                margin-right $pagination-mini-page-margin-right
-                min-width $pagination-mini-page-width
-                height $pagination-mini-page-height
-                line-height s('calc(%s - 2px)', @height)
-        .k-goto
-            .k-input
-                .k-inner
-                    font-size $pagination-mini-font-size
-                    height $pagination-mini-page-height
+    for size in small mini
+        &.k-{size}
+            font-size lookup('$pagination-' + size + '-font-size')
+            .k-pages
+                > div
+                    margin-right lookup('$pagination-' + size + '-page-margin-right')
+                    min-width lookup('$pagination-' + size + '-page-width')
+                    height lookup('$pagination-' + size + '-page-height')
+                    line-height s('calc(%s - 2px)', @height)
 
     // FIXME: why should we have to set top 1px to vertical algin middle
     .k-prev
