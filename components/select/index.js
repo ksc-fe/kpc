@@ -3,7 +3,7 @@ import template from './index.vdt';
 import './index.styl';
 import position from '../moveWrapper/position';
 
-export default class extends Intact{
+export default class Select extends Intact{
     @Intact.template()
     static template = template;
 

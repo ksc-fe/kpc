@@ -1,7 +1,7 @@
 import Intact from 'intact';
 import template from './tab.vdt';
 
-export default class extends Intact {
+export default class Tab extends Intact {
     @Intact.template()
     get template() { return template; }
 

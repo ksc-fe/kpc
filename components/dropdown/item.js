@@ -3,7 +3,7 @@ import template from './item.vdt';
 import Dropdown from './dropdown';
 import DropdownMenu from './menu';
 
-export default class extends Intact {
+export default class DropdownItem extends Intact {
     @Intact.template()
     static template = template;
 

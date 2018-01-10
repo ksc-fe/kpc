@@ -1,7 +1,7 @@
 import Intact from 'intact';
 import template from './col.vdt';
 
-export default class extends Intact {
+export default class Col extends Intact {
     @Intact.template()
     get template() { return template; }
 

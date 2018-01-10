@@ -11,7 +11,7 @@ function fixPercent(percent) {
     return percent;
 }
 
-export default class extends Intact{
+export default class Progress extends Intact{
     get template() { return template; }
 
     defaults() {

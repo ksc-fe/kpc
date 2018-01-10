@@ -2,7 +2,7 @@ import Intact from 'intact';
 import template from './index.vdt';
 import './index.styl';
 
-export default class extends Intact {
+export default class Editable extends Intact {
     @Intact.template()
     get template() { return template; }
 

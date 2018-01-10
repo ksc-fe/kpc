@@ -7,7 +7,7 @@ if (process.ssr) {
     serverStyleCleanup = require('node-style-loader/clientCleanup');
 }
 
-export default class extends Intact {
+export default class App extends Intact {
     @Intact.template()
     get template() { return template; }
 

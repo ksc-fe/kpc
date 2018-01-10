@@ -4,7 +4,7 @@ import './index.styl';
 
 const {isArray} = Intact.Vdt.utils;
 
-export default class extends Intact {
+export default class Checkbox extends Intact {
     get template() { return template; }
 
     defaults() {

@@ -3,7 +3,7 @@ import template from './index.vdt';
 import './index.styl';
 import position from '../moveWrapper/position';
 
-export default class extends Intact {
+export default class Dialog extends Intact {
     @Intact.template()
     get template() { return template; }
 
