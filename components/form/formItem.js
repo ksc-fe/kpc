@@ -33,8 +33,11 @@ export default class extends Intact {
         if (!this.get('model')) return;
 
         let form = this.parentVNode;
-        while (form.tag !== Form) {
+        while (form && form.tag !== Form) {
             form = form.parentVNode;
+        }
+        if (!form) {
+            throw new Error('FormItem must be used as the descendant of Form');
         }
         this.form = form = form.children;
         const items = form.get('items');

@@ -5,8 +5,9 @@ import Checkbox from 'components/checkbox';
 import {Row, Col} from 'components/grid';
 import Input from 'components/input';
 
-<Form ref="form" style="margin: 20px; width: 400px;"
+<Form ref="form" style="margin: 20px;"
     ev-submit={{ self.submit.bind(self) }}
+    class="form-page"
 >
     <FormItem label="用户名" model="model.userName" rules={{ {required: true, checkName: true} }}>
         <Input v-model="model.userName" />

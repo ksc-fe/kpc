@@ -50,13 +50,14 @@ const Options = props => {
             }
         }
 
+        let tmp;
         if (
             !filterable || 
             keywords == null || 
-            ~item.label.indexOf(keywords) || 
+            ~item.label.toLowerCase().indexOf((tmp = keywords.toLowerCase())) || 
             (
                 isStringOrNumber(item.value) && 
-                ~String(item.value).indexOf(keywords)
+                ~String(item.value).toLowerCase().indexOf(tmp)
             )
         ) {
             ret.push(

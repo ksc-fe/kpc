@@ -1,13 +1,13 @@
 import template from './index.vdt';
+import './index.styl';
 
 export default class extends Intact {
     get template() { return template; }
     
     defaults(){
         return {
-            value1: 'Monday',
-            value_multiple:'',
-            valueSearch:'beijing'
+            value: 'Monday',
+            values: ['Monday', 'Tuesday'],
         }
     }  
 

@@ -1,125 +1,76 @@
 import Select from 'components/select';
+import {Form, FormItem} from 'components/form';
 
-<div>
-    <span style="float:left;text-align:center;width:120px;margin-top:16px">标准：</span>
-    <div style="display:inline-block">
-        <Select v-model="value1" class="test"
-            data={{ [{ 'text':'星期一', 'value': 'Monday'},{ 'text': '星期二', 'value': 'Thusday'}] }}
-        >
-        </Select>
-        <span style="float:right;">You selected value：{{ self.get('value1') }}</span>       
-    </div>
-    <br>
-    <span style="float:left;text-align:center;width:120px;margin-top:16px">禁止所有：</span>
-    <div style="display:inline-block;margin-top:10px;">
-        <Select disabled ev-click={{ self.onClick.bind(self) }}
-            data={{ [{ 'text':'星期一', 'value': 'Monday'},{ 'text': '星期二', 'value': 'Thusday'}] }}
-        >
-        </Select>     
-    </div>
-    <br>
-    <span style="float:left;text-align:center;width:120px;margin-top:16px">禁止某一项：</span>
-    <div style="display:inline-block;margin-top:10px;">
-        <Select ev-click={{ self.onClick.bind(self) }}
-            data={{ [{ 'text':'星期一', 'value': 'Monday'},{ 'text': '星期二', 'value': 'Thusday','disabled':true},{'text':'星期三','value':'Wednesday'}] }}
-        >
-        </Select>     
-    </div>
-    <br>
-    <span style="float:left;text-align:center;width:120px;margin-top:16px">删除已选项：</span>
-    <div style="display:inline-block;margin-top:10px;">
-        <Select clearable ev-click={{ self.onClick.bind(self) }}
-            data={{ [{ 'text':'星期一', 'value': 'Monday'},{ 'text': '星期二', 'value': 'Thusday'},{'text':'星期三','value':'Wednesday'}] }}
-        >
-        </Select>     
-    </div>
-    <br>
-    <span style="float:left;text-align:center;width:120px;margin-top:16px">支持多选项：</span>
-    <div style="display:inline-block;margin-top:10px;">
-        <Select multiple ev-click={{ self.onClick.bind(self) }}
-            data={{ [{ 'text':'北京', 'value': 'goBJ'},{ 'text': '长沙', 'value': 'CSS'},{ 'text': '南京', 'value': 'NJ'},{ 'text':'上海','value':'SH'},{ 'text':"成都","value":'CH'},{ "text":'沈阳北',"value":'SHB'},{'text':'齐齐哈尔','value':'QQHAR'},{'text':'乌鲁木齐市','value':'WLMQS'}] }}
-            ev-click={{ self.multiple.bind(self) }}
-        >
-        </Select>     
-        <span style="float:right;">You selected value：{{ self.get('value_multiple') }}</span> 
-    </div>
-    <br />
-    <span style="float:left;text-align:center;width:120px;margin-top:16px">多选+可搜索：</span>
-    <div style="display:inline-block;margin-top:10px;">
-        <Select multiple filterable ev-click={{ self.onClick.bind(self) }}
-            data={{ [{ 'text':'北京', 'value': 'goBJ'},{ 'text': '长沙', 'value': 'CSS'},{ 'text': '南京', 'value': 'NJ'},{ 'text':'上海','value':'SH'},{ 'text':"成都","value":'CH'},{ "text":'沈阳北',"value":'SHB'},{'text':'齐齐哈尔','value':'QQHAR'},{'text':'乌鲁木齐市','value':'WLMQS'}] }}
-            ev-click={{ self.multiple.bind(self) }}
-        >
-        </Select>     
-        <span style="float:right;">You selected value：{{ self.get('value_multiple') }}</span> 
-    </div>
+const data = [
+    {label: '星期一', value: 'Monday'},
+    {label: '星期二', value: 'Tuesday'},
+    {label: '星期三', value: 'Wednesday'},
+    {label: '星期四', value: 'Thursday'},
+    {label: '星期五', value: 'Friday'},
+    {label: '星期六', value: 'Saturday'},
+    {label: '星期天', value: 'Sunday'},
+];
 
-    <br>
-    <span style="float:left;text-align:center;width:120px;margin-top:16px">自定义显示内容</span>
-    <div style="display:inline-block;margin-top:10px;">
-        <Select ev-click={{ self.onClick.bind(self) }}
-            data={{ 
-                [
-                    {text: '北京', value: 'beijing'},
-                    {text: '上海', value: 'shanghai'},
-                    {text: '成都', value: 'chengdu'},
-                ].map(item => {
-                    return {text: item.text, value: item.value, template() {
-                        return <div>
-                            <span>{{ item.text }}</span>
-                            <span style="float: right; color: #ccc">{{ item.value }}</span>
-                        </div>
-                    }}
-                })
-            }}
-        >
-        </Select>      
-    </div>
-    <br>
-    <!-- <span style="float:left;text-align:center;width:120px;margin-top:16px">尺寸</span>
-    <div style="display:inline-block;margin-top:10px;">
-        <Select ev-click={{ self.onClick.bind(self) }}
-            size={{ {'width':'300','height':'42'} }}
-            data={{ [{ 'text':'长长长长长长长长', 'value': 'goBJ','label':'changchanghchang'},{ 'text':'上海','value':'SH','label':'shanghai'},{ 'text':"成都","value":'CH','label':'chengdu'}] }}
-        >
-        </Select>      
-    </div> -->
-    <br>
-    <span style="float:left;text-align:center;width:120px;margin-top:16px">分组</span>
-    <div style="display:inline-block;margin-top:10px;">
-        <Select ev-click={{ self.onClick.bind(self) }}
-            value="BJ"
-            data={{ [  
-                        {   
-                            'label':'一线城市',
-                            'data':[{ 'text':'北京', 'value': 'BJ'},{ 'text':'上海','value':'SH'}]
-                        },
-                        {
-                            'label':'二线城市',
-                            'data':[{'text':'沈阳','value':'SY'},{'text':'杭州','value':'HZ'}]
-                        }
-            
-                    ] }}
-        > 
-        </Select>      
-    </div>
-    <br>
-    <span style="float:left;text-align:center;width:120px;margin-top:16px">可搜索</span>
-    <div style="display:inline-block;margin-top:10px;">
-        <Select ev-click={{ self.onClick.bind(self) }} 
-            filterable
-            clearable
-            data={{ 
-                [
-                    {text: '北京', value: 'beijing'},
-                    {text: '上海', value: 'shanghai'},
-                    {text: '成都', value: 'chengdu'},
-                ]
-            }} 
-            v-model="valueSearch"
-        >
-        </Select>   
-        <span>{{ self.get('valueSearch') }}</span>   
-    </div>
-    <br>
-</div>
+<Form style="margin: 20px;" class="select-page">
+    <FormItem label="标准：">
+        <Select v-model="value" data={{ data }} />
+        <b:append>
+            Your selected value is {{ self.get('value') }}
+        </b:append>
+    </FormItem>
+    <FormItem label="禁用状态：">
+        <Select disabled data={{ data }} />
+    </FormItem>
+    <FormItem label="禁用某一项：">
+        <Select data={{ data.map(item => {
+            item = {...item};
+            if (item.value === 'Tuesday') {
+                item.disabled = true;
+            }
+            return item;
+        }) }} />
+    </FormItem>
+    <FormItem label="可清空：">
+        <Select clearable data={{ data }} />
+    </FormItem>
+    <FormItem label="多选：">
+        <Select multiple data={{ data }} v-model="values" />
+        <b:append>
+            Your selected values is {{ JSON.stringify(self.get('values')) }}
+        </b:append>
+    </FormItem>
+    <FormItem label="可搜索：">
+        <Select filterable data={{ data }} />
+    </FormItem>
+    <FormItem label="多选+可搜索：">
+        <Select multiple filterable data={{ data }} />
+    </FormItem>
+    <FormItem label="自定义显示内容：">
+        <Select data={{ data.map(item => {
+            item = {...item};
+            item.template = () => {
+                return <div>
+                    <span>{{ item.label }}</span>
+                    <span style="float: right; color: #ccc">{{ item.value }}</span>
+                </div>
+            }
+            return item;
+        }) }} />
+    </FormItem>
+    <FormItem label="分组：">
+        <Select data={{ data.reduce(
+            (memo, item) => {
+                if (item.value === 'Saturday' || item.value === 'Sunday') {
+                    memo[1].data.push(item);
+                } else {
+                    memo[0].data.push(item);
+                }
+                return memo;
+            }, 
+            [
+                {label: '工作日', data: []}, 
+                {label: '双休日', data: []}
+            ]
+        ) }} />
+    </FormItem>
+</Form>

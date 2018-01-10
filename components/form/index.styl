@@ -4,14 +4,14 @@
 .k-form-item
     margin $form-item-margin
     display table 
-    width 100%
-    .k-label
+    // width 100%
+    > .k-label
         display table-cell
         width $form-item-label-width 
         text-align $form-item-label-text-align 
         padding-right $form-item-label-padding-right 
         line-height $form-item-label-line-height
-    .k-content
+    > .k-content
         display table-cell
         vertical-align middle
 
@@ -22,13 +22,20 @@
         font-size $form-item-error-font-size 
         margin $form-item-error-margin
     &.k-invalid
-        .c-input
-            border $form-item-invalid-border
+        // input
+        .k-input
+            .k-inner
+                border $form-item-invalid-border
 
     // nested
     .k-form-item
         display block 
         width auto
         margin 0
-        .k-content
+        > .k-content
             display block 
+
+    // append
+    > .k-append
+        display table-cell
+        padding $form-item-append-padding

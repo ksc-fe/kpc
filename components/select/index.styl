@@ -3,10 +3,12 @@
 .k-select
     display inline-block
     position relative
+    width 100%
     > .k-wrapper
+        width 100%
         min-height $select-height
         // line-height s('calc(%s - 2px)', @min-height)
-        width $select-width
+        // width $select-width
         cursor pointer
         outline none
         vertical-align middle
@@ -34,7 +36,7 @@
             opacity 1
             pointer-events all
     &.k-clearable
-        .k-wrapper
+        > .k-wrapper
             padding-right ($select-padding-right + $select-clear-margin-right * 3)
 
     // filterable
