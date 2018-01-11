@@ -40,3 +40,16 @@ export function isTextVNode(o) {
 }
 
 export const isObject = utils.isObject;
+
+export function findParentComponent(Component, instance, isUntil) {
+    let ret;
+    let parent = instance.parentVNode;
+    while (parent) {
+        if (parent.tag === Component) {
+            ret = parent.children;        
+            if (isUntil) break;
+        }
+        parent = parent.parentVNode;
+    }
+    return ret;
+}

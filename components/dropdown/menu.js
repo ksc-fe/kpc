@@ -1,6 +1,7 @@
 import Intact from 'intact';
 import template from './menu.vdt';
 import position from '../moveWrapper/position';
+import {findParentComponent} from '../utils';
 
 export default class DropdownMenu extends Intact {
     @Intact.template()
@@ -16,42 +17,41 @@ export default class DropdownMenu extends Intact {
 
     _init() {
         this.subDropdowns = [];
+        this.items = [];
+        this.focusIndex = -1;
+        this.locked = false;
 
         this.on('$changed:show', (c, value) => {
             if (value) {
-                this._addDocumentClick();
+                this.focusIndex = -1;
+                this._addDocumentEvents();
                 this.position();
             } else {
-                this._removeDocumentClick();
+                this._removeDocumentEvents();
             }
         });
 
         this._onDocumentClick = this._onDocumentClick.bind(this);
+        this._onKeydown = this._onKeydown.bind(this);
     }
 
     _mount() {
-        const parent = this._findParentDropdown();
+        const parent = this._findParentDropdownMenu();
         if (parent) parent.subDropdowns.push(this);
 
         if (this.get('show')) {
-            this._addDocumentClick();
+            this._addDocumentEvents();
         }
     }
 
-    _findParentDropdown() {
-        let parentVNode = this.parentVNode;
-        while (parentVNode) {
-            if (parentVNode.tag === DropdownMenu) {
-                return parentVNode.children;
-            }
-            parentVNode = parentVNode.parentVNode;
-        }
+    _findParentDropdownMenu() {
+        return findParentComponent(DropdownMenu, this, true);
     }
 
     show() {
         clearTimeout(this.timer);
         this.set('show', true);
-        const parent = this._findParentDropdown();
+        const parent = this._findParentDropdownMenu();
         if (parent) {
             parent.show();
         }
@@ -80,16 +80,30 @@ export default class DropdownMenu extends Intact {
         });
     }
 
-    _addDocumentClick() {
-        if (this.get('trigger') === 'click') {
-            document.addEventListener('click', this._onDocumentClick);
+    _addDocumentEvents() {
+        const parent = this._findParentDropdownMenu();
+        if (!parent) {
+            if (this.get('trigger') === 'click') {
+                document.addEventListener('click', this._onDocumentClick);
+            }
+        } else {
+            parent.locked = true;
         }
+
+        document.addEventListener('keydown', this._onKeydown);
     }
 
-    _removeDocumentClick() {
-        if (this.get('trigger') === 'click') {
-            document.removeEventListener('click', this._onDocumentClick);
+    _removeDocumentEvents() {
+        const parent = this._findParentDropdownMenu();
+        if (!parent) {
+            if (this.get('trigger') === 'click') {
+                document.removeEventListener('click', this._onDocumentClick);
+            }
+        } else {
+            parent.locked = false;
         }
+
+        document.removeEventListener('keydown', this._onKeydown);
     }
 
     _onDocumentClick(e) {
@@ -102,6 +116,123 @@ export default class DropdownMenu extends Intact {
         if (this._isClickSubMenu(target, this.subDropdowns)) return;
 
         this.hide(true);
+    }
+
+    _onKeydown(e) {
+        if (this.locked) {
+            return;
+        }
+        switch (e.keyCode) {
+            // down
+            case 40:
+                this._focusNextItem(e); 
+                break;
+            // up
+            case 38:
+                this._focusPrevItem(e); 
+                break;
+            // right
+            case 39:
+                this._showSubMenu(e);
+                break;
+            // left
+            case 37:
+                this._hideSubMenu(e);
+                break;
+            // enter
+            case 13:
+                this._selectItem(e);
+                break;
+        }
+    }
+
+    _focusNextItem(e) {
+        const parent = this._findParentDropdownMenu();
+        if (parent && this.focusIndex < 0) {
+            return;
+        }
+        e.preventDefault();
+        this.focusItemByIndex(this.focusIndex + 1, 'down');
+    }
+
+    _focusPrevItem(e) {
+        const parent = this._findParentDropdownMenu();
+        if (parent && this.focusIndex < 0) {
+            return;
+        }
+        e.preventDefault();
+        this.focusItemByIndex(this.focusIndex - 1, 'up');
+    }
+
+    focusItemByIndex(index, direction = 'down') {
+        const items = this.items;
+        const max = items.length - 1;
+        const oldIndex = this.focusIndex;
+
+        function fixIndex(index) {
+            if (index > max) {
+                index = 0;
+            } else if (index < 0) {
+                index = max;
+            }
+            return index;
+        }
+
+        index = fixIndex(index);
+
+        let i = 0;
+        while (i <= max && items[index].get('disabled')) {
+            index = fixIndex(direction === 'down' ? index + 1 : index - 1);
+            i++;
+        }
+
+        // all items are disabled
+        if (i > max) return;
+
+        this.focusIndex = index;
+
+        if (oldIndex > -1) {
+            items[oldIndex].unFocus();
+        }
+
+        items[index].focus();
+    }
+
+    _selectItem(e) {
+        this._showSubMenu(e);
+        if (this.focusIndex > -1) {
+            e.preventDefault();
+            this.items[this.focusIndex].select();
+        }
+    }
+
+    _showSubMenu(e) {
+        const parent = this._findParentDropdownMenu();
+        if (!parent && this.focusIndex < 0) return;
+
+        e.preventDefault();
+        if (parent && this.focusIndex < 0) {
+            this.focusItemByIndex(0);
+        } else if (this.focusIndex > -1) {
+            this.items[this.focusIndex].showMenuAndFocus();
+        }
+    }
+
+    _hideSubMenu(e) {
+        if (this.focusIndex > -1) {
+            e.preventDefault();
+            this.items[this.focusIndex].hideMenu();
+
+            const parent = findParentComponent(DropdownMenu, this, true);
+            if (parent) {
+                this.dropdown.hide(null, null, true);
+            }
+        }
+    }
+
+    focusItem(item) {
+        const index = this.items.indexOf(item);
+        this.focusItemByIndex(index);
     }
 
     _isClickSubMenu(target, subMenus) {
@@ -122,12 +253,12 @@ export default class DropdownMenu extends Intact {
     }
 
     _destroy() {
-        const parent = this._findParentDropdown();
+        const parent = this._findParentDropdownMenu();
         if (parent) {
             const subDropdowns = parent.subDropdowns;
             subDropdowns.splice(subDropdowns.indexOf(this), 1);
         } 
         clearTimeout(this.timer);
-        this._removeDocumentClick();
+        this._removeDocumentEvents();
     }
 }

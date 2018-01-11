@@ -1,5 +1,6 @@
 import Intact from 'intact';
-import {isTextVNode} from '../utils';
+import {isTextVNode, findParentComponent} from '../utils';
+import DropdownMenu from './menu';
 
 const h = Intact.Vdt.miss.h;
 
@@ -55,21 +56,25 @@ export default class Dropdown extends Intact {
         this.get('menu').children.dropdown = this;
     }
 
-    show(fn, e) {
+    show(fn, e, isFocus) {
         if (typeof fn === 'function') fn(e);
 
         if (this.get('disabled')) return;
 
         const menu = this.get('menu').children;
         menu.show();
+
+        if (isFocus) {
+            menu.focusItemByIndex(0);
+        }
     }
 
-    hide(fn, e) {
+    hide(fn, e, immediately) {
         if (typeof fn === 'function') fn(e);
 
         if (this.get('disabled')) return;
 
         const menu = this.get('menu').children;
-        menu.hide();
+        menu.hide(immediately);
     }
 }

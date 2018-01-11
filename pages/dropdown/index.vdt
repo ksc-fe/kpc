@@ -11,6 +11,14 @@ import Button, {ButtonGroup} from 'components/button';
                 <DropdownItem>content</DropdownItem>
             </DropdownMenu>
         </Dropdown>
+        <Dropdown>
+            <Button>keydown</Button>
+            <DropdownMenu>
+                <DropdownItem disabled>content</DropdownItem>
+                <DropdownItem disabled>content</DropdownItem>
+                <DropdownItem disabled>content</DropdownItem>
+            </DropdownMenu>
+        </Dropdown>
         <Dropdown trigger="click">
             <Button>click</Button>
             <DropdownMenu>
