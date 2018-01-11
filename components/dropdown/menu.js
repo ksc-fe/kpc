@@ -191,7 +191,7 @@ export default class DropdownMenu extends Intact {
 
         this.focusIndex = index;
 
-        if (oldIndex > -1) {
+        if (oldIndex > -1 && items[oldIndex]) {
             items[oldIndex].unFocus();
         }
 
