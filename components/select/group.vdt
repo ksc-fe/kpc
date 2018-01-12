@@ -1,0 +1,6 @@
+const {children, label} = self.get();
+
+<div class="k-group">
+    <div class="k-label">{{ label }}</div>
+    {{ children }}
+</div>
