@@ -14,7 +14,9 @@
         </FormItem>
         <FormItem label="option:">
             <Select filterable>
-                <Option v-for="item in data" :value="item.value">{{ item.label }}</Option>
+                <Option v-for="item in data" :value="item.value"
+                    :key="item.value"
+                >{{ item.label }}</Option>
             </Select>
         </FormItem>
         <FormItem label="option group:">
@@ -23,12 +25,14 @@
                     <Option v-for="(item, index) in data" 
                         v-if="index < 5"
                         :value="item.value"
+                        :key="item.value"
                     >{{ item.label }}</Option>
                 </OptionGroup>
                 <OptionGroup label="双休日">
                     <Option v-for="(item, index) in data" 
                         v-if="index > 4"
                         :value="item.value"
+                        :key="item.value"
                     >{{ item.label }}</Option>
                 </OptionGroup>
             </Select>
@@ -38,6 +42,7 @@
                 <Option v-for="value in data" 
                     :value="value.value"
                     :label="value.label"
+                    :key="value.value"
                 >
                     <div>
                         <span>{{ value.label }}</span>

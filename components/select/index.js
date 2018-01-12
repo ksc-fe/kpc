@@ -47,7 +47,7 @@ export default class Select extends Intact{
 
     _onSelect(value) {
         if (!this.get('multiple')) {
-            this.set('value', value);
+            this.set('value', value, {async: true});
         } else {
             let values = this.get('value');
             if (!Array.isArray(values)) {
@@ -62,7 +62,7 @@ export default class Select extends Intact{
             } else {
                 values.push(value);
             }
-            this.set('value', values);
+            this.set('value', values, {async: true});
             this._focusInput();
         }
         this._resetSearch();
@@ -80,7 +80,7 @@ export default class Select extends Intact{
     }
 
     _resetSearch() {
-        this.set('keywords', undefined);
+        this.set('keywords', undefined, {async: true});
     }
 
     _onChangeShow(c, value) {
