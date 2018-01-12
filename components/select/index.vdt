@@ -1,4 +1,3 @@
-import MoveWrapper from '../moveWrapper';
 import Input from '../input';
 import Dropdown, {DropdownItem, DropdownMenu} from '../dropdown';
 import {isStringOrNumber, getTextByChildren} from '../utils';

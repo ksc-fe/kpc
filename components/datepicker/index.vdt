@@ -1,0 +1,81 @@
+import Input from '../input';
+import Button from '../button';
+import Tooltip from '../tooltip';
+
+const {
+    value, clearable, className, style,
+    name
+} = self.get();
+
+const classNameObj = {
+    'k-datepicker': true,
+    [className]: className,
+}
+
+<div class={{ classNameObj }} style={{ style }}>
+    <Tooltip class="k-datepicker-content" 
+        position={{ {my: 'left top', at: 'left bottom'} }}
+        trigger="click"
+        showArrow={{ false }}
+        transition="dropdown"
+        ref="calendar"
+    >
+        <Input placeholder="请选择日期" readonly 
+            value={{ value }}
+            clearable={{ clearable }}
+            ev-clear={{ self.onClear.bind(self) }}
+            name={{ name }}
+        />
+        <b:content>
+            <div class="k-month c-clearfix">
+                <Button icon type="none" size="small" class="k-prev">
+                    <i class="k-icon ion-ios-arrow-left"></i>
+                </Button>
+                <span class="k-text">{{ self.getYear() }}年</span>
+                <span class="k-text">{{ self.getMonth() }}月</span>
+                <Button icon type="none" size="small" class="k-next">
+                    <i class="k-icon ion-ios-arrow-right"></i>
+                </Button>
+            </div>
+            <div class="k-weekdays">
+                <div class="k-weekday"
+                    v-for={{ ['日', '一', '二', '三', '四', '五', '六'] }}
+                >{{ value }}</div>
+            </div>
+            <div class="k-calendar">
+                {{ do {
+                    const ret = [];
+                    const date = self.now.getDate();
+                    const month = self.now.getMonth();
+                    const start = new Date(self.now);
+                    start.setDate(1);
+                    const startWeekday = start.getDay(); 
+                    start.setDate(1 - startWeekday);
+                    const dateValue = new Date(value);
+
+                    for (let i = 0; i < 42; i++) {
+                        const _date = start.getDate();
+                        const _month = start.getMonth();
+                        ret.push(
+                            <div 
+                                class={{ {
+                                    "k-day": true,
+                                    "k-out": _month !== month,
+                                    "k-active": self.isEqual(dateValue, start),
+                                    "k-today": self.isEqual(self.now, start),
+                                } }}
+                                ev-click={{ self.select.bind(self, new Date(start)) }}
+                            >{{ _date }}</div>
+                        );
+                        start.setDate(start.getDate() + 1);
+                    }
+                    const result = [];
+                    for (let i = 0; i < 6; i++) {
+                        result.push(<div>{{ ret.slice(7 * i, 7 * (i + 1)) }}</div>)
+                    }
+                    result;
+                } }}
+            </div>
+        </b:content>
+    </Tooltip>
+</div>

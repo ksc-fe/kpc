@@ -69,3 +69,13 @@ export function findParentComponent(Component, instance, isUntil) {
     }
     return ret;
 }
+
+export function strPad(str, length, pad) {
+    str = str.toString();
+    pad = pad === undefined ? '0' : pad;
+    var l = str.length;
+    if (l < length) {
+        str = new Array(length - l + 1).join(pad) + str;
+    }
+    return str;
+}

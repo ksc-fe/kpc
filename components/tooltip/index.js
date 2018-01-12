@@ -17,6 +17,7 @@ class TooltipContent extends Intact {
     static propTypes = {
         show: Boolean,
         canHover: Boolean,
+        showArrow: Boolean,
     };
 
     defaults() {
@@ -24,7 +25,9 @@ class TooltipContent extends Intact {
             show: false,
             trigger: 'hover',
             canHover: false,
+            showArrow: true,
             positon: {},
+            transition: 'fade',
 
             _feedback: {},
         };
@@ -124,7 +127,7 @@ class TooltipContent extends Intact {
 const h = Intact.Vdt.miss.h;
 
 function Wrapper(props, inVue) {
-    let {children, content, _blocks, _context, ...rest} = props;
+    let {children, content, _blocks, _context, ref, ...rest} = props;
 
     if (_blocks && _blocks.content) {
         content = _blocks.content.call(_context);
@@ -133,6 +136,7 @@ function Wrapper(props, inVue) {
     const contentVNode = h(TooltipContent, {
         _context,
         children: content,
+        ref,
         ...rest
     });
 

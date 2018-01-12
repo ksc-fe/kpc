@@ -1,0 +1,13 @@
+import Datepicker from 'components/datepicker';
+import {Form, FormItem} from 'components/form';
+
+<Form class="datepicker-page">
+    <FormItem label="basic">
+        <Datepicker v-model="basicValue" />
+        <b:append>{{ self.get('basicValue') }}</b:append>
+    </FormItem>
+    <FormItem label="clearable">
+        <Datepicker clearable v-model="clearableValue" />
+        <b:append>{{ self.get('clearableValue') }}</b:append>
+    </FormItem>
+</Form>

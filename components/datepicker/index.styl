@@ -1,0 +1,50 @@
+@require('./variables.styl')
+
+.k-datepicker
+    display inline-block
+    .k-inner
+        cursor pointer
+
+.k-datepicker-content
+    position absolute
+    border-radius 2px
+    box-shadow $box-shadow
+    color $text-color
+    .k-day
+    .k-weekday
+        display inline-block
+        width 30px
+        text-align center
+        margin 1px 2px
+    .k-day
+        height 30px
+        line-height 30px
+        border-radius 50%
+        cursor pointer
+        &:hover
+            background $bg-color
+        &.k-out
+            color $disabled-color
+        &.k-today
+            border 1px solid $border-color
+            margin 0 2px
+        &.k-active
+            background $primary-color
+            color #fff
+            &.k-today
+                border-color $primary-color
+    .k-weekday
+        color $disabled-color
+
+    .k-month
+        text-align center
+        padding-bottom 5px
+        .k-text
+            margin 0 3px
+            line-height 30px
+        .k-icon
+            font-size 14px
+        .k-prev
+            float left
+        .k-next
+            float right

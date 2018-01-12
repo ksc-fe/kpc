@@ -1,8 +1,8 @@
 import MoveWrapper from '../moveWrapper';
 
 const {
-    children, show, trigger, 
-    canHover, className, _feedback
+    children, show, trigger, showArrow,
+    canHover, className, _feedback, transition
 } = self.get();
 
 const events = {};
@@ -20,13 +20,16 @@ const classNameObj = {
 <MoveWrapper>
     <Animate v-if={{ show }}
         class={{ classNameObj }}
-        a:transition="fade"
+        a:transition={{ transition }}
         ref="content"
         {{ ...events }}
         a:delayDestroy={{ false }}
-    ><i class={{ {
-        "k-arrow": true,
-        [`k-${_feedback.vertical}`]: _feedback.vertical,
-        [`k-${_feedback.horizontal}`]: _feedback.horizontal,
-    } }}></i>{{ children }}</Animate>
+    ><i 
+        v-if={{ showArrow }}
+        class={{ {
+            "k-arrow": true,
+            [`k-${_feedback.vertical}`]: _feedback.vertical,
+            [`k-${_feedback.horizontal}`]: _feedback.horizontal,
+        } }}
+    ></i>{{ children }}</Animate>
 </MoveWrapper>
