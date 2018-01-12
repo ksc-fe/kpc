@@ -2,6 +2,8 @@ import Intact from 'intact';
 import template from './index.vdt';
 import './index.styl';
 import position from '../moveWrapper/position';
+import Option from './option';
+import Group from './group';
 
 export default class Select extends Intact{
     @Intact.template()
@@ -70,6 +72,7 @@ export default class Select extends Intact{
         this.set('keywords', e.target.value);
         // always show menu on searching
         this.refs.menu.show();
+        this.refs.menu.focusItemByIndex(0);
         // in multiple mode, it may lead the height to change
         if (this.get('multiple')) {
             this.refs.menu.position();
@@ -125,3 +128,5 @@ export default class Select extends Intact{
         }
     }
 }
+
+export {Select, Option, Group as OptionGroup};

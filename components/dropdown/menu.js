@@ -181,7 +181,7 @@ export default class DropdownMenu extends Intact {
         index = fixIndex(index);
 
         let i = 0;
-        while (i <= max && items[index].get('disabled')) {
+        while (i <= max && items[index] && items[index].get('disabled')) {
             index = fixIndex(direction === 'down' ? index + 1 : index - 1);
             i++;
         }

@@ -1,12 +1,14 @@
 import MoveWrapper from '../moveWrapper';
 import Input from '../input';
 import Dropdown, {DropdownItem, DropdownMenu} from '../dropdown';
-import {isStringOrNumber} from '../utils';
+import {isStringOrNumber, getTextByChildren} from '../utils';
+import Option from './option';
+import OptionGroup from './group';
 
 const {
     className, clearable, data, value, multiple,
     disabled, filterable, keywords, _show,
-    placeholder, size, style, name
+    placeholder, size, style, name, children
 } = self.get();
 
 const classNameObj = {
@@ -24,43 +26,55 @@ const isGroup = Array.isArray(self.get('data.0.data'));
 let label;
 let labels = [];
 
+const handleProps = props => {
+    let active = false;
+    let valid = false;
+
+    if (!multiple) {
+        if (props.value === value) {
+            // set label
+            label = props.label;
+            active = true;
+        } else {
+            active = false;
+        }
+    } else {
+        const index = value.indexOf(props.value);
+        if (~index) {
+            // keep order consistent
+            labels[index] = props.label;
+            active = true;
+        } else {
+            active = false;
+        }
+    }
+
+    let tmp;
+    if (
+        !filterable && 
+        props.label || 
+        keywords == null || 
+        ~props.label.toLowerCase().indexOf((tmp = keywords.toLowerCase())) || 
+        (
+            isStringOrNumber(props.value) && 
+            ~String(props.value).toLowerCase().indexOf(tmp)
+        )
+    ) {
+        valid = true; 
+    }
+
+    return {active, valid};
+};
+
 const Options = props => {
     const data = props.data;
-    let active = false;
     const ret = [];
     data.forEach((item, index) => {
         // deprecate text, use label instead of
         if (item.text) item.label = item.text;
         
-        if (!multiple) {
-            if (item.value === value) {
-                // set label
-                label = item.label;
-                active = true;
-            } else {
-                active = false;
-            }
-        } else {
-            const index = value.indexOf(item.value);
-            if (~index) {
-                // keep order consistent
-                labels[index] = item.label;
-                active = true;
-            } else {
-                active = false;
-            }
-        }
-
-        let tmp;
-        if (
-            !filterable || 
-            keywords == null || 
-            ~item.label.toLowerCase().indexOf((tmp = keywords.toLowerCase())) || 
-            (
-                isStringOrNumber(item.value) && 
-                ~String(item.value).toLowerCase().indexOf(tmp)
-            )
-        ) {
+        const {valid, active} = handleProps(item);
+        if (valid) {
             ret.push(
                 <DropdownItem 
                     ev-select={{ self._onSelect.bind(self, item.value) }}
@@ -75,6 +89,42 @@ const Options = props => {
     return ret;
 }
 
+const OptionsVNodes = ({children}) => {
+    return __u.map(children ? (Array.isArray(children) ? children : [children]) : children, vNode => {
+        if (vNode.tag === Option) {
+            let props = vNode.props;
+            props = {
+                ...props, 
+                'ev-select': self._onSelect.bind(self, props.value),
+                hideOnSelect: !multiple,
+                label: props.label || getTextByChildren(props.children),
+                children: props.children || props.label 
+            };
+            const {active, valid} = handleProps(props);
+            if (!valid) {
+                return <!---->;
+            } else {
+                props.className = _className({
+                    [props.className]: props.className,
+                    'k-active': active,
+                });
+            }
+
+            // return the cloned vNode
+            return h(Option, props);
+        } else if (vNode.tag === OptionGroup) {
+            let props = vNode.props;
+            props = {
+                ...props,
+                children: <OptionsVNodes>{{ props.children }}</OptionsVNodes>
+            };
+            return h(OptionGroup, props);
+        }
+
+        return vNode;
+    }); 
+} 
+
 const Menu = (
     <DropdownMenu ev-$changed:show={{ self._position.bind(self) }}
         ref="menu"
@@ -82,10 +132,10 @@ const Menu = (
         ev-$change:show={{ self._onChangeShow.bind(self) }}
     >
         <Options v-if={{ !isGroup }} data={{ data }} />
-        <div v-else class="k-group" v-for={{ data }}>
-            <div class="k-label">{{ value.label }}</div>
+        <OptionGroup v-else v-for={{ data }} label={{ value.label }}>
             <Options data={{ value.data }} />
-        </div>
+        </OptionGroup>
+        <OptionsVNodes>{{ children }}</OptionsVNodes>
     </DropdownMenu>
 );
 

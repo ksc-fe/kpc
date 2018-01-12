@@ -39,6 +39,22 @@ export function isTextVNode(o) {
     return isStringOrNumber(o) || o.type === 1;
 }
 
+export function getTextByChildren(children) {
+    let ret = '';
+    if (Array.isArray(children)) {
+        children.forEach(vNode => {
+            if (isTextVNode(vNode)) {
+                ret += vNode.children;
+            }
+        });
+    } else if (isStringOrNumber(children)) {
+        ret += children;
+    }
+
+    return ret;
+}
+
+
 export const isObject = utils.isObject;
 
 export function findParentComponent(Component, instance, isUntil) {

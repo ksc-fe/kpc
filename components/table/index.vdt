@@ -38,17 +38,18 @@ const theadCreator = () => <thead>
             />
         }) }}
         {{  // for using TableColumn as children
-            __u.map(children, vNode => {
-            if (vNode.tag === Column) {
-                const props = vNode.props;
-                props.$parent = self;
-                _scheme[props.key] = {
-                    title: props.title,
-                    template: props.template || props.default,
-                };
-                return vNode;
-            }
-        }) }}
+            __u.map(children ? (Array.isArray(children) ? children : [children]) : children, vNode => {
+                if (vNode.tag === Column) {
+                    const props = vNode.props;
+                    props.$parent = self;
+                    _scheme[props.key] = {
+                        title: props.title,
+                        template: props.template || props.default,
+                    };
+                    return vNode;
+                }
+            }) 
+        }}
     </tr>
 </thead>
 
