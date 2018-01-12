@@ -12,11 +12,45 @@
         <FormItem label="多选+可搜索：">
             <Select multiple filterable :data="data" />
         </FormItem>
+        <FormItem label="option:">
+            <Select filterable>
+                <Option v-for="item in data" :value="item.value">{{ item.label }}</Option>
+            </Select>
+        </FormItem>
+        <FormItem label="option group:">
+            <Select filterable>
+                <OptionGroup label="工作日">
+                    <Option v-for="(item, index) in data" 
+                        v-if="index < 5"
+                        :value="item.value"
+                    >{{ item.label }}</Option>
+                </OptionGroup>
+                <OptionGroup label="双休日">
+                    <Option v-for="(item, index) in data" 
+                        v-if="index > 4"
+                        :value="item.value"
+                    >{{ item.label }}</Option>
+                </OptionGroup>
+            </Select>
+        </FormItem>
+        <FormItem label="custom template:">
+            <Select filterable>
+                <Option v-for="value in data" 
+                    :value="value.value"
+                    :label="value.label"
+                >
+                    <div>
+                        <span>{{ value.label }}</span>
+                        <span style="float: right; color: #ccc">{{ value.value }}</span>
+                    </div>
+                </Option>
+            </Select>
+        </FormItem>
     </Form>
 </template>
 
 <script>
-import Select from 'components/select';
+import Select, {OptionGroup, Option} from 'components/select';
 import {Form, FormItem} from 'components/form';
 
 export default {
@@ -36,7 +70,8 @@ export default {
     },
 
     components: {
-        Select, Form, FormItem
+        Select, Form, FormItem,
+        OptionGroup, Option
     }
 }
 
