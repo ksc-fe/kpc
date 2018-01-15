@@ -34,12 +34,18 @@ class TooltipContent extends Intact {
     }
 
     _init() {
+        this.on('$change:show', (c, value) => {
+            this.trigger(value ? 'beforeShow' : 'beforeHide', this);
+        });
+
         this.on('$changed:show', (c, value) => {
             if (value) {
                 this._addDocumentClick();
                 this.position();
+                this.trigger('show', this);
             } else {
                 this._removeDocumentClick();
+                this.trigger('hide', this);
             }
         });
 

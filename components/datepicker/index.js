@@ -9,20 +9,12 @@ export default class Datepicker extends Intact {
 
     defaults() {
         return {
-            value: '', 
+            value: undefined, 
             clearable: false,
+
+            _showDate: undefined,
+            _now: new Date(),
         }
-    }
-
-    _init() {
-        const now = new Date();
-        const date = now.getDate();
-        const weekday = now.getDay();
-
-        this.now = now;
-        this.weekday = weekday; 
-        this.startDate = new Date(date).setDate(-weekday);
-        // this.endDate = this.startDate + 6 * 7; 
     }
 
     select(date) {
@@ -47,22 +39,44 @@ export default class Datepicker extends Intact {
 
     onClear(e) {
         e.stopPropagation();
-        this.set('value', '');
+        this.set('value', undefined);
     }
 
-    getYear() {
-        const value = this.get('value');
-        if (value) {
-            return new Date(value).getFullYear();
-        }
-        return this.now.getFullYear();
+    prevMonth() {
+        this.setRelativeMonth(-1);
     }
 
-    getMonth() {
-        const value = this.get('value');
-        if (value) {
-            return new Date(value).getMonth() + 1;
-        }
-        return this.now.getMonth() + 1;
+    nextMonth() {
+        this.setRelativeMonth(1);
+    }
+
+    prevYear() {
+        this.setRelativeYear(-1);
+    }
+
+    nextYear() {
+        this.setRelativeYear(1);
+    }
+
+    setRelativeMonth(month) {
+        const {_showDate, value, _now} = this.get();
+        const date = new Date(_showDate || value || _now);
+        date.setMonth(date.getMonth() + month);
+        this.set('_showDate', date);
+    }
+
+    setRelativeYear(year) {
+        const {_showDate, value, _now} = this.get();
+        const date = new Date(_showDate || value || _now);
+        date.setFullYear(date.getFullYear() + year);
+        this.set('_showDate', date);
+    }
+
+    onHide() {
+        this.set('_showDate', undefined);
+    }
+
+    onBeforeShow() {
+        this.set('_now', new Date());
     }
 }

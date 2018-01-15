@@ -4,13 +4,15 @@ import Tooltip from '../tooltip';
 
 const {
     value, clearable, className, style,
-    name
+    name, _showDate, _now
 } = self.get();
 
 const classNameObj = {
     'k-datepicker': true,
     [className]: className,
 }
+
+const showDate = new Date(_showDate || value || _now);
 
 <div class={{ classNameObj }} style={{ style }}>
     <Tooltip class="k-datepicker-content" 
@@ -19,6 +21,8 @@ const classNameObj = {
         showArrow={{ false }}
         transition="dropdown"
         ref="calendar"
+        ev-hide={{ self.onHide.bind(self) }}
+        ev-beforeShow={{ self.onBeforeShow.bind(self) }}
     >
         <Input placeholder="请选择日期" readonly 
             value={{ value }}
@@ -28,12 +32,28 @@ const classNameObj = {
         />
         <b:content>
             <div class="k-month c-clearfix">
-                <Button icon type="none" size="small" class="k-prev">
+                <Button icon type="none" size="small" class="k-prev"
+                    ev-click={{ self.prevYear.bind(self) }}
+                >
+                    <i class="k-icon ion-ios-arrow-left"></i>
                     <i class="k-icon ion-ios-arrow-left"></i>
                 </Button>
-                <span class="k-text">{{ self.getYear() }}年</span>
-                <span class="k-text">{{ self.getMonth() }}月</span>
-                <Button icon type="none" size="small" class="k-next">
+                <Button icon type="none" size="small" class="k-prev"
+                    ev-click={{ self.prevMonth.bind(self) }}
+                >
+                    <i class="k-icon ion-ios-arrow-left"></i>
+                </Button>
+                <span class="k-text">{{ showDate.getFullYear() }}年</span>
+                <span class="k-text">{{ showDate.getMonth() + 1 }}月</span>
+                <Button icon type="none" size="small" class="k-next"
+                    ev-click={{ self.nextYear.bind(self) }}
+                >
+                    <i class="k-icon ion-ios-arrow-right"></i>
+                    <i class="k-icon ion-ios-arrow-right"></i>
+                </Button>
+                <Button icon type="none" size="small" class="k-next"
+                    ev-click={{ self.nextMonth.bind(self) }}
+                >
                     <i class="k-icon ion-ios-arrow-right"></i>
                 </Button>
             </div>
@@ -45,9 +65,8 @@ const classNameObj = {
             <div class="k-calendar">
                 {{ do {
                     const ret = [];
-                    const date = self.now.getDate();
-                    const month = self.now.getMonth();
-                    const start = new Date(self.now);
+                    const start = new Date(showDate);
+                    const month = start.getMonth();
                     start.setDate(1);
                     const startWeekday = start.getDay(); 
                     start.setDate(1 - startWeekday);
@@ -62,7 +81,7 @@ const classNameObj = {
                                     "k-day": true,
                                     "k-out": _month !== month,
                                     "k-active": self.isEqual(dateValue, start),
-                                    "k-today": self.isEqual(self.now, start),
+                                    "k-today": self.isEqual(_now, start),
                                 } }}
                                 ev-click={{ self.select.bind(self, new Date(start)) }}
                             >{{ _date }}</div>
