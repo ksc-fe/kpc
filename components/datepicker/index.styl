@@ -7,44 +7,52 @@
 
 .k-datepicker-content
     position absolute
-    border-radius 2px
-    box-shadow $box-shadow
-    color $text-color
+    border-radius $datepicker-border-radius 
+    box-shadow $datepicker-box-shadow
+    color $datepicker-color
     .k-day
     .k-weekday
         display inline-block
-        width 30px
+        width $datepicker-day-width 
         text-align center
-        margin 1px 2px
+        margin $datepicker-day-margin 
     .k-day
-        height 30px
-        line-height 30px
+        height $datepicker-day-width 
+        line-height s('calc(%s - 2px)', @height)
         border-radius 50%
         cursor pointer
+        border 1px solid transparent
         &:hover
-            background $bg-color
+            background $datepicker-day-hover-bg-color 
         &.k-out
-            color $disabled-color
+            color $datepicker-day-out-color 
         &.k-today
-            border 1px solid $border-color
-            margin 0 2px
+            border $datepicker-day-today-border 
         &.k-active
-            background $primary-color
-            color #fff
+            background $datepicker-day-active-bg-color 
+            color $datepicker-day-active-color 
             &.k-today
-                border-color $primary-color
+                border-color $datepicker-day-active-today-border-color
+        // disabled date
+        &.k-disabled
+            color $datepicker-day-disabled-color 
+            cursor not-allowed
+            &:hover
+                background $datepicker-day-disabled-hover-bg-color 
     .k-weekday
-        color $disabled-color
+        color $datepicker-weekday-color 
 
     .k-month
         text-align center
-        padding-bottom 5px
+        padding-bottom $datepicker-month-padding 
         .k-text
-            margin 0 3px
-            line-height 30px
+            margin $datepicker-month-text-margin 
+            line-height $datepicker-month-text-line-height 
         .k-icon
-            font-size 14px
+            font-size $datepicker-month-icon-font-size
         .k-prev
             float left
         .k-next
             float right
+
+

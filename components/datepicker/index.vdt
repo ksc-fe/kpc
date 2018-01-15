@@ -4,15 +4,20 @@ import Tooltip from '../tooltip';
 
 const {
     value, clearable, className, style,
-    name, _showDate, _now
+    name, _showDate, _now, maxDate, minDate,
+    placeholder, disabled, disabledDate,
+    multiple,
 } = self.get();
 
 const classNameObj = {
     'k-datepicker': true,
+    'k-disabled': disabled,
     [className]: className,
 }
 
-const showDate = new Date(_showDate || value || _now);
+const values = multiple ? value || [] : [value];
+
+const showDate = new Date(_showDate || values[values.length - 1] || _now);
 
 <div class={{ classNameObj }} style={{ style }}>
     <Tooltip class="k-datepicker-content" 
@@ -23,12 +28,14 @@ const showDate = new Date(_showDate || value || _now);
         ref="calendar"
         ev-hide={{ self.onHide.bind(self) }}
         ev-beforeShow={{ self.onBeforeShow.bind(self) }}
+        disabled={{ disabled }}
     >
-        <Input placeholder="请选择日期" readonly 
-            value={{ value }}
+        <Input placeholder={{ placeholder }} readonly 
+            value={{ values.join(', ') }}
             clearable={{ clearable }}
             ev-clear={{ self.onClear.bind(self) }}
             name={{ name }}
+            disabled={{ disabled }}
         />
         <b:content>
             <div class="k-month c-clearfix">
@@ -70,20 +77,25 @@ const showDate = new Date(_showDate || value || _now);
                     start.setDate(1);
                     const startWeekday = start.getDay(); 
                     start.setDate(1 - startWeekday);
-                    const dateValue = new Date(value);
 
                     for (let i = 0; i < 42; i++) {
                         const _date = start.getDate();
                         const _month = start.getMonth();
+                        const disabled = self.isGT(start, new Date(maxDate)) ||
+                            self.isLT(start, new Date(minDate)) ||
+                            disabledDate.call(self, self.getDateString(start));
                         ret.push(
                             <div 
                                 class={{ {
                                     "k-day": true,
                                     "k-out": _month !== month,
-                                    "k-active": self.isEqual(dateValue, start),
+                                    "k-active": values.find(value => {
+                                        return self.isEqual(new Date(value), start);
+                                    }),
                                     "k-today": self.isEqual(_now, start),
+                                    "k-disabled": disabled, 
                                 } }}
-                                ev-click={{ self.select.bind(self, new Date(start)) }}
+                                ev-click={{ !disabled && self.select.bind(self, new Date(start)) }}
                             >{{ _date }}</div>
                         );
                         start.setDate(start.getDate() + 1);

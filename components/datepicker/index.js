@@ -11,21 +11,46 @@ export default class Datepicker extends Intact {
         return {
             value: undefined, 
             clearable: false,
+            maxDate: undefined,
+            minDate: undefined,
+            placeholder: "请选择日期",
+            disabled: false,
+            disabledDate(date) { return false; },
+            multiple: false,
 
             _showDate: undefined,
             _now: new Date(),
         }
     }
 
-    select(date) {
-        date = [
+    select(value) {
+        value = this.getDateString(value);
+        if (!this.get('multiple')) {
+            this.set('value', value);
+            this.refs.calendar.hide();
+        } else {
+            let values = this.get('value');
+            if (!Array.isArray(values)) {
+                values = [];
+            } else {
+                values = values.slice(0);
+            }
+            const index = values.indexOf(value);
+            if (~index) {
+                values.splice(index, 1);
+            } else {
+                values.push(value);
+            }
+            this.set('value', values);
+        }
+    }
+
+    getDateString(date) {
+        return [
             date.getFullYear(),
             strPad(date.getMonth() + 1, 2),
             strPad(date.getDate(), 2)
         ].join('-');
-
-        this.set('value', date);
-        this.refs.calendar.hide();
     }
 
     isEqual(a, b) {
@@ -35,6 +60,40 @@ export default class Datepicker extends Intact {
                 a.getDate() === b.getDate()
         }
         return false;
+    }
+
+    isLT(a, b) {
+        if (a && b) {
+            const aYear = a.getFullYear();
+            const bYear = b.getFullYear();
+            if (aYear < bYear) {
+                return true;
+            } else if (aYear > bYear) {
+                return false;
+            }
+
+            const aMonth = a.getMonth();
+            const bMonth = b.getMonth();
+            if (aMonth < bMonth) {
+                return true;
+            } else if (aMonth > bMonth) {
+                return false;
+            }
+
+            const aDay = a.getDate();
+            const bDay = b.getDate();
+            if (aDay < bDay) {
+                return true;
+            } else if (aDay > bDay) {
+                return false;
+            }
+        }
+
+        return false;
+    }
+
+    isGT(a, b) {
+        return this.isLT(b, a);        
     }
 
     onClear(e) {
@@ -59,17 +118,21 @@ export default class Datepicker extends Intact {
     }
 
     setRelativeMonth(month) {
-        const {_showDate, value, _now} = this.get();
-        const date = new Date(_showDate || value || _now);
+        const date = this.getShowDate();
         date.setMonth(date.getMonth() + month);
         this.set('_showDate', date);
     }
 
     setRelativeYear(year) {
-        const {_showDate, value, _now} = this.get();
-        const date = new Date(_showDate || value || _now);
+        const date = this.getShowDate();
         date.setFullYear(date.getFullYear() + year);
         this.set('_showDate', date);
+    }
+
+    getShowDate() {
+        const {_showDate, value, _now, multiple} = this.get();
+        const values = multiple ? value || [] : [value];
+        return new Date(_showDate || values[values.length - 1] || _now);
     }
 
     onHide() {

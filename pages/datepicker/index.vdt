@@ -1,5 +1,6 @@
 import Datepicker from 'components/datepicker';
 import {Form, FormItem} from 'components/form';
+import {Col, Row} from 'components/grid';
 
 <Form class="datepicker-page">
     <FormItem label="basic">
@@ -9,5 +10,32 @@ import {Form, FormItem} from 'components/form';
     <FormItem label="clearable">
         <Datepicker clearable v-model="clearableValue" />
         <b:append>{{ self.get('clearableValue') }}</b:append>
+    </FormItem>
+    <FormItem label="maxDate & minDate">
+        <Row gutter="10"> 
+            <Col span="12">
+                <Datepicker clearable v-model="from" placeholder="开始日期" 
+                    maxDate={{ self.get('to') }}
+                    minDate={{ new Date() }}
+                />
+            </Col>
+            <Col span="12">
+                <Datepicker clearable v-model="to" placeholder="结束日期"
+                    minDate={{ self.get('from') }}
+                />
+            </Col>
+        </Row>
+    </FormItem>
+    <FormItem label="disabled">
+        <Datepicker disabled value="2018-01-01"/>
+    </FormItem>
+    <FormItem label="disabledDate">
+        <Datepicker disabledDate={{ (date) => {
+            return ~['2018-01-14', '2018-02-14'].indexOf(date);
+        } }} />
+    </FormItem>
+    <FormItem label="multiple">
+        <Datepicker multiple v-model="multipleValue" />
+        <b:append>{{ JSON.stringify(self.get('multipleValue')) }}</b:append>
     </FormItem>
 </Form>

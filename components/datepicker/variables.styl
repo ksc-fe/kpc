@@ -1,1 +1,29 @@
 @require('../../styles/themes/default.styl')
+
+$datepicker-border-radius := $border-radius
+$datepicker-box-shadow := $box-shadow
+$datepicker-color := $text-color
+
+$datepicker-day-width := unit(30 / 12, em)
+$datepicker-day-margin := unit(1 / 12, em) unit(2 / 12, em)
+$datepicker-day-hover-bg-color := $bg-color
+$datepicker-day-out-color := $disabled-color
+$datepicker-day-today-border := 1px solid $border-color
+
+// active
+$datepicker-day-active-bg-color := $primary-color
+$datepicker-day-active-color := #fff
+$datepicker-day-active-today-border-color := $datepicker-day-active-bg-color
+
+// disabled
+$datepicker-day-disabled-color := #ccc
+$datepicker-day-disabled-hover-bg-color := none
+
+// weekday
+$datepicker-weekday-color := $disabled-color
+
+// month
+$datepicker-month-padding := 0 0 unit(5 / 12, em)
+$datepicker-month-text-margin := 0 unit(3 / 12, em)
+$datepicker-month-text-line-height := unit(30 / 12, em)
+$datepicker-month-icon-font-size := unit(14 / 12, em)
