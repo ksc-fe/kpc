@@ -79,3 +79,8 @@ export function strPad(str, length, pad) {
     }
     return str;
 }
+
+export function range(start, end) {
+    return Array.apply(null, {length: end - start + 1})
+        .map((v, i) => i + start);
+}

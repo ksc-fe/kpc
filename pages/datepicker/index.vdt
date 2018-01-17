@@ -38,4 +38,8 @@ import {Col, Row} from 'components/grid';
         <Datepicker multiple v-model="multipleValue" />
         <b:append>{{ JSON.stringify(self.get('multipleValue')) }}</b:append>
     </FormItem>
+    <FormItem label="datetime">
+        <Datepicker type="datetime" v-model="datetime" />
+        <b:append>{{ self.get('datetime') }}</b:append>
+    </FormItem>
 </Form>

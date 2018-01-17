@@ -3,12 +3,14 @@ import Button from '../button';
 import Tooltip from '../tooltip';
 import ScrollSelect from '../scrollSelect';
 import {Row, Col} from '../grid';
+import {range, strPad} from '../utils';
 
 const {
     value, clearable, className, style,
     name, _showDate, _now, maxDate, minDate,
     placeholder, disabled, disabledDate,
-    multiple, size, _isShowYearPicker
+    multiple, size, _isShowYearPicker,
+    _isSelectTime, type
 } = self.get();
 
 const classNameObj = {
@@ -19,7 +21,8 @@ const classNameObj = {
 
 const values = multiple ? value || [] : [value];
 
-const showDate = new Date(_showDate || values[values.length - 1] || _now);
+const valueDate = new Date(values[values.length - 1] || _now);
+const showDate = new Date(_showDate || valueDate);
 
 <div class={{ classNameObj }} style={{ style }}>
     <Tooltip class="k-datepicker-content" 
@@ -43,104 +46,143 @@ const showDate = new Date(_showDate || values[values.length - 1] || _now);
             <b:suffix><i class="ion-ios-calendar-outline"></i></b:suffix>
         </Input>
         <b:content>
-            <div class="k-month c-clearfix">
-                <Button icon type="none" size="small" class="k-prev"
-                    ev-click={{ self.prevYear.bind(self) }}
-                >
-                    <i class="k-icon ion-ios-arrow-left"></i>
-                    <i class="k-icon ion-ios-arrow-left"></i>
-                </Button>
-                <Button icon type="none" size="small" class="k-prev"
-                    ev-click={{ self.prevMonth.bind(self) }}
-                >
-                    <i class="k-icon ion-ios-arrow-left"></i>
-                </Button>
-                <span
-                    class="k-text-wrapper"
-                    ev-click={{ self.showYearPicker.bind(self) }}
-                >
+            <div v-if={{ !_isSelectTime }}>
+                <div class="k-month c-clearfix">
+                    <Button icon type="none" size="small" class="k-prev"
+                        ev-click={{ self.prevYear.bind(self) }}
+                    >
+                        <i class="k-icon ion-ios-arrow-left"></i>
+                        <i class="k-icon ion-ios-arrow-left"></i>
+                    </Button>
+                    <Button icon type="none" size="small" class="k-prev"
+                        ev-click={{ self.prevMonth.bind(self) }}
+                    >
+                        <i class="k-icon ion-ios-arrow-left"></i>
+                    </Button>
+                    <span
+                        class="k-text-wrapper"
+                        ev-click={{ self.showYearPicker.bind(self) }}
+                    >
+                        <span class="k-text">{{ showDate.getFullYear() }}年</span>
+                        <span class="k-text">{{ showDate.getMonth() + 1 }}月</span>
+                    </span>
+                    <Button icon type="none" size="small" class="k-next"
+                        ev-click={{ self.nextYear.bind(self) }}
+                    >
+                        <i class="k-icon ion-ios-arrow-right"></i>
+                        <i class="k-icon ion-ios-arrow-right"></i>
+                    </Button>
+                    <Button icon type="none" size="small" class="k-next"
+                        ev-click={{ self.nextMonth.bind(self) }}
+                    >
+                        <i class="k-icon ion-ios-arrow-right"></i>
+                    </Button>
+                </div>
+                <div class="k-weekdays" v-if={{ !_isShowYearPicker }}>
+                    <div class="k-weekday"
+                        v-for={{ ['日', '一', '二', '三', '四', '五', '六'] }}
+                    >{{ value }}</div>
+                </div>
+                <div class="k-calendar" v-if={{ !_isShowYearPicker }}>
+                    {{ do {
+                        const ret = [];
+                        const start = new Date(showDate);
+                        const month = start.getMonth();
+                        start.setDate(1);
+                        const startWeekday = start.getDay(); 
+                        start.setDate(1 - startWeekday);
+
+                        for (let i = 0; i < 42; i++) {
+                            const _date = start.getDate();
+                            const _month = start.getMonth();
+                            const disabled = self.isGT(start, new Date(maxDate)) ||
+                                self.isLT(start, new Date(minDate)) ||
+                                disabledDate.call(self, self.getDateString(start));
+                            ret.push(
+                                <div 
+                                    class={{ {
+                                        "k-day": true,
+                                        "k-out": _month !== month,
+                                        "k-active": values.find(value => {
+                                            return self.isEqual(new Date(value), start);
+                                        }),
+                                        "k-today": self.isEqual(_now, start),
+                                        "k-disabled": disabled, 
+                                    } }}
+                                    ev-click={{ !disabled && self.select.bind(self, new Date(start)) }}
+                                >{{ _date }}</div>
+                            );
+                            start.setDate(start.getDate() + 1);
+                        }
+                        const result = [];
+                        for (let i = 0; i < 6; i++) {
+                            result.push(<div>{{ ret.slice(7 * i, 7 * (i + 1)) }}</div>)
+                        }
+                        result;
+                    } }}
+                </div>
+                <Row v-if={{ _isShowYearPicker }} class="k-year-picker">
+                    <Col span="12">
+                        <ScrollSelect 
+                            data={{ (value) => {
+                                return range(value - 5, value + 5);
+                            } }}
+                            value={{ showDate.getFullYear() }}
+                            ev-$change:value={{ self.onChangeYear.bind(self) }}
+                        />
+                    </Col>
+                    <Col span="12">
+                        <ScrollSelect 
+                            data={{ range(0, 11).map(i => {
+                                return {label: `${i + 1}月`, value: i};
+                            }) }}
+                            value={{ showDate.getMonth() }}
+                            ev-$change:value={{ self.onChangeMonth.bind(self) }}
+                        />
+                    </Col>
+                </Row>
+            </div>
+            <div v-else class="k-time-picker" key="time">
+                <div class="k-month c-clearfix">
+                    <Button type="none" size="small" class="k-prev"
+                        ev-click={{ self.cancel.bind(self) }}
+                    >取消</Button>
                     <span class="k-text">{{ showDate.getFullYear() }}年</span>
                     <span class="k-text">{{ showDate.getMonth() + 1 }}月</span>
-                </span>
-                <Button icon type="none" size="small" class="k-next"
-                    ev-click={{ self.nextYear.bind(self) }}
-                >
-                    <i class="k-icon ion-ios-arrow-right"></i>
-                    <i class="k-icon ion-ios-arrow-right"></i>
-                </Button>
-                <Button icon type="none" size="small" class="k-next"
-                    ev-click={{ self.nextMonth.bind(self) }}
-                >
-                    <i class="k-icon ion-ios-arrow-right"></i>
-                </Button>
+                    <Button type="none" size="small" class="k-next"
+                        ev-click={{ self.confirm.bind(self) }}
+                    >确认</Button>
+                </div>
+                <Row>
+                    <Col span="8">
+                        <ScrollSelect 
+                            data={{ range(0, 23).map(v => {
+                                return {label: strPad(v, 2), value: v};
+                            }) }}
+                            value={{ valueDate.getHours() }}
+                            ev-$change:value={{ self.onChangeTime.bind(self, 'Hours') }}
+                        />
+                    </Col>
+                    <Col span="8">
+                        <ScrollSelect 
+                            data={{ range(0, 59).map(v => {
+                                return {label: strPad(v, 2), value: v};
+                            }) }}
+                            value={{ valueDate.getMinutes() }}
+                            ev-$change:value={{ self.onChangeTime.bind(self, 'Minutes') }}
+                        />
+                    </Col>
+                    <Col span="8">
+                        <ScrollSelect 
+                            data={{ range(0, 59).map(v => {
+                                return {label: strPad(v, 2), value: v};
+                            }) }}
+                            value={{ valueDate.getSeconds() }}
+                            ev-$change:value={{ self.onChangeTime.bind(self, 'Seconds') }}
+                        />
+                    </Col>
+                </Row>
             </div>
-            <div class="k-weekdays" v-if={{ !_isShowYearPicker }}>
-                <div class="k-weekday"
-                    v-for={{ ['日', '一', '二', '三', '四', '五', '六'] }}
-                >{{ value }}</div>
-            </div>
-            <div class="k-calendar" v-if={{ !_isShowYearPicker }}>
-                {{ do {
-                    const ret = [];
-                    const start = new Date(showDate);
-                    const month = start.getMonth();
-                    start.setDate(1);
-                    const startWeekday = start.getDay(); 
-                    start.setDate(1 - startWeekday);
-
-                    for (let i = 0; i < 42; i++) {
-                        const _date = start.getDate();
-                        const _month = start.getMonth();
-                        const disabled = self.isGT(start, new Date(maxDate)) ||
-                            self.isLT(start, new Date(minDate)) ||
-                            disabledDate.call(self, self.getDateString(start));
-                        ret.push(
-                            <div 
-                                class={{ {
-                                    "k-day": true,
-                                    "k-out": _month !== month,
-                                    "k-active": values.find(value => {
-                                        return self.isEqual(new Date(value), start);
-                                    }),
-                                    "k-today": self.isEqual(_now, start),
-                                    "k-disabled": disabled, 
-                                } }}
-                                ev-click={{ !disabled && self.select.bind(self, new Date(start)) }}
-                            >{{ _date }}</div>
-                        );
-                        start.setDate(start.getDate() + 1);
-                    }
-                    const result = [];
-                    for (let i = 0; i < 6; i++) {
-                        result.push(<div>{{ ret.slice(7 * i, 7 * (i + 1)) }}</div>)
-                    }
-                    result;
-                } }}
-            </div>
-            <Row v-if={{ _isShowYearPicker }} class="k-year-picker">
-                <Col span="12">
-                    <ScrollSelect 
-                        data={{ (value) => {
-                            return Array.apply(null, {length: 10})
-                                .map((v, i) => i + value - 5);
-                        } }}
-                        value={{ showDate.getFullYear() }}
-                        ev-$change:value={{ self.onChangeYear.bind(self) }}
-                    />
-                </Col>
-                <Col span="12">
-                    <ScrollSelect 
-                        data={{ 
-                            Array.apply(null, {length: 12})
-                                .map((v, i) => {
-                                    return {label: `${i + 1}月`, value: i};
-                                })
-                        }}
-                        value={{ showDate.getMonth() }}
-                        ev-$change:value={{ self.onChangeMonth.bind(self) }}
-                    />
-                </Col>
-            </Row>
         </b:content>
     </Tooltip>
 </div>

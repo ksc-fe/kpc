@@ -18,18 +18,26 @@ export default class Datepicker extends Intact {
             disabledDate(date) { return false; },
             multiple: false,
             size: 'default',
+            type: 'date', // date | datetime
 
             _showDate: undefined,
             _now: new Date(),
             _isShowYearPicker: false,
+            _isSelectTime: false,
         }
     }
 
-    select(value) {
+    select(value, e) {
         value = this.getDateString(value);
+        const type = this.get('type');
         if (!this.get('multiple')) {
             this.set('value', value);
-            this.refs.calendar.hide();
+            if (type !== 'datetime') {
+                this.refs.calendar.hide();
+            } else {
+                e._rawEvent._dropdown = true;
+                this.set('_isSelectTime', true);
+            }
         } else {
             let values = this.get('value');
             if (!Array.isArray(values)) {
@@ -48,11 +56,20 @@ export default class Datepicker extends Intact {
     }
 
     getDateString(date) {
-        return [
+        const _date = [
             date.getFullYear(),
             strPad(date.getMonth() + 1, 2),
             strPad(date.getDate(), 2)
         ].join('-');
+        if (this.get('type') !== 'datetime') {
+            return _date;
+        }
+        const _time = [
+            strPad(date.getHours(), 2),
+            strPad(date.getMinutes(), 2),
+            strPad(date.getSeconds(), 2)
+        ].join(':');
+        return `${_date} ${_time}`;
     }
 
     isEqual(a, b) {
@@ -158,7 +175,11 @@ export default class Datepicker extends Intact {
     }
 
     onHide() {
-        this.set('_showDate', undefined);
+        this.set({
+            '_showDate': undefined,
+            '_isShowYearPicker': false,
+            '_isSelectTime': false,
+        });
     }
 
     onBeforeShow() {
@@ -167,5 +188,21 @@ export default class Datepicker extends Intact {
 
     showYearPicker() {
         this.set('_isShowYearPicker', !this.get('_isShowYearPicker'));
+    }
+
+    onChangeTime(type, c, v) {
+        const {value, _now} = this.get();
+        const valueDate = new Date(value || _now);
+        valueDate['set' + type](v);
+        this.set('value', this.getDateString(valueDate));
+    }
+
+    confirm() {
+        this.refs.calendar.hide();
+    }
+
+    cancel(e) {
+        e._rawEvent._dropdown = true;
+        this.set('_isSelectTime', false);
     }
 }

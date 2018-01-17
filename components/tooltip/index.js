@@ -120,6 +120,7 @@ class TooltipContent extends Intact {
         const element = this.refs.content.element;
 
         if (element === target || element.contains(target)) return;
+        if (e._dropdown) return; 
 
         this.hide(true);
     }

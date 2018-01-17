@@ -114,6 +114,8 @@ export default class DropdownMenu extends Intact {
         if (menu === target || menu.contains(target)) return;
         // is click on sub menu
         if (this._isClickSubMenu(target, this.subDropdowns)) return;
+        // custom flag to indicate that the event does not lead to close menu
+        if (e._dropdown) return;
 
         this.hide(true);
     }
