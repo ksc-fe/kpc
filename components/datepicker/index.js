@@ -17,9 +17,11 @@ export default class Datepicker extends Intact {
             disabled: false,
             disabledDate(date) { return false; },
             multiple: false,
+            size: 'default',
 
             _showDate: undefined,
             _now: new Date(),
+            _isShowYearPicker: false,
         }
     }
 
@@ -129,6 +131,26 @@ export default class Datepicker extends Intact {
         this.set('_showDate', date);
     }
 
+    setMonth(month) {
+        const date = this.getShowDate();
+        date.setMonth(month);
+        this.set('_showDate', date);
+    }
+
+    setYear(year) {
+        const date = this.getShowDate();
+        date.setFullYear(year);
+        this.set('_showDate', date);
+    }
+
+    onChangeYear(c, value) {
+        this.setYear(value);
+    }
+
+    onChangeMonth(c, value) {
+        this.setMonth(value);
+    }
+
     getShowDate() {
         const {_showDate, value, _now, multiple} = this.get();
         const values = multiple ? value || [] : [value];
@@ -141,5 +163,9 @@ export default class Datepicker extends Intact {
 
     onBeforeShow() {
         this.set('_now', new Date());
+    }
+
+    showYearPicker() {
+        this.set('_isShowYearPicker', !this.get('_isShowYearPicker'));
     }
 }

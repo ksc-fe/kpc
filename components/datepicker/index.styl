@@ -44,7 +44,7 @@
 
     .k-month
         text-align center
-        padding-bottom $datepicker-month-padding 
+        padding $datepicker-month-padding 
         .k-text
             margin $datepicker-month-text-margin 
             line-height $datepicker-month-text-line-height 
@@ -54,5 +54,13 @@
             float left
         .k-next
             float right
+        .k-text-wrapper
+            cursor pointer
+
+    // year picker
+    .k-year-picker
+        width 238px
+        .k-scroll-select
+            height 210px
 
 

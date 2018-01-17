@@ -104,7 +104,6 @@ export default class Dialog extends Intact {
     }
 
     _dragStart(e) {
-        document.body.style.height = '900px';
         // left key
         if (e.which !== 1) return;
 

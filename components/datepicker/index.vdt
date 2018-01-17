@@ -1,12 +1,14 @@
 import Input from '../input';
 import Button from '../button';
 import Tooltip from '../tooltip';
+import ScrollSelect from '../scrollSelect';
+import {Row, Col} from '../grid';
 
 const {
     value, clearable, className, style,
     name, _showDate, _now, maxDate, minDate,
     placeholder, disabled, disabledDate,
-    multiple,
+    multiple, size, _isShowYearPicker
 } = self.get();
 
 const classNameObj = {
@@ -36,7 +38,10 @@ const showDate = new Date(_showDate || values[values.length - 1] || _now);
             ev-clear={{ self.onClear.bind(self) }}
             name={{ name }}
             disabled={{ disabled }}
-        />
+            size={{ size }}
+        >
+            <b:suffix><i class="ion-ios-calendar-outline"></i></b:suffix>
+        </Input>
         <b:content>
             <div class="k-month c-clearfix">
                 <Button icon type="none" size="small" class="k-prev"
@@ -50,8 +55,13 @@ const showDate = new Date(_showDate || values[values.length - 1] || _now);
                 >
                     <i class="k-icon ion-ios-arrow-left"></i>
                 </Button>
-                <span class="k-text">{{ showDate.getFullYear() }}年</span>
-                <span class="k-text">{{ showDate.getMonth() + 1 }}月</span>
+                <span
+                    class="k-text-wrapper"
+                    ev-click={{ self.showYearPicker.bind(self) }}
+                >
+                    <span class="k-text">{{ showDate.getFullYear() }}年</span>
+                    <span class="k-text">{{ showDate.getMonth() + 1 }}月</span>
+                </span>
                 <Button icon type="none" size="small" class="k-next"
                     ev-click={{ self.nextYear.bind(self) }}
                 >
@@ -64,12 +74,12 @@ const showDate = new Date(_showDate || values[values.length - 1] || _now);
                     <i class="k-icon ion-ios-arrow-right"></i>
                 </Button>
             </div>
-            <div class="k-weekdays">
+            <div class="k-weekdays" v-if={{ !_isShowYearPicker }}>
                 <div class="k-weekday"
                     v-for={{ ['日', '一', '二', '三', '四', '五', '六'] }}
                 >{{ value }}</div>
             </div>
-            <div class="k-calendar">
+            <div class="k-calendar" v-if={{ !_isShowYearPicker }}>
                 {{ do {
                     const ret = [];
                     const start = new Date(showDate);
@@ -107,6 +117,30 @@ const showDate = new Date(_showDate || values[values.length - 1] || _now);
                     result;
                 } }}
             </div>
+            <Row v-if={{ _isShowYearPicker }} class="k-year-picker">
+                <Col span="12">
+                    <ScrollSelect 
+                        data={{ (value) => {
+                            return Array.apply(null, {length: 10})
+                                .map((v, i) => i + value - 5);
+                        } }}
+                        value={{ showDate.getFullYear() }}
+                        ev-$change:value={{ self.onChangeYear.bind(self) }}
+                    />
+                </Col>
+                <Col span="12">
+                    <ScrollSelect 
+                        data={{ 
+                            Array.apply(null, {length: 12})
+                                .map((v, i) => {
+                                    return {label: `${i + 1}月`, value: i};
+                                })
+                        }}
+                        value={{ showDate.getMonth() }}
+                        ev-$change:value={{ self.onChangeMonth.bind(self) }}
+                    />
+                </Col>
+            </Row>
         </b:content>
     </Tooltip>
 </div>

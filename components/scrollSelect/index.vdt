@@ -1,0 +1,28 @@
+const {
+    value, _list,
+    _translate, _marginTop, _dragging
+} = self.get();
+
+<div class={{ {"k-scroll-select": true, "k-dragging": _dragging} }}>
+    <div class="k-wrapper"
+        style={{ {
+            transform: `translateY(${_translate}px)`,
+            marginTop: `${_marginTop}px`,
+        } }}
+        ev-mousedown={{ self._dragStart.bind(self) }}
+        ev-wheel={{ self._onWheel.bind(self) }}
+        ref="wrapper"
+    >
+        <div
+            class={{ {
+                "k-item": true,
+                "k-active": item.value === value,
+            } }}
+            v-for={{ _list }}
+            v-for-value="item"
+            ev-click={{ self._select.bind(self, item, key) }}
+            key={{ item.key }}
+            ref={{ key === 0 ? (dom) => self.refs.item = dom : undefined }}
+        >{{ item.label }}</div>
+    </div>
+</div>
