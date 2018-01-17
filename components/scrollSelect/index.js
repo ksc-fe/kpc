@@ -165,4 +165,9 @@ export default class ScrollSelect extends Intact {
             this._setByRelativeIndex(-1, null, true);
         }
     }
+
+    _destroy() {
+        document.removeEventListener('mousemove', this._move);
+        document.removeEventListener('mouseup', this._dragEnd);
+    }
 }
