@@ -23,6 +23,10 @@ export default class ScrollSelect extends Intact {
     _init() {
         this._setList();
 
+        ['data', 'value', 'count'].forEach(item => {
+            this.on(`$change:${item}`, this._setList);
+        });
+
         this._move = this._move.bind(this);
         this._dragEnd = this._dragEnd.bind(this);
     }
@@ -30,7 +34,7 @@ export default class ScrollSelect extends Intact {
     _mount() {
         const height = this.element.offsetHeight;
         const totalHeight = this.refs.wrapper.offsetHeight; 
-        this._deltaY = -(totalHeight - height) / 2;
+        this._deltaY = -Math.floor((totalHeight - height) / 2);
         this.set({
             _translate: this._deltaY 
         });
@@ -49,7 +53,7 @@ export default class ScrollSelect extends Intact {
     }
 
     _setList() {
-        let {data, value, count, _list} = this.get();
+        let {data, value, count} = this.get();
 
         if (typeof data === 'function') {
             data = data(value); 
@@ -71,30 +75,13 @@ export default class ScrollSelect extends Intact {
             this.set('value', data[0].value, {silent: true});
         }
 
+        const length = data.length;
         const half = Math.floor(count / 2);
-
-        let head;
-        const startIndex = index - half;
-        if (startIndex < 0) {
-            head = data.slice(startIndex).concat(data.slice(0, index));
-        } else {
-            head = data.slice(startIndex, index);
+        const _list = [];
+        for (let i = 0; i < count; i++) {
+            _list.push(data[(((index - half + i) % length) + length) % length]);
         }
-
-        let tail;
-        const endIndex = half + index + 1;
-        if (endIndex > data.length) {
-            tail = data.slice(index).concat(data.slice(0, endIndex - data.length));
-        } else {
-            tail = data.slice(index, endIndex);
-        }
-
-        let list = head.concat(tail);
-        this.set('_list', list, {silent: true});
-    }
-
-    _beforeUpdate() {
-        this._setList();
+        this.set('_list', _list, {silent: true});
     }
 
     _dragStart(e) {

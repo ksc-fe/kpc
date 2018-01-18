@@ -144,14 +144,18 @@ const showDate = new Date(_showDate || valueDate);
             </div>
             <div v-else class="k-time-picker" key="time">
                 <div class="k-month c-clearfix">
-                    <Button type="none" size="small" class="k-prev"
+                    <!--<Button type="none" size="small" class="k-prev"
                         ev-click={{ self.cancel.bind(self) }}
-                    >取消</Button>
-                    <span class="k-text">{{ showDate.getFullYear() }}年</span>
-                    <span class="k-text">{{ showDate.getMonth() + 1 }}月</span>
-                    <Button type="none" size="small" class="k-next"
+                    >取消</Button>-->
+                    <span class="k-text-wrapper"
+                        ev-click={{ self.cancel.bind(self) }}
+                    >
+                        <span class="k-text">{{ showDate.getFullYear() }}年</span>
+                        <span class="k-text">{{ showDate.getMonth() + 1 }}月</span>
+                    </span>
+                    <!--<Button type="none" size="small" class="k-next"
                         ev-click={{ self.confirm.bind(self) }}
-                    >确认</Button>
+                    >确认</Button>-->
                 </div>
                 <Row>
                     <Col span="8">
@@ -161,7 +165,9 @@ const showDate = new Date(_showDate || valueDate);
                             }) }}
                             value={{ valueDate.getHours() }}
                             ev-$change:value={{ self.onChangeTime.bind(self, 'Hours') }}
-                        />
+                        >
+                            <b:append>:</b:append>
+                        </ScrollSelect>
                     </Col>
                     <Col span="8">
                         <ScrollSelect 
@@ -170,7 +176,9 @@ const showDate = new Date(_showDate || valueDate);
                             }) }}
                             value={{ valueDate.getMinutes() }}
                             ev-$change:value={{ self.onChangeTime.bind(self, 'Minutes') }}
-                        />
+                        >
+                            <b:append>:</b:append>
+                        </ScrollSelect>
                     </Col>
                     <Col span="8">
                         <ScrollSelect 

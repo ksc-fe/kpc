@@ -6,6 +6,7 @@
     max-height 100%
     height $scroll-select-height 
     user-select none
+    position relative
     .k-wrapper
         transition transform $transition
     &.k-dragging
@@ -18,3 +19,10 @@
         &.k-active
             color $scroll-select-item-active-color 
             font-size $scroll-select-item-active-font-size 
+
+    // append
+    > .k-append
+        position absolute
+        top 50%
+        right 0
+        transform translateY(-50%)
