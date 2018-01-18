@@ -7,6 +7,12 @@ export default class Datepicker extends Intact {
     @Intact.template()
     static template = template;
 
+    static propTypes = {
+        clearable: Boolean,
+        disabled: Boolean,
+        multiple: Boolean,
+    };
+
     defaults() {
         return {
             value: undefined, 
