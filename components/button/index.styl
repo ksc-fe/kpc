@@ -8,7 +8,7 @@ sizes = small mini
     cursor pointer
     display inline-block
     height $btn-height
-    // line-height 1
+    line-height s('calc(%s - 2px)', $btn-height)
     padding $btn-padding
     outline none
     border none
@@ -22,8 +22,8 @@ sizes = small mini
     border 1px solid $btn-border-color
     font-size $btn-font-size
     &:hover
-        border-color $btn-primary-bg-color
-        color $btn-primary-bg-color
+        border-color $btn-hover-border-color
+        color $btn-hover-color
     for type in types 
         &.k-{type}
             background-color lookup('$btn-' + type + '-bg-color')
@@ -52,15 +52,9 @@ sizes = small mini
             font-size lookup('$btn-' + size + '-font-size')
             height lookup('$btn-' + size + '-height')
             padding lookup('$btn-' + size + '-padding')
+            line-height s('calc(%s - 2px)', lookup('$btn-' + size + '-height'))
             &.k-btn-icon
                 width @height
-
-    // tagName is not button
-    &:not(button)
-        line-height $btn-height
-        for size in sizes
-            &.k{size}
-                line-height lookup('$btn-' + size + '-height')
 
     // icon
     .k-icon
@@ -88,7 +82,7 @@ sizes = small mini
 
     // shape
     &.k-circle
-        border-radius unit(@height / 2, em)
+        border-radius unit($btn-height / 2, rem)
 
     // loading
     &.k-loading
@@ -171,3 +165,4 @@ sizes = small mini
                 &.k-{type}:not(:last-of-type)
                     border-bottom-color lookup('$btns-' + type + '-border-color')
 
+@import $theme-dir + '/button.styl' if exists($theme-dir + '/button.styl') 

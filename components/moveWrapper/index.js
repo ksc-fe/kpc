@@ -30,7 +30,7 @@ export default class MoveWrapper extends Intact {
 
     destroy(...args) {
         if (this.get('autoDestroy')) {
-            this.$destroy(...args);
+            this._$destroy(...args);
         }
     }
 
@@ -47,7 +47,7 @@ export default class MoveWrapper extends Intact {
      *
      * @param ...args
      */
-    $destroy(...args) {
+    _$destroy(...args) {
         if (this.destroyed) {
             return console.warn('destroyed multiple times');
         }

@@ -1,4 +1,5 @@
-@require('../../styles/mixin.styl');
+@require('../../styles/mixin.styl')
+@require('../../styles/themes/default.styl')
 
 .k-row
     display block
@@ -10,3 +11,5 @@ for col in (1..24)
         float left
     .k-offset-{col}
         margin-left percentage(col / 24)
+
+@import $theme-dir + '/grid.styl' if exists($theme-dir + '/grid.styl') 
