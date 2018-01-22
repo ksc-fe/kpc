@@ -19,6 +19,7 @@ export default class extends Intact {
     }
 
     click() {
+        console.log(this);
         console.log('click3');
     }
 

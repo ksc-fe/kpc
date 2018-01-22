@@ -1,0 +1,26 @@
+const {
+    children, selected, done, 
+    title, index, width, error
+} = self.get();
+
+const classNameObj = {
+    'k-step': true,
+    'k-active': selected,
+    'k-done': done,
+    'k-error': error,
+};
+
+<div class={{ classNameObj }} style={{ {width: width} }}>
+    <div class="k-tail"></div>
+    <div class="k-head">
+        <div class="k-inner">
+            <i class="ion-ios-checkmark-empty k-icon" v-if={{ done }}></i>
+            <i class="ion-ios-close-empty k-icon" v-else-if={{ error }}></i>
+            <span v-else>{{ index }}</span>
+        </div>
+    </div>
+    <div class="k-main">
+        <div class="k-title">{{ title }}</div>
+        <div class="k-content">{{ children }}</div>
+    </div>
+</div>

@@ -7,7 +7,7 @@ const list = [
     'form', 'grid', 'switch',
     'input', 'message', 'dropdown',
     'tooltip', 'pagination', 'datepicker',
-    'scrollSelect',
+    'scrollSelect', 'steps',
 ];
 
 <ul>

@@ -26,9 +26,9 @@ export default class Dialog extends Intact {
             if (isShow) this._center();
         }); 
 
-        this._move = this._move.bind(this);
-        this._dragEnd = this._dragEnd.bind(this);
-        this._escClose = this._escClose.bind(this);
+        // this._move = this._move.bind(this);
+        // this._dragEnd = this._dragEnd.bind(this);
+        // this._escClose = this._escClose.bind(this);
     }
 
     _create() {

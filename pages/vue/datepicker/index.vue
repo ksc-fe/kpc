@@ -60,6 +60,12 @@ export default {
     components: {
         Datepicker, Form, FormItem,
         Col, Row
+    },
+
+    methods: {
+        a() {
+            return this;
+        }
     }
 }
 </script>

@@ -16,7 +16,7 @@ import MoveWrapper from '../moveWrapper';
             ev-a:leaveEnd={{ self._leaveEnd.bind(self) }}
         >
             <div class="k-header"
-                 ev-mousedown={{ self._dragStart.bind(self) }}
+                 ev-mousedown={{ self._dragStart }}
             >
                 <b:header>
                     <span class="k-title">{{ self.get('title') }}</span>

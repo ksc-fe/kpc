@@ -2,7 +2,7 @@ import Button, {ButtonGroup} from 'components/button';
 import Link from 'components/link';
 
 <div class="component-page">
-    <Button type="default" ev-click={{ self.click.bind(self) }}>default</Button>
+    <Button type="default" ev-click={{ self.click }}>default</Button>
     <Button type="primary">primary</Button>
     <Button type="warning">warning</Button>
     <Button type="danger">danger</Button>

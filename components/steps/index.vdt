@@ -1,0 +1,33 @@
+import Step from './step';
+
+const {children, value, style, status} = self.get();
+
+const classNameObj = {
+    'k-steps c-clearfix': true,
+};
+
+let stepIndex = 0;
+let steps = (Array.isArray(children) ? children : [children]).filter(vNode => {
+    if (vNode && vNode.tag === Step) {
+        vNode.props = {...vNode.props, index: stepIndex};
+        if (value == stepIndex) {
+            vNode.props.selected = true;
+            if (status === 'error') {
+                vNode.props.error = true;
+            }
+        } else if (value > stepIndex) {
+            vNode.props.done = true;
+        }
+        stepIndex++;
+        return true;
+    }
+    return false;
+});
+
+// add width
+steps = steps.map(vNode => {
+    vNode.props.width = (100 / stepIndex) + '%'; 
+    return vNode;
+});
+
+<div class={{ classNameObj }} style={{ style }}>{{ steps }}</div>
