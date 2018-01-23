@@ -93,7 +93,7 @@ export default class Dialog extends Intact {
         // use as instance or use as component but it has be destroyed
         // then remove the element
         if (!this._useAsComponent || this._useAsComponent && this.destroyed) {
-            this.vdt.vNode.children.$destroy();
+            this.vdt.vNode.children._$destroy();
         }
     }
 
@@ -149,7 +149,7 @@ export default class Dialog extends Intact {
         if (this.get('value')) {
             this.close();
         } else {
-            this.vdt.vNode.children.$destroy();
+            this.vdt.vNode.children._$destroy();
         }
         this._dragEnd();
     }

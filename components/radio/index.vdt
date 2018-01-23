@@ -7,7 +7,7 @@ const classNameObj = {
     'k-radio': true,
     'k-disabled': disabled,
     'k-checked': self.isChecked(),
-    [className || '']: true,
+    [className]: className,
 };
 
 <label class={{ classNameObj }} style={{ style }}>
