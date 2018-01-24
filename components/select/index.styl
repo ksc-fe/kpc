@@ -4,12 +4,11 @@
     display inline-block
     vertical-align middle
     position relative
-    width 100%
+    width $select-width
     > .k-wrapper
         width 100%
         min-height $select-height
         // line-height s('calc(%s - 2px)', @min-height)
-        // width $select-width
         cursor pointer
         outline none
         vertical-align middle
@@ -23,6 +22,10 @@
         transform translateY(-50%)
         // line-height 1
         right ($select-padding-right / 3)
+
+    // fluid
+    &.k-fluid
+        width 100%
 
     // clearable
     .k-clear

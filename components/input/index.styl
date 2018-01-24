@@ -3,7 +3,7 @@
 .k-input
     font-size $input-font-size
     display inline-block
-    width 100%
+    width $input-width
     vertical-align middle
     .k-wrapper
         display inline-block
@@ -21,6 +21,10 @@
         outline none
         &:focus
             border $input-focus-border
+    // fluid
+    &.k-fluid
+        width 100%
+
     // textarea
     .k-textarea
         padding $input-textarea-padding

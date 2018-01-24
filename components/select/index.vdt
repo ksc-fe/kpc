@@ -7,7 +7,8 @@ import OptionGroup from './group';
 const {
     className, clearable, data, value, multiple,
     disabled, filterable, keywords, _show,
-    placeholder, size, style, name, children
+    placeholder, size, style, name, children,
+    fluid,
 } = self.get();
 
 const classNameObj = {
@@ -17,6 +18,7 @@ const classNameObj = {
     'k-show': _show,
     'k-clearable': clearable,
     [`k-${size}`]: size !== 'default',
+    'k-fluid': fluid,
 };
 
 let hasValue = value != null && (!multiple && value !== '' || multiple && value.length);
@@ -159,6 +161,7 @@ if (hasValue && !label && !labels.length) {
                 placeholder={{ placeholder }}
                 ref="input"
                 size={{ size }}
+                fluid
             />
             <span class="k-placeholder" v-else-if={{ !filterable && !hasValue }}>{{ placeholder }}</span>
             <span class="k-value" v-else-if={{ !multiple }}>{{ label }}</span>

@@ -14,6 +14,7 @@ export default class Select extends Intact{
         disabled: Boolean,
         clearable: Boolean,
         filterable: Boolean,
+        fluid: Boolean,
     };
 
     defaults() {
@@ -27,6 +28,7 @@ export default class Select extends Intact{
             keywords: undefined,
             placeholder: '请选择',
             size: 'default',
+            fluid: false,
 
             _show: false,
         }

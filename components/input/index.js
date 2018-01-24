@@ -11,6 +11,7 @@ export default class Input extends Intact {
         readonly: Boolean,
         clearable: Boolean,
         disabled: Boolean,
+        fluid: Boolean,
     };
 
     defaults() {
@@ -27,6 +28,7 @@ export default class Input extends Intact {
             rows: 2,
             spellcheck: false,
             autoWidth: false,
+            fluid: false,
         }
     }
 
