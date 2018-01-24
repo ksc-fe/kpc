@@ -44,6 +44,9 @@ const theadCreator = () => <thead>
                     vNode.props = props;
                     if (props.key == null) {
                         _e('key for TableColumn must be specified.');
+                    } else if (/^\d+$/.test(props.key)) {
+                        // avoid digital key
+                        _e('don\'t use digits as key.');
                     }
                     _scheme[props.key] = {
                         title: props.title,
