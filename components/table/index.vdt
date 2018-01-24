@@ -40,8 +40,11 @@ const theadCreator = () => <thead>
         {{  // for using TableColumn as children
             __u.map(children ? (Array.isArray(children) ? children : [children]) : children, vNode => {
                 if (vNode.tag === Column) {
-                    const props = vNode.props;
-                    props.$parent = self;
+                    const props = {...vNode.props, $parent: self};
+                    vNode.props = props;
+                    if (props.key == null) {
+                        _e('key for TableColumn must be specified.');
+                    }
                     _scheme[props.key] = {
                         title: props.title,
                         template: props.template || props.default,
