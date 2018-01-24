@@ -6,6 +6,6 @@ const classNameObj = {
 };
 
 <form class={{ classNameObj }} style={{ style }} 
-    ev-submit={{ self.submit.bind(self) }}
+    ev-submit={{ self.submit }}
     noValidate
 >{{ children }}</form>

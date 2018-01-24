@@ -127,10 +127,10 @@ const OptionsVNodes = ({children}) => {
 } 
 
 const Menu = (
-    <DropdownMenu ev-$changed:show={{ self._position.bind(self) }}
+    <DropdownMenu ev-$changed:show={{ self._position }}
         ref="menu"
         class="k-select-dropdown"
-        ev-$change:show={{ self._onChangeShow.bind(self) }}
+        ev-$change:show={{ self._onChangeShow }}
     >
         <Options v-if={{ !isGroup }} data={{ data }} />
         <OptionGroup v-else v-for={{ data }} label={{ value.label }}>
@@ -151,12 +151,12 @@ if (hasValue && !label && !labels.length) {
         trigger="click"
         disabled={{ disabled }}
     >
-        <div class="k-wrapper" ev-click={{ self._focusInput.bind(self) }}>
+        <div class="k-wrapper" ev-click={{ self._focusInput }}>
             <input type="hidden" value={{ value }} name={{ name }} />
             <Input v-if={{ !multiple && filterable }}
                 value={{ keywords == null ? label : keywords }}
-                ev-input={{ self._onSearch.bind(self) }}
-                ev-blur={{ self._onBlur.bind(self) }}
+                ev-input={{ self._onSearch }}
+                ev-blur={{ self._onBlur }}
                 disabled={{ disabled }}
                 placeholder={{ placeholder }}
                 ref="input"
@@ -180,9 +180,9 @@ if (hasValue && !label && !labels.length) {
                 </Animate>
                 <Input v-if={{ filterable }}
                     value={{ keywords }}
-                    ev-input={{ self._onSearch.bind(self) }}
-                    ev-blur={{ self._onBlur.bind(self) }}
-                    ev-focus={{ self._onFocus.bind(self) }}
+                    ev-input={{ self._onSearch }}
+                    ev-blur={{ self._onBlur }}
+                    ev-focus={{ self._onFocus }}
                     disabled={{ disabled }}
                     placeholder={{ !hasValue ? placeholder : '' }}
                     ref="input"
@@ -193,7 +193,7 @@ if (hasValue && !label && !labels.length) {
             <span class="k-suffix">
                 <i v-if={{ clearable }}
                     class={{ {"k-clear ion-ios-close": true, "k-show": hasValue} }}
-                    ev-click={{ self._onClear.bind(self) }}
+                    ev-click={{ self._onClear }}
                 ></i>
                 <i class="k-arrow ion-arrow-down-b"></i>
             </span>

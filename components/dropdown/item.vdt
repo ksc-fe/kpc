@@ -10,7 +10,7 @@ const classNameObj = {
 }
 
 <div class={{ classNameObj }}
-    ev-click={{ self._onClick.bind(self) }}
-    ev-mouseenter={{ self._onMouseEnter.bind(self) }}
-    ev-mouseleave={{ self._onMouseLeave.bind(self) }}
+    ev-click={{ self._onClick }}
+    ev-mouseenter={{ self._onMouseEnter }}
+    ev-mouseleave={{ self._onMouseLeave }}
 >{{ children }}</div>

@@ -7,7 +7,7 @@ const {
 
 const events = {};
 if (canHover && trigger === 'hover') {
-    events['ev-mouseenter'] = self.show.bind(self);
+    events['ev-mouseenter'] = self.show;
     events['ev-mouseleave'] = self.hide.bind(self, false);
 }
 

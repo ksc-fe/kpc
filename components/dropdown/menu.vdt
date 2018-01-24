@@ -4,7 +4,7 @@ const {children, show, trigger, className} = self.get();
 
 const events = {};
 if (trigger === 'hover') {
-    events['ev-mouseenter'] = self.show.bind(self);
+    events['ev-mouseenter'] = self.show;
     events['ev-mouseleave'] = self.hide.bind(self, false);
 }
 

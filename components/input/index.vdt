@@ -46,7 +46,7 @@ const wrapperEvents = [
             type={{ type }}
             name={{ name }}
             value={{ value }}
-            ev-input={{ self._onInput.bind(self) }}
+            ev-input={{ self._onInput }}
             defaultValue={{ defaultValue }}
             readOnly={{ readonly }}
             placeholder={{ placeholder }}
@@ -57,7 +57,7 @@ const wrapperEvents = [
         <textarea v-else 
             class="k-inner k-textarea"
             value={{ value }}
-            ev-input={{ self._onInput.bind(self) }}
+            ev-input={{ self._onInput }}
             defaultValue={{ defaultValue }}
             name={{ name }}
             readOnly={{ readonly }} 
@@ -74,7 +74,7 @@ const wrapperEvents = [
                     "k-clear k-icon ion-ios-close": true, 
                     "k-show": value,
                 } }}
-                ev-click={{ self.clear.bind(self) }}
+                ev-click={{ self.clear }}
             ></i>
             <b:suffix />
         </div>

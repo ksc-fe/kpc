@@ -18,7 +18,7 @@ const classNameObj = {
 const sliderWidth = max - min;
 
 <div class={{ classNameObj }} style={{ style }}>
-    <div class="k-wrapper"  ev-click={{ self.clickWrapper.bind(self) }} ref={{ dom => self.$slider = dom }}>
+    <div class="k-wrapper"  ev-click={{ self.clickWrapper }} ref={{ dom => self.$slider = dom }}>
         <div class="k-bar"
             style={{ isRange ?
                 {

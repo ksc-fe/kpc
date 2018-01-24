@@ -9,12 +9,12 @@
             <Row gutter="16">
                 <Col span="12">
                     <FormItem hideLabel model="model.realUserName.firstName" :rules="{required: model.realUserName.lastName}">
-                        <Input v-model="model.realUserName.firstName" />
+                        <Input v-model="model.realUserName.firstName" fluid/>
                     </FormItem>
                 </Col>
                 <Col span="12">
                     <FormItem hideLabel model="model.realUserName.lastName" :rules="{required: model.realUserName.firstName}">
-                        <Input v-model="model.realUserName.lastName" />
+                        <Input v-model="model.realUserName.lastName" fluid/>
                     </FormItem>
                 </Col>
             </Row>

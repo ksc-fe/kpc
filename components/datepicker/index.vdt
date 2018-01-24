@@ -31,14 +31,14 @@ const showDate = new Date(_showDate || valueDate);
         showArrow={{ false }}
         transition="dropdown"
         ref="calendar"
-        ev-hide={{ self.onHide.bind(self) }}
-        ev-beforeShow={{ self.onBeforeShow.bind(self) }}
+        ev-hide={{ self.onHide }}
+        ev-beforeShow={{ self.onBeforeShow }}
         disabled={{ disabled }}
     >
         <Input placeholder={{ placeholder }} readonly 
             value={{ values.join(', ') }}
             clearable={{ clearable }}
-            ev-clear={{ self.onClear.bind(self) }}
+            ev-clear={{ self.onClear }}
             name={{ name }}
             disabled={{ disabled }}
             size={{ size }}
@@ -49,31 +49,31 @@ const showDate = new Date(_showDate || valueDate);
             <div v-if={{ !_isSelectTime }}>
                 <div class="k-month c-clearfix">
                     <Button icon type="none" size="small" class="k-prev"
-                        ev-click={{ self.prevYear.bind(self) }}
+                        ev-click={{ self.prevYear }}
                     >
                         <i class="k-icon ion-ios-arrow-left"></i>
                         <i class="k-icon ion-ios-arrow-left"></i>
                     </Button>
                     <Button icon type="none" size="small" class="k-prev"
-                        ev-click={{ self.prevMonth.bind(self) }}
+                        ev-click={{ self.prevMonth }}
                     >
                         <i class="k-icon ion-ios-arrow-left"></i>
                     </Button>
                     <span
                         class="k-text-wrapper"
-                        ev-click={{ self.showYearPicker.bind(self) }}
+                        ev-click={{ self.showYearPicker }}
                     >
                         <span class="k-text">{{ showDate.getFullYear() }}年</span>
                         <span class="k-text">{{ showDate.getMonth() + 1 }}月</span>
                     </span>
                     <Button icon type="none" size="small" class="k-next"
-                        ev-click={{ self.nextYear.bind(self) }}
+                        ev-click={{ self.nextYear }}
                     >
                         <i class="k-icon ion-ios-arrow-right"></i>
                         <i class="k-icon ion-ios-arrow-right"></i>
                     </Button>
                     <Button icon type="none" size="small" class="k-next"
-                        ev-click={{ self.nextMonth.bind(self) }}
+                        ev-click={{ self.nextMonth }}
                     >
                         <i class="k-icon ion-ios-arrow-right"></i>
                     </Button>
@@ -128,7 +128,7 @@ const showDate = new Date(_showDate || valueDate);
                                 return range(value - 5, value + 5);
                             } }}
                             value={{ showDate.getFullYear() }}
-                            ev-$change:value={{ self.onChangeYear.bind(self) }}
+                            ev-$change:value={{ self.onChangeYear }}
                         />
                     </Col>
                     <Col span="12">
@@ -137,7 +137,7 @@ const showDate = new Date(_showDate || valueDate);
                                 return {label: `${i + 1}月`, value: i};
                             }) }}
                             value={{ showDate.getMonth() }}
-                            ev-$change:value={{ self.onChangeMonth.bind(self) }}
+                            ev-$change:value={{ self.onChangeMonth }}
                         />
                     </Col>
                 </Row>
@@ -148,7 +148,7 @@ const showDate = new Date(_showDate || valueDate);
                         ev-click={{ self.cancel.bind(self) }}
                     >取消</Button>-->
                     <span class="k-text-wrapper"
-                        ev-click={{ self.cancel.bind(self) }}
+                        ev-click={{ self.cancel }}
                     >
                         <span class="k-text">{{ showDate.getFullYear() }}年</span>
                         <span class="k-text">{{ showDate.getMonth() + 1 }}月</span>

@@ -19,7 +19,7 @@ const theadCreator = () => <thead>
     <tr>
         <th v-if={{ checkType === 'checkbox' }} class="k-th-check">
             <Checkbox value={{ self.isCheckAll() }}
-                ev-$change:value={{ self._toggleCheckAll.bind(self) }}
+                ev-$change:value={{ self._toggleCheckAll }}
             />
         </th>
         <th v-else-if={{ checkType === 'radio' }} class="k-th-check"></th>
@@ -34,7 +34,7 @@ const theadCreator = () => <thead>
                 key={{ key }}
                 $parent={{ self }} 
                 ev-click={{ item.sortable ? self._sort.bind(self, key, item) : undefined }}
-                ev-dragStart={{ self._dragStart.bind(self) }}
+                ev-dragStart={{ self._dragStart }}
             />
         }) }}
         {{  // for using TableColumn as children

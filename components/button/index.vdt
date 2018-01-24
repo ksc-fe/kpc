@@ -56,7 +56,7 @@ if (!icon && Array.isArray(children)) {
 }
 
 <Button class={{ classNameObj }} {{ ...rest }} 
-    ev-click={{ self._onClick.bind(self) }}
+    ev-click={{ self._onClick }}
 >
     {{ loading ? 
         classNameObj['k-icon-right'] ?

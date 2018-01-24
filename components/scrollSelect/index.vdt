@@ -9,8 +9,8 @@ const {
             transform: `translateY(${_translate}px)`,
             marginTop: `${_marginTop}px`,
         } }}
-        ev-mousedown={{ self._dragStart.bind(self) }}
-        ev-wheel={{ self._onWheel.bind(self) }}
+        ev-mousedown={{ self._dragStart }}
+        ev-wheel={{ self._onWheel }}
         ref="wrapper"
     >
         <div

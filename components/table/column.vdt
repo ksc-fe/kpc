@@ -7,9 +7,9 @@ const {sort, resizable} = $parent.get();
 <th width={{ width }} 
     title={{ title }}
     class={{ {'k-sortable': sortable} }}
-    ev-click={{ self.onClick.bind(self) }}
+    ev-click={{ self.onClick }}
 >
-    <div v-if={{ resizable }} class="k-resize" ev-mousedown={{ self.onDragStart.bind(self) }}></div>
+    <div v-if={{ resizable }} class="k-resize" ev-mousedown={{ self.onDragStart }}></div>
     <div class="k-th">
         <div v-if={{ !groups }} class="c-ellipsis">{{ title }}</div>
         {{ do {

@@ -16,13 +16,13 @@ const classNameObj = {
 <div class={{ classNameObj }} style={{ style }}>
     <i class="ion-edit k-edit" title={{ tip }}
         v-if={{ !disabled && !editing }}
-        ev-click={{ self._edit.bind(self) }}
+        ev-click={{ self._edit }}
     ></i>
     <div class="c-ellipsis" v-if={{ value || editing }}>
         {{ !editing ? children :
             <Input size="small" defaultValue={{ value }} 
-                ev-blur={{ self._onBlur.bind(self) }}
-                ev-keydown={{ self._onKeydown.bind(self) }}
+                ev-blur={{ self._onBlur }}
+                ev-keydown={{ self._onKeydown }}
                 ref="input"
             />
         }}

@@ -4,8 +4,8 @@ import MoveWrapper from '../moveWrapper';
 const {type, content, children, closable} = self.get();
 
 <div class={{ {"k-message": true, [`k-${type}`]: type !== 'info'} }}
-    ev-mouseenter={{ self.onMouseEnter.bind(self) }}
-    ev-mouseleave={{ self.onMouseLeave.bind(self) }}
+    ev-mouseenter={{ self.onMouseEnter }}
+    ev-mouseleave={{ self.onMouseLeave }}
 >
     <div class="k-container">
         <i class="k-icon ion-ios-information"></i>
@@ -16,7 +16,7 @@ const {type, content, children, closable} = self.get();
         <Button 
             v-if={{ closable }}
             type="none" icon class="k-close"
-            ev-click={{ self.close.bind(self) }}
+            ev-click={{ self.close }}
         >
             <i class="k-icon ion-ios-close-empty"></i>
         </Button>

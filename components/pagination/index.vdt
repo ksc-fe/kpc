@@ -38,7 +38,7 @@ const paginationDot = function(callback) {
         // previous page button
         items.push(
             <div class={{ {'k-prev': true, 'k-disabled': prevPage < 1} }}
-                ev-click={{ prevPage < 1 ? undefined : self.prev.bind(self) }}
+                ev-click={{ prevPage < 1 ? undefined : self.prev }}
             ><i class="ion-ios-arrow-left"></i></div>
         );
 
@@ -48,11 +48,11 @@ const paginationDot = function(callback) {
                 for (let i = 1; i <= max; i++) {
                     items.push(paginationButton(i));
                 }
-                items.push(paginationDot(self.fastNext.bind(self)));
+                items.push(paginationDot(self.fastNext));
                 items.push(paginationButton(totalPages));
             } else if (current > minCount && current <= maxCount) {
                 items.push(paginationButton(1));
-                items.push(paginationDot(self.fastPrev.bind(self)));
+                items.push(paginationDot(self.fastPrev));
 
                 const midCount = counts - 4;
                 const mid = Math.floor(midCount / 2);
@@ -62,11 +62,11 @@ const paginationDot = function(callback) {
                     items.push(paginationButton(i));
                 }
 
-                items.push(paginationDot(self.fastNext.bind(self)));
+                items.push(paginationDot(self.fastNext));
                 items.push(paginationButton(totalPages));
             } else {
                 items.push(paginationButton(1));
-                items.push(paginationDot(self.fastPrev.bind(self)));
+                items.push(paginationDot(self.fastPrev));
 
                 const min = totalPages - counts + 3;
                 for (let i = min; i <= totalPages; i++) {
@@ -82,7 +82,7 @@ const paginationDot = function(callback) {
         // next page button
         items.push(
             <div class={{ {'k-next': true, 'k-disabled': nextPage > totalPages} }}
-                ev-click={{ nextPage > totalPages ? undefined : self.next.bind(self) }}
+                ev-click={{ nextPage > totalPages ? undefined : self.next }}
             ><i class="ion-ios-arrow-right"></i></div>
         );
 
@@ -98,29 +98,10 @@ const paginationDot = function(callback) {
         />
     </div>
 
-                return <div className="pager">{{ liItems }}</div>;
-
-            })()
-
-        }}
-
-        <span v-if={{ Goto }}>
-            跳转
-            <input
-                v-model="value"
-                ev-change={{ self._goto.bind(self) }}
-                className="k-go"
-            />
-        </span>
-
-        <div class="k-drop">
-            <Select v-model="size" class="test"
-                        data={{ opts.map(item => {
-                        return {'value': item, 'text': item + '行'}
-                    }) }}
-                    >
-            </Select>
-        </div>
+    <div class="k-goto" v-if={{ showGoto }}>
+        跳至<Input size={{ size }} value={{ current }}
+            ev-change={{ self._goto }}
+        />页
     </div>
 
     <div v-if={{ showTotal }} class="k-total">共 {{ total }} 条</div>
