@@ -1,3 +1,5 @@
+import {isStringOrNumberNotEmpty} from '../utils';
+
 let {
     type, className, size, icon, circle, ref, key,
     tagName, htmlType, fluid, children, loading,
@@ -33,7 +35,7 @@ const Button = props => {
 if (!icon && Array.isArray(children)) {
     children.forEach((child, index) => {
         if (child) {
-            if (child.type === 1 || typeof child === 'string' || typeof child === 'number') {
+            if (child.type === 1 || isStringOrNumberNotEmpty(child)) {
                 // is a text node
                 // wrap text node with span
                 children[index] = <span>{{ child }}</span>
@@ -50,7 +52,7 @@ if (!icon && Array.isArray(children)) {
             }
         }
     });
-} else if (typeof children === 'string' || typeof children === 'number') {
+} else if (isStringOrNumberNotEmpty(children)) {
     // wrap text node with span
     children = <span>{{ children }}</span>
 }

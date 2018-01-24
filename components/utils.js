@@ -39,6 +39,11 @@ export function isTextVNode(o) {
     return isStringOrNumber(o) || o.type === 1;
 }
 
+export function isStringOrNumberNotEmpty(o) {
+    const type = typeof o;
+    return type === 'string' && !/^\s+$/.test(o) || type === 'number';
+}
+
 export function getTextByChildren(children) {
     let ret = '';
     if (Array.isArray(children)) {
