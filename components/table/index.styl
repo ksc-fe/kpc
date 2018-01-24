@@ -11,10 +11,9 @@
 
     // thead
     thead
-        background $table-thead-bg-color
         font-size $table-thead-font-size
         color $table-thead-color
-        border-top $table-th-border-top
+        // border-top $table-th-border-top
         border-bottom $table-th-border-bottom
         -webkit-backface-visibility hidden
     th
@@ -22,6 +21,7 @@
         text-align $table-th-text-align 
         font-weight $table-th-font-weight
         position relative
+        background $table-thead-bg-color
     .k-th
         display flex
 
@@ -66,12 +66,13 @@
 
 .k-table-wrapper
     overflow auto
+    border-top $table-th-border-top
     // fix header
     .k-fixed
         position relative
         z-index 1
-        border-top $table-border-top
-        border-bottom $table-border-bottom
+        border-bottom $table-th-border-bottom
+        background $table-thead-bg-color
         thead
             border none
     .k-scroll
@@ -85,9 +86,14 @@
         .k-fixed
         thead
             background $table-border-thead-bg-color
+        .k-fixed
         .k-table
             border-left $table-border-left
             border-right $table-border-right
+        .k-fixed
+            .k-table
+                border none
+            
 
 
 $dir = $theme-dir + '/table.styl';

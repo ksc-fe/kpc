@@ -1,13 +1,13 @@
 @require('./variables.styl')
 
-
 .k-slider
     position relative
     display flex
+    align-items center
     .k-wrapper
         height $slider-height
-        background-color $slider-color
-        border-radius $slider-height
+        background-color $slider-bg-color
+        border-radius $slider-border-radius
         cursor pointer
         position relative
         display inline-block
@@ -24,34 +24,36 @@
             background-color $slider-bar-color
             position absolute
             height 100%
-            border-radius $slider-height
+            border-radius $slider-border-radius
             transition all $transition 
         .k-button-wrapper
             height $slider-button-height
-            width @height
+            width $slider-button-width 
             position absolute
-            transform translateX(-50%)
-            top $slider-button-top
+            transform translate(-50%, -50%)
+            top 50% 
             text-align center
             transition all $transition 
         .k-button
             width 100%
             height 100%
-            border 2px solid $slider-bar-color
-            border-radius 50%
-            background-color #fff
+            border $slider-button-border 
+            border-radius $slider-button-border-radius 
+            background-color $slider-button-bg-color 
             transition all $transition 
             &:hover
-                transform scale(1.5)
-                cursor -webkit-grab
-                cursor -moz-grab
-                background-color $slider-bar-color
+                transform $slider-button-hover-transform 
+                cursor grab
+                background-color $slider-button-hover-bg-color 
         .k-text
             width 100%
             height 100%
             top $slider-button-top
             position absolute
             color $slider-bar-color
+    .k-spinner
+        margin-left $slider-margin
+
     &.k-dragging
         .k-bar
             transition none
@@ -61,15 +63,10 @@
             transition none
         .k-active
             .k-button
-                cursor -webkit-grabbing
-                transform scale(1.5)
-                background-color $slider-bar-color
+                cursor grabbing
+                transform $slider-button-hover-transform 
+                background-color $slider-button-hover-bg-color 
 
-    &.k-slider-input
-        .k-input-wrapper
-            float right
-            margin-top -0.75rem
-            margin-left $slider-margin
     &.k-disabled
         .k-wrapper
             cursor not-allowed
@@ -78,7 +75,7 @@
         .k-button
             border-color $slider-disabled-color
             &:hover
-                background-color #fff
+                background-color $slider-button-disabled-bg-color
                 cursor not-allowed
                 transform none
 

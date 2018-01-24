@@ -54,12 +54,4 @@
                     height lookup('$pagination-' + size + '-page-height')
                     line-height s('calc(%s - 2px)', @height)
 
-    // FIXME: why should we have to set top 1px to vertical algin middle
-    .k-prev
-    .k-next
-        i
-            position relative
-            top 1px
-
-
 @import $theme-dir + '/pagination.styl' if exists($theme-dir + '/pagination.styl') 

@@ -1,1 +1,14 @@
 @require('../../styles/themes/default.styl')
+
+$tabs-border-bottom := 1px solid $border-color
+$tabs-height := unit(59 / 14, rem)
+$tabs-padding := 0 unit(8 / 14, rem)
+$tabs-margin := 0 unit(10 / 14, rem)
+$tabs-color := $text-color
+
+// active
+$tabs-active-color := $primary-color
+$tabs-highlight-height := unit(2 / 14, rem)
+$tabs-highlight-margin-left := -(unit(8 / 14, rem))
+$tabs-highlight-bottom := -($tabs-highlight-height / 2)
+$tabs-highlight-bg-color := $primary-color

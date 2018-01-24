@@ -1,13 +1,13 @@
 import Tab from './tab';
 
-const {className, data, value, children} = self.get();
+const {className, data, value, children, style} = self.get();
 
 const classNameObj = {
     'k-tabs': true,
     [className]: className,
 };
 
-<div class={{ classNameObj }}>
+<div class={{ classNameObj }} style={{ style }}>
     <a class={{ {'k-tab': true, 'k-active': item.value === value} }}
         v-for={{ data }}
         v-for-value="item"

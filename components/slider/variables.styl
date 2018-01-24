@@ -3,13 +3,21 @@
 $slider-height := unit(7 / 14, rem)
 
 // define slider
-$slider-color := #eaeef2
+$slider-bg-color := #eaeef2
 $slider-bar-color := $primary-color
 $slider-margin := 1rem
 $slider-padding := 1rem
+$slider-border-radius := $slider-height
 
 $slider-button-height := 1rem
-$slider-button-top := -0.25 * $slider-button-height
+$slider-button-with := $slider-button-height
+$slider-button-border := 2px solid $slider-bar-color
+$slider-button-border-radius := 50%
+$slider-button-bg-color := #fff
+$slider-button-hover-transform := scale(1.5)
+$slider-button-hover-bg-color := $slider-bar-color
+$slider-button-disabled-bg-color := #fff
+
 $slider-box-padding := 5px 2px
 $slider-disabled-color = $disabled-color
 $slider-disabled-bg-color = $disabled-bg-color
