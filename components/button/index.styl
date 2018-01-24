@@ -159,7 +159,7 @@ sizes = small mini
             &:not(:only-of-type):last-of-type
                 border-top-left-radius 0
                 border-top-right-radius 0
-            for type in types
+            for type in primary warning danger
                 &.k-{type}:not(:first-of-type)
                     border-top-color lookup('$btns-' + type + '-border-color')
                 &.k-{type}:not(:last-of-type)
