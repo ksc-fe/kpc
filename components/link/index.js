@@ -32,3 +32,5 @@ export default class Link extends Intact {
         }
     }
 }
+
+export {Link};

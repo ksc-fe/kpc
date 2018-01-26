@@ -79,3 +79,5 @@ export default class Pagination extends Intact {
         this.changePage(value);
     }
 }
+
+export {Pagination};

@@ -191,3 +191,5 @@ const _Wrapper = Intact.functionalWrapper ?
     Intact.functionalWrapper(Wrapper) : Wrapper;
 
 export default _Wrapper;
+
+export {_Wrapper as Tooltip};

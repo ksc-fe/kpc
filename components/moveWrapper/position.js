@@ -171,3 +171,5 @@ function getOffsets(offsets, width, height) {
         parseFloat(offsets[1]) * (rPercent.test(offsets[1]) ? height / 100 : 1),
     ];
 }
+
+export {position};

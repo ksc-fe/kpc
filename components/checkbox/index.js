@@ -44,3 +44,5 @@ export default class Checkbox extends Intact {
             value === trueValue;
     }
 }
+
+export {Checkbox};

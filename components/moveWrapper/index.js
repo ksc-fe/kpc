@@ -71,3 +71,5 @@ export default class MoveWrapper extends Intact {
         this.container.appendChild(this.element);
     }
 }
+
+export {MoveWrapper};

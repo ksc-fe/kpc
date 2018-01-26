@@ -27,3 +27,5 @@ export default class Radio extends Intact {
         }
     }
 }
+
+export {Radio};

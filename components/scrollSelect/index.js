@@ -158,3 +158,5 @@ export default class ScrollSelect extends Intact {
         document.removeEventListener('mouseup', this._dragEnd);
     }
 }
+
+export {ScrollSelect};

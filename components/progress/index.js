@@ -44,3 +44,5 @@ export default class Progress extends Intact{
         this.set('percent', fixPercent(this.get('percent')));
     }
 }
+
+export {Progress};

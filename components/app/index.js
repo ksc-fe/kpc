@@ -55,3 +55,5 @@ export default class App extends Intact {
         });
     }
 }
+
+export {App};

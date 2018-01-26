@@ -95,3 +95,5 @@ export default class Editable extends Intact {
         this.set('value', this.initValue);
     }
 }
+
+export {Editable};

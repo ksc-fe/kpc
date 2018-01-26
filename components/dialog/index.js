@@ -154,3 +154,5 @@ export default class Dialog extends Intact {
         this._dragEnd();
     }
 }
+
+export {Dialog};

@@ -111,3 +111,5 @@ export default class Switch extends Intact {
         e.stopPropagation();
     }
 }
+
+export {Switch};

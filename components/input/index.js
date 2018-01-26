@@ -71,3 +71,5 @@ export default class Input extends Intact {
         this.trigger(name, e);
     }
 }
+
+export {Input};

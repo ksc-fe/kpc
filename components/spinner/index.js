@@ -97,3 +97,5 @@ export default class Spinner extends Intact {
 
     }
 }
+
+export {Spinner};

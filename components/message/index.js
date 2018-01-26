@@ -195,3 +195,5 @@ class Messages extends Intact {
 
 // MessageAniamte type for type checking
 class MessageAnimate extends Intact.Animate {  }
+
+export {Message};

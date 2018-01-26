@@ -212,3 +212,5 @@ export default class Datepicker extends Intact {
         this.set('_isSelectTime', false);
     }
 }
+
+export {Datepicker};

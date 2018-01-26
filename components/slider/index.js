@@ -190,5 +190,6 @@ export default class Slider extends Intact {
     _destory() {
         this._onRangeSlideEnd()
     }
-
 }
+
+export {Slider};
