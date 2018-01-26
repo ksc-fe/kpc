@@ -9,7 +9,7 @@ export default class extends Intact {
 
     async showDialogInstance() {
         const Dialog = await import('components/dialog');
-        class MyDialog extends Dialog {
+        class MyDialog extends Dialog.default {
             @Intact.template()
             get template() {
                 return `<t:parent><b:body>Dialog Instance</b:body></t:parent>`
