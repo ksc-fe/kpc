@@ -1,4 +1,5 @@
 import Link from 'components/link';
+import * as KPC from 'components';
 
 const list = [
     'button', 'dialog', 'checkbox',
