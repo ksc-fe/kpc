@@ -1,0 +1,92 @@
+@import '../styles/variables';
+@import '../styles/highlight.styl';
+
+html
+body
+    margin 0
+    color #333
+    background #efefef
+    height 100%
+a
+    color #2d8cf0
+    text-decoration none
+    cursor pointer
+h1, h2, h3, h4, h5
+    margin 0
+    font-weight normal
+    color #000
+h1
+    font-size 2em
+h2
+    font-size 1.8em
+h3
+    font-size 1.5em
+code
+    color: #c7254e;
+    background-color: #f9f2f4;
+    border-radius: 4px;
+    padding 0 5px
+blockquote
+    margin 1em 0 
+    padding 1px 2em
+    background #f8f8f8
+    border-radius 0 3px 3px 0
+    border-left 2px solid linkColor
+    position relative
+    &:before
+        content '!'
+        display block
+        position absolute
+        top 50%
+        margin-top -10px
+        width 20px
+        height 20px
+        border-radius 100%
+        text-align center
+        background linkColor
+        color #fff
+        line-height 20px
+        left -11px
+#page
+.app-wrapper
+.main-wrapper
+    height 100%
+
+.header-wrapper
+    height headerHeight
+    line-height headerHeight 
+    box-shadow 0 2px 5px rgba(0, 0, 0, .08)
+    background #fff
+    position fixed
+    width 100%
+    top 0
+    z-index 999
+    header
+        width width
+        margin 0 auto
+    .logo
+        font-size 24px
+        color #333
+        margin-left 20px
+    nav
+        float right
+        position relative
+        a
+            display inline-block
+            padding 0 20px
+            color #333
+            &.active
+                color linkColor
+    .border
+        position absolute
+        bottom 0
+        border-bottom 2px solid linkColor
+.transition
+    transition all 350ms cubic-bezier(.55, 0, .1, 1)
+.blue
+    color blue 
+.red
+    color red 
+.yellow 
+    color yellow 
+

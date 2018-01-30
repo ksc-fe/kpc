@@ -1,0 +1,38 @@
+import Link from 'components/link';
+
+const nav = [
+    {
+        title: '教程',
+        href: 'document'
+    },
+    {
+        title: 'API',
+        href: 'api'
+    },
+    // {
+        // title: '示例',
+        // href: 'examples'
+    // }
+];
+
+<div class={{ {'main-wrapper': true, [scope.className]: scope.className} }}>
+    <div class="header-wrapper">
+        <header>
+            <b:header>
+                <Link class="logo" href="/">KPC</Link>
+                <nav>
+                    <Link v-for={{ nav }} 
+                        class={{ {
+                            active: value.href === scope.navIndex
+                        } }}
+                        href={{ `/${value.href}` }}
+                    >{{ value.title }}</Link>
+                    <div class="border"></div>
+                </nav>
+            </b:header>
+        </header>
+    </div>
+    <div class="content-wrapper">
+        <b:content />
+    </div>
+</div>
