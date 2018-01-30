@@ -8,7 +8,7 @@ import DynamicMiddleware from 'dynamic-middleware';
 
 function createRouterMiddleware(router, App) {
     return function(req, res, next) {
-        router.resolve({pathname: req.path}).then(({Page, data})=> {
+        router.resolve({pathname: req.path}).then(({Page, data}) => {
             const $app = new App();
             return $app.render(Page, data).then(() => {
                 res.render('index', {

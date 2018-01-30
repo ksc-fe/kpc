@@ -1,3 +1,5 @@
+import '../styles/kpc.styl';
+
 export * from './app';
 export * from './button';
 export * from './checkbox';
