@@ -16,9 +16,11 @@ module.exports = merge.smartStrategy({
         libraryTarget: 'commonjs2',
     },
     target: 'node',
-    externals: [nodeExternal(
-        {whitelist: ['universal-router', 'webpack/hot/poll?1000']}),
-        {'../webpack.config.client': 'commonjs ../webpack.config.client'}
+    externals: [
+        nodeExternal(
+            {whitelist: ['universal-router', 'webpack/hot/poll?1000']}
+        ),
+        {'../webpack.config.client': 'commonjs ../webpack.config.client'},
     ],
     node: {
         __dirname: false,

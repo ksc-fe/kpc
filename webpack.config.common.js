@@ -8,7 +8,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, './.dev'),
         filename: '[name].js',
-        publicPath: '/static',
+        publicPath: '/',
     },
     module: {
         rules: [
@@ -79,6 +79,9 @@ module.exports = {
                 use: [
                     {
                         loader: 'file-loader',
+                        options: {
+                            outputPath: './fonts/',
+                        }
                     }
                 ]
             },

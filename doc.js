@@ -5,9 +5,11 @@ const webpackConfig = require('./webpack.config.site.render');
 const webpackConfigClient = require('./webpack.config.site.client');
 const webpack = require('webpack');
 
+global.root = path.resolve(__dirname, './site');
+
 const doc = new KDoc(
     './components/**/*.md',
-    path.resolve(__dirname, './site')
+    global.root
 );
 doc.use(KDoc.plugins.md);
 
@@ -39,7 +41,8 @@ doc.use(function(ctx) {
 
             ctx.fsEach(async function(file) {
                 file.extname = '.html';
-                const data = await render('/components/button');
+                const pathname = path.relative(ctx.data.output, file.path).replace('index.html', '');
+                const data = await render(`/${pathname}`);
                 ctx.fsWrite(
                     file.relative, 
                     Vdt.renderFile(path.resolve(__dirname, './site/index.vdt'), {
@@ -54,7 +57,10 @@ doc.use(function(ctx) {
 
     ctx.hook.add('dist.after', () => {
         const compiler = webpack(webpackConfigClient);
-        compiler.run((err, stats) => {
+        compiler.watch({
+            aggregateTimeout: 300,
+            poll: 1000
+        }, (err, stats) => {
             console.log(stats.toString({
                 colors: true    // 在控制台展示颜色
             }));

@@ -11,4 +11,7 @@ module.exports = merge.smartStrategy({
     output: {
         path: path.resolve(__dirname, './site'),
     },
+    externals: {
+        fs: 'null',
+    },
 });

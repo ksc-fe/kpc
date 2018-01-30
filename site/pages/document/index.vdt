@@ -1,3 +1,42 @@
 import Button from 'components/button';
+import Link from 'components/link';
 
-<Button>Hello</Button>
+<t:parent navIndex="document" class="document-page">
+    <b:content>
+        <aside>
+            <div class="aside-wrapper">
+                <div class="catalog-section" v-for={{ self.get('sideBars') }}>
+                    <h5>{{ key }}</h5>
+                    <ul>
+                        <li v-for={value} class={{
+                            active: value.href === self.get('title')
+                        }}>
+                            {(() => {
+                                /* if (value.href === self.get('title')) { */
+                                    /* currentNav = value; */
+                                /* } */
+                            })()}
+                            <Link href={{ value.path }}>{{ value.title }}</Link>
+                            <!-- <Subs v-if={value.href === self.get('title')}
+                                subs={self.get('subCatalogs')} 
+                            /> -->
+                        </li>
+                    </ul>
+                </div>
+                <div class="aside-border transition"></div>
+            </div>
+        </aside>
+        <article>
+            <div class="article-head">
+                <div class="edit-link">
+                    如果你发现文档有问题，请帮忙在
+                    <a target="_blank" 
+                        href={{ `https://github.com/Javey/javey.github.io/blob/master/intact/docs/${self.get('title')}.md` }}
+                    >github</a>
+                    上修正该文档
+                </div>
+            </div>
+            <div innerHTML={{ self.get('contents') }}></div>
+        </article>
+    </b:content>
+</t:parent>

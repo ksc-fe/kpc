@@ -8,7 +8,7 @@ export default class Spinner extends Intact {
     defaults() {
         return {
             disabled: false,
-            value: "",
+            value: 0,
             max: Number.POSITIVE_INFINITY, //9999, // FIXME 默认应该可以无限加减
             min: Number.NEGATIVE_INFINITY,
             step: 1

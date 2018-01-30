@@ -5,7 +5,7 @@ import App from 'components/app';
 import Link from 'components/link';
 
 const history = createHistory();
-const $app = new App({container: document.getElementById('app')});
+const $app = new App({container: document.getElementById('page')});
 
 $app.history = history;
 Link.history = history;

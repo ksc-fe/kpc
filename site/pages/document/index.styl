@@ -1,0 +1,90 @@
+@import '../../styles/variables';
+// @import '../../node_modules/highlight.js/styles/default.css';
+
+.document-page
+    padding-top headerHeight + 15px 
+    box-sizing border-box
+    .content-wrapper.fixed
+        margin-bottom 0
+        aside
+            position fixed
+            top headerHeight 
+            background #fff
+            height "calc(100% - %s)" % headerHeight
+            overflow auto
+            box-sizing border-box
+        article
+            margin-left 200px
+    .content-wrapper
+        width width
+        display flex
+        background #fff
+        margin 0 auto
+        border-radius 5px
+        box-shadow 0 1px 1px rgba(0, 0, 0, .08)
+        min-height calc(100% - 15px)
+        aside
+            width 200px
+            border-right 1px solid #eee
+        .aside-wrapper
+            position relative
+            h5
+                font-size 16px
+                margin 25px 0 15px 20px
+                color #999
+            ul
+                list-style none
+                margin 0
+                padding 0
+            a
+                display block
+                height 30px
+                line-height 30px
+                padding-left 25px
+                color #333
+                &:hover
+                    background #f3f3f3
+            .active > a
+                    color linkColor
+                    // border-right 2px solid linkColor
+            .sub-catalogs
+                margin-left 10px
+                font-size 12px
+            .aside-border
+                border-right 2px solid linkColor
+                position absolute
+                right 0
+                top 0
+        article
+            flex 1
+            padding 10px 20px
+            overflow auto
+        .article-head
+            // border-bottom 1px solid #eee
+            .title 
+                padding 10px 0
+                font-size 2.2em
+                // font-weight bold
+                color #000
+                display inline-block
+            .edit-link
+                display inline-block
+                margin-left 20px
+                color #999
+                font-style italic
+        article
+            h1
+                padding 10px 0
+                border-bottom 1px solid #eee
+                margin 20px 0
+            h2, h3
+                padding 10px 0
+                margin 15px 0
+            p
+                line-height 25px
+
+            .output
+                padding 20px
+                border 1px solid #eee
+                margin 20px 0
+

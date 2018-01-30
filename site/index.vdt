@@ -5,7 +5,7 @@
     {{= self.style }}
 </head>
 <body>
-    <div id="app" innerHTML={{ self.content }}></div>
+    <div id="page" innerHTML={{ self.content }}></div>
     <script src="/static/client.js" type="text/javascript"></script>
 </body>
 </html>
