@@ -5,7 +5,7 @@ const webpackConfig = require('./webpack.config.site.render');
 const webpackConfigClient = require('./webpack.config.site.client');
 const webpack = require('webpack');
 
-module.exports = function() {
+module.exports = function(done) {
     const doc = new KDoc(
         './components/**/*.md',
         path.resolve(__dirname, './site')
@@ -56,7 +56,7 @@ module.exports = function() {
                     file.extname = '.html';
                     const pathname = path.relative(ctx.data.output, file.path).replace('index.html', '');
                     const data = await render(`/${pathname}`);
-                    ctx.fsWrite(
+                    await ctx.fsWrite(
                         file.relative, 
                         Vdt.renderFile(path.resolve(__dirname, './site/index.vdt'), {
                             title: 'test',
@@ -65,6 +65,8 @@ module.exports = function() {
                         })
                     );
                 });
+
+                done();
             });
         });
     });

@@ -8,8 +8,7 @@ const connect = require('gulp-connect');
 
 gulp.task('doc', (done) => {
     console.log('build markdown');
-    doc();
-    done();
+    doc(done);
 });
 
 gulp.task('webpack', () => {
@@ -33,6 +32,6 @@ gulp.task('server', () => {
 });
 
 gulp.task('watch', gulp.parallel('server', 'webpack', 'doc', () => {
-    gulp.watch('./**/*.md', {ignored: /node_modules/}, gulp.parallel('doc'));
+    gulp.watch('./components/**/*.md', gulp.parallel('doc'));
 }));
 
