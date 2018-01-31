@@ -8,7 +8,7 @@ import MoveWrapper from '../moveWrapper';
             class={{ {
                 "k-dialog": true, 
                 'k-dragging': self.get('_dragging'),
-                "k-small": self.get('type') === 'small',
+                "k-small": self.get('size') === 'small',
                 [self.get('classname') || '']: true,
             } }}
             ref={{ i => self.dialog = i ? i.element : null }}

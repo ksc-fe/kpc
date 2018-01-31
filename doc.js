@@ -31,8 +31,8 @@ module.exports = function() {
             };
         });
 
-        ctx.hook.add('dist.before', function(files) {
-            ctx.fsEach(async function(file) {
+        ctx.hook.add('dist.before', async function(files) {
+            await ctx.fsEach(function(file) {
                 file.extname = '.json';
                 const data = Object.assign({}, file.md, {
                     sideBars: file.sideBars

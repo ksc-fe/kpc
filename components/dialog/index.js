@@ -11,7 +11,7 @@ export default class Dialog extends Intact {
         return {
             title: '提示',
             value: false,
-            type: 'default', // default | small
+            size: 'default', // default | small
 
             _dragging: false,
         }

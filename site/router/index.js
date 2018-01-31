@@ -14,7 +14,7 @@ export default new Router([
         }
     },
     {
-        path: '(.*)',
+        path: /(.*)/,
         action: async (context) => {
             console.log(context);
             return {

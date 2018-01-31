@@ -4251,6 +4251,9 @@ blockquote:before {
 .document-page .contents > .k-table-wrapper thead th:first-of-type {
   width: 150px;
 }
+.document-page .contents > .k-table-wrapper thead th:nth-child(2) {
+  width: 50%;
+}
 
 .k-table {
   font-size: 0.857142857142857rem;
@@ -4355,11 +4358,87 @@ blockquote:before {
                             <!---->
                             <a href="/components/button/">按钮</a></li><li>
                             <!---->
-                            <a href="/components/checkbox/">复选框</a></li></ul></div><div class="aside-border transition"></div></div></aside><article><div class="article-head"><div class="title"></div><div class="edit-link">
+                            <a href="/components/checkbox/">复选框</a></li><li>
+                            <!---->
+                            <a href="/components/datepicker/">日期选择</a></li><li class="active">
+                            <!---->
+                            <a href="/components/dialog/">弹窗</a></li></ul></div><div class="aside-border transition"></div></div></aside><article><div class="article-head"><div class="title">弹窗</div><div class="edit-link">
                     如果你发现文档有问题，请帮忙在
                     <a target="_blank" href="https://github.com/Javey/javey.github.io/blob/master/intact/docs/undefined.md">github</a>
                     上修正该文档
-                </div></div><div class="contents"></div></article></div></div></div></div>
+                </div></div><div class="contents"><h1 id='header-%E7%A4%BA%E4%BE%8B'>示例</h1><h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1><div class="k-table-wrapper k-border">
+                    <table class="k-table">
+                        <thead><tr>
+<th>属性</th>
+<th>说明</th>
+<th>类型</th>
+<th>默认值</th>
+</tr>
+</thead>
+                        <tbody><tr>
+<td>title</td>
+<td>弹窗标题</td>
+<td><code>String</code></td>
+<td><code>&quot;提示&quot;</code></td>
+</tr>
+<tr>
+<td>value</td>
+<td>弹窗是否展示出来</td>
+<td><code>Boolean</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>size</td>
+<td>弹窗尺寸</td>
+<td><code>&quot;default&quot;</code> &#124; <code>&quot;small&quot;</code></td>
+<td><code>&quot;default&quot;</code></td>
+</tr>
+</tbody>
+                    </table>
+                </div><h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1><div class="k-table-wrapper k-border">
+                    <table class="k-table">
+                        <thead><tr>
+<th>方法名</th>
+<th>说明</th>
+<th>参数</th>
+<th>返回值</th>
+</tr>
+</thead>
+                        <tbody><tr>
+<td>show</td>
+<td>弹出弹窗</td>
+<td>-</td>
+<td><code>undefined</code></td>
+</tr>
+<tr>
+<td>close</td>
+<td>关闭弹窗</td>
+<td>-</td>
+<td><code>undefined</code></td>
+</tr>
+</tbody>
+                    </table>
+                </div><h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1><div class="k-table-wrapper k-border">
+                    <table class="k-table">
+                        <thead><tr>
+<th>事件名</th>
+<th>说明</th>
+<th>参数</th>
+</tr>
+</thead>
+                        <tbody><tr>
+<td>cancel</td>
+<td>点击取消按钮时触发</td>
+<td>-</td>
+</tr>
+<tr>
+<td>ok</td>
+<td>点击确定按钮时触发</td>
+<td>-</td>
+</tr>
+</tbody>
+                    </table>
+                </div></div></article></div></div></div></div>
     <script src="/static/client.js" type="text/javascript"></script>
 </body>
 </html>
