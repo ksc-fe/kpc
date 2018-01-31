@@ -5,7 +5,7 @@ const webpackConfig = require('./webpack.config.site.render');
 const webpackConfigClient = require('./webpack.config.site.client');
 const webpack = require('webpack');
 
-module.exports = function(done) {
+module.exports = function() {
     const doc = new KDoc(
         './components/**/*.md',
         path.resolve(__dirname, './site')
@@ -65,8 +65,6 @@ module.exports = function(done) {
                         })
                     );
                 });
-
-                done();
             });
         });
     });
