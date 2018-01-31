@@ -45,6 +45,7 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.5",
     "gulp": "^4.0.0",
+    "gulp-connect": "^5.2.0",
     "history": "^4.7.2",
     "intact": "^2.2.0-2",
     "intact-vue": "^0.2.2",

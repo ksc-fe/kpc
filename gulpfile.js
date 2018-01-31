@@ -4,6 +4,7 @@ const doc = require('./doc');
 const webpack = require('webpack');
 const webpackConfig = require('./webpack.config.site.client');
 const path = require('path');
+const connect = require('gulp-connect');
 
 gulp.task('doc', () => {
     console.log('build markdown');
@@ -22,6 +23,15 @@ gulp.task('webpack', () => {
     }); 
 });
 
-gulp.task('watch', gulp.parallel('webpack', 'doc', () => {
+gulp.task('server', () => {
+    connect.server({
+        root: 'site',
+        livereload: true,
+        port: 4567,
+    });
+});
+
+gulp.task('watch', gulp.parallel('server', 'webpack', 'doc', () => {
     gulp.watch('./**/*.md', gulp.parallel('doc'));
 }));
+
