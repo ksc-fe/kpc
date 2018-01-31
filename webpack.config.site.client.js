@@ -1,9 +1,11 @@
 const webpackConfig = require('./webpack.config.client');
 const merge = require('webpack-merge');
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = merge.smartStrategy({
-    'entry': 'replace'
+    'entry': 'replace',
+    'plugins': 'replace',
 })(webpackConfig, {
     entry: {
         'static/client': './site/client.js',
@@ -14,4 +16,19 @@ module.exports = merge.smartStrategy({
     externals: {
         fs: 'null',
     },
+    plugins: [
+        new webpack.optimize.CommonsChunkPlugin({
+            children: true,
+            async: true,
+            minChunks: 3
+        }),
+        new webpack.ProvidePlugin({
+            Intact: 'intact'
+        }),
+        new webpack.NamedModulesPlugin(),
+        new webpack.DefinePlugin({
+            'process.ssr': true,
+            'process.browser': true,
+        }),
+    ]
 });

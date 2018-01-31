@@ -105,4 +105,11 @@ const scheme = {
         style="margin: 20px;"
         rowClassName={{ (value, index) => index }}
     />
+
+    <Table
+        data={{ self.get('data') }}
+        scheme={{ scheme }}
+        type="border"
+        style="margin: 20px;"
+    />
 </div>

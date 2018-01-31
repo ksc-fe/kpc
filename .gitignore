@@ -7,3 +7,6 @@ log/
 .log
 test/coverage
 .dev/
+site/static/
+site/components/
+site/fonts/

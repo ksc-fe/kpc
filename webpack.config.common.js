@@ -69,7 +69,7 @@ module.exports = {
                         options: {
                             'include css': true,
                             sourceMap: false,
-                            'import': path.resolve(__dirname, 'styles/themes/ksyun/index.styl'),
+                            // 'import': path.resolve(__dirname, 'styles/themes/ksyun/index.styl'),
                         }
                     }
                 ]

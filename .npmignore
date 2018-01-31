@@ -8,3 +8,5 @@ log/
 views/
 .babelrc
 test/
+site/
+docs/

@@ -15,6 +15,70 @@
                         "content": "<h1 id='header-%E7%A4%BA%E4%BE%8B'>示例</h1>",
                         "text": "示例",
                         "children": []
+                    },
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": [
+                            {
+                                "title": "Button",
+                                "path": "#header-Button",
+                                "level": 2,
+                                "content": "<h2 id='header-Button'>Button</h2>",
+                                "text": "Button",
+                                "children": []
+                            },
+                            {
+                                "title": "ButtonGroup",
+                                "path": "#header-ButtonGroup",
+                                "level": 2,
+                                "content": "<h2 id='header-ButtonGroup'>ButtonGroup</h2>",
+                                "text": "ButtonGroup",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "title": "方法",
+                        "path": "#header-%E6%96%B9%E6%B3%95",
+                        "level": 1,
+                        "content": "<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>",
+                        "text": "方法",
+                        "children": [
+                            {
+                                "title": "Button",
+                                "path": "#header-Button",
+                                "level": 2,
+                                "content": "<h2 id='header-Button'>Button</h2>",
+                                "text": "Button",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "复选框",
+                "path": "components/checkbox/index.md",
+                "children": [
+                    {
+                        "title": "示例",
+                        "path": "#header-%E7%A4%BA%E4%BE%8B",
+                        "level": 1,
+                        "content": "<h1 id='header-%E7%A4%BA%E4%BE%8B'>示例</h1>",
+                        "text": "示例",
+                        "children": []
+                    },
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
                     }
                 ]
             }

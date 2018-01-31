@@ -1,6 +1,8 @@
 import Button from 'components/button';
 import Link from 'components/link';
 
+let currentNav = {};
+
 <t:parent navIndex="document" class="document-page">
     <b:content>
         <aside>
@@ -8,18 +10,15 @@ import Link from 'components/link';
                 <div class="catalog-section" v-for={{ self.get('sideBars') }}>
                     <h5>{{ key }}</h5>
                     <ul>
-                        <li v-for={value} class={{
-                            active: value.href === self.get('title')
-                        }}>
-                            {(() => {
-                                /* if (value.href === self.get('title')) { */
-                                    /* currentNav = value; */
-                                /* } */
-                            })()}
-                            <Link href={{ value.path }}>{{ value.title }}</Link>
-                            <!-- <Subs v-if={value.href === self.get('title')}
-                                subs={self.get('subCatalogs')} 
-                            /> -->
+                        <li v-for={{ value }} class={{ {
+                            active: value.path.includes(self.get('path').substring(1)) 
+                        } }}>
+                            {{ (() => {
+                                if (value.path.includes(self.get('path').substring(1))) {
+                                    currentNav = value;
+                                }
+                            })() }}
+                            <Link href={{ `/${value.path.replace('index.md', '')}` }}>{{ value.title }}</Link>
                         </li>
                     </ul>
                 </div>
@@ -28,6 +27,7 @@ import Link from 'components/link';
         </aside>
         <article>
             <div class="article-head">
+                <div class="title">{{ currentNav.title }}</div>
                 <div class="edit-link">
                     如果你发现文档有问题，请帮忙在
                     <a target="_blank" 
@@ -36,7 +36,7 @@ import Link from 'components/link';
                     上修正该文档
                 </div>
             </div>
-            <div innerHTML={{ self.get('contents') }}></div>
+            <div innerHTML={{ self.get('contents') }} class="contents"></div>
         </article>
     </b:content>
 </t:parent>

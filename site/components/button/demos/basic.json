@@ -10,15 +10,23 @@
     "sideBars": {
         "组件": [
             {
-                "title": "按钮",
+                "title": "按钮1",
                 "path": "components/button/index.md",
                 "children": [
                     {
-                        "title": "示例",
-                        "path": "#header-%E7%A4%BA%E4%BE%8B",
+                        "title": "示例6",
+                        "path": "#header-%E7%A4%BA%E4%BE%8B6",
                         "level": 1,
-                        "content": "<h1 id='header-%E7%A4%BA%E4%BE%8B'>示例</h1>",
-                        "text": "示例",
+                        "content": "<h1 id='header-%E7%A4%BA%E4%BE%8B6'>示例6</h1>",
+                        "text": "示例6",
+                        "children": []
+                    },
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
                         "children": []
                     }
                 ]

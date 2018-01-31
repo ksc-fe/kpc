@@ -1,6 +1,8 @@
 @import '../../styles/variables';
 // @import '../../node_modules/highlight.js/styles/default.css';
 
+$aside-width = 300px
+
 .document-page
     padding-top headerHeight + 15px 
     box-sizing border-box
@@ -14,7 +16,7 @@
             overflow auto
             box-sizing border-box
         article
-            margin-left 200px
+            margin-left $aside-width
     .content-wrapper
         width width
         display flex
@@ -24,7 +26,7 @@
         box-shadow 0 1px 1px rgba(0, 0, 0, .08)
         min-height calc(100% - 15px)
         aside
-            width 200px
+            width $aside-width
             border-right 1px solid #eee
         .aside-wrapper
             position relative
@@ -87,4 +89,10 @@
                 padding 20px
                 border 1px solid #eee
                 margin 20px 0
+    .contents
+        > .k-table-wrapper
+            thead
+                th:first-of-type
+                    width 150px
+            
 

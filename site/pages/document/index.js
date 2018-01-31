@@ -2,6 +2,7 @@ import Intact from 'intact';
 import Layout from '../layout';
 import template from './index.vdt';
 import './index.styl';
+import 'components/table/index.styl';
 // import axios from 'axios';
 
 export default class extends Layout {
