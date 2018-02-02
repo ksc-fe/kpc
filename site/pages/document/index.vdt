@@ -1,6 +1,8 @@
 import Button from 'components/button';
 import Link from 'components/link';
 
+const Article = self.get('Article');
+
 let currentNav = {};
 
 <t:parent navIndex="document" class="document-page">
@@ -36,7 +38,7 @@ let currentNav = {};
                     上修正该文档
                 </div>
             </div>
-            <div innerHTML={{ self.get('contents') }} class="contents"></div>
+            <Article />
         </article>
     </b:content>
 </t:parent>

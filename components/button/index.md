@@ -6,13 +6,10 @@ order: 0
 
 # 示例
 
-```jsx
-import Button from 'kpc/components/button';
-
-<div>
-    <Button>Hello KPC</Button>
-</div>
+```html
+console.log(1)
 ```
+
 
 # 属性
 
@@ -20,7 +17,7 @@ import Button from 'kpc/components/button';
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| type | 按钮类型 | `"default"` &#124; `"primary"` &#124; `"warning"` &#124; `"danger"` | `"default"` |
+| type | 按钮类型 | `"default"` &#124; `"primary"` &#124; `"warning"` &#124; `"danger"` &#124; `"none"` | `"default"` |
 | size | 按钮尺寸 | `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
 | icon | 是否为图标按钮（宽高相等）| `Boolean` | `false` |
 | circle | 是否为圆角按钮 | `Boolean` | `false` |

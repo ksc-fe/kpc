@@ -6,9 +6,9 @@ const webpackConfig = require('./webpack.config.site.client');
 const path = require('path');
 const connect = require('gulp-connect');
 
-gulp.task('doc', (done) => {
+gulp.task('doc', () => {
     console.log('build markdown');
-    doc(done);
+    return doc();
 });
 
 gulp.task('webpack', () => {
@@ -31,7 +31,7 @@ gulp.task('server', () => {
     });
 });
 
-gulp.task('watch', gulp.parallel('server', 'webpack', 'doc', () => {
-    gulp.watch('./components/**/*.md', gulp.parallel('doc'));
-}));
+gulp.task('watch', gulp.series('doc', gulp.parallel('server', 'webpack', () => {
+    gulp.watch('./**/*.md', {ignored: /node_modules/}, gulp.parallel('doc'));
+})));
 

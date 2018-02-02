@@ -14,7 +14,8 @@ export default class extends Layout {
         path = path.slice(1, -1);
         console.log(`../../${path}/index.json`);
         const data = await import(`../../${path}/index.json`);
-        console.log(data);
-        this.set(data);
+        const Article = await import('../../components/button');
+        // const demo = await import('../../components/button/demos');
+        this.set({...data, Article});
     }
 }
