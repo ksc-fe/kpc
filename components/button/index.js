@@ -18,6 +18,7 @@ export default class Button extends Intact {
             fluid: false,
             htmlType: 'button',
             tagName: 'button',
+            tagProps: undefined,
             value: undefined,
             name: undefined,
 

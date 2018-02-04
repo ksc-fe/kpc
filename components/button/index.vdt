@@ -3,7 +3,7 @@ import {isStringOrNumberNotEmpty} from '../utils';
 let {
     type, className, size, icon, circle, ref, key,
     tagName, htmlType, fluid, children, loading,
-    value, _value, name, ...rest
+    value, _value, name, tagProps, ...rest
 } = self.get();
 
 const classNameObj = {
@@ -57,7 +57,7 @@ if (!icon && Array.isArray(children)) {
     children = <span>{{ children }}</span>
 }
 
-<Button class={{ classNameObj }} {{ ...rest }} 
+<Button class={{ classNameObj }} {{ ...rest }} {{ ...tagProps }}
     ev-click={{ self._onClick }}
 >
     {{ loading ? 

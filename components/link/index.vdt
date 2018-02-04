@@ -1,2 +1,2 @@
-const {name, ...rest} = self.get();
-<a ev-click={{ self.to }} {{ ...rest }}>{{ self.get('children') }}</a>
+const {name, isReplace, ...rest} = self.get();
+<a {{ ...rest }} ev-click={{ self.to }}>{{ self.get('children') }}</a>
