@@ -7,7 +7,8 @@
   "scripts": {
     "test": "karma start test/karma.conf.js",
     "start": "node server.js",
-    "build": "NODE_ENV=production webpack --config webpack.config.build.js"
+    "build": "NODE_ENV=production webpack --config webpack.config.build.js",
+    "dev:doc": "gulp watch"
   },
   "repository": {
     "type": "git",

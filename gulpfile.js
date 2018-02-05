@@ -13,7 +13,7 @@ gulp.task('doc', () => {
 
 gulp.task('webpack', () => {
     const compiler = webpack(webpackConfig);
-    compiler.watch({
+    return compiler.watch({
         aggregateTimeout: 300,
         poll: 1000
     }, (err, stats) => {

@@ -16,7 +16,6 @@ export default new Router([
     {
         path: /(.*)/,
         action: async (context) => {
-            console.log(context);
             return {
                 Page: await import('../pages/document'),
                 data: {

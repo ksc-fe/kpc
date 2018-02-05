@@ -3,8 +3,8 @@ title: 按钮组
 order: 1
 ---
 
-将`Button`作为`ButtonGroup`的子元素，可以展示按钮组。给`ButtonGroup`添加`radio`属性
-可以使按钮组拥有类似radio的单选能力。
+将`Button`作为`ButtonGroup`的子元素，可以展示按钮组。给`ButtonGroup`添加`vertical`属性，
+可以是按钮组纵向排列。给`ButtonGroup`添加`radio`属性，可以使按钮组拥有类似radio的单选能力。
 
 ```vdt
 import {Button, ButtonGroup} from 'kpc/components/button';
@@ -20,11 +20,6 @@ import {Button, ButtonGroup} from 'kpc/components/button';
         <Button type="primary" size="small">关机</Button>
         <Button type="primary" size="small">重启</Button>
     </ButtonGroup>
-    <ButtonGroup vertical>
-        <Button type="primary" size="small">开机</Button>
-        <Button type="primary" size="small">关机</Button>
-        <Button type="primary" size="small">重启</Button>
-    </ButtonGroup>
     <ButtonGroup>
         <Button type="primary" size="small">
             <i class="k-icon ion-ios-arrow-left"></i>上一页
@@ -32,6 +27,13 @@ import {Button, ButtonGroup} from 'kpc/components/button';
         <Button type="primary" size="small">
             下一页<i class="k-icon ion-ios-arrow-right"></i>
         </Button>
+    </ButtonGroup>
+    <br /><br />
+    <p>纵向按钮组</p>
+    <ButtonGroup vertical>
+        <Button type="primary" size="small">开机</Button>
+        <Button type="primary" size="small">关机</Button>
+        <Button type="primary" size="small">重启</Button>
     </ButtonGroup>
     <br /><br />
     <p>radio按钮组</p>
