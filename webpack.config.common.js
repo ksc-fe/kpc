@@ -105,6 +105,7 @@ module.exports = {
             // for running in vue
             'intact$': 'intact-vue/src/index.js',
             'kpc': path.resolve(__dirname),
+            '~': path.resolve(__dirname, 'site'),
         },
         extensions: ['.mjs', '.js', '.vdt'],
     },

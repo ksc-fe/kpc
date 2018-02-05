@@ -1,6 +1,6 @@
 import './main';
 import router from './router';
-import App from 'components/app';
+import App from 'kpc/components/app';
 import {collectInitial} from 'node-style-loader/collect';
 
 export default function(path) {

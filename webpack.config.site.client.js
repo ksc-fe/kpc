@@ -8,7 +8,7 @@ module.exports = merge.smartStrategy({
     'plugins': 'replace',
 })(webpackConfig, {
     entry: {
-        'static/client': './site/client.js',
+        'static/client': './site/src/client.js',
     },
     output: {
         path: path.resolve(__dirname, './site'),

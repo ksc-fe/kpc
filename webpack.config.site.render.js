@@ -9,7 +9,7 @@ module.exports = merge.smartStrategy({
     'plugins': 'replace',
 })(webpackConfig, {
     entry: {
-        render: './site/render.js', 
+        render: './site/src/render.js', 
     },
     output: {
         chunkFilename: 'chunk/[chunkhash].js',

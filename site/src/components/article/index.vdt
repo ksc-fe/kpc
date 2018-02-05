@@ -1,0 +1,30 @@
+import {Tabs, Tab} from 'kpc/components/tabs';
+
+<div class="contents">
+    <h1>示例</h1>
+    <div key="demos">
+        {{ self.get('demos').map(Demo => {
+            return <div class={{ `example index-${Demo.data.index}` }}>
+                <div class="example-opera">
+                    <Demo.default /> 
+                </div>
+                <div class="example-desc">
+                    <div class="title">{{ Demo.data.setting.title }}</div>
+                    <div class="desc" innerHTML={{ Demo.data.contents }}></div>
+                </div>
+                <div class="example-code">
+                    <Tabs v-model="language">
+                        <Tab v-for={{ Demo.data.highlighted }} value={{ value.language }}>
+                            index.{{ value.language }}
+                        </Tab>
+                    </Tabs>
+                    <div class="code" innerHTML={{ (Demo.data.highlighted.find(item => {
+                        return item.language === self.get('language');
+                    }) || {}).content }}></div>
+                </div>
+            </div>
+        }) }}
+    </div>
+    <div innerHTML={{ self.get('contents') }} key="contents"></div>
+</div>
+

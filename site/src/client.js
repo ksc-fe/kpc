@@ -1,8 +1,8 @@
 import './main';
 import router from './router';
 import createHistory from 'history/createBrowserHistory';
-import App from 'components/app';
-import Link from 'components/link';
+import App from 'kpc/components/app';
+import Link from 'kpc/components/link';
 
 const history = createHistory();
 const $app = new App({container: document.getElementById('page')});

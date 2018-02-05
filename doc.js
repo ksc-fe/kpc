@@ -74,7 +74,46 @@ module.exports = function() {
             });
         });
 
-        ctx.hook.add('dist.after', files => {
+        ctx.hook.add('dist.after', async files => {
+            await ctx.fsEach(async function(file) {
+                if (/demos/.test(file.path)) {
+                    await file.md.codes.forEach(async item => {
+                        file.extname = '.' + item.language;
+                        let content = item.content;
+                        if (item.language === 'js') {
+                            content = [
+                                `export {default as data} from './index.json';`,
+                                item.content,
+                            ].join('\n');
+                        } else if (item.language === 'styl') {
+                            content = [
+                                `.example.index-${file.md.index}`,
+                                ...content.split('\n').map(line => `    ${line}`)
+                            ].join('\n');
+                        }
+                        await ctx.fsWrite(file.relative, content);
+                    });
+                } else {
+                    file.extname = '.js';
+                    await ctx.fsWrite(
+                        file.relative,
+                        [
+                            `import Article from '~/src/components/article';`,
+                            `import data from './index.json';`,
+                            ``,
+                            `const r = require.context('./', true, /demos.*index.js$/);`,
+                            `const demos = r.keys().map(r);`,
+                            ``,
+                            `export default class extends Article {`,
+                            `    defaults() {`,
+                            `        return {...super.defaults(), ...data, demos};`,
+                            `    }`,
+                            `}`,
+                        ].join('\n')
+                    );
+                }
+            });
+
             // 静态化
             const compiler = webpack(webpackConfig); 
             compiler.run((err, stats) => {
@@ -86,29 +125,13 @@ module.exports = function() {
 
                 ctx.fsEach(async function(file) {
                     if (/demos/.test(file.path)) {
-                        file.md.codes.forEach(item => {
-                            file.extname = '.' + item.language;
-                            let content = item.content;
-                            if (item.language === 'js') {
-                                content = [
-                                    `export {default as data} from './index.json';`,
-                                    item.content,
-                                ].join('\n');
-                            } else if (item.language === 'styl') {
-                                content = [
-                                    `.example.index-${file.md.index}`,
-                                    ...content.split('\n').map(line => `    ${line}`)
-                                ].join('\n');
-                            }
-                            ctx.fsWrite(file.relative, content);
-                        });
                     } else {
                         file.extname = '.html';
                         const pathname = path.relative(ctx.data.output, file.path).replace('index.html', '');
                         const data = await render(`/${pathname}`);
                         await ctx.fsWrite(
                             file.relative, 
-                            Vdt.renderFile(path.resolve(__dirname, './site/index.vdt'), {
+                            Vdt.renderFile(path.resolve(__dirname, './site/src/index.vdt'), {
                                 title: 'test',
                                 content: data.content,
                                 style: data.style,

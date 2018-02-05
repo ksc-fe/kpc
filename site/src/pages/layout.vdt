@@ -1,4 +1,4 @@
-import Link from 'components/link';
+import Link from 'kpc/components/link';
 
 const nav = [
     {
