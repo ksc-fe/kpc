@@ -4,8 +4,6 @@ category: 组件
 order: 0
 ---
 
-# 示例
-
 # 属性
 
 | 属性 | 说明 | 类型 | 默认值 |
@@ -13,6 +11,13 @@ order: 0
 | title | 弹窗标题 | `String` | `"提示"` |
 | value | 弹窗是否展示出来 | `Boolean` | `false` |
 | size | 弹窗尺寸 | `"default"` &#124; `"small"` | `"default"` |
+
+# 扩展点
+
+| 名称 | 说明 |
+| --- | --- |
+| header | 扩展弹窗头部 |
+| footer | 扩展弹窗底部 |
 
 # 方法
 
