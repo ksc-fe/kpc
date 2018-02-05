@@ -62,7 +62,15 @@ module.exports = function() {
                 let hasJs = false;
                 let hasStylus = false;
                 file.md.codes.forEach(item => {
-                    if (item.language === 'js') hasJs = true;
+                    if (item.language === 'js') {
+                        hasJs = true;
+                        item.content = [
+                            `import Intact from 'intact';`,
+                            `import template from './index.vdt';`,
+                            hasStylus ? `import './index.styl'; \n` : '',
+                            item.content,
+                        ].join('\n');
+                    }
                     if (item.language === 'styl') hasStylus = true;
                 });
                 if (!hasJs) {

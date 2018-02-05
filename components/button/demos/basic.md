@@ -22,17 +22,6 @@ import Button from 'kpc/components/button';
     margin-right 20px
 ```
 
-```js
-import Intact from 'intact';
-import template from './index.vdt';
-import './index.styl';
-
-export default class extends Intact {
-    @Intact.template()
-    static template = template;
-}
-```
-
 ```vue
 <template>
     <div>
