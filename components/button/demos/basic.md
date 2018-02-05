@@ -17,6 +17,11 @@ import Button from 'kpc/components/button';
 </div>
 ```
 
+```styl
+.k-btn
+    margin-right 20px
+```
+
 ```js
 import Intact from 'intact';
 import template from './index.vdt';
@@ -26,11 +31,6 @@ export default class extends Intact {
     @Intact.template()
     static template = template;
 }
-```
-
-```styl
-.k-btn
-    margin-right 20px
 ```
 
 ```vue
@@ -43,6 +43,7 @@ export default class extends Intact {
         <Button type="none">none</Button>
     </div>
 </template>
+<style src="./index.styl" lang="stylus"></style>
 <script>
 import Button from 'kpc/components/button';
 

@@ -17,4 +17,9 @@ export default class extends Layout {
         const Article = await import(`~/${path}/index.js`);
         this.set({...data, Article});
     }
+
+    _mount() {
+        super._mount();
+        document.title = this.get('setting.title');
+    }
 }

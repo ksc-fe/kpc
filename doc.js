@@ -58,16 +58,40 @@ module.exports = function() {
                     file.path = path.join(path.dirname(file.path), basename, 'index.json');
                 }
                 file.md.index = index;
+
+                let hasJs = false;
+                let hasStylus = false;
+                file.md.codes.forEach(item => {
+                    if (item.language === 'js') hasJs = true;
+                    if (item.language === 'styl') hasStylus = true;
+                });
+                if (!hasJs) {
+                    file.md.codes.splice(hasStylus ? 2 : 1, 0, {
+                        language: 'js',
+                        content: [
+                            `import Intact from 'intact';`,
+                            `import template from './index.vdt';`,
+                            hasStylus ? `import './index.styl'; \n` : '',
+                            `export default class extends Intact {`,
+                            `    @Intact.template()`,
+                            `    static template = template;`,
+                            `}`,
+                        ].join('\n')
+                    });
+                }
+
+                const highlighted = file.md.codes.map(item => {
+                    return {
+                        language: item.language,
+                        content: `<pre><code class="hljs ${languageMap(item.language)}">` +
+                            highlight.highlight(languageMap(item.language), item.content).value +
+                        `</code></pre>`
+                    };
+                });
+
                 const data = Object.assign({}, file.md, {
                     sideBars: file.sideBars,
-                    highlighted: file.md.codes.map(item => {
-                        return {
-                            language: item.language,
-                            content: `<pre><code class="hljs ${languageMap(item.language)}">` +
-                                highlight.highlight(languageMap(item.language), item.content).value +
-                            `</code></pre>`
-                        };
-                    }),
+                    highlighted: highlighted,
                 });
                 delete data.source;
                 file.contents = new Buffer(JSON.stringify(data, null, 4));
@@ -124,15 +148,14 @@ module.exports = function() {
                 const render = require('./.dev/render');
 
                 ctx.fsEach(async function(file) {
-                    if (/demos/.test(file.path)) {
-                    } else {
+                    if (!/demos/.test(file.path)) {
                         file.extname = '.html';
                         const pathname = path.relative(ctx.data.output, file.path).replace('index.html', '');
                         const data = await render(`/${pathname}`);
                         await ctx.fsWrite(
                             file.relative, 
                             Vdt.renderFile(path.resolve(__dirname, './site/src/index.vdt'), {
-                                title: 'test',
+                                title: file.md.setting.title,
                                 content: data.content,
                                 style: data.style,
                             })

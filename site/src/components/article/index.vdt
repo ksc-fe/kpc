@@ -13,13 +13,13 @@ import {Tabs, Tab} from 'kpc/components/tabs';
                     <div class="desc" innerHTML={{ Demo.data.contents }}></div>
                 </div>
                 <div class="example-code">
-                    <Tabs v-model="language">
+                    <Tabs v-model={{  `language${Demo.data.index}` }}>
                         <Tab v-for={{ Demo.data.highlighted }} value={{ value.language }}>
                             index.{{ value.language }}
                         </Tab>
                     </Tabs>
                     <div class="code" innerHTML={{ (Demo.data.highlighted.find(item => {
-                        return item.language === self.get('language');
+                        return item.language === self.get('language' + Demo.data.index);
                     }) || {}).content }}></div>
                 </div>
             </div>
