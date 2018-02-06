@@ -31,7 +31,9 @@ import MoveWrapper from '../moveWrapper';
             <div class="k-footer">
                 <b:footer>
                     <Button ev-click={{ self.cancel }}>取消</Button>
-                    <Button type="primary" ev-click={{ self.ok }}>确定</Button>
+                    <Button type="primary" ev-click={{ self.ok }} 
+                        loading={{ self.get('loading') }}
+                    >确定</Button>
                 </b:footer>
             </div>
         </Animate>

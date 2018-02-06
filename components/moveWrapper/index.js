@@ -47,14 +47,20 @@ export default class MoveWrapper extends Intact {
      *
      * @param ...args
      */
-    _$destroy(...args) {
-        if (this.destroyed) {
-            return console.warn('destroyed multiple times');
-        }
-        if (this.rendered) {
+    _$destroy(lastVNode, nextVNode) {
+        // if (this.destroyed) {
+            // return console.warn('destroyed multiple times');
+        // }
+        if (this.rendered && 
+            (
+                !nextVNode ||
+                !(nextVNode.type & Intact.Vdt.miss.Types.ComponentClassOrInstance) ||
+                nextVNode.key !== lastVNode.key
+            )
+        ) {
             Intact.Vdt.miss.remove(this.vdt.vNode, this.container);
         }
-        this._destroy(...args);
+        this._destroy(lastVNode, nextVNode);
         this.destroyed = true;
         this.trigger('$destroyed', this);
         this.off();

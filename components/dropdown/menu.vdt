@@ -3,8 +3,10 @@ import MoveWrapper from '../moveWrapper';
 const {children, show, trigger, className} = self.get();
 
 const events = {};
+// no matter what the trigger is, we should show menu when enter it.
+// for the case: hover trigger nests click trigger
+events['ev-mouseenter'] = self.show;
 if (trigger === 'hover') {
-    events['ev-mouseenter'] = self.show;
     events['ev-mouseleave'] = self.hide.bind(self, false);
 }
 

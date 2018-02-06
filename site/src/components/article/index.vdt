@@ -1,8 +1,8 @@
 import {Tabs, Tab} from 'kpc/components/tabs';
 
 <div class="contents">
-    <h1>示例</h1>
-    <div key="demos">
+    <div key="demos" v-if={{ self.get('demos').length }}>
+        <h1>示例</h1>
         {{ self.get('demos').map(Demo => {
             return <div class={{ `example index-${Demo.data.index}` }}>
                 <div class="example-opera">
@@ -13,18 +13,21 @@ import {Tabs, Tab} from 'kpc/components/tabs';
                     <div class="desc" innerHTML={{ Demo.data.contents }}></div>
                 </div>
                 <div class="example-code">
-                    <Tabs v-model={{  `language${Demo.data.index}` }}>
-                        <Tab v-for={{ Demo.data.highlighted }} value={{ value.language }}>
-                            index.{{ value.language }}
+                    <Tabs v-model={{  `file${Demo.data.index}` }}>
+                        <Tab v-for={{ Demo.data.highlighted }} 
+                            value={{ value.file ? value.file : `index.${value.language}` }}
+                        >
+                            {{ value.file ? value.file : `index.${value.language}` }}
                         </Tab>
                     </Tabs>
                     <div class="code" innerHTML={{ (Demo.data.highlighted.find(item => {
-                        return item.language === self.get('language' + Demo.data.index);
+                        const file = item.file ? item.file : `index.${item.language}`;
+                        return file === self.get('file' + Demo.data.index);
                     }) || {}).content }}></div>
                 </div>
             </div>
         }) }}
     </div>
-    <div innerHTML={{ self.get('contents') }} key="contents"></div>
+    <div innerHTML={{ self.get('contents') }} key="contents" class="api"></div>
 </div>
 

@@ -30,7 +30,7 @@ module.exports = function() {
             delimiters: ['{{', '}}']
         });
 
-        ctx.hook.add('md.renderer', (renderer, file) => {
+        ctx.hook.add('md.renderer', (renderer, file, codes) => {
             renderer.table = (header, body) => {
                 return `<div class="k-table-wrapper k-border">
                     <table class="k-table">
@@ -41,12 +41,23 @@ module.exports = function() {
             };
             const codeRenderer = renderer.code;
             renderer.code = function(code, language) {
+                const matches = code.match(/@file ([^\s]+)/);
+                if (matches) {
+                    code = code.substring(code.indexOf('\n') + 1);
+                }
                 const result = codeRenderer.call(this, code, language);
+                if (matches) {
+                    codes[codes.length - 1].file = matches[1];
+                }
                 if (/demos/.test(file.path)) {
                     return '';
                 } else {
                     return result; 
                 }
+            };
+
+            renderer.paragraph = function(text) {
+                return text.replace(/\n/g, '');
             };
         });
 
@@ -62,7 +73,7 @@ module.exports = function() {
                 let hasJs = false;
                 let hasStylus = false;
                 file.md.codes.forEach(item => {
-                    if (item.language === 'js') {
+                    if (item.language === 'js' && !item.file) {
                         hasJs = true;
                         item.content = [
                             `import Intact from 'intact';`,
@@ -93,7 +104,8 @@ module.exports = function() {
                         language: item.language,
                         content: `<pre><code class="hljs ${languageMap(item.language)}">` +
                             highlight.highlight(languageMap(item.language), item.content).value +
-                        `</code></pre>`
+                        `</code></pre>`,
+                        file: item.file,
                     };
                 });
 
@@ -112,18 +124,18 @@ module.exports = function() {
                     await file.md.codes.forEach(async item => {
                         file.extname = '.' + item.language;
                         let content = item.content;
-                        if (item.language === 'js') {
+                        if (item.language === 'js' && !item.file) {
                             content = [
                                 `export {default as data} from './index.json';`,
                                 item.content,
                             ].join('\n');
-                        } else if (item.language === 'styl') {
+                        } else if (item.language === 'styl' && !item.file) {
                             content = [
                                 `.example.index-${file.md.index}`,
                                 ...content.split('\n').map(line => `    ${line}`)
                             ].join('\n');
                         }
-                        await ctx.fsWrite(file.relative, content);
+                        await ctx.fsWrite(!item.file ? file.relative : file.dirname + '/' + item.file, content);
                     });
                 } else {
                     file.extname = '.js';

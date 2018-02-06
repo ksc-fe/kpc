@@ -9,6 +9,7 @@ const list = [
     'input', 'message', 'dropdown',
     'tooltip', 'pagination', 'datepicker',
     'scrollSelect', 'steps', 'tabs',
+    'test',
 ];
 
 <ul>

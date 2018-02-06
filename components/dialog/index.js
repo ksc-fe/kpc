@@ -5,30 +5,28 @@ import position from '../moveWrapper/position';
 
 export default class Dialog extends Intact {
     @Intact.template()
-    get template() { return template; }
+    static template = template;
+
+    static propTypes = {
+        value: Boolean,
+        loading: Boolean,
+    };
 
     defaults() {
         return {
             title: '提示',
             value: false,
             size: 'default', // default | small
+            loading: false,
 
             _dragging: false,
         }
-    }
-
-    static propTypes = {
-        value: Boolean,
     }
 
     _init() {
         this.on('$changed:value', (c, isShow) => {
             if (isShow) this._center();
         }); 
-
-        // this._move = this._move.bind(this);
-        // this._dragEnd = this._dragEnd.bind(this);
-        // this._escClose = this._escClose.bind(this);
     }
 
     _create() {
@@ -45,6 +43,14 @@ export default class Dialog extends Intact {
         this._center();
 
         document.addEventListener('keydown', this._escClose);
+    }
+
+    showLoading() {
+        this.set('loading', true);
+    }
+
+    hideLoading() {
+        this.set('loading', false);
     }
 
     close() {
@@ -144,12 +150,12 @@ export default class Dialog extends Intact {
         }
     }
 
-    _destroy() {
+    _destroy(...args) {
         document.removeEventListener('keydown', this._escClose);
         if (this.get('value')) {
             this.close();
         } else {
-            this.vdt.vNode.children._$destroy();
+            this.vdt.vNode.children._$destroy(...args);
         }
         this._dragEnd();
     }
