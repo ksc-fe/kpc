@@ -1,0 +1,7 @@
+const {to, separator, children} = self.get();
+
+<div class="k-item">
+    <a v-if={{ to }} ev-click={{ self.onClick }} class="k-item-link">{{ children }}</a>
+    <span v-else class="k-item-link">{{ children }}</span>
+    <span v-if={{ separator != null }} innerHTML={{ separator }} class="k-separator"></span>
+</div>

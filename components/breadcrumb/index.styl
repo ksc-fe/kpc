@@ -1,0 +1,13 @@
+@require('./variables.styl')
+
+.k-breadcrumb
+    .k-item
+        display inline-block
+        &:last-of-type
+            font-weight $breadcrumb-active-font-weight
+    .k-item-link
+        color $breadcrumb-color
+    a.k-item-link:hover
+        color $breadcrumb-hover-color
+    .k-separator
+        margin $breadcrumb-separator-margin

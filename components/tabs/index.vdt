@@ -13,11 +13,9 @@ const classNameObj = {
         v-for-value="item"
         ev-click={{ self._changeTab.bind(self, item) }}
     >{{ item.text }}</a>
-    {{ __u.map(children, vNode => {
+    {{ __u.map(children ? (Array.isArray(children) ? children : [children]) : children, vNode => {
         if (vNode.tag === Tab) {
-            const props = vNode.props;
-            props._value = value;
-            props._parent = self;
+            vNode.props = {...vNode.props, _value: value, _parent: self};
         }
         return vNode;
     }) }}

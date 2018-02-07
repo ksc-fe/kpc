@@ -1,0 +1,25 @@
+import BreadcrumbItem from './item';
+
+const {children, separator, className, style} = self.get();
+
+const classNameObj = {
+    'k-breadcrumb': true,
+    [className]: className,
+};
+
+const _children = children ? (Array.isArray(children) ? children : [children]) : children;
+
+<div class={{ classNameObj }} style={{ style }}>
+    {{ __u.map(_children, (vNode, index) => {
+        if (vNode.tag === BreadcrumbItem) {
+            vNode.props = {...vNode.props};
+            if (separator != null) {
+                vNode.props.separator = separator;
+            }
+            if (index === _children.length - 1) {
+                vNode.props.separator = null;
+            }
+        }
+        return vNode;
+    }) }} 
+</div>
