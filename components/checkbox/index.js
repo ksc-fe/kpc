@@ -43,6 +43,12 @@ export default class Checkbox extends Intact {
             value.indexOf(trueValue) > -1 : 
             value === trueValue;
     }
+
+    // @referenct https://stackoverflow.com/questions/24501497/why-the-onclick-element-will-trigger-twice-for-label-element
+    _onClick(e) {
+        e.preventDefault();
+        this.trigger('click', e);
+    }
 }
 
 export {Checkbox};

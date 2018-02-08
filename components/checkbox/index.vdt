@@ -12,7 +12,7 @@ const classNameObj = {
     [className]: className,
 };
 
-<label class={{ classNameObj }} style={{ style }}>
+<label class={{ classNameObj }} style={{ style }} ev-click={{ self._onClick }}>
     <span class="k-wrapper">
         <input type="checkbox" disabled={{ disabled }}
             v-model="value"
