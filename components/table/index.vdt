@@ -40,6 +40,7 @@ const theadCreator = () => <thead>
         {{  // for using TableColumn as children
             __u.map(children ? (Array.isArray(children) ? children : [children]) : children, vNode => {
                 if (vNode.tag === Column) {
+                    colSpan++;
                     const props = {...vNode.props, $parent: self};
                     vNode.props = props;
                     if (props.key == null) {
