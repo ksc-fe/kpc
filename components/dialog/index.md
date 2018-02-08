@@ -12,6 +12,8 @@ order: 0
 | value | 弹窗是否展示出来 | `Boolean` | `false` |
 | size | 弹窗尺寸 | `"default"` &#124; `"small"` | `"default"` |
 | loading | “确认”按钮是否为加载状态 | `Boolean` | `false` |
+| okText | “确认”按钮文案 | `String` | `"确认"` |
+| cancelText | “取消”按钮文案 | `String` | `"取消"` |
 
 # 扩展点
 

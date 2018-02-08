@@ -9,7 +9,7 @@ import MoveWrapper from '../moveWrapper';
                 "k-dialog": true, 
                 'k-dragging': self.get('_dragging'),
                 "k-small": self.get('size') === 'small',
-                [self.get('classname') || '']: true,
+                [self.get('className')]: self.get('className'),
             } }}
             ref={{ i => self.dialog = i ? i.element : null }}
             v-if={{ self.get('value') }}
