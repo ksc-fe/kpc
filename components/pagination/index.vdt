@@ -1,5 +1,5 @@
-import Select from 'components/select';
-import Input from 'components/input';
+import Select from '../select';
+import Input from '../input';
 
 const {
     total, current, limit, limits, 

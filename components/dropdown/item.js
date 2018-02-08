@@ -44,7 +44,7 @@ export default class DropdownItem extends Intact {
 
         // is not a sub dropdown trigger
         if (this.parentVNode.tag !== Dropdown) {
-            this.trigger('select', this);
+            this.trigger('select', this, e);
         }
     }
 

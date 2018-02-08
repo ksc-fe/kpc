@@ -18,6 +18,8 @@ export default class Dialog extends Intact {
             value: false,
             size: 'default', // default | small
             loading: false,
+            okText: '确认',
+            cancelText: '取消',
 
             _dragging: false,
         }
