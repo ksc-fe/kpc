@@ -29,6 +29,19 @@ export default class ScrollSelect extends Intact {
 
         this._move = this._move.bind(this);
         this._dragEnd = this._dragEnd.bind(this);
+
+        // throttle onWheel
+        let lock = false;
+        const onWheel = this._onWheel;
+        this._onWheel = function(e, ...args) {
+            e.preventDefault();
+            if (lock) return;
+            lock = true;
+            setTimeout(function() {
+                onWheel(e, ...args);
+                lock = false;
+            }, 50);
+        }; 
     }
 
     _mount() {
