@@ -33,11 +33,11 @@ export default class ScrollSelect extends Intact {
         // throttle onWheel
         let lock = false;
         const onWheel = this._onWheel;
-        this._onWheel = function(e, ...args) {
+        this._onWheel = (e, ...args) => {
             e.preventDefault();
             if (lock) return;
             lock = true;
-            setTimeout(function() {
+            this.timer = setTimeout(function() {
                 onWheel(e, ...args);
                 lock = false;
             }, 50);
@@ -169,6 +169,7 @@ export default class ScrollSelect extends Intact {
     _destroy() {
         document.removeEventListener('mousemove', this._move);
         document.removeEventListener('mouseup', this._dragEnd);
+        clearTimeout(this.timer);
     }
 }
 
