@@ -18,7 +18,7 @@ export default class Pagination extends Intact {
             // sizeValue: 10,
             showTotal: true,
             limits: [10, 20, 50],
-            value: '',
+            // value: '',
             showGoto: false,
             size: 'default',
         };

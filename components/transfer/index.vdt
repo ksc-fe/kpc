@@ -1,0 +1,44 @@
+import Button from '../button';
+import Checkbox from '../checkbox';
+
+const {
+    data, className, style, value, 
+    leftChecked, rightChecked
+} = self.get();
+
+const classNameObj = {
+    'k-transfer': true,
+    [className]: className,
+};
+
+<div class={{ classNameObj }} style={{ style }}>
+    <div class="k-panel">
+        <div v-for={{ data.filter(item => !~value.indexOf(item)) }} 
+            class="k-item"
+            key={{ value.label }}
+        >
+            <Checkbox v-model="leftChecked" name="left"
+                trueValue={{ value }}
+            >{{ value.label }}</Checkbox>
+        </div>
+    </div>
+    <div class="k-arrows">
+        <Button circle icon disabled={{ !rightChecked.length }}
+            ev-click={{ self._remove }}
+        >
+            <i class="k-icon ion-ios-arrow-left" />
+        </Button>
+        <Button circle icon disabled={{ !leftChecked.length }}
+            ev-click={{ self._add }}
+        >
+            <i class="k-icon ion-ios-arrow-right" />
+        </Button>
+    </div>
+    <div class="k-panel">
+         <div v-for={{ value }} class="k-item">
+            <Checkbox v-model="rightChecked" name="right"
+                trueValue={{ value }}
+            >{{ value.label }}</Checkbox>
+        </div>
+    </div>
+</div>

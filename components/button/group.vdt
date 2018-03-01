@@ -13,10 +13,15 @@ const classNameObj = {
 };
 
 <div class={{ classNameObj }} style={{ style }}>{{ 
-    radio ? children.map(vNode => {
-        if (vNode.tag === Button) {
-            vNode.props._value = value;
-        }
-        return vNode;
-    }) : children
+    radio ? __u.map(
+        children ? 
+            (Array.isArray(children) ? children : [children]) :
+            children, 
+        vNode => {
+            if (vNode.tag === Button) {
+                vNode.props._value = value;
+            }
+            return vNode;
+        }) : 
+        children
 }}</div>
