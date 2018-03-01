@@ -12,13 +12,14 @@ export default class Transfer extends Intact {
             value: [],
             leftChecked: [],
             rightChecked: [],
+            filterable: true,
         };
     }
 
     _add() {
         const value = this.get('value').concat(this.get('leftChecked'));
         this.set({
-            // leftChecked: [],
+            leftChecked: [],
             value: value,
         });
     }

@@ -26,7 +26,8 @@ export default class Checkbox extends Intact {
         const model = this.get('v-model');
         if (!model) return;
 
-        let value = this.get('_context').data.get('model');
+        let value = this.get('_context').data.get(model);
+        if (!value) return;
         const trueValue = this.get('trueValue');
         if (this.isChecked()) {
             if (isArray(value)) {

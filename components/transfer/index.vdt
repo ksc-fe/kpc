@@ -1,9 +1,10 @@
 import Button from '../button';
 import Checkbox from '../checkbox';
+import Input from '../input';
 
 const {
     data, className, style, value, 
-    leftChecked, rightChecked
+    leftChecked, rightChecked, filterable
 } = self.get();
 
 const classNameObj = {
@@ -11,17 +12,42 @@ const classNameObj = {
     [className]: className,
 };
 
-<div class={{ classNameObj }} style={{ style }}>
-    <div class="k-panel">
-        <div v-for={{ data.filter(item => !~value.indexOf(item)) }} 
-            class="k-item"
-            key={{ value.label }}
+const Panel = props => {
+    const keywords = self.get(`${props.model}Keywords`);
+    return <div class="k-panel">
+        <div class="k-title">{{ props.title }}</div>
+        <Input v-if={{ filterable }} placeholder="请输入"
+            v-model={{ `${props.model}Keywords` }}
+            clearable
         >
-            <Checkbox v-model="leftChecked" name="left"
-                trueValue={{ value }}
-            >{{ value.label }}</Checkbox>
-        </div>
+            <b:append>
+                <Button icon type="none">
+                    <i class="ion-ios-search"></i>
+                </Button>
+            </b:append>
+        </Input>
+        <Animate class="k-list">
+            <Animate 
+                v-for={{ props.data.filter(item => {
+                    return keywords ? item.label.includes(keywords) : true;
+                }) }} 
+                class="k-item"
+                key={{ value }}
+                a:transition="fade"
+            >
+                <Checkbox v-model={{ `${props.model}Checked` }} name={{ props.model }}
+                    trueValue={{ value }}
+                >{{ value.label }}</Checkbox>
+            </Animate>
+        </Animate>
     </div>
+};
+
+<div class={{ classNameObj }} style={{ style }}>
+    <Panel data={{ data.filter(item => !~value.indexOf(item)) }}
+        model="left" 
+        title="请选择"
+    />
     <div class="k-arrows">
         <Button circle icon disabled={{ !rightChecked.length }}
             ev-click={{ self._remove }}
@@ -34,11 +60,8 @@ const classNameObj = {
             <i class="k-icon ion-ios-arrow-right" />
         </Button>
     </div>
-    <div class="k-panel">
-         <div v-for={{ value }} class="k-item">
-            <Checkbox v-model="rightChecked" name="right"
-                trueValue={{ value }}
-            >{{ value.label }}</Checkbox>
-        </div>
-    </div>
+    <Panel data={{ data.filter(item => ~value.indexOf(item)) }} 
+        model="right" 
+        title={{ `已选择 (${value.length})` }}
+    />
 </div>

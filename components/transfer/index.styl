@@ -1,3 +1,5 @@
+@require('./variables.styl')
+
 .k-transfer
     .k-panel
     .k-arrows
@@ -5,9 +7,25 @@
         vertical-align middle
     .k-panel
         width 300px
+    .k-title
+        color $title-color
+        line-height 30px
+    .k-list
+        height 300px
+        border 1px solid $border-color
+        border-radius $border-radius
+        overflow auto
     .k-arrows
         .k-btn
             display block
             margin 10px
     .k-item
+        color $text-color
+        background #fff
+        &:hover
+            background $bg-color
+    .k-checkbox
         padding 5px 10px
+        display block
+    .k-input
+        margin-bottom -1px
