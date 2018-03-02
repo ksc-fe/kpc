@@ -5,7 +5,7 @@ import Input from '../input';
 const {
     data, className, style, value, 
     leftChecked, rightChecked, filterable,
-    filter, label,
+    filter, label, placeholder, leftTitle, rightTitle
 } = self.get();
 
 const classNameObj = {
@@ -17,7 +17,7 @@ const Panel = props => {
     const keywords = self.get(`${props.model}Keywords`);
     return <div class="k-panel">
         <div class="k-title">{{ props.title }}</div>
-        <Input v-if={{ filterable }} placeholder="请输入"
+        <Input v-if={{ filterable }} placeholder={{ placeholder }}
             v-model={{ `${props.model}Keywords` }}
             clearable
             fluid
@@ -30,7 +30,10 @@ const Panel = props => {
         </Input>
         <Animate class="k-list">
             <Animate 
-                v-for={{ keywords ? props.data.filter(item => filter(item, keywords)) : props.data }} 
+                v-for={{ keywords ? 
+                    props.data.filter(item => filter(item, keywords)) : 
+                    props.data 
+                }} 
                 class={{ {"k-item": true, "k-disabled": value.disabled} }}
                 key={{ value }}
                 a:transition="fade"
@@ -49,7 +52,7 @@ const Panel = props => {
 <div class={{ classNameObj }} style={{ style }}>
     <Panel data={{ data.filter(item => !~value.indexOf(item)) }}
         model="left" 
-        title="请选择"
+        title={{ leftTitle }}
     />
     <div class="k-arrows">
         <Button circle icon disabled={{ !rightChecked.length }}
@@ -65,6 +68,6 @@ const Panel = props => {
     </div>
     <Panel data={{ data.filter(item => ~value.indexOf(item)) }} 
         model="right" 
-        title={{ `已选择 (${value.length})` }}
+        title={{ `${rightTitle} (${value.length})` }}
     />
 </div>

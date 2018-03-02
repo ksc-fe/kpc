@@ -19,6 +19,9 @@ export default class Transfer extends Intact {
             label(data, index) {
                 return data.label;
             },
+            placeholder: '请输入',
+            leftTitle: '请选择',
+            rightTitle: '已选择',
         };
     }
 
