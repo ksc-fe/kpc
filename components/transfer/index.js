@@ -111,3 +111,5 @@ export default class Transfer extends Intact {
         document.removeEventListener('keyup', this._onKeyup);
     }
 }
+
+export {Transfer}
