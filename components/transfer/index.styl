@@ -6,27 +6,29 @@
         display inline-block
         vertical-align middle
     .k-panel
-        width 300px
+        width $transfer-panel-width
     .k-title
-        color $title-color
-        line-height 30px
+        color $transfer-item-color 
+        line-height $transfer-title-line-height 
     .k-list
-        height 300px
-        border 1px solid $border-color
-        border-radius $border-radius
+        height $transfer-panel-height
+        border $transfer-panel-border 
+        border-radius $transfer-panel-border-radius 
         overflow auto
-    .k-arrows
-        .k-btn
-            display block
-            margin 10px
     .k-item
-        color $text-color
-        background #fff
+        color $transfer-item-color 
+        background $transfer-item-bg-color 
         user-select none
         &:not(.k-disabled):hover
-            background $bg-color
+            background $transfer-item-hover-bg-color 
     .k-checkbox
-        padding 5px 10px
+        padding $transfer-item-padding
         display block
     .k-input
         margin-bottom -1px
+
+    .k-arrows
+        .k-btn
+            display block
+            margin $transfer-arrow-margin 
+
