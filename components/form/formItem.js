@@ -15,6 +15,8 @@ export default class FormItem extends Intact {
             isDirty: false,
             message: '',
             messages: {},
+            classNames: {},
+            errorClassName: '',
             hideLabel: false,
         }
     }
@@ -64,6 +66,19 @@ export default class FormItem extends Intact {
         return message;
     }
 
+    getClassName(name) {
+        const defaultClassNames = Form.classNames;
+        const customClassNames = this.get('classNames');
+        const className = customClassNames[name] || defaultClassNames[name];
+
+        if (typeof className === 'function') {
+            const rules = this.getRules();
+            return className.call(this.form, this.get('value'), this, rules[name]);
+        }
+
+        return className;
+    }
+
     validate() {
         if (!this.get('model')) return;
         
@@ -104,25 +119,28 @@ export default class FormItem extends Intact {
             .then(values => {
                 for (let index = 0; index < values.length; index++) {
                     if (values[index] !== true) {
-                        return [false, values[index] || this.getMessage(keys[index])];
+                        return [false, values[index] || this.getMessage(keys[index]), this.getClassName(keys[index])];
                     }
                 }
-                return [true, ''];
+                return [true, '', null];
             }, err => {
                 let message;
+                let className;
                 if (typeof err === 'string') {
                     message = err;
                 } else if (err) {
                     message = err.message || this.getMessage(err.name);
+                    className = err.className || this.getClassName(err.name);
                 }
-                return [false, message];
+                return [false, message, className];
             })
-            .then(([isValid, message]) => {
+            .then(([isValid, message, className]) => {
                 if (p.cancelled) return;
                 this.set({
                     isDirty: true,
                     isValid: isValid,
                     message: message,
+                    errorClassName: className,
                 });
                 return isValid;
             });

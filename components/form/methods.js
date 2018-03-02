@@ -141,7 +141,10 @@ export const messages = {
     equalTo: '两次输入不一致',
 };
 
-export const addMethod = function(name, method, message) {
+export const classNames = {};
+
+export const addMethod = function(name, method, message, className) {
     methods[name] = method;
     messages[name] = message !== undefined ? message : messages[name];
+    classNames[name] = className;
 };

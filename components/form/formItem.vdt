@@ -1,6 +1,7 @@
 const {
     className, children, label, style, 
-    isValid, isDirty, hideLabel, htmlFor
+    isValid, isDirty, hideLabel, htmlFor,
+    errorClassName,
 } = self.get();
 
 const classNameObj = {
@@ -28,7 +29,8 @@ const classNameObj = {
     </label>
     <div class="k-content">
         <b:content>{{ children }}</b:content>
-        <Animate v-if={{ self.get('isValid') === false }} class="k-error"
+        <Animate v-if={{ self.get('isValid') === false }}
+            class={{ {"k-error": true, [errorClassName]: errorClassName} }}
             a:transition="fade"
         >{{ self.get('message') }}</Animate>
     </div>

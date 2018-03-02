@@ -1,13 +1,16 @@
 import Intact from 'intact';
 import template from './form.vdt';
-import {methods, messages, addMethod} from './methods';
+import {methods, messages, classNames, addMethod} from './methods';
 
 export default class Form extends Intact {
     static methods = methods; 
 
     static messages = messages; 
 
+    static classNames = classNames;
+
     static addMethod = addMethod;
+
 
     @Intact.template()
     get template() { return template; }

@@ -9,7 +9,7 @@ import Input from 'components/input';
     ev-submit={{ self.submit.bind(self) }}
     class="form-page"
 >
-    <FormItem label="用户名" model="model.userName" rules={{ {required: true, checkName: true} }}>
+    <FormItem label="用户名" model="model.userName" rules={{ {required: true, checkName: true} }} classNames={{ {required: 'test'} }}>
         <Input v-model="model.userName" />
     </FormItem>
     <FormItem label="姓名" class="real-user-name">
