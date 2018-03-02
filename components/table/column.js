@@ -7,7 +7,7 @@ export default class TableColumn extends Intact {
     defaults() {
         return {
             title: '',
-            template(data, index) {},
+            template(data, index) { },
             key: '',
             sortable: false,
             width: undefined,

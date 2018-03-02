@@ -13,6 +13,12 @@ export default class Transfer extends Intact {
             leftChecked: [],
             rightChecked: [],
             filterable: true,
+            filter(data, keywords) {
+                return keywords ? data.label.includes(keywords) : true;
+            },
+            label(data, index) {
+                return data.label;
+            },
         };
     }
 
@@ -56,13 +62,13 @@ export default class Transfer extends Intact {
     _onCheckboxChange(type, index, e) {
         const keywords = this.get(`${type}Keywords`);
         const data = type === 'left' ? this.get('data') : this.get('value');
+        const filter = this.get('filter');
+
         if (this.startIndex === undefined || !this.shiftKey) {
             this.startIndex = index;
             this.checked = e.target.checked;
         } else if (this.shiftKey) {
-            let values = data.filter(item => {
-                return keywords ? item.label.includes(keywords) : true;
-            });
+            let values = data.filter(item => filter(item, keywords));
             if (index > this.startIndex) {
                 values = values.slice(this.startIndex, index + 1);
             } else if (index < this.startIndex) {
@@ -71,6 +77,7 @@ export default class Transfer extends Intact {
             values = values.filter(item => !item.disabled);
             const checkedValues = this.get(`${type}Checked`);
             const _values = [];
+
             if (this.checked) {
                 checkedValues.forEach(item => {
                     if (!~values.indexOf(item)) {

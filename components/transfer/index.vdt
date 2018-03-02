@@ -4,7 +4,8 @@ import Input from '../input';
 
 const {
     data, className, style, value, 
-    leftChecked, rightChecked, filterable
+    leftChecked, rightChecked, filterable,
+    filter, label,
 } = self.get();
 
 const classNameObj = {
@@ -28,9 +29,7 @@ const Panel = props => {
         </Input>
         <Animate class="k-list">
             <Animate 
-                v-for={{ props.data.filter(item => {
-                    return keywords ? item.label.includes(keywords) : true;
-                }) }} 
+                v-for={{ props.data.filter(item => filter(item, keywords)) }} 
                 class={{ {"k-item": true, "k-disabled": value.disabled} }}
                 key={{ value }}
                 a:transition="fade"
@@ -40,7 +39,7 @@ const Panel = props => {
                     trueValue={{ value }}
                     disabled={{ value.disabled }}
                     ev-click={{ self._onCheckboxChange.bind(self, props.model, key) }}
-                >{{ value.label }}</Checkbox>
+                >{{ label.call(self, value, key, props.model) }}</Checkbox>
             </Animate>
         </Animate>
     </div>
