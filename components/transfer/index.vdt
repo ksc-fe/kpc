@@ -20,6 +20,7 @@ const Panel = props => {
         <Input v-if={{ filterable }} placeholder="请输入"
             v-model={{ `${props.model}Keywords` }}
             clearable
+            fluid
         >
             <b:append>
                 <Button icon type="none">
