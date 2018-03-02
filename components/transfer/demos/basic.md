@@ -20,6 +20,8 @@ export default class extends Intact {
                 {value: 0, label: '主机名0'},
                 {value: '1', label: '主机名1'},
                 {value: '2', label: '主机名2'},
+                {value: '3', label: '主机名3', disabled: true},
+                {value: '4', label: '主机名4'},
             ]
         }
     }

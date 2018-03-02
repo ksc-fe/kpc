@@ -31,12 +31,15 @@ const Panel = props => {
                 v-for={{ props.data.filter(item => {
                     return keywords ? item.label.includes(keywords) : true;
                 }) }} 
-                class="k-item"
+                class={{ {"k-item": true, "k-disabled": value.disabled} }}
                 key={{ value }}
                 a:transition="fade"
+                ev-click={{ self._onClickLabel }}
             >
                 <Checkbox v-model={{ `${props.model}Checked` }} name={{ props.model }}
                     trueValue={{ value }}
+                    disabled={{ value.disabled }}
+                    ev-click={{ self._onCheckboxChange.bind(self, props.model, key) }}
                 >{{ value.label }}</Checkbox>
             </Animate>
         </Animate>
