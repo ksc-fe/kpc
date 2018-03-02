@@ -15,8 +15,9 @@ export default class Tabs extends Intact {
     }
 
     _changeTab(item) {
-        if (!item.href) {
-            this.set('value', item.value);
+        this.set('value', item.value);
+        if (item.to) {
+            window.location.href = item.to;
         } 
     }
 }

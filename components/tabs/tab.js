@@ -8,7 +8,7 @@ export default class Tab extends Intact {
     defaults() {
         return {
             value: undefined,
-            href: undefined,
+            to: undefined,
 
             // passed by parent
             _value: undefined,

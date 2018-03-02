@@ -1,10 +1,9 @@
-const {value, href, children, _value} = self.get();
+const {value, children, _value} = self.get();
 
 <a 
     class={{ {
         'k-tab': true, 
         'k-active': value !== undefined && value === _value, 
     } }}
-    href={{ href }}
     ev-click={{ self._changeTab }}
 >{{ self.get('children') }}</a>
