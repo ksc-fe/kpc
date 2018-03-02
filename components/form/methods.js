@@ -10,7 +10,8 @@ function decimalPlaces(num) {
 
 export const methods = {
     required(value) {
-        return value != null && value.length > 0;
+        return value != null && 
+            ((typeof value === 'string' || Array.isArray(value)) ? value.length > 0 : true);
     },
 
     digits(value) {
