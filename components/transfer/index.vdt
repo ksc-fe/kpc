@@ -29,7 +29,7 @@ const Panel = props => {
         </Input>
         <Animate class="k-list">
             <Animate 
-                v-for={{ props.data.filter(item => filter(item, keywords)) }} 
+                v-for={{ keywords ? props.data.filter(item => filter(item, keywords)) : props.data }} 
                 class={{ {"k-item": true, "k-disabled": value.disabled} }}
                 key={{ value }}
                 a:transition="fade"

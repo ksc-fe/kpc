@@ -12,9 +12,9 @@ export default class Transfer extends Intact {
             value: [],
             leftChecked: [],
             rightChecked: [],
-            filterable: true,
+            filterable: false,
             filter(data, keywords) {
-                return keywords ? data.label.includes(keywords) : true;
+                return data.label.includes(keywords);
             },
             label(data, index) {
                 return data.label;
@@ -68,7 +68,10 @@ export default class Transfer extends Intact {
             this.startIndex = index;
             this.checked = e.target.checked;
         } else if (this.shiftKey) {
-            let values = data.filter(item => filter(item, keywords));
+            let values = data;
+            if (this.get('filterable') && keywords) {
+                values = data.filter(item => filter(item, keywords));
+            }
             if (index > this.startIndex) {
                 values = values.slice(this.startIndex, index + 1);
             } else if (index < this.startIndex) {

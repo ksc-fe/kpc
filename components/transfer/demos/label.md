@@ -17,10 +17,11 @@ import Transfer from 'kpc/components/transfer';
         </div>
     } }}
     filter={{ (data, keywords) => {
-        return keywords ? 
-            data.name.includes(keywords) || data.desc.includes(keywords) || data.ip.includes(keywords) :
-            true;
+        return data.name.includes(keywords) || 
+            data.desc.includes(keywords) ||
+            data.ip.includes(keywords);
     } }}
+    filterable
 />
 ```
 
