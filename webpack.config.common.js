@@ -101,7 +101,8 @@ module.exports = {
     resolve: {
         modules: [__dirname, 'node_modules'],
         alias: {
-            'vue$': 'vue/dist/vue.esm.js',
+            // 'vue$': 'vue/dist/vue.esm.js',
+            'vue$': 'vue/dist/vue.js',
             // for running in vue
             'intact$': 'intact-vue/src/index.js',
             'kpc': path.resolve(__dirname),

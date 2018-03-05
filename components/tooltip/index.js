@@ -1,14 +1,13 @@
 /**
  * Created by sylvia on 2017/10/31.
  */
+import Intact from 'intact';
 import Dropdown from '../dropdown/dropdown';
 import position from '../moveWrapper/position'
 import template from './index.vdt';
 import './index.styl'
 
-class Tooltip extends Dropdown {
-
-}
+class Tooltip extends Dropdown {  }
 
 class TooltipContent extends Intact {
     @Intact.template()
