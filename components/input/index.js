@@ -29,6 +29,7 @@ export default class Input extends Intact {
             spellcheck: false,
             autoWidth: false,
             fluid: false,
+            width: undefined,
         }
     }
 

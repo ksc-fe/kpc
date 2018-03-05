@@ -29,6 +29,7 @@ export default class Select extends Intact{
             placeholder: '请选择',
             size: 'default',
             fluid: false,
+            width: undefined,
 
             _show: false,
         }

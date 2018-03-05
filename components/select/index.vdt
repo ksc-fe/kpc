@@ -1,6 +1,6 @@
 import Input from '../input';
 import Dropdown, {DropdownItem, DropdownMenu} from '../dropdown';
-import {isStringOrNumber, getTextByChildren} from '../utils';
+import {isStringOrNumber, getTextByChildren, addStyle} from '../utils';
 import Option from './option';
 import OptionGroup from './group';
 
@@ -8,7 +8,7 @@ const {
     className, clearable, data, value, multiple,
     disabled, filterable, keywords, _show,
     placeholder, size, style, name, children,
-    fluid,
+    fluid, width,
 } = self.get();
 
 const classNameObj = {
@@ -145,7 +145,9 @@ if (hasValue && !label && !labels.length) {
     hasValue = false;
 }
 
-<div class={{ classNameObj }} style={{ style }}>
+<div class={{ classNameObj }}
+    style={{ width != null ? addStyle(style, {width: `${width}px`}) : style }} 
+>
     <Dropdown
         position={{ {my: 'left top', at: 'left bottom'} }} 
         trigger="click"

@@ -1,8 +1,10 @@
+import {addStyle} from '../utils';
+
 const {
     type, name, value, placeholder,
     readonly, clearable, disabled, size, 
     rows, spellcheck, defaultValue, style,
-    className, autoWidth, fluid,
+    className, autoWidth, fluid, width,
 } = self.get();
 
 const classNameObj = {
@@ -33,7 +35,10 @@ const wrapperEvents = [
     return memo;
 }, {});
 
-<div class={{ classNameObj }} style={{ style }} {{ ...wrapperEvents }}>
+<div class={{ classNameObj }}
+    style={{ width != null ? addStyle(style, {width: `${width}px`}) : style }} 
+    {{ ...wrapperEvents }}
+>
     <div class="k-prepend" v-if={{ blocks.prepend }}>
         <b:prepend />
     </div>
