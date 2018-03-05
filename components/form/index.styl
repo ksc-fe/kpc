@@ -1,8 +1,9 @@
 @require('./variables.styl')
 
 // FormItem
-.k-form-item
+.k-form-item:not(:last-of-type)
     margin $form-item-margin
+.k-form-item
     display table 
     // width 100%
     > .k-label
