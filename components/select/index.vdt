@@ -165,8 +165,8 @@ if (hasValue && !label && !labels.length) {
                 size={{ size }}
                 fluid
             />
-            <span class="k-placeholder" v-else-if={{ !filterable && !hasValue }}>{{ placeholder }}</span>
-            <span class="k-value" v-else-if={{ !multiple }}>{{ label }}</span>
+            <span class="k-placeholder c-ellipsis" v-else-if={{ !filterable && !hasValue }}>{{ placeholder }}</span>
+            <span class="k-value c-ellipsis" v-else-if={{ !multiple }}>{{ label }}</span>
             <Animate a:tag="span" a:disabled class="k-values" v-else>
                 <Animate a:tag="span" class="k-tag" 
                     v-for={{ labels }} 
