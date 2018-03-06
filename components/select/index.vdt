@@ -145,7 +145,7 @@ if (hasValue && !label && !labels.length) {
     hasValue = false;
 }
 
-<div class={{ classNameObj }}
+<div class={{ {...classNameObj, 'k-active': hasValue} }}
     style={{ width != null ? addStyle(style, {width: `${width}px`}) : style }} 
 >
     <Dropdown
