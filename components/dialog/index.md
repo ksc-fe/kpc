@@ -14,6 +14,7 @@ order: 0
 | loading | “确认”按钮是否为加载状态 | `Boolean` | `false` |
 | okText | “确认”按钮文案 | `String` | `"确认"` |
 | cancelText | “取消”按钮文案 | `String` | `"取消"` |
+| disabledOk | “确认”按钮是否为禁用状态 | `Boolean` | `false` |
 
 # 扩展点
 
@@ -30,6 +31,8 @@ order: 0
 | close | 关闭弹窗 | - | `undefined` |
 | showLoading | “确认”按钮变为加载状态 | - | `undefined` |
 | hideLoading | “确认”按钮变为正常状态 | - | `undefined` |
+| disableOk | “确认”按钮变为禁用状态 | - | `undefined` |
+| enableOk | “确认”按钮变为正常状态 | - | `undefined` |
 | ok | 点击“确认”按钮的回调方法，继承`Dialog`时，可以复写该方法实现自定义需求 | - | `undefined` |
 | cancel | 点击“取消”按钮的回调方法，继承`Dialog`时，可以复写该方法实现自定义需求 | - | `undefined` |
 
