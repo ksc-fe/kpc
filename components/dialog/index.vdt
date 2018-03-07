@@ -33,6 +33,7 @@ import MoveWrapper from '../moveWrapper';
                     <Button ev-click={{ self.cancel }}>{{ self.get('cancelText') }}</Button>
                     <Button type="primary" ev-click={{ self.ok }} 
                         loading={{ self.get('loading') }}
+                        disabled={{ self.get('disabledOk') }}
                     >{{ self.get('okText') }}</Button>
                 </b:footer>
             </div>

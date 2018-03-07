@@ -18,6 +18,7 @@ export default class Dialog extends Intact {
             value: false,
             size: 'default', // default | small
             loading: false,
+            disabledOk: false,
             okText: '确认',
             cancelText: '取消',
 
@@ -53,6 +54,14 @@ export default class Dialog extends Intact {
 
     hideLoading() {
         this.set('loading', false);
+    }
+
+    disableOk() {
+        this.set('disabledOk', true);
+    }
+
+    enableOk() {
+        this.set('disabledOk', false);
     }
 
     close() {
