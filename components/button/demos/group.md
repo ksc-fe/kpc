@@ -4,7 +4,7 @@ order: 1
 ---
 
 将`Button`作为`ButtonGroup`的子元素，可以展示按钮组。给`ButtonGroup`添加`vertical`属性，
-可以是按钮组纵向排列。给`ButtonGroup`添加`radio`属性，可以使按钮组拥有类似radio的单选能力。
+可以是按钮组纵向排列。给`ButtonGroup`添加`checkType`属性，可以使按钮组拥有单选或复选能力。
 
 ```vdt
 import {Button, ButtonGroup} from 'kpc/components/button';
@@ -37,7 +37,14 @@ import {Button, ButtonGroup} from 'kpc/components/button';
     </ButtonGroup>
     <br /><br />
     <p>radio按钮组</p>
-    <ButtonGroup radio v-model="city">
+    <ButtonGroup checkType="radio" v-model="city">
+        <Button value="beijing" type="small">北京</Button>
+        <Button value="shanghai" type="small">上海</Button>
+        <Button value="guangzhou" type="small">广州</Button>
+        <Button value="shenzhen" type="small">深圳</Button>
+    </ButtonGroup>
+    <p>checkbox按钮组</p>
+    <ButtonGroup checkType="checkbox" v-model="cities">
         <Button value="beijing" type="small">北京</Button>
         <Button value="shanghai" type="small">上海</Button>
         <Button value="guangzhou" type="small">广州</Button>

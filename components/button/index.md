@@ -28,8 +28,8 @@ order: 0
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | vertical | 是否垂直排列按钮组 | `Boolean` | `false` |
-| radio | 是否为`radio`类型按钮组，`radio`按钮组可以给每个指定`value`来作为选中的值 | `Boolean` | `false` |
-| value | 对于`radio`类型按钮组，改值表示选中的按钮的值，可以使用`v-model`进行双向绑定 | `*` | `undefined` |
+| checkType | 指定按钮组为单选或复选类型，此时需要给每个按钮指定`value`来作为选中的值 | `"radio"` &#124; `"checkbox"` &#124; `"none"` | `"none"` |
+| value | 对于`radio`和`checkbox`类型按钮组，该值表示选中的按钮的值，可以使用`v-model`进行双向绑定 | `*` | `undefined` |
 
 # 方法
 
