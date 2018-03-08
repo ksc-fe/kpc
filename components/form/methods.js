@@ -99,12 +99,12 @@ function count(num) {
 
 export const messages = {
     required: '必须填写',
-    digits: '请输入整数',
+    digits: '请输入数字',
     email: '请输入正确的邮箱地址',
     url: '请输入正确的网址',
     date: '请输入正确的日期',
     dateISO: '请输入正确的日期 (YYYY-MM-DD)',
-    number: '请输入正确的数字',
+    number: '请输入正确的数',
     maxLength(value, item, param) {
         if (Array.isArray(value)) {
             return `最多选择${count(param)}项`;
