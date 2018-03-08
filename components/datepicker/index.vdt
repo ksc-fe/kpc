@@ -35,7 +35,12 @@ const showDate = new Date(_showDate || valueDate);
         ev-beforeShow={{ self.onBeforeShow }}
         disabled={{ disabled }}
     >
-        <Input placeholder={{ placeholder }} readonly 
+        <Input
+            placeholder={{ placeholder == null ? 
+                (type === 'datetime' ? '请选择日期和时间' : '请选择日期') :
+                placeholder 
+            }}
+            readonly 
             value={{ values.join(', ') }}
             clearable={{ clearable }}
             ev-clear={{ self.onClear }}

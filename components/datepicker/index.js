@@ -19,7 +19,7 @@ export default class Datepicker extends Intact {
             clearable: false,
             maxDate: undefined,
             minDate: undefined,
-            placeholder: "请选择日期",
+            placeholder: undefined,
             disabled: false,
             disabledDate(date) { return false; },
             multiple: false,
