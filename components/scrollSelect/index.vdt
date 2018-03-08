@@ -1,16 +1,22 @@
 const {
-    value, _list,
+    value, _list, disabled,
     _translate, _marginTop, _dragging
 } = self.get();
 
-<div class={{ {"k-scroll-select": true, "k-dragging": _dragging} }}>
+const classNameObj = {
+    "k-scroll-select": true, 
+    "k-dragging": _dragging,
+    "k-disabled": disabled,
+}
+
+<div class={{ classNameObj }}>
     <div class="k-wrapper"
         style={{ {
             transform: `translateY(${_translate}px)`,
             marginTop: `${_marginTop}px`,
         } }}
-        ev-mousedown={{ self._dragStart }}
-        ev-wheel={{ self._onWheel }}
+        ev-mousedown={{ !disabled ? self._dragStart : undefined }}
+        ev-wheel={{ !disabled ? self._onWheel : undefined }}
         ref="wrapper"
     >
         <div
@@ -20,7 +26,7 @@ const {
             } }}
             v-for={{ _list }}
             v-for-value="item"
-            ev-click={{ self._select.bind(self, item, key) }}
+            ev-click={{ !disabled ? self._select.bind(self, item, key) : undefined }}
             key={{ item.key }}
             ref={{ key === 0 ? (dom) => self.refs.item = dom : undefined }}
         >{{ item.label }}</div>

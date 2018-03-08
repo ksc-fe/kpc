@@ -12,6 +12,7 @@ export default class ScrollSelect extends Intact {
             value: '',
             count: 19,
             data: [],
+            disabled: false,
 
             _list: [],
             _translate: 0,

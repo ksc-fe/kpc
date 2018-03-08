@@ -42,4 +42,8 @@ import {Col, Row} from 'components/grid';
         <Datepicker type="datetime" v-model="datetime" />
         <b:append>{{ self.get('datetime') }}</b:append>
     </FormItem>
+    <FormItem label="custom minutes & seconds">
+        <Datepicker type="datetime" v-model="datetime"/>
+        <b:append>{{ self.get('datetime') }}</b:append>
+    </FormItem>
 </Form>

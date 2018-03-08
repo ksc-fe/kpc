@@ -10,7 +10,8 @@ const {
     name, _showDate, _now, maxDate, minDate,
     placeholder, disabled, disabledDate,
     multiple, size, _isShowYearPicker,
-    _isSelectTime, type
+    _isSelectTime, type, hours, minutes, seconds,
+    disabledHours, disabledMinutes, disabledSeconds,
 } = self.get();
 
 const classNameObj = {
@@ -165,33 +166,36 @@ const showDate = new Date(_showDate || valueDate);
                 <Row>
                     <Col span="8">
                         <ScrollSelect 
-                            data={{ range(0, 23).map(v => {
+                            data={{ hours.map(v => {
                                 return {label: strPad(v, 2), value: v};
                             }) }}
                             value={{ valueDate.getHours() }}
                             ev-$change:value={{ self.onChangeTime.bind(self, 'Hours') }}
+                            disabled={{ disabledHours }}
                         >
                             <b:append>:</b:append>
                         </ScrollSelect>
                     </Col>
                     <Col span="8">
                         <ScrollSelect 
-                            data={{ range(0, 59).map(v => {
+                            data={{ minutes.map(v => {
                                 return {label: strPad(v, 2), value: v};
                             }) }}
                             value={{ valueDate.getMinutes() }}
                             ev-$change:value={{ self.onChangeTime.bind(self, 'Minutes') }}
+                            disabled={{ disabledMinutes }}
                         >
                             <b:append>:</b:append>
                         </ScrollSelect>
                     </Col>
                     <Col span="8">
                         <ScrollSelect 
-                            data={{ range(0, 59).map(v => {
+                            data={{ seconds.map(v => {
                                 return {label: strPad(v, 2), value: v};
                             }) }}
                             value={{ valueDate.getSeconds() }}
                             ev-$change:value={{ self.onChangeTime.bind(self, 'Seconds') }}
+                            disabled={{ disabledSeconds }}
                         />
                     </Col>
                 </Row>

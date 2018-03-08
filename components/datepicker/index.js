@@ -1,7 +1,17 @@
 import Intact from 'intact';
 import template from './index.vdt';
 import './index.styl';
-import {strPad} from '../utils';
+import {strPad, range} from '../utils';
+
+function getNowDate() {
+    // only date without time
+    const now = new Date();
+    now.setHours(0);
+    now.setMinutes(0);
+    now.setSeconds(0);
+    
+    return now;
+}
 
 export default class Datepicker extends Intact {
     @Intact.template()
@@ -25,9 +35,15 @@ export default class Datepicker extends Intact {
             multiple: false,
             size: 'default',
             type: 'date', // date | datetime
+            hours: range(0, 23),
+            minutes: range(0, 59),
+            seconds: range(0, 59),
+            disabledHours: false,
+            disabledMinutes: false,
+            disabledSeconds: false,
 
             _showDate: undefined,
-            _now: new Date(),
+            _now: getNowDate(),
             _isShowYearPicker: false,
             _isSelectTime: false,
         }
@@ -189,7 +205,7 @@ export default class Datepicker extends Intact {
     }
 
     onBeforeShow() {
-        this.set('_now', new Date());
+        this.set('_now', getNowDate());
     }
 
     showYearPicker() {
