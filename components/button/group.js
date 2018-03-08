@@ -9,8 +9,9 @@ export default class ButtonGroup extends Intact {
     defaults() {
         return {
             vertical: false,
-            radio: false,
             value: undefined,
+            radio: false, // @deprecated: use checkType instead of
+            checkType: 'none', // radio | checkbox | none
         };
     }
 

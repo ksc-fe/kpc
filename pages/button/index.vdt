@@ -159,4 +159,9 @@ import Link from 'components/link';
         <Button size="small" value={{ 1 }}><i class="k-icon icon-boot"></i>关机</Button>
         <Button size="small" value={{ 2 }}><i class="k-icon icon-boot"></i>重启</Button>
     </ButtonGroup>
+    <ButtonGroup checkType="checkbox" v-model="types">
+        <Button size="small" value={{ 0 }}><i class="k-icon icon-boot"></i>开机</Button>
+        <Button size="small" value={{ 1 }}><i class="k-icon icon-boot"></i>关机</Button>
+        <Button size="small" value={{ 2 }}><i class="k-icon icon-boot"></i>重启</Button>
+    </ButtonGroup>
 </div>

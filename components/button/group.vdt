@@ -2,7 +2,7 @@ import Button from './';
 
 const {
     className, vertical, style, 
-    children, radio, value, fluid
+    children, radio, value, fluid,
 } = self.get();
 
 const classNameObj = {
@@ -12,14 +12,21 @@ const classNameObj = {
     'k-fluid': fluid,
 };
 
+let checkType = self.get('checkType');
+if (radio) checkType = 'radio';
+
 <div class={{ classNameObj }} style={{ style }}>{{ 
-    radio ? __u.map(
+    checkType !== 'none' ? __u.map(
         children ? 
             (Array.isArray(children) ? children : [children]) :
             children, 
         vNode => {
             if (vNode.tag === Button) {
-                vNode.props._value = value;
+                vNode.props = {
+                    ...vNode.props, 
+                    _value: value,
+                    _checkType: checkType,
+                }
             }
             return vNode;
         }) : 

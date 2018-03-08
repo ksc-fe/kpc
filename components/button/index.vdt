@@ -3,8 +3,18 @@ import {isStringOrNumberNotEmpty} from '../utils';
 let {
     type, className, size, icon, circle, ref, key,
     tagName, htmlType, fluid, children, loading,
-    value, _value, name, tagProps, ...rest
+    value, _value, name, tagProps, _checkType, ...rest
 } = self.get();
+
+const checked = value !== undefined ?
+    _checkType === 'radio' ? 
+        value === _value :  
+        (
+            _checkType === 'checkbox' ? 
+                Array.isArray(_value) && !!~_value.indexOf(value) :
+                false
+        )
+    : false;
 
 const classNameObj = {
     'k-btn': true,
@@ -15,7 +25,7 @@ const classNameObj = {
     'k-circle': circle,
     'k-loading': loading,
     'k-fluid': fluid,
-    'k-active': value !== undefined && value === _value,
+    'k-active': checked,
 };
 
 const Button = props => {
@@ -66,8 +76,8 @@ if (!icon && Array.isArray(children)) {
             [<i class="k-icon ion-load-c icon-loading"></i>, children] :
         children 
     }}
-    <input type="radio" v-if={{ value !== undefined }}
+    <input type={{ _checkType }} v-if={{ _checkType !== 'none' }}
         name={{ name }} 
-        checked={{ value === _value }}
+        checked={{ checked }}
     />
 </Button>

@@ -23,6 +23,7 @@ export default class Button extends Intact {
             name: undefined,
 
             _value: undefined,
+            _checkType: 'none',
         };
     }
 
@@ -67,7 +68,22 @@ export default class Button extends Intact {
 
     _onClick(e) {
         if (this.group) {
-            this.group.set('value', this.get('value'));
+            let {_checkType, value, _value} = this.get();
+            if (_checkType === 'radio') {
+                this.group.set('value', value);
+            } else if (_checkType === 'checkbox') {
+                if (!Array.isArray(_value)) {
+                    _value = [];
+                }
+                _value = _value.slice(0);
+                const index = _value.indexOf(value);
+                if (!~index) {
+                    _value.push(value);
+                } else {
+                    _value.splice(index, 1);
+                }
+                this.group.set('value', _value);
+            }
         }
         this.trigger('click', e);
     }
