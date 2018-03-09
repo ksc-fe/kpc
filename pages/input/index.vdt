@@ -17,7 +17,7 @@ import Button from 'components/button';
         <b:append><Button icon type="primary"><i class="ion-ios-search"></i></Button></b:append>
     </Input>
     <Input placeholder="please enter">
-        <b:append><Button type="primary">Search</Button></b:append>
+        <b:append><Button type="primary">搜索</Button></b:append>
     </Input>
 
     <Input value="small" size="small" />

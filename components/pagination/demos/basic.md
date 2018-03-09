@@ -3,19 +3,18 @@ title: 基本用法
 order: 0
 ---
 
-`Pagination` size用法：mini，small，default
+`Pagination`的基本用法，通过`total`指定数据总条数，`limit`指定每页数据条数
 
 ```vdt
 import Pagination from 'kpc/components/pagination';
 
 <div>
-    <Pagination total={{ 201 }} current={{ 2 }} showGoto />
-    <Pagination total={{ 201 }} current={{ 2 }} size="small" />
-    <Pagination total={{ 201 }} current={{ 2 }} size="mini" />
+    <Pagination total={{ 200 }} />
+    <Pagination total={{ 200 }} limit={{ 20 }} />
 </div>
 ```
 
 ```styl
 .k-pagination
-    margin 30px 30px
+    margin-bottom 20px 
 ```

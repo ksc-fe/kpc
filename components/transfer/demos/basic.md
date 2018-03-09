@@ -3,6 +3,8 @@ title: 基本用法
 order: 0
 ---
 
+穿梭框基本用法，支持Shift进行多选
+
 ```vdt
 import Transfer from 'kpc/components/transfer';
 
@@ -17,11 +19,11 @@ export default class extends Intact {
     defaults() {
         return {
             data: [
-                {value: 0, label: '主机名0'},
-                {value: '1', label: '主机名1'},
-                {value: '2', label: '主机名2'},
-                {value: '3', label: '主机名3', disabled: true},
-                {value: '4', label: '主机名4'},
+                {label: '主机名0'},
+                {label: '主机名1'},
+                {label: '主机名2'},
+                {label: '主机名3', disabled: true},
+                {label: '主机名4'},
             ]
         }
     }

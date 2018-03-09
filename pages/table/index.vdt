@@ -24,6 +24,7 @@ const scheme = {
 
     <Table data={{ self.get('data') }} scheme={{ scheme }} checkType="radio"
         ref={{ i => self.radioTable = i }}
+        ev-$change:checkedKey={{ () => console.log(111) }}
     />
 
     <Table data={{ self.get('data') }} scheme={{ {

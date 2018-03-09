@@ -9,7 +9,7 @@
             <TableColumn key="aa" title="标题" />
         </Table>
         <Table :data="data" :scheme="scheme" />
-        <Table :data="data" :scheme="scheme" checkType="radio" />
+        <Table :data="data" :scheme="scheme" checkType="radio" @$change:checkedKey="hello"/>
         <Table :data="data" :scheme="cunstomCellScheme" />
         <Table :data="bigData" :scheme="{a: 'A', b: 'B'}" :fixHeader="300" />
         <Table :data="data" :scheme="scheme" :disableRow="disableRow" />
@@ -23,7 +23,7 @@ import Button from 'components/button';
 
 export default {
     data() {
-        const h = this.$createElement;
+        const vm = this;
         return {
             scheme: {
                 test: 'aaa',
@@ -53,6 +53,7 @@ export default {
                 test: {
                     title: 'aaa',
                     template(data) {
+                        const h = vm.$createElement;
                         const vNode = h('div', null, [
                             h('i', {staticClass: 'ion-search'}),
                             data.test
@@ -69,5 +70,11 @@ export default {
     components: {
         Table, TableColumn, Button
     },
+
+    methods: {
+        hello() {
+            console.log(111);
+        }
+    }
 }
 </script>
