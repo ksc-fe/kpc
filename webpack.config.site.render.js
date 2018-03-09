@@ -50,5 +50,5 @@ module.exports = merge.smartStrategy({
             'process.node': true,
             'process.ssr': true,
         }),
-    ]
+    ],
 });
