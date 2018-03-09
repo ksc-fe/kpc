@@ -64,12 +64,12 @@ export default class Pagination extends Intact {
     }
 
     fastPrev() {
-        const page = this.get('current') - (this.get('counts') - 4);
+        const page = this.get('current') - Math.ceil(this.get('counts') / 2);
         this.changePage(page);
     }
 
     fastNext() {
-        const page = this.get('current') + (this.get('counts') + 4);
+        const page = this.get('current') + Math.ceil(this.get('counts') / 2);
         this.changePage(page);
     }
 

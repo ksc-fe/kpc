@@ -13,7 +13,7 @@ const _children = children ? (Array.isArray(children) ? children : [children]) :
     {{ __u.map(_children, (vNode, index) => {
         if (vNode.tag === BreadcrumbItem) {
             vNode.props = {...vNode.props};
-            if (separator != null) {
+            if (separator != null && vNode.props.separator == null) {
                 vNode.props.separator = separator;
             }
             if (index === _children.length - 1) {

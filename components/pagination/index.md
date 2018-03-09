@@ -13,7 +13,7 @@ order: 0
 | total | 数据总条数 | `Number` | `0` |
 | showTotal | 显示总条数 | `Boolean` | `true` |
 | current | 当前页码 | `Number` | `1` |
-| showGoto | 显示快速翻页 | `Boolean` | `false` |
+| showGoto | 显示快速跳转框 | `Boolean` | `false` |
 | limit | 页面条数 | `Number` | `10` |
 | limits | 页面条数 | `Array<Number>` | `[10, 20, 50]` |
 

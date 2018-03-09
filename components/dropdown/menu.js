@@ -31,8 +31,8 @@ export default class DropdownMenu extends Intact {
             }
         });
 
-        this._onDocumentClick = this._onDocumentClick.bind(this);
-        this._onKeydown = this._onKeydown.bind(this);
+        // this._onDocumentClick = this._onDocumentClick.bind(this);
+        // this._onKeydown = this._onKeydown.bind(this);
     }
 
     _mount() {
@@ -83,9 +83,9 @@ export default class DropdownMenu extends Intact {
     _addDocumentEvents() {
         const parent = this._findParentDropdownMenu();
         if (!parent) {
-            if (this.get('trigger') === 'click') {
+            // if (this.get('trigger') === 'click') {
                 document.addEventListener('click', this._onDocumentClick);
-            }
+            // }
         } else {
             parent.locked = true;
         }
@@ -96,9 +96,9 @@ export default class DropdownMenu extends Intact {
     _removeDocumentEvents() {
         const parent = this._findParentDropdownMenu();
         if (!parent) {
-            if (this.get('trigger') === 'click') {
+            // if (this.get('trigger') === 'click') {
                 document.removeEventListener('click', this._onDocumentClick);
-            }
+            // }
         } else {
             parent.locked = false;
         }

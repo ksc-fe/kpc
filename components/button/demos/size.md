@@ -3,7 +3,7 @@ title: 按钮尺寸
 order: 4
 ---
 
-按钮有三种尺寸：`default`,`small`, `mini`。
+通过`size`属性可以指定按钮的尺寸：`default`,`small`, `mini`。
 
 ```vdt
 import Button from 'kpc/components/button';

@@ -18,3 +18,7 @@ order: 0
 | multiple | 是否支持多选 | `Boolean` | `false` |
 | size | 组件尺寸 | `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
 | type | 组件类型：`"date"` 只选择日期；`"datetime"` 选择日期和时间 | `"date"` &#124; `"datetime"` | `"date"` |
+| disabledHours | 禁用小时选择 | `Boolean` | `false` |
+| disabledMinutes | 禁用分钟选择 | `Boolean` | `false` |
+| disabledSeconds | 禁用秒钟选择 | `Boolean` | `false` |
+
