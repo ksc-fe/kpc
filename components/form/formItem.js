@@ -17,6 +17,8 @@ export default class FormItem extends Intact {
             messages: {},
             classNames: {},
             errorClassName: '',
+            label: undefined,
+            htmlFor: undefined,
             hideLabel: false,
         }
     }

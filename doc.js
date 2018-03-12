@@ -15,7 +15,7 @@ const languageMap = function(key) {
     return map[key] || key;
 };
 
-module.exports = function() {
+module.exports = function(isDev) {
     const doc = new KDoc(
         './components/**/*.md',
         path.resolve(__dirname, './site')
@@ -159,6 +159,15 @@ module.exports = function() {
             });
 
             // 静态化
+            if (isDev) return ctx.fsEach(async function(file) {
+                if (!/demos/.test(file.path)) {
+                    file.extname = '.html';
+                    await ctx.fsWrite(
+                        file.relative,
+                        Vdt.renderFile(path.resolve(__dirname, './site/src/index.vdt'))
+                    );
+                }
+            });
             const compiler = webpack(webpackConfig); 
             compiler.run((err, stats) => {
                 console.log(stats.toString({

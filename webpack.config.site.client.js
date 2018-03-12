@@ -8,7 +8,10 @@ module.exports = merge.smartStrategy({
     'plugins': 'replace',
 })(webpackConfig, {
     entry: {
-        'static/client': './site/src/client.js',
+        'static/client': [
+            'webpack-hot-middleware/client?reload=true',
+            './site/src/client.js',
+        ]
     },
     output: {
         path: path.resolve(__dirname, './site'),
@@ -26,6 +29,7 @@ module.exports = merge.smartStrategy({
             Intact: 'intact'
         }),
         new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
         new webpack.DefinePlugin({
             'process.ssr': true,
             'process.browser': true,
