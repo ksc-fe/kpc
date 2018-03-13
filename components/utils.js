@@ -89,3 +89,13 @@ export function range(start, end) {
     return Array.apply(null, {length: end - start + 1})
         .map((v, i) => i + start);
 }
+
+export function selectInput(input) {
+    if (input.select) {
+        input.select();
+    } else if (input.setSelectionRange) {
+        // mobile safari
+        input.focus();
+        input.setSelectionRange(0, input.value.length);
+    }
+}

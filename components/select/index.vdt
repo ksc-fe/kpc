@@ -159,6 +159,7 @@ if (hasValue && !label && !labels.length) {
                 value={{ keywords == null ? label : keywords }}
                 ev-input={{ self._onSearch }}
                 ev-blur={{ self._onBlur }}
+                ev-focus={{ self._selectInput }}
                 disabled={{ disabled }}
                 placeholder={{ placeholder }}
                 ref="input"

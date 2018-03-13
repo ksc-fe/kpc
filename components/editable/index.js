@@ -1,6 +1,7 @@
 import Intact from 'intact';
 import template from './index.vdt';
 import './index.styl';
+import {selectInput} from '../utils';
 
 export default class Editable extends Intact {
     @Intact.template()
@@ -35,13 +36,7 @@ export default class Editable extends Intact {
     _edit() {
         this.set('editing', true);
         const input = this.refs.input;
-        if (input.select) {
-            input.select();
-        } else if (input.setSelectionRange) {
-            // mobile safari
-            input.focus();
-            input.setSelectionRange(0, this.get('value.length', 0));
-        }
+        selectInput(input);
     }
 
     _onBlur(e) {

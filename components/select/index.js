@@ -4,6 +4,7 @@ import './index.styl';
 import position from '../moveWrapper/position';
 import Option from './option';
 import Group from './group';
+import {selectInput} from '../utils';
 
 export default class Select extends Intact{
     @Intact.template()
@@ -103,7 +104,11 @@ export default class Select extends Intact{
         }, 200);
     }
 
-    _onFocus() {
+    _selectInput(e) {
+        selectInput(e.target); 
+    }
+
+    _onFocus(e) {
         clearTimeout(this.timer);
     }
 
