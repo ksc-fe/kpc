@@ -138,14 +138,44 @@ sizes = small mini
                 border-top-left-radius 0
                 border-bottom-left-radius 0
             for type in types
-                &.k-{type}:not(:first-of-type)
-                    border-left-color lookup('$btns-' + type + '-border-color')
-                &.k-{type}:not(:last-of-type)
-                    border-right-color lookup('$btns-' + type + '-border-color')
+                if type != 'active'
+                    &.k-{type}:not(:first-of-type)
+                        border-left-color lookup('$btns-' + type + '-border-color')
+                    &.k-{type}:not(:last-of-type)
+                        border-right-color lookup('$btns-' + type + '-border-color')
+
+        // for tooltip wrap it in vue
+        > .k-tooltip
+            &:not(:first-of-type)
+                .k-btn
+                    margin-left -1px
+                &:not(last-of-type)
+                    .k-btn
+                        border-radius 0
+            &:not(:only-of-type):first-of-type
+                .k-btn
+                    border-top-right-radius 0
+                    border-bottom-right-radius 0
+            &:not(:only-of-type):last-of-type
+                .k-btn
+                    border-top-left-radius 0
+                    border-bottom-left-radius 0
+            for type in types
+                if type != 'active'
+                    &:not(:first-of-type)
+                        .k-btn.k-{type}
+                            border-left-color lookup('$btns-' + type + '-border-color')
+                    &:not(:last-of-type)
+                        .k-btn.k-{type}
+                            border-right-color lookup('$btns-' + type + '-border-color')
+
         &.k-fluid
             display flex
             > .k-btn
+            > .k-tooltip
                 flex 1
+            > .k-tooltip .k-btn
+                width 100%
 
     // vertical
     &.k-vertical
@@ -154,7 +184,7 @@ sizes = small mini
             &:not(.k-btn-icon)
                 width 100%
             &:not(:first-of-type)
-                margin-top -1px !important
+                margin-top -1px
                 &:not(:last-of-type)
                     border-radius 0
             &:not(:only-of-type):first-of-type
@@ -163,10 +193,37 @@ sizes = small mini
             &:not(:only-of-type):last-of-type
                 border-top-left-radius 0
                 border-top-right-radius 0
-            for type in primary warning danger
-                &.k-{type}:not(:first-of-type)
-                    border-top-color lookup('$btns-' + type + '-border-color')
-                &.k-{type}:not(:last-of-type)
-                    border-bottom-color lookup('$btns-' + type + '-border-color')
+            for type in types
+                if type != 'active'
+                    &.k-{type}:not(:first-of-type)
+                        border-top-color lookup('$btns-' + type + '-border-color')
+                    &.k-{type}:not(:last-of-type)
+                        border-bottom-color lookup('$btns-' + type + '-border-color')
+        > .k-tooltip
+            display block
+            .k-btn:not(.k-btn-icon)
+                width 100%
+            &:not(:first-of-type)
+                margin-top -1px
+                &:not(:last-of-type)
+                    .k-btn
+                        border-radius 0
+            &:not(:only-of-type):first-of-type
+                .k-btn
+                    border-bottom-left-radius 0
+                    border-bottom-right-radius 0
+            &:not(:only-of-type):last-of-type
+                .k-btn
+                    border-top-left-radius 0
+                    border-top-right-radius 0
+            for type in types
+                if type != 'active'
+                    &:not(:first-of-type)
+                        .k-btn.k-{type}
+                            border-top-color lookup('$btns-' + type + '-border-color')
+                    &:not(:last-of-type)
+                        .k-btn.k-{type}
+                            border-bottom-color lookup('$btns-' + type + '-border-color')
+            
 
 @import $theme-dir + '/button.styl' if exists($theme-dir + '/button.styl') 

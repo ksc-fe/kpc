@@ -42,6 +42,16 @@
                 <Button :value="value">{{ value }}</Button> 
             </Tooltip>
         </ButtonGroup>
+        <br />
+        <ButtonGroup vertical style="margin-top: 10px" radio v-model="pos">
+            <Tooltip v-for="value in ['top', 'right', 'bottom', 'left']"
+                :content="value"
+                :position="value"
+                :key="value"
+            >
+                <Button :value="value">{{ value }}</Button> 
+            </Tooltip>
+        </ButtonGroup>
     </div>
 </template>
 
