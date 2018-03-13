@@ -9,7 +9,7 @@ order: 0
 import Editable from 'kpc/components/editable';
 
 <div>
-    <Editable v-model="text">
+    <Editable v-model="text" ref="a">
         <i class="ion-ios-location"></i>
         <a href="">{{ self.get('text') }}</a>
     </Editable>
@@ -32,6 +32,7 @@ export default class extends Intact {
     static template = template;
 
     defaults() {
+        window.__aaa = this;
         return {
             text: 'editable text'
         }

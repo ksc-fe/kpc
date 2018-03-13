@@ -92,7 +92,11 @@ export default class Editable extends Intact {
     }
 
     reset() {
-        this.set('value', this.initValue);
+        this.set({
+            'value': this.initValue,
+            'editing': false,
+            'invalid': false,
+        });
     }
 }
 

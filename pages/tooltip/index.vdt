@@ -37,12 +37,12 @@ import Slider from 'components/slider';
         </Tooltip>
     </ButtonGroup>
     <br />
-    <ButtonGroup style="margin-top: 10px">
+    <ButtonGroup style="margin-top: 10px" checkType="radio" v-model="pos">
         <Tooltip v-for={{ ['top', 'right', 'bottom', 'left'] }}
             content={{ value }}
             position={{ value }}
         >
-            <Button>{{ value }}</Button> 
+            <Button value={{ value }}>{{ value }}</Button> 
         </Tooltip>
     </ButtonGroup>
 </div>

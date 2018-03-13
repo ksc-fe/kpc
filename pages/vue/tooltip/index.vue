@@ -33,13 +33,13 @@
             </Tooltip>
         </ButtonGroup>
         <br />
-        <ButtonGroup style="margin-top: 10px">
+        <ButtonGroup style="margin-top: 10px" radio v-model="pos">
             <Tooltip v-for="value in ['top', 'right', 'bottom', 'left']"
                 :content="value"
                 :position="value"
                 :key="value"
             >
-                <Button>{{ value }}</Button> 
+                <Button :value="value">{{ value }}</Button> 
             </Tooltip>
         </ButtonGroup>
     </div>
@@ -57,7 +57,8 @@ export default {
 
     data() {
         return {
-            percent: 40
+            percent: 40,
+            pos: '',
         }
     },
 

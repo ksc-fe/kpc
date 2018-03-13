@@ -19,5 +19,11 @@ export default class ButtonGroup extends Intact {
         vertical: Boolean,
         radio: Boolean,
     }
+
+    _init() {
+        if (this.get('radio')) {
+            this.set('checkType', 'radio', {silent: true});
+        }
+    }
 }
 

@@ -42,12 +42,28 @@ export default class Button extends Intact {
 
     _mount() {
         let parentVNode = this.parentVNode;
-        if (parentVNode) {
+
+        while (parentVNode && parentVNode.tag !== Group) {
             parentVNode = parentVNode.parentVNode;
         }
-        if (parentVNode && parentVNode.tag === Group) {
+
+        if (parentVNode) {
             this.group = parentVNode.children;
+
+            this.set({
+                _checkType: this.group.get('checkType'),
+                _value: this.group.get('value')
+            });
         }
+    }
+
+    _beforeUpdate() {
+        if (this.group) {
+            this.set({
+                _checkType: this.group.get('checkType'),
+                _value: this.group.get('value')
+            }, {silent: true});
+        } 
     }
 
     showLoading() {
