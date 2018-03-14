@@ -8,7 +8,7 @@ if (hasGutter) {
 }
 
 const classNameObj = {
-    /* 'k-col': true, */
+    'k-col': true,
     [`k-${span}`]: true,
     [className]: className && !hasGutter,
     [`k-offset-${offset}`]: offset > 0,
