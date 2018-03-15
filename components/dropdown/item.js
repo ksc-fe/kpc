@@ -74,6 +74,18 @@ export default class DropdownItem extends Intact {
 
     focus() {
         this.set('_isFocus', true);
+
+        const elRect = this.element.getBoundingClientRect();
+        const pEl = this.parent.refs.menu.element;
+        const pElRect = pEl.getBoundingClientRect();
+        const bottomOverflowDistance = elRect.bottom - pElRect.bottom;
+        const topOverflowDistance = elRect.top - pElRect.top;
+        
+        if (bottomOverflowDistance > 0) {
+            pEl.scrollTop += bottomOverflowDistance;
+        } else if (topOverflowDistance < 0) {
+            pEl.scrollTop += topOverflowDistance;
+        }
     }
 
     unFocus() {
