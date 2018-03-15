@@ -65,6 +65,6 @@ const classNameObj = {
     <div class="k-text" v-else-if={{ isOuterText }}>
         <span v-if={{ status !== 'success' && status !== 'error' }}>{{ percent }}%</span>
         <span v-else-if={{ status === 'success' }}>100%</span>
-        <span v-else-if={{ status === 'error' }}></span>
+        <span v-else-if={{ status === 'error' }}>{{ percent }}%</span>
     </div>
 </div>

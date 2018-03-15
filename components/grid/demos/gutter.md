@@ -3,7 +3,7 @@ title: 间距
 order: 1
 ---
 
-给`Row`添加`gutter`，可以定义`Col`之间的间距
+给`Row`添加`gutter`，可以定义`Col`之间的间距，单位为`px`
 
 ```vdt
 import {Row, Col} from 'kpc/components/grid';

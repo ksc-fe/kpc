@@ -57,7 +57,7 @@ module.exports = function(isDev) {
             };
 
             renderer.paragraph = function(text) {
-                return text.replace(/\n/g, '');
+                return '<p>' + text.replace(/\n/g, '') + '</p>\n';
             };
         });
 

@@ -39,7 +39,7 @@ const handleProps = props => {
         } else {
             active = false;
         }
-    } else {
+    } else if (Array.isArray(value)) {
         const index = value.indexOf(props.value);
         if (~index) {
             // keep order consistent

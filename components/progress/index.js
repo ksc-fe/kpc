@@ -16,8 +16,8 @@ export default class Progress extends Intact{
 
     defaults() {
         return {
-            type: 'bar',
-            percent: 70, //[0~100
+            type: 'bar', // bar circle
+            percent: 0, // 0~100
             size: 'default', // small mini
             isOuterText: true,
             isInnerText: false, // FIXME: 布尔型取值用is开头 isShowInnerText 见README
