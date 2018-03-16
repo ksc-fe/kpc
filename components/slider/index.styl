@@ -26,50 +26,45 @@
             height 100%
             border-radius $slider-border-radius
             transition all $transition 
-        .k-button-wrapper
-            height $slider-button-height
-            width $slider-button-width 
+        .k-handle
+            height $slider-handle-height
+            width $slider-handle-width 
             position absolute
-            transform translate(-50%, -50%)
-            top 50% 
+            top 50%
+            margin-top s('-%s', $slider-handle-height / 2)
+            margin-left s('-%s', $slider-handle-width / 2)
             text-align center
             transition all $transition 
-        .k-button
-            width 100%
-            height 100%
-            border $slider-button-border 
-            border-radius $slider-button-border-radius 
-            background-color $slider-button-bg-color 
+            border $slider-handle-border 
+            border-radius $slider-handle-border-radius 
+            background-color $slider-handle-bg-color 
             transition all $transition 
             &:hover
-                transform $slider-button-hover-transform 
+                transform $slider-handle-hover-transform 
                 cursor grab
-                background-color $slider-button-hover-bg-color 
+                background-color $slider-handle-hover-bg-color 
     .k-spinner
         margin-left $slider-margin
 
     &.k-dragging
         .k-bar
             transition none
-        .k-button-wrapper
+        .k-handle
             transition none
-        .k-button
-            transition none
-        .k-active
-            .k-button
+            &.k-active
                 cursor grabbing
-                transform $slider-button-hover-transform 
-                background-color $slider-button-hover-bg-color 
+                transform $slider-handle-hover-transform 
+                background-color $slider-handle-hover-bg-color 
 
     &.k-disabled
         .k-wrapper
             cursor not-allowed
         .k-bar
             background-color $slider-disabled-color
-        .k-button
+        .k-handle
             border-color $slider-disabled-color
             &:hover
-                background-color $slider-button-disabled-bg-color
+                background-color $slider-handle-disabled-bg-color
                 cursor not-allowed
                 transform none
 
