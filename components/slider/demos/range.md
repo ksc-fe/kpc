@@ -17,7 +17,6 @@ export default class extends Intact {
     static template = template;
 
     defaults() {
-        window.aa = this;
         return {
             values: [50, 76],
         }

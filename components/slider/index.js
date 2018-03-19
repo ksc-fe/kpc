@@ -39,11 +39,6 @@ export default class Slider extends Intact {
     }
 
     _init() {
-        // ['step', 'max', 'min', 'value', 'isRange'].forEach(prop => {
-            // this.on(`$change:${prop}`, this._fixValue);
-        // });
-        // this._fixValue();
-
         this._setFixedValue(this.get('value'));
 
         this.on("$change:_inputValue", (c, val) => {
@@ -51,6 +46,12 @@ export default class Slider extends Intact {
                 this._setFixedValue(val);
             }
         });
+    }
+
+    _beforeUpdate(lastVNode, nextVNode) {
+        if (lastVNode && nextVNode) {
+            this._setFixedValue(this.get('value'));
+        }
     }
 
     _setFixedValue(value) {

@@ -1,36 +1,32 @@
+import {Button} from '../button';
+import {Input} from '../input';
+
 const {
     className, disabled, max, min, step,
-    children, value, ref, key, ...rest
+    children, value, style, size
 } = self.get();
 
 const classNameObj = {
     'k-spinner': true,
-    [className || '']: true,
-};
-const btnLeftClass = {
-    'k-spiner-button': true,
-    'k-spinner-button-disabled': disabled || value <= min  || value - min < step,
-    [className || '']: true,
+    'k-disabled': disabled,
+    [`k-${size}`]: size !== 'default',
+    [className]: className,
 };
 
-const btnRightClass = {
-    'k-spiner-button': true,
-    'k-spinner-button-disabled': disabled || value >= max || max - value < step,
-    [className || '']: true,
-};
-
-
-<div class={{ classNameObj }}>
-    <!-- FIXME 这里是否利用Button组件更好 -->
-    <button class={{ btnLeftClass }} ev-click={{ self._decrease }}>-</button>
-    <!-- FIXME 注意缩进，input支持v-model，无需设置value -->
-    <input class="k-spiner-input" type="text" disabled={{ disabled }}
+<div class={{ classNameObj }} style={{ style }}>
+    <Button icon ev-click={{ self._decrease }}
+        disabled={{ self._disableDecrease() }}
+        class="k-left"
+        size={{ size }}
+    >-</Button>
+    <Input disabled={{ disabled }} 
+        ev-change={{ self._changeValue }}
         v-model="value"
-        max={{ max }}
-        min={{ min }}
-        step={{ step }}
-        ev-change={{self._changeValue}}
-        {{ ...rest }}
+        size={{ size }}
     />
-    <button class={{ btnRightClass }} ev-click={{ self._increase }}>+</button>
+    <Button icon ev-click={{ self._increase }}
+        disabled={{ self._disableIncrease() }}
+        class="k-right"
+        size={{ size }}
+    >+</Button>
 </div>
