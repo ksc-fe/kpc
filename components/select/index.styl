@@ -114,9 +114,9 @@
     // size
     for size in small mini
         &.k-{size}
+            font-size lookup('$select-' + size + '-font-size')
             > .k-wrapper
                 min-height lookup('$select-' + size + '-height')
-                font-size lookup('$select-' + size + '-font-size')
                 .k-input
                 .k-placeholder
                 .k-value
