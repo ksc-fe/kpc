@@ -10,7 +10,7 @@ export default class Steps extends Intact {
     defaults() {
         return {
             value: undefined,
-            status: 'ready',
+            status: 'normal',
         };
     }
 }
