@@ -22,23 +22,25 @@ export default class Checkbox extends Intact {
 
     // set value to falseValue when destroy
     _destroy() {
-        // we must use _context to get value, because it maybe has changed
-        const model = this.get('v-model');
-        if (!model) return;
+        // we should not change data in _destroy
 
-        let value = this.get('_context').data.get(model);
-        if (!value) return;
-        const trueValue = this.get('trueValue');
-        if (this.isChecked()) {
-            if (isArray(value)) {
-                value = value.slice(0);
-                const index = value.indexOf(trueValue);
-                value.splice(index, 1);
-                this.set('value', value);
-            } else {
-                this.set('value', this.get('falseValue'));
-            }
-        }
+        // we must use _context to get value, because it maybe has changed
+        // const model = this.get('v-model');
+        // if (!model) return;
+
+        // let value = this.get('_context').data.get(model);
+        // if (!value) return;
+        // const trueValue = this.get('trueValue');
+        // if (this.isChecked()) {
+            // if (isArray(value)) {
+                // value = value.slice(0);
+                // const index = value.indexOf(trueValue);
+                // value.splice(index, 1);
+                // this.set('value', value);
+            // } else {
+                // this.set('value', this.get('falseValue'));
+            // }
+        // }
     }
 
     isChecked() {

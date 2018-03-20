@@ -80,7 +80,7 @@ export default class Table extends Intact {
         const dataLength = this.get('data').length;
         const disabledAmount = this.get("_disabledAmount");
         const amount = dataLength - disabledAmount;
-        return amount && checkedKeys.length === amount; 
+        return amount && checkedKeys.length >= amount; 
     }
 
     isChecked(key) {
@@ -172,8 +172,8 @@ export default class Table extends Intact {
         this.set('_disabledAmount', disabledAmount);
     }
 
-    _toggleCheckAll(c, checked) {
-        if (checked) {
+    _toggleCheckAll(e) {
+        if (e.target.checked) {
             this.checkAll();
         } else {
             this.uncheckAll();
@@ -207,7 +207,11 @@ export default class Table extends Intact {
                 this.set('checkedKeys', checkedKeys);
             }
         } else if (checkType === 'radio') {
-            this.set('checkedKey', key);
+            if (isCheck) {
+                this.set('checkedKey', key);
+            } else {
+                this.set('checkedKey', undefined);
+            }
         }
     }
 
@@ -223,6 +227,11 @@ export default class Table extends Intact {
             expandedKeys.push(key);
             this.set('expandedKeys', expandedKeys);
         }
+    }
+
+    _onRowDestroyed(key) {
+        this.shrinkRow(key); 
+        this.uncheckRow(key);
     }
 
     _sort(key, value) {

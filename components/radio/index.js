@@ -22,9 +22,10 @@ export default class Radio extends Intact {
     }
 
     _destroy() {
-        if (this.isChecked()) {
-            this.set('value', undefined);
-        }
+        // we should not change data in _destroy
+        // if (this.isChecked()) {
+            // this.set('value', undefined);
+        // }
     }
 }
 

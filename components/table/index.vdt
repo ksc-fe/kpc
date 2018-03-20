@@ -19,7 +19,7 @@ const theadCreator = () => <thead>
     <tr>
         <th v-if={{ checkType === 'checkbox' }} class="k-th-check">
             <Checkbox value={{ self.isCheckAll() }}
-                ev-$change:value={{ self._toggleCheckAll }}
+                ev-click={{ self._toggleCheckAll }}
             />
         </th>
         <th v-else-if={{ checkType === 'radio' }} class="k-th-check"></th>
@@ -75,7 +75,7 @@ const tbody = <tbody>
                     [className]: className,
                     'k-checked': self.isChecked(key), 
                 } }}
-                ev-$destroyed={{ self.shrinkRow.bind(self, key) }}
+                ev-$destroyed={{ self._onRowDestroyed.bind(self, key) }}
             >
                 <td v-if={{ checkType === 'checkbox' }}>
                     <Checkbox v-model="checkedKeys" name="k-table-checkbox"
