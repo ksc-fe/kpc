@@ -1,6 +1,9 @@
 const MessageAnimate = self.MessageAnimate;
 
-<Animate class="k-messages">
+// we must add key for k-messages, 
+// beacase it may reuse other MoveWrapper Animate dom
+// the key will prevent this case.
+<Animate class="k-messages" key="k-messages">
     <MessageAnimate v-for={{ self.get('messages') }}
         a:tag={{ value }} 
         key={{ value.get('key') }} 

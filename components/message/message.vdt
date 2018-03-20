@@ -1,5 +1,4 @@
 import Button from '../button';
-import MoveWrapper from '../moveWrapper';
 
 const {type, content, children, closable} = self.get();
 
