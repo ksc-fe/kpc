@@ -101,6 +101,7 @@ export default class Button extends Intact {
                 this.group.set('value', _value);
             }
         }
+        e.component = this;
         this.trigger('click', e);
     }
 }
