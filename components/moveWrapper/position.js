@@ -89,7 +89,7 @@ export default function position(elem, options) {
     position.top += myOffset[1];
 
     const style = elem.style;
-    const {elemPosition} = window.getComputedStyle(elem);
+    const {position: elemPosition} = window.getComputedStyle(elem);
     if (elemPosition === 'static') {
         style.position = 'relative';
     }
