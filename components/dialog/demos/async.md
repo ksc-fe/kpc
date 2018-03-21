@@ -54,7 +54,7 @@ export default class extends Intact {
                 dialog.hideLoading();
                 dialog.close();
             }, () => {
-                // if error, don't close diloag
+                // if error, don't close dialog
                 dialog.hideLoading();
                 Message.error('error occured');
             });
