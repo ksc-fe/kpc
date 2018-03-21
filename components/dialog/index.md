@@ -15,6 +15,8 @@ order: 0
 | okText | “确认”按钮文案 | `String` | `"确认"` |
 | cancelText | “取消”按钮文案 | `String` | `"取消"` |
 | disabledOk | “确认”按钮是否为禁用状态 | `Boolean` | `false` |
+| ok | “确认”按钮点击后自定义回调函数 | `Function` | `undefined` |
+| cancel | “取消”按钮点击后自定义回调函数 | `Function` | `undefined` |
 
 # 扩展点
 

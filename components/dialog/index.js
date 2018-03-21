@@ -21,6 +21,8 @@ export default class Dialog extends Intact {
             disabledOk: false,
             okText: '确认',
             cancelText: '取消',
+            ok: undefined,
+            cancel: undefined,
 
             _dragging: false,
         }
@@ -69,13 +71,23 @@ export default class Dialog extends Intact {
     }
 
     cancel() {
-        this.close();
-        this.trigger('cancel', this);
+        const callback = this.get('cancel');
+        if (typeof callback === 'function') {
+            callback.call(this, this);
+        } else {
+            this.close();
+            this.trigger('cancel', this);
+        }
     }
 
     ok() {
-        this.close();
-        this.trigger('ok', this);
+        const callback = this.get('ok');
+        if (typeof callback === 'function') {
+            callback.call(this, this);
+        } else {
+            this.close();
+            this.trigger('ok', this);
+        }
     }
 
     show() {
