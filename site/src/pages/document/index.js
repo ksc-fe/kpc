@@ -4,6 +4,8 @@ import template from './index.vdt';
 import './index.styl';
 import 'kpc/components/table/index.styl';
 
+const req = require.context('~/', true, /^\.\/components\/.*index\.(json|js)$/);
+
 export default class extends Layout {
     @Intact.template()
     static template = template;
@@ -11,8 +13,8 @@ export default class extends Layout {
     async _init() {
         let path = this.get('path');
         path = path.slice(1, -1);
-        const data = await import(`~/${path}/index.json`);
-        const Article = await import(`~/${path}/index.js`);
+        const data = await req(`./${path}/index.json`);
+        const Article = await req(`./${path}/index.js`);
         this.set({...data, Article});
     }
 
