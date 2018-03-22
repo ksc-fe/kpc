@@ -47,6 +47,6 @@ gulp.task('server', () => {
 });
 
 gulp.task('watch', gulp.series('doc', gulp.parallel('server', /* 'webpack', */ () => {
-    gulp.watch('./**/*.md', {ignored: /node_modules/}, gulp.parallel('doc'));
+    gulp.watch('./components/**/*.md', {ignored: /node_modules/}, gulp.parallel('doc'));
 })));
 

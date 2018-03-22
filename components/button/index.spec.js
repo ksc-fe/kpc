@@ -17,25 +17,19 @@ function getRenderedInstance (Component, propsData) {
     return instance;
 }
 
-
 describe('Button unit test:', () => {
-  
-  let button, app;
+    let button;
 
-  afterEach(() => {
-      //button.destroy();
-      //document.body.removeChild(button.element);
-  });
-
-  //Button type属性
-  it('should render correct primary type button', () => {
-    button = getRenderedInstance(Button, {
-        type: "primary"
+    afterEach(() => {
+        button.destroy();
     });
-    // let type = button.get('type');
-    // expect(type).to.equal("primary");
-    let buttonEle = button.element;
-    expect(buttonEle.classList.contains('k-primary')).to.be.true;
-  });
 
-})
+    it('should render correct primary type button', () => {
+        button = render(Button, {
+            type: "primary"
+        });
+        let buttonEle = button.element;
+        expect(buttonEle.classList.contains('k-primary')).to.be.true;
+        expect('aah').to.matchSnapshot();
+    });
+});
