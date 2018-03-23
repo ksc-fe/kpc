@@ -4,7 +4,7 @@ var path = require('path');
 module.exports = function (config) {
     config.set({
         // browsers: ['PhantomJS', 'Chrome'],
-        browsers: process.env.UPDATE ? ['Chrome'] : undefined,
+        browsers: process.env.UPDATE ? ['ChromeHeadless'] : undefined,
         frameworks: ['mocha', 'sinon-chai', 'snapshot', 'mocha-snapshot'],
         reporters: ['mocha', 'coverage-istanbul'],
         files: [

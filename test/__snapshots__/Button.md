@@ -1,4 +1,4 @@
-# `Button unit test:`
+# `Button`
 
 #### `method test`
 
@@ -24,11 +24,5 @@
 "<button class=\"k-btn\" type=\"button\">
     
     </button>"
-```
-
-#### `should render correct primary type button`
-
-```
-"aah"
 ```
 

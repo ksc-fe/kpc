@@ -3,7 +3,7 @@ import MoveWrapper from '../moveWrapper';
 
 <MoveWrapper autoDestroy={{ false }}>
     <div class="k-dialog-wrapper" ref={{ dom => self.$element = dom }}>
-        <Animate class="k-overlay" v-if={{ self.get('value') }}></Animate>
+        <Animate class="k-overlay" v-if={{ self.get('value') }} key="overlay"></Animate>
         <Animate 
             class={{ {
                 "k-dialog": true, 
@@ -14,6 +14,7 @@ import MoveWrapper from '../moveWrapper';
             ref={{ i => self.dialog = i ? i.element : null }}
             v-if={{ self.get('value') }}
             ev-a:leaveEnd={{ self._leaveEnd }}
+            key="dialog"
         >
             <div class="k-header"
                  ev-mousedown={{ self._dragStart }}

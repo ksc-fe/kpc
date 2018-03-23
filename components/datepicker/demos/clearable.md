@@ -8,5 +8,5 @@ order: 1
 ```vdt
 import Datepicker from 'kpc/components/datepicker';
 
-<Datepicker clearable v-model="date" />
+<Datepicker clearable v-model="date"/>
 ```

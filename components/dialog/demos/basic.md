@@ -13,7 +13,7 @@ import Dialog from 'kpc/components/dialog';
     <Button ev-click={{ self.set.bind(self, 'show', true) }}
         type="primary"
     >Show Dialog</Button>
-    <Dialog v-model="show" title="Dialog Title">
+    <Dialog v-model="show" title="Dialog Title" ref="__demo">
         Dialog Body 
     </Dialog>
 </div>

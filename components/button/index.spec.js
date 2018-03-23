@@ -1,35 +1,37 @@
 import Intact from 'intact';
 import Button from './index';
-import App from '../app/index';
+import {dispatchEvent, mount} from 'test/utils';
+import GroupDemo from '~/components/button/demos/group';
 
-/**
- * @desc 创建Intact组件实例
- * @param {Object} Component Intact组件
- * @param {Object} propsData props数据
- * @return {Object} Intact实例
- */
-function getRenderedInstance (Component, propsData) {
-    const Ctor = Intact.extend({
-      defaults: Component.defaults,
-      template: Component.template
-    });
-    const instance = new Ctor(propsData);
-    return instance;
-}
-
-describe('Button unit test:', () => {
-    let button;
+describe('Button', () => {
+    let instance;
 
     afterEach(() => {
-        button.destroy();
+        instance.destroy();
+        document.body.removeChild(instance.element);
     });
 
-    it('should render correct primary type button', () => {
-        button = render(Button, {
-            type: "primary"
-        });
-        let buttonEle = button.element;
-        expect(buttonEle.classList.contains('k-primary')).to.be.true;
-        expect('aah').to.matchSnapshot();
+    it('should change value when click radio buttons', () => {
+        instance = mount(GroupDemo);
+
+        dispatchEvent(instance.refs.__radioShanghai.element, 'click');
+        expect(instance.get('city')).to.eql('shanghai');
+        dispatchEvent(instance.refs.__checkboxShanghai.element, 'click');
+        expect(instance.get('cities')).to.eql(['shanghai']);
+        dispatchEvent(instance.refs.__checkboxShanghai.element, 'click');
+        expect(instance.get('cities')).to.eql([]);
+    });
+
+    it('method test', () => {
+        instance = mount(Button);
+
+        instance.showLoading();
+        expect(instance.element.outerHTML).to.matchSnapshot();
+        instance.hideLoading();
+        expect(instance.element.outerHTML).to.matchSnapshot();
+        instance.disable();
+        expect(instance.element.outerHTML).to.matchSnapshot();
+        instance.enable();
+        expect(instance.element.outerHTML).to.matchSnapshot();
     });
 });

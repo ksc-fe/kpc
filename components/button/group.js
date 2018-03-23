@@ -21,6 +21,7 @@ export default class ButtonGroup extends Intact {
     }
 
     _init() {
+        /* istanbul ignore if */
         if (this.get('radio')) {
             this.set('checkType', 'radio', {silent: true});
         }

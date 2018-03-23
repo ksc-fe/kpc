@@ -15,7 +15,7 @@ import {Button} from 'kpc/components/button';
 <div>
     <Button type="primary"
         ev-click={{ self.set.bind(self, 'show', true) }}
-    >Close dialog asynchronously</Button>
+    >Close Dialog Asynchronously</Button>
     <Dialog v-model="show" title="Customized ok callback"
         ok={{ self.ok }}
     >

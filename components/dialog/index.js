@@ -30,7 +30,12 @@ export default class Dialog extends Intact {
 
     _init() {
         this.on('$changed:value', (c, isShow) => {
-            if (isShow) this._center();
+            if (isShow) {
+                this.trigger('open');
+                this._center();
+            } else {
+                this.trigger('close');
+            }
         }); 
     }
 
@@ -133,6 +138,8 @@ export default class Dialog extends Intact {
     }
 
     _dragStart(e) {
+        /* istanbul ignore next */ {
+        
         // left key
         if (e.which !== 1) return;
 
@@ -145,9 +152,12 @@ export default class Dialog extends Intact {
 
         document.addEventListener('mousemove', this._move);
         document.addEventListener('mouseup', this._dragEnd);
+        /* istanbul ignore end */ }
     }
 
     _move(e) {
+        /* istanbul ignore next */
+
         // TODO; drag out of screen
         if (this.get('_dragging')) {
             const style = this.dialog.style;
@@ -166,6 +176,7 @@ export default class Dialog extends Intact {
     }
 
     _dragEnd() {
+        /* istanbul ignore if */
         if (this.get('_dragging')) {
             this.set('_dragging', false);
             document.removeEventListener('mousemove', this._move);

@@ -9,7 +9,7 @@ order: 0
 import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
 
 <Breadcrumb>
-    <BreadcrumbItem to="/">item 1</BreadcrumbItem>
+    <BreadcrumbItem to="#/">item 1</BreadcrumbItem>
     <BreadcrumbItem to="/components/breadcrumb/">item 2</BreadcrumbItem>
     <BreadcrumbItem>item 3</BreadcrumbItem>
 </Breadcrumb>

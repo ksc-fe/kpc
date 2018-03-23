@@ -2,7 +2,7 @@ import {render} from './utils';
 
 const req = require.context('../site/components/', true, /demos\/.*index\.js$/);
 
-describe('Demo test:', () => {
+describe('Demos', () => {
     let demo;
 
     afterEach(() => {

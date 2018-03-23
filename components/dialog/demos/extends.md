@@ -53,11 +53,17 @@ export default class extends Intact {
     static template = template;
 
     showDialog() {
-        const dialog = new Dialog();
+        const dialog = this.dialog = new Dialog();
         dialog.show();
         dialog.on('ok', (data) => {
             Message.info(`data from dialog: ${data}`);
         });
+    }
+
+    _destroy() {
+        if (this.dialog) {
+            this.dialog.close();
+        }
     }
 }
 ```

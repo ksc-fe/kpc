@@ -1,13 +1,23 @@
 import Intact from 'intact';
 import Dialog from './';
-import {render} from 'test/utils';
+import {getElement, render, mount, dispatchEvent} from 'test/utils';
+import BasicDemo from '~/components/dialog/demos/basic'; 
+import AsyncCloseDemo from '~/components/dialog/demos/asyncClose';
+import AsyncOpenDemo from '~/components/dialog/demos/asyncOpen';
 
-describe('Dialog unit test:', () => {
+describe('Dialog', () => {
     let component;
+    let instance;
 
     afterEach(() => {
         component && component.destroy();
         component = null;
+
+        if (instance) {
+            instance.destroy();
+            document.body.removeChild(instance.element);
+            instance = null;
+        }
     });
 
     it('should render dialog correctly', () => {
@@ -94,5 +104,113 @@ describe('Dialog unit test:', () => {
         const footer = component.refs.dialog.$element.querySelector('.k-footer');
         expect(footer.childNodes[0].textContent.trim()).be.equal('dialog footer');
         expect(footer.childNodes.length).be.equal(4);
+    });
+
+    it('basic test', () => {
+        instance = mount(BasicDemo); 
+
+        dispatchEvent(instance.element.children[0], 'click');
+        let dialog = getElement('.k-dialog');
+        expect(dialog.innerHTML).to.matchSnapshot();
+
+        // click ok
+        dispatchEvent(dialog.querySelector('.k-primary'), 'click');
+        expect(instance.get('show')).be.false;
+
+        // click cancel
+        dispatchEvent(instance.element.children[0], 'click');
+        dialog = getElement('.k-dialog');
+        dispatchEvent(dialog.querySelector('.k-footer .k-btn'), 'click');
+        expect(instance.get('show')).be.false;
+
+        // press esc to close
+        dispatchEvent(instance.element.children[0], 'click');
+        dispatchEvent(document, 'keydown', {keyCode: 27});
+        expect(instance.get('show')).be.false;
+
+    });
+
+    it('should remove when parent destoried for using as component', function(done) {
+        this.enableTimeouts(false);
+
+        let wrapper;
+
+        let i;
+        const _leaveEnd = Dialog.prototype._leaveEnd;
+        Dialog.prototype._leaveEnd = function() {
+            _leaveEnd.call(this);
+            expect(wrapper.parentNode).be.null;
+
+            document.body.removeChild(i.element);
+            Dialog.prototype._leaveEnd = _leaveEnd;
+            done();
+        };
+
+        i = mount(BasicDemo); 
+        dispatchEvent(i.element.children[0], 'click');
+        wrapper = getElement('.k-dialog-wrapper');
+        i.destroy();
+    });
+
+    it('methods test', () => {
+        instance = mount(BasicDemo);
+
+        dispatchEvent(instance.element.children[0], 'click');
+        const dialog = getElement('.k-dialog');
+
+        const demo = instance.refs.__demo;
+        demo.showLoading(); 
+        expect(dialog.innerHTML).to.matchSnapshot();
+        demo.hideLoading();
+        expect(dialog.innerHTML).to.matchSnapshot();
+        demo.disableOk();
+        expect(dialog.innerHTML).to.matchSnapshot();
+        demo.enableOk();
+        expect(dialog.innerHTML).to.matchSnapshot();
+
+        demo.close();
+        demo.show();
+        expect(getElement('.k-dialog').innerHTML).to.matchSnapshot();
+    });
+
+    it('demos test', () => {
+        const req = require.context('~/components/dialog/demos', true, /^((?!async).)*index\.js$/i);
+        req.keys().forEach(item => {
+            const Demo = req(item).default;
+            const i = mount(Demo);
+
+            dispatchEvent(i.element.firstChild, 'click');
+            expect(getElement('.k-dialog').innerHTML).to.matchSnapshot();
+            i.destroy();
+            document.body.removeChild(i.element);
+        });
+    });
+
+    it('async close', () => {
+        instance = mount(AsyncCloseDemo);
+
+        instance.set('code', '111');
+        dispatchEvent(instance.element.firstChild, 'click');
+        let dialog = getElement('.k-dialog');
+        // click ok
+        dispatchEvent(dialog.querySelector('.k-primary'), 'click');
+        expect(dialog.innerHTML).to.matchSnapshot();
+    });
+
+    it('async open', function(done) {
+        this.enableTimeouts(false);
+
+        instance = mount(AsyncOpenDemo);
+        
+        dispatchEvent(instance.element.firstChild, 'click');
+        expect(instance.dialog.element === undefined).to.be.true;
+
+        setTimeout(() => {
+            const dialog = getElement('.k-dialog');
+            expect(dialog.innerHTML).to.matchSnapshot();
+            // close
+            dispatchEvent(dialog.querySelector('.k-footer .k-btn'), 'click');
+            done();
+        }, 3000);
     });
 });
