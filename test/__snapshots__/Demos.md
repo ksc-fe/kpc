@@ -722,6 +722,386 @@
 "<div class=\"k-steps c-clearfix\"><div class=\"k-step k-done\" style=\"width: 33.3333%;\"><div class=\"k-tail\"></div><div class=\"k-head\"><div class=\"k-inner\"><i class=\"ion-ios-checkmark-empty k-icon\"></i></div></div><div class=\"k-main\"><div class=\"k-title\">选择配置</div><div class=\"k-content\">请选择主机的配置信息</div></div></div><div class=\"k-step k-active k-error\" style=\"width: 33.3333%;\"><div class=\"k-tail\"></div><div class=\"k-head\"><div class=\"k-inner\"><i class=\"ion-ios-close-empty k-icon\"></i></div></div><div class=\"k-main\"><div class=\"k-title\">选择弹性IP</div><div class=\"k-content\">请选择主机弹性IP的配置信息</div></div></div><div class=\"k-step\" style=\"width: 33.3333%;\"><div class=\"k-tail\"></div><div class=\"k-head\"><div class=\"k-inner\"><span>2</span></div></div><div class=\"k-main\"><div class=\"k-title\">设置VPC</div><div class=\"k-content\"></div></div></div></div>"
 ```
 
+#### `Table basic`
+
+```
+"<div><div class=\"k-table-wrapper\">
+    <table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" value=\"true\"></span></label></th>
+        <th title=\"表头1\"><div class=\"k-th\"><div class=\"c-ellipsis\">表头1</div>
+        
+    </div></th><th title=\"表头2\"><div class=\"k-th\"><div class=\"c-ellipsis\">表头2</div>
+        
+    </div></th>
+        
+    </tr></thead>
+    <tbody>
+    <tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
+                <td title=\"第一行\">第一行</td><td title=\"哈哈2\">哈哈2</td>
+            </tr><tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"1\"></span></label></td>
+                <td title=\"第二行\">第二行</td><td title=\"哈哈2\">哈哈2</td>
+            </tr>
+</tbody>
+</table>
+</div></div>"
+```
+
+#### `Table checkType`
+
+```
+"<div class=\"no-data-template\"><div class=\"k-table-wrapper\">
+    <table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" value=\"true\"></span></label></th>
+        <th title=\"表头\"><div class=\"k-th\"><div class=\"c-ellipsis\">表头</div>
+        
+    </div></th>
+        
+    </tr></thead>
+    <tbody>
+    <tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
+                <td title=\"多选框\">多选框</td>
+            </tr>
+</tbody>
+</table>
+</div><div class=\"k-table-wrapper\">
+    <table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"></th>
+        <th title=\"表头\"><div class=\"k-th\"><div class=\"c-ellipsis\">表头</div>
+        
+    </div></th>
+        
+    </tr></thead>
+    <tbody>
+    <tr class=\"\"><td><label class=\"k-radio\"><span class=\"k-wrapper\"><input type=\"radio\" name=\"k-table-radio\" value=\"0\"></span></label></td>
+                <td title=\"单选框\">单选框</td>
+            </tr>
+</tbody>
+</table>
+</div><div class=\"k-table-wrapper\">
+    <table class=\"k-table\">
+    <thead><tr>
+        <th title=\"表头\"><div class=\"k-th\"><div class=\"c-ellipsis\">表头</div>
+        
+    </div></th>
+        
+    </tr></thead>
+    <tbody>
+    <tr class=\"\">
+                <td title=\"无选框\">无选框</td>
+            </tr>
+</tbody>
+</table>
+</div></div>"
+```
+
+#### `Table checkedKey_s`
+
+```
+"<div><div class=\"no-data-template\"><div class=\"k-table-wrapper\">
+    <table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"></th>
+        <th title=\"radio不指定rowKey\"><div class=\"k-th\"><div class=\"c-ellipsis\">radio不指定rowKey</div>
+        
+    </div></th>
+        
+    </tr></thead>
+    <tbody>
+    <tr class=\"k-checked\"><td><label class=\"k-radio k-checked\"><span class=\"k-wrapper\"><input type=\"radio\" name=\"k-table-radio\" value=\"0\"></span></label></td>
+                <td title=\"赋默认值选中\">赋默认值选中</td>
+            </tr><tr class=\"\"><td><label class=\"k-radio\"><span class=\"k-wrapper\"><input type=\"radio\" name=\"k-table-radio\" value=\"1\"></span></label></td>
+                <td title=\"不选中\">不选中</td>
+            </tr>
+</tbody>
+</table>
+</div><div class=\"k-table-wrapper\">
+    <table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"></th>
+        <th title=\"radio指定为item的id\"><div class=\"k-th\"><div class=\"c-ellipsis\">radio指定为item的id</div>
+        
+    </div></th>
+        
+    </tr></thead>
+    <tbody>
+    <tr class=\"k-checked\"><td><label class=\"k-radio k-checked\"><span class=\"k-wrapper\"><input type=\"radio\" name=\"k-table-radio\" value=\"yes\"></span></label></td>
+                <td title=\"选中\">选中</td>
+            </tr><tr class=\"\"><td><label class=\"k-radio\"><span class=\"k-wrapper\"><input type=\"radio\" name=\"k-table-radio\" value=\"no\"></span></label></td>
+                <td title=\"不选中\">不选中</td>
+            </tr>
+</tbody>
+</table>
+</div></div><div class=\"no-data-template\"><div class=\"k-table-wrapper\">
+    <table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" value=\"true\"></span></label></th>
+        <th title=\"checkbox不指定rowKey\"><div class=\"k-th\"><div class=\"c-ellipsis\">checkbox不指定rowKey</div>
+        
+    </div></th>
+        
+    </tr></thead>
+    <tbody>
+    <tr class=\"k-checked\"><td><label class=\"k-checkbox k-checked\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
+                <td title=\"赋默认值选中\">赋默认值选中</td>
+            </tr><tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"1\"></span></label></td>
+                <td title=\"不选中\">不选中</td>
+            </tr><tr class=\"k-checked\"><td><label class=\"k-checkbox k-checked\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"2\"></span></label></td>
+                <td title=\"赋默认值选中，可设置多个\">赋默认值选中，可设置多个</td>
+            </tr>
+</tbody>
+</table>
+</div><div class=\"k-table-wrapper\">
+    <table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" value=\"true\"></span></label></th>
+        <th title=\"checkbox指定为item的id\"><div class=\"k-th\"><div class=\"c-ellipsis\">checkbox指定为item的id</div>
+        
+    </div></th>
+        
+    </tr></thead>
+    <tbody>
+    <tr class=\"k-checked\"><td><label class=\"k-checkbox k-checked\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"yes\"></span></label></td>
+                <td title=\"选中\">选中</td>
+            </tr><tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"no\"></span></label></td>
+                <td title=\"不选中\">不选中</td>
+            </tr>
+</tbody>
+</table>
+</div></div></div>"
+```
+
+#### `Table fixHeader`
+
+```
+"<div class=\"no-data-template\"><div class=\"k-table-wrapper\">
+    <table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" value=\"true\"></span></label></th>
+        <th title=\"false\"><div class=\"k-th\"><div class=\"c-ellipsis\">false</div>
+        
+    </div></th>
+        
+    </tr></thead>
+    <tbody>
+    <tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
+                <td title=\"false(默认)\">false(默认)</td>
+            </tr>
+</tbody>
+</table>
+</div><div class=\"k-table-wrapper\"><div class=\"k-fixed\" style=\"padding-right: 0px;\"><table class=\"k-table\">
+            <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" value=\"true\"></span></label></th>
+        <th title=\"true\"><div class=\"k-th\"><div class=\"c-ellipsis\">true</div>
+        
+    </div></th>
+        
+    </tr></thead>
+        </table></div>
+    <div class=\"k-scroll\"><table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" value=\"true\"></span></label></th>
+        <th title=\"true\"><div class=\"k-th\"><div class=\"c-ellipsis\">true</div>
+        
+    </div></th>
+        
+    </tr></thead>
+    <tbody>
+    <tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
+                <td title=\"表头固定但是没有滚动条，展示不出效果\">表头固定但是没有滚动条，展示不出效果</td>
+            </tr>
+</tbody>
+</table></div>
+</div><div class=\"k-table-wrapper\"><div class=\"k-fixed\" style=\"padding-right: 0px;\"><table class=\"k-table\">
+            <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" value=\"true\"></span></label></th>
+        <th title=\"100px\"><div class=\"k-th\"><div class=\"c-ellipsis\">100px</div>
+        
+    </div></th>
+        
+    </tr></thead>
+        </table></div>
+    <div class=\"k-scroll\" style=\"max-height: 100px;\"><table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" value=\"true\"></span></label></th>
+        <th title=\"100px\"><div class=\"k-th\"><div class=\"c-ellipsis\">100px</div>
+        
+    </div></th>
+        
+    </tr></thead>
+    <tbody>
+    <tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
+                <td title=\"表头固定啦\">表头固定啦</td>
+            </tr><tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"1\"></span></label></td>
+                <td title=\"下拉\">下拉</td>
+            </tr><tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"2\"></span></label></td>
+                <td title=\"yeah!\">yeah!</td>
+            </tr>
+</tbody>
+</table></div>
+</div></div>"
+```
+
+#### `Table noDataTemplate`
+
+```
+"<div class=\"no-data-template\"><div class=\"k-table-wrapper\">
+    <table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" value=\"true\"></span></label></th>
+        <th title=\"表头1\"><div class=\"k-th\"><div class=\"c-ellipsis\">表头1</div>
+        
+    </div></th><th title=\"表头2\"><div class=\"k-th\"><div class=\"c-ellipsis\">表头2</div>
+        
+    </div></th>
+        
+    </tr></thead>
+    <tbody>
+    <tr><td class=\"k-no-data\" colspan=\"3\">
+                /(ㄒoㄒ)/~~ 没有找到亲要的数据哦~
+            </td></tr>
+</tbody>
+</table>
+</div><div class=\"k-table-wrapper\">
+    <table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" value=\"true\"></span></label></th>
+        <th title=\"表头1\"><div class=\"k-th\"><div class=\"c-ellipsis\">表头1</div>
+        
+    </div></th><th title=\"表头2\"><div class=\"k-th\"><div class=\"c-ellipsis\">表头2</div>
+        
+    </div></th>
+        
+    </tr></thead>
+    <tbody>
+    <tr><td class=\"k-no-data\" colspan=\"3\">
+                这里没有数据(自定义版本)
+            </td></tr>
+</tbody>
+</table>
+</div></div>"
+```
+
+#### `Table resizable`
+
+```
+"<div class=\"no-data-template\"><div class=\"k-table-wrapper\">
+    <table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" value=\"true\"></span></label></th>
+        <th title=\"默认不可拖拽\"><div class=\"k-th\"><div class=\"c-ellipsis\">默认不可拖拽</div>
+        
+    </div></th><th title=\"表头B\"><div class=\"k-th\"><div class=\"c-ellipsis\">表头B</div>
+        
+    </div></th>
+        
+    </tr></thead>
+    <tbody>
+    <tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
+                <td title=\"A\">A</td><td title=\"B\">B</td>
+            </tr><tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"1\"></span></label></td>
+                <td title=\"A\">A</td><td title=\"B\">B</td>
+            </tr>
+</tbody>
+</table>
+</div><div class=\"k-table-wrapper\">
+    <table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" value=\"true\"></span></label></th>
+        <th title=\"设置为可拖拽\"><div class=\"k-resize\"></div><div class=\"k-th\"><div class=\"c-ellipsis\">设置为可拖拽</div>
+        
+    </div></th><th title=\"表头B\"><div class=\"k-resize\"></div><div class=\"k-th\"><div class=\"c-ellipsis\">表头B</div>
+        
+    </div></th>
+        
+    </tr></thead>
+    <tbody>
+    <tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
+                <td title=\"A\">A</td><td title=\"B\">B</td>
+            </tr><tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"1\"></span></label></td>
+                <td title=\"A\">A</td><td title=\"B\">B</td>
+            </tr>
+</tbody>
+</table>
+</div></div>"
+```
+
+#### `Table rowCheckable`
+
+```
+"<div class=\"no-data-template\"><div class=\"k-table-wrapper\">
+    <table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" value=\"true\"></span></label></th>
+        <th title=\"不整行选中\"><div class=\"k-th\"><div class=\"c-ellipsis\">不整行选中</div>
+        
+    </div></th><th title=\"B\"><div class=\"k-th\"><div class=\"c-ellipsis\">B</div>
+        
+    </div></th>
+        
+    </tr></thead>
+    <tbody>
+    <tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
+                <td title=\"A\">A</td><td title=\"B\">B</td>
+            </tr><tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"1\"></span></label></td>
+                <td title=\"A\">A</td><td title=\"点我不会选中整行\">点我不会选中整行</td>
+            </tr>
+</tbody>
+</table>
+</div><div class=\"k-table-wrapper\">
+    <table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" value=\"true\"></span></label></th>
+        <th title=\"整行选中\"><div class=\"k-th\"><div class=\"c-ellipsis\">整行选中</div>
+        
+    </div></th><th title=\"B\"><div class=\"k-th\"><div class=\"c-ellipsis\">B</div>
+        
+    </div></th>
+        
+    </tr></thead>
+    <tbody>
+    <tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
+                <td title=\"A\">A</td><td title=\"任何位置都可以哦～\">任何位置都可以哦～</td>
+            </tr><tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"1\"></span></label></td>
+                <td title=\"A\">A</td><td title=\"点我会选中整行\">点我会选中整行</td>
+            </tr>
+</tbody>
+</table>
+</div></div>"
+```
+
+#### `Table scheme`
+
+```
+"<div><p>{key: value}形式:</p><div class=\"k-table-wrapper\">
+    <table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" value=\"true\"></span></label></th>
+        <th title=\"a只是个id\"><div class=\"k-th\"><div class=\"c-ellipsis\">a只是个id</div>
+        
+    </div></th><th title=\"key-{String}形式\"><div class=\"k-th\"><div class=\"c-ellipsis\">key-{String}形式</div>
+        
+    </div></th><th title=\"key为一个连续获取的字符串\"><div class=\"k-th\"><div class=\"c-ellipsis\">key为一个连续获取的字符串</div>
+        
+    </div></th><th title=\"没有这个key\"><div class=\"k-th\"><div class=\"c-ellipsis\">没有这个key</div>
+        
+    </div></th><th title=\"e也只是个id\"><div class=\"k-th\"><div class=\"c-ellipsis\">e也只是个id</div>
+        
+    </div></th>
+        
+    </tr></thead>
+    <tbody>
+    <tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
+                <td><a>虚拟DOM</a></td><td title=\"获取到了item.b\">获取到了item.b</td><td title=\"item.c.c1\">item.c.c1</td><td></td><td title=\"值形式\">值形式</td>
+            </tr>
+</tbody>
+</table>
+</div><p>标签形式:</p><div class=\"k-table-wrapper\">
+    <table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" value=\"true\"></span></label></th>
+        
+        <th title=\"a\"><div class=\"k-th\"><div class=\"c-ellipsis\">a</div>
+        
+    </div></th><th title=\"key为一个连续获取的字符\"><div class=\"k-th\"><div class=\"c-ellipsis\">key为一个连续获取的字符</div>
+        
+    </div></th><th title=\"key为一个连续获取的字符\"><div class=\"k-th\"><div class=\"c-ellipsis\">key为一个连续获取的字符</div>
+        
+    </div></th><th width=\"400\" title=\"这个宽度大一点400px\"><div class=\"k-th\"><div class=\"c-ellipsis\">这个宽度大一点400px</div>
+        
+    </div></th>
+    </tr></thead>
+    <tbody>
+    <tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
+                <td><a>虚拟DOM</a></td><td title=\"item.c.c1\">item.c.c1</td><td title=\"值形式\">值形式</td><td title=\"获取到了item.b\">获取到了item.b</td>
+            </tr>
+</tbody>
+</table>
+</div></div>"
+```
+
 #### `Tooltip basic`
 
 ```
