@@ -1,7 +1,7 @@
 ---
 title: 步骤条
 category: 组件
-order: 0
+order: 15 
 ---
 
 # 属性

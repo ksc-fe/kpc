@@ -9,5 +9,6 @@ test/coverage
 .dev/
 site/static/
 site/components/
+site/docs/
 site/fonts/
 *hot-update.js*

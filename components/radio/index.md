@@ -1,7 +1,7 @@
 ---
 title: 单选框
 category: 组件
-order: 0
+order: 3
 ---
 
 # 属性

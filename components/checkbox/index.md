@@ -1,7 +1,7 @@
 ---
 title: 复选框
 category: 组件
-order: 0
+order: 4
 ---
 
 # 属性

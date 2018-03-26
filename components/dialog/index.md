@@ -1,7 +1,7 @@
 ---
 title: 弹窗
 category: 组件
-order: 0
+order: 10
 ---
 
 # 属性

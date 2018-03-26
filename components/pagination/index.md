@@ -1,7 +1,7 @@
 ---
 title: 分页
 category: 组件
-order: 0
+order: 17 
 ---
 
 # 属性

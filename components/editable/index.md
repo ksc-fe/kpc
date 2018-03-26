@@ -1,7 +1,7 @@
 ---
 title: 可编辑文本
 category: 组件
-order: 0
+order: 99 
 ---
 
 # 属性

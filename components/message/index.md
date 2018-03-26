@@ -1,7 +1,7 @@
 ---
 title: 全局提示
 category: 组件
-order: 0
+order: 12 
 ---
 
 # 属性

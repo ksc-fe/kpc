@@ -17,7 +17,7 @@ const languageMap = function(key) {
 
 module.exports = function(isDev) {
     const doc = new KDoc(
-        './components/**/*.md',
+        './@(docs|components)/**/*.md',
         path.resolve(__dirname, './site')
     );
 

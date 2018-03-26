@@ -1,6 +1,6 @@
 ---
 title: 自定义头部和底部
-order: 2
+order: 1
 ---
 
 组件提供了`header`和`footer`扩展点（block），通过它们可以自定义头部和底部。

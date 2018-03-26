@@ -1,7 +1,7 @@
 ---
 title: 下拉菜单
 category: 组件
-order: 0
+order: 11 
 ---
 
 > `kpc/component/dropdown`暴露出来的并非`Dropdown`组件本身，而是包装该组件的函数（vdt中称作宏函数）

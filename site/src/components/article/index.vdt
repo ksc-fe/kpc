@@ -3,7 +3,9 @@ import {Tabs, Tab} from 'kpc/components/tabs';
 <div class="contents">
     <div key="demos" v-if={{ self.get('demos').length }}>
         <h1>示例</h1>
-        {{ self.get('demos').map(Demo => {
+        {{ self.get('demos').sort((a, b) => {
+            return a.data.setting.order - b.data.setting.order;
+        }).map(Demo => {
             return <div class={{ `example index-${Demo.data.index}` }}>
                 <div class="example-opera">
                     <Demo.default /> 

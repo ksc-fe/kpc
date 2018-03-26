@@ -1,7 +1,7 @@
 ---
 title: 日期选择
 category: 组件
-order: 0
+order: 7
 ---
 
 # 属性

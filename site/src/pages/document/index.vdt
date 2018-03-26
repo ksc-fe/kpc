@@ -5,25 +5,30 @@ const Article = self.get('Article');
 
 let currentNav = {};
 
+function Catalog(props) {
+    return <div class="catalog-section">
+        <h5 v-if={{ props.key !== 'undefined' }}>{{ props.key }}</h5>
+        <ul>
+            <li v-for={{ self.get(`sideBars.${props.key}`)}} class={{ {
+                active: value.path.includes(self.get('path').slice(1, -1)) 
+            } }}>
+                {{ (() => {
+                    if (value.path.includes(self.get('path').slice(1, -1))) {
+                        currentNav = value;
+                    }
+                })() }}
+                <Link href={{ `/${value.path.replace('.md', '/').replace('index/', '')}` }}>{{ value.title }}</Link>
+            </li>
+        </ul>
+    </div>
+}
+
 <t:parent navIndex="document" class="document-page">
     <b:content>
         <aside>
             <div class="aside-wrapper">
-                <div class="catalog-section" v-for={{ self.get('sideBars') }}>
-                    <h5>{{ key }}</h5>
-                    <ul>
-                        <li v-for={{ value }} class={{ {
-                            active: value.path.includes(self.get('path').substring(1)) 
-                        } }}>
-                            {{ (() => {
-                                if (value.path.includes(self.get('path').substring(1))) {
-                                    currentNav = value;
-                                }
-                            })() }}
-                            <Link href={{ `/${value.path.replace('index.md', '')}` }}>{{ value.title }}</Link>
-                        </li>
-                    </ul>
-                </div>
+                <Catalog key="undefined" />
+                <Catalog key="组件" />
                 <div class="aside-border transition"></div>
             </div>
         </aside>

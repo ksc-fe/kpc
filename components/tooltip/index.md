@@ -1,7 +1,7 @@
 ---
 title: 提示弹层
 category: 组件
-order: 0
+order: 13
 ---
 
 # 属性

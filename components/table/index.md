@@ -1,7 +1,7 @@
 ---
 title: 表格(Table)
 category: 组件
-order: 1
+order: 89 
 ---
 
 # 表格属性 Table

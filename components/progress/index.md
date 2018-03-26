@@ -1,7 +1,7 @@
 ---
 title: 进度条
 category: 组件
-order: 0
+order: 14 
 ---
 
 # 属性
