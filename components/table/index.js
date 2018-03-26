@@ -163,8 +163,14 @@ export default class Table extends Intact {
 
     _updateDisabledAmount() {
         let disabledAmount = 0;
-        const disableRow = this.get('disableRow');
-        this.get('data').forEach((item, index) => {
+        let {data, disableRow} = this.get();
+
+        if (!Array.isArray(data)) {
+            data = [];
+            this.set('data', data, {silent: true});
+        }
+
+        data.forEach((item, index) => {
             if (disableRow.call(this, item, index)) {
                 disabledAmount++;
             }
