@@ -7,6 +7,8 @@ const {
     counts, size, ...rest
 } = self.get();
 
+if (!total) return <!-- pagination -->
+
 const classNameObj = {
     'k-pagination': true,
     [className]: className,
