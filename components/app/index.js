@@ -14,8 +14,17 @@ export default class App extends Intact {
     defaults() {
         return {
             view: undefined,
-            container: undefined
-        }
+            container: undefined,
+            loading: false,
+        };
+    }
+
+    showLoading() {
+        this.set('loading', true);
+    }
+
+    hideLoading() {
+        this.set('loading', false);
     }
 
     _init() {

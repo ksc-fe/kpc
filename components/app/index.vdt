@@ -1,1 +1,8 @@
-<div class="k-app">{{ self.get('view') }}</div>
+<div class="k-app">
+    {{ self.get('view') }}
+    <b:loading>
+        <Animate key="loading" v-if={{ self.get('loading') }}
+            a:transition="fade"
+        ></Animate>
+    </b:loading>
+</div>
