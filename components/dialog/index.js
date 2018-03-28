@@ -175,13 +175,14 @@ export default class Dialog extends Intact {
         if (this.get('_dragging')) {
             const style = this.dialog.style;
             const body = document.body;
+            const html = document.documentElement;
             const left = Math.min(
                 Math.max(this._x + e.clientX, 0),
-                Math.max(body.scrollWidth - this._width, 0)
+                Math.max(Math.max(body.scrollWidth, html.scrollWidth) - this._width, 0)
             );
             const top = Math.min(
                 Math.max(this._y + e.clientY, 0),
-                Math.max(body.scrollHeight - this._height, 0)
+                Math.max(Math.max(body.scrollHeight, html.scrollHeight) - this._height, 0)
             );
             style.left = `${left}px`;
             style.top = `${top}px`;
