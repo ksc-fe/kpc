@@ -102,6 +102,20 @@ export default function position(elem, options) {
         const top = targetOffset.top - position.top;
         const bottom = top + targetHeight - elemHeight;
         const feedback = {
+            target: {
+                element: target,
+                left: targetOffset.left,
+                top: targetOffset.top,
+                width: targetWidth,
+                height: targetHeight,
+            },
+            element: {
+                element: elem,
+                left: position.left,
+                top: position.top,
+                width: elemWidth,
+                height: elemHeight,
+            },
             horizontal: right < 0 ? 'left' : left > 0 ? 'right' : 'center',
             vertical: bottom < 0 ? 'top' : top > 0 ? 'bottom' : 'middle',
         };

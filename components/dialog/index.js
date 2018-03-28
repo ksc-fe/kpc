@@ -137,7 +137,17 @@ export default class Dialog extends Intact {
     _center() {
         if (!this.mounted || !this.get('value')) return;
         // move to center
-        position(this.dialog);
+        position(this.dialog, {
+            // ensure title visible always
+            using: (pos) => {
+                const height = pos.element.height;
+                const scrollTop = window.scrollY;
+                const outerHeight = window.innerHeight;
+                if (height > outerHeight) {
+                    this.dialog.style.top = `${scrollTop}px`;
+                }    
+            }
+        });
     }
 
     _dragStart(e) {
