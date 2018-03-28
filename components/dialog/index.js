@@ -96,26 +96,29 @@ export default class Dialog extends Intact {
     }
 
     show() {
-        if (this.get('value')) return;
-        // use as component
-        if (this._useAsComponent) {
-            return this.set('value', true);
-        }
-        // use as instance
-        if (this.rendered) {
-            this.set('value', true);
-        } else {
-            const show = () => {
-                this.init(); 
-                this.mount();
+        return new Promise((resolve) => {
+            if (this.get('value')) return;
+            // use as component
+            if (this._useAsComponent) {
+                return this.set('value', true);
+            }
+            // use as instance
+            if (this.rendered) {
                 this.set('value', true);
-            }
-            if (this.inited) {
-                show();
             } else {
-                this.on('$inited', show);
+                const show = () => {
+                    this.init(); 
+                    this.mount();
+                    this.set('value', true);
+                    resolve();
+                }
+                if (this.inited) {
+                    show();
+                } else {
+                    this.on('$inited', show);
+                }
             }
-        }
+        });
     }
 
     _escClose(e) {
