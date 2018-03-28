@@ -213,10 +213,15 @@ export default class Table extends Intact {
                 this.set('checkedKeys', checkedKeys);
             }
         } else if (checkType === 'radio') {
-            if (isCheck) {
-                this.set('checkedKey', key);
+            if (!isToggle) {
+                // isToggle is false means call this by checkRow & uncheckRow
+                if (isCheck) {
+                    this.set('checkedKey', key);
+                } else {
+                    this.set('checkedKey', undefined);
+                }
             } else {
-                this.set('checkedKey', undefined);
+                this.set('checkedKey', key);
             }
         }
     }
