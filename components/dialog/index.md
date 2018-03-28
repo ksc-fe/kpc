@@ -29,7 +29,7 @@ order: 10
 
 | 方法名 | 说明 | 参数 | 返回值 |
 | --- | --- | --- | --- |
-| show | 弹出弹窗 | - | `undefined` |
+| show | 弹出弹窗 | - | `Promise` |
 | close | 关闭弹窗 | - | `undefined` |
 | showLoading | “确认”按钮变为加载状态 | - | `undefined` |
 | hideLoading | “确认”按钮变为正常状态 | - | `undefined` |
