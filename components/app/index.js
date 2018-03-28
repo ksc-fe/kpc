@@ -25,6 +25,7 @@ export default class App extends Intact {
     }
 
     render(Page, data) {
+        this._current = Page;
         return new Promise((resolve, reject) => {
             if (!process.ssr && process.node) return reject();
 
@@ -34,14 +35,18 @@ export default class App extends Intact {
                 window.__page = page;
             }
             page.$app = this;
-            if (page.inited) {
-                this.set('view', page);
-                resolve();
-            } else {
-                page.on('$inited', () => {
+
+            const done = () => {
+                if (this._current === Page) {
                     this.set('view', page);
-                    resolve();
-                });
+                }
+                resolve();
+            }
+            
+            if (page.inited) {
+                done();
+            } else {
+                page.on('$inited', done);
             }
         });
     }
