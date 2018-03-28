@@ -10,12 +10,14 @@ export default class Tabs extends Intact {
     defaults() {
         return {
             data: undefined,
-            value: undefined
+            value: undefined,
         };
     }
 
     _changeTab(item) {
-        this.set('value', item.value);
+        if (this.get('v-model')) {
+            this.set('value', item.value);
+        }
         if (item.to) {
             window.location.href = item.to;
         } 
