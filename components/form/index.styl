@@ -25,12 +25,12 @@
         margin $form-item-error-margin
     &.k-invalid
         // input
-        .k-input
+        :not(.k-select) .k-input
             .k-inner
                 border $form-item-invalid-border
         // select
         .k-select
-            .k-wrapper
+            > .k-wrapper
                 border $form-item-invalid-border
 
     // nested
