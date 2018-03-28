@@ -3,6 +3,7 @@
     <b:loading>
         <Animate key="loading" v-if={{ self.get('loading') }}
             a:transition="fade"
+            class="k-app-loading"
         ></Animate>
     </b:loading>
 </div>
