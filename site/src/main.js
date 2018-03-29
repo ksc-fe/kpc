@@ -1,3 +1,3 @@
-import 'babel-polyfill';
+// import 'babel-polyfill';
 
 Intact.Vdt.configure('delimiters', ['{{', '}}']);
