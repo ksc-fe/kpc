@@ -4707,6 +4707,10 @@ exports.Tab = _tabs.Tab;
 exports.Tooltip = _tooltip.Tooltip;
 exports.Transfer = _transfer.Transfer; /* generate automatically */
 
+for (var key in exports) {
+    console.log(key);
+}
+
 /***/ }),
 /* 90 */
 /***/ (function(module, exports, __webpack_require__) {

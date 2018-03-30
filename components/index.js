@@ -68,3 +68,7 @@ export {
     Tooltip,
     Transfer
 };
+
+for (let key in exports) {
+    console.log(key);
+}
