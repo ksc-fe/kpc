@@ -3701,6 +3701,24 @@ label {
 .k-app {
   height: 100%;
 }
+.k-breadcrumb {
+  font-size: 1rem;
+}
+.k-breadcrumb .k-item {
+  display: inline-block;
+}
+.k-breadcrumb .k-item:last-of-type {
+  font-weight: bold;
+}
+.k-breadcrumb .k-item-link {
+  color: #595959;
+}
+.k-breadcrumb a.k-item-link:hover {
+  color: #195d9f;
+}
+.k-breadcrumb .k-separator {
+  margin: 0 0.571428571428571rem;
+}
 .k-btn {
   cursor: pointer;
   display: inline-block;
@@ -5456,6 +5474,101 @@ label {
       -ms-transform: none;
           transform: none;
 }
+.k-steps {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.k-steps .k-step {
+  float: left;
+  position: relative;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.k-steps .k-head {
+  float: left;
+  padding-right: 0.714285714285714rem;
+  background: #fff;
+  position: relative;
+}
+.k-steps .k-head .k-inner {
+  width: 1.428571428571429rem;
+  height: 1.428571428571429rem;
+  line-height: calc(1.428571428571429rem - 2px);
+  border-radius: 50%;
+  text-align: center;
+  border: 1px solid #999;
+  color: #999;
+}
+.k-steps .k-head .k-icon:before {
+  font-size: 1.714285714285714rem;
+  line-height: calc(1.428571428571429rem - 2px);
+}
+.k-steps .k-main {
+  float: left;
+  position: relative;
+  color: #999;
+}
+.k-steps .k-title {
+  line-height: 1.428571428571429rem;
+  font-weight: bold;
+  padding-right: 0.714285714285714rem;
+  background: #fff;
+  display: inline-block;
+  white-space: nowrap;
+}
+.k-steps .k-content {
+  font-size: 0.857142857142857rem;
+  margin: 0.357142857142857rem 0 0;
+  white-space: nowrap;
+}
+.k-steps .k-tail {
+  position: absolute;
+  left: 0;
+  right: 0.714285714285714rem;
+  top: 0.714285714285714rem;
+  height: 1px;
+  background: #d9d9d9;
+}
+.k-steps .k-step:last-of-type {
+  -webkit-box-flex: 0;
+      -ms-flex: 0;
+          flex: 0;
+}
+.k-steps .k-step:last-of-type .k-tail {
+  display: none;
+}
+.k-steps .k-step:last-of-type .k-title {
+  padding-right: 0;
+}
+.k-steps .k-done .k-inner {
+  color: #0a5eee;
+  border-color: #0a5eee;
+}
+.k-steps .k-done .k-tail {
+  background: #0a5eee;
+}
+.k-steps .k-active .k-inner {
+  color: #fff;
+  border-color: #0a5eee;
+  background: #0a5eee;
+}
+.k-steps .k-active .k-main {
+  color: #595959;
+}
+.k-steps .k-error .k-inner {
+  color: #db2828;
+  border-color: #db2828;
+  background: #fff;
+}
+.k-steps .k-error .k-main {
+  color: #db2828;
+}
 .k-switch {
   display: inline-block;
   vertical-align: middle;
@@ -5723,4 +5836,45 @@ label {
   background: #0a5eee;
   margin-left: -0.571428571428571rem;
   bottom: -0.071428571428571rem;
+}
+.k-transfer .k-panel,
+.k-transfer .k-arrows {
+  display: inline-block;
+  vertical-align: middle;
+}
+.k-transfer .k-panel {
+  width: 21.428571428571427rem;
+}
+.k-transfer .k-title {
+  color: #404040;
+  line-height: 2.142857142857143rem;
+  font-size: 1rem;
+}
+.k-transfer .k-list {
+  height: 21.428571428571427rem;
+  border: 1px solid #cad0dd;
+  border-radius: 0.142857142857143rem;
+  overflow: auto;
+}
+.k-transfer .k-item {
+  color: #595959;
+  background: #fff;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.k-transfer .k-item:not(.k-disabled):hover {
+  background: #eee;
+}
+.k-transfer .k-checkbox {
+  padding: 5px 10px;
+  display: block;
+}
+.k-transfer .k-input {
+  margin-bottom: -1px;
+}
+.k-transfer .k-arrows .k-btn {
+  display: block;
+  margin: 10px;
 }

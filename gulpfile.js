@@ -3,6 +3,7 @@ const through = require('through2');
 const doc = require('./doc');
 const webpack = require('webpack');
 const webpackConfig = require('./webpack.config.site.client');
+const webpackBuildConfig = require('./webpack.config.build');
 const path = require('path');
 const connect = require('gulp-connect');
 const Advanced = require('advanced');
@@ -101,6 +102,15 @@ gulp.task('index', () => {
         });
 });
 
+gulp.task('build@single', (done) => {
+    webpack(webpackBuildConfig, (err, stats) => {
+        console.log(stats.toString({
+            colors: true    // 在控制台展示颜色
+        }));
+        done();
+    });
+});
+
 const destPath = './@css'
 
 gulp.task('clean@css', (done) => {
@@ -188,5 +198,5 @@ gulp.task('build@stylus', gulp.series(
 
 gulp.task('build', gulp.series(
     'index',
-    gulp.parallel('build@css', 'build@stylus')
+    gulp.parallel('build@css', 'build@stylus', 'build@single')
 ));

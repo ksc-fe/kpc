@@ -56,19 +56,6 @@ _Object$keys(_checkbox).forEach(function (key) {
   });
 });
 
-var _dialog = require('./dialog');
-
-_Object$keys(_dialog).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _dialog[key];
-    }
-  });
-});
-
 var _datepicker = require('./datepicker');
 
 _Object$keys(_datepicker).forEach(function (key) {
@@ -78,6 +65,19 @@ _Object$keys(_datepicker).forEach(function (key) {
     enumerable: true,
     get: function get() {
       return _datepicker[key];
+    }
+  });
+});
+
+var _dialog = require('./dialog');
+
+_Object$keys(_dialog).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+
+  _Object$defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _dialog[key];
     }
   });
 });
