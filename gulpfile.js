@@ -49,6 +49,7 @@ gulp.task('server', () => {
         root: 'site',
         livereload: true,
         port: 4567,
+        host: '0.0.0.0',
         middleware: function() {
             return [webpackHotMiddleware(compiler)];
         }

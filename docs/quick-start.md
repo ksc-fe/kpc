@@ -5,7 +5,7 @@ order: 0
 
 # 准备工作
 
-在学习使用kpc之前，假设你已经掌握了一下知识：
+在学习使用kpc之前，假设你已经掌握了以下知识：
 
 1. webpack + babel
 2. vue（如果将kpc用于vue项目）或者intact（如果将kpc用于intact项目）
@@ -40,103 +40,139 @@ npm run dev
 
 # 手动引入
 
-## 引入单文件构建版
+## 单文件构建版
 
 如果你的项目没有使用webpack来构建，可以引入单文件构建版。将`kpc.css`和`kpc.js`在html文件中引入。
 此时所有组件都在`KPC`命名空间下，例如`KPC.Button` `KPC.Table`等
 
 ```html
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>kpc-demo</title>
+    <link rel="stylesheet" type="text/css" href="node_modules/kpc/dist/kpc.css" />
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/javascript" src="node_modules/intact/dist/intact.js"></script>
+    <script type="text/javascript" src="node_modules/kpc/dist/kpc.js"></script>
+    <script type="text/javascript">
+        var Page = Intact.extend({
+            template: '<KPC.Button ev-click={self.hello}>Hello World</KPC.Button>',
+            hello: function() {
+                KPC.Message.success('Welcome to kpc world!');
+            }
+        });
+        Intact.mount(Page, document.getElementById('app'));
+    </script>
+</body>
+</html>
 ```
 
-## 使用源码编译
+> kpc样式需要加载字体文件，默认字体文件放在目录`./fonts`下，你可能需要根据实际情况修改该路径
 
-使用源码的好处是，我们可以非常方便地定制主题，因为可以在编译时改变主题文件定义的变量。
-详见[主题定制]()
+## 多文件构建版
 
-1. 安装
+当项目使用webpack构建时，可以使用kpc的多文件构建版，此时可以做到按需加载，而非单文件全量引入。
+多文件构建版样式css和字体，需要通过`css-loader & style-loader`和`file-loader`来引入
 
-kpc运行时依赖intact@^2.2.0，但使用源码引入时，需要安装编译依赖
+1. 安装依赖
 
-```bash
+```shell
 npm install intact kpc --save
 
-# 内网git
-npm install intact 'git+http://newgit.op.ksyun.com/ksyun-fe/kpc.git#v4.0' --save
+npm install css-loader style-loader file-loader --save-dev
 ```
 
-安装编译依赖，其中`babel-preset-stage-0`可以支持最新js语法，
-`babel-plugin-transform-decorators-legacy`支持装饰器语法，源码模板使用`vdt`，css使用`stylus`
-编写，所以需要`vdt-loader`和`stylus-loader`，`autoprefixer`来提高css浏览器兼容性
+2. `webpack.config.js`配置
 
-
-```bash
-npm install webpack babel-core babel-loader \
-    babel-plugin-transform-decorators-legacy \
-    babel-preset-env \
-    babel-preset-stage-0 \
-    babel-plugin-transform-runtime \
-    css-loader style-loader stylus stylus-loader \
-    autoprefixer postcss-loader \
-    vdt vdt-loader --save-dev
-```
-
-2. 配置`.babelrc`
-
-在`.babelrc`中加入如下内容
-
-```json
-{
-    "presets": ["env", "stage-0"],
-    "plugins": [
-        "transform-runtime",
-        "transform-decorators-legacy"
-    ]
-}
-```
-
-3. 配置webpack
-
-`webpack.config.js`文件加入如下内容
+为了统一组件加载路径，我们可以加入`alias`设置。例如：`kpc/components/button`会指向
+`kpc/@css/components/button`
 
 ```js
-const webpack = require('webpack');
-const autoprefixer = require('autoprefixer');
+const path = require('path');
 
 module.exports = {
+    ...
+    resolve: {
+        alias: {
+            // 让kpc组件指向多文件构建版本，可以统一组件加载路径
+            'kpc': path.resolve(__dirname, './node_modules/kpc/@css')
+        }
+    },
     module: {
         rules: [
             {
-                test: /\.m?js$/,
-                // 排除所有node_modules模块，除了kpc
-                exclude: [/node_modules(?!([\/\\]kpc))/,
+                test: /\.css$/,
                 use: [
                     {
-                        loader: 'babel-loader',
-                        options: {
-                            cacheDirectory: true,
-                        }
-                    }
-                ]
-            },
-            // 编译vdt
-            {
-                test: /\.vdt$/,
-                use: [
-                    {
-                        loader: 'babel-loader',
-                        options: {
-                            cacheDirectory: true, 
-                        }
+                        loader: 'style-loader',
                     },
                     {
-                        loader: 'vdt-loader',
+                        loader: 'css-loader',
                         options: {
-                            delimiters: ['{{', '}}'],
-                            skipWhitespace: true,
+                            url: true
                         }
                     }
                 ]
             },
+            // 引入字体文件
+            {
+                test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            outputPath: './fonts/',
+                        }
+                    }
+                ]
+            },
+        ]
+    }
+}
+```
+
+3. 按需引入组件
+
+在需要使用组件的地方，引入组件
+
+```js
+import {Button, ButtonGroup} from 'kpc/components/button';
+
+<ButtonGroup>
+    <Button>button1</Button>
+    <Button>button2</Button>
+</ButtonGroup>
+```
+
+## 多文件半构建版
+
+所谓半构建版与构建版的区别是，样式使用的`stylus`而非编译后的css。当我们需要修改或者引入新主题时，
+通过该版本，可以很方便地实现。详见[定制主题]()
+
+由于使用`stylus`，所以与构建版在使用上唯一的区别是需要引入`stylus-loader`
+
+1. 新增依赖
+
+为了提供css兼容性，这里加入`autoprefixer`
+
+```shell
+npm install postcss-loader autoprefixer stylus-loader --save-dev
+```
+
+2. `webpack.config.js`修改
+
+将css加载配置修改为（通过`stylus-loader`的`import`配置，我们可以引入主题文件）：
+
+```js
+module.export = {
+    ...
+    module: {
+        rules: [
+            ...
             // 编译stylus
             {
                 test: /\.(styl|css)$/,
@@ -170,21 +206,8 @@ module.exports = {
                         }
                     }
                 ]
-            },
-            // 引入字体文件
-            {
-                test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            outputPath: './fonts/',
-                        }
-                    }
-                ]
-            },
+            }
         ]
-    },
+    }
 }
 ```
-
