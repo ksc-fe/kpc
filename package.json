@@ -19,6 +19,12 @@
     "component",
     "intact"
   ],
+  "files": [
+    "components",
+    "@css",
+    "@stylus",
+    "styles"
+  ],
   "author": "Javey",
   "license": "MIT",
   "peerDependencies": {
