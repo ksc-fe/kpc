@@ -431,12 +431,10 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
     resizable: Boolean,
     fixHeader: Boolean
 }, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
-exports.default = Table;
-exports.Table = Table;
-exports.TableColumn = _column2.default;
 
 // reference: http://stackoverflow.com/questions/13382516/getting-scroll-bar-width-using-javascript
 
+exports.default = Table;
 function getScrollbarWidth() {
     var outer = document.createElement("div");
     outer.style.visibility = "hidden";
@@ -461,3 +459,6 @@ function getScrollbarWidth() {
 
     return widthNoScroll - widthWithScroll;
 }
+
+exports.Table = Table;
+exports.TableColumn = _column2.default;

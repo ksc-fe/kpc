@@ -1,369 +1,97 @@
 'use strict';
 
-import _Object$defineProperty from 'babel-runtime/core-js/object/define-property';
-import _Object$keys from 'babel-runtime/core-js/object/keys';
 exports.__esModule = true;
+exports.Transfer = exports.Tooltip = exports.Tab = exports.Tabs = exports.TableColumn = exports.Table = exports.Switch = exports.Step = exports.Steps = exports.Spinner = exports.Slider = exports.OptionGroup = exports.Option = exports.Select = exports.ScrollSelect = exports.Radio = exports.Progress = exports.Pagination = exports.MoveWrapper = exports.Message = exports.Link = exports.Input = exports.Col = exports.Row = exports.FormItem = exports.Form = exports.Editable = exports.DropdownItem = exports.DropdownMenu = exports.Dropdown = exports.Dialog = exports.Datepicker = exports.Checkbox = exports.ButtonGroup = exports.Button = exports.BreadcrumbItem = exports.Breadcrumb = exports.App = undefined;
 
 var _app = require('./app');
 
-_Object$keys(_app).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _app[key];
-    }
-  });
-});
-
 var _breadcrumb = require('./breadcrumb');
-
-_Object$keys(_breadcrumb).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _breadcrumb[key];
-    }
-  });
-});
 
 var _button = require('./button');
 
-_Object$keys(_button).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _button[key];
-    }
-  });
-});
-
 var _checkbox = require('./checkbox');
-
-_Object$keys(_checkbox).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _checkbox[key];
-    }
-  });
-});
 
 var _datepicker = require('./datepicker');
 
-_Object$keys(_datepicker).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _datepicker[key];
-    }
-  });
-});
-
 var _dialog = require('./dialog');
-
-_Object$keys(_dialog).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _dialog[key];
-    }
-  });
-});
 
 var _dropdown = require('./dropdown');
 
-_Object$keys(_dropdown).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _dropdown[key];
-    }
-  });
-});
-
 var _editable = require('./editable');
-
-_Object$keys(_editable).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _editable[key];
-    }
-  });
-});
 
 var _form = require('./form');
 
-_Object$keys(_form).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _form[key];
-    }
-  });
-});
-
 var _grid = require('./grid');
-
-_Object$keys(_grid).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _grid[key];
-    }
-  });
-});
 
 var _input = require('./input');
 
-_Object$keys(_input).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _input[key];
-    }
-  });
-});
-
 var _link = require('./link');
-
-_Object$keys(_link).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _link[key];
-    }
-  });
-});
 
 var _message = require('./message');
 
-_Object$keys(_message).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _message[key];
-    }
-  });
-});
-
 var _moveWrapper = require('./moveWrapper');
-
-_Object$keys(_moveWrapper).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _moveWrapper[key];
-    }
-  });
-});
 
 var _pagination = require('./pagination');
 
-_Object$keys(_pagination).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _pagination[key];
-    }
-  });
-});
-
 var _progress = require('./progress');
-
-_Object$keys(_progress).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _progress[key];
-    }
-  });
-});
 
 var _radio = require('./radio');
 
-_Object$keys(_radio).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _radio[key];
-    }
-  });
-});
-
 var _scrollSelect = require('./scrollSelect');
-
-_Object$keys(_scrollSelect).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _scrollSelect[key];
-    }
-  });
-});
 
 var _select = require('./select');
 
-_Object$keys(_select).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _select[key];
-    }
-  });
-});
-
 var _slider = require('./slider');
-
-_Object$keys(_slider).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _slider[key];
-    }
-  });
-});
 
 var _spinner = require('./spinner');
 
-_Object$keys(_spinner).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _spinner[key];
-    }
-  });
-});
-
 var _steps = require('./steps');
-
-_Object$keys(_steps).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _steps[key];
-    }
-  });
-});
 
 var _switch = require('./switch');
 
-_Object$keys(_switch).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _switch[key];
-    }
-  });
-});
-
 var _table = require('./table');
-
-_Object$keys(_table).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _table[key];
-    }
-  });
-});
 
 var _tabs = require('./tabs');
 
-_Object$keys(_tabs).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _tabs[key];
-    }
-  });
-});
-
 var _tooltip = require('./tooltip');
-
-_Object$keys(_tooltip).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _tooltip[key];
-    }
-  });
-});
 
 var _transfer = require('./transfer');
 
-_Object$keys(_transfer).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _transfer[key];
-    }
-  });
-});
-
-var _position = require('./moveWrapper/position');
-
-_Object$keys(_position).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _position[key];
-    }
-  });
-});
+exports.App = _app.App;
+exports.Breadcrumb = _breadcrumb.Breadcrumb;
+exports.BreadcrumbItem = _breadcrumb.BreadcrumbItem;
+exports.Button = _button.Button;
+exports.ButtonGroup = _button.ButtonGroup;
+exports.Checkbox = _checkbox.Checkbox;
+exports.Datepicker = _datepicker.Datepicker;
+exports.Dialog = _dialog.Dialog;
+exports.Dropdown = _dropdown.Dropdown;
+exports.DropdownMenu = _dropdown.DropdownMenu;
+exports.DropdownItem = _dropdown.DropdownItem;
+exports.Editable = _editable.Editable;
+exports.Form = _form.Form;
+exports.FormItem = _form.FormItem;
+exports.Row = _grid.Row;
+exports.Col = _grid.Col;
+exports.Input = _input.Input;
+exports.Link = _link.Link;
+exports.Message = _message.Message;
+exports.MoveWrapper = _moveWrapper.MoveWrapper;
+exports.Pagination = _pagination.Pagination;
+exports.Progress = _progress.Progress;
+exports.Radio = _radio.Radio;
+exports.ScrollSelect = _scrollSelect.ScrollSelect;
+exports.Select = _select.Select;
+exports.Option = _select.Option;
+exports.OptionGroup = _select.OptionGroup;
+exports.Slider = _slider.Slider;
+exports.Spinner = _spinner.Spinner;
+exports.Steps = _steps.Steps;
+exports.Step = _steps.Step;
+exports.Switch = _switch.Switch;
+exports.Table = _table.Table;
+exports.TableColumn = _table.TableColumn;
+exports.Tabs = _tabs.Tabs;
+exports.Tab = _tabs.Tab;
+exports.Tooltip = _tooltip.Tooltip;
+exports.Transfer = _transfer.Transfer; /* generate automatically */

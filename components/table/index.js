@@ -323,8 +323,6 @@ export default class Table extends Intact {
     }
 }
 
-export {Table, Column as TableColumn};
-
 // reference: http://stackoverflow.com/questions/13382516/getting-scroll-bar-width-using-javascript
 function getScrollbarWidth() {
     var outer = document.createElement("div");
@@ -351,3 +349,4 @@ function getScrollbarWidth() {
     return widthNoScroll - widthWithScroll;
 }
 
+export {Table, Column as TableColumn};

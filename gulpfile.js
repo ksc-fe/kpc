@@ -85,20 +85,36 @@ function buildFont(destPath) {
 }
 
 gulp.task('index', () => {
+    const codes = ['/* generate automatically */\n'];
     const components = [];
     return gulp.src('./components/*/index.js')
         .pipe(tap((file) => {
             const paths = file.path.split('/');
-            components.push(paths[paths.length - 2]);
+            const contents = file.contents.toString('utf-8').split('\n');
+            let i = contents.length - 1;
+            let lastLine;
+            while (i >= 0) {
+                lastLine = contents[i].trim();
+                if (lastLine) {
+                    break;
+                }
+                i--;
+            }
+            const matches = lastLine.match(/\{(.*?)\}/);
+            const names = matches[1].split(',').map(name => {
+                name = name.split('as');
+                return name[name.length - 1].trim();
+            });
+            components.push(...names);
+            codes.push(`import {${names.join(', ')}} from './${paths[paths.length - 2]}';`);
         }))
         .on('end', () => {
-            const contents = ['/* generate automatically */\n'];
-            components.forEach(item => {
-                contents.push(`export * from './${item}';`);
-            });
             // add position.js
-            contents.push(`export * from './moveWrapper/position';`);
-            fs.writeFileSync('./components/index.js', contents.join('\n'));
+            // codes.push(`import {position} from './moveWrapper/position';`);
+            // components.push('position');
+
+            codes.push('', `export {\n    ${components.join(',\n    ')}\n};`);
+            fs.writeFileSync('./components/index.js', codes.join('\n'));
         });
 });
 
