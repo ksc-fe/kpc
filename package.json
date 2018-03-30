@@ -23,7 +23,8 @@
     "components",
     "@css",
     "@stylus",
-    "styles"
+    "styles",
+    "dist"
   ],
   "author": "Javey",
   "license": "MIT",
