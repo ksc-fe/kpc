@@ -1,0 +1,46 @@
+@require('./variables.styl')
+
+// FormItem
+.k-form-item:not(:last-of-type)
+    margin $form-item-margin
+.k-form-item
+    display table 
+    // width 100%
+    > .k-label
+        display table-cell
+        width $form-item-label-width 
+        text-align $form-item-label-text-align 
+        padding-right $form-item-label-padding-right 
+        line-height $form-item-label-line-height
+    > .k-content
+        display table-cell
+        vertical-align middle
+        line-height 1
+
+    // invalid 
+    .k-error
+        position absolute
+        color $form-item-error-color 
+        font-size $form-item-error-font-size 
+        margin $form-item-error-margin
+    &.k-invalid
+        // input
+        :not(.k-select) .k-input
+            .k-inner
+                border $form-item-invalid-border
+        // select
+        .k-select
+            > .k-wrapper
+                border $form-item-invalid-border
+
+    // nested
+    .k-form-item
+        display block 
+        width auto
+
+    // append
+    > .k-append
+        display table-cell
+        padding $form-item-append-padding
+
+@import $theme-dir + '/form.styl' if exists($theme-dir + '/form.styl') 

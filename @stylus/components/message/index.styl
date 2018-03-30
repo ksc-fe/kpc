@@ -1,0 +1,52 @@
+@require('./variables.styl')
+
+.k-messages
+    position fixed 
+    top $message-top
+    width 100%
+    pointer-events none
+    z-index $max-z-index + 1
+
+    // animation
+    .animate-enter
+    .animate-leave
+        opacity 0
+        transform $message-transform 
+    .animate-enter-active
+    .animate-leave-active
+        transition all $transition
+    .animate-move
+        transition transform $transition
+
+.k-message
+    text-align center
+    width 100%
+    > .k-container
+        display inline-block
+        box-shadow $box-shadow 
+        background #fff
+        border-radius $message-border-radius
+        margin-bottom $message-margin-bottom 
+        pointer-events all
+        > .k-icon
+            display inline-block
+            vertical-align middle
+            padding-left $message-icon-padding-left 
+            color $primary-color
+            &:before
+                font-size $message-icon-font-size 
+        > .k-content
+            display inline-block
+            padding $message-content-padding 
+            vertical-align middle
+        > .k-close
+            vertical-align middle
+            .k-icon:before
+                font-size $message-close-font-size 
+
+    // type
+    for type in danger success warning
+        &.k-{type} > .k-container > .k-icon
+            color lookup('$message-' + type + '-color')
+
+@import $theme-dir + '/message.styl' if exists($theme-dir + '/message.styl') 

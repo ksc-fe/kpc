@@ -1,0 +1,85 @@
+/******************************
+             Theme
+*******************************/
+use('../exists.js')
+$theme-dir := '../../styles/themes/default';
+$fonts-dir := './fonts';
+
+/******************************
+             Colors
+*******************************/
+
+$red := #db2828
+$blue := #0a5eee
+$yellow := #ff8a00
+$grey := #767676
+$black := #1b1c1d
+$light-black := #595959
+
+
+/******************************
+            Page
+*******************************/
+
+$font-family := 'Microsoft YaHei'
+$font-size := unit(14 / 16, em)
+$text-color := $light-black 
+$primary-color := $blue
+$warning-color := $yellow
+$danger-color := $red
+$success-color := #4db500
+$border-color := #cad0dd
+$dark-border-color := #979797
+$title-color := #404040
+$disabled-color := #999
+$disabled-bg-color := #f7f7f7
+$disabled-border-color := #d9d9d9
+$bg-color := #eee
+
+// height size
+$default-height := 36
+$small-height := 30
+$mini-height := 26
+
+// box-shadow
+$box-shadow := 0 2px 8px 0 rgba(191, 191, 191, .5)
+$border-radius := unit(2 / 14, rem) 
+
+$max-z-index := 9999
+
+/******************************
+            Headers 
+*******************************/
+
+$header-font-family := $font-family
+$header-margin := 0
+$header-font-weight := bold
+$h1 := unit(28 / 14, rem)
+$h2 := unit(24 / 14, rem)
+$h3 := unit(18 / 14, rem)
+$h4 := unit(15 / 14, rem)
+$h5 := unit(14 / 14, rem)
+
+
+/******************************
+            Link
+*******************************/
+
+$link-color := #4183c4
+$link-underline := none
+$link-hover-color := darken(saturate($link-color, 20), 15)
+$link-hover-underline := $link-underline
+
+
+/******************************
+            Code 
+*******************************/
+
+$code-font-family := Consolas, Menlo, Courier, monospace
+
+
+/******************************
+            Transition 
+*******************************/
+
+$transition := .25s ease-in-out

@@ -1,0 +1,80 @@
+@require('./variables.styl')
+
+.k-steps
+    width 100%
+    display flex
+    .k-step
+        float left
+        position relative
+        flex 1
+        display flex
+    .k-head
+        float left
+        padding-right $steps-head-padding-right 
+        background #fff
+        position relative
+        .k-inner
+            width $steps-head-inner-width 
+            height @width 
+            line-height s('calc(%s - 2px)', @width)
+            border-radius 50%
+            text-align center
+            border $steps-head-inner-border 
+            color $steps-head-color 
+        .k-icon:before
+            font-size $steps-head-icon-font-size 
+            line-height s('calc(%s - 2px)', $steps-head-inner-width)
+    .k-main
+        float left
+        position relative
+        color $steps-main-color 
+    .k-title
+        line-height $steps-head-inner-width 
+        font-weight $steps-main-title-font-weight 
+        padding-right $steps-main-title-padding-right 
+        background #fff
+        display inline-block
+        white-space nowrap
+    .k-content
+        font-size $steps-main-content-font-size 
+        margin $steps-main-content-margin 
+        white-space nowrap
+    .k-tail
+        position absolute
+        left 0
+        right $steps-head-padding-right 
+        top ($steps-head-inner-width / 2)
+        height 1px
+        background $steps-tail-bg-color 
+    .k-step:last-of-type
+        flex 0
+        .k-tail
+            display none
+        .k-title
+            padding-right 0
+
+    // done
+    .k-done
+        .k-inner
+            color $steps-done-head-color 
+            border-color $steps-done-head-inner-border-color 
+        .k-tail
+            background $steps-done-tail-bg-color 
+    // active
+    .k-active
+        .k-inner
+            color $steps-active-head-color 
+            border-color $steps-active-head-inner-border-color 
+            background $steps-active-head-inner-bg-color 
+        .k-main
+            color $steps-active-main-color 
+    // error
+    .k-error
+        .k-inner
+            color $steps-error-head-color 
+            border-color $steps-error-head-inner-border-color
+            background $steps-error-head-bg-color
+        .k-main
+            color $steps-error-main-color 
+
+@import $theme-dir + '/steps.styl' if exists($theme-dir + '/steps.styl') 

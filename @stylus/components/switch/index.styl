@@ -1,0 +1,92 @@
+@require('./variables.styl')
+
+.k-switch
+    display inline-block
+    vertical-align middle
+    background $switch-bg-color
+    position relative
+    cursor pointer
+    user-select none
+    overflow hidden
+    input
+        opacity 0
+        position absolute
+    .k-bar
+        position absolute
+        text-align right
+        overflow hidden
+    .k-wrapper
+        display inline-block
+        position relative
+        z-index 1
+        border-radius 100%
+    .k-bar
+    .k-wrapper
+        height 100%
+        background $switch-bg-color
+        transition all $transition
+    .k-handle
+        border-radius 100% 
+        background $switch-handle-bg-color 
+        height 100%
+        cursor pointer
+        transition left $transition 
+        display inline-block
+        img
+            height 100%
+            visibility hidden
+
+    // text
+    .k-on
+    .k-off
+        position absolute
+        font-size $switch-font-size
+        color $switch-color
+        text-align center
+
+    // dragging
+    &.k-dragging
+        .k-bar
+        .k-wrapper
+            background $primary-color
+            transition background $transition 
+
+    // size
+    for size in default small mini
+        $left = (lookup('$switch-' + size + '-height') / 3)
+        &.k-{size}
+            width lookup('$switch-' + size + '-width')
+            height lookup('$switch-' + size + '-height')
+            line-height @height 
+            border-radius @height 
+            .k-bar
+                width lookup('$switch-' + size + '-height')
+                border-radius lookup('$switch-' + size + '-height')
+            .k-wrapper
+                padding lookup('$switch-' + size + '-padding')
+            .k-on
+            .k-off
+                width lookup('$switch-' + size + '-width') - lookup('$switch-' + size + '-height') - $left
+            .k-on
+                left $left
+            .k-off
+                left lookup('$switch-' + size + '-height')
+
+    // checked
+    &.k-checked
+        .k-bar
+        .k-wrapper
+            background $primary-color
+        .k-bar
+            width 100%
+
+    // disabled
+    &.k-disabled
+        background $switch-disabled-bg-color
+        cursor not-allowed
+        .k-bar
+        .k-wrapper
+            background $switch-disabled-bg-color
+
+$dir = $theme-dir + '/switch.styl';
+@import $dir if exists($dir) 

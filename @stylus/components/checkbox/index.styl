@@ -1,0 +1,59 @@
+@require('./variables.styl');
+
+.k-checkbox
+    display inline-block
+    cursor pointer
+    .k-wrapper
+        display inline-block
+        width $checkbox-width
+        height $checkbox-width 
+        vertical-align middle
+        border 1px solid $checkbox-border-color 
+        border-radius $checkbox-border-radius 
+        position relative
+        transition all $transition
+        // inner
+        &:before
+            content ""
+            display block
+            position absolute
+            width $checkbox-inner-width 
+            height $checkbox-inner-height 
+            top $checkbox-inner-top 
+            left $checkbox-inner-left 
+            border $checkbox-inner-border 
+            border-top 0
+            border-left 0
+            transform rotate(45deg) scale(0)
+            transition all $transition 
+
+    input
+        width 100%
+        height 100%
+        opacity 0
+        cursor pointer
+    .k-text
+        vertical-align middle
+        margin-left $checkbox-text-margin-left
+        display inline-block
+
+    // checked
+    &.k-checked
+        .k-wrapper
+            border-color $checkbox-checked-border-color
+            background $checkbox-checked-bg-color
+            &:before
+                transform rotate(45deg) scale(1) 
+
+    // disabled
+    &.k-disabled
+        color $checkbox-disabled-color
+        cursor not-allowed
+        .k-wrapper
+            border-color $checkbox-disabled-border-color
+            background $checkbox-disabled-bg-color
+            // checked
+            &:before
+                border-color $checkbox-disabled-inner-color 
+        
+@import $theme-dir + '/checkbox.styl' if exists($theme-dir + '/checkbox.styl') 

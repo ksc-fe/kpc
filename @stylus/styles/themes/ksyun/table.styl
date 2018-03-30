@@ -1,0 +1,38 @@
+.k-table
+    thead
+        line-height 1.15
+        tr
+            height 32px
+    th:before
+        content ''
+        height 12px
+        position absolute
+        background-color #bfbfbf
+        width 1px
+        left 1px
+        top 9px
+    th:first-of-type:before
+        display none
+    .k-sort
+        position relative
+        .k-icon
+            &:before
+            &:after
+                content ''
+                border 4px solid transparent
+                position absolute
+                left 2px
+            &:before
+                top 1px
+                border-color #a6a6a6 transparent
+                border-top-width 0
+            &:after
+                bottom 1px
+                border-color #a6a6a6 transparent
+                border-bottom-width 0
+        .icon-asc
+            &:after
+                border-color #ddd transparent
+        .icon-desc
+            &:before
+                border-color #ddd transparent

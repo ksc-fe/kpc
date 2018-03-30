@@ -1,0 +1,32 @@
+@require('../../styles/themes/default.styl')
+
+$steps-head-padding-right := unit(10 / 14, rem)
+$steps-head-inner-width := unit(20 / 14, rem)
+$steps-head-color := $disabled-color 
+$steps-head-inner-border := 1px solid $steps-head-color
+$steps-head-icon-font-size := unit(24 / 14, rem)
+
+$steps-main-color := $disabled-color
+$steps-main-title-font-weight := bold
+$steps-main-title-padding-right := $steps-head-padding-right
+$steps-main-content-font-size := unit(12 / 14, rem)
+$steps-main-content-margin := unit(5 / 14, rem) 0 0
+
+$steps-tail-bg-color := $disabled-border-color 
+
+// done
+$steps-done-head-color := $primary-color
+$steps-done-head-inner-border-color := $primary-color
+$steps-done-tail-bg-color := $primary-color
+
+// active
+$steps-active-head-color := #fff
+$steps-active-head-inner-border-color := $primary-color
+$steps-active-head-inner-bg-color := $primary-color
+$steps-active-main-color := $text-color
+
+// error
+$steps-error-head-color := $danger-color
+$steps-error-head-inner-border-color := $danger-color
+$steps-error-head-bg-color := #fff
+$steps-error-main-color := $danger-color

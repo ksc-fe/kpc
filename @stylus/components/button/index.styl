@@ -1,0 +1,229 @@
+@require('./variables.styl')
+@require('../../styles/mixin.styl')
+
+types = primary warning danger active
+sizes = small mini
+
+.k-btn
+    cursor pointer
+    display inline-block
+    height $btn-height
+    line-height s('calc(%s - 2px)', $btn-height)
+    padding $btn-padding
+    outline none
+    border none
+    // vertical-align middle
+    color $btn-color
+    background-color $btn-bg-color
+    text-align center
+    border-radius $btn-border-radius
+    transition all $transition 
+    // transition-delay 50000s
+    border 1px solid $btn-border-color
+    font-size $btn-font-size
+    &:hover
+        border-color $btn-hover-border-color
+        color $btn-hover-color
+    for type in types 
+        &.k-{type}
+            background-color lookup('$btn-' + type + '-bg-color')
+            color lookup('$btn-' + type + '-color')
+            border-color lookup('$btn-' + type + '-border-color')
+            &:hover
+                background-color lighten(@background-color, 20%)
+                border-color lighten(@border-color, 20%)
+    // disabled
+    &[disabled]
+        &, &:hover
+            color $btn-disabled-color 
+            background-color $btn-disabled-bg-color 
+            border-color $btn-disabled-border-color 
+            cursor not-allowed
+
+    // none
+    &.k-none
+        &, &:hover
+            border none
+            background-color transparent
+
+    // size
+    for size in sizes 
+        &.k-{size}
+            font-size lookup('$btn-' + size + '-font-size')
+            height lookup('$btn-' + size + '-height')
+            padding lookup('$btn-' + size + '-padding')
+            line-height s('calc(%s - 2px)', lookup('$btn-' + size + '-height'))
+            &.k-btn-icon
+                width @height
+
+    // icon
+    .k-icon
+        font-size inherit
+        // vertical-align middle
+        &:before
+            font-size inherit
+        + span
+            margin-left $btn-icon-margin-right 
+            // vertical-align middle
+    &.k-icon-right
+        .k-icon
+            margin-left $btn-icon-margin-right 
+    &.k-btn-icon
+        width @height
+        padding 0
+        .k-icon
+            margin 0
+            font-size $btn-btn-icon-font-size
+
+    // fluid
+    &.k-fluid
+        width 100%
+        padding 0
+
+    // shape
+    &.k-circle
+        border-radius unit($btn-height / 2, rem)
+
+    // loading
+    &.k-loading
+        &, &:hover
+            background-color lighten($btn-bg-color, 50%)
+            color lighten($btn-color, 50%)
+            border-color lighten($btn-border-color, 50%)
+        .k-icon:not(.icon-loading)
+            display none
+        for type in types 
+            &.k-{type}
+                &, &:hover
+                    background-color lighten(lookup('$btn-' + type + '-bg-color'), 50%)
+                    color lighten(lookup('$btn-' + type + '-color'), 50%)
+                    border-color lighten(lookup('$btn-' + type + '-border-color'), 50%)
+        &:not(.k-btn-icon):not(.k-icon-left):not(.k-icon-right)
+            padding-left unit(getLeft($btn-padding) + 1, em)
+            .icon-loading
+                margin-left -1em
+            for size in sizes 
+                &.k-{size}
+                    padding-left unit(getLeft(lookup('$btn-' + size + '-padding')) + 1, em)
+
+    // radio
+    input
+        position absolute
+
+// buttons
+.k-btns
+    display inline-block
+    vertical-align middle
+    .k-btn
+        margin 0
+        vertical-align middle
+        &:hover
+            z-index 1
+            position relative
+    // fluid
+    &.k-fluid
+        width 100%
+
+    // horizontal
+    &:not(.k-vertical)
+        > .k-btn
+            &:not(:first-of-type)
+                margin-left -1px // !important
+                &:not(:last-of-type)
+                    border-radius 0
+            &:not(:only-of-type):first-of-type
+                border-top-right-radius 0
+                border-bottom-right-radius 0
+            &:not(:only-of-type):last-of-type
+                border-top-left-radius 0
+                border-bottom-left-radius 0
+            for type in types
+                if type != 'active'
+                    &.k-{type}:not(:first-of-type)
+                        border-left-color lookup('$btns-' + type + '-border-color')
+                    &.k-{type}:not(:last-of-type)
+                        border-right-color lookup('$btns-' + type + '-border-color')
+
+        // for tooltip wrap it in vue
+        > .k-tooltip
+            &:not(:first-of-type)
+                .k-btn
+                    margin-left -1px
+                &:not(last-of-type)
+                    .k-btn
+                        border-radius 0
+            &:not(:only-of-type):first-of-type
+                .k-btn
+                    border-top-right-radius 0
+                    border-bottom-right-radius 0
+            &:not(:only-of-type):last-of-type
+                .k-btn
+                    border-top-left-radius 0
+                    border-bottom-left-radius 0
+            for type in types
+                if type != 'active'
+                    &:not(:first-of-type)
+                        .k-btn.k-{type}
+                            border-left-color lookup('$btns-' + type + '-border-color')
+                    &:not(:last-of-type)
+                        .k-btn.k-{type}
+                            border-right-color lookup('$btns-' + type + '-border-color')
+
+        &.k-fluid
+            display flex
+            > .k-btn
+            > .k-tooltip
+                flex 1
+            > .k-tooltip .k-btn
+                width 100%
+
+    // vertical
+    &.k-vertical
+        > .k-btn
+            display block
+            &:not(.k-btn-icon)
+                width 100%
+            &:not(:first-of-type)
+                margin-top -1px
+                &:not(:last-of-type)
+                    border-radius 0
+            &:not(:only-of-type):first-of-type
+                border-bottom-left-radius 0
+                border-bottom-right-radius 0
+            &:not(:only-of-type):last-of-type
+                border-top-left-radius 0
+                border-top-right-radius 0
+            for type in types
+                if type != 'active'
+                    &.k-{type}:not(:first-of-type)
+                        border-top-color lookup('$btns-' + type + '-border-color')
+                    &.k-{type}:not(:last-of-type)
+                        border-bottom-color lookup('$btns-' + type + '-border-color')
+        > .k-tooltip
+            display block
+            .k-btn:not(.k-btn-icon)
+                width 100%
+            &:not(:first-of-type)
+                margin-top -1px
+                &:not(:last-of-type)
+                    .k-btn
+                        border-radius 0
+            &:not(:only-of-type):first-of-type
+                .k-btn
+                    border-bottom-left-radius 0
+                    border-bottom-right-radius 0
+            &:not(:only-of-type):last-of-type
+                .k-btn
+                    border-top-left-radius 0
+                    border-top-right-radius 0
+            for type in types
+                if type != 'active'
+                    &:not(:first-of-type)
+                        .k-btn.k-{type}
+                            border-top-color lookup('$btns-' + type + '-border-color')
+                    &:not(:last-of-type)
+                        .k-btn.k-{type}
+                            border-bottom-color lookup('$btns-' + type + '-border-color')
+            
+
+@import $theme-dir + '/button.styl' if exists($theme-dir + '/button.styl') 

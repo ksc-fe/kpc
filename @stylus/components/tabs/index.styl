@@ -1,0 +1,29 @@
+@require('./variables.styl')
+
+.k-tabs
+    border-bottom $tabs-border-bottom
+    .k-tab
+        height $tabs-height 
+        line-height s('calc(%s - 2px)', @height)
+        padding $tabs-padding 
+        margin $tabs-margin 
+        cursor pointer
+        display inline-block
+        text-align center
+        color $tabs-color 
+        position relative
+        vertical-align middle
+        &.k-active
+            color $tabs-active-color 
+            &:after
+                content ''
+                display block
+                position absolute
+                height $tabs-highlight-height 
+                width 100%
+                background $tabs-highlight-bg-color 
+                margin-left $tabs-highlight-margin-left 
+                bottom $tabs-highlight-bottom 
+
+$dir = $theme-dir + '/tabs.styl';
+@import $dir if exists($dir) 

@@ -1,0 +1,26 @@
+@keyframes rotate
+    0%
+        transform-origin 50% 50%
+        transform rotate(0)
+    100%
+        transform-origin 50% 50%
+        transform rotate(360deg)
+
+.fade-enter
+.fade-leave
+    opacity 0
+.fade-enter-active
+.fade-leave-active
+    transition opacity $transition 
+.fade-move
+    transition transform $transition
+
+.dropdown-enter
+.dropdown-leave
+    opacity 0
+    transform scaleY(.8)
+.dropdown-enter-active
+.dropdown-leave-active
+    transform-origin center top 0px 
+    transition opacity $transition, transform $transition
+

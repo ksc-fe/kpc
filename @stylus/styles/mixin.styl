@@ -1,0 +1,26 @@
+getLeft(args)
+    if length(args) == 4
+        args[3]
+    else if length(args) > 1
+        args[1]
+    else
+        args
+getTop(args)
+    if length(args) > 1
+        args[0]
+    else 
+        args
+getRight(args)
+    if length(args) > 1
+        args[1]
+    else 
+        args
+
+clearfix()
+    zoom 1
+    &:after
+        display table
+        clear both
+        content ''
+        height 0
+

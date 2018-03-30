@@ -1,0 +1,71 @@
+@require('./variables.styl')
+
+.k-slider
+    position relative
+    display flex
+    align-items center
+    .k-wrapper
+        height $slider-height
+        background-color $slider-bg-color
+        border-radius $slider-border-radius
+        cursor pointer
+        position relative
+        display inline-block
+        flex 1
+        user-select none
+        .k-box
+            position absolute
+            top $slider-height
+            padding $slider-box-padding
+            width 100%
+            :last-child
+                float right
+        .k-bar
+            background-color $slider-bar-color
+            position absolute
+            height 100%
+            border-radius $slider-border-radius
+            transition all $transition 
+        .k-handle
+            height $slider-handle-height
+            width $slider-handle-width 
+            position absolute
+            top 50%
+            margin-top s('-%s', $slider-handle-height / 2)
+            margin-left s('-%s', $slider-handle-width / 2)
+            text-align center
+            transition all $transition 
+            border $slider-handle-border 
+            border-radius $slider-handle-border-radius 
+            background-color $slider-handle-bg-color 
+            transition all $transition 
+            &:hover
+                transform $slider-handle-hover-transform 
+                cursor grab
+                background-color $slider-handle-hover-bg-color 
+    .k-spinner
+        margin-left $slider-margin
+
+    &.k-dragging
+        .k-bar
+            transition none
+        .k-handle
+            transition none
+            &.k-active
+                cursor grabbing
+                transform $slider-handle-hover-transform 
+                background-color $slider-handle-hover-bg-color 
+
+    &.k-disabled
+        .k-wrapper
+            cursor not-allowed
+        .k-bar
+            background-color $slider-disabled-color
+        .k-handle
+            border-color $slider-disabled-color
+            &:hover
+                background-color $slider-handle-disabled-bg-color
+                cursor not-allowed
+                transform none
+
+@import $theme-dir + '/slider.styl' if exists($theme-dir + '/slider.styl') 

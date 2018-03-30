@@ -1,0 +1,47 @@
+.k-steps
+    display block
+    font-size 12px
+    .k-step
+        display block
+        text-align center
+        height 40px
+        line-height 40px
+        background #fff
+    .k-head
+    .k-main
+        float none
+        display inline-block
+        .k-content
+            margin 0
+            display inline-block
+    .k-tail
+        top 0
+        left auto
+        right -20px
+        width 28px
+        height 40px
+        overflow hidden
+        z-index 1
+        &:after, &:before
+            content ''
+            border-width 28px
+            border-style solid
+            border-color transparent
+            position absolute
+            top -8px 
+        &:after
+            border-left-color #fff
+            left -8px 
+        &:before
+            border-left-color #f8f8f8
+            left 0 
+    .k-head
+        .k-inner
+            display inline-block
+            vertical-align middle
+            margin-top -1px
+
+    // active
+    .k-active
+        .k-title
+            font-weight bold
