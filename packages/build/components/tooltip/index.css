@@ -1,0 +1,90 @@
+.k-tooltip {
+  display: inline-block;
+}
+.k-tooltip-content {
+  position: absolute;
+  background-color: #fff;
+  -webkit-box-shadow: 0 2px 8px 0 rgba(191,191,191,0.5);
+          box-shadow: 0 2px 8px 0 rgba(191,191,191,0.5);
+  padding: 0.357142857142857rem 0.714285714285714rem;
+  border-radius: 0.142857142857143rem;
+  font-size: 0.857142857142857rem;
+  color: #0a5eee;
+  line-height: 1.4;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+}
+.k-tooltip-content > .k-arrow:before,
+.k-tooltip-content > .k-arrow {
+  position: absolute;
+  display: block;
+  border-style: solid;
+  border-color: transparent;
+}
+.k-tooltip-content > .k-arrow:before {
+  content: ' ';
+}
+.k-tooltip-content > .k-arrow.k-center {
+  left: 50%;
+  margin-left: -6px;
+}
+.k-tooltip-content > .k-arrow.k-top:before,
+.k-tooltip-content > .k-arrow.k-bottom:before,
+.k-tooltip-content > .k-arrow.k-top,
+.k-tooltip-content > .k-arrow.k-bottom {
+  border-width: 8px 6px;
+}
+.k-tooltip-content > .k-arrow.k-top:before,
+.k-tooltip-content > .k-arrow.k-bottom:before {
+  left: -6px;
+}
+.k-tooltip-content > .k-arrow.k-top {
+  top: -16px;
+  border-bottom-color: rgba(191,191,191,0.2);
+}
+.k-tooltip-content > .k-arrow.k-top:before {
+  border-bottom-color: #fff;
+  top: -7px;
+}
+.k-tooltip-content > .k-arrow.k-bottom {
+  bottom: -16px;
+  border-top-color: rgba(191,191,191,0.2);
+}
+.k-tooltip-content > .k-arrow.k-bottom:before {
+  border-top-color: #fff;
+  bottom: -7px;
+}
+.k-tooltip-content > .k-arrow.k-middle {
+  top: 50%;
+  margin-top: -6px;
+}
+.k-tooltip-content > .k-arrow.k-left:before,
+.k-tooltip-content > .k-arrow.k-right:before,
+.k-tooltip-content > .k-arrow.k-left,
+.k-tooltip-content > .k-arrow.k-right {
+  border-width: 6px 8px;
+}
+.k-tooltip-content > .k-arrow.k-left:before,
+.k-tooltip-content > .k-arrow.k-right:before {
+  top: -6px;
+}
+.k-tooltip-content > .k-arrow.k-left {
+  left: -16px;
+  border-right-color: rgba(191,191,191,0.2);
+}
+.k-tooltip-content > .k-arrow.k-left:before {
+  border-right-color: #fff;
+  left: -7px;
+}
+.k-tooltip-content > .k-arrow.k-right {
+  right: -16px;
+  border-left-color: rgba(191,191,191,0.2);
+}
+.k-tooltip-content > .k-arrow.k-right:before {
+  border-left-color: #fff;
+  right: -7px;
+}
+.k-tooltip-content.k-cannot-hover {
+  pointer-events: none;
+}

@@ -1,0 +1,96 @@
+.k-table {
+  font-size: 0.857142857142857rem;
+  table-layout: fixed;
+  width: 100%;
+  background: #fff;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: #595959;
+}
+.k-table thead {
+  font-size: 1.166666666666667em;
+  color: #3f3f3f;
+  border-bottom: 1px solid #f0f0f0;
+}
+.k-table th {
+  padding: 0.785714285714286rem 0.357142857142857rem 0.785714285714286rem 0.857142857142857rem;
+  text-align: left;
+  font-weight: normal;
+  position: relative;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fafafa));
+  background: linear-gradient(to bottom, #fff, #fafafa);
+}
+.k-table .k-th {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.k-table .k-sortable {
+  cursor: pointer;
+}
+.k-table .k-sort {
+  margin-left: 0.625em;
+}
+.k-table .k-sort .k-icon {
+  font-size: 0.75em;
+}
+.k-table .k-resize {
+  height: 100%;
+  width: 0.3125em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: ew-resize;
+}
+.k-table tbody tr {
+  border-bottom: 1px solid #f0f0f0;
+}
+.k-table tbody tr:hover {
+  background: #f4f8fb;
+}
+.k-table td {
+  padding: 0.857142857142857rem 0.357142857142857rem 0.857142857142857rem 0.857142857142857rem;
+  word-break: break-word;
+}
+.k-table .k-th-check {
+  width: 2.142857142857143rem;
+}
+.k-table .k-th-check .k-checkbox {
+  vertical-align: 3px;
+}
+.k-table .k-no-data {
+  text-align: center;
+}
+.k-table-wrapper {
+  overflow: auto;
+  border-top: 1px solid #f0f0f0;
+}
+.k-table-wrapper .k-fixed {
+  position: relative;
+  z-index: 1;
+  border-bottom: 1px solid #f0f0f0;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fafafa));
+  background: linear-gradient(to bottom, #fff, #fafafa);
+}
+.k-table-wrapper .k-fixed thead {
+  border: none;
+}
+.k-table-wrapper .k-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.k-table-wrapper .k-scroll table {
+  margin-top: -44px;
+}
+.k-table-wrapper.k-border .k-fixed,
+.k-table-wrapper.k-border thead th {
+  background: #f7f7f7;
+}
+.k-table-wrapper.k-border .k-fixed,
+.k-table-wrapper.k-border .k-table {
+  border-left: 1px solid #f0f0f0;
+  border-right: 1px solid #f0f0f0;
+}
+.k-table-wrapper.k-border .k-fixed .k-table {
+  border: none;
+}

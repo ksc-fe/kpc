@@ -113,6 +113,6 @@ gulp.task('build:font', () => {
 
 gulp.task('build', gulp.series(
     'clean:build', 
-    (gulp.parallel('build:js', 'build:vdt', 'build:style', 'build:font'))
+    (gulp.parallel('build:js', 'build:vdt', 'build:stylus', 'build:style', 'build:font'))
 ));
 

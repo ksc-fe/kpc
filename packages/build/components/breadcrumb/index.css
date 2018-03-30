@@ -1,0 +1,18 @@
+.k-breadcrumb {
+  font-size: 1rem;
+}
+.k-breadcrumb .k-item {
+  display: inline-block;
+}
+.k-breadcrumb .k-item:last-of-type {
+  font-weight: bold;
+}
+.k-breadcrumb .k-item-link {
+  color: #595959;
+}
+.k-breadcrumb a.k-item-link:hover {
+  color: #195d9f;
+}
+.k-breadcrumb .k-separator {
+  margin: 0 0.571428571428571rem;
+}

@@ -1,0 +1,38 @@
+.k-form-item:not(:last-of-type) {
+  margin: 0 0 1.428571428571429em 0;
+}
+.k-form-item {
+  display: table;
+}
+.k-form-item > .k-label {
+  display: table-cell;
+  width: 5.714285714285714em;
+  text-align: right;
+  padding-right: 0.714285714285714em;
+  line-height: 2.571428571428572em;
+}
+.k-form-item > .k-content {
+  display: table-cell;
+  vertical-align: middle;
+  line-height: 1;
+}
+.k-form-item .k-error {
+  position: absolute;
+  color: #db2828;
+  font-size: 0.857142857142857rem;
+  margin: 2px 0 0 0;
+}
+.k-form-item.k-invalid :not(.k-select) .k-input .k-inner {
+  border: 1px solid #db2828;
+}
+.k-form-item.k-invalid .k-select > .k-wrapper {
+  border: 1px solid #db2828;
+}
+.k-form-item .k-form-item {
+  display: block;
+  width: auto;
+}
+.k-form-item > .k-append {
+  display: table-cell;
+  padding: 0 0.714285714285714rem;
+}

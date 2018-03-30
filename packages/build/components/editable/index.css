@@ -1,0 +1,12 @@
+.k-editable {
+  display: inline-block;
+  line-height: 2.142857142857143em;
+}
+.k-editable .k-edit {
+  float: right;
+  cursor: pointer;
+  margin: 0 0 0 0.571428571428571em;
+}
+.k-editable.k-invalid .k-input .k-inner {
+  border: 1px solid #db2828;
+}

@@ -1,0 +1,82 @@
+.k-datepicker {
+  display: inline-block;
+}
+.k-datepicker .k-inner {
+  cursor: pointer;
+}
+.k-datepicker-content {
+  position: absolute;
+  border-radius: 0.142857142857143rem;
+  -webkit-box-shadow: 0 2px 8px 0 rgba(191,191,191,0.5);
+          box-shadow: 0 2px 8px 0 rgba(191,191,191,0.5);
+  color: #595959;
+}
+.k-datepicker-content .k-day,
+.k-datepicker-content .k-weekday {
+  display: inline-block;
+  width: 2.5em;
+  text-align: center;
+  margin: 0.083333333333333em 0.166666666666667em;
+}
+.k-datepicker-content .k-day {
+  height: 2.5em;
+  line-height: calc(2.5em - 2px);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+.k-datepicker-content .k-day:hover {
+  background: #eee;
+}
+.k-datepicker-content .k-day.k-out {
+  color: #999;
+}
+.k-datepicker-content .k-day.k-today {
+  border: 1px solid #cad0dd;
+}
+.k-datepicker-content .k-day.k-active {
+  background: #0a5eee;
+  color: #fff;
+}
+.k-datepicker-content .k-day.k-active.k-today {
+  border-color: transparent;
+}
+.k-datepicker-content .k-day.k-disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+.k-datepicker-content .k-day.k-disabled:hover {
+  background: none;
+}
+.k-datepicker-content .k-weekday {
+  color: #999;
+}
+.k-datepicker-content .k-month {
+  text-align: center;
+  padding: 0 0 0.416666666666667em;
+}
+.k-datepicker-content .k-month .k-text {
+  margin: 0 0.25em;
+  line-height: 2.5em;
+}
+.k-datepicker-content .k-month .k-icon {
+  font-size: 1.166666666666667em;
+}
+.k-datepicker-content .k-month .k-prev {
+  float: left;
+}
+.k-datepicker-content .k-month .k-next {
+  float: right;
+}
+.k-datepicker-content .k-month .k-text-wrapper {
+  cursor: pointer;
+}
+.k-datepicker-content .k-year-picker {
+  width: 19.833333333333332em;
+}
+.k-datepicker-content .k-time-picker {
+  width: 19.833333333333332em;
+}
+.k-datepicker-content .k-scroll-select {
+  height: 17.5em;
+}
