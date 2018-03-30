@@ -3,6 +3,7 @@
  */
 import Intact from 'intact';
 import template from './index.vdt';
+import '../../styles/kpc.styl';
 import './index.styl';
 
 function fixPercent(percent) {

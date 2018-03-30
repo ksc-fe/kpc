@@ -1,6 +1,7 @@
 import Intact from 'intact';
 import template from './index.vdt';
 import message from './message.vdt';
+import '../../styles/kpc.styl';
 import './index.styl';
 
 let messages;

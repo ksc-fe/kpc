@@ -1,6 +1,7 @@
 import Intact from 'intact';
 import template from './index.vdt';
 import Group from './group';
+import '../../styles/kpc.styl';
 import './index.styl';
 
 export default class Button extends Intact {

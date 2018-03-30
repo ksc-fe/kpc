@@ -5,6 +5,7 @@ import Intact from 'intact';
 import Dropdown from '../dropdown/dropdown';
 import position from '../moveWrapper/position'
 import template from './index.vdt';
+import '../../styles/kpc.styl';
 import './index.styl'
 
 class Tooltip extends Dropdown {  }

@@ -1,6 +1,7 @@
 import Intact from 'intact';
 import Tab from './tab';
 import template from './index.vdt';
+import '../../styles/kpc.styl';
 import './index.styl';
 
 export default class Tabs extends Intact {
