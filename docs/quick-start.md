@@ -47,23 +47,136 @@ npm run dev
 
 1. 安装
 
-kpc运行时依赖intact^2.2.0，但使用源码引入时，需要安装编译依赖
+kpc运行时依赖intact@^2.2.0，但使用源码引入时，需要安装编译依赖
 
-```shell
+```bash
 npm install intact kpc --save
 
 # 内网git
 npm install intact 'git+http://newgit.op.ksyun.com/ksyun-fe/kpc.git#v4.0' --save
 ```
 
-安装编译依赖
+安装编译依赖，其中`babel-preset-stage-0`可以支持最新js语法，
+`babel-plugin-transform-decorators-legacy`支持装饰器语法，源码模板使用`vdt`，css使用`stylus`
+编写，所以需要`vdt-loader`和`stylus-loader`，`autoprefixer`来提高css浏览器兼容性
 
-```shell
+
+```bash
 npm install webpack babel-core babel-loader \
     babel-plugin-transform-decorators-legacy \
     babel-preset-env \
     babel-preset-stage-0 \
     babel-plugin-transform-runtime \
     css-loader style-loader stylus stylus-loader \
+    autoprefixer postcss-loader \
     vdt vdt-loader --save-dev
 ```
+
+2. 配置`.babelrc`
+
+在`.babelrc`中加入如下内容
+
+```json
+{
+    "presets": ["env", "stage-0"],
+    "plugins": [
+        "transform-runtime",
+        "transform-decorators-legacy"
+    ]
+}
+```
+
+3. 配置webpack
+
+`webpack.config.js`文件加入如下内容
+
+```js
+const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
+
+module.exports = {
+    module: {
+        rules: [
+            {
+                test: /\.m?js$/,
+                // 排除所有node_modules模块，除了kpc
+                exclude: [/node_modules(?!([\/\\]kpc))/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            cacheDirectory: true,
+                        }
+                    }
+                ]
+            },
+            // 编译vdt
+            {
+                test: /\.vdt$/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            cacheDirectory: true, 
+                        }
+                    },
+                    {
+                        loader: 'vdt-loader',
+                        options: {
+                            delimiters: ['{{', '}}'],
+                            skipWhitespace: true,
+                        }
+                    }
+                ]
+            },
+            // 编译stylus
+            {
+                test: /\.(styl|css)$/,
+                use: [
+                    {
+                        loader: 'css-loader', 
+                        options: {
+                            url: true,
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: [
+                                autoprefixer({
+                                    browsers: [
+                                        'last 2 versions',
+                                        'ie >= 9',
+                                    ],
+                                })
+                            ],
+                        }
+                    },
+                    {
+                        loader: 'stylus-loader', 
+                        options: {
+                            'include css': true,
+                            sourceMap: false,
+                            // 使用import引入主题文件，详见定制主题
+                            // 'import': path.resolve(__dirname, 'styles/themes/ksyun/index.styl'),
+                        }
+                    }
+                ]
+            },
+            // 引入字体文件
+            {
+                test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            outputPath: './fonts/',
+                        }
+                    }
+                ]
+            },
+        ]
+    },
+}
+```
+

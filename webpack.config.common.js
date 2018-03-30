@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const path = require('path');
-const autoprefixer = require('autoprefixer');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -56,15 +55,9 @@ module.exports = {
                     },
                     {
                         loader: 'postcss-loader',
-                        options: {
-                            plugins: [autoprefixer({
-                                browsers: [
-                                    'last 2 versions',
-                                    'ie >= 9',
-                                ],
-                            })],
-                            // sourceMap: !isProduction,
-                        }
+                        // options: {
+                            // // sourceMap: !isProduction,
+                        // }
                     },
                     {
                         loader: 'stylus-loader', 

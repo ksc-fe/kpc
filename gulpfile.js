@@ -6,6 +6,13 @@ const webpackConfig = require('./webpack.config.site.client');
 const path = require('path');
 const connect = require('gulp-connect');
 const Advanced = require('advanced');
+const babel = require('gulp-babel');
+const vdt = require('gulp-vdt');
+const tap = require('gulp-tap');
+const postcss = require('gulp-postcss');
+const stylus = require('gulp-stylus');
+const autoprefixer = require('autoprefixer');
+const rimraf = require('rimraf');
 
 gulp.task('doc', () => {
     console.log('build markdown');
@@ -49,4 +56,63 @@ gulp.task('server', () => {
 gulp.task('watch', gulp.series('doc', gulp.parallel('server', /* 'webpack', */ () => {
     gulp.watch('./@(components|docs)/**/*.md', {ignored: /node_modules/}, gulp.parallel('doc'));
 })));
+
+
+/******************
+ * build packages
+ ******************/
+
+gulp.task('clean:build', (done) => {
+    rimraf('./packages', done);
+});
+
+gulp.task('build:js', () => {
+    return gulp.src(['./components/**/*.js', '!./components/**/*.spec.js'])
+        .pipe(babel())
+        .pipe(tap(function(file) {
+            let contents = file.contents.toString('utf-8');
+            contents = contents.replace(/\.styl/g, '.css');
+            file.contents = new Buffer(contents);
+        }))
+        .pipe(gulp.dest('./packages/build/components'));
+});
+
+gulp.task('build:vdt', () => {
+    return gulp.src(['./components/**/*.vdt'])
+        .pipe(vdt({
+            format: 'cjs',
+            delimiters: ['{{', '}}'],
+            noWith: true,
+            skipWhitespace: true,
+        }))
+        .pipe(babel())
+        .pipe(tap(function(file) {
+            file.path = file.path.replace('.js', '.vdt.js');
+        }))
+        .pipe(gulp.dest('./packages/build/components'));
+});
+
+gulp.task('build:stylus', () => {
+    return gulp.src(['./components/**/*.styl'])
+        .pipe(stylus({'include css': true}))
+        .pipe(postcss())
+        .pipe(gulp.dest('./packages/build/components'));
+});
+
+gulp.task('build:style', () => {
+    return gulp.src('./styles/kpc.styl')
+        .pipe(stylus({'include css': true}))
+        .pipe(postcss())
+        .pipe(gulp.dest('./packages/build/styles'));
+});
+
+gulp.task('build:font', () => {
+    return gulp.src('./styles/fonts/*.@(eot|svg|ttf|woff)')
+        .pipe(gulp.dest('./packages/build/styles/fonts'));
+});
+
+gulp.task('build', gulp.series(
+    'clean:build', 
+    (gulp.parallel('build:js', 'build:vdt', 'build:style', 'build:font'))
+));
 
