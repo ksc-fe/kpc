@@ -148,7 +148,13 @@ gulp.task('build:vdt@stylus', () => {
 });
 
 gulp.task('build:style@stylus', () => {
-    return gulp.src(['./styles/*', './styles/themes/**/*', './components/**/*.styl'], {base: './'}) 
+    return gulp.src(
+            [
+                './styles/*', './styles/themes/**/*', 
+                './styles/fonts/*.styl', './components/**/*.styl'
+            ],
+            {base: './'}
+        ) 
         .pipe(gulp.dest(destPathStylus));
 });
 
@@ -161,4 +167,4 @@ gulp.task('build@stylus', gulp.series(
     gulp.parallel('build:js@stylus', 'build:vdt@stylus', 'build:style@stylus', 'build:font@stylus')
 )); 
 
-gulp.task('build', gulp.parallel('build@css', 'build:@stylus'));
+gulp.task('build', gulp.parallel('build@css', 'build@stylus'));
