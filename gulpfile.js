@@ -13,6 +13,7 @@ const postcss = require('gulp-postcss');
 const stylus = require('gulp-stylus');
 const autoprefixer = require('autoprefixer');
 const rimraf = require('rimraf');
+const fs = require('fs');
 
 gulp.task('doc', () => {
     console.log('build markdown');
@@ -81,6 +82,24 @@ function buildFont(destPath) {
     return gulp.src('./styles/fonts/*.@(eot|svg|ttf|woff)', {base: './'})
         .pipe(gulp.dest(destPath));
 }
+
+gulp.task('index', () => {
+    const components = [];
+    return gulp.src('./components/*/index.js')
+        .pipe(tap((file) => {
+            const paths = file.path.split('/');
+            components.push(paths[paths.length - 2]);
+        }))
+        .on('end', () => {
+            const contents = ['/* generate automatically */\n'];
+            components.forEach(item => {
+                contents.push(`export * from './${item}';`);
+            });
+            // add position.js
+            contents.push(`export * from './moveWrapper/position';`);
+            fs.writeFileSync('./components/index.js', contents.join('\n'));
+        });
+});
 
 const destPath = './@css'
 
@@ -167,4 +186,7 @@ gulp.task('build@stylus', gulp.series(
     gulp.parallel('build:js@stylus', 'build:vdt@stylus', 'build:style@stylus', 'build:font@stylus')
 )); 
 
-gulp.task('build', gulp.parallel('build@css', 'build@stylus'));
+gulp.task('build', gulp.series(
+    'index',
+    gulp.parallel('build@css', 'build@stylus')
+));

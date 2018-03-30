@@ -1,8 +1,11 @@
+/* generate automatically */
+
 export * from './app';
+export * from './breadcrumb';
 export * from './button';
 export * from './checkbox';
-export * from './datepicker';
 export * from './dialog';
+export * from './datepicker';
 export * from './dropdown';
 export * from './editable';
 export * from './form';
@@ -11,7 +14,6 @@ export * from './input';
 export * from './link';
 export * from './message';
 export * from './moveWrapper';
-export * from './moveWrapper/position';
 export * from './pagination';
 export * from './progress';
 export * from './radio';
@@ -19,7 +21,10 @@ export * from './scrollSelect';
 export * from './select';
 export * from './slider';
 export * from './spinner';
+export * from './steps';
 export * from './switch';
 export * from './table';
 export * from './tabs';
 export * from './tooltip';
+export * from './transfer';
+export * from './moveWrapper/position';
