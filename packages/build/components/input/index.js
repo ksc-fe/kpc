@@ -101,7 +101,7 @@ var Input = (_dec = _intact2.default.template, (_class = (_temp = _class2 = func
     Input.prototype._adjustWidth = function _adjustWidth() {
         if (this.get('autoWidth')) {
             var width = this.refs.fake.offsetWidth || 1;
-            this.refs.input.csse.width = width + 1 + 'px';
+            this.refs.input.style.width = width + 1 + 'px';
         }
     };
 

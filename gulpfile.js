@@ -71,7 +71,7 @@ gulp.task('build:js', () => {
         .pipe(babel())
         .pipe(tap(function(file) {
             let contents = file.contents.toString('utf-8');
-            contents = contents.replace(/\.styl/g, '.css');
+            contents = contents.replace(/\.styl(['"])/g, '.css$1');
             file.contents = new Buffer(contents);
         }))
         .pipe(gulp.dest('./packages/build/components'));

@@ -92,7 +92,7 @@ function position(elem, options) {
     position.left += myOffset[0];
     position.top += myOffset[1];
 
-    var style = elem.csse;
+    var style = elem.style;
 
     var _window$getComputedSt = window.getComputedStyle(elem),
         elemPosition = _window$getComputedSt.position;

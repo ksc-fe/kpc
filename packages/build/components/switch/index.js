@@ -113,7 +113,7 @@ var Switch = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
 
         var left = e.clientX - this._x;
         var width = Math.min(Math.max(this._height, this._width + left), this._maxWidth);
-        this.refs.bar.csse.width = width + 'px';
+        this.refs.bar.style.width = width + 'px';
     };
 
     Switch.prototype._dragEnd = function _dragEnd(e) {
@@ -136,9 +136,9 @@ var Switch = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
             }
             if (!this.isChecked() && this.get('width') && this.get('height')) {
                 // if is set width and height
-                bar.csse.width = this.get('height') + 'px';
+                bar.style.width = this.get('height') + 'px';
             } else {
-                bar.csse.width = '';
+                bar.style.width = '';
             }
         }
 

@@ -204,7 +204,7 @@ var Select = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
         var width = this.element.offsetWidth;
         var menuWidth = menuElement.offsetWidth;
         if (width > menuWidth) {
-            menuElement.csse.width = width + 'px';
+            menuElement.style.width = width + 'px';
         }
     };
 

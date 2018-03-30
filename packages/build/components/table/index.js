@@ -387,16 +387,16 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
             if (prevWidth < MIN_WIDTH) return;
 
             this._prevThs.forEach(function (item) {
-                item.csse.width = prevWidth + 'px';
+                item.style.width = prevWidth + 'px';
             });
 
             if (this._containerWidth >= tableWidth) {
                 this._tables.forEach(function (item) {
-                    item.csse.width = '100%';
+                    item.style.width = '100%';
                 });
             } else {
                 this._tables.forEach(function (item) {
-                    item.csse.width = tableWidth + 'px';
+                    item.style.width = tableWidth + 'px';
                 });
             }
 
@@ -437,19 +437,19 @@ exports.TableColumn = _column2.default;
 
 function getScrollbarWidth() {
     var outer = document.createElement("div");
-    outer.csse.visibility = "hidden";
-    outer.csse.width = "100px";
-    outer.csse.msOverflowStyle = "scrollbar"; // needed for WinJS apps
+    outer.style.visibility = "hidden";
+    outer.style.width = "100px";
+    outer.style.msOverflowStyle = "scrollbar"; // needed for WinJS apps
 
     document.body.appendChild(outer);
 
     var widthNoScroll = outer.offsetWidth;
     // force scrollbars
-    outer.csse.overflow = "scroll";
+    outer.style.overflow = "scroll";
 
     // add innerdiv
     var inner = document.createElement("div");
-    inner.csse.width = "100%";
+    inner.style.width = "100%";
     outer.appendChild(inner);
 
     var widthWithScroll = inner.offsetWidth;

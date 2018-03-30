@@ -216,7 +216,7 @@ var Dialog = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
                 var scrollTop = window.scrollY;
                 var outerHeight = window.innerHeight;
                 if (height > outerHeight) {
-                    _this4.dialog.csse.top = scrollTop + 'px';
+                    _this4.dialog.style.top = scrollTop + 'px';
                 }
             }
         });
@@ -246,7 +246,7 @@ var Dialog = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
 
         // TODO; drag out of screen
         if (this.get('_dragging')) {
-            var style = this.dialog.csse;
+            var style = this.dialog.style;
             var body = document.body;
             var html = document.documentElement;
             var left = Math.min(Math.max(this._x + e.clientX, 0), Math.max(Math.max(body.scrollWidth, html.scrollWidth) - this._width, 0));
