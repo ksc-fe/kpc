@@ -39,6 +39,8 @@ var _item = require('./item');
 
 var _item2 = _interopRequireDefault(_item);
 
+require('../../styles/kpc.css');
+
 require('./index.css');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

@@ -33,6 +33,8 @@ var _step = require('./step');
 
 var _step2 = _interopRequireDefault(_step);
 
+require('../../styles/kpc.css');
+
 require('./index.css');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

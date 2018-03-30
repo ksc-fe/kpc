@@ -27,17 +27,20 @@ var _index = require('./index.vdt');
 
 var _index2 = _interopRequireDefault(_index);
 
+require('../../styles/kpc.css');
+
 require('./index.css');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/**
+ * Created by sylvia on 2017/10/16.
+ */
 function fixPercent(percent) {
     if (percent > 100) percent = 100;
     if (percent < 0) percent = 0;
     return percent;
-} /**
-   * Created by sylvia on 2017/10/16.
-   */
+}
 
 var Progress = function (_Intact) {
     (0, _inherits3.default)(Progress, _Intact);

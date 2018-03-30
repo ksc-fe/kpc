@@ -45,6 +45,8 @@ var _message = require('./message.vdt');
 
 var _message2 = _interopRequireDefault(_message);
 
+require('../../styles/kpc.css');
+
 require('./index.css');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

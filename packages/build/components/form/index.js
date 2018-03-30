@@ -11,6 +11,8 @@ var _formItemWrapper = require('./formItemWrapper');
 
 var _formItemWrapper2 = _interopRequireDefault(_formItemWrapper);
 
+require('../../styles/kpc.css');
+
 require('./index.css');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

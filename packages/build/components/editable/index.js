@@ -33,6 +33,8 @@ var _index = require('./index.vdt');
 
 var _index2 = _interopRequireDefault(_index);
 
+require('../../styles/kpc.css');
+
 require('./index.css');
 
 var _utils = require('../utils');

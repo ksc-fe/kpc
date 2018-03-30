@@ -328,5 +328,3 @@ _Object$keys(_tooltip).forEach(function (key) {
     }
   });
 });
-
-require('../styles/kpc.css');
