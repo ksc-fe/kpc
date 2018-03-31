@@ -18,3 +18,17 @@ import Slider from 'kpc/components/slider';
 .k-slider
     margin-bottom 20px
 ```
+
+```js
+export default class extends Intact {
+    @Intact.template()
+    static template = template;
+
+    defaults() {
+        return {
+            'value1': 60,
+            'value2': 277,
+        }
+    }
+}
+```
