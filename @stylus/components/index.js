@@ -1,7 +1,8 @@
 'use strict';
 
 exports.__esModule = true;
-exports.Transfer = exports.Tooltip = exports.Tab = exports.Tabs = exports.TableColumn = exports.Table = exports.Switch = exports.Step = exports.Steps = exports.Spinner = exports.Slider = exports.OptionGroup = exports.Option = exports.Select = exports.ScrollSelect = exports.Radio = exports.Progress = exports.Pagination = exports.MoveWrapper = exports.Message = exports.Link = exports.Input = exports.Col = exports.Row = exports.FormItem = exports.Form = exports.Editable = exports.DropdownItem = exports.DropdownMenu = exports.Dropdown = exports.Dialog = exports.Datepicker = exports.Checkbox = exports.ButtonGroup = exports.Button = exports.BreadcrumbItem = exports.Breadcrumb = exports.App = undefined;
+exports.version = exports.Transfer = exports.Tooltip = exports.Tab = exports.Tabs = exports.TableColumn = exports.Table = exports.Switch = exports.Step = exports.Steps = exports.Spinner = exports.Slider = exports.OptionGroup = exports.Option = exports.Select = exports.ScrollSelect = exports.Radio = exports.Progress = exports.Pagination = exports.MoveWrapper = exports.Message = exports.Link = exports.Input = exports.Col = exports.Row = exports.FormItem = exports.Form = exports.Editable = exports.DropdownItem = exports.DropdownMenu = exports.Dropdown = exports.Dialog = exports.Datepicker = exports.Checkbox = exports.ButtonGroup = exports.Button = exports.BreadcrumbItem = exports.Breadcrumb = exports.App = undefined;
+exports.install = install;
 
 var _app = require('./app');
 
@@ -94,4 +95,30 @@ exports.TableColumn = _table.TableColumn;
 exports.Tabs = _tabs.Tabs;
 exports.Tab = _tabs.Tab;
 exports.Tooltip = _tooltip.Tooltip;
-exports.Transfer = _transfer.Transfer; /* generate automatically */
+exports.Transfer = _transfer.Transfer; /* generate start */
+
+var version = exports.version = '4.0.0';
+
+/* generate end */
+
+function install(Vue) {
+    if (install.installed) return;
+
+    if (Vue) {
+        for (var key in exports) {
+            var code = key.charCodeAt(0);
+            // the key which the first char is uppercase is a component
+            if (code >= 65 && code <= 90) {
+                Vue.component(key, exports[key]);
+            }
+        }
+    } else {
+        for (var _key in exports) {
+            var _code = _key.charCodeAt(0);
+            // the key which the first char is uppercase is a component
+            if (_code >= 65 && _code <= 90) {
+                global['K' + _key] = exports[_key];
+            }
+        }
+    }
+}

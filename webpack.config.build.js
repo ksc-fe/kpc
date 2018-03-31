@@ -14,7 +14,7 @@ module.exports = merge.smartStrategy({
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: '[name].js',
-        library: 'KPC',
+        library: 'Kpc',
         libraryTarget: 'umd',
     },
     externals: {

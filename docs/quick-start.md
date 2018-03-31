@@ -43,7 +43,10 @@ npm run dev
 ## 单文件构建版
 
 如果你的项目没有使用webpack来构建，可以引入单文件构建版。将`kpc.css`和`kpc.js`在html文件中引入。
-此时所有组件都在`KPC`命名空间下，例如`KPC.Button` `KPC.Table`等
+此时所有组件都在`Kpc`命名空间下，例如`KPC.Button` `KPC.Table`等。
+
+另外你也可以调用`Kpc.install`方法将组件放到全局空间下，此时为了避免命名冲突，
+所有组件名前加上`K`作为前缀，例如`KButton` `KTable`等
 
 ```html
 <!doctype html>
@@ -59,10 +62,11 @@ npm run dev
     <script type="text/javascript" src="node_modules/intact/dist/intact.js"></script>
     <script type="text/javascript" src="node_modules/kpc/dist/kpc.js"></script>
     <script type="text/javascript">
+        Kpc.install();
         var Page = Intact.extend({
-            template: '<KPC.Button ev-click={self.hello}>Hello World</KPC.Button>',
+            template: '<KButton ev-click={self.hello}>Hello World</KButton>',
             hello: function() {
-                KPC.Message.success('Welcome to kpc world!');
+                KMessage.success('Welcome to kpc world!');
             }
         });
         Intact.mount(Page, document.getElementById('app'));

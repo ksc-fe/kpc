@@ -15,6 +15,7 @@ const stylus = require('gulp-stylus');
 const autoprefixer = require('autoprefixer');
 const rimraf = require('rimraf');
 const fs = require('fs');
+const packageJson = require('./package.json');
 
 gulp.task('doc', () => {
     console.log('build markdown');
@@ -86,7 +87,7 @@ function buildFont(destPath) {
 }
 
 gulp.task('index', () => {
-    const codes = ['/* generate automatically */\n'];
+    const codes = ['/* generate start */\n'];
     const components = [];
     return gulp.src('./components/*/index.js')
         .pipe(tap((file) => {
@@ -115,7 +116,11 @@ gulp.task('index', () => {
             // components.push('position');
 
             codes.push('', `export {\n    ${components.join(',\n    ')}\n};`);
-            fs.writeFileSync('./components/index.js', codes.join('\n'));
+            codes.push('', `export const version = '${packageJson.version}';`);
+            const path = './components/index.js';
+            const contents = fs.readFileSync(path, 'utf-8');
+            const originContents = contents.substring(contents.indexOf('/* generate end */'));
+            fs.writeFileSync(path, codes.join('\n') + '\n\n' + originContents);
         });
 });
 

@@ -1,4 +1,4 @@
-/* generate automatically */
+/* generate start */
 
 import {App} from './app';
 import {Breadcrumb, BreadcrumbItem} from './breadcrumb';
@@ -69,6 +69,28 @@ export {
     Transfer
 };
 
-for (let key in exports) {
-    console.log(key);
+export const version = '4.0.0';
+
+/* generate end */
+
+export function install(Vue) {
+    if (install.installed) return;
+
+    if (Vue) {
+        for (let key in exports) {
+            const code = key.charCodeAt(0);
+            // the key which the first char is uppercase is a component
+            if (code >= 65 && code <= 90) {
+                Vue.component(key, exports[key]);
+            }
+        }
+    } else {
+        for (let key in exports) {
+            const code = key.charCodeAt(0);
+            // the key which the first char is uppercase is a component
+            if (code >= 65 && code <= 90) {
+                global[`K${key}`] = exports[key];
+            }
+        }
+    }
 }
