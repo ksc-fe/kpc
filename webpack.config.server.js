@@ -9,7 +9,7 @@ module.exports = merge.smartStrategy({
 })(webpackConfig, {
     entry: {
         server: [
-            'webpack/hot/poll?1000',
+            // 'webpack/hot/poll?1000',
             './core/server.js',
         ],
     },

@@ -12,3 +12,4 @@ site/components/
 site/docs/
 site/fonts/
 *hot-update.js*
+/demos/

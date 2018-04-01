@@ -93,7 +93,7 @@ npm install intact 'git+http://newgit.op.ksyun.com/ksyun-fe/kpc.git#v4.0' --save
 npm install css-loader style-loader file-loader --save-dev
 ```
 
-2. `webpack.config.js`配置
+2. 配置`webpack.config.js`
 
 为了统一组件加载路径，我们可以加入`alias`设置。例如：`kpc/components/button`会指向
 `kpc/@css/components/button`
@@ -106,7 +106,7 @@ module.exports = {
     resolve: {
         alias: {
             // 让kpc组件指向多文件构建版本，可以统一组件加载路径
-            'kpc': path.resolve(__dirname, './node_modules/kpc/@css')
+            'kpc/components': path.resolve(__dirname, './node_modules/kpc/@css/components')
         }
     },
     module: {
@@ -170,13 +170,20 @@ import {Button, ButtonGroup} from 'kpc/components/button';
 npm install postcss-loader autoprefixer stylus-loader --save-dev
 ```
 
-2. `webpack.config.js`修改
+2. 修改`webpack.config.js`
 
 将css加载配置修改为（通过`stylus-loader`的`import`配置，我们可以引入主题文件）：
 
 ```js
+const path = require('path');
+
 module.export = {
     ...
+    resolve: {
+        alias: {
+            'kpc/components': path.resolve(__dirname, './node_modules/kpc/@stylus/components')
+        }
+    },
     module: {
         rules: [
             ...
