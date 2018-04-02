@@ -1,0 +1,29 @@
+{
+    "setting": {
+        "title": "自定义展示内容",
+        "order": 2
+    },
+    "catalogs": [],
+    "contents": "<p>当需要自定义提示的内容时，我们可以将<code>Message</code>当做组件定义在模板中，而非调用它的静态方法。此时我们需要给<code>Message</code>指定唯一的<code>key</code>。</p>\n",
+    "codes": [
+        {
+            "language": "vdt",
+            "content": "import Message from 'kpc/components/message';\nimport {Button} from 'kpc/components/button';\nimport {Progress} from 'kpc/components/progress';\n\n<div>\n    <Button ev-click={{ () => self.set('show', true) }}>custom message</Button>\n    <Message v-model=\"show\" key=\"message\" \n        duration={{ 0 }} \n        type={{ self.get('percent') >= 100 ? 'success' : 'info' }}\n    >\n        <Progress style=\"width: 200px\" \n            percent={{ self.get('percent') }}\n            ev-click={{ self.add }}\n        />\n    </Message>\n</div>"
+        },
+        {
+            "language": "js",
+            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    defaults() {\n        return {\n            percent: 10, \n            show: false\n        };\n    }\n\n    add() {\n        this.set('percent', this.get('percent') + 5);\n    }\n}"
+        }
+    ],
+    "index": 56,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Message <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/message'</span>;\n<span class=\"hljs-keyword\">import</span> {Button} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/button'</span>;\n<span class=\"hljs-keyword\">import</span> {Progress} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/progress'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span> <span class=\"hljs-attr\">ev-click</span>=<span class=\"hljs-string\">{{</span> () =&gt;</span> self.set('show', true) }}&gt;custom message<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Message</span> <span class=\"hljs-attr\">v-model</span>=<span class=\"hljs-string\">\"show\"</span> <span class=\"hljs-attr\">key</span>=<span class=\"hljs-string\">\"message\"</span> \n        <span class=\"hljs-attr\">duration</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">0</span> }} \n        <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">self.get</span>('<span class=\"hljs-attr\">percent</span>') &gt;</span>= 100 ? 'success' : 'info' }}\n    &gt;\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Progress</span> <span class=\"hljs-attr\">style</span>=<span class=\"hljs-string\">\"width: 200px\"</span> \n            <span class=\"hljs-attr\">percent</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">self.get</span>('<span class=\"hljs-attr\">percent</span>') }}\n            <span class=\"hljs-attr\">ev-click</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">self.add</span> }}\n        /&gt;</span>\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Message</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span></code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n\n    defaults() {\n        <span class=\"hljs-keyword\">return</span> {\n            <span class=\"hljs-attr\">percent</span>: <span class=\"hljs-number\">10</span>, \n            <span class=\"hljs-attr\">show</span>: <span class=\"hljs-literal\">false</span>\n        };\n    }\n\n    add() {\n        <span class=\"hljs-keyword\">this</span>.set(<span class=\"hljs-string\">'percent'</span>, <span class=\"hljs-keyword\">this</span>.get(<span class=\"hljs-string\">'percent'</span>) + <span class=\"hljs-number\">5</span>);\n    }\n}</code></pre>"
+        }
+    ]
+}

@@ -1,8 +1,8 @@
 const KDoc = require('kdoc');
 const path = require('path');
 const Vdt = require('vdt');
-const webpackConfig = require('./webpack.config.site.render');
-const webpackConfigClient = require('./webpack.config.site.client');
+const webpackConfig = require('./site/webpack.config.render');
+const webpackConfigClient = require('./site/webpack.config.client');
 const webpack = require('webpack');
 const highlight = require('highlight.js');
 const babel = require('babel-core');
@@ -24,7 +24,7 @@ module.exports = function(isDev) {
 
     const doc = new KDoc(
         './@(docs|components)/**/*.md',
-        path.resolve(__dirname, './site')
+        path.resolve(__dirname, './site/dist')
     );
 
     doc.use(KDoc.plugins.md);

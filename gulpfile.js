@@ -2,7 +2,7 @@ const gulp = require('gulp');
 const through = require('through2');
 const doc = require('./doc');
 const webpack = require('webpack');
-const webpackConfig = require('./webpack.config.site.client');
+const webpackConfig = require('./site/webpack.config.client');
 const webpackBuildConfig = require('./webpack.config.build');
 const path = require('path');
 const connect = require('gulp-connect');
@@ -47,7 +47,7 @@ gulp.task('server', () => {
 
     const webpackHotMiddleware = require('webpack-hot-middleware');
     return connect.server({
-        root: 'site',
+        root: 'site/dist',
         livereload: true,
         port: 4567,
         host: '0.0.0.0',
@@ -61,10 +61,20 @@ gulp.task('watch', gulp.series('doc', gulp.parallel('server', /* 'webpack', */ (
     gulp.watch('./@(components|docs)/**/*.md', {ignored: /node_modules/}, gulp.parallel('doc'));
 })));
 
+const rm = (path) => {
+    return new Promise(resolve => {
+        rimraf(path, resolve);
+    });
+};
+gulp.task('clean:doc', (done) => {
+    process.env.NODE_ENV = 'production';
+    return Promise.all([
+        rm('./site/dist/*'),
+    ]);
+});
 gulp.task('build:doc:server', () => {
     return doc(false);
 });
-
 gulp.task('build:doc:client', (done) => {
     webpackConfig.entry = {
         'static/client': './site/src/client.js'
@@ -77,7 +87,7 @@ gulp.task('build:doc:client', (done) => {
     });
 });
 
-gulp.task('build:doc', gulp.series('build:doc:server', 'build:doc:client'));
+gulp.task('build:doc', gulp.series('clean:doc', 'build:doc:server', 'build:doc:client'));
 
 
 /******************

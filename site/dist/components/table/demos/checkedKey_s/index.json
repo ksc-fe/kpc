@@ -1,0 +1,37 @@
+{
+    "setting": {
+        "title": "行选中",
+        "order": 0
+    },
+    "catalogs": [],
+    "contents": "<ul>\n<li><code>rowKey</code>：设置行的<code>key</code>值，类型：<code>Function</code>，默认：行的<code>index</code></li>\n<li><code>checkedKey</code>：设置/获取表格被选中的行信息（针对<code>radio</code>），类型：任何，控制是否选中会根据rowKey的设置判断。</li>\n<li><code>checkedKeys</code>：设置/获取表格被选中的行信息（针对<code>checkbox</code>）类型：<code>Array</code>，可以设置多个，控制是否选中会根据rowKey的设置判断。</li>\n</ul>\n",
+    "codes": [
+        {
+            "language": "vdt",
+            "content": "import Table from 'kpc/components/table';\nvar data1 = [{a: '赋默认值选中'}, {a: '不选中'}];\nvar data2 = [{text: '选中', id: 'yes'}, {text: '不选中', id: 'no'}];\nvar data3 = [{a: '赋默认值选中'}, {a: '不选中'}, {a: '赋默认值选中，可设置多个'}];\n\n\n<div>\n    <div class='no-data-template'>\n        <Table scheme={{ {a: 'radio不指定rowKey'} }} data={{data1}} checkedKey={{0}} checkType='radio'/>\n        <Table scheme={{ {text: 'radio指定为item的id'} }} data={{data2}} checkType='radio' rowKey={{self.setRowKey}}  checkedKey={{'yes'}}/>\n    </div>\n    <div class='no-data-template'>\n        <Table scheme={{ {a: 'checkbox不指定rowKey'} }} data={{data3}} checkedKeys={{[0, 2]}}/>\n        <Table scheme={{ {text: 'checkbox指定为item的id'} }} data={{data2}} rowKey={{self.setRowKey}} checkedKeys={{['yes']}}/>\n    </div>\n</div>"
+        },
+        {
+            "language": "styl",
+            "content": ".no-data-template\n   display: flex\n   margin-bottom: 10px\n   .k-table-wrapper\n       margin-left: 10px"
+        },
+        {
+            "language": "js",
+            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    setRowKey(value, index) {\n        return value.id;\n    }\n\n}"
+        }
+    ],
+    "index": 14,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Table <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n<span class=\"hljs-keyword\">var</span> data1 = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'赋默认值选中'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'不选中'</span>}];\n<span class=\"hljs-keyword\">var</span> data2 = [{<span class=\"hljs-attr\">text</span>: <span class=\"hljs-string\">'选中'</span>, <span class=\"hljs-attr\">id</span>: <span class=\"hljs-string\">'yes'</span>}, {<span class=\"hljs-attr\">text</span>: <span class=\"hljs-string\">'不选中'</span>, <span class=\"hljs-attr\">id</span>: <span class=\"hljs-string\">'no'</span>}];\n<span class=\"hljs-keyword\">var</span> data3 = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'赋默认值选中'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'不选中'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'赋默认值选中，可设置多个'</span>}];\n\n\n&lt;div&gt;\n    &lt;div class='no-data-template'&gt;\n        &lt;Table scheme={{ {a: 'radio不指定rowKey'} }} data={{data1}} checkedKey={{0}} checkType='radio'/&gt;\n        &lt;Table scheme={{ {text: 'radio指定为item的id'} }} data={{data2}} checkType='radio' rowKey={{self.setRowKey}}  checkedKey={{'yes'}}/&gt;\n    &lt;/div&gt;\n    &lt;div class='no-data-template'&gt;\n        &lt;Table scheme={{ {a: 'checkbox不指定rowKey'} }} data={{data3}} checkedKeys={{[0, 2]}}/&gt;\n        &lt;Table scheme={{ {text: 'checkbox指定为item的id'} }} data={{data2}} rowKey={{self.setRowKey}} checkedKeys={{['yes']}}/&gt;\n    &lt;/div&gt;\n&lt;/div&gt;</code></pre>"
+        },
+        {
+            "language": "styl",
+            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.no-data-template</span>\n   <span class=\"hljs-attribute\">display</span>: flex\n   <span class=\"hljs-attribute\">margin-bottom</span>: <span class=\"hljs-number\">10px</span>\n   <span class=\"hljs-selector-class\">.k-table-wrapper</span>\n       <span class=\"hljs-attribute\">margin-left</span>: <span class=\"hljs-number\">10px</span></code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n\n    setRowKey(value, index) {\n        <span class=\"hljs-keyword\">return</span> value.id;\n    }\n\n}</code></pre>"
+        }
+    ]
+}

@@ -4,7 +4,7 @@ import template from './index.vdt';
 import './index.styl';
 import 'kpc/components/table/index.styl';
 
-const req = require.context('~/', true, /^\.\/(components|docs)\/.*index\.(json|js)$/);
+const req = require.context('~/dist', true, /^\.\/(components|docs)\/.*index\.(json|js)$/);
 
 export default class extends Layout {
     @Intact.template()
