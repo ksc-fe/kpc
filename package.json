@@ -51,7 +51,7 @@
     "gulp-connect": "^5.5.0",
     "highlight.js": "^9.12.0",
     "history": "^4.7.2",
-    "intact": "^2.2.0-33",
+    "intact": "^2.2.0-34",
     "intact-vue": "^0.2.9",
     "istanbul-instrumenter-loader": "^3.0.0",
     "jasmine-core": "^2.99.1",
