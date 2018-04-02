@@ -3,7 +3,6 @@ var path = require('path');
 
 module.exports = function (config) {
     config.set({
-        // browsers: ['PhantomJS', 'Chrome'],
         browsers: process.env.UPDATE ? ['ChromeHeadless'] : undefined,
         frameworks: ['mocha', 'sinon-chai', 'snapshot', 'mocha-snapshot'],
         reporters: ['mocha', 'coverage-istanbul'],
@@ -21,7 +20,6 @@ module.exports = function (config) {
             'karma-sinon-chai',
             'karma-coverage-istanbul-reporter',
             // 'karma-jasmine', 
-            'karma-phantomjs-launcher',
             'karma-chrome-launcher',
             'karma-snapshot',
             'karma-mocha-snapshot',
