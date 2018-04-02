@@ -7,7 +7,7 @@ import Option from './option';
 import Group from './group';
 import {selectInput} from '../utils';
 
-export default class Select extends Intact{
+export default class Select extends Intact {
     @Intact.template()
     static template = template;
 
