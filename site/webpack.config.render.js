@@ -4,6 +4,8 @@ const nodeExternal = require('webpack-node-externals');
 const webpackConfig = require('../webpack.config.common');
 const merge = require('webpack-merge');
 
+const isDev = process.env.NODE_ENV !== 'production';
+
 module.exports = merge.smartStrategy({
     'module.rules.use': 'prepend',
     'plugins': 'replace',
@@ -25,6 +27,11 @@ module.exports = merge.smartStrategy({
     node: {
         __dirname: false,
         __filename: false,
+    },
+    resolve: {
+        alias: {
+            '~': path.resolve(__dirname, isDev ? './.dist' : './dist'),
+        }
     },
     module: {
         rules: [

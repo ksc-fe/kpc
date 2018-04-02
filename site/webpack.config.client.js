@@ -23,6 +23,11 @@ module.exports = merge.smartStrategy({
     externals: {
         fs: 'null',
     },
+    resolve: {
+        alias: {
+            '~': path.resolve(__dirname, isDev ? './.dist' : './dist'),
+        }
+    },
     devtool: isDev ? '#inline-source-map' : 'none',
     plugins: (function() {
         const plugins = [

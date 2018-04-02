@@ -48,7 +48,7 @@ gulp.task('server', () => {
     const webpackHotMiddleware = require('webpack-hot-middleware');
     return connect.server({
         root: 'site/.dist',
-        livereload: true,
+        livereload: false,
         port: 4567,
         host: '0.0.0.0',
         middleware: function() {

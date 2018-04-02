@@ -15,7 +15,7 @@ module.exports = {
         rules: [
             {
                 test: /\.m?js$/,
-                exclude: [/node_modules(?!([\/\\]universal\-router)|([\/\\]intact\-vue))/],
+                exclude: [/node_modules(?!([\/\\]universal\-router))/],
                 use: [
                     {
                         loader: 'babel-loader',
@@ -100,9 +100,8 @@ module.exports = {
             // 'vue$': 'vue/dist/vue.esm.js',
             'vue$': 'vue/dist/vue.js',
             // for running in vue
-            'intact$': 'intact-vue/src/index.js',
+            'intact$': 'intact-vue/dist/intact.vue.js',
             'kpc': path.resolve(__dirname),
-            '~': path.resolve(__dirname, 'site'),
         },
         extensions: ['.mjs', '.js', '.vdt'],
     },

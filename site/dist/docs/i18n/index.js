@@ -1,4 +1,4 @@
-import Article from '~/src/components/article';
+import Article from '~/../src/components/article';
 import data from './index.json';
 
 const r = require.context('./', true, /demos.*index.js$/);
