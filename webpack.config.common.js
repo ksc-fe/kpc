@@ -8,8 +8,8 @@ module.exports = {
         path: path.resolve(__dirname, './.dev'),
         filename: '[name].js',
         publicPath: '/',
-        hotUpdateChunkFilename: 'hot/hot-update.js',
-		hotUpdateMainFilename: 'hot/hot-update.json',
+        // hotUpdateChunkFilename: 'hot/hot-update.js',
+        // hotUpdateMainFilename: 'hot/hot-update.json',
     },
     module: {
         rules: [
