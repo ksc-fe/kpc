@@ -11,7 +11,7 @@ export default class extends Layout {
     static template = template;
 
     async _init() {
-        let path = this.get('path');
+        let path = this.get('path').replace('index.html', '');
         path = path.slice(1, -1);
         const data = await req(`./${path}/index.json`);
         const Article = await req(`./${path}/index.js`);

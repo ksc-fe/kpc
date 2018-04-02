@@ -32,7 +32,6 @@ export default class extends Intact {
     static template = template;
 
     defaults() {
-        window.__aaa = this;
         return {
             text: 'editable text'
         }

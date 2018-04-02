@@ -16,6 +16,12 @@ const languageMap = function(key) {
 };
 
 module.exports = function(isDev) {
+    let _resolve;
+    const promise = new Promise((resolve) => {
+        _resolve = resolve;
+    });
+    promise.resolve = () => _resolve();
+
     const doc = new KDoc(
         './@(docs|components)/**/*.md',
         path.resolve(__dirname, './site')
@@ -159,42 +165,51 @@ module.exports = function(isDev) {
             });
 
             // 静态化
-            if (isDev) return ctx.fsEach(async function(file) {
-                if (!/demos/.test(file.path)) {
-                    file.extname = '.html';
-                    await ctx.fsWrite(
-                        file.relative,
-                        Vdt.renderFile(path.resolve(__dirname, './site/src/index.vdt'))
-                    );
-                }
-            });
-            const compiler = webpack(webpackConfig); 
-            compiler.run((err, stats) => {
-                console.log(stats.toString({
-                    colors: true 
-                }));
-                delete require.cache[require.resolve('./.dev/render')];
-                const render = require('./.dev/render');
-
+            if (isDev) {
                 ctx.fsEach(async function(file) {
                     if (!/demos/.test(file.path)) {
                         file.extname = '.html';
-                        const pathname = path.relative(ctx.data.output, file.path).replace('index.html', '');
-                        const data = await render(`/${pathname}`);
                         await ctx.fsWrite(
-                            file.relative, 
-                            Vdt.renderFile(path.resolve(__dirname, './site/src/index.vdt'), {
-                                title: file.md.setting.title,
-                                content: data.content,
-                                style: data.style,
-                            })
+                            file.relative,
+                            Vdt.renderFile(path.resolve(__dirname, './site/src/index.vdt'))
                         );
                     }
                 });
-            });
+
+                promise.resolve();
+            } else {
+                const compiler = webpack(webpackConfig); 
+                compiler.run(async (err, stats) => {
+                    console.log(stats.toString({
+                        colors: true 
+                    }));
+                    delete require.cache[require.resolve('./.dev/render')];
+                    const render = require('./.dev/render');
+
+                    await ctx.fsEach(async function(file) {
+                        if (!/demos/.test(file.path)) {
+                            file.extname = '.html';
+                            const pathname = path.relative(ctx.data.output, file.path).replace('index.html', '');
+                            const data = await render(`/${pathname}`);
+                            await ctx.fsWrite(
+                                file.relative, 
+                                Vdt.renderFile(path.resolve(__dirname, './site/src/index.vdt'), {
+                                    title: file.md.setting.title,
+                                    content: data.content,
+                                    style: data.style,
+                                })
+                            );
+                        }
+                    });
+
+                    promise.resolve();
+                });
+            }
         });
     });
 
-    return doc.run(); 
+    doc.run(); 
+
+    return promise;
 };
 

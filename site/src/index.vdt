@@ -2,9 +2,10 @@
 <head>
     <meta charset="utf-8" />
     <title>{{ self.title  }}</title>
-    {{= self.style }}
 </head>
 <body>
+    {{ /* 必须保证后端输出的css在页面渲染完成前一直生效，所以只能放到body中 */ }}
+    {{= self.style }}
     <div id="page" innerHTML={{ self.content }}></div>
     <script src="/static/client.js" type="text/javascript"></script>
 </body>

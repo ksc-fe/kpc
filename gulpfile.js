@@ -61,6 +61,24 @@ gulp.task('watch', gulp.series('doc', gulp.parallel('server', /* 'webpack', */ (
     gulp.watch('./@(components|docs)/**/*.md', {ignored: /node_modules/}, gulp.parallel('doc'));
 })));
 
+gulp.task('build:doc:server', () => {
+    return doc(false);
+});
+
+gulp.task('build:doc:client', (done) => {
+    webpackConfig.entry = {
+        'static/client': './site/src/client.js'
+    };
+    webpack(webpackConfig, (err, stats) => {
+        console.log(stats.toString({
+            colors: true    // 在控制台展示颜色
+        }));
+        done();
+    });
+});
+
+gulp.task('build:doc', gulp.series('build:doc:server', 'build:doc:client'));
+
 
 /******************
  * build packages
