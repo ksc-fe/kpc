@@ -1,6 +1,6 @@
 {
   "name": "kpc",
-  "version": "4.0.0",
+  "version": "0.0.1",
   "description": "A component library implemented by intact",
   "main": "dist/index.js",
   "module": "components/index.js",
@@ -9,7 +9,8 @@
     "snapshot": "UPDATE=1 npm run test",
     "start": "node server.js",
     "build": "NODE_ENV=production gulp build",
-    "dev:doc": "gulp watch"
+    "dev:doc": "gulp watch",
+    "build:doc": "gulp build:doc"
   },
   "repository": {
     "type": "git",

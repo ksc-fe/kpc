@@ -3,7 +3,7 @@ const merge = require('webpack-merge');
 const path = require('path');
 const webpack = require('webpack');
 
-const isDev = process.env.NODE_ENV === 'production';
+const isDev = process.env.NODE_ENV !== 'production';
 
 module.exports = merge.smartStrategy({
     'entry': 'replace',
@@ -13,12 +13,12 @@ module.exports = merge.smartStrategy({
         'static/client': isDev ? 
             [
                 'webpack-hot-middleware/client?reload=true',
-                './src/client.js',
+                path.resolve(__dirname, './src/client.js'),
             ] :
-            './src/client.js',
+            path.resolve(__dirname, './src/client.js'),
     },
     output: {
-        path: path.resolve(__dirname, './dist'),
+        path: isDev ? path.resolve(__dirname, './.dist') : path.resolve(__dirname, './dist'),
     },
     externals: {
         fs: 'null',

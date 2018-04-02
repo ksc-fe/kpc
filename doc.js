@@ -24,7 +24,7 @@ module.exports = function(isDev) {
 
     const doc = new KDoc(
         './@(docs|components)/**/*.md',
-        path.resolve(__dirname, './site/dist')
+        isDev ? path.resolve(__dirname, './site/.dist') : path.resolve(__dirname, './site/dist')
     );
 
     doc.use(KDoc.plugins.md);

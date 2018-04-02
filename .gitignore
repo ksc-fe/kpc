@@ -7,9 +7,6 @@ log/
 .log
 test/coverage
 .dev/
-site/static/
-site/components/
-site/docs/
-site/fonts/
+site/.dist/
 *hot-update.js*
 /demos/

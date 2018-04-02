@@ -1,3 +1,0 @@
-import Button from 'kpc/components/button';
-
-<Button type="primary" ev-click={{ self.showDialog }}>Show Dialog</Button>
