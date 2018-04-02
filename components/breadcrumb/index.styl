@@ -13,5 +13,4 @@
     .k-separator
         margin $breadcrumb-separator-margin
 
-$dir = $theme-dir + '/breadcrumb.styl';
-@import $dir if exists($dir) 
+require($theme-dir + '/breadcrumb.styl')

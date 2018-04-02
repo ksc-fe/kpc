@@ -226,4 +226,4 @@ sizes = small mini
                             border-bottom-color lookup('$btns-' + type + '-border-color')
             
 
-@import $theme-dir + '/button.styl' if exists($theme-dir + '/button.styl') 
+require($theme-dir + '/button.styl')
