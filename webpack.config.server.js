@@ -10,15 +10,15 @@ module.exports = merge.smartStrategy({
     entry: {
         server: [
             // 'webpack/hot/poll?1000',
-            './core/server.js',
+            './app/server.js',
         ],
     },
     output: {
         chunkFilename: 'chunk/[chunkhash].js',
     },
     target: 'node',
-    externals: [nodeExternal(
-        {whitelist: ['universal-router', 'webpack/hot/poll?1000']}),
+    externals: [
+        nodeExternal({whitelist: ['universal-router', 'webpack/hot/poll?1000']}),
         {'../webpack.config.client': 'commonjs ../webpack.config.client'}
     ],
     node: {

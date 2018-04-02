@@ -9,7 +9,7 @@ module.exports = merge.smartStrategy({
     entry: {
         'static/client': [
             'webpack-hot-middleware/client?reload=true',
-            './core/client.js',
+            './app/client.js',
         ],
     },
     devtool: '#inline-source-map',
