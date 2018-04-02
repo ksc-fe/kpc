@@ -1,7 +1,7 @@
 {
   "name": "kpc",
   "version": "0.0.1",
-  "description": "A component library implemented by intact",
+  "description": "A component library written in intact",
   "main": "dist/index.js",
   "module": "components/index.js",
   "scripts": {
