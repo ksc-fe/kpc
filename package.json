@@ -10,7 +10,7 @@
     "start": "node server.js",
     "build": "NODE_ENV=production gulp build",
     "dev:doc": "gulp watch",
-    "build:doc": "gulp build:doc"
+    "build:doc": "NODE_ENV=production gulp build:doc"
   },
   "repository": {
     "type": "git",

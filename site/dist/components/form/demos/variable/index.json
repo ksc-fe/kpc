@@ -1,0 +1,29 @@
+{
+    "setting": {
+        "title": "可变规则",
+        "order": 3
+    },
+    "catalogs": [],
+    "contents": "<p>规则<code>rules</code>的值是响应式的，这意味着我们可以实时改变验证规则。</p>\n<p>例如本例中，用户可以不输入姓名，但如果输入了“姓”，就必须输入“名”，反之亦然。</p>\n",
+    "codes": [
+        {
+            "language": "vdt",
+            "content": "import {Form, FormItem} from 'kpc/components/form';\nimport {Input} from 'kpc/components/input';\nimport {Row, Col} from 'kpc/components/grid';\n\n<Form>\n    <FormItem label=\"姓名\">\n        <Row gutter=\"16\">\n            <Col span=\"12\">\n                <FormItem hideLabel model=\"firstName\" rules={{ {\n                    // 该规则取值，随着lastName的存在与否而改变\n                    required: self.get('lastName')\n                } }}> \n                    <Input v-model=\"firstName\" />\n                </FormItem>\n            </Col>\n            <Col span=\"12\">\n                <FormItem hideLabel model=\"lastName\" rules={{ {\n                    // 该规则取值，随着firstName的存在与否而改变\n                    required: self.get('firstName')\n                } }}> \n                    <Input v-model=\"lastName\" />\n                </FormItem>\n            </Col>\n        </Row>\n    </FormItem>\n</Form>"
+        },
+        {
+            "language": "js",
+            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
+        }
+    ],
+    "index": 70,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> {Form, FormItem} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/form'</span>;\n<span class=\"hljs-keyword\">import</span> {Input} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/input'</span>;\n<span class=\"hljs-keyword\">import</span> {Row, Col} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/grid'</span>;\n\n&lt;Form&gt;\n    &lt;FormItem label=\"姓名\"&gt;\n        &lt;Row gutter=\"16\"&gt;\n            &lt;Col span=\"12\"&gt;\n                &lt;FormItem hideLabel model=\"firstName\" rules={{ {\n                    // 该规则取值，随着lastName的存在与否而改变\n                    required: self.get('lastName')\n                } }}&gt; \n                    &lt;Input v-model=\"firstName\" /&gt;\n                &lt;/FormItem&gt;\n            &lt;/Col&gt;\n            &lt;Col span=\"12\"&gt;\n                &lt;FormItem hideLabel model=\"lastName\" rules={{ {\n                    // 该规则取值，随着firstName的存在与否而改变\n                    required: self.get('firstName')\n                } }}&gt; \n                    &lt;Input v-model=\"lastName\" /&gt;\n                &lt;/FormItem&gt;\n            &lt;/Col&gt;\n        &lt;/Row&gt;\n    &lt;/FormItem&gt;\n&lt;/Form&gt;</code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+import Button from 'kpc/components/button';
+import Dialog from 'kpc/components/dialog';
+
+<div>
+    <Button ev-click={{ self.set.bind(self, 'show', true) }}
+        type="primary"
+    >Show Dialog</Button>
+    <Dialog v-model="show">
+        <b:header>
+            <div class="k-title">
+                <i class="ion-person"></i>
+                Custom Header
+            </div>
+        </b:header>
+
+        Dialog Body 
+
+        <b:footer>
+            Custom Footer
+            {{ parent() }}
+        </b:footer>
+    </Dialog>
+</div>

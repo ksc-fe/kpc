@@ -1,0 +1,7 @@
+import Spinner from 'kpc/components/spinner';
+
+<div>
+    <Spinner />
+    <Spinner size="small" />
+    <Spinner size="mini" />
+</div>

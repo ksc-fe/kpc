@@ -1,0 +1,36 @@
+import Table, {TableColumn} from 'kpc/components/table';
+var data = [{a: '虚拟DOM', b: '获取到了item.b', c: {c1: 'item.c.c1'}, e: '值形式'}];
+var scheme = {
+    a: {
+        title: 'a只是个id',
+        template: function(item) {
+           return <a>{{item.a}}</a>
+        }
+    },
+    b: 'key-{String}形式',
+    'c.c1': 'key为一个连续获取的字符串',
+    'd.d1': '没有这个key',
+    e: {
+        title: 'e也只是个id',
+        template: function(item) {
+           return item.e;
+        }
+    },
+};
+
+
+<div>
+    <p>{key: value}形式:</p>
+    <Table scheme={{scheme}} data={{data}} />
+    <p>标签形式:</p>
+    <Table data={{data}}>
+      <TableColumn title='a' template={{ function(item) {
+         return <a>{{item.a}}</a>
+      } }} key=''></TableColumn>
+      <TableColumn title='key为一个连续获取的字符' key='c.c1'></TableColumn>
+      <TableColumn title='key为一个连续获取的字符' key='e'>
+          <div>不生效</div>
+      </TableColumn>
+      <TableColumn title='这个宽度大一点400px' key='b' width='400'/>
+    </Table>
+</div>

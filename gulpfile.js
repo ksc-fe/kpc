@@ -67,7 +67,6 @@ const rm = (path) => {
     });
 };
 gulp.task('clean:doc', (done) => {
-    process.env.NODE_ENV = 'production';
     return Promise.all([
         rm('./site/dist/*'),
     ]);

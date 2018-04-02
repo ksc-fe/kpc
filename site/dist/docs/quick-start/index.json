@@ -1,0 +1,837 @@
+{
+    "setting": {
+        "title": "快速开始",
+        "order": 0
+    },
+    "catalogs": [],
+    "contents": "<h1 id='header-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C'>准备工作</h1><p>在学习使用kpc之前，假设你已经掌握了以下知识：</p>\n<ol>\n<li>webpack + babel</li>\n<li>vue（如果将kpc用于vue项目）或者intact（如果将kpc用于intact项目）</li>\n</ol>\n<h1 id='header-%E4%BD%BF%E7%94%A8%E8%84%9A%E6%89%8B%E6%9E%B6'>使用脚手架</h1><p>使用Yeoman以及generator-kscpm，可以快速初始化kpc项目</p>\n<ol>\n<li>安装yo和generator-kscpm</li>\n</ol>\n<pre><code class=\"hljs shell\">npm <span class=\"hljs-keyword\">install</span> -g yo generator-kscpm\n</code></pre>\n<ol start=\"2\">\n<li>初始化kpc项目</li>\n</ol>\n<p>kscpm提供了很多工程模板，用于初始化项目，页面以及组件等</p>\n<pre><code class=\"hljs shell\"><span class=\"hljs-string\">yo</span> <span class=\"hljs-string\">kscpm</span> <span class=\"hljs-comment\"># 列出所有可选工程模板</span>\n<span class=\"hljs-string\">yo</span> <span class=\"hljs-attr\">kscpm:intact</span> <span class=\"hljs-comment\"># 初始化基于intact的kpc项目</span>\n<span class=\"hljs-string\">yo</span> <span class=\"hljs-attr\">kscpm:vue</span> <span class=\"hljs-comment\"># 初始化基于vue的kpc项目</span>\n\n<span class=\"hljs-string\">...</span>\n</code></pre>\n<ol start=\"3\">\n<li>启动项目</li>\n</ol>\n<pre><code class=\"hljs shell\">npm <span class=\"hljs-keyword\">run</span><span class=\"bash\"> dev</span>\n</code></pre>\n<h1 id='header-%E6%89%8B%E5%8A%A8%E5%BC%95%E5%85%A5'>手动引入</h1><h2 id='header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88'>单文件构建版</h2><p>如果你的项目没有使用webpack来构建，可以引入单文件构建版。将<code>kpc.css</code>和<code>kpc.js</code>在html文件中引入。此时所有组件都在<code>Kpc</code>命名空间下，例如<code>Kpc.Button</code> <code>Kpc.Table</code>等。</p>\n<p>另外你也可以调用<code>Kpc.install</code>方法将组件放到全局空间下，此时为了避免命名冲突，所有组件名前加上<code>K</code>作为前缀，例如<code>KButton</code> <code>KTable</code>等</p>\n<pre><code class=\"hljs html\"><span class=\"hljs-meta\">&lt;!doctype html&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">html</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">head</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">meta</span> <span class=\"hljs-attr\">charset</span>=<span class=\"hljs-string\">\"utf-8\"</span> /&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">title</span>&gt;</span>kpc-demo<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">title</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">link</span> <span class=\"hljs-attr\">rel</span>=<span class=\"hljs-string\">\"stylesheet\"</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"text/css\"</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"node_modules/kpc/dist/kpc.css\"</span> /&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">head</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">body</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span> <span class=\"hljs-attr\">id</span>=<span class=\"hljs-string\">\"app\"</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span>\n\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">script</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"text/javascript\"</span> <span class=\"hljs-attr\">src</span>=<span class=\"hljs-string\">\"node_modules/intact/dist/intact.js\"</span>&gt;</span><span class=\"undefined\"></span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">script</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">script</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"text/javascript\"</span> <span class=\"hljs-attr\">src</span>=<span class=\"hljs-string\">\"node_modules/kpc/dist/kpc.js\"</span>&gt;</span><span class=\"undefined\"></span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">script</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">script</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"text/javascript\"</span>&gt;</span><span class=\"javascript\">\n        Kpc.install();\n        <span class=\"hljs-keyword\">var</span> Page = Intact.extend({\n            <span class=\"hljs-attr\">template</span>: <span class=\"hljs-string\">'&lt;KButton ev-click={self.hello}&gt;Hello World&lt;/KButton&gt;'</span>,\n            <span class=\"hljs-attr\">hello</span>: <span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span>(<span class=\"hljs-params\"></span>) </span>{\n                KMessage.success(<span class=\"hljs-string\">'Welcome to kpc world!'</span>);\n            }\n        });\n        Intact.mount(Page, <span class=\"hljs-built_in\">document</span>.getElementById(<span class=\"hljs-string\">'app'</span>));\n    </span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">script</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">body</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">html</span>&gt;</span>\n</code></pre>\n<blockquote>\n<p>kpc样式需要加载字体文件，默认字体文件放在目录<code>./fonts</code>下，你可能需要根据实际情况修改该路径</p>\n</blockquote>\n<h2 id='header-%E5%A4%9A%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88'>多文件构建版</h2><p>当项目使用webpack构建时，可以使用kpc的多文件构建版，此时可以做到按需加载，而非单文件全量引入。多文件构建版样式css和字体，需要通过<code>css-loader &amp; style-loader</code>和<code>file-loader</code>来引入</p>\n<ol>\n<li>安装依赖</li>\n</ol>\n<pre><code class=\"hljs shell\">npm <span class=\"hljs-keyword\">install</span> intact kpc <span class=\"hljs-comment\">--save</span>\n\n# 内网git\nnpm <span class=\"hljs-keyword\">install</span> intact <span class=\"hljs-string\">'git+http://newgit.op.ksyun.com/ksyun-fe/kpc.git#v4.0'</span> <span class=\"hljs-comment\">--save</span>\n\nnpm <span class=\"hljs-keyword\">install</span> css-loader <span class=\"hljs-keyword\">style</span>-loader <span class=\"hljs-keyword\">file</span>-loader <span class=\"hljs-comment\">--save-dev</span>\n</code></pre>\n<ol start=\"2\">\n<li>配置<code>webpack.config.js</code></li>\n</ol>\n<p>为了统一组件加载路径，我们可以加入<code>alias</code>设置。例如：<code>kpc/components/button</code>会指向<code>kpc/@css/components/button</code></p>\n<pre><code class=\"hljs js\">const path = require(<span class=\"hljs-string\">'path'</span>);\n\nmodule.exports = {\n    ...\n    resolve: {\n        alias: {\n            // 让kpc组件指向多文件构建版本，可以统一组件加载路径\n            <span class=\"hljs-string\">'kpc/components'</span>: path.resolve(__dirname, <span class=\"hljs-string\">'./node_modules/kpc/@css/components'</span>)\n        }\n    },\n    module: {\n        rules: [\n            {\n                test: /\\.css$/,\n                use: [\n                    {\n                        loader: <span class=\"hljs-string\">'style-loader'</span>,\n                    },\n                    {\n                        loader: <span class=\"hljs-string\">'css-loader'</span>,\n                        options: {\n                            url: true\n                        }\n                    }\n                ]\n            },\n            // 引入字体文件\n            {\n                test: /\\.(woff2?|eot|ttf|otf|svg)(\\?.*)?$/,\n                use: [\n                    {\n                        loader: <span class=\"hljs-string\">'file-loader'</span>,\n                        options: {\n                            outputPath: <span class=\"hljs-string\">'./fonts/'</span>,\n                        }\n                    }\n                ]\n            },\n        ]\n    }\n}\n</code></pre>\n<ol start=\"3\">\n<li>按需引入组件</li>\n</ol>\n<p>在需要使用组件的地方，引入组件</p>\n<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> {Button, ButtonGroup} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/button'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">ButtonGroup</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span>&gt;</span>button1<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span>&gt;</span>button2<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">ButtonGroup</span>&gt;</span></span>\n</code></pre>\n<h2 id='header-%E5%A4%9A%E6%96%87%E4%BB%B6%E5%8D%8A%E6%9E%84%E5%BB%BA%E7%89%88'>多文件半构建版</h2><p>所谓半构建版与构建版的区别是，样式使用的<code>stylus</code>而非编译后的css。当我们需要修改或者引入新主题时，通过该版本，可以很方便地实现。详见<a href=\"\">定制主题</a></p>\n<p>由于使用<code>stylus</code>，所以与构建版在使用上唯一的区别是需要引入<code>stylus-loader</code></p>\n<ol>\n<li>新增依赖</li>\n</ol>\n<p>为了提供css兼容性，这里加入<code>autoprefixer</code></p>\n<pre><code class=\"hljs shell\">npm install postcss-loader autoprefixer stylus-loader --<span class=\"hljs-built_in\">save</span>-<span class=\"hljs-built_in\">dev</span>\n</code></pre>\n<ol start=\"2\">\n<li>修改<code>webpack.config.js</code></li>\n</ol>\n<p>将css加载配置修改为（通过<code>stylus-loader</code>的<code>import</code>配置，我们可以引入主题文件）：</p>\n<pre><code class=\"hljs js\">const path = require(<span class=\"hljs-string\">'path'</span>);\n\nmodule.export = {\n    ...\n    resolve: {\n        alias: {\n            <span class=\"hljs-string\">'kpc/components'</span>: path.resolve(__dirname, <span class=\"hljs-string\">'./node_modules/kpc/@stylus/components'</span>)\n        }\n    },\n    module: {\n        rules: [\n            ...\n            // 编译stylus\n            {\n                test: /\\.(styl|css)$/,\n                use: [\n                    {\n                        loader: <span class=\"hljs-string\">'css-loader'</span>, \n                        options: {\n                            url: true,\n                        }\n                    },\n                    {\n                        loader: <span class=\"hljs-string\">'postcss-loader'</span>,\n                        options: {\n                            plugins: [\n                                autoprefixer({\n                                    browsers: [\n                                        <span class=\"hljs-string\">'last 2 versions'</span>,\n                                        <span class=\"hljs-string\">'ie &gt;= 9'</span>,\n                                    ],\n                                })\n                            ],\n                        }\n                    },\n                    {\n                        loader: <span class=\"hljs-string\">'stylus-loader'</span>, \n                        options: {\n                            <span class=\"hljs-string\">'include css'</span>: true,\n                            sourceMap: false,\n                            // 使用import引入主题文件，详见定制主题\n                            // <span class=\"hljs-string\">'import'</span>: path.resolve(__dirname, <span class=\"hljs-string\">'styles/themes/ksyun/index.styl'</span>),\n                        }\n                    }\n                ]\n            }\n        ]\n    }\n}\n</code></pre>\n",
+    "codes": [
+        {
+            "language": "shell",
+            "content": "npm install -g yo generator-kscpm"
+        },
+        {
+            "language": "shell",
+            "content": "yo kscpm # 列出所有可选工程模板\nyo kscpm:intact # 初始化基于intact的kpc项目\nyo kscpm:vue # 初始化基于vue的kpc项目\n\n..."
+        },
+        {
+            "language": "shell",
+            "content": "npm run dev"
+        },
+        {
+            "language": "html",
+            "content": "<!doctype html>\n<html>\n<head>\n    <meta charset=\"utf-8\" />\n    <title>kpc-demo</title>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"node_modules/kpc/dist/kpc.css\" />\n</head>\n<body>\n    <div id=\"app\"></div>\n\n    <script type=\"text/javascript\" src=\"node_modules/intact/dist/intact.js\"></script>\n    <script type=\"text/javascript\" src=\"node_modules/kpc/dist/kpc.js\"></script>\n    <script type=\"text/javascript\">\n        Kpc.install();\n        var Page = Intact.extend({\n            template: '<KButton ev-click={self.hello}>Hello World</KButton>',\n            hello: function() {\n                KMessage.success('Welcome to kpc world!');\n            }\n        });\n        Intact.mount(Page, document.getElementById('app'));\n    </script>\n</body>\n</html>"
+        },
+        {
+            "language": "shell",
+            "content": "npm install intact kpc --save\n\n# 内网git\nnpm install intact 'git+http://newgit.op.ksyun.com/ksyun-fe/kpc.git#v4.0' --save\n\nnpm install css-loader style-loader file-loader --save-dev"
+        },
+        {
+            "language": "js",
+            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nconst path = require('path');\n\nmodule.exports = {\n    ...\n    resolve: {\n        alias: {\n            // 让kpc组件指向多文件构建版本，可以统一组件加载路径\n            'kpc/components': path.resolve(__dirname, './node_modules/kpc/@css/components')\n        }\n    },\n    module: {\n        rules: [\n            {\n                test: /\\.css$/,\n                use: [\n                    {\n                        loader: 'style-loader',\n                    },\n                    {\n                        loader: 'css-loader',\n                        options: {\n                            url: true\n                        }\n                    }\n                ]\n            },\n            // 引入字体文件\n            {\n                test: /\\.(woff2?|eot|ttf|otf|svg)(\\?.*)?$/,\n                use: [\n                    {\n                        loader: 'file-loader',\n                        options: {\n                            outputPath: './fonts/',\n                        }\n                    }\n                ]\n            },\n        ]\n    }\n}"
+        },
+        {
+            "language": "js",
+            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nimport {Button, ButtonGroup} from 'kpc/components/button';\n\n<ButtonGroup>\n    <Button>button1</Button>\n    <Button>button2</Button>\n</ButtonGroup>"
+        },
+        {
+            "language": "shell",
+            "content": "npm install postcss-loader autoprefixer stylus-loader --save-dev"
+        },
+        {
+            "language": "js",
+            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nconst path = require('path');\n\nmodule.export = {\n    ...\n    resolve: {\n        alias: {\n            'kpc/components': path.resolve(__dirname, './node_modules/kpc/@stylus/components')\n        }\n    },\n    module: {\n        rules: [\n            ...\n            // 编译stylus\n            {\n                test: /\\.(styl|css)$/,\n                use: [\n                    {\n                        loader: 'css-loader', \n                        options: {\n                            url: true,\n                        }\n                    },\n                    {\n                        loader: 'postcss-loader',\n                        options: {\n                            plugins: [\n                                autoprefixer({\n                                    browsers: [\n                                        'last 2 versions',\n                                        'ie >= 9',\n                                    ],\n                                })\n                            ],\n                        }\n                    },\n                    {\n                        loader: 'stylus-loader', \n                        options: {\n                            'include css': true,\n                            sourceMap: false,\n                            // 使用import引入主题文件，详见定制主题\n                            // 'import': path.resolve(__dirname, 'styles/themes/ksyun/index.styl'),\n                        }\n                    }\n                ]\n            }\n        ]\n    }\n}"
+        }
+    ],
+    "index": 2,
+    "sideBars": {
+        "undefined": [
+            {
+                "title": "快速开始",
+                "path": "docs/quick-start.md",
+                "children": [
+                    {
+                        "title": "准备工作",
+                        "path": "#header-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C'>准备工作</h1>",
+                        "text": "准备工作",
+                        "children": []
+                    },
+                    {
+                        "title": "使用脚手架",
+                        "path": "#header-%E4%BD%BF%E7%94%A8%E8%84%9A%E6%89%8B%E6%9E%B6",
+                        "level": 1,
+                        "content": "<h1 id='header-%E4%BD%BF%E7%94%A8%E8%84%9A%E6%89%8B%E6%9E%B6'>使用脚手架</h1>",
+                        "text": "使用脚手架",
+                        "children": []
+                    },
+                    {
+                        "title": "手动引入",
+                        "path": "#header-%E6%89%8B%E5%8A%A8%E5%BC%95%E5%85%A5",
+                        "level": 1,
+                        "content": "<h1 id='header-%E6%89%8B%E5%8A%A8%E5%BC%95%E5%85%A5'>手动引入</h1>",
+                        "text": "手动引入",
+                        "children": [
+                            {
+                                "title": "单文件构建版",
+                                "path": "#header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88",
+                                "level": 2,
+                                "content": "<h2 id='header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88'>单文件构建版</h2>",
+                                "text": "单文件构建版",
+                                "children": []
+                            },
+                            {
+                                "title": "多文件构建版",
+                                "path": "#header-%E5%A4%9A%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88",
+                                "level": 2,
+                                "content": "<h2 id='header-%E5%A4%9A%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88'>多文件构建版</h2>",
+                                "text": "多文件构建版",
+                                "children": []
+                            },
+                            {
+                                "title": "多文件半构建版",
+                                "path": "#header-%E5%A4%9A%E6%96%87%E4%BB%B6%E5%8D%8A%E6%9E%84%E5%BB%BA%E7%89%88",
+                                "level": 2,
+                                "content": "<h2 id='header-%E5%A4%9A%E6%96%87%E4%BB%B6%E5%8D%8A%E6%9E%84%E5%BB%BA%E7%89%88'>多文件半构建版</h2>",
+                                "text": "多文件半构建版",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "Vue中使用",
+                "path": "docs/vue.md",
+                "children": [
+                    {
+                        "title": "语法说明",
+                        "path": "#header-%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E",
+                        "level": 1,
+                        "content": "<h1 id='header-%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E'>语法说明</h1>",
+                        "text": "语法说明",
+                        "children": []
+                    },
+                    {
+                        "title": "安装依赖",
+                        "path": "#header-%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96'>安装依赖</h1>",
+                        "text": "安装依赖",
+                        "children": []
+                    },
+                    {
+                        "title": "配置<code>webpack.config.js</code>",
+                        "path": "#header-%E9%85%8D%E7%BD%AEwebpack.config.js",
+                        "level": 1,
+                        "content": "<h1 id='header-%E9%85%8D%E7%BD%AEwebpack.config.js'>配置<code>webpack.config.js</code></h1>",
+                        "text": "配置<code>webpack.config.js</code>",
+                        "children": []
+                    },
+                    {
+                        "title": "全量引入",
+                        "path": "#header-%E5%85%A8%E9%87%8F%E5%BC%95%E5%85%A5",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%85%A8%E9%87%8F%E5%BC%95%E5%85%A5'>全量引入</h1>",
+                        "text": "全量引入",
+                        "children": []
+                    },
+                    {
+                        "title": "按需引入",
+                        "path": "#header-%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5",
+                        "level": 1,
+                        "content": "<h1 id='header-%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5'>按需引入</h1>",
+                        "text": "按需引入",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "定制主题",
+                "path": "docs/theme.md",
+                "children": [
+                    {
+                        "title": "配置<code>webpack.config.js</code>",
+                        "path": "#header-%E9%85%8D%E7%BD%AEwebpack.config.js",
+                        "level": 1,
+                        "content": "<h1 id='header-%E9%85%8D%E7%BD%AEwebpack.config.js'>配置<code>webpack.config.js</code></h1>",
+                        "text": "配置<code>webpack.config.js</code>",
+                        "children": []
+                    },
+                    {
+                        "title": "定义主题",
+                        "path": "#header-%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A2%98",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A2%98'>定义主题</h1>",
+                        "text": "定义主题",
+                        "children": [
+                            {
+                                "title": "修改变量",
+                                "path": "#header-%E4%BF%AE%E6%94%B9%E5%8F%98%E9%87%8F",
+                                "level": 2,
+                                "content": "<h2 id='header-%E4%BF%AE%E6%94%B9%E5%8F%98%E9%87%8F'>修改变量</h2>",
+                                "text": "修改变量",
+                                "children": []
+                            },
+                            {
+                                "title": "添加新样式",
+                                "path": "#header-%E6%B7%BB%E5%8A%A0%E6%96%B0%E6%A0%B7%E5%BC%8F",
+                                "level": 2,
+                                "content": "<h2 id='header-%E6%B7%BB%E5%8A%A0%E6%96%B0%E6%A0%B7%E5%BC%8F'>添加新样式</h2>",
+                                "text": "添加新样式",
+                                "children": [
+                                    {
+                                        "title": "指定<code>$theme-dir</code>",
+                                        "path": "#header-%E6%8C%87%E5%AE%9A%24theme-dir",
+                                        "level": 3,
+                                        "content": "<h3 id='header-%E6%8C%87%E5%AE%9A%24theme-dir'>指定<code>$theme-dir</code></h3>",
+                                        "text": "指定<code>$theme-dir</code>",
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "title": "发布主题",
+                        "path": "#header-%E5%8F%91%E5%B8%83%E4%B8%BB%E9%A2%98",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%8F%91%E5%B8%83%E4%B8%BB%E9%A2%98'>发布主题</h1>",
+                        "text": "发布主题",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "国际化",
+                "path": "docs/i18n.md",
+                "children": []
+            },
+            {
+                "title": "更新日志",
+                "path": "docs/changelog.md",
+                "children": []
+            }
+        ],
+        "组件": [
+            {
+                "title": "按钮",
+                "path": "components/button/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": [
+                            {
+                                "title": "Button",
+                                "path": "#header-Button",
+                                "level": 2,
+                                "content": "<h2 id='header-Button'>Button</h2>",
+                                "text": "Button",
+                                "children": []
+                            },
+                            {
+                                "title": "ButtonGroup",
+                                "path": "#header-ButtonGroup",
+                                "level": 2,
+                                "content": "<h2 id='header-ButtonGroup'>ButtonGroup</h2>",
+                                "text": "ButtonGroup",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "title": "方法",
+                        "path": "#header-%E6%96%B9%E6%B3%95",
+                        "level": 1,
+                        "content": "<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>",
+                        "text": "方法",
+                        "children": [
+                            {
+                                "title": "Button",
+                                "path": "#header-Button",
+                                "level": 2,
+                                "content": "<h2 id='header-Button'>Button</h2>",
+                                "text": "Button",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "栅格",
+                "path": "components/grid/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": [
+                            {
+                                "title": "Row",
+                                "path": "#header-Row",
+                                "level": 2,
+                                "content": "<h2 id='header-Row'>Row</h2>",
+                                "text": "Row",
+                                "children": []
+                            },
+                            {
+                                "title": "Col",
+                                "path": "#header-Col",
+                                "level": 2,
+                                "content": "<h2 id='header-Col'>Col</h2>",
+                                "text": "Col",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "输入框",
+                "path": "components/input/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    },
+                    {
+                        "title": "扩展点",
+                        "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
+                        "level": 1,
+                        "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
+                        "text": "扩展点",
+                        "children": []
+                    },
+                    {
+                        "title": "事件",
+                        "path": "#header-%E4%BA%8B%E4%BB%B6",
+                        "level": 1,
+                        "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
+                        "text": "事件",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "单选框",
+                "path": "components/radio/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "复选框",
+                "path": "components/checkbox/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "选择框",
+                "path": "components/select/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": [
+                            {
+                                "title": "Select",
+                                "path": "#header-Select",
+                                "level": 2,
+                                "content": "<h2 id='header-Select'>Select</h2>",
+                                "text": "Select",
+                                "children": []
+                            },
+                            {
+                                "title": "Option",
+                                "path": "#header-Option",
+                                "level": 2,
+                                "content": "<h2 id='header-Option'>Option</h2>",
+                                "text": "Option",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "数字输入框",
+                "path": "components/spinner/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "日期选择",
+                "path": "components/datepicker/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "滑块",
+                "path": "components/slider/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "表单",
+                "path": "components/form/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": [
+                            {
+                                "title": "FormItem",
+                                "path": "#header-FormItem",
+                                "level": 2,
+                                "content": "<h2 id='header-FormItem'>FormItem</h2>",
+                                "text": "FormItem",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "title": "扩展点",
+                        "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
+                        "level": 1,
+                        "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
+                        "text": "扩展点",
+                        "children": [
+                            {
+                                "title": "FormItem",
+                                "path": "#header-FormItem",
+                                "level": 2,
+                                "content": "<h2 id='header-FormItem'>FormItem</h2>",
+                                "text": "FormItem",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "title": "事件",
+                        "path": "#header-%E4%BA%8B%E4%BB%B6",
+                        "level": 1,
+                        "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
+                        "text": "事件",
+                        "children": [
+                            {
+                                "title": "Form",
+                                "path": "#header-Form",
+                                "level": 2,
+                                "content": "<h2 id='header-Form'>Form</h2>",
+                                "text": "Form",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "title": "方法",
+                        "path": "#header-%E6%96%B9%E6%B3%95",
+                        "level": 1,
+                        "content": "<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>",
+                        "text": "方法",
+                        "children": [
+                            {
+                                "title": "Form",
+                                "path": "#header-Form",
+                                "level": 2,
+                                "content": "<h2 id='header-Form'>Form</h2>",
+                                "text": "Form",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "title": "静态方法",
+                        "path": "#header-%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95",
+                        "level": 1,
+                        "content": "<h1 id='header-%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95'>静态方法</h1>",
+                        "text": "静态方法",
+                        "children": [
+                            {
+                                "title": "Form",
+                                "path": "#header-Form",
+                                "level": 2,
+                                "content": "<h2 id='header-Form'>Form</h2>",
+                                "text": "Form",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "弹窗",
+                "path": "components/dialog/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    },
+                    {
+                        "title": "扩展点",
+                        "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
+                        "level": 1,
+                        "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
+                        "text": "扩展点",
+                        "children": []
+                    },
+                    {
+                        "title": "方法",
+                        "path": "#header-%E6%96%B9%E6%B3%95",
+                        "level": 1,
+                        "content": "<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>",
+                        "text": "方法",
+                        "children": []
+                    },
+                    {
+                        "title": "事件",
+                        "path": "#header-%E4%BA%8B%E4%BB%B6",
+                        "level": 1,
+                        "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
+                        "text": "事件",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "下拉菜单",
+                "path": "components/dropdown/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": [
+                            {
+                                "title": "Dropdown",
+                                "path": "#header-Dropdown",
+                                "level": 2,
+                                "content": "<h2 id='header-Dropdown'>Dropdown</h2>",
+                                "text": "Dropdown",
+                                "children": []
+                            },
+                            {
+                                "title": "DropdownItem",
+                                "path": "#header-DropdownItem",
+                                "level": 2,
+                                "content": "<h2 id='header-DropdownItem'>DropdownItem</h2>",
+                                "text": "DropdownItem",
+                                "children": []
+                            },
+                            {
+                                "title": "事件",
+                                "path": "#header-%E4%BA%8B%E4%BB%B6",
+                                "level": 2,
+                                "content": "<h2 id='header-%E4%BA%8B%E4%BB%B6'>事件</h2>",
+                                "text": "事件",
+                                "children": []
+                            },
+                            {
+                                "title": "DropdownItem",
+                                "path": "#header-DropdownItem",
+                                "level": 2,
+                                "content": "<h2 id='header-DropdownItem'>DropdownItem</h2>",
+                                "text": "DropdownItem",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "全局提示",
+                "path": "components/message/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    },
+                    {
+                        "title": "静态方法",
+                        "path": "#header-%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95",
+                        "level": 1,
+                        "content": "<h1 id='header-%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95'>静态方法</h1>",
+                        "text": "静态方法",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "提示弹层",
+                "path": "components/tooltip/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "进度条",
+                "path": "components/progress/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "步骤条",
+                "path": "components/steps/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": [
+                            {
+                                "title": "Steps",
+                                "path": "#header-Steps",
+                                "level": 2,
+                                "content": "<h2 id='header-Steps'>Steps</h2>",
+                                "text": "Steps",
+                                "children": []
+                            },
+                            {
+                                "title": "Step",
+                                "path": "#header-Step",
+                                "level": 2,
+                                "content": "<h2 id='header-Step'>Step</h2>",
+                                "text": "Step",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "面包屑",
+                "path": "components/breadcrumb/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": [
+                            {
+                                "title": "Breadcrumb",
+                                "path": "#header-Breadcrumb",
+                                "level": 2,
+                                "content": "<h2 id='header-Breadcrumb'>Breadcrumb</h2>",
+                                "text": "Breadcrumb",
+                                "children": []
+                            },
+                            {
+                                "title": "BreadcrumbItem",
+                                "path": "#header-BreadcrumbItem",
+                                "level": 2,
+                                "content": "<h2 id='header-BreadcrumbItem'>BreadcrumbItem</h2>",
+                                "text": "BreadcrumbItem",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "分页",
+                "path": "components/pagination/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    },
+                    {
+                        "title": "方法",
+                        "path": "#header-%E6%96%B9%E6%B3%95",
+                        "level": 1,
+                        "content": "<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>",
+                        "text": "方法",
+                        "children": [
+                            {
+                                "title": "Pagination",
+                                "path": "#header-Pagination",
+                                "level": 2,
+                                "content": "<h2 id='header-Pagination'>Pagination</h2>",
+                                "text": "Pagination",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "表格",
+                "path": "components/table/index.md",
+                "children": [
+                    {
+                        "title": "表格属性 Table",
+                        "path": "#header-%E8%A1%A8%E6%A0%BC%E5%B1%9E%E6%80%A7%20Table",
+                        "level": 1,
+                        "content": "<h1 id='header-%E8%A1%A8%E6%A0%BC%E5%B1%9E%E6%80%A7%20Table'>表格属性 Table</h1>",
+                        "text": "表格属性 Table",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "穿梭框",
+                "path": "components/transfer/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "可编辑文本",
+                "path": "components/editable/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    },
+                    {
+                        "title": "事件",
+                        "path": "#header-%E4%BA%8B%E4%BB%B6",
+                        "level": 1,
+                        "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
+                        "text": "事件",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    "highlighted": [
+        {
+            "language": "shell",
+            "content": "<pre><code class=\"hljs shell\">npm install -g yo generator-kscpm</code></pre>"
+        },
+        {
+            "language": "shell",
+            "content": "<pre><code class=\"hljs shell\">yo kscpm # 列出所有可选工程模板\nyo kscpm:intact # 初始化基于intact的kpc项目\nyo kscpm:vue # 初始化基于vue的kpc项目\n\n...</code></pre>"
+        },
+        {
+            "language": "shell",
+            "content": "<pre><code class=\"hljs shell\">npm run dev</code></pre>"
+        },
+        {
+            "language": "html",
+            "content": "<pre><code class=\"hljs html\"><span class=\"hljs-meta\">&lt;!doctype html&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">html</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">head</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">meta</span> <span class=\"hljs-attr\">charset</span>=<span class=\"hljs-string\">\"utf-8\"</span> /&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">title</span>&gt;</span>kpc-demo<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">title</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">link</span> <span class=\"hljs-attr\">rel</span>=<span class=\"hljs-string\">\"stylesheet\"</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"text/css\"</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"node_modules/kpc/dist/kpc.css\"</span> /&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">head</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">body</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span> <span class=\"hljs-attr\">id</span>=<span class=\"hljs-string\">\"app\"</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span>\n\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">script</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"text/javascript\"</span> <span class=\"hljs-attr\">src</span>=<span class=\"hljs-string\">\"node_modules/intact/dist/intact.js\"</span>&gt;</span><span class=\"undefined\"></span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">script</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">script</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"text/javascript\"</span> <span class=\"hljs-attr\">src</span>=<span class=\"hljs-string\">\"node_modules/kpc/dist/kpc.js\"</span>&gt;</span><span class=\"undefined\"></span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">script</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">script</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"text/javascript\"</span>&gt;</span><span class=\"javascript\">\n        Kpc.install();\n        <span class=\"hljs-keyword\">var</span> Page = Intact.extend({\n            <span class=\"hljs-attr\">template</span>: <span class=\"hljs-string\">'&lt;KButton ev-click={self.hello}&gt;Hello World&lt;/KButton&gt;'</span>,\n            <span class=\"hljs-attr\">hello</span>: <span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span>(<span class=\"hljs-params\"></span>) </span>{\n                KMessage.success(<span class=\"hljs-string\">'Welcome to kpc world!'</span>);\n            }\n        });\n        Intact.mount(Page, <span class=\"hljs-built_in\">document</span>.getElementById(<span class=\"hljs-string\">'app'</span>));\n    </span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">script</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">body</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">html</span>&gt;</span></code></pre>"
+        },
+        {
+            "language": "shell",
+            "content": "<pre><code class=\"hljs shell\">npm install intact kpc --save\n<span class=\"hljs-meta\">\n#</span><span class=\"bash\"> 内网git</span>\nnpm install intact 'git+http://newgit.op.ksyun.com/ksyun-fe/kpc.git#v4.0' --save\n\nnpm install css-loader style-loader file-loader --save-dev</code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">const</span> path = <span class=\"hljs-built_in\">require</span>(<span class=\"hljs-string\">'path'</span>);\n\n<span class=\"hljs-built_in\">module</span>.exports = {\n    ...\n    resolve: {\n        <span class=\"hljs-attr\">alias</span>: {\n            <span class=\"hljs-comment\">// 让kpc组件指向多文件构建版本，可以统一组件加载路径</span>\n            <span class=\"hljs-string\">'kpc/components'</span>: path.resolve(__dirname, <span class=\"hljs-string\">'./node_modules/kpc/@css/components'</span>)\n        }\n    },\n    <span class=\"hljs-attr\">module</span>: {\n        <span class=\"hljs-attr\">rules</span>: [\n            {\n                <span class=\"hljs-attr\">test</span>: <span class=\"hljs-regexp\">/\\.css$/</span>,\n                <span class=\"hljs-attr\">use</span>: [\n                    {\n                        <span class=\"hljs-attr\">loader</span>: <span class=\"hljs-string\">'style-loader'</span>,\n                    },\n                    {\n                        <span class=\"hljs-attr\">loader</span>: <span class=\"hljs-string\">'css-loader'</span>,\n                        <span class=\"hljs-attr\">options</span>: {\n                            <span class=\"hljs-attr\">url</span>: <span class=\"hljs-literal\">true</span>\n                        }\n                    }\n                ]\n            },\n            <span class=\"hljs-comment\">// 引入字体文件</span>\n            {\n                <span class=\"hljs-attr\">test</span>: <span class=\"hljs-regexp\">/\\.(woff2?|eot|ttf|otf|svg)(\\?.*)?$/</span>,\n                <span class=\"hljs-attr\">use</span>: [\n                    {\n                        <span class=\"hljs-attr\">loader</span>: <span class=\"hljs-string\">'file-loader'</span>,\n                        <span class=\"hljs-attr\">options</span>: {\n                            <span class=\"hljs-attr\">outputPath</span>: <span class=\"hljs-string\">'./fonts/'</span>,\n                        }\n                    }\n                ]\n            },\n        ]\n    }\n}</code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">import</span> {Button, ButtonGroup} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/button'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">ButtonGroup</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span>&gt;</span>button1<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span>&gt;</span>button2<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">ButtonGroup</span>&gt;</span></span></code></pre>"
+        },
+        {
+            "language": "shell",
+            "content": "<pre><code class=\"hljs shell\">npm install postcss-loader autoprefixer stylus-loader --save-dev</code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">const</span> path = <span class=\"hljs-built_in\">require</span>(<span class=\"hljs-string\">'path'</span>);\n\n<span class=\"hljs-built_in\">module</span>.export = {\n    ...\n    resolve: {\n        <span class=\"hljs-attr\">alias</span>: {\n            <span class=\"hljs-string\">'kpc/components'</span>: path.resolve(__dirname, <span class=\"hljs-string\">'./node_modules/kpc/@stylus/components'</span>)\n        }\n    },\n    <span class=\"hljs-attr\">module</span>: {\n        <span class=\"hljs-attr\">rules</span>: [\n            ...\n            <span class=\"hljs-comment\">// 编译stylus</span>\n            {\n                <span class=\"hljs-attr\">test</span>: <span class=\"hljs-regexp\">/\\.(styl|css)$/</span>,\n                <span class=\"hljs-attr\">use</span>: [\n                    {\n                        <span class=\"hljs-attr\">loader</span>: <span class=\"hljs-string\">'css-loader'</span>, \n                        <span class=\"hljs-attr\">options</span>: {\n                            <span class=\"hljs-attr\">url</span>: <span class=\"hljs-literal\">true</span>,\n                        }\n                    },\n                    {\n                        <span class=\"hljs-attr\">loader</span>: <span class=\"hljs-string\">'postcss-loader'</span>,\n                        <span class=\"hljs-attr\">options</span>: {\n                            <span class=\"hljs-attr\">plugins</span>: [\n                                autoprefixer({\n                                    <span class=\"hljs-attr\">browsers</span>: [\n                                        <span class=\"hljs-string\">'last 2 versions'</span>,\n                                        <span class=\"hljs-string\">'ie &gt;= 9'</span>,\n                                    ],\n                                })\n                            ],\n                        }\n                    },\n                    {\n                        <span class=\"hljs-attr\">loader</span>: <span class=\"hljs-string\">'stylus-loader'</span>, \n                        <span class=\"hljs-attr\">options</span>: {\n                            <span class=\"hljs-string\">'include css'</span>: <span class=\"hljs-literal\">true</span>,\n                            <span class=\"hljs-attr\">sourceMap</span>: <span class=\"hljs-literal\">false</span>,\n                            <span class=\"hljs-comment\">// 使用import引入主题文件，详见定制主题</span>\n                            <span class=\"hljs-comment\">// 'import': path.resolve(__dirname, 'styles/themes/ksyun/index.styl'),</span>\n                        }\n                    }\n                ]\n            }\n        ]\n    }\n}</code></pre>"
+        }
+    ]
+}

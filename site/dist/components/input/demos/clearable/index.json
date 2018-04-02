@@ -1,0 +1,37 @@
+{
+    "setting": {
+        "title": "可清除",
+        "order": 4
+    },
+    "catalogs": [],
+    "contents": "<p>指定<code>clearable</code>可以展示快速清除按钮</p>\n",
+    "codes": [
+        {
+            "language": "vdt",
+            "content": "import Input from 'kpc/components/input';\n\n<div>\n    <Input clearable placeholder=\"please enter\" />\n    <br />\n    <Input clearable placeholder=\"please enter\">\n        <b:suffix><i class=\"ion-ios-search\"></i></b:suffix>\n    </Input>\n</div>"
+        },
+        {
+            "language": "styl",
+            "content": ".k-input\n    margin 5px"
+        },
+        {
+            "language": "js",
+            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
+        }
+    ],
+    "index": 90,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Input <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/input'</span>;\n\n&lt;div&gt;\n    &lt;Input clearable placeholder=\"please enter\" /&gt;\n    &lt;br /&gt;\n    &lt;Input clearable placeholder=\"please enter\"&gt;\n        &lt;b:suffix&gt;&lt;i class=\"ion-ios-search\"&gt;&lt;/i&gt;&lt;/b:suffix&gt;\n    &lt;/Input&gt;\n&lt;/div&gt;</code></pre>"
+        },
+        {
+            "language": "styl",
+            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-input</span>\n    <span class=\"hljs-attribute\">margin</span> <span class=\"hljs-number\">5px</span></code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
+        }
+    ]
+}

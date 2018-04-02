@@ -1,0 +1,37 @@
+{
+    "setting": {
+        "title": "最大和最小日期",
+        "order": 2
+    },
+    "catalogs": [],
+    "contents": "<p>通过<code>maxDate</code>和<code>minDate</code>可以给组件指定最大和最小选择日期。</p>\n",
+    "codes": [
+        {
+            "language": "vdt",
+            "content": "import Datepicker from 'kpc/components/datepicker';\n\n<div>\n    <Datepicker v-model=\"from\" placeholder=\"开始日期\"\n        maxDate={{ self.get('to') }}\n        minDate={{ new Date() }}\n    />\n    <Datepicker v-model=\"to\" placeholder=\"结束日期\"\n        minDate={{ self.get('from') }}\n    />\n</div>"
+        },
+        {
+            "language": "styl",
+            "content": ".k-datepicker\n    margin-right 10px"
+        },
+        {
+            "language": "js",
+            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
+        }
+    ],
+    "index": 62,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Datepicker <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/datepicker'</span>;\n\n&lt;div&gt;\n    &lt;Datepicker v-model=\"from\" placeholder=\"开始日期\"\n        maxDate={{ self.get('to') }}\n        minDate={{ new Date() }}\n    /&gt;\n    &lt;Datepicker v-model=\"to\" placeholder=\"结束日期\"\n        minDate={{ self.get('from') }}\n    /&gt;\n&lt;/div&gt;</code></pre>"
+        },
+        {
+            "language": "styl",
+            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-datepicker</span>\n    <span class=\"hljs-attribute\">margin-right</span> <span class=\"hljs-number\">10px</span></code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
+        }
+    ]
+}
