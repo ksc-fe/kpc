@@ -80,7 +80,7 @@ import {Slider} from 'kpc/components/slider';
         <Switch v-model="model.switch" />
     </FormItem>
     <FormItem model="model.slider" rules={{ {required: true, min: 1} }} label="Slider">
-        <Slider v-model="model.slider" isShowInput={{ false }} isShowEnd={{ false }} />
+        <Slider v-model="model.slider" isShowInput={{ false }} />
     </FormItem>
     <FormItem label="Textarea" model="model.textarea"
         rules={{ {required: true} }}
@@ -114,6 +114,8 @@ import {Slider} from 'kpc/components/slider';
 .k-radio
 .k-checkbox
     margin-right 10px
+.k-slider
+    margin-top 15px
 ```
 
 ```js
