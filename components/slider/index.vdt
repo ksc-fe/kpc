@@ -18,67 +18,72 @@ const classNameObj = {
 const sliderWidth = max - min;
 
 <div class={{ classNameObj }} style={{ style }}>
-    <div class="k-wrapper" 
-        ev-click={{ self._clickWrapper }} 
-        ref={{ dom => self.$slider = dom }}
-    >
-        <div class="k-bar"
-            style={{ isRange ?
-                {
-                    width: Math.abs(_sliderValue[1] - _sliderValue[0]) / sliderWidth * 100 + '%',
-                    left: (Math.min(_sliderValue[0], _sliderValue[1]) - min) / sliderWidth * 100 + '%'
-                } :
-                {
-                    width: (_sliderValue - min) / sliderWidth * 100 + '%'
-                }
-            }}
-        ></div>
-        <div
-            class={{ {
-                "k-handle": true, 
-                "k-active": (_isFirst && _sliderValue[1] === self._max) || 
-                    (_isSecond && value[0] !== self._min)
-            } }}
-            style={{ { 
-                left: isRange ?
-                    (_sliderValue[0] - min) / sliderWidth * 100 + '%' :
-                    (_sliderValue - min) / sliderWidth * 100 + '%'
-            } }}
-            ref={{ dom => self.$sliderFirstBtn = dom }}
-            ev-mousedown={{ isRange ? 
-                self._onDrag.bind(self, '_isFirst') : 
-                self._onDrag.bind(self, undefined)
-            }}
-            ev-click={{ self._stopPropagation }}
+    <div class="k-slider-wrapper">
+        <div class="k-wrapper" 
+            ev-click={{ self._clickWrapper }} 
+            ref={{ dom => self.$slider = dom }}
         >
-            <div v-if={{ isInnerText }}>{{ isRange ? value : value[0]}}</div>
-        </div>
-        <div
-            class={{ {
-                "k-handle": true,
-                "k-active": (_isSecond && _sliderValue[0] === self._min) || 
-                    (_isFirst && _sliderValue[1] !== self._max)
-            } }}
-            v-if={{ isRange }}
-            ref={{ dom => self.$sliderSecondBtn = dom }}
-            ev-mousedown={{ self._onDrag.bind(self, "_isSecond") }}
-            style={{ {
-                left: (_sliderValue[1] - min) / sliderWidth * 100 + '%'
-            } }}
-        >
-            <div v-if={{ isInnerText }}>{{ value[1] }}</div>
+            <div class="k-bar"
+                style={{ isRange ?
+                    {
+                        width: Math.abs(_sliderValue[1] - _sliderValue[0]) / sliderWidth * 100 + '%',
+                        left: (Math.min(_sliderValue[0], _sliderValue[1]) - min) / sliderWidth * 100 + '%'
+                    } :
+                    {
+                        width: (_sliderValue - min) / sliderWidth * 100 + '%'
+                    }
+                }}
+            ></div>
+            <div
+                class={{ {
+                    "k-handle": true, 
+                    "k-active": (_isFirst && _sliderValue[1] === self._max) || 
+                        (_isSecond && value[0] !== self._min)
+                } }}
+                style={{ { 
+                    left: isRange ?
+                        (_sliderValue[0] - min) / sliderWidth * 100 + '%' :
+                        (_sliderValue - min) / sliderWidth * 100 + '%'
+                } }}
+                ref={{ dom => self.$sliderFirstBtn = dom }}
+                ev-mousedown={{ isRange ? 
+                    self._onDrag.bind(self, '_isFirst') : 
+                    self._onDrag.bind(self, undefined)
+                }}
+                ev-click={{ self._stopPropagation }}
+            >
+                <div v-if={{ isInnerText }}>{{ isRange ? value : value[0]}}</div>
+            </div>
+            <div
+                class={{ {
+                    "k-handle": true,
+                    "k-active": (_isSecond && _sliderValue[0] === self._min) || 
+                        (_isFirst && _sliderValue[1] !== self._max)
+                } }}
+                v-if={{ isRange }}
+                ref={{ dom => self.$sliderSecondBtn = dom }}
+                ev-mousedown={{ self._onDrag.bind(self, "_isSecond") }}
+                style={{ {
+                    left: (_sliderValue[1] - min) / sliderWidth * 100 + '%'
+                } }}
+            >
+                <div v-if={{ isInnerText }}>{{ value[1] }}</div>
+            </div>
         </div>
         <div class="k-box" v-if={{ isShowEnd }}>
             <span>{{ min + unit }} </span>
             <span>{{ max + unit }}</span>
         </div>
     </div>
-    <Spinner
+    <div class="k-spinner-wrapper"
         v-if={{ isShowInput && !isRange }}
-        disabled={{ disabled }} 
-        max={{ max }} 
-        min={{ min }}
-        v-model="_inputValue"
-        step={{ step }} 
-    />
+    >
+        <Spinner
+            disabled={{ disabled }} 
+            max={{ max }} 
+            min={{ min }}
+            v-model="_inputValue"
+            step={{ step }} 
+        />
+    </div>
 </div>

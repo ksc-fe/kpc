@@ -2,22 +2,27 @@
 
 .k-slider
     position relative
-    display flex
-    align-items center
-    .k-wrapper
-        height $slider-height
-        background-color $slider-bg-color
-        border-radius $slider-border-radius
-        cursor pointer
-        position relative
-        display inline-block
-        flex 1
-        user-select none
+    // display flex
+    // align-items center
+    display table
+    width 100%
+    .k-slider-wrapper
+        // flex 1
+        display table-cell
+        vertical-align middle
+        .k-wrapper
+            height $slider-height
+            background-color $slider-bg-color
+            border-radius $slider-border-radius
+            cursor pointer
+            position relative
+            // display inline-block
+            user-select none
         .k-box
-            position absolute
-            top $slider-height
+            // position absolute
+            // top $slider-height
             padding $slider-box-padding
-            width 100%
+            // width 100%
             :last-child
                 float right
         .k-bar
@@ -43,8 +48,11 @@
                 transform $slider-handle-hover-transform 
                 cursor grab
                 background-color $slider-handle-hover-bg-color 
+    .k-spinner-wrapper
+        display table-cell
+        width $slider-spinner-width 
     .k-spinner
-        margin-left $slider-margin
+        float right
 
     &.k-dragging
         .k-bar
