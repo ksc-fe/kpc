@@ -1,3 +1,0 @@
-import Datepicker from 'kpc/components/datepicker';
-
-<Datepicker clearable v-model="date"/>
