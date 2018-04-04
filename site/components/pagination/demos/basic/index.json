@@ -1,0 +1,37 @@
+{
+    "setting": {
+        "title": "基本用法",
+        "order": 0
+    },
+    "catalogs": [],
+    "contents": "<p><code>Pagination</code>的基本用法，通过<code>total</code>指定数据总条数，<code>limit</code>指定每页数据条数，<code>limits</code>数组定义可供选择的条数</p>\n",
+    "codes": [
+        {
+            "language": "vdt",
+            "content": "import Pagination from 'kpc/components/pagination';\n\n<div>\n    <Pagination total={{ 200 }} />\n    <Pagination total={{ 200 }} limit={{ 20 }} />\n    <Pagination total={{ 200 }} limit={{ 20 }} limits={{ [10, 20, 50, 100] }}/>\n</div>"
+        },
+        {
+            "language": "styl",
+            "content": ".k-pagination\n    margin-bottom 20px"
+        },
+        {
+            "language": "js",
+            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
+        }
+    ],
+    "index": 57,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Pagination <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/pagination'</span>;\n\n&lt;div&gt;\n    &lt;Pagination total={{ 200 }} /&gt;\n    &lt;Pagination total={{ 200 }} limit={{ 20 }} /&gt;\n    &lt;Pagination total={{ 200 }} limit={{ 20 }} limits={{ [10, 20, 50, 100] }}/&gt;\n&lt;/div&gt;</code></pre>"
+        },
+        {
+            "language": "styl",
+            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-pagination</span>\n    <span class=\"hljs-attribute\">margin-bottom</span> <span class=\"hljs-number\">20px</span></code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
+        }
+    ]
+}

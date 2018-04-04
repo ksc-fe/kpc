@@ -1,0 +1,29 @@
+{
+    "setting": {
+        "title": "自定义头部和底部",
+        "order": 2
+    },
+    "catalogs": [],
+    "contents": "<p>组件提供了<code>header</code>和<code>footer</code>扩展点（block），通过它们可以自定义头部和底部。</p>\n<blockquote>\n<p>可以通过<code>parent()</code>引用到组件定义的默认内容</p>\n</blockquote>\n",
+    "codes": [
+        {
+            "language": "vdt",
+            "content": "import Button from 'kpc/components/button';\nimport Dialog from 'kpc/components/dialog';\n\n<div>\n    <Button ev-click={{ self.set.bind(self, 'show', true) }}\n        type=\"primary\"\n    >Show Dialog</Button>\n    <Dialog v-model=\"show\">\n        <b:header>\n            <div class=\"k-title\">\n                <i class=\"ion-person\"></i>\n                Custom Header\n            </div>\n        </b:header>\n\n        Dialog Body \n\n        <b:footer>\n            Custom Footer\n            {{ parent() }}\n        </b:footer>\n    </Dialog>\n</div>"
+        },
+        {
+            "language": "js",
+            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
+        }
+    ],
+    "index": 25,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Button <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/button'</span>;\n<span class=\"hljs-keyword\">import</span> Dialog <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/dialog'</span>;\n\n&lt;div&gt;\n    &lt;Button ev-click={{ self.set.bind(self, 'show', true) }}\n        type=\"primary\"\n    &gt;Show Dialog&lt;/Button&gt;\n    &lt;Dialog v-model=\"show\"&gt;\n        &lt;b:header&gt;\n            &lt;div class=\"k-title\"&gt;\n                &lt;i class=\"ion-person\"&gt;&lt;/i&gt;\n                Custom Header\n            &lt;/div&gt;\n        &lt;/b:header&gt;\n\n        Dialog Body \n\n        &lt;b:footer&gt;\n            Custom Footer\n            {{ parent() }}\n        &lt;/b:footer&gt;\n    &lt;/Dialog&gt;\n&lt;/div&gt;</code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
+        }
+    ]
+}

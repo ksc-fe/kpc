@@ -1,0 +1,11 @@
+import Checkbox from 'kpc/components/checkbox';
+
+<div>
+    <Checkbox v-model="value1">默认值: {{ JSON.stringify(self.get('value1')) }}</Checkbox>
+    <Checkbox v-model="value2" trueValue="checked">
+        指定选中时取值为"checked": {{ JSON.stringify(self.get('value2')) }}
+    </Checkbox>
+    <Checkbox v-model="value3" trueValue={{ 0 }} falseValue={{ self.get("uncheckedValue") }}>
+        指定非选中时取值为对象：{{ JSON.stringify(self.get('value3')) }}
+    </Checkbox>
+</div>

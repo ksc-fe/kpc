@@ -1,0 +1,7 @@
+import Pagination from 'kpc/components/pagination';
+
+<div>
+    <Pagination total={{ 200 }} />
+    <Pagination total={{ 200 }} size="small" />
+    <Pagination total={{ 200 }} size="mini" />
+</div>

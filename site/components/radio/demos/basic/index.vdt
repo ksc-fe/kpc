@@ -1,0 +1,7 @@
+import Radio from 'kpc/components/radio';
+
+<div>
+    <Radio>radio</Radio>
+    <Radio disabled>disabled radio</Radio>
+    <Radio value={{ true }} disabled>disabled checked radio</Radio>
+</div>

@@ -1,0 +1,8 @@
+import Pagination from 'kpc/components/pagination';
+
+<div>
+    <Pagination total={{ 200 }} 
+        current={{ self.get('current') }}
+        ev-$change:current={{ self._fetch }} 
+    />
+</div>
