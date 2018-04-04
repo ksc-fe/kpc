@@ -1,6 +1,6 @@
 ---
 title: 行选中
-order: 0
+order: 3
 ---
 
 * `rowKey`：设置行的`key`值，类型：`Function`，默认：行的`index`

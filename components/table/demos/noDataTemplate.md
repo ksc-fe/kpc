@@ -1,6 +1,6 @@
 ---
 title: 自定义无内容时的展示信息
-order: 0
+order: 9
 ---
 
 当data为`[]`时, 可设置`noDataTemplate`来展示你想展示的信息（默认为： /(ㄒoㄒ)/~~ 没有找到亲要的数据哦~），类型`String`

@@ -1,6 +1,6 @@
 ---
 title: 表头是否可拖动
-order: 0
+order: 12
 ---
 
 `resizable`：表头是否可拖动，类型`Boolean`，`false`(默认)

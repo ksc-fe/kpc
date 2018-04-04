@@ -1,6 +1,6 @@
 ---
 title: 行展开
-order: 0
+order: 6
 ---
 
 * `rowExpandable`：是否点击展开行，类型`Boolean`，`true`(默认)

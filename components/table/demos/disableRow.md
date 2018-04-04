@@ -1,6 +1,6 @@
 ---
 title: 禁用行
-order: 0
+order: 7
 ---
 
 `disableRow`：禁用某一行，类型`Function`，`function(data, index) { return false }`(默认)

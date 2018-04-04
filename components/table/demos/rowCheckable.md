@@ -1,6 +1,6 @@
 ---
 title: 整行选中
-order: 0
+order: 4
 ---
 
 `rowCheckable`：是否点击整行任意位置后整行选中，类型`Boolean`，`true`(默认)

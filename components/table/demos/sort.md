@@ -1,6 +1,6 @@
 ---
 title: 排序
-order: 0
+order: 10
 ---
 
 `sort`：排序，类型`Object`，`{}`(默认)

@@ -1,5 +1,5 @@
 ---
-title: 表格(Table)
+title: 表格
 category: 组件
 order: 89 
 ---

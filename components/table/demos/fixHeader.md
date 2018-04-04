@@ -1,6 +1,6 @@
 ---
 title: 表头固定
-order: 0
+order: 8
 ---
 
 `fixHeader`：设置表头固定，类型`Boolean`，`false`(默认)

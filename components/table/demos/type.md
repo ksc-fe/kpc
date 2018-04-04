@@ -1,6 +1,6 @@
 ---
 title: table的类型
-order: 0
+order: 11
 ---
 
 `type`：设置表格的类型，类型`String`，`"default"`(默认)

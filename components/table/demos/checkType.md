@@ -1,6 +1,6 @@
 ---
 title: 选择框的类型
-order: 0
+order: 2
 ---
 
 `checkType`：设置选择框的类型，类型`String`，`checkbox`多选框(默认)/`radio`单选框/`none`无选框

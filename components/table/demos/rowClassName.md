@@ -1,6 +1,6 @@
 ---
 title: 行样式
-order: 0
+order: 5
 ---
 
 `rowClassName`：给行添加样式，类型`Function`，`function(value, index) {  }`(默认)
