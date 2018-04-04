@@ -106,7 +106,7 @@ module.exports = {
     resolve: {
         alias: {
             // 让kpc组件指向多文件构建版本，可以统一组件加载路径
-            'kpc/components': path.resolve(__dirname, './node_modules/kpc/@css/components')
+            'kpc': path.resolve(__dirname, './node_modules/kpc/@css')
         }
     },
     module: {
@@ -181,7 +181,7 @@ module.export = {
     ...
     resolve: {
         alias: {
-            'kpc/components': path.resolve(__dirname, './node_modules/kpc/@stylus/components')
+            'kpc': path.resolve(__dirname, './node_modules/kpc/@stylus')
         }
     },
     module: {
