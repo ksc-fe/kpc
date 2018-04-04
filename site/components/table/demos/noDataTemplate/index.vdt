@@ -1,8 +1,0 @@
-import Table from 'kpc/components/table';
-var scheme = {a: '表头1', b: '表头2'};
-var data = [];
-var tip = '这里没有数据(自定义版本)';
-<div class='no-data-template'>
-    <Table scheme={{scheme}} data={{data}} />
-    <Table scheme={{scheme}} data={{data}} noDataTemplate={{tip}}/>
-</div>

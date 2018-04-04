@@ -1,6 +1,0 @@
-import {ButtonGroup, Button} from 'kpc/components/button';
-
-<ButtonGroup>
-    <Button ev-click={{ self.showMessage1 }}>close after 10s</Button>
-    <Button ev-click={{ self.showMessage2 }}>stick message</Button>
-</ButtonGroup>
