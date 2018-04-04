@@ -1,3 +1,5 @@
+import {_$, localize} from './utils';
+
 /* generate start */
 
 import {App} from './app';
@@ -15,8 +17,8 @@ import {Link} from './link';
 import {Message} from './message';
 import {MoveWrapper} from './moveWrapper';
 import {Pagination} from './pagination';
-import {Progress} from './progress';
 import {Radio} from './radio';
+import {Progress} from './progress';
 import {ScrollSelect} from './scrollSelect';
 import {Select, Option, OptionGroup} from './select';
 import {Slider} from './slider';
@@ -24,8 +26,8 @@ import {Spinner} from './spinner';
 import {Steps, Step} from './steps';
 import {Switch} from './switch';
 import {Table, TableColumn} from './table';
-import {Tabs, Tab} from './tabs';
 import {Tooltip} from './tooltip';
+import {Tabs, Tab} from './tabs';
 import {Transfer} from './transfer';
 
 export {
@@ -50,8 +52,8 @@ export {
     Message,
     MoveWrapper,
     Pagination,
-    Progress,
     Radio,
+    Progress,
     ScrollSelect,
     Select,
     Option,
@@ -63,13 +65,13 @@ export {
     Switch,
     Table,
     TableColumn,
+    Tooltip,
     Tabs,
     Tab,
-    Tooltip,
     Transfer
 };
 
-export const version = '4.0.0';
+export const version = '0.0.1';
 
 /* generate end */
 
@@ -94,3 +96,5 @@ export function install(Vue) {
         }
     }
 }
+
+export {_$, localize};

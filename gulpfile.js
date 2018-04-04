@@ -113,8 +113,14 @@ function buildFont(destPath) {
         .pipe(gulp.dest(destPath));
 }
 
+function buildI18n(destPath) {
+    return gulp.src('./i18n/**/*.js', {base: './'})
+        .pipe(babel())
+        .pipe(gulp.dest(destPath));
+}
+
 gulp.task('index', () => {
-    const codes = ['/* generate start */\n'];
+    const codes = [];
     const components = [];
     return gulp.src('./components/*/index.js')
         .pipe(tap((file) => {
@@ -146,12 +152,20 @@ gulp.task('index', () => {
             codes.push('', `export const version = '${packageJson.version}';`);
             const path = './components/index.js';
             const contents = fs.readFileSync(path, 'utf-8');
-            const originContents = contents.substring(contents.indexOf('/* generate end */'));
-            fs.writeFileSync(path, codes.join('\n') + '\n\n' + originContents);
+            const startComment = '/* generate start */';
+            const startIndex = contents.indexOf(startComment) + startComment.length;
+            const endIndex = contents.indexOf('/* generate end */');
+            const startContents = contents.substring(0, startIndex);
+            const endContents = contents.substring(endIndex);
+            fs.writeFileSync(path, [startContents,  codes.join('\n'), endContents].join('\n\n'));
         });
 });
 
-gulp.task('build@single', (done) => {
+gulp.task('clean@single', (done) => {
+    rimraf('./dist', done);
+});
+
+gulp.task('build:js@single', (done) => {
     webpack(webpackBuildConfig, (err, stats) => {
         console.log(stats.toString({
             colors: true    // 在控制台展示颜色
@@ -159,6 +173,48 @@ gulp.task('build@single', (done) => {
         done();
     });
 });
+
+gulp.task('build:i18n@single', () => {
+    return gulp.src('./i18n/**/*.js', {base: './'})
+        .pipe(tap((file, t) => {
+            webpack({
+                entry: {
+                    [path.basename(file.path, '.js')]: file.path,
+                },
+                output: {
+                   path: path.resolve(__dirname, './dist/i18n'),
+                   filename: '[name].js',
+                   library: 'i18n',
+                   libraryTarget: 'umd'
+                },
+                module: {
+                    rules: [
+                        {
+                            test: /\.m?js$/,
+                            exclude: [/node_modules/],
+                            use: [
+                                {
+                                    loader: 'babel-loader',
+                                    options: {
+                                        cacheDirectory: path.resolve(__dirname, './.cache'),
+                                    }
+                                }
+                            ]
+                        },
+                    ]
+                }
+            }, (err, stats) => {
+                console.log(stats.toString({
+                    colors: true
+                }));
+            });
+        }));
+});
+
+gulp.task('build@single', gulp.series(
+    'clean@single',
+    gulp.parallel('build:js@single', 'build:i18n@single')
+));
 
 const destPath = './@css'
 
@@ -199,9 +255,16 @@ gulp.task('build:font', () => {
     return buildFont(destPath);
 });
 
+gulp.task('build:i18n', () => {
+    return buildI18n(destPath);
+});
+
 gulp.task('build@css', gulp.series(
     'clean@css', 
-    gulp.parallel('build:js', 'build:vdt', 'build:stylus', 'build:style', 'build:font')
+    gulp.parallel(
+        'build:js', 'build:vdt', 'build:stylus', 
+        'build:style', 'build:font', 'build:i18n'
+    )
 ));
 
 
@@ -240,9 +303,17 @@ gulp.task('build:font@stylus', () => {
     return buildFont(destPathStylus);
 })
 
+gulp.task('build:i18n@stylus', () => {
+    return buildI18n(destPathStylus);
+});
+
 gulp.task('build@stylus', gulp.series(
     'clean@stylus',
-    gulp.parallel('build:js@stylus', 'build:vdt@stylus', 'build:style@stylus', 'build:font@stylus')
+    gulp.parallel(
+        'build:js@stylus', 'build:vdt@stylus', 
+        'build:style@stylus', 'build:font@stylus',
+        'build:i18n@stylus'
+    )
 )); 
 
 gulp.task('build', gulp.series(

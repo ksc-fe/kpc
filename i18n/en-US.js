@@ -1,4 +1,4 @@
-export default {
+const i18n = {
     // datepicker
     'yearMonthFormat': 'MM YYYY',
     '请选择日期和时间': 'Please select date and time',
@@ -68,3 +68,9 @@ export default {
     '请选择': 'Please select',
     '已选择': 'Selected',
 };
+
+export default i18n; 
+
+if (typeof global.Kpc !== 'undefined') {
+    Kpc.utils.localize(i18n);
+}

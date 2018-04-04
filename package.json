@@ -48,7 +48,6 @@
     "babel-preset-stage-0": "^6.24.1",
     "chai": "^3.5.0",
     "chai-karma-snapshot": "^0.6.1",
-    "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.11",
     "dynamic-middleware": "^4.0.1",
     "eslint": "^4.19.1",

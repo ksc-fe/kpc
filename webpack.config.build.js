@@ -3,7 +3,6 @@ const path = require('path');
 const webpackConfig = require('./webpack.config.common');
 const merge = require('webpack-merge');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = merge.smartStrategy({
     'module.rules.use': 'replace'
@@ -19,7 +18,8 @@ module.exports = merge.smartStrategy({
     },
     externals: {
         intact: {
-            root: 'Intact', commonjs2: 'intact',
+            root: 'Intact', 
+            commonjs2: 'intact',
             commonjs: 'intact',
             amd: 'intact',
         }
@@ -42,5 +42,4 @@ module.exports.plugins = [
         'process.browser': true
     }),
     new ExtractTextPlugin('kpc.css'),
-    new CleanWebpackPlugin(module.exports.output.path),
 ];
