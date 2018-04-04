@@ -1,0 +1,6 @@
+import Spinner from 'kpc/components/spinner';
+
+<div>
+    <Spinner v-model="value" />
+    <Spinner disabled />
+</div>

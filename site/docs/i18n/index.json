@@ -1,0 +1,626 @@
+{
+    "setting": {
+        "title": "国际化",
+        "order": 2
+    },
+    "catalogs": [],
+    "contents": "<p>i18n</p>\n",
+    "codes": [
+        {
+            "language": "js",
+            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
+        }
+    ],
+    "index": 112,
+    "sideBars": {
+        "组件": [
+            {
+                "title": "面包屑",
+                "path": "components/breadcrumb/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": [
+                            {
+                                "title": "Breadcrumb",
+                                "path": "#header-Breadcrumb",
+                                "level": 2,
+                                "content": "<h2 id='header-Breadcrumb'>Breadcrumb</h2>",
+                                "text": "Breadcrumb",
+                                "children": []
+                            },
+                            {
+                                "title": "BreadcrumbItem",
+                                "path": "#header-BreadcrumbItem",
+                                "level": 2,
+                                "content": "<h2 id='header-BreadcrumbItem'>BreadcrumbItem</h2>",
+                                "text": "BreadcrumbItem",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "按钮",
+                "path": "components/button/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": [
+                            {
+                                "title": "Button",
+                                "path": "#header-Button",
+                                "level": 2,
+                                "content": "<h2 id='header-Button'>Button</h2>",
+                                "text": "Button",
+                                "children": []
+                            },
+                            {
+                                "title": "ButtonGroup",
+                                "path": "#header-ButtonGroup",
+                                "level": 2,
+                                "content": "<h2 id='header-ButtonGroup'>ButtonGroup</h2>",
+                                "text": "ButtonGroup",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "title": "方法",
+                        "path": "#header-%E6%96%B9%E6%B3%95",
+                        "level": 1,
+                        "content": "<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>",
+                        "text": "方法",
+                        "children": [
+                            {
+                                "title": "Button",
+                                "path": "#header-Button",
+                                "level": 2,
+                                "content": "<h2 id='header-Button'>Button</h2>",
+                                "text": "Button",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "复选框",
+                "path": "components/checkbox/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "日期选择",
+                "path": "components/datepicker/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "弹窗",
+                "path": "components/dialog/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    },
+                    {
+                        "title": "扩展点",
+                        "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
+                        "level": 1,
+                        "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
+                        "text": "扩展点",
+                        "children": []
+                    },
+                    {
+                        "title": "方法",
+                        "path": "#header-%E6%96%B9%E6%B3%95",
+                        "level": 1,
+                        "content": "<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>",
+                        "text": "方法",
+                        "children": []
+                    },
+                    {
+                        "title": "事件",
+                        "path": "#header-%E4%BA%8B%E4%BB%B6",
+                        "level": 1,
+                        "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
+                        "text": "事件",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "下拉菜单",
+                "path": "components/dropdown/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": [
+                            {
+                                "title": "Dropdown",
+                                "path": "#header-Dropdown",
+                                "level": 2,
+                                "content": "<h2 id='header-Dropdown'>Dropdown</h2>",
+                                "text": "Dropdown",
+                                "children": []
+                            },
+                            {
+                                "title": "DropdownItem",
+                                "path": "#header-DropdownItem",
+                                "level": 2,
+                                "content": "<h2 id='header-DropdownItem'>DropdownItem</h2>",
+                                "text": "DropdownItem",
+                                "children": []
+                            },
+                            {
+                                "title": "事件",
+                                "path": "#header-%E4%BA%8B%E4%BB%B6",
+                                "level": 2,
+                                "content": "<h2 id='header-%E4%BA%8B%E4%BB%B6'>事件</h2>",
+                                "text": "事件",
+                                "children": []
+                            },
+                            {
+                                "title": "DropdownItem",
+                                "path": "#header-DropdownItem",
+                                "level": 2,
+                                "content": "<h2 id='header-DropdownItem'>DropdownItem</h2>",
+                                "text": "DropdownItem",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "可编辑文本",
+                "path": "components/editable/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    },
+                    {
+                        "title": "事件",
+                        "path": "#header-%E4%BA%8B%E4%BB%B6",
+                        "level": 1,
+                        "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
+                        "text": "事件",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "表单",
+                "path": "components/form/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": [
+                            {
+                                "title": "FormItem",
+                                "path": "#header-FormItem",
+                                "level": 2,
+                                "content": "<h2 id='header-FormItem'>FormItem</h2>",
+                                "text": "FormItem",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "title": "扩展点",
+                        "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
+                        "level": 1,
+                        "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
+                        "text": "扩展点",
+                        "children": [
+                            {
+                                "title": "FormItem",
+                                "path": "#header-FormItem",
+                                "level": 2,
+                                "content": "<h2 id='header-FormItem'>FormItem</h2>",
+                                "text": "FormItem",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "title": "事件",
+                        "path": "#header-%E4%BA%8B%E4%BB%B6",
+                        "level": 1,
+                        "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
+                        "text": "事件",
+                        "children": [
+                            {
+                                "title": "Form",
+                                "path": "#header-Form",
+                                "level": 2,
+                                "content": "<h2 id='header-Form'>Form</h2>",
+                                "text": "Form",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "title": "方法",
+                        "path": "#header-%E6%96%B9%E6%B3%95",
+                        "level": 1,
+                        "content": "<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>",
+                        "text": "方法",
+                        "children": [
+                            {
+                                "title": "Form",
+                                "path": "#header-Form",
+                                "level": 2,
+                                "content": "<h2 id='header-Form'>Form</h2>",
+                                "text": "Form",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "title": "静态方法",
+                        "path": "#header-%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95",
+                        "level": 1,
+                        "content": "<h1 id='header-%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95'>静态方法</h1>",
+                        "text": "静态方法",
+                        "children": [
+                            {
+                                "title": "Form",
+                                "path": "#header-Form",
+                                "level": 2,
+                                "content": "<h2 id='header-Form'>Form</h2>",
+                                "text": "Form",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "栅格",
+                "path": "components/grid/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": [
+                            {
+                                "title": "Row",
+                                "path": "#header-Row",
+                                "level": 2,
+                                "content": "<h2 id='header-Row'>Row</h2>",
+                                "text": "Row",
+                                "children": []
+                            },
+                            {
+                                "title": "Col",
+                                "path": "#header-Col",
+                                "level": 2,
+                                "content": "<h2 id='header-Col'>Col</h2>",
+                                "text": "Col",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "输入框",
+                "path": "components/input/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    },
+                    {
+                        "title": "扩展点",
+                        "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
+                        "level": 1,
+                        "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
+                        "text": "扩展点",
+                        "children": []
+                    },
+                    {
+                        "title": "事件",
+                        "path": "#header-%E4%BA%8B%E4%BB%B6",
+                        "level": 1,
+                        "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
+                        "text": "事件",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "全局提示",
+                "path": "components/message/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    },
+                    {
+                        "title": "静态方法",
+                        "path": "#header-%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95",
+                        "level": 1,
+                        "content": "<h1 id='header-%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95'>静态方法</h1>",
+                        "text": "静态方法",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "分页",
+                "path": "components/pagination/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    },
+                    {
+                        "title": "方法",
+                        "path": "#header-%E6%96%B9%E6%B3%95",
+                        "level": 1,
+                        "content": "<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>",
+                        "text": "方法",
+                        "children": [
+                            {
+                                "title": "Pagination",
+                                "path": "#header-Pagination",
+                                "level": 2,
+                                "content": "<h2 id='header-Pagination'>Pagination</h2>",
+                                "text": "Pagination",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "进度条",
+                "path": "components/progress/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "单选框",
+                "path": "components/radio/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "选择框",
+                "path": "components/select/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": [
+                            {
+                                "title": "Select",
+                                "path": "#header-Select",
+                                "level": 2,
+                                "content": "<h2 id='header-Select'>Select</h2>",
+                                "text": "Select",
+                                "children": []
+                            },
+                            {
+                                "title": "Option",
+                                "path": "#header-Option",
+                                "level": 2,
+                                "content": "<h2 id='header-Option'>Option</h2>",
+                                "text": "Option",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "滑块",
+                "path": "components/slider/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "数字输入框",
+                "path": "components/spinner/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "步骤条",
+                "path": "components/steps/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": [
+                            {
+                                "title": "Steps",
+                                "path": "#header-Steps",
+                                "level": 2,
+                                "content": "<h2 id='header-Steps'>Steps</h2>",
+                                "text": "Steps",
+                                "children": []
+                            },
+                            {
+                                "title": "Step",
+                                "path": "#header-Step",
+                                "level": 2,
+                                "content": "<h2 id='header-Step'>Step</h2>",
+                                "text": "Step",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "表格",
+                "path": "components/table/index.md",
+                "children": [
+                    {
+                        "title": "表格属性 Table",
+                        "path": "#header-%E8%A1%A8%E6%A0%BC%E5%B1%9E%E6%80%A7%20Table",
+                        "level": 1,
+                        "content": "<h1 id='header-%E8%A1%A8%E6%A0%BC%E5%B1%9E%E6%80%A7%20Table'>表格属性 Table</h1>",
+                        "text": "表格属性 Table",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "提示弹层",
+                "path": "components/tooltip/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "穿梭框",
+                "path": "components/transfer/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    }
+                ]
+            }
+        ],
+        "undefined": [
+            {
+                "title": "更新日志",
+                "path": "docs/changelog.md",
+                "children": []
+            },
+            {
+                "title": "国际化",
+                "path": "docs/i18n.md",
+                "children": []
+            },
+            {
+                "title": "快速开始",
+                "path": "docs/quick-start.md",
+                "children": []
+            },
+            {
+                "title": "定制主题",
+                "path": "docs/theme.md",
+                "children": []
+            }
+        ]
+    },
+    "highlighted": [
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
+        }
+    ]
+}

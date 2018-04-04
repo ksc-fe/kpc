@@ -1,0 +1,8 @@
+import Checkbox from 'kpc/components/checkbox';
+
+<div>
+    <Checkbox name="languages" trueValue="Javascript" v-model="languages">Javascript</Checkbox>
+    <Checkbox name="languages" trueValue="C++" v-model="languages">C++</Checkbox>
+    <Checkbox name="languages" trueValue="PHP" v-model="languages">PHP</Checkbox>
+    Your selected: {{ JSON.stringify(self.get('languages')) }}
+</div>

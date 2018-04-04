@@ -1,0 +1,37 @@
+{
+    "setting": {
+        "title": "基础用法",
+        "order": 0
+    },
+    "catalogs": [],
+    "contents": "<p>用<code>min</code>和<code>max</code>指定取值范围，<code>v-model</code>进行双向数据绑定</p>\n",
+    "codes": [
+        {
+            "language": "vdt",
+            "content": "import Slider from 'kpc/components/slider';\n\n<div>\n    <Slider v-model=\"value1\" />\n    <Slider v-model=\"value2\" min={{ 50 }} max={{ 500 }} />\n</div>"
+        },
+        {
+            "language": "styl",
+            "content": ".k-slider\n    margin-bottom 20px"
+        },
+        {
+            "language": "js",
+            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
+        }
+    ],
+    "index": 82,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Slider <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/slider'</span>;\n\n&lt;div&gt;\n    &lt;Slider v-model=\"value1\" /&gt;\n    &lt;Slider v-model=\"value2\" min={{ 50 }} max={{ 500 }} /&gt;\n&lt;/div&gt;</code></pre>"
+        },
+        {
+            "language": "styl",
+            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-slider</span>\n    <span class=\"hljs-attribute\">margin-bottom</span> <span class=\"hljs-number\">20px</span></code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
+        }
+    ]
+}

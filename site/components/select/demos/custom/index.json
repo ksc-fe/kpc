@@ -1,0 +1,29 @@
+{
+    "setting": {
+        "title": "自定义显示内容",
+        "order": 5
+    },
+    "catalogs": [],
+    "contents": "<p><code>Option</code>的子元素可以是任意dom结构，而非仅仅只是字符串。此时如果需要支持<code>filterable</code>，我们应该指定<code>label</code>，以便组件知道筛选的内容。</p>\n",
+    "codes": [
+        {
+            "language": "vdt",
+            "content": "import {Select, Option} from 'kpc/components/select';\n\nconst data = [\n    {label: '星期一', value: 'Monday'},\n    {label: '星期二', value: 'Tuesday'},\n    {label: '星期三', value: 'Wednesday'},\n    {label: '星期四', value: 'Thursday'},\n    {label: '星期五', value: 'Friday'},\n    {label: '星期六', value: 'Saturday'},\n    {label: '星期天', value: 'Sunday'},\n];\n\n<Select v-model=\"day\" filterable>\n    <Option v-for={{ data }} value={{ value.value }} label={{ value.label }}>\n        <div>\n            <span>{{ value.label }}</span>\n            <span style=\"float: right; color: #ccc\">{{ value.value }}</span>\n        </div>\n    </Option>\n</Select>"
+        },
+        {
+            "language": "js",
+            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
+        }
+    ],
+    "index": 75,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> {Select, Option} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/select'</span>;\n\n<span class=\"hljs-keyword\">const</span> data = [\n    {<span class=\"hljs-attr\">label</span>: <span class=\"hljs-string\">'星期一'</span>, <span class=\"hljs-attr\">value</span>: <span class=\"hljs-string\">'Monday'</span>},\n    {<span class=\"hljs-attr\">label</span>: <span class=\"hljs-string\">'星期二'</span>, <span class=\"hljs-attr\">value</span>: <span class=\"hljs-string\">'Tuesday'</span>},\n    {<span class=\"hljs-attr\">label</span>: <span class=\"hljs-string\">'星期三'</span>, <span class=\"hljs-attr\">value</span>: <span class=\"hljs-string\">'Wednesday'</span>},\n    {<span class=\"hljs-attr\">label</span>: <span class=\"hljs-string\">'星期四'</span>, <span class=\"hljs-attr\">value</span>: <span class=\"hljs-string\">'Thursday'</span>},\n    {<span class=\"hljs-attr\">label</span>: <span class=\"hljs-string\">'星期五'</span>, <span class=\"hljs-attr\">value</span>: <span class=\"hljs-string\">'Friday'</span>},\n    {<span class=\"hljs-attr\">label</span>: <span class=\"hljs-string\">'星期六'</span>, <span class=\"hljs-attr\">value</span>: <span class=\"hljs-string\">'Saturday'</span>},\n    {<span class=\"hljs-attr\">label</span>: <span class=\"hljs-string\">'星期天'</span>, <span class=\"hljs-attr\">value</span>: <span class=\"hljs-string\">'Sunday'</span>},\n];\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Select</span> <span class=\"hljs-attr\">v-model</span>=<span class=\"hljs-string\">\"day\"</span> <span class=\"hljs-attr\">filterable</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Option</span> <span class=\"hljs-attr\">v-for</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">data</span> }} <span class=\"hljs-attr\">value</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">value.value</span> }} <span class=\"hljs-attr\">label</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">value.label</span> }}&gt;</span>\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n            <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span>&gt;</span>{{ value.label }}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>\n            <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">style</span>=<span class=\"hljs-string\">\"float: right; color: #ccc\"</span>&gt;</span>{{ value.value }}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>\n        <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Option</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Select</span>&gt;</span></span></code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
+        }
+    ]
+}

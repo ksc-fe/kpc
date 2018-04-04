@@ -1,0 +1,16 @@
+import Message from 'kpc/components/message';
+import {Button} from 'kpc/components/button';
+import {Progress} from 'kpc/components/progress';
+
+<div>
+    <Button ev-click={{ () => self.set('show', true) }}>custom message</Button>
+    <Message v-model="show" key="message" 
+        duration={{ 0 }} 
+        type={{ self.get('percent') >= 100 ? 'success' : 'info' }}
+    >
+        <Progress style="width: 200px" 
+            percent={{ self.get('percent') }}
+            ev-click={{ self.add }}
+        />
+    </Message>
+</div>

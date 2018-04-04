@@ -1,0 +1,37 @@
+{
+    "setting": {
+        "title": "表头固定",
+        "order": 0
+    },
+    "catalogs": [],
+    "contents": "<p><code>fixHeader</code>：设置表头固定，类型<code>Boolean</code>，<code>false</code>(默认)</p>\n",
+    "codes": [
+        {
+            "language": "vdt",
+            "content": "import Table from 'kpc/components/table';\nvar data1 = [{a: 'false(默认)'}];\nvar data2 = [{a: '表头固定但是没有滚动条，展示不出效果'}];\nvar data3 = [{a: '表头固定啦'}, {a: '下拉'}, {a: 'yeah!'}];\n\n<div class='no-data-template'>\n    <Table scheme={{ {a: 'false'} }} data={{data1}} />\n    <Table scheme={{ {a: 'true'} }} data={{data2}} fixHeader={{true}} />\n    <Table scheme={{ {a: '100px' } }} data={{data3}} fixHeader='100' />\n</div>"
+        },
+        {
+            "language": "styl",
+            "content": ".no-data-template\n   display: flex\n   .k-table-wrapper\n       margin-left: 10px"
+        },
+        {
+            "language": "js",
+            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
+        }
+    ],
+    "index": 97,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Table <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n<span class=\"hljs-keyword\">var</span> data1 = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'false(默认)'</span>}];\n<span class=\"hljs-keyword\">var</span> data2 = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'表头固定但是没有滚动条，展示不出效果'</span>}];\n<span class=\"hljs-keyword\">var</span> data3 = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'表头固定啦'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'下拉'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'yeah!'</span>}];\n\n&lt;div class='no-data-template'&gt;\n    &lt;Table scheme={{ {a: 'false'} }} data={{data1}} /&gt;\n    &lt;Table scheme={{ {a: 'true'} }} data={{data2}} fixHeader={{true}} /&gt;\n    &lt;Table scheme={{ {a: '100px' } }} data={{data3}} fixHeader='100' /&gt;\n&lt;/div&gt;</code></pre>"
+        },
+        {
+            "language": "styl",
+            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.no-data-template</span>\n   <span class=\"hljs-attribute\">display</span>: flex\n   <span class=\"hljs-selector-class\">.k-table-wrapper</span>\n       <span class=\"hljs-attribute\">margin-left</span>: <span class=\"hljs-number\">10px</span></code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
+        }
+    ]
+}
