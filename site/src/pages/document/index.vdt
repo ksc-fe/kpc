@@ -17,7 +17,20 @@ function Catalog(props) {
                         currentNav = value;
                     }
                 })() }}
-                <Link href={{ `/${value.path.replace('.md', '/').replace('index/', '')}` }}>{{ value.title }}</Link>
+                <Link href={{ `/${value.path.replace('.md', '/').replace('index/', '')}` }}>
+                    {{ do {
+                        const matches = value.path.match(/components\/([^\/]+)/);
+                        if (matches) {
+                            const name = matches[1];
+                            [
+                                name[0].toUpperCase() + name.substring(1),
+                                <span>{{ value.title }}</span>
+                            ];
+                        } else {
+                            value.title;
+                        }
+                    } }}
+                </Link>
             </li>
         </ul>
     </div>

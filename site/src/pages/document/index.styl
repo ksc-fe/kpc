@@ -48,9 +48,15 @@ $aside-width = 300px
                 color #333
                 &:hover
                     background #f3f3f3
-            .active > a
-                    color linkColor
+                span
+                    margin-left 5px
+                    color #666
+                    font-size 12px
+            .active 
+                & > a, & span
+                    color linkColor !important
                     // border-right 2px solid linkColor
+                        
             .sub-catalogs
                 margin-left 10px
                 font-size 12px
