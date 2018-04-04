@@ -19,7 +19,7 @@
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    defaults() {\n        return {percent: 40}\n    }\n\n    add() {\n        if (this.get('percent') >= 100) return;\n\n        this.set('percent', this.get('percent') + 10);\n    }\n\n    minus() {\n        if (this.get('percent') <= 0) return;\n\n        this.set('percent', this.get('percent') - 10);\n    }\n}"
         }
     ],
-    "index": 86,
+    "index": 84,
     "highlighted": [
         {
             "language": "vdt",

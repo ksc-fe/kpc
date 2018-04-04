@@ -4289,8 +4289,14 @@ blockquote:before {
 .document-page .content-wrapper .aside-wrapper a:hover {
   background: #f3f3f3;
 }
-.document-page .content-wrapper .aside-wrapper .active > a {
-  color: #0a5eee;
+.document-page .content-wrapper .aside-wrapper a span {
+  margin-left: 5px;
+  color: #666;
+  font-size: 12px;
+}
+.document-page .content-wrapper .aside-wrapper .active > a,
+.document-page .content-wrapper .aside-wrapper .active span {
+  color: #0a5eee !important;
 }
 .document-page .content-wrapper .aside-wrapper .sub-catalogs {
   margin-left: 10px;
@@ -4510,7 +4516,7 @@ blockquote:before {
   margin-right: 20px;
 }
 
-.example.index-53 .k-btns {
+.example.index-50 .k-btns {
   margin-right: 20px;
 }
 
@@ -4518,11 +4524,11 @@ blockquote:before {
   margin-right: 20px;
 }
 
-.example.index-59 .k-btn {
+.example.index-66 .k-btn {
   margin-right: 20px;
 }
 
-.example.index-89 .k-btn {
+.example.index-86 .k-btn {
   margin-right: 20px;
 }
 
@@ -4876,7 +4882,7 @@ blockquote:before {
           box-sizing: content-box;
 }
 
-.example.index-28 .k-input {
+.example.index-29 .k-input {
   margin: 5px;
 }
 
@@ -4884,11 +4890,11 @@ blockquote:before {
   margin: 5px;
 }
 
-.example.index-90 .k-input {
+.example.index-88 .k-input {
   margin: 5px;
 }
 
-.example.index-61 .k-input {
+.example.index-62 .k-input {
   margin: 5px;
 }
 
@@ -4957,11 +4963,11 @@ blockquote:before {
   background: #999;
 }
 
-.example.index-26 .k-radio {
+.example.index-28 .k-radio {
   margin-right: 20px;
 }
 
-.example.index-41 .k-radio {
+.example.index-42 .k-radio {
   margin-right: 20px;
 }
 
@@ -5037,11 +5043,11 @@ blockquote:before {
   margin-right: 20px;
 }
 
-.example.index-33 .k-checkbox {
+.example.index-54 .k-checkbox {
   margin-right: 20px;
 }
 
-.example.index-34 .k-checkbox {
+.example.index-33 .k-checkbox {
   margin-right: 20px;
 }
 
@@ -5265,69 +5271,125 @@ blockquote:before {
   padding: 0.571428571428571rem;
 }
 
-.example.index-102 .k-select {
+.example.index-103 .k-select {
   margin-right: 10px;
 }
 </style>
     <div id="page"><div class="k-app">
     <div class="main-wrapper document-page"><div class="header-wrapper"><header><a class="logo" href="/">KPC</a><nav><a class="active" href="/document">教程</a><a class="" href="/api">API</a><div class="border"></div></nav></header></div><div class="content-wrapper"><aside><div class="aside-wrapper"><div class="catalog-section"><ul><li>
                 <!---->
-                <a href="/docs/quick-start/">快速开始</a></li><li>
+                <a href="/docs/quick-start/">
+                    <!---->快速开始<!---->
+                </a></li><li>
                 <!---->
-                <a href="/docs/vue/">Vue中使用</a></li><li>
+                <a href="/docs/vue/">
+                    <!---->Vue中使用<!---->
+                </a></li><li>
                 <!---->
-                <a href="/docs/theme/">定制主题</a></li><li>
+                <a href="/docs/theme/">
+                    <!---->定制主题<!---->
+                </a></li><li>
                 <!---->
-                <a href="/docs/i18n/">国际化</a></li><li>
+                <a href="/docs/i18n/">
+                    <!---->国际化<!---->
+                </a></li><li>
                 <!---->
-                <a href="/docs/changelog/">更新日志</a></li></ul></div><div class="catalog-section"><h5>组件</h5><ul><li>
+                <a href="/docs/changelog/">
+                    <!---->更新日志<!---->
+                </a></li></ul></div><div class="catalog-section"><h5>组件</h5><ul><li>
                 <!---->
-                <a href="/components/button/">按钮</a></li><li>
+                <a href="/components/button/">
+                    <!---->Button<span>按钮</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/grid/">栅格</a></li><li>
+                <a href="/components/grid/">
+                    <!---->Grid<span>栅格</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/input/">输入框</a></li><li>
+                <a href="/components/input/">
+                    <!---->Input<span>输入框</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/radio/">单选框</a></li><li>
+                <a href="/components/radio/">
+                    <!---->Radio<span>单选框</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/checkbox/">复选框</a></li><li class="active">
+                <a href="/components/checkbox/">
+                    <!---->Checkbox<span>复选框</span>
+                </a></li><li class="active">
                 <!---->
-                <a href="/components/select/">选择框</a></li><li>
+                <a href="/components/select/">
+                    <!---->Select<span>选择框</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/spinner/">数字输入框</a></li><li>
+                <a href="/components/spinner/">
+                    <!---->Spinner<span>数字输入框</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/datepicker/">日期选择</a></li><li>
+                <a href="/components/datepicker/">
+                    <!---->Datepicker<span>日期选择</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/slider/">滑块</a></li><li>
+                <a href="/components/slider/">
+                    <!---->Slider<span>滑块</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/form/">表单</a></li><li>
+                <a href="/components/form/">
+                    <!---->Form<span>表单</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/dialog/">弹窗</a></li><li>
+                <a href="/components/dialog/">
+                    <!---->Dialog<span>弹窗</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/dropdown/">下拉菜单</a></li><li>
+                <a href="/components/dropdown/">
+                    <!---->Dropdown<span>下拉菜单</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/message/">全局提示</a></li><li>
+                <a href="/components/message/">
+                    <!---->Message<span>全局提示</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/tooltip/">提示弹层</a></li><li>
+                <a href="/components/tooltip/">
+                    <!---->Tooltip<span>提示弹层</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/progress/">进度条</a></li><li>
+                <a href="/components/progress/">
+                    <!---->Progress<span>进度条</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/steps/">步骤条</a></li><li>
+                <a href="/components/steps/">
+                    <!---->Steps<span>步骤条</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/breadcrumb/">面包屑</a></li><li>
+                <a href="/components/breadcrumb/">
+                    <!---->Breadcrumb<span>面包屑</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/pagination/">分页</a></li><li>
+                <a href="/components/pagination/">
+                    <!---->Pagination<span>分页</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/table/">表格</a></li><li>
+                <a href="/components/table/">
+                    <!---->Table<span>表格</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/transfer/">穿梭框</a></li><li>
+                <a href="/components/tabs/">
+                    <!---->Tabs<span>标签</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/editable/">可编辑文本</a></li></ul></div><div class="aside-border transition"></div></div></aside><article><div class="article-head"><div class="title">选择框</div><div class="edit-link">
+                <a href="/components/editable/">
+                    <!---->Editable<span>可编辑文本</span>
+                </a></li><li>
+                <!---->
+                <a href="/components/transfer/">
+                    <!---->Transfer<span>穿梭框</span>
+                </a></li></ul></div><div class="aside-border transition"></div></div></aside><article><div class="article-head"><div class="title">选择框</div><div class="edit-link">
                     如果你发现文档有问题，请帮忙在
                     <a target="_blank" href="https://github.com/Javey/javey.github.io/blob/master/intact/docs/undefined.md">github</a>
                     上修正该文档
                 </div></div><div class="contents"><div><h1>示例</h1>
-        <div class="example index-25"><div class="example-opera"><div><div class="k-select" style=""><div class="k-wrapper"><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div>
+        <div class="example index-26"><div class="example-opera"><div><div class="k-select" style=""><div class="k-wrapper"><input type="hidden" /><span class="k-placeholder c-ellipsis">Please select</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div>
     You selected: <!---->
 </div></div><div class="example-desc"><div class="title">基础用法</div><div class="desc"><p><code>Select</code>嵌套<code>Option</code>使用，用<code>v-model</code>进行双向数据绑定。(支持键盘选择)</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
@@ -5336,49 +5398,49 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-37"><div class="example-opera"><div><div class="k-select k-disabled" style="margin-right: 10px"><div class="k-wrapper"><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div><div class="k-select" style=""><div class="k-wrapper"><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></div><div class="example-desc"><div class="title">禁用状态</div><div class="desc"><p>给<code>Select</code>添加<code>disabled</code>禁用整个选择框选择；给<code>Option</code>添加<code>disabled</code>禁用该项选择</p>
+</div><div class="code"></div></div></div><div class="example index-40"><div class="example-opera"><div><div class="k-select k-disabled" style="margin-right: 10px"><div class="k-wrapper"><input type="hidden" /><span class="k-placeholder c-ellipsis">Please select</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div><div class="k-select" style=""><div class="k-wrapper"><input type="hidden" /><span class="k-placeholder c-ellipsis">Please select</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></div><div class="example-desc"><div class="title">禁用状态</div><div class="desc"><p>给<code>Select</code>添加<code>disabled</code>禁用整个选择框选择；给<code>Option</code>添加<code>disabled</code>禁用该项选择</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-65"><div class="example-opera"><div><div class="k-select k-clearable" style="margin-right: 10px"><div class="k-wrapper"><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span><span class="k-suffix"><i class="k-clear ion-ios-close"></i><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div><div class="k-select k-clearable" style=""><div class="k-wrapper"><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span><span class="k-suffix"><i class="k-clear ion-ios-close"></i><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></div><div class="example-desc"><div class="title">可清空</div><div class="desc"><p>指定<code>clearable</code>展示清空按钮</p>
+</div><div class="code"></div></div></div><div class="example index-56"><div class="example-opera"><div><div class="k-select k-clearable" style="margin-right: 10px"><div class="k-wrapper"><input type="hidden" /><span class="k-placeholder c-ellipsis">Please select</span><span class="k-suffix"><i class="k-clear ion-ios-close"></i><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div><div class="k-select k-clearable" style=""><div class="k-wrapper"><input type="hidden" /><span class="k-placeholder c-ellipsis">Please select</span><span class="k-suffix"><i class="k-clear ion-ios-close"></i><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></div><div class="example-desc"><div class="title">可清空</div><div class="desc"><p>指定<code>clearable</code>展示清空按钮</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-79"><div class="example-opera"><div class="k-select" style=""><div class="k-wrapper"><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">多选</div><div class="desc"><p>指定<code>multiple</code>支持多选</p>
+</div><div class="code"></div></div></div><div class="example index-74"><div class="example-opera"><div class="k-select" style=""><div class="k-wrapper"><input type="hidden" /><span class="k-placeholder c-ellipsis">Please select</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">多选</div><div class="desc"><p>指定<code>multiple</code>支持多选</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-88"><div class="example-opera"><div><div class="k-select" style="margin-right: 10px"><div class="k-wrapper"><input type="hidden" /><div class="k-input k-fluid" style=""><div class="k-wrapper"><input class="k-inner" type="text" placeholder="请选择" /></div></div><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div><div class="k-select" style=""><div class="k-wrapper"><input type="hidden" /><span class="k-values"><div class="k-input k-auto-width" style=""><div class="k-wrapper"><input class="k-inner" type="text" placeholder="请选择" /><div class="k-fake">请选择</div></div></div></span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></div><div class="example-desc"><div class="title">可筛选</div><div class="desc"><p>指定<code>filterable</code>支持筛选，组件会同时对<code>label</code>和<code>value</code>进行筛选</p>
+</div><div class="code"></div></div></div><div class="example index-91"><div class="example-opera"><div><div class="k-select" style="margin-right: 10px"><div class="k-wrapper"><input type="hidden" /><div class="k-input k-fluid" style=""><div class="k-wrapper"><input class="k-inner" type="text" placeholder="Please select" /></div></div><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div><div class="k-select" style=""><div class="k-wrapper"><input type="hidden" /><span class="k-values"><div class="k-input k-auto-width" style=""><div class="k-wrapper"><input class="k-inner" type="text" placeholder="Please select" /><div class="k-fake">Please select</div></div></div></span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></div><div class="example-desc"><div class="title">可筛选</div><div class="desc"><p>指定<code>filterable</code>支持筛选，组件会同时对<code>label</code>和<code>value</code>进行筛选</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-93"><div class="example-opera"><div class="k-select" style=""><div class="k-wrapper"><input type="hidden" /><div class="k-input k-fluid" style=""><div class="k-wrapper"><input class="k-inner" type="text" placeholder="请选择" /></div></div><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">自定义显示内容</div><div class="desc"><p><code>Option</code>的子元素可以是任意dom结构，而非仅仅只是字符串。此时如果需要支持<code>filterable</code>，我们应该指定<code>label</code>，以便组件知道筛选的内容。</p>
+</div><div class="code"></div></div></div><div class="example index-95"><div class="example-opera"><div class="k-select" style=""><div class="k-wrapper"><input type="hidden" /><div class="k-input k-fluid" style=""><div class="k-wrapper"><input class="k-inner" type="text" placeholder="Please select" /></div></div><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">自定义显示内容</div><div class="desc"><p><code>Option</code>的子元素可以是任意dom结构，而非仅仅只是字符串。此时如果需要支持<code>filterable</code>，我们应该指定<code>label</code>，以便组件知道筛选的内容。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-100"><div class="example-opera"><div class="k-select" style=""><div class="k-wrapper"><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">分组</div><div class="desc"><p>用<code>OptionGroup</code>嵌套<code>Option</code>可以实现分组功能</p>
+</div><div class="code"></div></div></div><div class="example index-100"><div class="example-opera"><div class="k-select" style=""><div class="k-wrapper"><input type="hidden" /><span class="k-placeholder c-ellipsis">Please select</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">分组</div><div class="desc"><p>用<code>OptionGroup</code>嵌套<code>Option</code>可以实现分组功能</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-102"><div class="example-opera"><div><div class="k-select" style=""><div class="k-wrapper"><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div><div class="k-select k-small" style=""><div class="k-wrapper"><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div><div class="k-select k-mini" style=""><div class="k-wrapper"><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></div><div class="example-desc"><div class="title">尺寸</div><div class="desc"><p><code>size</code>指定三种尺寸：<code>default</code> <code>small</code> <code>mini</code></p>
+</div><div class="code"></div></div></div><div class="example index-103"><div class="example-opera"><div><div class="k-select" style=""><div class="k-wrapper"><input type="hidden" /><span class="k-placeholder c-ellipsis">Please select</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div><div class="k-select k-small" style=""><div class="k-wrapper"><input type="hidden" /><span class="k-placeholder c-ellipsis">Please select</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div><div class="k-select k-mini" style=""><div class="k-wrapper"><input type="hidden" /><span class="k-placeholder c-ellipsis">Please select</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></div><div class="example-desc"><div class="title">尺寸</div><div class="desc"><p><code>size</code>指定三种尺寸：<code>default</code> <code>small</code> <code>mini</code></p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->

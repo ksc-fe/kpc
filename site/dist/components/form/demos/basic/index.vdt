@@ -50,10 +50,12 @@ import {Slider} from 'kpc/components/slider';
     <FormItem label="Switch">
         <Switch v-model="model.switch" />
     </FormItem>
-    <FormItem label="Slider">
+    <FormItem model="model.slider" rules={{ {required: true, min: 1} }} label="Slider">
         <Slider v-model="model.slider" isShowInput={{ false }} />
     </FormItem>
-    <FormItem label="Textarea" model="model.textarea">
+    <FormItem label="Textarea" model="model.textarea"
+        rules={{ {required: true} }}
+    >
         <Input type="textarea" v-model="model.textarea" />
     </FormItem>
     <FormItem label="Password" model="model.password"

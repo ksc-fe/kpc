@@ -12,7 +12,7 @@
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
         }
     ],
-    "index": 101,
+    "index": 102,
     "sideBars": {
         "undefined": [
             {
@@ -175,7 +175,24 @@
             {
                 "title": "国际化",
                 "path": "docs/i18n.md",
-                "children": []
+                "children": [
+                    {
+                        "title": "单文件构建版",
+                        "path": "#header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88'>单文件构建版</h1>",
+                        "text": "单文件构建版",
+                        "children": []
+                    },
+                    {
+                        "title": "通过webpack引入",
+                        "path": "#header-%E9%80%9A%E8%BF%87webpack%E5%BC%95%E5%85%A5",
+                        "level": 1,
+                        "content": "<h1 id='header-%E9%80%9A%E8%BF%87webpack%E5%BC%95%E5%85%A5'>通过webpack引入</h1>",
+                        "text": "通过webpack引入",
+                        "children": []
+                    }
+                ]
             },
             {
                 "title": "更新日志",
@@ -728,15 +745,15 @@
                 ]
             },
             {
-                "title": "穿梭框",
-                "path": "components/transfer/index.md",
+                "title": "标签",
+                "path": "components/tabs/index.md",
                 "children": [
                     {
-                        "title": "属性",
-                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "title": "标签属性 Tabs",
+                        "path": "#header-%E6%A0%87%E7%AD%BE%E5%B1%9E%E6%80%A7%20Tabs",
                         "level": 1,
-                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                        "text": "属性",
+                        "content": "<h1 id='header-%E6%A0%87%E7%AD%BE%E5%B1%9E%E6%80%A7%20Tabs'>标签属性 Tabs</h1>",
+                        "text": "标签属性 Tabs",
                         "children": []
                     }
                 ]
@@ -759,6 +776,20 @@
                         "level": 1,
                         "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
                         "text": "事件",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "穿梭框",
+                "path": "components/transfer/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
                         "children": []
                     }
                 ]

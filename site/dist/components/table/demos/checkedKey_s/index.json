@@ -19,7 +19,7 @@
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    setRowKey(value, index) {\n        return value.id;\n    }\n\n}"
         }
     ],
-    "index": 14,
+    "index": 0,
     "highlighted": [
         {
             "language": "vdt",

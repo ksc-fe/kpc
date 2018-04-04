@@ -25,7 +25,7 @@
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nimport Dialog from './dialog';\nimport Message from 'kpc/components/message';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    showDialog(e) {\n        // button show loading\n        e.component.showLoading();\n\n        const dialog = new Dialog();\n\n        dialog.show();\n        dialog.on('ok', (data) => {\n            Message.info(`You clicked ok.`);\n        });\n\n        // button hide loading\n        dialog.on('open', () => e.component.hideLoading());\n\n        // for unit test\n        this.dialog = dialog;\n    }\n}"
         }
     ],
-    "index": 97,
+    "index": 94,
     "highlighted": [
         {
             "language": "vdt",

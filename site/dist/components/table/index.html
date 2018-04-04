@@ -4289,8 +4289,14 @@ blockquote:before {
 .document-page .content-wrapper .aside-wrapper a:hover {
   background: #f3f3f3;
 }
-.document-page .content-wrapper .aside-wrapper .active > a {
-  color: #0a5eee;
+.document-page .content-wrapper .aside-wrapper a span {
+  margin-left: 5px;
+  color: #666;
+  font-size: 12px;
+}
+.document-page .content-wrapper .aside-wrapper .active > a,
+.document-page .content-wrapper .aside-wrapper .active span {
+  color: #0a5eee !important;
 }
 .document-page .content-wrapper .aside-wrapper .sub-catalogs {
   margin-left: 10px;
@@ -4510,7 +4516,7 @@ blockquote:before {
   margin-right: 20px;
 }
 
-.example.index-53 .k-btns {
+.example.index-50 .k-btns {
   margin-right: 20px;
 }
 
@@ -4518,11 +4524,11 @@ blockquote:before {
   margin-right: 20px;
 }
 
-.example.index-59 .k-btn {
+.example.index-66 .k-btn {
   margin-right: 20px;
 }
 
-.example.index-89 .k-btn {
+.example.index-86 .k-btn {
   margin-right: 20px;
 }
 
@@ -4876,7 +4882,7 @@ blockquote:before {
           box-sizing: content-box;
 }
 
-.example.index-28 .k-input {
+.example.index-29 .k-input {
   margin: 5px;
 }
 
@@ -4884,11 +4890,11 @@ blockquote:before {
   margin: 5px;
 }
 
-.example.index-90 .k-input {
+.example.index-88 .k-input {
   margin: 5px;
 }
 
-.example.index-61 .k-input {
+.example.index-62 .k-input {
   margin: 5px;
 }
 
@@ -4957,11 +4963,11 @@ blockquote:before {
   background: #999;
 }
 
-.example.index-26 .k-radio {
+.example.index-28 .k-radio {
   margin-right: 20px;
 }
 
-.example.index-41 .k-radio {
+.example.index-42 .k-radio {
   margin-right: 20px;
 }
 
@@ -5037,11 +5043,11 @@ blockquote:before {
   margin-right: 20px;
 }
 
-.example.index-33 .k-checkbox {
+.example.index-54 .k-checkbox {
   margin-right: 20px;
 }
 
-.example.index-34 .k-checkbox {
+.example.index-33 .k-checkbox {
   margin-right: 20px;
 }
 
@@ -5265,7 +5271,7 @@ blockquote:before {
   padding: 0.571428571428571rem;
 }
 
-.example.index-102 .k-select {
+.example.index-103 .k-select {
   margin-right: 10px;
 }
 
@@ -5295,15 +5301,15 @@ blockquote:before {
   padding: 0;
 }
 
-.example.index-20 .k-spinner {
+.example.index-21 .k-spinner {
   margin-right: 20px;
 }
 
-.example.index-64 .k-spinner {
+.example.index-59 .k-spinner {
   margin-right: 20px;
 }
 
-.example.index-52 .k-spinner {
+.example.index-53 .k-spinner {
   margin-right: 20px;
 }
 
@@ -5527,48 +5533,41 @@ blockquote:before {
   margin-right: 20px;
 }
 
-.example.index-95 .k-datepicker {
+.example.index-98 .k-datepicker {
   margin-right: 20px;
 }
 
-.example.index-62 .k-datepicker {
+.example.index-65 .k-datepicker {
   margin-right: 10px;
 }
 
 .k-slider {
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  display: table;
+  width: 100%;
 }
-.k-slider .k-wrapper {
+.k-slider .k-slider-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+.k-slider .k-slider-wrapper .k-wrapper {
   height: 0.5rem;
   background-color: #eaeef2;
   border-radius: 0.5rem;
   cursor: pointer;
   position: relative;
-  display: inline-block;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
 }
-.k-slider .k-wrapper .k-box {
-  position: absolute;
-  top: 0.5rem;
-  padding: 5px 2px;
-  width: 100%;
+.k-slider .k-slider-wrapper .k-box {
+  padding: 5px 2px 0;
 }
-.k-slider .k-wrapper .k-box :last-child {
+.k-slider .k-slider-wrapper .k-box :last-child {
   float: right;
 }
-.k-slider .k-wrapper .k-bar {
+.k-slider .k-slider-wrapper .k-bar {
   background-color: #0a5eee;
   position: absolute;
   height: 100%;
@@ -5576,7 +5575,7 @@ blockquote:before {
   -webkit-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
 }
-.k-slider .k-wrapper .k-handle {
+.k-slider .k-slider-wrapper .k-handle {
   height: 1rem;
   width: 1rem;
   position: absolute;
@@ -5591,7 +5590,7 @@ blockquote:before {
   background-color: #fff;
   transition: all 0.25s ease-in-out;
 }
-.k-slider .k-wrapper .k-handle:hover {
+.k-slider .k-slider-wrapper .k-handle:hover {
   -webkit-transform: scale(1.5);
       -ms-transform: scale(1.5);
           transform: scale(1.5);
@@ -5599,8 +5598,12 @@ blockquote:before {
   cursor: grab;
   background-color: #0a5eee;
 }
+.k-slider .k-spinner-wrapper {
+  display: table-cell;
+  width: 9.642857142857142rem;
+}
 .k-slider .k-spinner {
-  margin-left: 1rem;
+  float: right;
 }
 .k-slider.k-dragging .k-bar {
   -webkit-transition: none;
@@ -5635,15 +5638,15 @@ blockquote:before {
           transform: none;
 }
 
-.example.index-22 .k-slider {
+.example.index-24 .k-slider {
   margin-bottom: 20px;
 }
 
-.example.index-82 .k-slider {
+.example.index-70 .k-slider {
   margin-bottom: 20px;
 }
 
-.example.index-32 .k-slider {
+.example.index-34 .k-slider {
   margin-bottom: 20px;
 }
 
@@ -5831,16 +5834,19 @@ blockquote:before {
   background: #e6e6e6;
 }
 
-.example.index-24 .k-form-item > .k-label {
+.example.index-25 .k-form-item > .k-label {
   width: 150px;
 }
-.example.index-24 .k-slider,
-.example.index-24 .k-select {
+.example.index-25 .k-slider,
+.example.index-25 .k-select {
   width: 300px;
 }
-.example.index-24 .k-radio,
-.example.index-24 .k-checkbox {
+.example.index-25 .k-radio,
+.example.index-25 .k-checkbox {
   margin-right: 10px;
+}
+.example.index-25 .k-slider {
+  margin-top: 15px;
 }
 
 .k-messages {
@@ -5996,22 +6002,22 @@ blockquote:before {
   width: 32.142857142857146rem;
 }
 
-.example.index-80 .k-btn {
+.example.index-83 .k-btn {
   margin-right: 20px;
 }
 
-.example.index-85 .ion-ios-arrow-right {
+.example.index-89 .ion-ios-arrow-right {
   float: right;
 }
-.example.index-85 .ion-ios-arrow-right:before {
+.example.index-89 .ion-ios-arrow-right:before {
   font-size: inherit;
 }
 
-.example.index-55 .k-btn {
+.example.index-57 .k-btn {
   margin-right: 20px;
 }
 
-.example.index-21 .k-btn {
+.example.index-22 .k-btn {
   margin-right: 20px;
 }
 
@@ -6175,17 +6181,17 @@ blockquote:before {
   }
 }
 
-.example.index-86 .k-progress {
+.example.index-84 .k-progress {
   display: inline-block;
   vertical-align: middle;
   margin-right: 20px;
 }
 
-.example.index-66 .k-progress {
+.example.index-64 .k-progress {
   margin: 10px 0;
 }
 
-.example.index-46 .k-progress {
+.example.index-49 .k-progress {
   margin: 10px 0;
 }
 
@@ -6285,7 +6291,7 @@ blockquote:before {
   color: #db2828;
 }
 
-.example.index-18 .k-btn {
+.example.index-20 .k-btn {
   margin-top: 20px;
 }
 
@@ -6308,10 +6314,10 @@ blockquote:before {
   margin: 0 0.571428571428571rem;
 }
 
-.example.index-51 .separator {
+.example.index-52 .separator {
   color: #ffa133;
 }
-.example.index-51 i {
+.example.index-52 i {
   margin-right: 3px;
 }
 
@@ -6384,16 +6390,35 @@ blockquote:before {
   line-height: calc(2.166666666666667em - 2px);
 }
 
-.example.index-30 .k-pagination {
+.example.index-32 .k-pagination {
   margin-bottom: 20px;
 }
 
-.example.index-68 .k-pagination {
+.example.index-69 .k-pagination {
   margin-bottom: 20px;
 }
 
-.example.index-50 .k-pagination {
+.example.index-51 .k-pagination {
   margin-bottom: 20px;
+}
+
+.example.index-14 .no-data-template {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.example.index-14 .no-data-template .k-table-wrapper {
+  margin-left: 10px;
+}
+
+.example.index-0 .no-data-template {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 10px;
+}
+.example.index-0 .no-data-template .k-table-wrapper {
+  margin-left: 10px;
 }
 
 .example.index-13 .no-data-template {
@@ -6402,16 +6427,6 @@ blockquote:before {
   display: flex;
 }
 .example.index-13 .no-data-template .k-table-wrapper {
-  margin-left: 10px;
-}
-
-.example.index-14 .no-data-template {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin-bottom: 10px;
-}
-.example.index-14 .no-data-template .k-table-wrapper {
   margin-left: 10px;
 }
 
@@ -6441,78 +6456,125 @@ blockquote:before {
 .example.index-10 .no-data-template .k-table-wrapper {
   margin-left: 10px;
 }
-
-.example.index-9 .no-data-template {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-.example.index-9 .no-data-template .k-table-wrapper {
-  margin-left: 10px;
-}
-.example.index-9 .no-data-template .k-table-wrapper .k-checked {
+.example.index-10 .no-data-template .k-table-wrapper .k-checked {
   background-color: #dfdfdf;
 }
 </style>
     <div id="page"><div class="k-app">
     <div class="main-wrapper document-page"><div class="header-wrapper"><header><a class="logo" href="/">KPC</a><nav><a class="active" href="/document">教程</a><a class="" href="/api">API</a><div class="border"></div></nav></header></div><div class="content-wrapper"><aside><div class="aside-wrapper"><div class="catalog-section"><ul><li>
                 <!---->
-                <a href="/docs/quick-start/">快速开始</a></li><li>
+                <a href="/docs/quick-start/">
+                    <!---->快速开始<!---->
+                </a></li><li>
                 <!---->
-                <a href="/docs/vue/">Vue中使用</a></li><li>
+                <a href="/docs/vue/">
+                    <!---->Vue中使用<!---->
+                </a></li><li>
                 <!---->
-                <a href="/docs/theme/">定制主题</a></li><li>
+                <a href="/docs/theme/">
+                    <!---->定制主题<!---->
+                </a></li><li>
                 <!---->
-                <a href="/docs/i18n/">国际化</a></li><li>
+                <a href="/docs/i18n/">
+                    <!---->国际化<!---->
+                </a></li><li>
                 <!---->
-                <a href="/docs/changelog/">更新日志</a></li></ul></div><div class="catalog-section"><h5>组件</h5><ul><li>
+                <a href="/docs/changelog/">
+                    <!---->更新日志<!---->
+                </a></li></ul></div><div class="catalog-section"><h5>组件</h5><ul><li>
                 <!---->
-                <a href="/components/button/">按钮</a></li><li>
+                <a href="/components/button/">
+                    <!---->Button<span>按钮</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/grid/">栅格</a></li><li>
+                <a href="/components/grid/">
+                    <!---->Grid<span>栅格</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/input/">输入框</a></li><li>
+                <a href="/components/input/">
+                    <!---->Input<span>输入框</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/radio/">单选框</a></li><li>
+                <a href="/components/radio/">
+                    <!---->Radio<span>单选框</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/checkbox/">复选框</a></li><li>
+                <a href="/components/checkbox/">
+                    <!---->Checkbox<span>复选框</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/select/">选择框</a></li><li>
+                <a href="/components/select/">
+                    <!---->Select<span>选择框</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/spinner/">数字输入框</a></li><li>
+                <a href="/components/spinner/">
+                    <!---->Spinner<span>数字输入框</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/datepicker/">日期选择</a></li><li>
+                <a href="/components/datepicker/">
+                    <!---->Datepicker<span>日期选择</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/slider/">滑块</a></li><li>
+                <a href="/components/slider/">
+                    <!---->Slider<span>滑块</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/form/">表单</a></li><li>
+                <a href="/components/form/">
+                    <!---->Form<span>表单</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/dialog/">弹窗</a></li><li>
+                <a href="/components/dialog/">
+                    <!---->Dialog<span>弹窗</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/dropdown/">下拉菜单</a></li><li>
+                <a href="/components/dropdown/">
+                    <!---->Dropdown<span>下拉菜单</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/message/">全局提示</a></li><li>
+                <a href="/components/message/">
+                    <!---->Message<span>全局提示</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/tooltip/">提示弹层</a></li><li>
+                <a href="/components/tooltip/">
+                    <!---->Tooltip<span>提示弹层</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/progress/">进度条</a></li><li>
+                <a href="/components/progress/">
+                    <!---->Progress<span>进度条</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/steps/">步骤条</a></li><li>
+                <a href="/components/steps/">
+                    <!---->Steps<span>步骤条</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/breadcrumb/">面包屑</a></li><li>
+                <a href="/components/breadcrumb/">
+                    <!---->Breadcrumb<span>面包屑</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/pagination/">分页</a></li><li class="active">
+                <a href="/components/pagination/">
+                    <!---->Pagination<span>分页</span>
+                </a></li><li class="active">
                 <!---->
-                <a href="/components/table/">表格</a></li><li>
+                <a href="/components/table/">
+                    <!---->Table<span>表格</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/transfer/">穿梭框</a></li><li>
+                <a href="/components/tabs/">
+                    <!---->Tabs<span>标签</span>
+                </a></li><li>
                 <!---->
-                <a href="/components/editable/">可编辑文本</a></li></ul></div><div class="aside-border transition"></div></div></aside><article><div class="article-head"><div class="title">表格</div><div class="edit-link">
+                <a href="/components/editable/">
+                    <!---->Editable<span>可编辑文本</span>
+                </a></li><li>
+                <!---->
+                <a href="/components/transfer/">
+                    <!---->Transfer<span>穿梭框</span>
+                </a></li></ul></div><div class="aside-border transition"></div></div></aside><article><div class="article-head"><div class="title">表格</div><div class="edit-link">
                     如果你发现文档有问题，请帮忙在
                     <a target="_blank" href="https://github.com/Javey/javey.github.io/blob/master/intact/docs/undefined.md">github</a>
                     上修正该文档
                 </div></div><div class="contents"><div><h1>示例</h1>
-        <div class="example index-0"><div class="example-opera"><div><div class="k-table-wrapper" style="">
+        <div class="example index-17"><div class="example-opera"><div><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
         <th title="表头1"><div class="k-th"><div class="c-ellipsis">表头1</div>
@@ -6537,7 +6599,7 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-13"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
+</div><div class="code"></div></div></div><div class="example index-14"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
         <th title="表头"><div class="k-th"><div class="c-ellipsis">表头</div>
@@ -6588,7 +6650,7 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-14"><div class="example-opera"><div><div class="no-data-template"><div class="k-table-wrapper" style="">
+</div><div class="code"></div></div></div><div class="example index-0"><div class="example-opera"><div><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"></th>
         <th title="radio不指定rowKey"><div class="k-th"><div class="c-ellipsis">radio不指定rowKey</div>
@@ -6667,7 +6729,7 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-12"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
+</div><div class="code"></div></div></div><div class="example index-13"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
         <th title="false"><div class="k-th"><div class="c-ellipsis">false</div>
@@ -6736,7 +6798,7 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-11"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
+</div><div class="code"></div></div></div><div class="example index-12"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
         <th title="表头1"><div class="k-th"><div class="c-ellipsis">表头1</div>
@@ -6748,7 +6810,7 @@ blockquote:before {
     </tr></thead>
     <tbody>
     <tr><td class="k-no-data" colspan="3">
-                <!---->/(ㄒoㄒ)/~~ 没有找到亲要的数据哦~<!---->
+                <!---->/(ㄒoㄒ)/~~ No data to display.<!---->
             </td></tr>
 </tbody>
 </table>
@@ -6777,7 +6839,7 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-10"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
+</div><div class="code"></div></div></div><div class="example index-11"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
         <th title="默认不可拖拽"><div class="k-th"><div class="c-ellipsis">默认不可拖拽</div>
@@ -6822,7 +6884,7 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-9"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
+</div><div class="code"></div></div></div><div class="example index-10"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
         <th title="不整行选中"><div class="k-th"><div class="c-ellipsis">不整行选中</div>
@@ -6870,7 +6932,7 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-8"><div class="example-opera"><div><p>{key: value}形式:</p><div class="k-table-wrapper" style="">
+</div><div class="code"></div></div></div><div class="example index-9"><div class="example-opera"><div><p>{key: value}形式:</p><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
         <th title="a只是个id"><div class="k-th"><div class="c-ellipsis">a只是个id</div>

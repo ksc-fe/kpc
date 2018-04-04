@@ -4,14 +4,18 @@
         "order": 2
     },
     "catalogs": [],
-    "contents": "<p>i18n</p>\n",
+    "contents": "<h1 id='header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88'>单文件构建版</h1><p>通过<code>&lt;script&gt;</code>直接引入对应的语言包文件，此时会自动注册相应的语言包。</p>\n<pre><code class=\"hljs html\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">script</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"text/javascript\"</span> <span class=\"hljs-attr\">src</span>=<span class=\"hljs-string\">\"node_modules/intact/dist/intact.js\"</span>&gt;</span><span class=\"undefined\"></span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">script</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">script</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"text/javascript\"</span> <span class=\"hljs-attr\">src</span>=<span class=\"hljs-string\">\"node_modules/kpc/dist/kpc.js\"</span>&gt;</span><span class=\"undefined\"></span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">script</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">script</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"text/javascript\"</span> <span class=\"hljs-attr\">src</span>=<span class=\"hljs-string\">\"node_modules/kpc/dist/i18n/en-US.js\"</span>&gt;</span><span class=\"undefined\"></span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">script</span>&gt;</span>\n</code></pre>\n<h1 id='header-%E9%80%9A%E8%BF%87webpack%E5%BC%95%E5%85%A5'>通过webpack引入</h1><p>如果你使用多文件构建版本，可以像下面这样，在入口文件中引入相应语言包，然后通过<code>localize</code>函数注册</p>\n<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> {localize} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components'</span>;\n<span class=\"hljs-keyword\">import</span> i18n <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/i18n/en-US'</span>;\n\nlocalize(i18n);\n</code></pre>\n",
     "codes": [
         {
+            "language": "html",
+            "content": "<script type=\"text/javascript\" src=\"node_modules/intact/dist/intact.js\"></script>\n<script type=\"text/javascript\" src=\"node_modules/kpc/dist/kpc.js\"></script>\n<script type=\"text/javascript\" src=\"node_modules/kpc/dist/i18n/en-US.js\"></script>"
+        },
+        {
             "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
+            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nimport {localize} from 'kpc/components';\nimport i18n from 'kpc/i18n/en-US';\n\nlocalize(i18n);"
         }
     ],
-    "index": 58,
+    "index": 61,
     "sideBars": {
         "undefined": [
             {
@@ -174,7 +178,24 @@
             {
                 "title": "国际化",
                 "path": "docs/i18n.md",
-                "children": []
+                "children": [
+                    {
+                        "title": "单文件构建版",
+                        "path": "#header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88'>单文件构建版</h1>",
+                        "text": "单文件构建版",
+                        "children": []
+                    },
+                    {
+                        "title": "通过webpack引入",
+                        "path": "#header-%E9%80%9A%E8%BF%87webpack%E5%BC%95%E5%85%A5",
+                        "level": 1,
+                        "content": "<h1 id='header-%E9%80%9A%E8%BF%87webpack%E5%BC%95%E5%85%A5'>通过webpack引入</h1>",
+                        "text": "通过webpack引入",
+                        "children": []
+                    }
+                ]
             },
             {
                 "title": "更新日志",
@@ -727,15 +748,15 @@
                 ]
             },
             {
-                "title": "穿梭框",
-                "path": "components/transfer/index.md",
+                "title": "标签",
+                "path": "components/tabs/index.md",
                 "children": [
                     {
-                        "title": "属性",
-                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "title": "标签属性 Tabs",
+                        "path": "#header-%E6%A0%87%E7%AD%BE%E5%B1%9E%E6%80%A7%20Tabs",
                         "level": 1,
-                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                        "text": "属性",
+                        "content": "<h1 id='header-%E6%A0%87%E7%AD%BE%E5%B1%9E%E6%80%A7%20Tabs'>标签属性 Tabs</h1>",
+                        "text": "标签属性 Tabs",
                         "children": []
                     }
                 ]
@@ -761,13 +782,31 @@
                         "children": []
                     }
                 ]
+            },
+            {
+                "title": "穿梭框",
+                "path": "components/transfer/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    }
+                ]
             }
         ]
     },
     "highlighted": [
         {
+            "language": "html",
+            "content": "<pre><code class=\"hljs html\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">script</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"text/javascript\"</span> <span class=\"hljs-attr\">src</span>=<span class=\"hljs-string\">\"node_modules/intact/dist/intact.js\"</span>&gt;</span><span class=\"undefined\"></span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">script</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">script</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"text/javascript\"</span> <span class=\"hljs-attr\">src</span>=<span class=\"hljs-string\">\"node_modules/kpc/dist/kpc.js\"</span>&gt;</span><span class=\"undefined\"></span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">script</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">script</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"text/javascript\"</span> <span class=\"hljs-attr\">src</span>=<span class=\"hljs-string\">\"node_modules/kpc/dist/i18n/en-US.js\"</span>&gt;</span><span class=\"undefined\"></span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">script</span>&gt;</span></code></pre>"
+        },
+        {
             "language": "js",
-            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">import</span> {localize} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components'</span>;\n<span class=\"hljs-keyword\">import</span> i18n <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/i18n/en-US'</span>;\n\nlocalize(i18n);</code></pre>"
         }
     ]
 }
