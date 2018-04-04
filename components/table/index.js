@@ -3,6 +3,7 @@ import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
 import Column from './column';
+import {_$} from '../utils';
 
 let scrollBarWidth = undefined;
 
@@ -25,7 +26,7 @@ export default class Table extends Intact {
             checkedKey: undefined, // for radio
             rowCheckable: true, // click row to check
             rowExpandable: true, // click row to expand
-            noDataTemplate: '/(ㄒoㄒ)/~~ 没有找到亲要的数据哦~',
+            noDataTemplate: _$('/(ㄒoㄒ)/~~ 没有找到亲要的数据哦~'),
             disableRow(data, index) { return false },
             sort: {},
             groups: {},

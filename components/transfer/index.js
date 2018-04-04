@@ -2,6 +2,7 @@ import Intact from 'intact';
 import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
+import {_$} from '../utils';
 
 export default class Transfer extends Intact {
     @Intact.template()
@@ -20,9 +21,9 @@ export default class Transfer extends Intact {
             label(data, index) {
                 return data.label;
             },
-            placeholder: '请输入',
-            leftTitle: '请选择',
-            rightTitle: '已选择',
+            placeholder: _$('请输入'),
+            leftTitle: _$('请选择'),
+            rightTitle: _$('已选择'),
         };
     }
 

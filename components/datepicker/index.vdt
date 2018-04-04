@@ -25,6 +25,17 @@ const values = multiple ? value || [] : [value];
 const valueDate = new Date(values[values.length - 1] || _now);
 const showDate = new Date(_showDate || valueDate);
 
+let yearMonthFormat = _$('yearMonthFormat');
+if (yearMonthFormat === 'yearMonthFormat') {
+    yearMonthFormat = 'YYYY MM';
+}
+const format = yearMonthFormat.split(' ');
+const map = {
+    'MM': <span class="k-text">{{ _$(`${showDate.getMonth() + 1}月`) }}</span>,
+    'YYYY': <span class="k-text">{{ _$(`{n}年`, {n: showDate.getFullYear()}) }}</span>
+};
+const panel = format.map(item => map[item]);
+
 <div class={{ classNameObj }} style={{ style }}>
     <Tooltip class="k-datepicker-content" 
         position={{ {my: 'left top', at: 'left bottom'} }}
@@ -68,10 +79,7 @@ const showDate = new Date(_showDate || valueDate);
                     <span
                         class="k-text-wrapper"
                         ev-click={{ self.showYearPicker }}
-                    >
-                        <span class="k-text">{{ showDate.getFullYear() }}年</span>
-                        <span class="k-text">{{ showDate.getMonth() + 1 }}月</span>
-                    </span>
+                    >{{ panel }}</span>
                     <Button icon type="none" size="small" class="k-next"
                         ev-click={{ self.nextYear }}
                     >
@@ -86,7 +94,7 @@ const showDate = new Date(_showDate || valueDate);
                 </div>
                 <div class="k-weekdays" v-if={{ !_isShowYearPicker }}>
                     <div class="k-weekday"
-                        v-for={{ ['日', '一', '二', '三', '四', '五', '六'] }}
+                        v-for={{ [_$('日'), _$('一'), _$('二'), _$('三'), _$('四'), _$('五'), _$('六')] }}
                     >{{ value }}</div>
                 </div>
                 <div class="k-calendar" v-if={{ !_isShowYearPicker }}>
@@ -128,24 +136,30 @@ const showDate = new Date(_showDate || valueDate);
                     } }}
                 </div>
                 <Row v-if={{ _isShowYearPicker }} class="k-year-picker">
-                    <Col span="12">
-                        <ScrollSelect 
-                            data={{ (value) => {
-                                return range(value - 5, value + 5);
-                            } }}
-                            value={{ showDate.getFullYear() }}
-                            ev-$change:value={{ self.onChangeYear }}
-                        />
-                    </Col>
-                    <Col span="12">
-                        <ScrollSelect 
-                            data={{ range(0, 11).map(i => {
-                                return {label: `${i + 1}月`, value: i};
-                            }) }}
-                            value={{ showDate.getMonth() }}
-                            ev-$change:value={{ self.onChangeMonth }}
-                        />
-                    </Col>
+                    {{ do {
+                        const map = {
+                            MM: <Col span="12">
+                                    <ScrollSelect 
+                                        data={{ range(0, 11).map(i => {
+                                            return {label: _$(`${i + 1}月`), value: i};
+                                        }) }}
+                                        value={{ showDate.getMonth() }}
+                                        ev-$change:value={{ self.onChangeMonth }}
+                                    />
+                                </Col>,
+                            YYYY: <Col span="12">
+                                    <ScrollSelect 
+                                        data={{ (value) => {
+                                            return range(value - 5, value + 5);
+                                        } }}
+                                        value={{ showDate.getFullYear() }}
+                                        ev-$change:value={{ self.onChangeYear }}
+                                    />
+                                </Col>
+                        };
+
+                        format.map(item => map[item]);
+                    } }}
                 </Row>
             </div>
             <div v-else class="k-time-picker" key="time">
@@ -155,10 +169,7 @@ const showDate = new Date(_showDate || valueDate);
                     >取消</Button>-->
                     <span class="k-text-wrapper"
                         ev-click={{ self.cancel }}
-                    >
-                        <span class="k-text">{{ showDate.getFullYear() }}年</span>
-                        <span class="k-text">{{ showDate.getMonth() + 1 }}月</span>
-                    </span>
+                    >{{ panel }}</span>
                     <!--<Button type="none" size="small" class="k-next"
                         ev-click={{ self.confirm.bind(self) }}
                     >确认</Button>-->

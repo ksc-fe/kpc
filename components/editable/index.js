@@ -3,6 +3,7 @@ import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
 import {selectInput} from '../utils';
+import {_$} from '../utils';
 
 export default class Editable extends Intact {
     @Intact.template()
@@ -15,7 +16,7 @@ export default class Editable extends Intact {
             required: true,
             validate: undefined,
             disabled: false, 
-            tip: '编辑',
+            tip: _$('编辑'),
             trim: true,
             invalid: false,
         };

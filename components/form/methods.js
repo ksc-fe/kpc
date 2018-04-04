@@ -1,3 +1,5 @@
+import {_$} from '../utils';
+
 function decimalPlaces(num) {
     var match = ("" + num).match(/(?:\.(\d+))?$/);
     if (!match) {
@@ -94,51 +96,51 @@ export const methods = {
 };
 
 function count(num) {
-    return num === 2 ? '两' : num;
+    return num === 2 ? _$('两') : num;
 }
 
 export const messages = {
-    required: '必须填写',
-    digits: '请输入数字',
-    email: '请输入正确的邮箱地址',
-    url: '请输入正确的网址',
-    date: '请输入正确的日期',
-    dateISO: '请输入正确的日期 (YYYY-MM-DD)',
-    number: '请输入正确的数',
+    required: () => _$('必须填写'),
+    digits: () => _$('请输入数字'),
+    email: () => _$('请输入正确的邮箱地址'),
+    url: () => _$('请输入正确的网址'),
+    date: () => _$('请输入正确的日期'),
+    dateISO: () => _$('请输入正确的日期 (YYYY-MM-DD)'),
+    number: () => _$('请输入正确的数'),
     maxLength(value, item, param) {
         if (Array.isArray(value)) {
-            return `最多选择${count(param)}项`;
+            return _$(`最多选择 {n} 项`, {n: count(param)});
         } else {
-            return `最多输入${count(param)}个字符`;
+            return _$(`最多输入 {n} 个字符`, {n: count(param)});
         }
     },
     minLength(value, item, param) {
         if (Array.isArray(value)) {
-            return `最少选择${count(param)}项`;
+            return _$(`最少选择 {n} 项`, {n: count(param)});
         } else {
-            return `最少输入${count(param)}个字符`;
+            return _$(`最少输入 {n} 个字符`, {n: count(param)});
         }
     },
     rangeLength(value, item, param) {
         if (Array.isArray(value)) {
-            return `请选择${count(param[0])}到${count(param[1])}项`;
+            return _$(`请选择 {n} 到 {m} 项`, {n: count(param[0]), m: count(param[1])});
         } else {
-            return `请输入${count(param[0])}到${count(param[1])}个字符`;
+            return _$(`请输入 {n} 到 {m} 个字符`, {n: count(param[0]), m: count(param[1])});
         }
     },
     max(value, item, param) {
-        return `请输入不大于${param}的数`;
+        return _$(`请输入不大于 {n} 的数`, {n: param});
     },
     min(value, item, param) {
-        return `请输入不小于${param}的数`;
+        return _$(`请输入不小于 {n} 的数`, {n: param});
     },
     range(value, item, param) {
-        return `请输入${param[0]}到${param[1]}之间的数`;
+        return _$(`请输入 {n[0]} 到 {n[1]} 之间的数`, {n: param});
     },
     step(value, item, param) {
-        return `请输入步长为${param}的数`;
+        return _$(`请输入步长为 {n} 的数`, {n: param});
     },
-    equalTo: '两次输入不一致',
+    equalTo: () => _$('两次输入不一致'),
 };
 
 export const classNames = {};

@@ -5,7 +5,7 @@ import './index.styl';
 import position from '../moveWrapper/position';
 import Option from './option';
 import Group from './group';
-import {selectInput} from '../utils';
+import {selectInput, _$} from '../utils';
 
 export default class Select extends Intact {
     @Intact.template()
@@ -28,7 +28,7 @@ export default class Select extends Intact {
             clearable: false, // 是否可清空 
             filterable: false, // 搜索筛选
             keywords: undefined,
-            placeholder: '请选择',
+            placeholder: _$('请选择'),
             size: 'default',
             fluid: false,
             width: undefined,

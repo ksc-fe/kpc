@@ -3,6 +3,7 @@ import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
 import position from '../moveWrapper/position';
+import {_$} from '../utils';
 
 export default class Dialog extends Intact {
     @Intact.template()
@@ -15,13 +16,13 @@ export default class Dialog extends Intact {
 
     defaults() {
         return {
-            title: '提示',
+            title: _$('提示'),
             value: false,
             size: 'default', // default | small
             loading: false,
             disabledOk: false,
-            okText: '确认',
-            cancelText: '取消',
+            okText: _$('确认'),
+            cancelText: _$('取消'),
             ok: undefined,
             cancel: undefined,
 

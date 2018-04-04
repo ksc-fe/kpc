@@ -100,7 +100,7 @@ export function selectInput(input) {
 }
 
 let i18n = {};
-const valueRegexp = /\{([\}\s]+)\}/g;
+const valueRegexp = /\{([^\}\s]+)\}/g;
 export function _$(key, data) {
     let value = get(i18n, key);
     if (isNullOrUndefined(value)) {

@@ -1,5 +1,6 @@
 import Select from '../select';
 import Input from '../input';
+import {_$} from '../utils';
 
 const {
     total, current, limit, limits, 
@@ -94,17 +95,17 @@ const paginationDot = function(callback) {
     <div class="k-limits">
         <Select v-model="limit"
             data={{ limits.map(item => {
-                return {'value': item, 'label': item + ' 条 / 页'}
+                return {'value': item, 'label': _$('{n} 条 / 页', {n: item})};
             }) }}
             size={{ size }}
         />
     </div>
 
     <div class="k-goto" v-if={{ showGoto }}>
-        跳至<Input size={{ size }} value={{ current }}
+        {{ _$('跳至') }}<Input size={{ size }} value={{ current }}
             ev-change={{ self._goto }}
-        />页
+        />{{ _$('页') }}
     </div>
 
-    <div v-if={{ showTotal }} class="k-total">共 {{ total }} 条</div>
+    <div v-if={{ showTotal }} class="k-total">{{ _$('共 {n} 条', {n: total}) }}</div>
 </div>
