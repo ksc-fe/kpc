@@ -19,12 +19,6 @@ var data1 = [{a: 'A', b: 'B'}, {a: 'A', b: 'B'}];
 </div>
 ```
 
-```styl
-.no-data-template
-   display: flex
-   .k-table-wrapper
-       margin-left: 10px
-```
 
 
 

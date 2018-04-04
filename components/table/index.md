@@ -1,5 +1,5 @@
 ---
-title: 表格
+title: 表格(Table)
 category: 组件
 order: 1
 ---
@@ -18,26 +18,30 @@ order: 1
 | checkedKey | 哪行被选中（针对单选） | `任何` | `undefined` |
 | resizable | 是否可以表头拖动 | `Boolean` | `false` |
 | rowCheckable | 是否整行选中 | `Boolean` | `true` |
-
-
-
-
 | rowClassName | 设置行的class | `Function` | `function(value, index) {  }` |
 | disableRow | 禁用某一行 | `Function` | `function(data, index) { return false }` |
-
 | rowExpandable | 是否点击整行展开 | `Boolean` | `true` |
 | expand | 展开条件 | `Function` | `undefined` |
 | expandedKeys | 哪行展开 | `Array` | `[]` |
-
+| type | 类型 | `String` | `"default"` |
 | sort | 排序 | `Object` | `{}` |
+
 | groups | 分组 | `Object` | `{}` |
 
-| sortable | 表头排序 | `Boolean` | `false` |
-| groups | 分组 | `Array` | `undefined` |
 
-| type | 类型 | `String` | `"default"` |
-| _padding | padding | `Number` | `0` |
-| _disabledAmount | disabledAmount | `Number` | `0` |
+
+
+# 方法
+
+| 方法名 | 说明 | 参数 | 返回值 |
+| --- | --- | --- | --- |
+| $change:checked | 选中的数据变化会触发的事件 | `无` | `function(c, newValue, oldValue) {}` |
+| getCheckedData | 获取选中数据信息 | `无` | `[]` |
+| checkAll | 全部选中 | `无` | `undefined` |
+| uncheckAll | 全不选中 | `无` | `undefined` |
+| isCheckAll | 判断是否全选 | `无` | `{Boolean}` |
+| isChecked | 判断某行是否选中 | `{Number}` | `{Boolean}` |
+
 
 
 
