@@ -1,7 +1,12 @@
+import {Dropdown, DropdownMenu, DropdownItem} from '../dropdown';
+import {Checkbox} from '../checkbox';
+import {Radio} from '../radio';
+
 const {
-    width, title, key, 
+    width, title, key, group, multiple,
     sortable, groups, $parent
 } = self.get();
+
 const {sort, resizable} = $parent.get();
 
 <th width={{ width }} 
@@ -24,5 +29,20 @@ const {sort, resizable} = $parent.get();
                 </div>
             }
         } }}
+        <Dropdown v-if={{ group }}>
+            <div class="k-group">aa</div>
+            <DropdownMenu class={{ {'k-table-column': true, 'k-multiple': multiple} }}>
+                <DropdownItem v-for={{ group }} 
+                    class={{ {'k-active': self._isChecked(value.value)} }}
+                    ev-select={{ self._onSelect.bind(self, value.value) }}
+                    hideOnSelect={{ !multiple }}
+                >
+                    <Checkbox name="key" v-if={{ multiple }}
+                        value={{ self._isChecked(value.value) }}
+                    >{{ value.label }}</Checkbox>
+                    <span v-else>{{ value.label }}</span>
+                </DropdownItem>
+            </DropdownMenu>
+        </Dropdown>
     </div>
 </th>

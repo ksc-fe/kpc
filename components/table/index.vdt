@@ -8,7 +8,7 @@ const {
     checkType, scheme, checkedKeys, data, rowKey, 
     className, fixHeader, noDataTemplate, disableRow,
     groups, resizable, expand, expandedKeys, type,
-    style, rowClassName, children, sort
+    style, rowClassName, children, sort, group,
 } = self.get();
 
 let colSpan = checkType === 'checkbox' || checkType === 'radio' ? 1 : 0;
@@ -35,6 +35,7 @@ const theadCreator = () => <thead>
                 $parent={{ self }} 
                 ev-click={{ item.sortable ? self._sort.bind(self, key, item) : undefined }}
                 ev-dragStart={{ self._dragStart }}
+                v-model={{ `group.${key}` }}
             />
         }) }}
         {{  // for using TableColumn as children
@@ -49,6 +50,8 @@ const theadCreator = () => <thead>
                         // avoid digital key
                         _e('don\'t use digits as key.');
                     }
+                    props.value = group[props.key];
+                    props['ev-$change:value'] = (c, v) => self.set(`group.${props.key}`, v);
                     _scheme[props.key] = {
                         title: props.title,
                         template: props.template || props.default,

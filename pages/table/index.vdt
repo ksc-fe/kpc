@@ -11,13 +11,25 @@ const scheme = {
     <Button ev-click={{ self.add.bind(self) }}>add the last row</Button>
     <Button ev-click={{ self.getCheckedData.bind(self) }}>get checked data</Button>
 
-    <Table data={{ self.get('data') }}>
+    <Table data={{ self.get('data') }} ref="test">
         <TableColumn title="aaa" key="test"
             template={{ (data, index) => {
                 return <div><i class="ion-search"></i>{{ data.test }}</div>
             } }}
+            group={{ [
+                {label: 'Monday', value: 1},
+                {label: 'Tuesday', value: 2},
+                {label: 'Wednesday', value: 3},
+            ] }}
         />
-        <TableColumn title="标题" key="aa" />
+        <TableColumn title="标题" key="aa" 
+            group={{ [
+                {label: 'Monday', value: 1},
+                {label: 'Tuesday', value: 2},
+                {label: 'Wednesday', value: 3},
+            ] }}
+            multiple
+        />
     </Table>
 
     <Table data={{ self.get('data') }} scheme={{ scheme }} ref={{ i => self.table = i }}/>

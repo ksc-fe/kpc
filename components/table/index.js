@@ -29,7 +29,7 @@ export default class Table extends Intact {
             noDataTemplate: _$('/(ㄒoㄒ)/~~ 没有找到亲要的数据哦~'),
             disableRow(data, index) { return false },
             sort: {},
-            groups: {},
+            group: {},
             resizable: false,
             expand: undefined, // expand template callback
             expandedKeys: [], 

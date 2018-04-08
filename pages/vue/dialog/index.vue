@@ -5,16 +5,17 @@
         <Button @click="isShowSmall = true">Show small</Button>
         <Button tagName="div" @click="showDialogInstance">Show Dialog Instance</Button>
         <Dialog v-model="isShow" title="Dialog Demo" key="a">
-            test {{ JSON.stringify(test) }}
+            <span ref="cc">test {{ JSON.stringify(test) }}</span>
         </Dialog>
-        <Dialog v-model="isShowSmall" type="small" key="b">
+        <Dialog v-model="isShowSmall" type="small" key="b" ref="aa">
             <span class="k-title" slot="header">Custom Title</span>
             
-            small dialog content
+            <span ref="bb">small dialog content</span>
 
             <template slot="footer">
+                <span ref="dd">__dd</span>
                 small dialog footer
-                <Button @click="isShowSmall = false">取消</Button>
+                <Button @click="isShowSmall = false" ref="test" key="cancel">取消</Button>
                 <Button type="primary" @click="isShowSmall = false">确定</Button>
             </template>
         </Dialog>
@@ -32,6 +33,7 @@ export default {
     },
 
     data() {
+        window.a = this;
         return {
             test: false,
             isShow: false,

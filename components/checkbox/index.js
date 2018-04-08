@@ -19,6 +19,7 @@ export default class Checkbox extends Intact {
 
     static propTypes = {
         disabled: Boolean,
+        group: Boolean,
     }
 
     // set value to falseValue when destroy
