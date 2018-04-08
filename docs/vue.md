@@ -3,7 +3,7 @@ title: Vue中使用
 order: 1
 ---
 
-kpc同时兼容intact和vue框架，我们只需要引入vue兼容层`intact-vue`即可。
+kpc同时兼容intact和vue框架，我们只需要引入vue兼容层[intact-vue](1)即可。
 
 # 语法说明
 
@@ -104,3 +104,5 @@ export default {
 }
 </script>
 ```
+
+[1]: https://github.com/Javey/intact-vue

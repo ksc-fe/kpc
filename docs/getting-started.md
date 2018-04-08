@@ -7,12 +7,12 @@ order: 0
 
 在学习使用kpc之前，假设你已经掌握了以下知识：
 
-1. webpack + babel
-2. vue（如果将kpc用于vue项目）或者intact（如果将kpc用于intact项目）
+1. [webpack](1) + [babel](2)
+2. [vue](3)（如果将kpc用于vue项目）或者[intact](4)（如果将kpc用于intact项目）
 
 # 使用脚手架
 
-使用Yeoman以及generator-kscpm，可以快速初始化kpc项目
+使用[Yeoman](5)以及generator-kscpm，可以快速初始化kpc项目
 
 1. 安装yo和generator-kscpm
 
@@ -225,3 +225,9 @@ module.export = {
     }
 }
 ```
+
+[1]: https://webpack.js.org/
+[2]: https://babeljs.io/
+[3]: https://cn.vuejs.org/index.html
+[4]: http://javey.github.io/intact/
+[5]: http://yeoman.io/
