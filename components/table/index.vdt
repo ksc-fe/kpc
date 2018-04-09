@@ -7,7 +7,7 @@ import Column from './column';
 const {
     checkType, scheme, checkedKeys, data, rowKey, 
     className, fixHeader, noDataTemplate, disableRow,
-    groups, resizable, expand, expandedKeys, type,
+    resizable, expand, expandedKeys, type,
     style, rowClassName, children, sort, group,
 } = self.get();
 

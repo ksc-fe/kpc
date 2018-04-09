@@ -25,9 +25,7 @@ order: 89
 | expandedKeys | 哪行展开 | `Array` | `[]` |
 | type | 类型 | `String` | `"default"` |
 | sort | 排序 | `Object` | `{}` |
-
-| groups | 分组 | `Object` | `{}` |
-
+| group | 分组 | `Array` | `{}` |
 
 
 
