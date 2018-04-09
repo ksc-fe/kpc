@@ -16,7 +16,7 @@ const classNameObj = {
         <div class="k-inner">
             <i class="ion-ios-checkmark-empty k-icon" v-if={{ done }}></i>
             <i class="ion-ios-close-empty k-icon" v-else-if={{ error }}></i>
-            <span v-else>{{ index }}</span>
+            <span v-else>{{ index + 1 }}</span>
         </div>
     </div>
     <div class="k-main">
