@@ -9,7 +9,8 @@ export default class extends Intact {
             data: [
                 {test: 1, aa: 'aa'},
                 {test: 2, aa: 'bb'},
-            ]
+            ],
+            group: {}
         }
     }
 
@@ -28,5 +29,10 @@ export default class extends Intact {
     getCheckedData() {
         console.log(this.table.getCheckedData());
         console.log(this.radioTable.getCheckedData());
+    }
+
+    _onChangeGroup(table, c) {
+        this.set('group', c);
+        console.log('group', c);        
     }
 }

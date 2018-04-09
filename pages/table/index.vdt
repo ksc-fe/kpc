@@ -11,7 +11,9 @@ const scheme = {
     <Button ev-click={{ self.add.bind(self) }}>add the last row</Button>
     <Button ev-click={{ self.getCheckedData.bind(self) }}>get checked data</Button>
 
-    <Table data={{ self.get('data') }} ref="test">
+    <Table data={{ self.get('data') }} ref="test" group={{ self.get('group') }}
+        ev-$change:group={{ self._onChangeGroup }}
+    >
         <TableColumn title="aaa" key="test"
             template={{ (data, index) => {
                 return <div><i class="ion-search"></i>{{ data.test }}</div>
