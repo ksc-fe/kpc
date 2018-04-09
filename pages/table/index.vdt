@@ -29,6 +29,7 @@ const scheme = {
                 {label: 'Wednesday', value: 3},
             ] }}
             multiple
+            sortable
         />
     </Table>
 

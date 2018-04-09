@@ -27,7 +27,7 @@
                 border-color #a6a6a6 transparent
                 border-top-width 0
             &:after
-                bottom 1px
+                top 8px
                 border-color #a6a6a6 transparent
                 border-bottom-width 0
         .icon-asc
@@ -36,3 +36,30 @@
         .icon-desc
             &:before
                 border-color #ddd transparent
+    .k-group
+        .k-arrow
+            border 1px solid #ccc
+            border-radius 2px
+            background #fff
+            height 14px
+            width 14px
+            position relative
+            transition none
+            &:before
+                display none
+            &:after
+                content ''
+                border 4px solid transparent
+                border-color #a6a6a6 transparent
+                border-bottom-width 0
+                position absolute
+                top 4px
+                left 2px
+                transition transform $transition
+    .k-group-show
+        .k-group
+            .k-arrow
+                transform none
+                &:after
+                    transform rotate(180deg)
+

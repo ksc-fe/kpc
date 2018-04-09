@@ -51,7 +51,13 @@ const theadCreator = () => <thead>
                         _e('don\'t use digits as key.');
                     }
                     props.value = group[props.key];
-                    props['ev-$change:value'] = (c, v) => self.set(`group.${props.key}`, v);
+                    // add a flag to detect if the vNode has attached events of bellow
+                    // we should not attach them again, we the same vNode come again
+                    if (!vNode._$) {
+                        props['ev-$change:value'] = (c, v) => self.set(`group.${props.key}`, v);
+                        props['ev-click'] = props.sortable ? self._sort.bind(self, props.key, props) : undefined;
+                        vNode._$ = true;
+                    }
                     _scheme[props.key] = {
                         title: props.title,
                         template: props.template || props.default,

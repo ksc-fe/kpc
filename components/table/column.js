@@ -22,6 +22,7 @@ export default class TableColumn extends Intact {
 
             // passed by parent
             $parent: undefined,
+            _show: false,
         }
     }
 
@@ -56,6 +57,30 @@ export default class TableColumn extends Intact {
             this.set('value', tmp);
         } else {
             this.set('value', v);
+        }
+    }
+
+    _onChangeShow(c, v) {
+        this.set('_show', v);
+    }
+
+    _getGroupText() {
+        let {value, multiple, group} = this.get();
+
+        if (value == null) return;
+
+        if (!multiple) {
+            value = [value];
+        }
+
+        let ret;
+        if (group) {
+            ret = group.filter(item => ~value.indexOf(item.value))
+                .map(item => item.label)
+                .join(', ')
+            if (ret) {
+                return `(${ret})`;
+            }
         }
     }
 }

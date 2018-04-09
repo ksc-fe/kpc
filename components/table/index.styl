@@ -33,6 +33,19 @@
         .k-icon
             font-size $table-sort-icon-font-size 
 
+    // group
+    .k-group
+        cursor pointer
+        .k-arrow
+            display inline-block
+            transition transform $transition
+            float right
+            margin-left $table-group-margin-left 
+    .k-group-show
+        .k-group
+            .k-arrow
+                transform rotate(180deg)
+
     // resizable
     .k-resize
         height 100%
@@ -93,6 +106,15 @@
         .k-fixed
             .k-table
                 border none
+
+// group
+.k-table-dropdown
+    .k-item.k-hover
+        background $table-group-item-hover-bg-color 
+        color $table-group-item-hover-color 
+    &:not(.k-multiple)
+        .k-item.k-active
+            color $table-group-item-active-color 
             
 
 

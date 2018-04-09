@@ -248,7 +248,6 @@ export default class Table extends Intact {
     }
 
     _sort(key, value) {
-        debugger
         const sort = Object.assign({}, this.get('sort'));
         sort.key = key;
         sort.type = sort.type === 'desc' ? 'asc' : 'desc';
