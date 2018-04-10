@@ -1,7 +1,7 @@
 {
   "name": "kpc",
   "version": "0.0.1",
-  "description": "A component library written in intact",
+  "description": "A component library written in intact for intact and vue",
   "main": "dist/index.js",
   "module": "components/index.js",
   "scripts": {
@@ -15,11 +15,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://newgit.op.ksyun.com/ksyun-fe/kpc.git"
+    "url": "https://github.com/ksc-fe/kpc.git"
   },
   "keywords": [
     "component",
-    "intact"
+    "intact",
+    "vue"
   ],
   "files": [
     "components",
@@ -28,7 +29,7 @@
     "styles",
     "dist"
   ],
-  "author": "Javey",
+  "author": "ksc-fe",
   "license": "MIT",
   "peerDependencies": {
     "intact": "^2.2.0-35"
@@ -76,7 +77,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-spec-reporter": "0.0.26",
     "karma-webpack": "^2.0.13",
-    "kdoc": "git+http://newgit.op.ksyun.com/ksyun-fe/kdoc.git",
+    "kdoc": "^1.0.0",
     "mocha": "^3.2.0",
     "node-style-loader": "0.0.1-alpha",
     "postcss-loader": "^2.1.3",
