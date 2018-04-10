@@ -1,0 +1,7 @@
+import Checkbox from 'kpc/components/checkbox';
+
+<div>
+    <Checkbox>checkbox</Checkbox>
+    <Checkbox disabled>disabled checkbox</Checkbox>
+    <Checkbox value={{ true }} disabled>disabled checked checkbox</Checkbox>
+</div>

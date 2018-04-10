@@ -1,0 +1,8 @@
+import Radio from 'kpc/components/radio';
+
+<div>
+    <Radio name="language" trueValue="Javascript" v-model="language">Javascript</Radio>
+    <Radio name="language" trueValue="C++" v-model="language">C++</Radio>
+    <Radio name="language" trueValue="PHP" v-model="language">PHP</Radio>
+    Your selected: {{ self.get('language') }}
+</div>

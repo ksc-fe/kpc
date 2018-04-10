@@ -1,0 +1,5 @@
+import {Switch} from 'kpc/components/switch';
+
+<div>
+    <Switch></Switch>
+</div>

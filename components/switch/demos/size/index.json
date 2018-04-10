@@ -1,0 +1,29 @@
+{
+    "setting": {
+        "title": "开关型号",
+        "order": 3
+    },
+    "catalogs": [],
+    "contents": "",
+    "codes": [
+        {
+            "language": "vdt",
+            "content": "import {Switch} from 'kpc/components/switch';\n\n<div>\n    <div>\n        小号：<Switch on={{'开'}} off={{'关'}} size='small'></Switch>\n    </div>\n    <div>\n        迷你：<Switch on={{'开'}} off={{'关'}} size='mini'></Switch>\n    </div>\n</div>"
+        },
+        {
+            "language": "js",
+            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
+        }
+    ],
+    "index": 75,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> {Switch} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/switch'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n        小号：<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Switch</span> <span class=\"hljs-attr\">on</span>=<span class=\"hljs-string\">{{</span>'开'}} <span class=\"hljs-attr\">off</span>=<span class=\"hljs-string\">{{</span>'关'}} <span class=\"hljs-attr\">size</span>=<span class=\"hljs-string\">'small'</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Switch</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n        迷你：<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Switch</span> <span class=\"hljs-attr\">on</span>=<span class=\"hljs-string\">{{</span>'开'}} <span class=\"hljs-attr\">off</span>=<span class=\"hljs-string\">{{</span>'关'}} <span class=\"hljs-attr\">size</span>=<span class=\"hljs-string\">'mini'</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Switch</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span></code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
+        }
+    ]
+}

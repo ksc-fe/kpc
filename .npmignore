@@ -1,0 +1,12 @@
+.cache/
+bower_components/
+node_modules/
+app/
+config/
+lib/
+log/
+views/
+.babelrc
+test/
+site/
+docs/

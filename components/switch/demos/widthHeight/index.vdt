@@ -1,0 +1,7 @@
+import {Switch} from 'kpc/components/switch';
+
+<div>
+    <Switch on={{'开启'}} off={{'关闭'}} width={{300}} ></Switch>
+
+    <Switch on={{'开启'}} off={{'关闭'}} height={{300}} ></Switch>
+</div>

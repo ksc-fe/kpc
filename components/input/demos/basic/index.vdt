@@ -1,0 +1,7 @@
+import Input from 'kpc/components/input';
+
+<div>
+    <Input v-model="value" placeholder="please enter" /> {{ self.get('value') }}
+    <br />
+    <Input disabled placeholder="disabled" />
+</div>

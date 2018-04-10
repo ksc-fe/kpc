@@ -1,0 +1,11 @@
+import Radio from 'kpc/components/radio';
+
+<div>
+    <Radio v-model="value1">默认值：{{ JSON.stringify(self.get('value1')) }}</Radio>
+    <Radio v-model="value2" trueValue="checked">
+        指定选中时的取值为"checked": {{ JSON.stringify(self.get('value2')) }}
+    </Radio>
+    <Radio v-model="value3" trueValue={{ self.get('checkedValue') }}>
+        指定选中时的取值为对象：{{ JSON.stringify(self.get('value3')) }}
+    </Radio>
+</div>

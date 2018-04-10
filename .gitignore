@@ -1,0 +1,16 @@
+bower_components/
+node_modules/
+.idea/
+npm-debug*.log
+*.swp
+log/
+.log
+test/coverage
+.dev/
+site/.dist/
+*hot-update.js*
+/demos/
+@*
+.cache
+out/
+site/dist/

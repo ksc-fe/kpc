@@ -1,0 +1,16 @@
+import Transfer from 'kpc/components/transfer';
+
+<Transfer data={{ self.get('data') }} 
+    label={{ (data, index, type) => {
+        return <div>
+            <div>{{ data.name }}</div>
+            <p>{{ data.desc }} | {{ data.ip }}</p>
+        </div>
+    } }}
+    filter={{ (data, keywords) => {
+        return data.name.includes(keywords) || 
+            data.desc.includes(keywords) ||
+            data.ip.includes(keywords);
+    } }}
+    filterable
+/>

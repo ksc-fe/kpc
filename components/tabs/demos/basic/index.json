@@ -1,0 +1,37 @@
+{
+    "setting": {
+        "title": "基本用法",
+        "order": 0
+    },
+    "catalogs": [],
+    "contents": "<p><code>Tabs</code>的基本用法。需要使用<code>v-model</code>来指定选中标签。</p>\n",
+    "codes": [
+        {
+            "language": "vdt",
+            "content": "import {Tabs, Tab} from 'components/tabs';\n\n<div>\n    <Tabs data={{ [\n        {\n            text: '入站规则',\n            value: 'rulein',\n        },\n        {\n            text: '出站规则',\n            value: 'ruleout',\n        },\n        {\n            text: '关联云主机',\n            value: 'relatedVM',\n        }\n    ] }} value=\"relatedVM\"  style=\"margin: 20px;\"/>\n\n    <Tabs v-model=\"tab2\" style=\"margin: 20px;\">\n        <Tab value=\"rulein\">入站规则</Tab>\n        <Tab value=\"ruleout\">出站规则</Tab>\n        <Tab value=\"relatedVM\">关联云主机</Tab>\n    </Tabs>\n    <div style=\"margin: 20px;\" v-if={{ self.get('tab2') == 'rulein' }}>入站规则</div>\n    <div style=\"margin: 20px;\" v-else-if={{ self.get('tab2') == 'ruleout' }}>出站规则</div>\n    <div style=\"margin: 20px;\" v-else>关联云主机</div> \n\n</div>\n"
+        },
+        {
+            "language": "js",
+            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n    defaults(){\n        return {\n            tab1:'',\n            tab2:'ruleout'\n        }\n    }\n}"
+        },
+        {
+            "language": "styl",
+            "content": ".k-checkbox\n    margin-right 20px"
+        }
+    ],
+    "index": 8,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> {Tabs, Tab} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'components/tabs'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Tabs</span> <span class=\"hljs-attr\">data</span>=<span class=\"hljs-string\">{{</span> [\n        {\n            <span class=\"hljs-attr\">text:</span> '入站规则',\n            <span class=\"hljs-attr\">value:</span> '<span class=\"hljs-attr\">rulein</span>',\n        },\n        {\n            <span class=\"hljs-attr\">text:</span> '出站规则',\n            <span class=\"hljs-attr\">value:</span> '<span class=\"hljs-attr\">ruleout</span>',\n        },\n        {\n            <span class=\"hljs-attr\">text:</span> '关联云主机',\n            <span class=\"hljs-attr\">value:</span> '<span class=\"hljs-attr\">relatedVM</span>',\n        }\n    ] }} <span class=\"hljs-attr\">value</span>=<span class=\"hljs-string\">\"relatedVM\"</span>  <span class=\"hljs-attr\">style</span>=<span class=\"hljs-string\">\"margin: 20px;\"</span>/&gt;</span>\n\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Tabs</span> <span class=\"hljs-attr\">v-model</span>=<span class=\"hljs-string\">\"tab2\"</span> <span class=\"hljs-attr\">style</span>=<span class=\"hljs-string\">\"margin: 20px;\"</span>&gt;</span>\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Tab</span> <span class=\"hljs-attr\">value</span>=<span class=\"hljs-string\">\"rulein\"</span>&gt;</span>入站规则<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Tab</span>&gt;</span>\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Tab</span> <span class=\"hljs-attr\">value</span>=<span class=\"hljs-string\">\"ruleout\"</span>&gt;</span>出站规则<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Tab</span>&gt;</span>\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Tab</span> <span class=\"hljs-attr\">value</span>=<span class=\"hljs-string\">\"relatedVM\"</span>&gt;</span>关联云主机<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Tab</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Tabs</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span> <span class=\"hljs-attr\">style</span>=<span class=\"hljs-string\">\"margin: 20px;\"</span> <span class=\"hljs-attr\">v-if</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">self.get</span>('<span class=\"hljs-attr\">tab2</span>') == <span class=\"hljs-string\">'rulein'</span> }}&gt;</span>入站规则<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span> <span class=\"hljs-attr\">style</span>=<span class=\"hljs-string\">\"margin: 20px;\"</span> <span class=\"hljs-attr\">v-else-if</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">self.get</span>('<span class=\"hljs-attr\">tab2</span>') == <span class=\"hljs-string\">'ruleout'</span> }}&gt;</span>出站规则<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span> <span class=\"hljs-attr\">style</span>=<span class=\"hljs-string\">\"margin: 20px;\"</span> <span class=\"hljs-attr\">v-else</span>&gt;</span>关联云主机<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span> \n\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span>\n</span></code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n    defaults(){\n        <span class=\"hljs-keyword\">return</span> {\n            <span class=\"hljs-attr\">tab1</span>:<span class=\"hljs-string\">''</span>,\n            <span class=\"hljs-attr\">tab2</span>:<span class=\"hljs-string\">'ruleout'</span>\n        }\n    }\n}</code></pre>"
+        },
+        {
+            "language": "styl",
+            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-checkbox</span>\n    <span class=\"hljs-attribute\">margin-right</span> <span class=\"hljs-number\">20px</span></code></pre>"
+        }
+    ]
+}

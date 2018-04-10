@@ -1,0 +1,6 @@
+import Datepicker from 'kpc/components/datepicker';
+
+<div>
+    <Datepicker multiple v-model="date" />
+    You selected: {{ JSON.stringify(self.get('date')) }}
+</div>

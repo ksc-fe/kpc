@@ -1,0 +1,4 @@
+import Input from 'kpc/components/input';
+
+
+<Input placeholder="auto width" autoWidth />

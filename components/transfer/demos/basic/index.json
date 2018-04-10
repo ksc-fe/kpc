@@ -1,0 +1,29 @@
+{
+    "setting": {
+        "title": "基本用法",
+        "order": 0
+    },
+    "catalogs": [],
+    "contents": "<p>穿梭框基本用法，支持Shift进行多选</p>\n",
+    "codes": [
+        {
+            "language": "vdt",
+            "content": "import Transfer from 'kpc/components/transfer';\n\n<Transfer data={{ self.get('data') }}/>"
+        },
+        {
+            "language": "js",
+            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    defaults() {\n        return {\n            data: [\n                {label: '主机名0'},\n                {label: '主机名1'},\n                {label: '主机名2'},\n                {label: '主机名3', disabled: true},\n                {label: '主机名4'},\n            ]\n        }\n    }\n}"
+        }
+    ],
+    "index": 3,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Transfer <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/transfer'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Transfer</span> <span class=\"hljs-attr\">data</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">self.get</span>('<span class=\"hljs-attr\">data</span>') }}/&gt;</span></span></code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n\n    defaults() {\n        <span class=\"hljs-keyword\">return</span> {\n            <span class=\"hljs-attr\">data</span>: [\n                {<span class=\"hljs-attr\">label</span>: <span class=\"hljs-string\">'主机名0'</span>},\n                {<span class=\"hljs-attr\">label</span>: <span class=\"hljs-string\">'主机名1'</span>},\n                {<span class=\"hljs-attr\">label</span>: <span class=\"hljs-string\">'主机名2'</span>},\n                {<span class=\"hljs-attr\">label</span>: <span class=\"hljs-string\">'主机名3'</span>, <span class=\"hljs-attr\">disabled</span>: <span class=\"hljs-literal\">true</span>},\n                {<span class=\"hljs-attr\">label</span>: <span class=\"hljs-string\">'主机名4'</span>},\n            ]\n        }\n    }\n}</code></pre>"
+        }
+    ]
+}
