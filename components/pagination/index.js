@@ -15,8 +15,8 @@ export default class Pagination extends Intact {
         return {
             total: 0,
             current: 1,
-            size: 10,
-            // sizeValue: 10,
+            limit: 10,
+            counts: 7,
             showTotal: true,
             limits: [10, 20, 50],
             // value: '',
@@ -26,20 +26,12 @@ export default class Pagination extends Intact {
     }
 
     _init() {
-        let size = this.get('size');
-        let opts = this.get('opts');
-        if (!opts.includes(size)) {
-            this.set('size', opts[0]);
-        }
-        if (this.get('current') > this.get('total')) {
-            this.set('current', 1);
-        }
+        // avoid setting incorrect value
+        this.changePage(this.get('current'));
 
-        this.on('$change:size', () => {
-            let size = parseInt(this.get('size'));
+        this.on('$change:limit', () => {
             this.set('current', 1);
-            this.set('size', size);
-        })
+        });
     }
 
     changePage(page) {
