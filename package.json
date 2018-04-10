@@ -11,6 +11,7 @@
     "build": "NODE_ENV=production gulp build",
     "dev:doc": "gulp watch",
     "build:doc": "NODE_ENV=production gulp build:doc",
+    "deploy:doc": "NODE_ENV=production gulp deploy:doc",
     "prerelease": "npm run build"
   },
   "repository": {

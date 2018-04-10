@@ -68,9 +68,9 @@ const rm = (path) => {
     });
 };
 gulp.task('clean:doc', () => {
-    return exec(`rm -rf ./site/dist && git clone ./ ./site/dist &&
+    return exec(`rm -rf ./site/dist; REPO=\`git config remote.origin.url\`; echo $REPO;
+        git clone -b gh-pages --single-branch $REPO ./site/dist &&
         cd ./site/dist &&
-        (git checkout gh-pages || git checkout --orphan gh-pages) &&
         rm -rf ./* && cd ../../`
     );
 });
@@ -89,10 +89,16 @@ gulp.task('build:doc:client', (done) => {
     });
 });
 gulp.task('push:doc', () => {
-    return exec(`cd ./site/dist && git push github gh-pages`);
+    return exec(`cd ./site/dist && 
+        git add -A;
+        TIME=\`date +"%Y-%m-%d %H:%M:%S"\`;
+        git commit -am "build: \${TIME}";
+        git push origin gh-pages`
+    );
 });
 
 gulp.task('build:doc', gulp.series('clean:doc', 'build:doc:server', 'build:doc:client'));
+gulp.task('deploy:doc', gulp.series('build:doc', 'push:doc'));
 
 
 /******************
