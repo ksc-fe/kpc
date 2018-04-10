@@ -1,7 +1,7 @@
 {
     "setting": {
         "title": "行选中",
-        "order": 0
+        "order": 3
     },
     "catalogs": [],
     "contents": "<ul>\n<li><code>rowKey</code>：设置行的<code>key</code>值，类型：<code>Function</code>，默认：行的<code>index</code></li>\n<li><code>checkedKey</code>：设置/获取表格被选中的行信息（针对<code>radio</code>），类型：任何，控制是否选中会根据rowKey的设置判断。</li>\n<li><code>checkedKeys</code>：设置/获取表格被选中的行信息（针对<code>checkbox</code>）类型：<code>Array</code>，可以设置多个，控制是否选中会根据rowKey的设置判断。</li>\n</ul>\n",
@@ -19,7 +19,7 @@
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    setRowKey(value, index) {\n        return value.id;\n    }\n\n}"
         }
     ],
-    "index": 0,
+    "index": 68,
     "highlighted": [
         {
             "language": "vdt",

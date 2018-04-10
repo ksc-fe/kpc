@@ -1,7 +1,7 @@
 {
     "setting": {
         "title": "整行选中",
-        "order": 0
+        "order": 4
     },
     "catalogs": [],
     "contents": "<p><code>rowCheckable</code>：是否点击整行任意位置后整行选中，类型<code>Boolean</code>，<code>true</code>(默认)</p>\n<ul>\n<li>选中的数据默认会在每一行的元素上有<code>k-checked</code>样式</li>\n</ul>\n",
@@ -19,7 +19,7 @@
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
         }
     ],
-    "index": 10,
+    "index": 93,
     "highlighted": [
         {
             "language": "vdt",

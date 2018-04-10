@@ -19,7 +19,7 @@
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    defaults() {\n        return {\n            data: [\n                {name: '主机名0', desc: '前端服务器0', ip: '192.168.1.0'},\n                {name: '主机名1', desc: '前端服务器1', ip: '192.168.1.1'},\n                {name: '主机名2', desc: '前端服务器2', ip: '192.168.1.2'},\n                {name: '主机名3', desc: '前端服务器3', ip: '192.168.1.3', disabled: true},\n                {name: '主机名4', desc: '前端服务器4', ip: '192.168.1.4'},\n            ]\n        }\n    }\n}"
         }
     ],
-    "index": 37,
+    "index": 29,
     "highlighted": [
         {
             "language": "vdt",

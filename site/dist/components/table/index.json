@@ -5,19 +5,19 @@
         "order": 89
     },
     "catalogs": [],
-    "contents": "<h1 id='header-%E8%A1%A8%E6%A0%BC%E5%B1%9E%E6%80%A7%20Table'>表格属性 Table</h1><div class=\"k-table-wrapper k-border\">\n                    <table class=\"k-table\">\n                        <thead><tr>\n<th>属性</th>\n<th>说明</th>\n<th>类型</th>\n<th>默认值</th>\n</tr>\n</thead>\n                        <tbody><tr>\n<td>data</td>\n<td>表格数据</td>\n<td><code>Array</code></td>\n<td><code>[]</code></td>\n</tr>\n<tr>\n<td>scheme</td>\n<td>表头信息</td>\n<td><code>Object</code></td>\n<td><code>{}</code></td>\n</tr>\n<tr>\n<td>checkType</td>\n<td>框的类型: 单选 radio , 复选 checkbox ,  没有 none</td>\n<td><code>String</code></td>\n<td><code>&quot;checkbox&quot;</code></td>\n</tr>\n<tr>\n<td>noDataTemplate</td>\n<td>当没有数据的时候展示信息</td>\n<td><code>String</code></td>\n<td><code>&quot;/(ㄒoㄒ)/~~ 没有找到亲要的数据哦~&quot;</code></td>\n</tr>\n<tr>\n<td>fixHeader</td>\n<td>表头固定</td>\n<td><code>Number</code></td>\n<td><code>false</code></td>\n</tr>\n<tr>\n<td>rowKey</td>\n<td>设置行的key</td>\n<td><code>Function</code></td>\n<td>function(value, index) {  return <code>index</code>; }</td>\n</tr>\n<tr>\n<td>checkedKeys</td>\n<td>哪行被选中（针对多选）</td>\n<td><code>Array</code></td>\n<td><code>[]</code></td>\n</tr>\n<tr>\n<td>checkedKey</td>\n<td>哪行被选中（针对单选）</td>\n<td><code>任何</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>resizable</td>\n<td>是否可以表头拖动</td>\n<td><code>Boolean</code></td>\n<td><code>false</code></td>\n</tr>\n<tr>\n<td>rowCheckable</td>\n<td>是否整行选中</td>\n<td><code>Boolean</code></td>\n<td><code>true</code></td>\n</tr>\n</tbody>\n                    </table>\n                </div><p>| rowClassName | 设置行的class | <code>Function</code> | <code>function(value, index) {  }</code> || disableRow | 禁用某一行 | <code>Function</code> | <code>function(data, index) { return false }</code> |</p>\n<p>| rowExpandable | 是否点击整行展开 | <code>Boolean</code> | <code>true</code> || expand | 展开条件 | <code>Function</code> | <code>undefined</code> || expandedKeys | 哪行展开 | <code>Array</code> | <code>[]</code> |</p>\n<p>| sort | 排序 | <code>Object</code> | <code>{}</code> || groups | 分组 | <code>Object</code> | <code>{}</code> |</p>\n<p>| sortable | 表头排序 | <code>Boolean</code> | <code>false</code> || groups | 分组 | <code>Array</code> | <code>undefined</code> |</p>\n<p>| type | 类型 | <code>String</code> | <code>&quot;default&quot;</code> || _padding | padding | <code>Number</code> | <code>0</code> || _disabledAmount | disabledAmount | <code>Number</code> | <code>0</code> |</p>\n",
+    "contents": "<h1 id='header-%E8%A1%A8%E6%A0%BC%E5%B1%9E%E6%80%A7%20Table'>表格属性 Table</h1><div class=\"k-table-wrapper k-border\">\n                    <table class=\"k-table\">\n                        <thead><tr>\n<th>属性</th>\n<th>说明</th>\n<th>类型</th>\n<th>默认值</th>\n</tr>\n</thead>\n                        <tbody><tr>\n<td>data</td>\n<td>表格数据</td>\n<td><code>Array</code></td>\n<td><code>[]</code></td>\n</tr>\n<tr>\n<td>scheme</td>\n<td>表头信息</td>\n<td><code>Object</code></td>\n<td><code>{}</code></td>\n</tr>\n<tr>\n<td>checkType</td>\n<td>框的类型: 单选 radio , 复选 checkbox ,  没有 none</td>\n<td><code>String</code></td>\n<td><code>&quot;checkbox&quot;</code></td>\n</tr>\n<tr>\n<td>noDataTemplate</td>\n<td>当没有数据的时候展示信息</td>\n<td><code>String</code></td>\n<td><code>&quot;/(ㄒoㄒ)/~~ 没有找到亲要的数据哦~&quot;</code></td>\n</tr>\n<tr>\n<td>fixHeader</td>\n<td>表头固定</td>\n<td><code>Number</code></td>\n<td><code>false</code></td>\n</tr>\n<tr>\n<td>rowKey</td>\n<td>设置行的key</td>\n<td><code>Function</code></td>\n<td>function(value, index) {  return <code>index</code>; }</td>\n</tr>\n<tr>\n<td>checkedKeys</td>\n<td>哪行被选中（针对多选）</td>\n<td><code>Array</code></td>\n<td><code>[]</code></td>\n</tr>\n<tr>\n<td>checkedKey</td>\n<td>哪行被选中（针对单选）</td>\n<td><code>任何</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>resizable</td>\n<td>是否可以表头拖动</td>\n<td><code>Boolean</code></td>\n<td><code>false</code></td>\n</tr>\n<tr>\n<td>rowCheckable</td>\n<td>是否整行选中</td>\n<td><code>Boolean</code></td>\n<td><code>true</code></td>\n</tr>\n<tr>\n<td>rowClassName</td>\n<td>设置行的class</td>\n<td><code>Function</code></td>\n<td><code>function(value, index) {  }</code></td>\n</tr>\n<tr>\n<td>disableRow</td>\n<td>禁用某一行</td>\n<td><code>Function</code></td>\n<td><code>function(data, index) { return false }</code></td>\n</tr>\n<tr>\n<td>rowExpandable</td>\n<td>是否点击整行展开</td>\n<td><code>Boolean</code></td>\n<td><code>true</code></td>\n</tr>\n<tr>\n<td>expand</td>\n<td>展开条件</td>\n<td><code>Function</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>expandedKeys</td>\n<td>哪行展开</td>\n<td><code>Array</code></td>\n<td><code>[]</code></td>\n</tr>\n<tr>\n<td>type</td>\n<td>类型</td>\n<td><code>String</code></td>\n<td><code>&quot;default&quot;</code></td>\n</tr>\n<tr>\n<td>sort</td>\n<td>排序</td>\n<td><code>Object</code></td>\n<td><code>{}</code></td>\n</tr>\n<tr>\n<td>group</td>\n<td>分组</td>\n<td><code>Array</code></td>\n<td><code>{}</code></td>\n</tr>\n</tbody>\n                    </table>\n                </div><h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1><div class=\"k-table-wrapper k-border\">\n                    <table class=\"k-table\">\n                        <thead><tr>\n<th>方法名</th>\n<th>说明</th>\n<th>参数</th>\n<th>返回值</th>\n</tr>\n</thead>\n                        <tbody><tr>\n<td>$change:checked</td>\n<td>选中的数据变化会触发的事件</td>\n<td><code>无</code></td>\n<td><code>function(c, newValue, oldValue) {}</code></td>\n</tr>\n<tr>\n<td>getCheckedData</td>\n<td>获取选中数据信息</td>\n<td><code>无</code></td>\n<td><code>[]</code></td>\n</tr>\n<tr>\n<td>checkAll</td>\n<td>全部选中</td>\n<td><code>无</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>uncheckAll</td>\n<td>全不选中</td>\n<td><code>无</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>isCheckAll</td>\n<td>判断是否全选</td>\n<td><code>无</code></td>\n<td><code>{Boolean}</code></td>\n</tr>\n<tr>\n<td>isChecked</td>\n<td>判断某行是否选中</td>\n<td><code>{Number}</code></td>\n<td><code>{Boolean}</code></td>\n</tr>\n</tbody>\n                    </table>\n                </div>",
     "codes": [
         {
             "language": "js",
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
         }
     ],
-    "index": 114,
+    "index": 127,
     "sideBars": {
         "undefined": [
             {
                 "title": "快速开始",
-                "path": "docs/quick-start.md",
+                "path": "docs/getting-started.md",
                 "children": [
                     {
                         "title": "准备工作",
@@ -669,6 +669,37 @@
                 ]
             },
             {
+                "title": "开关",
+                "path": "components/switch/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": [
+                            {
+                                "title": "Switch",
+                                "path": "#header-Switch",
+                                "level": 2,
+                                "content": "<h2 id='header-Switch'>Switch</h2>",
+                                "text": "Switch",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "title": "方法",
+                        "path": "#header-%E6%96%B9%E6%B3%95",
+                        "level": 1,
+                        "content": "<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>",
+                        "text": "方法",
+                        "children": []
+                    }
+                ]
+            },
+            {
                 "title": "面包屑",
                 "path": "components/breadcrumb/index.md",
                 "children": [
@@ -741,6 +772,14 @@
                         "content": "<h1 id='header-%E8%A1%A8%E6%A0%BC%E5%B1%9E%E6%80%A7%20Table'>表格属性 Table</h1>",
                         "text": "表格属性 Table",
                         "children": []
+                    },
+                    {
+                        "title": "方法",
+                        "path": "#header-%E6%96%B9%E6%B3%95",
+                        "level": 1,
+                        "content": "<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>",
+                        "text": "方法",
+                        "children": []
                     }
                 ]
             },
@@ -754,6 +793,20 @@
                         "level": 1,
                         "content": "<h1 id='header-%E6%A0%87%E7%AD%BE%E5%B1%9E%E6%80%A7%20Tabs'>标签属性 Tabs</h1>",
                         "text": "标签属性 Tabs",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "穿梭框",
+                "path": "components/transfer/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
                         "children": []
                     }
                 ]
@@ -776,20 +829,6 @@
                         "level": 1,
                         "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
                         "text": "事件",
-                        "children": []
-                    }
-                ]
-            },
-            {
-                "title": "穿梭框",
-                "path": "components/transfer/index.md",
-                "children": [
-                    {
-                        "title": "属性",
-                        "path": "#header-%E5%B1%9E%E6%80%A7",
-                        "level": 1,
-                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                        "text": "属性",
                         "children": []
                     }
                 ]

@@ -1,7 +1,7 @@
 {
     "setting": {
         "title": "表头固定",
-        "order": 0
+        "order": 8
     },
     "catalogs": [],
     "contents": "<p><code>fixHeader</code>：设置表头固定，类型<code>Boolean</code>，<code>false</code>(默认)</p>\n",
@@ -19,7 +19,7 @@
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
         }
     ],
-    "index": 13,
+    "index": 110,
     "highlighted": [
         {
             "language": "vdt",

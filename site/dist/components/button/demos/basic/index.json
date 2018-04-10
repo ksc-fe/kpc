@@ -23,7 +23,7 @@
             "content": "<template>\n    <div>\n        <Button>default</Button>\n        <Button type=\"primary\">primay</Button>\n        <Button type=\"warning\">warning</Button>\n        <Button type=\"danger\">danger</Button>\n        <Button type=\"none\">none</Button>\n    </div>\n</template>\n<style src=\"./index.styl\" lang=\"stylus\"></style>\n<script>\nimport Button from 'kpc/components/button';\n\nexport default {\n    components: {\n        Button\n    }\n}\n</script>"
         }
     ],
-    "index": 16,
+    "index": 13,
     "highlighted": [
         {
             "language": "vdt",

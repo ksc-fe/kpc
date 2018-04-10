@@ -19,7 +19,7 @@
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    onClick(name) {\n        this.set(name, true);\n    }\n}"
         }
     ],
-    "index": 66,
+    "index": 57,
     "highlighted": [
         {
             "language": "vdt",

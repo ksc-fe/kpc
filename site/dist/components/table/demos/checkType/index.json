@@ -1,7 +1,7 @@
 {
     "setting": {
         "title": "选择框的类型",
-        "order": 0
+        "order": 2
     },
     "catalogs": [],
     "contents": "<p><code>checkType</code>：设置选择框的类型，类型<code>String</code>，<code>checkbox</code>多选框(默认)/<code>radio</code>单选框/<code>none</code>无选框</p>\n",
@@ -19,7 +19,7 @@
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
         }
     ],
-    "index": 14,
+    "index": 59,
     "highlighted": [
         {
             "language": "vdt",

@@ -15,7 +15,7 @@
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nimport Message from 'kpc/components/message';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    async ok(dialog) {\n        // validate the form firstly\n        if (await this.refs.form.validate()) {\n            // make the ok button show loading\n            dialog.showLoading(); \n            // mock api\n            new Promise((resolve, reject) => {\n                setTimeout(() => {\n                    if (Math.random() > 0.5) {\n                        resolve();\n                    } else {\n                        reject();\n                    }\n                }, 2000);\n            }).then(() => {\n                // if success, close dialog \n                dialog.hideLoading();\n                dialog.close();\n            }, () => {\n                // if error, don't close dialog\n                dialog.hideLoading();\n                Message.error('error occured');\n            });\n        }\n    }\n}"
         }
     ],
-    "index": 101,
+    "index": 106,
     "highlighted": [
         {
             "language": "vdt",

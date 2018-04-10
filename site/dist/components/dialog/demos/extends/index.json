@@ -25,7 +25,7 @@
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nimport Dialog from './dialog';\nimport Message from 'kpc/components/message';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    showDialog() {\n        const dialog = this.dialog = new Dialog();\n        dialog.show();\n        dialog.on('ok', (data) => {\n            Message.info(`data from dialog: ${data}`);\n        });\n    }\n\n    _destroy() {\n        if (this.dialog) {\n            this.dialog.close();\n        }\n    }\n}"
         }
     ],
-    "index": 82,
+    "index": 80,
     "highlighted": [
         {
             "language": "vdt",

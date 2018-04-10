@@ -23,7 +23,7 @@
             "content": "<template>\n    <div>\n        <ButtonGroup>\n            <Button>开机</Button>\n            <Button>关机</Button>\n            <Button>重启</Button>\n        </ButtonGroup>\n        <ButtonGroup>\n            <Button type=\"primary\" size=\"small\">开机</Button>\n            <Button type=\"primary\" size=\"small\">关机</Button>\n            <Button type=\"primary\" size=\"small\">重启</Button>\n        </ButtonGroup>\n        <ButtonGroup vertical>\n            <Button type=\"primary\" size=\"small\">开机</Button>\n            <Button type=\"primary\" size=\"small\">关机</Button>\n            <Button type=\"primary\" size=\"small\">重启</Button>\n        </ButtonGroup>\n    </div>\n</template>\n<style src=\"./index.styl\" lang=\"stylus\"></style>\n<script>\nimport {Button, ButtonGroup} from 'kpc/components/button';\n\nexport default {\n    components: {\n        Button, ButtonGroup\n    }\n}\n</script>"
         }
     ],
-    "index": 50,
+    "index": 42,
     "highlighted": [
         {
             "language": "vdt",

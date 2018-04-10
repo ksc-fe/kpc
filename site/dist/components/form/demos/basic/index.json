@@ -19,7 +19,7 @@
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nimport Message from 'kpc/components/message';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    defaults() {\n        return {\n            model: {\n                checkbox: []\n            }\n        };\n    }\n\n    submit() {\n        Message.success('验证通过，开始提交');\n        console.log(this.get('model'));\n    }\n\n    reset() {\n        this.refs.form.reset();\n        console.log(this.get('model'));\n    }\n}"
         }
     ],
-    "index": 25,
+    "index": 21,
     "highlighted": [
         {
             "language": "vdt",

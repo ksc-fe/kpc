@@ -19,7 +19,7 @@
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    defaults() {\n        return {\n            uncheckedValue: {\n                unchecked: true\n            }\n        };\n    }\n}"
         }
     ],
-    "index": 33,
+    "index": 47,
     "highlighted": [
         {
             "language": "vdt",

@@ -16,6 +16,7 @@ const autoprefixer = require('autoprefixer');
 const rimraf = require('rimraf');
 const fs = require('fs');
 const packageJson = require('./package.json');
+const childProcess = require('child_process');
 
 gulp.task('doc', () => {
     console.log('build markdown');
@@ -66,10 +67,12 @@ const rm = (path) => {
         rimraf(path, resolve);
     });
 };
-gulp.task('clean:doc', (done) => {
-    return Promise.all([
-        rm('./site/dist/*'),
-    ]);
+gulp.task('clean:doc', () => {
+    return exec(`rm -rf ./site/dist && git clone ./ ./site/dist &&
+        cd ./site/dist &&
+        (git checkout gh-pages || git checkout --orphan gh-pages) &&
+        rm -rf ./* && cd ../../`
+    );
 });
 gulp.task('build:doc:server', () => {
     return doc(false);
@@ -84,6 +87,9 @@ gulp.task('build:doc:client', (done) => {
         }));
         done();
     });
+});
+gulp.task('push:doc', () => {
+    return exec(`cd ./site/dist && git push github gh-pages`);
 });
 
 gulp.task('build:doc', gulp.series('clean:doc', 'build:doc:server', 'build:doc:client'));
@@ -320,3 +326,17 @@ gulp.task('build', gulp.series(
     'index',
     gulp.parallel('build@css', 'build@stylus', 'build@single')
 ));
+
+function exec(command) {
+    return new Promise(function(resolve, reject) {
+        var cmd = childProcess.exec(command, {maxBuffer: 50000 * 1024}, function(err, stdout) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(stdout);
+            }
+        });
+        cmd.stdout.pipe(process.stdout);
+        cmd.stderr.pipe(process.stderr);
+    });
+}

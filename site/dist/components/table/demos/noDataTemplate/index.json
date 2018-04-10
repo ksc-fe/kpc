@@ -1,7 +1,7 @@
 {
     "setting": {
         "title": "自定义无内容时的展示信息",
-        "order": 0
+        "order": 9
     },
     "catalogs": [],
     "contents": "<p>当data为<code>[]</code>时, 可设置<code>noDataTemplate</code>来展示你想展示的信息（默认为： /(ㄒoㄒ)/~~ 没有找到亲要的数据哦~），类型<code>String</code></p>\n",
@@ -19,7 +19,7 @@
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
         }
     ],
-    "index": 12,
+    "index": 113,
     "highlighted": [
         {
             "language": "vdt",

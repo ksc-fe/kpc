@@ -15,7 +15,7 @@
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nimport Message from 'kpc/components/message';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    showMessage1() {\n        Message.info('close after 10s', 10000);\n    }\n\n    showMessage2() {\n        Message.info('stick message', 0);\n    }\n}"
         }
     ],
-    "index": 55,
+    "index": 50,
     "highlighted": [
         {
             "language": "vdt",
