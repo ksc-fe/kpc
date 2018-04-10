@@ -1,5 +1,0 @@
-import Progress from 'kpc/components/progress';
-
-<div>
-    <Progress type="circle" percent="50" />
-</div>

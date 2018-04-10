@@ -13,3 +13,4 @@ site/.dist/
 @*
 .cache
 out/
+site/dist/

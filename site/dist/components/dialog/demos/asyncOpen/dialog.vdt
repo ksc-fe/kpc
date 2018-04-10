@@ -1,5 +1,0 @@
-<t:parent>
-    <b:body>
-        Hello {{ self.get('name') }}
-    </b:body>
-</t:parent>

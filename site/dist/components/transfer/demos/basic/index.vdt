@@ -1,3 +1,0 @@
-import Transfer from 'kpc/components/transfer';
-
-<Transfer data={{ self.get('data') }}/>
