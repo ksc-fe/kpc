@@ -8,6 +8,7 @@ const path = require('path');
 const connect = require('gulp-connect');
 const Advanced = require('advanced');
 const babel = require('gulp-babel');
+const Vdt = require('vdt');
 const vdt = require('gulp-vdt');
 const tap = require('gulp-tap');
 const postcss = require('gulp-postcss');
@@ -17,6 +18,11 @@ const rimraf = require('rimraf');
 const fs = require('fs');
 const packageJson = require('./package.json');
 const childProcess = require('child_process');
+
+const pages = {
+    '/': 'index',
+};
+const vdtFile = path.resolve(__dirname, './site/src/index.vdt');
 
 gulp.task('doc', () => {
     console.log('build markdown');
@@ -43,6 +49,18 @@ gulp.task('webpack', () => {
     return p;
 });
 
+gulp.task('dev:doc:server', async () => {
+    await Promise.all(Object.keys(pages).map(async key => {
+        await new Promise(resolve => {
+            fs.writeFile(
+                path.resolve(__dirname, `./site/.dist/${pages[key]}.html`),
+                Vdt.renderFile(vdtFile),
+                resolve
+            );
+        });
+    }));
+});
+
 gulp.task('server', () => {
     const [compiler] = webpackWatch();
 
@@ -58,7 +76,7 @@ gulp.task('server', () => {
     });
 });
 
-gulp.task('watch', gulp.series('doc', gulp.parallel('server', /* 'webpack', */ () => {
+gulp.task('watch', gulp.series('doc', gulp.parallel('server', 'dev:doc:server', /* 'webpack', */ () => {
     gulp.watch('./@(components|docs)/**/*.md', {ignored: /node_modules/}, gulp.parallel('doc'));
 })));
 
@@ -75,7 +93,22 @@ gulp.task('clean:doc', () => {
     );
 });
 gulp.task('build:doc:server', () => {
-    return doc(false);
+    return doc(false).then(async render => {
+        await Promise.all(Object.keys(pages).map(async key => {
+            const data = await render(key);
+            await new Promise(resolve => {
+                fs.writeFile(
+                    path.resolve(__dirname, `./site/dist/${pages[key]}.html`),
+                    Vdt.renderFile(vdtFile, {
+                        title: 'Kpc',
+                        content: data.content,
+                        style: data.style,
+                    }),
+                    resolve
+                );
+            });
+        }));
+    });
 });
 gulp.task('build:doc:client', (done) => {
     webpackConfig.entry = {

@@ -1,0 +1,84 @@
+@require('../../styles/variables')
+
+$page-width = 1080px
+
+.index-page
+    .header-wrapper
+        header
+            width $page-width
+    .content-wrapper
+        width $page-width
+        margin 0 auto
+        min-height 100%
+        background #fff
+        padding-top headerHeight 
+        box-sizing border-box
+        text-align center
+    .home-header
+        padding 50px 0
+        h1
+            font-size 5em
+            font-weight 600 
+            font-family Arial
+        p
+            font-size 2em
+            font-weight 300
+            color #46484a
+        .button
+            padding 0 2em
+            margin 0 10px
+            height 3em
+            line-height 3em
+        .features
+            margin 0 auto
+            display flex
+            margin-top 50px
+        .feature
+            h2
+                margin 10px
+            flex 1
+    .home-components
+        // background #09d
+        background #f8f8f8
+        padding 30px 0
+        // box-shadow 0 -0.25em 1.5em rgba(0,5,10,0.25)
+        h1
+            font-size 3em
+            // color #fff
+            color #111
+        h3
+            color #37393b
+            font-size 1.3em
+            margin 0.7em 0
+    .code-wrapper
+        display flex
+        flex-direction row
+        justify-content center
+        text-align left
+        .code
+            width 620px
+            pre
+                margin 10px
+            code
+                background #fff
+        .output
+            width 300px
+            margin 10px
+            background #fff
+            border-radius 3px
+            padding 15px
+        .count
+            color blue
+            font-size 3em
+            margin 10px 0 12px
+        .button
+            font-size 1.2em
+            padding 10px
+        header
+            font-size 2em
+            margin 10px 0
+    // .home-extends
+        // background red 
+        // h3
+            // color #1f2021
+

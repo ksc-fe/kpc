@@ -20,7 +20,7 @@ module.exports = function(isDev) {
     const promise = new Promise((resolve) => {
         _resolve = resolve;
     });
-    promise.resolve = () => _resolve();
+    promise.resolve = (...args) => _resolve(...args);
 
     const doc = new KDoc(
         './@(docs|components)/**/*.md',
@@ -202,7 +202,7 @@ module.exports = function(isDev) {
                         }
                     });
 
-                    promise.resolve();
+                    promise.resolve(render);
                 });
             }
         });

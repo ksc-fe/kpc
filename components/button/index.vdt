@@ -29,7 +29,7 @@ const classNameObj = {
 };
 
 const Button = props => {
-    if (props.href) {
+    if (props.href && tagName === 'button') {
         tagName = 'a';
     }
     if (tagName === 'button') {
