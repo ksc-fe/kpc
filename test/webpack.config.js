@@ -32,5 +32,10 @@ module.exports = merge.smartStrategy({
                 ]
             },
         ]
-    }  
+    },
+    resolve: {
+        alias: {
+            '~': path.resolve(__dirname, '../site/dist'),
+        }
+    },
 });

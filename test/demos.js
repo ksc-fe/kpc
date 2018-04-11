@@ -1,6 +1,6 @@
 import {render} from './utils';
 
-const req = require.context('../site/components/', true, /demos\/.*index\.js$/);
+const req = require.context('../site/dist/components/', true, /demos\/.*index\.js$/);
 
 describe('Demos', () => {
     let demo;

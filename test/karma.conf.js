@@ -1,6 +1,14 @@
 var webpackConfig = require('./webpack.config');
 var path = require('path');
 
+console.log(
+    '\x1b[33m%s\x1b[0m', 
+    `If the documents of components has not been built
+please run:
+	npm run build:doc
+`
+);
+
 module.exports = function (config) {
     config.set({
         browsers: process.env.UPDATE ? ['ChromeHeadless'] : undefined,

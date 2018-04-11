@@ -1,6 +1,8 @@
 import Intact from 'intact';
+import template from './index.vdt';
+import Layout from '../layout';
 
-export default class extends Intact {
+export default class extends Layout {
     @Intact.template()
-    static template = `<div>index</div>`;
+    static template = template;
 }
