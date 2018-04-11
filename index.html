@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>进度条</title>
+    <title>Kpc</title>
 </head>
 <body>
     
@@ -6221,232 +6221,487 @@ blockquote:before {
 .example.index-40 .k-progress {
   margin: 10px 0;
 }
+
+.k-steps {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.k-steps .k-step {
+  float: left;
+  position: relative;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.k-steps .k-head {
+  float: left;
+  padding-right: 0.714285714285714rem;
+  background: #fff;
+  position: relative;
+}
+.k-steps .k-head .k-inner {
+  width: 1.428571428571429rem;
+  height: 1.428571428571429rem;
+  line-height: calc(1.428571428571429rem - 2px);
+  border-radius: 50%;
+  text-align: center;
+  border: 1px solid #999;
+  color: #999;
+}
+.k-steps .k-head .k-icon:before {
+  font-size: 1.714285714285714rem;
+  line-height: calc(1.428571428571429rem - 2px);
+}
+.k-steps .k-main {
+  float: left;
+  position: relative;
+  color: #999;
+}
+.k-steps .k-title {
+  line-height: 1.428571428571429rem;
+  font-weight: bold;
+  padding-right: 0.714285714285714rem;
+  background: #fff;
+  display: inline-block;
+  white-space: nowrap;
+}
+.k-steps .k-content {
+  font-size: 0.857142857142857rem;
+  margin: 0.357142857142857rem 0 0;
+  white-space: nowrap;
+}
+.k-steps .k-tail {
+  position: absolute;
+  left: 0;
+  right: 0.714285714285714rem;
+  top: 0.714285714285714rem;
+  height: 1px;
+  background: #d9d9d9;
+}
+.k-steps .k-step:last-of-type {
+  -webkit-box-flex: 0;
+      -ms-flex: 0;
+          flex: 0;
+}
+.k-steps .k-step:last-of-type .k-tail {
+  display: none;
+}
+.k-steps .k-step:last-of-type .k-title {
+  padding-right: 0;
+}
+.k-steps .k-done .k-inner {
+  color: #0a5eee;
+  border-color: #0a5eee;
+}
+.k-steps .k-done .k-tail {
+  background: #0a5eee;
+}
+.k-steps .k-active .k-inner {
+  color: #fff;
+  border-color: #0a5eee;
+  background: #0a5eee;
+}
+.k-steps .k-active .k-main {
+  color: #595959;
+}
+.k-steps .k-error .k-inner {
+  color: #db2828;
+  border-color: #db2828;
+  background: #fff;
+}
+.k-steps .k-error .k-main {
+  color: #db2828;
+}
+
+.example.index-12 .k-btn {
+  margin-top: 20px;
+}
+
+.k-breadcrumb {
+  font-size: 1rem;
+}
+.k-breadcrumb .k-item {
+  display: inline-block;
+}
+.k-breadcrumb .k-item:last-of-type {
+  font-weight: bold;
+}
+.k-breadcrumb .k-item-link {
+  color: #595959;
+}
+.k-breadcrumb a.k-item-link:hover {
+  color: #195d9f;
+}
+.k-breadcrumb .k-separator {
+  margin: 0 0.571428571428571rem;
+}
+
+.example.index-41 .separator {
+  color: #ffa133;
+}
+.example.index-41 i {
+  margin-right: 3px;
+}
+
+.k-pagination {
+  font-size: 1rem;
+}
+.k-pagination .k-pages,
+.k-pagination .k-limits,
+.k-pagination .k-goto,
+.k-pagination .k-total {
+  margin-left: 1.428571428571429em;
+  display: inline-block;
+}
+.k-pagination .k-pages {
+  margin-left: 0;
+}
+.k-pagination .k-pages > div {
+  display: inline-block;
+  border: 1px solid #cad0dd;
+  border-radius: 0.142857142857143rem;
+  margin-right: 0.714285714285714em;
+  min-width: 2.571428571428572em;
+  height: 2.571428571428572em;
+  line-height: calc(2.571428571428572em - 2px);
+  cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+}
+.k-pagination .k-pages > div:not(.k-active):not(.k-disabled):hover {
+  border-color: #0a5eee;
+  color: #0a5eee;
+}
+.k-pagination .k-pages > div:last-of-type {
+  margin-right: 0;
+}
+.k-pagination .k-pages .k-active {
+  background-color: #0a5eee;
+  border-color: #0a5eee;
+  color: #fff;
+}
+.k-pagination .k-pages .k-disabled {
+  cursor: not-allowed;
+  color: #999;
+  border-color: #d9d9d9;
+}
+.k-pagination .k-goto .k-input {
+  font-size: inherit;
+  width: 4.285714285714286em;
+  margin: 0 0.714285714285714em;
+}
+.k-pagination .k-select {
+  width: auto;
+}
+.k-pagination.k-small {
+  font-size: 0.857142857142857rem;
+}
+.k-pagination.k-small .k-pages > div {
+  margin-right: 0.416666666666667em;
+  min-width: 2.5em;
+  height: 2.5em;
+  line-height: calc(2.5em - 2px);
+}
+.k-pagination.k-mini {
+  font-size: 0.857142857142857rem;
+}
+.k-pagination.k-mini .k-pages > div {
+  margin-right: 0.416666666666667em;
+  min-width: 2.166666666666667em;
+  height: 2.166666666666667em;
+  line-height: calc(2.166666666666667em - 2px);
+}
+
+.example.index-25 .k-pagination {
+  margin-bottom: 20px;
+}
+
+.example.index-56 .k-pagination {
+  margin-bottom: 20px;
+}
+
+.example.index-46 .k-pagination {
+  margin-bottom: 20px;
+}
+
+.example.index-59 .no-data-template {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.example.index-59 .no-data-template .k-table-wrapper {
+  margin-left: 10px;
+}
+
+.example.index-68 .no-data-template {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 10px;
+}
+.example.index-68 .no-data-template .k-table-wrapper {
+  margin-left: 10px;
+}
+
+.example.index-108 .no-data-template .k-disabled {
+  background-color: #dfdfdf;
+}
+
+.example.index-110 .no-data-template {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.example.index-110 .no-data-template .k-table-wrapper {
+  margin-left: 10px;
+}
+
+.example.index-118 .no-data-template {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.example.index-118 .no-data-template .k-table-wrapper {
+  margin-left: 10px;
+}
+
+.example.index-113 .no-data-template {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.example.index-113 .no-data-template .k-table-wrapper {
+  margin-left: 10px;
+}
+
+.example.index-93 .no-data-template {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.example.index-93 .no-data-template .k-table-wrapper {
+  margin-left: 10px;
+}
+.example.index-93 .no-data-template .k-table-wrapper .k-checked {
+  background-color: #dfdfdf;
+}
+
+.example.index-100 .no-data-template .turn-blue {
+  background-color: #2d8cf0;
+}
+
+.example.index-103 .no-data-template {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.example.index-103 .no-data-template .k-table-wrapper {
+  margin-left: 10px;
+}
+
+.example.index-115 .no-data-template {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.example.index-115 .no-data-template .k-table-wrapper {
+  margin-left: 10px;
+}
+
+.example.index-117 .no-data-template {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.example.index-117 .no-data-template .k-table-wrapper {
+  margin-left: 10px;
+}
+
+.k-transfer .k-panel,
+.k-transfer .k-arrows {
+  display: inline-block;
+  vertical-align: middle;
+}
+.k-transfer .k-panel {
+  width: 21.428571428571427rem;
+}
+.k-transfer .k-title {
+  color: #404040;
+  line-height: 2.142857142857143rem;
+  font-size: 1rem;
+}
+.k-transfer .k-list {
+  height: 21.428571428571427rem;
+  border: 1px solid #cad0dd;
+  border-radius: 0.142857142857143rem;
+  overflow: auto;
+}
+.k-transfer .k-item {
+  color: #595959;
+  background: #fff;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.k-transfer .k-item:not(.k-disabled):hover {
+  background: #eee;
+}
+.k-transfer .k-checkbox {
+  padding: 5px 10px;
+  display: block;
+}
+.k-transfer .k-input {
+  margin-bottom: -1px;
+}
+.k-transfer .k-arrows .k-btn {
+  display: block;
+  margin: 10px;
+}
+
+.example.index-29 .k-item p {
+  margin: 0;
+  font-size: 12px;
+}
+
+.k-editable {
+  display: inline-block;
+  line-height: 2.142857142857143em;
+}
+.k-editable .k-edit {
+  float: right;
+  cursor: pointer;
+  margin: 0 0 0 0.571428571428571em;
+}
+.k-editable.k-invalid .k-input .k-inner {
+  border: 1px solid #db2828;
+}
+
+.example.index-19 .ion-ios-location {
+  margin-right: 10px;
+}
+
+.index-page .header-wrapper header {
+  width: 1080px;
+}
+.index-page .content-wrapper {
+  width: 1080px;
+  margin: 0 auto;
+  min-height: 100%;
+  background: #fff;
+  padding-top: 80px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-align: center;
+}
+.index-page .home-header {
+  padding: 50px 0;
+}
+.index-page .home-header h1 {
+  font-size: 5em;
+  font-weight: 600;
+  font-family: Arial;
+}
+.index-page .home-header p {
+  font-size: 2em;
+  font-weight: 300;
+  color: #46484a;
+}
+.index-page .home-header .button {
+  padding: 0 2em;
+  margin: 0 10px;
+  height: 3em;
+  line-height: 3em;
+}
+.index-page .home-header .features {
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 50px;
+}
+.index-page .home-header .feature {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.index-page .home-header .feature h2 {
+  margin: 10px;
+}
+.index-page .home-components {
+  background: #f8f8f8;
+  padding: 30px 0;
+}
+.index-page .home-components h1 {
+  font-size: 3em;
+  color: #111;
+}
+.index-page .home-components h3 {
+  color: #37393b;
+  font-size: 1.3em;
+  margin: 0.7em 0;
+}
+.index-page .code-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: left;
+}
+.index-page .code-wrapper .code {
+  width: 620px;
+}
+.index-page .code-wrapper .code pre {
+  margin: 10px;
+}
+.index-page .code-wrapper .code code {
+  background: #fff;
+}
+.index-page .code-wrapper .output {
+  width: 300px;
+  margin: 10px;
+  background: #fff;
+  border-radius: 3px;
+  padding: 15px;
+}
+.index-page .code-wrapper .count {
+  color: #09d;
+  font-size: 3em;
+  margin: 10px 0 12px;
+}
+.index-page .code-wrapper .button {
+  font-size: 1.2em;
+  padding: 10px;
+}
+.index-page .code-wrapper header {
+  font-size: 2em;
+  margin: 10px 0;
+}
 </style>
     <div id="page"><div class="k-app">
-    <div class="main-wrapper document-page"><div class="header-wrapper"><header><a class="logo" href="/">KPC</a><nav><a class="" href="/kpc/docs/getting-started/">教程</a><div class="border"></div></nav></header></div><div class="content-wrapper"><aside><div class="aside-wrapper"><div class="catalog-section"><ul><li>
-                <!---->
-                <a href="/kpc/docs/getting-started/">
-                    <!---->快速开始<!---->
-                </a></li><li>
-                <!---->
-                <a href="/kpc/docs/vue/">
-                    <!---->Vue中使用<!---->
-                </a></li><li>
-                <!---->
-                <a href="/kpc/docs/theme/">
-                    <!---->定制主题<!---->
-                </a></li><li>
-                <!---->
-                <a href="/kpc/docs/i18n/">
-                    <!---->国际化<!---->
-                </a></li><li>
-                <!---->
-                <a href="/kpc/docs/changelog/">
-                    <!---->更新日志<!---->
-                </a></li></ul></div><div class="catalog-section"><h5>组件</h5><ul><li>
-                <!---->
-                <a href="/kpc/components/button/">
-                    <!---->Button<span>按钮</span>
-                </a></li><li>
-                <!---->
-                <a href="/kpc/components/grid/">
-                    <!---->Grid<span>栅格</span>
-                </a></li><li>
-                <!---->
-                <a href="/kpc/components/input/">
-                    <!---->Input<span>输入框</span>
-                </a></li><li>
-                <!---->
-                <a href="/kpc/components/radio/">
-                    <!---->Radio<span>单选框</span>
-                </a></li><li>
-                <!---->
-                <a href="/kpc/components/checkbox/">
-                    <!---->Checkbox<span>复选框</span>
-                </a></li><li>
-                <!---->
-                <a href="/kpc/components/select/">
-                    <!---->Select<span>选择框</span>
-                </a></li><li>
-                <!---->
-                <a href="/kpc/components/spinner/">
-                    <!---->Spinner<span>数字输入框</span>
-                </a></li><li>
-                <!---->
-                <a href="/kpc/components/datepicker/">
-                    <!---->Datepicker<span>日期选择</span>
-                </a></li><li>
-                <!---->
-                <a href="/kpc/components/slider/">
-                    <!---->Slider<span>滑块</span>
-                </a></li><li>
-                <!---->
-                <a href="/kpc/components/form/">
-                    <!---->Form<span>表单</span>
-                </a></li><li>
-                <!---->
-                <a href="/kpc/components/dialog/">
-                    <!---->Dialog<span>弹窗</span>
-                </a></li><li>
-                <!---->
-                <a href="/kpc/components/dropdown/">
-                    <!---->Dropdown<span>下拉菜单</span>
-                </a></li><li>
-                <!---->
-                <a href="/kpc/components/message/">
-                    <!---->Message<span>全局提示</span>
-                </a></li><li>
-                <!---->
-                <a href="/kpc/components/tooltip/">
-                    <!---->Tooltip<span>提示弹层</span>
-                </a></li><li class="active">
-                <!---->
-                <a href="/kpc/components/progress/">
-                    <!---->Progress<span>进度条</span>
-                </a></li><li>
-                <!---->
-                <a href="/kpc/components/steps/">
-                    <!---->Steps<span>步骤条</span>
-                </a></li><li>
-                <!---->
-                <a href="/kpc/components/switch/">
-                    <!---->Switch<span>开关</span>
-                </a></li><li>
-                <!---->
-                <a href="/kpc/components/breadcrumb/">
-                    <!---->Breadcrumb<span>面包屑</span>
-                </a></li><li>
-                <!---->
-                <a href="/kpc/components/pagination/">
-                    <!---->Pagination<span>分页</span>
-                </a></li><li>
-                <!---->
-                <a href="/kpc/components/table/">
-                    <!---->Table<span>表格</span>
-                </a></li><li>
-                <!---->
-                <a href="/kpc/components/tabs/">
-                    <!---->Tabs<span>标签</span>
-                </a></li><li>
-                <!---->
-                <a href="/kpc/components/transfer/">
-                    <!---->Transfer<span>穿梭框</span>
-                </a></li><li>
-                <!---->
-                <a href="/kpc/components/editable/">
-                    <!---->Editable<span>可编辑文本</span>
-                </a></li></ul></div><div class="aside-border transition"></div></div></aside><article><div class="article-head"><div class="title">进度条</div><div class="edit-link">
-                    如果你发现文档有问题，请帮忙在
-                    <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/components/progress/index.md">github</a>
-                    上修正该文档
-                </div></div><div class="contents"><div><h1>示例</h1>
-        <div class="example index-22"><div class="example-opera"><div class="k-progress k-bar k-active"><div class="k-container"><div class="k-content"><div class="k-bg" style="width:50%;"></div></div></div><div class="k-text"><span>50<!---->%</span></div></div></div><div class="example-desc"><div class="title">基础用法</div><div class="desc"><p>通过<code>percent</code>指定当前进度条百分比</p>
-</div></div><div class="example-code"><div class="k-tabs" style="">
-    <a class="k-tab">
-                            <!---->index.vdt<!---->
-                        </a><a class="k-tab">
-                            <!---->index.js<!---->
-                        </a>
-</div><div class="code"></div></div></div><div class="example index-40"><div class="example-opera"><div><div class="k-progress k-bar k-active"><div class="k-container"><div class="k-content"><div class="k-bg" style="width:50%;"></div></div></div><div class="k-text"><span>50<!---->%</span></div></div><div class="k-progress k-bar"><div class="k-container"><div class="k-content"><div class="k-bg" style="width:50%;"></div></div></div><div class="k-text"><span>50<!---->%</span></div></div><div class="k-progress k-bar k-error"><div class="k-container"><div class="k-content"><div class="k-bg" style="width:50%;"></div></div></div><div class="k-text"><span>50<!---->%</span></div></div><div class="k-progress k-bar k-success"><div class="k-container"><div class="k-content"><div class="k-bg" style="width:50%;"></div></div></div><div class="k-text"><span>100%</span></div></div></div></div><div class="example-desc"><div class="title">状态</div><div class="desc"><p>通过<code>status</code>来指定状态：<code>active</code> <code>normal</code> <code>error</code> <code>success</code></p>
-</div></div><div class="example-code"><div class="k-tabs" style="">
-    <a class="k-tab">
-                            <!---->index.vdt<!---->
-                        </a><a class="k-tab">
-                            <!---->index.styl<!---->
-                        </a><a class="k-tab">
-                            <!---->index.js<!---->
-                        </a>
-</div><div class="code"></div></div></div><div class="example index-52"><div class="example-opera"><div><div class="k-progress k-bar k-active"><div class="k-container"><div class="k-content"><div class="k-bg" style="width:50%;"></div></div></div><div class="k-text"><span>50<!---->%</span></div></div><div class="k-progress k-bar k-active k-small"><div class="k-container"><div class="k-content"><div class="k-bg" style="width:50%;"></div></div></div><div class="k-text"><span>50<!---->%</span></div></div><div class="k-progress k-bar k-active k-mini"><div class="k-container"><div class="k-content"><div class="k-bg" style="width:50%;"></div></div></div><div class="k-text"><span>50<!---->%</span></div></div></div></div><div class="example-desc"><div class="title">尺寸</div><div class="desc"><p>通过<code>size</code>来指定尺寸：<code>default</code> <code>small</code> <code>mini</code></p>
-</div></div><div class="example-code"><div class="k-tabs" style="">
-    <a class="k-tab">
-                            <!---->index.vdt<!---->
-                        </a><a class="k-tab">
-                            <!---->index.styl<!---->
-                        </a><a class="k-tab">
-                            <!---->index.js<!---->
-                        </a>
-</div><div class="code"></div></div></div><div class="example index-69"><div class="example-opera"><div><div class="k-progress k-circle k-active"><svg class="k-canvas" viewBox="0 0 120 120">
-        <circle class="k-meter" cx="60" cy="60" r="55" stroke-width="10"></circle><circle class="k-value" cx="60" cy="60" r="55" stroke-dashoffset="172.78759594743863" stroke-dasharray="345.57519189487726" stroke-width="10"></circle><circle class="k-animate" cx="60" cy="60" r="55" stroke-width="10" stroke-dasharray="345.57519189487726" stroke-dashoffset="345.57519189487726"><animate attributeName="stroke-dashoffset" begin="0s" dur="2s" repeatCount="indefinite" from="345.57519189487726" to="172.78759594743863"></animate><animate attributeName="opacity" begin="0s" dur="2s" repeatCount="indefinite" from="0.2" to="0"></animate></circle>
-    </svg><div class="k-text"><span>50<!---->%</span></div></div></div></div><div class="example-desc"><div class="title">圆形进度</div><div class="desc"><p>将<code>type</code>设为<code>circle</code>可以展示圆形进度</p>
-</div></div><div class="example-code"><div class="k-tabs" style="">
-    <a class="k-tab">
-                            <!---->index.vdt<!---->
-                        </a><a class="k-tab">
-                            <!---->index.js<!---->
-                        </a>
-</div><div class="code"></div></div></div><div class="example index-85"><div class="example-opera"><div><div class="k-progress k-circle k-active"><svg class="k-canvas" viewBox="0 0 120 120">
-        <circle class="k-meter" cx="60" cy="60" r="55" stroke-width="10"></circle><circle class="k-value" cx="60" cy="60" r="55" stroke-dashoffset="207.34511513692635" stroke-dasharray="345.57519189487726" stroke-width="10"></circle><circle class="k-animate" cx="60" cy="60" r="55" stroke-width="10" stroke-dasharray="345.57519189487726" stroke-dashoffset="345.57519189487726"><animate attributeName="stroke-dashoffset" begin="0s" dur="2s" repeatCount="indefinite" from="345.57519189487726" to="207.34511513692635"></animate><animate attributeName="opacity" begin="0s" dur="2s" repeatCount="indefinite" from="0.2" to="0"></animate></circle>
-    </svg><div class="k-text"><div style="font-size: 14px; line-height: 20px;">
-            正在上传<br />
-            <!---->40<!---->%
-        </div></div></div><div class="k-btns" style=""><button class="k-btn k-btn-icon k-mini" type="button">
-    <span>+</span>
-    </button><button class="k-btn k-btn-icon k-mini" type="button">
-    <span>-</span>
-    </button></div></div></div><div class="example-desc"><div class="title">自定义百分比内容</div><div class="desc"><p>组件默认会展示当前百分比，我们可以给组件添加子元素展示任意内容</p>
-</div></div><div class="example-code"><div class="k-tabs" style="">
-    <a class="k-tab">
-                            <!---->index.vdt<!---->
-                        </a><a class="k-tab">
-                            <!---->index.styl<!---->
-                        </a><a class="k-tab">
-                            <!---->index.js<!---->
-                        </a>
-</div><div class="code"></div></div></div>
-    </div><div class="api"><h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1><div class="k-table-wrapper k-border">
-                    <table class="k-table">
-                        <thead><tr>
-<th>属性</th>
-<th>说明</th>
-<th>类型</th>
-<th>默认值</th>
-</tr>
-</thead>
-                        <tbody><tr>
-<td>type</td>
-<td>类型</td>
-<td><code>&quot;bar&quot;</code> &#124; <code>&quot;circle&quot;</code></td>
-<td><code>&quot;bar&quot;</code></td>
-</tr>
-<tr>
-<td>percent</td>
-<td>当前百分比(0~100)</td>
-<td><code>Number</code></td>
-<td><code>0</code></td>
-</tr>
-<tr>
-<td>size</td>
-<td>尺寸</td>
-<td><code>&quot;default&quot;</code> &#124; <code>&quot;small&quot;</code> &#124; <code>&quot;mini&quot;</code></td>
-<td><code>&quot;default&quot;</code></td>
-</tr>
-<tr>
-<td>isOuterText</td>
-<td>是否展示后面的百分比</td>
-<td><code>Boolean</code></td>
-<td><code>true</code></td>
-</tr>
-<tr>
-<td>isInnerText</td>
-<td>是否展示进度条上面的百分比</td>
-<td><code>Boolean</code></td>
-<td><code>false</code></td>
-</tr>
-<tr>
-<td>status</td>
-<td>进度条状态</td>
-<td><code>&quot;success&quot;</code> &#124; <code>&quot;error&quot;</code> &#124; <code>&quot;active&quot;</code> &#124; <code>&quot;normal&quot;</code></td>
-<td><code>&quot;active&quot;</code></td>
-</tr>
-<tr>
-<td>strokeWidth</td>
-<td>进度条指示线的宽度，单位<code>px</code>，只对<code>type=&quot;circle&quot;</code>圆形进度有效</td>
-<td><code>Number</code></td>
-<td><code>10</code></td>
-</tr>
-</tbody>
-                    </table>
-                </div></div></div></article></div></div>
+    <div class="main-wrapper index-page"><div class="header-wrapper"><header><a class="logo" href="/">KPC</a><nav><a class="" href="/kpc/docs/getting-started/">教程</a><div class="border"></div></nav></header></div><div class="content-wrapper"><article class="home-header">
+			<!-- <img src="images/logo.png" /> --><h1>KPC</h1><p>支持多框架的前端高质量组件库</p><div class="actions"><a class="k-btn k-primary button" href="/kpc/docs/getting-started/">
+    <span>开始</span>
+    </a><a class="k-btn button" href="https://github.com/ksc-fe/kpc" target="_blank">
+    <span>GitHub</span>
+    </a></div><div class="features"><div class="feature"><h2 class="blue">支持多框架</h2><div>
+                        同时支持Intact和Vue框架
+					</div></div><div class="feature"><h2 class="yellow">忠于原生，增强原生</h2><div>
+                        在保持浏览器原生特性的基础上，增强交互能力
+					</div></div><div class="feature"><h2 class="red">便捷开发</h2><div>
+                        支持按需加载，主题定制，国际化等特性。并且提供了配套的脚手架方便快速初始化项目
+					</div></div></div></article></div></div>
     </div></div>
     <script src="/kpc/static/client.js" type="text/javascript"></script>
 </body>

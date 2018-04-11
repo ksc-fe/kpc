@@ -3785,7 +3785,6 @@ html,
 body {
   margin: 0;
   color: #333;
-  background: #efefef;
   height: 100%;
 }
 a {
@@ -3840,9 +3839,11 @@ blockquote:before {
   left: -11px;
 }
 #page,
-.app-wrapper,
 .main-wrapper {
   height: 100%;
+}
+.main-wrapper {
+  padding-top: 95px;
 }
 .header-wrapper {
   height: 80px;
@@ -3858,6 +3859,8 @@ blockquote:before {
 .header-wrapper header {
   width: 100%;
   margin: 0 auto;
+  -webkit-transition: width 0.25s ease-in-out;
+  transition: width 0.25s ease-in-out;
 }
 .header-wrapper .logo {
   font-size: 24px;
@@ -4228,9 +4231,9 @@ blockquote:before {
 }
 
 .document-page {
-  padding-top: 95px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  background: #efefef;
 }
 .document-page .content-wrapper.fixed {
   margin-bottom: 0;
