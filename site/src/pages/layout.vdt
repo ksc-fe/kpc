@@ -3,12 +3,12 @@ import Link from 'kpc/components/link';
 const nav = [
     {
         title: '教程',
-        href: 'document'
+        href: '/docs/getting-started/'
     },
-    {
-        title: 'API',
-        href: 'api'
-    },
+    /* { */
+        /* title: 'API', */
+        /* href: 'api' */
+    /* }, */
     // {
         // title: '示例',
         // href: 'examples'
@@ -25,7 +25,7 @@ const nav = [
                         class={{ {
                             active: value.href === scope.navIndex
                         } }}
-                        href={{ `/${value.href}` }}
+                        href={{ `${process.URL_PREFIX}${value.href}` }}
                     >{{ value.title }}</Link>
                     <div class="border"></div>
                 </nav>

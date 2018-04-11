@@ -5,6 +5,7 @@ const webpackConfig = require('../webpack.config.common');
 const merge = require('webpack-merge');
 
 const isDev = process.env.NODE_ENV !== 'production';
+process.URL_PREFIX = isDev ? '' : '/kpc';
 
 module.exports = merge.smartStrategy({
     'module.rules.use': 'prepend',
@@ -16,6 +17,7 @@ module.exports = merge.smartStrategy({
     output: {
         chunkFilename: 'chunk/[chunkhash].js',
         libraryTarget: 'commonjs2',
+        publicPath: isDev ? '/' : `${process.URL_PREFIX}/`,
     },
     target: 'node',
     externals: [
@@ -27,6 +29,23 @@ module.exports = merge.smartStrategy({
     node: {
         __dirname: false,
         __filename: false,
+    },
+    module: {
+        rules: [
+            {
+                test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            outputPath: './fonts/',
+                            publicPath: isDev ? '/fonts/' : `${process.URL_PREFIX}/fonts/`,
+                            name: '[name].[ext]',
+                        }
+                    }
+                ]
+            },
+        ]
     },
     resolve: {
         alias: {
@@ -56,6 +75,7 @@ module.exports = merge.smartStrategy({
         new webpack.DefinePlugin({
             'process.node': true,
             'process.ssr': true,
+            'process.URL_PREFIX': JSON.stringify(process.URL_PREFIX),
         }),
     ],
 });

@@ -4,6 +4,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 const isDev = process.env.NODE_ENV !== 'production';
+process.URL_PREFIX = isDev ? '' : '/kpc';
 
 module.exports = merge.smartStrategy({
     'entry': 'replace',
@@ -19,9 +20,27 @@ module.exports = merge.smartStrategy({
     },
     output: {
         path: isDev ? path.resolve(__dirname, './.dist') : path.resolve(__dirname, './dist'),
+        publicPath: isDev ? '/' : `${process.URL_PREFIX}/`,
     },
     externals: {
         fs: 'null',
+    },
+    module: {
+        rules: [
+            {
+                test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            outputPath: './fonts/',
+                            publicPath: isDev ? '/fonts/' : `${process.URL_PREFIX}/fonts/`,
+                            name: '[name].[ext]',
+                        }
+                    }
+                ]
+            },
+        ]
     },
     resolve: {
         alias: {
@@ -43,6 +62,7 @@ module.exports = merge.smartStrategy({
             new webpack.DefinePlugin({
                 'process.ssr': true,
                 'process.browser': true,
+                'process.URL_PREFIX': JSON.stringify(process.URL_PREFIX),
             }),
         ];
 

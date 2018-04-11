@@ -10,14 +10,14 @@ function Catalog(props) {
         <h5 v-if={{ props.key !== 'undefined' }}>{{ props.key }}</h5>
         <ul>
             <li v-for={{ self.get(`sideBars.${props.key}`)}} class={{ {
-                active: value.path.includes(self.get('path').slice(1, -1)) 
+                active: value.path.includes(self.path.slice(1)) 
             } }}>
                 {{ (() => {
-                    if (value.path.includes(self.get('path').slice(1, -1))) {
+                    if (value.path.includes(self.path.slice(1))) {
                         currentNav = value;
                     }
                 })() }}
-                <Link href={{ `/${value.path.replace('.md', '/').replace('index/', '')}` }}>
+                <Link href={{ `${process.URL_PREFIX}/${value.path.replace('.md', '/').replace('index/', '')}` }}>
                     {{ do {
                         const matches = value.path.match(/components\/([^\/]+)/);
                         if (matches) {
@@ -51,7 +51,7 @@ function Catalog(props) {
                 <div class="edit-link">
                     如果你发现文档有问题，请帮忙在
                     <a target="_blank" 
-                        href={{ `https://github.com/Javey/javey.github.io/blob/master/intact/docs/${self.get('title')}.md` }}
+                        href={{ `https://github.com/ksc-fe/kpc/blob/master/${currentNav.path}` }}
                     >github</a>
                     上修正该文档
                 </div>
