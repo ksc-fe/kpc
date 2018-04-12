@@ -189,6 +189,10 @@ export default class Calendar extends Intact {
         return new Date(_showDate || values[values.length - 1] || _now);
     }
 
+    setShowDate(date) {
+        this.set('_showDate', date);
+    }
+
     showYearPicker() {
         this.set('_isShowYearPicker', !this.get('_isShowYearPicker'));
     }

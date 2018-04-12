@@ -4,7 +4,7 @@ import {Row, Col} from '../grid';
 import {range, strPad, _$} from '../utils';
 
 const {
-    value, maxDate, minDate,
+    value, maxDate, minDate, dayClassNames,
     disabledDate, multiple,
     type, hours, minutes, seconds, 
     disabledHours, disabledMinutes, disabledSeconds,
@@ -71,12 +71,16 @@ const panel = format.map(item => map[item]);
                 const startWeekday = start.getDay(); 
                 start.setDate(1 - startWeekday);
 
+                const _maxDate = new Date(maxDate);
+                const _minDate = new Date(minDate);
+
                 for (let i = 0; i < 42; i++) {
                     const _date = start.getDate();
                     const _month = start.getMonth();
-                    const disabled = self.isGT(start, new Date(maxDate)) ||
-                        self.isLT(start, new Date(minDate)) ||
+                    const disabled = self.isGT(start, _maxDate) ||
+                        self.isLT(start, _minDate) ||
                         disabledDate.call(self, self.getDateString(start));
+                    const classNames = dayClassNames ? dayClassNames.call(self, new Date(start)) : null;
                     ret.push(
                         <div 
                             class={{ {
@@ -87,6 +91,7 @@ const panel = format.map(item => map[item]);
                                 }),
                                 "k-today": self.isEqual(_now, start),
                                 "k-disabled": disabled, 
+                                ...classNames
                             } }}
                             ev-click={{ !disabled && self.select.bind(self, new Date(start)) }}
                         >{{ _date }}</div>

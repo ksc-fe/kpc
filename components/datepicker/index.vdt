@@ -57,22 +57,23 @@ const classNameObj = {
             <div v-else class="k-range">
                 <Calendar
                     v-model="value.0" 
+                    ref="begin"
                     {{ ..._rest }} 
                     ev-hide={{ self._hide }}
                     type={{ type }}
                     ev-$change:_showDate={{ self._onChangeShowDate.bind(self, 'begin') }}
-                />{{ do {
-                    const DateOfNextMonth = Calendar.getNowDate();
-                    DateOfNextMonth.setMonth(DateOfNextMonth.getMonth() + 1);
-                    <Calendar
-                        v-model="value.1" 
-                        {{ ..._rest }} 
-                        ev-hide={{ self._hide }}
-                        type={{ type }}
-                        _showDate={{ DateOfNextMonth }}
-                        ev-$change:_showDate={{ self._onChangeShowDate.bind(self, 'end') }}
-                    />
-                } }}
+                    dayClassNames={{ self._checkDateInRageForBegin }}
+                />
+                <Calendar
+                    v-model="value.1" 
+                    ref="end"
+                    {{ ..._rest }} 
+                    ev-hide={{ self._hide }}
+                    type={{ type }}
+                    ev-$change:_showDate={{ self._onChangeShowDate.bind(self, 'end') }}
+                    ev-$inited={{ self._setEndShowDate }}
+                    dayClassNames={{ self._checkDateInRageForEnd }}
+                />
             </div>
         </b:content>
     </Tooltip>
