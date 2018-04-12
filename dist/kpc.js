@@ -4820,7 +4820,7 @@ exports.Transfer = _transfer.Transfer;
 
 /* generate start */
 
-var version = exports.version = '0.0.3';
+var version = exports.version = '0.0.4';
 
 /* generate end */
 
@@ -9809,13 +9809,11 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                                                 }
                                 }.call(this) ? h(Animate, { 'className': _className(function () {
                                                                 try {
-                                                                                var _ref;
-
-                                                                                return [(_ref = {
+                                                                                return [{
                                                                                                 "k-dialog": true,
                                                                                                 'k-dragging': self.get('_dragging'),
                                                                                                 "k-small": self.get('size') === 'small'
-                                                                                }, _ref[self.get('className')] = self.get('className'), _ref)][0];
+                                                                                }][0];
                                                                 } catch (e) {
                                                                                 _e(e);
                                                                 }
@@ -9926,7 +9924,17 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                                                                 return blocks["footer"] ? blocks["footer"].call(this, function () {
                                                                                 return _blocks["footer"].call(self, parent);
                                                                 }) : _blocks["footer"].call(this, parent);
-                                                }) && __blocks["footer"].call(this), 'k-footer')], '_context': $this }) : undefined], 'k-dialog-wrapper', null, function () {
+                                                }) && __blocks["footer"].call(this), 'k-footer')], '_context': $this }) : undefined], _className(function () {
+                                                try {
+                                                                var _ref;
+
+                                                                return [(_ref = {
+                                                                                "k-dialog-wrapper": true
+                                                                }, _ref[self.get('className')] = self.get('className'), _ref)][0];
+                                                } catch (e) {
+                                                                _e(e);
+                                                }
+                                }.call(this)), null, function () {
                                                 try {
                                                                 return [function (dom) {
                                                                                 return self.$element = dom;
