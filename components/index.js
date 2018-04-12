@@ -11,14 +11,14 @@ import {Dialog} from './dialog';
 import {Dropdown, DropdownMenu, DropdownItem} from './dropdown';
 import {Editable} from './editable';
 import {Form, FormItem} from './form';
-import {Row, Col} from './grid';
 import {Input} from './input';
 import {Link} from './link';
 import {Message} from './message';
 import {MoveWrapper} from './moveWrapper';
 import {Pagination} from './pagination';
-import {Radio} from './radio';
 import {Progress} from './progress';
+import {Radio} from './radio';
+import {Row, Col} from './grid';
 import {ScrollSelect} from './scrollSelect';
 import {Select, Option, OptionGroup} from './select';
 import {Slider} from './slider';
@@ -26,8 +26,8 @@ import {Spinner} from './spinner';
 import {Steps, Step} from './steps';
 import {Switch} from './switch';
 import {Table, TableColumn} from './table';
-import {Tooltip} from './tooltip';
 import {Tabs, Tab} from './tabs';
+import {Tooltip} from './tooltip';
 import {Transfer} from './transfer';
 
 export {
@@ -37,41 +37,41 @@ export {
     Button,
     ButtonGroup,
     Checkbox,
+    Col,
     Datepicker,
     Dialog,
     Dropdown,
-    DropdownMenu,
     DropdownItem,
+    DropdownMenu,
     Editable,
     Form,
     FormItem,
-    Row,
-    Col,
     Input,
     Link,
     Message,
     MoveWrapper,
-    Pagination,
-    Radio,
-    Progress,
-    ScrollSelect,
-    Select,
     Option,
     OptionGroup,
+    Pagination,
+    Progress,
+    Radio,
+    Row,
+    ScrollSelect,
+    Select,
     Slider,
     Spinner,
-    Steps,
     Step,
+    Steps,
     Switch,
+    Tab,
     Table,
     TableColumn,
-    Tooltip,
     Tabs,
-    Tab,
+    Tooltip,
     Transfer
 };
 
-export const version = '0.0.1';
+export const version = '0.0.2';
 
 /* generate end */
 
