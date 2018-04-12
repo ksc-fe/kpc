@@ -50,7 +50,7 @@ export default class Slider extends Intact {
     }
 
     _beforeUpdate(lastVNode, nextVNode) {
-        if (lastVNode && nextVNode) {
+        if (!this.get('_isDragging') && lastVNode && nextVNode) {
             this._setFixedValue(this.get('value'));
         }
     }
@@ -163,6 +163,7 @@ export default class Slider extends Intact {
         if (this.get('disabled')) return;
 
         let tempValue = this._getSlidingValue(e.clientX, this.get('_isDragging'));
+        console.log('tempValue', tempValue);
         let fixedValue;
         if (indexFlag) {
             if (indexFlag === '_isFirst') {
