@@ -10,8 +10,8 @@ order: 7
 | --- | --- | --- | --- |
 | value | 当前选中的日期字符串 | `String` | `undefind` |
 | clearable | 是否能清空当前值 | `Boolean` | `false` |
-| maxDate | 最大可选日期 | `String` | `undefind` |
-| minDate | 最小可选日期 | `String` | `undefind` |
+| maxDate | 最大可选日期，可以为日期字符串或日期对象 | `String` &#124; `Date` | `undefind` |
+| minDate | 最小可选日期，可以为日期字符串或日期对象 | `String` &#124; `Date` | `undefind` |
 | placeholder | 占位文字 | `String` | `"请选择日期"` |
 | disabled | 是否禁用 | `Boolean` | `false` |
 | disabledDate | 该属性值是一个函数，用于定义那些日期被禁止选择，函数参数为日期字符串，返回`true`则表示禁用该日期 | `Function` | `(date) => false` |

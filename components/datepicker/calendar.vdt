@@ -1,0 +1,179 @@
+import Button from '../button';
+import ScrollSelect from '../scrollSelect';
+import {Row, Col} from '../grid';
+import {range, strPad, _$} from '../utils';
+
+const {
+    value, maxDate, minDate,
+    disabledDate, multiple,
+    type, hours, minutes, seconds, 
+    disabledHours, disabledMinutes, disabledSeconds,
+    _isShowYearPicker, _isSelectTime, _now, _showDate, 
+} = self.get();
+
+const values = multiple ? value || [] : [value];
+
+const valueDate = new Date(values[values.length - 1] || _now);
+const showDate = new Date(_showDate || valueDate);
+
+let yearMonthFormat = _$('yearMonthFormat');
+if (yearMonthFormat === 'yearMonthFormat') {
+    yearMonthFormat = 'YYYY MM';
+}
+const format = yearMonthFormat.split(' ');
+const map = {
+    'MM': <span class="k-text">{{ _$(`${showDate.getMonth() + 1}月`) }}</span>,
+    'YYYY': <span class="k-text">{{ _$(`{n}年`, {n: showDate.getFullYear()}) }}</span>
+};
+const panel = format.map(item => map[item]);
+
+<div class="k-wrapper">
+    <div v-if={{ !_isSelectTime }}>
+        <div class="k-month c-clearfix">
+            <Button icon type="none" size="small" class="k-prev"
+                ev-click={{ self.prevYear }}
+            >
+                <i class="k-icon ion-ios-arrow-left"></i>
+                <i class="k-icon ion-ios-arrow-left"></i>
+            </Button>
+            <Button icon type="none" size="small" class="k-prev"
+                ev-click={{ self.prevMonth }}
+            >
+                <i class="k-icon ion-ios-arrow-left"></i>
+            </Button>
+            <span
+                class="k-text-wrapper"
+                ev-click={{ self.showYearPicker }}
+            >{{ panel }}</span>
+            <Button icon type="none" size="small" class="k-next"
+                ev-click={{ self.nextYear }}
+            >
+                <i class="k-icon ion-ios-arrow-right"></i>
+                <i class="k-icon ion-ios-arrow-right"></i>
+            </Button>
+            <Button icon type="none" size="small" class="k-next"
+                ev-click={{ self.nextMonth }}
+            >
+                <i class="k-icon ion-ios-arrow-right"></i>
+            </Button>
+        </div>
+        <div class="k-weekdays" v-if={{ !_isShowYearPicker }}>
+            <div class="k-weekday"
+                v-for={{ [_$('日'), _$('一'), _$('二'), _$('三'), _$('四'), _$('五'), _$('六')] }}
+            >{{ value }}</div>
+        </div>
+        <div class="k-calendar" v-if={{ !_isShowYearPicker }}>
+            {{ do {
+                const ret = [];
+                const start = new Date(showDate);
+                const month = start.getMonth();
+                start.setDate(1);
+                const startWeekday = start.getDay(); 
+                start.setDate(1 - startWeekday);
+
+                for (let i = 0; i < 42; i++) {
+                    const _date = start.getDate();
+                    const _month = start.getMonth();
+                    const disabled = self.isGT(start, new Date(maxDate)) ||
+                        self.isLT(start, new Date(minDate)) ||
+                        disabledDate.call(self, self.getDateString(start));
+                    ret.push(
+                        <div 
+                            class={{ {
+                                "k-day": true,
+                                "k-out": _month !== month,
+                                "k-active": values.find(value => {
+                                    return self.isEqual(new Date(value), start);
+                                }),
+                                "k-today": self.isEqual(_now, start),
+                                "k-disabled": disabled, 
+                            } }}
+                            ev-click={{ !disabled && self.select.bind(self, new Date(start)) }}
+                        >{{ _date }}</div>
+                    );
+                    start.setDate(start.getDate() + 1);
+                }
+                const result = [];
+                for (let i = 0; i < 6; i++) {
+                    result.push(<div>{{ ret.slice(7 * i, 7 * (i + 1)) }}</div>)
+                }
+                result;
+            } }}
+        </div>
+        <Row v-if={{ _isShowYearPicker }} class="k-year-picker">
+            {{ do {
+                const map = {
+                    MM: <Col span="12">
+                            <ScrollSelect 
+                                data={{ range(0, 11).map(i => {
+                                    return {label: _$(`${i + 1}月`), value: i};
+                                }) }}
+                                value={{ showDate.getMonth() }}
+                                ev-$change:value={{ self.onChangeMonth }}
+                            />
+                        </Col>,
+                    YYYY: <Col span="12">
+                            <ScrollSelect 
+                                data={{ (value) => {
+                                    return range(value - 5, value + 5);
+                                } }}
+                                value={{ showDate.getFullYear() }}
+                                ev-$change:value={{ self.onChangeYear }}
+                            />
+                        </Col>
+                };
+
+                format.map(item => map[item]);
+            } }}
+        </Row>
+    </div>
+    <div v-else class="k-time-picker" key="time">
+        <div class="k-month c-clearfix">
+            <!--<Button type="none" size="small" class="k-prev"
+                ev-click={{ self.cancel.bind(self) }}
+            >取消</Button>-->
+            <span class="k-text-wrapper"
+                ev-click={{ self.cancel }}
+            >{{ panel }}</span>
+            <!--<Button type="none" size="small" class="k-next"
+                ev-click={{ self.confirm.bind(self) }}
+            >确认</Button>-->
+        </div>
+        <Row>
+            <Col span="8">
+                <ScrollSelect 
+                    data={{ hours.map(v => {
+                        return {label: strPad(v, 2), value: v};
+                    }) }}
+                    value={{ valueDate.getHours() }}
+                    ev-$change:value={{ self.onChangeTime.bind(self, 'Hours') }}
+                    disabled={{ disabledHours }}
+                >
+                    <b:append>:</b:append>
+                </ScrollSelect>
+            </Col>
+            <Col span="8">
+                <ScrollSelect 
+                    data={{ minutes.map(v => {
+                        return {label: strPad(v, 2), value: v};
+                    }) }}
+                    value={{ valueDate.getMinutes() }}
+                    ev-$change:value={{ self.onChangeTime.bind(self, 'Minutes') }}
+                    disabled={{ disabledMinutes }}
+                >
+                    <b:append>:</b:append>
+                </ScrollSelect>
+            </Col>
+            <Col span="8">
+                <ScrollSelect 
+                    data={{ seconds.map(v => {
+                        return {label: strPad(v, 2), value: v};
+                    }) }}
+                    value={{ valueDate.getSeconds() }}
+                    ev-$change:value={{ self.onChangeTime.bind(self, 'Seconds') }}
+                    disabled={{ disabledSeconds }}
+                />
+            </Col>
+        </Row>
+    </div>
+</div>

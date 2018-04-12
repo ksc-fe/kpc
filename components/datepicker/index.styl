@@ -66,5 +66,12 @@
     .k-scroll-select
         height $datepicker-scroll-select-height
 
+    // range
+    .k-range
+        > .k-wrapper
+            float left
+            &:last-of-type
+                margin-left $datepicker-range-gutter
+
 
 @import $theme-dir + '/datepicker.styl' if exists($theme-dir + '/datepicker.styl') 

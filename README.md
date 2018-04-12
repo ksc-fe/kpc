@@ -1,6 +1,6 @@
 # KPC
 
-同时支持[Intact](1)和[Vue](2)的高质量前端组件库
+同时支持 [Intact](1) 和 [Vue](2) 的高质量前端组件库
 
 [文档](https://ksc-fe.github.io/kpc/)
 

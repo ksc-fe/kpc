@@ -163,7 +163,6 @@ export default class Slider extends Intact {
         if (this.get('disabled')) return;
 
         let tempValue = this._getSlidingValue(e.clientX, this.get('_isDragging'));
-        console.log('tempValue', tempValue);
         let fixedValue;
         if (indexFlag) {
             if (indexFlag === '_isFirst') {
