@@ -12,7 +12,12 @@
     "dev:doc": "gulp watch",
     "build:doc": "NODE_ENV=production gulp build:doc",
     "deploy:doc": "NODE_ENV=production gulp deploy:doc",
-    "prerelease": "npm run build"
+    "prepublish": "npm run build",
+    "release": "npm run release-patch",
+    "prelease": "npm version prerelease && git push --tags --force && git push && npm publish",
+    "release-patch": "git checkout master && npm version patch && git push --tags && git push && npm publish",
+    "release-minor": "git checkout master && npm version minor && git push --tags && git push && npm publish",
+    "release-major": "git checkout master && npm version major && git push --tags && git push && npm publish"
   },
   "repository": {
     "type": "git",
