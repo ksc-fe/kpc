@@ -193,6 +193,10 @@ gulp.task('index', () => {
             // codes.push(`import {position} from './moveWrapper/position';`);
             // components.push('position');
 
+            // sort
+            codes.sort((a, b) => a > b ? 1 : -1);
+            components.sort((a, b) => a > b ? 1 : -1);
+
             codes.push('', `export {\n    ${components.join(',\n    ')}\n};`);
             codes.push('', `export const version = '${packageJson.version}';`);
             const path = './components/index.js';
