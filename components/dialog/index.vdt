@@ -3,14 +3,16 @@ import MoveWrapper from '../moveWrapper';
 import {_$} from '../utils';
 
 <MoveWrapper autoDestroy={{ false }}>
-    <div class="k-dialog-wrapper" ref={{ dom => self.$element = dom }}>
+    <div class={{ {
+        "k-dialog-wrapper": true,
+        [self.get('className')]: self.get('className'),
+    } }} ref={{ dom => self.$element = dom }}>
         <Animate class="k-overlay" v-if={{ self.get('value') }} key="overlay"></Animate>
         <Animate 
             class={{ {
                 "k-dialog": true, 
                 'k-dragging': self.get('_dragging'),
                 "k-small": self.get('size') === 'small',
-                [self.get('className')]: self.get('className'),
             } }}
             ref={{ i => self.dialog = i ? i.element : null }}
             v-if={{ self.get('value') }}
