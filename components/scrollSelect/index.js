@@ -39,7 +39,8 @@ export default class ScrollSelect extends Intact {
             e.preventDefault();
             if (lock) return;
             lock = true;
-            this.timer = setTimeout(function() {
+            this.timer = setTimeout(() => {
+                if (this.destroyed) return;
                 onWheel(e, ...args);
                 lock = false;
             }, 50);
