@@ -56,23 +56,28 @@ const classNameObj = {
             />
             <div v-else class="k-range">
                 <Calendar
-                    v-model="value.0" 
-                    ref="begin"
                     {{ ..._rest }} 
+                    value={{ value }}
+                    ev-$change:value={{ self._onChangeValueForRange }}
+                    ref="begin"
                     ev-hide={{ self._hide }}
                     type={{ type }}
                     ev-$change:_showDate={{ self._onChangeShowDate.bind(self, 'begin') }}
-                    dayClassNames={{ self._checkDateInRageForBegin }}
+                    ev-$inited={{ self._setBeginShowDate }}
+                    dayClassNames={{ self._checkDateInRange }}
+                    multiple
                 />
                 <Calendar
-                    v-model="value.1" 
-                    ref="end"
                     {{ ..._rest }} 
+                    value={{ value }}
+                    ev-$change:value={{ self._onChangeValueForRange }}
+                    ref="end"
                     ev-hide={{ self._hide }}
                     type={{ type }}
                     ev-$change:_showDate={{ self._onChangeShowDate.bind(self, 'end') }}
                     ev-$inited={{ self._setEndShowDate }}
-                    dayClassNames={{ self._checkDateInRageForEnd }}
+                    dayClassNames={{ self._checkDateInRange }}
+                    multiple
                 />
             </div>
         </b:content>

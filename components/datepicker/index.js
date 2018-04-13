@@ -3,6 +3,9 @@ import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
 import Calendar from './calendar';
+import {getNowDate, isLT, isGT} from './utils';
+
+const {isEqual} = Intact.utils;
 
 export default class Datepicker extends Intact {
     @Intact.template()
@@ -59,30 +62,40 @@ export default class Datepicker extends Intact {
         }
     }
 
+    _setBeginShowDate(c) {
+        const date = getNowDate();
+        c.set('_showDate', date, {silent: true})
+    }
+
     _setEndShowDate(c) {
-        const date = Calendar.getNowDate();
+        const date = getNowDate();
 		date.setMonth(date.getMonth() + 1);
-        c.setShowDate(date);
+        c.set('_showDate', date, {silent: true})
     }
 
-    _checkDateInRageForBegin(date) {
-        const dateString = this.get('value.1');
-        if (!dateString) return;
-
-        const _date = new Date(dateString);
-        return {
-            'k-in-range': date > _date
-        };
+    _checkDateInRange(date, isOut) {
+        const [start, end] = this.get('value') || [];
+        if (start && end) {
+            return {
+                'k-in-range': !isOut && 
+                    isGT(date, new Date(start)) && 
+                    isLT(date, new Date(end))
+            };
+        }
     }
 
-    _checkDateInRageForEnd(date) {
-        const dateString = this.get('value.0');
-        if (!dateString) return;
+    _onChangeValueForRange(c, v) {
+        let value = this.get('value');
+        if (isEqual(v, value)) return;
 
-        const _date = new Date(dateString);
-        return {
-            'k-in-range': date < _date 
-        };
+        if (!value || value && value.length === 2) {
+            value = [v[v.length - 1]];
+        } else {
+            value = value.slice(0);
+            value[1] = v[v.length - 1]; 
+        }
+        value.sort();
+        this.set('value', value);
     }
 }
 

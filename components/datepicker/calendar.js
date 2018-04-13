@@ -1,16 +1,7 @@
 import Intact from 'intact';
 import template from './calendar.vdt';
 import {strPad, range} from '../utils';
-
-function getNowDate() {
-    // only date without time
-    const now = new Date();
-    now.setHours(0);
-    now.setMinutes(0);
-    now.setSeconds(0);
-    
-    return now;
-}
+import {getNowDate} from './utils';
 
 export default class Calendar extends Intact {
     @Intact.template()
@@ -22,8 +13,6 @@ export default class Calendar extends Intact {
         disabledMinutes: Boolean,
         disabledSeconds: Boolean,
     };
-
-    static getNowDate = getNowDate;
 
     defaults() {
         return {
@@ -90,49 +79,6 @@ export default class Calendar extends Intact {
             strPad(date.getSeconds(), 2)
         ].join(':');
         return `${_date} ${_time}`;
-    }
-
-    isEqual(a, b) {
-        if (a && b) {
-            return a.getFullYear() === b.getFullYear() &&
-                a.getMonth() === b.getMonth() &&
-                a.getDate() === b.getDate()
-        }
-        return false;
-    }
-
-    isLT(a, b) {
-        if (a && b) {
-            const aYear = a.getFullYear();
-            const bYear = b.getFullYear();
-            if (aYear < bYear) {
-                return true;
-            } else if (aYear > bYear) {
-                return false;
-            }
-
-            const aMonth = a.getMonth();
-            const bMonth = b.getMonth();
-            if (aMonth < bMonth) {
-                return true;
-            } else if (aMonth > bMonth) {
-                return false;
-            }
-
-            const aDay = a.getDate();
-            const bDay = b.getDate();
-            if (aDay < bDay) {
-                return true;
-            } else if (aDay > bDay) {
-                return false;
-            }
-        }
-
-        return false;
-    }
-
-    isGT(a, b) {
-        return this.isLT(b, a);        
     }
 
     prevMonth() {

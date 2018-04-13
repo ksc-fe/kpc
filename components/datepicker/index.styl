@@ -22,6 +22,7 @@
         border-radius 50%
         cursor pointer
         border 1px solid transparent
+        position relative
         &:hover
             background $datepicker-day-hover-bg-color 
         &.k-out
@@ -72,6 +73,18 @@
             float left
             &:last-of-type
                 margin-left $datepicker-range-gutter
+    .k-in-range
+        color #fff
+        &:after
+            content ''
+            display inline-block
+            position absolute
+            width 34px 
+            height 2.5em 
+            background $primary-color
+            left -2px
+            top -1px
+            z-index -1
 
 
 @import $theme-dir + '/datepicker.styl' if exists($theme-dir + '/datepicker.styl') 
