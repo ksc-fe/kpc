@@ -16,12 +16,13 @@ export default class Tabs extends Intact {
     }
 
     _changeTab(item) {
-        if (this.get('v-model')) {
+        // if exits 'to', we don't change the value,
+        // while let the page to change it by pass value
+        if (!item.to) {
             this.set('value', item.value);
-        }
-        if (item.to) {
+        } else {
             window.location.href = item.to;
-        } 
+        }
     }
 }
 
