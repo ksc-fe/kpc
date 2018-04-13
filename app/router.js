@@ -73,10 +73,41 @@ export default new Router([
         }
     },
     {
-        path: '/components/pagination',
+
+        path: '/components/tooltip',
         action: async () => {
-            return {Page: await import('pages/pagination')}
+            return {Page: await import('pages/tooltip')}
         }
     },
-
+    {
+        path: '/components/form',
+        action: async () => {
+            return {Page: await import('pages/form')};
+        }
+    },
+    {
+        path: '/components/grid',
+        action: async () => {
+            return {Page: await import('pages/grid')};
+        }
+    },
+    {
+        path: '/components/switch',
+        action: async () => {
+            return {Page: await import('pages/switch')};
+        }
+    },
+    {
+        path: '/components/editable',
+        action: async () => {
+            return {Page: await import('pages/editable')};
+        }
+    },
+    {
+        path: '/components/tabs',
+        action: async () => {
+            return {Page: await import('pages/tabs')};
+        }
+    },
+    ...routes
 ]);
