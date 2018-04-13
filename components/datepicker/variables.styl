@@ -1,4 +1,5 @@
 @require('../../styles/themes/default.styl')
+@require('../../styles/mixin.styl')
 
 $datepicker-border-radius := $border-radius
 $datepicker-box-shadow := $box-shadow
@@ -7,6 +8,7 @@ $datepicker-color := $text-color
 $datepicker-day-width := unit(30 / 12, em)
 $datepicker-day-margin := unit(1 / 12, em) unit(2 / 12, em)
 $datepicker-day-hover-bg-color := $bg-color
+$datepicker-day-hover-color := $datepicker-color
 $datepicker-day-out-color := $disabled-color
 $datepicker-day-today-border := 1px solid $border-color
 
@@ -37,3 +39,8 @@ $datepicker-time-picker-width := $datepicker-year-picker-width
 
 // range
 $datepicker-range-gutter := unit(20 / 12, em)
+$datepicker-range-day-bg-color := lighten($datepicker-day-active-bg-color, 50%)
+$datepicker-range-day-color := $datepicker-day-active-color
+$datepicker-range-day-left := -(getLeft($datepicker-day-margin))
+$datepicker-range-day-top := -(getTop($datepicker-day-margin))
+$datepicker-range-day-padding := 0 getRight($datepicker-day-margin)

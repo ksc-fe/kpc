@@ -28,7 +28,10 @@ export default class Calendar extends Intact {
             disabledHours: false,
             disabledMinutes: false,
             disabledSeconds: false,
-            
+            dayClassNames: undefined,
+            onMouseEnterDay: undefined,
+            onMouseLeaveDays: undefined,
+
             _showDate: undefined,
             _now: getNowDate(),
             _isShowYearPicker: false,
@@ -36,16 +39,16 @@ export default class Calendar extends Intact {
         }
     }
 
-    select(value, e) {
-        value = this.getDateString(value);
+    select(v, e) {
+        const value = this.getDateString(v);
         const type = this.get('type');
         if (!this.get('multiple')) {
-            this.set('value', value);
+            this.set('value', value, {async: true});
             if (type !== 'datetime') {
                 this.trigger('hide');
             } else {
                 e._rawEvent._dropdown = true;
-                this.set('_isSelectTime', true);
+                this.set('_isSelectTime', true, {async: true});
             }
         } else {
             let values = this.get('value');
@@ -60,8 +63,10 @@ export default class Calendar extends Intact {
             } else {
                 values.push(value);
             }
-            this.set('value', values);
+            this.set('value', values, {async: true});
         }
+
+        this.set('_showDate', v, {async: true});
     }
 
     getDateString(date) {

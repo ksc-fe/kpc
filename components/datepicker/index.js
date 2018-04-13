@@ -26,12 +26,36 @@ export default class Datepicker extends Intact {
             size: 'default',
             type: 'date', // date | datetime
             range: false,
+
+            _value: undefined, // for range
+            _rangeEndDate: undefined,
         }
+    }
+
+    _init() {
+        this.set('_value', this.get('value'));
+
+        // proxy _value to value
+        this.on('$change:_value', (c, v) => {
+            // if only select one date for range, set with undefined
+            if (v && v.length === 1) {
+                v = undefined;
+            }
+            this.set('value', v);
+        });
+
+        this.on('$receive:value', (c, v) => {
+            this.set('_value', v);
+        });
     }
 
     onClear(e) {
         e.stopPropagation();
-        this.set('value', undefined);
+        if (this.get('range')) {
+            this.set('_value', undefined);
+        } else {
+            this.set('value', undefined);
+        }
     }
 
     _hide() {
@@ -63,39 +87,82 @@ export default class Datepicker extends Intact {
     }
 
     _setBeginShowDate(c) {
-        const date = getNowDate();
+        const [start] = this.get('_value') || [];
+        const date = start ? new Date(start) : getNowDate();
         c.set('_showDate', date, {silent: true})
     }
 
     _setEndShowDate(c) {
-        const date = getNowDate();
-		date.setMonth(date.getMonth() + 1);
+        let [start, end] = this.get('_value') || [];
+
+        let date;
+        // if in the same month, show next month
+        if (start && end) {
+            start = new Date(start);
+            end = new Date(end);
+            if (start.getFullYear() === end.getFullYear() &&
+                start.getMonth() === end.getMonth()
+            ) {
+                end.setMonth(end.getMonth() + 1);
+            }
+            date = end;
+        } else {
+            date = getNowDate();
+            date.setMonth(date.getMonth() + 1);
+        }
+
         c.set('_showDate', date, {silent: true})
     }
 
     _checkDateInRange(date, isOut) {
-        const [start, end] = this.get('value') || [];
-        if (start && end) {
-            return {
-                'k-in-range': !isOut && 
-                    isGT(date, new Date(start)) && 
-                    isLT(date, new Date(end))
-            };
+        const [start, end] = this.get('_value') || [];
+        const _rangeEndDate = this.get('_rangeEndDate');
+
+        if (start) {
+            const _start = new Date(start);
+            if (end) {
+                return {
+                    'k-in-range': !isOut && 
+                        isGT(date, _start) && 
+                        isLT(date, new Date(end))
+                };
+            } else if (_rangeEndDate) {
+                return {
+                    'k-in-range': !isOut &&
+                        isGT(date, _start >= _rangeEndDate ? _rangeEndDate : _start) &&
+                        isLT(date, _start <= _rangeEndDate ? _rangeEndDate : _start)
+                };
+            }
         }
     }
 
     _onChangeValueForRange(c, v) {
-        let value = this.get('value');
+        let value = this.get('_value');
         if (isEqual(v, value)) return;
 
         if (!value || value && value.length === 2) {
             value = [v[v.length - 1]];
+            this.set('_value', value);
         } else {
             value = value.slice(0);
             value[1] = v[v.length - 1]; 
+            value.sort();
+            this.set('_value', value);
+            this.refs.calendar.hide();
         }
-        value.sort();
-        this.set('value', value);
+    }
+
+    _highlightRangeDays(date, isOut) {
+        const [start, end] = this.get('_value') || [];
+        if (start && !end) {
+            this.set('_rangeEndDate', date);
+        } else {
+            this.set('_rangeEndDate', undefined);
+        }
+    }
+
+    _clearRangeEndDate() {
+        this.set('_rangeEndDate', undefined);
     }
 }
 

@@ -6,8 +6,8 @@ import {isEqual, isLT, isGT} from './utils';
 
 const {
     value, maxDate, minDate, dayClassNames,
-    disabledDate, multiple,
-    type, hours, minutes, seconds, 
+    disabledDate, multiple, onMouseEnterDay,
+    type, hours, minutes, seconds, onMouseLeaveDays,
     disabledHours, disabledMinutes, disabledSeconds,
     _isShowYearPicker, _isSelectTime, _now, _showDate, 
 } = self.get();
@@ -63,7 +63,9 @@ const panel = format.map(item => map[item]);
                 v-for={{ [_$('日'), _$('一'), _$('二'), _$('三'), _$('四'), _$('五'), _$('六')] }}
             >{{ value }}</div>
         </div>
-        <div class="k-calendar" v-if={{ !_isShowYearPicker }}>
+        <div class="k-calendar" v-if={{ !_isShowYearPicker }}
+            ev-mouseleave={{ onMouseLeaveDays }}
+        >
             {{ do {
                 const ret = [];
                 const start = new Date(showDate);
@@ -98,6 +100,7 @@ const panel = format.map(item => map[item]);
                                 ...classNames
                             } }}
                             ev-click={{ !disabled && self.select.bind(self, new Date(start)) }}
+                            ev-mouseenter={{ onMouseEnterDay && onMouseEnterDay.bind(self, new Date(start), isOut) }}
                         >{{ _date }}</div>
                     );
                     start.setDate(start.getDate() + 1);

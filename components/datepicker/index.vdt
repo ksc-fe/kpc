@@ -6,7 +6,7 @@ import Calendar from './calendar';
 const {
     value, clearable, className, style,
     name, disabled, placeholder, size,
-    range, type, ref, key, ...rest
+    _value, range, type, ref, key, ...rest
 } = self.get();
 
 // pass the rest props to Calendar, except events
@@ -54,10 +54,10 @@ const classNameObj = {
                 ev-hide={{ self._hide }}
                 type={{ type }}
             />
-            <div v-else class="k-range">
+            <div v-else class="k-range c-clearfix" ev-mouseleave={{ self._clearRangeEndDate }}>
                 <Calendar
                     {{ ..._rest }} 
-                    value={{ value }}
+                    value={{ _value }}
                     ev-$change:value={{ self._onChangeValueForRange }}
                     ref="begin"
                     ev-hide={{ self._hide }}
@@ -65,11 +65,12 @@ const classNameObj = {
                     ev-$change:_showDate={{ self._onChangeShowDate.bind(self, 'begin') }}
                     ev-$inited={{ self._setBeginShowDate }}
                     dayClassNames={{ self._checkDateInRange }}
+                    onMouseEnterDay={{ self._highlightRangeDays }}
                     multiple
                 />
                 <Calendar
                     {{ ..._rest }} 
-                    value={{ value }}
+                    value={{ _value }}
                     ev-$change:value={{ self._onChangeValueForRange }}
                     ref="end"
                     ev-hide={{ self._hide }}
@@ -77,6 +78,7 @@ const classNameObj = {
                     ev-$change:_showDate={{ self._onChangeShowDate.bind(self, 'end') }}
                     ev-$inited={{ self._setEndShowDate }}
                     dayClassNames={{ self._checkDateInRange }}
+                    onMouseEnterDay={{ self._highlightRangeDays }}
                     multiple
                 />
             </div>

@@ -25,6 +25,7 @@
         position relative
         &:hover
             background $datepicker-day-hover-bg-color 
+            color $datepicker-day-hover-color
         &.k-out
             color $datepicker-day-out-color 
         &.k-today
@@ -74,16 +75,19 @@
             &:last-of-type
                 margin-left $datepicker-range-gutter
     .k-in-range
-        color #fff
+        color $datepicker-range-day-color
         &:after
             content ''
             display inline-block
             position absolute
-            width 34px 
-            height 2.5em 
-            background $primary-color
-            left -2px
-            top -1px
+            box-sizing content-box
+            width $datepicker-day-width
+            height $datepicker-day-width
+            padding $datepicker-range-day-padding
+            background $datepicker-range-day-bg-color 
+            left $datepicker-range-day-left 
+            top $datepicker-range-day-top 
+            margin-left -1px
             z-index -1
 
 
