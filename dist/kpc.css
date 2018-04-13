@@ -4644,6 +4644,12 @@ label {
 .k-datepicker-content .k-scroll-select {
   height: 17.5em;
 }
+.k-datepicker-content .k-range > .k-wrapper {
+  float: left;
+}
+.k-datepicker-content .k-range > .k-wrapper:last-of-type {
+  margin-left: 1.666666666666667em;
+}
 .k-dialog-wrapper {
   position: absolute;
   z-index: 9999;
