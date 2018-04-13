@@ -11,5 +11,8 @@ import Datepicker from 'kpc/components/datepicker';
 <div>
     <Datepicker multiple v-model="date" />
     You selected: {{ JSON.stringify(self.get('date')) }}
+    <br /><br />
+    <Datepicker multiple v-model="datetime" type="datetime" />
+    You selected: {{ JSON.stringify(self.get('datetime')) }}
 </div>
 ```

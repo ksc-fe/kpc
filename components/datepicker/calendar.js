@@ -47,6 +47,10 @@ export default class Calendar extends Intact {
             if (type !== 'datetime') {
                 this.trigger('hide');
             } else {
+                // when we set _isSelectTime to true, the dom has
+                // been replaced with time selecter, so we set the
+                // _dropdown to true to tell TooltipContent that
+                // we click on drodown and don't hide it
                 e._rawEvent._dropdown = true;
                 this.set('_isSelectTime', true, {async: true});
             }
@@ -57,11 +61,17 @@ export default class Calendar extends Intact {
             } else {
                 values = values.slice(0);
             }
-            const index = values.indexOf(value);
-            if (~index) {
-                values.splice(index, 1);
+            if (type !== 'datetime') {
+                const index = values.indexOf(value);
+                if (~index) {
+                    values.splice(index, 1);
+                } else {
+                    values.push(value);
+                }
             } else {
                 values.push(value);
+                e._rawEvent._dropdown = true;
+                this.set('_isSelectTime', true, {async: true});
             }
             this.set('value', values, {async: true});
         }
@@ -149,10 +159,30 @@ export default class Calendar extends Intact {
     }
 
     onChangeTime(type, c, v) {
-        const {value, _now} = this.get();
-        const valueDate = new Date(value || _now);
+        const {value, _now, multiple} = this.get();
+
+        let valueDate = new Date(
+            (multiple ? 
+                (value && value[value.length - 1]) :
+                value
+            ) || _now
+        );
         valueDate['set' + type](v);
-        this.set('value', this.getDateString(valueDate));
+        valueDate = this.getDateString(valueDate);
+
+        if (!multiple) {
+            this.set('value', valueDate);
+        } else {
+            let _value;
+            if (value) {
+                _value = value.slice(0);
+                _value[value.length - 1] = valueDate;
+            } else {
+                _value = [valueDate];
+            }
+
+            this.set('value', _value);
+        }
     }
 
     confirm() {
