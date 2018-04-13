@@ -140,7 +140,10 @@ export default class Datepicker extends Intact {
         let value = this.get('_value');
         if (isEqual(v, value)) return;
 
-        if (!value || value && value.length === 2) {
+        if (!v.length) {
+            // calendar cancelled the selected value
+            this.set('_value', undefined);
+        } else if (!value || value && value.length === 2) {
             value = [v[v.length - 1]];
             this.set('_value', value);
         } else {
