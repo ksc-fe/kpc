@@ -39,6 +39,10 @@ export default class Calendar extends Intact {
         }
     }
 
+    _init() {
+        this._index = 0;
+    }
+
     select(v, e) {
         const value = this.getDateString(v);
         const type = this.get('type');
@@ -68,6 +72,7 @@ export default class Calendar extends Intact {
                 } else {
                     values.push(value);
                 }
+                this._index = values.length - 1;
             } else {
                 values.push(value);
                 e._rawEvent._dropdown = true;
@@ -147,7 +152,7 @@ export default class Calendar extends Intact {
     getShowDate() {
         const {_showDate, value, _now, multiple} = this.get();
         const values = multiple ? value || [] : [value];
-        return new Date(_showDate || values[values.length - 1] || _now);
+        return new Date(_showDate || values[this._index] || _now);
     }
 
     setShowDate(date) {
@@ -159,11 +164,13 @@ export default class Calendar extends Intact {
     }
 
     onChangeTime(type, c, v) {
+        this.isSelectTime = true;
+
         const {value, _now, multiple} = this.get();
 
         let valueDate = new Date(
             (multiple ? 
-                (value && value[value.length - 1]) :
+                (value && value[this._index]) :
                 value
             ) || _now
         );
@@ -176,13 +183,15 @@ export default class Calendar extends Intact {
             let _value;
             if (value) {
                 _value = value.slice(0);
-                _value[value.length - 1] = valueDate;
+                _value[this._index] = valueDate;
             } else {
                 _value = [valueDate];
             }
 
             this.set('value', _value);
         }
+
+        this.isSelectTime = false;
     }
 
     confirm() {

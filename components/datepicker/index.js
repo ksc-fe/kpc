@@ -136,22 +136,66 @@ export default class Datepicker extends Intact {
         }
     }
 
-    _onChangeValueForRange(c, v) {
+    _onChangeValueForRange(type, c, v) {
         let value = this.get('_value');
+
         if (isEqual(v, value)) return;
 
-        if (!v.length) {
+        const {begin, end} = this.refs;
+
+        if (c.isSelectTime) {
+            value = value.slice(0);
+            if (type === 'begin' && end.get('_isSelectTime')) {
+                value[0] = v[0];
+                c._index = 0;
+                end._index = 1;
+            } else if (type === 'end' && begin.get('_isSelectTime')) {
+                value[1] = v[1];
+                c._index = 1;
+                begin._index = 0;
+            } else {
+                value[c._index] = v[c._index];
+            }
+            if (value.length === 2) {
+                if (value[1] < value[0]) {
+                    // reverse the index
+                    c._index = c._index === 0 ? 1 : 0;
+                }
+            }
+            value.sort();
+            this.set('_value', value);
+        } else if (!v.length) {
             // calendar cancelled the selected value
             this.set('_value', undefined);
         } else if (!value || value && value.length === 2) {
             value = [v[v.length - 1]];
+            if (type === 'end') {
+                begin.set('_isSelectTime', false);
+            } else {
+                end.set('_isSelectTime', false);
+            }
+            c._index = 0;
             this.set('_value', value);
         } else {
             value = value.slice(0);
             value[1] = v[v.length - 1]; 
+            // set time
+            if (this.get('type') === 'datetime') {
+                const [date] = value[1].split(' ');
+                const [, time] = value[0].split(' ');
+                value[1] = [date, time].join(' ');
+            }
+            if (value[1] < value[0]) {
+                c._index = 0;
+            } else {
+                c._index = 1;
+            }
             value.sort();
             this.set('_value', value);
-            this.refs.calendar.hide();
+
+            if (this.get('type') !== 'datetime') {
+                this.refs.calendar.hide();
+            }
         }
     }
 

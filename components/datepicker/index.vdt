@@ -58,7 +58,7 @@ const classNameObj = {
                 <Calendar
                     {{ ..._rest }} 
                     value={{ _value }}
-                    ev-$change:value={{ self._onChangeValueForRange }}
+                    ev-$change:value={{ self._onChangeValueForRange.bind(self, 'begin') }}
                     ref="begin"
                     ev-hide={{ self._hide }}
                     type={{ type }}
@@ -71,7 +71,7 @@ const classNameObj = {
                 <Calendar
                     {{ ..._rest }} 
                     value={{ _value }}
-                    ev-$change:value={{ self._onChangeValueForRange }}
+                    ev-$change:value={{ self._onChangeValueForRange.bind(self, 'end') }}
                     ref="end"
                     ev-hide={{ self._hide }}
                     type={{ type }}

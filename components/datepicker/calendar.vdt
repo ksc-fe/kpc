@@ -14,7 +14,7 @@ const {
 
 const values = multiple ? value || [] : [value];
 
-const valueDate = new Date(values[values.length - 1] || _now);
+const valueDate = new Date(values[self._index] || _now);
 const showDate = new Date(_showDate || valueDate);
 
 let yearMonthFormat = _$('yearMonthFormat');
