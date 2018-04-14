@@ -71,6 +71,9 @@ const panel = format.map(item => map[item]);
                 const start = new Date(showDate);
                 const month = start.getMonth();
                 start.setDate(1);
+                start.setHours(0);
+                start.setMinutes(0);
+                start.setSeconds(0);
                 const startWeekday = start.getDay(); 
                 start.setDate(1 - startWeekday);
 
