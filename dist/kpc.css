@@ -4588,9 +4588,11 @@ label {
   border-radius: 50%;
   cursor: pointer;
   border: 1px solid transparent;
+  position: relative;
 }
 .k-datepicker-content .k-day:hover {
   background: #eee;
+  color: #595959;
 }
 .k-datepicker-content .k-day.k-out {
   color: #999;
@@ -4649,6 +4651,24 @@ label {
 }
 .k-datepicker-content .k-range > .k-wrapper:last-of-type {
   margin-left: 1.666666666666667em;
+}
+.k-datepicker-content .k-in-range {
+  color: #fff;
+}
+.k-datepicker-content .k-in-range:after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  width: 2.5em;
+  height: 2.5em;
+  padding: 0 0.166666666666667em;
+  background: #81aefa;
+  left: -0.166666666666667em;
+  top: -0.083333333333333em;
+  margin-left: -1px;
+  z-index: -1;
 }
 .k-dialog-wrapper {
   position: absolute;
