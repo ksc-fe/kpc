@@ -40,7 +40,8 @@ export default class Calendar extends Intact {
     }
 
     _init() {
-        this._index = 0;
+        const {value, multiple} = this.get();
+        this._index = multiple && value && value.length - 1 || 0;
     }
 
     select(v, e) {
@@ -72,12 +73,12 @@ export default class Calendar extends Intact {
                 } else {
                     values.push(value);
                 }
-                this._index = values.length - 1;
             } else {
                 values.push(value);
                 e._rawEvent._dropdown = true;
                 this.set('_isSelectTime', true, {async: true});
             }
+            this._index = values.length - 1;
             this.set('value', values, {async: true});
         }
 
