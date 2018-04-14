@@ -14,10 +14,10 @@
     "deploy:doc": "NODE_ENV=production gulp deploy:doc",
     "prepublish": "npm run build && git commit -am 'chore: build' && git push",
     "release": "npm run release-patch",
-    "prelease": "npm version prerelease && git push --tags --force && git push && npm publish",
-    "release-patch": "git checkout master && npm version patch && git push --tags && git push && npm publish",
-    "release-minor": "git checkout master && npm version minor && git push --tags && git push && npm publish",
-    "release-major": "git checkout master && npm version major && git push --tags && git push && npm publish"
+    "prelease": "npm version prerelease && git push && npm publish",
+    "release-patch": "git checkout master && npm version patch && git push && npm publish",
+    "release-minor": "git checkout master && npm version minor && git push && npm publish",
+    "release-major": "git checkout master && npm version major && git push && npm publish"
   },
   "repository": {
     "type": "git",
