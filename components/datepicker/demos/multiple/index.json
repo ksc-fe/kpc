@@ -8,18 +8,18 @@
     "codes": [
         {
             "language": "vdt",
-            "content": "import Datepicker from 'kpc/components/datepicker';\n\n<div>\n    <Datepicker multiple v-model=\"date\" />\n    You selected: {{ JSON.stringify(self.get('date')) }}\n</div>"
+            "content": "import Datepicker from 'kpc/components/datepicker';\n\n<div>\n    <Datepicker multiple v-model=\"date\" />\n    You selected: {{ JSON.stringify(self.get('date')) }}\n    <br /><br />\n    <Datepicker multiple v-model=\"datetime\" type=\"datetime\" />\n    You selected: {{ JSON.stringify(self.get('datetime')) }}\n</div>"
         },
         {
             "language": "js",
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
         }
     ],
-    "index": 92,
+    "index": 90,
     "highlighted": [
         {
             "language": "vdt",
-            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Datepicker <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/datepicker'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Datepicker</span> <span class=\"hljs-attr\">multiple</span> <span class=\"hljs-attr\">v-model</span>=<span class=\"hljs-string\">\"date\"</span> /&gt;</span>\n    You selected: {{ JSON.stringify(self.get('date')) }}\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span></code></pre>"
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Datepicker <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/datepicker'</span>;\n\n&lt;div&gt;\n    &lt;Datepicker multiple v-model=\"date\" /&gt;\n    You selected: {{ JSON.stringify(self.get('date')) }}\n    &lt;br /&gt;&lt;br /&gt;\n    &lt;Datepicker multiple v-model=\"datetime\" type=\"datetime\" /&gt;\n    You selected: {{ JSON.stringify(self.get('datetime')) }}\n&lt;/div&gt;</code></pre>"
         },
         {
             "language": "js",
