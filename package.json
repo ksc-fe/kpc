@@ -7,6 +7,7 @@
   "scripts": {
     "test": "karma start test/karma.conf.js",
     "snapshot": "UPDATE=1 npm run test",
+    "cover": "UPDATE=2 npm run test",
     "start": "node server.js",
     "build": "NODE_ENV=production gulp build",
     "dev:doc": "gulp watch",

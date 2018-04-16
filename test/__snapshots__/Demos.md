@@ -212,6 +212,18 @@
 ```
 "<div><div class=\"k-datepicker\"><div class=\"k-input k-with-suffix\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择日期\"><div class=\"k-suffix\"><i class=\"ion-ios-calendar-outline\"></i></div></div></div><!--placeholder--></div>
     You selected: 
+    <br><br><div class=\"k-datepicker\"><div class=\"k-input k-with-suffix\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择日期和时间\"><div class=\"k-suffix\"><i class=\"ion-ios-calendar-outline\"></i></div></div></div><!--placeholder--></div>
+    You selected: 
+</div>"
+```
+
+#### `Datepicker range`
+
+```
+"<div><div class=\"k-datepicker\"><div class=\"k-input k-with-suffix\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择日期\"><div class=\"k-suffix\"><i class=\"ion-ios-calendar-outline\"></i></div></div></div><!--placeholder--></div>
+    You selected: 
+    <br><br><div class=\"k-datepicker\"><div class=\"k-input k-with-suffix\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择日期和时间\"><div class=\"k-suffix\"><i class=\"ion-ios-calendar-outline\"></i></div></div></div><!--placeholder--></div>
+    You selected: 
 </div>"
 ```
 
@@ -351,7 +363,7 @@
     <span>PHP</span>
     <input type=\"radio\"></button><button class=\"k-btn\" type=\"button\">
     <span>C++</span>
-    <input type=\"radio\"></button></div></div></div><div class=\"k-form-item\"><label class=\"k-label\">Switch</label><div class=\"k-content\"><div class=\"k-switch k-default\"><input type=\"checkbox\" value=\"true\"><div class=\"k-bar\"><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div></div></div><div class=\"k-form-item\"><label class=\"k-label\">Slider</label><div class=\"k-content\"><div class=\"k-slider\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 0%;\"></div><div class=\"k-handle\" style=\"left: 0%;\"></div><div class=\"k-box\"><span>0 </span><span>100</span></div></div></div></div></div><div class=\"k-form-item\"><label class=\"k-label\">Textarea</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><textarea class=\"k-inner k-textarea\" rows=\"2\" spellcheck=\"false\"></textarea></div></div></div></div><div class=\"k-form-item\"><label class=\"k-label\">Password</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"password\"></div></div></div></div><div class=\"k-form-item\"><label class=\"k-label\">Confirm Password</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"password\"></div></div></div></div><div class=\"k-form-item\"><label class=\"k-label\"></label><div class=\"k-content\"><button class=\"k-btn k-primary\" type=\"submit\">
+    <input type=\"radio\"></button></div></div></div><div class=\"k-form-item\"><label class=\"k-label\">Switch</label><div class=\"k-content\"><div class=\"k-switch k-default\"><input type=\"checkbox\" value=\"true\"><div class=\"k-bar\"><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div></div></div><div class=\"k-form-item\"><label class=\"k-label\">Slider</label><div class=\"k-content\"><div class=\"k-slider\"><div class=\"k-slider-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 0%;\"></div><div class=\"k-handle\" style=\"left: 0%;\"></div></div><div class=\"k-box\"><span>0 </span><span>100</span></div></div></div></div></div><div class=\"k-form-item\"><label class=\"k-label\">Textarea</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><textarea class=\"k-inner k-textarea\" rows=\"2\" spellcheck=\"false\"></textarea></div></div></div></div><div class=\"k-form-item\"><label class=\"k-label\">Password</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"password\"></div></div></div></div><div class=\"k-form-item\"><label class=\"k-label\">Confirm Password</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"password\"></div></div></div></div><div class=\"k-form-item\"><label class=\"k-label\"></label><div class=\"k-content\"><button class=\"k-btn k-primary\" type=\"submit\">
     <span>提交</span>
     </button><button class=\"k-btn\" style=\"margin-left: 20px\" type=\"button\">
     <span>重置</span>
@@ -621,45 +633,45 @@
 #### `Slider basic`
 
 ```
-"<div><div class=\"k-slider\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 0%;\"></div><div class=\"k-handle\" style=\"left: 0%;\"></div><div class=\"k-box\"><span>0 </span><span>100</span></div></div><div class=\"k-spinner\"><button class=\"k-btn k-btn-icon k-left\" disabled=\"\" type=\"button\">
+"<div><div class=\"k-slider\"><div class=\"k-slider-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 60%;\"></div><div class=\"k-handle\" style=\"left: 60%;\"></div></div><div class=\"k-box\"><span>0 </span><span>100</span></div></div><div class=\"k-spinner-wrapper\"><div class=\"k-spinner\"><button class=\"k-btn k-btn-icon k-left\" type=\"button\">
     <span>-</span>
     </button><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><button class=\"k-btn k-btn-icon k-right\" type=\"button\">
     <span>+</span>
-    </button></div></div><div class=\"k-slider\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 0%;\"></div><div class=\"k-handle\" style=\"left: 0%;\"></div><div class=\"k-box\"><span>50 </span><span>500</span></div></div><div class=\"k-spinner\"><button class=\"k-btn k-btn-icon k-left\" disabled=\"\" type=\"button\">
+    </button></div></div></div><div class=\"k-slider\"><div class=\"k-slider-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 50.4444%;\"></div><div class=\"k-handle\" style=\"left: 50.4444%;\"></div></div><div class=\"k-box\"><span>50 </span><span>500</span></div></div><div class=\"k-spinner-wrapper\"><div class=\"k-spinner\"><button class=\"k-btn k-btn-icon k-left\" type=\"button\">
     <span>-</span>
     </button><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><button class=\"k-btn k-btn-icon k-right\" type=\"button\">
     <span>+</span>
-    </button></div></div></div>"
+    </button></div></div></div></div>"
 ```
 
 #### `Slider disabled`
 
 ```
-"<div><div class=\"k-slider k-disabled\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 50%;\"></div><div class=\"k-handle\" style=\"left: 50%;\"></div><div class=\"k-box\"><span>0 </span><span>100</span></div></div><div class=\"k-spinner k-disabled\"><button class=\"k-btn k-btn-icon k-left\" disabled=\"\" type=\"button\">
+"<div><div class=\"k-slider k-disabled\"><div class=\"k-slider-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 50%;\"></div><div class=\"k-handle\" style=\"left: 50%;\"></div></div><div class=\"k-box\"><span>0 </span><span>100</span></div></div><div class=\"k-spinner-wrapper\"><div class=\"k-spinner k-disabled\"><button class=\"k-btn k-btn-icon k-left\" disabled=\"\" type=\"button\">
     <span>-</span>
     </button><div class=\"k-input k-disabled\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" disabled=\"\"></div></div><button class=\"k-btn k-btn-icon k-right\" disabled=\"\" type=\"button\">
     <span>+</span>
-    </button></div></div><div class=\"k-slider k-disabled\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 50%; left: 10%;\"></div><div class=\"k-handle\" style=\"left: 10%;\"></div><div class=\"k-handle\" style=\"left: 60%;\"></div><div class=\"k-box\"><span>50 </span><span>100</span></div></div></div></div>"
+    </button></div></div></div><div class=\"k-slider k-disabled\"><div class=\"k-slider-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 50%; left: 10%;\"></div><div class=\"k-handle\" style=\"left: 10%;\"></div><div class=\"k-handle\" style=\"left: 60%;\"></div></div><div class=\"k-box\"><span>50 </span><span>100</span></div></div></div></div>"
 ```
 
 #### `Slider range`
 
 ```
-"<div class=\"k-slider\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 26%; left: 50%;\"></div><div class=\"k-handle\" style=\"left: 50%;\"></div><div class=\"k-handle\" style=\"left: 76%;\"></div><div class=\"k-box\"><span>0 </span><span>100</span></div></div></div>"
+"<div class=\"k-slider\"><div class=\"k-slider-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 26%; left: 50%;\"></div><div class=\"k-handle\" style=\"left: 50%;\"></div><div class=\"k-handle\" style=\"left: 76%;\"></div></div><div class=\"k-box\"><span>0 </span><span>100</span></div></div></div>"
 ```
 
 #### `Slider step`
 
 ```
-"<div><div class=\"k-slider\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 0%;\"></div><div class=\"k-handle\" style=\"left: 0%;\"></div><div class=\"k-box\"><span>0 </span><span>100</span></div></div><div class=\"k-spinner\"><button class=\"k-btn k-btn-icon k-left\" disabled=\"\" type=\"button\">
+"<div><div class=\"k-slider\"><div class=\"k-slider-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 0%;\"></div><div class=\"k-handle\" style=\"left: 0%;\"></div></div></div><div class=\"k-spinner-wrapper\"><div class=\"k-spinner\"><button class=\"k-btn k-btn-icon k-left\" disabled=\"\" type=\"button\">
     <span>-</span>
     </button><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><button class=\"k-btn k-btn-icon k-right\" type=\"button\">
     <span>+</span>
-    </button></div></div><div class=\"k-slider\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 0%;\"></div><div class=\"k-handle\" style=\"left: 0%;\"></div><div class=\"k-box\"><span>50 </span><span>500</span></div></div><div class=\"k-spinner\"><button class=\"k-btn k-btn-icon k-left\" disabled=\"\" type=\"button\">
+    </button></div></div></div><div class=\"k-slider\"><div class=\"k-slider-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 0%;\"></div><div class=\"k-handle\" style=\"left: 0%;\"></div></div><div class=\"k-box\"><span>50 </span><span>500</span></div></div><div class=\"k-spinner-wrapper\"><div class=\"k-spinner\"><button class=\"k-btn k-btn-icon k-left\" disabled=\"\" type=\"button\">
     <span>-</span>
     </button><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><button class=\"k-btn k-btn-icon k-right\" type=\"button\">
     <span>+</span>
-    </button></div></div></div>"
+    </button></div></div></div></div>"
 ```
 
 #### `Spinner basic`
@@ -711,7 +723,7 @@
 #### `Steps basic`
 
 ```
-"<div><div class=\"k-steps c-clearfix\"><div class=\"k-step k-active\" style=\"width: 33.3333%;\"><div class=\"k-tail\"></div><div class=\"k-head\"><div class=\"k-inner\"><span>0</span></div></div><div class=\"k-main\"><div class=\"k-title\">选择配置</div><div class=\"k-content\">请选择主机的配置信息</div></div></div><div class=\"k-step\" style=\"width: 33.3333%;\"><div class=\"k-tail\"></div><div class=\"k-head\"><div class=\"k-inner\"><span>1</span></div></div><div class=\"k-main\"><div class=\"k-title\">选择弹性IP</div><div class=\"k-content\">请选择主机弹性IP的配置信息</div></div></div><div class=\"k-step\" style=\"width: 33.3333%;\"><div class=\"k-tail\"></div><div class=\"k-head\"><div class=\"k-inner\"><span>2</span></div></div><div class=\"k-main\"><div class=\"k-title\">设置VPC</div><div class=\"k-content\"></div></div></div></div><button class=\"k-btn k-primary\" type=\"button\">
+"<div><div class=\"k-steps c-clearfix\"><div class=\"k-step k-active\" style=\"width: 33.3333%;\"><div class=\"k-tail\"></div><div class=\"k-head\"><div class=\"k-inner\"><span>1</span></div></div><div class=\"k-main\"><div class=\"k-title\">选择配置</div><div class=\"k-content\">请选择主机的配置信息</div></div></div><div class=\"k-step\" style=\"width: 33.3333%;\"><div class=\"k-tail\"></div><div class=\"k-head\"><div class=\"k-inner\"><span>2</span></div></div><div class=\"k-main\"><div class=\"k-title\">选择弹性IP</div><div class=\"k-content\">请选择主机弹性IP的配置信息</div></div></div><div class=\"k-step\" style=\"width: 33.3333%;\"><div class=\"k-tail\"></div><div class=\"k-head\"><div class=\"k-inner\"><span>3</span></div></div><div class=\"k-main\"><div class=\"k-title\">设置VPC</div><div class=\"k-content\"></div></div></div></div><button class=\"k-btn k-primary\" type=\"button\">
     <span>Next Step</span>
     </button></div>"
 ```
@@ -719,7 +731,45 @@
 #### `Steps error`
 
 ```
-"<div class=\"k-steps c-clearfix\"><div class=\"k-step k-done\" style=\"width: 33.3333%;\"><div class=\"k-tail\"></div><div class=\"k-head\"><div class=\"k-inner\"><i class=\"ion-ios-checkmark-empty k-icon\"></i></div></div><div class=\"k-main\"><div class=\"k-title\">选择配置</div><div class=\"k-content\">请选择主机的配置信息</div></div></div><div class=\"k-step k-active k-error\" style=\"width: 33.3333%;\"><div class=\"k-tail\"></div><div class=\"k-head\"><div class=\"k-inner\"><i class=\"ion-ios-close-empty k-icon\"></i></div></div><div class=\"k-main\"><div class=\"k-title\">选择弹性IP</div><div class=\"k-content\">请选择主机弹性IP的配置信息</div></div></div><div class=\"k-step\" style=\"width: 33.3333%;\"><div class=\"k-tail\"></div><div class=\"k-head\"><div class=\"k-inner\"><span>2</span></div></div><div class=\"k-main\"><div class=\"k-title\">设置VPC</div><div class=\"k-content\"></div></div></div></div>"
+"<div class=\"k-steps c-clearfix\"><div class=\"k-step k-done\" style=\"width: 33.3333%;\"><div class=\"k-tail\"></div><div class=\"k-head\"><div class=\"k-inner\"><i class=\"ion-ios-checkmark-empty k-icon\"></i></div></div><div class=\"k-main\"><div class=\"k-title\">选择配置</div><div class=\"k-content\">请选择主机的配置信息</div></div></div><div class=\"k-step k-active k-error\" style=\"width: 33.3333%;\"><div class=\"k-tail\"></div><div class=\"k-head\"><div class=\"k-inner\"><i class=\"ion-ios-close-empty k-icon\"></i></div></div><div class=\"k-main\"><div class=\"k-title\">选择弹性IP</div><div class=\"k-content\">请选择主机弹性IP的配置信息</div></div></div><div class=\"k-step\" style=\"width: 33.3333%;\"><div class=\"k-tail\"></div><div class=\"k-head\"><div class=\"k-inner\"><span>3</span></div></div><div class=\"k-main\"><div class=\"k-title\">设置VPC</div><div class=\"k-content\"></div></div></div></div>"
+```
+
+#### `Switch basic`
+
+```
+"<div><div class=\"k-switch k-default\"><input type=\"checkbox\" value=\"true\"><div class=\"k-bar\"><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div></div>"
+```
+
+#### `Switch disabled`
+
+```
+"<div><div class=\"k-switch k-default k-disabled\"><input type=\"checkbox\" disabled=\"\" value=\"true\"><div class=\"k-off\">关</div><div class=\"k-bar\"><div class=\"k-on\">开</div><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div></div>"
+```
+
+#### `Switch onOff`
+
+```
+"<div><div class=\"k-switch k-default\"><input type=\"checkbox\" value=\"true\"><div class=\"k-off\">关</div><div class=\"k-bar\"><div class=\"k-on\">开</div><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div></div>"
+```
+
+#### `Switch size`
+
+```
+"<div><div>
+        小号：<div class=\"k-switch k-small\"><input type=\"checkbox\" value=\"true\"><div class=\"k-off\">关</div><div class=\"k-bar\"><div class=\"k-on\">开</div><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div></div><div>
+        迷你：<div class=\"k-switch k-mini\"><input type=\"checkbox\" value=\"true\"><div class=\"k-off\">关</div><div class=\"k-bar\"><div class=\"k-on\">开</div><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div></div></div>"
+```
+
+#### `Switch value`
+
+```
+"<div><div class=\"k-switch k-checked k-default\"><input type=\"checkbox\" value=\"true\"><div class=\"k-off\">关</div><div class=\"k-bar\"><div class=\"k-on\">开</div><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div><div class=\"k-switch k-checked k-default\"><input type=\"checkbox\" value=\"1\"><div class=\"k-off\">关</div><div class=\"k-bar\"><div class=\"k-on\">开</div><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div><div class=\"k-switch k-default\"><input type=\"checkbox\" value=\"1\"><div class=\"k-off\">关</div><div class=\"k-bar\"><div class=\"k-on\">开</div><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div></div>"
+```
+
+#### `Switch widthHeight`
+
+```
+"<div><div class=\"k-switch k-default\"><input type=\"checkbox\" value=\"true\"><div class=\"k-off\">关闭</div><div class=\"k-bar\"><div class=\"k-on\">开启</div><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div><div class=\"k-switch k-default\"><input type=\"checkbox\" value=\"true\"><div class=\"k-off\">关闭</div><div class=\"k-bar\"><div class=\"k-on\">开启</div><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div></div>"
 ```
 
 #### `Table basic`
@@ -866,6 +916,34 @@
 </div></div></div>"
 ```
 
+#### `Table disableRow`
+
+```
+"<div class=\"no-data-template\"><div class=\"k-table-wrapper\">
+    <table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" value=\"true\"></span></label></th>
+        <th title=\"奇数行不可点击\"><div class=\"k-th\"><div class=\"c-ellipsis\">奇数行不可点击</div>
+        
+    </div></th>
+        
+    </tr></thead>
+    <tbody>
+    <tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
+                <td title=\"1\">1</td>
+            </tr><tr class=\"k-disabled\"><td><label class=\"k-checkbox k-disabled\"><span class=\"k-wrapper\"><input type=\"checkbox\" disabled=\"\" name=\"k-table-checkbox\" value=\"1\"></span></label></td>
+                <td title=\"2\">2</td>
+            </tr><tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"2\"></span></label></td>
+                <td title=\"3\">3</td>
+            </tr><tr class=\"k-disabled\"><td><label class=\"k-checkbox k-disabled\"><span class=\"k-wrapper\"><input type=\"checkbox\" disabled=\"\" name=\"k-table-checkbox\" value=\"3\"></span></label></td>
+                <td title=\"4\">4</td>
+            </tr><tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"4\"></span></label></td>
+                <td title=\"5\">5</td>
+            </tr>
+</tbody>
+</table>
+</div></div>"
+```
+
 #### `Table fixHeader`
 
 ```
@@ -929,6 +1007,50 @@
             </tr>
 </tbody>
 </table></div>
+</div></div>"
+```
+
+#### `Table group`
+
+```
+"<div class=\"no-data-template\"><div class=\"k-table-wrapper\">
+    <table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" value=\"true\"></span></label></th>
+        <th title=\"姓名\"><div class=\"k-th\"><div class=\"c-ellipsis\">姓名</div>
+        
+    </div></th><th title=\"时间\"><div class=\"k-th\"><div class=\"k-group\"><i class=\"k-arrow ion-ios-arrow-down\"></i><!--placeholder--><div class=\"c-ellipsis\">
+                时间
+                
+            </div></div>
+        
+    </div></th>
+        
+    </tr></thead>
+    <tbody>
+    <tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
+                <td title=\"lihua\">lihua</td><td title=\"10-12-12\">10-12-12</td>
+            </tr>
+</tbody>
+</table>
+</div><div class=\"k-table-wrapper\">
+    <table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" value=\"true\"></span></label></th>
+        
+        <th title=\"姓名\"><div class=\"k-th\"><div class=\"c-ellipsis\">姓名</div>
+        
+    </div></th><th title=\"时间\"><div class=\"k-th\"><div class=\"k-group\"><i class=\"k-arrow ion-ios-arrow-down\"></i><!--placeholder--><div class=\"c-ellipsis\">
+                时间
+                
+            </div></div>
+        
+    </div></th>
+    </tr></thead>
+    <tbody>
+    <tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
+                <td title=\"lihua(标签形式定义表头信息)\">lihua(标签形式定义表头信息)</td><td title=\"10-12-12\">10-12-12</td>
+            </tr>
+</tbody>
+</table>
 </div></div>"
 ```
 
@@ -1054,6 +1176,88 @@
 </div></div>"
 ```
 
+#### `Table rowClassName`
+
+```
+"<div class=\"no-data-template\"><div class=\"k-table-wrapper\">
+    <table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" value=\"true\"></span></label></th>
+        <th title=\"偶数行背景变换\"><div class=\"k-th\"><div class=\"c-ellipsis\">偶数行背景变换</div>
+        
+    </div></th>
+        
+    </tr></thead>
+    <tbody>
+    <tr class=\"turn-blue\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
+                <td title=\"1\">1</td>
+            </tr><tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"1\"></span></label></td>
+                <td title=\"2\">2</td>
+            </tr><tr class=\"turn-blue\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"2\"></span></label></td>
+                <td title=\"3\">3</td>
+            </tr><tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"3\"></span></label></td>
+                <td title=\"4\">4</td>
+            </tr><tr class=\"turn-blue\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"4\"></span></label></td>
+                <td title=\"5\">5</td>
+            </tr>
+</tbody>
+</table>
+</div></div>"
+```
+
+#### `Table rowExpandable`
+
+```
+"<div class=\"no-data-template\"><div class=\"k-table-wrapper\">
+    <table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" value=\"true\"></span></label></th>
+        <th title=\"定义expand函数返回你要展示的内容\"><div class=\"k-th\"><div class=\"c-ellipsis\">定义expand函数返回你要展示的内容</div>
+        
+    </div></th>
+        
+    </tr></thead>
+    <tbody>
+    <tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
+                <td title=\"返回虚拟DOM\">返回虚拟DOM</td>
+            </tr><tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"1\"></span></label></td>
+                <td title=\"返回字符串\">返回字符串</td>
+            </tr>
+</tbody>
+</table>
+</div><div class=\"k-table-wrapper\">
+    <table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" value=\"true\"></span></label></th>
+        <th title=\"rowExpandable为false，总开关\"><div class=\"k-th\"><div class=\"c-ellipsis\">rowExpandable为false，总开关</div>
+        
+    </div></th>
+        
+    </tr></thead>
+    <tbody>
+    <tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
+                <td title=\"返回虚拟DOM\">返回虚拟DOM</td>
+            </tr><tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"1\"></span></label></td>
+                <td title=\"返回字符串\">返回字符串</td>
+            </tr>
+</tbody>
+</table>
+</div><div class=\"k-table-wrapper\">
+    <table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" value=\"true\"></span></label></th>
+        <th title=\"设置默认展开\"><div class=\"k-th\"><div class=\"c-ellipsis\">设置默认展开</div>
+        
+    </div></th>
+        
+    </tr></thead>
+    <tbody>
+    <tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
+                <td title=\"不展开\">不展开</td>
+            </tr><tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"1\"></span></label></td>
+                <td title=\"默认展开\">默认展开</td>
+            </tr><tr class=\"k-expand\"><td colspan=\"2\">这里是默认展开的那一行的内容</td></tr>
+</tbody>
+</table>
+</div></div>"
+```
+
 #### `Table scheme`
 
 ```
@@ -1100,6 +1304,96 @@
 </tbody>
 </table>
 </div></div>"
+```
+
+#### `Table sort`
+
+```
+"<div class=\"no-data-template\"><div class=\"k-table-wrapper\">
+    <table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" value=\"true\"></span></label></th>
+        <th class=\"k-sortable\" title=\"姓名\"><div class=\"k-th\"><div class=\"c-ellipsis\">姓名</div>
+        <div class=\"k-sort\"><i class=\"k-icon icon-sortable\"></i></div>
+    </div></th><th class=\"k-sortable\" title=\"时间\"><div class=\"k-th\"><div class=\"c-ellipsis\">时间</div>
+        <div class=\"k-sort k-asc\"><i class=\"k-icon icon-asc\"></i></div>
+    </div></th>
+        
+    </tr></thead>
+    <tbody>
+    <tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
+                <td title=\"a默认按照时间升序\">a默认按照时间升序</td><td title=\"2\">2</td>
+            </tr><tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"1\"></span></label></td>
+                <td title=\"b 箭头方向默认的是向上的\">b 箭头方向默认的是向上的</td><td title=\"1\">1</td>
+            </tr>
+</tbody>
+</table>
+</div><div class=\"k-table-wrapper\">
+    <table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" value=\"true\"></span></label></th>
+        <th class=\"k-sortable\" title=\"姓名\"><div class=\"k-th\"><div class=\"c-ellipsis\">姓名</div>
+        <div class=\"k-sort\"><i class=\"k-icon icon-sortable\"></i></div>
+    </div></th><th class=\"k-sortable\" title=\"时间\"><div class=\"k-th\"><div class=\"c-ellipsis\">时间</div>
+        <div class=\"k-sort\"><i class=\"k-icon icon-sortable\"></i></div>
+    </div></th>
+        
+    </tr></thead>
+    <tbody>
+    <tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
+                <td title=\"a无默认排序\">a无默认排序</td><td title=\"2\">2</td>
+            </tr><tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"1\"></span></label></td>
+                <td title=\"b 观察箭头方向都是双向的\">b 观察箭头方向都是双向的</td><td title=\"1\">1</td>
+            </tr>
+</tbody>
+</table>
+</div><div class=\"k-table-wrapper\">
+    <table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" value=\"true\"></span></label></th>
+        
+        <th title=\"姓名\"><div class=\"k-th\"><div class=\"c-ellipsis\">姓名</div>
+        
+    </div></th><th class=\"k-sortable\" title=\"时间(标签形式定义排序)\"><div class=\"k-th\"><div class=\"c-ellipsis\">时间(标签形式定义排序)</div>
+        <div class=\"k-sort k-asc\"><i class=\"k-icon icon-asc\"></i></div>
+    </div></th>
+    </tr></thead>
+    <tbody>
+    <tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
+                <td title=\"a默认按照时间升序\">a默认按照时间升序</td><td title=\"2\">2</td>
+            </tr><tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"1\"></span></label></td>
+                <td title=\"b 箭头方向默认的是向上的\">b 箭头方向默认的是向上的</td><td title=\"1\">1</td>
+            </tr>
+</tbody>
+</table>
+</div></div>"
+```
+
+#### `Table type`
+
+```
+"<div class=\"no-data-template\"><div class=\"k-table-wrapper\">
+    <table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" value=\"true\"></span></label></th>
+        <th title=\"类型\"><div class=\"k-th\"><div class=\"c-ellipsis\">类型</div>
+        
+    </div></th>
+        
+    </tr></thead>
+    <tbody>
+    <tr class=\"\"><td><label class=\"k-checkbox\"><span class=\"k-wrapper\"><input type=\"checkbox\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
+                <td title=\"defalut\">defalut</td>
+            </tr>
+</tbody>
+</table>
+</div></div>"
+```
+
+#### `Tabs basic`
+
+```
+"<div><div class=\"k-tabs\" style=\"margin: 20px;\"><a class=\"k-tab\">入站规则</a><a class=\"k-tab\">出站规则</a><a class=\"k-tab k-active\">关联云主机</a>
+    
+</div><div class=\"k-tabs\" style=\"margin: 20px;\">
+    <a class=\"k-tab\">入站规则</a><a class=\"k-tab k-active\">出站规则</a><a class=\"k-tab\">关联云主机</a>
+</div><div style=\"margin: 20px;\">出站规则</div></div>"
 ```
 
 #### `Tooltip basic`

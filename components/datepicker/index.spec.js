@@ -2,7 +2,7 @@ import BasicDemo from '~/components/datepicker/demos/basic';
 import ClearableDemo from '~/components/datepicker/demos/clearable';
 import MultipleDemo from '~/components/datepicker/demos/multiple';
 import DatetimeDemo from '~/components/datepicker/demos/datetime';
-import {mount, dispatchEvent} from 'test/utils';
+import {mount, dispatchEvent, getElement} from 'test/utils';
 
 describe('Datepicker', () => {
     let instance;
@@ -22,31 +22,35 @@ describe('Datepicker', () => {
         expect(instance.get('date')).to.be.string;
     });
 
-    it('method test', () => {
+    it('should change year and month', () => {
         instance = mount(BasicDemo);
 
         dispatchEvent(instance.element.children[0].children[0], 'click');
         const now = new Date();
         const year = now.getFullYear();
         const month = now.getMonth();
-        const demo = instance.refs.__demo;
-        demo.prevYear();
-        expect(demo.get('_showDate').getFullYear()).to.eql(year - 1);
-        demo.nextYear();
-        expect(demo.get('_showDate').getFullYear()).to.eql(year);
-        demo.prevMonth();
-        let d = new Date();
-        d.setMonth(month - 1);
-        expect(demo.get('_showDate').getMonth()).to.eql(d.getMonth());
-        demo.nextMonth();
-        expect(demo.get('_showDate').getMonth()).to.eql(month);
 
-        demo.showYearPicker();
-        expect(document.querySelector('.k-year-picker')).not.be.null;
-        demo.onChangeYear(demo, 2019);
-        expect(demo.get('_showDate').getFullYear()).eql(2019);
-        demo.onChangeMonth(demo, 4);
-        expect(demo.get('_showDate').getMonth()).eql(4);
+        let content = getElement('.k-datepicker-content');
+        const [prevYear, prevMonth] = content.querySelectorAll('.k-prev');
+        const [nextMonth, nextYear] = content.querySelectorAll('.k-next');
+        // click prev year twice
+        dispatchEvent(prevYear, 'click');
+        dispatchEvent(prevYear, 'click');
+        // click prev month twice
+        dispatchEvent(prevMonth, 'click');
+        dispatchEvent(prevMonth, 'click');
+        // click next month once
+        dispatchEvent(nextMonth, 'click');
+        // click next year once
+        dispatchEvent(nextYear, 'click');
+
+        // select the middle date
+        dispatchEvent(content.querySelectorAll('.k-day')[17], 'click');
+        const curDate = new Date(instance.get('date'));
+        curDate.setFullYear(curDate.getFullYear() + 1);
+        curDate.setMonth(curDate.getMonth() + 1);
+        expect(curDate.getFullYear()).be.eql(year);
+        expect(curDate.getMonth()).be.eql(month);
     });
 
     it('should clear value', () => {
@@ -63,12 +67,12 @@ describe('Datepicker', () => {
         dispatchEvent(instance.element.children[0].children[0], 'click');
         let content = document.querySelectorAll('.k-datepicker-content');
         content = content[content.length - 1];
-        dispatchEvent(content.querySelector('.k-day'), 'click');
-        dispatchEvent(content.querySelector('.k-day'), 'click');
+        dispatchEvent(content.querySelectorAll('.k-day')[0], 'click');
+        dispatchEvent(content.querySelectorAll('.k-day')[1], 'click');
         expect(instance.get('date')).have.lengthOf(2);
     });
 
-    it('datetime picker', () => {
+    it('datetime picker', (done) => {
         instance = mount(DatetimeDemo);
 
         dispatchEvent(instance.element.children[0].children[0], 'click');
@@ -76,8 +80,12 @@ describe('Datepicker', () => {
         content = content[content.length - 1];
        
         dispatchEvent(content.querySelector('.k-day'), 'click');
-        dispatchEvent(content.querySelector('.k-item'), 'click');
+        setTimeout(() => {
+            dispatchEvent(content.querySelector('.k-item'), 'click');
 
-        expect(instance.get('datetime1')).be.string;
+            expect(instance.get('datetime1')).be.string;
+
+            done();
+        });
     });
 });
