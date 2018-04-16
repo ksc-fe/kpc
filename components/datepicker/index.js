@@ -167,7 +167,7 @@ export default class Datepicker extends Intact {
         } else if (!v.length) {
             // calendar cancelled the selected value
             this.set('_value', undefined);
-        } else if (!value || value && value.length === 2) {
+        } else if (!value || value.length === 0 || value.length === 2) {
             value = [v[v.length - 1]];
             if (type === 'end') {
                 begin.set('_isSelectTime', false);
