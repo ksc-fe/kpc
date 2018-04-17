@@ -4,8 +4,7 @@ import '../../styles/kpc.styl';
 import './index.styl';
 import Column from './column';
 import {_$} from '../utils';
-
-let scrollBarWidth = undefined;
+import {scrollbarWidth} from '../moveWrapper/position';
 
 const MIN_WIDTH = 40;
 const slice = Array.prototype.slice;
@@ -71,9 +70,6 @@ export default class Table extends Intact {
     }
 
     _mount() {
-        if (scrollBarWidth === undefined) {
-            scrollBarWidth = getScrollbarWidth();
-        }
         this._calcHeaderPadding();
     }
 
@@ -159,7 +155,7 @@ export default class Table extends Intact {
             const tableHeight = this.table.offsetHeight;
             const containerHeight = this.scroll.offsetHeight;
             const headerHeight = this.header.offsetHeight;
-            this.set('_padding', tableHeight - headerHeight > containerHeight ? scrollBarWidth : 0);
+            this.set('_padding', tableHeight - headerHeight > containerHeight ? scrollbarWidth() : 0);
         }
     }
 
@@ -321,32 +317,6 @@ export default class Table extends Intact {
     _destroy() {
         this._dragEnd();
     }
-}
-
-// reference: http://stackoverflow.com/questions/13382516/getting-scroll-bar-width-using-javascript
-function getScrollbarWidth() {
-    var outer = document.createElement("div");
-    outer.style.visibility = "hidden";
-    outer.style.width = "100px";
-    outer.style.msOverflowStyle = "scrollbar"; // needed for WinJS apps
-
-    document.body.appendChild(outer);
-
-    var widthNoScroll = outer.offsetWidth;
-    // force scrollbars
-    outer.style.overflow = "scroll";
-
-    // add innerdiv
-    var inner = document.createElement("div");
-    inner.style.width = "100%";
-    outer.appendChild(inner);
-
-    var widthWithScroll = inner.offsetWidth;
-
-    // remove divs
-    outer.parentNode.removeChild(outer);
-
-    return widthNoScroll - widthWithScroll;
 }
 
 export {Table, Column as TableColumn};

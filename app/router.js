@@ -1,5 +1,4 @@
 import Router from 'universal-router';
-import './main';
 
 const context = require.context('../pages/', true, /index\.js$/);
 const routes = context.keys().map(key => {

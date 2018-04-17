@@ -2,7 +2,7 @@ import Intact from 'intact';
 import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
-import position from '../moveWrapper/position';
+import {position} from '../moveWrapper/position';
 import {_$} from '../utils';
 
 export default class Dialog extends Intact {
@@ -141,12 +141,12 @@ export default class Dialog extends Intact {
         // move to center
         position(this.dialog, {
             // ensure title visible always
-            using: (pos) => {
-                const height = pos.element.height;
-                const scrollTop = window.scrollY;
-                const outerHeight = window.innerHeight;
+            using: (feedback, position) => {
+                const height = feedback.element.height;
+                const scrollTop = window.pageYOffset;
+                const outerHeight = window.document.documentElement.clientHeight;
                 if (height > outerHeight) {
-                    this.dialog.style.top = `${scrollTop}px`;
+                    position.top = scrollTop;
                 }    
             }
         });
