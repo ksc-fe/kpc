@@ -15,12 +15,18 @@
 .fade-move
     transition transform $transition
 
-.dropdown-enter
-.dropdown-leave
-    opacity 0
-    transform scaleY(.8)
-.dropdown-enter-active
-.dropdown-leave-active
-    transform-origin center top 0px 
-    transition opacity $transition, transform $transition
-
+$origins = {
+    down: center top 0,
+    up: center bottom 0,
+    left: right center 0,
+    right: left center 0
+}
+for type, value in $origins
+    .slide{type}-enter
+    .slide{type}-leave
+        opacity 0
+        transform scaleY(.8)
+    .slide{type}-enter-active
+    .slide{type}-leave-active
+        transform-origin value 
+        transition opacity $transition, transform $transition

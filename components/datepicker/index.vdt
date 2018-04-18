@@ -28,7 +28,7 @@ const classNameObj = {
         position={{ {my: 'left top', at: 'left bottom'} }}
         trigger="click"
         showArrow={{ false }}
-        transition="dropdown"
+        transition="slidedown"
         ref="calendar"
         disabled={{ disabled }}
     >
