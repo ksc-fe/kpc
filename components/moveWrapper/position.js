@@ -251,8 +251,7 @@ export default function position(elem, options) {
     position.left += myOffset[0];
     position.top += myOffset[1];
 
-    // ['left', 'top'].forEach((dir, i) => {
-    ['top'].forEach((dir, i) => {
+    ['left', 'top'].forEach((dir, i) => {
         const coll = collision[i];
         if (rules[coll]) {
             rules[coll][dir](position, {
@@ -406,7 +405,9 @@ const rules = {
                 }
             } else if (overRight > 0) {
                 newOverLeft = positon.left - data.collisionPosition.marginLeft + myOffset + atOffset + offset - offsetLeft;
-                if (newOverLeft > 0 || abs(newOverLeft) < overRight) {
+                // the same to top
+                // if (newOverLeft > 0 || abs(newOverLeft) < overRight) {
+                if (newOverLeft > 0) {
                     positon.left += myOffset + atOffset + offset;
                 }
             }
@@ -418,7 +419,7 @@ const rules = {
             const outerHeight = within.height;
             const offsetTop = within.isWindow ? within.scrollTop : within.offset.top;
             const collisionPosTop = position.top - data.collisionPosition.marginTop;
-            const overTop = collisionPosTop + data.collisionHeight - outerHeight - offsetTop;
+            const overTop = collisionPosTop - offsetTop;
             const overBottom = collisionPosTop + data.collisionHeight - outerHeight - offsetTop; 
             const myOffset = data.my[1] === 'top' ?
                 -data.elemHeight :
@@ -439,7 +440,10 @@ const rules = {
                 }
             } else if (overBottom > 0) {
                 newOverTop = position.top - data.collisionPosition.marginTop + myOffset + atOffset + offset - offsetTop;
-                if (newOverTop > 0 || abs(newOverTop) < overBottom) {
+                // because window can scroll down, when it beyond the top border,
+                // we can not scroll it to view. Don't flip it in this case
+                // if (newOverTop > 0 || abs(newOverTop) < overBottom) {
+                if (newOverTop > 0) {
                     position.top += myOffset + atOffset + offset;
                 }
             }
