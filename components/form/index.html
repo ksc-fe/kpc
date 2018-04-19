@@ -587,6 +587,74 @@ samp {
 label {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
+.slidedown-enter,
+.slidedown-leave {
+  opacity: 0;
+  -webkit-transform: scaleY(0.8);
+      -ms-transform: scaleY(0.8);
+          transform: scaleY(0.8);
+}
+.slidedown-enter-active,
+.slidedown-leave-active {
+  -webkit-transform-origin: center top 0;
+      -ms-transform-origin: center top 0;
+          transform-origin: center top 0;
+  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+}
+.slideup-enter,
+.slideup-leave {
+  opacity: 0;
+  -webkit-transform: scaleY(0.8);
+      -ms-transform: scaleY(0.8);
+          transform: scaleY(0.8);
+}
+.slideup-enter-active,
+.slideup-leave-active {
+  -webkit-transform-origin: center bottom 0;
+      -ms-transform-origin: center bottom 0;
+          transform-origin: center bottom 0;
+  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+}
+.slideleft-enter,
+.slideleft-leave {
+  opacity: 0;
+  -webkit-transform: scaleX(0.8);
+      -ms-transform: scaleX(0.8);
+          transform: scaleX(0.8);
+}
+.slideleft-enter-active,
+.slideleft-leave-active {
+  -webkit-transform-origin: right center 0;
+      -ms-transform-origin: right center 0;
+          transform-origin: right center 0;
+  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+}
+.slideright-enter,
+.slideright-leave {
+  opacity: 0;
+  -webkit-transform: scaleX(0.8);
+      -ms-transform: scaleX(0.8);
+          transform: scaleX(0.8);
+}
+.slideright-enter-active,
+.slideright-leave-active {
+  -webkit-transform-origin: left center 0;
+      -ms-transform-origin: left center 0;
+          transform-origin: left center 0;
+  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+}
 .fade-enter,
 .fade-leave {
   opacity: 0;
@@ -601,23 +669,6 @@ label {
   transition: -webkit-transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
-}
-.dropdown-enter,
-.dropdown-leave {
-  opacity: 0;
-  -webkit-transform: scaleY(0.8);
-      -ms-transform: scaleY(0.8);
-          transform: scaleY(0.8);
-}
-.dropdown-enter-active,
-.dropdown-leave-active {
-  -webkit-transform-origin: center top 0px;
-      -ms-transform-origin: center top 0px;
-          transform-origin: center top 0px;
-  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
 }
 @-webkit-keyframes rotate {
   0% {
@@ -5557,8 +5608,12 @@ blockquote:before {
 .k-datepicker-content .k-scroll-select {
   height: 17.5em;
 }
+.k-datepicker-content .k-range {
+  white-space: nowrap;
+}
 .k-datepicker-content .k-range > .k-wrapper {
-  float: left;
+  display: inline-block;
+  vertical-align: top;
 }
 .k-datepicker-content .k-range > .k-wrapper:last-of-type {
   margin-left: 1.666666666666667em;
@@ -6092,7 +6147,7 @@ blockquote:before {
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/components/form/index.md">github</a>
                     上修正该文档
                 </div></div><div class="contents"><div><h1>示例</h1>
-        <div class="example index-21"><div class="example-opera"><form class="k-form" style="" noValidate><div class="k-form-item" style=""><label class="k-label">Input</label><div class="k-content"><div class="k-input" style=""><div class="k-wrapper"><input class="k-inner" type="text" /></div></div></div></div><div class="k-form-item" style=""><label class="k-label">Select</label><div class="k-content"><div class="k-select" style=""><div class="k-wrapper"><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></div><div class="k-form-item" style=""><label class="k-label">Checkbox</label><div class="k-content"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="model.checkbox" value="Javascript" /></span><span class="k-text">Javascript</span></label><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="model.checkbox" value="PHP" /></span><span class="k-text">PHP</span></label><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="model.checkbox" value="C++" /></span><span class="k-text">C++</span></label></div></div><div class="k-form-item" style=""><label class="k-label">Radio</label><div class="k-content"><label class="k-radio" style=""><span class="k-wrapper"><input type="radio" v-model="model.radio" value="Javascript" /></span><span class="k-text">Javascript</span></label><label class="k-radio" style=""><span class="k-wrapper"><input type="radio" v-model="model.radio" value="PHP" /></span><span class="k-text">PHP</span></label><label class="k-radio" style=""><span class="k-wrapper"><input type="radio" v-model="model.radio" value="C++" /></span><span class="k-text">C++</span></label></div></div><div class="k-form-item" style=""><label class="k-label">Radio ButtonGroup</label><div class="k-content"><div class="k-btns" style=""><button class="k-btn" type="button">
+        <div class="example index-21"><div class="example-opera"><form class="k-form" style="" noValidate><div class="k-form-item" style=""><label class="k-label">Input</label><div class="k-content"><div class="k-input" style=""><div class="k-wrapper"><input class="k-inner" type="text" /></div></div></div></div><div class="k-form-item" style=""><label class="k-label">Select</label><div class="k-content"><div class="k-select" style=""><div class="k-wrapper" _hasSaved><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></div><div class="k-form-item" style=""><label class="k-label">Checkbox</label><div class="k-content"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="model.checkbox" value="Javascript" /></span><span class="k-text">Javascript</span></label><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="model.checkbox" value="PHP" /></span><span class="k-text">PHP</span></label><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="model.checkbox" value="C++" /></span><span class="k-text">C++</span></label></div></div><div class="k-form-item" style=""><label class="k-label">Radio</label><div class="k-content"><label class="k-radio" style=""><span class="k-wrapper"><input type="radio" v-model="model.radio" value="Javascript" /></span><span class="k-text">Javascript</span></label><label class="k-radio" style=""><span class="k-wrapper"><input type="radio" v-model="model.radio" value="PHP" /></span><span class="k-text">PHP</span></label><label class="k-radio" style=""><span class="k-wrapper"><input type="radio" v-model="model.radio" value="C++" /></span><span class="k-text">C++</span></label></div></div><div class="k-form-item" style=""><label class="k-label">Radio ButtonGroup</label><div class="k-content"><div class="k-btns" style=""><button class="k-btn" type="button">
     <span>Javascript</span>
     <input type="radio" /></button><button class="k-btn" type="button">
     <span>PHP</span>

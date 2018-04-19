@@ -587,6 +587,74 @@ samp {
 label {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
+.slidedown-enter,
+.slidedown-leave {
+  opacity: 0;
+  -webkit-transform: scaleY(0.8);
+      -ms-transform: scaleY(0.8);
+          transform: scaleY(0.8);
+}
+.slidedown-enter-active,
+.slidedown-leave-active {
+  -webkit-transform-origin: center top 0;
+      -ms-transform-origin: center top 0;
+          transform-origin: center top 0;
+  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+}
+.slideup-enter,
+.slideup-leave {
+  opacity: 0;
+  -webkit-transform: scaleY(0.8);
+      -ms-transform: scaleY(0.8);
+          transform: scaleY(0.8);
+}
+.slideup-enter-active,
+.slideup-leave-active {
+  -webkit-transform-origin: center bottom 0;
+      -ms-transform-origin: center bottom 0;
+          transform-origin: center bottom 0;
+  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+}
+.slideleft-enter,
+.slideleft-leave {
+  opacity: 0;
+  -webkit-transform: scaleX(0.8);
+      -ms-transform: scaleX(0.8);
+          transform: scaleX(0.8);
+}
+.slideleft-enter-active,
+.slideleft-leave-active {
+  -webkit-transform-origin: right center 0;
+      -ms-transform-origin: right center 0;
+          transform-origin: right center 0;
+  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+}
+.slideright-enter,
+.slideright-leave {
+  opacity: 0;
+  -webkit-transform: scaleX(0.8);
+      -ms-transform: scaleX(0.8);
+          transform: scaleX(0.8);
+}
+.slideright-enter-active,
+.slideright-leave-active {
+  -webkit-transform-origin: left center 0;
+      -ms-transform-origin: left center 0;
+          transform-origin: left center 0;
+  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+}
 .fade-enter,
 .fade-leave {
   opacity: 0;
@@ -601,23 +669,6 @@ label {
   transition: -webkit-transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
-}
-.dropdown-enter,
-.dropdown-leave {
-  opacity: 0;
-  -webkit-transform: scaleY(0.8);
-      -ms-transform: scaleY(0.8);
-          transform: scaleY(0.8);
-}
-.dropdown-enter-active,
-.dropdown-leave-active {
-  -webkit-transform-origin: center top 0px;
-      -ms-transform-origin: center top 0px;
-          transform-origin: center top 0px;
-  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
 }
 @-webkit-keyframes rotate {
   0% {
@@ -5557,8 +5608,12 @@ blockquote:before {
 .k-datepicker-content .k-scroll-select {
   height: 17.5em;
 }
+.k-datepicker-content .k-range {
+  white-space: nowrap;
+}
 .k-datepicker-content .k-range > .k-wrapper {
-  float: left;
+  display: inline-block;
+  vertical-align: top;
 }
 .k-datepicker-content .k-range > .k-wrapper:last-of-type {
   margin-left: 1.666666666666667em;
@@ -6192,7 +6247,7 @@ blockquote:before {
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/components/dropdown/index.md">github</a>
                     上修正该文档
                 </div></div><div class="contents"><div><h1>示例</h1>
-        <div class="example index-16"><div class="example-opera"><div><button class="k-btn k-primary k-icon-right" type="button">
+        <div class="example index-16"><div class="example-opera"><div><button class="k-btn k-primary k-icon-right" _hasSaved type="button">
     <span>
             hover </span><i class="k-icon ion-arrow-down-b"></i>
     </button><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">基础用法</div><div class="desc"><p>一个完整的菜单需要用到<code>Dropdown</code>，<code>DropdownMenu</code>和<code>DropdownItem</code>三个组件。<code>Dropdown</code>会将第一个子元素作为触发器，第二个元素为菜单<code>DropdownMenu</code>。</p>
@@ -6205,10 +6260,10 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-18"><div class="example-opera"><div><button class="k-btn k-primary k-icon-right" type="button">
+</div><div class="code"></div></div></div><div class="example index-18"><div class="example-opera"><div><button class="k-btn k-primary k-icon-right" _hasSaved type="button">
     <span>
             hover </span><i class="k-icon ion-arrow-down-b"></i>
-    </button><!--MoveWrapper--><button class="k-btn k-primary k-icon-right" type="button">
+    </button><!--MoveWrapper--><button class="k-btn k-primary k-icon-right" _hasSaved type="button">
     <span>
             click </span><i class="k-icon ion-arrow-down-b"></i>
     </button><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">触发方式</div><div class="desc"><p><code>Dropdown</code>提供了两种触发方式来弹窗菜单，<code>hover</code>悬停触发（默认），<code>click</code>点击触发。通过<code>trigger</code>属性来指定它们。</p>
@@ -6220,13 +6275,13 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-63"><div class="example-opera"><div><button class="k-btn k-primary k-icon-right" type="button">
+</div><div class="code"></div></div></div><div class="example index-63"><div class="example-opera"><div><button class="k-btn k-primary k-icon-right" _hasSaved type="button">
     <span>
             left </span><i class="k-icon ion-arrow-down-b"></i>
-    </button><!--MoveWrapper--><button class="k-btn k-primary k-icon-right" type="button">
+    </button><!--MoveWrapper--><button class="k-btn k-primary k-icon-right" _hasSaved type="button">
     <span>
             right </span><i class="k-icon ion-arrow-down-b"></i>
-    </button><!--MoveWrapper--><button class="k-btn k-primary k-icon-right" type="button">
+    </button><!--MoveWrapper--><button class="k-btn k-primary k-icon-right" _hasSaved type="button">
     <span>
             top center </span><i class="k-icon ion-arrow-down-b"></i>
     </button><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">菜单位置</div><div class="desc"><p>通过<code>position</code>属性，可以定义菜单相对触发器的位置。位置对象中<code>my</code>指菜单，<code>at</code>指触发器</p>
@@ -6238,10 +6293,10 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-77"><div class="example-opera"><div><button class="k-btn k-primary k-icon-right" type="button">
+</div><div class="code"></div></div></div><div class="example index-77"><div class="example-opera"><div><button class="k-btn k-primary k-icon-right" _hasSaved type="button">
     <span>
             disabled </span><i class="k-icon ion-arrow-down-b"></i>
-    </button><!--MoveWrapper--><button class="k-btn k-primary k-icon-right" type="button">
+    </button><!--MoveWrapper--><button class="k-btn k-primary k-icon-right" _hasSaved type="button">
     <span>
             disabled item</span><i class="k-icon ion-arrow-down-b"></i>
     </button><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">禁用菜单（项）</div><div class="desc"><p>通过给<code>Dropdown</code>和<code>DropdownItem</code>添加<code>disabled</code>属性，可以分别禁用菜单和菜单项。</p>
@@ -6253,9 +6308,9 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-91"><div class="example-opera"><div><button class="k-btn k-primary k-icon-right" type="button">
+</div><div class="code"></div></div></div><div class="example index-91"><div class="example-opera"><div><button class="k-btn k-primary k-icon-right" _hasSaved type="button">
     <span>
-            hover </span><i class="k-icon ion-arrow-down-b"></i>
+            click </span><i class="k-icon ion-arrow-down-b"></i>
     </button><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">嵌套菜单</div><div class="desc"><p><code>Dropdown</code>可以嵌套使用，实现级联菜单。子菜单需要指定展示的位置<code>position</code>。我们还可以通过<code>trigger</code>单独子菜单触发方式。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">

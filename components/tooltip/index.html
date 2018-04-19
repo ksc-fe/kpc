@@ -587,6 +587,74 @@ samp {
 label {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
+.slidedown-enter,
+.slidedown-leave {
+  opacity: 0;
+  -webkit-transform: scaleY(0.8);
+      -ms-transform: scaleY(0.8);
+          transform: scaleY(0.8);
+}
+.slidedown-enter-active,
+.slidedown-leave-active {
+  -webkit-transform-origin: center top 0;
+      -ms-transform-origin: center top 0;
+          transform-origin: center top 0;
+  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+}
+.slideup-enter,
+.slideup-leave {
+  opacity: 0;
+  -webkit-transform: scaleY(0.8);
+      -ms-transform: scaleY(0.8);
+          transform: scaleY(0.8);
+}
+.slideup-enter-active,
+.slideup-leave-active {
+  -webkit-transform-origin: center bottom 0;
+      -ms-transform-origin: center bottom 0;
+          transform-origin: center bottom 0;
+  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+}
+.slideleft-enter,
+.slideleft-leave {
+  opacity: 0;
+  -webkit-transform: scaleX(0.8);
+      -ms-transform: scaleX(0.8);
+          transform: scaleX(0.8);
+}
+.slideleft-enter-active,
+.slideleft-leave-active {
+  -webkit-transform-origin: right center 0;
+      -ms-transform-origin: right center 0;
+          transform-origin: right center 0;
+  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+}
+.slideright-enter,
+.slideright-leave {
+  opacity: 0;
+  -webkit-transform: scaleX(0.8);
+      -ms-transform: scaleX(0.8);
+          transform: scaleX(0.8);
+}
+.slideright-enter-active,
+.slideright-leave-active {
+  -webkit-transform-origin: left center 0;
+      -ms-transform-origin: left center 0;
+          transform-origin: left center 0;
+  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+}
 .fade-enter,
 .fade-leave {
   opacity: 0;
@@ -601,23 +669,6 @@ label {
   transition: -webkit-transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
-}
-.dropdown-enter,
-.dropdown-leave {
-  opacity: 0;
-  -webkit-transform: scaleY(0.8);
-      -ms-transform: scaleY(0.8);
-          transform: scaleY(0.8);
-}
-.dropdown-enter-active,
-.dropdown-leave-active {
-  -webkit-transform-origin: center top 0px;
-      -ms-transform-origin: center top 0px;
-          transform-origin: center top 0px;
-  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
 }
 @-webkit-keyframes rotate {
   0% {
@@ -5557,8 +5608,12 @@ blockquote:before {
 .k-datepicker-content .k-scroll-select {
   height: 17.5em;
 }
+.k-datepicker-content .k-range {
+  white-space: nowrap;
+}
 .k-datepicker-content .k-range > .k-wrapper {
-  float: left;
+  display: inline-block;
+  vertical-align: top;
 }
 .k-datepicker-content .k-range > .k-wrapper:last-of-type {
   margin-left: 1.666666666666667em;
@@ -6352,7 +6407,7 @@ blockquote:before {
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/components/tooltip/index.md">github</a>
                     上修正该文档
                 </div></div><div class="contents"><div><h1>示例</h1>
-        <div class="example index-6"><div class="example-opera"><div><span class="k-tooltip">
+        <div class="example index-6"><div class="example-opera"><div><span class="k-tooltip" _hasSaved>
         hover the text
     </span><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">基础用法</div><div class="desc"><p>使用<code>Tooltip</code>包裹需要展示提示的元素，使用<code>content</code>属性指定提示文本即可</p>
 <blockquote>
@@ -6364,13 +6419,13 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-35"><div class="example-opera"><div class="k-btns" style=""><button class="k-btn" type="button">
+</div><div class="code"></div></div></div><div class="example index-35"><div class="example-opera"><div class="k-btns" style=""><button class="k-btn" _hasSaved type="button">
     <span>left</span>
-    </button><!--MoveWrapper--><button class="k-btn" type="button">
+    </button><!--MoveWrapper--><button class="k-btn" _hasSaved type="button">
     <span>right</span>
-    </button><!--MoveWrapper--><button class="k-btn" type="button">
+    </button><!--MoveWrapper--><button class="k-btn" _hasSaved type="button">
     <span>top</span>
-    </button><!--MoveWrapper--><button class="k-btn" type="button">
+    </button><!--MoveWrapper--><button class="k-btn" _hasSaved type="button">
     <span>bottom</span>
     </button><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">提示弹层位置</div><div class="desc"><p>使用<code>position</code>属性改变弹层位置，该属性值为对象，其中<code>my</code>指弹层，<code>at</code>指触发器。组件同时提供了4中快捷取值：<code>left</code>, <code>right</code>, <code>top</code>, <code>bottom</code></p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
@@ -6379,11 +6434,11 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-58"><div class="example-opera"><div class="k-btns" style=""><button class="k-btn" type="button">
+</div><div class="code"></div></div></div><div class="example index-58"><div class="example-opera"><div class="k-btns" style=""><button class="k-btn" _hasSaved type="button">
     <span>hover</span>
-    </button><!--MoveWrapper--><button class="k-btn" type="button">
+    </button><!--MoveWrapper--><button class="k-btn" _hasSaved type="button">
     <span>click</span>
-    </button><!--MoveWrapper--><button class="k-btn" type="button">
+    </button><!--MoveWrapper--><button class="k-btn" _hasSaved type="button">
     <span>can hover</span>
     </button><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">触发方式</div><div class="desc"><p>使用<code>trigger</code>指定触发方式，<code>click</code>点击触发，<code>hover</code>悬浮触发，默认为<code>hover</code>，在悬浮触发情况下，鼠标离开触发器，弹层就会消失，如果我们需要鼠标能离开触发器并悬浮在弹层上，需要添加<code>canHover</code>属性</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
@@ -6392,7 +6447,7 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-70"><div class="example-opera"><div><button class="k-btn" type="button">
+</div><div class="code"></div></div></div><div class="example index-70"><div class="example-opera"><div><button class="k-btn" _hasSaved type="button">
     <span>Adjust Volume</span>
     </button><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">自定义内容</div><div class="desc"><p>使用<code>content</code>扩展点，可以自定义复杂的提示内容</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
