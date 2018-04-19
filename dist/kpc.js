@@ -231,6 +231,7 @@ exports.range = range;
 exports.selectInput = selectInput;
 exports._$ = _$;
 exports.localize = localize;
+exports.getTransition = getTransition;
 
 var _intact = __webpack_require__(0);
 
@@ -380,6 +381,20 @@ function localize(data) {
     i18n = data;
 }
 
+function getTransition(feedback) {
+    var vertical = feedback.vertical;
+    var horizontal = feedback.horizontal;
+    if (vertical === 'bottom') {
+        return 'slideup';
+    } else if (vertical === 'top') {
+        return 'slidedown';
+    } else if (horizontal === 'left') {
+        return 'slideright';
+    } else if (horizontal === 'right') {
+        return 'slideleft';
+    }
+}
+
 /***/ }),
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -417,7 +432,7 @@ exports.default = function () {
 /* 9 */
 /***/ (function(module, exports) {
 
-var core = module.exports = { version: '2.5.4' };
+var core = module.exports = { version: '2.5.5' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -1393,6 +1408,8 @@ var _assign = __webpack_require__(28);
 
 var _assign2 = _interopRequireDefault(_assign);
 
+exports.getDocumentOrWindowRect = getDocumentOrWindowRect;
+exports.scrollbarWidth = scrollbarWidth;
 exports.default = position;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -1405,11 +1422,157 @@ var rOffset = /[\+\-]\d+(\.[\d]+)?%?/;
 var rPosition = /^\w+/;
 var rPercent = /%$/;
 
+function getDimensions(elem) {
+    if (elem.nodeType === 9) {
+        // document
+        var _getDocumentOrWindowR = getDocumentOrWindowRect(elem),
+            width = _getDocumentOrWindowR.width,
+            height = _getDocumentOrWindowR.height;
+
+        return {
+            width: width,
+            height: height,
+            offset: {
+                top: 0,
+                left: 0
+            }
+        };
+    } else if (elem === window) {
+        var _getDocumentOrWindowR2 = getDocumentOrWindowRect(elem),
+            _width = _getDocumentOrWindowR2.width,
+            _height = _getDocumentOrWindowR2.height;
+
+        return {
+            width: _width,
+            height: _height,
+            offset: {
+                top: elem.pageYOffset,
+                left: elem.pageXOffset
+            }
+        };
+    } else if (elem.preventDefault) {
+        // event
+        return {
+            width: 0,
+            height: 0,
+            offset: {
+                top: elem.pageY,
+                left: elem.pageX
+            }
+        };
+    }
+    // dom
+    var rect = elem.getBoundingClientRect();
+    return {
+        width: rect.width,
+        height: rect.height,
+        offset: {
+            top: rect.top + window.pageYOffset,
+            left: rect.left + window.pageXOffset
+        }
+    };
+}
+
+function getDocumentOrWindowRect(elem) {
+    if (elem === window) {
+        var _d = elem.document.documentElement;
+        return {
+            width: _d.clientWidth,
+            height: _d.clientHeight
+        };
+    }
+    var d = elem.documentElement;
+    var b = elem.body;
+    return {
+        width: max(b.scrollWidth, d.scrollWidth, b.offsetWidth, d.offsetWidth, d.clientWidth),
+        height: max(b.scrollHeight, d.scrollHeight, b.offsetHeight, d.offsetHeight, d.clientHeight)
+    };
+}
+
+function getOffsets(offsets, width, height) {
+    return [parseFloat(offsets[0]) * (rPercent.test(offsets[0]) ? width / 100 : 1), parseFloat(offsets[1]) * (rPercent.test(offsets[1]) ? height / 100 : 1)];
+}
+
+// reference: http://stackoverflow.com/questions/13382516/getting-scroll-bar-width-using-javascript
+var _scrollBarWidth = void 0;
+function scrollbarWidth() {
+    if (_scrollBarWidth !== undefined) {
+        return _scrollBarWidth;
+    }
+
+    var outer = document.createElement("div");
+    outer.style.visibility = "hidden";
+    outer.style.width = "100px";
+    outer.style.msOverflowStyle = "scrollbar"; // needed for WinJS apps
+
+    document.body.appendChild(outer);
+
+    var widthNoScroll = outer.offsetWidth;
+    // force scrollbars
+    outer.style.overflow = "scroll";
+
+    // add innerdiv
+    var inner = document.createElement("div");
+    inner.style.width = "100%";
+    outer.appendChild(inner);
+
+    var widthWithScroll = inner.offsetWidth;
+
+    // remove divs
+    outer.parentNode.removeChild(outer);
+
+    return _scrollBarWidth = widthNoScroll - widthWithScroll;
+}
+
+function getScrollInfo(within) {
+    var overflowX = within.isWindow || within.isDocument ? '' : within.element.style.overflowX;
+    var overflowY = within.isWindow || within.isDocument ? '' : within.element.style.overflowY;
+    var hasOverflowX = overflowX === 'scroll' || overflowX === 'auto' && within.width < within.element.scrollWidth;
+    var hasOverflowY = overflowY === 'scroll' || overflowY === 'auto' && within.height < within.element.scrollHeight;
+
+    return {
+        width: hasOverflowY ? scrollbarWidth() : 0,
+        height: hasOverflowX ? scrollbarWidth() : 0
+    };
+}
+
+function getWithinInfo(element) {
+    element || (element = window);
+    var isWindow = element === window;
+    var isDocument = element.nodeType === 9;
+    var hasOffset = !isWindow && !isDocument;
+
+    var ret = { element: element, isWindow: isWindow, isDocument: isDocument };
+    if (hasOffset) {
+        var rect = element.getBoundingClientRect();
+        ret.offset = {
+            top: rect.top + window.pageYOffset,
+            left: rect.left + window.pageXOffset
+        };
+        ret.width = rect.width;
+        ret.height = rect.height;
+        ret.scrollLeft = element.scrollLeft;
+        ret.scrollTop = element.scrollTop;
+    } else {
+        ret.offset = { top: 0, left: 0 };
+        var _rect = getDocumentOrWindowRect(element);
+        ret.width = _rect.width;
+        ret.height = _rect.height;
+        ret.scrollLeft = window.pageXOffset;
+        ret.scrollTop = window.pageYOffset;
+    }
+
+    return ret;
+}
+
+function parseCss(style, property) {
+    return parseInt(style[property], 10) || 0;
+}
+
 function position(elem, options) {
     options = (0, _assign2.default)({}, options);
 
     var target = options.of || window;
-    // const dimensions = getDimensions(target);
     if (target.preventDefault) {
         options.at = "left top";
     }
@@ -1422,6 +1585,8 @@ function position(elem, options) {
     var basePosition = (0, _assign2.default)({}, targetOffset);
     var collision = (options.collision || 'flip').split(' ');
     var offsets = {};
+    var within = getWithinInfo(options.within);
+    var scrollInfo = getScrollInfo(within);
 
     ['my', 'at'].forEach(function (item) {
         var pos = (options[item] || '').split(' ');
@@ -1463,6 +1628,12 @@ function position(elem, options) {
     var elemHeight = elem.offsetHeight;
     var position = (0, _assign2.default)({}, basePosition);
     var myOffset = getOffsets(offsets.my, elemWidth, elemHeight);
+    var computedStyle = window.getComputedStyle(elem);
+    var marginLeft = parseCss(computedStyle, 'marginLeft');
+    var marginTop = parseCss(computedStyle, 'marginTop');
+    var collisionWidth = elemWidth + marginLeft + parseCss(computedStyle, 'marginRight') + scrollInfo.width;
+    var collisionHeight = elemHeight + marginTop + parseCss(computedStyle, 'marginBottom') + scrollInfo.height;
+    var collisionPosition = { marginLeft: marginLeft, marginTop: marginTop };
 
     var my = options.my;
     if (my[0] === 'right') {
@@ -1478,16 +1649,25 @@ function position(elem, options) {
     position.left += myOffset[0];
     position.top += myOffset[1];
 
-    var style = elem.style;
-
-    var _window$getComputedSt = window.getComputedStyle(elem),
-        elemPosition = _window$getComputedSt.position;
-
-    if (elemPosition === 'static') {
-        style.position = 'relative';
-    }
-    style.left = position.left + 'px';
-    style.top = position.top + 'px';
+    ['left', 'top'].forEach(function (dir, i) {
+        var coll = collision[i];
+        if (rules[coll]) {
+            rules[coll][dir](position, {
+                targetWidth: targetWidth,
+                targetHeight: targetHeight,
+                elemWidth: elemWidth,
+                elemHeight: elemHeight,
+                collisionPosition: collisionPosition,
+                collisionWidth: collisionWidth,
+                collisionHeight: collisionHeight,
+                offset: [atOffset[0] + myOffset[0], atOffset[1] + myOffset[1]],
+                my: options.my,
+                at: options.at,
+                within: within,
+                elem: elem
+            });
+        }
+    });
 
     if (options.using) {
         var left = targetOffset.left - position.left;
@@ -1523,58 +1703,152 @@ function position(elem, options) {
         } else {
             feedback.important = 'vertical';
         }
-        options.using(feedback);
+        options.using(feedback, position);
     }
+
+    var style = elem.style;
+    if (computedStyle.position === 'static') {
+        style.position = 'relative';
+    }
+    style.left = position.left + 'px';
+    style.top = position.top + 'px';
 }
 
-function getDimensions(elem) {
-    if (elem.nodeType === 9) {
-        // document
-        return {
-            width: elem.offsetWidth,
-            height: elem.offsetHeight,
-            offset: {
-                top: 0,
-                left: 0
+var rules = {
+    fit: {
+        left: function left(position, data) {
+            var within = data.within;
+            var withinOffset = within.isWindow ? within.scrollLeft : within.offset.left;
+            var outerWidth = within.width;
+            var collisionPosLeft = position.left - data.collisionPosition.marginLeft;
+            var overLeft = withinOffset - collisionPosLeft;
+            var overRight = collisionPosLeft + data.collisionWidth - outerWidth - withinOffset;
+            var newOverRight = void 0;
+
+            if (data.collisionWidth > outerWidth) {
+                if (overLeft > 0 && overRight <= 0) {
+                    newOverRight = position.left + overLeft + data.collisionWidth - outerWidth - withinOffset;
+                    position.left += overLeft - newOverRight;
+                } else if (overRight > 0 && overLeft <= 0) {
+                    position.left = withinOffset;
+                } else if (overLeft > overRight) {
+                    position.left = withinOffset + outerWidth - data.collisionWidth;
+                } else {
+                    position.left = withinOffset;
+                }
+            } else if (overLeft > 0) {
+                position.left += overLeft;
+            } else if (overRight > 0) {
+                position.left -= overRight;
+            } else {
+                position.left = max(position.left - collisionPosLeft, position.left);
             }
-        };
-    } else if (elem === window) {
-        var _d = elem.document.documentElement;
-        return {
-            width: _d.clientWidth,
-            height: _d.clientHeight,
-            offset: {
-                top: elem.pageYOffset || _d.scrollTop,
-                left: elem.pageXOffset || _d.scrollLeft
+        },
+        top: function top(position, data) {
+            var within = data.within;
+            var withinOffset = within.isWindow ? within.scrollTop : within.offset.top;
+            var outerHeight = data.within.height;
+            var collisionPosTop = position.top - data.collisionPosition.marginTop;
+            var overTop = withinOffset - collisionPosTop;
+            var overBottom = collisionPosTop + data.collisionHeight - outerHeight - withinOffset;
+            var newOverBottom = void 0;
+
+            if (data.collisionHeight > outerHeight) {
+                if (overTop > 0 && overBottom <= 0) {
+                    newOverBottom = position.top + overTop + data.collisionHeight - outerHeight - withinOffset;
+                    position.top += overTop - newOverBottom;
+                } else if (overBottom > 0 && overTop <= 0) {
+                    position.top = withinOffset;
+                } else if (overTop > overBottom) {
+                    position.top = withinOffset + outerHeight - data.collisionHeight;
+                } else {
+                    position.top = withinOffset;
+                }
+            } else if (overTop > 0) {
+                position.top += overTop;
+            } else if (overBottom > 0) {
+                position.top -= overBottom;
+            } else {
+                position.top = max(position.top - collisionPosTop, position.top);
             }
-        };
-    } else if (elem.preventDefault) {
-        // event
-        return {
-            width: 0,
-            height: 0,
-            offset: {
-                top: elem.pageY,
-                left: elem.pageX
-            }
-        };
-    }
-    // dom
-    var rect = elem.getBoundingClientRect();
-    var d = elem.ownerDocument.defaultView;
-    return {
-        width: rect.width,
-        height: rect.height,
-        offset: {
-            top: rect.top + d.pageYOffset,
-            left: rect.left + d.pageXOffset
         }
-    };
-}
+    },
 
-function getOffsets(offsets, width, height) {
-    return [parseFloat(offsets[0]) * (rPercent.test(offsets[0]) ? width / 100 : 1), parseFloat(offsets[1]) * (rPercent.test(offsets[1]) ? height / 100 : 1)];
-}
+    flip: {
+        left: function left(position, data) {
+            var within = data.within;
+            var withinOffset = within.offset.left + within.scrollLeft;
+            var outerWidth = within.width;
+            var offsetLeft = within.isWindow ? within.scrollLeft : within.offset.left;
+            var collisionPosLeft = position.left - data.collisionPosition.marginLeft;
+            var overLeft = collisionPosLeft - offsetLeft;
+            var overRight = collisionPosLeft + data.collisionWidth - outerWidth - offsetLeft;
+            var myOffset = data.my[0] === 'left' ? -data.elemWidth : data.my[0] === 'right' ? data.elemWidth : 0;
+            var atOffset = data.at[0] === 'left' ? data.targetWidth : data.at[0] === 'right' ? -data.targetWidth : 0;
+            var offset = -2 * data.offset[0];
+            var newOverRight = void 0;
+            var newOverLeft = void 0;
+
+            if (overLeft < 0) {
+                newOverRight = position.left + myOffset + atOffset + offset + data.collisionWidth - outerWidth - withinOffset;
+                if (newOverRight < 0 || newOverRight < abs(overLeft)) {
+                    position.left += myOffset + atOffset + offset;
+                }
+            } else if (overRight > 0) {
+                newOverLeft = positon.left - data.collisionPosition.marginLeft + myOffset + atOffset + offset - offsetLeft;
+                // the same to top
+                // if (newOverLeft > 0 || abs(newOverLeft) < overRight) {
+                if (newOverLeft > 0) {
+                    positon.left += myOffset + atOffset + offset;
+                }
+            }
+        },
+        top: function top(position, data) {
+            var within = data.within;
+            var withinOffset = within.offset.top + within.scrollTop;
+            var outerHeight = within.height;
+            var offsetTop = within.isWindow ? within.scrollTop : within.offset.top;
+            var collisionPosTop = position.top - data.collisionPosition.marginTop;
+            var overTop = collisionPosTop - offsetTop;
+            var overBottom = collisionPosTop + data.collisionHeight - outerHeight - offsetTop;
+            var myOffset = data.my[1] === 'top' ? -data.elemHeight : data.my[1] === 'bottom' ? data.elemHeight : 0;
+            var atOffset = data.at[1] === 'top' ? data.targetHeight : data.at[1] === 'bottom' ? -data.targetHeight : 0;
+            var offset = -2 * data.offset[1];
+            var newOverTop = void 0;
+            var newOverBottom = void 0;
+
+            if (overTop < 0) {
+                newOverBottom = position.top + myOffset + atOffset + offset + data.collisionHeight - outerHeight - withinOffset;
+                if (newOverBottom < 0 || newOverBottom < abs(overTop)) {
+                    position.top += myOffset + atOffset + offset;
+                }
+            } else if (overBottom > 0) {
+                newOverTop = position.top - data.collisionPosition.marginTop + myOffset + atOffset + offset - offsetTop;
+                // because window can scroll down, when it beyond the top border,
+                // we can not scroll it to view. Don't flip it in this case
+                // if (newOverTop > 0 || abs(newOverTop) < overBottom) {
+                if (newOverTop > 0) {
+                    position.top += myOffset + atOffset + offset;
+                }
+            }
+        }
+    },
+
+    flipfit: {
+        left: function left() {
+            var _rules$flip, _rules$fit;
+
+            (_rules$flip = rules.flip).left.apply(_rules$flip, arguments);
+            (_rules$fit = rules.fit).left.apply(_rules$fit, arguments);
+        },
+        top: function top() {
+            var _rules$flip2, _rules$fit2;
+
+            (_rules$flip2 = rules.flip).top.apply(_rules$flip2, arguments);
+            (_rules$fit2 = rules.fit).top.apply(_rules$fit2, arguments);
+        }
+    }
+};
 
 exports.position = position;
 
@@ -1651,14 +1925,12 @@ function Wrapper(props, inVue) {
     return !inVue ? [h(_dropdown2.default, (0, _extends3.default)({
         key: key == null ? key : key + '.trigger',
         ref: ref,
-        children: element,
-        menu: menu
+        children: element
     }, rest)), menu] : h(VueWrapper, {
         children: [h(_dropdown2.default, (0, _extends3.default)({
             key: key == null ? key : key + '.trigger',
             ref: ref,
-            children: [element],
-            menu: menu
+            children: [element]
         }, rest)), menu]
     });
 }
@@ -2033,11 +2305,12 @@ var Dropdown = (_dec = _intact2.default.template(), (_class = function (_Intact)
 
         // save the original event
         var originProps = children.props;
-        if (!children._hasSaved) {
+        var hasSaved = false;
+        if (!originProps._hasSaved) {
             children._evClick = originProps['ev-click'];
             children._evMouseEnter = originProps['ev-mouseenter'];
             children._evMouseLeave = originProps['ev-mouseleave'];
-            children._hasSaved = true;
+            hasSaved = true;
         }
         var props = {};
         // if (trigger === 'click') {
@@ -2047,12 +2320,22 @@ var Dropdown = (_dec = _intact2.default.template(), (_class = function (_Intact)
             props['ev-mouseenter'] = this.show.bind(this, children._evMouseEnter);
             props['ev-mouseleave'] = this.hide.bind(this, children._evMouseLeave);
         }
+        if (hasSaved) {
+            props._hasSaved = true;
+        }
         children.props = (0, _extends3.default)({}, children.props, props);
         this.set('children', children, { silent: true });
     };
 
     Dropdown.prototype._mount = function _mount() {
-        this.get('menu').children.dropdown = this;
+        // the next sibling is DropdownMenu
+        // we can not get the menu by call get('menu') directly,
+        // because the vNode may be cloned
+        var siblings = this.parentVNode.children;
+        var index = siblings.indexOf(this.vNode);
+        var menu = siblings[index + 1];
+        menu.children.dropdown = this;
+        this.menu = menu;
     };
 
     Dropdown.prototype.show = function show(fn, e, isFocus) {
@@ -2060,7 +2343,7 @@ var Dropdown = (_dec = _intact2.default.template(), (_class = function (_Intact)
 
         if (this.get('disabled')) return;
 
-        var menu = this.get('menu').children;
+        var menu = this.menu.children;
         menu.show();
 
         if (isFocus) {
@@ -2073,7 +2356,7 @@ var Dropdown = (_dec = _intact2.default.template(), (_class = function (_Intact)
 
         if (this.get('disabled')) return;
 
-        var menu = this.get('menu').children;
+        var menu = this.menu.children;
         menu.hide(immediately);
     };
 
@@ -2171,30 +2454,16 @@ var DropdownMenu = (_dec = _intact2.default.template(), (_class = (_temp = _clas
         return {
             show: false,
             trigger: 'hover',
-            position: {}
+            position: {},
+            transition: 'slidedown'
         };
     };
 
     DropdownMenu.prototype._init = function _init() {
-        var _this2 = this;
-
         this.subDropdowns = [];
         this.items = [];
         this.focusIndex = -1;
         this.locked = false;
-
-        this.on('$changed:show', function (c, value) {
-            if (value) {
-                _this2.focusIndex = -1;
-                _this2._addDocumentEvents();
-                _this2.position();
-            } else {
-                _this2._removeDocumentEvents();
-            }
-        });
-
-        // this._onDocumentClick = this._onDocumentClick.bind(this);
-        // this._onKeydown = this._onKeydown.bind(this);
     };
 
     DropdownMenu.prototype._mount = function _mount() {
@@ -2220,11 +2489,11 @@ var DropdownMenu = (_dec = _intact2.default.template(), (_class = (_temp = _clas
     };
 
     DropdownMenu.prototype.hide = function hide(immediately) {
-        var _this3 = this;
+        var _this2 = this;
 
         if (!immediately) {
             this.timer = setTimeout(function () {
-                _this3.set('show', false);
+                _this2.set('show', false);
             }, 200);
         } else {
             this.set('show', false);
@@ -2236,11 +2505,22 @@ var DropdownMenu = (_dec = _intact2.default.template(), (_class = (_temp = _clas
     };
 
     DropdownMenu.prototype.position = function position() {
+        var _this3 = this;
+
         (0, _position3.default)(this.refs.menu.element, (0, _extends3.default)({
             my: 'center top+5',
             at: 'center bottom',
-            of: this.dropdown.element
+            of: this.dropdown.element,
+            using: function using(feedback) {
+                _this3.set('transition', (0, _utils.getTransition)(feedback));
+            }
         }, this.get('position')));
+    };
+
+    DropdownMenu.prototype._onShow = function _onShow() {
+        this.focusIndex = -1;
+        this._addDocumentEvents();
+        this.position();
     };
 
     DropdownMenu.prototype._addDocumentEvents = function _addDocumentEvents() {
@@ -3227,8 +3507,6 @@ var TooltipContent = (_dec = _intact2.default.template(), (_class = (_temp = _cl
                 _this3.trigger('hide', _this3);
             }
         });
-
-        this._onDocumentClick = this._onDocumentClick.bind(this);
     };
 
     TooltipContent.prototype._mount = function _mount() {
@@ -4222,10 +4500,6 @@ __webpack_require__(6);
 
 __webpack_require__(201);
 
-var _position2 = __webpack_require__(39);
-
-var _position3 = _interopRequireDefault(_position2);
-
 var _option = __webpack_require__(85);
 
 var _option2 = _interopRequireDefault(_option);
@@ -5170,7 +5444,7 @@ exports.Transfer = _transfer.Transfer;
 
 /* generate start */
 
-var version = exports.version = '0.0.6';
+var version = exports.version = '0.1.0';
 
 /* generate end */
 
@@ -6982,10 +7256,7 @@ $export($export.S, 'Object', { create: __webpack_require__(45) });
 "use strict";
 
 
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-
+module.exports = function (obj, _Vdt, blocks, $callee) {
   _Vdt || (_Vdt = Vdt);
   obj || (obj = {});
   blocks || (blocks = {});
@@ -7031,8 +7302,6 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     }) : _blocks["loading"].call(this, parent);
   }) && __blocks["loading"].call(this)], 'k-app');
 };
-
-module.exports = exports['default'];
 
 /***/ }),
 /* 148 */
@@ -7254,10 +7523,7 @@ module.exports = exports['default'];
 "use strict";
 
 
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-
+module.exports = function (obj, _Vdt, blocks, $callee) {
   _Vdt || (_Vdt = Vdt);
   obj || (obj = {});
   blocks || (blocks = {});
@@ -7326,8 +7592,6 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
       }
     }.call(this) }, null, 'k-separator') : undefined], 'k-item');
 };
-
-module.exports = exports['default'];
 
 /***/ }),
 /* 153 */
@@ -7731,8 +7995,6 @@ module.exports = exports['default'];
 "use strict";
 
 
-exports.__esModule = true;
-
 var _extends2 = __webpack_require__(5);
 
 var _extends3 = _interopRequireDefault(_extends2);
@@ -7741,7 +8003,9 @@ var _objectWithoutProperties2 = __webpack_require__(13);
 
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
-exports.default = function (obj, _Vdt, blocks, $callee) {
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = function (obj, _Vdt, blocks, $callee) {
     var _classNameObj;
 
     _Vdt || (_Vdt = Vdt);
@@ -7830,7 +8094,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this), __e);
+            }.call(this), __e, $this);
         } })), 'k-wrapper'), function () {
         try {
             return [children][0];
@@ -7851,10 +8115,6 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         }
     }.call(this)));
 };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
 
 /***/ }),
 /* 158 */
@@ -7908,6 +8168,8 @@ var _calendar2 = _interopRequireDefault(_calendar);
 
 var _utils = __webpack_require__(57);
 
+var _utils2 = __webpack_require__(7);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
@@ -7957,6 +8219,7 @@ var Datepicker = (_dec = _intact2.default.template(), (_class = (_temp = _class2
             size: 'default',
             type: 'date', // date | datetime
             range: false,
+            transition: 'slidedown',
 
             _value: undefined, // for range
             _rangeEndDate: undefined
@@ -7995,6 +8258,11 @@ var Datepicker = (_dec = _intact2.default.template(), (_class = (_temp = _class2
         if (this.get('range')) return;
 
         this.refs.calendar.hide();
+    };
+
+    Datepicker.prototype._onShow = function _onShow(c) {
+        var feedback = c.get('_feedback');
+        this.set('transition', (0, _utils2.getTransition)(feedback));
     };
 
     Datepicker.prototype._onChangeShowDate = function _onChangeShowDate(type, c, v) {
@@ -8104,7 +8372,7 @@ var Datepicker = (_dec = _intact2.default.template(), (_class = (_temp = _class2
         } else if (!v.length) {
             // calendar cancelled the selected value
             this.set('_value', undefined);
-        } else if (!value || value && value.length === 2) {
+        } else if (!value || value.length === 0 || value.length === 2) {
             value = [v[v.length - 1]];
             if (type === 'end') {
                 begin.set('_isSelectTime', false);
@@ -8226,12 +8494,13 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         disabled = _self$get.disabled,
         placeholder = _self$get.placeholder,
         size = _self$get.size,
+        transition = _self$get.transition,
         _value = _self$get._value,
         range = _self$get.range,
         type = _self$get.type,
         ref = _self$get.ref,
         key = _self$get.key,
-        rest = (0, _objectWithoutProperties3.default)(_self$get, ['value', 'clearable', 'className', 'style', 'name', 'disabled', 'placeholder', 'size', '_value', 'range', 'type', 'ref', 'key']);
+        rest = (0, _objectWithoutProperties3.default)(_self$get, ['value', 'clearable', 'className', 'style', 'name', 'disabled', 'placeholder', 'size', 'transition', '_value', 'range', 'type', 'ref', 'key']);
 
     // pass the rest props to Calendar, except events
 
@@ -8266,9 +8535,21 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'transition': 'dropdown', 'disabled': function () {
+        }.call(this), 'transition': function () {
+            try {
+                return [transition][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'disabled': function () {
             try {
                 return [disabled][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-show': function () {
+            try {
+                return [self._onShow][0];
             } catch (e) {
                 _e(e);
             }
@@ -8360,7 +8641,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                             _e(e);
                         }
                     }.call(this), 'children': null, '_context': $this, value: _getModel(self, 'value'), 'ev-$change:value': function ev$changeValue(__c, __n) {
-                        _setModel(self, 'value', __n);
+                        _setModel(self, 'value', __n, $this);
                     } })) : h('div', { 'ev-mouseleave': function () {
                         try {
                             return [self._clearRangeEndDate][0];
@@ -8858,7 +9139,6 @@ var _extends2 = __webpack_require__(5);
 var _extends3 = _interopRequireDefault(_extends2);
 
 exports.default = function (obj, _Vdt, blocks, $callee) {
-
     _Vdt || (_Vdt = Vdt);
     obj || (obj = {});
     blocks || (blocks = {});
@@ -8888,11 +9168,12 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         children = _self$get.children,
         show = _self$get.show,
         trigger = _self$get.trigger,
-        className = _self$get.className;
+        className = _self$get.className,
+        transition = _self$get.transition;
 
     var events = {};
     // no matter what the trigger is, we should show menu when enter it.
-    // for the case: hover trigger nests click trigger
+    // for this case: hover trigger nests click trigger
     events['ev-mouseenter'] = self.show;
     if (trigger === 'hover') {
         events['ev-mouseleave'] = self.hide.bind(self, false);
@@ -8918,7 +9199,13 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this)), 'a:transition': 'dropdown' }, function () {
+            }.call(this)), 'a:transition': function () {
+                try {
+                    return [transition][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this) }, function () {
             try {
                 return [events][0];
             } catch (e) {
@@ -8927,6 +9214,18 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         }.call(this), { 'a:delayDestroy': function () {
                 try {
                     return [false][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'ev-$destroyed': function () {
+                try {
+                    return [self._removeDocumentEvents][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'ev-$mounted': function () {
+                try {
+                    return [self._onShow][0];
                 } catch (e) {
                     _e(e);
                 }
@@ -9098,7 +9397,6 @@ var _extends2 = __webpack_require__(5);
 var _extends3 = _interopRequireDefault(_extends2);
 
 exports.default = function (obj, _Vdt, blocks, $callee) {
-
     _Vdt || (_Vdt = Vdt);
     obj || (obj = {});
     blocks || (blocks = {});
@@ -9559,10 +9857,7 @@ module.exports = exports['default'];
 "use strict";
 
 
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-
+module.exports = function (obj, _Vdt, blocks, $callee) {
     _Vdt || (_Vdt = Vdt);
     obj || (obj = {});
     blocks || (blocks = {});
@@ -9690,8 +9985,6 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     }.call(this)));
 };
 
-module.exports = exports["default"];
-
 /***/ }),
 /* 168 */
 /***/ (function(module, exports) {
@@ -9801,9 +10094,7 @@ module.exports = exports['default'];
 "use strict";
 
 
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
+module.exports = function (obj, _Vdt, blocks, $callee) {
     var _classNameObj;
 
     _Vdt || (_Vdt = Vdt);
@@ -9872,8 +10163,6 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         }
     }.call(this)));
 };
-
-module.exports = exports['default'];
 
 /***/ }),
 /* 171 */
@@ -9980,9 +10269,7 @@ module.exports = exports['default'];
 "use strict";
 
 
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
+module.exports = function (obj, _Vdt, blocks, $callee) {
     var _classNameObj;
 
     _Vdt || (_Vdt = Vdt);
@@ -10061,8 +10348,6 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     }.call(this)));
 };
 
-module.exports = exports['default'];
-
 /***/ }),
 /* 173 */
 /***/ (function(module, exports) {
@@ -10120,8 +10405,6 @@ __webpack_require__(6);
 __webpack_require__(177);
 
 var _position = __webpack_require__(39);
-
-var _position2 = _interopRequireDefault(_position);
 
 var _utils = __webpack_require__(7);
 
@@ -10291,18 +10574,16 @@ var Dialog = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
     };
 
     Dialog.prototype._center = function _center() {
-        var _this4 = this;
-
         if (!this.mounted || !this.get('value')) return;
         // move to center
-        (0, _position2.default)(this.dialog, {
+        (0, _position.position)(this.dialog, {
             // ensure title visible always
-            using: function using(pos) {
-                var height = pos.element.height;
-                var scrollTop = window.scrollY;
-                var outerHeight = window.innerHeight;
+            using: function using(feedback, position) {
+                var height = feedback.element.height;
+                var scrollTop = window.pageYOffset;
+                var outerHeight = window.document.documentElement.clientHeight;
                 if (height > outerHeight) {
-                    _this4.dialog.style.top = scrollTop + 'px';
+                    position.top = scrollTop;
                 }
             }
         });
@@ -10388,7 +10669,6 @@ exports.Dialog = Dialog;
 exports.__esModule = true;
 
 exports.default = function (obj, _Vdt, blocks, $callee) {
-
                 _Vdt || (_Vdt = Vdt);
                 obj || (obj = {});
                 blocks || (blocks = {});
@@ -10812,9 +11092,7 @@ module.exports = exports['default'];
 "use strict";
 
 
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
+module.exports = function (obj, _Vdt, blocks, $callee) {
     var _classNameObj;
 
     _Vdt || (_Vdt = Vdt);
@@ -10886,8 +11164,6 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         }
     }.call(this)));
 };
-
-module.exports = exports['default'];
 
 /***/ }),
 /* 180 */
@@ -11091,7 +11367,6 @@ exports.Editable = Editable;
 exports.__esModule = true;
 
 exports.default = function (obj, _Vdt, blocks, $callee) {
-
     _Vdt || (_Vdt = Vdt);
     obj || (obj = {});
     blocks || (blocks = {});
@@ -11248,9 +11523,7 @@ exports.FormItem = _formItemWrapper2.default;
 "use strict";
 
 
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
+module.exports = function (obj, _Vdt, blocks, $callee) {
     var _classNameObj;
 
     _Vdt || (_Vdt = Vdt);
@@ -11321,8 +11594,6 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         }
     }.call(this)));
 };
-
-module.exports = exports['default'];
 
 /***/ }),
 /* 186 */
@@ -11843,9 +12114,7 @@ module.exports = exports['default'];
 "use strict";
 
 
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
+module.exports = function (obj, _Vdt, blocks, $callee) {
     var _classNameObj;
 
     _Vdt || (_Vdt = Vdt);
@@ -11997,8 +12266,6 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     }.call(this)));
 };
 
-module.exports = exports['default'];
-
 /***/ }),
 /* 190 */
 /***/ (function(module, exports) {
@@ -12142,8 +12409,6 @@ exports.Link = Link;
 "use strict";
 
 
-exports.__esModule = true;
-
 var _extends2 = __webpack_require__(5);
 
 var _extends3 = _interopRequireDefault(_extends2);
@@ -12152,8 +12417,9 @@ var _objectWithoutProperties2 = __webpack_require__(13);
 
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
-exports.default = function (obj, _Vdt, blocks, $callee) {
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+module.exports = function (obj, _Vdt, blocks, $callee) {
   _Vdt || (_Vdt = Vdt);
   obj || (obj = {});
   blocks || (blocks = {});
@@ -12204,10 +12470,6 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     }
   }.call(this));
 };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
 
 /***/ }),
 /* 193 */
@@ -12536,10 +12798,7 @@ exports.Message = Message;
 "use strict";
 
 
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-
+module.exports = function (obj, _Vdt, blocks, $callee) {
   _Vdt || (_Vdt = Vdt);
   obj || (obj = {});
   blocks || (blocks = {});
@@ -12592,8 +12851,6 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     }, this), '_context': $this });
 };
 
-module.exports = exports['default'];
-
 /***/ }),
 /* 195 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -12604,7 +12861,6 @@ module.exports = exports['default'];
 exports.__esModule = true;
 
 exports.default = function (obj, _Vdt, blocks, $callee) {
-
   _Vdt || (_Vdt = Vdt);
   obj || (obj = {});
   blocks || (blocks = {});
@@ -13059,7 +13315,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 _e(e);
             }
         }.call(this), 'children': null, '_context': $this, value: _getModel(self, 'limit'), 'ev-$change:value': function ev$changeValue(__c, __n) {
-            _setModel(self, 'limit', __n);
+            _setModel(self, 'limit', __n, $this);
         } }), 'k-limits'), function () {
         try {
             return [showGoto][0];
@@ -13651,10 +13907,7 @@ module.exports = exports['default'];
 "use strict";
 
 
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-
+module.exports = function (obj, _Vdt, blocks, $callee) {
   _Vdt || (_Vdt = Vdt);
   obj || (obj = {});
   blocks || (blocks = {});
@@ -13698,8 +13951,6 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     }
   }.call(this), '\n'], 'k-group');
 };
-
-module.exports = exports['default'];
 
 /***/ }),
 /* 201 */
@@ -13821,8 +14072,6 @@ exports.Progress = Progress;
 "use strict";
 
 
-exports.__esModule = true;
-
 var _extends2 = __webpack_require__(5);
 
 var _extends3 = _interopRequireDefault(_extends2);
@@ -13831,7 +14080,9 @@ var _objectWithoutProperties2 = __webpack_require__(13);
 
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
-exports.default = function (obj, _Vdt, blocks, $callee) {
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = function (obj, _Vdt, blocks, $callee) {
     var _classNameObj;
 
     _Vdt || (_Vdt = Vdt);
@@ -14061,10 +14312,6 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     }.call(this)));
 };
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
-
 /***/ }),
 /* 205 */
 /***/ (function(module, exports) {
@@ -14078,8 +14325,6 @@ module.exports = exports['default'];
 "use strict";
 
 
-exports.__esModule = true;
-
 var _extends2 = __webpack_require__(5);
 
 var _extends3 = _interopRequireDefault(_extends2);
@@ -14088,7 +14333,9 @@ var _objectWithoutProperties2 = __webpack_require__(13);
 
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
-exports.default = function (obj, _Vdt, blocks, $callee) {
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = function (obj, _Vdt, blocks, $callee) {
     var _classNameObj;
 
     _Vdt || (_Vdt = Vdt);
@@ -14170,7 +14417,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this) : false);
+            }.call(this) : false, $this);
         } })), 'k-wrapper'), function () {
         try {
             return [children][0];
@@ -14191,10 +14438,6 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         }
     }.call(this)));
 };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
 
 /***/ }),
 /* 207 */
@@ -14757,7 +15000,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 _e(e);
             }
         }.call(this), 'children': null, '_context': $this, value: _getModel(self, '_inputValue'), 'ev-$change:value': function ev$changeValue(__c, __n) {
-            _setModel(self, '_inputValue', __n);
+            _setModel(self, '_inputValue', __n, $this);
         } }), 'k-spinner-wrapper') : undefined], _className(function () {
         try {
             return [classNameObj][0];
@@ -14877,7 +15120,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 _e(e);
             }
         }.call(this), 'children': null, '_context': $this, value: _getModel(self, 'value'), 'ev-$change:value': function ev$changeValue(__c, __n) {
-            _setModel(self, 'value', __n);
+            _setModel(self, 'value', __n, $this);
         } }), h(_button.Button, { 'icon': function () {
             try {
                 return [true][0];
@@ -15046,7 +15289,6 @@ var _extends2 = __webpack_require__(5);
 var _extends3 = _interopRequireDefault(_extends2);
 
 exports.default = function (obj, _Vdt, blocks, $callee) {
-
     _Vdt || (_Vdt = Vdt);
     obj || (obj = {});
     blocks || (blocks = {});
@@ -15142,10 +15384,7 @@ module.exports = exports['default'];
 "use strict";
 
 
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-
+module.exports = function (obj, _Vdt, blocks, $callee) {
     _Vdt || (_Vdt = Vdt);
     obj || (obj = {});
     blocks || (blocks = {});
@@ -15231,8 +15470,6 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         }
     }.call(this)));
 };
-
-module.exports = exports['default'];
 
 /***/ }),
 /* 219 */
@@ -15441,9 +15678,7 @@ exports.Switch = Switch;
 "use strict";
 
 
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
+module.exports = function (obj, _Vdt, blocks, $callee) {
     var _classNameObj;
 
     _Vdt || (_Vdt = Vdt);
@@ -15568,7 +15803,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this), __e);
+            }.call(this), __e, $this);
         } }, null, null, null, function (i) {
         widgets['input'] = i;
     }), function () {
@@ -15652,8 +15887,6 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     }.call(this)));
 };
 
-module.exports = exports['default'];
-
 /***/ }),
 /* 222 */
 /***/ (function(module, exports) {
@@ -15714,6 +15947,8 @@ var _column2 = _interopRequireDefault(_column);
 
 var _utils = __webpack_require__(7);
 
+var _position = __webpack_require__(39);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
@@ -15744,8 +15979,6 @@ function _applyDecoratedDescriptor(target, property, decorators, descriptor, con
 
     return desc;
 }
-
-var scrollBarWidth = undefined;
 
 var MIN_WIDTH = 40;
 var slice = Array.prototype.slice;
@@ -15815,9 +16048,6 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
     };
 
     Table.prototype._mount = function _mount() {
-        if (scrollBarWidth === undefined) {
-            scrollBarWidth = getScrollbarWidth();
-        }
         this._calcHeaderPadding();
     };
 
@@ -15913,7 +16143,7 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
             var tableHeight = this.table.offsetHeight;
             var containerHeight = this.scroll.offsetHeight;
             var headerHeight = this.header.offsetHeight;
-            this.set('_padding', tableHeight - headerHeight > containerHeight ? scrollBarWidth : 0);
+            this.set('_padding', tableHeight - headerHeight > containerHeight ? (0, _position.scrollbarWidth)() : 0);
         }
     };
 
@@ -16100,35 +16330,7 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
     resizable: Boolean,
     fixHeader: Boolean
 }, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
-
-// reference: http://stackoverflow.com/questions/13382516/getting-scroll-bar-width-using-javascript
-
 exports.default = Table;
-function getScrollbarWidth() {
-    var outer = document.createElement("div");
-    outer.style.visibility = "hidden";
-    outer.style.width = "100px";
-    outer.style.msOverflowStyle = "scrollbar"; // needed for WinJS apps
-
-    document.body.appendChild(outer);
-
-    var widthNoScroll = outer.offsetWidth;
-    // force scrollbars
-    outer.style.overflow = "scroll";
-
-    // add innerdiv
-    var inner = document.createElement("div");
-    inner.style.width = "100%";
-    outer.appendChild(inner);
-
-    var widthWithScroll = inner.offsetWidth;
-
-    // remove divs
-    outer.parentNode.removeChild(outer);
-
-    return widthNoScroll - widthWithScroll;
-}
-
 exports.Table = Table;
 exports.TableColumn = _column2.default;
 
@@ -16283,7 +16485,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                                 } catch (e) {
                                     _e(e);
                                 }
-                            }.call(this), __n);
+                            }.call(this), __n, $this);
                         } }));
                 })][0];
             } catch (e) {
@@ -16383,7 +16585,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                                 _e(e);
                             }
                         }.call(_this3), 'children': null, '_context': $this, value: _getModel(self, 'checkedKeys'), 'ev-$change:value': function ev$changeValue(__c, __n) {
-                            _setModel(self, 'checkedKeys', __n);
+                            _setModel(self, 'checkedKeys', __n, $this);
                         } })) : function () {
                         try {
                             return [checkType === 'radio'][0];
@@ -16403,7 +16605,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                                 _e(e);
                             }
                         }.call(_this3), 'children': null, '_context': $this, value: _getModel(self, 'checkedKey'), 'ev-$change:value': function ev$changeValue(__c, __n) {
-                            _setModel(self, 'checkedKey', __n);
+                            _setModel(self, 'checkedKey', __n, $this);
                         } })) : undefined, '\n                ', function () {
                         var _this4 = this;
 
@@ -16670,14 +16872,13 @@ module.exports = exports['default'];
 "use strict";
 
 
-exports.__esModule = true;
-
 var _extends2 = __webpack_require__(5);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-exports.default = function (obj, _Vdt, blocks, $callee) {
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+module.exports = function (obj, _Vdt, blocks, $callee) {
   _Vdt || (_Vdt = Vdt);
   obj || (obj = {});
   blocks || (blocks = {});
@@ -16717,10 +16918,6 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
   }.call(this));
 };
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
-
 /***/ }),
 /* 227 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -16731,7 +16928,6 @@ module.exports = exports['default'];
 exports.__esModule = true;
 
 exports.default = function (obj, _Vdt, blocks, $callee) {
-
     _Vdt || (_Vdt = Vdt);
     obj || (obj = {});
     blocks || (blocks = {});
@@ -17076,10 +17272,7 @@ exports.Tab = _tab2.default;
 "use strict";
 
 
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-
+module.exports = function (obj, _Vdt, blocks, $callee) {
         _Vdt || (_Vdt = Vdt);
         obj || (obj = {});
         blocks || (blocks = {});
@@ -17133,8 +17326,6 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 }
         }.call(this)));
 };
-
-module.exports = exports['default'];
 
 /***/ }),
 /* 231 */
@@ -17584,7 +17775,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                     } catch (e) {
                         _e(e);
                     }
-                }.call(this), __n);
+                }.call(this), __n, $this);
             } }) : undefined, h(Animate, { 'className': 'k-list', 'children': _Vdt.utils.map(function () {
                 try {
                     return [keywords ? props.data.filter(function (item) {
@@ -17661,7 +17852,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                                 } catch (e) {
                                     _e(e);
                                 }
-                            }.call(this), __n);
+                            }.call(this), __n, $this);
                         } }), '_context': $this });
             }, _this), '_context': $this })], 'k-panel');
     };

@@ -579,6 +579,74 @@ samp {
 label {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
+.slidedown-enter,
+.slidedown-leave {
+  opacity: 0;
+  -webkit-transform: scaleY(0.8);
+      -ms-transform: scaleY(0.8);
+          transform: scaleY(0.8);
+}
+.slidedown-enter-active,
+.slidedown-leave-active {
+  -webkit-transform-origin: center top 0;
+      -ms-transform-origin: center top 0;
+          transform-origin: center top 0;
+  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+}
+.slideup-enter,
+.slideup-leave {
+  opacity: 0;
+  -webkit-transform: scaleY(0.8);
+      -ms-transform: scaleY(0.8);
+          transform: scaleY(0.8);
+}
+.slideup-enter-active,
+.slideup-leave-active {
+  -webkit-transform-origin: center bottom 0;
+      -ms-transform-origin: center bottom 0;
+          transform-origin: center bottom 0;
+  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+}
+.slideleft-enter,
+.slideleft-leave {
+  opacity: 0;
+  -webkit-transform: scaleX(0.8);
+      -ms-transform: scaleX(0.8);
+          transform: scaleX(0.8);
+}
+.slideleft-enter-active,
+.slideleft-leave-active {
+  -webkit-transform-origin: right center 0;
+      -ms-transform-origin: right center 0;
+          transform-origin: right center 0;
+  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+}
+.slideright-enter,
+.slideright-leave {
+  opacity: 0;
+  -webkit-transform: scaleX(0.8);
+      -ms-transform: scaleX(0.8);
+          transform: scaleX(0.8);
+}
+.slideright-enter-active,
+.slideright-leave-active {
+  -webkit-transform-origin: left center 0;
+      -ms-transform-origin: left center 0;
+          transform-origin: left center 0;
+  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+}
 .fade-enter,
 .fade-leave {
   opacity: 0;
@@ -593,23 +661,6 @@ label {
   transition: -webkit-transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
-}
-.dropdown-enter,
-.dropdown-leave {
-  opacity: 0;
-  -webkit-transform: scaleY(0.8);
-      -ms-transform: scaleY(0.8);
-          transform: scaleY(0.8);
-}
-.dropdown-enter-active,
-.dropdown-leave-active {
-  -webkit-transform-origin: center top 0px;
-      -ms-transform-origin: center top 0px;
-          transform-origin: center top 0px;
-  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
 }
 @-webkit-keyframes rotate {
   0% {
@@ -4646,8 +4697,12 @@ label {
 .k-datepicker-content .k-scroll-select {
   height: 17.5em;
 }
+.k-datepicker-content .k-range {
+  white-space: nowrap;
+}
 .k-datepicker-content .k-range > .k-wrapper {
-  float: left;
+  display: inline-block;
+  vertical-align: top;
 }
 .k-datepicker-content .k-range > .k-wrapper:last-of-type {
   margin-left: 1.666666666666667em;
