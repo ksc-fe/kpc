@@ -4,6 +4,7 @@ import '../../styles/kpc.styl';
 import './index.styl';
 import Calendar from './calendar';
 import {getNowDate, isLT, isGT} from './utils';
+import {getTransition} from '../utils';
 
 const {isEqual} = Intact.utils;
 
@@ -26,6 +27,7 @@ export default class Datepicker extends Intact {
             size: 'default',
             type: 'date', // date | datetime
             range: false,
+            transition: 'slidedown',
 
             _value: undefined, // for range
             _rangeEndDate: undefined,
@@ -62,6 +64,11 @@ export default class Datepicker extends Intact {
         if (this.get('range')) return;
 
         this.refs.calendar.hide();
+    }
+
+    _onShow(c) {
+        const feedback = c.get('_feedback');
+        this.set('transition', getTransition(feedback));
     }
 
     _onChangeShowDate(type, c, v) {

@@ -1,7 +1,7 @@
 import Intact from 'intact';
 import template from './menu.vdt';
 import position from '../moveWrapper/position';
-import {findParentComponent} from '../utils';
+import {findParentComponent, getTransition} from '../utils';
 
 export default class DropdownMenu extends Intact {
     @Intact.template()
@@ -65,17 +65,7 @@ export default class DropdownMenu extends Intact {
             at: 'center bottom', 
             of: this.dropdown.element,
             using: (feedback) => {
-                const vertical = feedback.vertical;
-                const horizontal = feedback.horizontal;
-                if (vertical === 'bottom') {
-                    this.set('transition', 'slideup');
-                } else if (vertical === 'top') {
-                    this.set('transition', 'slidedown');
-                } else if (horizontal === 'left') {
-                    this.set('transition', 'slideright');
-                } else if (horizontal === 'right') {
-                    this.set('transition', 'slideleft');
-                }
+                this.set('transition', getTransition(feedback));
             },
             ...this.get('position')
         });

@@ -48,8 +48,6 @@ class TooltipContent extends Intact {
                 this.trigger('hide', this);
             }
         });
-
-        this._onDocumentClick = this._onDocumentClick.bind(this);
     }
 
     _mount() {
