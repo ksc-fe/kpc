@@ -58,7 +58,14 @@ export default class Dropdown extends Intact {
     }
 
     _mount() {
-        this.get('menu').children.dropdown = this;
+        // the next sibling is DropdownMenu
+        // we can not get the menu by call get('menu') directly,
+        // because the vNode may be cloned
+        const siblings = this.parentVNode.children;
+        const index = siblings.indexOf(this.vNode);
+        const menu = siblings[index + 1];
+        menu.children.dropdown = this;
+        this.menu = menu;
     }
 
     show(fn, e, isFocus) {
@@ -66,7 +73,7 @@ export default class Dropdown extends Intact {
 
         if (this.get('disabled')) return;
 
-        const menu = this.get('menu').children;
+        const menu = this.menu.children;
         menu.show();
 
         if (isFocus) {
@@ -79,7 +86,7 @@ export default class Dropdown extends Intact {
 
         if (this.get('disabled')) return;
 
-        const menu = this.get('menu').children;
+        const menu = this.menu.children;
         menu.hide(immediately);
     }
 }

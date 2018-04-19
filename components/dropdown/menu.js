@@ -65,12 +65,16 @@ export default class DropdownMenu extends Intact {
             at: 'center bottom', 
             of: this.dropdown.element,
             using: (feedback) => {
-                console.log(feedback);
                 const vertical = feedback.vertical;
+                const horizontal = feedback.horizontal;
                 if (vertical === 'bottom') {
                     this.set('transition', 'slideup');
                 } else if (vertical === 'top') {
                     this.set('transition', 'slidedown');
+                } else if (horizontal === 'left') {
+                    this.set('transition', 'slideright');
+                } else if (horizontal === 'right') {
+                    this.set('transition', 'slideleft');
                 }
             },
             ...this.get('position')

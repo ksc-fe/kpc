@@ -6,15 +6,6 @@
         transform-origin 50% 50%
         transform rotate(360deg)
 
-.fade-enter
-.fade-leave
-    opacity 0
-.fade-enter-active
-.fade-leave-active
-    transition opacity $transition 
-.fade-move
-    transition transform $transition
-
 $origins = {
     down: center top 0,
     up: center bottom 0,
@@ -25,8 +16,22 @@ for type, value in $origins
     .slide{type}-enter
     .slide{type}-leave
         opacity 0
-        transform scaleY(.8)
+        if type == down || type == up
+            transform scaleY(.8)
+        else
+            transform scaleX(.8)
     .slide{type}-enter-active
     .slide{type}-leave-active
         transform-origin value 
         transition opacity $transition, transform $transition
+
+.fade-enter
+.fade-leave
+    opacity 0
+.fade-enter-active
+.fade-leave-active
+    transition opacity $transition 
+.fade-move
+    transition transform $transition
+
+

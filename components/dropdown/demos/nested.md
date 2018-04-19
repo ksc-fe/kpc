@@ -11,9 +11,9 @@ import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
 import Button from 'kpc/components/button';
 
 <div>
-    <Dropdown>
+    <Dropdown trigger="click">
         <Button type="primary">
-            hover <i class="k-icon ion-arrow-down-b"></i>
+            click <i class="k-icon ion-arrow-down-b"></i>
         </Button>
         <DropdownMenu>
             <DropdownItem>item 1</DropdownItem>
