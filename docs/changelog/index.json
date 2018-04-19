@@ -4,7 +4,7 @@
         "order": 3
     },
     "catalogs": [],
-    "contents": "<p>changeLogs</p>\n",
+    "contents": "<h2 id='header-v0.1.0'>v0.1.0</h2><ol>\n<li><code>Add</code> Datepicker支持日期范围选择, <a href=\"https://github.com/ksc-fe/kpc/issues/1\">#1</a></li>\n<li><code>Add</code> Datepicker选择日期和事件时，支持多选</li>\n<li><code>Add</code> 弹出菜单支持边界碰撞反转弹出弹出方向，<a href=\"https://github.com/ksc-fe/kpc/issues/2\">#2</a></li>\n<li><code>Fix</code> Vue中Tab不能切换的问题，<a href=\"https://github.com/ksc-fe/kpc/issues/3\">#3</a></li>\n<li><code>Fix</code> Slider在设置了步长后，拖动会闪动的问题</li>\n</ol>\n",
     "codes": [
         {
             "language": "js",
@@ -196,7 +196,20 @@
             {
                 "title": "更新日志",
                 "path": "docs/changelog.md",
-                "children": []
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "title": "v0.1.0",
+                                "path": "#header-v0.1.0",
+                                "level": 2,
+                                "content": "<h2 id='header-v0.1.0'>v0.1.0</h2>",
+                                "text": "v0.1.0",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
             }
         ],
         "组件": [

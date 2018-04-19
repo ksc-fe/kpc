@@ -197,7 +197,20 @@
             {
                 "title": "更新日志",
                 "path": "docs/changelog.md",
-                "children": []
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "title": "v0.1.0",
+                                "path": "#header-v0.1.0",
+                                "level": 2,
+                                "content": "<h2 id='header-v0.1.0'>v0.1.0</h2>",
+                                "text": "v0.1.0",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
             }
         ],
         "组件": [
