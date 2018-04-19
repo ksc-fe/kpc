@@ -1,7 +1,7 @@
 import Intact from 'intact';
 import template from './menu.vdt';
 import position from '../moveWrapper/position';
-import {findParentComponent} from '../utils';
+import {findParentComponent, getTransition} from '../utils';
 
 export default class DropdownMenu extends Intact {
     @Intact.template()
@@ -12,6 +12,7 @@ export default class DropdownMenu extends Intact {
             show: false,
             trigger: 'hover',
             position: {},
+            transition: 'slidedown',
         };
     }
 
@@ -20,19 +21,6 @@ export default class DropdownMenu extends Intact {
         this.items = [];
         this.focusIndex = -1;
         this.locked = false;
-
-        this.on('$changed:show', (c, value) => {
-            if (value) {
-                this.focusIndex = -1;
-                this._addDocumentEvents();
-                this.position();
-            } else {
-                this._removeDocumentEvents();
-            }
-        });
-
-        // this._onDocumentClick = this._onDocumentClick.bind(this);
-        // this._onKeydown = this._onKeydown.bind(this);
     }
 
     _mount() {
@@ -76,8 +64,17 @@ export default class DropdownMenu extends Intact {
             my: 'center top+5', 
             at: 'center bottom', 
             of: this.dropdown.element,
+            using: (feedback) => {
+                this.set('transition', getTransition(feedback));
+            },
             ...this.get('position')
         });
+    }
+
+    _onShow() {
+        this.focusIndex = -1;
+        this._addDocumentEvents();
+        this.position();
     }
 
     _addDocumentEvents() {

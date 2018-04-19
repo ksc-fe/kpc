@@ -136,3 +136,17 @@ export function localize(data) {
     }
     i18n = data;
 }
+
+export function getTransition(feedback) {
+    const vertical = feedback.vertical;
+    const horizontal = feedback.horizontal;
+    if (vertical === 'bottom') {
+        return 'slideup';
+    } else if (vertical === 'top') {
+        return 'slidedown';
+    } else if (horizontal === 'left') {
+        return 'slideright';
+    } else if (horizontal === 'right') {
+        return 'slideleft';
+    }
+}

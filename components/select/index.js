@@ -2,7 +2,6 @@ import Intact from 'intact';
 import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
-import position from '../moveWrapper/position';
 import Option from './option';
 import Group from './group';
 import {selectInput, _$} from '../utils';

@@ -29,7 +29,6 @@ function Wrapper(props, inVue) {
                 key: key == null ? key : `${key}.trigger`,
                 ref: ref,
                 children: element, 
-                menu: menu,
                 ...rest
             }),
             menu
@@ -40,7 +39,6 @@ function Wrapper(props, inVue) {
                     key: key == null ? key : `${key}.trigger`,
                     ref: ref,
                     children: [element], 
-                    menu: menu,
                     ...rest
                 }),
                 menu

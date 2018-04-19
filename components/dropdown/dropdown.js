@@ -35,11 +35,12 @@ export default class Dropdown extends Intact {
 
         // save the original event
         const originProps = children.props;
-        if (!children._hasSaved) {
+        let hasSaved = false;
+        if (!originProps._hasSaved) {
             children._evClick = originProps['ev-click'];
             children._evMouseEnter = originProps['ev-mouseenter'];
             children._evMouseLeave = originProps['ev-mouseleave'];
-            children._hasSaved = true;
+            hasSaved = true;
         }
         const props = {};
         // if (trigger === 'click') {
@@ -49,12 +50,22 @@ export default class Dropdown extends Intact {
             props['ev-mouseenter'] = this.show.bind(this, children._evMouseEnter);
             props['ev-mouseleave'] = this.hide.bind(this, children._evMouseLeave);
         }
+        if (hasSaved) {
+            props._hasSaved = true;
+        }
         children.props = {...children.props, ...props};
         this.set('children', children, {silent: true});
     }
 
     _mount() {
-        this.get('menu').children.dropdown = this;
+        // the next sibling is DropdownMenu
+        // we can not get the menu by call get('menu') directly,
+        // because the vNode may be cloned
+        const siblings = this.parentVNode.children;
+        const index = siblings.indexOf(this.vNode);
+        const menu = siblings[index + 1];
+        menu.children.dropdown = this;
+        this.menu = menu;
     }
 
     show(fn, e, isFocus) {
@@ -62,7 +73,7 @@ export default class Dropdown extends Intact {
 
         if (this.get('disabled')) return;
 
-        const menu = this.get('menu').children;
+        const menu = this.menu.children;
         menu.show();
 
         if (isFocus) {
@@ -75,7 +86,7 @@ export default class Dropdown extends Intact {
 
         if (this.get('disabled')) return;
 
-        const menu = this.get('menu').children;
+        const menu = this.menu.children;
         menu.hide(immediately);
     }
 }

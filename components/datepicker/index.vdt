@@ -5,7 +5,7 @@ import Calendar from './calendar';
 
 const {
     value, clearable, className, style,
-    name, disabled, placeholder, size,
+    name, disabled, placeholder, size, transition,
     _value, range, type, ref, key, ...rest
 } = self.get();
 
@@ -28,9 +28,10 @@ const classNameObj = {
         position={{ {my: 'left top', at: 'left bottom'} }}
         trigger="click"
         showArrow={{ false }}
-        transition="dropdown"
+        transition={{ transition }}
         ref="calendar"
         disabled={{ disabled }}
+        ev-show={{ self._onShow }}
     >
         <Input
             placeholder={{ placeholder == null ? 

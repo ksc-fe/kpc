@@ -1,1 +1,0 @@
-Intact.Vdt.configure('delimiters', ['{{', '}}']);

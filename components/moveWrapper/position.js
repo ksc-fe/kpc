@@ -6,11 +6,166 @@ const rOffset = /[\+\-]\d+(\.[\d]+)?%?/;
 const rPosition = /^\w+/;
 const rPercent = /%$/;
 
+function getDimensions(elem) {
+    if (elem.nodeType === 9) {
+        // document
+        const {width, height} = getDocumentOrWindowRect(elem);
+        return {
+            width,
+            height,
+            offset: {
+                top: 0,
+                left: 0
+            }
+        };
+    } else if (elem === window) {
+        const {width, height} = getDocumentOrWindowRect(elem);
+        return {
+            width,
+            height,
+            offset: {
+                top: elem.pageYOffset,
+                left: elem.pageXOffset,
+            }
+        };
+    } else if (elem.preventDefault) {
+        // event
+        return {
+            width: 0,
+            height: 0,
+            offset: {
+                top: elem.pageY,
+                left: elem.pageX
+            }
+        };
+    }
+    // dom
+    const rect = elem.getBoundingClientRect();
+    return {
+        width: rect.width,
+        height: rect.height,
+        offset: {
+            top: rect.top + window.pageYOffset,
+            left: rect.left + window.pageXOffset
+        }
+    };
+}
+
+export function getDocumentOrWindowRect(elem) {
+    if (elem === window) {
+        const d = elem.document.documentElement;
+        return {
+            width: d.clientWidth,
+            height: d.clientHeight,
+        };
+    }
+    const d = elem.documentElement;
+    const b = elem.body;
+    return {
+        width: max(
+            b.scrollWidth, d.scrollWidth,
+            b.offsetWidth, d.offsetWidth,
+            d.clientWidth
+        ),
+        height: max(
+            b.scrollHeight, d.scrollHeight,
+            b.offsetHeight, d.offsetHeight,
+            d.clientHeight
+        )
+    };
+}
+
+function getOffsets(offsets, width, height) {
+    return [
+        parseFloat(offsets[0]) * (rPercent.test(offsets[0]) ? width / 100 : 1),
+        parseFloat(offsets[1]) * (rPercent.test(offsets[1]) ? height / 100 : 1),
+    ];
+}
+
+// reference: http://stackoverflow.com/questions/13382516/getting-scroll-bar-width-using-javascript
+let _scrollBarWidth;
+export function scrollbarWidth() {
+    if (_scrollBarWidth !== undefined) {
+        return _scrollBarWidth;
+    }
+
+    var outer = document.createElement("div");
+    outer.style.visibility = "hidden";
+    outer.style.width = "100px";
+    outer.style.msOverflowStyle = "scrollbar"; // needed for WinJS apps
+
+    document.body.appendChild(outer);
+
+    var widthNoScroll = outer.offsetWidth;
+    // force scrollbars
+    outer.style.overflow = "scroll";
+
+    // add innerdiv
+    var inner = document.createElement("div");
+    inner.style.width = "100%";
+    outer.appendChild(inner);
+
+    var widthWithScroll = inner.offsetWidth;
+
+    // remove divs
+    outer.parentNode.removeChild(outer);
+
+    return (_scrollBarWidth = widthNoScroll - widthWithScroll);
+}
+
+function getScrollInfo(within) {
+    const overflowX = within.isWindow || within.isDocument ? 
+        '' : within.element.style.overflowX;
+    const overflowY = within.isWindow || within.isDocument ? 
+        '' : within.element.style.overflowY;
+    const hasOverflowX = overflowX === 'scroll' || 
+        (overflowX === 'auto' && within.width < within.element.scrollWidth);
+    const hasOverflowY = overflowY === 'scroll' || 
+        (overflowY === 'auto' && within.height < within.element.scrollHeight);
+    
+    return {
+        width: hasOverflowY ? scrollbarWidth() : 0,
+        height: hasOverflowX ? scrollbarWidth() : 0,
+    };
+}
+
+function getWithinInfo(element) {
+    element || (element = window);
+    const isWindow = element === window;
+    const isDocument = element.nodeType === 9;
+    const hasOffset = !isWindow && !isDocument;
+
+    const ret = {element, isWindow, isDocument};
+    if (hasOffset) {
+        const rect = element.getBoundingClientRect();
+        ret.offset = {
+            top: rect.top + window.pageYOffset,
+            left: rect.left + window.pageXOffset,
+        };
+        ret.width = rect.width;
+        ret.height = rect.height;
+        ret.scrollLeft = element.scrollLeft;
+        ret.scrollTop = element.scrollTop;
+    } else {
+        ret.offset = {top: 0, left: 0};
+        const rect = getDocumentOrWindowRect(element);
+        ret.width = rect.width;
+        ret.height = rect.height;
+        ret.scrollLeft = window.pageXOffset;
+        ret.scrollTop = window.pageYOffset;
+    }
+
+    return ret;
+}
+
+function parseCss(style, property) {
+    return parseInt(style[property], 10) || 0;
+}
+
 export default function position(elem, options) {
     options = Object.assign({}, options);
 
     const target = options.of || window;
-    // const dimensions = getDimensions(target);
     if (target.preventDefault) {
         options.at = "left top";
     }
@@ -22,6 +177,8 @@ export default function position(elem, options) {
     const basePosition = Object.assign({}, targetOffset);
     const collision = (options.collision || 'flip').split(' ');
     const offsets = {};
+    const within = getWithinInfo(options.within);
+    const scrollInfo = getScrollInfo(within);
 
     ['my', 'at'].forEach(item => {
         let pos = (options[item] || '').split(' ');
@@ -73,6 +230,12 @@ export default function position(elem, options) {
     const elemHeight = elem.offsetHeight;
     const position = Object.assign({}, basePosition);
     const myOffset = getOffsets(offsets.my, elemWidth, elemHeight);
+    const computedStyle = window.getComputedStyle(elem);
+    const marginLeft = parseCss(computedStyle, 'marginLeft');
+    const marginTop = parseCss(computedStyle, 'marginTop');
+    const collisionWidth = elemWidth + marginLeft + parseCss(computedStyle, 'marginRight') + scrollInfo.width;
+    const collisionHeight = elemHeight + marginTop + parseCss(computedStyle, 'marginBottom') + scrollInfo.height;
+    const collisionPosition = {marginLeft, marginTop};
 
     const my = options.my;
     if (my[0] === 'right') {
@@ -88,13 +251,25 @@ export default function position(elem, options) {
     position.left += myOffset[0];
     position.top += myOffset[1];
 
-    const style = elem.style;
-    const {position: elemPosition} = window.getComputedStyle(elem);
-    if (elemPosition === 'static') {
-        style.position = 'relative';
-    }
-    style.left = position.left + 'px';
-    style.top = position.top + 'px';
+    ['left', 'top'].forEach((dir, i) => {
+        const coll = collision[i];
+        if (rules[coll]) {
+            rules[coll][dir](position, {
+                targetWidth,
+                targetHeight,
+                elemWidth,
+                elemHeight,
+                collisionPosition,
+                collisionWidth,
+                collisionHeight,
+                offset: [atOffset[0] + myOffset[0], atOffset[1] + myOffset[1]],
+                my: options.my,
+                at: options.at,
+                within,
+                elem
+            });
+        }
+    });
 
     if (options.using) {
         const left = targetOffset.left - position.left;
@@ -130,60 +305,163 @@ export default function position(elem, options) {
         } else {
             feedback.important = 'vertical';
         }
-        options.using(feedback);
+        options.using(feedback, position);
     }
+
+    const style = elem.style;
+    if (computedStyle.position === 'static') {
+        style.position = 'relative';
+    }
+    style.left = position.left + 'px';
+    style.top = position.top + 'px';
 }
 
-function getDimensions(elem) {
-    if (elem.nodeType === 9) {
-        // document
-        return {
-            width: elem.offsetWidth,
-            height: elem.offsetHeight,
-            offset: {
-                top: 0,
-                left: 0
+const rules = {
+    fit: {
+        left(position, data) {
+            const within = data.within;
+            const withinOffset = within.isWindow ? within.scrollLeft : within.offset.left;
+            const outerWidth = within.width;
+            const collisionPosLeft =  position.left - data.collisionPosition.marginLeft;
+            const overLeft = withinOffset - collisionPosLeft;
+            const overRight = collisionPosLeft + data.collisionWidth - outerWidth - withinOffset;
+            let newOverRight;
+
+            if (data.collisionWidth > outerWidth) {
+                if (overLeft > 0 && overRight <=0) {
+                    newOverRight = position.left + overLeft + data.collisionWidth - outerWidth - withinOffset;
+                    position.left += overLeft - newOverRight;
+                } else if (overRight > 0 && overLeft <=0) {
+                    position.left = withinOffset;
+                } else if (overLeft > overRight) {
+                    position.left = withinOffset + outerWidth - data.collisionWidth;
+                } else {
+                    position.left = withinOffset;
+                }
+            } else if (overLeft > 0) {
+                position.left += overLeft;
+            } else if (overRight > 0) {
+                position.left -= overRight;
+            } else {
+                position.left = max(position.left - collisionPosLeft, position.left);
             }
-        };
-    } else if (elem === window) {
-        let d = elem.document.documentElement;
-        return {
-            width: d.clientWidth,
-            height: d.clientHeight,
-            offset: {
-                top: elem.pageYOffset || d.scrollTop,
-                left: elem.pageXOffset || d.scrollLeft
+        },
+
+        top(position, data) {
+            const within = data.within;
+            const withinOffset = within.isWindow ? within.scrollTop : within.offset.top;
+            const outerHeight = data.within.height;
+            const collisionPosTop = position.top - data.collisionPosition.marginTop;
+            const overTop = withinOffset - collisionPosTop;
+            const overBottom = collisionPosTop + data.collisionHeight - outerHeight - withinOffset;
+            let newOverBottom;
+
+            if (data.collisionHeight > outerHeight) {
+                if (overTop > 0 && overBottom <= 0) {
+                    newOverBottom = position.top + overTop + data.collisionHeight - outerHeight - withinOffset;
+                    position.top += overTop - newOverBottom;
+                } else if (overBottom > 0 && overTop <= 0) {
+                    position.top = withinOffset;
+                } else if (overTop > overBottom) {
+                    position.top = withinOffset + outerHeight - data.collisionHeight;
+                } else {
+                    position.top = withinOffset;
+                }
+            } else if (overTop > 0) {
+                position.top += overTop;
+            } else if (overBottom > 0) {
+                position.top -= overBottom;
+            } else {
+                position.top = max(position.top - collisionPosTop, position.top);
             }
-        };
-    } else if (elem.preventDefault) {
-        // event
-        return {
-            width: 0,
-            height: 0,
-            offset: {
-                top: elem.pageY,
-                left: elem.pageX
-            }
-        };
-    }
-    // dom
-    const rect = elem.getBoundingClientRect();
-    const d = elem.ownerDocument.defaultView;
-    return {
-        width: rect.width,
-        height: rect.height,
-        offset: {
-            top: rect.top + d.pageYOffset,
-            left: rect.left + d.pageXOffset
         }
-    };
+    },
+
+    flip: {
+        left(position, data) {
+            const within = data.within;
+            const withinOffset = within.offset.left + within.scrollLeft;
+            const outerWidth = within.width;
+            const offsetLeft = within.isWindow ? within.scrollLeft : within.offset.left;
+            const collisionPosLeft = position.left - data.collisionPosition.marginLeft;
+            const overLeft = collisionPosLeft - offsetLeft;
+            const overRight = collisionPosLeft + data.collisionWidth - outerWidth - offsetLeft;
+            const myOffset = data.my[0] === 'left' ? 
+                -data.elemWidth :
+                data.my[0] === 'right' ?
+                    data.elemWidth : 0;
+            const atOffset = data.at[0] === 'left' ?
+                data.targetWidth :
+                data.at[0] === 'right' ?
+                    -data.targetWidth : 0;
+            const offset = -2 * data.offset[0];
+            let newOverRight;
+            let newOverLeft;
+
+            if (overLeft < 0) {
+                newOverRight = position.left + myOffset + atOffset + offset + data.collisionWidth - outerWidth - withinOffset;
+                if (newOverRight < 0 || newOverRight < abs(overLeft)) {
+                    position.left += myOffset + atOffset + offset;
+                }
+            } else if (overRight > 0) {
+                newOverLeft = positon.left - data.collisionPosition.marginLeft + myOffset + atOffset + offset - offsetLeft;
+                // the same to top
+                // if (newOverLeft > 0 || abs(newOverLeft) < overRight) {
+                if (newOverLeft > 0) {
+                    positon.left += myOffset + atOffset + offset;
+                }
+            }
+        },
+
+        top(position, data) {
+            const within = data.within;
+            const withinOffset = within.offset.top + within.scrollTop;
+            const outerHeight = within.height;
+            const offsetTop = within.isWindow ? within.scrollTop : within.offset.top;
+            const collisionPosTop = position.top - data.collisionPosition.marginTop;
+            const overTop = collisionPosTop - offsetTop;
+            const overBottom = collisionPosTop + data.collisionHeight - outerHeight - offsetTop; 
+            const myOffset = data.my[1] === 'top' ?
+                -data.elemHeight :
+                data.my[1] === 'bottom' ?
+                    data.elemHeight : 0;
+            const atOffset = data.at[1] === 'top' ?
+                data.targetHeight :
+                data.at[1] === 'bottom' ?
+                    -data.targetHeight : 0;
+            const offset = -2 * data.offset[1];
+            let newOverTop;
+            let newOverBottom;
+
+            if (overTop < 0) {
+                newOverBottom = position.top + myOffset + atOffset + offset + data.collisionHeight - outerHeight - withinOffset;
+                if (newOverBottom < 0 || newOverBottom < abs(overTop)) {
+                    position.top += myOffset + atOffset + offset;
+                }
+            } else if (overBottom > 0) {
+                newOverTop = position.top - data.collisionPosition.marginTop + myOffset + atOffset + offset - offsetTop;
+                // because window can scroll down, when it beyond the top border,
+                // we can not scroll it to view. Don't flip it in this case
+                // if (newOverTop > 0 || abs(newOverTop) < overBottom) {
+                if (newOverTop > 0) {
+                    position.top += myOffset + atOffset + offset;
+                }
+            }
+        }
+    },
+
+    flipfit: {
+        left(...args) {
+            rules.flip.left(...args);
+            rules.fit.left(...args);
+        },
+
+        top(...args) {
+            rules.flip.top(...args);
+            rules.fit.top(...args);
+        }
+    }
 }
 
-function getOffsets(offsets, width, height) {
-    return [
-        parseFloat(offsets[0]) * (rPercent.test(offsets[0]) ? width / 100 : 1),
-        parseFloat(offsets[1]) * (rPercent.test(offsets[1]) ? height / 100 : 1),
-    ];
-}
 
 export {position};
