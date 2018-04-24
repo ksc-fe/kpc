@@ -792,6 +792,8 @@ var Button = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
     };
 
     Button.prototype._onClick = function _onClick(e) {
+        if (this.get('disabled') || this.get('loading')) return;
+
         if (this.group) {
             var _get = this.get(),
                 _checkType = _get._checkType,
@@ -7658,18 +7660,19 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         fluid = _self$get.fluid,
         children = _self$get.children,
         loading = _self$get.loading,
+        disabled = _self$get.disabled,
         value = _self$get.value,
         _value = _self$get._value,
         name = _self$get.name,
         tagProps = _self$get.tagProps,
         _checkType = _self$get._checkType,
-        rest = (0, _objectWithoutProperties3.default)(_self$get, ['type', 'className', 'size', 'icon', 'circle', 'ref', 'key', 'tagName', 'htmlType', 'fluid', 'children', 'loading', 'value', '_value', 'name', 'tagProps', '_checkType']);
+        rest = (0, _objectWithoutProperties3.default)(_self$get, ['type', 'className', 'size', 'icon', 'circle', 'ref', 'key', 'tagName', 'htmlType', 'fluid', 'children', 'loading', 'disabled', 'value', '_value', 'name', 'tagProps', '_checkType']);
 
     var checked = value !== undefined ? _checkType === 'radio' ? value === _value : _checkType === 'checkbox' ? Array.isArray(_value) && !!~_value.indexOf(value) : false : false;
 
     var classNameObj = (_classNameObj = {
         'k-btn': true
-    }, _classNameObj['k-' + type] = type !== 'default', _classNameObj['k-btn-icon'] = icon, _classNameObj['k-' + size] = size !== 'default', _classNameObj[className] = className, _classNameObj['k-circle'] = circle, _classNameObj['k-loading'] = loading, _classNameObj['k-fluid'] = fluid, _classNameObj['k-active'] = checked, _classNameObj);
+    }, _classNameObj['k-' + type] = type !== 'default', _classNameObj['k-btn-icon'] = icon, _classNameObj['k-' + size] = size !== 'default', _classNameObj[className] = className, _classNameObj['k-circle'] = circle, _classNameObj['k-loading'] = loading, _classNameObj['k-fluid'] = fluid, _classNameObj['k-active'] = checked, _classNameObj['k-disabled'] = disabled || loading, _classNameObj);
 
     var Button = function Button(props) {
         if (props.href && tagName === 'button') {
@@ -7680,7 +7683,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             props.type = htmlType;
         }
         // disable button when loading
-        if (loading) props.disabled = true;
+        /* if (loading) props.disabled = true; */
         return h(tagName, props, props.children);
     };
 

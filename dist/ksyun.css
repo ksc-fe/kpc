@@ -3830,8 +3830,8 @@ label {
   background-color: #53aef6;
   border-color: #53aef6;
 }
-.k-btn[disabled],
-.k-btn[disabled]:hover {
+.k-btn.k-disabled,
+.k-btn.k-disabled:hover {
   color: #999;
   background-color: #d9d9d9;
   border-color: #d9d9d9;
