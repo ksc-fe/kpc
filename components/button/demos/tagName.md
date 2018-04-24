@@ -13,9 +13,12 @@ import Button from 'kpc/components/button';
 
 <div>
     <Button tagName="div" type="primary">div元素按钮</Button>
-    <Button href="https://www.ksyun.com" 
-        style="margin-left: 20px;"
-        target="_blank"
-    >超链接按钮</Button>
+    <Button tagName="div" disabled>disabled div button</Button>
+    <Button href="https://www.ksyun.com" target="_blank">超链接按钮</Button>
 </div>
+```
+
+```styl
+.k-btn
+    margin-right 20px
 ```

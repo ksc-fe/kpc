@@ -43,6 +43,7 @@ module.exports = {
                     }
                 ]
             },
+            // don't change the order of the stylus loader
             {
                 test: /\.(styl|css)$/,
                 use: [

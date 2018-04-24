@@ -2,7 +2,7 @@ import {isStringOrNumberNotEmpty} from '../utils';
 
 let {
     type, className, size, icon, circle, ref, key,
-    tagName, htmlType, fluid, children, loading,
+    tagName, htmlType, fluid, children, loading, disabled,
     value, _value, name, tagProps, _checkType, ...rest
 } = self.get();
 
@@ -26,6 +26,7 @@ const classNameObj = {
     'k-loading': loading,
     'k-fluid': fluid,
     'k-active': checked,
+    'k-disabled': disabled || loading,
 };
 
 const Button = props => {
@@ -37,7 +38,7 @@ const Button = props => {
         props.type = htmlType;
     }
     // disable button when loading
-    if (loading) props.disabled = true;
+    /* if (loading) props.disabled = true; */
     return h(tagName, props, props.children);
 };
 

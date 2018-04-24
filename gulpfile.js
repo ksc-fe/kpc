@@ -21,8 +21,7 @@ const childProcess = require('child_process');
 
 const pages = {
     '/': 'index',
-};
-const vdtFile = path.resolve(__dirname, './site/src/index.vdt');
+}; const vdtFile = path.resolve(__dirname, './site/src/index.vdt');
 
 gulp.task('doc', () => {
     console.log('build markdown');
@@ -215,7 +214,14 @@ gulp.task('clean@single', (done) => {
 });
 
 gulp.task('build:js@single', (done) => {
-    webpack(webpackBuildConfig, (err, stats) => {
+    webpack(webpackBuildConfig(), (err, stats) => {
+        console.log(stats.toString({
+            colors: true    // 在控制台展示颜色
+        }));
+        done();
+    });
+    // build ksyun theme
+    webpack(webpackBuildConfig('ksyun'), (err, stats) => {
         console.log(stats.toString({
             colors: true    // 在控制台展示颜色
         }));
