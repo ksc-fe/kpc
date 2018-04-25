@@ -138,15 +138,19 @@ export function localize(data) {
 }
 
 export function getTransition(feedback) {
-    const vertical = feedback.vertical;
-    const horizontal = feedback.horizontal;
-    if (vertical === 'bottom') {
-        return 'slideup';
-    } else if (vertical === 'top') {
-        return 'slidedown';
-    } else if (horizontal === 'left') {
-        return 'slideright';
-    } else if (horizontal === 'right') {
-        return 'slideleft';
+    if (feedback.important=== 'horizontal') {
+        const horizontal = feedback.horizontal;
+        if (horizontal === 'left') {
+            return 'slideright';
+        } else if (horizontal === 'right') {
+            return 'slideleft';
+        }
+    } else {
+        const vertical = feedback.vertical;
+        if (vertical === 'bottom') {
+            return 'slideup';
+        } else if (vertical === 'top') {
+            return 'slidedown';
+        }
     }
 }
