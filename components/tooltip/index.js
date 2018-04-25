@@ -57,6 +57,9 @@ class TooltipContent extends Intact {
     }
 
     show() {
+        // don't show if content is empty
+        if (!this.get('children')) return;
+
         clearTimeout(this.timer);
         this.set('show', true); 
     }
