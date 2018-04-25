@@ -33,7 +33,7 @@ function Wrapper(props, inVue) {
             }),
             menu
         ] :
-        h(VueWrapper, {
+        h(DropdownVueWrapper, {
             children: [
                 h(Dropdown, {
                     key: key == null ? key : `${key}.trigger`,
@@ -49,7 +49,7 @@ function Wrapper(props, inVue) {
 // Vue only support return one element from functional component,
 // so we wrap them. This will lead to damage the dom struction,
 // because we must wrap them with a div
-class VueWrapper extends Intact {
+class DropdownVueWrapper extends Intact {
     template(data) {
         return h('div', null, data.get('children'), 'k-dropdown');
     }

@@ -159,7 +159,7 @@ function Wrapper(props, inVue) {
             }),
             contentVNode
         ] :
-        h(VueWrapper, {
+        h(TooltipVueWrapper, {
             children: [
                 h(Tooltip, {
                     _context,
@@ -178,7 +178,7 @@ Wrapper.propTypes = {
     canHover: Boolean,
 };
 
-class VueWrapper extends Intact {
+class TooltipVueWrapper extends Intact {
     template(data) {
         const {className, children, ...rest} = data.get();
         return h('div', rest, children, Intact.Vdt.utils.className({
