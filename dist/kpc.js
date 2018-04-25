@@ -3518,6 +3518,9 @@ var TooltipContent = (_dec = _intact2.default.template(), (_class = (_temp = _cl
     };
 
     TooltipContent.prototype.show = function show() {
+        // don't show if content is empty
+        if (!this.get('children')) return;
+
         clearTimeout(this.timer);
         this.set('show', true);
     };
