@@ -49,17 +49,16 @@ export default class DropdownItem extends Intact {
     }
 
     _onMouseEnter(e) {
-        if (this.get('disabled')) return;
-
         this.trigger('mouseenter', e);
+
+        if (this.get('disabled')) return;
 
         this.parent.focusItem(this);
     }
 
     _onMouseLeave(e) {
-        if (this.get('disabled')) return;
-
         this.trigger('mouseleave', e);
+        // if (this.get('disabled')) return;
     }
 
     select() {
