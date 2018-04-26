@@ -65,10 +65,7 @@ export default class DropdownMenu extends Intact {
             at: 'center bottom', 
             of: this.dropdown.element,
             using: (feedback) => {
-                const transition = getTransition(feedback);
-                if (transition) {
-                    this.set('transition', transition);
-                }
+                this.set('transition', getTransition(feedback));
             },
             ...this.get('position')
         });

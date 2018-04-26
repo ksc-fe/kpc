@@ -68,10 +68,7 @@ export default class Datepicker extends Intact {
 
     _onShow(c) {
         const feedback = c.get('_feedback');
-        const transition = getTransition(feedback);
-        if (transition) {
-            this.set('transition', transition);
-        }
+        this.set('transition', getTransition(feedback));
     }
 
     _onChangeShowDate(type, c, v) {
