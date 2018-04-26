@@ -9,7 +9,7 @@ export default function(Page) {
         _mount() {
             this.vue = new Vue({
                 el: this.element.querySelector('.vue'),
-                template: '<Page />',
+                template: '<Page ref="page" />',
                 components: { Page }
             });
         }

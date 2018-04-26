@@ -41,28 +41,28 @@ export const methods = {
     },
 
     minLength(value, item, param) {
-        return value.length >= param;
+        return value.length >= Number(param);
     },
 
     maxLength(value, item, param) {
-        return value.length <= param;
+        return value.length <= Number(param);
     },
 
     rangeLength(value, item, param) {
         const length = value.length;
-        return length >= param[0] && length <= param[1];
+        return length >= Number(param[0]) && length <= Number(param[1]);
     },
 
     min(value, item, param) {
-        return value >= param;
+        return Number(value) >= Number(param);
     },
 
     max(value, item, param) {
-        return value <= param;
+        return Number(value) <= Number(param);
     },
 
     range(value, item, param) {
-        return value >= param[0] && value <= param[1];
+        return Number(value) >= Number(param[0]) && Number(value) <= Number(param[1]);
     },
 
     step(value, item, param) {
