@@ -1,9 +1,9 @@
 <template>
     <Form style="margin: 20px" class="select-page">
         <FormItem label="标准：">
-            <Select v-model="value" :data="data" />
+            <Select v-model="config.value" :data="data" />
             <template slot="append">
-                Your selected value is {{ value }}
+                Your selected value is {{ config.value }}
             </template>
         </FormItem>
         <FormItem label="可搜索：">
@@ -61,7 +61,9 @@ import {Form, FormItem} from 'components/form';
 export default {
     data() {
         return {
-            value: '',
+            config: {
+                value: '',
+            },
             data: [
                 {label: '星期一', value: 'Monday'},
                 {label: '星期二', value: 'Tuesday'},
@@ -74,9 +76,19 @@ export default {
         };
     },
 
+    created() {
+        this.config.value = 'Monday';
+    },
+
     components: {
         Select, Form, FormItem,
         OptionGroup, Option
+    },
+
+    watch: {
+        'config.value': function() {
+            console.log('aaaa')
+        }
     }
 }
 
