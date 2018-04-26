@@ -33,7 +33,6 @@ export default {
     },
 
     data() {
-        window.a = this;
         return {
             test: false,
             isShow: false,

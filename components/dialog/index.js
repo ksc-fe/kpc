@@ -43,7 +43,7 @@ export default class Dialog extends Intact {
 
     _create() {
         // use as component
-        if (this.parentVNode) {
+        if (this.vNode) {
             this._useAsComponent = true;
         }
     }
