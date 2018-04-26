@@ -146,9 +146,9 @@ export function getTransition(feedback) {
         } else if (horizontal === 'right') {
             return 'slideleft';
         } else if (vertical === 'bottom') {
-            return 'slidedown';
-        } else if (vertical === 'top') {
             return 'slideup';
+        } else if (vertical === 'top') {
+            return 'slidedown';
         }
     } else {
         if (vertical === 'bottom') {
@@ -156,9 +156,9 @@ export function getTransition(feedback) {
         } else if (vertical === 'top') {
             return 'slidedown';
         } else if (horizontal === 'left') {
-            return 'slideleft';
-        } else if (horizontal === 'right') {
             return 'slideright';
+        } else if (horizontal === 'right') {
+            return 'slideleft';
         }
     }
     return 'slidedown';
