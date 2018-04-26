@@ -382,17 +382,30 @@ function localize(data) {
 }
 
 function getTransition(feedback) {
-    var vertical = feedback.vertical;
     var horizontal = feedback.horizontal;
-    if (vertical === 'bottom') {
-        return 'slideup';
-    } else if (vertical === 'top') {
-        return 'slidedown';
-    } else if (horizontal === 'left') {
-        return 'slideright';
-    } else if (horizontal === 'right') {
-        return 'slideleft';
+    var vertical = feedback.vertical;
+    if (feedback.important === 'horizontal') {
+        if (horizontal === 'left') {
+            return 'slideright';
+        } else if (horizontal === 'right') {
+            return 'slideleft';
+        } else if (vertical === 'bottom') {
+            return 'slideup';
+        } else if (vertical === 'top') {
+            return 'slidedown';
+        }
+    } else {
+        if (vertical === 'bottom') {
+            return 'slideup';
+        } else if (vertical === 'top') {
+            return 'slidedown';
+        } else if (horizontal === 'left') {
+            return 'slideright';
+        } else if (horizontal === 'right') {
+            return 'slideleft';
+        }
     }
+    return 'slidedown';
 }
 
 /***/ }),
@@ -1928,7 +1941,7 @@ function Wrapper(props, inVue) {
         key: key == null ? key : key + '.trigger',
         ref: ref,
         children: element
-    }, rest)), menu] : h(VueWrapper, {
+    }, rest)), menu] : h(DropdownVueWrapper, {
         children: [h(_dropdown2.default, (0, _extends3.default)({
             key: key == null ? key : key + '.trigger',
             ref: ref,
@@ -1941,19 +1954,19 @@ function Wrapper(props, inVue) {
 // so we wrap them. This will lead to damage the dom struction,
 // because we must wrap them with a div
 
-var VueWrapper = function (_Intact) {
-    (0, _inherits3.default)(VueWrapper, _Intact);
+var DropdownVueWrapper = function (_Intact) {
+    (0, _inherits3.default)(DropdownVueWrapper, _Intact);
 
-    function VueWrapper() {
-        (0, _classCallCheck3.default)(this, VueWrapper);
+    function DropdownVueWrapper() {
+        (0, _classCallCheck3.default)(this, DropdownVueWrapper);
         return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
     }
 
-    VueWrapper.prototype.template = function template(data) {
+    DropdownVueWrapper.prototype.template = function template(data) {
         return h('div', null, data.get('children'), 'k-dropdown');
     };
 
-    return VueWrapper;
+    return DropdownVueWrapper;
 }(_intact2.default);
 
 var _Wrapper = _intact2.default.functionalWrapper ? _intact2.default.functionalWrapper(Wrapper) : Wrapper;
@@ -3637,7 +3650,7 @@ function Wrapper(props, inVue) {
         menu: contentVNode
     }, rest, {
         className: 'k-tooltip'
-    })), contentVNode] : h(VueWrapper, (0, _extends3.default)({
+    })), contentVNode] : h(TooltipVueWrapper, (0, _extends3.default)({
         children: [h(Tooltip, (0, _extends3.default)({
             _context: _context,
             children: children,
@@ -3651,15 +3664,15 @@ Wrapper.propTypes = {
     canHover: Boolean
 };
 
-var VueWrapper = function (_Intact2) {
-    (0, _inherits3.default)(VueWrapper, _Intact2);
+var TooltipVueWrapper = function (_Intact2) {
+    (0, _inherits3.default)(TooltipVueWrapper, _Intact2);
 
-    function VueWrapper() {
-        (0, _classCallCheck3.default)(this, VueWrapper);
+    function TooltipVueWrapper() {
+        (0, _classCallCheck3.default)(this, TooltipVueWrapper);
         return (0, _possibleConstructorReturn3.default)(this, _Intact2.apply(this, arguments));
     }
 
-    VueWrapper.prototype.template = function template(data) {
+    TooltipVueWrapper.prototype.template = function template(data) {
         var _Intact$Vdt$utils$cla;
 
         var _data$get = data.get(),
@@ -3672,7 +3685,7 @@ var VueWrapper = function (_Intact2) {
         }, _Intact$Vdt$utils$cla[className] = className, _Intact$Vdt$utils$cla)));
     };
 
-    return VueWrapper;
+    return TooltipVueWrapper;
 }(_intact2.default);
 
 var _Wrapper = _intact2.default.functionalWrapper ? _intact2.default.functionalWrapper(Wrapper) : Wrapper;
@@ -5449,7 +5462,7 @@ exports.Transfer = _transfer.Transfer;
 
 /* generate start */
 
-var version = exports.version = '0.1.0';
+var version = exports.version = '0.1.1';
 
 /* generate end */
 
@@ -10484,7 +10497,7 @@ var Dialog = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
 
     Dialog.prototype._create = function _create() {
         // use as component
-        if (this.parentVNode) {
+        if (this.vNode) {
             this._useAsComponent = true;
         }
     };
@@ -10999,17 +11012,16 @@ var DropdownItem = (_dec = _intact2.default.template(), (_class = (_temp = _clas
     };
 
     DropdownItem.prototype._onMouseEnter = function _onMouseEnter(e) {
-        if (this.get('disabled')) return;
-
         this.trigger('mouseenter', e);
+
+        if (this.get('disabled')) return;
 
         this.parent.focusItem(this);
     };
 
     DropdownItem.prototype._onMouseLeave = function _onMouseLeave(e) {
-        if (this.get('disabled')) return;
-
         this.trigger('mouseleave', e);
+        // if (this.get('disabled')) return;
     };
 
     DropdownItem.prototype.select = function select() {
@@ -11651,23 +11663,23 @@ var methods = exports.methods = {
         );
     },
     minLength: function minLength(value, item, param) {
-        return value.length >= param;
+        return value.length >= Number(param);
     },
     maxLength: function maxLength(value, item, param) {
-        return value.length <= param;
+        return value.length <= Number(param);
     },
     rangeLength: function rangeLength(value, item, param) {
         var length = value.length;
-        return length >= param[0] && length <= param[1];
+        return length >= Number(param[0]) && length <= Number(param[1]);
     },
     min: function min(value, item, param) {
-        return value >= param;
+        return Number(value) >= Number(param);
     },
     max: function max(value, item, param) {
-        return value <= param;
+        return Number(value) <= Number(param);
     },
     range: function range(value, item, param) {
-        return value >= param[0] && value <= param[1];
+        return Number(value) >= Number(param[0]) && Number(value) <= Number(param[1]);
     },
     step: function step(value, item, param) {
         var decimals = decimalPlaces(param);

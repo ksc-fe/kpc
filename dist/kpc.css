@@ -4845,6 +4845,12 @@ label {
 .k-dropdown-menu.dropdown-leave-active {
   pointer-events: none;
 }
+.k-dropdown-menu > .k-tooltip {
+  display: block;
+}
+.k-dropdown-menu .k-dropdown > .k-tooltip {
+  display: block;
+}
 .k-editable {
   display: inline-block;
   line-height: 2.142857142857143em;
