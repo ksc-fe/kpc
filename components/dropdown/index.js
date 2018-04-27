@@ -42,16 +42,22 @@ function Wrapper(props, inVue) {
                     ...rest
                 }),
                 menu
-            ]
+            ],
+            ...rest
         });
 }
 
 // Vue only support return one element from functional component,
 // so we wrap them. This will lead to damage the dom struction,
 // because we must wrap them with a div
+const _className = Intact.Vdt.utils.className;
 class DropdownVueWrapper extends Intact {
     template(data) {
-        return h('div', null, data.get('children'), 'k-dropdown');
+        const {className, children, ...rest} = data.get();
+        return h('div', rest, children, _className({
+            'k-dropdown': true,
+            [className]: className,
+        }));
     }
 }
 

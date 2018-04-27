@@ -178,10 +178,11 @@ Wrapper.propTypes = {
     canHover: Boolean,
 };
 
+const _className = Intact.Vdt.utils.className;
 class TooltipVueWrapper extends Intact {
     template(data) {
         const {className, children, ...rest} = data.get();
-        return h('div', rest, children, Intact.Vdt.utils.className({
+        return h('div', rest, children, _className({
             'k-tooltip': true,
             [className]: className,
         }));

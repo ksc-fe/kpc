@@ -3,7 +3,7 @@ import Input from '../input';
 const {
     editing, value, validate,
     disabled, style, tip,
-    children, invalid
+    children, invalid, className,
 } = self.get();
 
 const classNameObj = {
@@ -11,6 +11,7 @@ const classNameObj = {
     'k-editing': editing,
     'k-disabled': disabled,
     'k-invalid': invalid,
+    [className]: className,
 };
 
 <div class={{ classNameObj }} style={{ style }}>
