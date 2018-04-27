@@ -45,10 +45,10 @@ const theadCreator = () => <thead>
                     const props = {...vNode.props, $parent: self};
                     vNode.props = props;
                     if (props.key == null) {
-                        _e('key for TableColumn must be specified.');
+                        _e(new Error('key for TableColumn must be specified.'));
                     } else if (/^\d+$/.test(props.key)) {
                         // avoid digital key
-                        _e('don\'t use digits as key.');
+                        _e(new Error('don\'t use digits as key.'));
                     }
                     props.value = group[props.key];
                     // add a flag to detect if the vNode has attached events of bellow
