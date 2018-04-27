@@ -404,11 +404,11 @@ const rules = {
                     position.left += myOffset + atOffset + offset;
                 }
             } else if (overRight > 0) {
-                newOverLeft = positon.left - data.collisionPosition.marginLeft + myOffset + atOffset + offset - offsetLeft;
+                newOverLeft = position.left - data.collisionPosition.marginLeft + myOffset + atOffset + offset - offsetLeft;
                 // the same to top
                 // if (newOverLeft > 0 || abs(newOverLeft) < overRight) {
                 if (newOverLeft > 0) {
-                    positon.left += myOffset + atOffset + offset;
+                    position.left += myOffset + atOffset + offset;
                 }
             }
         },
