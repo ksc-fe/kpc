@@ -84,7 +84,10 @@ export default class Button extends Intact {
     }
 
     _onClick(e) {
-        if (this.get('disabled') || this.get('loading')) return;
+        if (this.get('disabled') || this.get('loading')) {
+            e.preventDefault();
+            return;
+        }
 
         if (this.group) {
             let {_checkType, value, _value} = this.get();
