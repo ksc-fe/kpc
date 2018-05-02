@@ -805,7 +805,9 @@ var Button = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
     };
 
     Button.prototype._onClick = function _onClick(e) {
-        if (this.get('disabled') || this.get('loading')) return;
+        if (this.get('disabled') || this.get('loading')) {
+            return e.preventDefault();
+        }
 
         if (this.group) {
             var _get = this.get(),
@@ -1810,11 +1812,11 @@ var rules = {
                     position.left += myOffset + atOffset + offset;
                 }
             } else if (overRight > 0) {
-                newOverLeft = positon.left - data.collisionPosition.marginLeft + myOffset + atOffset + offset - offsetLeft;
+                newOverLeft = position.left - data.collisionPosition.marginLeft + myOffset + atOffset + offset - offsetLeft;
                 // the same to top
                 // if (newOverLeft > 0 || abs(newOverLeft) < overRight) {
                 if (newOverLeft > 0) {
-                    positon.left += myOffset + atOffset + offset;
+                    position.left += myOffset + atOffset + offset;
                 }
             }
         },
@@ -1941,18 +1943,19 @@ function Wrapper(props, inVue) {
         key: key == null ? key : key + '.trigger',
         ref: ref,
         children: element
-    }, rest)), menu] : h(DropdownVueWrapper, {
+    }, rest)), menu] : h(DropdownVueWrapper, (0, _extends3.default)({
         children: [h(_dropdown2.default, (0, _extends3.default)({
             key: key == null ? key : key + '.trigger',
             ref: ref,
             children: [element]
         }, rest)), menu]
-    });
+    }, rest));
 }
 
 // Vue only support return one element from functional component,
 // so we wrap them. This will lead to damage the dom struction,
 // because we must wrap them with a div
+var _className = _intact2.default.Vdt.utils.className;
 
 var DropdownVueWrapper = function (_Intact) {
     (0, _inherits3.default)(DropdownVueWrapper, _Intact);
@@ -1963,7 +1966,16 @@ var DropdownVueWrapper = function (_Intact) {
     }
 
     DropdownVueWrapper.prototype.template = function template(data) {
-        return h('div', null, data.get('children'), 'k-dropdown');
+        var _className2;
+
+        var _data$get = data.get(),
+            className = _data$get.className,
+            children = _data$get.children,
+            rest = (0, _objectWithoutProperties3.default)(_data$get, ['className', 'children']);
+
+        return h('div', rest, children, _className((_className2 = {
+            'k-dropdown': true
+        }, _className2[className] = className, _className2)));
     };
 
     return DropdownVueWrapper;
@@ -2299,9 +2311,9 @@ var Dropdown = (_dec = _intact2.default.template(), (_class = function (_Intact)
         var _this2 = this;
 
         this._saveOriginalEvents();
-        this.on('$change:children', function () {
+        this.on('$receive:children', function () {
             _this2._saveOriginalEvents();
-        });
+        }, { keep: true });
     };
 
     Dropdown.prototype._saveOriginalEvents = function _saveOriginalEvents() {
@@ -3664,6 +3676,8 @@ Wrapper.propTypes = {
     canHover: Boolean
 };
 
+var _className = _intact2.default.Vdt.utils.className;
+
 var TooltipVueWrapper = function (_Intact2) {
     (0, _inherits3.default)(TooltipVueWrapper, _Intact2);
 
@@ -3673,16 +3687,16 @@ var TooltipVueWrapper = function (_Intact2) {
     }
 
     TooltipVueWrapper.prototype.template = function template(data) {
-        var _Intact$Vdt$utils$cla;
+        var _className2;
 
         var _data$get = data.get(),
             className = _data$get.className,
             children = _data$get.children,
             rest = (0, _objectWithoutProperties3.default)(_data$get, ['className', 'children']);
 
-        return h('div', rest, children, _intact2.default.Vdt.utils.className((_Intact$Vdt$utils$cla = {
+        return h('div', rest, children, _className((_className2 = {
             'k-tooltip': true
-        }, _Intact$Vdt$utils$cla[className] = className, _Intact$Vdt$utils$cla)));
+        }, _className2[className] = className, _className2)));
     };
 
     return TooltipVueWrapper;
@@ -5462,7 +5476,7 @@ exports.Transfer = _transfer.Transfer;
 
 /* generate start */
 
-var version = exports.version = '0.1.1';
+var version = exports.version = '0.1.2';
 
 /* generate end */
 
@@ -11385,6 +11399,8 @@ exports.Editable = Editable;
 exports.__esModule = true;
 
 exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _classNameObj;
+
     _Vdt || (_Vdt = Vdt);
     obj || (obj = {});
     blocks || (blocks = {});
@@ -11418,14 +11434,15 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         style = _self$get.style,
         tip = _self$get.tip,
         children = _self$get.children,
-        invalid = _self$get.invalid;
+        invalid = _self$get.invalid,
+        className = _self$get.className;
 
-    var classNameObj = {
+    var classNameObj = (_classNameObj = {
         'k-editable': true,
         'k-editing': editing,
         'k-disabled': disabled,
         'k-invalid': invalid
-    };
+    }, _classNameObj[className] = className, _classNameObj);
 
     return h('div', { 'style': function () {
             try {
@@ -16518,10 +16535,10 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                         var props = (0, _extends3.default)({}, vNode.props, { $parent: self });
                         vNode.props = props;
                         if (props.key == null) {
-                            _e('key for TableColumn must be specified.');
+                            _e(new Error('key for TableColumn must be specified.'));
                         } else if (/^\d+$/.test(props.key)) {
                             // avoid digital key
-                            _e('don\'t use digits as key.');
+                            _e(new Error('don\'t use digits as key.'));
                         }
                         props.value = group[props.key];
                         // add a flag to detect if the vNode has attached events of bellow

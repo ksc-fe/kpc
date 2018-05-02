@@ -3778,7 +3778,7 @@ label {
   display: inline-block;
   height: 2.571428571428572rem;
   line-height: calc(2.571428571428572rem - 2px);
-  padding: 0 2.285714285714286em;
+  padding: 0 1.428571428571429em;
   outline: none;
   border: none;
   color: #595959;
@@ -3833,7 +3833,7 @@ label {
 .k-btn.k-disabled,
 .k-btn.k-disabled:hover {
   color: #999;
-  background-color: #d9d9d9;
+  background-color: #f2f2f2;
   border-color: #d9d9d9;
   cursor: not-allowed;
 }
@@ -3921,7 +3921,7 @@ label {
   border-color: #94cdf9;
 }
 .k-btn.k-loading:not(.k-btn-icon):not(.k-icon-left):not(.k-icon-right) {
-  padding-left: 3.285714285714286em;
+  padding-left: 2.428571428571429em;
 }
 .k-btn.k-loading:not(.k-btn-icon):not(.k-icon-left):not(.k-icon-right) .icon-loading {
   margin-left: -1em;
@@ -4162,7 +4162,7 @@ label {
 }
 .k-checkbox.k-disabled .k-wrapper {
   border-color: #d9d9d9;
-  background: #d9d9d9;
+  background: #f2f2f2;
 }
 .k-checkbox.k-disabled .k-wrapper:before {
   border-color: #999;
@@ -4280,7 +4280,7 @@ label {
 .k-input.k-disabled .k-inner {
   color: #999;
   border-color: #d9d9d9;
-  background: #d9d9d9;
+  background: #f2f2f2;
   cursor: not-allowed;
 }
 .k-input.k-small {
@@ -4857,7 +4857,7 @@ label {
   border-radius: 0 0 0.142857142857143rem 0.142857142857143rem;
 }
 .k-dropdown-menu .k-item.k-disabled {
-  background: #d9d9d9;
+  background: #f2f2f2;
   color: #999;
   cursor: not-allowed;
 }
@@ -5114,12 +5114,12 @@ label {
 .k-select.k-disabled > .k-wrapper {
   color: #999;
   cursor: not-allowed;
-  background: #d9d9d9;
+  background: #f2f2f2;
   border-color: #d9d9d9;
 }
 .k-select.k-disabled .k-input {
   color: #999;
-  background: #d9d9d9;
+  background: #f2f2f2;
   cursor: not-allowed;
 }
 .k-select .k-values {
@@ -5131,7 +5131,7 @@ label {
 }
 .k-select .k-tag {
   padding: 0.142857142857143rem 0.357142857142857rem;
-  background: #d9d9d9;
+  background: #f2f2f2;
   border-radius: 0.142857142857143rem;
   margin: 0 0.357142857142857rem 0.357142857142857rem 0;
 }
@@ -5517,7 +5517,7 @@ label {
 }
 .k-radio.k-disabled .k-wrapper {
   border-color: #d9d9d9;
-  background: #d9d9d9;
+  background: #f2f2f2;
 }
 .k-radio.k-disabled .k-wrapper:before {
   background: #999;
@@ -5649,7 +5649,7 @@ label {
   border-color: #999;
 }
 .k-slider.k-disabled .k-handle:hover {
-  background-color: #d9d9d9;
+  background-color: #f2f2f2;
   cursor: not-allowed;
   -webkit-transform: none;
       -ms-transform: none;
@@ -5666,7 +5666,7 @@ label {
   margin-top: 7px;
 }
 .k-slider.k-disabled .k-handle {
-  background-color: #d9d9d9;
+  background-color: #f2f2f2;
 }
 .k-steps {
   width: 100%;
