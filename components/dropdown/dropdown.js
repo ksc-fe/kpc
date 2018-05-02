@@ -19,9 +19,9 @@ export default class Dropdown extends Intact {
 
     _init() {
         this._saveOriginalEvents();
-        this.on('$change:children', () => {
+        this.on('$receive:children', () => {
             this._saveOriginalEvents();
-        });
+        }, {keep: true});
     }
 
     _saveOriginalEvents() {

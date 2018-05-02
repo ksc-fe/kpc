@@ -85,8 +85,7 @@ export default class Button extends Intact {
 
     _onClick(e) {
         if (this.get('disabled') || this.get('loading')) {
-            e.preventDefault();
-            return;
+            return e.preventDefault();
         }
 
         if (this.group) {
