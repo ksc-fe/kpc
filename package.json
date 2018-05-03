@@ -39,7 +39,7 @@
   "author": "ksc-fe",
   "license": "MIT",
   "peerDependencies": {
-    "intact": "^2.2.0-35"
+    "intact": "^2.2.0"
   },
   "devDependencies": {
     "advanced": "^0.4.6",
@@ -71,7 +71,7 @@
     "highlight.js": "^9.12.0",
     "history": "^4.7.2",
     "intact": "^2.2.0-34",
-    "intact-vue": "^0.2.10",
+    "intact-vue": "^0.2.18",
     "istanbul-instrumenter-loader": "^3.0.0",
     "karma": "^1.4.1",
     "karma-chrome-launcher": "^2.2.0",
@@ -97,7 +97,7 @@
     "stylus-loader": "^3.0.2",
     "universal-router": "^4.3.0",
     "url-loader": "^0.6.2",
-    "vdt": "^1.1.2-22",
+    "vdt": "^1.2.4",
     "vdt-loader": "^1.4.1",
     "vue": "^2.5.16",
     "vue-loader": "^13.7.1",
