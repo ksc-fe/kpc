@@ -82,8 +82,8 @@ export default class Dialog extends Intact {
         if (typeof callback === 'function') {
             callback.call(this, this);
         } else {
-            this.close();
             this.trigger('cancel', this);
+            this.close();
         }
     }
 
@@ -92,8 +92,8 @@ export default class Dialog extends Intact {
         if (typeof callback === 'function') {
             callback.call(this, this);
         } else {
-            this.close();
             this.trigger('ok', this);
+            this.close();
         }
     }
 
