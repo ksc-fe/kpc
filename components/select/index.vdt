@@ -8,7 +8,7 @@ const {
     className, clearable, data, value, multiple,
     disabled, filterable, keywords, _show,
     placeholder, size, style, name, children,
-    fluid, width,
+    fluid, width, allowUnmatch,
 } = self.get();
 
 const classNameObj = {
@@ -24,7 +24,7 @@ const classNameObj = {
 let hasValue = value != null && (!multiple && value !== '' || multiple && value.length);
 const isGroup = Array.isArray(self.get('data.0.data'));
 
-let label;
+let label = value;
 let labels = [];
 
 const handleProps = props => {

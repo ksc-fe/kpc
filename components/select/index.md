@@ -20,6 +20,7 @@ order: 5
 | size | 尺寸 | `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
 | fluid | 是否宽度100% | `Boolean` | `false` |
 | width | 指定宽度 | `Number` | `undefined` | 
+| allowUnmatch | 与`filterable`一起使用，支持输入不匹配项 | `Boolean` | `false` |
 
 ## Option
 

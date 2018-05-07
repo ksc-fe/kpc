@@ -37,7 +37,7 @@
         <FormItem label="密码" model="model.password" :rules="{required: true}">
             <Input type="password" v-model="model.password" />
         </FormItem>
-        <FormItem v-if="!hide" label="确认密码" model="model.confirmPassword" :rules="{required: true, equal(value) { return value === model.password || '两次密码输入不一致'; }}">
+        <FormItem v-if="!hide" label="确认密码" model="model.confirmPassword" :rules="{required: true, equalTo: 'model.password'}">
             <Input type="password" v-model="model.confirmPassword" />
         </FormItem>
         <FormItem label="描述" class="descriptions">

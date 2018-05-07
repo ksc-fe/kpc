@@ -31,6 +31,7 @@ export default class Select extends Intact {
             size: 'default',
             fluid: false,
             width: undefined,
+            allowUnmatch: false,
 
             _show: false,
         }
@@ -73,14 +74,13 @@ export default class Select extends Intact {
     }
 
     _onSearch(e) {
-        this.set('keywords', e.target.value);
+        this.set('keywords', e.target.value.trim());
         // always show menu on searching
         this.refs.menu.show();
         this.refs.menu.focusItemByIndex(0);
-        // in multiple mode, it may lead the height to change
-        if (this.get('multiple')) {
-            this.refs.menu.position();
-        }
+        // the position may be flip, and the select input height my change height too,
+        // so we should reset the position
+        this.refs.menu.position();
     }
 
     _resetSearch() {
@@ -93,10 +93,17 @@ export default class Select extends Intact {
 
     /**
      * @brief let the blur method called after select
-     * if we selected the option, then the keywords has been to to undefind
+     * if we selected the option, then the keywords has been set to undefind
      * in this case, we do nothing, otherwise we reset it
      */
     _onBlur() {
+        const {keywords, allowUnmatch} = this.get();
+        if (allowUnmatch && keywords != null) {
+            this.set({
+                value: keywords,
+            });
+        }
+
         this.timer = setTimeout(() => {
             if (this.get('keywords') != null) {
                 this._resetSearch();

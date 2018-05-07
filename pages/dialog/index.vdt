@@ -1,5 +1,6 @@
 import Dialog from 'components/dialog';
 import Button from 'components/button';
+import {Table, TableColumn} from 'components/table';
 
 <div class="wrapper">
     <div v-if={{ self.get('test') }}>test</div>
@@ -7,7 +8,9 @@ import Button from 'components/button';
     <Button ev-click={{ self.showDialog.bind(self, 'isShowSmall') }}>Show small</Button>
     <Button tagName="div" ev-click={{ self.showDialogInstance.bind(self) }}>Show Dialog Instance</Button>
     <Dialog v-model="isShow" title="Dialog Demo" key="a">
-        test {{ JSON.stringify(self.get('test')) }}
+        <Table fixHeader="100" data={{ [{test: 1}] }}>
+            <TableColumn title="test" key="test">test</TableColumn>
+        </Table>
     </Dialog>
     <Dialog v-model="isShowSmall" type="small" key="b">
         <b:header>
