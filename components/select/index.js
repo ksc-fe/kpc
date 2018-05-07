@@ -28,7 +28,7 @@ export default class Select extends Intact {
             clearable: false, // 是否可清空 
             filterable: false, // 搜索筛选
             keywords: undefined,
-            placeholder: _$('请选择'),
+            placeholder: undefined,
             size: 'default',
             fluid: false,
             width: undefined,

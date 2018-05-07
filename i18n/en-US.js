@@ -67,6 +67,9 @@ const i18n = {
     '请输入': 'Please enter',
     '请选择': 'Please select',
     '已选择': 'Selected',
+
+    // select
+    '请输入或选择': 'Please enter or select',
 };
 
 export default i18n; 

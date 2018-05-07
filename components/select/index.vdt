@@ -1,6 +1,6 @@
 import Input from '../input';
 import Dropdown, {DropdownItem, DropdownMenu} from '../dropdown';
-import {isStringOrNumber, getTextByChildren, addStyle} from '../utils';
+import {isStringOrNumber, getTextByChildren, addStyle, _$} from '../utils';
 import Option from './option';
 import OptionGroup from './group';
 
@@ -10,6 +10,10 @@ const {
     placeholder, size, style, name, children,
     fluid, width, allowUnmatch,
 } = self.get();
+
+const _placeholder = placeholder == null ?
+    (allowUnmatch && filterable) ? _$('请输入或选择') : _$('请选择') :
+    placeholder;
 
 const classNameObj = {
     'k-select': true,
@@ -161,12 +165,12 @@ if (hasValue && !label && !labels.length) {
                 ev-blur={{ self._onBlur }}
                 ev-focus={{ self._selectInput }}
                 disabled={{ disabled }}
-                placeholder={{ placeholder }}
+                placeholder={{ _placeholder }}
                 ref="input"
                 size={{ size }}
                 fluid
             />
-            <span class="k-placeholder c-ellipsis" v-else-if={{ !filterable && !hasValue }}>{{ placeholder }}</span>
+            <span class="k-placeholder c-ellipsis" v-else-if={{ !filterable && !hasValue }}>{{ _placeholder }}</span>
             <span class="k-value c-ellipsis" v-else-if={{ !multiple }}>{{ label }}</span>
             <Animate a:tag="span" a:disabled class="k-values" v-else>
                 <Animate a:tag="span" class="k-tag" 
@@ -187,7 +191,7 @@ if (hasValue && !label && !labels.length) {
                     ev-blur={{ self._onBlur }}
                     ev-focus={{ self._onFocus }}
                     disabled={{ disabled }}
-                    placeholder={{ !hasValue ? placeholder : '' }}
+                    placeholder={{ !hasValue ? _placeholder : '' }}
                     ref="input"
                     autoWidth
                     size={{ size }}
