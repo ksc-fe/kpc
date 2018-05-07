@@ -24,7 +24,7 @@ const classNameObj = {
 let hasValue = value != null && (!multiple && value !== '' || multiple && value.length);
 const isGroup = Array.isArray(self.get('data.0.data'));
 
-let label = value;
+let label = isStringOrNumber(value) ? value : null;
 let labels = [];
 
 const handleProps = props => {

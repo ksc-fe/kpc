@@ -16,6 +16,7 @@ export default class Select extends Intact {
         clearable: Boolean,
         filterable: Boolean,
         fluid: Boolean,
+        allowUnmatch: Boolean,
     };
 
     defaults() {
