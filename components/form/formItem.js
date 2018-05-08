@@ -20,11 +20,13 @@ export default class FormItem extends Intact {
             label: undefined,
             htmlFor: undefined,
             hideLabel: false,
+            force: false,
         }
     }
 
     static propTypes = {
         hideLabel: Boolean,
+        force: Boolean,
     }
 
     _init() {
@@ -151,7 +153,17 @@ export default class FormItem extends Intact {
     }
 
     validateIfDirty() {
+        // if force is true, it will been validated when update
+        // so we do nothing for this case
+        if (this.get('force')) return;
+
         if (this.get('isDirty')) {
+            this.validate();
+        }
+    }
+
+    _beforeUpdate() {
+        if (this.get('force') && this.get('isDirty')) {
             this.validate();
         }
     }
