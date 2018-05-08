@@ -17,6 +17,7 @@ order: 9
 | label | 指定表单每一项前面展示的标题 | `String` | `undefined` |
 | htmlFor | 指定`label`的`for`属性 | `String` | `undefined` | 
 | hideLabel | 是否隐藏`label`，默认会展示`label`，即使该属性为空，也会展示占位元素 | `Boolean` | `false` |
+| force | 让`FormItem`更新时，强制验证, [#6][1] | `Boolean` | `false` |
 
 # 扩展点
 
@@ -55,4 +56,4 @@ order: 9
 | --- | --- | --- | --- |
 | addMethod | 添加全局验证规则，这样在所有`FormItem`中如果需要使用该规则，只需要在`rules`中写上该规则名即可 | 1. `name` 指定规则名称，不能重复 <br /> 2. `method` 指定该规则的验证函数，该函数返回`true`或`false`来标识验证成功或失败，该函数将传入3个参数：1. 当前验证的值，2. 当前验证的`FormItem`实例，3. 当前规则的参数 <br /> 3. `message` 验证失败时的错误提示文案，该值可以为字符串或者函数，如果为函数，传入参数同`method`，用于个性化文案提示 <br /> 4. `className` 验证失败时添加的类名 | `undefined` |
 
-
+[1]: https://github.com/ksc-fe/kpc/issues/6
