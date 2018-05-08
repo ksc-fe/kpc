@@ -3,58 +3,95 @@ title: 行展开
 order: 6
 ---
 
-* `rowExpandable`：是否点击展开行，类型`Boolean`，`true`(默认)
-* `expand`：行展开条件，类型`Function`，`undefined`(默认)
-* `expandedKeys`：展开哪行，类型`Array`，`true`(默认)
+指定行展开后的模板函数`expand`即可实现点击当前行时，展开内容。是否支持点击该行任何区域都展开内容，
+是由`rowExpandable`控制的，默认情况下它为`true`。你也可以将它设为`false`，来自定义展开逻辑。例如：
+点击某个`icon`后展开改行，而点击其它元素无效。自定义展开逻辑，需要调用`shrinkRow(key)`和`expandRow(key)`
+方法来实现收起和展开，或者修改`expandedKeys`属性值，来指定哪些`key`对应的行展开。
+
+
+* `expand`：指定行展开后要展示的模板内容，类型`Function`，默认`undefined`
+* `rowExpandable`：是否点击整行即展开，类型`Boolean`，默认`true`
+* `expandedKeys`：指定哪些`key`对应行展开，类型`Array`，默认`[]`
 
 ```vdt
-import Table from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc/components/table';
 
-var scheme = {a: '奇数行展开'};
-var data = [{a: '返回虚拟DOM'}, {a: '返回字符串'}];
-var data2 = [{a: '不展开'}, {a: '默认展开'}];
-
+var data = [
+    {name: 'Javey', email: 'jiawei23716@sina.com'}, 
+    {name: 'Jiawei', email: 'zoujiawei@gmail.com'}
+];
 
 <div class='no-data-template'>
-    <Table scheme={{ {a: '定义expand函数返回你要展示的内容'} }} data={{ data }} expand={{function(data, index) {
-    	if (index%2 == 0) {
-			return <div>偶数行(DOM)</div>
-    	}
-    	if (index%2 != 0) {
-			return '奇数行(字符串)'
-    	}
-	}}}/>
-	<Table scheme={{ {a: 'rowExpandable为false，总开关'} }} data={{ data }} expand={{function(data, index) {
-    	if (index%2 == 0) {
-			return <div>偶数行(DOM)</div>
-    	}
-    	if (index%2 != 0) {
-			return '奇数行(字符串)'
-    	}
-	}}} rowExpandable={{false}}/>
-	<Table scheme={{ {a: '设置默认展开'} }} data={{ data2 }} expand={{function(data, index) {
-    	if (index%2 == 0) {
-			return <div>偶数行(DOM)</div>
-    	}
-    	if (index%2 != 0) {
-			return '这里是默认展开的那一行的内容'
-    	}
-	}}} expandedKeys={{[1]}}/>
+    <Table 
+        data={{ data }} 
+        expand={{ function(data, index) {
+            return <div>Email: {{ data.email }}</div>
+        } }}
+        checkType="none"
+    >
+        <TableColumn title="点击整行展开内容" key="name" />
+    </Table>
 
+	<Table 
+        data={{ data }} 
+        expand={{ function(data, index) {
+            return <div>Email: {{ data.email }}</div>
+        } }} 
+        checkType="none"
+        rowExpandable={{ false }}
+        expandedKeys={{ self.get('expandedKeys') }}
+    >
+        <TableColumn title="点击+，展开内容" key="name" 
+            template={{ (data, index) => {
+                return <div>
+                    <i 
+                        class={{ {
+                            "icon": true,
+                            "ion-ios-plus-outline": self.get('expandedKeys').indexOf(index) < 0,
+                            "ion-ios-minus-outline": self.get('expandedKeys').indexOf(index) > -1,
+                        } }}
+                        ev-click={{ self.toggleExpand.bind(self, data, index) }}
+                    ></i>
+                    {{ data.name }}
+                </div>
+            } }}
+        />
+    </Table>
 </div>
 ```
 
 ```styl
 .no-data-template
-   display: flex
-   .k-table-wrapper
-       margin-left: 10px
-
+    display: flex
+    .k-table-wrapper
+        margin-left: 10px
+.icon
+    vertical-align middle
+    margin-right 10px
+    cursor pointer
 ```
 
+```js
+export default class extends Intact {
+    @Intact.template()
+    static template = template;
 
+    defaults() {
+        return {
+            expandedKeys: []
+        };
+    }
 
-
-
-
+    toggleExpand(data, index) {
+        const expandedKeys = this.get('expandedKeys').slice(0);
+        const i = expandedKeys.indexOf(index);
+        if (i > -1) {
+            expandedKeys.splice(i, 1);
+        } else {
+            expandedKeys.push(index);
+        }
+        this.set('expandedKeys', expandedKeys);
+    }
+}
+```
 
