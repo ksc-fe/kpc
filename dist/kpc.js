@@ -1715,11 +1715,17 @@ function position(elem, options) {
         if (targetHeight < elemHeight && abs(top + bottom) < targetHeight) {
             feedback.vertical = 'middle';
         }
-        if (max(abs(left), abs(right)) > max(abs(top), abs(bottom))) {
+
+        if (position.top + elemHeight <= targetOffset.top || position.top >= targetOffset.top + targetHeight) {
+            feedback.important = 'vertical';
+        } else if (position.left + elemWidth <= targetOffset.left || position.left >= targetOffset.left + targetWidth) {
+            feedback.important = 'horizontal';
+        } else if (max(abs(left), abs(right)) > max(abs(top), abs(bottom))) {
             feedback.important = 'horizontal';
         } else {
             feedback.important = 'vertical';
         }
+
         options.using(feedback, position);
     }
 
@@ -5487,7 +5493,7 @@ exports.Transfer = _transfer.Transfer;
 
 /* generate start */
 
-var version = exports.version = '0.1.3';
+var version = exports.version = '0.1.4';
 
 /* generate end */
 
@@ -16305,6 +16311,10 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
     Table.prototype._clickRow = function _clickRow(value, index, key, e) {
         // if is from checkbox or radio then do nothing
         if (e.target.tagName.toLowerCase() === 'input') return;
+        // in chrome of macos, the target is input's parent element
+        // maybe beacause input's opacity is 0
+        var children = e.target.children;
+        if (children[0] && children[0].tagName.toLowerCase() === 'input') return;
         if (this.get('disableRow').call(this, value, index)) return;
 
         if (this.get('rowCheckable')) {
