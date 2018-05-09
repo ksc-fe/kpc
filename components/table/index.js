@@ -215,7 +215,8 @@ export default class Table extends Intact {
                 // isToggle is false means call this by checkRow & uncheckRow
                 if (isCheck) {
                     this.set('checkedKey', key);
-                } else {
+                } else if (this.get('checkedKey') === key) {
+                    // only change it when we uncheck the checked row
                     this.set('checkedKey', undefined);
                 }
             } else {
