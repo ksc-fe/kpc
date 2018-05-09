@@ -149,7 +149,7 @@ const tbody = <tbody>
         }) :
         <tr key="table_no_data">
             <td colspan={{ colSpan }} class="k-no-data">
-                {{ noDataTemplate }}
+                <b:no-data>{{ noDataTemplate }}</b:no-data>
             </td>
         </tr>
     }}
