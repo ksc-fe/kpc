@@ -300,11 +300,23 @@ export default function position(elem, options) {
         if (targetHeight < elemHeight && abs(top + bottom) < targetHeight) {
             feedback.vertical = 'middle';
         }
-        if (max(abs(left), abs(right)) > max(abs(top), abs(bottom))) {
+
+        if (
+            position.top + elemHeight <= targetOffset.top || 
+            position.top >= targetOffset.top + targetHeight
+        ) {
+            feedback.important = 'vertical';
+        } else if (
+            position.left + elemWidth <= targetOffset.left ||
+            position.left >= targetOffset.left + targetWidth
+        ) {
+            feedback.important = 'horizontal';
+        } else if (max(abs(left), abs(right)) > max(abs(top), abs(bottom))) {
             feedback.important = 'horizontal';
         } else {
             feedback.important = 'vertical';
         }
+
         options.using(feedback, position);
     }
 
