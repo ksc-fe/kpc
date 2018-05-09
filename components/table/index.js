@@ -187,6 +187,10 @@ export default class Table extends Intact {
     _clickRow(value, index, key, e) {
         // if is from checkbox or radio then do nothing
         if (e.target.tagName.toLowerCase() === 'input') return;
+        // in chrome of macos, the target is input's parent element
+        // maybe beacause input's opacity is 0
+        const children = e.target.children;
+        if (children[0] && children[0].tagName.toLowerCase() === 'input') return;
         if (this.get('disableRow').call(this, value, index)) return;
 
         if (this.get('rowCheckable')) {
