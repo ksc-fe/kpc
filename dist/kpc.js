@@ -4590,10 +4590,11 @@ var Select = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
             clearable: false, // 是否可清空 
             filterable: false, // 搜索筛选
             keywords: undefined,
-            placeholder: (0, _utils._$)('请选择'),
+            placeholder: undefined,
             size: 'default',
             fluid: false,
             width: undefined,
+            allowUnmatch: false,
 
             _show: false
         };
@@ -4638,14 +4639,13 @@ var Select = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
     };
 
     Select.prototype._onSearch = function _onSearch(e) {
-        this.set('keywords', e.target.value);
+        this.set('keywords', e.target.value.trim());
         // always show menu on searching
         this.refs.menu.show();
         this.refs.menu.focusItemByIndex(0);
-        // in multiple mode, it may lead the height to change
-        if (this.get('multiple')) {
-            this.refs.menu.position();
-        }
+        // the position may be flip, and the select input height my change height too,
+        // so we should reset the position
+        this.refs.menu.position();
     };
 
     Select.prototype._resetSearch = function _resetSearch() {
@@ -4658,13 +4658,23 @@ var Select = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
 
     /**
      * @brief let the blur method called after select
-     * if we selected the option, then the keywords has been to to undefind
+     * if we selected the option, then the keywords has been set to undefind
      * in this case, we do nothing, otherwise we reset it
      */
 
 
     Select.prototype._onBlur = function _onBlur() {
         var _this3 = this;
+
+        var _get = this.get(),
+            keywords = _get.keywords,
+            allowUnmatch = _get.allowUnmatch;
+
+        if (allowUnmatch && keywords != null) {
+            this.set({
+                value: keywords
+            });
+        }
 
         this.timer = setTimeout(function () {
             if (_this3.get('keywords') != null) {
@@ -4711,7 +4721,8 @@ var Select = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
     disabled: Boolean,
     clearable: Boolean,
     filterable: Boolean,
-    fluid: Boolean
+    fluid: Boolean,
+    allowUnmatch: Boolean
 }, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
     enumerable: true,
     configurable: true,
@@ -5476,7 +5487,7 @@ exports.Transfer = _transfer.Transfer;
 
 /* generate start */
 
-var version = exports.version = '0.1.2';
+var version = exports.version = '0.1.3';
 
 /* generate end */
 
@@ -10574,8 +10585,8 @@ var Dialog = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
         if (typeof callback === 'function') {
             callback.call(this, this);
         } else {
-            this.close();
             this.trigger('cancel', this);
+            this.close();
         }
     };
 
@@ -10584,8 +10595,8 @@ var Dialog = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
         if (typeof callback === 'function') {
             callback.call(this, this);
         } else {
-            this.close();
             this.trigger('ok', this);
+            this.close();
         }
     };
 
@@ -11988,7 +11999,8 @@ var FormItem = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
             errorClassName: '',
             label: undefined,
             htmlFor: undefined,
-            hideLabel: false
+            hideLabel: false,
+            force: false
         };
     };
 
@@ -12120,7 +12132,17 @@ var FormItem = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
     };
 
     FormItem.prototype.validateIfDirty = function validateIfDirty() {
+        // if force is true, it will been validated when update
+        // so we do nothing for this case
+        if (this.get('force')) return;
+
         if (this.get('isDirty')) {
+            this.validate();
+        }
+    };
+
+    FormItem.prototype._beforeUpdate = function _beforeUpdate() {
+        if (this.get('force') && this.get('isDirty')) {
             this.validate();
         }
     };
@@ -12169,7 +12191,8 @@ var FormItem = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
     }]);
     return FormItem;
 }(_intact2.default), _class2.propTypes = {
-    hideLabel: Boolean
+    hideLabel: Boolean,
+    force: Boolean
 }, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
 exports.default = FormItem;
 module.exports = exports['default'];
@@ -13524,7 +13547,10 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         name = _self$get.name,
         children = _self$get.children,
         fluid = _self$get.fluid,
-        width = _self$get.width;
+        width = _self$get.width,
+        allowUnmatch = _self$get.allowUnmatch;
+
+    var _placeholder = placeholder == null ? allowUnmatch && filterable ? (0, _utils._$)('请输入或选择') : (0, _utils._$)('请选择') : placeholder;
 
     var classNameObj = (_classNameObj = {
         'k-select': true
@@ -13533,7 +13559,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     var hasValue = value != null && (!multiple && value !== '' || multiple && value.length);
     var isGroup = Array.isArray(self.get('data.0.data'));
 
-    var label = void 0;
+    var label = (0, _utils.isStringOrNumber)(value) ? value : null;
     var labels = [];
 
     var handleProps = function handleProps(props) {
@@ -13794,7 +13820,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 }
             }.call(this), 'placeholder': function () {
                 try {
-                    return [placeholder][0];
+                    return [_placeholder][0];
                 } catch (e) {
                     _e(e);
                 }
@@ -13820,7 +13846,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             }
         }.call(this) ? h('span', null, function () {
             try {
-                return [placeholder][0];
+                return [_placeholder][0];
             } catch (e) {
                 _e(e);
             }
@@ -13906,7 +13932,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                     }
                 }.call(this), 'placeholder': function () {
                     try {
-                        return [!hasValue ? placeholder : ''][0];
+                        return [!hasValue ? _placeholder : ''][0];
                     } catch (e) {
                         _e(e);
                     }
@@ -16310,7 +16336,8 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
                 // isToggle is false means call this by checkRow & uncheckRow
                 if (isCheck) {
                     this.set('checkedKey', key);
-                } else {
+                } else if (this.get('checkedKey') === key) {
+                    // only change it when we uncheck the checked row
                     this.set('checkedKey', undefined);
                 }
             } else {
@@ -16500,6 +16527,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     var _scheme = {};
 
     var theadCreator = function theadCreator() {
+        var keys = {};
         return h('thead', null, h('tr', null, [function () {
             try {
                 return [checkType === 'checkbox'][0];
@@ -16524,12 +16552,13 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
-        }.call(_this) ? h('th', null, null, 'k-th-check') : undefined, '\n        ', function () {
+        }.call(_this) ? h('th', null, null, 'k-th-check') : undefined, '\n            ', function () {
             var _this2 = this;
 
             try {
                 return [__u.map(scheme, function (item, key) {
                     colSpan++;
+                    keys[key] = true;
 
                     if (!__u.isObject(item)) {
                         item = { title: item };
@@ -16590,12 +16619,13 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
-        }.call(_this), '\n        ', function () {
+        }.call(_this), '\n            ', function () {
             try {
                 return [// for using TableColumn as children
                 __u.map(children ? Array.isArray(children) ? children : [children] : children, function (vNode) {
                     if (vNode.tag === _column2.default) {
                         colSpan++;
+
                         var props = (0, _extends3.default)({}, vNode.props, { $parent: self });
                         vNode.props = props;
                         if (props.key == null) {
@@ -16603,10 +16633,14 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                         } else if (/^\d+$/.test(props.key)) {
                             // avoid digital key
                             _e(new Error('don\'t use digits as key.'));
+                        } else if (keys[props.key]) {
+                            _e(new Error('Reduplicated key: ' + props.key));
                         }
+
+                        keys[props.key] = true;
                         props.value = group[props.key];
                         // add a flag to detect if the vNode has attached events of bellow
-                        // we should not attach them again, we the same vNode come again
+                        // we should not attach them again, when the same vNode come again
                         if (!vNode._$) {
                             props['ev-$change:value'] = function (c, v) {
                                 return self.set('group.' + props.key, v);
@@ -16624,7 +16658,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
-        }.call(_this), '\n    ']));
+        }.call(_this), '\n        ']));
     };
 
     var thead = theadCreator();
@@ -16780,13 +16814,20 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                     } catch (e) {
                         _e(e);
                     }
-                }.call(this) }, ['\n                ', function () {
-                try {
-                    return [noDataTemplate][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), '\n            '], 'k-no-data'), null, 'table_no_data')][0];
+                }.call(this) }, (_blocks["no-data"] = function (parent) {
+                return function () {
+                    try {
+                        return [noDataTemplate][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this);
+            }) && (__blocks["no-data"] = function (parent) {
+                var self = this;
+                return blocks["no-data"] ? blocks["no-data"].call(this, function () {
+                    return _blocks["no-data"].call(self, parent);
+                }) : _blocks["no-data"].call(this, parent);
+            }) && __blocks["no-data"].call(this), 'k-no-data'), null, 'table_no_data')][0];
         } catch (e) {
             _e(e);
         }

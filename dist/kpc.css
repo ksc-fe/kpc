@@ -4308,6 +4308,7 @@ label {
   display: inline-block;
 }
 .k-tooltip-content {
+  max-width: 21.428571428571427rem;
   position: absolute;
   background-color: #fff;
   -webkit-box-shadow: 0 2px 8px 0 rgba(191,191,191,0.5);
@@ -4625,6 +4626,7 @@ label {
   -webkit-box-shadow: 0 2px 8px 0 rgba(191,191,191,0.5);
           box-shadow: 0 2px 8px 0 rgba(191,191,191,0.5);
   color: #595959;
+  max-width: none;
 }
 .k-datepicker-content .k-day,
 .k-datepicker-content .k-weekday {
@@ -5895,7 +5897,7 @@ label {
   overflow-y: auto;
   overflow-x: hidden;
 }
-.k-table-wrapper .k-scroll table {
+.k-table-wrapper .k-scroll > .k-table {
   margin-top: -44px;
 }
 .k-table-wrapper.k-border .k-fixed,
