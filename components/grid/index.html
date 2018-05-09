@@ -4006,8 +4006,8 @@ blockquote:before {
   background-color: #367df7;
   border-color: #367df7;
 }
-.k-btn[disabled],
-.k-btn[disabled]:hover {
+.k-btn.k-disabled,
+.k-btn.k-disabled:hover {
   color: #999;
   background-color: #f7f7f7;
   border-color: #d9d9d9;
@@ -4538,7 +4538,7 @@ blockquote:before {
   overflow-y: auto;
   overflow-x: hidden;
 }
-.k-table-wrapper .k-scroll table {
+.k-table-wrapper .k-scroll > .k-table {
   margin-top: -44px;
 }
 .k-table-wrapper.k-border .k-fixed,
@@ -4606,7 +4606,11 @@ blockquote:before {
   margin-right: 20px;
 }
 
-.example.index-93 .k-btn {
+.example.index-92 .k-btn {
+  margin-right: 20px;
+}
+
+.example.index-94 .k-btn {
   margin-right: 20px;
 }
 
@@ -4789,33 +4793,33 @@ blockquote:before {
   margin-left: 100%;
 }
 
-.example.index-23 .k-col {
+.example.index-24 .k-col {
   line-height: 40px;
   text-align: center;
   color: #fff;
 }
-.example.index-23 .k-col:nth-of-type(even) {
+.example.index-24 .k-col:nth-of-type(even) {
   background: #0a5eee;
 }
-.example.index-23 .k-col:nth-of-type(odd) {
+.example.index-24 .k-col:nth-of-type(odd) {
   background: #4f8df8;
 }
-.example.index-23 .k-row {
+.example.index-24 .k-row {
   margin-bottom: 20px;
 }
 
-.example.index-45 .k-col {
+.example.index-46 .k-col {
   line-height: 40px;
   text-align: center;
   color: #fff;
 }
-.example.index-45 .k-col:nth-of-type(even) div {
+.example.index-46 .k-col:nth-of-type(even) div {
   background: #0a5eee;
 }
-.example.index-45 .k-col:nth-of-type(odd) div {
+.example.index-46 .k-col:nth-of-type(odd) div {
   background: #4f8df8;
 }
-.example.index-45 .k-row {
+.example.index-46 .k-row {
   margin-bottom: 20px;
 }
 </style>
@@ -4937,7 +4941,7 @@ blockquote:before {
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/components/grid/index.md">github</a>
                     上修正该文档
                 </div></div><div class="contents"><div><h1>示例</h1>
-        <div class="example index-23"><div class="example-opera"><div><div class="k-row" style=""><div class="k-col k-12" style="">col-12</div><div class="k-col k-12" style="">col-12</div></div><div class="k-row" style=""><div class="k-col k-4" style="">col-4</div><div class="k-col k-6" style="">col-6</div><div class="k-col k-8" style="">col-8</div><div class="k-col k-6" style="">col-6</div></div></div></div><div class="example-desc"><div class="title">基本用法</div><div class="desc"><p>将<code>Col</code>嵌套在<code>Row</code>中，然后用<code>span</code>属性定义所占的宽度，宽度为百分比，每一份是<code>1/24</code></p>
+        <div class="example index-24"><div class="example-opera"><div><div class="k-row" style=""><div class="k-col k-12" style="">col-12</div><div class="k-col k-12" style="">col-12</div></div><div class="k-row" style=""><div class="k-col k-4" style="">col-4</div><div class="k-col k-6" style="">col-6</div><div class="k-col k-8" style="">col-8</div><div class="k-col k-6" style="">col-6</div></div></div></div><div class="example-desc"><div class="title">基本用法</div><div class="desc"><p>将<code>Col</code>嵌套在<code>Row</code>中，然后用<code>span</code>属性定义所占的宽度，宽度为百分比，每一份是<code>1/24</code></p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
@@ -4946,7 +4950,7 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-45"><div class="example-opera"><div><div class="k-row k-gutter" style="margin-left: -8px; margin-right: -8px;"><div class="k-col k-12" style="padding-left: 8px; padding-right: 8px;"><div>col-12</div></div><div class="k-col k-12" style="padding-left: 8px; padding-right: 8px;"><div>col-12</div></div></div><div class="k-row k-gutter" style="margin-left: -8px; margin-right: -8px;"><div class="k-col k-4" style="padding-left: 8px; padding-right: 8px;"><div>col-4</div></div><div class="k-col k-6" style="padding-left: 8px; padding-right: 8px;"><div>col-6</div></div><div class="k-col k-8" style="padding-left: 8px; padding-right: 8px;"><div>col-8</div></div><div class="k-col k-6" style="padding-left: 8px; padding-right: 8px;"><div>col-6</div></div></div></div></div><div class="example-desc"><div class="title">间距</div><div class="desc"><p>给<code>Row</code>添加<code>gutter</code>，可以定义<code>Col</code>之间的间距，单位为<code>px</code></p>
+</div><div class="code"></div></div></div><div class="example index-46"><div class="example-opera"><div><div class="k-row k-gutter" style="margin-left: -8px; margin-right: -8px;"><div class="k-col k-12" style="padding-left: 8px; padding-right: 8px;"><div>col-12</div></div><div class="k-col k-12" style="padding-left: 8px; padding-right: 8px;"><div>col-12</div></div></div><div class="k-row k-gutter" style="margin-left: -8px; margin-right: -8px;"><div class="k-col k-4" style="padding-left: 8px; padding-right: 8px;"><div>col-4</div></div><div class="k-col k-6" style="padding-left: 8px; padding-right: 8px;"><div>col-6</div></div><div class="k-col k-8" style="padding-left: 8px; padding-right: 8px;"><div>col-8</div></div><div class="k-col k-6" style="padding-left: 8px; padding-right: 8px;"><div>col-6</div></div></div></div></div><div class="example-desc"><div class="title">间距</div><div class="desc"><p>给<code>Row</code>添加<code>gutter</code>，可以定义<code>Col</code>之间的间距，单位为<code>px</code></p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->

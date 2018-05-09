@@ -19,7 +19,7 @@
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nimport {Form} from 'kpc/components/form';\n\n// 添加全局规则\nForm.addMethod('letter', (value, item, param) => {\n    console.log('arguments', value, item, param);\n    return /^[a-z|A-Z]+$/.test(value);\n}, '只能输入字母');\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    defaults() {\n        return {\n            descriptions: ['']\n        }\n    }\n\n    add() {\n        this.set('descriptions', this.get('descriptions').concat(''));\n    }\n\n    delete(index) {\n        const descriptions = this.get('descriptions').slice(0);\n        descriptions.splice(index, 1);\n        this.set('descriptions', descriptions);\n    }\n}"
         }
     ],
-    "index": 40,
+    "index": 41,
     "highlighted": [
         {
             "language": "vdt",

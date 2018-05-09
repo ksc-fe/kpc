@@ -8,22 +8,30 @@
     "codes": [
         {
             "language": "vdt",
-            "content": "import Button from 'kpc/components/button';\n\n<div>\n    <Button tagName=\"div\" type=\"primary\">div元素按钮</Button>\n    <Button href=\"https://www.ksyun.com\" \n        style=\"margin-left: 20px;\"\n        target=\"_blank\"\n    >超链接按钮</Button>\n</div>"
+            "content": "import Button from 'kpc/components/button';\n\n<div>\n    <Button tagName=\"div\" type=\"primary\">div元素按钮</Button>\n    <Button tagName=\"div\" disabled>disabled div button</Button>\n    <Button href=\"https://www.ksyun.com\" target=\"_blank\">超链接按钮</Button>\n</div>"
+        },
+        {
+            "language": "styl",
+            "content": ".k-btn\n    margin-right 20px"
         },
         {
             "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
+            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
         }
     ],
-    "index": 102,
+    "index": 94,
     "highlighted": [
         {
             "language": "vdt",
-            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Button <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/button'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span> <span class=\"hljs-attr\">tagName</span>=<span class=\"hljs-string\">\"div\"</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"primary\"</span>&gt;</span>div元素按钮<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"https://www.ksyun.com\"</span> \n        <span class=\"hljs-attr\">style</span>=<span class=\"hljs-string\">\"margin-left: 20px;\"</span>\n        <span class=\"hljs-attr\">target</span>=<span class=\"hljs-string\">\"_blank\"</span>\n    &gt;</span>超链接按钮<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span></code></pre>"
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Button <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/button'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span> <span class=\"hljs-attr\">tagName</span>=<span class=\"hljs-string\">\"div\"</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"primary\"</span>&gt;</span>div元素按钮<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span> <span class=\"hljs-attr\">tagName</span>=<span class=\"hljs-string\">\"div\"</span> <span class=\"hljs-attr\">disabled</span>&gt;</span>disabled div button<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"https://www.ksyun.com\"</span> <span class=\"hljs-attr\">target</span>=<span class=\"hljs-string\">\"_blank\"</span>&gt;</span>超链接按钮<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span></code></pre>"
+        },
+        {
+            "language": "styl",
+            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-btn</span>\n    <span class=\"hljs-attribute\">margin-right</span> <span class=\"hljs-number\">20px</span></code></pre>"
         },
         {
             "language": "js",
-            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
         }
     ]
 }

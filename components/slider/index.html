@@ -4006,8 +4006,8 @@ blockquote:before {
   background-color: #367df7;
   border-color: #367df7;
 }
-.k-btn[disabled],
-.k-btn[disabled]:hover {
+.k-btn.k-disabled,
+.k-btn.k-disabled:hover {
   color: #999;
   background-color: #f7f7f7;
   border-color: #d9d9d9;
@@ -4538,7 +4538,7 @@ blockquote:before {
   overflow-y: auto;
   overflow-x: hidden;
 }
-.k-table-wrapper .k-scroll table {
+.k-table-wrapper .k-scroll > .k-table {
   margin-top: -44px;
 }
 .k-table-wrapper.k-border .k-fixed,
@@ -4606,7 +4606,11 @@ blockquote:before {
   margin-right: 20px;
 }
 
-.example.index-93 .k-btn {
+.example.index-92 .k-btn {
+  margin-right: 20px;
+}
+
+.example.index-94 .k-btn {
   margin-right: 20px;
 }
 
@@ -4789,33 +4793,33 @@ blockquote:before {
   margin-left: 100%;
 }
 
-.example.index-23 .k-col {
+.example.index-24 .k-col {
   line-height: 40px;
   text-align: center;
   color: #fff;
 }
-.example.index-23 .k-col:nth-of-type(even) {
+.example.index-24 .k-col:nth-of-type(even) {
   background: #0a5eee;
 }
-.example.index-23 .k-col:nth-of-type(odd) {
+.example.index-24 .k-col:nth-of-type(odd) {
   background: #4f8df8;
 }
-.example.index-23 .k-row {
+.example.index-24 .k-row {
   margin-bottom: 20px;
 }
 
-.example.index-45 .k-col {
+.example.index-46 .k-col {
   line-height: 40px;
   text-align: center;
   color: #fff;
 }
-.example.index-45 .k-col:nth-of-type(even) div {
+.example.index-46 .k-col:nth-of-type(even) div {
   background: #0a5eee;
 }
-.example.index-45 .k-col:nth-of-type(odd) div {
+.example.index-46 .k-col:nth-of-type(odd) div {
   background: #4f8df8;
 }
-.example.index-45 .k-row {
+.example.index-46 .k-row {
   margin-bottom: 20px;
 }
 
@@ -4964,15 +4968,15 @@ blockquote:before {
   margin: 5px;
 }
 
-.example.index-49 .k-input {
+.example.index-50 .k-input {
   margin: 5px;
 }
 
-.example.index-88 .k-input {
+.example.index-93 .k-input {
   margin: 5px;
 }
 
-.example.index-60 .k-input {
+.example.index-53 .k-input {
   margin: 5px;
 }
 
@@ -5041,7 +5045,7 @@ blockquote:before {
   background: #999;
 }
 
-.example.index-19 .k-radio {
+.example.index-18 .k-radio {
   margin-right: 20px;
 }
 
@@ -5125,7 +5129,7 @@ blockquote:before {
   margin-right: 20px;
 }
 
-.example.index-48 .k-checkbox {
+.example.index-49 .k-checkbox {
   margin-right: 20px;
 }
 
@@ -5168,6 +5172,12 @@ blockquote:before {
 }
 .k-dropdown-menu.dropdown-leave-active {
   pointer-events: none;
+}
+.k-dropdown-menu > .k-tooltip {
+  display: block;
+}
+.k-dropdown-menu .k-dropdown > .k-tooltip {
+  display: block;
 }
 
 .k-select {
@@ -5349,7 +5359,7 @@ blockquote:before {
   padding: 0.571428571428571rem;
 }
 
-.example.index-108 .k-select {
+.example.index-109 .k-select {
   margin-right: 10px;
 }
 
@@ -5383,11 +5393,11 @@ blockquote:before {
   margin-right: 20px;
 }
 
-.example.index-67 .k-spinner {
+.example.index-65 .k-spinner {
   margin-right: 20px;
 }
 
-.example.index-47 .k-spinner {
+.example.index-45 .k-spinner {
   margin-right: 20px;
 }
 
@@ -5395,6 +5405,7 @@ blockquote:before {
   display: inline-block;
 }
 .k-tooltip-content {
+  max-width: 21.428571428571427rem;
   position: absolute;
   background-color: #fff;
   -webkit-box-shadow: 0 2px 8px 0 rgba(191,191,191,0.5);
@@ -5536,6 +5547,7 @@ blockquote:before {
   -webkit-box-shadow: 0 2px 8px 0 rgba(191,191,191,0.5);
           box-shadow: 0 2px 8px 0 rgba(191,191,191,0.5);
   color: #595959;
+  max-width: none;
 }
 .k-datepicker-content .k-day,
 .k-datepicker-content .k-weekday {
@@ -5641,7 +5653,7 @@ blockquote:before {
   margin-right: 20px;
 }
 
-.example.index-101 .k-datepicker {
+.example.index-100 .k-datepicker {
   margin-right: 20px;
 }
 
@@ -5893,11 +5905,11 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-28"><div class="example-opera"><div><div class="k-slider" style=""><div class="k-slider-wrapper"><div class="k-wrapper"><div class="k-bar" style="width:0%;"></div><div class="k-handle" style="left:0%;"></div></div></div><div class="k-spinner-wrapper"><div class="k-spinner" style=""><button class="k-btn k-btn-icon k-left" disabled type="button">
+</div><div class="code"></div></div></div><div class="example index-28"><div class="example-opera"><div><div class="k-slider" style=""><div class="k-slider-wrapper"><div class="k-wrapper"><div class="k-bar" style="width:0%;"></div><div class="k-handle" style="left:0%;"></div></div></div><div class="k-spinner-wrapper"><div class="k-spinner" style=""><button class="k-btn k-btn-icon k-left k-disabled" type="button">
     <span>-</span>
     </button><div class="k-input" style=""><div class="k-wrapper"><input class="k-inner" type="text" value="0" /></div></div><button class="k-btn k-btn-icon k-right" type="button">
     <span>+</span>
-    </button></div></div></div><div class="k-slider" style=""><div class="k-slider-wrapper"><div class="k-wrapper"><div class="k-bar" style="width:0%;"></div><div class="k-handle" style="left:0%;"></div></div><div class="k-box"><span>50<!----> </span><span>500</span></div></div><div class="k-spinner-wrapper"><div class="k-spinner" style=""><button class="k-btn k-btn-icon k-left" disabled type="button">
+    </button></div></div></div><div class="k-slider" style=""><div class="k-slider-wrapper"><div class="k-wrapper"><div class="k-bar" style="width:0%;"></div><div class="k-handle" style="left:0%;"></div></div><div class="k-box"><span>50<!----> </span><span>500</span></div></div><div class="k-spinner-wrapper"><div class="k-spinner" style=""><button class="k-btn k-btn-icon k-left k-disabled" type="button">
     <span>-</span>
     </button><div class="k-input" style=""><div class="k-wrapper"><input class="k-inner" type="text" value="50" /></div></div><button class="k-btn k-btn-icon k-right" type="button">
     <span>+</span>
@@ -5910,9 +5922,9 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-83"><div class="example-opera"><div><div class="k-slider k-disabled" style=""><div class="k-slider-wrapper"><div class="k-wrapper"><div class="k-bar" style="width:50%;"></div><div class="k-handle" style="left:50%;"></div></div><div class="k-box"><span>0<!----> </span><span>100</span></div></div><div class="k-spinner-wrapper"><div class="k-spinner k-disabled" style=""><button class="k-btn k-btn-icon k-left" disabled type="button">
+</div><div class="code"></div></div></div><div class="example index-83"><div class="example-opera"><div><div class="k-slider k-disabled" style=""><div class="k-slider-wrapper"><div class="k-wrapper"><div class="k-bar" style="width:50%;"></div><div class="k-handle" style="left:50%;"></div></div><div class="k-box"><span>0<!----> </span><span>100</span></div></div><div class="k-spinner-wrapper"><div class="k-spinner k-disabled" style=""><button class="k-btn k-btn-icon k-left k-disabled" type="button">
     <span>-</span>
-    </button><div class="k-input k-disabled" style=""><div class="k-wrapper"><input class="k-inner" type="text" value="50" disabled /></div></div><button class="k-btn k-btn-icon k-right" disabled type="button">
+    </button><div class="k-input k-disabled" style=""><div class="k-wrapper"><input class="k-inner" type="text" value="50" disabled /></div></div><button class="k-btn k-btn-icon k-right k-disabled" type="button">
     <span>+</span>
     </button></div></div></div><div class="k-slider k-disabled" style=""><div class="k-slider-wrapper"><div class="k-wrapper"><div class="k-bar" style="width:50%;left:10%;"></div><div class="k-handle" style="left:10%;"></div><div class="k-handle" style="left:60%;"></div></div><div class="k-box"><span>50<!----> </span><span>100</span></div></div></div></div></div><div class="example-desc"><div class="title">禁用组件</div><div class="desc"><p>添加<code>disabled</code>禁用组件</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
@@ -5923,7 +5935,7 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-82"><div class="example-opera"><div class="k-slider" style=""><div class="k-slider-wrapper"><div class="k-wrapper"><div class="k-bar" style="width:26%;left:50%;"></div><div class="k-handle" style="left:50%;"></div><div class="k-handle" style="left:76%;"></div></div><div class="k-box"><span>0<!----> </span><span>100</span></div></div></div></div><div class="example-desc"><div class="title">范围选择</div><div class="desc"><p>指定<code>isRange</code>使组件支持范围选择，此时<code>v-model</code>绑定的数据为数组，并且不会展示<code>input</code>输入框。</p>
+</div><div class="code"></div></div></div><div class="example index-81"><div class="example-opera"><div class="k-slider" style=""><div class="k-slider-wrapper"><div class="k-wrapper"><div class="k-bar" style="width:26%;left:50%;"></div><div class="k-handle" style="left:50%;"></div><div class="k-handle" style="left:76%;"></div></div><div class="k-box"><span>0<!----> </span><span>100</span></div></div></div></div><div class="example-desc"><div class="title">范围选择</div><div class="desc"><p>指定<code>isRange</code>使组件支持范围选择，此时<code>v-model</code>绑定的数据为数组，并且不会展示<code>input</code>输入框。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->

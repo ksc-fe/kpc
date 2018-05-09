@@ -4006,8 +4006,8 @@ blockquote:before {
   background-color: #367df7;
   border-color: #367df7;
 }
-.k-btn[disabled],
-.k-btn[disabled]:hover {
+.k-btn.k-disabled,
+.k-btn.k-disabled:hover {
   color: #999;
   background-color: #f7f7f7;
   border-color: #d9d9d9;
@@ -4538,7 +4538,7 @@ blockquote:before {
   overflow-y: auto;
   overflow-x: hidden;
 }
-.k-table-wrapper .k-scroll table {
+.k-table-wrapper .k-scroll > .k-table {
   margin-top: -44px;
 }
 .k-table-wrapper.k-border .k-fixed,
@@ -4606,7 +4606,11 @@ blockquote:before {
   margin-right: 20px;
 }
 
-.example.index-93 .k-btn {
+.example.index-92 .k-btn {
+  margin-right: 20px;
+}
+
+.example.index-94 .k-btn {
   margin-right: 20px;
 }
 
@@ -4789,33 +4793,33 @@ blockquote:before {
   margin-left: 100%;
 }
 
-.example.index-23 .k-col {
+.example.index-24 .k-col {
   line-height: 40px;
   text-align: center;
   color: #fff;
 }
-.example.index-23 .k-col:nth-of-type(even) {
+.example.index-24 .k-col:nth-of-type(even) {
   background: #0a5eee;
 }
-.example.index-23 .k-col:nth-of-type(odd) {
+.example.index-24 .k-col:nth-of-type(odd) {
   background: #4f8df8;
 }
-.example.index-23 .k-row {
+.example.index-24 .k-row {
   margin-bottom: 20px;
 }
 
-.example.index-45 .k-col {
+.example.index-46 .k-col {
   line-height: 40px;
   text-align: center;
   color: #fff;
 }
-.example.index-45 .k-col:nth-of-type(even) div {
+.example.index-46 .k-col:nth-of-type(even) div {
   background: #0a5eee;
 }
-.example.index-45 .k-col:nth-of-type(odd) div {
+.example.index-46 .k-col:nth-of-type(odd) div {
   background: #4f8df8;
 }
-.example.index-45 .k-row {
+.example.index-46 .k-row {
   margin-bottom: 20px;
 }
 
@@ -4964,15 +4968,15 @@ blockquote:before {
   margin: 5px;
 }
 
-.example.index-49 .k-input {
+.example.index-50 .k-input {
   margin: 5px;
 }
 
-.example.index-88 .k-input {
+.example.index-93 .k-input {
   margin: 5px;
 }
 
-.example.index-60 .k-input {
+.example.index-53 .k-input {
   margin: 5px;
 }
 
@@ -5041,7 +5045,7 @@ blockquote:before {
   background: #999;
 }
 
-.example.index-19 .k-radio {
+.example.index-18 .k-radio {
   margin-right: 20px;
 }
 
@@ -5125,7 +5129,7 @@ blockquote:before {
   margin-right: 20px;
 }
 
-.example.index-48 .k-checkbox {
+.example.index-49 .k-checkbox {
   margin-right: 20px;
 }
 
@@ -5168,6 +5172,12 @@ blockquote:before {
 }
 .k-dropdown-menu.dropdown-leave-active {
   pointer-events: none;
+}
+.k-dropdown-menu > .k-tooltip {
+  display: block;
+}
+.k-dropdown-menu .k-dropdown > .k-tooltip {
+  display: block;
 }
 
 .k-select {
@@ -5349,7 +5359,7 @@ blockquote:before {
   padding: 0.571428571428571rem;
 }
 
-.example.index-108 .k-select {
+.example.index-109 .k-select {
   margin-right: 10px;
 }
 </style>
@@ -5487,14 +5497,14 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-65"><div class="example-opera"><div><div class="k-select k-clearable" style="margin-right: 10px"><div class="k-wrapper" _hasSaved><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span><span class="k-suffix"><i class="k-clear ion-ios-close"></i><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div><div class="k-select k-clearable" style=""><div class="k-wrapper" _hasSaved><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span><span class="k-suffix"><i class="k-clear ion-ios-close"></i><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></div><div class="example-desc"><div class="title">可清空</div><div class="desc"><p>指定<code>clearable</code>展示清空按钮</p>
+</div><div class="code"></div></div></div><div class="example index-66"><div class="example-opera"><div><div class="k-select k-clearable" style="margin-right: 10px"><div class="k-wrapper" _hasSaved><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span><span class="k-suffix"><i class="k-clear ion-ios-close"></i><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div><div class="k-select k-clearable" style=""><div class="k-wrapper" _hasSaved><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span><span class="k-suffix"><i class="k-clear ion-ios-close"></i><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></div><div class="example-desc"><div class="title">可清空</div><div class="desc"><p>指定<code>clearable</code>展示清空按钮</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-80"><div class="example-opera"><div class="k-select" style=""><div class="k-wrapper" _hasSaved><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">多选</div><div class="desc"><p>指定<code>multiple</code>支持多选</p>
+</div><div class="code"></div></div></div><div class="example index-82"><div class="example-opera"><div class="k-select" style=""><div class="k-wrapper" _hasSaved><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">多选</div><div class="desc"><p>指定<code>multiple</code>支持多选</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
@@ -5508,26 +5518,38 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-97"><div class="example-opera"><div class="k-select" style=""><div class="k-wrapper" _hasSaved><input type="hidden" /><div class="k-input k-fluid" style=""><div class="k-wrapper"><input class="k-inner" type="text" placeholder="请选择" /></div></div><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">自定义显示内容</div><div class="desc"><p><code>Option</code>的子元素可以是任意dom结构，而非仅仅只是字符串。此时如果需要支持<code>filterable</code>，我们应该指定<code>label</code>，以便组件知道筛选的内容。</p>
+</div><div class="code"></div></div></div><div class="example index-99"><div class="example-opera"><div class="k-select" style=""><div class="k-wrapper" _hasSaved><input type="hidden" /><div class="k-input k-fluid" style=""><div class="k-wrapper"><input class="k-inner" type="text" placeholder="请选择" /></div></div><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">自定义显示内容</div><div class="desc"><p><code>Option</code>的子元素可以是任意dom结构，而非仅仅只是字符串。此时如果需要支持<code>filterable</code>，我们应该指定<code>label</code>，以便组件知道筛选的内容。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-105"><div class="example-opera"><div class="k-select" style=""><div class="k-wrapper" _hasSaved><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">分组</div><div class="desc"><p>用<code>OptionGroup</code>嵌套<code>Option</code>可以实现分组功能</p>
+</div><div class="code"></div></div></div><div class="example index-104"><div class="example-opera"><div class="k-select" style=""><div class="k-wrapper" _hasSaved><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">分组</div><div class="desc"><p>用<code>OptionGroup</code>嵌套<code>Option</code>可以实现分组功能</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-108"><div class="example-opera"><div><div class="k-select" style=""><div class="k-wrapper" _hasSaved><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div><div class="k-select k-small" style=""><div class="k-wrapper" _hasSaved><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div><div class="k-select k-mini" style=""><div class="k-wrapper" _hasSaved><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></div><div class="example-desc"><div class="title">尺寸</div><div class="desc"><p><code>size</code>指定三种尺寸：<code>default</code> <code>small</code> <code>mini</code></p>
+</div><div class="code"></div></div></div><div class="example index-109"><div class="example-opera"><div><div class="k-select" style=""><div class="k-wrapper" _hasSaved><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div><div class="k-select k-small" style=""><div class="k-wrapper" _hasSaved><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div><div class="k-select k-mini" style=""><div class="k-wrapper" _hasSaved><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></div><div class="example-desc"><div class="title">尺寸</div><div class="desc"><p><code>size</code>指定三种尺寸：<code>default</code> <code>small</code> <code>mini</code></p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
                         </a><a class="k-tab">
                             <!---->index.styl<!---->
+                        </a><a class="k-tab">
+                            <!---->index.js<!---->
+                        </a>
+</div><div class="code"></div></div></div><div class="example index-114"><div class="example-opera"><div><div class="k-select" style="margin-right: 10px"><div class="k-wrapper" _hasSaved><input type="hidden" /><div class="k-input k-fluid" style=""><div class="k-wrapper"><input class="k-inner" type="text" placeholder="请输入或选择" /></div></div><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div>
+    Day: <!---->
+</div></div><div class="example-desc"><div class="title">输入和选择</div><div class="desc"><p>同时指定<code>filterable</code>和<code>allowUnmatch</code>支持筛选到不存在的条目时，可以返回输入的值，而不是清空输入</p>
+<blockquote>
+<p>目前只支持单选</p>
+</blockquote>
+</div></div><div class="example-code"><div class="k-tabs" style="">
+    <a class="k-tab">
+                            <!---->index.vdt<!---->
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
@@ -5600,6 +5622,12 @@ blockquote:before {
 <td>指定宽度</td>
 <td><code>Number</code></td>
 <td><code>undefined</code></td>
+</tr>
+<tr>
+<td>allowUnmatch</td>
+<td>与<code>filterable</code>一起使用，支持输入不匹配项</td>
+<td><code>Boolean</code></td>
+<td><code>false</code></td>
 </tr>
 </tbody>
                     </table>

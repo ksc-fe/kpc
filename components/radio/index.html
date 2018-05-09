@@ -4006,8 +4006,8 @@ blockquote:before {
   background-color: #367df7;
   border-color: #367df7;
 }
-.k-btn[disabled],
-.k-btn[disabled]:hover {
+.k-btn.k-disabled,
+.k-btn.k-disabled:hover {
   color: #999;
   background-color: #f7f7f7;
   border-color: #d9d9d9;
@@ -4538,7 +4538,7 @@ blockquote:before {
   overflow-y: auto;
   overflow-x: hidden;
 }
-.k-table-wrapper .k-scroll table {
+.k-table-wrapper .k-scroll > .k-table {
   margin-top: -44px;
 }
 .k-table-wrapper.k-border .k-fixed,
@@ -4606,7 +4606,11 @@ blockquote:before {
   margin-right: 20px;
 }
 
-.example.index-93 .k-btn {
+.example.index-92 .k-btn {
+  margin-right: 20px;
+}
+
+.example.index-94 .k-btn {
   margin-right: 20px;
 }
 
@@ -4789,33 +4793,33 @@ blockquote:before {
   margin-left: 100%;
 }
 
-.example.index-23 .k-col {
+.example.index-24 .k-col {
   line-height: 40px;
   text-align: center;
   color: #fff;
 }
-.example.index-23 .k-col:nth-of-type(even) {
+.example.index-24 .k-col:nth-of-type(even) {
   background: #0a5eee;
 }
-.example.index-23 .k-col:nth-of-type(odd) {
+.example.index-24 .k-col:nth-of-type(odd) {
   background: #4f8df8;
 }
-.example.index-23 .k-row {
+.example.index-24 .k-row {
   margin-bottom: 20px;
 }
 
-.example.index-45 .k-col {
+.example.index-46 .k-col {
   line-height: 40px;
   text-align: center;
   color: #fff;
 }
-.example.index-45 .k-col:nth-of-type(even) div {
+.example.index-46 .k-col:nth-of-type(even) div {
   background: #0a5eee;
 }
-.example.index-45 .k-col:nth-of-type(odd) div {
+.example.index-46 .k-col:nth-of-type(odd) div {
   background: #4f8df8;
 }
-.example.index-45 .k-row {
+.example.index-46 .k-row {
   margin-bottom: 20px;
 }
 
@@ -4964,15 +4968,15 @@ blockquote:before {
   margin: 5px;
 }
 
-.example.index-49 .k-input {
+.example.index-50 .k-input {
   margin: 5px;
 }
 
-.example.index-88 .k-input {
+.example.index-93 .k-input {
   margin: 5px;
 }
 
-.example.index-60 .k-input {
+.example.index-53 .k-input {
   margin: 5px;
 }
 
@@ -5041,7 +5045,7 @@ blockquote:before {
   background: #999;
 }
 
-.example.index-19 .k-radio {
+.example.index-18 .k-radio {
   margin-right: 20px;
 }
 
@@ -5171,7 +5175,7 @@ blockquote:before {
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/components/radio/index.md">github</a>
                     上修正该文档
                 </div></div><div class="contents"><div><h1>示例</h1>
-        <div class="example index-19"><div class="example-opera"><div><label class="k-radio" style=""><span class="k-wrapper"><input type="radio" v-model="value" value /></span><span class="k-text">radio</span></label><label class="k-radio k-disabled" style=""><span class="k-wrapper"><input type="radio" disabled v-model="value" value /></span><span class="k-text">disabled radio</span></label><label class="k-radio k-disabled k-checked" style=""><span class="k-wrapper"><input type="radio" disabled v-model="value" value checked /></span><span class="k-text">disabled checked radio</span></label></div></div><div class="example-desc"><div class="title">基本用法</div><div class="desc"><p><code>Radio</code>的基本用法，及禁用状态。由于<code>trueValue</code>的默认值为<code>true</code>，所以可以直接传入<code>value=true</code>来指定选中状态。</p>
+        <div class="example index-18"><div class="example-opera"><div><label class="k-radio" style=""><span class="k-wrapper"><input type="radio" v-model="value" value /></span><span class="k-text">radio</span></label><label class="k-radio k-disabled" style=""><span class="k-wrapper"><input type="radio" disabled v-model="value" value /></span><span class="k-text">disabled radio</span></label><label class="k-radio k-disabled k-checked" style=""><span class="k-wrapper"><input type="radio" disabled v-model="value" value checked /></span><span class="k-text">disabled checked radio</span></label></div></div><div class="example-desc"><div class="title">基本用法</div><div class="desc"><p><code>Radio</code>的基本用法，及禁用状态。由于<code>trueValue</code>的默认值为<code>true</code>，所以可以直接传入<code>value=true</code>来指定选中状态。</p>
 <blockquote>
 <p>选中状态的判定条件是<code>value === trueValue</code>，对于值为对象的情况要注意。</p>
 </blockquote>

@@ -12,7 +12,7 @@
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
         }
     ],
-    "index": 131,
+    "index": 133,
     "sideBars": {
         "undefined": [
             {
@@ -779,12 +779,46 @@
                 "path": "components/table/index.md",
                 "children": [
                     {
-                        "title": "表格属性 Table",
-                        "path": "#header-%E8%A1%A8%E6%A0%BC%E5%B1%9E%E6%80%A7%20Table",
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
                         "level": 1,
-                        "content": "<h1 id='header-%E8%A1%A8%E6%A0%BC%E5%B1%9E%E6%80%A7%20Table'>表格属性 Table</h1>",
-                        "text": "表格属性 Table",
-                        "children": []
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": [
+                            {
+                                "title": "Table",
+                                "path": "#header-Table",
+                                "level": 2,
+                                "content": "<h2 id='header-Table'>Table</h2>",
+                                "text": "Table",
+                                "children": []
+                            },
+                            {
+                                "title": "TableColumn",
+                                "path": "#header-TableColumn",
+                                "level": 2,
+                                "content": "<h2 id='header-TableColumn'>TableColumn</h2>",
+                                "text": "TableColumn",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "title": "扩展点",
+                        "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
+                        "level": 1,
+                        "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
+                        "text": "扩展点",
+                        "children": [
+                            {
+                                "title": "Table",
+                                "path": "#header-Table",
+                                "level": 2,
+                                "content": "<h2 id='header-Table'>Table</h2>",
+                                "text": "Table",
+                                "children": []
+                            }
+                        ]
                     },
                     {
                         "title": "方法",
@@ -792,7 +826,33 @@
                         "level": 1,
                         "content": "<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>",
                         "text": "方法",
-                        "children": []
+                        "children": [
+                            {
+                                "title": "Table",
+                                "path": "#header-Table",
+                                "level": 2,
+                                "content": "<h2 id='header-Table'>Table</h2>",
+                                "text": "Table",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "title": "事件",
+                        "path": "#header-%E4%BA%8B%E4%BB%B6",
+                        "level": 1,
+                        "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
+                        "text": "事件",
+                        "children": [
+                            {
+                                "title": "Table",
+                                "path": "#header-Table",
+                                "level": 2,
+                                "content": "<h2 id='header-Table'>Table</h2>",
+                                "text": "Table",
+                                "children": []
+                            }
+                        ]
                     }
                 ]
             },

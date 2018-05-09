@@ -8,7 +8,7 @@
     "codes": [
         {
             "language": "vdt",
-            "content": "import Tooltip from 'kpc/components/tooltip';\n\n<div>\n    <Tooltip content=\"hello\">\n        hover the text\n    </Tooltip>\n</div>"
+            "content": "import Tooltip from 'kpc/components/tooltip';\n\n<div>\n    <Tooltip content=\"hello\">\n        hover the text\n    </Tooltip>\n    <br /> <br />\n    <Tooltip>\n        don't show anything if content is empty \n    </Tooltip>\n</div>"
         },
         {
             "language": "js",
@@ -19,7 +19,7 @@
     "highlighted": [
         {
             "language": "vdt",
-            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Tooltip <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/tooltip'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Tooltip</span> <span class=\"hljs-attr\">content</span>=<span class=\"hljs-string\">\"hello\"</span>&gt;</span>\n        hover the text\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Tooltip</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span></code></pre>"
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Tooltip <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/tooltip'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Tooltip</span> <span class=\"hljs-attr\">content</span>=<span class=\"hljs-string\">\"hello\"</span>&gt;</span>\n        hover the text\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Tooltip</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">br</span> /&gt;</span> <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">br</span> /&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Tooltip</span>&gt;</span>\n        don't show anything if content is empty \n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Tooltip</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span></code></pre>"
         },
         {
             "language": "js",

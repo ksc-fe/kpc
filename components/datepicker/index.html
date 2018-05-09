@@ -4006,8 +4006,8 @@ blockquote:before {
   background-color: #367df7;
   border-color: #367df7;
 }
-.k-btn[disabled],
-.k-btn[disabled]:hover {
+.k-btn.k-disabled,
+.k-btn.k-disabled:hover {
   color: #999;
   background-color: #f7f7f7;
   border-color: #d9d9d9;
@@ -4538,7 +4538,7 @@ blockquote:before {
   overflow-y: auto;
   overflow-x: hidden;
 }
-.k-table-wrapper .k-scroll table {
+.k-table-wrapper .k-scroll > .k-table {
   margin-top: -44px;
 }
 .k-table-wrapper.k-border .k-fixed,
@@ -4606,7 +4606,11 @@ blockquote:before {
   margin-right: 20px;
 }
 
-.example.index-93 .k-btn {
+.example.index-92 .k-btn {
+  margin-right: 20px;
+}
+
+.example.index-94 .k-btn {
   margin-right: 20px;
 }
 
@@ -4789,33 +4793,33 @@ blockquote:before {
   margin-left: 100%;
 }
 
-.example.index-23 .k-col {
+.example.index-24 .k-col {
   line-height: 40px;
   text-align: center;
   color: #fff;
 }
-.example.index-23 .k-col:nth-of-type(even) {
+.example.index-24 .k-col:nth-of-type(even) {
   background: #0a5eee;
 }
-.example.index-23 .k-col:nth-of-type(odd) {
+.example.index-24 .k-col:nth-of-type(odd) {
   background: #4f8df8;
 }
-.example.index-23 .k-row {
+.example.index-24 .k-row {
   margin-bottom: 20px;
 }
 
-.example.index-45 .k-col {
+.example.index-46 .k-col {
   line-height: 40px;
   text-align: center;
   color: #fff;
 }
-.example.index-45 .k-col:nth-of-type(even) div {
+.example.index-46 .k-col:nth-of-type(even) div {
   background: #0a5eee;
 }
-.example.index-45 .k-col:nth-of-type(odd) div {
+.example.index-46 .k-col:nth-of-type(odd) div {
   background: #4f8df8;
 }
-.example.index-45 .k-row {
+.example.index-46 .k-row {
   margin-bottom: 20px;
 }
 
@@ -4964,15 +4968,15 @@ blockquote:before {
   margin: 5px;
 }
 
-.example.index-49 .k-input {
+.example.index-50 .k-input {
   margin: 5px;
 }
 
-.example.index-88 .k-input {
+.example.index-93 .k-input {
   margin: 5px;
 }
 
-.example.index-60 .k-input {
+.example.index-53 .k-input {
   margin: 5px;
 }
 
@@ -5041,7 +5045,7 @@ blockquote:before {
   background: #999;
 }
 
-.example.index-19 .k-radio {
+.example.index-18 .k-radio {
   margin-right: 20px;
 }
 
@@ -5125,7 +5129,7 @@ blockquote:before {
   margin-right: 20px;
 }
 
-.example.index-48 .k-checkbox {
+.example.index-49 .k-checkbox {
   margin-right: 20px;
 }
 
@@ -5168,6 +5172,12 @@ blockquote:before {
 }
 .k-dropdown-menu.dropdown-leave-active {
   pointer-events: none;
+}
+.k-dropdown-menu > .k-tooltip {
+  display: block;
+}
+.k-dropdown-menu .k-dropdown > .k-tooltip {
+  display: block;
 }
 
 .k-select {
@@ -5349,7 +5359,7 @@ blockquote:before {
   padding: 0.571428571428571rem;
 }
 
-.example.index-108 .k-select {
+.example.index-109 .k-select {
   margin-right: 10px;
 }
 
@@ -5383,11 +5393,11 @@ blockquote:before {
   margin-right: 20px;
 }
 
-.example.index-67 .k-spinner {
+.example.index-65 .k-spinner {
   margin-right: 20px;
 }
 
-.example.index-47 .k-spinner {
+.example.index-45 .k-spinner {
   margin-right: 20px;
 }
 
@@ -5395,6 +5405,7 @@ blockquote:before {
   display: inline-block;
 }
 .k-tooltip-content {
+  max-width: 21.428571428571427rem;
   position: absolute;
   background-color: #fff;
   -webkit-box-shadow: 0 2px 8px 0 rgba(191,191,191,0.5);
@@ -5536,6 +5547,7 @@ blockquote:before {
   -webkit-box-shadow: 0 2px 8px 0 rgba(191,191,191,0.5);
           box-shadow: 0 2px 8px 0 rgba(191,191,191,0.5);
   color: #595959;
+  max-width: none;
 }
 .k-datepicker-content .k-day,
 .k-datepicker-content .k-weekday {
@@ -5641,7 +5653,7 @@ blockquote:before {
   margin-right: 20px;
 }
 
-.example.index-101 .k-datepicker {
+.example.index-100 .k-datepicker {
   margin-right: 20px;
 }
 
@@ -5792,14 +5804,14 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-71"><div class="example-opera"><div class="k-datepicker" style=""><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="请选择日期" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">禁用指定日期</div><div class="desc"><p>通过<code>disabledDate</code>属性，可以定义个方法，来指定哪些日期被禁止选择。组件会将一个日期字符串作为方法的参数，如果方法返回“真”则禁用掉该日期，否则不禁用。</p>
+</div><div class="code"></div></div></div><div class="example index-73"><div class="example-opera"><div class="k-datepicker" style=""><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="请选择日期" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">禁用指定日期</div><div class="desc"><p>通过<code>disabledDate</code>属性，可以定义个方法，来指定哪些日期被禁止选择。组件会将一个日期字符串作为方法的参数，如果方法返回“真”则禁用掉该日期，否则不禁用。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-90"><div class="example-opera"><div><div class="k-datepicker" style=""><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="请选择日期" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div>
+</div><div class="code"></div></div></div><div class="example index-91"><div class="example-opera"><div><div class="k-datepicker" style=""><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="请选择日期" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div>
     You selected: <!---->
     <br /><br /><div class="k-datepicker" style=""><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="请选择日期和时间" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div>
     You selected: <!---->
@@ -5810,7 +5822,7 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-101"><div class="example-opera"><div><div class="k-datepicker" style=""><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="请选择日期和时间" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div><div class="k-datepicker" style=""><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="时间精确到小时" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div></div></div><div class="example-desc"><div class="title">选择时间</div><div class="desc"><p>将<code>type</code>属性指定为<code>datetime</code>，即可让日期支持选择时间。通过<code>disabledHours &amp; disabledMinutes &amp; disabledSeconds</code>可以禁用时分秒的选择。</p>
+</div><div class="code"></div></div></div><div class="example index-100"><div class="example-opera"><div><div class="k-datepicker" style=""><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="请选择日期和时间" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div><div class="k-datepicker" style=""><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="时间精确到小时" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div></div></div><div class="example-desc"><div class="title">选择时间</div><div class="desc"><p>将<code>type</code>属性指定为<code>datetime</code>，即可让日期支持选择时间。通过<code>disabledHours &amp; disabledMinutes &amp; disabledSeconds</code>可以禁用时分秒的选择。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
@@ -5819,7 +5831,7 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-103"><div class="example-opera"><div><div class="k-datepicker" style=""><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="请选择日期" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div>
+</div><div class="code"></div></div></div><div class="example index-106"><div class="example-opera"><div><div class="k-datepicker" style=""><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="请选择日期" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div>
     You selected: <!---->
     <br /><br /><div class="k-datepicker" style=""><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="请选择日期和时间" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div>
     You selected: <!---->

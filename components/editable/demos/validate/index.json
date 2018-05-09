@@ -15,7 +15,7 @@
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nimport Message from 'kpc/components/message';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    defaults() {\n        return {value: 100};\n    }\n\n    _showErrorTip(c, value) {\n        Message.error('Please enter digits.');\n    }\n} "
         }
     ],
-    "index": 37,
+    "index": 38,
     "highlighted": [
         {
             "language": "vdt",
