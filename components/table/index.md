@@ -40,7 +40,7 @@ order: 89
 | key | 指定当前列的`key`，__必须指定__ | `String` | `""` |
 | sortable | 是否可排序 | `Boolean` | `false` |
 | width | 列宽，可以指定百分比或像素(不需要加单位) | `String` | `undefined` |
-| groups | 指定分组数组，每一项格式为`{value: '选中后的值', label: '展示的文案'}` | `Array<Object>` | `undefined` |
+| group | 指定分组数组，每一项格式为`{value: '选中后的值', label: '展示的文案'}` | `Array<Object>` | `undefined` |
 | multiple | 分组是否支持多选 | `Boolean` | `false` |
 
 # 扩展点

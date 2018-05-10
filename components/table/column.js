@@ -16,7 +16,7 @@ export default class TableColumn extends Intact {
             key: '',
             sortable: false,
             width: undefined,
-            groups: undefined,
+            group: undefined,
             multiple: false,
             value: [],
 
