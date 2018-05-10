@@ -10,7 +10,8 @@ const classNameObj = {
     [className]: className,
 };
 
-<label class={{ classNameObj }} style={{ style }} tabindex="0"
+<label class={{ classNameObj }} style={{ style }}
+    tabindex={{ disabled ? "-1" : "0" }}
     ev-keypress={{ self._onKeypress }}
 >
     <span class="k-wrapper">
