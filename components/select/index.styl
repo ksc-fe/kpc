@@ -76,6 +76,10 @@
             border $select-focus-border
         .k-arrow
             transform rotate(180deg)
+    &:focus
+        outline none
+        > .k-wrapper
+            border $select-focus-border
 
     // disabled
     &.k-disabled

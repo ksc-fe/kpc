@@ -120,6 +120,10 @@ export default class Select extends Intact {
         clearTimeout(this.timer);
     }
 
+    _onFocusout() {
+        this.refs.dropdown.hide();
+    }
+
     _delete(value, e) {
         e.stopPropagation();
         const values = this.get('value').slice(0);
@@ -141,6 +145,18 @@ export default class Select extends Intact {
         const menuWidth = menuElement.offsetWidth;
         if (width > menuWidth) {
             menuElement.style.width = `${width}px`;
+        }
+    }
+
+    _onKeypress(e) {
+        if (e.keyCode === 13) {
+            this.refs.wrapper.click();
+        }
+    }
+
+    _onKeydown(e) {
+        if (e.keyCode === 9) {
+            this.refs.dropdown.hide();
         }
     }
 }
