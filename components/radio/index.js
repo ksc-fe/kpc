@@ -28,6 +28,12 @@ export default class Radio extends Intact {
             // this.set('value', undefined);
         // }
     }
+
+    _onKeypress(e) {
+        if (e.keyCode === 13) {
+            this.refs.input.click();
+        }
+    }
 }
 
 export {Radio};
