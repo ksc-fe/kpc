@@ -86,13 +86,24 @@ export default class Switch extends Intact {
         document.removeEventListener('mouseup', this._dragEnd);
     }
 
-    _toggle() {
+    _toggle(e, isKeypress) {
         if (this.get('disabled')) return;
+
+        // if is not keypress, we blur it to remove focus style
+        if (!isKeypress) {
+            this.element.blur();
+        }
 
         if (this.isChecked()) {
             this.uncheck();
         } else {
             this.check();
+        }
+    }
+
+    _onKeypress(e) {
+        if (e.keyCode === 13) {
+            this._toggle(e, true);
         }
     }
 

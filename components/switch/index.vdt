@@ -42,7 +42,12 @@ if (width && height) {
     };
 }
 
-<div class={{ classNameObj }} style={{ style }} ev-click={{ self._toggle }}>
+<div class={{ classNameObj }} 
+    style={{ style }} 
+    ev-click={{ self._toggle }}
+    tabindex={{ disabled ? "-1" : "0" }}
+    ev-keypress={{ self._onKeypress }}
+>
     <input type="checkbox" name={{ name }} 
         disabled={{ disabled }}
         v-model="value" 
@@ -50,6 +55,7 @@ if (width && height) {
         v-model-true={{ trueValue }}
         v-model-false={{ falseValue }}
         ref="input"
+        tabindex="-1"
     /> 
     <div class="k-off" v-if={{ off || blocks.off }} style={{ offStyle }}>
         <b:off>{{ off }}</b:off>
