@@ -27,6 +27,12 @@
             transform rotate(45deg) scale(0)
             transition all $transition 
 
+    // focus
+    &:focus
+        outline none
+        .k-wrapper
+            border-color $checkbox-checked-border-color 
+
     input
         width 100%
         height 100%

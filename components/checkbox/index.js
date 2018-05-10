@@ -52,6 +52,12 @@ export default class Checkbox extends Intact {
             value.indexOf(trueValue) > -1 : 
             value === trueValue;
     }
+
+    _onKeypress(e) {
+        if (e.keyCode === 13) {
+            this.refs.input.click();
+        }
+    }
 }
 
 export {Checkbox};
