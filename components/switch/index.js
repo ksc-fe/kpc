@@ -59,10 +59,12 @@ export default class Switch extends Intact {
     _dragEnd(e) {
         this.set('_dragging', false);
 
+        this.element.blur();
         const bar = this.refs.bar;
 
         // treat mousedown -> mouseup as click
         if (this._x === e.clientX) {
+            bar.style.width = '';
             this._toggle();
         } else {
             const percent = (bar.clientWidth - this._height / 2) / this._maxWidth;
@@ -102,6 +104,7 @@ export default class Switch extends Intact {
     }
 
     _onKeypress(e) {
+
         if (e.keyCode === 13) {
             this._toggle(e, true);
         }
