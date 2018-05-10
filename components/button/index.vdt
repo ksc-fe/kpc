@@ -70,6 +70,7 @@ if (!icon && Array.isArray(children)) {
 
 <Button class={{ classNameObj }} {{ ...rest }} {{ ...tagProps }}
     ev-click={{ self._onClick }}
+    tabindex={{ disabled || loading ? "-1" : "0" }}
 >
     {{ loading ? 
         classNameObj['k-icon-right'] ?
@@ -80,5 +81,6 @@ if (!icon && Array.isArray(children)) {
     <input type={{ _checkType }} v-if={{ _checkType !== 'none' }}
         name={{ name }} 
         checked={{ checked }}
+        tabindex="-1"
     />
 </Button>

@@ -22,6 +22,7 @@ sizes = small mini
     border 1px solid $btn-border-color
     font-size $btn-font-size
     &:hover
+    &:focus
         border-color $btn-hover-border-color
         color $btn-hover-color
     for type in types 
@@ -30,6 +31,7 @@ sizes = small mini
             color lookup('$btn-' + type + '-color')
             border-color lookup('$btn-' + type + '-border-color')
             &:hover
+            &:focus
                 background-color lighten(@background-color, 20%)
                 border-color lighten(@border-color, 20%)
     // disabled
