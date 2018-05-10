@@ -71,6 +71,7 @@ if (!icon && Array.isArray(children)) {
 <Button class={{ classNameObj }} {{ ...rest }} {{ ...tagProps }}
     ev-click={{ self._onClick }}
     tabindex={{ disabled || loading ? "-1" : "0" }}
+    ev-mouseup={{ self._blur }}
 >
     {{ loading ? 
         classNameObj['k-icon-right'] ?

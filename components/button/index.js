@@ -88,9 +88,6 @@ export default class Button extends Intact {
             return e.preventDefault();
         }
 
-        // when click, blur it to remove the focus style
-        this.element.blur();
-
         if (this.group) {
             let {_checkType, value, _value} = this.get();
             if (_checkType === 'radio') {
@@ -111,6 +108,11 @@ export default class Button extends Intact {
         }
         e.component = this;
         this.trigger('click', e);
+    }
+
+    _blur() {
+        // when click, blur it to remove the focus style
+        this.element.blur();
     }
 }
 
