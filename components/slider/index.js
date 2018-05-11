@@ -47,12 +47,11 @@ export default class Slider extends Intact {
                 this._setFixedValue(val);
             }
         });
-    }
-
-    _beforeUpdate(lastVNode, nextVNode) {
-        if (!this.get('_isDragging') && lastVNode && nextVNode) {
-            this._setFixedValue(this.get('value'));
-        }
+        this.on('$receive:value', (c, val) => {
+            if (!this.get('_isDragging')) {
+                this._setFixedValue(val);
+            }
+        });
     }
 
     _setFixedValue(value) {
@@ -65,33 +64,35 @@ export default class Slider extends Intact {
     }
 
     _getFixedValue(value) {
-        let {step, max, min, isRange} = this.get();
-
-        function fix(v) {
-            if (Number.isNaN(Number(v))) {
-                return min;
-            } else if (v < min) {
-                return min;
-            } else if (v > max) {
-                return max;
-            } else {
-                // for the accuracy
-                return Number((Math.round(v / step) * step).toFixed(10));
-            }
-        }
+        let {min, isRange} = this.get();
 
         let fixedValue;
         if (isRange) {
             if (!Array.isArray(value)) {
                 fixedValue = [min, min];
             } else {
-                fixedValue = [fix(value[0]), fix(value[1])];
+                fixedValue = [this._fix(value[0]), this._fix(value[1])];
             }
         } else {
-            fixedValue = fix(value);
+            fixedValue = this._fix(value);
         }
 
         return fixedValue;
+    }
+
+    _fix(v) {
+        let {step, max, min} = this.get();
+
+        if (Number.isNaN(Number(v))) {
+            return min;
+        } else if (v < min) {
+            return min;
+        } else if (v > max) {
+            return max;
+        } else {
+            // for the accuracy
+            return Number((Math.round(v / step) * step).toFixed(10));
+        }
     }
 
     _clickWrapper(e) {
@@ -132,26 +133,10 @@ export default class Slider extends Intact {
     _onDrag(indexFlag, e) {
         if (this.get('disabled')) return;
 
-        if (indexFlag) {
-            const value = this.get('value');
-            this._min = value[0];
-            this._max = value[1];
-            if (indexFlag === '_isFirst') {
-                this.set({
-                    _isDragging: true,
-                    _isFirst: true,
-                    _isSecond: false
-                });
-            } else {
-                this.set({
-                    _isDragging: true,
-                    _isFirst: false,
-                    _isSecond: true
-                });
-            }
-        } else {
-            this.set('_isDragging', true);
-        }
+        this._isDragging = true;
+
+        // when start drag, the element has been focusin
+        // so we need not handle it here
 
         this.__onRangeSliding = this._onRangeSliding.bind(this, indexFlag);
         this.__onRangeSlideEnd = this._onRangeSlideEnd.bind(this, indexFlag);
@@ -164,21 +149,20 @@ export default class Slider extends Intact {
 
         let tempValue = this._getSlidingValue(e.clientX, this.get('_isDragging'));
         let fixedValue;
+
         if (indexFlag) {
             if (indexFlag === '_isFirst') {
                 if (this.get('_isSecond')) return;
-                tempValue = [
-                    Math.min(tempValue, this._max),
-                    Math.max(tempValue, this._max)
-                ];
             } else {
-                if (this.get ('_isFirst')) return;
-                tempValue = [
-                    Math.min(tempValue, this._min),
-                    Math.max(tempValue, this._min)
-                ];
+                if (this.get('_isFirst')) return;
             }
         }
+
+        tempValue = this._getTempValue(
+            tempValue, indexFlag, 
+            this._min, this._max,
+            indexFlag === '_isFirst'
+        );
 
         fixedValue = this._getFixedValue(tempValue);
 
@@ -189,15 +173,35 @@ export default class Slider extends Intact {
         });
     }
 
+    _getTempValue(value, isRange, min, max, isFirst) {
+        if (isRange) {
+            if (isFirst) {
+                return [
+                    Math.min(value, max),
+                    Math.max(value, max)
+                ];
+            } else {
+                return [
+                    Math.min(value, min),
+                    Math.max(value, min)
+                ] 
+            }
+        }
+        return value;
+    }
+
     _onRangeSlideEnd(indexFlag, e){
         if (this.get('disabled')) return;
 
         if (this.get('_isDragging')) {
-            this.set('_isDragging', false, {silent: true});
+            this.set('_isDragging', false, {async: true});
             let newValue = this._getSlidingValue(e.clientX);
             if (indexFlag) {
                 if (indexFlag === '_isFirst') {
                     if (this.get('_isSecond')) return;
+
+                    this.$sliderFirstBtn.blur();
+
                     this.set('_isFirst', false, {async: true});
                     newValue = [
                         Math.min(newValue, this._max), 
@@ -205,12 +209,17 @@ export default class Slider extends Intact {
                     ];
                 } else {
                     if (this.get('_isFirst')) return;
+
+                    this.$sliderSecondBtn.blur();
+
                     this.set('_isSecond', false, {async: true});
                     newValue = [
                         Math.min(newValue, this._min),
                         Math.max(newValue, this._min)
                     ];
                 }
+            } else {
+                this.$sliderFirstBtn.blur();
             }
 
             this._setFixedValue(newValue);
@@ -219,6 +228,101 @@ export default class Slider extends Intact {
 
             window.removeEventListener('mousemove', this.__onRangeSliding);
             window.removeEventListener('mouseup', this.__onRangeSlideEnd);
+
+            this._isDragging = false;
+        }
+    }
+
+    _onFocusin(indexFlag, e) {
+        if (this.get('disabled')) return;
+
+        // if the focusin is invoked by dragging
+        // let the handle element blur
+        // because k-active will add focus style
+        if (this._isDragging) {
+            e.target.blur();
+        }
+
+        if (this.get('isRange')) {
+            const value = this.get('value');
+            this._min = value[0];
+            this._max = value[1];
+            if (indexFlag === '_isFirst') {
+                this._initValue = this._min;
+                this.set({
+                    _isDragging: true,
+                    _isFirst: true,
+                    _isSecond: false
+                });
+            } else {
+                this._initValue = this._max;
+                this.set({
+                    _isDragging: true,
+                    _isFirst: false,
+                    _isSecond: true
+                });
+            } 
+        } else {
+            this.set('_isDragging', true);
+        }
+    }
+
+    _onFocusout(indexFlag) {
+        if (this.get('disabled') || this._isDragging) return;
+
+        if (this.get('isRange')) {
+            if (indexFlag === '_isFirst') {
+                if (this.get('_isSecond')) return;
+                this.set('_isFirst', false, {async: true});
+            } else {
+                if (this.get('_isFirst')) return;
+                this.set('_isSecond', false, {async: true});
+            }
+        }
+
+        this.set('_isDragging', false, {async: true});
+    }
+
+    _onKeydown(indexFlag, e) {
+        if (this.get('disabled')) return;
+
+        const step = this.get('step');
+        if (e.keyCode === 37) { // left
+            this._setValue(indexFlag, -step);
+        } else if (e.keyCode === 39) { // right
+            this._setValue(indexFlag, step);
+        }
+    }
+
+    _setValue(indexFlag, step) {
+        const value = this.get('value');
+
+        if (!this.get('isRange')) {
+            return this._setFixedValue(value + step);
+        }
+
+        this._initValue += step;
+        this._initValue = this._fix(this._initValue);
+        
+        let _value = this._getTempValue(
+            this._initValue, indexFlag, 
+            this._min, this._max,
+            indexFlag === '_isFirst'
+        );
+
+        this._setFixedValue(_value);
+
+        // if overstep the boundary, reverse it
+        if (indexFlag === '_isFirst') {
+            if (this._initValue > this._max) {
+                this.$sliderFirstBtn.blur();
+                this.$sliderSecondBtn.focus();
+            }
+        } else if (indexFlag === '_isSecond') {
+            if (this._initValue < this._min) {
+                this.$sliderSecondBtn.blur();
+                this.$sliderFirstBtn.focus();
+            }
         }
     }
 

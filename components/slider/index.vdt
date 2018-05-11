@@ -51,6 +51,13 @@ const sliderWidth = max - min;
                     self._onDrag.bind(self, undefined)
                 }}
                 ev-click={{ self._stopPropagation }}
+                tabindex={{ disabled ? "-1" : "0" }}
+                ev-keydown={{ isRange ? 
+                    self._onKeydown.bind(self, '_isFirst') :
+                    self._onKeydown.bind(self, undefined)
+                }}
+                ev-focusin={{ self._onFocusin.bind(self, '_isFirst') }}
+                ev-focusout={{ self._onFocusout.bind(self, '_isFirst') }}
             >
                 <div v-if={{ isInnerText }}>{{ isRange ? value : value[0]}}</div>
             </div>
@@ -66,6 +73,10 @@ const sliderWidth = max - min;
                 style={{ {
                     left: (_sliderValue[1] - min) / sliderWidth * 100 + '%'
                 } }}
+                tabindex={{ disabled ? "-1" : "0" }}
+                ev-keydown={{ self._onKeydown.bind(self, '_isSecond') }}
+                ev-focusin={{ self._onFocusin.bind(self, '_isSecond') }}
+                ev-focusout={{ self._onFocusout.bind(self, '_isSecond') }}
             >
                 <div v-if={{ isInnerText }}>{{ value[1] }}</div>
             </div>
@@ -84,6 +95,7 @@ const sliderWidth = max - min;
             min={{ min }}
             v-model="_inputValue"
             step={{ step }} 
+            ref="spinner"
         />
     </div>
 </div>

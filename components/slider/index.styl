@@ -6,6 +6,7 @@
     // align-items center
     display table
     width 100%
+    outline none
     .k-slider-wrapper
         // flex 1
         display table-cell
@@ -44,10 +45,13 @@
             border-radius $slider-handle-border-radius 
             background-color $slider-handle-bg-color 
             transition all $transition 
+            outline none
             &:hover
+            &:focus
                 transform $slider-handle-hover-transform 
                 cursor grab
                 background-color $slider-handle-hover-bg-color 
+
     .k-spinner-wrapper
         display table-cell
         width $slider-spinner-width 
@@ -72,6 +76,7 @@
         .k-handle
             border-color $slider-disabled-color
             &:hover
+            &:focus
                 background-color $slider-handle-disabled-bg-color
                 cursor not-allowed
                 transform none
