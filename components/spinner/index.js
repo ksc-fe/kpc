@@ -27,6 +27,21 @@ export default class Spinner extends Intact {
     }
 
     _init() {
+        this._fixValue();
+        this.on('$receive:value', this._fixValue);
+        this.on('$change:_value', (c, val) => {
+            const {max, min} = this.get();
+            // if the _value is valid, then set it to value
+            if (numberReg.test(val)) {
+                val = Number(val);
+                if (val <= max && val >= min) {
+                    this.set('value', val);
+                }
+            }
+        });
+    }
+
+    _fixValue() {
         let value = this.get('value');
         if (value == null) {
             const min = this.get('min');
@@ -35,45 +50,49 @@ export default class Spinner extends Intact {
             } else {
                 value = min;
             }
-            this.set('value', value);
         }
+        this.set({
+            '_value': value,
+            'value': value,
+        });
         this.initValue = value;
     }
 
     _increase(e) {
         if (this._disableIncrease()) return;
 
-        const {value, step} = this.get();
+        const {_value, step} = this.get();
 
-        this.set('value', Number((value + step).toFixed(10)));
+        this.set('_value', Number((_value + step).toFixed(10)));
     }
 
     _decrease(e) {
         if (this._disableDecrease()) return;
 
-        const {value, step} = this.get();
+        const {_value, step} = this.get();
 
-        this.set('value', Number((value - step).toFixed(10)));
+        this.set('_value', Number((_value - step).toFixed(10)));
     }
 
     _disableDecrease() {
-        const {value, min, step, disabled} = this.get();
+        const {_value, min, step, disabled} = this.get();
 
-        return disabled || value <= min || value - min < step;
+        return disabled || _value <= min || _value - min < step;
     }
 
     _disableIncrease() {
-        const {value, max, step, disabled} = this.get();
+        const {_value, max, step, disabled} = this.get();
 
-        return disabled || value >= max || max - value < step;
+        return disabled || _value >= max || max - _value < step;
     }
 
     _changeValue(e) {
-        const {disabled, max, min} = this.get();
         let val = e.target.value.trim();
 
+        const {disabled, max, min} = this.get();
+
         if (!numberReg.test(val) || disabled) {
-            this.set('value', this.initValue);
+            this.set('_value', this.initValue);
         } else {
             val = Number(val);
             if (val >= max) {
@@ -81,7 +100,7 @@ export default class Spinner extends Intact {
             } else if (val < min) {
                 val = min;
             }
-            this.set('value', val);
+            this.set('_value', val);
         }
     }
 }
