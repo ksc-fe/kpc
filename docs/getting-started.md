@@ -87,9 +87,6 @@ npm run dev
 ```shell
 npm install intact kpc --save
 
-# 内网git
-npm install intact 'git+http://newgit.op.ksyun.com/ksyun-fe/kpc.git#v4.0' --save
-
 npm install css-loader style-loader file-loader --save-dev
 ```
 
