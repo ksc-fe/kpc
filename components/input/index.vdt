@@ -1,7 +1,7 @@
 import {addStyle} from '../utils';
 
 const {
-    type, name, value, placeholder,
+    type, name, value, placeholder, tabindex,
     readonly, clearable, disabled, size, 
     rows, spellcheck, defaultValue, style,
     className, autoWidth, fluid, width,
@@ -57,6 +57,7 @@ const wrapperEvents = [
             placeholder={{ placeholder }}
             disabled={{ disabled }}
             ref="input"
+            tabindex={{ tabindex }}
             {{ ...events }}
         />
         <textarea v-else 
@@ -71,6 +72,7 @@ const wrapperEvents = [
             ref="input"
             rows={{ rows }}
             spellcheck={{ spellcheck }}
+            tabindex={{ tabindex }}
             {{ ...events }}
         ></textarea>
         <div class="k-suffix" v-if={{ blocks.suffix || clearable }}>

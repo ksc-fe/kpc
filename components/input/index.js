@@ -31,6 +31,7 @@ export default class Input extends Intact {
             autoWidth: false,
             fluid: false,
             width: undefined,
+            tabindex: undefined,
         }
     }
 
