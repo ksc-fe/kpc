@@ -184,12 +184,16 @@ export default class FormItem extends Intact {
         if (!this.get('model')) return;
         if (this.get('isDirty')) return;
 
-        // for vue value will changed after event
-        if (this.$nextTick) {
-            this.$nextTick(this.validate);
-        } else {
-            this.validate();
-        }
+        // for select, the focusout event triggers before select
+        // so we put off validating it 
+        setTimeout(() => {
+            this.validate()
+        }, 50);
+        // if (this.$nextTick) {
+            // this.$nextTick(this.validate);
+        // } else {
+            // this.validate();
+        // }
     }
 
     _cancel() {
