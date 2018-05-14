@@ -226,6 +226,7 @@ export default class Datepicker extends Intact {
     _onKeydown(e) {
         switch (e.keyCode) {
             case 13:
+                e.preventDefault();
                 if (!this._hasSelectByArrowKey) {
                     this.refs.input.element.click();
                 } else {
