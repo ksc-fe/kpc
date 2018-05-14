@@ -3966,7 +3966,8 @@ blockquote:before {
   border: 1px solid #cad0dd;
   font-size: 1rem;
 }
-.k-btn:hover {
+.k-btn:hover,
+.k-btn:focus {
   border-color: #0a5eee;
   color: #0a5eee;
 }
@@ -3975,7 +3976,8 @@ blockquote:before {
   color: #fff;
   border-color: #0a5eee;
 }
-.k-btn.k-primary:hover {
+.k-btn.k-primary:hover,
+.k-btn.k-primary:focus {
   background-color: #367df7;
   border-color: #367df7;
 }
@@ -3984,7 +3986,8 @@ blockquote:before {
   color: #fff;
   border-color: #ff8a00;
 }
-.k-btn.k-warning:hover {
+.k-btn.k-warning:hover,
+.k-btn.k-warning:focus {
   background-color: #ffa133;
   border-color: #ffa133;
 }
@@ -3993,7 +3996,8 @@ blockquote:before {
   color: #fff;
   border-color: #db2828;
 }
-.k-btn.k-danger:hover {
+.k-btn.k-danger:hover,
+.k-btn.k-danger:focus {
   background-color: #e25353;
   border-color: #e25353;
 }
@@ -4002,7 +4006,8 @@ blockquote:before {
   color: #fff;
   border-color: #0a5eee;
 }
-.k-btn.k-active:hover {
+.k-btn.k-active:hover,
+.k-btn.k-active:focus {
   background-color: #367df7;
   border-color: #367df7;
 }
@@ -4119,7 +4124,8 @@ blockquote:before {
   margin: 0;
   vertical-align: middle;
 }
-.k-btns .k-btn:hover {
+.k-btns .k-btn:hover,
+.k-btns .k-btn:focus {
   z-index: 1;
   position: relative;
 }
@@ -5033,6 +5039,12 @@ blockquote:before {
       -ms-transform: scale(1);
           transform: scale(1);
 }
+.k-radio:focus {
+  outline: none;
+}
+.k-radio:focus .k-wrapper {
+  border-color: #0a5eee;
+}
 .k-radio.k-disabled {
   color: #999;
   cursor: not-allowed;
@@ -5108,6 +5120,12 @@ blockquote:before {
   -webkit-transform: rotate(45deg) scale(1);
       -ms-transform: rotate(45deg) scale(1);
           transform: rotate(45deg) scale(1);
+}
+.k-checkbox:focus {
+  outline: none;
+}
+.k-checkbox:focus .k-wrapper {
+  border-color: #0a5eee;
 }
 .k-checkbox.k-disabled {
   color: #999;
@@ -5264,6 +5282,12 @@ blockquote:before {
       -ms-transform: rotate(180deg);
           transform: rotate(180deg);
 }
+.k-select:focus {
+  outline: none;
+}
+.k-select:focus > .k-wrapper {
+  border: 1px solid #0a5eee;
+}
 .k-select.k-disabled > .k-wrapper {
   color: #999;
   cursor: not-allowed;
@@ -5366,7 +5390,8 @@ blockquote:before {
 .k-spinner {
   display: inline-block;
 }
-.k-spinner .k-btn:hover {
+.k-spinner .k-btn:hover,
+.k-spinner .k-btn:focus {
   z-index: 1;
   position: relative;
 }
@@ -5537,9 +5562,13 @@ blockquote:before {
 
 .k-datepicker {
   display: inline-block;
+  outline: none;
 }
 .k-datepicker .k-inner {
   cursor: pointer;
+}
+.k-datepicker:focus .k-inner {
+  border: 1px solid #0a5eee;
 }
 .k-datepicker-content {
   position: absolute;
@@ -5548,6 +5577,9 @@ blockquote:before {
           box-shadow: 0 2px 8px 0 rgba(191,191,191,0.5);
   color: #595959;
   max-width: none;
+}
+.k-datepicker-content .k-wrapper {
+  outline: none;
 }
 .k-datepicker-content .k-day,
 .k-datepicker-content .k-weekday {
@@ -5564,7 +5596,7 @@ blockquote:before {
   border: 1px solid transparent;
   position: relative;
 }
-.k-datepicker-content .k-day:hover {
+.k-datepicker-content .k-day.k-hover {
   background: #eee;
   color: #595959;
 }
@@ -5665,6 +5697,7 @@ blockquote:before {
   position: relative;
   display: table;
   width: 100%;
+  outline: none;
 }
 .k-slider .k-slider-wrapper {
   display: table-cell;
@@ -5709,8 +5742,10 @@ blockquote:before {
   border-radius: 50%;
   background-color: #fff;
   transition: all 0.25s ease-in-out;
+  outline: none;
 }
-.k-slider .k-slider-wrapper .k-handle:hover {
+.k-slider .k-slider-wrapper .k-handle:hover,
+.k-slider .k-slider-wrapper .k-handle:focus {
   -webkit-transform: scale(1.5);
       -ms-transform: scale(1.5);
           transform: scale(1.5);
@@ -5750,7 +5785,8 @@ blockquote:before {
 .k-slider.k-disabled .k-handle {
   border-color: #999;
 }
-.k-slider.k-disabled .k-handle:hover {
+.k-slider.k-disabled .k-handle:hover,
+.k-slider.k-disabled .k-handle:focus {
   background-color: #fff;
   cursor: not-allowed;
   -webkit-transform: none;
@@ -5868,6 +5904,13 @@ blockquote:before {
   background: #0a5eee;
   -webkit-transition: background 0.25s ease-in-out;
   transition: background 0.25s ease-in-out;
+}
+.k-switch:focus {
+  outline: none;
+}
+.k-switch:focus .k-bar,
+.k-switch:focus .k-wrapper {
+  background: #0a5eee;
 }
 .k-switch.k-default {
   width: 3.428571428571428rem;
@@ -6740,7 +6783,7 @@ blockquote:before {
                 </div></div><div class="contents"><div><h1>示例</h1>
         <div class="example index-9"><div class="example-opera"><div><div class="k-table-wrapper" style="">
     <table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
+    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="表头1"><div class="k-th"><div class="c-ellipsis">表头1</div>
         <!---->
     </div></th><th title="表头2"><div class="k-th"><div class="c-ellipsis">表头2</div>
@@ -6749,9 +6792,9 @@ blockquote:before {
             <!---->
         </tr></thead>
     <tbody>
-    <tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" name="k-table-checkbox" /></span></label></td>
+    <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="第一行">第一行</td><td title="哈哈2">哈哈2</td>
-            </tr><tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" name="k-table-checkbox" /></span></label></td>
+            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="第二行">第二行</td><td title="哈哈2">哈哈2</td>
             </tr>
 </tbody>
@@ -6765,7 +6808,7 @@ blockquote:before {
                         </a>
 </div><div class="code"></div></div></div><div class="example index-34"><div class="example-opera"><div><p>{key: value}形式:</p><div class="k-table-wrapper" style="">
     <table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
+    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="a只是个id"><div class="k-th"><div class="c-ellipsis">a只是个id</div>
         <!---->
     </div></th><th title="key-{String}形式"><div class="k-th"><div class="c-ellipsis">key-{String}形式</div>
@@ -6780,14 +6823,14 @@ blockquote:before {
             <!---->
         </tr></thead>
     <tbody>
-    <tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" name="k-table-checkbox" /></span></label></td>
+    <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td><a>虚拟DOM</a></td><td title="获取到了item.b">获取到了item.b</td><td title="item.c.c1">item.c.c1</td><td></td><td title="值形式">值形式</td>
             </tr>
 </tbody>
 </table>
 </div><p>标签形式:</p><div class="k-table-wrapper" style="">
     <table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
+    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <!---->
             <th title="a"><div class="k-th"><div class="c-ellipsis">a</div>
         <!---->
@@ -6800,7 +6843,7 @@ blockquote:before {
     </div></th>
         </tr></thead>
     <tbody>
-    <tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" name="k-table-checkbox" /></span></label></td>
+    <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td><a>虚拟DOM</a></td><td title="item.c.c1">item.c.c1</td><td title="值形式">值形式</td><td title="获取到了item.b">获取到了item.b</td>
             </tr>
 </tbody>
@@ -6877,14 +6920,14 @@ blockquote:before {
                         </a>
 </div><div class="code"></div></div></div><div class="example index-59"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
+    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="表头"><div class="k-th"><div class="c-ellipsis">表头</div>
         <!---->
     </div></th>
             <!---->
         </tr></thead>
     <tbody>
-    <tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" name="k-table-checkbox" /></span></label></td>
+    <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="多选框">多选框</td>
             </tr>
 </tbody>
@@ -6898,7 +6941,7 @@ blockquote:before {
             <!---->
         </tr></thead>
     <tbody>
-    <tr class=""><td><label class="k-radio" style=""><span class="k-wrapper"><input type="radio" v-model="checkedKey" value="0" name="k-table-radio" /></span></label></td>
+    <tr class=""><td><label class="k-radio" style="" tabindex="0"><span class="k-wrapper"><input type="radio" v-model="checkedKey" value="0" tabindex="-1" name="k-table-radio" /></span></label></td>
                 <td title="单选框">单选框</td>
             </tr>
 </tbody>
@@ -6935,9 +6978,9 @@ blockquote:before {
             <!---->
         </tr></thead>
     <tbody>
-    <tr class="k-checked"><td><label class="k-radio k-checked" style=""><span class="k-wrapper"><input type="radio" v-model="checkedKey" value="0" name="k-table-radio" checked /></span></label></td>
+    <tr class="k-checked"><td><label class="k-radio k-checked" style="" tabindex="0"><span class="k-wrapper"><input type="radio" v-model="checkedKey" value="0" tabindex="-1" name="k-table-radio" checked /></span></label></td>
                 <td title="赋默认值选中">赋默认值选中</td>
-            </tr><tr class=""><td><label class="k-radio" style=""><span class="k-wrapper"><input type="radio" v-model="checkedKey" value="1" name="k-table-radio" /></span></label></td>
+            </tr><tr class=""><td><label class="k-radio" style="" tabindex="0"><span class="k-wrapper"><input type="radio" v-model="checkedKey" value="1" tabindex="-1" name="k-table-radio" /></span></label></td>
                 <td title="不选中">不选中</td>
             </tr>
 </tbody>
@@ -6951,43 +6994,43 @@ blockquote:before {
             <!---->
         </tr></thead>
     <tbody>
-    <tr class="k-checked"><td><label class="k-radio k-checked" style=""><span class="k-wrapper"><input type="radio" v-model="checkedKey" value="yes" name="k-table-radio" checked /></span></label></td>
+    <tr class="k-checked"><td><label class="k-radio k-checked" style="" tabindex="0"><span class="k-wrapper"><input type="radio" v-model="checkedKey" value="yes" tabindex="-1" name="k-table-radio" checked /></span></label></td>
                 <td title="选中">选中</td>
-            </tr><tr class=""><td><label class="k-radio" style=""><span class="k-wrapper"><input type="radio" v-model="checkedKey" value="no" name="k-table-radio" /></span></label></td>
+            </tr><tr class=""><td><label class="k-radio" style="" tabindex="0"><span class="k-wrapper"><input type="radio" v-model="checkedKey" value="no" tabindex="-1" name="k-table-radio" /></span></label></td>
                 <td title="不选中">不选中</td>
             </tr>
 </tbody>
 </table>
 </div></div><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
+    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="checkbox不指定rowKey"><div class="k-th"><div class="c-ellipsis">checkbox不指定rowKey</div>
         <!---->
     </div></th>
             <!---->
         </tr></thead>
     <tbody>
-    <tr class="k-checked"><td><label class="k-checkbox k-checked" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" name="k-table-checkbox" checked /></span></label></td>
+    <tr class="k-checked"><td><label class="k-checkbox k-checked" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" checked /></span></label></td>
                 <td title="赋默认值选中">赋默认值选中</td>
-            </tr><tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" name="k-table-checkbox" /></span></label></td>
+            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="不选中">不选中</td>
-            </tr><tr class="k-checked"><td><label class="k-checkbox k-checked" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="2" name="k-table-checkbox" checked /></span></label></td>
+            </tr><tr class="k-checked"><td><label class="k-checkbox k-checked" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="2" tabindex="-1" name="k-table-checkbox" checked /></span></label></td>
                 <td title="赋默认值选中，可设置多个">赋默认值选中，可设置多个</td>
             </tr>
 </tbody>
 </table>
 </div><div class="k-table-wrapper" style="">
     <table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
+    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="checkbox指定为item的id"><div class="k-th"><div class="c-ellipsis">checkbox指定为item的id</div>
         <!---->
     </div></th>
             <!---->
         </tr></thead>
     <tbody>
-    <tr class="k-checked"><td><label class="k-checkbox k-checked" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="yes" name="k-table-checkbox" checked /></span></label></td>
+    <tr class="k-checked"><td><label class="k-checkbox k-checked" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="yes" tabindex="-1" name="k-table-checkbox" checked /></span></label></td>
                 <td title="选中">选中</td>
-            </tr><tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="no" name="k-table-checkbox" /></span></label></td>
+            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="no" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="不选中">不选中</td>
             </tr>
 </tbody>
@@ -7007,7 +7050,7 @@ blockquote:before {
                         </a>
 </div><div class="code"></div></div></div><div class="example index-85"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
+    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="不整行选中"><div class="k-th"><div class="c-ellipsis">不整行选中</div>
         <!---->
     </div></th><th title="B"><div class="k-th"><div class="c-ellipsis">B</div>
@@ -7016,16 +7059,16 @@ blockquote:before {
             <!---->
         </tr></thead>
     <tbody>
-    <tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" name="k-table-checkbox" /></span></label></td>
+    <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="A">A</td><td title="B">B</td>
-            </tr><tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" name="k-table-checkbox" /></span></label></td>
+            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="A">A</td><td title="点我不会选中整行">点我不会选中整行</td>
             </tr>
 </tbody>
 </table>
 </div><div class="k-table-wrapper" style="">
     <table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
+    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="整行选中"><div class="k-th"><div class="c-ellipsis">整行选中</div>
         <!---->
     </div></th><th title="B"><div class="k-th"><div class="c-ellipsis">B</div>
@@ -7034,9 +7077,9 @@ blockquote:before {
             <!---->
         </tr></thead>
     <tbody>
-    <tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" name="k-table-checkbox" /></span></label></td>
+    <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="A">A</td><td title="任何位置都可以哦～">任何位置都可以哦～</td>
-            </tr><tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" name="k-table-checkbox" /></span></label></td>
+            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="A">A</td><td title="点我会选中整行">点我会选中整行</td>
             </tr>
 </tbody>
@@ -7055,22 +7098,22 @@ blockquote:before {
                         </a>
 </div><div class="code"></div></div></div><div class="example index-102"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
+    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="偶数行背景变换"><div class="k-th"><div class="c-ellipsis">偶数行背景变换</div>
         <!---->
     </div></th>
             <!---->
         </tr></thead>
     <tbody>
-    <tr class="turn-blue"><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" name="k-table-checkbox" /></span></label></td>
+    <tr class="turn-blue"><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="1">1</td>
-            </tr><tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" name="k-table-checkbox" /></span></label></td>
+            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="2">2</td>
-            </tr><tr class="turn-blue"><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="2" name="k-table-checkbox" /></span></label></td>
+            </tr><tr class="turn-blue"><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="2" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="3">3</td>
-            </tr><tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="3" name="k-table-checkbox" /></span></label></td>
+            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="3" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="4">4</td>
-            </tr><tr class="turn-blue"><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="4" name="k-table-checkbox" /></span></label></td>
+            </tr><tr class="turn-blue"><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="4" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="5">5</td>
             </tr>
 </tbody>
@@ -7136,22 +7179,22 @@ blockquote:before {
                         </a>
 </div><div class="code"></div></div></div><div class="example index-110"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
+    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="奇数行不可点击"><div class="k-th"><div class="c-ellipsis">奇数行不可点击</div>
         <!---->
     </div></th>
             <!---->
         </tr></thead>
     <tbody>
-    <tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" name="k-table-checkbox" /></span></label></td>
+    <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="1">1</td>
-            </tr><tr class="k-disabled"><td><label class="k-checkbox k-disabled" style=""><span class="k-wrapper"><input type="checkbox" disabled v-model="checkedKeys" value="1" name="k-table-checkbox" /></span></label></td>
+            </tr><tr class="k-disabled"><td><label class="k-checkbox k-disabled" style="" tabindex="-1"><span class="k-wrapper"><input type="checkbox" disabled v-model="checkedKeys" value="1" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="2">2</td>
-            </tr><tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="2" name="k-table-checkbox" /></span></label></td>
+            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="2" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="3">3</td>
-            </tr><tr class="k-disabled"><td><label class="k-checkbox k-disabled" style=""><span class="k-wrapper"><input type="checkbox" disabled v-model="checkedKeys" value="3" name="k-table-checkbox" /></span></label></td>
+            </tr><tr class="k-disabled"><td><label class="k-checkbox k-disabled" style="" tabindex="-1"><span class="k-wrapper"><input type="checkbox" disabled v-model="checkedKeys" value="3" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="4">4</td>
-            </tr><tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="4" name="k-table-checkbox" /></span></label></td>
+            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="4" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="5">5</td>
             </tr>
 </tbody>
@@ -7170,20 +7213,20 @@ blockquote:before {
                         </a>
 </div><div class="code"></div></div></div><div class="example index-112"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
+    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="false"><div class="k-th"><div class="c-ellipsis">false</div>
         <!---->
     </div></th>
             <!---->
         </tr></thead>
     <tbody>
-    <tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" name="k-table-checkbox" /></span></label></td>
+    <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="false(默认)">false(默认)</td>
             </tr>
 </tbody>
 </table>
 </div><div class="k-table-wrapper" style=""><div class="k-fixed" style="padding-right:0px;"><table class="k-table">
-            <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
+            <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="true"><div class="k-th"><div class="c-ellipsis">true</div>
         <!---->
     </div></th>
@@ -7191,20 +7234,20 @@ blockquote:before {
         </tr></thead>
         </table></div>
     <div class="k-scroll" style=""><table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
+    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="true"><div class="k-th"><div class="c-ellipsis">true</div>
         <!---->
     </div></th>
             <!---->
         </tr></thead>
     <tbody>
-    <tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" name="k-table-checkbox" /></span></label></td>
+    <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="表头固定但是没有滚动条，展示不出效果">表头固定但是没有滚动条，展示不出效果</td>
             </tr>
 </tbody>
 </table></div>
 </div><div class="k-table-wrapper" style=""><div class="k-fixed" style="padding-right:0px;"><table class="k-table">
-            <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
+            <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="100px"><div class="k-th"><div class="c-ellipsis">100px</div>
         <!---->
     </div></th>
@@ -7212,18 +7255,18 @@ blockquote:before {
         </tr></thead>
         </table></div>
     <div class="k-scroll" style="max-height:100px;"><table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
+    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="100px"><div class="k-th"><div class="c-ellipsis">100px</div>
         <!---->
     </div></th>
             <!---->
         </tr></thead>
     <tbody>
-    <tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" name="k-table-checkbox" /></span></label></td>
+    <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="表头固定啦">表头固定啦</td>
-            </tr><tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" name="k-table-checkbox" /></span></label></td>
+            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="下拉">下拉</td>
-            </tr><tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="2" name="k-table-checkbox" /></span></label></td>
+            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="2" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="yeah!">yeah!</td>
             </tr>
 </tbody>
@@ -7239,7 +7282,7 @@ blockquote:before {
                         </a>
 </div><div class="code"></div></div></div><div class="example index-116"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
+    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="表头1"><div class="k-th"><div class="c-ellipsis">表头1</div>
         <!---->
     </div></th><th title="表头2"><div class="k-th"><div class="c-ellipsis">表头2</div>
@@ -7253,7 +7296,7 @@ blockquote:before {
 </table>
 </div><div class="k-table-wrapper" style="">
     <table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
+    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="表头1"><div class="k-th"><div class="c-ellipsis">表头1</div>
         <!---->
     </div></th><th title="表头2"><div class="k-th"><div class="c-ellipsis">表头2</div>
@@ -7267,7 +7310,7 @@ blockquote:before {
 </table>
 </div><div class="k-table-wrapper" style="">
     <table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
+    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="表头1"><div class="k-th"><div class="c-ellipsis">表头1</div>
         <!---->
     </div></th><th title="表头2"><div class="k-th"><div class="c-ellipsis">表头2</div>
@@ -7290,7 +7333,7 @@ blockquote:before {
                         </a>
 </div><div class="code"></div></div></div><div class="example index-118"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
+    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th class="k-sortable" title="姓名"><div class="k-th"><div class="c-ellipsis">姓名</div>
         <div class="k-sort"><i class="k-icon icon-sortable"></i></div>
     </div></th><th class="k-sortable" title="时间"><div class="k-th"><div class="c-ellipsis">时间</div>
@@ -7299,16 +7342,16 @@ blockquote:before {
             <!---->
         </tr></thead>
     <tbody>
-    <tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" name="k-table-checkbox" /></span></label></td>
+    <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="a默认按照时间升序">a默认按照时间升序</td><td title="2">2</td>
-            </tr><tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" name="k-table-checkbox" /></span></label></td>
+            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="b 箭头方向默认的是向上的">b 箭头方向默认的是向上的</td><td title="1">1</td>
             </tr>
 </tbody>
 </table>
 </div><div class="k-table-wrapper" style="">
     <table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
+    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th class="k-sortable" title="姓名"><div class="k-th"><div class="c-ellipsis">姓名</div>
         <div class="k-sort"><i class="k-icon icon-sortable"></i></div>
     </div></th><th class="k-sortable" title="时间"><div class="k-th"><div class="c-ellipsis">时间</div>
@@ -7317,16 +7360,16 @@ blockquote:before {
             <!---->
         </tr></thead>
     <tbody>
-    <tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" name="k-table-checkbox" /></span></label></td>
+    <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="a无默认排序">a无默认排序</td><td title="2">2</td>
-            </tr><tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" name="k-table-checkbox" /></span></label></td>
+            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="b 观察箭头方向都是双向的">b 观察箭头方向都是双向的</td><td title="1">1</td>
             </tr>
 </tbody>
 </table>
 </div><div class="k-table-wrapper" style="">
     <table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
+    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <!---->
             <th title="姓名"><div class="k-th"><div class="c-ellipsis">姓名</div>
         <!---->
@@ -7335,9 +7378,9 @@ blockquote:before {
     </div></th>
         </tr></thead>
     <tbody>
-    <tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" name="k-table-checkbox" /></span></label></td>
+    <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="a默认按照时间升序">a默认按照时间升序</td><td title="2">2</td>
-            </tr><tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" name="k-table-checkbox" /></span></label></td>
+            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="b 箭头方向默认的是向上的">b 箭头方向默认的是向上的</td><td title="1">1</td>
             </tr>
 </tbody>
@@ -7358,7 +7401,7 @@ blockquote:before {
                         </a>
 </div><div class="code"></div></div></div><div class="example index-121"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
+    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="姓名"><div class="k-th"><div class="c-ellipsis">姓名</div>
         <!---->
     </div></th><th title="时间"><div class="k-th"><div class="k-group"><i class="k-arrow ion-ios-arrow-down" _hasSaved></i><!--MoveWrapper--><div class="c-ellipsis">
@@ -7370,14 +7413,14 @@ blockquote:before {
             <!---->
         </tr></thead>
     <tbody>
-    <tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" name="k-table-checkbox" /></span></label></td>
+    <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="lihua">lihua</td><td title="10-12-12">10-12-12</td>
             </tr>
 </tbody>
 </table>
 </div><div class="k-table-wrapper" style="">
     <table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
+    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <!---->
             <th title="姓名"><div class="k-th"><div class="c-ellipsis">姓名</div>
         <!---->
@@ -7389,7 +7432,7 @@ blockquote:before {
     </div></th>
         </tr></thead>
     <tbody>
-    <tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" name="k-table-checkbox" /></span></label></td>
+    <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="lihua(标签形式定义表头信息)">lihua(标签形式定义表头信息)</td><td title="10-12-12">10-12-12</td>
             </tr>
 </tbody>
@@ -7409,14 +7452,14 @@ blockquote:before {
                         </a>
 </div><div class="code"></div></div></div><div class="example index-120"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
+    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="类型"><div class="k-th"><div class="c-ellipsis">类型</div>
         <!---->
     </div></th>
             <!---->
         </tr></thead>
     <tbody>
-    <tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" name="k-table-checkbox" /></span></label></td>
+    <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="defalut">defalut</td>
             </tr>
 </tbody>
@@ -7432,7 +7475,7 @@ blockquote:before {
                         </a>
 </div><div class="code"></div></div></div><div class="example index-122"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
+    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="默认不可拖拽"><div class="k-th"><div class="c-ellipsis">默认不可拖拽</div>
         <!---->
     </div></th><th title="表头B"><div class="k-th"><div class="c-ellipsis">表头B</div>
@@ -7441,16 +7484,16 @@ blockquote:before {
             <!---->
         </tr></thead>
     <tbody>
-    <tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" name="k-table-checkbox" /></span></label></td>
+    <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="A">A</td><td title="B">B</td>
-            </tr><tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" name="k-table-checkbox" /></span></label></td>
+            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="A">A</td><td title="B">B</td>
             </tr>
 </tbody>
 </table>
 </div><div class="k-table-wrapper" style="">
     <table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="value" value /></span></label></th>
+    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="设置为可拖拽"><div class="k-resize"></div><div class="k-th"><div class="c-ellipsis">设置为可拖拽</div>
         <!---->
     </div></th><th title="表头B"><div class="k-resize"></div><div class="k-th"><div class="c-ellipsis">表头B</div>
@@ -7459,9 +7502,9 @@ blockquote:before {
             <!---->
         </tr></thead>
     <tbody>
-    <tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" name="k-table-checkbox" /></span></label></td>
+    <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="A">A</td><td title="B">B</td>
-            </tr><tr class=""><td><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" name="k-table-checkbox" /></span></label></td>
+            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="A">A</td><td title="B">B</td>
             </tr>
 </tbody>
@@ -7634,7 +7677,7 @@ blockquote:before {
 <td><code>undefined</code></td>
 </tr>
 <tr>
-<td>groups</td>
+<td>group</td>
 <td>指定分组数组，每一项格式为<code>{value: &#39;选中后的值&#39;, label: &#39;展示的文案&#39;}</code></td>
 <td><code>Array&lt;Object&gt;</code></td>
 <td><code>undefined</code></td>

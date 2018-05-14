@@ -3966,7 +3966,8 @@ blockquote:before {
   border: 1px solid #cad0dd;
   font-size: 1rem;
 }
-.k-btn:hover {
+.k-btn:hover,
+.k-btn:focus {
   border-color: #0a5eee;
   color: #0a5eee;
 }
@@ -3975,7 +3976,8 @@ blockquote:before {
   color: #fff;
   border-color: #0a5eee;
 }
-.k-btn.k-primary:hover {
+.k-btn.k-primary:hover,
+.k-btn.k-primary:focus {
   background-color: #367df7;
   border-color: #367df7;
 }
@@ -3984,7 +3986,8 @@ blockquote:before {
   color: #fff;
   border-color: #ff8a00;
 }
-.k-btn.k-warning:hover {
+.k-btn.k-warning:hover,
+.k-btn.k-warning:focus {
   background-color: #ffa133;
   border-color: #ffa133;
 }
@@ -3993,7 +3996,8 @@ blockquote:before {
   color: #fff;
   border-color: #db2828;
 }
-.k-btn.k-danger:hover {
+.k-btn.k-danger:hover,
+.k-btn.k-danger:focus {
   background-color: #e25353;
   border-color: #e25353;
 }
@@ -4002,7 +4006,8 @@ blockquote:before {
   color: #fff;
   border-color: #0a5eee;
 }
-.k-btn.k-active:hover {
+.k-btn.k-active:hover,
+.k-btn.k-active:focus {
   background-color: #367df7;
   border-color: #367df7;
 }
@@ -4119,7 +4124,8 @@ blockquote:before {
   margin: 0;
   vertical-align: middle;
 }
-.k-btns .k-btn:hover {
+.k-btns .k-btn:hover,
+.k-btns .k-btn:focus {
   z-index: 1;
   position: relative;
 }
@@ -5033,6 +5039,12 @@ blockquote:before {
       -ms-transform: scale(1);
           transform: scale(1);
 }
+.k-radio:focus {
+  outline: none;
+}
+.k-radio:focus .k-wrapper {
+  border-color: #0a5eee;
+}
 .k-radio.k-disabled {
   color: #999;
   cursor: not-allowed;
@@ -5108,6 +5120,12 @@ blockquote:before {
   -webkit-transform: rotate(45deg) scale(1);
       -ms-transform: rotate(45deg) scale(1);
           transform: rotate(45deg) scale(1);
+}
+.k-checkbox:focus {
+  outline: none;
+}
+.k-checkbox:focus .k-wrapper {
+  border-color: #0a5eee;
 }
 .k-checkbox.k-disabled {
   color: #999;
@@ -5264,6 +5282,12 @@ blockquote:before {
       -ms-transform: rotate(180deg);
           transform: rotate(180deg);
 }
+.k-select:focus {
+  outline: none;
+}
+.k-select:focus > .k-wrapper {
+  border: 1px solid #0a5eee;
+}
 .k-select.k-disabled > .k-wrapper {
   color: #999;
   cursor: not-allowed;
@@ -5366,7 +5390,8 @@ blockquote:before {
 .k-spinner {
   display: inline-block;
 }
-.k-spinner .k-btn:hover {
+.k-spinner .k-btn:hover,
+.k-spinner .k-btn:focus {
   z-index: 1;
   position: relative;
 }
@@ -5537,9 +5562,13 @@ blockquote:before {
 
 .k-datepicker {
   display: inline-block;
+  outline: none;
 }
 .k-datepicker .k-inner {
   cursor: pointer;
+}
+.k-datepicker:focus .k-inner {
+  border: 1px solid #0a5eee;
 }
 .k-datepicker-content {
   position: absolute;
@@ -5548,6 +5577,9 @@ blockquote:before {
           box-shadow: 0 2px 8px 0 rgba(191,191,191,0.5);
   color: #595959;
   max-width: none;
+}
+.k-datepicker-content .k-wrapper {
+  outline: none;
 }
 .k-datepicker-content .k-day,
 .k-datepicker-content .k-weekday {
@@ -5564,7 +5596,7 @@ blockquote:before {
   border: 1px solid transparent;
   position: relative;
 }
-.k-datepicker-content .k-day:hover {
+.k-datepicker-content .k-day.k-hover {
   background: #eee;
   color: #595959;
 }
@@ -5779,7 +5811,7 @@ blockquote:before {
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/components/datepicker/index.md">github</a>
                     上修正该文档
                 </div></div><div class="contents"><div><h1>示例</h1>
-        <div class="example index-7"><div class="example-opera"><div><div class="k-datepicker" style=""><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="请选择日期" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div><div class="k-datepicker k-disabled" style=""><div class="k-input k-disabled k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" value="2018-01-01" readOnly placeholder="请选择日期" disabled /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div></div></div><div class="example-desc"><div class="title">基本用法</div><div class="desc"><p>基本用法和禁用状态</p>
+        <div class="example index-7"><div class="example-opera"><div><div class="k-datepicker" style="" tabindex="0"><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="请选择日期" tabindex="-1" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div><div class="k-datepicker k-disabled" style="" tabindex="-1"><div class="k-input k-disabled k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" value="2018-01-01" readOnly placeholder="请选择日期" disabled tabindex="-1" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div></div></div><div class="example-desc"><div class="title">基本用法</div><div class="desc"><p>基本用法和禁用状态</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
@@ -5788,14 +5820,14 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-30"><div class="example-opera"><div class="k-datepicker" style=""><div class="k-input k-with-suffix k-clearable" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="请选择日期" /><div class="k-suffix"><i class="k-clear k-icon ion-ios-close"></i><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">可清空</div><div class="desc"><p>添加<code>clearable</code>属性，可以清空当前日期。</p>
+</div><div class="code"></div></div></div><div class="example index-30"><div class="example-opera"><div class="k-datepicker" style="" tabindex="0"><div class="k-input k-with-suffix k-clearable" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="请选择日期" tabindex="-1" /><div class="k-suffix"><i class="k-clear k-icon ion-ios-close"></i><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">可清空</div><div class="desc"><p>添加<code>clearable</code>属性，可以清空当前日期。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-61"><div class="example-opera"><div><div class="k-datepicker" style=""><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="开始日期" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div><div class="k-datepicker" style=""><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="结束日期" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div></div></div><div class="example-desc"><div class="title">最大和最小日期</div><div class="desc"><p>通过<code>maxDate</code>和<code>minDate</code>可以给组件指定最大和最小选择日期。</p>
+</div><div class="code"></div></div></div><div class="example index-61"><div class="example-opera"><div><div class="k-datepicker" style="" tabindex="0"><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="开始日期" tabindex="-1" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div><div class="k-datepicker" style="" tabindex="0"><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="结束日期" tabindex="-1" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div></div></div><div class="example-desc"><div class="title">最大和最小日期</div><div class="desc"><p>通过<code>maxDate</code>和<code>minDate</code>可以给组件指定最大和最小选择日期。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
@@ -5804,16 +5836,16 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-73"><div class="example-opera"><div class="k-datepicker" style=""><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="请选择日期" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">禁用指定日期</div><div class="desc"><p>通过<code>disabledDate</code>属性，可以定义个方法，来指定哪些日期被禁止选择。组件会将一个日期字符串作为方法的参数，如果方法返回“真”则禁用掉该日期，否则不禁用。</p>
+</div><div class="code"></div></div></div><div class="example index-73"><div class="example-opera"><div class="k-datepicker" style="" tabindex="0"><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="请选择日期" tabindex="-1" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">禁用指定日期</div><div class="desc"><p>通过<code>disabledDate</code>属性，可以定义个方法，来指定哪些日期被禁止选择。组件会将一个日期字符串作为方法的参数，如果方法返回“真”则禁用掉该日期，否则不禁用。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-91"><div class="example-opera"><div><div class="k-datepicker" style=""><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="请选择日期" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div>
+</div><div class="code"></div></div></div><div class="example index-91"><div class="example-opera"><div><div class="k-datepicker" style="" tabindex="0"><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="请选择日期" tabindex="-1" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div>
     You selected: <!---->
-    <br /><br /><div class="k-datepicker" style=""><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="请选择日期和时间" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div>
+    <br /><br /><div class="k-datepicker" style="" tabindex="0"><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="请选择日期和时间" tabindex="-1" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div>
     You selected: <!---->
 </div></div><div class="example-desc"><div class="title">日期多选</div><div class="desc"><p>添加<code>multiple</code>属性，即可支持日期多选。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
@@ -5822,7 +5854,7 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-100"><div class="example-opera"><div><div class="k-datepicker" style=""><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="请选择日期和时间" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div><div class="k-datepicker" style=""><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="时间精确到小时" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div></div></div><div class="example-desc"><div class="title">选择时间</div><div class="desc"><p>将<code>type</code>属性指定为<code>datetime</code>，即可让日期支持选择时间。通过<code>disabledHours &amp; disabledMinutes &amp; disabledSeconds</code>可以禁用时分秒的选择。</p>
+</div><div class="code"></div></div></div><div class="example index-100"><div class="example-opera"><div><div class="k-datepicker" style="" tabindex="0"><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="请选择日期和时间" tabindex="-1" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div><div class="k-datepicker" style="" tabindex="0"><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="时间精确到小时" tabindex="-1" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div></div></div><div class="example-desc"><div class="title">选择时间</div><div class="desc"><p>将<code>type</code>属性指定为<code>datetime</code>，即可让日期支持选择时间。通过<code>disabledHours &amp; disabledMinutes &amp; disabledSeconds</code>可以禁用时分秒的选择。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
@@ -5831,9 +5863,9 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-106"><div class="example-opera"><div><div class="k-datepicker" style=""><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="请选择日期" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div>
+</div><div class="code"></div></div></div><div class="example index-106"><div class="example-opera"><div><div class="k-datepicker" style="" tabindex="0"><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="请选择日期" tabindex="-1" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div>
     You selected: <!---->
-    <br /><br /><div class="k-datepicker" style=""><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="请选择日期和时间" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div>
+    <br /><br /><div class="k-datepicker" style="" tabindex="0"><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="请选择日期和时间" tabindex="-1" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div>
     You selected: <!---->
 </div></div><div class="example-desc"><div class="title">日期范围选择</div><div class="desc"></div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">

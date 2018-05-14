@@ -3966,7 +3966,8 @@ blockquote:before {
   border: 1px solid #cad0dd;
   font-size: 1rem;
 }
-.k-btn:hover {
+.k-btn:hover,
+.k-btn:focus {
   border-color: #0a5eee;
   color: #0a5eee;
 }
@@ -3975,7 +3976,8 @@ blockquote:before {
   color: #fff;
   border-color: #0a5eee;
 }
-.k-btn.k-primary:hover {
+.k-btn.k-primary:hover,
+.k-btn.k-primary:focus {
   background-color: #367df7;
   border-color: #367df7;
 }
@@ -3984,7 +3986,8 @@ blockquote:before {
   color: #fff;
   border-color: #ff8a00;
 }
-.k-btn.k-warning:hover {
+.k-btn.k-warning:hover,
+.k-btn.k-warning:focus {
   background-color: #ffa133;
   border-color: #ffa133;
 }
@@ -3993,7 +3996,8 @@ blockquote:before {
   color: #fff;
   border-color: #db2828;
 }
-.k-btn.k-danger:hover {
+.k-btn.k-danger:hover,
+.k-btn.k-danger:focus {
   background-color: #e25353;
   border-color: #e25353;
 }
@@ -4002,7 +4006,8 @@ blockquote:before {
   color: #fff;
   border-color: #0a5eee;
 }
-.k-btn.k-active:hover {
+.k-btn.k-active:hover,
+.k-btn.k-active:focus {
   background-color: #367df7;
   border-color: #367df7;
 }
@@ -4119,7 +4124,8 @@ blockquote:before {
   margin: 0;
   vertical-align: middle;
 }
-.k-btns .k-btn:hover {
+.k-btns .k-btn:hover,
+.k-btns .k-btn:focus {
   z-index: 1;
   position: relative;
 }
@@ -5033,6 +5039,12 @@ blockquote:before {
       -ms-transform: scale(1);
           transform: scale(1);
 }
+.k-radio:focus {
+  outline: none;
+}
+.k-radio:focus .k-wrapper {
+  border-color: #0a5eee;
+}
 .k-radio.k-disabled {
   color: #999;
   cursor: not-allowed;
@@ -5175,7 +5187,7 @@ blockquote:before {
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/components/radio/index.md">github</a>
                     上修正该文档
                 </div></div><div class="contents"><div><h1>示例</h1>
-        <div class="example index-18"><div class="example-opera"><div><label class="k-radio" style=""><span class="k-wrapper"><input type="radio" v-model="value" value /></span><span class="k-text">radio</span></label><label class="k-radio k-disabled" style=""><span class="k-wrapper"><input type="radio" disabled v-model="value" value /></span><span class="k-text">disabled radio</span></label><label class="k-radio k-disabled k-checked" style=""><span class="k-wrapper"><input type="radio" disabled v-model="value" value checked /></span><span class="k-text">disabled checked radio</span></label></div></div><div class="example-desc"><div class="title">基本用法</div><div class="desc"><p><code>Radio</code>的基本用法，及禁用状态。由于<code>trueValue</code>的默认值为<code>true</code>，所以可以直接传入<code>value=true</code>来指定选中状态。</p>
+        <div class="example index-18"><div class="example-opera"><div><label class="k-radio" style="" tabindex="0"><span class="k-wrapper"><input type="radio" v-model="value" value tabindex="-1" /></span><span class="k-text">radio</span></label><label class="k-radio k-disabled" style="" tabindex="-1"><span class="k-wrapper"><input type="radio" disabled v-model="value" value tabindex="-1" /></span><span class="k-text">disabled radio</span></label><label class="k-radio k-disabled k-checked" style="" tabindex="-1"><span class="k-wrapper"><input type="radio" disabled v-model="value" value tabindex="-1" checked /></span><span class="k-text">disabled checked radio</span></label></div></div><div class="example-desc"><div class="title">基本用法</div><div class="desc"><p><code>Radio</code>的基本用法，及禁用状态。由于<code>trueValue</code>的默认值为<code>true</code>，所以可以直接传入<code>value=true</code>来指定选中状态。</p>
 <blockquote>
 <p>选中状态的判定条件是<code>value === trueValue</code>，对于值为对象的情况要注意。</p>
 </blockquote>
@@ -5187,7 +5199,7 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-33"><div class="example-opera"><div><label class="k-radio" style=""><span class="k-wrapper"><input type="radio" v-model="language" value="Javascript" name="language" /></span><span class="k-text">Javascript</span></label><label class="k-radio" style=""><span class="k-wrapper"><input type="radio" v-model="language" value="C++" name="language" /></span><span class="k-text">C++</span></label><label class="k-radio" style=""><span class="k-wrapper"><input type="radio" v-model="language" value="PHP" name="language" /></span><span class="k-text">PHP</span></label>
+</div><div class="code"></div></div></div><div class="example index-33"><div class="example-opera"><div><label class="k-radio" style="" tabindex="0"><span class="k-wrapper"><input type="radio" v-model="language" value="Javascript" tabindex="-1" name="language" /></span><span class="k-text">Javascript</span></label><label class="k-radio" style="" tabindex="0"><span class="k-wrapper"><input type="radio" v-model="language" value="C++" tabindex="-1" name="language" /></span><span class="k-text">C++</span></label><label class="k-radio" style="" tabindex="0"><span class="k-wrapper"><input type="radio" v-model="language" value="PHP" tabindex="-1" name="language" /></span><span class="k-text">PHP</span></label>
     Your selected: <!---->
 </div></div><div class="example-desc"><div class="title">Radio组</div><div class="desc"><p>和浏览器原生行为一样，给<code>Radio</code>指定相同的<code>name</code>，它们便组成了单选框组。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
@@ -5198,9 +5210,9 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-64"><div class="example-opera"><div><label class="k-radio" style=""><span class="k-wrapper"><input type="radio" v-model="value1" value /></span><span class="k-text">默认值：</span></label><label class="k-radio" style=""><span class="k-wrapper"><input type="radio" v-model="value2" value="checked" /></span><span class="k-text">
+</div><div class="code"></div></div></div><div class="example index-64"><div class="example-opera"><div><label class="k-radio" style="" tabindex="0"><span class="k-wrapper"><input type="radio" v-model="value1" value tabindex="-1" /></span><span class="k-text">默认值：</span></label><label class="k-radio" style="" tabindex="0"><span class="k-wrapper"><input type="radio" v-model="value2" value="checked" tabindex="-1" /></span><span class="k-text">
         指定选中时的取值为&quot;checked&quot;: <!---->
-    </span></label><label class="k-radio" style=""><span class="k-wrapper"><input type="radio" v-model="value3" /></span><span class="k-text">
+    </span></label><label class="k-radio" style="" tabindex="0"><span class="k-wrapper"><input type="radio" v-model="value3" tabindex="-1" /></span><span class="k-text">
         指定选中时的取值为对象：<!---->
     </span></label></div></div><div class="example-desc"><div class="title">指定选中的值</div><div class="desc"><p><code>Radio</code>默认选中的值为<code>true</code>，通过<code>trueValue</code>属性我们可以指定任意值。</p>
 <blockquote>

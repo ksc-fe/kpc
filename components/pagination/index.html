@@ -3966,7 +3966,8 @@ blockquote:before {
   border: 1px solid #cad0dd;
   font-size: 1rem;
 }
-.k-btn:hover {
+.k-btn:hover,
+.k-btn:focus {
   border-color: #0a5eee;
   color: #0a5eee;
 }
@@ -3975,7 +3976,8 @@ blockquote:before {
   color: #fff;
   border-color: #0a5eee;
 }
-.k-btn.k-primary:hover {
+.k-btn.k-primary:hover,
+.k-btn.k-primary:focus {
   background-color: #367df7;
   border-color: #367df7;
 }
@@ -3984,7 +3986,8 @@ blockquote:before {
   color: #fff;
   border-color: #ff8a00;
 }
-.k-btn.k-warning:hover {
+.k-btn.k-warning:hover,
+.k-btn.k-warning:focus {
   background-color: #ffa133;
   border-color: #ffa133;
 }
@@ -3993,7 +3996,8 @@ blockquote:before {
   color: #fff;
   border-color: #db2828;
 }
-.k-btn.k-danger:hover {
+.k-btn.k-danger:hover,
+.k-btn.k-danger:focus {
   background-color: #e25353;
   border-color: #e25353;
 }
@@ -4002,7 +4006,8 @@ blockquote:before {
   color: #fff;
   border-color: #0a5eee;
 }
-.k-btn.k-active:hover {
+.k-btn.k-active:hover,
+.k-btn.k-active:focus {
   background-color: #367df7;
   border-color: #367df7;
 }
@@ -4119,7 +4124,8 @@ blockquote:before {
   margin: 0;
   vertical-align: middle;
 }
-.k-btns .k-btn:hover {
+.k-btns .k-btn:hover,
+.k-btns .k-btn:focus {
   z-index: 1;
   position: relative;
 }
@@ -5033,6 +5039,12 @@ blockquote:before {
       -ms-transform: scale(1);
           transform: scale(1);
 }
+.k-radio:focus {
+  outline: none;
+}
+.k-radio:focus .k-wrapper {
+  border-color: #0a5eee;
+}
 .k-radio.k-disabled {
   color: #999;
   cursor: not-allowed;
@@ -5108,6 +5120,12 @@ blockquote:before {
   -webkit-transform: rotate(45deg) scale(1);
       -ms-transform: rotate(45deg) scale(1);
           transform: rotate(45deg) scale(1);
+}
+.k-checkbox:focus {
+  outline: none;
+}
+.k-checkbox:focus .k-wrapper {
+  border-color: #0a5eee;
 }
 .k-checkbox.k-disabled {
   color: #999;
@@ -5264,6 +5282,12 @@ blockquote:before {
       -ms-transform: rotate(180deg);
           transform: rotate(180deg);
 }
+.k-select:focus {
+  outline: none;
+}
+.k-select:focus > .k-wrapper {
+  border: 1px solid #0a5eee;
+}
 .k-select.k-disabled > .k-wrapper {
   color: #999;
   cursor: not-allowed;
@@ -5366,7 +5390,8 @@ blockquote:before {
 .k-spinner {
   display: inline-block;
 }
-.k-spinner .k-btn:hover {
+.k-spinner .k-btn:hover,
+.k-spinner .k-btn:focus {
   z-index: 1;
   position: relative;
 }
@@ -5537,9 +5562,13 @@ blockquote:before {
 
 .k-datepicker {
   display: inline-block;
+  outline: none;
 }
 .k-datepicker .k-inner {
   cursor: pointer;
+}
+.k-datepicker:focus .k-inner {
+  border: 1px solid #0a5eee;
 }
 .k-datepicker-content {
   position: absolute;
@@ -5548,6 +5577,9 @@ blockquote:before {
           box-shadow: 0 2px 8px 0 rgba(191,191,191,0.5);
   color: #595959;
   max-width: none;
+}
+.k-datepicker-content .k-wrapper {
+  outline: none;
 }
 .k-datepicker-content .k-day,
 .k-datepicker-content .k-weekday {
@@ -5564,7 +5596,7 @@ blockquote:before {
   border: 1px solid transparent;
   position: relative;
 }
-.k-datepicker-content .k-day:hover {
+.k-datepicker-content .k-day.k-hover {
   background: #eee;
   color: #595959;
 }
@@ -5665,6 +5697,7 @@ blockquote:before {
   position: relative;
   display: table;
   width: 100%;
+  outline: none;
 }
 .k-slider .k-slider-wrapper {
   display: table-cell;
@@ -5709,8 +5742,10 @@ blockquote:before {
   border-radius: 50%;
   background-color: #fff;
   transition: all 0.25s ease-in-out;
+  outline: none;
 }
-.k-slider .k-slider-wrapper .k-handle:hover {
+.k-slider .k-slider-wrapper .k-handle:hover,
+.k-slider .k-slider-wrapper .k-handle:focus {
   -webkit-transform: scale(1.5);
       -ms-transform: scale(1.5);
           transform: scale(1.5);
@@ -5750,7 +5785,8 @@ blockquote:before {
 .k-slider.k-disabled .k-handle {
   border-color: #999;
 }
-.k-slider.k-disabled .k-handle:hover {
+.k-slider.k-disabled .k-handle:hover,
+.k-slider.k-disabled .k-handle:focus {
   background-color: #fff;
   cursor: not-allowed;
   -webkit-transform: none;
@@ -5868,6 +5904,13 @@ blockquote:before {
   background: #0a5eee;
   -webkit-transition: background 0.25s ease-in-out;
   transition: background 0.25s ease-in-out;
+}
+.k-switch:focus {
+  outline: none;
+}
+.k-switch:focus .k-bar,
+.k-switch:focus .k-wrapper {
+  background: #0a5eee;
 }
 .k-switch.k-default {
   width: 3.428571428571428rem;
@@ -6640,7 +6683,7 @@ blockquote:before {
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/components/pagination/index.md">github</a>
                     上修正该文档
                 </div></div><div class="contents"><div><h1>示例</h1>
-        <div class="example index-23"><div class="example-opera"><div><div class="k-pagination"><div class="k-pages"><div class="k-prev k-disabled"><i class="ion-ios-arrow-left"></i></div><div class="k-page k-active">1</div><div class="k-page">2</div><div class="k-page">3</div><div class="k-page">4</div><div class="k-page">5</div><div class="k-ellipsis">...</div><div class="k-page">20</div><div class="k-next"><i class="ion-ios-arrow-right"></i></div></div><div class="k-limits"><div class="k-select k-active" style=""><div class="k-wrapper" _hasSaved><input type="hidden" value="10" /><span class="k-value c-ellipsis">10 条 / 页</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="k-total">共 200 条</div></div><div class="k-pagination"><div class="k-pages"><div class="k-prev k-disabled"><i class="ion-ios-arrow-left"></i></div><div class="k-page k-active">1</div><div class="k-page">2</div><div class="k-page">3</div><div class="k-page">4</div><div class="k-page">5</div><div class="k-ellipsis">...</div><div class="k-page">10</div><div class="k-next"><i class="ion-ios-arrow-right"></i></div></div><div class="k-limits"><div class="k-select k-active" style=""><div class="k-wrapper" _hasSaved><input type="hidden" value="20" /><span class="k-value c-ellipsis">20 条 / 页</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="k-total">共 200 条</div></div><div class="k-pagination"><div class="k-pages"><div class="k-prev k-disabled"><i class="ion-ios-arrow-left"></i></div><div class="k-page k-active">1</div><div class="k-page">2</div><div class="k-page">3</div><div class="k-page">4</div><div class="k-page">5</div><div class="k-ellipsis">...</div><div class="k-page">10</div><div class="k-next"><i class="ion-ios-arrow-right"></i></div></div><div class="k-limits"><div class="k-select k-active" style=""><div class="k-wrapper" _hasSaved><input type="hidden" value="20" /><span class="k-value c-ellipsis">20 条 / 页</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="k-total">共 200 条</div></div></div></div><div class="example-desc"><div class="title">基本用法</div><div class="desc"><p><code>Pagination</code>的基本用法，通过<code>total</code>指定数据总条数，<code>limit</code>指定每页数据条数，<code>limits</code>数组定义可供选择的条数</p>
+        <div class="example index-23"><div class="example-opera"><div><div class="k-pagination"><div class="k-pages"><div class="k-prev k-disabled"><i class="ion-ios-arrow-left"></i></div><div class="k-page k-active">1</div><div class="k-page">2</div><div class="k-page">3</div><div class="k-page">4</div><div class="k-page">5</div><div class="k-ellipsis">...</div><div class="k-page">20</div><div class="k-next"><i class="ion-ios-arrow-right"></i></div></div><div class="k-limits"><div class="k-select k-active" style="" tabindex="0"><div class="k-wrapper" tabindex="-1" _hasSaved><input type="hidden" value="10" /><span class="k-value c-ellipsis">10 条 / 页</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="k-total">共 200 条</div></div><div class="k-pagination"><div class="k-pages"><div class="k-prev k-disabled"><i class="ion-ios-arrow-left"></i></div><div class="k-page k-active">1</div><div class="k-page">2</div><div class="k-page">3</div><div class="k-page">4</div><div class="k-page">5</div><div class="k-ellipsis">...</div><div class="k-page">10</div><div class="k-next"><i class="ion-ios-arrow-right"></i></div></div><div class="k-limits"><div class="k-select k-active" style="" tabindex="0"><div class="k-wrapper" tabindex="-1" _hasSaved><input type="hidden" value="20" /><span class="k-value c-ellipsis">20 条 / 页</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="k-total">共 200 条</div></div><div class="k-pagination"><div class="k-pages"><div class="k-prev k-disabled"><i class="ion-ios-arrow-left"></i></div><div class="k-page k-active">1</div><div class="k-page">2</div><div class="k-page">3</div><div class="k-page">4</div><div class="k-page">5</div><div class="k-ellipsis">...</div><div class="k-page">10</div><div class="k-next"><i class="ion-ios-arrow-right"></i></div></div><div class="k-limits"><div class="k-select k-active" style="" tabindex="0"><div class="k-wrapper" tabindex="-1" _hasSaved><input type="hidden" value="20" /><span class="k-value c-ellipsis">20 条 / 页</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="k-total">共 200 条</div></div></div></div><div class="example-desc"><div class="title">基本用法</div><div class="desc"><p><code>Pagination</code>的基本用法，通过<code>total</code>指定数据总条数，<code>limit</code>指定每页数据条数，<code>limits</code>数组定义可供选择的条数</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
@@ -6649,7 +6692,7 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-43"><div class="example-opera"><div><div class="k-pagination"><div class="k-pages"><div class="k-prev k-disabled"><i class="ion-ios-arrow-left"></i></div><div class="k-page k-active">1</div><div class="k-page">2</div><div class="k-page">3</div><div class="k-page">4</div><div class="k-page">5</div><div class="k-ellipsis">...</div><div class="k-page">20</div><div class="k-next"><i class="ion-ios-arrow-right"></i></div></div><div class="k-limits"><div class="k-select k-active" style=""><div class="k-wrapper" _hasSaved><input type="hidden" value="10" /><span class="k-value c-ellipsis">10 条 / 页</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="k-total">共 200 条</div></div><div class="k-pagination k-small"><div class="k-pages"><div class="k-prev k-disabled"><i class="ion-ios-arrow-left"></i></div><div class="k-page k-active">1</div><div class="k-page">2</div><div class="k-page">3</div><div class="k-page">4</div><div class="k-page">5</div><div class="k-ellipsis">...</div><div class="k-page">20</div><div class="k-next"><i class="ion-ios-arrow-right"></i></div></div><div class="k-limits"><div class="k-select k-small k-active" style=""><div class="k-wrapper" _hasSaved><input type="hidden" value="10" /><span class="k-value c-ellipsis">10 条 / 页</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="k-total">共 200 条</div></div><div class="k-pagination k-mini"><div class="k-pages"><div class="k-prev k-disabled"><i class="ion-ios-arrow-left"></i></div><div class="k-page k-active">1</div><div class="k-page">2</div><div class="k-page">3</div><div class="k-page">4</div><div class="k-page">5</div><div class="k-ellipsis">...</div><div class="k-page">20</div><div class="k-next"><i class="ion-ios-arrow-right"></i></div></div><div class="k-limits"><div class="k-select k-mini k-active" style=""><div class="k-wrapper" _hasSaved><input type="hidden" value="10" /><span class="k-value c-ellipsis">10 条 / 页</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="k-total">共 200 条</div></div></div></div><div class="example-desc"><div class="title">指定尺寸</div><div class="desc"><p>通过<code>size</code>可以指定组件的尺寸：<code>default</code>, <code>small</code>, <code>mini</code></p>
+</div><div class="code"></div></div></div><div class="example index-43"><div class="example-opera"><div><div class="k-pagination"><div class="k-pages"><div class="k-prev k-disabled"><i class="ion-ios-arrow-left"></i></div><div class="k-page k-active">1</div><div class="k-page">2</div><div class="k-page">3</div><div class="k-page">4</div><div class="k-page">5</div><div class="k-ellipsis">...</div><div class="k-page">20</div><div class="k-next"><i class="ion-ios-arrow-right"></i></div></div><div class="k-limits"><div class="k-select k-active" style="" tabindex="0"><div class="k-wrapper" tabindex="-1" _hasSaved><input type="hidden" value="10" /><span class="k-value c-ellipsis">10 条 / 页</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="k-total">共 200 条</div></div><div class="k-pagination k-small"><div class="k-pages"><div class="k-prev k-disabled"><i class="ion-ios-arrow-left"></i></div><div class="k-page k-active">1</div><div class="k-page">2</div><div class="k-page">3</div><div class="k-page">4</div><div class="k-page">5</div><div class="k-ellipsis">...</div><div class="k-page">20</div><div class="k-next"><i class="ion-ios-arrow-right"></i></div></div><div class="k-limits"><div class="k-select k-small k-active" style="" tabindex="0"><div class="k-wrapper" tabindex="-1" _hasSaved><input type="hidden" value="10" /><span class="k-value c-ellipsis">10 条 / 页</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="k-total">共 200 条</div></div><div class="k-pagination k-mini"><div class="k-pages"><div class="k-prev k-disabled"><i class="ion-ios-arrow-left"></i></div><div class="k-page k-active">1</div><div class="k-page">2</div><div class="k-page">3</div><div class="k-page">4</div><div class="k-page">5</div><div class="k-ellipsis">...</div><div class="k-page">20</div><div class="k-next"><i class="ion-ios-arrow-right"></i></div></div><div class="k-limits"><div class="k-select k-mini k-active" style="" tabindex="0"><div class="k-wrapper" tabindex="-1" _hasSaved><input type="hidden" value="10" /><span class="k-value c-ellipsis">10 条 / 页</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="k-total">共 200 条</div></div></div></div><div class="example-desc"><div class="title">指定尺寸</div><div class="desc"><p>通过<code>size</code>可以指定组件的尺寸：<code>default</code>, <code>small</code>, <code>mini</code></p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
@@ -6658,7 +6701,7 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-58"><div class="example-opera"><div><div class="k-pagination"><div class="k-pages"><div class="k-prev k-disabled"><i class="ion-ios-arrow-left"></i></div><div class="k-page k-active">1</div><div class="k-page">2</div><div class="k-page">3</div><div class="k-page">4</div><div class="k-page">5</div><div class="k-page">6</div><div class="k-page">7</div><div class="k-page">8</div><div class="k-ellipsis">...</div><div class="k-page">20</div><div class="k-next"><i class="ion-ios-arrow-right"></i></div></div><div class="k-limits"><div class="k-select k-active" style=""><div class="k-wrapper" _hasSaved><input type="hidden" value="10" /><span class="k-value c-ellipsis">10 条 / 页</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="k-total">共 200 条</div></div><div class="k-pagination"><div class="k-pages"><div class="k-prev k-disabled"><i class="ion-ios-arrow-left"></i></div><div class="k-page k-active">1</div><div class="k-page">2</div><div class="k-page">3</div><div class="k-page">4</div><div class="k-page">5</div><div class="k-page">6</div><div class="k-page">7</div><div class="k-ellipsis">...</div><div class="k-page">20</div><div class="k-next"><i class="ion-ios-arrow-right"></i></div></div><div class="k-limits"><div class="k-select k-active" style=""><div class="k-wrapper" _hasSaved><input type="hidden" value="10" /><span class="k-value c-ellipsis">10 条 / 页</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="k-total">共 200 条</div></div></div></div><div class="example-desc"><div class="title">改变翻页按钮数量</div><div class="desc"><p>组件默认会展示7个翻页按钮（包括省略号...)，通过<code>counts</code>属性我们可以指定按钮个数。</p>
+</div><div class="code"></div></div></div><div class="example index-58"><div class="example-opera"><div><div class="k-pagination"><div class="k-pages"><div class="k-prev k-disabled"><i class="ion-ios-arrow-left"></i></div><div class="k-page k-active">1</div><div class="k-page">2</div><div class="k-page">3</div><div class="k-page">4</div><div class="k-page">5</div><div class="k-page">6</div><div class="k-page">7</div><div class="k-page">8</div><div class="k-ellipsis">...</div><div class="k-page">20</div><div class="k-next"><i class="ion-ios-arrow-right"></i></div></div><div class="k-limits"><div class="k-select k-active" style="" tabindex="0"><div class="k-wrapper" tabindex="-1" _hasSaved><input type="hidden" value="10" /><span class="k-value c-ellipsis">10 条 / 页</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="k-total">共 200 条</div></div><div class="k-pagination"><div class="k-pages"><div class="k-prev k-disabled"><i class="ion-ios-arrow-left"></i></div><div class="k-page k-active">1</div><div class="k-page">2</div><div class="k-page">3</div><div class="k-page">4</div><div class="k-page">5</div><div class="k-page">6</div><div class="k-page">7</div><div class="k-ellipsis">...</div><div class="k-page">20</div><div class="k-next"><i class="ion-ios-arrow-right"></i></div></div><div class="k-limits"><div class="k-select k-active" style="" tabindex="0"><div class="k-wrapper" tabindex="-1" _hasSaved><input type="hidden" value="10" /><span class="k-value c-ellipsis">10 条 / 页</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="k-total">共 200 条</div></div></div></div><div class="example-desc"><div class="title">改变翻页按钮数量</div><div class="desc"><p>组件默认会展示7个翻页按钮（包括省略号...)，通过<code>counts</code>属性我们可以指定按钮个数。</p>
 <blockquote>
 <p>最好不要小于7个，否则影响体验。使用奇数可以使页码对称分布</p>
 </blockquote>
@@ -6670,7 +6713,7 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-70"><div class="example-opera"><div><div class="k-pagination"><div class="k-pages"><div class="k-prev k-disabled"><i class="ion-ios-arrow-left"></i></div><div class="k-page k-active">1</div><div class="k-page">2</div><div class="k-page">3</div><div class="k-page">4</div><div class="k-page">5</div><div class="k-ellipsis">...</div><div class="k-page">20</div><div class="k-next"><i class="ion-ios-arrow-right"></i></div></div><div class="k-limits"><div class="k-select k-active" style=""><div class="k-wrapper" _hasSaved><input type="hidden" value="10" /><span class="k-value c-ellipsis">10 条 / 页</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="k-goto">
+</div><div class="code"></div></div></div><div class="example index-70"><div class="example-opera"><div><div class="k-pagination"><div class="k-pages"><div class="k-prev k-disabled"><i class="ion-ios-arrow-left"></i></div><div class="k-page k-active">1</div><div class="k-page">2</div><div class="k-page">3</div><div class="k-page">4</div><div class="k-page">5</div><div class="k-ellipsis">...</div><div class="k-page">20</div><div class="k-next"><i class="ion-ios-arrow-right"></i></div></div><div class="k-limits"><div class="k-select k-active" style="" tabindex="0"><div class="k-wrapper" tabindex="-1" _hasSaved><input type="hidden" value="10" /><span class="k-value c-ellipsis">10 条 / 页</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="k-goto">
         <!---->跳至<div class="k-input" style=""><div class="k-wrapper"><input class="k-inner" type="text" value="1" /></div></div>页<!---->
     </div><div class="k-total">共 200 条</div></div></div></div><div class="example-desc"><div class="title">展示快速跳转框</div><div class="desc"><p>将<code>showGoto</code>设为<code>true</code>可以展示快速跳转输入框</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
@@ -6679,7 +6722,7 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-90"><div class="example-opera"><div><div class="k-pagination"><div class="k-pages"><div class="k-prev k-disabled"><i class="ion-ios-arrow-left"></i></div><div class="k-page k-active">1</div><div class="k-page">2</div><div class="k-page">3</div><div class="k-page">4</div><div class="k-page">5</div><div class="k-ellipsis">...</div><div class="k-page">20</div><div class="k-next"><i class="ion-ios-arrow-right"></i></div></div><div class="k-limits"><div class="k-select k-active" style=""><div class="k-wrapper" _hasSaved><input type="hidden" value="10" /><span class="k-value c-ellipsis">10 条 / 页</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="k-total">共 200 条</div></div></div></div><div class="example-desc"><div class="title">当前页码</div><div class="desc"><p>通过<code>current</code>可以指定当前页码，当页码改变时，会触发默认事件<code>$change:current</code>和<code>$changed:current</code>，我们可以指定相应的回调函数。</p>
+</div><div class="code"></div></div></div><div class="example index-90"><div class="example-opera"><div><div class="k-pagination"><div class="k-pages"><div class="k-prev k-disabled"><i class="ion-ios-arrow-left"></i></div><div class="k-page k-active">1</div><div class="k-page">2</div><div class="k-page">3</div><div class="k-page">4</div><div class="k-page">5</div><div class="k-ellipsis">...</div><div class="k-page">20</div><div class="k-next"><i class="ion-ios-arrow-right"></i></div></div><div class="k-limits"><div class="k-select k-active" style="" tabindex="0"><div class="k-wrapper" tabindex="-1" _hasSaved><input type="hidden" value="10" /><span class="k-value c-ellipsis">10 条 / 页</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="k-total">共 200 条</div></div></div></div><div class="example-desc"><div class="title">当前页码</div><div class="desc"><p>通过<code>current</code>可以指定当前页码，当页码改变时，会触发默认事件<code>$change:current</code>和<code>$changed:current</code>，我们可以指定相应的回调函数。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->

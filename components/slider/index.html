@@ -3966,7 +3966,8 @@ blockquote:before {
   border: 1px solid #cad0dd;
   font-size: 1rem;
 }
-.k-btn:hover {
+.k-btn:hover,
+.k-btn:focus {
   border-color: #0a5eee;
   color: #0a5eee;
 }
@@ -3975,7 +3976,8 @@ blockquote:before {
   color: #fff;
   border-color: #0a5eee;
 }
-.k-btn.k-primary:hover {
+.k-btn.k-primary:hover,
+.k-btn.k-primary:focus {
   background-color: #367df7;
   border-color: #367df7;
 }
@@ -3984,7 +3986,8 @@ blockquote:before {
   color: #fff;
   border-color: #ff8a00;
 }
-.k-btn.k-warning:hover {
+.k-btn.k-warning:hover,
+.k-btn.k-warning:focus {
   background-color: #ffa133;
   border-color: #ffa133;
 }
@@ -3993,7 +3996,8 @@ blockquote:before {
   color: #fff;
   border-color: #db2828;
 }
-.k-btn.k-danger:hover {
+.k-btn.k-danger:hover,
+.k-btn.k-danger:focus {
   background-color: #e25353;
   border-color: #e25353;
 }
@@ -4002,7 +4006,8 @@ blockquote:before {
   color: #fff;
   border-color: #0a5eee;
 }
-.k-btn.k-active:hover {
+.k-btn.k-active:hover,
+.k-btn.k-active:focus {
   background-color: #367df7;
   border-color: #367df7;
 }
@@ -4119,7 +4124,8 @@ blockquote:before {
   margin: 0;
   vertical-align: middle;
 }
-.k-btns .k-btn:hover {
+.k-btns .k-btn:hover,
+.k-btns .k-btn:focus {
   z-index: 1;
   position: relative;
 }
@@ -5033,6 +5039,12 @@ blockquote:before {
       -ms-transform: scale(1);
           transform: scale(1);
 }
+.k-radio:focus {
+  outline: none;
+}
+.k-radio:focus .k-wrapper {
+  border-color: #0a5eee;
+}
 .k-radio.k-disabled {
   color: #999;
   cursor: not-allowed;
@@ -5108,6 +5120,12 @@ blockquote:before {
   -webkit-transform: rotate(45deg) scale(1);
       -ms-transform: rotate(45deg) scale(1);
           transform: rotate(45deg) scale(1);
+}
+.k-checkbox:focus {
+  outline: none;
+}
+.k-checkbox:focus .k-wrapper {
+  border-color: #0a5eee;
 }
 .k-checkbox.k-disabled {
   color: #999;
@@ -5264,6 +5282,12 @@ blockquote:before {
       -ms-transform: rotate(180deg);
           transform: rotate(180deg);
 }
+.k-select:focus {
+  outline: none;
+}
+.k-select:focus > .k-wrapper {
+  border: 1px solid #0a5eee;
+}
 .k-select.k-disabled > .k-wrapper {
   color: #999;
   cursor: not-allowed;
@@ -5366,7 +5390,8 @@ blockquote:before {
 .k-spinner {
   display: inline-block;
 }
-.k-spinner .k-btn:hover {
+.k-spinner .k-btn:hover,
+.k-spinner .k-btn:focus {
   z-index: 1;
   position: relative;
 }
@@ -5537,9 +5562,13 @@ blockquote:before {
 
 .k-datepicker {
   display: inline-block;
+  outline: none;
 }
 .k-datepicker .k-inner {
   cursor: pointer;
+}
+.k-datepicker:focus .k-inner {
+  border: 1px solid #0a5eee;
 }
 .k-datepicker-content {
   position: absolute;
@@ -5548,6 +5577,9 @@ blockquote:before {
           box-shadow: 0 2px 8px 0 rgba(191,191,191,0.5);
   color: #595959;
   max-width: none;
+}
+.k-datepicker-content .k-wrapper {
+  outline: none;
 }
 .k-datepicker-content .k-day,
 .k-datepicker-content .k-weekday {
@@ -5564,7 +5596,7 @@ blockquote:before {
   border: 1px solid transparent;
   position: relative;
 }
-.k-datepicker-content .k-day:hover {
+.k-datepicker-content .k-day.k-hover {
   background: #eee;
   color: #595959;
 }
@@ -5665,6 +5697,7 @@ blockquote:before {
   position: relative;
   display: table;
   width: 100%;
+  outline: none;
 }
 .k-slider .k-slider-wrapper {
   display: table-cell;
@@ -5709,8 +5742,10 @@ blockquote:before {
   border-radius: 50%;
   background-color: #fff;
   transition: all 0.25s ease-in-out;
+  outline: none;
 }
-.k-slider .k-slider-wrapper .k-handle:hover {
+.k-slider .k-slider-wrapper .k-handle:hover,
+.k-slider .k-slider-wrapper .k-handle:focus {
   -webkit-transform: scale(1.5);
       -ms-transform: scale(1.5);
           transform: scale(1.5);
@@ -5750,7 +5785,8 @@ blockquote:before {
 .k-slider.k-disabled .k-handle {
   border-color: #999;
 }
-.k-slider.k-disabled .k-handle:hover {
+.k-slider.k-disabled .k-handle:hover,
+.k-slider.k-disabled .k-handle:focus {
   background-color: #fff;
   cursor: not-allowed;
   -webkit-transform: none;
@@ -5888,13 +5924,13 @@ blockquote:before {
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/components/slider/index.md">github</a>
                     上修正该文档
                 </div></div><div class="contents"><div><h1>示例</h1>
-        <div class="example index-15"><div class="example-opera"><div><div class="k-slider" style=""><div class="k-slider-wrapper"><div class="k-wrapper"><div class="k-bar" style="width:60%;"></div><div class="k-handle" style="left:60%;"></div></div><div class="k-box"><span>0<!----> </span><span>100</span></div></div><div class="k-spinner-wrapper"><div class="k-spinner" style=""><button class="k-btn k-btn-icon k-left" type="button">
+        <div class="example index-15"><div class="example-opera"><div><div class="k-slider" style=""><div class="k-slider-wrapper"><div class="k-wrapper"><div class="k-bar" style="width:60%;"></div><div class="k-handle" style="left:60%;" tabindex="0"></div></div><div class="k-box"><span>0<!----> </span><span>100</span></div></div><div class="k-spinner-wrapper"><div class="k-spinner" style=""><button class="k-btn k-btn-icon k-left" tabindex="0" type="button">
     <span>-</span>
-    </button><div class="k-input" style=""><div class="k-wrapper"><input class="k-inner" type="text" value="60" /></div></div><button class="k-btn k-btn-icon k-right" type="button">
+    </button><div class="k-input" style=""><div class="k-wrapper"><input class="k-inner" type="text" value="60" /></div></div><button class="k-btn k-btn-icon k-right" tabindex="0" type="button">
     <span>+</span>
-    </button></div></div></div><div class="k-slider" style=""><div class="k-slider-wrapper"><div class="k-wrapper"><div class="k-bar" style="width:50.44444444444445%;"></div><div class="k-handle" style="left:50.44444444444445%;"></div></div><div class="k-box"><span>50<!----> </span><span>500</span></div></div><div class="k-spinner-wrapper"><div class="k-spinner" style=""><button class="k-btn k-btn-icon k-left" type="button">
+    </button></div></div></div><div class="k-slider" style=""><div class="k-slider-wrapper"><div class="k-wrapper"><div class="k-bar" style="width:50.44444444444445%;"></div><div class="k-handle" style="left:50.44444444444445%;" tabindex="0"></div></div><div class="k-box"><span>50<!----> </span><span>500</span></div></div><div class="k-spinner-wrapper"><div class="k-spinner" style=""><button class="k-btn k-btn-icon k-left" tabindex="0" type="button">
     <span>-</span>
-    </button><div class="k-input" style=""><div class="k-wrapper"><input class="k-inner" type="text" value="277" /></div></div><button class="k-btn k-btn-icon k-right" type="button">
+    </button><div class="k-input" style=""><div class="k-wrapper"><input class="k-inner" type="text" value="277" /></div></div><button class="k-btn k-btn-icon k-right" tabindex="0" type="button">
     <span>+</span>
     </button></div></div></div></div></div><div class="example-desc"><div class="title">基础用法</div><div class="desc"><p>用<code>min</code>和<code>max</code>指定取值范围，<code>v-model</code>进行双向数据绑定</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
@@ -5905,13 +5941,13 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-28"><div class="example-opera"><div><div class="k-slider" style=""><div class="k-slider-wrapper"><div class="k-wrapper"><div class="k-bar" style="width:0%;"></div><div class="k-handle" style="left:0%;"></div></div></div><div class="k-spinner-wrapper"><div class="k-spinner" style=""><button class="k-btn k-btn-icon k-left k-disabled" type="button">
+</div><div class="code"></div></div></div><div class="example index-28"><div class="example-opera"><div><div class="k-slider" style=""><div class="k-slider-wrapper"><div class="k-wrapper"><div class="k-bar" style="width:0%;"></div><div class="k-handle" style="left:0%;" tabindex="0"></div></div></div><div class="k-spinner-wrapper"><div class="k-spinner" style=""><button class="k-btn k-btn-icon k-left k-disabled" tabindex="-1" type="button">
     <span>-</span>
-    </button><div class="k-input" style=""><div class="k-wrapper"><input class="k-inner" type="text" value="0" /></div></div><button class="k-btn k-btn-icon k-right" type="button">
+    </button><div class="k-input" style=""><div class="k-wrapper"><input class="k-inner" type="text" value="0" /></div></div><button class="k-btn k-btn-icon k-right" tabindex="0" type="button">
     <span>+</span>
-    </button></div></div></div><div class="k-slider" style=""><div class="k-slider-wrapper"><div class="k-wrapper"><div class="k-bar" style="width:0%;"></div><div class="k-handle" style="left:0%;"></div></div><div class="k-box"><span>50<!----> </span><span>500</span></div></div><div class="k-spinner-wrapper"><div class="k-spinner" style=""><button class="k-btn k-btn-icon k-left k-disabled" type="button">
+    </button></div></div></div><div class="k-slider" style=""><div class="k-slider-wrapper"><div class="k-wrapper"><div class="k-bar" style="width:0%;"></div><div class="k-handle" style="left:0%;" tabindex="0"></div></div><div class="k-box"><span>50<!----> </span><span>500</span></div></div><div class="k-spinner-wrapper"><div class="k-spinner" style=""><button class="k-btn k-btn-icon k-left k-disabled" tabindex="-1" type="button">
     <span>-</span>
-    </button><div class="k-input" style=""><div class="k-wrapper"><input class="k-inner" type="text" value="50" /></div></div><button class="k-btn k-btn-icon k-right" type="button">
+    </button><div class="k-input" style=""><div class="k-wrapper"><input class="k-inner" type="text" value="50" /></div></div><button class="k-btn k-btn-icon k-right" tabindex="0" type="button">
     <span>+</span>
     </button></div></div></div></div></div><div class="example-desc"><div class="title">设置步长</div><div class="desc"><p>通过<code>step</code>可以设置步长，默认步长为<code>1</code></p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
@@ -5922,11 +5958,11 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-83"><div class="example-opera"><div><div class="k-slider k-disabled" style=""><div class="k-slider-wrapper"><div class="k-wrapper"><div class="k-bar" style="width:50%;"></div><div class="k-handle" style="left:50%;"></div></div><div class="k-box"><span>0<!----> </span><span>100</span></div></div><div class="k-spinner-wrapper"><div class="k-spinner k-disabled" style=""><button class="k-btn k-btn-icon k-left k-disabled" type="button">
+</div><div class="code"></div></div></div><div class="example index-83"><div class="example-opera"><div><div class="k-slider k-disabled" style=""><div class="k-slider-wrapper"><div class="k-wrapper"><div class="k-bar" style="width:50%;"></div><div class="k-handle" style="left:50%;" tabindex="-1"></div></div><div class="k-box"><span>0<!----> </span><span>100</span></div></div><div class="k-spinner-wrapper"><div class="k-spinner k-disabled" style=""><button class="k-btn k-btn-icon k-left k-disabled" tabindex="-1" type="button">
     <span>-</span>
-    </button><div class="k-input k-disabled" style=""><div class="k-wrapper"><input class="k-inner" type="text" value="50" disabled /></div></div><button class="k-btn k-btn-icon k-right k-disabled" type="button">
+    </button><div class="k-input k-disabled" style=""><div class="k-wrapper"><input class="k-inner" type="text" value="50" disabled /></div></div><button class="k-btn k-btn-icon k-right k-disabled" tabindex="-1" type="button">
     <span>+</span>
-    </button></div></div></div><div class="k-slider k-disabled" style=""><div class="k-slider-wrapper"><div class="k-wrapper"><div class="k-bar" style="width:50%;left:10%;"></div><div class="k-handle" style="left:10%;"></div><div class="k-handle" style="left:60%;"></div></div><div class="k-box"><span>50<!----> </span><span>100</span></div></div></div></div></div><div class="example-desc"><div class="title">禁用组件</div><div class="desc"><p>添加<code>disabled</code>禁用组件</p>
+    </button></div></div></div><div class="k-slider k-disabled" style=""><div class="k-slider-wrapper"><div class="k-wrapper"><div class="k-bar" style="width:50%;left:10%;"></div><div class="k-handle" style="left:10%;" tabindex="-1"></div><div class="k-handle" style="left:60%;" tabindex="-1"></div></div><div class="k-box"><span>50<!----> </span><span>100</span></div></div></div></div></div><div class="example-desc"><div class="title">禁用组件</div><div class="desc"><p>添加<code>disabled</code>禁用组件</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
@@ -5935,7 +5971,7 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-81"><div class="example-opera"><div class="k-slider" style=""><div class="k-slider-wrapper"><div class="k-wrapper"><div class="k-bar" style="width:26%;left:50%;"></div><div class="k-handle" style="left:50%;"></div><div class="k-handle" style="left:76%;"></div></div><div class="k-box"><span>0<!----> </span><span>100</span></div></div></div></div><div class="example-desc"><div class="title">范围选择</div><div class="desc"><p>指定<code>isRange</code>使组件支持范围选择，此时<code>v-model</code>绑定的数据为数组，并且不会展示<code>input</code>输入框。</p>
+</div><div class="code"></div></div></div><div class="example index-81"><div class="example-opera"><div class="k-slider" style=""><div class="k-slider-wrapper"><div class="k-wrapper"><div class="k-bar" style="width:26%;left:50%;"></div><div class="k-handle" style="left:50%;" tabindex="0"></div><div class="k-handle" style="left:76%;" tabindex="0"></div></div><div class="k-box"><span>0<!----> </span><span>100</span></div></div></div></div><div class="example-desc"><div class="title">范围选择</div><div class="desc"><p>指定<code>isRange</code>使组件支持范围选择，此时<code>v-model</code>绑定的数据为数组，并且不会展示<code>input</code>输入框。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->

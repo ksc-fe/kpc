@@ -3966,7 +3966,8 @@ blockquote:before {
   border: 1px solid #cad0dd;
   font-size: 1rem;
 }
-.k-btn:hover {
+.k-btn:hover,
+.k-btn:focus {
   border-color: #0a5eee;
   color: #0a5eee;
 }
@@ -3975,7 +3976,8 @@ blockquote:before {
   color: #fff;
   border-color: #0a5eee;
 }
-.k-btn.k-primary:hover {
+.k-btn.k-primary:hover,
+.k-btn.k-primary:focus {
   background-color: #367df7;
   border-color: #367df7;
 }
@@ -3984,7 +3986,8 @@ blockquote:before {
   color: #fff;
   border-color: #ff8a00;
 }
-.k-btn.k-warning:hover {
+.k-btn.k-warning:hover,
+.k-btn.k-warning:focus {
   background-color: #ffa133;
   border-color: #ffa133;
 }
@@ -3993,7 +3996,8 @@ blockquote:before {
   color: #fff;
   border-color: #db2828;
 }
-.k-btn.k-danger:hover {
+.k-btn.k-danger:hover,
+.k-btn.k-danger:focus {
   background-color: #e25353;
   border-color: #e25353;
 }
@@ -4002,7 +4006,8 @@ blockquote:before {
   color: #fff;
   border-color: #0a5eee;
 }
-.k-btn.k-active:hover {
+.k-btn.k-active:hover,
+.k-btn.k-active:focus {
   background-color: #367df7;
   border-color: #367df7;
 }
@@ -4119,7 +4124,8 @@ blockquote:before {
   margin: 0;
   vertical-align: middle;
 }
-.k-btns .k-btn:hover {
+.k-btns .k-btn:hover,
+.k-btns .k-btn:focus {
   z-index: 1;
   position: relative;
 }
@@ -5033,6 +5039,12 @@ blockquote:before {
       -ms-transform: scale(1);
           transform: scale(1);
 }
+.k-radio:focus {
+  outline: none;
+}
+.k-radio:focus .k-wrapper {
+  border-color: #0a5eee;
+}
 .k-radio.k-disabled {
   color: #999;
   cursor: not-allowed;
@@ -5108,6 +5120,12 @@ blockquote:before {
   -webkit-transform: rotate(45deg) scale(1);
       -ms-transform: rotate(45deg) scale(1);
           transform: rotate(45deg) scale(1);
+}
+.k-checkbox:focus {
+  outline: none;
+}
+.k-checkbox:focus .k-wrapper {
+  border-color: #0a5eee;
 }
 .k-checkbox.k-disabled {
   color: #999;
@@ -5264,6 +5282,12 @@ blockquote:before {
       -ms-transform: rotate(180deg);
           transform: rotate(180deg);
 }
+.k-select:focus {
+  outline: none;
+}
+.k-select:focus > .k-wrapper {
+  border: 1px solid #0a5eee;
+}
 .k-select.k-disabled > .k-wrapper {
   color: #999;
   cursor: not-allowed;
@@ -5366,7 +5390,8 @@ blockquote:before {
 .k-spinner {
   display: inline-block;
 }
-.k-spinner .k-btn:hover {
+.k-spinner .k-btn:hover,
+.k-spinner .k-btn:focus {
   z-index: 1;
   position: relative;
 }
@@ -5537,9 +5562,13 @@ blockquote:before {
 
 .k-datepicker {
   display: inline-block;
+  outline: none;
 }
 .k-datepicker .k-inner {
   cursor: pointer;
+}
+.k-datepicker:focus .k-inner {
+  border: 1px solid #0a5eee;
 }
 .k-datepicker-content {
   position: absolute;
@@ -5548,6 +5577,9 @@ blockquote:before {
           box-shadow: 0 2px 8px 0 rgba(191,191,191,0.5);
   color: #595959;
   max-width: none;
+}
+.k-datepicker-content .k-wrapper {
+  outline: none;
 }
 .k-datepicker-content .k-day,
 .k-datepicker-content .k-weekday {
@@ -5564,7 +5596,7 @@ blockquote:before {
   border: 1px solid transparent;
   position: relative;
 }
-.k-datepicker-content .k-day:hover {
+.k-datepicker-content .k-day.k-hover {
   background: #eee;
   color: #595959;
 }
@@ -5665,6 +5697,7 @@ blockquote:before {
   position: relative;
   display: table;
   width: 100%;
+  outline: none;
 }
 .k-slider .k-slider-wrapper {
   display: table-cell;
@@ -5709,8 +5742,10 @@ blockquote:before {
   border-radius: 50%;
   background-color: #fff;
   transition: all 0.25s ease-in-out;
+  outline: none;
 }
-.k-slider .k-slider-wrapper .k-handle:hover {
+.k-slider .k-slider-wrapper .k-handle:hover,
+.k-slider .k-slider-wrapper .k-handle:focus {
   -webkit-transform: scale(1.5);
       -ms-transform: scale(1.5);
           transform: scale(1.5);
@@ -5750,7 +5785,8 @@ blockquote:before {
 .k-slider.k-disabled .k-handle {
   border-color: #999;
 }
-.k-slider.k-disabled .k-handle:hover {
+.k-slider.k-disabled .k-handle:hover,
+.k-slider.k-disabled .k-handle:focus {
   background-color: #fff;
   cursor: not-allowed;
   -webkit-transform: none;
@@ -5868,6 +5904,13 @@ blockquote:before {
   background: #0a5eee;
   -webkit-transition: background 0.25s ease-in-out;
   transition: background 0.25s ease-in-out;
+}
+.k-switch:focus {
+  outline: none;
+}
+.k-switch:focus .k-bar,
+.k-switch:focus .k-wrapper {
+  background: #0a5eee;
 }
 .k-switch.k-default {
   width: 3.428571428571428rem;
@@ -6240,7 +6283,7 @@ blockquote:before {
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/components/dialog/index.md">github</a>
                     上修正该文档
                 </div></div><div class="contents"><div><h1>示例</h1>
-        <div class="example index-0"><div class="example-opera"><div><button class="k-btn k-primary" type="button">
+        <div class="example index-0"><div class="example-opera"><div><button class="k-btn k-primary" tabindex="0" type="button">
     <span>Show Dialog</span>
     </button><div class="k-dialog-wrapper"></div></div></div><div class="example-desc"><div class="title">基本用法</div><div class="desc"><p>定义一个弹窗，然后通过<code>v-model</code>建立绑定，当该绑定的值为<code>true</code>时，展示弹窗。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
@@ -6249,7 +6292,7 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-51"><div class="example-opera"><div><button class="k-btn k-primary" type="button">
+</div><div class="code"></div></div></div><div class="example index-51"><div class="example-opera"><div><button class="k-btn k-primary" tabindex="0" type="button">
     <span>Show Dialog</span>
     </button><div class="k-dialog-wrapper"></div></div></div><div class="example-desc"><div class="title">自定义头部和底部</div><div class="desc"><p>组件提供了<code>header</code>和<code>footer</code>扩展点（block），通过它们可以自定义头部和底部。</p>
 <blockquote>
@@ -6261,7 +6304,7 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-67"><div class="example-opera"><div><button class="k-btn k-primary" type="button">
+</div><div class="code"></div></div></div><div class="example index-67"><div class="example-opera"><div><button class="k-btn k-primary" tabindex="0" type="button">
     <span>Show Dialog</span>
     </button><div class="k-dialog-wrapper"></div></div></div><div class="example-desc"><div class="title">事件回调</div><div class="desc"><p>弹窗点击“确认”和“取消”时，分别会派发出<code>ok</code>和<code>cancel</code>事件，通过它们可以执行相应的回调逻辑。此时弹窗会自动立即关闭，如果需要控制更多细节，可以使用<code>ok</code>和<code>cancel</code>属性，详见异步关闭。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
@@ -6270,7 +6313,7 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-80"><div class="example-opera"><button class="k-btn k-primary" type="button">
+</div><div class="code"></div></div></div><div class="example index-80"><div class="example-opera"><button class="k-btn k-primary" tabindex="0" type="button">
     <span>Show Dialog</span>
     </button></div><div class="example-desc"><div class="title">继承弹窗</div><div class="desc"><p>在实际应用中，弹窗的逻辑一般都很复杂，通过继承，我们可以控制弹窗的各个细节，例如：点击确定时进行表单验证，发送请求，延迟关闭等等。将这些业务逻辑封装在单独的模块中，是推荐的做法。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
@@ -6283,7 +6326,7 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-98"><div class="example-opera"><button class="k-btn k-primary" type="button">
+</div><div class="code"></div></div></div><div class="example index-98"><div class="example-opera"><button class="k-btn k-primary" tabindex="0" type="button">
     <span>Show Dialog Asynchronously</span>
     </button></div><div class="example-desc"><div class="title">异步打开</div><div class="desc"><p>当弹窗很复杂时，我们可以通过继承<code>Dialog</code>的方式，将所有业务逻辑封装成一个新弹窗组件。经常地，我们需要在弹窗打开时获取数据，一种方式是，弹窗同步打开，然后使用loading动画来过渡数据加载过程，另一种方式，我们还可以在弹窗数据加载完成后再打开弹窗。这种方式只需要在继承的弹窗的<code>_init</code>生命周期函数中返回<code>Promise</code>对象即可。另外我们还可以通过<code>open</code>, <code>close</code>来处理打开关闭后的逻辑。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
@@ -6296,7 +6339,7 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-107"><div class="example-opera"><div><button class="k-btn k-primary" type="button">
+</div><div class="code"></div></div></div><div class="example index-107"><div class="example-opera"><div><button class="k-btn k-primary" tabindex="0" type="button">
     <span>Close Dialog Asynchronously</span>
     </button><div class="k-dialog-wrapper"></div></div></div><div class="example-desc"><div class="title">异步关闭</div><div class="desc"><p><code>Dialog</code>默认点击确定按钮会立即关闭弹窗并触发<code>ok</code>事件，我们可以给<code>ok</code>属性（并非<code>ok</code>事件）指定一个函数来去掉默认函数行为，此时你可以自己控制弹窗的关闭情况。<code>cancel</code>属性同理。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">

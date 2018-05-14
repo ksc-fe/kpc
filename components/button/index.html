@@ -3966,7 +3966,8 @@ blockquote:before {
   border: 1px solid #cad0dd;
   font-size: 1rem;
 }
-.k-btn:hover {
+.k-btn:hover,
+.k-btn:focus {
   border-color: #0a5eee;
   color: #0a5eee;
 }
@@ -3975,7 +3976,8 @@ blockquote:before {
   color: #fff;
   border-color: #0a5eee;
 }
-.k-btn.k-primary:hover {
+.k-btn.k-primary:hover,
+.k-btn.k-primary:focus {
   background-color: #367df7;
   border-color: #367df7;
 }
@@ -3984,7 +3986,8 @@ blockquote:before {
   color: #fff;
   border-color: #ff8a00;
 }
-.k-btn.k-warning:hover {
+.k-btn.k-warning:hover,
+.k-btn.k-warning:focus {
   background-color: #ffa133;
   border-color: #ffa133;
 }
@@ -3993,7 +3996,8 @@ blockquote:before {
   color: #fff;
   border-color: #db2828;
 }
-.k-btn.k-danger:hover {
+.k-btn.k-danger:hover,
+.k-btn.k-danger:focus {
   background-color: #e25353;
   border-color: #e25353;
 }
@@ -4002,7 +4006,8 @@ blockquote:before {
   color: #fff;
   border-color: #0a5eee;
 }
-.k-btn.k-active:hover {
+.k-btn.k-active:hover,
+.k-btn.k-active:focus {
   background-color: #367df7;
   border-color: #367df7;
 }
@@ -4119,7 +4124,8 @@ blockquote:before {
   margin: 0;
   vertical-align: middle;
 }
-.k-btns .k-btn:hover {
+.k-btns .k-btn:hover,
+.k-btns .k-btn:focus {
   z-index: 1;
   position: relative;
 }
@@ -4732,15 +4738,15 @@ blockquote:before {
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/components/button/index.md">github</a>
                     上修正该文档
                 </div></div><div class="contents"><div><h1>示例</h1>
-        <div class="example index-13"><div class="example-opera"><div><button class="k-btn" type="button">
+        <div class="example index-13"><div class="example-opera"><div><button class="k-btn" tabindex="0" type="button">
     <span>default</span>
-    </button><button class="k-btn k-primary" type="button">
+    </button><button class="k-btn k-primary" tabindex="0" type="button">
     <span>primay</span>
-    </button><button class="k-btn k-warning" type="button">
+    </button><button class="k-btn k-warning" tabindex="0" type="button">
     <span>warning</span>
-    </button><button class="k-btn k-danger" type="button">
+    </button><button class="k-btn k-danger" tabindex="0" type="button">
     <span>danger</span>
-    </button><button class="k-btn k-none" type="button">
+    </button><button class="k-btn k-none" tabindex="0" type="button">
     <span>none</span>
     </button></div></div><div class="example-desc"><div class="title">按钮类型</div><div class="desc"><p>有如下几种类型：默认按钮，主按钮，警告按钮，危险按钮，文字按钮。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
@@ -4753,47 +4759,47 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.vue<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-42"><div class="example-opera"><div><div class="k-btns" style=""><button class="k-btn" type="button">
+</div><div class="code"></div></div></div><div class="example index-42"><div class="example-opera"><div><div class="k-btns" style=""><button class="k-btn" tabindex="0" type="button">
     <span>开机</span>
-    </button><button class="k-btn" type="button">
+    </button><button class="k-btn" tabindex="0" type="button">
     <span>关机</span>
-    </button><button class="k-btn" type="button">
+    </button><button class="k-btn" tabindex="0" type="button">
     <span>重启</span>
-    </button></div><div class="k-btns" style=""><button class="k-btn k-primary k-small" type="button">
+    </button></div><div class="k-btns" style=""><button class="k-btn k-primary k-small" tabindex="0" type="button">
     <span>开机</span>
-    </button><button class="k-btn k-primary k-small" type="button">
+    </button><button class="k-btn k-primary k-small" tabindex="0" type="button">
     <span>关机</span>
-    </button><button class="k-btn k-primary k-small" type="button">
+    </button><button class="k-btn k-primary k-small" tabindex="0" type="button">
     <span>重启</span>
-    </button></div><div class="k-btns" style=""><button class="k-btn k-primary k-small k-icon-left" type="button">
+    </button></div><div class="k-btns" style=""><button class="k-btn k-primary k-small k-icon-left" tabindex="0" type="button">
     <i class="k-icon ion-ios-arrow-left"></i><span>上一页
         </span>
-    </button><button class="k-btn k-primary k-small k-icon-right" type="button">
+    </button><button class="k-btn k-primary k-small k-icon-right" tabindex="0" type="button">
     <span>
             下一页</span><i class="k-icon ion-ios-arrow-right"></i>
-    </button></div><br /><br /><p>纵向按钮组</p><div class="k-btns k-vertical" style=""><button class="k-btn k-primary k-small" type="button">
+    </button></div><br /><br /><p>纵向按钮组</p><div class="k-btns k-vertical" style=""><button class="k-btn k-primary k-small" tabindex="0" type="button">
     <span>开机</span>
-    </button><button class="k-btn k-primary k-small" type="button">
+    </button><button class="k-btn k-primary k-small" tabindex="0" type="button">
     <span>关机</span>
-    </button><button class="k-btn k-primary k-small" type="button">
+    </button><button class="k-btn k-primary k-small" tabindex="0" type="button">
     <span>重启</span>
-    </button></div><br /><br /><p>radio按钮组</p><div class="k-btns" style=""><button class="k-btn k-small k-active" type="button">
+    </button></div><br /><br /><p>radio按钮组</p><div class="k-btns" style=""><button class="k-btn k-small k-active" tabindex="0" type="button">
     <span>北京</span>
-    <input type="radio" checked /></button><button class="k-btn k-small" type="button">
+    <input type="radio" checked tabindex="-1" /></button><button class="k-btn k-small" tabindex="0" type="button">
     <span>上海</span>
-    <input type="radio" /></button><button class="k-btn k-small" type="button">
+    <input type="radio" tabindex="-1" /></button><button class="k-btn k-small" tabindex="0" type="button">
     <span>广州</span>
-    <input type="radio" /></button><button class="k-btn k-small" type="button">
+    <input type="radio" tabindex="-1" /></button><button class="k-btn k-small" tabindex="0" type="button">
     <span>深圳</span>
-    <input type="radio" /></button></div><p>checkbox按钮组</p><div class="k-btns" style=""><button class="k-btn k-small" type="button">
+    <input type="radio" tabindex="-1" /></button></div><p>checkbox按钮组</p><div class="k-btns" style=""><button class="k-btn k-small" tabindex="0" type="button">
     <span>北京</span>
-    <input type="checkbox" /></button><button class="k-btn k-small" type="button">
+    <input type="checkbox" tabindex="-1" /></button><button class="k-btn k-small" tabindex="0" type="button">
     <span>上海</span>
-    <input type="checkbox" /></button><button class="k-btn k-small" type="button">
+    <input type="checkbox" tabindex="-1" /></button><button class="k-btn k-small" tabindex="0" type="button">
     <span>广州</span>
-    <input type="checkbox" /></button><button class="k-btn k-small" type="button">
+    <input type="checkbox" tabindex="-1" /></button><button class="k-btn k-small" tabindex="0" type="button">
     <span>深圳</span>
-    <input type="checkbox" /></button></div></div></div><div class="example-desc"><div class="title">按钮组</div><div class="desc"><p>将<code>Button</code>作为<code>ButtonGroup</code>的子元素，可以展示按钮组。给<code>ButtonGroup</code>添加<code>vertical</code>属性，可以是按钮组纵向排列。给<code>ButtonGroup</code>添加<code>checkType</code>属性，可以使按钮组拥有单选或复选能力。</p>
+    <input type="checkbox" tabindex="-1" /></button></div></div></div><div class="example-desc"><div class="title">按钮组</div><div class="desc"><p>将<code>Button</code>作为<code>ButtonGroup</code>的子元素，可以展示按钮组。给<code>ButtonGroup</code>添加<code>vertical</code>属性，可以是按钮组纵向排列。给<code>ButtonGroup</code>添加<code>checkType</code>属性，可以使按钮组拥有单选或复选能力。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
@@ -4804,13 +4810,13 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.vue<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-27"><div class="example-opera"><div><button class="k-btn k-btn-icon" type="button">
+</div><div class="code"></div></div></div><div class="example index-27"><div class="example-opera"><div><button class="k-btn k-btn-icon" tabindex="0" type="button">
     <i class="ion-ios-search"></i>
-    </button><button class="k-btn k-btn-icon k-circle" type="button">
+    </button><button class="k-btn k-btn-icon k-circle" tabindex="0" type="button">
     <i class="ion-ios-search"></i>
-    </button><button class="k-btn k-primary k-icon-left" type="button">
+    </button><button class="k-btn k-primary k-icon-left" tabindex="0" type="button">
     <i class="k-icon ion-ios-search"></i><span>搜索</span>
-    </button><button class="k-btn k-primary k-circle k-icon-left" type="button">
+    </button><button class="k-btn k-primary k-circle k-icon-left" tabindex="0" type="button">
     <i class="k-icon ion-ios-search"></i><span>搜索</span>
     </button></div></div><div class="example-desc"><div class="title">图标按钮</div><div class="desc"><p>给<code>Button</code>添加<code>icon</code>属性，可以展示图标按钮。图标按钮仅仅是使按钮的宽高相等，此时你可以将任意图标元素作为它的子元素。<code>circle</code>属性可以展示圆形图标。如果你不需要宽高相等的图标按钮，而仅仅是带图标的文字按钮，去掉<code>icon</code>属性即可。</p>
 <blockquote>
@@ -4824,17 +4830,17 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-56"><div class="example-opera"><div><button class="k-btn k-primary k-loading k-disabled" type="button">
+</div><div class="code"></div></div></div><div class="example index-56"><div class="example-opera"><div><button class="k-btn k-primary k-loading k-disabled" tabindex="-1" type="button">
     <i class="k-icon ion-load-c icon-loading"></i><span>确认</span>
-    </button><button class="k-btn k-btn-icon k-circle k-loading k-disabled" type="button">
+    </button><button class="k-btn k-btn-icon k-circle k-loading k-disabled" tabindex="-1" type="button">
     <i class="k-icon ion-load-c icon-loading"></i><i class="k-icon ion-ios-search"></i>
-    </button><br /><br /><button class="k-btn k-primary" type="button">
+    </button><br /><br /><button class="k-btn k-primary" tabindex="0" type="button">
     <span>点击加载</span>
-    </button><button class="k-btn k-primary k-icon-left" type="button">
+    </button><button class="k-btn k-primary k-icon-left" tabindex="0" type="button">
     <i class="k-icon ion-ios-search"></i><span>点击加载</span>
-    </button><button class="k-btn k-btn-icon k-circle" type="button">
+    </button><button class="k-btn k-btn-icon k-circle" tabindex="0" type="button">
     <i class="k-icon ion-ios-search"></i>
-    </button><button class="k-btn k-primary k-icon-right" type="button">
+    </button><button class="k-btn k-primary k-icon-right" tabindex="0" type="button">
     <span>图标在右侧</span><i class="k-icon ion-ios-search"></i>
     </button></div></div><div class="example-desc"><div class="title">加载状态按钮</div><div class="desc"><p>添加<code>loading</code>属性，可以将按钮设为加载状态，此时按钮不可点。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
@@ -4845,17 +4851,17 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-92"><div class="example-opera"><div><button class="k-btn" type="button">
+</div><div class="code"></div></div></div><div class="example index-92"><div class="example-opera"><div><button class="k-btn" tabindex="0" type="button">
     <span>default</span>
-    </button><button class="k-btn k-small" type="button">
+    </button><button class="k-btn k-small" tabindex="0" type="button">
     <span>small</span>
-    </button><button class="k-btn k-mini" type="button">
+    </button><button class="k-btn k-mini" tabindex="0" type="button">
     <span>mini</span>
-    </button><br /><br /><button class="k-btn k-btn-icon k-circle" type="button">
+    </button><br /><br /><button class="k-btn k-btn-icon k-circle" tabindex="0" type="button">
     <i class="k-icon ion-ios-search"></i>
-    </button><button class="k-btn k-btn-icon k-small k-circle" type="button">
+    </button><button class="k-btn k-btn-icon k-small k-circle" tabindex="0" type="button">
     <i class="k-icon ion-ios-search"></i>
-    </button><button class="k-btn k-btn-icon k-mini k-circle" type="button">
+    </button><button class="k-btn k-btn-icon k-mini k-circle" tabindex="0" type="button">
     <i class="k-icon ion-ios-search"></i>
     </button></div></div><div class="example-desc"><div class="title">按钮尺寸</div><div class="desc"><p>通过<code>size</code>属性可以指定按钮的尺寸：<code>default</code>,<code>small</code>, <code>mini</code>。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
@@ -4866,11 +4872,11 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-101"><div class="example-opera"><div><button class="k-btn k-disabled" type="button">
+</div><div class="code"></div></div></div><div class="example index-101"><div class="example-opera"><div><button class="k-btn k-disabled" tabindex="-1" type="button">
     <span>disabled</span>
-    </button><button class="k-btn k-none k-disabled" type="button">
+    </button><button class="k-btn k-none k-disabled" tabindex="-1" type="button">
     <span>disabled text</span>
-    </button><button class="k-btn k-btn-icon k-circle k-disabled" type="button">
+    </button><button class="k-btn k-btn-icon k-circle k-disabled" tabindex="-1" type="button">
     <i class="k-icon ion-ios-search"></i>
     </button></div></div><div class="example-desc"><div class="title">禁用状态</div><div class="desc"><p>添加<code>disabled</code>属性，可以禁用按钮</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
@@ -4879,11 +4885,11 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-94"><div class="example-opera"><div><div class="k-btn k-primary">
+</div><div class="code"></div></div></div><div class="example index-94"><div class="example-opera"><div><div class="k-btn k-primary" tabindex="0">
     <span>div元素按钮</span>
-    </div><div class="k-btn k-disabled">
+    </div><div class="k-btn k-disabled" tabindex="-1">
     <span>disabled div button</span>
-    </div><a class="k-btn" href="https://www.ksyun.com" target="_blank">
+    </div><a class="k-btn" href="https://www.ksyun.com" target="_blank" tabindex="0">
     <span>超链接按钮</span>
     </a></div></div><div class="example-desc"><div class="title">指定按钮tagName</div><div class="desc"><p><code>Button</code>默认渲染成<code>button</code>元素，通过<code>tagName</code>，我们可以渲染成任意元素或组件。此时，我们可以通过<code>tagProps</code>属性，给指定的<code>tagName</code>传递与<code>Button</code>属性名相冲突的属性。</p>
 <blockquote>

@@ -3966,7 +3966,8 @@ blockquote:before {
   border: 1px solid #cad0dd;
   font-size: 1rem;
 }
-.k-btn:hover {
+.k-btn:hover,
+.k-btn:focus {
   border-color: #0a5eee;
   color: #0a5eee;
 }
@@ -3975,7 +3976,8 @@ blockquote:before {
   color: #fff;
   border-color: #0a5eee;
 }
-.k-btn.k-primary:hover {
+.k-btn.k-primary:hover,
+.k-btn.k-primary:focus {
   background-color: #367df7;
   border-color: #367df7;
 }
@@ -3984,7 +3986,8 @@ blockquote:before {
   color: #fff;
   border-color: #ff8a00;
 }
-.k-btn.k-warning:hover {
+.k-btn.k-warning:hover,
+.k-btn.k-warning:focus {
   background-color: #ffa133;
   border-color: #ffa133;
 }
@@ -3993,7 +3996,8 @@ blockquote:before {
   color: #fff;
   border-color: #db2828;
 }
-.k-btn.k-danger:hover {
+.k-btn.k-danger:hover,
+.k-btn.k-danger:focus {
   background-color: #e25353;
   border-color: #e25353;
 }
@@ -4002,7 +4006,8 @@ blockquote:before {
   color: #fff;
   border-color: #0a5eee;
 }
-.k-btn.k-active:hover {
+.k-btn.k-active:hover,
+.k-btn.k-active:focus {
   background-color: #367df7;
   border-color: #367df7;
 }
@@ -4119,7 +4124,8 @@ blockquote:before {
   margin: 0;
   vertical-align: middle;
 }
-.k-btns .k-btn:hover {
+.k-btns .k-btn:hover,
+.k-btns .k-btn:focus {
   z-index: 1;
   position: relative;
 }
@@ -5033,6 +5039,12 @@ blockquote:before {
       -ms-transform: scale(1);
           transform: scale(1);
 }
+.k-radio:focus {
+  outline: none;
+}
+.k-radio:focus .k-wrapper {
+  border-color: #0a5eee;
+}
 .k-radio.k-disabled {
   color: #999;
   cursor: not-allowed;
@@ -5174,7 +5186,15 @@ blockquote:before {
                     如果你发现文档有问题，请帮忙在
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/docs/changelog.md">github</a>
                     上修正该文档
-                </div></div><div class="contents"><div class="api"><h2 id='header-v0.1.0'>v0.1.0</h2><ol>
+                </div></div><div class="contents"><div class="api"><h2 id='header-v0.2.0'>v0.2.0</h2><ol>
+<li><code>Add</code> 表单元素(<code>Select</code> <code>Datepicker</code>等)支持键盘操作 <a href="https://github.com/ksc-fe/kpc/issues/7">#7</a></li>
+<li><code>Add</code> <code>FormItem</code>支持强制验证 <a href="https://github.com/ksc-fe/kpc/issues/6">#6</a></li>
+<li><code>Add</code> <code>Select</code>支持输入不存在的条目，此时它将作为最终值 <a href="https://github.com/ksc-fe/kpc/issues/5">#5</a></li>
+<li><code>Fix</code> 修复<code>Table</code>在MacOS下<code>Checkbox</code>选不中的问题 <a href="https://github.com/ksc-fe/kpc/issues/8">#8</a></li>
+<li><code>Fix</code> 修复<code>Slider</code>中的<code>Input</code>不能输入中间过程值的问题 <a href="https://github.com/ksc-fe/kpc/issues/9">#9</a></li>
+<li><code>Fix</code> 修复<code>Form</code>表单验证<code>Select</code>选择时，闪现<code>required</code>错误信息的问题 <a href="https://github.com/ksc-fe/kpc/issues/4">#4</a></li>
+</ol>
+<h2 id='header-v0.1.0'>v0.1.0</h2><ol>
 <li><code>Add</code> Datepicker支持日期范围选择, <a href="https://github.com/ksc-fe/kpc/issues/1">#1</a></li>
 <li><code>Add</code> Datepicker选择日期和时间时，支持多选</li>
 <li><code>Add</code> 弹出菜单支持边界碰撞反转弹出弹出方向，<a href="https://github.com/ksc-fe/kpc/issues/2">#2</a></li>

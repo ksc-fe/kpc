@@ -3966,7 +3966,8 @@ blockquote:before {
   border: 1px solid #cad0dd;
   font-size: 1rem;
 }
-.k-btn:hover {
+.k-btn:hover,
+.k-btn:focus {
   border-color: #0a5eee;
   color: #0a5eee;
 }
@@ -3975,7 +3976,8 @@ blockquote:before {
   color: #fff;
   border-color: #0a5eee;
 }
-.k-btn.k-primary:hover {
+.k-btn.k-primary:hover,
+.k-btn.k-primary:focus {
   background-color: #367df7;
   border-color: #367df7;
 }
@@ -3984,7 +3986,8 @@ blockquote:before {
   color: #fff;
   border-color: #ff8a00;
 }
-.k-btn.k-warning:hover {
+.k-btn.k-warning:hover,
+.k-btn.k-warning:focus {
   background-color: #ffa133;
   border-color: #ffa133;
 }
@@ -3993,7 +3996,8 @@ blockquote:before {
   color: #fff;
   border-color: #db2828;
 }
-.k-btn.k-danger:hover {
+.k-btn.k-danger:hover,
+.k-btn.k-danger:focus {
   background-color: #e25353;
   border-color: #e25353;
 }
@@ -4002,7 +4006,8 @@ blockquote:before {
   color: #fff;
   border-color: #0a5eee;
 }
-.k-btn.k-active:hover {
+.k-btn.k-active:hover,
+.k-btn.k-active:focus {
   background-color: #367df7;
   border-color: #367df7;
 }
@@ -4119,7 +4124,8 @@ blockquote:before {
   margin: 0;
   vertical-align: middle;
 }
-.k-btns .k-btn:hover {
+.k-btns .k-btn:hover,
+.k-btns .k-btn:focus {
   z-index: 1;
   position: relative;
 }
@@ -5033,6 +5039,12 @@ blockquote:before {
       -ms-transform: scale(1);
           transform: scale(1);
 }
+.k-radio:focus {
+  outline: none;
+}
+.k-radio:focus .k-wrapper {
+  border-color: #0a5eee;
+}
 .k-radio.k-disabled {
   color: #999;
   cursor: not-allowed;
@@ -5108,6 +5120,12 @@ blockquote:before {
   -webkit-transform: rotate(45deg) scale(1);
       -ms-transform: rotate(45deg) scale(1);
           transform: rotate(45deg) scale(1);
+}
+.k-checkbox:focus {
+  outline: none;
+}
+.k-checkbox:focus .k-wrapper {
+  border-color: #0a5eee;
 }
 .k-checkbox.k-disabled {
   color: #999;
@@ -5264,6 +5282,12 @@ blockquote:before {
       -ms-transform: rotate(180deg);
           transform: rotate(180deg);
 }
+.k-select:focus {
+  outline: none;
+}
+.k-select:focus > .k-wrapper {
+  border: 1px solid #0a5eee;
+}
 .k-select.k-disabled > .k-wrapper {
   color: #999;
   cursor: not-allowed;
@@ -5366,7 +5390,8 @@ blockquote:before {
 .k-spinner {
   display: inline-block;
 }
-.k-spinner .k-btn:hover {
+.k-spinner .k-btn:hover,
+.k-spinner .k-btn:focus {
   z-index: 1;
   position: relative;
 }
@@ -5537,9 +5562,13 @@ blockquote:before {
 
 .k-datepicker {
   display: inline-block;
+  outline: none;
 }
 .k-datepicker .k-inner {
   cursor: pointer;
+}
+.k-datepicker:focus .k-inner {
+  border: 1px solid #0a5eee;
 }
 .k-datepicker-content {
   position: absolute;
@@ -5548,6 +5577,9 @@ blockquote:before {
           box-shadow: 0 2px 8px 0 rgba(191,191,191,0.5);
   color: #595959;
   max-width: none;
+}
+.k-datepicker-content .k-wrapper {
+  outline: none;
 }
 .k-datepicker-content .k-day,
 .k-datepicker-content .k-weekday {
@@ -5564,7 +5596,7 @@ blockquote:before {
   border: 1px solid transparent;
   position: relative;
 }
-.k-datepicker-content .k-day:hover {
+.k-datepicker-content .k-day.k-hover {
   background: #eee;
   color: #595959;
 }
@@ -5665,6 +5697,7 @@ blockquote:before {
   position: relative;
   display: table;
   width: 100%;
+  outline: none;
 }
 .k-slider .k-slider-wrapper {
   display: table-cell;
@@ -5709,8 +5742,10 @@ blockquote:before {
   border-radius: 50%;
   background-color: #fff;
   transition: all 0.25s ease-in-out;
+  outline: none;
 }
-.k-slider .k-slider-wrapper .k-handle:hover {
+.k-slider .k-slider-wrapper .k-handle:hover,
+.k-slider .k-slider-wrapper .k-handle:focus {
   -webkit-transform: scale(1.5);
       -ms-transform: scale(1.5);
           transform: scale(1.5);
@@ -5750,7 +5785,8 @@ blockquote:before {
 .k-slider.k-disabled .k-handle {
   border-color: #999;
 }
-.k-slider.k-disabled .k-handle:hover {
+.k-slider.k-disabled .k-handle:hover,
+.k-slider.k-disabled .k-handle:focus {
   background-color: #fff;
   cursor: not-allowed;
   -webkit-transform: none;
@@ -5868,6 +5904,13 @@ blockquote:before {
   background: #0a5eee;
   -webkit-transition: background 0.25s ease-in-out;
   transition: background 0.25s ease-in-out;
+}
+.k-switch:focus {
+  outline: none;
+}
+.k-switch:focus .k-bar,
+.k-switch:focus .k-wrapper {
+  background: #0a5eee;
 }
 .k-switch.k-default {
   width: 3.428571428571428rem;
@@ -6159,15 +6202,15 @@ blockquote:before {
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/components/form/index.md">github</a>
                     上修正该文档
                 </div></div><div class="contents"><div><h1>示例</h1>
-        <div class="example index-21"><div class="example-opera"><form class="k-form" style="" noValidate><div class="k-form-item" style=""><label class="k-label">Input</label><div class="k-content"><div class="k-input" style=""><div class="k-wrapper"><input class="k-inner" type="text" /></div></div></div></div><div class="k-form-item" style=""><label class="k-label">Select</label><div class="k-content"><div class="k-select" style=""><div class="k-wrapper" _hasSaved><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></div><div class="k-form-item" style=""><label class="k-label">Checkbox</label><div class="k-content"><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="model.checkbox" value="Javascript" /></span><span class="k-text">Javascript</span></label><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="model.checkbox" value="PHP" /></span><span class="k-text">PHP</span></label><label class="k-checkbox" style=""><span class="k-wrapper"><input type="checkbox" v-model="model.checkbox" value="C++" /></span><span class="k-text">C++</span></label></div></div><div class="k-form-item" style=""><label class="k-label">Radio</label><div class="k-content"><label class="k-radio" style=""><span class="k-wrapper"><input type="radio" v-model="model.radio" value="Javascript" /></span><span class="k-text">Javascript</span></label><label class="k-radio" style=""><span class="k-wrapper"><input type="radio" v-model="model.radio" value="PHP" /></span><span class="k-text">PHP</span></label><label class="k-radio" style=""><span class="k-wrapper"><input type="radio" v-model="model.radio" value="C++" /></span><span class="k-text">C++</span></label></div></div><div class="k-form-item" style=""><label class="k-label">Radio ButtonGroup</label><div class="k-content"><div class="k-btns" style=""><button class="k-btn" type="button">
+        <div class="example index-21"><div class="example-opera"><form class="k-form" style="" noValidate><div class="k-form-item" style=""><label class="k-label">Input</label><div class="k-content"><div class="k-input" style=""><div class="k-wrapper"><input class="k-inner" type="text" /></div></div></div></div><div class="k-form-item" style=""><label class="k-label">Select</label><div class="k-content"><div class="k-select" style="" tabindex="0"><div class="k-wrapper" tabindex="-1" _hasSaved><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></div><div class="k-form-item" style=""><label class="k-label">Checkbox</label><div class="k-content"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="model.checkbox" value="Javascript" tabindex="-1" /></span><span class="k-text">Javascript</span></label><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="model.checkbox" value="PHP" tabindex="-1" /></span><span class="k-text">PHP</span></label><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="model.checkbox" value="C++" tabindex="-1" /></span><span class="k-text">C++</span></label></div></div><div class="k-form-item" style=""><label class="k-label">Radio</label><div class="k-content"><label class="k-radio" style="" tabindex="0"><span class="k-wrapper"><input type="radio" v-model="model.radio" value="Javascript" tabindex="-1" /></span><span class="k-text">Javascript</span></label><label class="k-radio" style="" tabindex="0"><span class="k-wrapper"><input type="radio" v-model="model.radio" value="PHP" tabindex="-1" /></span><span class="k-text">PHP</span></label><label class="k-radio" style="" tabindex="0"><span class="k-wrapper"><input type="radio" v-model="model.radio" value="C++" tabindex="-1" /></span><span class="k-text">C++</span></label></div></div><div class="k-form-item" style=""><label class="k-label">Radio ButtonGroup</label><div class="k-content"><div class="k-btns" style=""><button class="k-btn" tabindex="0" type="button">
     <span>Javascript</span>
-    <input type="radio" /></button><button class="k-btn" type="button">
+    <input type="radio" tabindex="-1" /></button><button class="k-btn" tabindex="0" type="button">
     <span>PHP</span>
-    <input type="radio" /></button><button class="k-btn" type="button">
+    <input type="radio" tabindex="-1" /></button><button class="k-btn" tabindex="0" type="button">
     <span>C++</span>
-    <input type="radio" /></button></div></div></div><div class="k-form-item" style=""><label class="k-label">Switch</label><div class="k-content"><div class="k-switch k-default" style=""><input type="checkbox" v-model="value" value /><div class="k-bar" style=""><div class="k-wrapper"><div class="k-handle"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div></div></div></div></div></div><div class="k-form-item" style=""><label class="k-label">Slider</label><div class="k-content"><div class="k-slider" style=""><div class="k-slider-wrapper"><div class="k-wrapper"><div class="k-bar" style="width:0%;"></div><div class="k-handle" style="left:0%;"></div></div><div class="k-box"><span>0<!----> </span><span>100</span></div></div></div></div></div><div class="k-form-item" style=""><label class="k-label">Textarea</label><div class="k-content"><div class="k-input" style=""><div class="k-wrapper"><textarea class="k-inner k-textarea" rows="2"></textarea></div></div></div></div><div class="k-form-item" style=""><label class="k-label">Password</label><div class="k-content"><div class="k-input" style=""><div class="k-wrapper"><input class="k-inner" type="password" /></div></div></div></div><div class="k-form-item" style=""><label class="k-label">Confirm Password</label><div class="k-content"><div class="k-input" style=""><div class="k-wrapper"><input class="k-inner" type="password" /></div></div></div></div><div class="k-form-item" style=""><label class="k-label"></label><div class="k-content"><button class="k-btn k-primary" type="submit">
+    <input type="radio" tabindex="-1" /></button></div></div></div><div class="k-form-item" style=""><label class="k-label">Switch</label><div class="k-content"><div class="k-switch k-default" style="" tabindex="0"><input type="checkbox" v-model="value" value tabindex="-1" /><div class="k-bar" style=""><div class="k-wrapper"><div class="k-handle"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div></div></div></div></div></div><div class="k-form-item" style=""><label class="k-label">Slider</label><div class="k-content"><div class="k-slider" style=""><div class="k-slider-wrapper"><div class="k-wrapper"><div class="k-bar" style="width:0%;"></div><div class="k-handle" style="left:0%;" tabindex="0"></div></div><div class="k-box"><span>0<!----> </span><span>100</span></div></div></div></div></div><div class="k-form-item" style=""><label class="k-label">Datepicker</label><div class="k-content"><div class="k-datepicker" style="" tabindex="0"><div class="k-input k-with-suffix" style=""><div class="k-wrapper"><input class="k-inner" type="text" readOnly placeholder="请选择日期" tabindex="-1" /><div class="k-suffix"><i class="ion-ios-calendar-outline"></i></div></div></div><!--MoveWrapper--></div></div></div><div class="k-form-item" style=""><label class="k-label">Textarea</label><div class="k-content"><div class="k-input" style=""><div class="k-wrapper"><textarea class="k-inner k-textarea" rows="2"></textarea></div></div></div></div><div class="k-form-item" style=""><label class="k-label">Password</label><div class="k-content"><div class="k-input" style=""><div class="k-wrapper"><input class="k-inner" type="password" /></div></div></div></div><div class="k-form-item" style=""><label class="k-label">Confirm Password</label><div class="k-content"><div class="k-input" style=""><div class="k-wrapper"><input class="k-inner" type="password" /></div></div></div></div><div class="k-form-item" style=""><label class="k-label"></label><div class="k-content"><button class="k-btn k-primary" tabindex="0" type="submit">
     <span>提交</span>
-    </button><button class="k-btn" style="margin-left: 20px" type="button">
+    </button><button class="k-btn" style="margin-left: 20px" tabindex="0" type="button">
     <span>重置</span>
     </button></div></div></form></div><div class="example-desc"><div class="title">基本用法</div><div class="desc"><p>表单需要<code>Form</code>嵌套<code>FormItem</code>进行使用，<code>FormItem</code>中可以包含任意组件或原生元素。同时我们可以指定<code>FormItem</code>的表单验证规则：</p>
 <ol>
@@ -6201,9 +6244,9 @@ blockquote:before {
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-41"><div class="example-opera"><form class="k-form" style="" noValidate><div class="k-form-item" style=""><label class="k-label">描述</label><div class="k-content"><div class="k-form-item" style=""><div class="k-content"><div class="k-input" style=""><div class="k-wrapper"><input class="k-inner" type="text" value="" /></div></div></div><div class="k-append"><button class="k-btn" type="button">
+</div><div class="code"></div></div></div><div class="example index-41"><div class="example-opera"><form class="k-form" style="" noValidate><div class="k-form-item" style=""><label class="k-label">描述</label><div class="k-content"><div class="k-form-item" style=""><div class="k-content"><div class="k-input" style=""><div class="k-wrapper"><input class="k-inner" type="text" value="" /></div></div></div><div class="k-append"><button class="k-btn" tabindex="0" type="button">
     <span>删除</span>
-    </button></div></div><button class="k-btn" type="button">
+    </button></div></div><button class="k-btn" tabindex="0" type="button">
     <span>添加</span>
     </button></div></div></form></div><div class="example-desc"><div class="title">自定义验证规则</div><div class="desc"><p>当内置的验证规则不能满足需求时，我们还可以自定义验证规则。有如下两种方式添加规则：</p>
 <ol>
