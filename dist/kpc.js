@@ -756,6 +756,7 @@ var Button = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
             tagProps: undefined,
             value: undefined,
             name: undefined,
+            tabindex: '0',
 
             _value: undefined,
             _checkType: 'none'
@@ -833,6 +834,11 @@ var Button = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
         }
         e.component = this;
         this.trigger('click', e);
+    };
+
+    Button.prototype._blur = function _blur() {
+        // when click, blur it to remove the focus style
+        this.element.blur();
     };
 
     (0, _createClass3.default)(Button, [{
@@ -952,7 +958,8 @@ var Input = (_dec = _intact2.default.template, (_class = (_temp = _class2 = func
             spellcheck: false,
             autoWidth: false,
             fluid: false,
-            width: undefined
+            width: undefined,
+            tabindex: undefined
         };
     };
 
@@ -1271,6 +1278,12 @@ var Checkbox = (_temp = _class = function (_Intact) {
         var value = this.get('value');
         var trueValue = this.get('trueValue');
         return isArray(value) ? value.indexOf(trueValue) > -1 : value === trueValue;
+    };
+
+    Checkbox.prototype._onKeypress = function _onKeypress(e) {
+        if (e.keyCode === 13) {
+            this.refs.input.click();
+        }
     };
 
     (0, _createClass3.default)(Checkbox, [{
@@ -2885,6 +2898,12 @@ var Radio = (_temp = _class = function (_Intact) {
         // }
     };
 
+    Radio.prototype._onKeypress = function _onKeypress(e) {
+        if (e.keyCode === 13) {
+            this.refs.input.click();
+        }
+    };
+
     (0, _createClass3.default)(Radio, [{
         key: 'template',
         get: function get() {
@@ -3811,12 +3830,12 @@ var Calendar = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
             disabledSeconds: false,
             dayClassNames: undefined,
             onMouseEnterDay: undefined,
-            onMouseLeaveDays: undefined,
 
             _showDate: undefined,
             _now: (0, _utils2.getNowDate)(),
             _isShowYearPicker: false,
-            _isSelectTime: false
+            _isSelectTime: false,
+            _focusDate: undefined
         };
     };
 
@@ -3840,7 +3859,7 @@ var Calendar = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
                 // been replaced with time selecter, so we set the
                 // _dropdown to true to tell TooltipContent that
                 // we click on drodown and don't hide it
-                e._rawEvent._dropdown = true;
+                e && (e._rawEvent._dropdown = true);
                 this.set('_isSelectTime', true, { async: true });
             }
         } else {
@@ -3859,7 +3878,7 @@ var Calendar = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
                 }
             } else {
                 values.push(value);
-                e._rawEvent._dropdown = true;
+                e && (e._rawEvent._dropdown = true);
                 this.set('_isSelectTime', true, { async: true });
             }
             this._index = values.length - 1;
@@ -3882,7 +3901,8 @@ var Calendar = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
         this.setRelativeMonth(-1);
     };
 
-    Calendar.prototype.nextMonth = function nextMonth() {
+    Calendar.prototype.nextMonth = function nextMonth(e) {
+        e.preventDefault();
         this.setRelativeMonth(1);
     };
 
@@ -3981,6 +4001,96 @@ var Calendar = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
     Calendar.prototype.cancel = function cancel(e) {
         e._rawEvent._dropdown = true;
         this.set('_isSelectTime', false);
+    };
+
+    Calendar.prototype.focusAndSelect = function focusAndSelect(e) {
+        // this.element.focus();
+        this._onKeydown(e);
+    };
+
+    Calendar.prototype._onMouseEnter = function _onMouseEnter(date, isOut, e) {
+        var onMouseEnterDay = this.get('onMouseEnterDay');
+
+        this.set('_focusDate', date);
+
+        if (onMouseEnterDay) {
+            onMouseEnterDay.call(this, date, isOut, e);
+        }
+    };
+
+    Calendar.prototype._onMouseLeaveDays = function _onMouseLeaveDays() {
+        this.set('_focusDate', null);
+    };
+
+    Calendar.prototype._onKeydown = function _onKeydown(e) {
+        switch (e.keyCode) {
+            case 38:
+                // up
+                this._focusByOffset(e, -7);
+                break;
+            case 40:
+                // down
+                this._focusByOffset(e, 7);
+                break;
+            case 37:
+                // left
+                this._focusByOffset(e, -1);
+                break;
+            case 39:
+                // right
+                this._focusByOffset(e, 1);
+                break;
+            case 13:
+                this._selectFocusDate();
+                break;
+        }
+    };
+
+    Calendar.prototype._focusByOffset = function _focusByOffset(e, offset) {
+        e.preventDefault();
+
+        var _get4 = this.get(),
+            _focusDate = _get4._focusDate,
+            value = _get4.value,
+            _showDate = _get4._showDate;
+
+        var isSet = true;
+        if (!_focusDate) {
+            _focusDate = this.getShowDate();
+            if (!value) isSet = false;
+        } else {
+            if (_showDate) {
+                var _y1 = _focusDate.getFullYear();
+                var _m1 = _focusDate.getMonth();
+                var _y2 = _showDate.getFullYear();
+                var _m2 = _showDate.getMonth();
+                if (_y1 !== _y2 || _m1 !== _m2) {
+                    _focusDate = new Date(_showDate);
+                    _focusDate.setDate(1);
+                    isSet = false;
+                }
+            }
+        }
+        if (isSet) {
+            _focusDate.setDate(_focusDate.getDate() + offset);
+        }
+
+        this.set({
+            '_focusDate': _focusDate,
+            '_showDate': _focusDate
+        }, { silent: true });
+        this.update();
+    };
+
+    Calendar.prototype._selectFocusDate = function _selectFocusDate() {
+        var _get5 = this.get(),
+            _focusDate = _get5._focusDate,
+            _isSelectTime = _get5._isSelectTime;
+
+        if (_focusDate && !_isSelectTime) {
+            this.trigger('enter:select', this);
+            this.select(new Date(_focusDate));
+        }
     };
 
     return Calendar;
@@ -4697,6 +4807,10 @@ var Select = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
         clearTimeout(this.timer);
     };
 
+    Select.prototype._onFocusout = function _onFocusout() {
+        this.refs.dropdown.hide();
+    };
+
     Select.prototype._delete = function _delete(value, e) {
         e.stopPropagation();
         var values = this.get('value').slice(0);
@@ -4718,6 +4832,19 @@ var Select = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
         var menuWidth = menuElement.offsetWidth;
         if (width > menuWidth) {
             menuElement.style.width = width + 'px';
+        }
+    };
+
+    Select.prototype._onKeypress = function _onKeypress(e) {
+        if (e.keyCode === 13) {
+            this.refs.wrapper.click();
+        }
+    };
+
+    Select.prototype._onKeydown = function _onKeydown(e) {
+        if (e.keyCode === 9) {
+            // tab
+            this.refs.dropdown.hide();
         }
     };
 
@@ -4937,6 +5064,27 @@ var Spinner = (_temp = _class = function (_Intact) {
     };
 
     Spinner.prototype._init = function _init() {
+        var _this2 = this;
+
+        this._fixValue();
+        this.on('$receive:value', this._fixValue);
+        this.on('$change:_value', function (c, val) {
+            var _get = _this2.get(),
+                max = _get.max,
+                min = _get.min;
+            // if the _value is valid, then set it to value
+
+
+            if (numberReg.test(val)) {
+                val = Number(val);
+                if (val <= max && val >= min) {
+                    _this2.set('value', val);
+                }
+            }
+        });
+    };
+
+    Spinner.prototype._fixValue = function _fixValue() {
         var value = this.get('value');
         if (value == null) {
             var min = this.get('min');
@@ -4945,61 +5093,64 @@ var Spinner = (_temp = _class = function (_Intact) {
             } else {
                 value = min;
             }
-            this.set('value', value);
         }
+        this.set({
+            '_value': value,
+            'value': value
+        });
         this.initValue = value;
     };
 
     Spinner.prototype._increase = function _increase(e) {
         if (this._disableIncrease()) return;
 
-        var _get = this.get(),
-            value = _get.value,
-            step = _get.step;
+        var _get2 = this.get(),
+            _value = _get2._value,
+            step = _get2.step;
 
-        this.set('value', Number((value + step).toFixed(10)));
+        this.set('_value', Number((_value + step).toFixed(10)));
     };
 
     Spinner.prototype._decrease = function _decrease(e) {
         if (this._disableDecrease()) return;
 
-        var _get2 = this.get(),
-            value = _get2.value,
-            step = _get2.step;
+        var _get3 = this.get(),
+            _value = _get3._value,
+            step = _get3.step;
 
-        this.set('value', Number((value - step).toFixed(10)));
+        this.set('_value', Number((_value - step).toFixed(10)));
     };
 
     Spinner.prototype._disableDecrease = function _disableDecrease() {
-        var _get3 = this.get(),
-            value = _get3.value,
-            min = _get3.min,
-            step = _get3.step,
-            disabled = _get3.disabled;
-
-        return disabled || value <= min || value - min < step;
-    };
-
-    Spinner.prototype._disableIncrease = function _disableIncrease() {
         var _get4 = this.get(),
-            value = _get4.value,
-            max = _get4.max,
+            _value = _get4._value,
+            min = _get4.min,
             step = _get4.step,
             disabled = _get4.disabled;
 
-        return disabled || value >= max || max - value < step;
+        return disabled || _value <= min || _value - min < step;
+    };
+
+    Spinner.prototype._disableIncrease = function _disableIncrease() {
+        var _get5 = this.get(),
+            _value = _get5._value,
+            max = _get5.max,
+            step = _get5.step,
+            disabled = _get5.disabled;
+
+        return disabled || _value >= max || max - _value < step;
     };
 
     Spinner.prototype._changeValue = function _changeValue(e) {
-        var _get5 = this.get(),
-            disabled = _get5.disabled,
-            max = _get5.max,
-            min = _get5.min;
-
         var val = e.target.value.trim();
 
+        var _get6 = this.get(),
+            disabled = _get6.disabled,
+            max = _get6.max,
+            min = _get6.min;
+
         if (!numberReg.test(val) || disabled) {
-            this.set('value', this.initValue);
+            this.set('_value', this.initValue);
         } else {
             val = Number(val);
             if (val >= max) {
@@ -5007,7 +5158,7 @@ var Spinner = (_temp = _class = function (_Intact) {
             } else if (val < min) {
                 val = min;
             }
-            this.set('value', val);
+            this.set('_value', val);
         }
     };
 
@@ -5182,7 +5333,7 @@ var TableColumn = (_temp = _class = function (_Intact) {
             key: '',
             sortable: false,
             width: undefined,
-            groups: undefined,
+            group: undefined,
             multiple: false,
             value: [],
 
@@ -5493,7 +5644,7 @@ exports.Transfer = _transfer.Transfer;
 
 /* generate start */
 
-var version = exports.version = '0.1.4';
+var version = exports.version = '0.2.0';
 
 /* generate end */
 
@@ -7710,6 +7861,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         circle = _self$get.circle,
         ref = _self$get.ref,
         key = _self$get.key,
+        tabindex = _self$get.tabindex,
         tagName = _self$get.tagName,
         htmlType = _self$get.htmlType,
         fluid = _self$get.fluid,
@@ -7721,7 +7873,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         name = _self$get.name,
         tagProps = _self$get.tagProps,
         _checkType = _self$get._checkType,
-        rest = (0, _objectWithoutProperties3.default)(_self$get, ['type', 'className', 'size', 'icon', 'circle', 'ref', 'key', 'tagName', 'htmlType', 'fluid', 'children', 'loading', 'disabled', 'value', '_value', 'name', 'tagProps', '_checkType']);
+        rest = (0, _objectWithoutProperties3.default)(_self$get, ['type', 'className', 'size', 'icon', 'circle', 'ref', 'key', 'tabindex', 'tagName', 'htmlType', 'fluid', 'children', 'loading', 'disabled', 'value', '_value', 'name', 'tagProps', '_checkType']);
 
     var checked = value !== undefined ? _checkType === 'radio' ? value === _value : _checkType === 'checkbox' ? Array.isArray(_value) && !!~_value.indexOf(value) : false : false;
 
@@ -7804,6 +7956,18 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
+        }.call(this), 'tabindex': function () {
+            try {
+                return [disabled || loading ? "-1" : tabindex][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-mouseup': function () {
+            try {
+                return [self._blur][0];
+            } catch (e) {
+                _e(e);
+            }
         }.call(this), 'children': ['\n    ', function () {
             try {
                 return [loading ? classNameObj['k-icon-right'] ? [children, h('i', null, null, 'k-icon ion-load-c icon-loading')] : [h('i', null, null, 'k-icon ion-load-c icon-loading'), children] : children][0];
@@ -7834,7 +7998,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this) }) : undefined], '_context': $this }));
+            }.call(this), 'tabindex': '-1' }) : undefined], '_context': $this }));
 };
 
 var _utils = __webpack_require__(7);
@@ -8115,6 +8279,18 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
+        }.call(this), 'tabindex': function () {
+            try {
+                return [disabled ? "-1" : "0"][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-keypress': function () {
+            try {
+                return [self._onKeypress][0];
+            } catch (e) {
+                _e(e);
+            }
         }.call(this) }, [h('span', null, h('input', (0, _extends3.default)({ 'type': 'checkbox', 'disabled': function () {
             try {
                 return [disabled][0];
@@ -8127,7 +8303,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
-        }.call(this) }, function () {
+        }.call(this), 'tabindex': '-1' }, function () {
         try {
             return [rest][0];
         } catch (e) {
@@ -8153,7 +8329,9 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                     _e(e);
                 }
             }.call(this), __e, $this);
-        } })), 'k-wrapper'), function () {
+        } }), null, null, null, function (i) {
+        widgets['input'] = i;
+    }), 'k-wrapper'), function () {
         try {
             return [children][0];
         } catch (e) {
@@ -8327,6 +8505,11 @@ var Datepicker = (_dec = _intact2.default.template(), (_class = (_temp = _class2
         this.set('transition', (0, _utils2.getTransition)(feedback));
     };
 
+    Datepicker.prototype._onChangeShow = function _onChangeShow(c, v) {
+        this._isShow = v;
+        this._hasSelectByArrowKey = false;
+    };
+
     Datepicker.prototype._onChangeShowDate = function _onChangeShowDate(type, c, v) {
         var begin = this.refs.begin;
         var end = this.refs.end;
@@ -8486,6 +8669,35 @@ var Datepicker = (_dec = _intact2.default.template(), (_class = (_temp = _class2
         this.set('_rangeEndDate', undefined);
     };
 
+    Datepicker.prototype._onKeydown = function _onKeydown(e) {
+        switch (e.keyCode) {
+            case 13:
+                e.preventDefault();
+                if (!this._hasSelectByArrowKey) {
+                    this.refs.input.element.click();
+                } else {
+                    this.refs.begin._selectFocusDate();
+                }
+                break;
+            case 9:
+                this.refs.calendar.hide();
+                break;
+            case 38:
+            case 40:
+            case 37:
+            case 39:
+                if (this._isShow) {
+                    this._hasSelectByArrowKey = true;
+                    this.refs.begin._onKeydown(e);
+                }
+                break;
+        }
+    };
+
+    Datepicker.prototype._focus = function _focus() {
+        this.refs.input.focus();
+    };
+
     return Datepicker;
 }(_intact2.default), _class2.template = _index2.default, _class2.propTypes = {
     clearable: Boolean,
@@ -8585,6 +8797,18 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
+        }.call(this), 'tabindex': function () {
+            try {
+                return [disabled ? '-1' : '0'][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-keydown': function () {
+            try {
+                return [self._onKeydown][0];
+            } catch (e) {
+                _e(e);
+            }
         }.call(this) }, h(_tooltip2.default, { 'className': 'k-datepicker-content', 'position': function () {
             try {
                 return [{ my: 'left top', at: 'left bottom' }][0];
@@ -8612,6 +8836,12 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         }.call(this), 'ev-show': function () {
             try {
                 return [self._onShow][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-$changed:show': function () {
+            try {
+                return [self._onChangeShow][0];
             } catch (e) {
                 _e(e);
             }
@@ -8663,7 +8893,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this), 'children': null, '_context': $this, '_blocks': function (blocks) {
+            }.call(this), 'tabindex': '-1', 'children': null, '_context': $this, '_blocks': function (blocks) {
                 var _blocks = {},
                     __blocks = extend({}, blocks);
                 return (_blocks["suffix"] = function (parent) {
@@ -8674,7 +8904,9 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                         return _blocks["suffix"].call(self, parent);
                     }) : _blocks["suffix"].call(this, parent);
                 }), __blocks;
-            }.call(this, {}) }), '_context': $this, '_blocks': function (blocks) {
+            }.call(this, {}) }, null, null, null, function (i) {
+            widgets['input'] = i;
+        }), '_context': $this, '_blocks': function (blocks) {
             var _blocks = {},
                 __blocks = extend({}, blocks);
             return (_blocks["content"] = function (parent) {
@@ -8702,9 +8934,17 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                         } catch (e) {
                             _e(e);
                         }
+                    }.call(this), 'ev-enter:select': function () {
+                        try {
+                            return [self._focus][0];
+                        } catch (e) {
+                            _e(e);
+                        }
                     }.call(this), 'children': null, '_context': $this, value: _getModel(self, 'value'), 'ev-$change:value': function ev$changeValue(__c, __n) {
                         _setModel(self, 'value', __n, $this);
-                    } })) : h('div', { 'ev-mouseleave': function () {
+                    } }), null, null, null, function (i) {
+                    widgets['begin'] = i;
+                }) : h('div', { 'ev-mouseleave': function () {
                         try {
                             return [self._clearRangeEndDate][0];
                         } catch (e) {
@@ -8916,6 +9156,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         name = _self$get.name,
         value = _self$get.value,
         placeholder = _self$get.placeholder,
+        tabindex = _self$get.tabindex,
         readonly = _self$get.readonly,
         clearable = _self$get.clearable,
         disabled = _self$get.disabled,
@@ -9035,6 +9276,12 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
+        }.call(this), 'tabindex': function () {
+            try {
+                return [tabindex][0];
+            } catch (e) {
+                _e(e);
+            }
         }.call(this) }, function () {
         try {
             return [events][0];
@@ -9094,6 +9341,12 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         }.call(this), 'spellcheck': function () {
             try {
                 return [spellcheck][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'tabindex': function () {
+            try {
+                return [tabindex][0];
             } catch (e) {
                 _e(e);
             }
@@ -9496,14 +9749,14 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         hours = _self$get.hours,
         minutes = _self$get.minutes,
         seconds = _self$get.seconds,
-        onMouseLeaveDays = _self$get.onMouseLeaveDays,
         disabledHours = _self$get.disabledHours,
         disabledMinutes = _self$get.disabledMinutes,
         disabledSeconds = _self$get.disabledSeconds,
         _isShowYearPicker = _self$get._isShowYearPicker,
         _isSelectTime = _self$get._isSelectTime,
         _now = _self$get._now,
-        _showDate = _self$get._showDate;
+        _showDate = _self$get._showDate,
+        _focusDate = _self$get._focusDate;
 
     var values = multiple ? value || [] : [value];
 
@@ -9535,7 +9788,13 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         return map[item];
     });
 
-    return h('div', null, function () {
+    return h('div', { 'tabindex': '0', 'ev-keydown': function () {
+            try {
+                return [self._onKeydown][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, function () {
         try {
             return [!_isSelectTime][0];
         } catch (e) {
@@ -9547,7 +9806,13 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'type': 'none', 'size': 'small', 'className': 'k-prev', 'ev-click': function () {
+        }.call(this), 'type': 'none', 'size': 'small', 'className': 'k-prev', 'tagName': 'div', 'tabindex': function () {
+            try {
+                return [null][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-click': function () {
             try {
                 return [self.prevYear][0];
             } catch (e) {
@@ -9559,7 +9824,13 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'type': 'none', 'size': 'small', 'className': 'k-prev', 'ev-click': function () {
+        }.call(this), 'type': 'none', 'size': 'small', 'className': 'k-prev', 'tagName': 'div', 'tabindex': function () {
+            try {
+                return [null][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-click': function () {
             try {
                 return [self.prevMonth][0];
             } catch (e) {
@@ -9583,7 +9854,13 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'type': 'none', 'size': 'small', 'className': 'k-next', 'ev-click': function () {
+        }.call(this), 'type': 'none', 'size': 'small', 'className': 'k-next', 'tagName': 'div', 'tabindex': function () {
+            try {
+                return [null][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-click': function () {
             try {
                 return [self.nextYear][0];
             } catch (e) {
@@ -9595,7 +9872,13 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'type': 'none', 'size': 'small', 'className': 'k-next', 'ev-click': function () {
+        }.call(this), 'type': 'none', 'size': 'small', 'className': 'k-next', 'tagName': 'div', 'tabindex': function () {
+            try {
+                return [null][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-click': function () {
             try {
                 return [self.nextMonth][0];
             } catch (e) {
@@ -9629,7 +9912,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         }
     }.call(this) ? h('div', { 'ev-mouseleave': function () {
             try {
-                return [onMouseLeaveDays][0];
+                return [self._onMouseLeaveDays][0];
             } catch (e) {
                 _e(e);
             }
@@ -9665,7 +9948,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                             }
                         }.call(_this), 'ev-mouseenter': function () {
                             try {
-                                return [onMouseEnterDay && onMouseEnterDay.bind(self, new Date(start), isOut)][0];
+                                return [self._onMouseEnter.bind(self, new Date(start), isOut)][0];
                             } catch (e) {
                                 _e(e);
                             }
@@ -9684,7 +9967,8 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                                     return (0, _utils2.isEqual)(new Date(value), start);
                                 }),
                                 "k-today": (0, _utils2.isEqual)(_now, start),
-                                "k-disabled": disabled
+                                "k-disabled": disabled,
+                                "k-hover": (0, _utils2.isEqual)(start, _focusDate)
                             }, classNames)][0];
                         } catch (e) {
                             _e(e);
@@ -12164,15 +12448,21 @@ var FormItem = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
     };
 
     FormItem.prototype._dirty = function _dirty() {
+        var _this3 = this;
+
         if (!this.get('model')) return;
         if (this.get('isDirty')) return;
 
-        // for vue value will changed after event
-        if (this.$nextTick) {
-            this.$nextTick(this.validate);
-        } else {
-            this.validate();
-        }
+        // for select, the focusout event triggers before select
+        // so we put off validating it 
+        setTimeout(function () {
+            _this3.validate();
+        }, 50);
+        // if (this.$nextTick) {
+        // this.$nextTick(this.validate);
+        // } else {
+        // this.validate();
+        // }
     };
 
     FormItem.prototype._cancel = function _cancel() {
@@ -13758,6 +14048,24 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
+        }.call(this), 'tabindex': function () {
+            try {
+                return [disabled ? "-1" : "0"][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-keypress': function () {
+            try {
+                return [self._onKeypress][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-keydown': function () {
+            try {
+                return [self._onKeydown][0];
+            } catch (e) {
+                _e(e);
+            }
         }.call(this) }, h(_dropdown2.default, { 'position': function () {
             try {
                 return [{ my: 'left top', at: 'left bottom' }][0];
@@ -13776,7 +14084,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this) }, [h('input', { 'type': 'hidden', 'value': function () {
+            }.call(this), 'tabindex': '-1' }, [h('input', { 'type': 'hidden', 'value': function () {
                 try {
                     return [value][0];
                 } catch (e) {
@@ -13974,13 +14282,17 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
-        }.call(this))) : undefined, h('i', null, null, 'k-arrow ion-arrow-down-b')], 'k-suffix')], 'k-wrapper'), function () {
+        }.call(this))) : undefined, h('i', null, null, 'k-arrow ion-arrow-down-b')], 'k-suffix')], 'k-wrapper', null, function (i) {
+            widgets['wrapper'] = i;
+        }), function () {
             try {
                 return [Menu][0];
             } catch (e) {
                 _e(e);
             }
-        }.call(this)], '_context': $this }), _className(function () {
+        }.call(this)], '_context': $this }, null, null, null, function (i) {
+        widgets['dropdown'] = i;
+    }), _className(function () {
         try {
             return [(0, _extends3.default)({}, classNameObj, { 'k-active': hasValue })][0];
         } catch (e) {
@@ -14505,6 +14817,18 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
+        }.call(this), 'tabindex': function () {
+            try {
+                return [disabled ? "-1" : "0"][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-keypress': function () {
+            try {
+                return [self._onKeypress][0];
+            } catch (e) {
+                _e(e);
+            }
         }.call(this) }, [h('span', null, h('input', (0, _extends3.default)({ 'type': 'radio', 'disabled': function () {
             try {
                 return [disabled][0];
@@ -14517,7 +14841,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
-        }.call(this) }, function () {
+        }.call(this), 'tabindex': '-1' }, function () {
         try {
             return [rest][0];
         } catch (e) {
@@ -14537,7 +14861,9 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                     _e(e);
                 }
             }.call(this) : false, $this);
-        } })), 'k-wrapper'), function () {
+        } }), null, null, null, function (i) {
+        widgets['input'] = i;
+    }), 'k-wrapper'), function () {
         try {
             return [children][0];
         } catch (e) {
@@ -14654,12 +14980,11 @@ var Slider = (_temp = _class = function (_Intact) {
                 _this2._setFixedValue(val);
             }
         });
-    };
-
-    Slider.prototype._beforeUpdate = function _beforeUpdate(lastVNode, nextVNode) {
-        if (!this.get('_isDragging') && lastVNode && nextVNode) {
-            this._setFixedValue(this.get('value'));
-        }
+        this.on('$receive:value', function (c, val) {
+            if (!_this2.get('_isDragging')) {
+                _this2._setFixedValue(val);
+            }
+        });
     };
 
     Slider.prototype._setFixedValue = function _setFixedValue(value) {
@@ -14673,36 +14998,39 @@ var Slider = (_temp = _class = function (_Intact) {
 
     Slider.prototype._getFixedValue = function _getFixedValue(value) {
         var _get = this.get(),
-            step = _get.step,
-            max = _get.max,
             min = _get.min,
             isRange = _get.isRange;
-
-        function fix(v) {
-            if ((0, _isNan2.default)(Number(v))) {
-                return min;
-            } else if (v < min) {
-                return min;
-            } else if (v > max) {
-                return max;
-            } else {
-                // for the accuracy
-                return Number((Math.round(v / step) * step).toFixed(10));
-            }
-        }
 
         var fixedValue = void 0;
         if (isRange) {
             if (!Array.isArray(value)) {
                 fixedValue = [min, min];
             } else {
-                fixedValue = [fix(value[0]), fix(value[1])];
+                fixedValue = [this._fix(value[0]), this._fix(value[1])];
             }
         } else {
-            fixedValue = fix(value);
+            fixedValue = this._fix(value);
         }
 
         return fixedValue;
+    };
+
+    Slider.prototype._fix = function _fix(v) {
+        var _get2 = this.get(),
+            step = _get2.step,
+            max = _get2.max,
+            min = _get2.min;
+
+        if ((0, _isNan2.default)(Number(v))) {
+            return min;
+        } else if (v < min) {
+            return min;
+        } else if (v > max) {
+            return max;
+        } else {
+            // for the accuracy
+            return Number((Math.round(v / step) * step).toFixed(10));
+        }
     };
 
     Slider.prototype._clickWrapper = function _clickWrapper(e) {
@@ -14729,9 +15057,9 @@ var Slider = (_temp = _class = function (_Intact) {
         var rect = this.$slider.getBoundingClientRect();
         var percent = (pos - rect.left) / rect.width;
 
-        var _get2 = this.get(),
-            max = _get2.max,
-            min = _get2.min;
+        var _get3 = this.get(),
+            max = _get3.max,
+            min = _get3.min;
 
         var sliderWidth = max - min;
 
@@ -14747,26 +15075,10 @@ var Slider = (_temp = _class = function (_Intact) {
     Slider.prototype._onDrag = function _onDrag(indexFlag, e) {
         if (this.get('disabled')) return;
 
-        if (indexFlag) {
-            var value = this.get('value');
-            this._min = value[0];
-            this._max = value[1];
-            if (indexFlag === '_isFirst') {
-                this.set({
-                    _isDragging: true,
-                    _isFirst: true,
-                    _isSecond: false
-                });
-            } else {
-                this.set({
-                    _isDragging: true,
-                    _isFirst: false,
-                    _isSecond: true
-                });
-            }
-        } else {
-            this.set('_isDragging', true);
-        }
+        this._isDragging = true;
+
+        // when start drag, the element has been focusin
+        // so we need not handle it here
 
         this.__onRangeSliding = this._onRangeSliding.bind(this, indexFlag);
         this.__onRangeSlideEnd = this._onRangeSlideEnd.bind(this, indexFlag);
@@ -14779,15 +15091,16 @@ var Slider = (_temp = _class = function (_Intact) {
 
         var tempValue = this._getSlidingValue(e.clientX, this.get('_isDragging'));
         var fixedValue = void 0;
+
         if (indexFlag) {
             if (indexFlag === '_isFirst') {
                 if (this.get('_isSecond')) return;
-                tempValue = [Math.min(tempValue, this._max), Math.max(tempValue, this._max)];
             } else {
                 if (this.get('_isFirst')) return;
-                tempValue = [Math.min(tempValue, this._min), Math.max(tempValue, this._min)];
             }
         }
+
+        tempValue = this._getTempValue(tempValue, indexFlag, this._min, this._max, indexFlag === '_isFirst');
 
         fixedValue = this._getFixedValue(tempValue);
 
@@ -14798,22 +15111,41 @@ var Slider = (_temp = _class = function (_Intact) {
         });
     };
 
+    Slider.prototype._getTempValue = function _getTempValue(value, isRange, min, max, isFirst) {
+        if (isRange) {
+            if (isFirst) {
+                return [Math.min(value, max), Math.max(value, max)];
+            } else {
+                return [Math.min(value, min), Math.max(value, min)];
+            }
+        }
+        return value;
+    };
+
     Slider.prototype._onRangeSlideEnd = function _onRangeSlideEnd(indexFlag, e) {
         if (this.get('disabled')) return;
 
         if (this.get('_isDragging')) {
-            this.set('_isDragging', false, { silent: true });
+            this.set('_isDragging', false, { async: true });
             var newValue = this._getSlidingValue(e.clientX);
             if (indexFlag) {
                 if (indexFlag === '_isFirst') {
                     if (this.get('_isSecond')) return;
+
+                    this.$sliderFirstBtn.blur();
+
                     this.set('_isFirst', false, { async: true });
                     newValue = [Math.min(newValue, this._max), Math.max(newValue, this._max)];
                 } else {
                     if (this.get('_isFirst')) return;
+
+                    this.$sliderSecondBtn.blur();
+
                     this.set('_isSecond', false, { async: true });
                     newValue = [Math.min(newValue, this._min), Math.max(newValue, this._min)];
                 }
+            } else {
+                this.$sliderFirstBtn.blur();
             }
 
             this._setFixedValue(newValue);
@@ -14822,6 +15154,99 @@ var Slider = (_temp = _class = function (_Intact) {
 
             window.removeEventListener('mousemove', this.__onRangeSliding);
             window.removeEventListener('mouseup', this.__onRangeSlideEnd);
+
+            this._isDragging = false;
+        }
+    };
+
+    Slider.prototype._onFocusin = function _onFocusin(indexFlag, e) {
+        if (this.get('disabled')) return;
+
+        // if the focusin is invoked by dragging
+        // let the handle element blur
+        // because k-active will add focus style
+        if (this._isDragging) {
+            e.target.blur();
+        }
+
+        if (this.get('isRange')) {
+            var value = this.get('value');
+            this._min = value[0];
+            this._max = value[1];
+            if (indexFlag === '_isFirst') {
+                this._initValue = this._min;
+                this.set({
+                    _isDragging: true,
+                    _isFirst: true,
+                    _isSecond: false
+                });
+            } else {
+                this._initValue = this._max;
+                this.set({
+                    _isDragging: true,
+                    _isFirst: false,
+                    _isSecond: true
+                });
+            }
+        } else {
+            this.set('_isDragging', true);
+        }
+    };
+
+    Slider.prototype._onFocusout = function _onFocusout(indexFlag) {
+        if (this.get('disabled') || this._isDragging) return;
+
+        if (this.get('isRange')) {
+            if (indexFlag === '_isFirst') {
+                if (this.get('_isSecond')) return;
+                this.set('_isFirst', false, { async: true });
+            } else {
+                if (this.get('_isFirst')) return;
+                this.set('_isSecond', false, { async: true });
+            }
+        }
+
+        this.set('_isDragging', false, { async: true });
+    };
+
+    Slider.prototype._onKeydown = function _onKeydown(indexFlag, e) {
+        if (this.get('disabled')) return;
+
+        var step = this.get('step');
+        if (e.keyCode === 37) {
+            // left
+            this._setValue(indexFlag, -step);
+        } else if (e.keyCode === 39) {
+            // right
+            this._setValue(indexFlag, step);
+        }
+    };
+
+    Slider.prototype._setValue = function _setValue(indexFlag, step) {
+        var value = this.get('value');
+
+        if (!this.get('isRange')) {
+            return this._setFixedValue(value + step);
+        }
+
+        this._initValue += step;
+        this._initValue = this._fix(this._initValue);
+
+        var _value = this._getTempValue(this._initValue, indexFlag, this._min, this._max, indexFlag === '_isFirst');
+
+        this._setFixedValue(_value);
+
+        // if overstep the boundary, reverse it
+        if (indexFlag === '_isFirst') {
+            if (this._initValue > this._max) {
+                this.$sliderFirstBtn.blur();
+                this.$sliderSecondBtn.focus();
+            }
+        } else if (indexFlag === '_isSecond') {
+            if (this._initValue < this._min) {
+                this.$sliderSecondBtn.blur();
+                this.$sliderFirstBtn.focus();
+            }
         }
     };
 
@@ -14988,6 +15413,30 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
+        }.call(this), 'tabindex': function () {
+            try {
+                return [disabled ? "-1" : "0"][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-keydown': function () {
+            try {
+                return [isRange ? self._onKeydown.bind(self, '_isFirst') : self._onKeydown.bind(self, undefined)][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-focusin': function () {
+            try {
+                return [self._onFocusin.bind(self, '_isFirst')][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-focusout': function () {
+            try {
+                return [self._onFocusout.bind(self, '_isFirst')][0];
+            } catch (e) {
+                _e(e);
+            }
         }.call(this) }, function () {
         try {
             return [isInnerText][0];
@@ -15034,6 +15483,30 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 return [{
                     left: (_sliderValue[1] - min) / sliderWidth * 100 + '%'
                 }][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'tabindex': function () {
+            try {
+                return [disabled ? "-1" : "0"][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-keydown': function () {
+            try {
+                return [self._onKeydown.bind(self, '_isSecond')][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-focusin': function () {
+            try {
+                return [self._onFocusin.bind(self, '_isSecond')][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-focusout': function () {
+            try {
+                return [self._onFocusout.bind(self, '_isSecond')][0];
             } catch (e) {
                 _e(e);
             }
@@ -15124,7 +15597,9 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             }
         }.call(this), 'children': null, '_context': $this, value: _getModel(self, '_inputValue'), 'ev-$change:value': function ev$changeValue(__c, __n) {
             _setModel(self, '_inputValue', __n, $this);
-        } }), 'k-spinner-wrapper') : undefined], _className(function () {
+        } }, null, null, null, function (i) {
+        widgets['spinner'] = i;
+    }), 'k-spinner-wrapper') : undefined], _className(function () {
         try {
             return [classNameObj][0];
         } catch (e) {
@@ -15185,7 +15660,6 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         min = _self$get.min,
         step = _self$get.step,
         children = _self$get.children,
-        value = _self$get.value,
         style = _self$get.style,
         size = _self$get.size;
 
@@ -15236,14 +15710,14 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'v-model': 'value', 'size': function () {
+        }.call(this), 'v-model': '_value', 'size': function () {
             try {
                 return [size][0];
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'children': null, '_context': $this, value: _getModel(self, 'value'), 'ev-$change:value': function ev$changeValue(__c, __n) {
-            _setModel(self, 'value', __n, $this);
+        }.call(this), 'children': null, '_context': $this, value: _getModel(self, '_value'), 'ev-$change:value': function ev$changeValue(__c, __n) {
+            _setModel(self, '_value', __n, $this);
         } }), h(_button.Button, { 'icon': function () {
             try {
                 return [true][0];
@@ -15732,10 +16206,12 @@ var Switch = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
     Switch.prototype._dragEnd = function _dragEnd(e) {
         this.set('_dragging', false);
 
+        this.element.blur();
         var bar = this.refs.bar;
 
         // treat mousedown -> mouseup as click
         if (this._x === e.clientX) {
+            bar.style.width = '';
             this._toggle();
         } else {
             var percent = (bar.clientWidth - this._height / 2) / this._maxWidth;
@@ -15759,13 +16235,25 @@ var Switch = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
         document.removeEventListener('mouseup', this._dragEnd);
     };
 
-    Switch.prototype._toggle = function _toggle() {
+    Switch.prototype._toggle = function _toggle(e, isKeypress) {
         if (this.get('disabled')) return;
+
+        // if is not keypress, we blur it to remove focus style
+        if (!isKeypress) {
+            this.element.blur();
+        }
 
         if (this.isChecked()) {
             this.uncheck();
         } else {
             this.check();
+        }
+    };
+
+    Switch.prototype._onKeypress = function _onKeypress(e) {
+
+        if (e.keyCode === 13) {
+            this._toggle(e, true);
         }
     };
 
@@ -15895,6 +16383,18 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
+        }.call(this), 'tabindex': function () {
+            try {
+                return [disabled ? "-1" : "0"][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-keypress': function () {
+            try {
+                return [self._onKeypress][0];
+            } catch (e) {
+                _e(e);
+            }
         }.call(this) }, [h('input', { 'type': 'checkbox', 'name': function () {
             try {
                 return [name][0];
@@ -15913,7 +16413,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
-        }.call(this), checked: _detectCheckboxChecked(self, 'value', function () {
+        }.call(this), 'tabindex': '-1', checked: _detectCheckboxChecked(self, 'value', function () {
             try {
                 return [trueValue][0];
             } catch (e) {

@@ -3790,7 +3790,8 @@ label {
   border: 1px solid #d9d9d9;
   font-size: 1rem;
 }
-.k-btn:hover {
+.k-btn:hover,
+.k-btn:focus {
   border-color: #289af4;
   color: #289af4;
 }
@@ -3799,7 +3800,8 @@ label {
   color: #fff;
   border-color: #289af4;
 }
-.k-btn.k-primary:hover {
+.k-btn.k-primary:hover,
+.k-btn.k-primary:focus {
   background-color: #53aef6;
   border-color: #53aef6;
 }
@@ -3808,7 +3810,8 @@ label {
   color: #fff;
   border-color: #ff9c28;
 }
-.k-btn.k-warning:hover {
+.k-btn.k-warning:hover,
+.k-btn.k-warning:focus {
   background-color: #ffb053;
   border-color: #ffb053;
 }
@@ -3817,7 +3820,8 @@ label {
   color: #fff;
   border-color: #fe4444;
 }
-.k-btn.k-danger:hover {
+.k-btn.k-danger:hover,
+.k-btn.k-danger:focus {
   background-color: #fe6969;
   border-color: #fe6969;
 }
@@ -3826,7 +3830,8 @@ label {
   color: #fff;
   border-color: #289af4;
 }
-.k-btn.k-active:hover {
+.k-btn.k-active:hover,
+.k-btn.k-active:focus {
   background-color: #53aef6;
   border-color: #53aef6;
 }
@@ -3943,7 +3948,8 @@ label {
   margin: 0;
   vertical-align: middle;
 }
-.k-btns .k-btn:hover {
+.k-btns .k-btn:hover,
+.k-btns .k-btn:focus {
   z-index: 1;
   position: relative;
 }
@@ -4155,6 +4161,12 @@ label {
   -webkit-transform: rotate(45deg) scale(1);
       -ms-transform: rotate(45deg) scale(1);
           transform: rotate(45deg) scale(1);
+}
+.k-checkbox:focus {
+  outline: none;
+}
+.k-checkbox:focus .k-wrapper {
+  border-color: #289af4;
 }
 .k-checkbox.k-disabled {
   color: #999;
@@ -4622,9 +4634,13 @@ label {
 }
 .k-datepicker {
   display: inline-block;
+  outline: none;
 }
 .k-datepicker .k-inner {
   cursor: pointer;
+}
+.k-datepicker:focus .k-inner {
+  border: 1px solid #289af4;
 }
 .k-datepicker-content {
   position: absolute;
@@ -4633,6 +4649,9 @@ label {
           box-shadow: 0 2px 8px 0 rgba(191,191,191,0.5);
   color: #666;
   max-width: none;
+}
+.k-datepicker-content .k-wrapper {
+  outline: none;
 }
 .k-datepicker-content .k-day,
 .k-datepicker-content .k-weekday {
@@ -4649,7 +4668,7 @@ label {
   border: 1px solid transparent;
   position: relative;
 }
-.k-datepicker-content .k-day:hover {
+.k-datepicker-content .k-day.k-hover {
   background: #f5f5f5;
   color: #666;
 }
@@ -5113,6 +5132,12 @@ label {
       -ms-transform: rotate(180deg);
           transform: rotate(180deg);
 }
+.k-select:focus {
+  outline: none;
+}
+.k-select:focus > .k-wrapper {
+  border: 1px solid #289af4;
+}
 .k-select.k-disabled > .k-wrapper {
   color: #999;
   cursor: not-allowed;
@@ -5513,6 +5538,12 @@ label {
       -ms-transform: scale(1);
           transform: scale(1);
 }
+.k-radio:focus {
+  outline: none;
+}
+.k-radio:focus .k-wrapper {
+  border-color: #289af4;
+}
 .k-radio.k-disabled {
   color: #999;
   cursor: not-allowed;
@@ -5530,7 +5561,8 @@ label {
 .k-spinner {
   display: inline-block;
 }
-.k-spinner .k-btn:hover {
+.k-spinner .k-btn:hover,
+.k-spinner .k-btn:focus {
   z-index: 1;
   position: relative;
 }
@@ -5565,6 +5597,7 @@ label {
   position: relative;
   display: table;
   width: 100%;
+  outline: none;
 }
 .k-slider .k-slider-wrapper {
   display: table-cell;
@@ -5609,8 +5642,10 @@ label {
   border-radius: 0;
   background-color: #289af4;
   transition: all 0.25s ease-in-out;
+  outline: none;
 }
-.k-slider .k-slider-wrapper .k-handle:hover {
+.k-slider .k-slider-wrapper .k-handle:hover,
+.k-slider .k-slider-wrapper .k-handle:focus {
   -webkit-transform: none;
       -ms-transform: none;
           transform: none;
@@ -5650,7 +5685,8 @@ label {
 .k-slider.k-disabled .k-handle {
   border-color: #999;
 }
-.k-slider.k-disabled .k-handle:hover {
+.k-slider.k-disabled .k-handle:hover,
+.k-slider.k-disabled .k-handle:focus {
   background-color: #f2f2f2;
   cursor: not-allowed;
   -webkit-transform: none;
@@ -5879,6 +5915,13 @@ label {
   background: #289af4;
   -webkit-transition: background 0.25s ease-in-out;
   transition: background 0.25s ease-in-out;
+}
+.k-switch:focus {
+  outline: none;
+}
+.k-switch:focus .k-bar,
+.k-switch:focus .k-wrapper {
+  background: #289af4;
 }
 .k-switch.k-default {
   width: 3.428571428571428rem;

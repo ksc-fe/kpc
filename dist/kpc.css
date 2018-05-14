@@ -3787,7 +3787,8 @@ label {
   border: 1px solid #cad0dd;
   font-size: 1rem;
 }
-.k-btn:hover {
+.k-btn:hover,
+.k-btn:focus {
   border-color: #0a5eee;
   color: #0a5eee;
 }
@@ -3796,7 +3797,8 @@ label {
   color: #fff;
   border-color: #0a5eee;
 }
-.k-btn.k-primary:hover {
+.k-btn.k-primary:hover,
+.k-btn.k-primary:focus {
   background-color: #367df7;
   border-color: #367df7;
 }
@@ -3805,7 +3807,8 @@ label {
   color: #fff;
   border-color: #ff8a00;
 }
-.k-btn.k-warning:hover {
+.k-btn.k-warning:hover,
+.k-btn.k-warning:focus {
   background-color: #ffa133;
   border-color: #ffa133;
 }
@@ -3814,7 +3817,8 @@ label {
   color: #fff;
   border-color: #db2828;
 }
-.k-btn.k-danger:hover {
+.k-btn.k-danger:hover,
+.k-btn.k-danger:focus {
   background-color: #e25353;
   border-color: #e25353;
 }
@@ -3823,7 +3827,8 @@ label {
   color: #fff;
   border-color: #0a5eee;
 }
-.k-btn.k-active:hover {
+.k-btn.k-active:hover,
+.k-btn.k-active:focus {
   background-color: #367df7;
   border-color: #367df7;
 }
@@ -3940,7 +3945,8 @@ label {
   margin: 0;
   vertical-align: middle;
 }
-.k-btns .k-btn:hover {
+.k-btns .k-btn:hover,
+.k-btns .k-btn:focus {
   z-index: 1;
   position: relative;
 }
@@ -4152,6 +4158,12 @@ label {
   -webkit-transform: rotate(45deg) scale(1);
       -ms-transform: rotate(45deg) scale(1);
           transform: rotate(45deg) scale(1);
+}
+.k-checkbox:focus {
+  outline: none;
+}
+.k-checkbox:focus .k-wrapper {
+  border-color: #0a5eee;
 }
 .k-checkbox.k-disabled {
   color: #999;
@@ -4616,9 +4628,13 @@ label {
 }
 .k-datepicker {
   display: inline-block;
+  outline: none;
 }
 .k-datepicker .k-inner {
   cursor: pointer;
+}
+.k-datepicker:focus .k-inner {
+  border: 1px solid #0a5eee;
 }
 .k-datepicker-content {
   position: absolute;
@@ -4627,6 +4643,9 @@ label {
           box-shadow: 0 2px 8px 0 rgba(191,191,191,0.5);
   color: #595959;
   max-width: none;
+}
+.k-datepicker-content .k-wrapper {
+  outline: none;
 }
 .k-datepicker-content .k-day,
 .k-datepicker-content .k-weekday {
@@ -4643,7 +4662,7 @@ label {
   border: 1px solid transparent;
   position: relative;
 }
-.k-datepicker-content .k-day:hover {
+.k-datepicker-content .k-day.k-hover {
   background: #eee;
   color: #595959;
 }
@@ -5054,6 +5073,12 @@ label {
       -ms-transform: rotate(180deg);
           transform: rotate(180deg);
 }
+.k-select:focus {
+  outline: none;
+}
+.k-select:focus > .k-wrapper {
+  border: 1px solid #0a5eee;
+}
 .k-select.k-disabled > .k-wrapper {
   color: #999;
   cursor: not-allowed;
@@ -5428,6 +5453,12 @@ label {
       -ms-transform: scale(1);
           transform: scale(1);
 }
+.k-radio:focus {
+  outline: none;
+}
+.k-radio:focus .k-wrapper {
+  border-color: #0a5eee;
+}
 .k-radio.k-disabled {
   color: #999;
   cursor: not-allowed;
@@ -5442,7 +5473,8 @@ label {
 .k-spinner {
   display: inline-block;
 }
-.k-spinner .k-btn:hover {
+.k-spinner .k-btn:hover,
+.k-spinner .k-btn:focus {
   z-index: 1;
   position: relative;
 }
@@ -5468,6 +5500,7 @@ label {
   position: relative;
   display: table;
   width: 100%;
+  outline: none;
 }
 .k-slider .k-slider-wrapper {
   display: table-cell;
@@ -5512,8 +5545,10 @@ label {
   border-radius: 50%;
   background-color: #fff;
   transition: all 0.25s ease-in-out;
+  outline: none;
 }
-.k-slider .k-slider-wrapper .k-handle:hover {
+.k-slider .k-slider-wrapper .k-handle:hover,
+.k-slider .k-slider-wrapper .k-handle:focus {
   -webkit-transform: scale(1.5);
       -ms-transform: scale(1.5);
           transform: scale(1.5);
@@ -5553,7 +5588,8 @@ label {
 .k-slider.k-disabled .k-handle {
   border-color: #999;
 }
-.k-slider.k-disabled .k-handle:hover {
+.k-slider.k-disabled .k-handle:hover,
+.k-slider.k-disabled .k-handle:focus {
   background-color: #fff;
   cursor: not-allowed;
   -webkit-transform: none;
@@ -5714,6 +5750,13 @@ label {
   background: #0a5eee;
   -webkit-transition: background 0.25s ease-in-out;
   transition: background 0.25s ease-in-out;
+}
+.k-switch:focus {
+  outline: none;
+}
+.k-switch:focus .k-bar,
+.k-switch:focus .k-wrapper {
+  background: #0a5eee;
 }
 .k-switch.k-default {
   width: 3.428571428571428rem;
