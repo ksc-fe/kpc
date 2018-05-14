@@ -155,7 +155,7 @@ export default class Select extends Intact {
     }
 
     _onKeydown(e) {
-        if (e.keyCode === 9) {
+        if (e.keyCode === 9) { // tab
             this.refs.dropdown.hide();
         }
     }

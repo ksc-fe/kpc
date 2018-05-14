@@ -7,9 +7,10 @@ import {isEqual, isLT, isGT} from './utils';
 const {
     value, maxDate, minDate, dayClassNames,
     disabledDate, multiple, onMouseEnterDay,
-    type, hours, minutes, seconds, onMouseLeaveDays,
+    type, hours, minutes, seconds, 
     disabledHours, disabledMinutes, disabledSeconds,
     _isShowYearPicker, _isSelectTime, _now, _showDate, 
+    _focusDate,
 } = self.get();
 
 const values = multiple ? value || [] : [value];
@@ -28,16 +29,20 @@ const map = {
 };
 const panel = format.map(item => map[item]);
 
-<div class="k-wrapper">
+<div class="k-wrapper" tabindex="0"
+    ev-keydown={{ self._onKeydown }}
+>
     <div v-if={{ !_isSelectTime }}>
         <div class="k-month c-clearfix">
             <Button icon type="none" size="small" class="k-prev"
+                tagName="div" tabindex={{ null }} 
                 ev-click={{ self.prevYear }}
             >
                 <i class="k-icon ion-ios-arrow-left"></i>
                 <i class="k-icon ion-ios-arrow-left"></i>
             </Button>
             <Button icon type="none" size="small" class="k-prev"
+                tagName="div" tabindex={{ null }} 
                 ev-click={{ self.prevMonth }}
             >
                 <i class="k-icon ion-ios-arrow-left"></i>
@@ -47,12 +52,14 @@ const panel = format.map(item => map[item]);
                 ev-click={{ self.showYearPicker }}
             >{{ panel }}</span>
             <Button icon type="none" size="small" class="k-next"
+                tagName="div" tabindex={{ null }} 
                 ev-click={{ self.nextYear }}
             >
                 <i class="k-icon ion-ios-arrow-right"></i>
                 <i class="k-icon ion-ios-arrow-right"></i>
             </Button>
             <Button icon type="none" size="small" class="k-next"
+                tagName="div" tabindex={{ null }} 
                 ev-click={{ self.nextMonth }}
             >
                 <i class="k-icon ion-ios-arrow-right"></i>
@@ -64,7 +71,7 @@ const panel = format.map(item => map[item]);
             >{{ value }}</div>
         </div>
         <div class="k-calendar" v-if={{ !_isShowYearPicker }}
-            ev-mouseleave={{ onMouseLeaveDays }}
+            ev-mouseleave={{ self._onMouseLeaveDays }}
         >
             {{ do {
                 const ret = [];
@@ -100,10 +107,11 @@ const panel = format.map(item => map[item]);
                                 }),
                                 "k-today": isEqual(_now, start),
                                 "k-disabled": disabled, 
+                                "k-hover": isEqual(start, _focusDate),
                                 ...classNames
                             } }}
                             ev-click={{ !disabled && self.select.bind(self, new Date(start)) }}
-                            ev-mouseenter={{ onMouseEnterDay && onMouseEnterDay.bind(self, new Date(start), isOut) }}
+                            ev-mouseenter={{ self._onMouseEnter.bind(self, new Date(start), isOut) }}
                         >{{ _date }}</div>
                     );
                     start.setDate(start.getDate() + 1);

@@ -30,12 +30,12 @@ export default class Calendar extends Intact {
             disabledSeconds: false,
             dayClassNames: undefined,
             onMouseEnterDay: undefined,
-            onMouseLeaveDays: undefined,
 
             _showDate: undefined,
             _now: getNowDate(),
             _isShowYearPicker: false,
             _isSelectTime: false,
+            _focusDate: undefined,
         }
     }
 
@@ -56,7 +56,7 @@ export default class Calendar extends Intact {
                 // been replaced with time selecter, so we set the
                 // _dropdown to true to tell TooltipContent that
                 // we click on drodown and don't hide it
-                e._rawEvent._dropdown = true;
+                e && (e._rawEvent._dropdown = true);
                 this.set('_isSelectTime', true, {async: true});
             }
         } else {
@@ -75,7 +75,7 @@ export default class Calendar extends Intact {
                 }
             } else {
                 values.push(value);
-                e._rawEvent._dropdown = true;
+                e && (e._rawEvent._dropdown = true);
                 this.set('_isSelectTime', true, {async: true});
             }
             this._index = values.length - 1;
@@ -106,7 +106,8 @@ export default class Calendar extends Intact {
         this.setRelativeMonth(-1);
     }
 
-    nextMonth() {
+    nextMonth(e) {
+        e.preventDefault();
         this.setRelativeMonth(1);
     }
 
@@ -202,6 +203,86 @@ export default class Calendar extends Intact {
     cancel(e) {
         e._rawEvent._dropdown = true;
         this.set('_isSelectTime', false);
+    }
+
+    focusAndSelect(e) {
+        // this.element.focus();
+        this._onKeydown(e);
+    }
+
+    _onMouseEnter(date, isOut, e) {
+        const onMouseEnterDay = this.get('onMouseEnterDay');
+
+        this.set('_focusDate', date);
+
+        if (onMouseEnterDay) {
+            onMouseEnterDay.call(this, date, isOut, e);
+        }
+    }
+
+    _onMouseLeaveDays() {
+        this.set('_focusDate', null);
+    }
+
+    _onKeydown(e) {
+        switch (e.keyCode) {
+            case 38: // up
+                this._focusByOffset(e, -7);
+                break;
+            case 40: // down
+                this._focusByOffset(e, 7);
+                break;
+            case 37: // left
+                this._focusByOffset(e, -1);
+                break;
+            case 39: // right
+                this._focusByOffset(e, 1);
+                break;
+            case 13:
+                this._selectFocusDate();
+                break;
+        }
+    }
+
+    _focusByOffset(e, offset) {
+        e.preventDefault();
+
+        let {_focusDate, value, _showDate} = this.get();
+
+        let isSet = true;
+        if (!_focusDate) {
+            _focusDate = this.getShowDate();
+            if (!value) isSet = false;
+        } else {
+            if (_showDate) {
+                const _y1 = _focusDate.getFullYear();
+                const _m1 = _focusDate.getMonth();
+                const _y2 = _showDate.getFullYear();
+                const _m2 = _showDate.getMonth();
+                if (_y1 !== _y2 || _m1 !== _m2) {
+                    _focusDate = new Date(_showDate);
+                    _focusDate.setDate(1);
+                    isSet = false;
+                }
+            }
+        }
+        if (isSet) {
+            _focusDate.setDate(_focusDate.getDate() + offset);
+        }
+
+        this.set({
+            '_focusDate': _focusDate,
+            '_showDate': _focusDate,
+        }, {silent: true});
+        this.update();
+    }
+
+    _selectFocusDate() {
+        const {_focusDate, _isSelectTime} = this.get();
+        if (_focusDate && !_isSelectTime) {
+            this.trigger('enter:select', this);
+            this.select(new Date(_focusDate));
+        }
     }
 }
 

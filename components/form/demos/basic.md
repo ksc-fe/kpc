@@ -35,6 +35,7 @@ import {Radio} from 'kpc/components/radio';
 import {ButtonGroup, Button} from 'kpc/components/button';
 import {Switch} from 'kpc/components/switch';
 import {Slider} from 'kpc/components/slider';
+import {Datepicker} from 'kpc/components/datepicker';
 
 <Form ev-submit={{ self.submit }} ref="form">
     <FormItem label="Input" model="model.input" rules={{ {required: true} }}>
@@ -81,6 +82,9 @@ import {Slider} from 'kpc/components/slider';
     </FormItem>
     <FormItem model="model.slider" rules={{ {required: true, min: 1} }} label="Slider">
         <Slider v-model="model.slider" isShowInput={{ false }} />
+    </FormItem>
+    <FormItem model="model.date" rules={{ {required: true} }} label="Datepicker">
+        <Datepicker v-model="model.date" />  
     </FormItem>
     <FormItem label="Textarea" model="model.textarea"
         rules={{ {required: true} }}

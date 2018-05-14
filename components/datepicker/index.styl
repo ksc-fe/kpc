@@ -1,9 +1,14 @@
 @require('./variables.styl')
+@require('../input/variables.styl')
 
 .k-datepicker
     display inline-block
+    outline none
     .k-inner
         cursor pointer
+    &:focus
+        .k-inner
+            border $input-focus-border
 
 .k-datepicker-content
     position absolute
@@ -11,6 +16,8 @@
     box-shadow $datepicker-box-shadow
     color $datepicker-color
     max-width none
+    .k-wrapper
+        outline none
     .k-day
     .k-weekday
         display inline-block
@@ -24,7 +31,8 @@
         cursor pointer
         border 1px solid transparent
         position relative
-        &:hover
+        // &:hover
+        &.k-hover
             background $datepicker-day-hover-bg-color 
             color $datepicker-day-hover-color
         &.k-out

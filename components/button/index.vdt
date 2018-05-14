@@ -1,7 +1,7 @@
 import {isStringOrNumberNotEmpty} from '../utils';
 
 let {
-    type, className, size, icon, circle, ref, key,
+    type, className, size, icon, circle, ref, key, tabindex,
     tagName, htmlType, fluid, children, loading, disabled,
     value, _value, name, tagProps, _checkType, ...rest
 } = self.get();
@@ -70,7 +70,7 @@ if (!icon && Array.isArray(children)) {
 
 <Button class={{ classNameObj }} {{ ...rest }} {{ ...tagProps }}
     ev-click={{ self._onClick }}
-    tabindex={{ disabled || loading ? "-1" : "0" }}
+    tabindex={{ disabled || loading ? "-1" : tabindex }}
     ev-mouseup={{ self._blur }}
 >
     {{ loading ? 

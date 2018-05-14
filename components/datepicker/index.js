@@ -71,6 +71,11 @@ export default class Datepicker extends Intact {
         this.set('transition', getTransition(feedback));
     }
 
+    _onChangeShow(c, v) {
+        this._isShow = v;
+        this._hasSelectByArrowKey = false;
+    }
+
     _onChangeShowDate(type, c, v) {
         const begin = this.refs.begin;
         const end = this.refs.end;
@@ -189,8 +194,7 @@ export default class Datepicker extends Intact {
             // set time
             if (this.get('type') === 'datetime') {
                 const [date] = value[1].split(' ');
-                const [, time] = value[0].split(' ');
-                value[1] = [date, time].join(' ');
+                const [, time] = value[0].split(' '); value[1] = [date, time].join(' ');
             }
             if (value[1] < value[0]) {
                 c._index = 0;
@@ -217,6 +221,34 @@ export default class Datepicker extends Intact {
 
     _clearRangeEndDate() {
         this.set('_rangeEndDate', undefined);
+    }
+
+    _onKeydown(e) {
+        switch (e.keyCode) {
+            case 13:
+                if (!this._hasSelectByArrowKey) {
+                    this.refs.input.element.click();
+                } else {
+                    this.refs.begin._selectFocusDate();
+                }
+                break;
+            case 9:
+                this.refs.calendar.hide();
+                break;
+            case 38:
+            case 40:
+            case 37:
+            case 39:
+                if (this._isShow) {
+                    this._hasSelectByArrowKey = true;
+                    this.refs.begin._onKeydown(e);
+                }
+                break;
+        }
+    }
+
+    _focus() {
+        this.refs.input.focus();
     }
 }
 

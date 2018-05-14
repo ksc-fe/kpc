@@ -23,7 +23,10 @@ const classNameObj = {
     [className]: className,
 }
 
-<div class={{ classNameObj }} style={{ style }}>
+<div class={{ classNameObj }} style={{ style }}
+    tabindex={{ disabled ? '-1' : '0' }}
+    ev-keydown={{ self._onKeydown }}
+>
     <Tooltip class="k-datepicker-content" 
         position={{ {my: 'left top', at: 'left bottom'} }}
         trigger="click"
@@ -32,6 +35,7 @@ const classNameObj = {
         ref="calendar"
         disabled={{ disabled }}
         ev-show={{ self._onShow }}
+        ev-$changed:show={{ self._onChangeShow }}
     >
         <Input
             placeholder={{ placeholder == null ? 
@@ -45,6 +49,8 @@ const classNameObj = {
             name={{ name }}
             disabled={{ disabled }}
             size={{ size }}
+            ref="input"
+            tabindex="-1"
         >
             <b:suffix><i class="ion-ios-calendar-outline"></i></b:suffix>
         </Input>
@@ -54,6 +60,8 @@ const classNameObj = {
                 {{ ..._rest }} 
                 ev-hide={{ self._hide }}
                 type={{ type }}
+                ref="begin"
+                ev-enter:select={{ self._focus }}
             />
             <div v-else class="k-range c-clearfix" ev-mouseleave={{ self._clearRangeEndDate }}>
                 <Calendar

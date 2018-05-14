@@ -22,6 +22,7 @@ export default class Button extends Intact {
             tagProps: undefined,
             value: undefined,
             name: undefined,
+            tabindex: '0',
 
             _value: undefined,
             _checkType: 'none',
