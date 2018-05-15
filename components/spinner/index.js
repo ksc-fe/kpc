@@ -35,7 +35,7 @@ export default class Spinner extends Intact {
             if (numberReg.test(val)) {
                 val = Number(val);
                 if (val <= max && val >= min) {
-                    this.set('value', val);
+                    this.set('value', val, {update: false});
                 }
             }
         });
@@ -59,16 +59,12 @@ export default class Spinner extends Intact {
     }
 
     _increase(e) {
-        if (this._disableIncrease()) return;
-
         const {_value, step} = this.get();
 
         this.set('_value', Number((_value + step).toFixed(10)));
     }
 
     _decrease(e) {
-        if (this._disableDecrease()) return;
-
         const {_value, step} = this.get();
 
         this.set('_value', Number((_value - step).toFixed(10)));
@@ -77,13 +73,13 @@ export default class Spinner extends Intact {
     _disableDecrease() {
         const {_value, min, step, disabled} = this.get();
 
-        return disabled || _value <= min || _value - min < step;
+        return disabled || +_value <= min || Number((min + step).toFixed(10)) > _value;
     }
 
     _disableIncrease() {
         const {_value, max, step, disabled} = this.get();
 
-        return disabled || _value >= max || max - _value < step;
+        return disabled || +_value >= max || Number((max - step).toFixed(10)) < _value;
     }
 
     _changeValue(e) {
