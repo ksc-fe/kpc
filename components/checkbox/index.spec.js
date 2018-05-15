@@ -1,5 +1,6 @@
 import GroupDemo from '~/components/checkbox/demos/group';
 import ValueDemo from '~/components/checkbox/demos/value';
+import BasicDemo from '~/components/checkbox/demos/basic';
 import {mount, dispatchEvent, getElement} from 'test/utils';
 
 describe('Checkbox', () => {
@@ -10,7 +11,7 @@ describe('Checkbox', () => {
         document.body.removeChild(instance.element);
     });
 
-    it('should get value correctly of checkbox group', () => {
+    it('should get value correctly of group checkboxes', () => {
         instance = mount(GroupDemo);
 
         const [first, second] = instance.element.querySelectorAll('.k-checkbox');
@@ -42,5 +43,16 @@ describe('Checkbox', () => {
         expect(instance.get('value3')).be.eql(0);
         third.click();
         expect(instance.get('value3')).be.eql(instance.get('uncheckedValue'));
+    });
+
+    it('should check when press enter key for enabled checkbox', () => {
+        instance = mount(BasicDemo);
+
+        const [first, second] = instance.element.querySelectorAll('.k-checkbox');
+        dispatchEvent(first, 'keypress', {keyCode: 13});
+        expect(first.className).include('k-checked');
+
+        dispatchEvent(second, 'keypress', {keyCode: 13});
+        expect(second.className).not.include('k-checked');
     });
 });

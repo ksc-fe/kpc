@@ -127,7 +127,6 @@ describe('Dialog', () => {
         dispatchEvent(instance.element.children[0], 'click');
         dispatchEvent(document, 'keydown', {keyCode: 27});
         expect(instance.get('show')).be.false;
-
     });
 
     it('should remove when parent destoried for using as component', function(done) {
@@ -212,5 +211,19 @@ describe('Dialog', () => {
             dispatchEvent(dialog.querySelector('.k-footer .k-btn'), 'click');
             done();
         }, 3000);
+    });
+
+    it('drag', () => {
+        instance = mount(BasicDemo);
+
+        instance.element.firstChild.click();
+        const dialog = getElement('.k-dialog');
+        const header = getElement('.k-dialog .k-header');
+        dispatchEvent(header, 'mousedown', {which: 1});
+        dispatchEvent(document, 'mousemove');
+        dispatchEvent(document, 'mouseup');
+
+        // should add style
+        expect(dialog.getAttribute('style')).include('left');
     });
 });

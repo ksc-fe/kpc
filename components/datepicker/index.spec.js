@@ -7,9 +7,12 @@ import {mount, dispatchEvent, getElement} from 'test/utils';
 describe('Datepicker', () => {
     let instance;
 
-    afterEach(() => {
+    afterEach((done) => {
         instance.destroy();
         document.body.removeChild(instance.element);
+
+        // wait for content has been removed
+        setTimeout(done, 300);
     });
 
     it('should select date', () => {

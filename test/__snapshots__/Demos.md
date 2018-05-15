@@ -158,7 +158,7 @@
 #### `Checkbox basic`
 
 ```
-"<div><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span><span class=\"k-text\">checkbox</span></label><label class=\"k-checkbox k-disabled\" tabindex=\"-1\"><span class=\"k-wrapper\"><input type=\"checkbox\" disabled=\"\" tabindex=\"-1\" value=\"true\"></span><span class=\"k-text\">disabled checkbox</span></label><label class=\"k-checkbox k-disabled k-checked\" tabindex=\"-1\"><span class=\"k-wrapper\"><input type=\"checkbox\" disabled=\"\" tabindex=\"-1\" value=\"true\"></span><span class=\"k-text\">disabled checked checkbox</span></label></div>"
+"<div><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span><span class=\"k-text\">checkbox</span></label><label class=\"k-checkbox k-disabled\"><span class=\"k-wrapper\"><input type=\"checkbox\" disabled=\"\" tabindex=\"-1\" value=\"true\"></span><span class=\"k-text\">disabled checkbox</span></label><label class=\"k-checkbox k-disabled k-checked\"><span class=\"k-wrapper\"><input type=\"checkbox\" disabled=\"\" tabindex=\"-1\" value=\"true\"></span><span class=\"k-text\">disabled checked checkbox</span></label></div>"
 ```
 
 #### `Checkbox group`
@@ -948,11 +948,11 @@
     <tbody>
     <tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
                 <td title=\"1\">1</td>
-            </tr><tr class=\"k-disabled\"><td><label class=\"k-checkbox k-disabled\" tabindex=\"-1\"><span class=\"k-wrapper\"><input type=\"checkbox\" disabled=\"\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td>
+            </tr><tr class=\"k-disabled\"><td><label class=\"k-checkbox k-disabled\"><span class=\"k-wrapper\"><input type=\"checkbox\" disabled=\"\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td>
                 <td title=\"2\">2</td>
             </tr><tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"2\"></span></label></td>
                 <td title=\"3\">3</td>
-            </tr><tr class=\"k-disabled\"><td><label class=\"k-checkbox k-disabled\" tabindex=\"-1\"><span class=\"k-wrapper\"><input type=\"checkbox\" disabled=\"\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"3\"></span></label></td>
+            </tr><tr class=\"k-disabled\"><td><label class=\"k-checkbox k-disabled\"><span class=\"k-wrapper\"><input type=\"checkbox\" disabled=\"\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"3\"></span></label></td>
                 <td title=\"4\">4</td>
             </tr><tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"4\"></span></label></td>
                 <td title=\"5\">5</td>
@@ -1459,7 +1459,7 @@
 #### `Transfer basic`
 
 ```
-"<div class=\"k-transfer\"><div class=\"k-panel\"><div class=\"k-title\">请选择</div><div class=\"k-list\"><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\">主机名0</span></label></div><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\">主机名1</span></label></div><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\">主机名2</span></label></div><div class=\"k-item k-disabled\"><label class=\"k-checkbox k-disabled\" tabindex=\"-1\"><span class=\"k-wrapper\"><input type=\"checkbox\" disabled=\"\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\">主机名3</span></label></div><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\">主机名4</span></label></div></div></div><div class=\"k-arrows\"><button class=\"k-btn k-btn-icon k-circle k-disabled\" tabindex=\"-1\" type=\"button\">
+"<div class=\"k-transfer\"><div class=\"k-panel\"><div class=\"k-title\">请选择</div><div class=\"k-list\"><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\">主机名0</span></label></div><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\">主机名1</span></label></div><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\">主机名2</span></label></div><div class=\"k-item k-disabled\"><label class=\"k-checkbox k-disabled\"><span class=\"k-wrapper\"><input type=\"checkbox\" disabled=\"\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\">主机名3</span></label></div><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\">主机名4</span></label></div></div></div><div class=\"k-arrows\"><button class=\"k-btn k-btn-icon k-circle k-disabled\" tabindex=\"-1\" type=\"button\">
     <i class=\"k-icon ion-ios-arrow-left\"></i>
     </button><button class=\"k-btn k-btn-icon k-circle k-disabled\" tabindex=\"-1\" type=\"button\">
     <i class=\"k-icon ion-ios-arrow-right\"></i>
@@ -1471,20 +1471,12 @@
 ```
 "<div class=\"k-transfer\"><div class=\"k-panel\"><div class=\"k-title\">请选择</div><div class=\"k-input k-group k-clearable k-fluid\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请输入\"><div class=\"k-suffix\"><i class=\"k-clear k-icon ion-ios-close\"></i></div></div><div class=\"k-append\"><button class=\"k-btn k-none k-btn-icon\" tabindex=\"0\" type=\"button\">
     <i class=\"ion-ios-search\"></i>
-    </button></div></div><div class=\"k-list\"><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名0</div><p>前端服务器0 | 192.168.1.0</p></div></span></label></div><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名1</div><p>前端服务器1 | 192.168.1.1</p></div></span></label></div><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名2</div><p>前端服务器2 | 192.168.1.2</p></div></span></label></div><div class=\"k-item k-disabled\"><label class=\"k-checkbox k-disabled\" tabindex=\"-1\"><span class=\"k-wrapper\"><input type=\"checkbox\" disabled=\"\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名3</div><p>前端服务器3 | 192.168.1.3</p></div></span></label></div><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名4</div><p>前端服务器4 | 192.168.1.4</p></div></span></label></div></div></div><div class=\"k-arrows\"><button class=\"k-btn k-btn-icon k-circle k-disabled\" tabindex=\"-1\" type=\"button\">
+    </button></div></div><div class=\"k-list\"><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名0</div><p>前端服务器0 | 192.168.1.0</p></div></span></label></div><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名1</div><p>前端服务器1 | 192.168.1.1</p></div></span></label></div><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名2</div><p>前端服务器2 | 192.168.1.2</p></div></span></label></div><div class=\"k-item k-disabled\"><label class=\"k-checkbox k-disabled\"><span class=\"k-wrapper\"><input type=\"checkbox\" disabled=\"\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名3</div><p>前端服务器3 | 192.168.1.3</p></div></span></label></div><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名4</div><p>前端服务器4 | 192.168.1.4</p></div></span></label></div></div></div><div class=\"k-arrows\"><button class=\"k-btn k-btn-icon k-circle k-disabled\" tabindex=\"-1\" type=\"button\">
     <i class=\"k-icon ion-ios-arrow-left\"></i>
     </button><button class=\"k-btn k-btn-icon k-circle k-disabled\" tabindex=\"-1\" type=\"button\">
     <i class=\"k-icon ion-ios-arrow-right\"></i>
     </button></div><div class=\"k-panel\"><div class=\"k-title\">已选择 (0)</div><div class=\"k-input k-group k-clearable k-fluid\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请输入\"><div class=\"k-suffix\"><i class=\"k-clear k-icon ion-ios-close\"></i></div></div><div class=\"k-append\"><button class=\"k-btn k-none k-btn-icon\" tabindex=\"0\" type=\"button\">
     <i class=\"ion-ios-search\"></i>
     </button></div></div><div class=\"k-list\"></div></div></div>"
-```
-
-#### `Dialog async`
-
-```
-"<div><button class=\"k-btn k-primary\" type=\"button\">
-    <span>Close dialog asynchronously</span>
-    </button><!--placeholder--></div>"
 ```
 

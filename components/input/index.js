@@ -2,6 +2,7 @@ import Intact from 'intact';
 import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
+import {selectInput} from '../utils';
 
 export default class Input extends Intact {
     @Intact.template
@@ -58,7 +59,7 @@ export default class Input extends Intact {
     }
 
     select() {
-        this.refs.input.select();
+        selectInput(this.refs.input);
     }
 
     focus() {
