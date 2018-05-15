@@ -10,7 +10,7 @@ order: 0
 import Pagination from 'kpc/components/pagination';
 
 <div>
-    <Pagination total={{ 200 }} />
+    <Pagination total={{ 200 }} ref="__test" />
     <Pagination total={{ 200 }} limit={{ 20 }} />
     <Pagination total={{ 200 }} limit={{ 20 }} limits={{ [10, 20, 50, 100] }}/>
 </div>

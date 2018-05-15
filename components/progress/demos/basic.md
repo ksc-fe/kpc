@@ -8,5 +8,13 @@ order: 0
 ```vdt
 import Progress from 'kpc/components/progress';
 
-<Progress percent="50" />
+<div>
+    <Progress percent="50" />
+    <Progress percent="100" />
+</div>
+```
+
+```styl
+.k-progress
+    margin 10px 0
 ```

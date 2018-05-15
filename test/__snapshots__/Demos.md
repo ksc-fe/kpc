@@ -528,7 +528,7 @@
 #### `Progress basic`
 
 ```
-"<div class=\"k-progress k-bar k-active\"><div class=\"k-container\"><div class=\"k-content\"><div class=\"k-bg\" style=\"width: 50%;\"></div></div></div><div class=\"k-text\"><span>50%</span></div></div>"
+"<div><div class=\"k-progress k-bar k-active\"><div class=\"k-container\"><div class=\"k-content\"><div class=\"k-bg\" style=\"width: 50%;\"></div></div></div><div class=\"k-text\"><span>50%</span></div></div><div class=\"k-progress k-bar k-success\"><div class=\"k-container\"><div class=\"k-content\"><div class=\"k-bg\" style=\"width: 100%;\"></div></div></div><div class=\"k-text\"><span>100%</span></div></div></div>"
 ```
 
 #### `Progress children`
