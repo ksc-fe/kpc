@@ -43,6 +43,10 @@ export default class Progress extends Intact{
         });
 
         this.set('percent', fixPercent(this.get('percent')));
+
+        if (this.get('percent') == 100) {
+            this.set('status', 'success');
+        }
     }
 }
 
