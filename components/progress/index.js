@@ -21,7 +21,7 @@ export default class Progress extends Intact{
             percent: 0, // 0~100
             size: 'default', // small mini
             isOuterText: true,
-            isInnerText: false, // FIXME: 布尔型取值用is开头 isShowInnerText 见README
+            isInnerText: false,
             status: 'active', // success | error | active | normal
             strokeWidth: 10, 
         };

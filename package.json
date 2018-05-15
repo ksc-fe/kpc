@@ -2,7 +2,8 @@
   "name": "kpc",
   "version": "0.2.0",
   "description": "A component library written in intact for intact and vue",
-  "main": "dist/index.js",
+  "browser": "@css/components/index.js",
+  "main": "dist/kpc.js",
   "module": "components/index.js",
   "scripts": {
     "test": "karma start test/karma.conf.js",
