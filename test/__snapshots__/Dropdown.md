@@ -19,6 +19,10 @@
 ```
 
 ```
+"<div class=\"k-item\">item 1</div><!--placeholder--><div class=\"k-item\">item 2</div><div class=\"k-item k-disabled\">item 3</div><!--placeholder--><div><div class=\"k-item\">item 4</div><!--placeholder--></div><!--placeholder-->"
+```
+
+```
 "<div class=\"k-item\">item 1</div><div class=\"k-item\">item 2</div><div class=\"k-item\">item 3</div>"
 ```
 
