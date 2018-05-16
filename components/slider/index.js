@@ -145,18 +145,8 @@ export default class Slider extends Intact {
     }
 
     _onRangeSliding(indexFlag, e){
-        if (this.get('disabled')) return;
-
         let tempValue = this._getSlidingValue(e.clientX, this.get('_isDragging'));
         let fixedValue;
-
-        if (indexFlag) {
-            if (indexFlag === '_isFirst') {
-                if (this.get('_isSecond')) return;
-            } else {
-                if (this.get('_isFirst')) return;
-            }
-        }
 
         tempValue = this._getTempValue(
             tempValue, indexFlag, 
@@ -191,15 +181,11 @@ export default class Slider extends Intact {
     }
 
     _onRangeSlideEnd(indexFlag, e){
-        if (this.get('disabled')) return;
-
         if (this.get('_isDragging')) {
             this.set('_isDragging', false, {async: true});
             let newValue = this._getSlidingValue(e.clientX);
             if (indexFlag) {
                 if (indexFlag === '_isFirst') {
-                    if (this.get('_isSecond')) return;
-
                     this.$sliderFirstBtn.blur();
 
                     this.set('_isFirst', false, {async: true});
@@ -208,8 +194,6 @@ export default class Slider extends Intact {
                         Math.max(newValue, this._max)
                     ];
                 } else {
-                    if (this.get('_isFirst')) return;
-
                     this.$sliderSecondBtn.blur();
 
                     this.set('_isSecond', false, {async: true});
@@ -272,10 +256,8 @@ export default class Slider extends Intact {
 
         if (this.get('isRange')) {
             if (indexFlag === '_isFirst') {
-                if (this.get('_isSecond')) return;
                 this.set('_isFirst', false, {async: true});
             } else {
-                if (this.get('_isFirst')) return;
                 this.set('_isSecond', false, {async: true});
             }
         }
@@ -327,6 +309,7 @@ export default class Slider extends Intact {
     }
 
     _stopPropagation(e) {
+        /* istanbul ignore next */
         e.stopPropagation();
     }
 

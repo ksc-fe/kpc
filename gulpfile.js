@@ -21,11 +21,16 @@ const childProcess = require('child_process');
 
 const pages = {
     '/': 'index',
-}; const vdtFile = path.resolve(__dirname, './site/src/index.vdt');
+}; 
+const vdtFile = path.resolve(__dirname, './site/src/index.vdt');
 
 gulp.task('doc', () => {
     console.log('build markdown');
     return doc(true);
+});
+gulp.task('doc:production', () => {
+    console.log('build markdown');
+    return doc(false);
 });
 
 function webpackWatch() {
@@ -131,6 +136,9 @@ gulp.task('push:doc', () => {
 
 gulp.task('build:doc', gulp.series('clean:doc', 'build:doc:server', 'build:doc:client'));
 gulp.task('deploy:doc', gulp.series('build:doc', 'push:doc'));
+gulp.task('watch:doc', gulp.series('doc:production', gulp.parallel('webpack', () => {
+    gulp.watch('./@(components|docs)/**/*.md', {ignored: /node_modules/}, gulp.parallel('doc:production'));
+})));
 
 
 /******************

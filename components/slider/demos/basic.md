@@ -10,7 +10,7 @@ import Slider from 'kpc/components/slider';
 
 <div>
     <Slider v-model="value1" />
-    <Slider v-model="value2" min={{ 50 }} max={{ 500 }} />
+    <Slider v-model="value2" min={{ 50 }} max={{ 500 }} ref="__test" />
 </div>
 ```
 

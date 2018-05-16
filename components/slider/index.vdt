@@ -77,6 +77,7 @@ const sliderWidth = max - min;
                 ev-keydown={{ self._onKeydown.bind(self, '_isSecond') }}
                 ev-focusin={{ self._onFocusin.bind(self, '_isSecond') }}
                 ev-focusout={{ self._onFocusout.bind(self, '_isSecond') }}
+                ev-click={{ self._stopPropagation }}
             >
                 <div v-if={{ isInnerText }}>{{ value[1] }}</div>
             </div>
