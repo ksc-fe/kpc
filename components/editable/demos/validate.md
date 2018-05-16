@@ -11,12 +11,17 @@ order: 1
 import Editable from 'kpc/components/editable';
 
 <div>
-    <Editable v-model="value" validate={{ value => /\d+/.test(value) }}>{{ self.get('value') }}</Editable>
+    <Editable v-model="value" validate={{ value => /\d+/.test(value) }}
+        ref="__test1"
+    >{{ self.get('value') }}</Editable>
     <br />
-    <Editable v-model="value" validate={{ /\d+/ }}>{{ self.get('value') }}</Editable>
+    <Editable v-model="value" validate={{ /\d+/ }}
+        ref="__test2"
+    >{{ self.get('value') }}</Editable>
     <br />
     <Editable v-model="value" validate="\d+"
         ev-error={{ self._showErrorTip }}
+        ref="__test3"
     >{{ self.get('value') }}</Editable>
 </div>
 ```

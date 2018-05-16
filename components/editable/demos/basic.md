@@ -9,7 +9,7 @@ order: 0
 import Editable from 'kpc/components/editable';
 
 <div>
-    <Editable v-model="text" ref="a">
+    <Editable v-model="text" ref="__test">
         <i class="ion-ios-location"></i>
         <a href="">{{ self.get('text') }}</a>
     </Editable>

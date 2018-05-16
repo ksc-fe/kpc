@@ -11,6 +11,13 @@ export function mount(Component) {
     return Intact.mount(Component, document.body);
 }
 
+export function unmount(instance) {
+    if (instance && !instance.destroyed) {
+        instance.destroy();
+        document.body.removeChild(instance.element);
+    }
+}
+
 export function dispatchEvent(target, eventName, options) {
     let event;
     if (document.createEvent) {
