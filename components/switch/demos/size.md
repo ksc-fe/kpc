@@ -3,17 +3,19 @@ title: 开关型号
 order: 3
 ---
 
-
+通过`size`可以定义3中尺寸: `default` `small` `mini`
 
 ```vdt
 import {Switch} from 'kpc/components/switch';
 
 <div>
-	<div>
-    	小号：<Switch on={{'开'}} off={{'关'}} size='small'></Switch>
-	</div>
-	<div>
-    	迷你：<Switch on={{'开'}} off={{'关'}} size='mini'></Switch>
-	</div>
+    default: <Switch />
+    small: <Switch size='small' />
+	mini: <Switch size='mini' />
 </div>
+```
+
+```styl
+.k-switch
+    margin-right 20px
 ```

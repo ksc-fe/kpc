@@ -61,10 +61,12 @@
     for size in default small mini
         $left = (lookup('$switch-' + size + '-height') / 3)
         &.k-{size}
+        &.k-{size} .k-on
+        &.k-{size} .k-off
             width lookup('$switch-' + size + '-width')
             height lookup('$switch-' + size + '-height')
-            line-height @height 
-            border-radius @height 
+        &.k-{size}
+            border-radius lookup('$switch-' + size + '-height')
             .k-bar
                 width lookup('$switch-' + size + '-height')
                 border-radius lookup('$switch-' + size + '-height')
@@ -72,11 +74,12 @@
                 padding lookup('$switch-' + size + '-padding')
             .k-on
             .k-off
-                width lookup('$switch-' + size + '-width') - lookup('$switch-' + size + '-height') - $left
+                line-height lookup('$switch-' + size + '-height')
+                left 0
             .k-on
-                left $left
+                padding 0 lookup('$switch-' + size + '-height') 0 $left 
             .k-off
-                left lookup('$switch-' + size + '-height')
+                padding 0 $left 0 lookup('$switch-' + size + '-height')
 
     // checked
     &.k-checked

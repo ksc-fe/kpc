@@ -34,7 +34,7 @@ export default class Switch extends Intact {
     }
 
     _dragStart(e) {
-        if (e.which !== 1) return;
+        if (this.get('disabled') || e.which !== 1) return;
 
         this._x = e.clientX;
         this._height = this.refs.bar.clientHeight;

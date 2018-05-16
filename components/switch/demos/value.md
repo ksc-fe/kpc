@@ -3,16 +3,18 @@ title: 开关值
 order: 5
 ---
 
-* `value`，类型`Any`，默认`false`
-* `trueValue`，类型`Any`，默认`true`
-* `falseValue`，类型`Any`，默认`false`
+`Switch`默认选中的值为`true`，非选中的值为`false`，通过`trueValue`和`falseValue`属性，
+我们可以指定选中和非选中的值。
 
 ```vdt
 import {Switch} from 'kpc/components/switch';
 
 <div>
-    <Switch on={{'开'}} off={{'关'}} value={{true}}></Switch>
-    <Switch on={{'开'}} off={{'关'}} value={{1}} trueValue={{1}} ></Switch>
-    <Switch on={{'开'}} off={{'关'}} value={{'a'}} trueValue={{1}} falseValue={{'a'}}></Switch>
+    <div style="margin-bottom: 20px">
+        <Switch v-model="value1" /> {{ JSON.stringify(self.get('value1')) }}
+    </div>
+    <div>
+        <Switch v-model="value2" trueValue={{ 1 }} falseValue="1" /> {{ JSON.stringify(self.get('value2')) }}
+    </div>
 </div>
 ```

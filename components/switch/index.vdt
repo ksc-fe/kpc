@@ -20,26 +20,35 @@ const classNameObj = {
 let onStyle;
 let offStyle;
 let barStyle;
-if (width && height) {
-    style = addStyle(style, {
-        width: `${width}px`,
-        height: `${height}px`,
-        borderRadius: `${height}px`,
-        lineHeight: `${height}px`,
-    });
-    const textLeft = height / 3;
-    const textWidth = width - height - textLeft;
-    onStyle = {
-        left: `${textLeft}px`,
-        width: `${textWidth}px`,
-    };
-    offStyle = {
-        left: `${height}px`,
-        width: `${textWidth}px`,
-    };
-    barStyle = {
-        width: value === trueValue ? '100%' : `${height}px`,
-    };
+if (width || height) {
+    const _style = {};
+    onStyle = {};
+    offStyle = {};
+    if (width) {
+        _style.width = `${width}px`;
+        onStyle.width = _style.width;
+        offStyle.width = _style.width;
+    }
+    if (height) {
+        _style.height = `${height}px`;
+
+        Object.assign(onStyle, {
+            height: _style.height,
+            lineHeight: _style.height,
+            padding: `0 ${_style.height} 0 ${height / 3}px`,
+        });
+
+        Object.assign(offStyle, {
+            height: _style.height,
+            lineHeight: _style.height,
+            padding: `0 ${height / 3}px 0 ${_style.height}`,
+        });
+
+        barStyle = {
+            width: value === trueValue ? '100%' : `${height}px`,
+        }
+    }
+    style = addStyle(style, _style);
 }
 
 <div class={{ classNameObj }} 
