@@ -10,7 +10,7 @@ import {Switch} from 'kpc/components/switch';
 
 <div>
     <Switch on="开启" off="关闭" width="100" />
-    <Switch on="开启" off="关闭" height="30" />
+    <Switch height="30" />
     <Switch on="开启" off="关闭" width="100" height="30" />
 </div>
 ```
