@@ -16,7 +16,7 @@ order: 7
 | disabled | 是否禁用 | `Boolean` | `false` |
 | disabledDate | 该属性值是一个函数，用于定义那些日期被禁止选择，函数参数为日期字符串，返回`true`则表示禁用该日期 | `Function` | `(date) => false` |
 | multiple | 是否支持多选 | `Boolean` | `false` |
-| size | 组件尺寸 | `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
+| size | 组件尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
 | type | 组件类型：`"date"` 只选择日期；`"datetime"` 选择日期和时间 | `"date"` &#124; `"datetime"` | `"date"` |
 | disabledHours | 禁用小时选择 | `Boolean` | `false` |
 | disabledMinutes | 禁用分钟选择 | `Boolean` | `false` |
