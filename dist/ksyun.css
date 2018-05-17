@@ -5859,7 +5859,7 @@ label {
 .k-switch {
   display: inline-block;
   vertical-align: middle;
-  background: #f5f5f5;
+  background: #ccc;
   position: relative;
   cursor: pointer;
   -webkit-user-select: none;
@@ -5886,7 +5886,7 @@ label {
 .k-switch .k-bar,
 .k-switch .k-wrapper {
   height: 100%;
-  background: #f5f5f5;
+  background: #ccc;
   -webkit-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
 }
@@ -5923,10 +5923,13 @@ label {
 .k-switch:focus .k-wrapper {
   background: #289af4;
 }
-.k-switch.k-default {
+.k-switch.k-default,
+.k-switch.k-default .k-on,
+.k-switch.k-default .k-off {
   width: 3.428571428571428rem;
   height: 1.714285714285714rem;
-  line-height: 1.714285714285714rem;
+}
+.k-switch.k-default {
   border-radius: 1.714285714285714rem;
 }
 .k-switch.k-default .k-bar {
@@ -5938,18 +5941,22 @@ label {
 }
 .k-switch.k-default .k-on,
 .k-switch.k-default .k-off {
-  width: 1.142857142857143rem;
+  line-height: 1.714285714285714rem;
+  left: 0;
 }
 .k-switch.k-default .k-on {
-  left: 0.571428571428571rem;
+  padding: 0 1.714285714285714rem 0 0.571428571428571rem;
 }
 .k-switch.k-default .k-off {
-  left: 1.714285714285714rem;
+  padding: 0 0.571428571428571rem 0 1.714285714285714rem;
 }
-.k-switch.k-small {
+.k-switch.k-small,
+.k-switch.k-small .k-on,
+.k-switch.k-small .k-off {
   width: 2.571428571428572rem;
   height: 1.285714285714286rem;
-  line-height: 1.285714285714286rem;
+}
+.k-switch.k-small {
   border-radius: 1.285714285714286rem;
 }
 .k-switch.k-small .k-bar {
@@ -5961,18 +5968,22 @@ label {
 }
 .k-switch.k-small .k-on,
 .k-switch.k-small .k-off {
-  width: 0.857142857142857rem;
+  line-height: 1.285714285714286rem;
+  left: 0;
 }
 .k-switch.k-small .k-on {
-  left: 0.428571428571429rem;
+  padding: 0 1.285714285714286rem 0 0.428571428571429rem;
 }
 .k-switch.k-small .k-off {
-  left: 1.285714285714286rem;
+  padding: 0 0.428571428571429rem 0 1.285714285714286rem;
 }
-.k-switch.k-mini {
+.k-switch.k-mini,
+.k-switch.k-mini .k-on,
+.k-switch.k-mini .k-off {
   width: 1.714285714285714rem;
   height: 0.857142857142857rem;
-  line-height: 0.857142857142857rem;
+}
+.k-switch.k-mini {
   border-radius: 0.857142857142857rem;
 }
 .k-switch.k-mini .k-bar {
@@ -5984,13 +5995,14 @@ label {
 }
 .k-switch.k-mini .k-on,
 .k-switch.k-mini .k-off {
-  width: 0.571428571428571rem;
+  line-height: 0.857142857142857rem;
+  left: 0;
 }
 .k-switch.k-mini .k-on {
-  left: 0.285714285714286rem;
+  padding: 0 0.857142857142857rem 0 0.285714285714286rem;
 }
 .k-switch.k-mini .k-off {
-  left: 0.857142857142857rem;
+  padding: 0 0.285714285714286rem 0 0.857142857142857rem;
 }
 .k-switch.k-checked .k-bar,
 .k-switch.k-checked .k-wrapper {
