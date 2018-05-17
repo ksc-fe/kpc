@@ -8,7 +8,7 @@ order: 17
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| size | 尺寸 | `"default"` &#124; `"mini"` &#124; `"small"` | `"default"` |
+| size | 尺寸 | `"large"` &#124; `"default"` &#124; `"mini"` &#124; `"small"` | `"default"` |
 | counts | 展示按钮个数 | `Number` | `7` |
 | total | 数据总条数 | `Number` | `0` |
 | showTotal | 显示总条数 | `Boolean` | `true` |

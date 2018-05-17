@@ -17,7 +17,7 @@ order: 5
 | filterable | 是否支持筛选 | `Boolean` | `false` |
 | keywords | 如果支持筛选，当前关键词 | `String` | `undefined` |
 | placeholder | 占位文案 | `String` | `"请选择"` |
-| size | 尺寸 | `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
+| size | 尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
 | fluid | 是否宽度100% | `Boolean` | `false` |
 | width | 指定宽度 | `Number` | `undefined` | 
 | allowUnmatch | 与`filterable`一起使用，支持输入不匹配项 | `Boolean` | `false` |
