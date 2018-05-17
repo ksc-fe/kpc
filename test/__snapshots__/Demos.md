@@ -755,7 +755,7 @@
 #### `Switch basic`
 
 ```
-"<div><div class=\"k-switch k-default\" tabindex=\"0\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"><div class=\"k-bar\"><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div></div>"
+"<div><div class=\"k-switch k-default\" tabindex=\"0\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"><div class=\"k-bar\"><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div><div class=\"k-switch k-default k-disabled\" tabindex=\"-1\"><input type=\"checkbox\" disabled=\"\" tabindex=\"-1\" value=\"true\"><div class=\"k-bar\"><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div></div>"
 ```
 
 #### `Switch disabled`
@@ -767,27 +767,30 @@
 #### `Switch onOff`
 
 ```
-"<div><div class=\"k-switch k-default\" tabindex=\"0\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"><div class=\"k-off\">关</div><div class=\"k-bar\"><div class=\"k-on\">开</div><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div></div>"
+"<div><div class=\"k-switch k-default\" tabindex=\"0\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"><div class=\"k-off\">关</div><div class=\"k-bar\"><div class=\"k-on\">开</div><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div><div class=\"k-switch k-checked k-default\" tabindex=\"0\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"><div class=\"k-off\"><i class=\"ion-ios-close-empty\"></i></div><div class=\"k-bar\"><div class=\"k-on\"><i class=\"ion-ios-checkmark-empty\"></i></div><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div></div>"
 ```
 
 #### `Switch size`
 
 ```
-"<div><div>
-        小号：<div class=\"k-switch k-small\" tabindex=\"0\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"><div class=\"k-off\">关</div><div class=\"k-bar\"><div class=\"k-on\">开</div><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div></div><div>
-        迷你：<div class=\"k-switch k-mini\" tabindex=\"0\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"><div class=\"k-off\">关</div><div class=\"k-bar\"><div class=\"k-on\">开</div><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div></div></div>"
+"<div>
+    default: <div class=\"k-switch k-default\" tabindex=\"0\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"><div class=\"k-bar\"><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div>
+    small: <div class=\"k-switch k-small\" tabindex=\"0\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"><div class=\"k-bar\"><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div>
+    mini: <div class=\"k-switch k-mini\" tabindex=\"0\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"><div class=\"k-bar\"><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div></div>"
 ```
 
 #### `Switch value`
 
 ```
-"<div><div class=\"k-switch k-checked k-default\" tabindex=\"0\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"><div class=\"k-off\">关</div><div class=\"k-bar\"><div class=\"k-on\">开</div><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div><div class=\"k-switch k-checked k-default\" tabindex=\"0\"><input type=\"checkbox\" tabindex=\"-1\" value=\"1\"><div class=\"k-off\">关</div><div class=\"k-bar\"><div class=\"k-on\">开</div><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div><div class=\"k-switch k-default\" tabindex=\"0\"><input type=\"checkbox\" tabindex=\"-1\" value=\"1\"><div class=\"k-off\">关</div><div class=\"k-bar\"><div class=\"k-on\">开</div><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div></div>"
+"<div><div style=\"margin-bottom: 20px\"><div class=\"k-switch k-default\" tabindex=\"0\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"><div class=\"k-bar\"><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div> 
+    </div><div><div class=\"k-switch k-default\" tabindex=\"0\"><input type=\"checkbox\" tabindex=\"-1\" value=\"1\"><div class=\"k-bar\"><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div> 
+    </div></div>"
 ```
 
 #### `Switch widthHeight`
 
 ```
-"<div><div class=\"k-switch k-default\" tabindex=\"0\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"><div class=\"k-off\">关闭</div><div class=\"k-bar\"><div class=\"k-on\">开启</div><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div><div class=\"k-switch k-default\" tabindex=\"0\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"><div class=\"k-off\">关闭</div><div class=\"k-bar\"><div class=\"k-on\">开启</div><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div></div>"
+"<div><div class=\"k-switch k-default\" tabindex=\"0\" style=\"width: 100px;\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"><div class=\"k-off\" style=\"width: 100px;\">关闭</div><div class=\"k-bar\"><div class=\"k-on\" style=\"width: 100px;\">开启</div><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div><div class=\"k-switch k-default\" tabindex=\"0\" style=\"height: 30px;\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"><div class=\"k-bar\" style=\"width: 30px;\"><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div><div class=\"k-switch k-default\" tabindex=\"0\" style=\"width: 100px; height: 30px;\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"><div class=\"k-off\" style=\"width: 100px; height: 30px; line-height: 30px; padding: 0px 10px 0px 30px;\">关闭</div><div class=\"k-bar\" style=\"width: 30px;\"><div class=\"k-on\" style=\"width: 100px; height: 30px; line-height: 30px; padding: 0px 30px 0px 10px;\">开启</div><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div></div>"
 ```
 
 #### `Table basic`
