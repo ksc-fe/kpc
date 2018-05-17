@@ -16,24 +16,24 @@ import {Button, ButtonGroup} from 'kpc/components/button';
         <Button>重启</Button>
     </ButtonGroup>
     <ButtonGroup>
-        <Button type="primary" size="small">开机</Button>
-        <Button type="primary" size="small">关机</Button>
-        <Button type="primary" size="small">重启</Button>
+        <Button type="primary">开机</Button>
+        <Button type="primary">关机</Button>
+        <Button type="primary">重启</Button>
     </ButtonGroup>
     <ButtonGroup>
-        <Button type="primary" size="small">
+        <Button type="primary">
             <i class="k-icon ion-ios-arrow-left"></i>上一页
         </Button>
-        <Button type="primary" size="small">
+        <Button type="primary">
             下一页<i class="k-icon ion-ios-arrow-right"></i>
         </Button>
     </ButtonGroup>
     <br /><br />
     <p>纵向按钮组</p>
     <ButtonGroup vertical>
-        <Button type="primary" size="small">开机</Button>
-        <Button type="primary" size="small">关机</Button>
-        <Button type="primary" size="small">重启</Button>
+        <Button type="primary">开机</Button>
+        <Button type="primary">关机</Button>
+        <Button type="primary">重启</Button>
     </ButtonGroup>
     <br /><br />
     <p>radio按钮组</p>

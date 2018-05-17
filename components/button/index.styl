@@ -34,6 +34,9 @@ sizes = large small mini
             &:focus
                 background-color lighten(@background-color, 20%)
                 border-color lighten(@border-color, 20%)
+            &:active
+                background-color darken(@background-color, 20%)
+                border-color darken(@border-color, 20%)
     // disabled
     &.k-disabled
         &, &:hover
