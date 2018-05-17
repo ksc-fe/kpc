@@ -171,7 +171,7 @@ module.exports = { "default": __webpack_require__(121), __esModule: true };
 
 exports.__esModule = true;
 
-var _assign = __webpack_require__(28);
+var _assign = __webpack_require__(24);
 
 var _assign2 = _interopRequireDefault(_assign);
 
@@ -484,7 +484,7 @@ $exports.store = store;
 
 var global = __webpack_require__(10);
 var core = __webpack_require__(9);
-var ctx = __webpack_require__(24);
+var ctx = __webpack_require__(25);
 var hide = __webpack_require__(18);
 var has = __webpack_require__(19);
 var PROTOTYPE = 'prototype';
@@ -904,6 +904,8 @@ __webpack_require__(6);
 
 __webpack_require__(162);
 
+var _utils = __webpack_require__(7);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
@@ -986,7 +988,7 @@ var Input = (_dec = _intact2.default.template, (_class = (_temp = _class2 = func
     };
 
     Input.prototype.select = function select() {
-        this.refs.input.select();
+        (0, _utils.selectInput)(this.refs.input);
     };
 
     Input.prototype.focus = function focus() {
@@ -1037,6 +1039,12 @@ module.exports = function (exec) {
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = { "default": __webpack_require__(113), __esModule: true };
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
 // optional / simple context binding
 var aFunction = __webpack_require__(31);
 module.exports = function (fn, that, length) {
@@ -1060,14 +1068,14 @@ module.exports = function (fn, that, length) {
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports) {
 
 module.exports = {};
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
@@ -1080,7 +1088,7 @@ module.exports = Object.keys || function keys(O) {
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -1089,12 +1097,6 @@ module.exports = function (it) {
   return toString.call(it).slice(8, -1);
 };
 
-
-/***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(113), __esModule: true };
 
 /***/ }),
 /* 29 */
@@ -1434,7 +1436,7 @@ exports.MoveWrapper = MoveWrapper;
 exports.__esModule = true;
 exports.position = undefined;
 
-var _assign = __webpack_require__(28);
+var _assign = __webpack_require__(24);
 
 var _assign2 = _interopRequireDefault(_assign);
 
@@ -2951,7 +2953,7 @@ var LIBRARY = __webpack_require__(30);
 var $export = __webpack_require__(12);
 var redefine = __webpack_require__(62);
 var hide = __webpack_require__(18);
-var Iterators = __webpack_require__(25);
+var Iterators = __webpack_require__(26);
 var $iterCreate = __webpack_require__(96);
 var setToStringTag = __webpack_require__(34);
 var getPrototypeOf = __webpack_require__(100);
@@ -3061,7 +3063,7 @@ module.exports = function (object, names) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
-var cof = __webpack_require__(27);
+var cof = __webpack_require__(28);
 // eslint-disable-next-line no-prototype-builtins
 module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
   return cof(it) == 'String' ? it.split('') : Object(it);
@@ -3095,7 +3097,7 @@ module.exports = document && document.documentElement;
 __webpack_require__(101);
 var global = __webpack_require__(10);
 var hide = __webpack_require__(18);
-var Iterators = __webpack_require__(25);
+var Iterators = __webpack_require__(26);
 var TO_STRING_TAG = __webpack_require__(11)('toStringTag');
 
 var DOMIterables = ('CSSRuleList,CSSStyleDeclaration,CSSValueList,ClientRectList,DOMRectList,DOMStringList,' +
@@ -3153,7 +3155,7 @@ module.exports = function (KEY, exec) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // getting tag from 19.1.3.6 Object.prototype.toString()
-var cof = __webpack_require__(27);
+var cof = __webpack_require__(28);
 var TAG = __webpack_require__(11)('toStringTag');
 // ES3 wrong here
 var ARG = cof(function () { return arguments; }()) == 'Arguments';
@@ -3196,7 +3198,7 @@ module.exports = function (O, D) {
 /* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var ctx = __webpack_require__(24);
+var ctx = __webpack_require__(25);
 var invoke = __webpack_require__(130);
 var html = __webpack_require__(66);
 var cel = __webpack_require__(43);
@@ -3239,7 +3241,7 @@ if (!setTask || !clearTask) {
     delete queue[id];
   };
   // Node.js 0.8-
-  if (__webpack_require__(27)(process) == 'process') {
+  if (__webpack_require__(28)(process) == 'process') {
     defer = function (id) {
       process.nextTick(ctx(run, id, 1));
     };
@@ -5078,7 +5080,7 @@ var Spinner = (_temp = _class = function (_Intact) {
             if (numberReg.test(val)) {
                 val = Number(val);
                 if (val <= max && val >= min) {
-                    _this2.set('value', val);
+                    _this2.set('value', val, { update: false });
                 }
             }
         });
@@ -5102,8 +5104,6 @@ var Spinner = (_temp = _class = function (_Intact) {
     };
 
     Spinner.prototype._increase = function _increase(e) {
-        if (this._disableIncrease()) return;
-
         var _get2 = this.get(),
             _value = _get2._value,
             step = _get2.step;
@@ -5112,8 +5112,6 @@ var Spinner = (_temp = _class = function (_Intact) {
     };
 
     Spinner.prototype._decrease = function _decrease(e) {
-        if (this._disableDecrease()) return;
-
         var _get3 = this.get(),
             _value = _get3._value,
             step = _get3.step;
@@ -5128,7 +5126,7 @@ var Spinner = (_temp = _class = function (_Intact) {
             step = _get4.step,
             disabled = _get4.disabled;
 
-        return disabled || _value <= min || _value - min < step;
+        return disabled || +_value <= min || Number((min + step).toFixed(10)) > _value;
     };
 
     Spinner.prototype._disableIncrease = function _disableIncrease() {
@@ -5138,7 +5136,7 @@ var Spinner = (_temp = _class = function (_Intact) {
             step = _get5.step,
             disabled = _get5.disabled;
 
-        return disabled || _value >= max || max - _value < step;
+        return disabled || +_value >= max || Number((max - step).toFixed(10)) < _value;
     };
 
     Spinner.prototype._changeValue = function _changeValue(e) {
@@ -5644,7 +5642,7 @@ exports.Transfer = _transfer.Transfer;
 
 /* generate start */
 
-var version = exports.version = '0.2.0';
+var version = exports.version = '0.2.1';
 
 /* generate end */
 
@@ -5765,7 +5763,7 @@ module.exports = function (Constructor, NAME, next) {
 
 var dP = __webpack_require__(15);
 var anObject = __webpack_require__(14);
-var getKeys = __webpack_require__(26);
+var getKeys = __webpack_require__(27);
 
 module.exports = __webpack_require__(17) ? Object.defineProperties : function defineProperties(O, Properties) {
   anObject(O);
@@ -5847,7 +5845,7 @@ module.exports = Object.getPrototypeOf || function (O) {
 
 var addToUnscopables = __webpack_require__(102);
 var step = __webpack_require__(103);
-var Iterators = __webpack_require__(25);
+var Iterators = __webpack_require__(26);
 var toIObject = __webpack_require__(20);
 
 // 22.1.3.4 Array.prototype.entries()
@@ -5944,7 +5942,7 @@ var _create = __webpack_require__(45);
 var gOPNExt = __webpack_require__(110);
 var $GOPD = __webpack_require__(53);
 var $DP = __webpack_require__(15);
-var $keys = __webpack_require__(26);
+var $keys = __webpack_require__(27);
 var gOPD = $GOPD.f;
 var dP = $DP.f;
 var gOPN = gOPNExt.f;
@@ -6218,7 +6216,7 @@ var meta = module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 // all enumerable object keys, includes symbols
-var getKeys = __webpack_require__(26);
+var getKeys = __webpack_require__(27);
 var gOPS = __webpack_require__(52);
 var pIE = __webpack_require__(35);
 module.exports = function (it) {
@@ -6239,7 +6237,7 @@ module.exports = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.2.2 IsArray(argument)
-var cof = __webpack_require__(27);
+var cof = __webpack_require__(28);
 module.exports = Array.isArray || function isArray(arg) {
   return cof(arg) == 'Array';
 };
@@ -6309,7 +6307,7 @@ $export($export.S + $export.F, 'Object', { assign: __webpack_require__(115) });
 "use strict";
 
 // 19.1.2.1 Object.assign(target, source, ...)
-var getKeys = __webpack_require__(26);
+var getKeys = __webpack_require__(27);
 var gOPS = __webpack_require__(52);
 var pIE = __webpack_require__(35);
 var toObject = __webpack_require__(49);
@@ -6363,7 +6361,7 @@ module.exports = __webpack_require__(9).Object.keys;
 
 // 19.1.2.14 Object.keys(O)
 var toObject = __webpack_require__(49);
-var $keys = __webpack_require__(26);
+var $keys = __webpack_require__(27);
 
 __webpack_require__(70)('keys', function () {
   return function keys(it) {
@@ -6775,7 +6773,7 @@ module.exports = __webpack_require__(9).Promise;
 
 var LIBRARY = __webpack_require__(30);
 var global = __webpack_require__(10);
-var ctx = __webpack_require__(24);
+var ctx = __webpack_require__(25);
 var classof = __webpack_require__(71);
 var $export = __webpack_require__(12);
 var isObject = __webpack_require__(16);
@@ -7066,7 +7064,7 @@ module.exports = function (it, Constructor, name, forbiddenField) {
 /* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var ctx = __webpack_require__(24);
+var ctx = __webpack_require__(25);
 var call = __webpack_require__(127);
 var isArrayIter = __webpack_require__(128);
 var anObject = __webpack_require__(14);
@@ -7116,7 +7114,7 @@ module.exports = function (iterator, fn, value, entries) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // check on default Array iterator
-var Iterators = __webpack_require__(25);
+var Iterators = __webpack_require__(26);
 var ITERATOR = __webpack_require__(11)('iterator');
 var ArrayProto = Array.prototype;
 
@@ -7131,7 +7129,7 @@ module.exports = function (it) {
 
 var classof = __webpack_require__(71);
 var ITERATOR = __webpack_require__(11)('iterator');
-var Iterators = __webpack_require__(25);
+var Iterators = __webpack_require__(26);
 module.exports = __webpack_require__(9).getIteratorMethod = function (it) {
   if (it != undefined) return it[ITERATOR]
     || it['@@iterator']
@@ -7170,7 +7168,7 @@ var macrotask = __webpack_require__(73).set;
 var Observer = global.MutationObserver || global.WebKitMutationObserver;
 var process = global.process;
 var Promise = global.Promise;
-var isNode = __webpack_require__(27)(process) == 'process';
+var isNode = __webpack_require__(28)(process) == 'process';
 
 module.exports = function () {
   var head, last, notify;
@@ -7408,7 +7406,7 @@ module.exports = {
   set: Object.setPrototypeOf || ('__proto__' in {} ? // eslint-disable-line
     function (test, buggy, set) {
       try {
-        set = __webpack_require__(24)(Function.call, __webpack_require__(53).f(Object.prototype, '__proto__').set, 2);
+        set = __webpack_require__(25)(Function.call, __webpack_require__(53).f(Object.prototype, '__proto__').set, 2);
         set(test, []);
         buggy = !(test instanceof Array);
       } catch (e) { buggy = true; }
@@ -8281,7 +8279,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             }
         }.call(this), 'tabindex': function () {
             try {
-                return [disabled ? "-1" : "0"][0];
+                return [disabled ? null : "0"][0];
             } catch (e) {
                 _e(e);
             }
@@ -10948,27 +10946,21 @@ var Dialog = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
     };
 
     Dialog.prototype._dragStart = function _dragStart(e) {
-        /* istanbul ignore next */{
+        // left key
+        if (e.which !== 1) return;
 
-            // left key
-            if (e.which !== 1) return;
+        this.set('_dragging', true);
+        var dialog = this.dialog;
+        this._x = dialog.offsetLeft - e.clientX;
+        this._y = dialog.offsetTop - e.clientY;
+        this._width = dialog.offsetWidth;
+        this._height = dialog.offsetHeight;
 
-            this.set('_dragging', true);
-            var dialog = this.dialog;
-            this._x = dialog.offsetLeft - e.clientX;
-            this._y = dialog.offsetTop - e.clientY;
-            this._width = dialog.offsetWidth;
-            this._height = dialog.offsetHeight;
-
-            document.addEventListener('mousemove', this._move);
-            document.addEventListener('mouseup', this._dragEnd);
-            /* istanbul ignore end */
-        }
+        document.addEventListener('mousemove', this._move);
+        document.addEventListener('mouseup', this._dragEnd);
     };
 
     Dialog.prototype._move = function _move(e) {
-        /* istanbul ignore next */
-
         // TODO; drag out of screen
         if (this.get('_dragging')) {
             var style = this.dialog.style;
@@ -10982,7 +10974,6 @@ var Dialog = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
     };
 
     Dialog.prototype._dragEnd = function _dragEnd() {
-        /* istanbul ignore if */
         if (this.get('_dragging')) {
             this.set('_dragging', false);
             document.removeEventListener('mousemove', this._move);
@@ -12203,7 +12194,7 @@ var _promise = __webpack_require__(36);
 
 var _promise2 = _interopRequireDefault(_promise);
 
-var _assign = __webpack_require__(28);
+var _assign = __webpack_require__(24);
 
 var _assign2 = _interopRequireDefault(_assign);
 
@@ -12883,7 +12874,7 @@ var _extends2 = __webpack_require__(5);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _assign = __webpack_require__(28);
+var _assign = __webpack_require__(24);
 
 var _assign2 = _interopRequireDefault(_assign);
 
@@ -14454,7 +14445,7 @@ var Progress = function (_Intact) {
             percent: 0, // 0~100
             size: 'default', // small mini
             isOuterText: true,
-            isInnerText: false, // FIXME: 布尔型取值用is开头 isShowInnerText 见README
+            isInnerText: false,
             status: 'active', // success | error | active | normal
             strokeWidth: 10
         };
@@ -14478,6 +14469,10 @@ var Progress = function (_Intact) {
         });
 
         this.set('percent', fixPercent(this.get('percent')));
+
+        if (this.get('percent') == 100) {
+            this.set('status', 'success');
+        }
     };
 
     (0, _createClass3.default)(Progress, [{
@@ -15087,18 +15082,8 @@ var Slider = (_temp = _class = function (_Intact) {
     };
 
     Slider.prototype._onRangeSliding = function _onRangeSliding(indexFlag, e) {
-        if (this.get('disabled')) return;
-
         var tempValue = this._getSlidingValue(e.clientX, this.get('_isDragging'));
         var fixedValue = void 0;
-
-        if (indexFlag) {
-            if (indexFlag === '_isFirst') {
-                if (this.get('_isSecond')) return;
-            } else {
-                if (this.get('_isFirst')) return;
-            }
-        }
 
         tempValue = this._getTempValue(tempValue, indexFlag, this._min, this._max, indexFlag === '_isFirst');
 
@@ -15123,22 +15108,16 @@ var Slider = (_temp = _class = function (_Intact) {
     };
 
     Slider.prototype._onRangeSlideEnd = function _onRangeSlideEnd(indexFlag, e) {
-        if (this.get('disabled')) return;
-
         if (this.get('_isDragging')) {
             this.set('_isDragging', false, { async: true });
             var newValue = this._getSlidingValue(e.clientX);
             if (indexFlag) {
                 if (indexFlag === '_isFirst') {
-                    if (this.get('_isSecond')) return;
-
                     this.$sliderFirstBtn.blur();
 
                     this.set('_isFirst', false, { async: true });
                     newValue = [Math.min(newValue, this._max), Math.max(newValue, this._max)];
                 } else {
-                    if (this.get('_isFirst')) return;
-
                     this.$sliderSecondBtn.blur();
 
                     this.set('_isSecond', false, { async: true });
@@ -15198,10 +15177,8 @@ var Slider = (_temp = _class = function (_Intact) {
 
         if (this.get('isRange')) {
             if (indexFlag === '_isFirst') {
-                if (this.get('_isSecond')) return;
                 this.set('_isFirst', false, { async: true });
             } else {
-                if (this.get('_isFirst')) return;
                 this.set('_isSecond', false, { async: true });
             }
         }
@@ -15251,6 +15228,7 @@ var Slider = (_temp = _class = function (_Intact) {
     };
 
     Slider.prototype._stopPropagation = function _stopPropagation(e) {
+        /* istanbul ignore next */
         e.stopPropagation();
     };
 
@@ -15507,6 +15485,12 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         }.call(this), 'ev-focusout': function () {
             try {
                 return [self._onFocusout.bind(self, '_isSecond')][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-click': function () {
+            try {
+                return [self._stopPropagation][0];
             } catch (e) {
                 _e(e);
             }
@@ -16184,7 +16168,7 @@ var Switch = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
     };
 
     Switch.prototype._dragStart = function _dragStart(e) {
-        if (e.which !== 1) return;
+        if (this.get('disabled') || e.which !== 1) return;
 
         this._x = e.clientX;
         this._height = this.refs.bar.clientHeight;
@@ -16295,6 +16279,10 @@ exports.Switch = Switch;
 
 exports.__esModule = true;
 
+var _assign = __webpack_require__(24);
+
+var _assign2 = _interopRequireDefault(_assign);
+
 exports.default = function (obj, _Vdt, blocks, $callee) {
     var _classNameObj;
 
@@ -16349,26 +16337,35 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     var onStyle = void 0;
     var offStyle = void 0;
     var barStyle = void 0;
-    if (width && height) {
-        style = addStyle(style, {
-            width: width + 'px',
-            height: height + 'px',
-            borderRadius: height + 'px',
-            lineHeight: height + 'px'
-        });
-        var textLeft = height / 3;
-        var textWidth = width - height - textLeft;
-        onStyle = {
-            left: textLeft + 'px',
-            width: textWidth + 'px'
-        };
-        offStyle = {
-            left: height + 'px',
-            width: textWidth + 'px'
-        };
-        barStyle = {
-            width: value === trueValue ? '100%' : height + 'px'
-        };
+    if (width || height) {
+        var _style = {};
+        onStyle = {};
+        offStyle = {};
+        if (width) {
+            _style.width = width + 'px';
+            onStyle.width = _style.width;
+            offStyle.width = _style.width;
+        }
+        if (height) {
+            _style.height = height + 'px';
+
+            (0, _assign2.default)(onStyle, {
+                height: _style.height,
+                lineHeight: _style.height,
+                padding: '0 ' + _style.height + ' 0 ' + height / 3 + 'px'
+            });
+
+            (0, _assign2.default)(offStyle, {
+                height: _style.height,
+                lineHeight: _style.height,
+                padding: '0 ' + height / 3 + 'px 0 ' + _style.height
+            });
+
+            barStyle = {
+                width: value === trueValue ? '100%' : height + 'px'
+            };
+        }
+        style = addStyle(style, _style);
     }
 
     return h('div', { 'style': function () {
@@ -16516,6 +16513,8 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     }.call(this)));
 };
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 module.exports = exports['default'];
 
 /***/ }),
@@ -16538,7 +16537,7 @@ var _getOwnPropertyDescriptor = __webpack_require__(4);
 
 var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
 
-var _assign = __webpack_require__(28);
+var _assign = __webpack_require__(24);
 
 var _assign2 = _interopRequireDefault(_assign);
 
@@ -17156,6 +17155,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                                 return self.set('group.' + props.key, v);
                             };
                             props['ev-click'] = props.sortable ? self._sort.bind(self, props.key, props) : undefined;
+                            props['ev-dragStart'] = self._dragStart;
                             vNode._$ = true;
                         }
                         _scheme[props.key] = {

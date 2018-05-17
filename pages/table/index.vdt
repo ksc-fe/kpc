@@ -13,6 +13,7 @@ const scheme = {
 
     <Table data={{ self.get('data') }} ref="test" group={{ self.get('group') }}
         ev-$change:group={{ self._onChangeGroup }}
+        resizable
     >
         <TableColumn title="aaa" key="test"
             template={{ (data, index) => {
