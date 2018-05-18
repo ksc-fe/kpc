@@ -19,14 +19,14 @@
         display inline-block
         position relative
         z-index 1
-        border-radius 100%
+        border-radius $switch-handle-border-radius 
     .k-bar
     .k-wrapper
         height 100%
         background $switch-bg-color
         transition all $transition
     .k-handle
-        border-radius 100% 
+        border-radius $switch-handle-border-radius 
         background $switch-handle-bg-color 
         height 100%
         cursor pointer
@@ -48,14 +48,13 @@
     &.k-dragging
         .k-bar
         .k-wrapper
-            background $primary-color
+            background $switch-checked-bg-color
             transition background $transition 
     &:focus
         outline none
         .k-bar
         .k-wrapper
-            background $primary-color
-
+            background $switch-checked-bg-color
 
     // size
     for size in large default small mini
@@ -66,15 +65,15 @@
             width lookup('$switch-' + size + '-width')
             height lookup('$switch-' + size + '-height')
         &.k-{size}
-            border-radius lookup('$switch-' + size + '-height')
+            border-radius lookup('$switch-' + size + '-border-radius')
             .k-bar
                 width lookup('$switch-' + size + '-height')
-                border-radius lookup('$switch-' + size + '-height')
+                border-radius lookup('$switch-' + size + '-border-radius')
             .k-wrapper
                 padding lookup('$switch-' + size + '-padding')
             .k-on
             .k-off
-                line-height lookup('$switch-' + size + '-height')
+                line-height lookup('$switch-' + size + '-line-height')
                 left 0
             .k-on
                 padding 0 lookup('$switch-' + size + '-height') 0 $left 
@@ -85,7 +84,7 @@
     &.k-checked
         .k-bar
         .k-wrapper
-            background $primary-color
+            background $switch-checked-bg-color
         .k-bar
             width 100%
 

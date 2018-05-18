@@ -20,11 +20,15 @@
         color $transfer-item-color 
         background $transfer-item-bg-color 
         user-select none
+        display table
+        width 100%
         &:not(.k-disabled):hover
             background $transfer-item-hover-bg-color 
     .k-checkbox
         padding $transfer-item-padding
-        display block
+        display table-cell
+        height 40px
+        vertical-align middle
     .k-input
         margin-bottom -1px
 

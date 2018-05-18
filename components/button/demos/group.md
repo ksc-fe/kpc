@@ -38,17 +38,17 @@ import {Button, ButtonGroup} from 'kpc/components/button';
     <br /><br />
     <p>radio按钮组</p>
     <ButtonGroup checkType="radio" v-model="city">
-        <Button value="beijing" type="small">北京</Button>
-        <Button value="shanghai" type="small" ref="__radioShanghai">上海</Button>
-        <Button value="guangzhou" type="small">广州</Button>
-        <Button value="shenzhen" type="small">深圳</Button>
+        <Button value="beijing">北京</Button>
+        <Button value="shanghai" ref="__radioShanghai">上海</Button>
+        <Button value="guangzhou">广州</Button>
+        <Button value="shenzhen">深圳</Button>
     </ButtonGroup>
     <p>checkbox按钮组</p>
     <ButtonGroup checkType="checkbox" v-model="cities">
-        <Button value="beijing" type="small">北京</Button>
-        <Button value="shanghai" type="small" ref="__checkboxShanghai">上海</Button>
-        <Button value="guangzhou" type="small">广州</Button>
-        <Button value="shenzhen" type="small">深圳</Button>
+        <Button value="beijing" size="small">北京</Button>
+        <Button value="shanghai" size="small" ref="__checkboxShanghai">上海</Button>
+        <Button value="guangzhou" size="small">广州</Button>
+        <Button value="shenzhen" size="small">深圳</Button>
     </ButtonGroup>
 </div>
 ```

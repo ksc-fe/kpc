@@ -1,10 +1,12 @@
 .k-tabs
-    font-size 12px
+    font-size 14px 
     .k-tab
-        width 124px
-        border solid $border-color 
+        min-width 150px
+        border solid $disabled-border-color 
         border-width 1px 1px 0 0
-        background #fafafa
+        background $bg-color
+        &:hover
+            color $primary-color
         &:first-of-type
             border-left 1px solid transparent
         &.k-active
@@ -16,4 +18,4 @@
                 left -1px 
                 right -1px
                 top -1px
-                border-top 2px solid $danger-color
+                border-top 4px solid $primary-color

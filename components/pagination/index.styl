@@ -2,39 +2,20 @@
 
 .k-pagination
     font-size $pagination-font-size
-    .k-pages
     .k-limits
     .k-goto
     .k-total
         margin-left $pagination-gutter
         display inline-block
-
-    .k-pages
-        margin-left 0
-        > div
-            display inline-block
-            border $pagination-page-border
-            border-radius $pagination-page-border-radius
-            margin-right $pagination-page-margin-right
-            min-width $pagination-page-width
-            height $pagination-page-height
-            line-height s('calc(%s - 2px)', @height)
-            cursor pointer
-            text-align center
-            vertical-align middle
-            &:not(.k-active):not(.k-disabled):hover
-                border-color $pagination-page-hover-border-color
-                color $pagination-page-hover-color
-            &:last-of-type
-                margin-right 0
-        .k-active
-            background-color $pagination-page-active-bg-color
-            border-color $pagination-page-active-border-color
-            color $pagination-page-active-color
-        .k-disabled
-            cursor not-allowed
-            color $pagination-page-disabled-color
-            border-color $pagination-page-disabled-border-color
+        vertical-align middle
+    .k-btns
+        .k-btn
+            if $pagination-btn-border-radius != 0
+                border-radius $pagination-btn-border-radius !important
+            if $pagination-btn-margin-right != 0
+                margin 0 $pagination-btn-margin-right
+                &:last-of-type
+                    margin 0 !important
 
     // goto   
     .k-goto
@@ -50,11 +31,9 @@
     for size in large small mini
         &.k-{size}
             font-size lookup('$pagination-' + size + '-font-size')
-            .k-pages
-                > div
-                    margin-right lookup('$pagination-' + size + '-page-margin-right')
-                    min-width lookup('$pagination-' + size + '-page-width')
-                    height lookup('$pagination-' + size + '-page-height')
-                    line-height s('calc(%s - 2px)', @height)
+            if lookup('$pagination-' + size + '-btn-margin-right') != 0
+                .k-btns
+                    .k-btn
+                        margin-right lookup('$pagination-' + size + '-btn-margin-right')
 
 @import $theme-dir + '/pagination.styl' if exists($theme-dir + '/pagination.styl') 

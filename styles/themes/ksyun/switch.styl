@@ -1,0 +1,20 @@
+.k-switch
+    border 1px solid $border-color
+    box-sizing content-box
+    .k-bar
+    .k-off
+        box-sizing border-box
+    &.k-checked
+        border-color $primary-color
+        .k-on
+            color $primary-color 
+        .k-handle
+            background $primary-color
+    // disabled
+    &.k-disabled
+        border-color $disabled-border-color
+        .k-handle
+            background $disabled-border-color
+        .k-on
+        .k-off
+            color $disabled-color

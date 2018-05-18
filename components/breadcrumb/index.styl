@@ -4,8 +4,9 @@
     font-size $breadcrumb-font-size
     .k-item
         display inline-block
-        &:last-of-type
-            font-weight $breadcrumb-active-font-weight
+        if $breadcrumb-active-font-weight != normal
+            &:last-of-type
+                font-weight $breadcrumb-active-font-weight
     .k-item-link
         color $breadcrumb-color
     a.k-item-link:hover

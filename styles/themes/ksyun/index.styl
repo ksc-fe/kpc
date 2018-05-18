@@ -7,65 +7,109 @@ $warning-color := #ff9800
 $danger-color := #f44336
 $success-color := #3ba645
 $disabled-color := #999
-$disabled-bg-color := #f2f2f2
-$disabled-border-color := #d9d9d9
-$text-color := #666
-$border-color := #d9d9d9
-$bg-color := #f5f5f5
+$disabled-bg-color := #f1f1f5
+$disabled-border-color := #d3d3d3
+$text-color := #333
+$border-color := #999
+$bg-color := #f5f5f9
 $title-color := #333
+
+$box-shadow := 0 0 4px 0 rgba(0, 0, 0, .3)
+
 
 /**
  * size
  */
 $large-height := 40
+$large-font-size := 14px
 $default-height := 32 
+$default-font-size := 12px
 $small-height := 24 
+$small-font-size := 12px
 $mini-height := 20
+$mini-font-size := 12px
 
 
 /**
  * btn
  */
-$btn-padding := 0 unit(20 / 14, em)
+$btn-color := #333
+$btn-primary-border-color := darken($primary-color, 20%) 
 
 
 /**
  * radio
  */
-$radio-width := 17px
-$radio-inner-width := 11px
+$radio-width := 16px
+$radio-inner-width := 10px
+$radio-disabled-inner-color := $disabled-border-color
 
 
 /**
  * checkbox
  */
-$checkbox-inner-border := 2px solid #fff
+$checkbox-inner-border := 1px solid #fff
 $checkbox-inner-width := 5px
-$checkbox-inner-height := 9px
-$checkbox-inner-top := 0 
+$checkbox-inner-height := 10px
+$checkbox-inner-top := -1px 
+$checkbox-disabled-inner-color := $disabled-border-color
+
+/**
+ * switch
+ */
+$switch-bg-color := #fff
+$switch-checked-bg-color := #fff
+$switch-color := $text-color
+$switch-handle-bg-color := $border-color
+$switch-handle-border-radius := $border-radius
+// size
+$switch-default-width := 52px
+$switch-default-height := 16px
+$switch-default-border-radius := $border-radius
+$switch-default-padding := 3px
+$switch-large-border-radius := $border-radius
+$switch-small-border-radius := $border-radius
+$switch-small-height := 14px
+$switch-small-padding := 2px
+$switch-mini-border-radius := $border-radius
+$switch-mini-padding := 2px
+// disabled
+$switch-disabled-bg-color := #fff
 
 
 /**
  * input
  */
-$input-font-size := 12px
+// $input-font-size := 12px
+// $input-large-font-size := 14px
+
+
+/**
+ * select
+ */
+$select-width := 300px
+$select-multiple-values-margin := 4px
+$select-multiple-tag-padding := 0 5px
+$select-multiple-tag-margin := 0 2px 3px 0
+$select-large-font-size := 14px
+// $select-font-size := 12px
 
 
 /**
  * dialog
  */
-$dialog-width := 770px
+$dialog-width := 590px
 $dialog-padding := 0
 $dialog-font-size := 12px
-$dialog-title-height := 53px
+$dialog-title-height := 61px
 $dialog-title-font-size := 16px
 $dialog-title-border := 1px solid #eaeaea
-$dialog-title-color := #666
-$dialog-close-top := 10px
+$dialog-close-top := 16px
 $dialog-close-right := -9px
 $dialog-close-icon-font-size := 44px
 $dialog-body-padding := 20px
-$dialog-footer-padding := 15px 0
+$dialog-footer-padding := 20px 0
+$dialog-small-width := 390px
 
 
 /**
@@ -73,11 +117,11 @@ $dialog-footer-padding := 15px 0
  */
 $table-th-border-top := 1px solid #ccc
 $table-thead-bg-color := $bg-color
-$table-th-padding := 8px 5px 8px 12px
+$table-th-padding := 0 5px 0 12px
 $table-thead-font-size := 12px
 $table-th-font-weight := bold
-$table-thead-color := #808080
-$table-tr-hover-bg-color := #fcfcfc
+$table-thead-color := #3b3b3b
+$table-tr-hover-bg-color := $bg-color
 $table-border-thead-bg-color := $table-thead-bg-color
 $table-fixed-margin-top := -33px
 $table-check-width := 40px
@@ -109,25 +153,17 @@ $message-close-font-size := 26px
 /**
  * tooltip
  */
+$tooltip-padding := 8px 12px
 $tooltip-color := $text-color
+$tooltip-arrow-border-color := rgba(191, 191, 191, .5)
 
 
 /**
  * pagination
  */
-$pagination-page-border-radius := 0
-$pagination-page-hover-border-color := #595959
-$pagination-page-hover-color := inherit
-$pagination-page-active-bg-color := #595959
-$pagination-page-active-border-color := #595959
-$pagination-small-page-height := 31px
-$pagination-small-page-width := 33px
-$pagination-small-page-margin-right := -1px
-
-$pagination-page-margin-right := -1px
-$pagination-page-width := 38px
-$pagination-mini-page-margin-right := -1px
-$pagination-mini-page-width := 28px
+$pagination-btn-border-radius := 0
+$pagination-btn-margin-right := 0
+$pagination-small-btn-margin-right := 0
 
 
 /**
@@ -144,17 +180,23 @@ $steps-active-head-inner-bg-color := $warning-color
 /**
  * tabs
  */
-$tabs-height := 34px
-$tabs-padding := 0
+$tabs-border-bottom := 1px solid $disabled-border-color
+$tabs-height := 50px
+$tabs-padding := 0 37px 
 $tabs-margin := 0
-$tabs-active-color := $text-color
 $tabs-highlight-bg-color := #fff
 $tabs-highlight-margin-left := 0
 
 /**
  * breadcrumb
  */
-$breadcrumb-color := #898989
-$breadcrumb-hover-color := $$breadcrumb-color
+$breadcrumb-active-font-weight := normal
+$breadcrumb-separator-margin := 0 6px
+
+
+/**
+ * transfer
+ */
+// $transfer-panel-border := 1px solid $disabled-border-color
 
 @require('../default.styl')

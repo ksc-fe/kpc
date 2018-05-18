@@ -12,7 +12,7 @@ import {Table, TableColumn} from 'components/table';
             <TableColumn title="test" key="test">test</TableColumn>
         </Table>
     </Dialog>
-    <Dialog v-model="isShowSmall" type="small" key="b">
+    <Dialog v-model="isShowSmall" size="small" key="b">
         <b:header>
             <span class="k-title">Custom Title</span>
         </b:header>

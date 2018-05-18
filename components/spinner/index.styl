@@ -23,5 +23,10 @@
         text-align center
         padding 0
 
+    // size
+    for size in large small mini
+        &.k-{size}            
+            .k-input
+                width lookup('$spinner-' + size + '-input-width')
 
 @import $theme-dir + '/spinner.styl' if exists($theme-dir + '/spinner.styl') 

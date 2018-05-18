@@ -1,5 +1,6 @@
 import Select from '../select';
 import Input from '../input';
+import {ButtonGroup, Button} from '../button';
 import {_$} from '../utils';
 
 const {
@@ -20,77 +21,71 @@ const totalPages = (Math.ceil(total / limit)) || 0;
 
 const paginationButton = function(page) {
     return (
-        <div class={{ {'k-page': true, 'k-active': page === current} }} 
-            ev-click={{ self.changePage.bind(self, page) }}
-        >{{ page }}</div>
+        <Button size={{ size }} icon value={{ page }}>{{ page }}</Button>
     );
 };
 
 const paginationDot = function(callback) {
-    return <div class="k-ellipsis" ev-click={{ callback }}>...</div>
+    return <Button size={{ size }} icon class="k-ellipsis" ev-click={{ callback }}>...</Button>
 };
 
 <div class={{ classNameObj }}>
-    <div class="k-pages">{{ do {
-        let items = [];
-        let minCount = Math.ceil(counts / 2);
-        let maxCount = totalPages - minCount;
-        let prevPage = current - 1;
-        let nextPage = current + 1;
+    <ButtonGroup checkType="radio" v-model="current">
+        <Button icon size={{ size }}
+            disabled={{ current <= 1 }}
+            ev-click={{ self.prev }}
+        ><i class="ion-ios-arrow-left"></i></Button>{{ 
+            do {
+                let items = [];
+                let minCount = Math.ceil(counts / 2);
+                let maxCount = totalPages - minCount;
+                let prevPage = current - 1;
+                let nextPage = current + 1;
 
-        // previous page button
-        items.push(
-            <div class={{ {'k-prev': true, 'k-disabled': prevPage < 1} }}
-                ev-click={{ prevPage < 1 ? undefined : self.prev }}
-            ><i class="ion-ios-arrow-left"></i></div>
-        );
+                if (totalPages > counts) {
+                    if (current <= minCount) {
+                        const max = counts - 2;
+                        for (let i = 1; i <= max; i++) {
+                            items.push(paginationButton(i));
+                        }
+                        items.push(paginationDot(self.fastNext));
+                        items.push(paginationButton(totalPages));
+                    } else if (current > minCount && current <= maxCount) {
+                        items.push(paginationButton(1));
+                        items.push(paginationDot(self.fastPrev));
 
-        if (totalPages > counts) {
-            if (current <= minCount) {
-                const max = counts - 2;
-                for (let i = 1; i <= max; i++) {
-                    items.push(paginationButton(i));
+                        const midCount = counts - 4;
+                        const mid = Math.floor(midCount / 2);
+                        const min = current - mid;
+                        const max = midCount % 2 === 1 ? current + mid : current + mid - 1;
+                        for (let i = min; i <= max; i++) {
+                            items.push(paginationButton(i));
+                        }
+
+                        items.push(paginationDot(self.fastNext));
+                        items.push(paginationButton(totalPages));
+                    } else {
+                        items.push(paginationButton(1));
+                        items.push(paginationDot(self.fastPrev));
+
+                        const min = totalPages - counts + 3;
+                        for (let i = min; i <= totalPages; i++) {
+                            items.push(paginationButton(i));
+                        }
+                    }
+                } else {
+                    for (let i = 1; i <= totalPages; i++) {
+                        items.push(paginationButton(i));
+                    }
                 }
-                items.push(paginationDot(self.fastNext));
-                items.push(paginationButton(totalPages));
-            } else if (current > minCount && current <= maxCount) {
-                items.push(paginationButton(1));
-                items.push(paginationDot(self.fastPrev));
 
-                const midCount = counts - 4;
-                const mid = Math.floor(midCount / 2);
-                const min = current - mid;
-                const max = midCount % 2 === 1 ? current + mid : current + mid - 1;
-                for (let i = min; i <= max; i++) {
-                    items.push(paginationButton(i));
-                }
-
-                items.push(paginationDot(self.fastNext));
-                items.push(paginationButton(totalPages));
-            } else {
-                items.push(paginationButton(1));
-                items.push(paginationDot(self.fastPrev));
-
-                const min = totalPages - counts + 3;
-                for (let i = min; i <= totalPages; i++) {
-                    items.push(paginationButton(i));
-                }
-            }
-        } else {
-            for (let i = 1; i <= totalPages; i++) {
-                items.push(paginationButton(i));
-            }
-        }
-
-        // next page button
-        items.push(
-            <div class={{ {'k-next': true, 'k-disabled': nextPage > totalPages} }}
-                ev-click={{ nextPage > totalPages ? undefined : self.next }}
-            ><i class="ion-ios-arrow-right"></i></div>
-        );
-
-        items;
-    } }}</div>
+                items;
+            } 
+        }}<Button icon size={{ size }}
+            disabled={{ current >= totalPages }}
+            ev-click={{ self.next }}
+        ><i class="ion-ios-arrow-right"></i></Button>
+    </ButtonGroup>
 
     <div class="k-limits">
         <Select v-model="limit"

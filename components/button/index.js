@@ -91,22 +91,25 @@ export default class Button extends Intact {
 
         if (this.group) {
             let {_checkType, value, _value} = this.get();
-            if (_checkType === 'radio') {
-                this.group.set('value', value);
-            } else if (_checkType === 'checkbox') {
-                if (!Array.isArray(_value)) {
-                    _value = [];
+            if (value !== undefined) {
+                if (_checkType === 'radio') {
+                    this.group.set('value', value);
+                } else if (_checkType === 'checkbox') {
+                    if (!Array.isArray(_value)) {
+                        _value = [];
+                    }
+                    _value = _value.slice(0);
+                    const index = _value.indexOf(value);
+                    if (!~index) {
+                        _value.push(value);
+                    } else {
+                        _value.splice(index, 1);
+                    }
+                    this.group.set('value', _value);
                 }
-                _value = _value.slice(0);
-                const index = _value.indexOf(value);
-                if (!~index) {
-                    _value.push(value);
-                } else {
-                    _value.splice(index, 1);
-                }
-                this.group.set('value', _value);
             }
         }
+
         e.component = this;
         this.trigger('click', e);
     }

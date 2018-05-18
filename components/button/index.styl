@@ -25,6 +25,8 @@ sizes = large small mini
     &:focus
         border-color $btn-hover-border-color
         color $btn-hover-color
+    &:active
+        background-color lighten($primary-color, 85%)
     for type in types 
         &.k-{type}
             background-color lookup('$btn-' + type + '-bg-color')
@@ -124,6 +126,7 @@ sizes = large small mini
         vertical-align middle
         &:hover
         &:focus
+        &.k-active
             z-index 1
             position relative
     // fluid

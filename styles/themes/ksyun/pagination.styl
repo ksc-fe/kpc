@@ -1,9 +1,7 @@
 .k-pagination
-    .k-pages
-        > div:hover
-            position relative
-            z-index 1
+    .k-btns
         .k-ellipsis
+            background-color transparent
             border none
         .ion-ios-arrow-left:before
             content "\f361"
@@ -12,8 +10,12 @@
             content "\f363"
             font-size 22px
     &.k-mini
-        .k-pages
+        .k-btns
             .ion-ios-arrow-left:before
             .ion-ios-arrow-right:before
                 font-size 18px
+    .k-btn.k-active
+        color $primary-color
+        border-color $primary-color
+        background-color lighten($primary-color, 85%)
 
