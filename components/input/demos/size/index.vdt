@@ -2,6 +2,8 @@ import Input from 'kpc/components/input';
 import Button from 'kpc/components/button';
 
 <div>
+    <Input size="large" value="large" />
+    <br />
     <Input value="default" />
     <br />
     <Input value="small" size="small" />

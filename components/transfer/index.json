@@ -12,7 +12,7 @@
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
         }
     ],
-    "index": 133,
+    "index": 132,
     "sideBars": {
         "undefined": [
             {
@@ -735,16 +735,15 @@
                         "level": 1,
                         "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
                         "text": "属性",
-                        "children": [
-                            {
-                                "title": "Switch",
-                                "path": "#header-Switch",
-                                "level": 2,
-                                "content": "<h2 id='header-Switch'>Switch</h2>",
-                                "text": "Switch",
-                                "children": []
-                            }
-                        ]
+                        "children": []
+                    },
+                    {
+                        "title": "扩展点",
+                        "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
+                        "level": 1,
+                        "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
+                        "text": "扩展点",
+                        "children": []
                     },
                     {
                         "title": "方法",

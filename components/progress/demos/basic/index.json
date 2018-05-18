@@ -8,22 +8,30 @@
     "codes": [
         {
             "language": "vdt",
-            "content": "import Progress from 'kpc/components/progress';\n\n<Progress percent=\"50\" />"
+            "content": "import Progress from 'kpc/components/progress';\n\n<div>\n    <Progress percent=\"50\" />\n    <Progress percent=\"100\" />\n</div>"
+        },
+        {
+            "language": "styl",
+            "content": ".k-progress\n    margin 10px 0"
         },
         {
             "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
+            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
         }
     ],
     "index": 22,
     "highlighted": [
         {
             "language": "vdt",
-            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Progress <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/progress'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Progress</span> <span class=\"hljs-attr\">percent</span>=<span class=\"hljs-string\">\"50\"</span> /&gt;</span></span></code></pre>"
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Progress <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/progress'</span>;\n\n&lt;div&gt;\n    &lt;Progress percent=\"50\" /&gt;\n    &lt;Progress percent=\"100\" /&gt;\n&lt;/div&gt;</code></pre>"
+        },
+        {
+            "language": "styl",
+            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-progress</span>\n    <span class=\"hljs-attribute\">margin</span> <span class=\"hljs-number\">10px</span> <span class=\"hljs-number\">0</span></code></pre>"
         },
         {
             "language": "js",
-            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
         }
     ]
 }
