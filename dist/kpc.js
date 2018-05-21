@@ -485,8 +485,8 @@ $exports.store = store;
 var global = __webpack_require__(10);
 var core = __webpack_require__(9);
 var ctx = __webpack_require__(25);
-var hide = __webpack_require__(18);
-var has = __webpack_require__(19);
+var hide = __webpack_require__(19);
+var has = __webpack_require__(20);
 var PROTOTYPE = 'prototype';
 
 var $export = function (type, name, source) {
@@ -621,42 +621,6 @@ module.exports = !__webpack_require__(23)(function () {
 
 /***/ }),
 /* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var dP = __webpack_require__(15);
-var createDesc = __webpack_require__(32);
-module.exports = __webpack_require__(17) ? function (object, key, value) {
-  return dP.f(object, key, createDesc(1, value));
-} : function (object, key, value) {
-  object[key] = value;
-  return object;
-};
-
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports) {
-
-var hasOwnProperty = {}.hasOwnProperty;
-module.exports = function (it, key) {
-  return hasOwnProperty.call(it, key);
-};
-
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// to indexed object, toObject with fallback for non-array-like ES3 strings
-var IObject = __webpack_require__(64);
-var defined = __webpack_require__(42);
-module.exports = function (it) {
-  return IObject(defined(it));
-};
-
-
-/***/ }),
-/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -816,22 +780,25 @@ var Button = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
                 value = _get.value,
                 _value = _get._value;
 
-            if (_checkType === 'radio') {
-                this.group.set('value', value);
-            } else if (_checkType === 'checkbox') {
-                if (!Array.isArray(_value)) {
-                    _value = [];
+            if (value !== undefined) {
+                if (_checkType === 'radio') {
+                    this.group.set('value', value);
+                } else if (_checkType === 'checkbox') {
+                    if (!Array.isArray(_value)) {
+                        _value = [];
+                    }
+                    _value = _value.slice(0);
+                    var index = _value.indexOf(value);
+                    if (!~index) {
+                        _value.push(value);
+                    } else {
+                        _value.splice(index, 1);
+                    }
+                    this.group.set('value', _value);
                 }
-                _value = _value.slice(0);
-                var index = _value.indexOf(value);
-                if (!~index) {
-                    _value.push(value);
-                } else {
-                    _value.splice(index, 1);
-                }
-                this.group.set('value', _value);
             }
         }
+
         e.component = this;
         this.trigger('click', e);
     };
@@ -863,6 +830,42 @@ var Button = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
 exports.default = Button;
 exports.Button = Button;
 exports.ButtonGroup = _group2.default;
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var dP = __webpack_require__(15);
+var createDesc = __webpack_require__(32);
+module.exports = __webpack_require__(17) ? function (object, key, value) {
+  return dP.f(object, key, createDesc(1, value));
+} : function (object, key, value) {
+  object[key] = value;
+  return object;
+};
+
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports) {
+
+var hasOwnProperty = {}.hasOwnProperty;
+module.exports = function (it, key) {
+  return hasOwnProperty.call(it, key);
+};
+
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// to indexed object, toObject with fallback for non-array-like ES3 strings
+var IObject = __webpack_require__(64);
+var defined = __webpack_require__(42);
+module.exports = function (it) {
+  return IObject(defined(it));
+};
+
 
 /***/ }),
 /* 22 */
@@ -1172,7 +1175,7 @@ module.exports = function (key) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var def = __webpack_require__(15).f;
-var has = __webpack_require__(19);
+var has = __webpack_require__(20);
 var TAG = __webpack_require__(11)('toStringTag');
 
 module.exports = function (it, tag, stat) {
@@ -2189,9 +2192,9 @@ exports.f = Object.getOwnPropertySymbols;
 
 var pIE = __webpack_require__(35);
 var createDesc = __webpack_require__(32);
-var toIObject = __webpack_require__(20);
+var toIObject = __webpack_require__(21);
 var toPrimitive = __webpack_require__(44);
-var has = __webpack_require__(19);
+var has = __webpack_require__(20);
 var IE8_DOM_DEFINE = __webpack_require__(61);
 var gOPD = Object.getOwnPropertyDescriptor;
 
@@ -2952,7 +2955,7 @@ __webpack_require__(60)(String, 'String', function (iterated) {
 var LIBRARY = __webpack_require__(30);
 var $export = __webpack_require__(12);
 var redefine = __webpack_require__(62);
-var hide = __webpack_require__(18);
+var hide = __webpack_require__(19);
 var Iterators = __webpack_require__(26);
 var $iterCreate = __webpack_require__(96);
 var setToStringTag = __webpack_require__(34);
@@ -3032,15 +3035,15 @@ module.exports = !__webpack_require__(17) && !__webpack_require__(23)(function (
 /* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(18);
+module.exports = __webpack_require__(19);
 
 
 /***/ }),
 /* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var has = __webpack_require__(19);
-var toIObject = __webpack_require__(20);
+var has = __webpack_require__(20);
+var toIObject = __webpack_require__(21);
 var arrayIndexOf = __webpack_require__(98)(false);
 var IE_PROTO = __webpack_require__(46)('IE_PROTO');
 
@@ -3096,7 +3099,7 @@ module.exports = document && document.documentElement;
 
 __webpack_require__(101);
 var global = __webpack_require__(10);
-var hide = __webpack_require__(18);
+var hide = __webpack_require__(19);
 var Iterators = __webpack_require__(26);
 var TO_STRING_TAG = __webpack_require__(11)('toStringTag');
 
@@ -5551,7 +5554,7 @@ var _app = __webpack_require__(119);
 
 var _breadcrumb = __webpack_require__(150);
 
-var _button = __webpack_require__(21);
+var _button = __webpack_require__(18);
 
 var _checkbox = __webpack_require__(37);
 
@@ -5642,7 +5645,7 @@ exports.Transfer = _transfer.Transfer;
 
 /* generate start */
 
-var version = exports.version = '0.2.1';
+var version = exports.version = '0.2.2-0';
 
 /* generate end */
 
@@ -5749,7 +5752,7 @@ var setToStringTag = __webpack_require__(34);
 var IteratorPrototype = {};
 
 // 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
-__webpack_require__(18)(IteratorPrototype, __webpack_require__(11)('iterator'), function () { return this; });
+__webpack_require__(19)(IteratorPrototype, __webpack_require__(11)('iterator'), function () { return this; });
 
 module.exports = function (Constructor, NAME, next) {
   Constructor.prototype = create(IteratorPrototype, { next: descriptor(1, next) });
@@ -5782,7 +5785,7 @@ module.exports = __webpack_require__(17) ? Object.defineProperties : function de
 
 // false -> Array#indexOf
 // true  -> Array#includes
-var toIObject = __webpack_require__(20);
+var toIObject = __webpack_require__(21);
 var toLength = __webpack_require__(65);
 var toAbsoluteIndex = __webpack_require__(99);
 module.exports = function (IS_INCLUDES) {
@@ -5823,7 +5826,7 @@ module.exports = function (index, length) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
-var has = __webpack_require__(19);
+var has = __webpack_require__(20);
 var toObject = __webpack_require__(49);
 var IE_PROTO = __webpack_require__(46)('IE_PROTO');
 var ObjectProto = Object.prototype;
@@ -5846,7 +5849,7 @@ module.exports = Object.getPrototypeOf || function (O) {
 var addToUnscopables = __webpack_require__(102);
 var step = __webpack_require__(103);
 var Iterators = __webpack_require__(26);
-var toIObject = __webpack_require__(20);
+var toIObject = __webpack_require__(21);
 
 // 22.1.3.4 Array.prototype.entries()
 // 22.1.3.13 Array.prototype.keys()
@@ -5919,7 +5922,7 @@ module.exports = __webpack_require__(9).Symbol;
 
 // ECMAScript 6 symbols shim
 var global = __webpack_require__(10);
-var has = __webpack_require__(19);
+var has = __webpack_require__(20);
 var DESCRIPTORS = __webpack_require__(17);
 var $export = __webpack_require__(12);
 var redefine = __webpack_require__(62);
@@ -5935,7 +5938,7 @@ var enumKeys = __webpack_require__(108);
 var isArray = __webpack_require__(109);
 var anObject = __webpack_require__(14);
 var isObject = __webpack_require__(16);
-var toIObject = __webpack_require__(20);
+var toIObject = __webpack_require__(21);
 var toPrimitive = __webpack_require__(44);
 var createDesc = __webpack_require__(32);
 var _create = __webpack_require__(45);
@@ -6143,7 +6146,7 @@ $JSON && $export($export.S + $export.F * (!USE_NATIVE || $fails(function () {
 });
 
 // 19.4.3.4 Symbol.prototype[@@toPrimitive](hint)
-$Symbol[PROTOTYPE][TO_PRIMITIVE] || __webpack_require__(18)($Symbol[PROTOTYPE], TO_PRIMITIVE, $Symbol[PROTOTYPE].valueOf);
+$Symbol[PROTOTYPE][TO_PRIMITIVE] || __webpack_require__(19)($Symbol[PROTOTYPE], TO_PRIMITIVE, $Symbol[PROTOTYPE].valueOf);
 // 19.4.3.5 Symbol.prototype[@@toStringTag]
 setToStringTag($Symbol, 'Symbol');
 // 20.2.1.9 Math[@@toStringTag]
@@ -6158,7 +6161,7 @@ setToStringTag(global.JSON, 'JSON', true);
 
 var META = __webpack_require__(33)('meta');
 var isObject = __webpack_require__(16);
-var has = __webpack_require__(19);
+var has = __webpack_require__(20);
 var setDesc = __webpack_require__(15).f;
 var id = 0;
 var isExtensible = Object.isExtensible || function () {
@@ -6248,7 +6251,7 @@ module.exports = Array.isArray || function isArray(arg) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
-var toIObject = __webpack_require__(20);
+var toIObject = __webpack_require__(21);
 var gOPN = __webpack_require__(68).f;
 var toString = {}.toString;
 
@@ -6742,7 +6745,7 @@ module.exports = function getOwnPropertyDescriptor(it, key) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
-var toIObject = __webpack_require__(20);
+var toIObject = __webpack_require__(21);
 var $getOwnPropertyDescriptor = __webpack_require__(53).f;
 
 __webpack_require__(70)('getOwnPropertyDescriptor', function () {
@@ -7237,7 +7240,7 @@ module.exports = function () {
 /* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var hide = __webpack_require__(18);
+var hide = __webpack_require__(19);
 module.exports = function (target, src, safe) {
   for (var key in src) {
     if (safe && target[key]) target[key] = src[key];
@@ -8200,7 +8203,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     }.call(this)));
 };
 
-var _ = __webpack_require__(21);
+var _ = __webpack_require__(18);
 
 var _2 = _interopRequireDefault(_);
 
@@ -10176,7 +10179,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 }.call(this), 'children': null, '_context': $this }), '_context': $this })], '_context': $this })], 'k-time-picker', 'time'), 'k-wrapper');
 };
 
-var _button = __webpack_require__(21);
+var _button = __webpack_require__(18);
 
 var _button2 = _interopRequireDefault(_button);
 
@@ -11199,7 +11202,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                                 }.call(this)), '_context': $this });
 };
 
-var _button = __webpack_require__(21);
+var _button = __webpack_require__(18);
 
 var _button2 = _interopRequireDefault(_button);
 
@@ -13340,7 +13343,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
   }.call(this)));
 };
 
-var _button = __webpack_require__(21);
+var _button = __webpack_require__(18);
 
 var _button2 = _interopRequireDefault(_button);
 
@@ -13575,121 +13578,157 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     var totalPages = Math.ceil(total / limit) || 0;
 
     var paginationButton = function paginationButton(page) {
-        return h('div', { 'ev-click': function () {
+        return h(_button.Button, { 'size': function () {
                 try {
-                    return [self.changePage.bind(self, page)][0];
+                    return [size][0];
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this) }, function () {
-            try {
-                return [page][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), _className(function () {
-            try {
-                return [{ 'k-page': true, 'k-active': page === current }][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this)));
+            }.call(this), 'icon': function () {
+                try {
+                    return [true][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'value': function () {
+                try {
+                    return [page][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'children': function () {
+                try {
+                    return [page][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), '_context': $this });
     };
 
     var paginationDot = function paginationDot(callback) {
-        return h('div', { 'ev-click': function () {
+        return h(_button.Button, { 'size': function () {
+                try {
+                    return [size][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'icon': function () {
+                try {
+                    return [true][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'className': 'k-ellipsis', 'ev-click': function () {
                 try {
                     return [callback][0];
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this) }, '...', 'k-ellipsis');
+            }.call(this), 'children': '...', '_context': $this });
     };
 
-    return h('div', null, [h('div', null, function () {
-        var _this = this;
-
-        try {
-            return [function () {
-                var items = [];
-                var minCount = Math.ceil(counts / 2);
-                var maxCount = totalPages - minCount;
-                var prevPage = current - 1;
-                var nextPage = current + 1;
-
-                // previous page button
-                items.push(h('div', { 'ev-click': function () {
-                        try {
-                            return [prevPage < 1 ? undefined : self.prev][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this) }, h('i', null, null, 'ion-ios-arrow-left'), _className(function () {
-                    try {
-                        return [{ 'k-prev': true, 'k-disabled': prevPage < 1 }][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(_this))));
-
-                if (totalPages > counts) {
-                    if (current <= minCount) {
-                        var max = counts - 2;
-                        for (var i = 1; i <= max; i++) {
-                            items.push(paginationButton(i));
-                        }
-                        items.push(paginationDot(self.fastNext));
-                        items.push(paginationButton(totalPages));
-                    } else if (current > minCount && current <= maxCount) {
-                        items.push(paginationButton(1));
-                        items.push(paginationDot(self.fastPrev));
-
-                        var midCount = counts - 4;
-                        var mid = Math.floor(midCount / 2);
-                        var min = current - mid;
-                        var _max = midCount % 2 === 1 ? current + mid : current + mid - 1;
-                        for (var _i = min; _i <= _max; _i++) {
-                            items.push(paginationButton(_i));
-                        }
-
-                        items.push(paginationDot(self.fastNext));
-                        items.push(paginationButton(totalPages));
-                    } else {
-                        items.push(paginationButton(1));
-                        items.push(paginationDot(self.fastPrev));
-
-                        var _min = totalPages - counts + 3;
-                        for (var _i2 = _min; _i2 <= totalPages; _i2++) {
-                            items.push(paginationButton(_i2));
-                        }
-                    }
-                } else {
-                    for (var _i3 = 1; _i3 <= totalPages; _i3++) {
-                        items.push(paginationButton(_i3));
-                    }
+    return h('div', null, [h(_button.ButtonGroup, { 'checkType': 'radio', 'v-model': 'current', 'children': [h(_button.Button, { 'icon': function () {
+                try {
+                    return [true][0];
+                } catch (e) {
+                    _e(e);
                 }
+            }.call(this), 'size': function () {
+                try {
+                    return [size][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'disabled': function () {
+                try {
+                    return [current <= 1][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'ev-click': function () {
+                try {
+                    return [self.prev][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'children': h('i', null, null, 'ion-ios-arrow-left'), '_context': $this }), function () {
+            try {
+                return [function () {
+                    var items = [];
+                    var minCount = Math.ceil(counts / 2);
+                    var maxCount = totalPages - minCount;
+                    var prevPage = current - 1;
+                    var nextPage = current + 1;
 
-                // next page button
-                items.push(h('div', { 'ev-click': function () {
-                        try {
-                            return [nextPage > totalPages ? undefined : self.next][0];
-                        } catch (e) {
-                            _e(e);
+                    if (totalPages > counts) {
+                        if (current <= minCount) {
+                            var max = counts - 2;
+                            for (var i = 1; i <= max; i++) {
+                                items.push(paginationButton(i));
+                            }
+                            items.push(paginationDot(self.fastNext));
+                            items.push(paginationButton(totalPages));
+                        } else if (current > minCount && current <= maxCount) {
+                            items.push(paginationButton(1));
+                            items.push(paginationDot(self.fastPrev));
+
+                            var midCount = counts - 4;
+                            var mid = Math.floor(midCount / 2);
+                            var min = current - mid;
+                            var _max = midCount % 2 === 1 ? current + mid : current + mid - 1;
+                            for (var _i = min; _i <= _max; _i++) {
+                                items.push(paginationButton(_i));
+                            }
+
+                            items.push(paginationDot(self.fastNext));
+                            items.push(paginationButton(totalPages));
+                        } else {
+                            items.push(paginationButton(1));
+                            items.push(paginationDot(self.fastPrev));
+
+                            var _min = totalPages - counts + 3;
+                            for (var _i2 = _min; _i2 <= totalPages; _i2++) {
+                                items.push(paginationButton(_i2));
+                            }
                         }
-                    }.call(_this) }, h('i', null, null, 'ion-ios-arrow-right'), _className(function () {
-                    try {
-                        return [{ 'k-next': true, 'k-disabled': nextPage > totalPages }][0];
-                    } catch (e) {
-                        _e(e);
+                    } else {
+                        for (var _i3 = 1; _i3 <= totalPages; _i3++) {
+                            items.push(paginationButton(_i3));
+                        }
                     }
-                }.call(_this))));
 
-                return items;
-            }()][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), 'k-pages'), h('div', null, h(_select2.default, { 'v-model': 'limit', 'data': function () {
+                    return items;
+                }()][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), h(_button.Button, { 'icon': function () {
+                try {
+                    return [true][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'size': function () {
+                try {
+                    return [size][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'disabled': function () {
+                try {
+                    return [current >= totalPages][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'ev-click': function () {
+                try {
+                    return [self.next][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'children': h('i', null, null, 'ion-ios-arrow-right'), '_context': $this })], '_context': $this, value: _getModel(self, 'current'), 'ev-$change:value': function ev$changeValue(__c, __n) {
+            _setModel(self, 'current', __n, $this);
+        } }), h('div', null, h(_select2.default, { 'v-model': 'limit', 'data': function () {
             try {
                 return [limits.map(function (item) {
                     return { 'value': item, 'label': (0, _utils._$)('{n} 条 / 页', { n: item }) };
@@ -13769,6 +13808,8 @@ var _select2 = _interopRequireDefault(_select);
 var _input = __webpack_require__(22);
 
 var _input2 = _interopRequireDefault(_input);
+
+var _button = __webpack_require__(18);
 
 var _utils = __webpack_require__(7);
 
@@ -15735,7 +15776,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     }.call(this)));
 };
 
-var _button = __webpack_require__(21);
+var _button = __webpack_require__(18);
 
 var _input = __webpack_require__(22);
 
@@ -18606,7 +18647,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     }.call(this)));
 };
 
-var _button = __webpack_require__(21);
+var _button = __webpack_require__(18);
 
 var _button2 = _interopRequireDefault(_button);
 
