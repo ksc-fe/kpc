@@ -5649,7 +5649,7 @@ exports.Transfer = _transfer.Transfer;
 
 /* generate start */
 
-var version = exports.version = '0.2.2-1';
+var version = exports.version = '0.2.2-2';
 
 /* generate end */
 
@@ -10954,7 +10954,7 @@ var Dialog = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
 
     Dialog.prototype._dragStart = function _dragStart(e) {
         // left key
-        if (e.which !== 1) return;
+        if (e.which !== 1 || !this.get('value')) return;
 
         this.set('_dragging', true);
         var dialog = this.dialog;
@@ -13655,7 +13655,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this), 'children': h('i', null, null, 'ion-ios-arrow-left'), '_context': $this }), function () {
+            }.call(this), 'children': h('i', null, null, 'k-icon ion-ios-arrow-left'), '_context': $this }), function () {
             try {
                 return [function () {
                     var items = [];
@@ -13730,7 +13730,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this), 'children': h('i', null, null, 'ion-ios-arrow-right'), '_context': $this })], '_context': $this, value: _getModel(self, 'current'), 'ev-$change:value': function ev$changeValue(__c, __n) {
+            }.call(this), 'children': h('i', null, null, 'k-icon ion-ios-arrow-right'), '_context': $this })], '_context': $this, value: _getModel(self, 'current'), 'ev-$change:value': function ev$changeValue(__c, __n) {
             _setModel(self, 'current', __n, $this);
         } }), h('div', null, h(_select2.default, { 'v-model': 'limit', 'data': function () {
             try {

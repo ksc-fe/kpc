@@ -4387,6 +4387,9 @@ label {
 .k-input.k-group .k-append {
   border-radius: 0 0.142857142857143rem 0.142857142857143rem 0;
 }
+.k-input.k-group .k-btn.k-primary {
+  border: none;
+}
 .k-tooltip {
   display: inline-block;
 }
