@@ -1,6 +1,6 @@
 {
   "name": "kpc",
-  "version": "0.2.1",
+  "version": "0.2.2-0",
   "description": "A component library written in intact for intact and vue",
   "browser": "@css/components/index.js",
   "main": "dist/kpc.js",
