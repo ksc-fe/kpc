@@ -5413,6 +5413,10 @@ var TableColumn = (_temp = _class = function (_Intact) {
         }
     };
 
+    TableColumn.prototype._stopPropagation = function _stopPropagation(e) {
+        e.stopPropagation();
+    };
+
     (0, _createClass3.default)(TableColumn, [{
         key: 'template',
         get: function get() {
@@ -5645,7 +5649,7 @@ exports.Transfer = _transfer.Transfer;
 
 /* generate start */
 
-var version = exports.version = '0.2.2-0';
+var version = exports.version = '0.2.2-1';
 
 /* generate end */
 
@@ -16651,7 +16655,6 @@ function _applyDecoratedDescriptor(target, property, decorators, descriptor, con
     return desc;
 }
 
-var MIN_WIDTH = 40;
 var slice = Array.prototype.slice;
 
 var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
@@ -16688,6 +16691,7 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
             expandedKeys: [],
             type: 'default', // default border
             fixHeader: false,
+            minColWidth: 40,
 
             _padding: 0,
             _disabledAmount: 0
@@ -16925,13 +16929,15 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
         this.set('sort', sort);
     };
 
-    Table.prototype._dragStart = function _dragStart(e) {
+    Table.prototype._dragStart = function _dragStart(props, e) {
         // left key
         if (e.which !== 1) return;
 
         this._resizing = true;
         this._containerWidth = this.element.offsetWidth;
         this._x = e.clientX;
+
+        this._minWidth = props.minWidth || this.get('minColWidth');
 
         var currentTh = e.target.parentNode;
         var prevTh = currentTh.previousElementSibling;
@@ -16956,12 +16962,14 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
     };
 
     Table.prototype._move = function _move(e) {
+        e.preventDefault();
+
         if (this._resizing) {
             var delX = e.clientX - this._x;
             var prevWidth = this._prevThs[0].offsetWidth + delX;
             var tableWidth = this._tables[0].offsetWidth + delX;
 
-            if (prevWidth < MIN_WIDTH) return;
+            if (prevWidth < this._minWidth) return;
 
             this._prevThs.forEach(function (item) {
                 item.style.width = prevWidth + 'px';
@@ -17076,6 +17084,8 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     var expandable = typeof expand === 'function';
     var _scheme = {};
 
+    var prevItem = checkType === 'checkbox' || checkType === 'radio' ? { minWidth: 40 } : {};
+
     var theadCreator = function theadCreator() {
         var keys = {};
         return h('thead', null, h('tr', null, [function () {
@@ -17114,6 +17124,11 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                         item = { title: item };
                     }
 
+                    // because we use the last resize handle to controll the previous column
+                    // so we bind prevItem here
+                    var dragStart = self._dragStart.bind(self, prevItem);
+                    prevItem = item;
+
                     return h(_column2.default, (0, _extends3.default)({}, function () {
                         try {
                             return [item][0];
@@ -17140,7 +17155,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                             }
                         }.call(_this2), 'ev-dragStart': function () {
                             try {
-                                return [self._dragStart][0];
+                                return [dragStart][0];
                             } catch (e) {
                                 _e(e);
                             }
@@ -17189,6 +17204,10 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
 
                         keys[props.key] = true;
                         props.value = group[props.key];
+
+                        var dragStart = self._dragStart.bind(self, prevItem);
+                        prevItem = props;
+
                         // add a flag to detect if the vNode has attached events of bellow
                         // we should not attach them again, when the same vNode come again
                         if (!vNode._$) {
@@ -17196,7 +17215,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                                 return self.set('group.' + props.key, v);
                             };
                             props['ev-click'] = props.sortable ? self._sort.bind(self, props.key, props) : undefined;
-                            props['ev-dragStart'] = self._dragStart;
+                            props['ev-dragStart'] = dragStart;
                             vNode._$ = true;
                         }
                         _scheme[props.key] = {
@@ -17689,6 +17708,12 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     }.call(this) ? h('div', { 'ev-mousedown': function () {
             try {
                 return [self.onDragStart][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-click': function () {
+            try {
+                return [self._stopPropagation][0];
             } catch (e) {
                 _e(e);
             }

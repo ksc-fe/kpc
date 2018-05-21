@@ -3771,7 +3771,6 @@ label {
   cursor: pointer;
   display: inline-block;
   height: 2.285714285714286rem;
-  line-height: calc(2.285714285714286rem - 2px);
   padding: 0 1.428571428571429rem;
   outline: none;
   border: none;
@@ -3783,6 +3782,9 @@ label {
   transition: all 0.25s ease-in-out;
   border: 1px solid #999;
   font-size: 12px;
+}
+.k-btn > span {
+  vertical-align: middle;
 }
 .k-btn:hover,
 .k-btn:focus {
@@ -3864,6 +3866,8 @@ label {
   font-size: 14px;
   height: 2.857142857142857rem;
   padding: 0 1.785714285714286rem;
+}
+.k-btn.k-large .k-icon {
   line-height: calc(2.857142857142857rem - 2px);
 }
 .k-btn.k-large.k-btn-icon {
@@ -3873,6 +3877,8 @@ label {
   font-size: 12px;
   height: 1.714285714285714rem;
   padding: 0 1.071428571428571rem;
+}
+.k-btn.k-small .k-icon {
   line-height: calc(1.714285714285714rem - 2px);
 }
 .k-btn.k-small.k-btn-icon {
@@ -3882,6 +3888,8 @@ label {
   font-size: 12px;
   height: 1.428571428571429rem;
   padding: 0 0.714285714285714rem;
+}
+.k-btn.k-mini .k-icon {
   line-height: calc(1.428571428571429rem - 2px);
 }
 .k-btn.k-mini.k-btn-icon {
@@ -3889,6 +3897,8 @@ label {
 }
 .k-btn .k-icon {
   font-size: inherit;
+  vertical-align: middle;
+  line-height: calc(2.285714285714286rem - 2px);
 }
 .k-btn .k-icon:before {
   font-size: inherit;
@@ -3905,7 +3915,6 @@ label {
 }
 .k-btn.k-btn-icon .k-icon {
   margin: 0;
-  font-size: 1.142857142857143em;
 }
 .k-btn.k-fluid {
   width: 100%;
@@ -3964,6 +3973,17 @@ label {
 }
 .k-btn input {
   position: absolute;
+}
+.k-btn:not(button) {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 .k-btns {
   display: inline-block;
@@ -4820,7 +4840,7 @@ label {
 }
 .k-dialog {
   position: absolute;
-  width: 590px;
+  width: 770px;
   border-radius: 2px;
   background: #fff;
   font-size: 12px;
