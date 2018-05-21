@@ -28,6 +28,7 @@ order: 89
 | type | 类型 | `String` | `"default"` |
 | sort | 排序 | `Object` | `{}` |
 | group | 分组 | `Object` | `{}` |
+| minColWidth | 指定所有列拖动时的最小宽度 | `Number` | `40` |
 
 ## TableColumn
 
@@ -42,6 +43,7 @@ order: 89
 | width | 列宽，可以指定百分比或像素(不需要加单位) | `String` | `undefined` |
 | group | 指定分组数组，每一项格式为`{value: '选中后的值', label: '展示的文案'}` | `Array<Object>` | `undefined` |
 | multiple | 分组是否支持多选 | `Boolean` | `false` |
+| minWidth | 指定当前列拖动时的最小宽度，优先级高于`Table`的`minColWidth` | `Number` | `40` |
 
 # 扩展点
 

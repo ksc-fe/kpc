@@ -154,7 +154,7 @@ export default class Dialog extends Intact {
 
     _dragStart(e) {
         // left key
-        if (e.which !== 1) return;
+        if (e.which !== 1 || !this.get('value')) return;
 
         this.set('_dragging', true);
         const dialog = this.dialog;
