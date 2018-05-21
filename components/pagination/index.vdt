@@ -34,7 +34,7 @@ const paginationDot = function(callback) {
         <Button icon size={{ size }}
             disabled={{ current <= 1 }}
             ev-click={{ self.prev }}
-        ><i class="ion-ios-arrow-left"></i></Button>{{ 
+        ><i class="k-icon ion-ios-arrow-left"></i></Button>{{ 
             do {
                 let items = [];
                 let minCount = Math.ceil(counts / 2);
@@ -84,7 +84,7 @@ const paginationDot = function(callback) {
         }}<Button icon size={{ size }}
             disabled={{ current >= totalPages }}
             ev-click={{ self.next }}
-        ><i class="ion-ios-arrow-right"></i></Button>
+        ><i class="k-icon ion-ios-arrow-right"></i></Button>
     </ButtonGroup>
 
     <div class="k-limits">
