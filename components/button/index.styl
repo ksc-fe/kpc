@@ -8,7 +8,7 @@ sizes = large small mini
     cursor pointer
     display inline-block
     height $btn-height
-    line-height s('calc(%s - 2px)', $btn-height)
+    // line-height s('calc(%s - 2px)', $btn-height)
     padding $btn-padding
     outline none
     border none
@@ -21,6 +21,8 @@ sizes = large small mini
     // transition-delay 50000s
     border 1px solid $btn-border-color
     font-size $btn-font-size
+    > span
+        vertical-align middle
     &:hover
     &:focus
         border-color $btn-hover-border-color
@@ -59,14 +61,16 @@ sizes = large small mini
             font-size lookup('$btn-' + size + '-font-size')
             height lookup('$btn-' + size + '-height')
             padding lookup('$btn-' + size + '-padding')
-            line-height s('calc(%s - 2px)', lookup('$btn-' + size + '-height'))
+            .k-icon
+                line-height s('calc(%s - 2px)', lookup('$btn-' + size + '-height'))
             &.k-btn-icon
                 width @height
 
     // icon
     .k-icon
         font-size inherit
-        // vertical-align middle
+        vertical-align middle
+        line-height s('calc(%s - 2px)', $btn-height)
         &:before
             font-size inherit
         + span
@@ -80,7 +84,7 @@ sizes = large small mini
         padding 0
         .k-icon
             margin 0
-            font-size $btn-btn-icon-font-size
+            // font-size $btn-btn-icon-font-size
 
     // fluid
     &.k-fluid
@@ -116,6 +120,12 @@ sizes = large small mini
     // radio
     input
         position absolute
+
+    // let non-button element vertical align middle
+    &:not(button)
+        display inline-flex
+        align-items center
+        justify-content center
 
 // buttons
 .k-btns
