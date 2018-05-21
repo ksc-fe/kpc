@@ -14,7 +14,10 @@ const {sort, resizable} = $parent.get();
     class={{ {'k-sortable': sortable} }}
     ev-click={{ self.onClick }}
 >
-    <div v-if={{ resizable }} class="k-resize" ev-mousedown={{ self.onDragStart }}></div>
+    <div v-if={{ resizable }} class="k-resize" 
+        ev-mousedown={{ self.onDragStart }}
+        ev-click={{ self._stopPropagation }} 
+    ></div>
     <div class={{ {"k-th": true, "k-group-show": _show} }}>
         <div v-if={{ !group }} class="c-ellipsis">{{ title }}</div>
         <div class="k-group" v-if={{ group }}>

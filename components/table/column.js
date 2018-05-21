@@ -83,4 +83,8 @@ export default class TableColumn extends Intact {
             }
         }
     }
+
+    _stopPropagation(e) {
+        e.stopPropagation();
+    }
 }

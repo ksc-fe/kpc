@@ -7,15 +7,25 @@ order: 12
 
 ```vdt
 import Table from 'kpc/components/table';
-var scheme1 = {a: '默认不可拖拽', b: '表头B'};
-var scheme2 = {a: '设置为可拖拽', b: '表头B'};
-var data1 = [{a: 'A', b: 'B'}, {a: 'A', b: 'B'}];
 
+var data = [{a: 'A', b: 'B', c: 'C'}, {a: 'A', b: 'B', c: 'C'}];
 
 <div class='no-data-template'>
-    <Table scheme={{ scheme1 }} data={{ data1 }} />
-    <Table scheme={{ scheme2 }} data={{ data1 }} resizable={{ true }}/>
-
+    <Table 
+        scheme={{ {
+            a: '通过minColWidth控制最小宽度100px',
+            b: {
+                title: '单独设置最小宽度300px',
+                minWidth: 300
+            },
+            c: {
+                title: '标题'
+            }
+        } }} 
+        data={{ data }}
+        resizable
+        minColWidth={{ 100 }}
+    />
 </div>
 ```
 

@@ -6,9 +6,7 @@ import Column from './column';
 import {_$} from '../utils';
 import {scrollbarWidth} from '../moveWrapper/position';
 
-const MIN_WIDTH = 40;
 const slice = Array.prototype.slice;
-
 
 export default class Table extends Intact {
     @Intact.template()
@@ -34,6 +32,7 @@ export default class Table extends Intact {
             expandedKeys: [], 
             type: 'default', // default border
             fixHeader: false,
+            minColWidth: 40,
 
             _padding: 0,
             _disabledAmount: 0,
@@ -255,13 +254,15 @@ export default class Table extends Intact {
         this.set('sort', sort);
     }
 
-    _dragStart(e) {
+    _dragStart(props, e) {
         // left key
         if (e.which !== 1) return;
 
         this._resizing = true;
         this._containerWidth = this.element.offsetWidth;
         this._x = e.clientX;
+
+        this._minWidth = props.minWidth || this.get('minColWidth');
 
         const currentTh = e.target.parentNode;
         const prevTh = currentTh.previousElementSibling;
@@ -286,12 +287,14 @@ export default class Table extends Intact {
     }
 
     _move(e) {
+        e.preventDefault();
+
         if (this._resizing) {
             const delX = e.clientX - this._x;
             const prevWidth = this._prevThs[0].offsetWidth + delX;
             const tableWidth = this._tables[0].offsetWidth + delX;
             
-            if (prevWidth < MIN_WIDTH) return;
+            if (prevWidth < this._minWidth) return;
 
             this._prevThs.forEach(item => {
                 item.style.width = prevWidth + 'px';
