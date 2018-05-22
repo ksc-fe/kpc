@@ -21,7 +21,7 @@ sizes = large small mini
     // transition-delay 50000s
     border 1px solid $btn-border-color
     font-size $btn-font-size
-    &:not(button) > span
+    button& > span
         vertical-align middle
     &:hover
     &:focus
@@ -62,7 +62,8 @@ sizes = large small mini
             height lookup('$btn-' + size + '-height')
             padding lookup('$btn-' + size + '-padding')
             .k-icon
-                line-height s('calc(%s - 2px)', lookup('$btn-' + size + '-height'))
+                // line-height s('calc(%s - 2px)', lookup('$btn-' + size + '-height'))
+                line-height lookup('$btn-' + size + '-height')
             &.k-btn-icon
                 width @height
 
@@ -70,7 +71,8 @@ sizes = large small mini
     .k-icon
         font-size inherit
         vertical-align middle
-        line-height s('calc(%s - 2px)', $btn-height)
+        // line-height s('calc(%s - 2px)', $btn-height)
+        line-height $btn-height
         &:before
             font-size inherit
         + span
@@ -93,7 +95,7 @@ sizes = large small mini
 
     // shape
     &.k-circle
-        border-radius unit($btn-height / 2, rem)
+        border-radius unit($btn-large-height / 2, rem)
 
     // loading
     &.k-loading
