@@ -1,9 +1,10 @@
-const {value, children, _value} = self.get();
+const {value, children, _value, className} = self.get();
 
 <a 
     class={{ {
         'k-tab': true, 
         'k-active': value !== undefined && value === _value, 
+        [className]: className
     } }}
     ev-click={{ self._changeTab }}
 >{{ self.get('children') }}</a>
