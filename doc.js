@@ -178,7 +178,7 @@ module.exports = function(isDev) {
 
                 promise.resolve();
             } else {
-                const compiler = webpack(webpackConfig); 
+                const compiler = webpack(webpackConfig()); 
                 compiler.run(async (err, stats) => {
                     console.log(stats.toString({
                         colors: true 

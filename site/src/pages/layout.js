@@ -15,8 +15,8 @@ export default class extends Intact {
     }
 
     _init() {
-        this.on('$change:theme', (c, v) => {
-            this._changeTheme(v);
+        this.on('$change:theme', (c, v, o) => {
+            this._changeTheme(v, o);
         });
     }
 
@@ -26,9 +26,9 @@ export default class extends Intact {
         this.link = document.querySelector('link[rel=stylesheet]');
     }
 
-    _changeTheme(t) {
-        this.link.href = `/theme-${t}.css`;
-        theme = t;
+    _changeTheme(newTheme, oldTheme) {
+        this.link.href = this.link.href.replace(`theme-${oldTheme}`, `theme-${newTheme}`);
+        theme = newTheme;
     }
 
     _updateBorder() {

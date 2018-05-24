@@ -23,6 +23,7 @@ const pages = {
     '/': 'index',
 }; 
 const vdtFile = path.resolve(__dirname, './site/src/index.vdt');
+const isDev = process.env.NODE_ENV !== 'production';
 
 gulp.task('doc', () => {
     console.log('build markdown');
@@ -39,16 +40,19 @@ function webpackWatch(theme) {
     return [
         compiler, 
         new Promise(resolve => {
-            compiler.watch({
-                aggregateTimeout: 300,
-                poll: 1000, 
-                ignored: /theme\-/
-            }, (err, stats) => {
+            const callback = (err, stats) => {
                 console.log(stats.toString({
                     colors: true,
                 }));
                 resolve();
-            });
+            };
+            isDev ? 
+                compiler.watch({
+                    aggregateTimeout: 300,
+                    poll: 1000, 
+                    ignored: /theme\-/
+                }, callback) : 
+                compiler.run(callback);
         })
     ];
 }
@@ -148,7 +152,7 @@ gulp.task('push:doc', () => {
     );
 });
 
-gulp.task('build:doc', gulp.series('clean:doc', 'build:doc:server', 'build:doc:client'));
+gulp.task('build:doc', gulp.series('clean:doc', 'build:doc:server', 'build:doc:client', 'build:themes:css'));
 gulp.task('deploy:doc', gulp.series('build:doc', 'push:doc'));
 gulp.task('watch:doc', gulp.series('doc:production', gulp.parallel('webpack', () => {
     gulp.watch('./@(components|docs)/**/*.md', {ignored: /node_modules/}, gulp.parallel('doc:production'));
