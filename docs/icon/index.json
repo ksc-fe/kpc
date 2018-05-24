@@ -11,7 +11,7 @@
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
         }
     ],
-    "index": 68,
+    "index": 80,
     "sideBars": {
         "undefined": [
             {
@@ -878,19 +878,13 @@
                         "content": "<h1 id='header-%E6%A0%87%E7%AD%BE%E5%B1%9E%E6%80%A7%20Tabs'>标签属性 Tabs</h1>",
                         "text": "标签属性 Tabs",
                         "children": []
-                    }
-                ]
-            },
-            {
-                "title": "穿梭框",
-                "path": "components/transfer/index.md",
-                "children": [
+                    },
                     {
-                        "title": "属性",
-                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "title": "Tab",
+                        "path": "#header-Tab",
                         "level": 1,
-                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                        "text": "属性",
+                        "content": "<h1 id='header-Tab'>Tab</h1>",
+                        "text": "Tab",
                         "children": []
                     }
                 ]
@@ -913,6 +907,20 @@
                         "level": 1,
                         "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
                         "text": "事件",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "穿梭框",
+                "path": "components/transfer/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
                         "children": []
                     }
                 ]

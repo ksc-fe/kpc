@@ -8,8 +8,7 @@ export default class extends Intact {
     static template = template;
     defaults(){
         return {
-            tab1:'',
-            tab2:'ruleout'
+            tab2:'ruleout',
         }
     }
 }

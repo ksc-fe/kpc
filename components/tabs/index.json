@@ -5,14 +5,14 @@
         "order": 90
     },
     "catalogs": [],
-    "contents": "<h1 id='header-%E6%A0%87%E7%AD%BE%E5%B1%9E%E6%80%A7%20Tabs'>标签属性 Tabs</h1><div class=\"k-table-wrapper k-border\">\n                    <table class=\"k-table\">\n                        <thead><tr>\n<th>属性</th>\n<th>说明</th>\n<th>类型</th>\n<th>默认值</th>\n</tr>\n</thead>\n                        <tbody><tr>\n<td>data</td>\n<td>标签数据</td>\n<td><code>Array</code></td>\n<td><code>[]</code></td>\n</tr>\n<tr>\n<td>value</td>\n<td>被选中的标签,使用<code>v-model</code>进行双向绑定</td>\n<td><code>String</code></td>\n<td><code>undefined</code></td>\n</tr>\n</tbody>\n                    </table>\n                </div>",
+    "contents": "<h1 id='header-%E6%A0%87%E7%AD%BE%E5%B1%9E%E6%80%A7%20Tabs'>标签属性 Tabs</h1><div class=\"k-table-wrapper k-border\">\n                    <table class=\"k-table\">\n                        <thead><tr>\n<th>属性</th>\n<th>说明</th>\n<th>类型</th>\n<th>默认值</th>\n</tr>\n</thead>\n                        <tbody><tr>\n<td>data</td>\n<td>标签数据</td>\n<td><code>Array</code></td>\n<td><code>[]</code></td>\n</tr>\n<tr>\n<td>value</td>\n<td>被选中的标签,使用<code>v-model</code>进行双向绑定</td>\n<td><code>String</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>vertical</td>\n<td>垂直排列标签</td>\n<td>-</td>\n<td><code>undefined</code></td>\n</tr>\n</tbody>\n                    </table>\n                </div><h1 id='header-Tab'>Tab</h1><div class=\"k-table-wrapper k-border\">\n                    <table class=\"k-table\">\n                        <thead><tr>\n<th>属性</th>\n<th>说明</th>\n<th>类型</th>\n<th>默认值</th>\n</tr>\n</thead>\n                        <tbody><tr>\n<td>value</td>\n<td>选中的值</td>\n<td><code>String</code></td>\n<td><code>undefined</code></td>\n</tr>\n</tbody>\n                    </table>\n                </div>",
     "codes": [
         {
             "language": "js",
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
         }
     ],
-    "index": 131,
+    "index": 132,
     "sideBars": {
         "undefined": [
             {
@@ -879,19 +879,13 @@
                         "content": "<h1 id='header-%E6%A0%87%E7%AD%BE%E5%B1%9E%E6%80%A7%20Tabs'>标签属性 Tabs</h1>",
                         "text": "标签属性 Tabs",
                         "children": []
-                    }
-                ]
-            },
-            {
-                "title": "穿梭框",
-                "path": "components/transfer/index.md",
-                "children": [
+                    },
                     {
-                        "title": "属性",
-                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "title": "Tab",
+                        "path": "#header-Tab",
                         "level": 1,
-                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                        "text": "属性",
+                        "content": "<h1 id='header-Tab'>Tab</h1>",
+                        "text": "Tab",
                         "children": []
                     }
                 ]
@@ -914,6 +908,20 @@
                         "level": 1,
                         "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
                         "text": "事件",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "穿梭框",
+                "path": "components/transfer/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
                         "children": []
                     }
                 ]
