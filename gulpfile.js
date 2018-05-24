@@ -33,20 +33,34 @@ gulp.task('doc:production', () => {
     return doc(false);
 });
 
-function webpackWatch() {
-    const compiler = webpack(webpackConfig);
+function webpackWatch(theme) {
+    const config = webpackConfig(theme);
+    const compiler = webpack(config);
     return [
         compiler, 
-        // compiler.watch({
-            // aggregateTimeout: 300,
-            // poll: 1000
-        // }, (err, stats) => {
-            // console.log(stats.toString({
-                // colors: true    // 在控制台展示颜色
-            // }));
-        // }) 
+        new Promise(resolve => {
+            compiler.watch({
+                aggregateTimeout: 300,
+                poll: 1000, 
+                ignored: /theme\-/
+            }, (err, stats) => {
+                console.log(stats.toString({
+                    colors: true,
+                }));
+                resolve();
+            });
+        })
     ];
 }
+
+gulp.task('build:themes:css', async () => {
+    const themes = ['ksyun'];
+    for (let i = 0; i < themes.length; i++) {
+        const theme = themes[i];
+        const [, p] = webpackWatch(theme);
+        await p;
+    }
+});
 
 gulp.task('webpack', () => {
     const [compiler, p] = webpackWatch();
@@ -68,16 +82,6 @@ gulp.task('dev:doc:server', async () => {
 gulp.task('server', () => {
     const [compiler] = webpackWatch();
 
-    compiler.watch({
-        aggregateTimeout: 300,
-        poll: 1000, 
-        ignored: /themes/
-    }, (err, stats) => {
-        console.log(stats.toString({
-            colors: true    // 在控制台展示颜色
-        }));
-    });
-
     const webpackHotMiddleware = require('webpack-hot-middleware');
     return connect.server({
         root: 'site/.dist',
@@ -90,7 +94,7 @@ gulp.task('server', () => {
     });
 });
 
-gulp.task('watch', gulp.series('doc', gulp.parallel('server', 'dev:doc:server', /* 'webpack', */ () => {
+gulp.task('watch', gulp.series('doc', gulp.parallel('server', 'build:themes:css', 'dev:doc:server', /* 'webpack', */ () => {
     gulp.watch('./@(components|docs)/**/*.md', {ignored: /node_modules/}, gulp.parallel('doc'));
 })));
 
@@ -125,10 +129,10 @@ gulp.task('build:doc:server', () => {
     });
 });
 gulp.task('build:doc:client', (done) => {
-    webpackConfig.entry = {
-        'static/client': './site/src/client.js'
-    };
-    webpack(webpackConfig, (err, stats) => {
+    // webpackConfig.entry = {
+        // 'static/client': './site/src/client.js'
+    // };
+    webpack(webpackConfig(), (err, stats) => {
         console.log(stats.toString({
             colors: true    // 在控制台展示颜色
         }));

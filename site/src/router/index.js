@@ -14,6 +14,12 @@ export default new Router([
         }
     },
     {
+        path: '/design',
+        action: async () => {
+            return {Page: await import('../pages/design')}
+        }
+    },
+    {
         path: /(.*)/,
         action: async (context) => {
             return {

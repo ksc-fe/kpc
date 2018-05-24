@@ -11,6 +11,8 @@ export default class extends Layout {
     static template = template;
 
     async _init() {
+        super._init();
+
         let path = this.get('path').replace('index.html', '');
         path = path.slice(0, -1).replace(process.URL_PREFIX, '');
 

@@ -1,0 +1,9 @@
+<t:parent class="design-page">
+    <b:content>
+        <ul>
+            <li v-for={{ Array.apply(null, {length: 9}) }} 
+                class={{ "color color" + key }}
+            ></li>
+        </ul>
+    </b:content>
+</t:parent>

@@ -1,10 +1,15 @@
 import Link from 'kpc/components/link';
+import {Select, Option} from 'kpc/components/select';
 
 const nav = [
     {
         title: '教程',
         href: '/docs/getting-started/'
     },
+    /* { */
+        /* title: '设计语言', */
+        /* href: '/design', */
+    /* }, */
     /* { */
         /* title: 'API', */
         /* href: 'api' */
@@ -20,15 +25,22 @@ const nav = [
         <header>
             <b:header>
                 <Link class="logo" href="/">KPC</Link>
-                <nav>
-                    <Link v-for={{ nav }} 
-                        class={{ {
-                            active: value.href === scope.navIndex
-                        } }}
-                        href={{ `${process.URL_PREFIX}${value.href}` }}
-                    >{{ value.title }}</Link>
-                    <div class="border"></div>
-                </nav>
+                <div class="right">
+                    <nav>
+                        <Link v-for={{ nav }} 
+                            class={{ {
+                                active: value.href === scope.navIndex
+                            } }}
+                            href={{ `${process.URL_PREFIX}${value.href}` }}
+                        >{{ value.title }}</Link>
+                        <div class="border"></div>
+                    </nav>
+                    <span class="label">切换主题：</span>
+                    <Select v-model="theme" width="100">
+                        <Option value="kpc">default</Option>
+                        <Option value="ksyun">ksyun</Option>
+                    </Select>
+                </div>
             </b:header>
         </header>
     </div>
