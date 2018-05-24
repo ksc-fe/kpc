@@ -37,14 +37,14 @@ function webpackWatch() {
     const compiler = webpack(webpackConfig);
     return [
         compiler, 
-        compiler.watch({
-            aggregateTimeout: 300,
-            poll: 1000
-        }, (err, stats) => {
-            console.log(stats.toString({
-                colors: true    // 在控制台展示颜色
-            }));
-        }) 
+        // compiler.watch({
+            // aggregateTimeout: 300,
+            // poll: 1000
+        // }, (err, stats) => {
+            // console.log(stats.toString({
+                // colors: true    // 在控制台展示颜色
+            // }));
+        // }) 
     ];
 }
 
@@ -67,6 +67,16 @@ gulp.task('dev:doc:server', async () => {
 
 gulp.task('server', () => {
     const [compiler] = webpackWatch();
+
+    compiler.watch({
+        aggregateTimeout: 300,
+        poll: 1000, 
+        ignored: /themes/
+    }, (err, stats) => {
+        console.log(stats.toString({
+            colors: true    // 在控制台展示颜色
+        }));
+    });
 
     const webpackHotMiddleware = require('webpack-hot-middleware');
     return connect.server({

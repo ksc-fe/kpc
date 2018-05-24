@@ -2,6 +2,7 @@ const webpackConfig = require('../webpack.config.client');
 const merge = require('webpack-merge');
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
 process.URL_PREFIX = isDev ? '' : '/kpc';
@@ -9,6 +10,7 @@ process.URL_PREFIX = isDev ? '' : '/kpc';
 module.exports = merge.smartStrategy({
     'entry': 'replace',
     'plugins': 'replace',
+    'module.rules.use': 'replace',
 })(webpackConfig, {
     entry: {
         'static/client': isDev ? 
@@ -40,6 +42,34 @@ module.exports = merge.smartStrategy({
                     }
                 ]
             },
+            {
+                test: /\.(styl|css)$/,
+                use: ExtractTextPlugin.extract({
+                    use: [
+                        {
+                            loader: 'css-loader', 
+                            options: {
+                                url: true,
+                                // sourceMap: !isProduction,
+                            }
+                        },
+                        {
+                            loader: 'postcss-loader',
+                            // options: {
+                                // // sourceMap: !isProduction,
+                            // }
+                        },
+                        {
+                            loader: 'stylus-loader', 
+                            options: {
+                                'include css': true,
+                                sourceMap: false,
+                                'import': path.resolve(__dirname, '../styles/themes/ksyun/index.styl'),
+                            }
+                        }
+                    ]
+                }),
+            },
         ]
     },
     resolve: {
@@ -63,6 +93,10 @@ module.exports = merge.smartStrategy({
                 'process.ssr': true,
                 'process.browser': true,
                 'process.URL_PREFIX': JSON.stringify(process.URL_PREFIX),
+            }),
+            new ExtractTextPlugin({
+                filename: 'themes/default.css',
+                allChunks: true,
             }),
         ];
 
