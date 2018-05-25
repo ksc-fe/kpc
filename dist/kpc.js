@@ -5649,7 +5649,7 @@ exports.Transfer = _transfer.Transfer;
 
 /* generate start */
 
-var version = exports.version = '0.2.2-2';
+var version = exports.version = '0.2.2-3';
 
 /* generate end */
 
@@ -17899,7 +17899,7 @@ var _inherits2 = __webpack_require__(3);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
-var _dec, _desc, _value, _class;
+var _dec, _desc, _value, _class, _class2, _temp;
 
 var _intact = __webpack_require__(0);
 
@@ -17948,7 +17948,7 @@ function _applyDecoratedDescriptor(target, property, decorators, descriptor, con
     return desc;
 }
 
-var Tabs = (_dec = _intact2.default.template(), (_class = function (_Intact) {
+var Tabs = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
     (0, _inherits3.default)(Tabs, _Intact);
 
     function Tabs() {
@@ -17959,7 +17959,9 @@ var Tabs = (_dec = _intact2.default.template(), (_class = function (_Intact) {
     Tabs.prototype.defaults = function defaults() {
         return {
             data: undefined,
-            value: undefined
+            value: undefined,
+            vertical: false,
+            size: 'default' // large mini small
         };
     };
 
@@ -17980,7 +17982,9 @@ var Tabs = (_dec = _intact2.default.template(), (_class = function (_Intact) {
         }
     }]);
     return Tabs;
-}(_intact2.default), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
+}(_intact2.default), _class2.propTypes = {
+    vertical: Boolean
+}, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
 exports.default = Tabs;
 exports.Tabs = Tabs;
 exports.Tab = _tab2.default;
@@ -18023,7 +18027,9 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         var _self$get = self.get(),
             value = _self$get.value,
             children = _self$get.children,
-            _value = _self$get._value;
+            _value = _self$get._value,
+            className = _self$get.className,
+            size = _self$get.size;
 
         return h('a', { 'ev-click': function () {
                         try {
@@ -18039,10 +18045,12 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 }
         }.call(this), _className(function () {
                 try {
-                        return [{
+                        var _ref;
+
+                        return [(_ref = {
                                 'k-tab': true,
                                 'k-active': value !== undefined && value === _value
-                        }][0];
+                        }, _ref[className] = className, _ref)][0];
                 } catch (e) {
                         _e(e);
                 }
@@ -18097,11 +18105,13 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         data = _self$get.data,
         value = _self$get.value,
         children = _self$get.children,
-        style = _self$get.style;
+        style = _self$get.style,
+        vertical = _self$get.vertical,
+        size = _self$get.size;
 
     var classNameObj = (_classNameObj = {
         'k-tabs': true
-    }, _classNameObj[className] = className, _classNameObj);
+    }, _classNameObj[className] = className, _classNameObj['k-' + size] = size !== 'default', _classNameObj['k-vertical'] = vertical, _classNameObj);
 
     return h('div', { 'style': function () {
             try {
@@ -18130,7 +18140,10 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             }
         }.call(this), _className(function () {
             try {
-                return [{ 'k-tab': true, 'k-active': item.value === value }][0];
+                return [{
+                    'k-tab': true,
+                    'k-active': item.value === value
+                }][0];
             } catch (e) {
                 _e(e);
             }

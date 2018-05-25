@@ -3777,13 +3777,13 @@ label {
   color: #333;
   background-color: #fff;
   text-align: center;
-  border-radius: 2px;
+  border-radius: 0.142857142857143rem;
   -webkit-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
   border: 1px solid #999;
   font-size: 12px;
 }
-.k-btn > span {
+button.k-btn > span {
   vertical-align: middle;
 }
 .k-btn:hover,
@@ -3868,7 +3868,7 @@ label {
   padding: 0 1.785714285714286rem;
 }
 .k-btn.k-large .k-icon {
-  line-height: calc(2.857142857142857rem - 2px);
+  line-height: 2.857142857142857rem;
 }
 .k-btn.k-large.k-btn-icon {
   width: 2.857142857142857rem;
@@ -3879,7 +3879,7 @@ label {
   padding: 0 1.071428571428571rem;
 }
 .k-btn.k-small .k-icon {
-  line-height: calc(1.714285714285714rem - 2px);
+  line-height: 1.714285714285714rem;
 }
 .k-btn.k-small.k-btn-icon {
   width: 1.714285714285714rem;
@@ -3890,7 +3890,7 @@ label {
   padding: 0 0.714285714285714rem;
 }
 .k-btn.k-mini .k-icon {
-  line-height: calc(1.428571428571429rem - 2px);
+  line-height: 1.428571428571429rem;
 }
 .k-btn.k-mini.k-btn-icon {
   width: 1.428571428571429rem;
@@ -3898,7 +3898,7 @@ label {
 .k-btn .k-icon {
   font-size: inherit;
   vertical-align: middle;
-  line-height: calc(2.285714285714286rem - 2px);
+  line-height: 2.285714285714286rem;
 }
 .k-btn .k-icon:before {
   font-size: inherit;
@@ -3921,7 +3921,7 @@ label {
   padding: 0;
 }
 .k-btn.k-circle {
-  border-radius: 1.142857142857143rem;
+  border-radius: 1.428571428571429rem;
 }
 .k-btn.k-loading,
 .k-btn.k-loading:hover {
@@ -3973,6 +3973,9 @@ label {
 }
 .k-btn input {
   position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 .k-btn:not(button) {
   display: -webkit-inline-box;
@@ -6352,8 +6355,43 @@ label {
   height: 0.142857142857143rem;
   width: 100%;
   background: #fff;
-  margin-left: 0;
   bottom: -0.071428571428571rem;
+}
+.k-tabs.k-vertical {
+  display: inline-block;
+  border-bottom: none;
+  border-right: 1px solid #d3d3d3;
+}
+.k-tabs.k-vertical .k-tab {
+  display: block;
+  margin: 0;
+  padding: 0 1.785714285714286rem;
+}
+.k-tabs.k-vertical .k-tab.k-active:after {
+  left: auto;
+  right: -0.071428571428571rem;
+  width: 0.142857142857143rem;
+  top: 0;
+  bottom: 0;
+  height: auto;
+}
+.k-tabs.k-large .k-tab {
+  font-size: 14px;
+  height: 2.857142857142857rem;
+  line-height: calc(2.857142857142857rem - 2px);
+  padding: 0 1.785714285714286rem;
+}
+.k-tabs.k-small .k-tab {
+  font-size: 12px;
+  height: 1.714285714285714rem;
+  line-height: calc(1.714285714285714rem - 2px);
+  padding: 0 1.071428571428571rem;
+}
+.k-tabs.k-mini .k-tab {
+  font-size: 12px;
+  height: 1.428571428571429rem;
+  line-height: calc(1.428571428571429rem - 2px);
+  padding: 0 0.714285714285714rem;
 }
 .k-tabs {
   font-size: 14px;
@@ -6368,7 +6406,7 @@ label {
   color: #0091ea;
 }
 .k-tabs .k-tab:first-of-type {
-  border-left: 1px solid transparent;
+  border-left-width: 1px;
 }
 .k-tabs .k-tab.k-active {
   background: #fff;
@@ -6381,6 +6419,17 @@ label {
   right: -1px;
   top: -1px;
   border-top: 4px solid #0091ea;
+}
+.k-tabs.k-vertical .k-tab {
+  border-width: 0 0 1px 1px;
+}
+.k-tabs.k-vertical .k-tab:first-of-type {
+  border-top-width: 1px;
+}
+.k-tabs.k-vertical .k-tab.k-active:before {
+  border-left: 4px solid #0091ea;
+  right: auto;
+  bottom: -1px;
 }
 .k-transfer .k-panel,
 .k-transfer .k-arrows {
