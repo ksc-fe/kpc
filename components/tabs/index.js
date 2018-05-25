@@ -12,14 +12,14 @@ export default class Tabs extends Intact {
         return {
             data: undefined,
             value: undefined,
-            size: 'default'
+            vertical: false,
+            size: 'default', // large mini small
         };
     }
 
     static propTypes = {
-        size: String,
+        vertical: Boolean,
     }
-
 
     _changeTab(item) {
         // if exits 'to', we don't change the value,

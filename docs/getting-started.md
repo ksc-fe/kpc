@@ -10,12 +10,6 @@ order: 0
 1. [webpack](1) + [babel](2)
 2. [vue](3)（如果将kpc用于vue项目）或者[intact](4)（如果将kpc用于intact项目）
 
-```example
-import Test from '@/components/test';
-
-<Test />
-```
-
 # 使用脚手架
 
 使用[Yeoman](5)以及generator-kscpm，可以快速初始化kpc项目

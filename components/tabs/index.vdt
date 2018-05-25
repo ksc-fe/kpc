@@ -5,14 +5,14 @@ const {className, data, value, children, style, vertical, size} = self.get();
 const classNameObj = {
     'k-tabs': true,
     [className]: className,
+    [`k-${size}`]: size !== 'default',
+    'k-vertical': vertical,
 };
 
 <div class={{ classNameObj }} style={{ style }}>
     <a class={{ {
         'k-tab': true, 
         'k-active': item.value === value,
-        'k-vertical':vertical,
-        [`k-${size}`]: size !== 'default',
     } }}
         v-for={{ data }}
         v-for-value="item"
@@ -20,9 +20,7 @@ const classNameObj = {
     >{{ item.text }}</a>
     {{ __u.map(children ? (Array.isArray(children) ? children : [children]) : children, vNode => {
         if (vNode.tag === Tab) {
-            vertical && (vNode.className? vNode.className += ' k-vertical' : vNode.className = 'k-vertical');
-            vNode.props = {...vNode.props, _value: value, _parent: self, className: vNode.className,
-            size: size};
+            vNode.props = {...vNode.props, _value: value, _parent: self};
         }
         return vNode;
     }) }}

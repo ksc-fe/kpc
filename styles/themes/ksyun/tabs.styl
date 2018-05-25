@@ -8,7 +8,7 @@
         &:hover
             color $primary-color
         &:first-of-type
-            border-left 1px solid transparent
+            border-left-width 1px
         &.k-active
             background #fff
             &:before
@@ -19,3 +19,14 @@
                 right -1px
                 top -1px
                 border-top 4px solid $primary-color
+    // vertical
+    &.k-vertical
+        .k-tab
+            border-width 0 0 1px 1px
+            &:first-of-type
+                border-top-width 1px
+            &.k-active
+                &:before
+                    border-left 4px solid $primary-color
+                    right auto
+                    bottom -1px

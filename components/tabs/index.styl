@@ -24,21 +24,30 @@ sizes = large small mini
                 height $tabs-highlight-height 
                 width 100%
                 background $tabs-highlight-bg-color 
-                margin-left $tabs-highlight-margin-left 
                 bottom $tabs-highlight-bottom 
-        &.k-vertical
-            display block
-            &:before
-                border-left 4px solid #0091ea
-                height calc(100% + 1px)
-                right unset
-                border-top 0px !important
-            &:after
-                height 0 
 
-        // size
-        for size in sizes 
-            &.k-{size}
+    // vertical
+    &.k-vertical
+        display inline-block
+        border-bottom none
+        border-right $tabs-border-bottom
+        .k-tab
+            display block
+            margin 0
+            padding $tabs-vertical-padding
+            &.k-active
+                &:after
+                    left auto
+                    right $tabs-highlight-bottom 
+                    width $tabs-highlight-height
+                    top 0
+                    bottom 0
+                    height auto
+
+    // size
+    for size in sizes 
+        &.k-{size}
+            .k-tab
                 font-size lookup('$tab-' + size + '-font-size')
                 height lookup('$tab-' + size + '-height')
                 line-height s('calc(%s - 2px)', @height)

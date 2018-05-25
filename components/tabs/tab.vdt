@@ -5,7 +5,6 @@ const {value, children, _value, className, size} = self.get();
         'k-tab': true, 
         'k-active': value !== undefined && value === _value, 
         [className]: className,
-        [`k-${size}`]: size !== 'default',
     } }}
     ev-click={{ self._changeTab }}
 >{{ self.get('children') }}</a>

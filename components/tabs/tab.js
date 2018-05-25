@@ -13,14 +13,8 @@ export default class Tab extends Intact {
             // passed by parent
             _value: undefined,
             _parent: undefined,
-
-            size: 'default', // mini small
         }
     }
-    static propTypes = {
-        size: String,
-    }
-
 
     _isActive() {
         const value = this.get('value');
