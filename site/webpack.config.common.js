@@ -39,10 +39,10 @@ module.exports = function(theme) {
                 },
                 {
                     test: /\.(styl|css)$/,
-                    use: ExtractTextPlugin.extract({
+                    use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
                         // the third rule is a stylus rule
                         use: commonConfig.module.rules[2].use,
-                    }),
+                    })),
                 },
             ]
         },
