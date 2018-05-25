@@ -8,7 +8,7 @@
   color: #333;
   background-color: #fff;
   text-align: center;
-  border-radius: 2px;
+  border-radius: 0.142857142857143rem;
   -webkit-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
   border: 1px solid #999;
@@ -5355,20 +5355,43 @@ blockquote:before {
   height: 0.142857142857143rem;
   width: 100%;
   background: #fff;
-  margin-left: 0;
   bottom: -0.071428571428571rem;
 }
-.k-tabs .k-tab.k-vertical {
+.k-tabs.k-vertical {
+  display: inline-block;
+  border-bottom: none;
+  border-right: 1px solid #d3d3d3;
+}
+.k-tabs.k-vertical .k-tab {
   display: block;
+  margin: 0;
+  padding: 0 1.785714285714286rem;
 }
-.k-tabs .k-tab.k-vertical:before {
-  border-left: 4px solid #0091ea;
-  height: calc(100% + 1px);
-  right: unset;
-  border-top: 0px !important;
+.k-tabs.k-vertical .k-tab.k-active:after {
+  left: auto;
+  right: -0.071428571428571rem;
+  width: 0.142857142857143rem;
+  top: 0;
+  bottom: 0;
+  height: auto;
 }
-.k-tabs .k-tab.k-vertical:after {
-  height: 0;
+.k-tabs.k-large .k-tab {
+  font-size: 14px;
+  height: 2.857142857142857rem;
+  line-height: calc(2.857142857142857rem - 2px);
+  padding: 0 1.785714285714286rem;
+}
+.k-tabs.k-small .k-tab {
+  font-size: 12px;
+  height: 1.714285714285714rem;
+  line-height: calc(1.714285714285714rem - 2px);
+  padding: 0 1.071428571428571rem;
+}
+.k-tabs.k-mini .k-tab {
+  font-size: 12px;
+  height: 1.428571428571429rem;
+  line-height: calc(1.428571428571429rem - 2px);
+  padding: 0 0.714285714285714rem;
 }
 .k-tabs {
   font-size: 14px;
@@ -5383,7 +5406,7 @@ blockquote:before {
   color: #0091ea;
 }
 .k-tabs .k-tab:first-of-type {
-  border-left: 1px solid transparent;
+  border-left-width: 1px;
 }
 .k-tabs .k-tab.k-active {
   background: #fff;
@@ -5397,6 +5420,17 @@ blockquote:before {
   top: -1px;
   border-top: 4px solid #0091ea;
 }
+.k-tabs.k-vertical .k-tab {
+  border-width: 0 0 1px 1px;
+}
+.k-tabs.k-vertical .k-tab:first-of-type {
+  border-top-width: 1px;
+}
+.k-tabs.k-vertical .k-tab.k-active:before {
+  border-left: 4px solid #0091ea;
+  right: auto;
+  bottom: -1px;
+}
 .example.index-13 .k-btn {
   margin-right: 20px;
 }
@@ -5409,10 +5443,10 @@ blockquote:before {
 .example.index-57 .k-btn {
   margin-right: 20px;
 }
-.example.index-90 .k-btn {
+.example.index-89 .k-btn {
   margin-right: 20px;
 }
-.example.index-96 .k-btn {
+.example.index-97 .k-btn {
   margin-right: 20px;
 }
 .k-checkbox {
@@ -5929,7 +5963,7 @@ blockquote:before {
 .example.index-7 .k-datepicker {
   margin-right: 20px;
 }
-.example.index-98 .k-datepicker {
+.example.index-101 .k-datepicker {
   margin-right: 20px;
 }
 .example.index-53 .k-datepicker {
@@ -6180,10 +6214,10 @@ blockquote:before {
 .example.index-85 .k-btn {
   margin-right: 20px;
 }
-.example.index-89 .ion-ios-arrow-right {
+.example.index-90 .ion-ios-arrow-right {
   float: right;
 }
-.example.index-89 .ion-ios-arrow-right:before {
+.example.index-90 .ion-ios-arrow-right:before {
   font-size: inherit;
 }
 .example.index-65 .k-btn {
@@ -6940,16 +6974,16 @@ blockquote:before {
 .example.index-34 .k-radio {
   margin-right: 20px;
 }
-.example.index-64 .k-radio {
+.example.index-63 .k-radio {
   margin-right: 20px;
 }
-.example.index-110 .k-select {
+.example.index-113 .k-select {
   margin-right: 10px;
 }
 .example.index-16 .k-slider {
   margin-bottom: 20px;
 }
-.example.index-84 .k-slider {
+.example.index-86 .k-slider {
   margin-bottom: 20px;
 }
 .example.index-29 .k-slider {
@@ -7123,10 +7157,10 @@ blockquote:before {
 .example.index-40 .k-switch {
   margin-right: 20px;
 }
-.example.index-75 .k-switch {
+.example.index-78 .k-switch {
   margin-right: 20px;
 }
-.example.index-63 .k-switch {
+.example.index-64 .k-switch {
   margin-right: 20px;
 }
 .example.index-62 .no-data-template {
@@ -7137,84 +7171,87 @@ blockquote:before {
 .example.index-62 .no-data-template .k-table-wrapper {
   margin-left: 10px;
 }
-.example.index-71 .no-data-template {
+.example.index-72 .no-data-template {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 10px;
 }
-.example.index-71 .no-data-template .k-table-wrapper {
+.example.index-72 .no-data-template .k-table-wrapper {
   margin-left: 10px;
 }
-.example.index-111 .no-data-template .k-disabled {
+.example.index-112 .no-data-template .k-disabled {
   background-color: #dfdfdf;
 }
-.example.index-115 .no-data-template {
+.example.index-114 .no-data-template {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-.example.index-115 .no-data-template .k-table-wrapper {
+.example.index-114 .no-data-template .k-table-wrapper {
   margin-left: 10px;
 }
-.example.index-120 .no-data-template {
+.example.index-121 .no-data-template {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-.example.index-120 .no-data-template .k-table-wrapper {
+.example.index-121 .no-data-template .k-table-wrapper {
   margin-left: 10px;
 }
-.example.index-116 .no-data-template {
+.example.index-117 .no-data-template {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-.example.index-116 .no-data-template .k-table-wrapper {
+.example.index-117 .no-data-template .k-table-wrapper {
   margin-left: 10px;
 }
-.example.index-86 .no-data-template {
+.example.index-95 .no-data-template {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-.example.index-86 .no-data-template .k-table-wrapper {
+.example.index-95 .no-data-template .k-table-wrapper {
   margin-left: 10px;
 }
-.example.index-86 .no-data-template .k-table-wrapper .k-checked {
+.example.index-95 .no-data-template .k-table-wrapper .k-checked {
   background-color: #dfdfdf;
 }
-.example.index-102 .no-data-template .turn-blue {
+.example.index-96 .no-data-template .turn-blue {
   background-color: #2d8cf0;
 }
-.example.index-109 .no-data-template {
+.example.index-110 .no-data-template {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-.example.index-109 .no-data-template .k-table-wrapper {
+.example.index-110 .no-data-template .k-table-wrapper {
   margin-left: 10px;
 }
-.example.index-109 .icon {
+.example.index-110 .icon {
   vertical-align: middle;
   margin-right: 10px;
   cursor: pointer;
 }
-.example.index-118 .no-data-template {
+.example.index-119 .no-data-template {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-.example.index-118 .no-data-template .k-table-wrapper {
+.example.index-119 .no-data-template .k-table-wrapper {
   margin-left: 10px;
 }
-.example.index-122 .no-data-template {
+.example.index-123 .no-data-template {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-.example.index-122 .no-data-template .k-table-wrapper {
+.example.index-123 .no-data-template .k-table-wrapper {
   margin-left: 10px;
+}
+.example.index-77 .k-tabs {
+  margin-bottom: 10px;
 }
 .k-transfer .k-panel,
 .k-transfer .k-arrows {
