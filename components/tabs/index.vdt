@@ -1,14 +1,19 @@
 import Tab from './tab';
 
-const {className, data, value, children, style, vertical} = self.get();
+const {className, data, value, children, style, vertical, size} = self.get();
 
 const classNameObj = {
     'k-tabs': true,
-    [className]: className
+    [className]: className,
 };
 
 <div class={{ classNameObj }} style={{ style }}>
-    <a class={{ {'k-tab': true, 'k-active': item.value === value,'k-vertical':vertical} }}
+    <a class={{ {
+        'k-tab': true, 
+        'k-active': item.value === value,
+        'k-vertical':vertical,
+        [`k-${size}`]: size !== 'default',
+    } }}
         v-for={{ data }}
         v-for-value="item"
         ev-click={{ self._changeTab.bind(self, item) }}
@@ -16,7 +21,8 @@ const classNameObj = {
     {{ __u.map(children ? (Array.isArray(children) ? children : [children]) : children, vNode => {
         if (vNode.tag === Tab) {
             vertical && (vNode.className? vNode.className += ' k-vertical' : vNode.className = 'k-vertical');
-            vNode.props = {...vNode.props, _value: value, _parent: self, className: vNode.className};
+            vNode.props = {...vNode.props, _value: value, _parent: self, className: vNode.className,
+            size: size};
         }
         return vNode;
     }) }}
