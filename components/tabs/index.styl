@@ -1,4 +1,5 @@
 @require('./variables.styl')
+sizes = large small mini
 
 .k-tabs
     border-bottom $tabs-border-bottom
@@ -34,5 +35,14 @@
                 border-top 0px !important
             &:after
                 height 0 
+
+        // size
+        for size in sizes 
+            &.k-{size}
+                font-size lookup('$tab-' + size + '-font-size')
+                height lookup('$tab-' + size + '-height')
+                line-height s('calc(%s - 2px)', @height)
+                padding lookup('$tab-' + size + '-padding')
+
 $dir = $theme-dir + '/tabs.styl';
 @import $dir if exists($dir) 
