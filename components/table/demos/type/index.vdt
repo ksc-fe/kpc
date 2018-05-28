@@ -1,9 +1,6 @@
 import Table from 'kpc/components/table';
 
-var scheme = {a: '类型'};
-var data1 = [{a: 'defalut'}];
+const scheme = {a: '类型'};
+const data = [{a: 'border类型'}];
 
-
-<div class='no-data-template'>
-    <Table scheme={{scheme}} data={{data1}} />
-</div>
+<Table scheme={{ scheme }} data={{ data }} type="border" />

@@ -5122,7 +5122,7 @@ blockquote:before {
 .k-table thead {
   font-size: 12px;
   color: #3b3b3b;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #d3d3d3;
 }
 .k-table th {
   padding: 0 5px 0 12px;
@@ -5171,7 +5171,7 @@ blockquote:before {
   cursor: ew-resize;
 }
 .k-table tbody tr {
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid #d3d3d3;
 }
 .k-table tbody tr:hover {
   background: #f5f5f9;
@@ -5191,12 +5191,12 @@ blockquote:before {
 }
 .k-table-wrapper {
   overflow: auto;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #d3d3d3;
 }
 .k-table-wrapper .k-fixed {
   position: relative;
   z-index: 1;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #d3d3d3;
   background: #f5f5f9;
 }
 .k-table-wrapper .k-fixed thead {
@@ -5215,8 +5215,8 @@ blockquote:before {
 }
 .k-table-wrapper.k-border .k-fixed,
 .k-table-wrapper.k-border .k-table {
-  border-left: 1px solid #f0f0f0;
-  border-right: 1px solid #f0f0f0;
+  border-left: 1px solid #d3d3d3;
+  border-right: 1px solid #d3d3d3;
 }
 .k-table-wrapper.k-border .k-fixed .k-table {
   border: none;
@@ -7163,33 +7163,31 @@ blockquote:before {
 .example.index-64 .k-switch {
   margin-right: 20px;
 }
-.example.index-62 .no-data-template {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.example.index-9 .k-table-wrapper {
+  margin-bottom: 20px;
 }
-.example.index-62 .no-data-template .k-table-wrapper {
-  margin-left: 10px;
+.example.index-62 .k-table-wrapper {
+  margin-bottom: 20px;
 }
 .example.index-72 .no-data-template {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 .example.index-72 .no-data-template .k-table-wrapper {
-  margin-left: 10px;
+  margin-left: 20px;
 }
-.example.index-112 .no-data-template .k-disabled {
-  background-color: #dfdfdf;
+.example.index-112 .k-disabled {
+  background-color: #d9d9d9;
 }
-.example.index-114 .no-data-template {
+.example.index-114 .wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-.example.index-114 .no-data-template .k-table-wrapper {
-  margin-left: 10px;
+.example.index-114 .k-table-wrapper {
+  margin-left: 20px;
 }
 .example.index-121 .no-data-template {
   display: -webkit-box;
@@ -7207,19 +7205,14 @@ blockquote:before {
 .example.index-117 .no-data-template .k-table-wrapper {
   margin-left: 10px;
 }
-.example.index-95 .no-data-template {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.example.index-95 .k-table-wrapper {
+  margin-bottom: 20px;
 }
-.example.index-95 .no-data-template .k-table-wrapper {
-  margin-left: 10px;
+.example.index-95 .k-table-wrapper .k-checked {
+  background-color: #f4f8fb;
 }
-.example.index-95 .no-data-template .k-table-wrapper .k-checked {
-  background-color: #dfdfdf;
-}
-.example.index-96 .no-data-template .turn-blue {
-  background-color: #2d8cf0;
+.example.index-96 .even {
+  background: #efefef;
 }
 .example.index-110 .no-data-template {
   display: -webkit-box;
@@ -7234,20 +7227,15 @@ blockquote:before {
   margin-right: 10px;
   cursor: pointer;
 }
+.example.index-36 .k-table-wrapper {
+  margin-bottom: 20px;
+}
 .example.index-119 .no-data-template {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 .example.index-119 .no-data-template .k-table-wrapper {
-  margin-left: 10px;
-}
-.example.index-123 .no-data-template {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-.example.index-123 .no-data-template .k-table-wrapper {
   margin-left: 10px;
 }
 .example.index-77 .k-tabs {

@@ -1,34 +1,39 @@
 import Table, {TableColumn} from 'kpc/components/table';
 
-var defaultGroup = [
-    {label: 'Monday', value: 1},
-    {label: 'Tuesday', value: 2},
-    {label: 'Wednesday', value: 3}
-];
-var scheme = {
-    name: {
-        title: '姓名',
-        template: function(data) {
-            return data.name;
-        }
-    },
-    time: {
-        title: '时间',
-        template: function(data) {
-            return data.time;
+const scheme = {
+    name: '名称',
+    status: {
+        title: '状态',
+        template(data) {
+            return data.status === 'active' ? '运行中' : '已关闭';
         },
-        group: defaultGroup
+        group: [
+            {label: '全部', value: ''},
+            {label: '运行中', value: 'active'},
+            {label: '已关闭', value: 'stopped'},
+        ]
     }
 };
 
 
-var data = [{name: 'lihua', time: '10-12-12'}];
-var data1 = [{name: 'lihua(标签形式定义表头信息)', time: '10-12-12'}];
-
 <div class='no-data-template'>
-    <Table scheme={{ scheme }} data={{ data }}/>
-    <Table data={{ data1 }}>
-      <TableColumn title='姓名' key='name'></TableColumn>
-      <TableColumn title='时间' key='time' group={{defaultGroup}}></TableColumn>
+    <Table scheme={{ scheme }} 
+        data={{ self.get('data') }} 
+        group={{ self.get('group') }}
+        ev-$change:group={{ self._onChangeGroup }}
+    />
+    <Table data={{ self.get('data') }} 
+        group={{ self.get('group') }}
+        ev-$change:group={{ self._onChangeGroup }}
+    >
+        <TableColumn title='名称' key='name' />
+        <TableColumn title='状态' key='status' 
+            template={{ (data) => data.status === 'active' ? '运行中' : '已关闭' }}
+            group={{ [ 
+                {label: '全部', value: ''},
+                {label: '运行中', value: 'active'},
+                {label: '已关闭', value: 'stopped'},
+            ] }}
+        />
     </Table>
 </div>

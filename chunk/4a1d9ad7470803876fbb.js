@@ -110,7 +110,7 @@ exports.BreadcrumbItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380098
+      // 1527495168244
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -820,7 +820,7 @@ exports.ButtonGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242379346
+      // 1527495166923
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1144,7 +1144,7 @@ exports.Checkbox = Checkbox;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380244
+      // 1527495168119
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -2536,7 +2536,7 @@ exports.Datepicker = Datepicker;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380300
+      // 1527495168212
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -3303,7 +3303,7 @@ exports.Dialog = Dialog;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380202
+      // 1527495168131
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -3827,7 +3827,7 @@ exports.DropdownItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380113
+      // 1527495168014
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -4811,7 +4811,7 @@ exports.Editable = Editable;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380305
+      // 1527495168152
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5749,7 +5749,7 @@ exports.FormItem = _formItemWrapper2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242379741
+      // 1527495167650
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -6154,7 +6154,7 @@ exports.Col = _col2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242379995
+      // 1527495167896
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -6541,7 +6541,7 @@ exports.Input = Input;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380143
+      // 1527495168004
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -7406,7 +7406,7 @@ exports.Message = Message;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242379717
+      // 1527495167626
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -8345,7 +8345,7 @@ exports.Pagination = Pagination;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242381225
+      // 1527495169163
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -8767,7 +8767,7 @@ exports.Progress = Progress;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242381218
+      // 1527495169157
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -9122,7 +9122,7 @@ exports.Radio = Radio;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380215
+      // 1527495168091
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -9557,7 +9557,7 @@ exports.ScrollSelect = ScrollSelect;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242381169
+      // 1527495169115
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -10118,7 +10118,7 @@ exports.OptionGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242379917
+      // 1527495167816
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -11084,7 +11084,7 @@ exports.Slider = Slider;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380316
+      // 1527495168170
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -11589,7 +11589,7 @@ exports.Spinner = Spinner;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380990
+      // 1527495168925
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -11849,7 +11849,7 @@ exports.Step = _step2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242381072
+      // 1527495168998
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -12376,7 +12376,7 @@ exports.Switch = Switch;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380232
+      // 1527495168109
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -13473,7 +13473,7 @@ exports.TableColumn = _column2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242377647
+      // 1527495165272
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -14225,7 +14225,7 @@ exports.Tab = _tab2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380475
+      // 1527495168379
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -14852,7 +14852,7 @@ exports.Tooltip = _Wrapper;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380125
+      // 1527495168027
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -15201,7 +15201,7 @@ exports.Transfer = Transfer;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380449
+      // 1527495168345
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -16104,7 +16104,7 @@ module.exports = {"setting":{"title":"指定分隔符","order":1},"catalogs":[],
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242379486
+      // 1527495167400
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -16362,7 +16362,7 @@ module.exports = {"setting":{"title":"按钮类型","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242379495
+      // 1527495167406
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -16716,7 +16716,7 @@ module.exports = {"setting":{"title":"按钮组","order":1},"catalogs":[],"conte
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242379501
+      // 1527495167479
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -16893,7 +16893,7 @@ module.exports = {"setting":{"title":"图标按钮","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242379511
+      // 1527495167504
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -17088,7 +17088,7 @@ module.exports = {"setting":{"title":"加载状态按钮","order":2},"catalogs":
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242379506
+      // 1527495167513
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -17339,7 +17339,7 @@ module.exports = {"setting":{"title":"按钮尺寸","order":4},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242379520
+      // 1527495167418
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -17554,7 +17554,7 @@ module.exports = {"setting":{"title":"指定按钮tagName","order":5},"catalogs"
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242379516
+      // 1527495167422
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -17818,7 +17818,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242379525
+      // 1527495167412
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -18012,7 +18012,7 @@ module.exports = {"setting":{"title":"Checkbox组","order":1},"catalogs":[],"con
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242379531
+      // 1527495167427
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -18203,7 +18203,7 @@ module.exports = {"setting":{"title":"指定选中和非选中的取值","order"
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242379537
+      // 1527495167437
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -18505,7 +18505,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242379545
+      // 1527495167432
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -18841,7 +18841,7 @@ module.exports = {"setting":{"title":"选择时间","order":5},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242379553
+      // 1527495167443
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -19184,7 +19184,7 @@ module.exports = {"setting":{"title":"最大和最小日期","order":2},"catalog
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242379560
+      // 1527495167448
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -21582,7 +21582,7 @@ module.exports = {"setting":{"title":"禁用菜单（项）","order":3},"catalog
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242379581
+      // 1527495167463
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -21763,7 +21763,7 @@ module.exports = {"setting":{"title":"嵌套菜单","order":4},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242379568
+      // 1527495167469
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -21956,7 +21956,7 @@ module.exports = {"setting":{"title":"菜单位置","order":2},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242379575
+      // 1527495167485
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -22312,7 +22312,7 @@ module.exports = {"setting":{"title":"触发方式","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242379588
+      // 1527495167474
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -22577,7 +22577,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242379595
+      // 1527495167500
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -23088,7 +23088,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242379615
+      // 1527495167518
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -23426,7 +23426,7 @@ module.exports = {"setting":{"title":"自定义验证规则","order":1},"catalog
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242379603
+      // 1527495167494
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -24123,7 +24123,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242381203
+      // 1527495169140
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -24286,7 +24286,7 @@ module.exports = {"setting":{"title":"间距","order":1},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242381197
+      // 1527495169145
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -24700,7 +24700,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242381188
+      // 1527495169134
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -24883,7 +24883,7 @@ module.exports = {"setting":{"title":"追加内容","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242381192
+      // 1527495169125
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -25167,7 +25167,7 @@ module.exports = {"setting":{"title":"可清除","order":4},"catalogs":[],"conte
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242381183
+      // 1527495169130
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -25357,7 +25357,7 @@ module.exports = {"setting":{"title":"尺寸","order":2},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242381179
+      // 1527495169121
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -26455,7 +26455,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242381173
+      // 1527495169104
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -26660,7 +26660,7 @@ module.exports = {"setting":{"title":"改变翻页按钮数量","order":2},"cata
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242381162
+      // 1527495169100
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -27185,7 +27185,7 @@ module.exports = {"setting":{"title":"指定尺寸","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242381158
+      // 1527495169096
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -27469,7 +27469,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242381153
+      // 1527495169091
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -27652,7 +27652,7 @@ module.exports = {"setting":{"title":"自定义百分比内容","order":4},"cata
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242381149
+      // 1527495169086
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -28014,7 +28014,7 @@ module.exports = {"setting":{"title":"尺寸","order":2},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242381144
+      // 1527495169080
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -28181,7 +28181,7 @@ module.exports = {"setting":{"title":"状态","order":1},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242381139
+      // 1527495169074
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -28439,7 +28439,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242381121
+      // 1527495169059
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -28626,7 +28626,7 @@ module.exports = {"setting":{"title":"Radio组","order":1},"catalogs":[],"conten
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242381117
+      // 1527495169054
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -28813,7 +28813,7 @@ module.exports = {"setting":{"title":"指定选中的值","order":2},"catalogs":
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242381134
+      // 1527495169050
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -30427,7 +30427,7 @@ module.exports = {"setting":{"title":"尺寸","order":7},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242381105
+      // 1527495169040
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -30697,7 +30697,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242381060
+      // 1527495169008
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -30882,7 +30882,7 @@ module.exports = {"setting":{"title":"禁用组件","order":3},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242381013
+      // 1527495168987
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -31256,7 +31256,7 @@ module.exports = {"setting":{"title":"设置步长","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380975
+      // 1527495168931
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -31548,7 +31548,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380961
+      // 1527495168907
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -31723,7 +31723,7 @@ module.exports = {"setting":{"title":"尺寸","order":2},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380967
+      // 1527495168897
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -31890,7 +31890,7 @@ module.exports = {"setting":{"title":"最大/小值及步长","order":1},"catalo
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380950
+      // 1527495168890
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -32197,7 +32197,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380915
+      // 1527495168846
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -32620,7 +32620,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380897
+      // 1527495168836
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -32791,7 +32791,7 @@ module.exports = {"setting":{"title":"定义文案","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380902
+      // 1527495168831
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -32978,7 +32978,7 @@ module.exports = {"setting":{"title":"开关尺寸","order":3},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380893
+      // 1527495168827
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -33316,7 +33316,7 @@ module.exports = {"setting":{"title":"长/宽","order":2},"catalogs":[],"content
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380875
+      // 1527495168803
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -33514,6 +33514,8 @@ var _index2 = __webpack_require__("./site/dist/components/table/demos/basic/inde
 
 var _index3 = _interopRequireDefault(_index2);
 
+__webpack_require__("./site/dist/components/table/demos/basic/index.styl");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
@@ -33570,7 +33572,21 @@ exports.default = _default;
 /***/ "./site/dist/components/table/demos/basic/index.json":
 /***/ (function(module, exports) {
 
-module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"contents":"<p>上面是一个简单的Table<code>data</code>：可以设置表格展示的数据，类型<code>Array</code>，默认<code>[]</code></p>\n","codes":[{"language":"vdt","content":"import Table from 'kpc/components/table';\nvar scheme = {a: '表头1', b: '表头2'};\nvar data = [{a: '第一行', b: '哈哈2'}, {a: '第二行', b: '哈哈2'}];\n\n<div>\n    <Table scheme={{scheme}} data={{data}}/>\n</div>"},{"language":"js","content":"import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"}],"index":9,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Table <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n<span class=\"hljs-keyword\">var</span> scheme = {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'表头1'</span>, <span class=\"hljs-attr\">b</span>: <span class=\"hljs-string\">'表头2'</span>};\n<span class=\"hljs-keyword\">var</span> data = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'第一行'</span>, <span class=\"hljs-attr\">b</span>: <span class=\"hljs-string\">'哈哈2'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'第二行'</span>, <span class=\"hljs-attr\">b</span>: <span class=\"hljs-string\">'哈哈2'</span>}];\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Table</span> <span class=\"hljs-attr\">scheme</span>=<span class=\"hljs-string\">{{scheme}}</span> <span class=\"hljs-attr\">data</span>=<span class=\"hljs-string\">{{data}}/</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span></code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"}]}
+module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"contents":"<p>上面是一个简单的<code>Table</code>，通过<code>data</code>属性设置表格展示的数据，通过<code>scheme</code>属性或者<code>TableColumn</code>组件定义表格结构，详见”定义表格结构“说明</p>\n","codes":[{"language":"vdt","content":"import {Table, TableColumn} from 'kpc/components/table';\n\nconst scheme = {a: '表头1', b: '表头2'};\nconst data = [{a: '第一行', b: '哈哈2'}, {a: '第二行', b: '哈哈2'}];\n\n<div>\n    <Table scheme={{ scheme }} data={{ data }} />\n    <Table data={{ data }}>\n        <TableColumn key=\"a\" title=\"表头1\" />\n        <TableColumn key=\"b\" title=\"表头2\" />\n    </Table>\n</div>"},{"language":"styl","content":".k-table-wrapper\n    margin-bottom 20px"},{"language":"js","content":"import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"}],"index":9,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> {Table, TableColumn} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n\n<span class=\"hljs-keyword\">const</span> scheme = {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'表头1'</span>, <span class=\"hljs-attr\">b</span>: <span class=\"hljs-string\">'表头2'</span>};\n<span class=\"hljs-keyword\">const</span> data = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'第一行'</span>, <span class=\"hljs-attr\">b</span>: <span class=\"hljs-string\">'哈哈2'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'第二行'</span>, <span class=\"hljs-attr\">b</span>: <span class=\"hljs-string\">'哈哈2'</span>}];\n\n&lt;div&gt;\n    &lt;Table scheme={{ scheme }} data={{ data }} /&gt;\n    &lt;Table data={{ data }}&gt;\n        &lt;TableColumn key=\"a\" title=\"表头1\" /&gt;\n        &lt;TableColumn key=\"b\" title=\"表头2\" /&gt;\n    &lt;/Table&gt;\n&lt;/div&gt;</code></pre>"},{"language":"styl","content":"<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-table-wrapper</span>\n    <span class=\"hljs-attribute\">margin-bottom</span> <span class=\"hljs-number\">20px</span></code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"}]}
+
+/***/ }),
+
+/***/ "./site/dist/components/table/demos/basic/index.styl":
+/***/ (function(module, exports, __webpack_require__) {
+
+// removed by extract-text-webpack-plugin
+    if(false) {
+      // 1527495168561
+      var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
+      module.hot.dispose(cssReload);
+      module.hot.accept(undefined, cssReload);
+    }
+  
 
 /***/ }),
 
@@ -33611,7 +33627,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
   var scheme = { a: '表头1', b: '表头2' };
   var data = [{ a: '第一行', b: '哈哈2' }, { a: '第二行', b: '哈哈2' }];
 
-  return h('div', null, h(_table2.default, { 'scheme': function () {
+  return h('div', null, [h(_table.Table, { 'scheme': function () {
       try {
         return [scheme][0];
       } catch (e) {
@@ -33623,14 +33639,16 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
       } catch (e) {
         _e(e);
       }
-    }.call(this), 'children': null, '_context': $this }));
+    }.call(this), 'children': null, '_context': $this }), h(_table.Table, { 'data': function () {
+      try {
+        return [data][0];
+      } catch (e) {
+        _e(e);
+      }
+    }.call(this), 'children': [h(_table.TableColumn, { 'key': 'a', 'title': '表头1', 'children': null, '_context': $this }), h(_table.TableColumn, { 'key': 'b', 'title': '表头2', 'children': null, '_context': $this })], '_context': $this })]);
 };
 
 var _table = __webpack_require__("./components/table/index.js");
-
-var _table2 = _interopRequireDefault(_table);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = exports['default'];
 
@@ -33738,7 +33756,7 @@ exports.default = _default;
 /***/ "./site/dist/components/table/demos/checkType/index.json":
 /***/ (function(module, exports) {
 
-module.exports = {"setting":{"title":"选择框的类型","order":2},"catalogs":[],"contents":"<p><code>checkType</code>：设置选择框的类型，类型<code>String</code>，<code>checkbox</code>多选框(默认)/<code>radio</code>单选框/<code>none</code>无选框</p>\n","codes":[{"language":"vdt","content":"import Table from 'kpc/components/table';\nvar scheme = {a: '表头'};\nvar data1 = [{a: '多选框'}];\nvar data2 = [{a: '单选框'}];\nvar data3 = [{a: '无选框'}];\n\n<div class='no-data-template'>\n    <Table scheme={{scheme}} data={{data1}} />\n    <Table scheme={{scheme}} data={{data2}} checkType='radio'/>\n    <Table scheme={{scheme}} data={{data3}} checkType='none'/>\n</div>"},{"language":"styl","content":".no-data-template\n   display: flex\n   .k-table-wrapper\n       margin-left: 10px"},{"language":"js","content":"import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"}],"index":62,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Table <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n<span class=\"hljs-keyword\">var</span> scheme = {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'表头'</span>};\n<span class=\"hljs-keyword\">var</span> data1 = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'多选框'</span>}];\n<span class=\"hljs-keyword\">var</span> data2 = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'单选框'</span>}];\n<span class=\"hljs-keyword\">var</span> data3 = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'无选框'</span>}];\n\n&lt;div class='no-data-template'&gt;\n    &lt;Table scheme={{scheme}} data={{data1}} /&gt;\n    &lt;Table scheme={{scheme}} data={{data2}} checkType='radio'/&gt;\n    &lt;Table scheme={{scheme}} data={{data3}} checkType='none'/&gt;\n&lt;/div&gt;</code></pre>"},{"language":"styl","content":"<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.no-data-template</span>\n   <span class=\"hljs-attribute\">display</span>: flex\n   <span class=\"hljs-selector-class\">.k-table-wrapper</span>\n       <span class=\"hljs-attribute\">margin-left</span>: <span class=\"hljs-number\">10px</span></code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"}]}
+module.exports = {"setting":{"title":"选择框的类型","order":2},"catalogs":[],"contents":"<p>通过<code>checkType</code>设置行选择类型，<code>checkbox</code>多选(默认) / <code>radio</code>单选 / <code>none</code>不可选</p>\n","codes":[{"language":"vdt","content":"import Table from 'kpc/components/table';\n\nconst scheme = {a: '表头'};\nconst data1 = [{a: '多选1'}, {a: '多选2'}];\nconst data2 = [{a: '单选1'}, {a: '单选2'}];\nconst data3 = [{a: '不可选1'}, {a: '不可选2'}];\n\n<div>\n    <Table scheme={{ scheme }} data={{ data1 }} />\n    <Table scheme={{ scheme }} data={{ data2 }} checkType=\"radio\" />\n    <Table scheme={{ scheme }} data={{ data3 }} checkType=\"none\" />\n</div>"},{"language":"styl","content":".k-table-wrapper\n    margin-bottom 20px"},{"language":"js","content":"import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"}],"index":62,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Table <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n\n<span class=\"hljs-keyword\">const</span> scheme = {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'表头'</span>};\n<span class=\"hljs-keyword\">const</span> data1 = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'多选1'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'多选2'</span>}];\n<span class=\"hljs-keyword\">const</span> data2 = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'单选1'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'单选2'</span>}];\n<span class=\"hljs-keyword\">const</span> data3 = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'不可选1'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'不可选2'</span>}];\n\n&lt;div&gt;\n    &lt;Table scheme={{ scheme }} data={{ data1 }} /&gt;\n    &lt;Table scheme={{ scheme }} data={{ data2 }} checkType=\"radio\" /&gt;\n    &lt;Table scheme={{ scheme }} data={{ data3 }} checkType=\"none\" /&gt;\n&lt;/div&gt;</code></pre>"},{"language":"styl","content":"<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-table-wrapper</span>\n    <span class=\"hljs-attribute\">margin-bottom</span> <span class=\"hljs-number\">20px</span></code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"}]}
 
 /***/ }),
 
@@ -33747,7 +33765,7 @@ module.exports = {"setting":{"title":"选择框的类型","order":2},"catalogs":
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380628
+      // 1527495168535
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -33791,9 +33809,9 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
       parent = ($callee || {})._super;
 
   var scheme = { a: '表头' };
-  var data1 = [{ a: '多选框' }];
-  var data2 = [{ a: '单选框' }];
-  var data3 = [{ a: '无选框' }];
+  var data1 = [{ a: '多选1' }, { a: '多选2' }];
+  var data2 = [{ a: '单选1' }, { a: '单选2' }];
+  var data3 = [{ a: '不可选1' }, { a: '不可选2' }];
 
   return h('div', null, [h(_table2.default, { 'scheme': function () {
       try {
@@ -33831,7 +33849,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
       } catch (e) {
         _e(e);
       }
-    }.call(this), 'checkType': 'none', 'children': null, '_context': $this })], 'no-data-template');
+    }.call(this), 'checkType': 'none', 'children': null, '_context': $this })]);
 };
 
 var _table = __webpack_require__("./components/table/index.js");
@@ -33950,7 +33968,7 @@ exports.default = _default;
 /***/ "./site/dist/components/table/demos/checkedKey_s/index.json":
 /***/ (function(module, exports) {
 
-module.exports = {"setting":{"title":"行选中","order":3},"catalogs":[],"contents":"<ul>\n<li><code>rowKey</code>：设置行的<code>key</code>值，类型：<code>Function</code>，默认：行的<code>index</code></li>\n<li><code>checkedKey</code>：设置/获取表格被选中的行信息（针对<code>radio</code>），类型：任何，控制是否选中会根据rowKey的设置判断。</li>\n<li><code>checkedKeys</code>：设置/获取表格被选中的行信息（针对<code>checkbox</code>）类型：<code>Array</code>，可以设置多个，控制是否选中会根据rowKey的设置判断。</li>\n</ul>\n","codes":[{"language":"vdt","content":"import Table from 'kpc/components/table';\nvar data1 = [{a: '赋默认值选中'}, {a: '不选中'}];\nvar data2 = [{text: '选中', id: 'yes'}, {text: '不选中', id: 'no'}];\nvar data3 = [{a: '赋默认值选中'}, {a: '不选中'}, {a: '赋默认值选中，可设置多个'}];\n\n\n<div>\n    <div class='no-data-template'>\n        <Table scheme={{ {a: 'radio不指定rowKey'} }} data={{data1}} checkedKey={{0}} checkType='radio'/>\n        <Table scheme={{ {text: 'radio指定为item的id'} }} data={{data2}} checkType='radio' rowKey={{self.setRowKey}}  checkedKey={{'yes'}}/>\n    </div>\n    <div class='no-data-template'>\n        <Table scheme={{ {a: 'checkbox不指定rowKey'} }} data={{data3}} checkedKeys={{[0, 2]}}/>\n        <Table scheme={{ {text: 'checkbox指定为item的id'} }} data={{data2}} rowKey={{self.setRowKey}} checkedKeys={{['yes']}}/>\n    </div>\n</div>"},{"language":"styl","content":".no-data-template\n   display: flex\n   margin-bottom: 10px\n   .k-table-wrapper\n       margin-left: 10px"},{"language":"js","content":"import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    setRowKey(value, index) {\n        return value.id;\n    }\n\n}"}],"index":72,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Table <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n<span class=\"hljs-keyword\">var</span> data1 = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'赋默认值选中'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'不选中'</span>}];\n<span class=\"hljs-keyword\">var</span> data2 = [{<span class=\"hljs-attr\">text</span>: <span class=\"hljs-string\">'选中'</span>, <span class=\"hljs-attr\">id</span>: <span class=\"hljs-string\">'yes'</span>}, {<span class=\"hljs-attr\">text</span>: <span class=\"hljs-string\">'不选中'</span>, <span class=\"hljs-attr\">id</span>: <span class=\"hljs-string\">'no'</span>}];\n<span class=\"hljs-keyword\">var</span> data3 = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'赋默认值选中'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'不选中'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'赋默认值选中，可设置多个'</span>}];\n\n\n&lt;div&gt;\n    &lt;div class='no-data-template'&gt;\n        &lt;Table scheme={{ {a: 'radio不指定rowKey'} }} data={{data1}} checkedKey={{0}} checkType='radio'/&gt;\n        &lt;Table scheme={{ {text: 'radio指定为item的id'} }} data={{data2}} checkType='radio' rowKey={{self.setRowKey}}  checkedKey={{'yes'}}/&gt;\n    &lt;/div&gt;\n    &lt;div class='no-data-template'&gt;\n        &lt;Table scheme={{ {a: 'checkbox不指定rowKey'} }} data={{data3}} checkedKeys={{[0, 2]}}/&gt;\n        &lt;Table scheme={{ {text: 'checkbox指定为item的id'} }} data={{data2}} rowKey={{self.setRowKey}} checkedKeys={{['yes']}}/&gt;\n    &lt;/div&gt;\n&lt;/div&gt;</code></pre>"},{"language":"styl","content":"<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.no-data-template</span>\n   <span class=\"hljs-attribute\">display</span>: flex\n   <span class=\"hljs-attribute\">margin-bottom</span>: <span class=\"hljs-number\">10px</span>\n   <span class=\"hljs-selector-class\">.k-table-wrapper</span>\n       <span class=\"hljs-attribute\">margin-left</span>: <span class=\"hljs-number\">10px</span></code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n\n    setRowKey(value, index) {\n        <span class=\"hljs-keyword\">return</span> value.id;\n    }\n\n}</code></pre>"}]}
+module.exports = {"setting":{"title":"行选中","order":3},"catalogs":[],"contents":"<p>通过<code>checkedKey</code>（radio类型）或者<code>checkedKeys</code>（checkbox类型）来控制哪些列被选中，默认他们的取值为行的索引或索引数组。但我们也可以通过<code>rowKey</code>函数为每一行指定唯一的<code>key</code>，此时他们的取值为<code>key</code>值或<code>key</code>值的数组</p>\n","codes":[{"language":"vdt","content":"import Table from 'kpc/components/table';\n\nconst data1 = [{a: '赋默认值选中'}, {a: '不选中'}];\nconst data2 = [{text: '选中', id: 'yes'}, {text: '不选中', id: 'no'}];\nconst data3 = [{a: '赋默认值选中'}, {a: '不选中'}, {a: '赋默认值选中，可设置多个'}];\n\n<div>\n    <div class='no-data-template'>\n        <Table scheme={{ {a: 'radio不指定rowKey'} }}\n            data={{ data1 }}\n            checkedKey={{ 0 }}\n            checkType='radio'\n        />\n        <Table scheme={{ {text: 'radio指定为item的id'} }} \n            data={{ data2 }} \n            checkType='radio' \n            rowKey={{ self.setRowKey }}  \n            checkedKey={{ 'yes' }}\n        />\n    </div>\n    <div class='no-data-template'>\n        <Table scheme={{ {a: 'checkbox不指定rowKey'} }} \n            data={{ data3 }} \n            checkedKeys={{ [0, 2] }}\n        />\n        <Table scheme={{ {text: 'checkbox指定为item的id'} }} \n            data={{ data2 }} \n            rowKey={{ self.setRowKey }} \n            checkedKeys={{ ['yes'] }}\n        />\n    </div>\n</div>"},{"language":"styl","content":".no-data-template\n    display: flex\n    margin-bottom: 20px\n    .k-table-wrapper\n        margin-left: 20px"},{"language":"js","content":"import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    setRowKey(value, index) {\n        return value.id;\n    }\n}"}],"index":72,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Table <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n\n<span class=\"hljs-keyword\">const</span> data1 = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'赋默认值选中'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'不选中'</span>}];\n<span class=\"hljs-keyword\">const</span> data2 = [{<span class=\"hljs-attr\">text</span>: <span class=\"hljs-string\">'选中'</span>, <span class=\"hljs-attr\">id</span>: <span class=\"hljs-string\">'yes'</span>}, {<span class=\"hljs-attr\">text</span>: <span class=\"hljs-string\">'不选中'</span>, <span class=\"hljs-attr\">id</span>: <span class=\"hljs-string\">'no'</span>}];\n<span class=\"hljs-keyword\">const</span> data3 = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'赋默认值选中'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'不选中'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'赋默认值选中，可设置多个'</span>}];\n\n&lt;div&gt;\n    &lt;div class='no-data-template'&gt;\n        &lt;Table scheme={{ {a: 'radio不指定rowKey'} }}\n            data={{ data1 }}\n            checkedKey={{ 0 }}\n            checkType='radio'\n        /&gt;\n        &lt;Table scheme={{ {text: 'radio指定为item的id'} }} \n            data={{ data2 }} \n            checkType='radio' \n            rowKey={{ self.setRowKey }}  \n            checkedKey={{ 'yes' }}\n        /&gt;\n    &lt;/div&gt;\n    &lt;div class='no-data-template'&gt;\n        &lt;Table scheme={{ {a: 'checkbox不指定rowKey'} }} \n            data={{ data3 }} \n            checkedKeys={{ [0, 2] }}\n        /&gt;\n        &lt;Table scheme={{ {text: 'checkbox指定为item的id'} }} \n            data={{ data2 }} \n            rowKey={{ self.setRowKey }} \n            checkedKeys={{ ['yes'] }}\n        /&gt;\n    &lt;/div&gt;\n&lt;/div&gt;</code></pre>"},{"language":"styl","content":"<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.no-data-template</span>\n    <span class=\"hljs-attribute\">display</span>: flex\n    <span class=\"hljs-attribute\">margin-bottom</span>: <span class=\"hljs-number\">20px</span>\n    <span class=\"hljs-selector-class\">.k-table-wrapper</span>\n        <span class=\"hljs-attribute\">margin-left</span>: <span class=\"hljs-number\">20px</span></code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n\n    setRowKey(value, index) {\n        <span class=\"hljs-keyword\">return</span> value.id;\n    }\n}</code></pre>"}]}
 
 /***/ }),
 
@@ -33959,7 +33977,7 @@ module.exports = {"setting":{"title":"行选中","order":3},"catalogs":[],"conte
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380623
+      // 1527495168544
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -34205,7 +34223,7 @@ exports.default = _default;
 /***/ "./site/dist/components/table/demos/disableRow/index.json":
 /***/ (function(module, exports) {
 
-module.exports = {"setting":{"title":"禁用行","order":7},"catalogs":[],"contents":"<p><code>disableRow</code>：禁用某一行，类型<code>Function</code>，<code>function(data, index) { return false }</code>(默认)</p>\n<ul>\n<li>禁用的数据默认会在每一行的元素上有<code>k-disabled</code>样式</li>\n</ul>\n","codes":[{"language":"vdt","content":"import Table from 'kpc/components/table';\n\nvar scheme = {a: '奇数行不可点击'};\nvar data = [{a: '1'}, {a: '2'}, {a: '3'}, {a: '4'}, {a: '5'}]\n\n\n<div class='no-data-template'>\n    <Table scheme={{ scheme }} data={{ data }} disableRow={{ function(data, index) {\n        if (index%2 != 0) {\n            return true;\n        }\n    }}}/>\n</div>"},{"language":"styl","content":".no-data-template\n   .k-disabled\n       background-color: #dfdfdf"},{"language":"js","content":"import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"}],"index":112,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Table <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n\n<span class=\"hljs-keyword\">var</span> scheme = {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'奇数行不可点击'</span>};\n<span class=\"hljs-keyword\">var</span> data = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'1'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'2'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'3'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'4'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'5'</span>}]\n\n\n&lt;div <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span></span>=<span class=\"hljs-string\">'no-data-template'</span>&gt;\n    <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Table</span> <span class=\"hljs-attr\">scheme</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">scheme</span> }} <span class=\"hljs-attr\">data</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">data</span> }} <span class=\"hljs-attr\">disableRow</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">function</span>(<span class=\"hljs-attr\">data</span>, <span class=\"hljs-attr\">index</span>) {\n        <span class=\"hljs-attr\">if</span> (<span class=\"hljs-attr\">index</span>%<span class=\"hljs-attr\">2</span> != <span class=\"hljs-string\">0)</span> {\n            <span class=\"hljs-attr\">return</span> <span class=\"hljs-attr\">true</span>;\n        }\n    }}}/&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span></code></pre>"},{"language":"styl","content":"<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.no-data-template</span>\n   <span class=\"hljs-selector-class\">.k-disabled</span>\n       <span class=\"hljs-attribute\">background-color</span>: <span class=\"hljs-number\">#dfdfdf</span></code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"}]}
+module.exports = {"setting":{"title":"禁用行可选","order":7},"catalogs":[],"contents":"<p><code>disableRow</code>：禁用某一行可选状态，类型：<code>Function</code>，默认：<code>function(data, index) { return false }</code>，该函数如果返回<code>true</code>，则表示禁用该行可选</p>\n<blockquote>\n<p>禁用的数据默认会在每一行的元素上有<code>k-disabled</code>样式</p>\n</blockquote>\n","codes":[{"language":"vdt","content":"import Table from 'kpc/components/table';\n\nconst scheme = {a: '奇数行不可点击'};\nconst data = [{a: '1'}, {a: '2'}, {a: '3'}, {a: '4'}, {a: '5'}]\n\n\n<Table scheme={{ scheme }} data={{ data }}\n    disableRow={{ (data, index) => index % 2 !== 0 }}\n/>"},{"language":"styl","content":".k-disabled\n   background-color: #d9d9d9"},{"language":"js","content":"import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"}],"index":112,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Table <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n\n<span class=\"hljs-keyword\">const</span> scheme = {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'奇数行不可点击'</span>};\n<span class=\"hljs-keyword\">const</span> data = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'1'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'2'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'3'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'4'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'5'</span>}]\n\n\n&lt;Table scheme={{ scheme }} data={{ data }}\n    disableRow={{ (data, index) =&gt; index % <span class=\"hljs-number\">2</span> !== <span class=\"hljs-number\">0</span> }}\n/&gt;</code></pre>"},{"language":"styl","content":"<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-disabled</span>\n   <span class=\"hljs-attribute\">background-color</span>: <span class=\"hljs-number\">#d9d9d9</span></code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"}]}
 
 /***/ }),
 
@@ -34214,7 +34232,7 @@ module.exports = {"setting":{"title":"禁用行","order":7},"catalogs":[],"conte
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380611
+      // 1527495168539
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -34232,57 +34250,55 @@ module.exports = {"setting":{"title":"禁用行","order":7},"catalogs":[],"conte
 exports.__esModule = true;
 
 exports.default = function (obj, _Vdt, blocks, $callee) {
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
+  _Vdt || (_Vdt = Vdt);
+  obj || (obj = {});
+  blocks || (blocks = {});
+  var h = _Vdt.miss.h,
+      hc = _Vdt.miss.hc,
+      hu = _Vdt.miss.hu,
+      widgets = this && this.widgets || {},
+      _blocks = {},
+      __blocks = {},
+      __u = _Vdt.utils,
+      extend = __u.extend,
+      _e = __u.error,
+      _className = __u.className,
+      __o = __u.Options,
+      _getModel = __o.getModel,
+      _setModel = __o.setModel,
+      _setCheckboxModel = __u.setCheckboxModel,
+      _detectCheckboxChecked = __u.detectCheckboxChecked,
+      _setSelectModel = __u.setSelectModel,
+      self = this.data,
+      $this = this,
+      scope = obj,
+      Animate = self && self.Animate,
+      parent = ($callee || {})._super;
 
-    var scheme = { a: '奇数行不可点击' };
-    var data = [{ a: '1' }, { a: '2' }, { a: '3' }, { a: '4' }, { a: '5' }];
+  var scheme = { a: '奇数行不可点击' };
+  var data = [{ a: '1' }, { a: '2' }, { a: '3' }, { a: '4' }, { a: '5' }];
 
-    return h('div', null, h(_table2.default, { 'scheme': function () {
-            try {
-                return [scheme][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'data': function () {
-            try {
-                return [data][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'disableRow': function () {
-            try {
-                return [function (data, index) {
-                    if (index % 2 != 0) {
-                        return true;
-                    }
-                }][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'children': null, '_context': $this }), 'no-data-template');
+  return h(_table2.default, { 'scheme': function () {
+      try {
+        return [scheme][0];
+      } catch (e) {
+        _e(e);
+      }
+    }.call(this), 'data': function () {
+      try {
+        return [data][0];
+      } catch (e) {
+        _e(e);
+      }
+    }.call(this), 'disableRow': function () {
+      try {
+        return [function (data, index) {
+          return index % 2 !== 0;
+        }][0];
+      } catch (e) {
+        _e(e);
+      }
+    }.call(this), 'children': null, '_context': $this });
 };
 
 var _table = __webpack_require__("./components/table/index.js");
@@ -34397,7 +34413,7 @@ exports.default = _default;
 /***/ "./site/dist/components/table/demos/fixHeader/index.json":
 /***/ (function(module, exports) {
 
-module.exports = {"setting":{"title":"表头固定","order":8},"catalogs":[],"contents":"<p><code>fixHeader</code>：设置表头固定，类型<code>Boolean</code>，<code>false</code>(默认)</p>\n","codes":[{"language":"vdt","content":"import Table from 'kpc/components/table';\nvar data1 = [{a: 'false(默认)'}];\nvar data2 = [{a: '表头固定但是没有滚动条，展示不出效果'}];\nvar data3 = [{a: '表头固定啦'}, {a: '下拉'}, {a: 'yeah!'}];\n\n<div class='no-data-template'>\n    <Table scheme={{ {a: 'false'} }} data={{data1}} />\n    <Table scheme={{ {a: 'true'} }} data={{data2}} fixHeader={{true}} />\n    <Table scheme={{ {a: '100px' } }} data={{data3}} fixHeader='100' />\n</div>"},{"language":"styl","content":".no-data-template\n   display: flex\n   .k-table-wrapper\n       margin-left: 10px"},{"language":"js","content":"import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"}],"index":114,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Table <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n<span class=\"hljs-keyword\">var</span> data1 = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'false(默认)'</span>}];\n<span class=\"hljs-keyword\">var</span> data2 = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'表头固定但是没有滚动条，展示不出效果'</span>}];\n<span class=\"hljs-keyword\">var</span> data3 = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'表头固定啦'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'下拉'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'yeah!'</span>}];\n\n&lt;div class='no-data-template'&gt;\n    &lt;Table scheme={{ {a: 'false'} }} data={{data1}} /&gt;\n    &lt;Table scheme={{ {a: 'true'} }} data={{data2}} fixHeader={{true}} /&gt;\n    &lt;Table scheme={{ {a: '100px' } }} data={{data3}} fixHeader='100' /&gt;\n&lt;/div&gt;</code></pre>"},{"language":"styl","content":"<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.no-data-template</span>\n   <span class=\"hljs-attribute\">display</span>: flex\n   <span class=\"hljs-selector-class\">.k-table-wrapper</span>\n       <span class=\"hljs-attribute\">margin-left</span>: <span class=\"hljs-number\">10px</span></code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"}]}
+module.exports = {"setting":{"title":"表头固定","order":8},"catalogs":[],"contents":"<p><code>fixHeader</code>：设置表头固定，类型<code>Boolean</code> | <code>Number</code>，默认：<code>false</code></p>\n<ol>\n<li>如果取值为<code>Boolean</code>，<code>false</code>表示不固定表头，<code>true</code>表示固定高度，但需要自己定义表格高度</li>\n<li>如果取值为<code>Number</code>，则表示，当表格超出该高度时即展示滚动条，并固定表头</li>\n</ol>\n","codes":[{"language":"vdt","content":"import Table from 'kpc/components/table';\n\nconst data1 = [{a: '表头固定，但内容没有超出最高高度'}];\nconst data2 = [{a: '表头固定啦'}, {a: '下拉'}, {a: 'yeah!'}];\n\n<div class=\"wrapper\">\n    <Table scheme={{ {a: '100px'} }} data={{ data1 }} fixHeader=\"100\" />\n    <Table scheme={{ {a: '100px' } }} data={{ data2 }} fixHeader=\"100\" />\n</div>"},{"language":"styl","content":".wrapper\n    display flex\n.k-table-wrapper\n    margin-left: 20px"},{"language":"js","content":"import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"}],"index":114,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Table <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n\n<span class=\"hljs-keyword\">const</span> data1 = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'表头固定，但内容没有超出最高高度'</span>}];\n<span class=\"hljs-keyword\">const</span> data2 = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'表头固定啦'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'下拉'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'yeah!'</span>}];\n\n&lt;div class=\"wrapper\"&gt;\n    &lt;Table scheme={{ {a: '100px'} }} data={{ data1 }} fixHeader=\"100\" /&gt;\n    &lt;Table scheme={{ {a: '100px' } }} data={{ data2 }} fixHeader=\"100\" /&gt;\n&lt;/div&gt;</code></pre>"},{"language":"styl","content":"<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.wrapper</span>\n    <span class=\"hljs-attribute\">display</span> flex\n<span class=\"hljs-selector-class\">.k-table-wrapper</span>\n    <span class=\"hljs-attribute\">margin-left</span>: <span class=\"hljs-number\">20px</span></code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"}]}
 
 /***/ }),
 
@@ -34406,7 +34422,7 @@ module.exports = {"setting":{"title":"表头固定","order":8},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380607
+      // 1527495168517
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -34449,13 +34465,12 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
       Animate = self && self.Animate,
       parent = ($callee || {})._super;
 
-  var data1 = [{ a: 'false(默认)' }];
-  var data2 = [{ a: '表头固定但是没有滚动条，展示不出效果' }];
-  var data3 = [{ a: '表头固定啦' }, { a: '下拉' }, { a: 'yeah!' }];
+  var data1 = [{ a: '表头固定，但内容没有超出最高高度' }];
+  var data2 = [{ a: '表头固定啦' }, { a: '下拉' }, { a: 'yeah!' }];
 
   return h('div', null, [h(_table2.default, { 'scheme': function () {
       try {
-        return [{ a: 'false' }][0];
+        return [{ a: '100px' }][0];
       } catch (e) {
         _e(e);
       }
@@ -34465,9 +34480,9 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
       } catch (e) {
         _e(e);
       }
-    }.call(this), 'children': null, '_context': $this }), h(_table2.default, { 'scheme': function () {
+    }.call(this), 'fixHeader': '100', 'children': null, '_context': $this }), h(_table2.default, { 'scheme': function () {
       try {
-        return [{ a: 'true' }][0];
+        return [{ a: '100px' }][0];
       } catch (e) {
         _e(e);
       }
@@ -34477,25 +34492,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
       } catch (e) {
         _e(e);
       }
-    }.call(this), 'fixHeader': function () {
-      try {
-        return [true][0];
-      } catch (e) {
-        _e(e);
-      }
-    }.call(this), 'children': null, '_context': $this }), h(_table2.default, { 'scheme': function () {
-      try {
-        return [{ a: '100px' }][0];
-      } catch (e) {
-        _e(e);
-      }
-    }.call(this), 'data': function () {
-      try {
-        return [data3][0];
-      } catch (e) {
-        _e(e);
-      }
-    }.call(this), 'fixHeader': '100', 'children': null, '_context': $this })], 'no-data-template');
+    }.call(this), 'fixHeader': '100', 'children': null, '_context': $this })], 'wrapper');
 };
 
 var _table = __webpack_require__("./components/table/index.js");
@@ -34585,6 +34582,8 @@ function _applyDecoratedDescriptor(target, property, decorators, descriptor, con
     return desc;
 }
 
+var oData = [{ name: '主机1', status: 'active' }, { name: '主机2', status: 'stopped' }, { name: '主机3', status: 'active' }];
+
 var _default = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
     (0, _inherits3.default)(_default, _Intact);
 
@@ -34592,6 +34591,30 @@ var _default = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
         (0, _classCallCheck3.default)(this, _default);
         return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
     }
+
+    _default.prototype.defaults = function defaults() {
+        return {
+            data: oData,
+            group: { status: '' }
+        };
+    };
+
+    _default.prototype._onChangeGroup = function _onChangeGroup(c, group) {
+        console.log(group);
+        var data = oData.filter(function (item) {
+            var matched = true;
+            for (var key in group) {
+                var value = group[key];
+                if (value && item[key] !== value) {
+                    matched = false;
+                    break;
+                }
+            }
+            return matched;
+        });
+
+        this.set({ data: data, group: group });
+    };
 
     return _default;
 }(_intact2.default), _class2.template = _index3.default, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
@@ -34610,7 +34633,7 @@ exports.default = _default;
 /***/ "./site/dist/components/table/demos/group/index.json":
 /***/ (function(module, exports) {
 
-module.exports = {"setting":{"title":"分组","order":11},"catalogs":[],"contents":"<p><code>group</code>：分组，类型<code>Array</code>，<code>{}</code>(默认)</p>\n<ul>\n<li><code>group</code>接收一个数组，数组每一项接收一个<code>{label: &#39;展示内容&#39;, value: &#39;值&#39;}</code>的对象来定义分组信息。</li>\n</ul>\n<p>另一种定义表头信息方式<code>&lt;TableColumn group={{[]}}&gt;&lt;/TableColumn&gt;</code></p>\n","codes":[{"language":"vdt","content":"import Table, {TableColumn} from 'kpc/components/table';\n\nvar defaultGroup = [\n    {label: 'Monday', value: 1},\n    {label: 'Tuesday', value: 2},\n    {label: 'Wednesday', value: 3}\n];\nvar scheme = {\n    name: {\n        title: '姓名',\n        template: function(data) {\n            return data.name;\n        }\n    },\n    time: {\n        title: '时间',\n        template: function(data) {\n            return data.time;\n        },\n        group: defaultGroup\n    }\n};\n\n\nvar data = [{name: 'lihua', time: '10-12-12'}];\nvar data1 = [{name: 'lihua(标签形式定义表头信息)', time: '10-12-12'}];\n\n<div class='no-data-template'>\n    <Table scheme={{ scheme }} data={{ data }}/>\n    <Table data={{ data1 }}>\n      <TableColumn title='姓名' key='name'></TableColumn>\n      <TableColumn title='时间' key='time' group={{defaultGroup}}></TableColumn>\n    </Table>\n</div>"},{"language":"styl","content":".no-data-template\n   display: flex\n   .k-table-wrapper\n       margin-left: 10px\n"},{"language":"js","content":"import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"}],"index":121,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Table, {TableColumn} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n\n<span class=\"hljs-keyword\">var</span> defaultGroup = [\n    {<span class=\"hljs-attr\">label</span>: <span class=\"hljs-string\">'Monday'</span>, <span class=\"hljs-attr\">value</span>: <span class=\"hljs-number\">1</span>},\n    {<span class=\"hljs-attr\">label</span>: <span class=\"hljs-string\">'Tuesday'</span>, <span class=\"hljs-attr\">value</span>: <span class=\"hljs-number\">2</span>},\n    {<span class=\"hljs-attr\">label</span>: <span class=\"hljs-string\">'Wednesday'</span>, <span class=\"hljs-attr\">value</span>: <span class=\"hljs-number\">3</span>}\n];\n<span class=\"hljs-keyword\">var</span> scheme = {\n    <span class=\"hljs-attr\">name</span>: {\n        <span class=\"hljs-attr\">title</span>: <span class=\"hljs-string\">'姓名'</span>,\n        <span class=\"hljs-attr\">template</span>: <span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span>(<span class=\"hljs-params\">data</span>) </span>{\n            <span class=\"hljs-keyword\">return</span> data.name;\n        }\n    },\n    <span class=\"hljs-attr\">time</span>: {\n        <span class=\"hljs-attr\">title</span>: <span class=\"hljs-string\">'时间'</span>,\n        <span class=\"hljs-attr\">template</span>: <span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span>(<span class=\"hljs-params\">data</span>) </span>{\n            <span class=\"hljs-keyword\">return</span> data.time;\n        },\n        <span class=\"hljs-attr\">group</span>: defaultGroup\n    }\n};\n\n\n<span class=\"hljs-keyword\">var</span> data = [{<span class=\"hljs-attr\">name</span>: <span class=\"hljs-string\">'lihua'</span>, <span class=\"hljs-attr\">time</span>: <span class=\"hljs-string\">'10-12-12'</span>}];\n<span class=\"hljs-keyword\">var</span> data1 = [{<span class=\"hljs-attr\">name</span>: <span class=\"hljs-string\">'lihua(标签形式定义表头信息)'</span>, <span class=\"hljs-attr\">time</span>: <span class=\"hljs-string\">'10-12-12'</span>}];\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">'no-data-template'</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Table</span> <span class=\"hljs-attr\">scheme</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">scheme</span> }} <span class=\"hljs-attr\">data</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">data</span> }}/&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Table</span> <span class=\"hljs-attr\">data</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">data1</span> }}&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">TableColumn</span> <span class=\"hljs-attr\">title</span>=<span class=\"hljs-string\">'姓名'</span> <span class=\"hljs-attr\">key</span>=<span class=\"hljs-string\">'name'</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">TableColumn</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">TableColumn</span> <span class=\"hljs-attr\">title</span>=<span class=\"hljs-string\">'时间'</span> <span class=\"hljs-attr\">key</span>=<span class=\"hljs-string\">'time'</span> <span class=\"hljs-attr\">group</span>=<span class=\"hljs-string\">{{defaultGroup}}</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">TableColumn</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Table</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span></code></pre>"},{"language":"styl","content":"<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.no-data-template</span>\n   <span class=\"hljs-attribute\">display</span>: flex\n   <span class=\"hljs-selector-class\">.k-table-wrapper</span>\n       <span class=\"hljs-attribute\">margin-left</span>: <span class=\"hljs-number\">10px</span>\n</code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"}]}
+module.exports = {"setting":{"title":"分组","order":11},"catalogs":[],"contents":"<p>分组需要两个<code>group</code>来指定：</p>\n<ol>\n<li>第一个是<code>Table</code>上的<code>group</code>属性，该属性指定当前分组的方式，形式为：<code>{[&quot;分组的列的key&quot;]: [&quot;当前列选择的分组的值&quot;]}</code></li>\n<li>第二个是<code>TableColumn</code>或者<code>scheme</code>上的<code>group</code>属性，该属性指定当前列有哪些可选的分组方式，\n如果该列支持多选，还可以添加<code>multiple</code>属性，默认为单选。形式为：<code>[{label: &quot;分组展示文案&quot;, value: &quot;选择后的值&quot;}]</code></li>\n</ol>\n<p>当分组方式改变时，可以监听默认事件<code>$change:group</code>来执行自定义分组逻辑</p>\n","codes":[{"language":"vdt","content":"import Table, {TableColumn} from 'kpc/components/table';\n\nconst scheme = {\n    name: '名称',\n    status: {\n        title: '状态',\n        template(data) {\n            return data.status === 'active' ? '运行中' : '已关闭';\n        },\n        group: [\n            {label: '全部', value: ''},\n            {label: '运行中', value: 'active'},\n            {label: '已关闭', value: 'stopped'},\n        ]\n    }\n};\n\n\n<div class='no-data-template'>\n    <Table scheme={{ scheme }} \n        data={{ self.get('data') }} \n        group={{ self.get('group') }}\n        ev-$change:group={{ self._onChangeGroup }}\n    />\n    <Table data={{ self.get('data') }} \n        group={{ self.get('group') }}\n        ev-$change:group={{ self._onChangeGroup }}\n    >\n        <TableColumn title='名称' key='name' />\n        <TableColumn title='状态' key='status' \n            template={{ (data) => data.status === 'active' ? '运行中' : '已关闭' }}\n            group={{ [ \n                {label: '全部', value: ''},\n                {label: '运行中', value: 'active'},\n                {label: '已关闭', value: 'stopped'},\n            ] }}\n        />\n    </Table>\n</div>"},{"language":"styl","content":".no-data-template\n    display: flex\n    .k-table-wrapper\n        margin-left: 10px"},{"language":"js","content":"import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nconst oData = [\n    {name: '主机1', status: 'active'},\n    {name: '主机2', status: 'stopped'},\n    {name: '主机3', status: 'active'},\n];\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    defaults() {\n        return {\n            data: oData, \n            group: {status: ''}\n        }\n    }\n\n    _onChangeGroup(c, group) {\n        console.log(group);\n        const data = oData.filter(item => {\n            let matched = true;\n            for (let key in group) {\n                const value = group[key];\n                if (value && item[key] !== value) {\n                    matched = false;\n                    break;\n                }\n            }\n            return matched;\n        });\n\n        this.set({data, group});\n    }\n}"}],"index":121,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Table, {TableColumn} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n\n<span class=\"hljs-keyword\">const</span> scheme = {\n    <span class=\"hljs-attr\">name</span>: <span class=\"hljs-string\">'名称'</span>,\n    <span class=\"hljs-attr\">status</span>: {\n        <span class=\"hljs-attr\">title</span>: <span class=\"hljs-string\">'状态'</span>,\n        template(data) {\n            <span class=\"hljs-keyword\">return</span> data.status === <span class=\"hljs-string\">'active'</span> ? <span class=\"hljs-string\">'运行中'</span> : <span class=\"hljs-string\">'已关闭'</span>;\n        },\n        <span class=\"hljs-attr\">group</span>: [\n            {<span class=\"hljs-attr\">label</span>: <span class=\"hljs-string\">'全部'</span>, <span class=\"hljs-attr\">value</span>: <span class=\"hljs-string\">''</span>},\n            {<span class=\"hljs-attr\">label</span>: <span class=\"hljs-string\">'运行中'</span>, <span class=\"hljs-attr\">value</span>: <span class=\"hljs-string\">'active'</span>},\n            {<span class=\"hljs-attr\">label</span>: <span class=\"hljs-string\">'已关闭'</span>, <span class=\"hljs-attr\">value</span>: <span class=\"hljs-string\">'stopped'</span>},\n        ]\n    }\n};\n\n\n&lt;div class='no-data-template'&gt;\n    &lt;Table scheme={{ scheme }} \n        data={{ self.get('data') }} \n        group={{ self.get('group') }}\n        ev-$change:group={{ self._onChangeGroup }}\n    /&gt;\n    &lt;Table data={{ self.get('data') }} \n        group={{ self.get('group') }}\n        ev-$change:group={{ self._onChangeGroup }}\n    &gt;\n        &lt;TableColumn title='名称' key='name' /&gt;\n        &lt;TableColumn title='状态' key='status' \n            template={{ (data) =&gt; data.status === 'active' ? '运行中' : '已关闭' }}\n            group={{ [ \n                {label: '全部', value: ''},\n                {label: '运行中', value: 'active'},\n                {label: '已关闭', value: 'stopped'},\n            ] }}\n        /&gt;\n    &lt;/Table&gt;\n&lt;/div&gt;</code></pre>"},{"language":"styl","content":"<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.no-data-template</span>\n    <span class=\"hljs-attribute\">display</span>: flex\n    <span class=\"hljs-selector-class\">.k-table-wrapper</span>\n        <span class=\"hljs-attribute\">margin-left</span>: <span class=\"hljs-number\">10px</span></code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">const</span> oData = [\n    {<span class=\"hljs-attr\">name</span>: <span class=\"hljs-string\">'主机1'</span>, <span class=\"hljs-attr\">status</span>: <span class=\"hljs-string\">'active'</span>},\n    {<span class=\"hljs-attr\">name</span>: <span class=\"hljs-string\">'主机2'</span>, <span class=\"hljs-attr\">status</span>: <span class=\"hljs-string\">'stopped'</span>},\n    {<span class=\"hljs-attr\">name</span>: <span class=\"hljs-string\">'主机3'</span>, <span class=\"hljs-attr\">status</span>: <span class=\"hljs-string\">'active'</span>},\n];\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n\n    defaults() {\n        <span class=\"hljs-keyword\">return</span> {\n            <span class=\"hljs-attr\">data</span>: oData, \n            <span class=\"hljs-attr\">group</span>: {<span class=\"hljs-attr\">status</span>: <span class=\"hljs-string\">''</span>}\n        }\n    }\n\n    _onChangeGroup(c, group) {\n        <span class=\"hljs-built_in\">console</span>.log(group);\n        <span class=\"hljs-keyword\">const</span> data = oData.filter(<span class=\"hljs-function\"><span class=\"hljs-params\">item</span> =&gt;</span> {\n            <span class=\"hljs-keyword\">let</span> matched = <span class=\"hljs-literal\">true</span>;\n            <span class=\"hljs-keyword\">for</span> (<span class=\"hljs-keyword\">let</span> key <span class=\"hljs-keyword\">in</span> group) {\n                <span class=\"hljs-keyword\">const</span> value = group[key];\n                <span class=\"hljs-keyword\">if</span> (value &amp;&amp; item[key] !== value) {\n                    matched = <span class=\"hljs-literal\">false</span>;\n                    <span class=\"hljs-keyword\">break</span>;\n                }\n            }\n            <span class=\"hljs-keyword\">return</span> matched;\n        });\n\n        <span class=\"hljs-keyword\">this</span>.set({data, group});\n    }\n}</code></pre>"}]}
 
 /***/ }),
 
@@ -34619,7 +34642,7 @@ module.exports = {"setting":{"title":"分组","order":11},"catalogs":[],"content
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380602
+      // 1527495168531
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -34662,25 +34685,17 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         Animate = self && self.Animate,
         parent = ($callee || {})._super;
 
-    var defaultGroup = [{ label: 'Monday', value: 1 }, { label: 'Tuesday', value: 2 }, { label: 'Wednesday', value: 3 }];
     var scheme = {
-        name: {
-            title: '姓名',
+        name: '名称',
+        status: {
+            title: '状态',
             template: function template(data) {
-                return data.name;
-            }
-        },
-        time: {
-            title: '时间',
-            template: function template(data) {
-                return data.time;
+                return data.status === 'active' ? '运行中' : '已关闭';
             },
-            group: defaultGroup
+
+            group: [{ label: '全部', value: '' }, { label: '运行中', value: 'active' }, { label: '已关闭', value: 'stopped' }]
         }
     };
-
-    var data = [{ name: 'lihua', time: '10-12-12' }];
-    var data1 = [{ name: 'lihua(标签形式定义表头信息)', time: '10-12-12' }];
 
     return h('div', null, [h(_table2.default, { 'scheme': function () {
             try {
@@ -34690,19 +34705,51 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             }
         }.call(this), 'data': function () {
             try {
-                return [data][0];
+                return [self.get('data')][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'group': function () {
+            try {
+                return [self.get('group')][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-$change:group': function () {
+            try {
+                return [self._onChangeGroup][0];
             } catch (e) {
                 _e(e);
             }
         }.call(this), 'children': null, '_context': $this }), h(_table2.default, { 'data': function () {
             try {
-                return [data1][0];
+                return [self.get('data')][0];
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'children': [h(_table.TableColumn, { 'title': '姓名', 'key': 'name', 'children': null, '_context': $this }), h(_table.TableColumn, { 'title': '时间', 'key': 'time', 'group': function () {
+        }.call(this), 'group': function () {
+            try {
+                return [self.get('group')][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-$change:group': function () {
+            try {
+                return [self._onChangeGroup][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'children': [h(_table.TableColumn, { 'title': '名称', 'key': 'name', 'children': null, '_context': $this }), h(_table.TableColumn, { 'title': '状态', 'key': 'status', 'template': function () {
                 try {
-                    return [defaultGroup][0];
+                    return [function (data) {
+                        return data.status === 'active' ? '运行中' : '已关闭';
+                    }][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'group': function () {
+                try {
+                    return [[{ label: '全部', value: '' }, { label: '运行中', value: 'active' }, { label: '已关闭', value: 'stopped' }]][0];
                 } catch (e) {
                     _e(e);
                 }
@@ -34821,7 +34868,7 @@ exports.default = _default;
 /***/ "./site/dist/components/table/demos/noDataTemplate/index.json":
 /***/ (function(module, exports) {
 
-module.exports = {"setting":{"title":"自定义无内容时的展示信息","order":9},"catalogs":[],"contents":"<p>当data为<code>[]</code>时, 可设置<code>noDataTemplate</code>来展示你想展示的信息（默认为： /(ㄒoㄒ)/~~ 没有找到亲要的数据哦~）。或者你也可以通过<code>no-data</code>扩展点，来定义内容</p>\n","codes":[{"language":"vdt","content":"import Table from 'kpc/components/table';\n\nvar scheme = {a: '表头1', b: '表头2'};\nvar data = [];\nvar tip = <div>这里没有数据(自定义版本)</div>;\n\n<div class='no-data-template'>\n    <Table scheme={{ scheme }} data={{ data }} />\n    <Table scheme={{ scheme }} data={{ data }} noDataTemplate={{ tip }} />\n    <Table scheme={{ scheme }} data={{ data }}>\n        <b:no-data>\n            <div style=\"color: red\">没有数据</div>\n        </b:no-data>\n    </Table>\n</div>"},{"language":"styl","content":".no-data-template\n    display: flex\n    .k-table-wrapper\n        margin-left: 10px"},{"language":"js","content":"import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"}],"index":117,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Table <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n\n<span class=\"hljs-keyword\">var</span> scheme = {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'表头1'</span>, <span class=\"hljs-attr\">b</span>: <span class=\"hljs-string\">'表头2'</span>};\n<span class=\"hljs-keyword\">var</span> data = [];\n<span class=\"hljs-keyword\">var</span> tip = <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>这里没有数据(自定义版本)<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span>;\n\n&lt;div class='no-data-template'&gt;\n    &lt;Table scheme={{ scheme }} data={{ data }} /&gt;\n    &lt;Table scheme={{ scheme }} data={{ data }} noDataTemplate={{ tip }} /&gt;\n    &lt;Table scheme={{ scheme }} data={{ data }}&gt;\n        &lt;b:no-data&gt;\n            &lt;div style=\"color: red\"&gt;没有数据&lt;/div&gt;\n        &lt;/b:no-data&gt;\n    &lt;/Table&gt;\n&lt;/div&gt;</code></pre>"},{"language":"styl","content":"<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.no-data-template</span>\n    <span class=\"hljs-attribute\">display</span>: flex\n    <span class=\"hljs-selector-class\">.k-table-wrapper</span>\n        <span class=\"hljs-attribute\">margin-left</span>: <span class=\"hljs-number\">10px</span></code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"}]}
+module.exports = {"setting":{"title":"自定义无内容时的展示信息","order":9},"catalogs":[],"contents":"<p>当<code>data</code>为空数组<code>[]</code>时, 可设置<code>noDataTemplate</code>来展示提示信息（默认为： /(ㄒoㄒ)/~~ 没有找到亲要的数据哦~）。或者你也可以通过<code>no-data</code>扩展点，来定义内容</p>\n","codes":[{"language":"vdt","content":"import Table from 'kpc/components/table';\n\nconst scheme = {a: '表头1', b: '表头2'};\nconst data = [];\nconst tip = <div>这里没有数据(自定义版本)</div>;\n\n<div class='no-data-template'>\n    <Table scheme={{ scheme }} data={{ data }} />\n    <Table scheme={{ scheme }} data={{ data }} noDataTemplate={{ tip }} />\n    <Table scheme={{ scheme }} data={{ data }}>\n        <b:no-data>\n            <div style=\"color: red\">没有数据</div>\n        </b:no-data>\n    </Table>\n</div>"},{"language":"styl","content":".no-data-template\n    display: flex\n    .k-table-wrapper\n        margin-left: 10px"},{"language":"js","content":"import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"}],"index":117,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Table <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n\n<span class=\"hljs-keyword\">const</span> scheme = {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'表头1'</span>, <span class=\"hljs-attr\">b</span>: <span class=\"hljs-string\">'表头2'</span>};\n<span class=\"hljs-keyword\">const</span> data = [];\n<span class=\"hljs-keyword\">const</span> tip = <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>这里没有数据(自定义版本)<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span>;\n\n&lt;div class='no-data-template'&gt;\n    &lt;Table scheme={{ scheme }} data={{ data }} /&gt;\n    &lt;Table scheme={{ scheme }} data={{ data }} noDataTemplate={{ tip }} /&gt;\n    &lt;Table scheme={{ scheme }} data={{ data }}&gt;\n        &lt;b:no-data&gt;\n            &lt;div style=\"color: red\"&gt;没有数据&lt;/div&gt;\n        &lt;/b:no-data&gt;\n    &lt;/Table&gt;\n&lt;/div&gt;</code></pre>"},{"language":"styl","content":"<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.no-data-template</span>\n    <span class=\"hljs-attribute\">display</span>: flex\n    <span class=\"hljs-selector-class\">.k-table-wrapper</span>\n        <span class=\"hljs-attribute\">margin-left</span>: <span class=\"hljs-number\">10px</span></code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"}]}
 
 /***/ }),
 
@@ -34830,7 +34877,7 @@ module.exports = {"setting":{"title":"自定义无内容时的展示信息","ord
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380618
+      // 1527495168522
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -35231,7 +35278,7 @@ exports.default = _default;
 /***/ "./site/dist/components/table/demos/rowCheckable/index.json":
 /***/ (function(module, exports) {
 
-module.exports = {"setting":{"title":"整行选中","order":4},"catalogs":[],"contents":"<p><code>rowCheckable</code>：是否点击整行任意位置后整行选中，类型<code>Boolean</code>，<code>true</code>(默认)</p>\n<ul>\n<li>选中的数据默认会在每一行的元素上有<code>k-checked</code>样式</li>\n</ul>\n","codes":[{"language":"vdt","content":"import Table from 'kpc/components/table';\n\nvar scheme1 = {a: '不整行选中', b: 'B'};\nvar scheme2 = {a: '整行选中', b: 'B'};\nvar data1 = [{a: 'A', b: 'B'}, {a: 'A', b: '点我不会选中整行'}];\nvar data2 = [{a: 'A', b: '任何位置都可以哦～'}, {a: 'A', b: '点我会选中整行'}];\n\n\n<div class='no-data-template'>\n    <Table scheme={{ scheme1 }} data={{ data1 }} rowCheckable={{ false }}/>\n    <Table scheme={{ scheme2 }} data={{ data2 }} />\n</div>"},{"language":"styl","content":".no-data-template\n   display: flex\n   .k-table-wrapper\n       margin-left: 10px\n       .k-checked\n           background-color: #dfdfdf"},{"language":"js","content":"import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"}],"index":95,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Table <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n\n<span class=\"hljs-keyword\">var</span> scheme1 = {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'不整行选中'</span>, <span class=\"hljs-attr\">b</span>: <span class=\"hljs-string\">'B'</span>};\n<span class=\"hljs-keyword\">var</span> scheme2 = {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'整行选中'</span>, <span class=\"hljs-attr\">b</span>: <span class=\"hljs-string\">'B'</span>};\n<span class=\"hljs-keyword\">var</span> data1 = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'A'</span>, <span class=\"hljs-attr\">b</span>: <span class=\"hljs-string\">'B'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'A'</span>, <span class=\"hljs-attr\">b</span>: <span class=\"hljs-string\">'点我不会选中整行'</span>}];\n<span class=\"hljs-keyword\">var</span> data2 = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'A'</span>, <span class=\"hljs-attr\">b</span>: <span class=\"hljs-string\">'任何位置都可以哦～'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'A'</span>, <span class=\"hljs-attr\">b</span>: <span class=\"hljs-string\">'点我会选中整行'</span>}];\n\n\n&lt;div class='no-data-template'&gt;\n    &lt;Table scheme={{ scheme1 }} data={{ data1 }} rowCheckable={{ false }}/&gt;\n    &lt;Table scheme={{ scheme2 }} data={{ data2 }} /&gt;\n&lt;/div&gt;</code></pre>"},{"language":"styl","content":"<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.no-data-template</span>\n   <span class=\"hljs-attribute\">display</span>: flex\n   <span class=\"hljs-selector-class\">.k-table-wrapper</span>\n       <span class=\"hljs-attribute\">margin-left</span>: <span class=\"hljs-number\">10px</span>\n       <span class=\"hljs-selector-class\">.k-checked</span>\n           <span class=\"hljs-attribute\">background-color</span>: <span class=\"hljs-number\">#dfdfdf</span></code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"}]}
+module.exports = {"setting":{"title":"整行选中","order":4},"catalogs":[],"contents":"<p>当行可选时，默认点击该行的任意区域都可选中或取消选中，但我们可以通过将<code>rowCheckbable</code>设为<code>false</code>来关闭这一特性。</p>\n<blockquote>\n<p>选中的数据默认会在每一行的元素上有<code>k-checked</code>样式名</p>\n</blockquote>\n","codes":[{"language":"vdt","content":"import Table from 'kpc/components/table';\n\nconst scheme1 = {a: '不整行选中', b: 'B'};\nconst scheme2 = {a: '整行选中', b: 'B'};\nconst data1 = [{a: 'A', b: 'B'}, {a: 'A', b: '点我不会选中整行'}];\nconst data2 = [{a: 'A', b: '任何位置都可以哦～'}, {a: 'A', b: '点我会选中整行'}];\n\n\n<div class='no-data-template'>\n    <Table scheme={{ scheme1 }} data={{ data1 }} rowCheckable={{ false }}/>\n    <Table scheme={{ scheme2 }} data={{ data2 }} />\n</div>"},{"language":"styl","content":".k-table-wrapper\n    margin-bottom 20px\n    .k-checked\n        background-color #f4f8fb"},{"language":"js","content":"import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"}],"index":95,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Table <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n\n<span class=\"hljs-keyword\">const</span> scheme1 = {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'不整行选中'</span>, <span class=\"hljs-attr\">b</span>: <span class=\"hljs-string\">'B'</span>};\n<span class=\"hljs-keyword\">const</span> scheme2 = {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'整行选中'</span>, <span class=\"hljs-attr\">b</span>: <span class=\"hljs-string\">'B'</span>};\n<span class=\"hljs-keyword\">const</span> data1 = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'A'</span>, <span class=\"hljs-attr\">b</span>: <span class=\"hljs-string\">'B'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'A'</span>, <span class=\"hljs-attr\">b</span>: <span class=\"hljs-string\">'点我不会选中整行'</span>}];\n<span class=\"hljs-keyword\">const</span> data2 = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'A'</span>, <span class=\"hljs-attr\">b</span>: <span class=\"hljs-string\">'任何位置都可以哦～'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'A'</span>, <span class=\"hljs-attr\">b</span>: <span class=\"hljs-string\">'点我会选中整行'</span>}];\n\n\n&lt;div class='no-data-template'&gt;\n    &lt;Table scheme={{ scheme1 }} data={{ data1 }} rowCheckable={{ false }}/&gt;\n    &lt;Table scheme={{ scheme2 }} data={{ data2 }} /&gt;\n&lt;/div&gt;</code></pre>"},{"language":"styl","content":"<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-table-wrapper</span>\n    <span class=\"hljs-attribute\">margin-bottom</span> <span class=\"hljs-number\">20px</span>\n    <span class=\"hljs-selector-class\">.k-checked</span>\n        <span class=\"hljs-attribute\">background-color</span> <span class=\"hljs-number\">#f4f8fb</span></code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"}]}
 
 /***/ }),
 
@@ -35240,7 +35287,7 @@ module.exports = {"setting":{"title":"整行选中","order":4},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380593
+      // 1527495168526
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -35433,7 +35480,7 @@ exports.default = _default;
 /***/ "./site/dist/components/table/demos/rowClassName/index.json":
 /***/ (function(module, exports) {
 
-module.exports = {"setting":{"title":"行样式","order":5},"catalogs":[],"contents":"<p><code>rowClassName</code>：给行添加样式，类型<code>Function</code>，<code>function(value, index) {  }</code>(默认)</p>\n","codes":[{"language":"vdt","content":"import Table from 'kpc/components/table';\n\nvar scheme = {a: '偶数行背景变换'};\nvar data = [{a: '1'}, {a: '2'}, {a: '3'}, {a: '4'}, {a: '5'}]\n\n\n<div class='no-data-template'>\n    <Table scheme={{ scheme }} data={{ data }} rowClassName={{function(value, index) {\n        if (index%2 == 0) {\n            return 'turn-blue'\n        }\n    }}}/>\n</div>"},{"language":"styl","content":".no-data-template\n   .turn-blue\n       background-color: #2d8cf0"},{"language":"js","content":"import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"}],"index":96,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Table <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n\n<span class=\"hljs-keyword\">var</span> scheme = {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'偶数行背景变换'</span>};\n<span class=\"hljs-keyword\">var</span> data = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'1'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'2'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'3'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'4'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'5'</span>}]\n\n\n&lt;div <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span></span>=<span class=\"hljs-string\">'no-data-template'</span>&gt;\n    <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Table</span> <span class=\"hljs-attr\">scheme</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">scheme</span> }} <span class=\"hljs-attr\">data</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">data</span> }} <span class=\"hljs-attr\">rowClassName</span>=<span class=\"hljs-string\">{{function(value,</span> <span class=\"hljs-attr\">index</span>) {\n        <span class=\"hljs-attr\">if</span> (<span class=\"hljs-attr\">index</span>%<span class=\"hljs-attr\">2</span> == <span class=\"hljs-string\">0)</span> {\n            <span class=\"hljs-attr\">return</span> '<span class=\"hljs-attr\">turn-blue</span>'\n        }\n    }}}/&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span></code></pre>"},{"language":"styl","content":"<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.no-data-template</span>\n   <span class=\"hljs-selector-class\">.turn-blue</span>\n       <span class=\"hljs-attribute\">background-color</span>: <span class=\"hljs-number\">#2d8cf0</span></code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"}]}
+module.exports = {"setting":{"title":"行样式","order":5},"catalogs":[],"contents":"<p><code>rowClassName</code>：给行添加样式，类型<code>Function</code>，默认：<code>function(value, index) {  }</code>，该函数返回的字符串将被当做<code>className</code>添加到该行上</p>\n","codes":[{"language":"vdt","content":"import Table from 'kpc/components/table';\n\nconst scheme = {a: '偶数行背景变换'};\nconst data = [{a: '1'}, {a: '2'}, {a: '3'}, {a: '4'}, {a: '5'}]\n\n\n<Table scheme={{ scheme }} data={{ data }} \n    rowClassName={{ (value, index) => index % 2 === 0 ? 'even' : 'odd' }}\n/>"},{"language":"styl","content":".even\n    background #efefef"},{"language":"js","content":"import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"}],"index":96,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Table <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n\n<span class=\"hljs-keyword\">const</span> scheme = {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'偶数行背景变换'</span>};\n<span class=\"hljs-keyword\">const</span> data = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'1'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'2'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'3'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'4'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'5'</span>}]\n\n\n&lt;Table scheme={{ scheme }} data={{ data }} \n    rowClassName={{ (value, index) =&gt; index % <span class=\"hljs-number\">2</span> === <span class=\"hljs-number\">0</span> ? <span class=\"hljs-string\">'even'</span> : <span class=\"hljs-string\">'odd'</span> }}\n/&gt;</code></pre>"},{"language":"styl","content":"<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.even</span>\n    <span class=\"hljs-attribute\">background</span> <span class=\"hljs-number\">#efefef</span></code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"}]}
 
 /***/ }),
 
@@ -35442,7 +35489,7 @@ module.exports = {"setting":{"title":"行样式","order":5},"catalogs":[],"conte
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380597
+      // 1527495168509
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -35460,57 +35507,55 @@ module.exports = {"setting":{"title":"行样式","order":5},"catalogs":[],"conte
 exports.__esModule = true;
 
 exports.default = function (obj, _Vdt, blocks, $callee) {
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
+  _Vdt || (_Vdt = Vdt);
+  obj || (obj = {});
+  blocks || (blocks = {});
+  var h = _Vdt.miss.h,
+      hc = _Vdt.miss.hc,
+      hu = _Vdt.miss.hu,
+      widgets = this && this.widgets || {},
+      _blocks = {},
+      __blocks = {},
+      __u = _Vdt.utils,
+      extend = __u.extend,
+      _e = __u.error,
+      _className = __u.className,
+      __o = __u.Options,
+      _getModel = __o.getModel,
+      _setModel = __o.setModel,
+      _setCheckboxModel = __u.setCheckboxModel,
+      _detectCheckboxChecked = __u.detectCheckboxChecked,
+      _setSelectModel = __u.setSelectModel,
+      self = this.data,
+      $this = this,
+      scope = obj,
+      Animate = self && self.Animate,
+      parent = ($callee || {})._super;
 
-    var scheme = { a: '偶数行背景变换' };
-    var data = [{ a: '1' }, { a: '2' }, { a: '3' }, { a: '4' }, { a: '5' }];
+  var scheme = { a: '偶数行背景变换' };
+  var data = [{ a: '1' }, { a: '2' }, { a: '3' }, { a: '4' }, { a: '5' }];
 
-    return h('div', null, h(_table2.default, { 'scheme': function () {
-            try {
-                return [scheme][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'data': function () {
-            try {
-                return [data][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'rowClassName': function () {
-            try {
-                return [function (value, index) {
-                    if (index % 2 == 0) {
-                        return 'turn-blue';
-                    }
-                }][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'children': null, '_context': $this }), 'no-data-template');
+  return h(_table2.default, { 'scheme': function () {
+      try {
+        return [scheme][0];
+      } catch (e) {
+        _e(e);
+      }
+    }.call(this), 'data': function () {
+      try {
+        return [data][0];
+      } catch (e) {
+        _e(e);
+      }
+    }.call(this), 'rowClassName': function () {
+      try {
+        return [function (value, index) {
+          return index % 2 === 0 ? 'even' : 'odd';
+        }][0];
+      } catch (e) {
+        _e(e);
+      }
+    }.call(this), 'children': null, '_context': $this });
 };
 
 var _table = __webpack_require__("./components/table/index.js");
@@ -35651,7 +35696,7 @@ module.exports = {"setting":{"title":"行展开","order":6},"catalogs":[],"conte
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242380481
+      // 1527495168395
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -35833,6 +35878,8 @@ var _index2 = __webpack_require__("./site/dist/components/table/demos/scheme/ind
 
 var _index3 = _interopRequireDefault(_index2);
 
+__webpack_require__("./site/dist/components/table/demos/scheme/index.styl");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
@@ -35889,7 +35936,21 @@ exports.default = _default;
 /***/ "./site/dist/components/table/demos/scheme/index.json":
 /***/ (function(module, exports) {
 
-module.exports = {"setting":{"title":"定义表头信息","order":1},"catalogs":[],"contents":"<p>第一种定义形式（传值）：<code>scheme</code>：定义表头信息，类型<code>Object</code>，默认<code>{}</code></p>\n<ul>\n<li><strong> <code>{key: value}</code> 说明：</strong></li>\n</ul>\n<div class=\"k-table-wrapper k-border\">\n                    <table class=\"k-table\">\n                        <thead><tr>\n<th>形式</th>\n<th>描述</th>\n</tr>\n</thead>\n                        <tbody><tr>\n<td>key-{String}</td>\n<td>根据每一行的<code>item</code>，获取<code>key</code>属性；若<code>key</code>为一个连续获取的字符（即：<code>item.c.c1</code>）会逐级获取，若没获取到，则为<code>undefined</code>。</td>\n</tr>\n<tr>\n<td>key-{Object}</td>\n<td><code>key</code>只作为这个表头的<code>ID</code>，实际获取的值为<code>{Object}</code>内<code>template</code>的返回值。<code>{Object}</code>内的<code>title</code>为要展示的表头信息，<code>template</code>方法返回这列要展示的数据（参数接收：每一行的<code>item</code>）。</td>\n</tr>\n</tbody>\n                    </table>\n                </div><ul>\n<li>PS：<code>template</code>可以返回一个具体的值，也可以返回一个虚拟DOM。</li>\n</ul>\n<hr>\n<p>另一种定义形式（标签）：<code>&lt;TableColumn&gt;&lt;/TableColumn&gt;</code></p>\n<ul>\n<li><strong> <code>&lt;TableColumn /&gt;</code>属性描述：</strong></li>\n</ul>\n<div class=\"k-table-wrapper k-border\">\n                    <table class=\"k-table\">\n                        <thead><tr>\n<th>属性</th>\n<th>说明</th>\n<th>类型</th>\n<th>默认值</th>\n</tr>\n</thead>\n                        <tbody><tr>\n<td>title</td>\n<td>表头信息</td>\n<td><code>String</code></td>\n<td><code>[]</code></td>\n</tr>\n<tr>\n<td>template</td>\n<td>当前列的返回数据（遵守<code>{key-value}</code>形式中的规则）</td>\n<td><code>Function</code></td>\n<td><code>(data, index) { }</code></td>\n</tr>\n<tr>\n<td>key</td>\n<td>行的key值（遵守<code>{key-value}</code>形式中的规则）</td>\n<td><code>String</code></td>\n<td><code>&quot;&quot;</code></td>\n</tr>\n<tr>\n<td>width</td>\n<td>列宽</td>\n<td><code>Number</code></td>\n<td><code>undefined</code></td>\n</tr>\n</tbody>\n                    </table>\n                </div>","codes":[{"language":"vdt","content":"import Table, {TableColumn} from 'kpc/components/table';\nvar data = [{a: '虚拟DOM', b: '获取到了item.b', c: {c1: 'item.c.c1'}, e: '值形式'}];\nvar scheme = {\n    a: {\n        title: 'a只是个id',\n        template: function(item) {\n           return <a>{{item.a}}</a>\n        }\n    },\n    b: 'key-{String}形式',\n    'c.c1': 'key为一个连续获取的字符串',\n    'd.d1': '没有这个key',\n    e: {\n        title: 'e也只是个id',\n        template: function(item) {\n           return item.e;\n        }\n    },\n};\n\n\n<div>\n    <p>{key: value}形式:</p>\n    <Table scheme={{scheme}} data={{data}} />\n    <p>标签形式:</p>\n    <Table data={{data}}>\n      <TableColumn title='a' template={{ function(item) {\n         return <a>{{item.a}}</a>\n      } }} key=''></TableColumn>\n      <TableColumn title='key为一个连续获取的字符' key='c.c1'></TableColumn>\n      <TableColumn title='key为一个连续获取的字符' key='e'>\n          <div>不生效</div>\n      </TableColumn>\n      <TableColumn title='这个宽度大一点400px' key='b' width='400'/>\n    </Table>\n</div>"},{"language":"js","content":"import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"}],"index":36,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Table, {TableColumn} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n<span class=\"hljs-keyword\">var</span> data = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'虚拟DOM'</span>, <span class=\"hljs-attr\">b</span>: <span class=\"hljs-string\">'获取到了item.b'</span>, <span class=\"hljs-attr\">c</span>: {<span class=\"hljs-attr\">c1</span>: <span class=\"hljs-string\">'item.c.c1'</span>}, <span class=\"hljs-attr\">e</span>: <span class=\"hljs-string\">'值形式'</span>}];\n<span class=\"hljs-keyword\">var</span> scheme = {\n    <span class=\"hljs-attr\">a</span>: {\n        <span class=\"hljs-attr\">title</span>: <span class=\"hljs-string\">'a只是个id'</span>,\n        <span class=\"hljs-attr\">template</span>: <span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span>(<span class=\"hljs-params\">item</span>) </span>{\n           <span class=\"hljs-keyword\">return</span> <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span>&gt;</span>{{item.a}}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span></span>\n        }\n    },\n    <span class=\"hljs-attr\">b</span>: <span class=\"hljs-string\">'key-{String}形式'</span>,\n    <span class=\"hljs-string\">'c.c1'</span>: <span class=\"hljs-string\">'key为一个连续获取的字符串'</span>,\n    <span class=\"hljs-string\">'d.d1'</span>: <span class=\"hljs-string\">'没有这个key'</span>,\n    <span class=\"hljs-attr\">e</span>: {\n        <span class=\"hljs-attr\">title</span>: <span class=\"hljs-string\">'e也只是个id'</span>,\n        <span class=\"hljs-attr\">template</span>: <span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span>(<span class=\"hljs-params\">item</span>) </span>{\n           <span class=\"hljs-keyword\">return</span> item.e;\n        }\n    },\n};\n\n\n&lt;div&gt;\n    &lt;p&gt;{key: value}形式:&lt;/p&gt;\n    &lt;Table scheme={{scheme}} data={{data}} /&gt;\n    &lt;p&gt;标签形式:&lt;/p&gt;\n    &lt;Table data={{data}}&gt;\n      &lt;TableColumn title='a' template={{ function(item) {\n         return &lt;a&gt;{{item.a}}&lt;/a&gt;\n      } }} key=''&gt;&lt;/TableColumn&gt;\n      &lt;TableColumn title='key为一个连续获取的字符' key='c.c1'&gt;&lt;/TableColumn&gt;\n      &lt;TableColumn title='key为一个连续获取的字符' key='e'&gt;\n          &lt;div&gt;不生效&lt;/div&gt;\n      &lt;/TableColumn&gt;\n      &lt;TableColumn title='这个宽度大一点400px' key='b' width='400'/&gt;\n    &lt;/Table&gt;\n&lt;/div&gt;</code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"}]}
+module.exports = {"setting":{"title":"定义表格结构","order":1},"catalogs":[],"contents":"<p>定义表格结构有两种形式：</p>\n<ol>\n<li>通过<code>TableColumn</code>组件定义 </li>\n<li>通过<code>scheme</code>属性定义</li>\n</ol>\n<p><code>TableColumn</code>详细说明，见下文属性说明，<code>scheme</code>属性值的结构与之相对应</p>\n<blockquote>\n<p>对于简单的表格，默认会使用<code>key</code>去取<code>data</code>中的数据，例如本例中，<code>key</code>为<code>a</code>的列，默认会取<code>data</code>中对应<code>key</code>为<code>a</code>的数据进行展示，<code>key</code>支持路径取值，例如：<code>a.b.0</code>。当然我们也可以通过<code>template</code>属性指定复杂内容</p>\n</blockquote>\n","codes":[{"language":"vdt","content":"import Table, {TableColumn} from 'kpc/components/table';\n\nconst data = [{a: '虚拟DOM', b: '获取到了item.b', c: {c1: 'item.c.c1'}}];\nconst scheme = {\n    a: {\n        title: '定义该列单元格内容',\n        template: function(item) {\n           return <a>{{item.a}}</a>\n        }\n    },\n    b: 'key形式',\n    'c.c1': 'key为一个路径字符串',\n    'd.d1': '没有这个key，则返回空',\n};\n\n<div>\n    <Table scheme={{ scheme }} data={{ data }} />\n    <Table data={{data}}>\n        <TableColumn \n            title='定义该列单元格内容'\n            template={{ function(item) {\n                return <a>{{item.a}}</a>\n            } }} \n            key='a'\n        />\n        <TableColumn title='key形式' key='b' />\n        <TableColumn title='key为一个路径字符串' key='c.c1' />\n        <TableColumn title='没有这个key，则返回空' key='d.d1' />\n    </Table>\n</div>"},{"language":"styl","content":".k-table-wrapper\n    margin-bottom 20px"},{"language":"js","content":"import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"}],"index":36,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Table, {TableColumn} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n\n<span class=\"hljs-keyword\">const</span> data = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'虚拟DOM'</span>, <span class=\"hljs-attr\">b</span>: <span class=\"hljs-string\">'获取到了item.b'</span>, <span class=\"hljs-attr\">c</span>: {<span class=\"hljs-attr\">c1</span>: <span class=\"hljs-string\">'item.c.c1'</span>}}];\n<span class=\"hljs-keyword\">const</span> scheme = {\n    <span class=\"hljs-attr\">a</span>: {\n        <span class=\"hljs-attr\">title</span>: <span class=\"hljs-string\">'定义该列单元格内容'</span>,\n        <span class=\"hljs-attr\">template</span>: <span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span>(<span class=\"hljs-params\">item</span>) </span>{\n           <span class=\"hljs-keyword\">return</span> <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span>&gt;</span>{{item.a}}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span></span>\n        }\n    },\n    <span class=\"hljs-attr\">b</span>: <span class=\"hljs-string\">'key形式'</span>,\n    <span class=\"hljs-string\">'c.c1'</span>: <span class=\"hljs-string\">'key为一个路径字符串'</span>,\n    <span class=\"hljs-string\">'d.d1'</span>: <span class=\"hljs-string\">'没有这个key，则返回空'</span>,\n};\n\n&lt;div&gt;\n    &lt;Table scheme={{ scheme }} data={{ data }} /&gt;\n    &lt;Table data={{data}}&gt;\n        &lt;TableColumn \n            title='定义该列单元格内容'\n            template={{ function(item) {\n                return &lt;a&gt;{{item.a}}&lt;/a&gt;\n            } }} \n            key='a'\n        /&gt;\n        &lt;TableColumn title='key形式' key='b' /&gt;\n        &lt;TableColumn title='key为一个路径字符串' key='c.c1' /&gt;\n        &lt;TableColumn title='没有这个key，则返回空' key='d.d1' /&gt;\n    &lt;/Table&gt;\n&lt;/div&gt;</code></pre>"},{"language":"styl","content":"<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-table-wrapper</span>\n    <span class=\"hljs-attribute\">margin-bottom</span> <span class=\"hljs-number\">20px</span></code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"}]}
+
+/***/ }),
+
+/***/ "./site/dist/components/table/demos/scheme/index.styl":
+/***/ (function(module, exports, __webpack_require__) {
+
+// removed by extract-text-webpack-plugin
+    if(false) {
+      // 1527495168321
+      var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
+      module.hot.dispose(cssReload);
+      module.hot.accept(undefined, cssReload);
+    }
+  
 
 /***/ }),
 
@@ -35927,10 +35988,10 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         Animate = self && self.Animate,
         parent = ($callee || {})._super;
 
-    var data = [{ a: '虚拟DOM', b: '获取到了item.b', c: { c1: 'item.c.c1' }, e: '值形式' }];
+    var data = [{ a: '虚拟DOM', b: '获取到了item.b', c: { c1: 'item.c.c1' } }];
     var scheme = {
         a: {
-            title: 'a只是个id',
+            title: '定义该列单元格内容',
             template: function template(item) {
                 return h('a', null, function () {
                     try {
@@ -35941,18 +36002,12 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 }.call(this));
             }
         },
-        b: 'key-{String}形式',
-        'c.c1': 'key为一个连续获取的字符串',
-        'd.d1': '没有这个key',
-        e: {
-            title: 'e也只是个id',
-            template: function template(item) {
-                return item.e;
-            }
-        }
+        b: 'key形式',
+        'c.c1': 'key为一个路径字符串',
+        'd.d1': '没有这个key，则返回空'
     };
 
-    return h('div', null, [h('p', null, '{key: value}形式:'), h(_table2.default, { 'scheme': function () {
+    return h('div', null, [h(_table2.default, { 'scheme': function () {
             try {
                 return [scheme][0];
             } catch (e) {
@@ -35964,13 +36019,13 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'children': null, '_context': $this }), h('p', null, '标签形式:'), h(_table2.default, { 'data': function () {
+        }.call(this), 'children': null, '_context': $this }), h(_table2.default, { 'data': function () {
             try {
                 return [data][0];
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'children': [h(_table.TableColumn, { 'title': 'a', 'template': function () {
+        }.call(this), 'children': [h(_table.TableColumn, { 'title': '定义该列单元格内容', 'template': function () {
                 try {
                     return [function (item) {
                         return h('a', null, function () {
@@ -35984,7 +36039,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this), 'key': '', 'children': null, '_context': $this }), h(_table.TableColumn, { 'title': 'key为一个连续获取的字符', 'key': 'c.c1', 'children': null, '_context': $this }), h(_table.TableColumn, { 'title': 'key为一个连续获取的字符', 'key': 'e', 'children': h('div', null, '不生效'), '_context': $this }), h(_table.TableColumn, { 'title': '这个宽度大一点400px', 'key': 'b', 'width': '400', 'children': null, '_context': $this })], '_context': $this })]);
+            }.call(this), 'key': 'a', 'children': null, '_context': $this }), h(_table.TableColumn, { 'title': 'key形式', 'key': 'b', 'children': null, '_context': $this }), h(_table.TableColumn, { 'title': 'key为一个路径字符串', 'key': 'c.c1', 'children': null, '_context': $this }), h(_table.TableColumn, { 'title': '没有这个key，则返回空', 'key': 'd.d1', 'children': null, '_context': $this })], '_context': $this })]);
 };
 
 var _table = __webpack_require__("./components/table/index.js");
@@ -36082,6 +36137,22 @@ var _default = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
         return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
     }
 
+    _default.prototype.defaults = function defaults() {
+        return {
+            data: [{ name: 'aa', age: 1 }, { name: 'cc', age: 5 }, { name: 'bb', age: 9 }],
+            sort: {}
+        };
+    };
+
+    _default.prototype._onSort = function _onSort(c, sort) {
+        console.log(sort);
+        var data = this.get('data').slice(0);
+        data.sort(function (a, b) {
+            return sort.type === 'desc' ? a[sort.key] > b[sort.key] ? -1 : 1 : a[sort.key] > b[sort.key] ? 1 : -1;
+        });
+        this.set({ data: data, sort: sort });
+    };
+
     return _default;
 }(_intact2.default), _class2.template = _index3.default, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
     enumerable: true,
@@ -36099,7 +36170,7 @@ exports.default = _default;
 /***/ "./site/dist/components/table/demos/sort/index.json":
 /***/ (function(module, exports) {
 
-module.exports = {"setting":{"title":"排序","order":10},"catalogs":[],"contents":"<p><code>sort</code>：排序，类型<code>Object</code>，<code>{}</code>(默认)</p>\n<ul>\n<li><code>sort</code>接收的对象包含两个属性,<code>key</code>表示你要排序的是哪一列，<code>type</code>表示需要将这一列升序还是降序排列。（<code>desc</code>降序，<code>asc</code>升序）</li>\n<li>如果希望某列可以排序的话，在定义它的<code>scheme</code>时，需要添加<code>sortable: true</code>键值对。</li>\n</ul>\n<p>另一种定义表头信息方式<code>&lt;TableColumn sortable={{true}}&gt;&lt;/TableColumn&gt;</code></p>\n","codes":[{"language":"vdt","content":"import Table, {TableColumn} from 'kpc/components/table';\n\nvar scheme = {\n    name: {\n        title: '姓名',\n        template: function(data) {\n            return data.name;\n        },\n        sortable: true\n    },\n    time: {\n        title: '时间',\n        template: function(data) {\n            return data.time;\n        },\n        sortable: true\n    }\n};\nvar defaultSort = {key: 'time', type: 'asc'};\nvar data1 = [{name: 'a默认按照时间升序', time: '2'}, {name: 'b 箭头方向默认的是向上的', time: '1'}];\nvar data2 = [{name: 'a无默认排序', time: '2'}, {name: 'b 观察箭头方向都是双向的', time: '1'}];\n\n<div class='no-data-template'>\n    <Table scheme={{ scheme }} data={{ data1 }} sort={{ defaultSort }}/>\n    <Table scheme={{ scheme }} data={{ data2 }} />\n    <Table data={{ data1 }} sort={{ defaultSort }}>\n      <TableColumn title='姓名' key='name'></TableColumn>\n      <TableColumn title='时间(标签形式定义排序)' key='time' sortable={{true}}></TableColumn>\n    </Table>\n</div>"},{"language":"styl","content":".no-data-template\n   display: flex\n   .k-table-wrapper\n       margin-left: 10px\n"},{"language":"js","content":"import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"}],"index":119,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Table, {TableColumn} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n\n<span class=\"hljs-keyword\">var</span> scheme = {\n    <span class=\"hljs-attr\">name</span>: {\n        <span class=\"hljs-attr\">title</span>: <span class=\"hljs-string\">'姓名'</span>,\n        <span class=\"hljs-attr\">template</span>: <span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span>(<span class=\"hljs-params\">data</span>) </span>{\n            <span class=\"hljs-keyword\">return</span> data.name;\n        },\n        <span class=\"hljs-attr\">sortable</span>: <span class=\"hljs-literal\">true</span>\n    },\n    <span class=\"hljs-attr\">time</span>: {\n        <span class=\"hljs-attr\">title</span>: <span class=\"hljs-string\">'时间'</span>,\n        <span class=\"hljs-attr\">template</span>: <span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span>(<span class=\"hljs-params\">data</span>) </span>{\n            <span class=\"hljs-keyword\">return</span> data.time;\n        },\n        <span class=\"hljs-attr\">sortable</span>: <span class=\"hljs-literal\">true</span>\n    }\n};\n<span class=\"hljs-keyword\">var</span> defaultSort = {<span class=\"hljs-attr\">key</span>: <span class=\"hljs-string\">'time'</span>, <span class=\"hljs-attr\">type</span>: <span class=\"hljs-string\">'asc'</span>};\n<span class=\"hljs-keyword\">var</span> data1 = [{<span class=\"hljs-attr\">name</span>: <span class=\"hljs-string\">'a默认按照时间升序'</span>, <span class=\"hljs-attr\">time</span>: <span class=\"hljs-string\">'2'</span>}, {<span class=\"hljs-attr\">name</span>: <span class=\"hljs-string\">'b 箭头方向默认的是向上的'</span>, <span class=\"hljs-attr\">time</span>: <span class=\"hljs-string\">'1'</span>}];\n<span class=\"hljs-keyword\">var</span> data2 = [{<span class=\"hljs-attr\">name</span>: <span class=\"hljs-string\">'a无默认排序'</span>, <span class=\"hljs-attr\">time</span>: <span class=\"hljs-string\">'2'</span>}, {<span class=\"hljs-attr\">name</span>: <span class=\"hljs-string\">'b 观察箭头方向都是双向的'</span>, <span class=\"hljs-attr\">time</span>: <span class=\"hljs-string\">'1'</span>}];\n\n&lt;div class='no-data-template'&gt;\n    &lt;Table scheme={{ scheme }} data={{ data1 }} sort={{ defaultSort }}/&gt;\n    &lt;Table scheme={{ scheme }} data={{ data2 }} /&gt;\n    &lt;Table data={{ data1 }} sort={{ defaultSort }}&gt;\n      &lt;TableColumn title='姓名' key='name'&gt;&lt;/TableColumn&gt;\n      &lt;TableColumn title='时间(标签形式定义排序)' key='time' sortable={{true}}&gt;&lt;/TableColumn&gt;\n    &lt;/Table&gt;\n&lt;/div&gt;</code></pre>"},{"language":"styl","content":"<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.no-data-template</span>\n   <span class=\"hljs-attribute\">display</span>: flex\n   <span class=\"hljs-selector-class\">.k-table-wrapper</span>\n       <span class=\"hljs-attribute\">margin-left</span>: <span class=\"hljs-number\">10px</span>\n</code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"}]}
+module.exports = {"setting":{"title":"排序","order":10},"catalogs":[],"contents":"<p>通过<code>sort</code>属性来指定当前表格的排序方式。它的数据格式如下：</p>\n<p><code>{ key: &#39;当前排序的列的key&#39;, type: &#39;当前排序方式（desc: 降序，asc: 升序）&#39; }</code></p>\n<p>当该列可排序时，只需要在定义表格结构的<code>scheme</code>或者<code>TableColumn</code>中加入<code>sortable</code>并且取值为<code>true</code>即可</p>\n<p>当排序方式改变时，可以监听默认事件<code>$change:sort</code>来执行自定义排序逻辑</p>\n","codes":[{"language":"vdt","content":"import Table, {TableColumn} from 'kpc/components/table';\n\nconst scheme = {\n    name: {\n        title: '姓名',\n        sortable: true\n    },\n    age: {\n        title: '年龄',\n        sortable: true\n    }\n};\n\n<div class='no-data-template'>\n    <Table scheme={{ scheme }} \n        data={{ self.get('data') }} \n        sort={{ self.get('sort') }}\n        ev-$change:sort={{ self._onSort }}\n    />\n    <Table data={{ self.get('data') }} \n        sort={{ self.get('sort') }}\n        ev-$change:sort={{ self._onSort }}\n    >\n        <TableColumn title='姓名' key='name' sortable />\n        <TableColumn title='年龄' key='age' sortable />\n    </Table>\n</div>"},{"language":"styl","content":".no-data-template\n    display: flex\n    .k-table-wrapper\n        margin-left: 10px"},{"language":"js","content":"import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    defaults() {\n        return {\n            data: [{name: 'aa', age: 1}, {name: 'cc', age: 5}, {name: 'bb', age: 9}],\n            sort: {}\n        }\n    }\n\n    _onSort(c, sort) {\n        console.log(sort);\n        const data = this.get('data').slice(0);\n        data.sort((a, b) => {\n            return sort.type === 'desc' ? \n                (a[sort.key] > b[sort.key] ? -1 : 1) : \n                (a[sort.key] > b[sort.key] ? 1 : -1);\n        });\n        this.set({data, sort});\n    }\n}"}],"index":119,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Table, {TableColumn} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n\n<span class=\"hljs-keyword\">const</span> scheme = {\n    <span class=\"hljs-attr\">name</span>: {\n        <span class=\"hljs-attr\">title</span>: <span class=\"hljs-string\">'姓名'</span>,\n        <span class=\"hljs-attr\">sortable</span>: <span class=\"hljs-literal\">true</span>\n    },\n    <span class=\"hljs-attr\">age</span>: {\n        <span class=\"hljs-attr\">title</span>: <span class=\"hljs-string\">'年龄'</span>,\n        <span class=\"hljs-attr\">sortable</span>: <span class=\"hljs-literal\">true</span>\n    }\n};\n\n&lt;div class='no-data-template'&gt;\n    &lt;Table scheme={{ scheme }} \n        data={{ self.get('data') }} \n        sort={{ self.get('sort') }}\n        ev-$change:sort={{ self._onSort }}\n    /&gt;\n    &lt;Table data={{ self.get('data') }} \n        sort={{ self.get('sort') }}\n        ev-$change:sort={{ self._onSort }}\n    &gt;\n        &lt;TableColumn title='姓名' key='name' sortable /&gt;\n        &lt;TableColumn title='年龄' key='age' sortable /&gt;\n    &lt;/Table&gt;\n&lt;/div&gt;</code></pre>"},{"language":"styl","content":"<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.no-data-template</span>\n    <span class=\"hljs-attribute\">display</span>: flex\n    <span class=\"hljs-selector-class\">.k-table-wrapper</span>\n        <span class=\"hljs-attribute\">margin-left</span>: <span class=\"hljs-number\">10px</span></code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n\n    defaults() {\n        <span class=\"hljs-keyword\">return</span> {\n            <span class=\"hljs-attr\">data</span>: [{<span class=\"hljs-attr\">name</span>: <span class=\"hljs-string\">'aa'</span>, <span class=\"hljs-attr\">age</span>: <span class=\"hljs-number\">1</span>}, {<span class=\"hljs-attr\">name</span>: <span class=\"hljs-string\">'cc'</span>, <span class=\"hljs-attr\">age</span>: <span class=\"hljs-number\">5</span>}, {<span class=\"hljs-attr\">name</span>: <span class=\"hljs-string\">'bb'</span>, <span class=\"hljs-attr\">age</span>: <span class=\"hljs-number\">9</span>}],\n            <span class=\"hljs-attr\">sort</span>: {}\n        }\n    }\n\n    _onSort(c, sort) {\n        <span class=\"hljs-built_in\">console</span>.log(sort);\n        <span class=\"hljs-keyword\">const</span> data = <span class=\"hljs-keyword\">this</span>.get(<span class=\"hljs-string\">'data'</span>).slice(<span class=\"hljs-number\">0</span>);\n        data.sort(<span class=\"hljs-function\">(<span class=\"hljs-params\">a, b</span>) =&gt;</span> {\n            <span class=\"hljs-keyword\">return</span> sort.type === <span class=\"hljs-string\">'desc'</span> ? \n                (a[sort.key] &gt; b[sort.key] ? <span class=\"hljs-number\">-1</span> : <span class=\"hljs-number\">1</span>) : \n                (a[sort.key] &gt; b[sort.key] ? <span class=\"hljs-number\">1</span> : <span class=\"hljs-number\">-1</span>);\n        });\n        <span class=\"hljs-keyword\">this</span>.set({data, sort});\n    }\n}</code></pre>"}]}
 
 /***/ }),
 
@@ -36108,7 +36179,7 @@ module.exports = {"setting":{"title":"排序","order":10},"catalogs":[],"content
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242379925
+      // 1527495167825
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -36154,22 +36225,13 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     var scheme = {
         name: {
             title: '姓名',
-            template: function template(data) {
-                return data.name;
-            },
             sortable: true
         },
-        time: {
-            title: '时间',
-            template: function template(data) {
-                return data.time;
-            },
+        age: {
+            title: '年龄',
             sortable: true
         }
     };
-    var defaultSort = { key: 'time', type: 'asc' };
-    var data1 = [{ name: 'a默认按照时间升序', time: '2' }, { name: 'b 箭头方向默认的是向上的', time: '1' }];
-    var data2 = [{ name: 'a无默认排序', time: '2' }, { name: 'b 观察箭头方向都是双向的', time: '1' }];
 
     return h('div', null, [h(_table2.default, { 'scheme': function () {
             try {
@@ -36179,41 +36241,47 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             }
         }.call(this), 'data': function () {
             try {
-                return [data1][0];
+                return [self.get('data')][0];
             } catch (e) {
                 _e(e);
             }
         }.call(this), 'sort': function () {
             try {
-                return [defaultSort][0];
+                return [self.get('sort')][0];
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'children': null, '_context': $this }), h(_table2.default, { 'scheme': function () {
+        }.call(this), 'ev-$change:sort': function () {
             try {
-                return [scheme][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'data': function () {
-            try {
-                return [data2][0];
+                return [self._onSort][0];
             } catch (e) {
                 _e(e);
             }
         }.call(this), 'children': null, '_context': $this }), h(_table2.default, { 'data': function () {
             try {
-                return [data1][0];
+                return [self.get('data')][0];
             } catch (e) {
                 _e(e);
             }
         }.call(this), 'sort': function () {
             try {
-                return [defaultSort][0];
+                return [self.get('sort')][0];
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'children': [h(_table.TableColumn, { 'title': '姓名', 'key': 'name', 'children': null, '_context': $this }), h(_table.TableColumn, { 'title': '时间(标签形式定义排序)', 'key': 'time', 'sortable': function () {
+        }.call(this), 'ev-$change:sort': function () {
+            try {
+                return [self._onSort][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'children': [h(_table.TableColumn, { 'title': '姓名', 'key': 'name', 'sortable': function () {
+                try {
+                    return [true][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'children': null, '_context': $this }), h(_table.TableColumn, { 'title': '年龄', 'key': 'age', 'sortable': function () {
                 try {
                     return [true][0];
                 } catch (e) {
@@ -36276,8 +36344,6 @@ var _index2 = __webpack_require__("./site/dist/components/table/demos/type/index
 
 var _index3 = _interopRequireDefault(_index2);
 
-__webpack_require__("./site/dist/components/table/demos/type/index.styl");
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
@@ -36334,21 +36400,7 @@ exports.default = _default;
 /***/ "./site/dist/components/table/demos/type/index.json":
 /***/ (function(module, exports) {
 
-module.exports = {"setting":{"title":"table的类型","order":11},"catalogs":[],"contents":"<p><code>type</code>：设置表格的类型，类型<code>String</code>，<code>&quot;default&quot;</code>(默认)</p>\n","codes":[{"language":"vdt","content":"import Table from 'kpc/components/table';\n\nvar scheme = {a: '类型'};\nvar data1 = [{a: 'defalut'}];\n\n\n<div class='no-data-template'>\n    <Table scheme={{scheme}} data={{data1}} />\n</div>"},{"language":"styl","content":".no-data-template\n   display: flex\n   .k-table-wrapper\n       margin-left: 10px"},{"language":"js","content":"import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"}],"index":123,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Table <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n\n<span class=\"hljs-keyword\">var</span> scheme = {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'类型'</span>};\n<span class=\"hljs-keyword\">var</span> data1 = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'defalut'</span>}];\n\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">'no-data-template'</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Table</span> <span class=\"hljs-attr\">scheme</span>=<span class=\"hljs-string\">{{scheme}}</span> <span class=\"hljs-attr\">data</span>=<span class=\"hljs-string\">{{data1}}</span> /&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span></code></pre>"},{"language":"styl","content":"<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.no-data-template</span>\n   <span class=\"hljs-attribute\">display</span>: flex\n   <span class=\"hljs-selector-class\">.k-table-wrapper</span>\n       <span class=\"hljs-attribute\">margin-left</span>: <span class=\"hljs-number\">10px</span></code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"}]}
-
-/***/ }),
-
-/***/ "./site/dist/components/table/demos/type/index.styl":
-/***/ (function(module, exports, __webpack_require__) {
-
-// removed by extract-text-webpack-plugin
-    if(false) {
-      // 1527242379942
-      var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
-      module.hot.dispose(cssReload);
-      module.hot.accept(undefined, cssReload);
-    }
-  
+module.exports = {"setting":{"title":"类型","order":11},"catalogs":[],"contents":"<p>通过<code>type</code>设置表格的类型：<code>default</code> | <code>border</code></p>\n","codes":[{"language":"vdt","content":"import Table from 'kpc/components/table';\n\nconst scheme = {a: '类型'};\nconst data = [{a: 'border类型'}];\n\n<Table scheme={{ scheme }} data={{ data }} type=\"border\" />"},{"language":"js","content":"import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"}],"index":123,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Table <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n\n<span class=\"hljs-keyword\">const</span> scheme = {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'类型'</span>};\n<span class=\"hljs-keyword\">const</span> data = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'border类型'</span>}];\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Table</span> <span class=\"hljs-attr\">scheme</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">scheme</span> }} <span class=\"hljs-attr\">data</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">data</span> }} <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"border\"</span> /&gt;</span></span></code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"}]}
 
 /***/ }),
 
@@ -36387,9 +36439,9 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
       parent = ($callee || {})._super;
 
   var scheme = { a: '类型' };
-  var data1 = [{ a: 'defalut' }];
+  var data = [{ a: 'border类型' }];
 
-  return h('div', null, h(_table2.default, { 'scheme': function () {
+  return h(_table2.default, { 'scheme': function () {
       try {
         return [scheme][0];
       } catch (e) {
@@ -36397,11 +36449,11 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
       }
     }.call(this), 'data': function () {
       try {
-        return [data1][0];
+        return [data][0];
       } catch (e) {
         _e(e);
       }
-    }.call(this), 'children': null, '_context': $this }), 'no-data-template');
+    }.call(this), 'type': 'border', 'children': null, '_context': $this });
 };
 
 var _table = __webpack_require__("./components/table/index.js");
@@ -36475,7 +36527,7 @@ module.exports = exports['default'];
 /***/ "./site/dist/components/table/index.json":
 /***/ (function(module, exports) {
 
-module.exports = {"setting":{"title":"表格","category":"组件","order":89},"catalogs":[],"contents":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1><h2 id='header-Table'>Table</h2><div class=\"k-table-wrapper k-border\">\n                    <table class=\"k-table\">\n                        <thead><tr>\n<th>属性</th>\n<th>说明</th>\n<th>类型</th>\n<th>默认值</th>\n</tr>\n</thead>\n                        <tbody><tr>\n<td>data</td>\n<td>表格数据</td>\n<td><code>Array</code></td>\n<td><code>[]</code></td>\n</tr>\n<tr>\n<td>scheme</td>\n<td>表头信息</td>\n<td><code>Object</code></td>\n<td><code>{}</code></td>\n</tr>\n<tr>\n<td>checkType</td>\n<td>框的类型: 单选 radio , 复选 checkbox ,  没有 none</td>\n<td><code>String</code></td>\n<td><code>&quot;checkbox&quot;</code></td>\n</tr>\n<tr>\n<td>noDataTemplate</td>\n<td>当没有数据的时候展示信息</td>\n<td><code>String</code> &#124; <code>vNode</code></td>\n<td><code>&quot;/(ㄒoㄒ)/~~ 没有找到亲要的数据哦~&quot;</code></td>\n</tr>\n<tr>\n<td>fixHeader</td>\n<td>表头固定</td>\n<td><code>Number</code></td>\n<td><code>false</code></td>\n</tr>\n<tr>\n<td>rowKey</td>\n<td>设置行的key</td>\n<td><code>Function</code></td>\n<td>function(value, index) {  return <code>index</code>; }</td>\n</tr>\n<tr>\n<td>checkedKeys</td>\n<td>通过<code>key</code>数组来指定哪些行被选中（针对多选）</td>\n<td><code>Array</code></td>\n<td><code>[]</code></td>\n</tr>\n<tr>\n<td>checkedKey</td>\n<td>通过<code>key</code>指定哪行被选中（针对单选）</td>\n<td><code>String</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>resizable</td>\n<td>是否可以表头拖动</td>\n<td><code>Boolean</code></td>\n<td><code>false</code></td>\n</tr>\n<tr>\n<td>rowCheckable</td>\n<td>是否整行选中</td>\n<td><code>Boolean</code></td>\n<td><code>true</code></td>\n</tr>\n<tr>\n<td>rowClassName</td>\n<td>设置行的class</td>\n<td><code>Function</code></td>\n<td><code>function(value, index) {  }</code></td>\n</tr>\n<tr>\n<td>disableRow</td>\n<td>禁用某一行</td>\n<td><code>Function</code></td>\n<td><code>function(data, index) { return false }</code></td>\n</tr>\n<tr>\n<td>rowExpandable</td>\n<td>是否点击整行展开</td>\n<td><code>Boolean</code></td>\n<td><code>true</code></td>\n</tr>\n<tr>\n<td>expand</td>\n<td>展开条件</td>\n<td><code>Function</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>expandedKeys</td>\n<td>哪些行展开</td>\n<td><code>Array</code></td>\n<td><code>[]</code></td>\n</tr>\n<tr>\n<td>type</td>\n<td>类型</td>\n<td><code>String</code></td>\n<td><code>&quot;default&quot;</code></td>\n</tr>\n<tr>\n<td>sort</td>\n<td>排序</td>\n<td><code>Object</code></td>\n<td><code>{}</code></td>\n</tr>\n<tr>\n<td>group</td>\n<td>分组</td>\n<td><code>Object</code></td>\n<td><code>{}</code></td>\n</tr>\n<tr>\n<td>minColWidth</td>\n<td>指定所有列拖动时的最小宽度</td>\n<td><code>Number</code></td>\n<td><code>40</code></td>\n</tr>\n</tbody>\n                    </table>\n                </div><h2 id='header-TableColumn'>TableColumn</h2><p>除了通过<code>Table</code>的<code>scheme</code>属性指定表格的结构外，还以通过<code>TableColumn</code>来指定</p>\n<div class=\"k-table-wrapper k-border\">\n                    <table class=\"k-table\">\n                        <thead><tr>\n<th>属性</th>\n<th>说明</th>\n<th>类型</th>\n<th>默认值</th>\n</tr>\n</thead>\n                        <tbody><tr>\n<td>title</td>\n<td>标题</td>\n<td><code>String</code></td>\n<td><code>&quot;&quot;</code></td>\n</tr>\n<tr>\n<td>template</td>\n<td>指定当前列，单元格渲染模板函数</td>\n<td><code>Function</code></td>\n<td><code>(data, index) =&gt; {}</code>,</td>\n</tr>\n<tr>\n<td>key</td>\n<td>指定当前列的<code>key</code>，<strong>必须指定</strong></td>\n<td><code>String</code></td>\n<td><code>&quot;&quot;</code></td>\n</tr>\n<tr>\n<td>sortable</td>\n<td>是否可排序</td>\n<td><code>Boolean</code></td>\n<td><code>false</code></td>\n</tr>\n<tr>\n<td>width</td>\n<td>列宽，可以指定百分比或像素(不需要加单位)</td>\n<td><code>String</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>group</td>\n<td>指定分组数组，每一项格式为<code>{value: &#39;选中后的值&#39;, label: &#39;展示的文案&#39;}</code></td>\n<td><code>Array&lt;Object&gt;</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>multiple</td>\n<td>分组是否支持多选</td>\n<td><code>Boolean</code></td>\n<td><code>false</code></td>\n</tr>\n<tr>\n<td>minWidth</td>\n<td>指定当前列拖动时的最小宽度，优先级高于<code>Table</code>的<code>minColWidth</code></td>\n<td><code>Number</code></td>\n<td><code>40</code></td>\n</tr>\n</tbody>\n                    </table>\n                </div><h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1><h2 id='header-Table'>Table</h2><div class=\"k-table-wrapper k-border\">\n                    <table class=\"k-table\">\n                        <thead><tr>\n<th>名称</th>\n<th>说明</th>\n</tr>\n</thead>\n                        <tbody><tr>\n<td>no-data</td>\n<td>自定义无数据展示模板</td>\n</tr>\n</tbody>\n                    </table>\n                </div><h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1><h2 id='header-Table'>Table</h2><div class=\"k-table-wrapper k-border\">\n                    <table class=\"k-table\">\n                        <thead><tr>\n<th>方法名</th>\n<th>说明</th>\n<th>参数</th>\n<th>返回值</th>\n</tr>\n</thead>\n                        <tbody><tr>\n<td>getCheckedData</td>\n<td>获取选中数据信息</td>\n<td>-</td>\n<td><code>Array</code></td>\n</tr>\n<tr>\n<td>checkAll</td>\n<td>全部选中</td>\n<td>-</td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>uncheckAll</td>\n<td>全不选中</td>\n<td>-</td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>isCheckAll</td>\n<td>判断是否全选</td>\n<td>-</td>\n<td><code>Boolean</code></td>\n</tr>\n<tr>\n<td>isChecked</td>\n<td>判断某行是否选中</td>\n<td><code>key</code></td>\n<td><code>Boolean</code></td>\n</tr>\n<tr>\n<td>checkRow</td>\n<td>选中某行</td>\n<td><code>key</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>uncheckRow</td>\n<td>取消选中某行</td>\n<td><code>key</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>expandRow</td>\n<td>展开某行</td>\n<td><code>key</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>shrinkRow</td>\n<td>收起某行</td>\n<td><code>key</code></td>\n<td><code>undefined</code></td>\n</tr>\n</tbody>\n                    </table>\n                </div><h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1><h2 id='header-Table'>Table</h2><div class=\"k-table-wrapper k-border\">\n                    <table class=\"k-table\">\n                        <thead><tr>\n<th>事件名</th>\n<th>说明</th>\n<th>参数</th>\n</tr>\n</thead>\n                        <tbody><tr>\n<td>$change:checked</td>\n<td>选中的数据变化会触发的事件</td>\n<td><code>instance, newValue, oldValue</code></td>\n</tr>\n</tbody>\n                    </table>\n                </div>","codes":[{"language":"js","content":"import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"}],"index":132,"sideBars":{"undefined":[{"title":"快速开始","path":"docs/getting-started.md","children":[{"title":"准备工作","path":"#header-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C","level":1,"content":"<h1 id='header-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C'>准备工作</h1>","text":"准备工作","children":[]},{"title":"使用脚手架","path":"#header-%E4%BD%BF%E7%94%A8%E8%84%9A%E6%89%8B%E6%9E%B6","level":1,"content":"<h1 id='header-%E4%BD%BF%E7%94%A8%E8%84%9A%E6%89%8B%E6%9E%B6'>使用脚手架</h1>","text":"使用脚手架","children":[]},{"title":"手动引入","path":"#header-%E6%89%8B%E5%8A%A8%E5%BC%95%E5%85%A5","level":1,"content":"<h1 id='header-%E6%89%8B%E5%8A%A8%E5%BC%95%E5%85%A5'>手动引入</h1>","text":"手动引入","children":[{"title":"单文件构建版","path":"#header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88","level":2,"content":"<h2 id='header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88'>单文件构建版</h2>","text":"单文件构建版","children":[]},{"title":"多文件构建版","path":"#header-%E5%A4%9A%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88","level":2,"content":"<h2 id='header-%E5%A4%9A%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88'>多文件构建版</h2>","text":"多文件构建版","children":[]},{"title":"多文件半构建版","path":"#header-%E5%A4%9A%E6%96%87%E4%BB%B6%E5%8D%8A%E6%9E%84%E5%BB%BA%E7%89%88","level":2,"content":"<h2 id='header-%E5%A4%9A%E6%96%87%E4%BB%B6%E5%8D%8A%E6%9E%84%E5%BB%BA%E7%89%88'>多文件半构建版</h2>","text":"多文件半构建版","children":[]}]}]},{"title":"Vue中使用","path":"docs/vue.md","children":[{"title":"语法说明","path":"#header-%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E","level":1,"content":"<h1 id='header-%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E'>语法说明</h1>","text":"语法说明","children":[]},{"title":"安装依赖","path":"#header-%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96","level":1,"content":"<h1 id='header-%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96'>安装依赖</h1>","text":"安装依赖","children":[]},{"title":"配置<code>webpack.config.js</code>","path":"#header-%E9%85%8D%E7%BD%AEwebpack.config.js","level":1,"content":"<h1 id='header-%E9%85%8D%E7%BD%AEwebpack.config.js'>配置<code>webpack.config.js</code></h1>","text":"配置<code>webpack.config.js</code>","children":[]},{"title":"全量引入","path":"#header-%E5%85%A8%E9%87%8F%E5%BC%95%E5%85%A5","level":1,"content":"<h1 id='header-%E5%85%A8%E9%87%8F%E5%BC%95%E5%85%A5'>全量引入</h1>","text":"全量引入","children":[]},{"title":"按需引入","path":"#header-%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5","level":1,"content":"<h1 id='header-%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5'>按需引入</h1>","text":"按需引入","children":[]}]},{"title":"定制主题","path":"docs/theme.md","children":[{"title":"配置<code>webpack.config.js</code>","path":"#header-%E9%85%8D%E7%BD%AEwebpack.config.js","level":1,"content":"<h1 id='header-%E9%85%8D%E7%BD%AEwebpack.config.js'>配置<code>webpack.config.js</code></h1>","text":"配置<code>webpack.config.js</code>","children":[]},{"title":"定义主题","path":"#header-%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A2%98","level":1,"content":"<h1 id='header-%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A2%98'>定义主题</h1>","text":"定义主题","children":[{"title":"修改变量","path":"#header-%E4%BF%AE%E6%94%B9%E5%8F%98%E9%87%8F","level":2,"content":"<h2 id='header-%E4%BF%AE%E6%94%B9%E5%8F%98%E9%87%8F'>修改变量</h2>","text":"修改变量","children":[]},{"title":"添加新样式","path":"#header-%E6%B7%BB%E5%8A%A0%E6%96%B0%E6%A0%B7%E5%BC%8F","level":2,"content":"<h2 id='header-%E6%B7%BB%E5%8A%A0%E6%96%B0%E6%A0%B7%E5%BC%8F'>添加新样式</h2>","text":"添加新样式","children":[{"title":"指定<code>$theme-dir</code>","path":"#header-%E6%8C%87%E5%AE%9A%24theme-dir","level":3,"content":"<h3 id='header-%E6%8C%87%E5%AE%9A%24theme-dir'>指定<code>$theme-dir</code></h3>","text":"指定<code>$theme-dir</code>","children":[]}]}]},{"title":"发布主题","path":"#header-%E5%8F%91%E5%B8%83%E4%B8%BB%E9%A2%98","level":1,"content":"<h1 id='header-%E5%8F%91%E5%B8%83%E4%B8%BB%E9%A2%98'>发布主题</h1>","text":"发布主题","children":[]}]},{"title":"国际化","path":"docs/i18n.md","children":[{"title":"单文件构建版","path":"#header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88","level":1,"content":"<h1 id='header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88'>单文件构建版</h1>","text":"单文件构建版","children":[]},{"title":"通过webpack引入","path":"#header-%E9%80%9A%E8%BF%87webpack%E5%BC%95%E5%85%A5","level":1,"content":"<h1 id='header-%E9%80%9A%E8%BF%87webpack%E5%BC%95%E5%85%A5'>通过webpack引入</h1>","text":"通过webpack引入","children":[]}]},{"title":"字体icon","path":"docs/icon.md","children":[]},{"title":"更新日志","path":"docs/changelog.md","children":[{"children":[{"title":"v0.2.0","path":"#header-v0.2.0","level":2,"content":"<h2 id='header-v0.2.0'>v0.2.0</h2>","text":"v0.2.0","children":[]},{"title":"v0.1.0","path":"#header-v0.1.0","level":2,"content":"<h2 id='header-v0.1.0'>v0.1.0</h2>","text":"v0.1.0","children":[]}]}]}],"组件":[{"title":"按钮","path":"components/button/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[{"title":"Button","path":"#header-Button","level":2,"content":"<h2 id='header-Button'>Button</h2>","text":"Button","children":[]},{"title":"ButtonGroup","path":"#header-ButtonGroup","level":2,"content":"<h2 id='header-ButtonGroup'>ButtonGroup</h2>","text":"ButtonGroup","children":[]}]},{"title":"方法","path":"#header-%E6%96%B9%E6%B3%95","level":1,"content":"<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>","text":"方法","children":[{"title":"Button","path":"#header-Button","level":2,"content":"<h2 id='header-Button'>Button</h2>","text":"Button","children":[]}]}]},{"title":"栅格","path":"components/grid/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[{"title":"Row","path":"#header-Row","level":2,"content":"<h2 id='header-Row'>Row</h2>","text":"Row","children":[]},{"title":"Col","path":"#header-Col","level":2,"content":"<h2 id='header-Col'>Col</h2>","text":"Col","children":[]}]}]},{"title":"输入框","path":"components/input/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[]},{"title":"扩展点","path":"#header-%E6%89%A9%E5%B1%95%E7%82%B9","level":1,"content":"<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>","text":"扩展点","children":[]},{"title":"事件","path":"#header-%E4%BA%8B%E4%BB%B6","level":1,"content":"<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>","text":"事件","children":[]}]},{"title":"单选框","path":"components/radio/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[]}]},{"title":"复选框","path":"components/checkbox/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[]}]},{"title":"选择框","path":"components/select/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[{"title":"Select","path":"#header-Select","level":2,"content":"<h2 id='header-Select'>Select</h2>","text":"Select","children":[]},{"title":"Option","path":"#header-Option","level":2,"content":"<h2 id='header-Option'>Option</h2>","text":"Option","children":[]}]}]},{"title":"数字输入框","path":"components/spinner/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[]}]},{"title":"日期选择","path":"components/datepicker/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[]}]},{"title":"滑块","path":"components/slider/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[]}]},{"title":"表单","path":"components/form/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[{"title":"FormItem","path":"#header-FormItem","level":2,"content":"<h2 id='header-FormItem'>FormItem</h2>","text":"FormItem","children":[]}]},{"title":"扩展点","path":"#header-%E6%89%A9%E5%B1%95%E7%82%B9","level":1,"content":"<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>","text":"扩展点","children":[{"title":"FormItem","path":"#header-FormItem","level":2,"content":"<h2 id='header-FormItem'>FormItem</h2>","text":"FormItem","children":[]}]},{"title":"事件","path":"#header-%E4%BA%8B%E4%BB%B6","level":1,"content":"<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>","text":"事件","children":[{"title":"Form","path":"#header-Form","level":2,"content":"<h2 id='header-Form'>Form</h2>","text":"Form","children":[]}]},{"title":"方法","path":"#header-%E6%96%B9%E6%B3%95","level":1,"content":"<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>","text":"方法","children":[{"title":"Form","path":"#header-Form","level":2,"content":"<h2 id='header-Form'>Form</h2>","text":"Form","children":[]}]},{"title":"静态方法","path":"#header-%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95","level":1,"content":"<h1 id='header-%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95'>静态方法</h1>","text":"静态方法","children":[{"title":"Form","path":"#header-Form","level":2,"content":"<h2 id='header-Form'>Form</h2>","text":"Form","children":[]}]}]},{"title":"弹窗","path":"components/dialog/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[]},{"title":"扩展点","path":"#header-%E6%89%A9%E5%B1%95%E7%82%B9","level":1,"content":"<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>","text":"扩展点","children":[]},{"title":"方法","path":"#header-%E6%96%B9%E6%B3%95","level":1,"content":"<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>","text":"方法","children":[]},{"title":"事件","path":"#header-%E4%BA%8B%E4%BB%B6","level":1,"content":"<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>","text":"事件","children":[]}]},{"title":"下拉菜单","path":"components/dropdown/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[{"title":"Dropdown","path":"#header-Dropdown","level":2,"content":"<h2 id='header-Dropdown'>Dropdown</h2>","text":"Dropdown","children":[]},{"title":"DropdownItem","path":"#header-DropdownItem","level":2,"content":"<h2 id='header-DropdownItem'>DropdownItem</h2>","text":"DropdownItem","children":[]},{"title":"事件","path":"#header-%E4%BA%8B%E4%BB%B6","level":2,"content":"<h2 id='header-%E4%BA%8B%E4%BB%B6'>事件</h2>","text":"事件","children":[]},{"title":"DropdownItem","path":"#header-DropdownItem","level":2,"content":"<h2 id='header-DropdownItem'>DropdownItem</h2>","text":"DropdownItem","children":[]}]}]},{"title":"全局提示","path":"components/message/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[]},{"title":"静态方法","path":"#header-%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95","level":1,"content":"<h1 id='header-%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95'>静态方法</h1>","text":"静态方法","children":[]}]},{"title":"提示弹层","path":"components/tooltip/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[]}]},{"title":"进度条","path":"components/progress/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[]}]},{"title":"步骤条","path":"components/steps/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[{"title":"Steps","path":"#header-Steps","level":2,"content":"<h2 id='header-Steps'>Steps</h2>","text":"Steps","children":[]},{"title":"Step","path":"#header-Step","level":2,"content":"<h2 id='header-Step'>Step</h2>","text":"Step","children":[]}]}]},{"title":"开关","path":"components/switch/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[]},{"title":"扩展点","path":"#header-%E6%89%A9%E5%B1%95%E7%82%B9","level":1,"content":"<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>","text":"扩展点","children":[]},{"title":"方法","path":"#header-%E6%96%B9%E6%B3%95","level":1,"content":"<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>","text":"方法","children":[]}]},{"title":"面包屑","path":"components/breadcrumb/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[{"title":"Breadcrumb","path":"#header-Breadcrumb","level":2,"content":"<h2 id='header-Breadcrumb'>Breadcrumb</h2>","text":"Breadcrumb","children":[]},{"title":"BreadcrumbItem","path":"#header-BreadcrumbItem","level":2,"content":"<h2 id='header-BreadcrumbItem'>BreadcrumbItem</h2>","text":"BreadcrumbItem","children":[]}]}]},{"title":"分页","path":"components/pagination/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[]},{"title":"方法","path":"#header-%E6%96%B9%E6%B3%95","level":1,"content":"<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>","text":"方法","children":[{"title":"Pagination","path":"#header-Pagination","level":2,"content":"<h2 id='header-Pagination'>Pagination</h2>","text":"Pagination","children":[]}]}]},{"title":"表格","path":"components/table/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[{"title":"Table","path":"#header-Table","level":2,"content":"<h2 id='header-Table'>Table</h2>","text":"Table","children":[]},{"title":"TableColumn","path":"#header-TableColumn","level":2,"content":"<h2 id='header-TableColumn'>TableColumn</h2>","text":"TableColumn","children":[]}]},{"title":"扩展点","path":"#header-%E6%89%A9%E5%B1%95%E7%82%B9","level":1,"content":"<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>","text":"扩展点","children":[{"title":"Table","path":"#header-Table","level":2,"content":"<h2 id='header-Table'>Table</h2>","text":"Table","children":[]}]},{"title":"方法","path":"#header-%E6%96%B9%E6%B3%95","level":1,"content":"<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>","text":"方法","children":[{"title":"Table","path":"#header-Table","level":2,"content":"<h2 id='header-Table'>Table</h2>","text":"Table","children":[]}]},{"title":"事件","path":"#header-%E4%BA%8B%E4%BB%B6","level":1,"content":"<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>","text":"事件","children":[{"title":"Table","path":"#header-Table","level":2,"content":"<h2 id='header-Table'>Table</h2>","text":"Table","children":[]}]}]},{"title":"标签","path":"components/tabs/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[{"title":"Tabs","path":"#header-Tabs","level":2,"content":"<h2 id='header-Tabs'>Tabs</h2>","text":"Tabs","children":[]},{"title":"Tab","path":"#header-Tab","level":2,"content":"<h2 id='header-Tab'>Tab</h2>","text":"Tab","children":[]}]}]},{"title":"穿梭框","path":"components/transfer/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[]}]},{"title":"可编辑文本","path":"components/editable/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[]},{"title":"事件","path":"#header-%E4%BA%8B%E4%BB%B6","level":1,"content":"<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>","text":"事件","children":[]}]}]},"highlighted":[{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"}]}
+module.exports = {"setting":{"title":"表格","category":"组件","order":89},"catalogs":[],"contents":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1><h2 id='header-Table'>Table</h2><div class=\"k-table-wrapper k-border\">\n                    <table class=\"k-table\">\n                        <thead><tr>\n<th>属性</th>\n<th>说明</th>\n<th>类型</th>\n<th>默认值</th>\n</tr>\n</thead>\n                        <tbody><tr>\n<td>data</td>\n<td>表格数据</td>\n<td><code>Array</code></td>\n<td><code>[]</code></td>\n</tr>\n<tr>\n<td>scheme</td>\n<td>定义表格结构：表头，单元格内容</td>\n<td><code>Object</code></td>\n<td><code>{}</code></td>\n</tr>\n<tr>\n<td>checkType</td>\n<td>当行可选择时，定义选择的类型: 单选 <code>&quot;radio&quot;</code> , 复选 <code>&quot;checkbox&quot;</code>, 不可选<code>&quot;none&quot;</code></td>\n<td><code>&quot;checkbox&quot;</code> &#124; <code>&quot;radio&quot;</code> &#124; <code>&quot;none&quot;</code></td>\n<td><code>&quot;checkbox&quot;</code></td>\n</tr>\n<tr>\n<td>noDataTemplate</td>\n<td>当没有数据的时候展示的内容</td>\n<td><code>String</code> &#124; <code>vNode</code></td>\n<td><code>&quot;/(ㄒoㄒ)/~~ 没有找到亲要的数据哦~&quot;</code></td>\n</tr>\n<tr>\n<td>fixHeader</td>\n<td>表头固定，给定需要固定高度的具体数值，当超出改值时，展示滚动条</td>\n<td><code>Number</code></td>\n<td><code>false</code></td>\n</tr>\n<tr>\n<td>rowKey</td>\n<td>设置行的key</td>\n<td><code>Function</code></td>\n<td>function(value, index) {  return <code>index</code>; }</td>\n</tr>\n<tr>\n<td>checkedKeys</td>\n<td>通过<code>key</code>数组来指定哪些行被选中（针对多选）</td>\n<td><code>Array</code></td>\n<td><code>[]</code></td>\n</tr>\n<tr>\n<td>checkedKey</td>\n<td>通过<code>key</code>指定哪行被选中（针对单选）</td>\n<td><code>String</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>resizable</td>\n<td>是否可以表头拖动</td>\n<td><code>Boolean</code></td>\n<td><code>false</code></td>\n</tr>\n<tr>\n<td>rowCheckable</td>\n<td>当行可选时，是否点击该行任意区域都可选中</td>\n<td><code>Boolean</code></td>\n<td><code>true</code></td>\n</tr>\n<tr>\n<td>rowClassName</td>\n<td>通过一个函数定义行的<code>className</code>，该函数会传入该行数据和索引当做参数，返回的字符串将被设为该行<code>className</code></td>\n<td><code>Function</code></td>\n<td><code>function(value, index) {  }</code></td>\n</tr>\n<tr>\n<td>disableRow</td>\n<td>定义行禁用可选的逻辑，返回<code>true</code>，则改行被禁用选择</td>\n<td><code>Function</code></td>\n<td><code>function(data, index) { return false }</code></td>\n</tr>\n<tr>\n<td>rowExpandable</td>\n<td>是否点击改行任意区域即展开</td>\n<td><code>Boolean</code></td>\n<td><code>true</code></td>\n</tr>\n<tr>\n<td>expand</td>\n<td>通过函数指定行展开后要展示的模板内容</td>\n<td><code>Function</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>expandedKeys</td>\n<td>通过<code>key</code>来指定哪些行展开</td>\n<td><code>Array</code></td>\n<td><code>[]</code></td>\n</tr>\n<tr>\n<td>type</td>\n<td>表格类型，默认左右无边框，<code>&quot;border&quot;</code>类型会添加边框</td>\n<td><code>&quot;default&quot;</code> &#124; <code>&quot;border&quot;</code></td>\n<td><code>&quot;default&quot;</code></td>\n</tr>\n<tr>\n<td>sort</td>\n<td>排序，详见示例说明</td>\n<td><code>Object</code></td>\n<td><code>{}</code></td>\n</tr>\n<tr>\n<td>group</td>\n<td>分组，详见示例说明</td>\n<td><code>Object</code></td>\n<td><code>{}</code></td>\n</tr>\n<tr>\n<td>minColWidth</td>\n<td>指定所有列拖动时的最小宽度</td>\n<td><code>Number</code></td>\n<td><code>40</code></td>\n</tr>\n</tbody>\n                    </table>\n                </div><h2 id='header-TableColumn'>TableColumn</h2><p>除了通过<code>Table</code>的<code>scheme</code>属性指定表格的结构外，还以通过<code>TableColumn</code>来指定，它的属性值跟<code>scheme</code>数据结构一一对应</p>\n<div class=\"k-table-wrapper k-border\">\n                    <table class=\"k-table\">\n                        <thead><tr>\n<th>属性</th>\n<th>说明</th>\n<th>类型</th>\n<th>默认值</th>\n</tr>\n</thead>\n                        <tbody><tr>\n<td>title</td>\n<td>标题</td>\n<td><code>String</code></td>\n<td><code>&quot;&quot;</code></td>\n</tr>\n<tr>\n<td>template</td>\n<td>指定当前列，单元格渲染模板函数</td>\n<td><code>Function</code></td>\n<td><code>(data, index) =&gt; {}</code>,</td>\n</tr>\n<tr>\n<td>key</td>\n<td>指定当前列的<code>key</code>，<strong>必须指定，并且为了保证顺序正确，不要以数字开头</strong></td>\n<td><code>String</code></td>\n<td><code>&quot;&quot;</code></td>\n</tr>\n<tr>\n<td>sortable</td>\n<td>是否可排序</td>\n<td><code>Boolean</code></td>\n<td><code>false</code></td>\n</tr>\n<tr>\n<td>width</td>\n<td>列宽，可以指定百分比或像素(像素不需要加单位)</td>\n<td><code>String</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>group</td>\n<td>指定分组数组，每一项格式为<code>{value: &#39;选中后的值&#39;, label: &#39;展示的文案&#39;}</code></td>\n<td><code>Array&lt;Object&gt;</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>multiple</td>\n<td>分组是否支持多选</td>\n<td><code>Boolean</code></td>\n<td><code>false</code></td>\n</tr>\n<tr>\n<td>minWidth</td>\n<td>指定当前列拖动时的最小宽度，优先级高于<code>Table</code>的<code>minColWidth</code></td>\n<td><code>Number</code></td>\n<td><code>40</code></td>\n</tr>\n</tbody>\n                    </table>\n                </div><h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1><h2 id='header-Table'>Table</h2><div class=\"k-table-wrapper k-border\">\n                    <table class=\"k-table\">\n                        <thead><tr>\n<th>名称</th>\n<th>说明</th>\n</tr>\n</thead>\n                        <tbody><tr>\n<td>no-data</td>\n<td>自定义无数据展示模板</td>\n</tr>\n</tbody>\n                    </table>\n                </div><h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1><h2 id='header-Table'>Table</h2><div class=\"k-table-wrapper k-border\">\n                    <table class=\"k-table\">\n                        <thead><tr>\n<th>方法名</th>\n<th>说明</th>\n<th>参数</th>\n<th>返回值</th>\n</tr>\n</thead>\n                        <tbody><tr>\n<td>getCheckedData</td>\n<td>获取选中数据信息</td>\n<td>-</td>\n<td><code>Array</code></td>\n</tr>\n<tr>\n<td>checkAll</td>\n<td>全部选中</td>\n<td>-</td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>uncheckAll</td>\n<td>全不选中</td>\n<td>-</td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>isCheckAll</td>\n<td>判断是否全选</td>\n<td>-</td>\n<td><code>Boolean</code></td>\n</tr>\n<tr>\n<td>isChecked</td>\n<td>判断某行是否选中</td>\n<td><code>key</code></td>\n<td><code>Boolean</code></td>\n</tr>\n<tr>\n<td>checkRow</td>\n<td>选中某行</td>\n<td><code>key</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>uncheckRow</td>\n<td>取消选中某行</td>\n<td><code>key</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>expandRow</td>\n<td>展开某行</td>\n<td><code>key</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>shrinkRow</td>\n<td>收起某行</td>\n<td><code>key</code></td>\n<td><code>undefined</code></td>\n</tr>\n</tbody>\n                    </table>\n                </div><h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1><h2 id='header-Table'>Table</h2><div class=\"k-table-wrapper k-border\">\n                    <table class=\"k-table\">\n                        <thead><tr>\n<th>事件名</th>\n<th>说明</th>\n<th>参数</th>\n</tr>\n</thead>\n                        <tbody><tr>\n<td>$change:checked</td>\n<td>选中的数据变化会触发的事件</td>\n<td><code>instance, newValue, oldValue</code></td>\n</tr>\n</tbody>\n                    </table>\n                </div>","codes":[{"language":"js","content":"import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"}],"index":132,"sideBars":{"undefined":[{"title":"快速开始","path":"docs/getting-started.md","children":[{"title":"准备工作","path":"#header-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C","level":1,"content":"<h1 id='header-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C'>准备工作</h1>","text":"准备工作","children":[]},{"title":"使用脚手架","path":"#header-%E4%BD%BF%E7%94%A8%E8%84%9A%E6%89%8B%E6%9E%B6","level":1,"content":"<h1 id='header-%E4%BD%BF%E7%94%A8%E8%84%9A%E6%89%8B%E6%9E%B6'>使用脚手架</h1>","text":"使用脚手架","children":[]},{"title":"手动引入","path":"#header-%E6%89%8B%E5%8A%A8%E5%BC%95%E5%85%A5","level":1,"content":"<h1 id='header-%E6%89%8B%E5%8A%A8%E5%BC%95%E5%85%A5'>手动引入</h1>","text":"手动引入","children":[{"title":"单文件构建版","path":"#header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88","level":2,"content":"<h2 id='header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88'>单文件构建版</h2>","text":"单文件构建版","children":[]},{"title":"多文件构建版","path":"#header-%E5%A4%9A%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88","level":2,"content":"<h2 id='header-%E5%A4%9A%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88'>多文件构建版</h2>","text":"多文件构建版","children":[]},{"title":"多文件半构建版","path":"#header-%E5%A4%9A%E6%96%87%E4%BB%B6%E5%8D%8A%E6%9E%84%E5%BB%BA%E7%89%88","level":2,"content":"<h2 id='header-%E5%A4%9A%E6%96%87%E4%BB%B6%E5%8D%8A%E6%9E%84%E5%BB%BA%E7%89%88'>多文件半构建版</h2>","text":"多文件半构建版","children":[]}]}]},{"title":"Vue中使用","path":"docs/vue.md","children":[{"title":"语法说明","path":"#header-%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E","level":1,"content":"<h1 id='header-%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E'>语法说明</h1>","text":"语法说明","children":[]},{"title":"安装依赖","path":"#header-%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96","level":1,"content":"<h1 id='header-%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96'>安装依赖</h1>","text":"安装依赖","children":[]},{"title":"配置<code>webpack.config.js</code>","path":"#header-%E9%85%8D%E7%BD%AEwebpack.config.js","level":1,"content":"<h1 id='header-%E9%85%8D%E7%BD%AEwebpack.config.js'>配置<code>webpack.config.js</code></h1>","text":"配置<code>webpack.config.js</code>","children":[]},{"title":"全量引入","path":"#header-%E5%85%A8%E9%87%8F%E5%BC%95%E5%85%A5","level":1,"content":"<h1 id='header-%E5%85%A8%E9%87%8F%E5%BC%95%E5%85%A5'>全量引入</h1>","text":"全量引入","children":[]},{"title":"按需引入","path":"#header-%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5","level":1,"content":"<h1 id='header-%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5'>按需引入</h1>","text":"按需引入","children":[]}]},{"title":"定制主题","path":"docs/theme.md","children":[{"title":"配置<code>webpack.config.js</code>","path":"#header-%E9%85%8D%E7%BD%AEwebpack.config.js","level":1,"content":"<h1 id='header-%E9%85%8D%E7%BD%AEwebpack.config.js'>配置<code>webpack.config.js</code></h1>","text":"配置<code>webpack.config.js</code>","children":[]},{"title":"定义主题","path":"#header-%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A2%98","level":1,"content":"<h1 id='header-%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A2%98'>定义主题</h1>","text":"定义主题","children":[{"title":"修改变量","path":"#header-%E4%BF%AE%E6%94%B9%E5%8F%98%E9%87%8F","level":2,"content":"<h2 id='header-%E4%BF%AE%E6%94%B9%E5%8F%98%E9%87%8F'>修改变量</h2>","text":"修改变量","children":[]},{"title":"添加新样式","path":"#header-%E6%B7%BB%E5%8A%A0%E6%96%B0%E6%A0%B7%E5%BC%8F","level":2,"content":"<h2 id='header-%E6%B7%BB%E5%8A%A0%E6%96%B0%E6%A0%B7%E5%BC%8F'>添加新样式</h2>","text":"添加新样式","children":[{"title":"指定<code>$theme-dir</code>","path":"#header-%E6%8C%87%E5%AE%9A%24theme-dir","level":3,"content":"<h3 id='header-%E6%8C%87%E5%AE%9A%24theme-dir'>指定<code>$theme-dir</code></h3>","text":"指定<code>$theme-dir</code>","children":[]}]}]},{"title":"发布主题","path":"#header-%E5%8F%91%E5%B8%83%E4%B8%BB%E9%A2%98","level":1,"content":"<h1 id='header-%E5%8F%91%E5%B8%83%E4%B8%BB%E9%A2%98'>发布主题</h1>","text":"发布主题","children":[]}]},{"title":"国际化","path":"docs/i18n.md","children":[{"title":"单文件构建版","path":"#header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88","level":1,"content":"<h1 id='header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88'>单文件构建版</h1>","text":"单文件构建版","children":[]},{"title":"通过webpack引入","path":"#header-%E9%80%9A%E8%BF%87webpack%E5%BC%95%E5%85%A5","level":1,"content":"<h1 id='header-%E9%80%9A%E8%BF%87webpack%E5%BC%95%E5%85%A5'>通过webpack引入</h1>","text":"通过webpack引入","children":[]}]},{"title":"字体icon","path":"docs/icon.md","children":[]},{"title":"更新日志","path":"docs/changelog.md","children":[{"children":[{"title":"v0.2.0","path":"#header-v0.2.0","level":2,"content":"<h2 id='header-v0.2.0'>v0.2.0</h2>","text":"v0.2.0","children":[]},{"title":"v0.1.0","path":"#header-v0.1.0","level":2,"content":"<h2 id='header-v0.1.0'>v0.1.0</h2>","text":"v0.1.0","children":[]}]}]}],"组件":[{"title":"按钮","path":"components/button/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[{"title":"Button","path":"#header-Button","level":2,"content":"<h2 id='header-Button'>Button</h2>","text":"Button","children":[]},{"title":"ButtonGroup","path":"#header-ButtonGroup","level":2,"content":"<h2 id='header-ButtonGroup'>ButtonGroup</h2>","text":"ButtonGroup","children":[]}]},{"title":"方法","path":"#header-%E6%96%B9%E6%B3%95","level":1,"content":"<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>","text":"方法","children":[{"title":"Button","path":"#header-Button","level":2,"content":"<h2 id='header-Button'>Button</h2>","text":"Button","children":[]}]}]},{"title":"栅格","path":"components/grid/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[{"title":"Row","path":"#header-Row","level":2,"content":"<h2 id='header-Row'>Row</h2>","text":"Row","children":[]},{"title":"Col","path":"#header-Col","level":2,"content":"<h2 id='header-Col'>Col</h2>","text":"Col","children":[]}]}]},{"title":"输入框","path":"components/input/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[]},{"title":"扩展点","path":"#header-%E6%89%A9%E5%B1%95%E7%82%B9","level":1,"content":"<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>","text":"扩展点","children":[]},{"title":"事件","path":"#header-%E4%BA%8B%E4%BB%B6","level":1,"content":"<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>","text":"事件","children":[]}]},{"title":"单选框","path":"components/radio/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[]}]},{"title":"复选框","path":"components/checkbox/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[]}]},{"title":"选择框","path":"components/select/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[{"title":"Select","path":"#header-Select","level":2,"content":"<h2 id='header-Select'>Select</h2>","text":"Select","children":[]},{"title":"Option","path":"#header-Option","level":2,"content":"<h2 id='header-Option'>Option</h2>","text":"Option","children":[]}]}]},{"title":"数字输入框","path":"components/spinner/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[]}]},{"title":"日期选择","path":"components/datepicker/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[]}]},{"title":"滑块","path":"components/slider/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[]}]},{"title":"表单","path":"components/form/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[{"title":"FormItem","path":"#header-FormItem","level":2,"content":"<h2 id='header-FormItem'>FormItem</h2>","text":"FormItem","children":[]}]},{"title":"扩展点","path":"#header-%E6%89%A9%E5%B1%95%E7%82%B9","level":1,"content":"<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>","text":"扩展点","children":[{"title":"FormItem","path":"#header-FormItem","level":2,"content":"<h2 id='header-FormItem'>FormItem</h2>","text":"FormItem","children":[]}]},{"title":"事件","path":"#header-%E4%BA%8B%E4%BB%B6","level":1,"content":"<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>","text":"事件","children":[{"title":"Form","path":"#header-Form","level":2,"content":"<h2 id='header-Form'>Form</h2>","text":"Form","children":[]}]},{"title":"方法","path":"#header-%E6%96%B9%E6%B3%95","level":1,"content":"<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>","text":"方法","children":[{"title":"Form","path":"#header-Form","level":2,"content":"<h2 id='header-Form'>Form</h2>","text":"Form","children":[]}]},{"title":"静态方法","path":"#header-%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95","level":1,"content":"<h1 id='header-%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95'>静态方法</h1>","text":"静态方法","children":[{"title":"Form","path":"#header-Form","level":2,"content":"<h2 id='header-Form'>Form</h2>","text":"Form","children":[]}]}]},{"title":"弹窗","path":"components/dialog/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[]},{"title":"扩展点","path":"#header-%E6%89%A9%E5%B1%95%E7%82%B9","level":1,"content":"<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>","text":"扩展点","children":[]},{"title":"方法","path":"#header-%E6%96%B9%E6%B3%95","level":1,"content":"<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>","text":"方法","children":[]},{"title":"事件","path":"#header-%E4%BA%8B%E4%BB%B6","level":1,"content":"<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>","text":"事件","children":[]}]},{"title":"下拉菜单","path":"components/dropdown/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[{"title":"Dropdown","path":"#header-Dropdown","level":2,"content":"<h2 id='header-Dropdown'>Dropdown</h2>","text":"Dropdown","children":[]},{"title":"DropdownItem","path":"#header-DropdownItem","level":2,"content":"<h2 id='header-DropdownItem'>DropdownItem</h2>","text":"DropdownItem","children":[]},{"title":"事件","path":"#header-%E4%BA%8B%E4%BB%B6","level":2,"content":"<h2 id='header-%E4%BA%8B%E4%BB%B6'>事件</h2>","text":"事件","children":[]},{"title":"DropdownItem","path":"#header-DropdownItem","level":2,"content":"<h2 id='header-DropdownItem'>DropdownItem</h2>","text":"DropdownItem","children":[]}]}]},{"title":"全局提示","path":"components/message/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[]},{"title":"静态方法","path":"#header-%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95","level":1,"content":"<h1 id='header-%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95'>静态方法</h1>","text":"静态方法","children":[]}]},{"title":"提示弹层","path":"components/tooltip/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[]}]},{"title":"进度条","path":"components/progress/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[]}]},{"title":"步骤条","path":"components/steps/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[{"title":"Steps","path":"#header-Steps","level":2,"content":"<h2 id='header-Steps'>Steps</h2>","text":"Steps","children":[]},{"title":"Step","path":"#header-Step","level":2,"content":"<h2 id='header-Step'>Step</h2>","text":"Step","children":[]}]}]},{"title":"开关","path":"components/switch/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[]},{"title":"扩展点","path":"#header-%E6%89%A9%E5%B1%95%E7%82%B9","level":1,"content":"<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>","text":"扩展点","children":[]},{"title":"方法","path":"#header-%E6%96%B9%E6%B3%95","level":1,"content":"<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>","text":"方法","children":[]}]},{"title":"面包屑","path":"components/breadcrumb/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[{"title":"Breadcrumb","path":"#header-Breadcrumb","level":2,"content":"<h2 id='header-Breadcrumb'>Breadcrumb</h2>","text":"Breadcrumb","children":[]},{"title":"BreadcrumbItem","path":"#header-BreadcrumbItem","level":2,"content":"<h2 id='header-BreadcrumbItem'>BreadcrumbItem</h2>","text":"BreadcrumbItem","children":[]}]}]},{"title":"分页","path":"components/pagination/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[]},{"title":"方法","path":"#header-%E6%96%B9%E6%B3%95","level":1,"content":"<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>","text":"方法","children":[{"title":"Pagination","path":"#header-Pagination","level":2,"content":"<h2 id='header-Pagination'>Pagination</h2>","text":"Pagination","children":[]}]}]},{"title":"表格","path":"components/table/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[{"title":"Table","path":"#header-Table","level":2,"content":"<h2 id='header-Table'>Table</h2>","text":"Table","children":[]},{"title":"TableColumn","path":"#header-TableColumn","level":2,"content":"<h2 id='header-TableColumn'>TableColumn</h2>","text":"TableColumn","children":[]}]},{"title":"扩展点","path":"#header-%E6%89%A9%E5%B1%95%E7%82%B9","level":1,"content":"<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>","text":"扩展点","children":[{"title":"Table","path":"#header-Table","level":2,"content":"<h2 id='header-Table'>Table</h2>","text":"Table","children":[]}]},{"title":"方法","path":"#header-%E6%96%B9%E6%B3%95","level":1,"content":"<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>","text":"方法","children":[{"title":"Table","path":"#header-Table","level":2,"content":"<h2 id='header-Table'>Table</h2>","text":"Table","children":[]}]},{"title":"事件","path":"#header-%E4%BA%8B%E4%BB%B6","level":1,"content":"<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>","text":"事件","children":[{"title":"Table","path":"#header-Table","level":2,"content":"<h2 id='header-Table'>Table</h2>","text":"Table","children":[]}]}]},{"title":"标签","path":"components/tabs/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[{"title":"Tabs","path":"#header-Tabs","level":2,"content":"<h2 id='header-Tabs'>Tabs</h2>","text":"Tabs","children":[]},{"title":"Tab","path":"#header-Tab","level":2,"content":"<h2 id='header-Tab'>Tab</h2>","text":"Tab","children":[]}]}]},{"title":"穿梭框","path":"components/transfer/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[]}]},{"title":"可编辑文本","path":"components/editable/index.md","children":[{"title":"属性","path":"#header-%E5%B1%9E%E6%80%A7","level":1,"content":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>","text":"属性","children":[]},{"title":"事件","path":"#header-%E4%BA%8B%E4%BB%B6","level":1,"content":"<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>","text":"事件","children":[]}]}]},"highlighted":[{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"}]}
 
 /***/ }),
 
@@ -36801,7 +36853,7 @@ module.exports = {"setting":{"title":"基本用法","order":3},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242379855
+      // 1527495167756
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -38308,7 +38360,7 @@ module.exports = {"setting":{"title":"自定义渲染列表","order":1},"catalog
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242379812
+      // 1527495167716
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -39332,7 +39384,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242377812
+      // 1527495165589
       var cssReload = require("!../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -39631,7 +39683,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1527242378106
+      // 1527495165804
       var cssReload = require("!../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);

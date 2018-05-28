@@ -1,8 +1,8 @@
 import Table from 'kpc/components/table';
 
-var scheme = {a: '表头1', b: '表头2'};
-var data = [];
-var tip = <div>这里没有数据(自定义版本)</div>;
+const scheme = {a: '表头1', b: '表头2'};
+const data = [];
+const tip = <div>这里没有数据(自定义版本)</div>;
 
 <div class='no-data-template'>
     <Table scheme={{ scheme }} data={{ data }} />

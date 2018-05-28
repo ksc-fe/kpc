@@ -1,18 +1,18 @@
 {
     "setting": {
-        "title": "禁用行",
+        "title": "禁用行可选",
         "order": 7
     },
     "catalogs": [],
-    "contents": "<p><code>disableRow</code>：禁用某一行，类型<code>Function</code>，<code>function(data, index) { return false }</code>(默认)</p>\n<ul>\n<li>禁用的数据默认会在每一行的元素上有<code>k-disabled</code>样式</li>\n</ul>\n",
+    "contents": "<p><code>disableRow</code>：禁用某一行可选状态，类型：<code>Function</code>，默认：<code>function(data, index) { return false }</code>，该函数如果返回<code>true</code>，则表示禁用该行可选</p>\n<blockquote>\n<p>禁用的数据默认会在每一行的元素上有<code>k-disabled</code>样式</p>\n</blockquote>\n",
     "codes": [
         {
             "language": "vdt",
-            "content": "import Table from 'kpc/components/table';\n\nvar scheme = {a: '奇数行不可点击'};\nvar data = [{a: '1'}, {a: '2'}, {a: '3'}, {a: '4'}, {a: '5'}]\n\n\n<div class='no-data-template'>\n    <Table scheme={{ scheme }} data={{ data }} disableRow={{ function(data, index) {\n        if (index%2 != 0) {\n            return true;\n        }\n    }}}/>\n</div>"
+            "content": "import Table from 'kpc/components/table';\n\nconst scheme = {a: '奇数行不可点击'};\nconst data = [{a: '1'}, {a: '2'}, {a: '3'}, {a: '4'}, {a: '5'}]\n\n\n<Table scheme={{ scheme }} data={{ data }}\n    disableRow={{ (data, index) => index % 2 !== 0 }}\n/>"
         },
         {
             "language": "styl",
-            "content": ".no-data-template\n   .k-disabled\n       background-color: #dfdfdf"
+            "content": ".k-disabled\n   background-color: #d9d9d9"
         },
         {
             "language": "js",
@@ -23,11 +23,11 @@
     "highlighted": [
         {
             "language": "vdt",
-            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Table <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n\n<span class=\"hljs-keyword\">var</span> scheme = {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'奇数行不可点击'</span>};\n<span class=\"hljs-keyword\">var</span> data = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'1'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'2'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'3'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'4'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'5'</span>}]\n\n\n&lt;div <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span></span>=<span class=\"hljs-string\">'no-data-template'</span>&gt;\n    <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Table</span> <span class=\"hljs-attr\">scheme</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">scheme</span> }} <span class=\"hljs-attr\">data</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">data</span> }} <span class=\"hljs-attr\">disableRow</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">function</span>(<span class=\"hljs-attr\">data</span>, <span class=\"hljs-attr\">index</span>) {\n        <span class=\"hljs-attr\">if</span> (<span class=\"hljs-attr\">index</span>%<span class=\"hljs-attr\">2</span> != <span class=\"hljs-string\">0)</span> {\n            <span class=\"hljs-attr\">return</span> <span class=\"hljs-attr\">true</span>;\n        }\n    }}}/&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span></code></pre>"
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Table <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n\n<span class=\"hljs-keyword\">const</span> scheme = {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'奇数行不可点击'</span>};\n<span class=\"hljs-keyword\">const</span> data = [{<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'1'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'2'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'3'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'4'</span>}, {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'5'</span>}]\n\n\n&lt;Table scheme={{ scheme }} data={{ data }}\n    disableRow={{ (data, index) =&gt; index % <span class=\"hljs-number\">2</span> !== <span class=\"hljs-number\">0</span> }}\n/&gt;</code></pre>"
         },
         {
             "language": "styl",
-            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.no-data-template</span>\n   <span class=\"hljs-selector-class\">.k-disabled</span>\n       <span class=\"hljs-attribute\">background-color</span>: <span class=\"hljs-number\">#dfdfdf</span></code></pre>"
+            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-disabled</span>\n   <span class=\"hljs-attribute\">background-color</span>: <span class=\"hljs-number\">#d9d9d9</span></code></pre>"
         },
         {
             "language": "js",

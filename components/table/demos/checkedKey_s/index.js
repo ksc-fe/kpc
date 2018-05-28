@@ -11,5 +11,4 @@ export default class extends Intact {
     setRowKey(value, index) {
         return value.id;
     }
-
 }
