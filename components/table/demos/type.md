@@ -1,32 +1,15 @@
 ---
-title: table的类型
+title: 类型
 order: 11
 ---
 
-`type`：设置表格的类型，类型`String`，`"default"`(默认)
+通过`type`设置表格的类型：`default` | `border`
 
 ```vdt
 import Table from 'kpc/components/table';
 
-var scheme = {a: '类型'};
-var data1 = [{a: 'defalut'}];
+const scheme = {a: '类型'};
+const data = [{a: 'border类型'}];
 
-
-<div class='no-data-template'>
-    <Table scheme={{scheme}} data={{data1}} />
-</div>
+<Table scheme={{ scheme }} data={{ data }} type="border" />
 ```
-
-```styl
-.no-data-template
-   display: flex
-   .k-table-wrapper
-       margin-left: 10px
-```
-
-
-
-
-
-
-

@@ -3,55 +3,72 @@ title: 排序
 order: 10
 ---
 
-`sort`：排序，类型`Object`，`{}`(默认)
-* `sort`接收的对象包含两个属性,`key`表示你要排序的是哪一列，`type`表示需要将这一列升序还是降序排列。（`desc`降序，`asc`升序）
-* 如果希望某列可以排序的话，在定义它的`scheme`时，需要添加`sortable: true`键值对。
+通过`sort`属性来指定当前表格的排序方式。它的数据格式如下：
 
-另一种定义表头信息方式`<TableColumn sortable={{true}}></TableColumn>`
+`{ key: '当前排序的列的key', type: '当前排序方式（desc: 降序，asc: 升序）' }`
+
+当该列可排序时，只需要在定义表格结构的`scheme`或者`TableColumn`中加入`sortable`并且取值为`true`即可
+
+当排序方式改变时，可以监听默认事件`$change:sort`来执行自定义排序逻辑
 
 ```vdt
 import Table, {TableColumn} from 'kpc/components/table';
 
-var scheme = {
+const scheme = {
 	name: {
 		title: '姓名',
-		template: function(data) {
-			return data.name;
-		},
 		sortable: true
 	},
-	time: {
-		title: '时间',
-		template: function(data) {
-			return data.time;
-		},
+	age: {
+		title: '年龄',
 		sortable: true
 	}
 };
-var defaultSort = {key: 'time', type: 'asc'};
-var data1 = [{name: 'a默认按照时间升序', time: '2'}, {name: 'b 箭头方向默认的是向上的', time: '1'}];
-var data2 = [{name: 'a无默认排序', time: '2'}, {name: 'b 观察箭头方向都是双向的', time: '1'}];
 
 <div class='no-data-template'>
-    <Table scheme={{ scheme }} data={{ data1 }} sort={{ defaultSort }}/>
-    <Table scheme={{ scheme }} data={{ data2 }} />
-    <Table data={{ data1 }} sort={{ defaultSort }}>
-      <TableColumn title='姓名' key='name'></TableColumn>
-      <TableColumn title='时间(标签形式定义排序)' key='time' sortable={{true}}></TableColumn>
+    <Table scheme={{ scheme }} 
+        data={{ self.get('data') }} 
+        sort={{ self.get('sort') }}
+        ev-$change:sort={{ self._onSort }}
+    />
+    <Table data={{ self.get('data') }} 
+        sort={{ self.get('sort') }}
+        ev-$change:sort={{ self._onSort }}
+    >
+        <TableColumn title='姓名' key='name' sortable />
+        <TableColumn title='年龄' key='age' sortable />
     </Table>
 </div>
 ```
 
 ```styl
 .no-data-template
-   display: flex
-   .k-table-wrapper
-       margin-left: 10px
-
+    display: flex
+    .k-table-wrapper
+        margin-left: 10px
 ```
 
+```js
+export default class extends Intact {
+    @Intact.template()
+    static template = template;
 
+    defaults() {
+        return {
+            data: [{name: 'aa', age: 1}, {name: 'cc', age: 5}, {name: 'bb', age: 9}],
+            sort: {}
+        }
+    }
 
-
-
-
+    _onSort(c, sort) {
+        console.log(sort);
+        const data = this.get('data').slice(0);
+        data.sort((a, b) => {
+            return sort.type === 'desc' ? 
+                (a[sort.key] > b[sort.key] ? -1 : 1) : 
+                (a[sort.key] > b[sort.key] ? 1 : -1);
+        });
+        this.set({data, sort});
+    }
+}
+```
