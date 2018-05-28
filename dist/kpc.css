@@ -5989,6 +5989,7 @@ button.k-btn > span {
 }
 .k-table .k-group {
   cursor: pointer;
+  max-width: 100%;
 }
 .k-table .k-group .k-arrow {
   display: inline-block;

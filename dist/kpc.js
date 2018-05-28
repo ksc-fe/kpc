@@ -5649,7 +5649,7 @@ exports.Transfer = _transfer.Transfer;
 
 /* generate start */
 
-var version = exports.version = '0.2.2-4';
+var version = exports.version = '0.2.2-5';
 
 /* generate end */
 
