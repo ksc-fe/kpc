@@ -183,8 +183,8 @@ module.exports = function(isDev) {
                     console.log(stats.toString({
                         colors: true 
                     }));
-                    delete require.cache[require.resolve('./.dev/render')];
-                    const render = require('./.dev/render');
+                    delete require.cache[require.resolve('./site/dist/render')];
+                    const render = require('./site/dist/render');
 
                     await ctx.fsEach(async function(file) {
                         if (!/demos/.test(file.path)) {

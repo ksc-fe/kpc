@@ -8,7 +8,7 @@ import Router from 'universal-router';
 
 export default new Router([
     {
-        path: '/',
+        path: /^\/(kpc\/)?$/,
         action: async () => {
             return {Page: await import('../pages/index')}
         }
