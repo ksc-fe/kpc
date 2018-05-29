@@ -9,7 +9,7 @@ order: 0
 import Input from 'kpc/components/input';
 
 <div>
-    <Input v-model="value" placeholder="please enter" ref="__test"/> {{ self.get('value') }}
+    <Input v-model="value" placeholder="please enter" ref="__test" /> {{ self.get('value') }}
     <br />
     <Input disabled placeholder="disabled" />
 </div>

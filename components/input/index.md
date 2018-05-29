@@ -23,6 +23,7 @@ order: 2
 | autoWidth | 是否宽度随输入的文本的长度变化而变化 | `Boolean` | `false` |
 | width | 指定宽度，组件会加上单位`px` | `String`  &#124; `Number` | `undefined` |
 | tabindex | 原生`tabindex`属性 | `String` | `undefined` |
+| autocomplete | 原生`autocomplete`属性 | `String` | `undefined` |
 
 # 扩展点
 

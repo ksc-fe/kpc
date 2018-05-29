@@ -4,7 +4,7 @@ const {
     type, name, value, placeholder, tabindex,
     readonly, clearable, disabled, size, 
     rows, spellcheck, defaultValue, style,
-    className, autoWidth, fluid, width,
+    className, autoWidth, fluid, width, autocomplete,
 } = self.get();
 
 const classNameObj = {
@@ -58,6 +58,7 @@ const wrapperEvents = [
             disabled={{ disabled }}
             ref="input"
             tabindex={{ tabindex }}
+            autocomplete={{ autocomplete }}
             {{ ...events }}
         />
         <textarea v-else 

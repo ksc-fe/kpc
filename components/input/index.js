@@ -33,6 +33,7 @@ export default class Input extends Intact {
             fluid: false,
             width: undefined,
             tabindex: undefined,
+            autocomplete: undefined,
         }
     }
 
