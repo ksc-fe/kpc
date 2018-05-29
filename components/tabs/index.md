@@ -20,3 +20,4 @@ order: 90
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | value | 选中的值 | `*` | `undefined` |
+| disabled | 是否禁用 | `Boolean` | `false` |
