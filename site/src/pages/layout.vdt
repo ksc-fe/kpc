@@ -44,7 +44,7 @@ const nav = [
             </b:header>
         </header>
     </div>
-    <div class="content-wrapper">
+    <div class="content-wrapper" ref="wrapper">
         <b:content />
     </div>
 </div>

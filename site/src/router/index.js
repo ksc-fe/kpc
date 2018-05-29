@@ -14,7 +14,7 @@ export default new Router([
         }
     },
     {
-        path: '/design',
+        path: /^\/(kpc\/)?design\/?$/,
         action: async () => {
             return {Page: await import('../pages/design')}
         }

@@ -26,5 +26,21 @@ export default class extends Layout {
     _mount() {
         super._mount();
         document.title = this.get('setting.title');
+
+        window.addEventListener('scroll', this._onScroll);
+        window.scrollTo(0, 0);
+    }
+
+    _onScroll() {
+        const scrollTop = window.pageYOffset;
+        if (scrollTop > 15) {
+            this.refs.wrapper.classList.add('fixed');
+        } else {
+            this.refs.wrapper.classList.remove('fixed');
+        }
+    }
+
+    _destroy() {
+        window.removeEventListener('scroll', this._onScroll);
     }
 }
