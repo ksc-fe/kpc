@@ -12,14 +12,14 @@
         },
         {
             "language": "styl",
-            "content": ".ion-ios-arrow-right\n    float right\n    &:before\n        font-size inherit"
+            "content": "/.k-dropdown-menu\n    .ion-ios-arrow-right\n        float right\n        &:before\n            font-size inherit"
         },
         {
             "language": "js",
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
         }
     ],
-    "index": 90,
+    "index": 92,
     "highlighted": [
         {
             "language": "vdt",
@@ -27,7 +27,7 @@
         },
         {
             "language": "styl",
-            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.ion-ios-arrow-right</span>\n    <span class=\"hljs-attribute\">float</span> right\n    &amp;:before\n        <span class=\"hljs-attribute\">font-size</span> inherit</code></pre>"
+            "content": "<pre><code class=\"hljs styl\">/<span class=\"hljs-selector-class\">.k-dropdown-menu</span>\n    <span class=\"hljs-selector-class\">.ion-ios-arrow-right</span>\n        <span class=\"hljs-attribute\">float</span> right\n        &amp;:before\n            <span class=\"hljs-attribute\">font-size</span> inherit</code></pre>"
         },
         {
             "language": "js",

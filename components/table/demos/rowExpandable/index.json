@@ -19,7 +19,7 @@
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    defaults() {\n        return {\n            expandedKeys: []\n        };\n    }\n\n    toggleExpand(data, index) {\n        const expandedKeys = this.get('expandedKeys').slice(0);\n        const i = expandedKeys.indexOf(index);\n        if (i > -1) {\n            expandedKeys.splice(i, 1);\n        } else {\n            expandedKeys.push(index);\n        }\n        this.set('expandedKeys', expandedKeys);\n    }\n}"
         }
     ],
-    "index": 110,
+    "index": 108,
     "highlighted": [
         {
             "language": "vdt",

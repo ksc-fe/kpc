@@ -99,12 +99,12 @@
                     <!---->Steps<span>步骤条</span>
                 </a></li><li>
                 <!---->
-                <a href="/kpc/components/switch/">
-                    <!---->Switch<span>开关</span>
-                </a></li><li>
-                <!---->
                 <a href="/kpc/components/breadcrumb/">
                     <!---->Breadcrumb<span>面包屑</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/switch/">
+                    <!---->Switch<span>开关</span>
                 </a></li><li>
                 <!---->
                 <a href="/kpc/components/pagination/">
@@ -119,18 +119,18 @@
                     <!---->Tabs<span>标签</span>
                 </a></li><li>
                 <!---->
-                <a href="/kpc/components/transfer/">
-                    <!---->Transfer<span>穿梭框</span>
-                </a></li><li>
-                <!---->
                 <a href="/kpc/components/editable/">
                     <!---->Editable<span>可编辑文本</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/transfer/">
+                    <!---->Transfer<span>穿梭框</span>
                 </a></li></ul></div><div class="aside-border transition"></div></div></aside><article><div class="article-head"><div class="title">单选框</div><div class="edit-link">
                     如果你发现文档有问题，请帮忙在
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/components/radio/index.md">github</a>
                     上修正该文档
                 </div></div><div class="contents"><div><h1>示例</h1>
-        <div class="example index-19"><div class="example-opera"><div><label class="k-radio" style="" tabindex="0"><span class="k-wrapper"><input type="radio" v-model="value" value tabindex="-1" /></span><span class="k-text">radio</span></label><label class="k-radio k-disabled" style="" tabindex="-1"><span class="k-wrapper"><input type="radio" disabled v-model="value" value tabindex="-1" /></span><span class="k-text">disabled radio</span></label><label class="k-radio k-disabled k-checked" style="" tabindex="-1"><span class="k-wrapper"><input type="radio" disabled v-model="value" value tabindex="-1" checked /></span><span class="k-text">disabled checked radio</span></label></div></div><div class="example-desc"><div class="title">基本用法</div><div class="desc"><p><code>Radio</code>的基本用法，及禁用状态。通过<code>v-model</code>进行数据双向绑定。由于<code>trueValue</code>的默认值为<code>true</code>，所以可以直接传入<code>value=true</code>来指定选中状态。</p>
+        <div class="example index-18"><div class="example-opera"><div><label class="k-radio" style="" tabindex="0"><span class="k-wrapper"><input type="radio" v-model="value" value tabindex="-1" /></span><span class="k-text">radio</span></label><label class="k-radio k-disabled" style="" tabindex="-1"><span class="k-wrapper"><input type="radio" disabled v-model="value" value tabindex="-1" /></span><span class="k-text">disabled radio</span></label><label class="k-radio k-disabled k-checked" style="" tabindex="-1"><span class="k-wrapper"><input type="radio" disabled v-model="value" value tabindex="-1" checked /></span><span class="k-text">disabled checked radio</span></label></div></div><div class="example-desc"><div class="title">基本用法</div><div class="desc"><p><code>Radio</code>的基本用法，及禁用状态。通过<code>v-model</code>进行数据双向绑定。由于<code>trueValue</code>的默认值为<code>true</code>，所以可以直接传入<code>value=true</code>来指定选中状态。</p>
 <blockquote>
 <p>选中状态的判定条件是<code>value === trueValue</code>，对于值为对象的情况要注意。</p>
 </blockquote>
@@ -153,7 +153,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-63"><div class="example-opera"><div><label class="k-radio" style="" tabindex="0"><span class="k-wrapper"><input type="radio" v-model="value1" value tabindex="-1" /></span><span class="k-text">默认值：</span></label><label class="k-radio" style="" tabindex="0"><span class="k-wrapper"><input type="radio" v-model="value2" value="checked" tabindex="-1" /></span><span class="k-text">
+</div><div class="code"></div></div></div><div class="example index-68"><div class="example-opera"><div><label class="k-radio" style="" tabindex="0"><span class="k-wrapper"><input type="radio" v-model="value1" value tabindex="-1" /></span><span class="k-text">默认值：</span></label><label class="k-radio" style="" tabindex="0"><span class="k-wrapper"><input type="radio" v-model="value2" value="checked" tabindex="-1" /></span><span class="k-text">
         指定选中时的取值为&quot;checked&quot;: <!---->
     </span></label><label class="k-radio" style="" tabindex="0"><span class="k-wrapper"><input type="radio" v-model="value3" tabindex="-1" /></span><span class="k-text">
         指定选中时的取值为对象：<!---->

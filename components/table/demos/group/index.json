@@ -19,7 +19,7 @@
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nconst oData = [\n    {name: '主机1', status: 'active'},\n    {name: '主机2', status: 'stopped'},\n    {name: '主机3', status: 'active'},\n];\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    defaults() {\n        return {\n            data: oData, \n            group: {status: ''}\n        }\n    }\n\n    _onChangeGroup(c, group) {\n        console.log(group);\n        const data = oData.filter(item => {\n            let matched = true;\n            for (let key in group) {\n                const value = group[key];\n                if (value && item[key] !== value) {\n                    matched = false;\n                    break;\n                }\n            }\n            return matched;\n        });\n\n        this.set({data, group});\n    }\n}"
         }
     ],
-    "index": 121,
+    "index": 124,
     "highlighted": [
         {
             "language": "vdt",

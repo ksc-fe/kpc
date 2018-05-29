@@ -5231,10 +5231,10 @@ blockquote:before {
 .k-breadcrumb .k-separator {
   margin: 0 0.571428571428571rem;
 }
-.example.index-42 .separator {
+.example.index-40 .separator {
   color: #ffa133;
 }
-.example.index-42 i {
+.example.index-40 i {
   margin-right: 3px;
 }
 .k-tabs {
@@ -5310,10 +5310,10 @@ blockquote:before {
 .example.index-28 .k-btn {
   margin-right: 20px;
 }
-.example.index-57 .k-btn {
+.example.index-58 .k-btn {
   margin-right: 20px;
 }
-.example.index-89 .k-btn {
+.example.index-88 .k-btn {
   margin-right: 20px;
 }
 .example.index-97 .k-btn {
@@ -5333,6 +5333,7 @@ blockquote:before {
   position: relative;
   -webkit-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
+  background: #fff;
 }
 .k-checkbox .k-wrapper:before {
   content: "";
@@ -5391,10 +5392,10 @@ blockquote:before {
 .example.index-5 .k-checkbox {
   margin-right: 20px;
 }
-.example.index-48 .k-checkbox {
+.example.index-46 .k-checkbox {
   margin-right: 20px;
 }
-.example.index-49 .k-checkbox {
+.example.index-50 .k-checkbox {
   margin-right: 20px;
 }
 .k-tooltip {
@@ -5830,10 +5831,10 @@ blockquote:before {
 .example.index-7 .k-datepicker {
   margin-right: 20px;
 }
-.example.index-101 .k-datepicker {
+.example.index-104 .k-datepicker {
   margin-right: 20px;
 }
-.example.index-53 .k-datepicker {
+.example.index-62 .k-datepicker {
   margin-right: 10px;
 }
 .k-dialog-wrapper {
@@ -6021,19 +6022,25 @@ blockquote:before {
 .k-message.k-warning > .k-container > .k-icon {
   color: #ff8a00;
 }
-.example.index-85 .k-btn {
+.k-dropdown-menu.checkbox-menu .k-item {
+  padding: 0;
+}
+.k-dropdown-menu.checkbox-menu .k-checkbox {
+  padding: 8px 16px;
+}
+.example.index-77 .k-btn {
   margin-right: 20px;
 }
-.example.index-90 .ion-ios-arrow-right {
+.k-dropdown-menu .ion-ios-arrow-right {
   float: right;
 }
-.example.index-90 .ion-ios-arrow-right:before {
+.k-dropdown-menu .ion-ios-arrow-right:before {
   font-size: inherit;
 }
-.example.index-65 .k-btn {
+.example.index-69 .k-btn {
   margin-right: 20px;
 }
-.example.index-18 .k-btn {
+.example.index-19 .k-btn {
   margin-right: 20px;
 }
 .k-editable {
@@ -6065,6 +6072,7 @@ blockquote:before {
   -webkit-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
   position: relative;
+  background: #fff;
 }
 .k-radio .k-wrapper:before {
   content: "";
@@ -6460,47 +6468,47 @@ blockquote:before {
 .example.index-21 .k-slider {
   margin-top: 15px;
 }
-.example.index-41 .k-form-item .k-form-item {
+.example.index-42 .k-form-item .k-form-item {
   margin-bottom: 20px;
 }
-.example.index-23 .k-col {
+.example.index-24 .k-col {
   line-height: 40px;
   text-align: center;
   color: #fff;
 }
-.example.index-23 .k-col:nth-of-type(even) {
+.example.index-24 .k-col:nth-of-type(even) {
   background: #0a5eee;
 }
-.example.index-23 .k-col:nth-of-type(odd) {
+.example.index-24 .k-col:nth-of-type(odd) {
   background: #4f8df8;
 }
-.example.index-23 .k-row {
+.example.index-24 .k-row {
   margin-bottom: 20px;
 }
-.example.index-46 .k-col {
+.example.index-47 .k-col {
   line-height: 40px;
   text-align: center;
   color: #fff;
 }
-.example.index-46 .k-col:nth-of-type(even) div {
+.example.index-47 .k-col:nth-of-type(even) div {
   background: #0a5eee;
 }
-.example.index-46 .k-col:nth-of-type(odd) div {
+.example.index-47 .k-col:nth-of-type(odd) div {
   background: #4f8df8;
 }
-.example.index-46 .k-row {
+.example.index-47 .k-row {
   margin-bottom: 20px;
 }
 .example.index-25 .k-input {
   margin: 5px;
 }
-.example.index-50 .k-input {
+.example.index-51 .k-input {
   margin: 5px;
 }
-.example.index-87 .k-input {
+.example.index-94 .k-input {
   margin: 5px;
 }
-.example.index-61 .k-input {
+.example.index-53 .k-input {
   margin: 5px;
 }
 .k-progress {
@@ -6705,10 +6713,10 @@ blockquote:before {
 .k-pagination.k-mini .k-btns .k-btn {
   margin-right: 0.357142857142857rem;
 }
-.example.index-24 .k-pagination {
+.example.index-23 .k-pagination {
   margin-bottom: 20px;
 }
-.example.index-58 .k-pagination {
+.example.index-61 .k-pagination {
   margin-bottom: 20px;
 }
 .example.index-44 .k-pagination {
@@ -6717,7 +6725,7 @@ blockquote:before {
 .example.index-22 .k-progress {
   margin: 10px 0;
 }
-.example.index-93 .k-progress {
+.example.index-91 .k-progress {
   display: inline-block;
   vertical-align: middle;
   margin-right: 20px;
@@ -6725,25 +6733,25 @@ blockquote:before {
 .example.index-54 .k-progress {
   margin: 10px 0;
 }
-.example.index-39 .k-progress {
+.example.index-37 .k-progress {
   margin: 10px 0;
 }
-.example.index-19 .k-radio {
+.example.index-18 .k-radio {
   margin-right: 20px;
 }
 .example.index-34 .k-radio {
   margin-right: 20px;
 }
-.example.index-63 .k-radio {
+.example.index-68 .k-radio {
   margin-right: 20px;
 }
-.example.index-113 .k-select {
+.example.index-114 .k-select {
   margin-right: 10px;
 }
 .example.index-16 .k-slider {
   margin-bottom: 20px;
 }
-.example.index-86 .k-slider {
+.example.index-81 .k-slider {
   margin-bottom: 20px;
 }
 .example.index-29 .k-slider {
@@ -6752,7 +6760,7 @@ blockquote:before {
 .example.index-14 .k-spinner {
   margin-right: 20px;
 }
-.example.index-69 .k-spinner {
+.example.index-66 .k-spinner {
   margin-right: 20px;
 }
 .example.index-27 .k-spinner {
@@ -6859,10 +6867,10 @@ blockquote:before {
 .example.index-10 .k-switch {
   margin-right: 20px;
 }
-.example.index-40 .k-switch {
+.example.index-41 .k-switch {
   margin-right: 20px;
 }
-.example.index-78 .k-switch {
+.example.index-76 .k-switch {
   margin-right: 20px;
 }
 .example.index-64 .k-switch {
@@ -6871,28 +6879,69 @@ blockquote:before {
 .example.index-9 .k-table-wrapper {
   margin-bottom: 20px;
 }
-.example.index-62 .k-table-wrapper {
+.example.index-63 .k-table-wrapper {
   margin-bottom: 20px;
 }
-.example.index-72 .no-data-template {
+.example.index-71 .no-data-template {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 20px;
 }
-.example.index-72 .no-data-template .k-table-wrapper {
+.example.index-71 .no-data-template .k-table-wrapper {
   margin-left: 20px;
 }
 .example.index-112 .k-disabled {
   background-color: #d9d9d9;
 }
-.example.index-114 .wrapper {
+.example.index-117 .wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-.example.index-114 .k-table-wrapper {
+.example.index-117 .k-table-wrapper {
   margin-left: 20px;
+}
+.example.index-124 .no-data-template {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.example.index-124 .no-data-template .k-table-wrapper {
+  margin-left: 10px;
+}
+.example.index-118 .no-data-template {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.example.index-118 .no-data-template .k-table-wrapper {
+  margin-left: 10px;
+}
+.example.index-93 .k-table-wrapper {
+  margin-bottom: 20px;
+}
+.example.index-93 .k-table-wrapper .k-checked {
+  background-color: #f4f8fb;
+}
+.example.index-99 .even {
+  background: #efefef;
+}
+.example.index-108 .no-data-template {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.example.index-108 .no-data-template .k-table-wrapper {
+  margin-left: 10px;
+}
+.example.index-108 .icon {
+  vertical-align: middle;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.example.index-36 .k-table-wrapper {
+  margin-bottom: 20px;
 }
 .example.index-121 .no-data-template {
   display: -webkit-box;
@@ -6902,48 +6951,7 @@ blockquote:before {
 .example.index-121 .no-data-template .k-table-wrapper {
   margin-left: 10px;
 }
-.example.index-117 .no-data-template {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-.example.index-117 .no-data-template .k-table-wrapper {
-  margin-left: 10px;
-}
-.example.index-95 .k-table-wrapper {
-  margin-bottom: 20px;
-}
-.example.index-95 .k-table-wrapper .k-checked {
-  background-color: #f4f8fb;
-}
-.example.index-96 .even {
-  background: #efefef;
-}
-.example.index-110 .no-data-template {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-.example.index-110 .no-data-template .k-table-wrapper {
-  margin-left: 10px;
-}
-.example.index-110 .icon {
-  vertical-align: middle;
-  margin-right: 10px;
-  cursor: pointer;
-}
-.example.index-36 .k-table-wrapper {
-  margin-bottom: 20px;
-}
-.example.index-119 .no-data-template {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-.example.index-119 .no-data-template .k-table-wrapper {
-  margin-left: 10px;
-}
-.example.index-77 .k-tabs {
+.example.index-80 .k-tabs {
   margin-bottom: 10px;
 }
 .k-transfer .k-panel,

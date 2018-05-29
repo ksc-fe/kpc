@@ -19,7 +19,7 @@
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    defaults() {\n        return {\n            data: [{name: 'aa', age: 1}, {name: 'cc', age: 5}, {name: 'bb', age: 9}],\n            sort: {}\n        }\n    }\n\n    _onSort(c, sort) {\n        console.log(sort);\n        const data = this.get('data').slice(0);\n        data.sort((a, b) => {\n            return sort.type === 'desc' ? \n                (a[sort.key] > b[sort.key] ? -1 : 1) : \n                (a[sort.key] > b[sort.key] ? 1 : -1);\n        });\n        this.set({data, sort});\n    }\n}"
         }
     ],
-    "index": 119,
+    "index": 121,
     "highlighted": [
         {
             "language": "vdt",

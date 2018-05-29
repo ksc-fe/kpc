@@ -1,0 +1,20 @@
+import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
+import Checkbox from 'kpc/components/checkbox';
+import Button from 'kpc/components/button';
+
+<div>
+    <Dropdown>
+        <Button>More ></Button>
+        <DropdownMenu class="checkbox-menu">
+            <DropdownItem hideOnSelect={{ false }} ev-select={{ self._onSelect }}>
+                <Checkbox v-model="checked" trueValue="1">item 1</Checkbox>
+            </DropdownItem>
+            <DropdownItem hideOnSelect={{ false }} ev-select={{ self._onSelectAndPreventDefault }}>
+                <Checkbox v-model="checked" trueValue="2">item 2</Checkbox>
+            </DropdownItem>
+            <DropdownItem hideOnSelect={{ false }}>
+                <Checkbox v-model="checked" trueValue="3">item 3</Checkbox>
+            </DropdownItem>
+        </DropdownMenu>
+    </Dropdown>
+</div>
