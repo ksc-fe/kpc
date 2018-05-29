@@ -5,10 +5,15 @@ export default class Tab extends Intact {
     @Intact.template()
     get template() { return template; }
 
+    static propTypes = {
+        disabled: Boolean,
+    };
+
     defaults() {
         return {
             value: undefined,
             to: undefined,
+            disabled: false,
 
             // passed by parent
             _value: undefined,
@@ -22,6 +27,10 @@ export default class Tab extends Intact {
     }
 
     _changeTab(e) {
+        if (this.get('disabled')) {
+            return e.preventDefault();
+        }
+
         this.get('_parent')._changeTab(this.get());
     }
 }
