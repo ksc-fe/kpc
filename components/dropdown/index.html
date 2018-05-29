@@ -9,7 +9,7 @@
     
     
     <div id="page"><div class="k-app">
-    <div class="main-wrapper document-page"><div class="header-wrapper"><header><a class="logo" href="/">KPC</a><nav><a class="" href="/kpc/docs/getting-started/">教程</a><div class="border"></div></nav></header></div><div class="content-wrapper"><aside><div class="aside-wrapper"><div class="catalog-section"><ul><li>
+    <div class="main-wrapper document-page"><div class="header-wrapper"><header><a class="logo" href="/">KPC</a><div class="right"><nav><a class="" href="/kpc/docs/getting-started/">教程</a><div class="border"></div></nav><span class="label">切换主题：</span><div class="k-select k-active" style="width:100px;" tabindex="0"><div class="k-wrapper" tabindex="-1" _hasSaved><input type="hidden" value="kpc" /><span class="k-value c-ellipsis">default</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></header></div><div class="content-wrapper"><aside><div class="aside-wrapper"><div class="catalog-section"><ul><li>
                 <!---->
                 <a href="/kpc/docs/getting-started/">
                     <!---->快速开始<!---->
@@ -99,12 +99,12 @@
                     <!---->Steps<span>步骤条</span>
                 </a></li><li>
                 <!---->
-                <a href="/kpc/components/breadcrumb/">
-                    <!---->Breadcrumb<span>面包屑</span>
-                </a></li><li>
-                <!---->
                 <a href="/kpc/components/switch/">
                     <!---->Switch<span>开关</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/breadcrumb/">
+                    <!---->Breadcrumb<span>面包屑</span>
                 </a></li><li>
                 <!---->
                 <a href="/kpc/components/pagination/">
@@ -130,12 +130,12 @@
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/components/dropdown/index.md">github</a>
                     上修正该文档
                 </div></div><div class="contents"><div><h1>示例</h1>
-        <div class="example index-16"><div class="example-opera"><div><button class="k-btn k-primary k-icon-right" _hasSaved tabindex="0" type="button">
+        <div class="example index-15"><div class="example-opera"><div><button class="k-btn k-primary k-icon-right" _hasSaved tabindex="0" type="button">
     <span>
             hover </span><i class="k-icon ion-arrow-down-b"></i>
     </button><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">基础用法</div><div class="desc"><p>一个完整的菜单需要用到<code>Dropdown</code>，<code>DropdownMenu</code>和<code>DropdownItem</code>三个组件。<code>Dropdown</code>会将第一个子元素作为触发器，第二个元素为菜单<code>DropdownMenu</code>。</p>
 <blockquote>
-<p><code>Dropdown</code>会返回两个元素（触发器和菜单），而不是将它们包裹起来，作为一个元素返回所以不要将它作为模板的顶级元素，例如本例中，用<code>&lt;div&gt;</code>将之包裹起来才能作为模板元素返回。</p>
+<p>与<code>Tooltip</code>一样，在Intact下，<code>Dropdown</code>会返回两个元素（触发器和菜单），而不是将它们包裹起来，作为一个元素返回，所以不要将它作为模板的顶级元素，例如本例中，用<code>&lt;div&gt;</code>将之包裹起来才能作为模板元素返回。</p>
 </blockquote>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
@@ -143,7 +143,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-19"><div class="example-opera"><div><button class="k-btn k-primary k-icon-right" _hasSaved tabindex="0" type="button">
+</div><div class="code"></div></div></div><div class="example index-18"><div class="example-opera"><div><button class="k-btn k-primary k-icon-right" _hasSaved tabindex="0" type="button">
     <span>
             hover </span><i class="k-icon ion-arrow-down-b"></i>
     </button><!--MoveWrapper--><button class="k-btn k-primary k-icon-right" _hasSaved tabindex="0" type="button">
@@ -158,7 +158,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-63"><div class="example-opera"><div><button class="k-btn k-primary k-icon-right" _hasSaved tabindex="0" type="button">
+</div><div class="code"></div></div></div><div class="example index-65"><div class="example-opera"><div><button class="k-btn k-primary k-icon-right" _hasSaved tabindex="0" type="button">
     <span>
             left </span><i class="k-icon ion-arrow-down-b"></i>
     </button><!--MoveWrapper--><button class="k-btn k-primary k-icon-right" _hasSaved tabindex="0" type="button">
@@ -176,7 +176,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-79"><div class="example-opera"><div><button class="k-btn k-primary k-icon-right" _hasSaved tabindex="0" type="button">
+</div><div class="code"></div></div></div><div class="example index-85"><div class="example-opera"><div><button class="k-btn k-primary k-icon-right" _hasSaved tabindex="0" type="button">
     <span>
             disabled </span><i class="k-icon ion-arrow-down-b"></i>
     </button><!--MoveWrapper--><button class="k-btn k-primary k-icon-right" _hasSaved tabindex="0" type="button">
@@ -191,7 +191,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-88"><div class="example-opera"><div><button class="k-btn k-primary k-icon-right" _hasSaved tabindex="0" type="button">
+</div><div class="code"></div></div></div><div class="example index-90"><div class="example-opera"><div><button class="k-btn k-primary k-icon-right" _hasSaved tabindex="0" type="button">
     <span>
             click </span><i class="k-icon ion-arrow-down-b"></i>
     </button><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">嵌套菜单</div><div class="desc"><p><code>Dropdown</code>可以嵌套使用，实现级联菜单。子菜单需要指定展示的位置<code>position</code>。我们还可以通过<code>trigger</code>单独子菜单触发方式。</p>
@@ -203,7 +203,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-94"><div class="example-opera"><div><button class="k-btn" _hasSaved tabindex="0" type="button">
+</div><div class="code"></div></div></div><div class="example index-104"><div class="example-opera"><div><button class="k-btn" _hasSaved tabindex="0" type="button">
     <span>DropdownItem with Tooltip</span>
     </button><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">菜单项添加Tooltip提示</div><div class="desc"><p>使用<code>Tooltip</code>包裹需要提示的菜单项<code>DropdownItem</code>即可添加提示，需要注意的是：当用<code>Tooltip</code>包裹触发器时，需要使用另外的元素将它包裹起来，因为<code>Tooltip</code>实际返回的是两个元素，一个是它的触发器，一个是提示内容层。而<code>Dropdown</code>的触发器只能接受一个元素，所以需要另外再包起来（如本例中<code>item 4</code>)。Vue下不需要，因为Vue不支持返回多元素，本身就会被包裹</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">

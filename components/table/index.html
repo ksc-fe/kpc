@@ -9,7 +9,7 @@
     
     
     <div id="page"><div class="k-app">
-    <div class="main-wrapper document-page"><div class="header-wrapper"><header><a class="logo" href="/">KPC</a><nav><a class="" href="/kpc/docs/getting-started/">教程</a><div class="border"></div></nav></header></div><div class="content-wrapper"><aside><div class="aside-wrapper"><div class="catalog-section"><ul><li>
+    <div class="main-wrapper document-page"><div class="header-wrapper"><header><a class="logo" href="/">KPC</a><div class="right"><nav><a class="" href="/kpc/docs/getting-started/">教程</a><div class="border"></div></nav><span class="label">切换主题：</span><div class="k-select k-active" style="width:100px;" tabindex="0"><div class="k-wrapper" tabindex="-1" _hasSaved><input type="hidden" value="kpc" /><span class="k-value c-ellipsis">default</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></header></div><div class="content-wrapper"><aside><div class="aside-wrapper"><div class="catalog-section"><ul><li>
                 <!---->
                 <a href="/kpc/docs/getting-started/">
                     <!---->快速开始<!---->
@@ -99,12 +99,12 @@
                     <!---->Steps<span>步骤条</span>
                 </a></li><li>
                 <!---->
-                <a href="/kpc/components/breadcrumb/">
-                    <!---->Breadcrumb<span>面包屑</span>
-                </a></li><li>
-                <!---->
                 <a href="/kpc/components/switch/">
                     <!---->Switch<span>开关</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/breadcrumb/">
+                    <!---->Breadcrumb<span>面包屑</span>
                 </a></li><li>
                 <!---->
                 <a href="/kpc/components/pagination/">
@@ -148,126 +148,91 @@
             </tr>
 </tbody>
 </table>
-</div></div></div><div class="example-desc"><div class="title">基本用法</div><div class="desc"><p>上面是一个简单的Table<code>data</code>：可以设置表格展示的数据，类型<code>Array</code>，默认<code>[]</code></p>
+</div><div class="k-table-wrapper" style="">
+    <table class="k-table">
+    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
+            <!---->
+            <th title="表头1"><div class="k-th"><div class="c-ellipsis">表头1</div>
+        <!---->
+    </div></th><th title="表头2"><div class="k-th"><div class="c-ellipsis">表头2</div>
+        <!---->
+    </div></th>
+        </tr></thead>
+    <tbody>
+    <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
+                <td title="第一行">第一行</td><td title="哈哈2">哈哈2</td>
+            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" tabindex="-1" name="k-table-checkbox" /></span></label></td>
+                <td title="第二行">第二行</td><td title="哈哈2">哈哈2</td>
+            </tr>
+</tbody>
+</table>
+</div></div></div><div class="example-desc"><div class="title">基本用法</div><div class="desc"><p>上面是一个简单的<code>Table</code>，通过<code>data</code>属性设置表格展示的数据，通过<code>scheme</code>属性或者<code>TableColumn</code>组件定义表格结构，详见”定义表格结构“说明</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
                         </a><a class="k-tab">
-                            <!---->index.js<!---->
-                        </a>
-</div><div class="code"></div></div></div><div class="example index-34"><div class="example-opera"><div><p>{key: value}形式:</p><div class="k-table-wrapper" style="">
-    <table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
-            <th title="a只是个id"><div class="k-th"><div class="c-ellipsis">a只是个id</div>
-        <!---->
-    </div></th><th title="key-{String}形式"><div class="k-th"><div class="c-ellipsis">key-{String}形式</div>
-        <!---->
-    </div></th><th title="key为一个连续获取的字符串"><div class="k-th"><div class="c-ellipsis">key为一个连续获取的字符串</div>
-        <!---->
-    </div></th><th title="没有这个key"><div class="k-th"><div class="c-ellipsis">没有这个key</div>
-        <!---->
-    </div></th><th title="e也只是个id"><div class="k-th"><div class="c-ellipsis">e也只是个id</div>
-        <!---->
-    </div></th>
-            <!---->
-        </tr></thead>
-    <tbody>
-    <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
-                <td><a>虚拟DOM</a></td><td title="获取到了item.b">获取到了item.b</td><td title="item.c.c1">item.c.c1</td><td></td><td title="值形式">值形式</td>
-            </tr>
-</tbody>
-</table>
-</div><p>标签形式:</p><div class="k-table-wrapper" style="">
-    <table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
-            <!---->
-            <th title="a"><div class="k-th"><div class="c-ellipsis">a</div>
-        <!---->
-    </div></th><th title="key为一个连续获取的字符"><div class="k-th"><div class="c-ellipsis">key为一个连续获取的字符</div>
-        <!---->
-    </div></th><th title="key为一个连续获取的字符"><div class="k-th"><div class="c-ellipsis">key为一个连续获取的字符</div>
-        <!---->
-    </div></th><th width="400" title="这个宽度大一点400px"><div class="k-th"><div class="c-ellipsis">这个宽度大一点400px</div>
-        <!---->
-    </div></th>
-        </tr></thead>
-    <tbody>
-    <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
-                <td><a>虚拟DOM</a></td><td title="item.c.c1">item.c.c1</td><td title="值形式">值形式</td><td title="获取到了item.b">获取到了item.b</td>
-            </tr>
-</tbody>
-</table>
-</div></div></div><div class="example-desc"><div class="title">定义表头信息</div><div class="desc"><p>第一种定义形式（传值）：<code>scheme</code>：定义表头信息，类型<code>Object</code>，默认<code>{}</code></p>
-<ul>
-<li><strong> <code>{key: value}</code> 说明：</strong></li>
-</ul>
-<div class="k-table-wrapper k-border">
-                    <table class="k-table">
-                        <thead><tr>
-<th>形式</th>
-<th>描述</th>
-</tr>
-</thead>
-                        <tbody><tr>
-<td>key-{String}</td>
-<td>根据每一行的<code>item</code>，获取<code>key</code>属性；若<code>key</code>为一个连续获取的字符（即：<code>item.c.c1</code>）会逐级获取，若没获取到，则为<code>undefined</code>。</td>
-</tr>
-<tr>
-<td>key-{Object}</td>
-<td><code>key</code>只作为这个表头的<code>ID</code>，实际获取的值为<code>{Object}</code>内<code>template</code>的返回值。<code>{Object}</code>内的<code>title</code>为要展示的表头信息，<code>template</code>方法返回这列要展示的数据（参数接收：每一行的<code>item</code>）。</td>
-</tr>
-</tbody>
-                    </table>
-                </div><ul>
-<li>PS：<code>template</code>可以返回一个具体的值，也可以返回一个虚拟DOM。</li>
-</ul>
-<hr>
-<p>另一种定义形式（标签）：<code>&lt;TableColumn&gt;&lt;/TableColumn&gt;</code></p>
-<ul>
-<li><strong> <code>&lt;TableColumn /&gt;</code>属性描述：</strong></li>
-</ul>
-<div class="k-table-wrapper k-border">
-                    <table class="k-table">
-                        <thead><tr>
-<th>属性</th>
-<th>说明</th>
-<th>类型</th>
-<th>默认值</th>
-</tr>
-</thead>
-                        <tbody><tr>
-<td>title</td>
-<td>表头信息</td>
-<td><code>String</code></td>
-<td><code>[]</code></td>
-</tr>
-<tr>
-<td>template</td>
-<td>当前列的返回数据（遵守<code>{key-value}</code>形式中的规则）</td>
-<td><code>Function</code></td>
-<td><code>(data, index) { }</code></td>
-</tr>
-<tr>
-<td>key</td>
-<td>行的key值（遵守<code>{key-value}</code>形式中的规则）</td>
-<td><code>String</code></td>
-<td><code>&quot;&quot;</code></td>
-</tr>
-<tr>
-<td>width</td>
-<td>列宽</td>
-<td><code>Number</code></td>
-<td><code>undefined</code></td>
-</tr>
-</tbody>
-                    </table>
-                </div></div></div><div class="example-code"><div class="k-tabs" style="">
-    <a class="k-tab">
-                            <!---->index.vdt<!---->
+                            <!---->index.styl<!---->
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-59"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
+</div><div class="code"></div></div></div><div class="example index-36"><div class="example-opera"><div><div class="k-table-wrapper" style="">
+    <table class="k-table">
+    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
+            <th title="定义该列单元格内容"><div class="k-th"><div class="c-ellipsis">定义该列单元格内容</div>
+        <!---->
+    </div></th><th title="key形式"><div class="k-th"><div class="c-ellipsis">key形式</div>
+        <!---->
+    </div></th><th title="key为一个路径字符串"><div class="k-th"><div class="c-ellipsis">key为一个路径字符串</div>
+        <!---->
+    </div></th><th title="没有这个key，则返回空"><div class="k-th"><div class="c-ellipsis">没有这个key，则返回空</div>
+        <!---->
+    </div></th>
+            <!---->
+        </tr></thead>
+    <tbody>
+    <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
+                <td><a>虚拟DOM</a></td><td title="获取到了item.b">获取到了item.b</td><td title="item.c.c1">item.c.c1</td><td></td>
+            </tr>
+</tbody>
+</table>
+</div><div class="k-table-wrapper" style="">
+    <table class="k-table">
+    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
+            <!---->
+            <th title="定义该列单元格内容"><div class="k-th"><div class="c-ellipsis">定义该列单元格内容</div>
+        <!---->
+    </div></th><th title="key形式"><div class="k-th"><div class="c-ellipsis">key形式</div>
+        <!---->
+    </div></th><th title="key为一个路径字符串"><div class="k-th"><div class="c-ellipsis">key为一个路径字符串</div>
+        <!---->
+    </div></th><th title="没有这个key，则返回空"><div class="k-th"><div class="c-ellipsis">没有这个key，则返回空</div>
+        <!---->
+    </div></th>
+        </tr></thead>
+    <tbody>
+    <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
+                <td><a>虚拟DOM</a></td><td title="获取到了item.b">获取到了item.b</td><td title="item.c.c1">item.c.c1</td><td></td>
+            </tr>
+</tbody>
+</table>
+</div></div></div><div class="example-desc"><div class="title">定义表格结构</div><div class="desc"><p>定义表格结构有两种形式：</p>
+<ol>
+<li>通过<code>TableColumn</code>组件定义 </li>
+<li>通过<code>scheme</code>属性定义</li>
+</ol>
+<p><code>TableColumn</code>详细说明，见下文属性说明，<code>scheme</code>属性值的结构与之相对应</p>
+<blockquote>
+<p>对于简单的表格，默认会使用<code>key</code>去取<code>data</code>中的数据，例如本例中，<code>key</code>为<code>a</code>的列，默认会取<code>data</code>中对应<code>key</code>为<code>a</code>的数据进行展示，<code>key</code>支持路径取值，例如：<code>a.b.0</code>。当然我们也可以通过<code>template</code>属性指定复杂内容</p>
+</blockquote>
+</div></div><div class="example-code"><div class="k-tabs" style="">
+    <a class="k-tab">
+                            <!---->index.vdt<!---->
+                        </a><a class="k-tab">
+                            <!---->index.styl<!---->
+                        </a><a class="k-tab">
+                            <!---->index.js<!---->
+                        </a>
+</div><div class="code"></div></div></div><div class="example index-62"><div class="example-opera"><div><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="表头"><div class="k-th"><div class="c-ellipsis">表头</div>
@@ -277,7 +242,9 @@
         </tr></thead>
     <tbody>
     <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
-                <td title="多选框">多选框</td>
+                <td title="多选1">多选1</td>
+            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" tabindex="-1" name="k-table-checkbox" /></span></label></td>
+                <td title="多选2">多选2</td>
             </tr>
 </tbody>
 </table>
@@ -291,7 +258,9 @@
         </tr></thead>
     <tbody>
     <tr class=""><td><label class="k-radio" style="" tabindex="0"><span class="k-wrapper"><input type="radio" v-model="checkedKey" value="0" tabindex="-1" name="k-table-radio" /></span></label></td>
-                <td title="单选框">单选框</td>
+                <td title="单选1">单选1</td>
+            </tr><tr class=""><td><label class="k-radio" style="" tabindex="0"><span class="k-wrapper"><input type="radio" v-model="checkedKey" value="1" tabindex="-1" name="k-table-radio" /></span></label></td>
+                <td title="单选2">单选2</td>
             </tr>
 </tbody>
 </table>
@@ -305,11 +274,13 @@
         </tr></thead>
     <tbody>
     <tr class="">
-                <td title="无选框">无选框</td>
+                <td title="不可选1">不可选1</td>
+            </tr><tr class="">
+                <td title="不可选2">不可选2</td>
             </tr>
 </tbody>
 </table>
-</div></div></div><div class="example-desc"><div class="title">选择框的类型</div><div class="desc"><p><code>checkType</code>：设置选择框的类型，类型<code>String</code>，<code>checkbox</code>多选框(默认)/<code>radio</code>单选框/<code>none</code>无选框</p>
+</div></div></div><div class="example-desc"><div class="title">选择框的类型</div><div class="desc"><p>通过<code>checkType</code>设置行选择类型，<code>checkbox</code>多选(默认) / <code>radio</code>单选 / <code>none</code>不可选</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
@@ -318,7 +289,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-69"><div class="example-opera"><div><div class="no-data-template"><div class="k-table-wrapper" style="">
+</div><div class="code"></div></div></div><div class="example index-72"><div class="example-opera"><div><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"></th>
             <th title="radio不指定rowKey"><div class="k-th"><div class="c-ellipsis">radio不指定rowKey</div>
@@ -384,11 +355,7 @@
             </tr>
 </tbody>
 </table>
-</div></div></div></div><div class="example-desc"><div class="title">行选中</div><div class="desc"><ul>
-<li><code>rowKey</code>：设置行的<code>key</code>值，类型：<code>Function</code>，默认：行的<code>index</code></li>
-<li><code>checkedKey</code>：设置/获取表格被选中的行信息（针对<code>radio</code>），类型：任何，控制是否选中会根据rowKey的设置判断。</li>
-<li><code>checkedKeys</code>：设置/获取表格被选中的行信息（针对<code>checkbox</code>）类型：<code>Array</code>，可以设置多个，控制是否选中会根据rowKey的设置判断。</li>
-</ul>
+</div></div></div></div><div class="example-desc"><div class="title">行选中</div><div class="desc"><p>通过<code>checkedKey</code>（radio类型）或者<code>checkedKeys</code>（checkbox类型）来控制哪些列被选中，默认他们的取值为行的索引或索引数组。但我们也可以通过<code>rowKey</code>函数为每一行指定唯一的<code>key</code>，此时他们的取值为<code>key</code>值或<code>key</code>值的数组</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
@@ -397,7 +364,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-89"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
+</div><div class="code"></div></div></div><div class="example index-95"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="不整行选中"><div class="k-th"><div class="c-ellipsis">不整行选中</div>
@@ -433,10 +400,10 @@
             </tr>
 </tbody>
 </table>
-</div></div></div><div class="example-desc"><div class="title">整行选中</div><div class="desc"><p><code>rowCheckable</code>：是否点击整行任意位置后整行选中，类型<code>Boolean</code>，<code>true</code>(默认)</p>
-<ul>
-<li>选中的数据默认会在每一行的元素上有<code>k-checked</code>样式</li>
-</ul>
+</div></div></div><div class="example-desc"><div class="title">整行选中</div><div class="desc"><p>当行可选时，默认点击该行的任意区域都可选中或取消选中，但我们可以通过将<code>rowCheckbable</code>设为<code>false</code>来关闭这一特性。</p>
+<blockquote>
+<p>选中的数据默认会在每一行的元素上有<code>k-checked</code>样式名</p>
+</blockquote>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
@@ -445,7 +412,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-100"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
+</div><div class="code"></div></div></div><div class="example index-96"><div class="example-opera"><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="偶数行背景变换"><div class="k-th"><div class="c-ellipsis">偶数行背景变换</div>
@@ -454,20 +421,20 @@
             <!---->
         </tr></thead>
     <tbody>
-    <tr class="turn-blue"><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
+    <tr class="even"><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="1">1</td>
-            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" tabindex="-1" name="k-table-checkbox" /></span></label></td>
+            </tr><tr class="odd"><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="2">2</td>
-            </tr><tr class="turn-blue"><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="2" tabindex="-1" name="k-table-checkbox" /></span></label></td>
+            </tr><tr class="even"><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="2" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="3">3</td>
-            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="3" tabindex="-1" name="k-table-checkbox" /></span></label></td>
+            </tr><tr class="odd"><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="3" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="4">4</td>
-            </tr><tr class="turn-blue"><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="4" tabindex="-1" name="k-table-checkbox" /></span></label></td>
+            </tr><tr class="even"><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="4" tabindex="-1" name="k-table-checkbox" /></span></label></td>
                 <td title="5">5</td>
             </tr>
 </tbody>
 </table>
-</div></div></div><div class="example-desc"><div class="title">行样式</div><div class="desc"><p><code>rowClassName</code>：给行添加样式，类型<code>Function</code>，<code>function(value, index) {  }</code>(默认)</p>
+</div></div><div class="example-desc"><div class="title">行样式</div><div class="desc"><p><code>rowClassName</code>：给行添加样式，类型<code>Function</code>，默认：<code>function(value, index) {  }</code>，该函数返回的字符串将被当做<code>className</code>添加到该行上</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
@@ -476,7 +443,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-107"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
+</div><div class="code"></div></div></div><div class="example index-110"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr>
             <!---->
@@ -526,7 +493,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-109"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
+</div><div class="code"></div></div></div><div class="example index-112"><div class="example-opera"><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="奇数行不可点击"><div class="k-th"><div class="c-ellipsis">奇数行不可点击</div>
@@ -548,10 +515,10 @@
             </tr>
 </tbody>
 </table>
-</div></div></div><div class="example-desc"><div class="title">禁用行</div><div class="desc"><p><code>disableRow</code>：禁用某一行，类型<code>Function</code>，<code>function(data, index) { return false }</code>(默认)</p>
-<ul>
-<li>禁用的数据默认会在每一行的元素上有<code>k-disabled</code>样式</li>
-</ul>
+</div></div><div class="example-desc"><div class="title">禁用行可选</div><div class="desc"><p><code>disableRow</code>：禁用某一行可选状态，类型：<code>Function</code>，默认：<code>function(data, index) { return false }</code>，该函数如果返回<code>true</code>，则表示禁用该行可选</p>
+<blockquote>
+<p>禁用的数据默认会在每一行的元素上有<code>k-disabled</code>样式</p>
+</blockquote>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
@@ -560,38 +527,24 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-112"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
-    <table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
-            <th title="false"><div class="k-th"><div class="c-ellipsis">false</div>
-        <!---->
-    </div></th>
-            <!---->
-        </tr></thead>
-    <tbody>
-    <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
-                <td title="false(默认)">false(默认)</td>
-            </tr>
-</tbody>
-</table>
-</div><div class="k-table-wrapper" style=""><div class="k-fixed" style="padding-right:0px;"><table class="k-table">
+</div><div class="code"></div></div></div><div class="example index-114"><div class="example-opera"><div class="wrapper"><div class="k-table-wrapper" style=""><div class="k-fixed" style="padding-right:0px;"><table class="k-table">
             <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
-            <th title="true"><div class="k-th"><div class="c-ellipsis">true</div>
+            <th title="100px"><div class="k-th"><div class="c-ellipsis">100px</div>
         <!---->
     </div></th>
             <!---->
         </tr></thead>
         </table></div>
-    <div class="k-scroll" style=""><table class="k-table">
+    <div class="k-scroll" style="max-height:100px;"><table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
-            <th title="true"><div class="k-th"><div class="c-ellipsis">true</div>
+            <th title="100px"><div class="k-th"><div class="c-ellipsis">100px</div>
         <!---->
     </div></th>
             <!---->
         </tr></thead>
     <tbody>
     <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
-                <td title="表头固定但是没有滚动条，展示不出效果">表头固定但是没有滚动条，展示不出效果</td>
+                <td title="表头固定，但内容没有超出最高高度">表头固定，但内容没有超出最高高度</td>
             </tr>
 </tbody>
 </table></div>
@@ -620,7 +573,11 @@
             </tr>
 </tbody>
 </table></div>
-</div></div></div><div class="example-desc"><div class="title">表头固定</div><div class="desc"><p><code>fixHeader</code>：设置表头固定，类型<code>Boolean</code>，<code>false</code>(默认)</p>
+</div></div></div><div class="example-desc"><div class="title">表头固定</div><div class="desc"><p><code>fixHeader</code>：设置表头固定，类型<code>Boolean</code> | <code>Number</code>，默认：<code>false</code></p>
+<ol>
+<li>如果取值为<code>Boolean</code>，<code>false</code>表示不固定表头，<code>true</code>表示固定高度，但需要自己定义表格高度</li>
+<li>如果取值为<code>Number</code>，则表示，当表格超出该高度时即展示滚动条，并固定表头</li>
+</ol>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
@@ -629,7 +586,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-115"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
+</div><div class="code"></div></div></div><div class="example index-117"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="表头1"><div class="k-th"><div class="c-ellipsis">表头1</div>
@@ -671,75 +628,7 @@
     <tr><td class="k-no-data" colspan="3"><div style="color: red">没有数据</div></td></tr>
 </tbody>
 </table>
-</div></div></div><div class="example-desc"><div class="title">自定义无内容时的展示信息</div><div class="desc"><p>当data为<code>[]</code>时, 可设置<code>noDataTemplate</code>来展示你想展示的信息（默认为： /(ㄒoㄒ)/~~ 没有找到亲要的数据哦~）。或者你也可以通过<code>no-data</code>扩展点，来定义内容</p>
-</div></div><div class="example-code"><div class="k-tabs" style="">
-    <a class="k-tab">
-                            <!---->index.vdt<!---->
-                        </a><a class="k-tab">
-                            <!---->index.styl<!---->
-                        </a><a class="k-tab">
-                            <!---->index.js<!---->
-                        </a>
-</div><div class="code"></div></div></div><div class="example index-118"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
-    <table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
-            <th class="k-sortable" title="姓名"><div class="k-th"><div class="c-ellipsis">姓名</div>
-        <div class="k-sort"><i class="k-icon icon-sortable"></i></div>
-    </div></th><th class="k-sortable" title="时间"><div class="k-th"><div class="c-ellipsis">时间</div>
-        <div class="k-sort k-asc"><i class="k-icon icon-asc"></i></div>
-    </div></th>
-            <!---->
-        </tr></thead>
-    <tbody>
-    <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
-                <td title="a默认按照时间升序">a默认按照时间升序</td><td title="2">2</td>
-            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" tabindex="-1" name="k-table-checkbox" /></span></label></td>
-                <td title="b 箭头方向默认的是向上的">b 箭头方向默认的是向上的</td><td title="1">1</td>
-            </tr>
-</tbody>
-</table>
-</div><div class="k-table-wrapper" style="">
-    <table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
-            <th class="k-sortable" title="姓名"><div class="k-th"><div class="c-ellipsis">姓名</div>
-        <div class="k-sort"><i class="k-icon icon-sortable"></i></div>
-    </div></th><th class="k-sortable" title="时间"><div class="k-th"><div class="c-ellipsis">时间</div>
-        <div class="k-sort"><i class="k-icon icon-sortable"></i></div>
-    </div></th>
-            <!---->
-        </tr></thead>
-    <tbody>
-    <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
-                <td title="a无默认排序">a无默认排序</td><td title="2">2</td>
-            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" tabindex="-1" name="k-table-checkbox" /></span></label></td>
-                <td title="b 观察箭头方向都是双向的">b 观察箭头方向都是双向的</td><td title="1">1</td>
-            </tr>
-</tbody>
-</table>
-</div><div class="k-table-wrapper" style="">
-    <table class="k-table">
-    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
-            <!---->
-            <th title="姓名"><div class="k-th"><div class="c-ellipsis">姓名</div>
-        <!---->
-    </div></th><th class="k-sortable" title="时间(标签形式定义排序)"><div class="k-th"><div class="c-ellipsis">时间(标签形式定义排序)</div>
-        <div class="k-sort k-asc"><i class="k-icon icon-asc"></i></div>
-    </div></th>
-        </tr></thead>
-    <tbody>
-    <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
-                <td title="a默认按照时间升序">a默认按照时间升序</td><td title="2">2</td>
-            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" tabindex="-1" name="k-table-checkbox" /></span></label></td>
-                <td title="b 箭头方向默认的是向上的">b 箭头方向默认的是向上的</td><td title="1">1</td>
-            </tr>
-</tbody>
-</table>
-</div></div></div><div class="example-desc"><div class="title">排序</div><div class="desc"><p><code>sort</code>：排序，类型<code>Object</code>，<code>{}</code>(默认)</p>
-<ul>
-<li><code>sort</code>接收的对象包含两个属性,<code>key</code>表示你要排序的是哪一列，<code>type</code>表示需要将这一列升序还是降序排列。（<code>desc</code>降序，<code>asc</code>升序）</li>
-<li>如果希望某列可以排序的话，在定义它的<code>scheme</code>时，需要添加<code>sortable: true</code>键值对。</li>
-</ul>
-<p>另一种定义表头信息方式<code>&lt;TableColumn sortable={{true}}&gt;&lt;/TableColumn&gt;</code></p>
+</div></div></div><div class="example-desc"><div class="title">自定义无内容时的展示信息</div><div class="desc"><p>当<code>data</code>为空数组<code>[]</code>时, 可设置<code>noDataTemplate</code>来展示提示信息（默认为： /(ㄒoㄒ)/~~ 没有找到亲要的数据哦~）。或者你也可以通过<code>no-data</code>扩展点，来定义内容</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
@@ -751,19 +640,20 @@
 </div><div class="code"></div></div></div><div class="example index-119"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
-            <th title="姓名"><div class="k-th"><div class="c-ellipsis">姓名</div>
-        <!---->
-    </div></th><th title="时间"><div class="k-th"><div class="k-group"><i class="k-arrow ion-ios-arrow-down" _hasSaved></i><!--MoveWrapper--><div class="c-ellipsis">
-                <!---->时间<!---->
-                <!---->
-            </div></div>
-        <!---->
+            <th class="k-sortable" title="姓名"><div class="k-th"><div class="c-ellipsis">姓名</div>
+        <div class="k-sort"><i class="k-icon icon-sortable"></i></div>
+    </div></th><th class="k-sortable" title="年龄"><div class="k-th"><div class="c-ellipsis">年龄</div>
+        <div class="k-sort"><i class="k-icon icon-sortable"></i></div>
     </div></th>
             <!---->
         </tr></thead>
     <tbody>
     <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
-                <td title="lihua">lihua</td><td title="10-12-12">10-12-12</td>
+                <td title="aa">aa</td><td title="1">1</td>
+            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" tabindex="-1" name="k-table-checkbox" /></span></label></td>
+                <td title="cc">cc</td><td title="5">5</td>
+            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="2" tabindex="-1" name="k-table-checkbox" /></span></label></td>
+                <td title="bb">bb</td><td title="9">9</td>
             </tr>
 </tbody>
 </table>
@@ -771,26 +661,26 @@
     <table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <!---->
-            <th title="姓名"><div class="k-th"><div class="c-ellipsis">姓名</div>
-        <!---->
-    </div></th><th title="时间"><div class="k-th"><div class="k-group"><i class="k-arrow ion-ios-arrow-down" _hasSaved></i><!--MoveWrapper--><div class="c-ellipsis">
-                <!---->时间<!---->
-                <!---->
-            </div></div>
-        <!---->
+            <th class="k-sortable" title="姓名"><div class="k-th"><div class="c-ellipsis">姓名</div>
+        <div class="k-sort"><i class="k-icon icon-sortable"></i></div>
+    </div></th><th class="k-sortable" title="年龄"><div class="k-th"><div class="c-ellipsis">年龄</div>
+        <div class="k-sort"><i class="k-icon icon-sortable"></i></div>
     </div></th>
         </tr></thead>
     <tbody>
     <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
-                <td title="lihua(标签形式定义表头信息)">lihua(标签形式定义表头信息)</td><td title="10-12-12">10-12-12</td>
+                <td title="aa">aa</td><td title="1">1</td>
+            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" tabindex="-1" name="k-table-checkbox" /></span></label></td>
+                <td title="cc">cc</td><td title="5">5</td>
+            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="2" tabindex="-1" name="k-table-checkbox" /></span></label></td>
+                <td title="bb">bb</td><td title="9">9</td>
             </tr>
 </tbody>
 </table>
-</div></div></div><div class="example-desc"><div class="title">分组</div><div class="desc"><p><code>group</code>：分组，类型<code>Array</code>，<code>{}</code>(默认)</p>
-<ul>
-<li><code>group</code>接收一个数组，数组每一项接收一个<code>{label: &#39;展示内容&#39;, value: &#39;值&#39;}</code>的对象来定义分组信息。</li>
-</ul>
-<p>另一种定义表头信息方式<code>&lt;TableColumn group={{[]}}&gt;&lt;/TableColumn&gt;</code></p>
+</div></div></div><div class="example-desc"><div class="title">排序</div><div class="desc"><p>通过<code>sort</code>属性来指定当前表格的排序方式。它的数据格式如下：</p>
+<p><code>{ key: &#39;当前排序的列的key&#39;, type: &#39;当前排序方式（desc: 降序，asc: 升序）&#39; }</code></p>
+<p>当该列可排序时，只需要在定义表格结构的<code>scheme</code>或者<code>TableColumn</code>中加入<code>sortable</code>并且取值为<code>true</code>即可</p>
+<p>当排序方式改变时，可以监听默认事件<code>$change:sort</code>来执行自定义排序逻辑</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
@@ -802,18 +692,56 @@
 </div><div class="code"></div></div></div><div class="example index-121"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
-            <th title="类型"><div class="k-th"><div class="c-ellipsis">类型</div>
+            <th title="名称"><div class="k-th"><div class="c-ellipsis">名称</div>
+        <!---->
+    </div></th><th title="状态"><div class="k-th"><div class="k-group"><i class="k-arrow ion-ios-arrow-down" _hasSaved></i><!--MoveWrapper--><div class="c-ellipsis">
+                <!---->状态<!---->
+                <!---->(全部)<!---->
+            </div></div>
         <!---->
     </div></th>
             <!---->
         </tr></thead>
     <tbody>
     <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
-                <td title="defalut">defalut</td>
+                <td title="主机1">主机1</td><td title="运行中">运行中</td>
+            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" tabindex="-1" name="k-table-checkbox" /></span></label></td>
+                <td title="主机2">主机2</td><td title="已关闭">已关闭</td>
+            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="2" tabindex="-1" name="k-table-checkbox" /></span></label></td>
+                <td title="主机3">主机3</td><td title="运行中">运行中</td>
             </tr>
 </tbody>
 </table>
-</div></div></div><div class="example-desc"><div class="title">table的类型</div><div class="desc"><p><code>type</code>：设置表格的类型，类型<code>String</code>，<code>&quot;default&quot;</code>(默认)</p>
+</div><div class="k-table-wrapper" style="">
+    <table class="k-table">
+    <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
+            <!---->
+            <th title="名称"><div class="k-th"><div class="c-ellipsis">名称</div>
+        <!---->
+    </div></th><th title="状态"><div class="k-th"><div class="k-group"><i class="k-arrow ion-ios-arrow-down" _hasSaved></i><!--MoveWrapper--><div class="c-ellipsis">
+                <!---->状态<!---->
+                <!---->(全部)<!---->
+            </div></div>
+        <!---->
+    </div></th>
+        </tr></thead>
+    <tbody>
+    <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
+                <td title="主机1">主机1</td><td title="运行中">运行中</td>
+            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" tabindex="-1" name="k-table-checkbox" /></span></label></td>
+                <td title="主机2">主机2</td><td title="已关闭">已关闭</td>
+            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="2" tabindex="-1" name="k-table-checkbox" /></span></label></td>
+                <td title="主机3">主机3</td><td title="运行中">运行中</td>
+            </tr>
+</tbody>
+</table>
+</div></div></div><div class="example-desc"><div class="title">分组</div><div class="desc"><p>分组需要两个<code>group</code>来指定：</p>
+<ol>
+<li>第一个是<code>Table</code>上的<code>group</code>属性，该属性指定当前分组的方式，形式为：<code>{[&quot;分组的列的key&quot;]: [&quot;当前列选择的分组的值&quot;]}</code></li>
+<li>第二个是<code>TableColumn</code>或者<code>scheme</code>上的<code>group</code>属性，该属性指定当前列有哪些可选的分组方式，
+如果该列支持多选，还可以添加<code>multiple</code>属性，默认为单选。形式为：<code>[{label: &quot;分组展示文案&quot;, value: &quot;选择后的值&quot;}]</code></li>
+</ol>
+<p>当分组方式改变时，可以监听默认事件<code>$change:group</code>来执行自定义分组逻辑</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
@@ -822,39 +750,44 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-123"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
+</div><div class="code"></div></div></div><div class="example index-123"><div class="example-opera"><div class="k-table-wrapper k-border" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
-            <th title="默认不可拖拽"><div class="k-th"><div class="c-ellipsis">默认不可拖拽</div>
-        <!---->
-    </div></th><th title="表头B"><div class="k-th"><div class="c-ellipsis">表头B</div>
+            <th title="类型"><div class="k-th"><div class="c-ellipsis">类型</div>
         <!---->
     </div></th>
             <!---->
         </tr></thead>
     <tbody>
     <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
-                <td title="A">A</td><td title="B">B</td>
-            </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" tabindex="-1" name="k-table-checkbox" /></span></label></td>
-                <td title="A">A</td><td title="B">B</td>
+                <td title="border类型">border类型</td>
             </tr>
 </tbody>
 </table>
-</div><div class="k-table-wrapper" style="">
+</div></div><div class="example-desc"><div class="title">类型</div><div class="desc"><p>通过<code>type</code>设置表格的类型：<code>default</code> | <code>border</code></p>
+</div></div><div class="example-code"><div class="k-tabs" style="">
+    <a class="k-tab">
+                            <!---->index.vdt<!---->
+                        </a><a class="k-tab">
+                            <!---->index.js<!---->
+                        </a>
+</div><div class="code"></div></div></div><div class="example index-125"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
-            <th title="设置为可拖拽"><div class="k-resize"></div><div class="k-th"><div class="c-ellipsis">设置为可拖拽</div>
+            <th title="通过minColWidth控制最小宽度100px"><div class="k-resize"></div><div class="k-th"><div class="c-ellipsis">通过minColWidth控制最小宽度100px</div>
         <!---->
-    </div></th><th title="表头B"><div class="k-resize"></div><div class="k-th"><div class="c-ellipsis">表头B</div>
+    </div></th><th title="单独设置最小宽度300px"><div class="k-resize"></div><div class="k-th"><div class="c-ellipsis">单独设置最小宽度300px</div>
+        <!---->
+    </div></th><th title="标题"><div class="k-resize"></div><div class="k-th"><div class="c-ellipsis">标题</div>
         <!---->
     </div></th>
             <!---->
         </tr></thead>
     <tbody>
     <tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="0" tabindex="-1" name="k-table-checkbox" /></span></label></td>
-                <td title="A">A</td><td title="B">B</td>
+                <td title="A">A</td><td title="B">B</td><td title="C">C</td>
             </tr><tr class=""><td><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="checkedKeys" value="1" tabindex="-1" name="k-table-checkbox" /></span></label></td>
-                <td title="A">A</td><td title="B">B</td>
+                <td title="A">A</td><td title="B">B</td><td title="C">C</td>
             </tr>
 </tbody>
 </table>
@@ -883,25 +816,25 @@
 </tr>
 <tr>
 <td>scheme</td>
-<td>表头信息</td>
+<td>定义表格结构：表头，单元格内容</td>
 <td><code>Object</code></td>
 <td><code>{}</code></td>
 </tr>
 <tr>
 <td>checkType</td>
-<td>框的类型: 单选 radio , 复选 checkbox ,  没有 none</td>
-<td><code>String</code></td>
+<td>当行可选择时，定义选择的类型: 单选 <code>&quot;radio&quot;</code> , 复选 <code>&quot;checkbox&quot;</code>, 不可选<code>&quot;none&quot;</code></td>
+<td><code>&quot;checkbox&quot;</code> &#124; <code>&quot;radio&quot;</code> &#124; <code>&quot;none&quot;</code></td>
 <td><code>&quot;checkbox&quot;</code></td>
 </tr>
 <tr>
 <td>noDataTemplate</td>
-<td>当没有数据的时候展示信息</td>
+<td>当没有数据的时候展示的内容</td>
 <td><code>String</code> &#124; <code>vNode</code></td>
 <td><code>&quot;/(ㄒoㄒ)/~~ 没有找到亲要的数据哦~&quot;</code></td>
 </tr>
 <tr>
 <td>fixHeader</td>
-<td>表头固定</td>
+<td>表头固定，给定需要固定高度的具体数值，当超出改值时，展示滚动条</td>
 <td><code>Number</code></td>
 <td><code>false</code></td>
 </tr>
@@ -931,61 +864,67 @@
 </tr>
 <tr>
 <td>rowCheckable</td>
-<td>是否整行选中</td>
+<td>当行可选时，是否点击该行任意区域都可选中</td>
 <td><code>Boolean</code></td>
 <td><code>true</code></td>
 </tr>
 <tr>
 <td>rowClassName</td>
-<td>设置行的class</td>
+<td>通过一个函数定义行的<code>className</code>，该函数会传入该行数据和索引当做参数，返回的字符串将被设为该行<code>className</code></td>
 <td><code>Function</code></td>
 <td><code>function(value, index) {  }</code></td>
 </tr>
 <tr>
 <td>disableRow</td>
-<td>禁用某一行</td>
+<td>定义行禁用可选的逻辑，返回<code>true</code>，则改行被禁用选择</td>
 <td><code>Function</code></td>
 <td><code>function(data, index) { return false }</code></td>
 </tr>
 <tr>
 <td>rowExpandable</td>
-<td>是否点击整行展开</td>
+<td>是否点击改行任意区域即展开</td>
 <td><code>Boolean</code></td>
 <td><code>true</code></td>
 </tr>
 <tr>
 <td>expand</td>
-<td>展开条件</td>
+<td>通过函数指定行展开后要展示的模板内容</td>
 <td><code>Function</code></td>
 <td><code>undefined</code></td>
 </tr>
 <tr>
 <td>expandedKeys</td>
-<td>哪些行展开</td>
+<td>通过<code>key</code>来指定哪些行展开</td>
 <td><code>Array</code></td>
 <td><code>[]</code></td>
 </tr>
 <tr>
 <td>type</td>
-<td>类型</td>
-<td><code>String</code></td>
+<td>表格类型，默认左右无边框，<code>&quot;border&quot;</code>类型会添加边框</td>
+<td><code>&quot;default&quot;</code> &#124; <code>&quot;border&quot;</code></td>
 <td><code>&quot;default&quot;</code></td>
 </tr>
 <tr>
 <td>sort</td>
-<td>排序</td>
+<td>排序，详见示例说明</td>
 <td><code>Object</code></td>
 <td><code>{}</code></td>
 </tr>
 <tr>
 <td>group</td>
-<td>分组</td>
+<td>分组，详见示例说明</td>
 <td><code>Object</code></td>
 <td><code>{}</code></td>
 </tr>
+<tr>
+<td>minColWidth</td>
+<td>指定所有列拖动时的最小宽度</td>
+<td><code>Number</code></td>
+<td><code>40</code></td>
+</tr>
 </tbody>
                     </table>
-                </div><h2 id='header-TableColumn'>TableColumn</h2><p>除了通过<code>Table</code>的<code>scheme</code>属性指定表格的结构外，还以通过<code>TableColumn</code>来指定</p>
+                </div><h2 id='header-TableColumn'>TableColumn</h2><p>除了通过<code>Table</code>的<code>scheme</code>属性指定表格的结构外，还以通过<code>TableColumn</code>来指定，它的属性值跟<code>scheme</code>数据结构一一对应</p>
 <div class="k-table-wrapper k-border">
                     <table class="k-table">
                         <thead><tr>
@@ -1009,7 +948,7 @@
 </tr>
 <tr>
 <td>key</td>
-<td>指定当前列的<code>key</code>，<strong>必须指定</strong></td>
+<td>指定当前列的<code>key</code>，<strong>必须指定，并且为了保证顺序正确，不要以数字开头</strong></td>
 <td><code>String</code></td>
 <td><code>&quot;&quot;</code></td>
 </tr>
@@ -1021,7 +960,7 @@
 </tr>
 <tr>
 <td>width</td>
-<td>列宽，可以指定百分比或像素(不需要加单位)</td>
+<td>列宽，可以指定百分比或像素(像素不需要加单位)</td>
 <td><code>String</code></td>
 <td><code>undefined</code></td>
 </tr>
@@ -1036,6 +975,12 @@
 <td>分组是否支持多选</td>
 <td><code>Boolean</code></td>
 <td><code>false</code></td>
+</tr>
+<tr>
+<td>minWidth</td>
+<td>指定当前列拖动时的最小宽度，优先级高于<code>Table</code>的<code>minColWidth</code></td>
+<td><code>Number</code></td>
+<td><code>40</code></td>
 </tr>
 </tbody>
                     </table>
