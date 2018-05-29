@@ -64,8 +64,9 @@ import Button from 'kpc/components/button';
 ```
 
 ```styl
-.ion-ios-arrow-right
-    float right
-    &:before
-        font-size inherit
+/.k-dropdown-menu
+    .ion-ios-arrow-right
+        float right
+        &:before
+            font-size inherit
 ```
