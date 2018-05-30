@@ -1,0 +1,12 @@
+<t:parent navIndex="blog" class="document-page blog-page">
+    <b:content>
+        <aside>
+            <div class="aside-wrapper">
+                <div class="aside-border transition"></div>
+            </div>
+        </aside>
+        <article>
+            <div innerHTML={{ self.get('content') }}></div>
+        </article>
+    </b:content>
+</t:parent>

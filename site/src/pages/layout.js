@@ -21,7 +21,7 @@ export default class extends Intact {
     }
 
     _mount() {
-        this.$border = this.element.querySelector('.border');
+        this.border = this.element.querySelector('.border');
         this._updateBorder();
         this.link = document.querySelector('link[rel=stylesheet]');
     }
@@ -32,14 +32,15 @@ export default class extends Intact {
     }
 
     _updateBorder() {
-        // const $nav = this.element.querySelector('.active');
-        // let width = 0;
-        // let left = 0;
-        // if ($nav) {
-            // left = $nav.position().left;
-            // width = $nav.outerWidth();
-        // }
-        // this.$border.addClass('transition');
-        // this.$border.css({width: width, left: left});
+        const nav = this.element.querySelector('.active');
+        let width = 0;
+        let left = 0;
+        if (nav) {
+            left = nav.offsetLeft;
+            width = nav.offsetWidth;
+        }
+        this.border.classList.add('transition');
+        this.border.style.width = `${width}px`;
+        this.border.style.left = `${left}px`;
     }
 }

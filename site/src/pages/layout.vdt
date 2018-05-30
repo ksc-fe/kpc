@@ -4,11 +4,17 @@ import {Select, Option} from 'kpc/components/select';
 const nav = [
     {
         title: '教程',
-        href: '/docs/getting-started/'
+        href: '/docs/getting-started/',
+        index: 'document',
     },
     /* { */
         /* title: '设计语言', */
         /* href: '/design', */
+    /* }, */
+    /* { */
+        /* title: 'Blog', */
+        /* href: '/docs/blog/test/', */
+        /* index: 'blog', */
     /* }, */
     /* { */
         /* title: 'API', */
@@ -29,7 +35,7 @@ const nav = [
                     <nav>
                         <Link v-for={{ nav }} 
                             class={{ {
-                                active: value.href === scope.navIndex
+                                active: value.index === scope.navIndex
                             } }}
                             href={{ `${process.URL_PREFIX}${value.href}` }}
                         >{{ value.title }}</Link>

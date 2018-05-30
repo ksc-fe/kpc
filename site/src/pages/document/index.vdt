@@ -36,7 +36,7 @@ function Catalog(props) {
     </div>
 }
 
-<t:parent navIndex="document" class="document-page">
+<t:parent navIndex="document" class="document-page" {{ ...scope }}>
     <b:content>
         <aside>
             <div class="aside-wrapper">
