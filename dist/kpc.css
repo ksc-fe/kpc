@@ -4176,6 +4176,7 @@ button.k-btn > span {
   position: relative;
   -webkit-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
+  background: #fff;
 }
 .k-checkbox .k-wrapper:before {
   content: "";
@@ -5475,6 +5476,7 @@ button.k-btn > span {
   -webkit-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
   position: relative;
+  background: #fff;
 }
 .k-radio .k-wrapper:before {
   content: "";
@@ -6099,6 +6101,10 @@ button.k-btn > span {
   width: 100%;
   background: #0a5eee;
   bottom: -0.071428571428571rem;
+}
+.k-tabs .k-tab.k-disabled {
+  color: #999;
+  cursor: not-allowed;
 }
 .k-tabs.k-vertical {
   display: inline-block;

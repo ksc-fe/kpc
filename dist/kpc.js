@@ -964,7 +964,8 @@ var Input = (_dec = _intact2.default.template, (_class = (_temp = _class2 = func
             autoWidth: false,
             fluid: false,
             width: undefined,
-            tabindex: undefined
+            tabindex: undefined,
+            autocomplete: undefined
         };
     };
 
@@ -5461,7 +5462,7 @@ var _inherits2 = __webpack_require__(3);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
-var _dec, _desc, _value, _class;
+var _dec, _desc, _value, _class, _class2, _temp;
 
 var _intact = __webpack_require__(0);
 
@@ -5502,7 +5503,7 @@ function _applyDecoratedDescriptor(target, property, decorators, descriptor, con
     return desc;
 }
 
-var Tab = (_dec = _intact2.default.template(), (_class = function (_Intact) {
+var Tab = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
     (0, _inherits3.default)(Tab, _Intact);
 
     function Tab() {
@@ -5514,6 +5515,7 @@ var Tab = (_dec = _intact2.default.template(), (_class = function (_Intact) {
         return {
             value: undefined,
             to: undefined,
+            disabled: false,
 
             // passed by parent
             _value: undefined,
@@ -5527,6 +5529,10 @@ var Tab = (_dec = _intact2.default.template(), (_class = function (_Intact) {
     };
 
     Tab.prototype._changeTab = function _changeTab(e) {
+        if (this.get('disabled')) {
+            return e.preventDefault();
+        }
+
         this.get('_parent')._changeTab(this.get());
     };
 
@@ -5537,7 +5543,9 @@ var Tab = (_dec = _intact2.default.template(), (_class = function (_Intact) {
         }
     }]);
     return Tab;
-}(_intact2.default), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
+}(_intact2.default), _class2.propTypes = {
+    disabled: Boolean
+}, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
 exports.default = Tab;
 module.exports = exports['default'];
 
@@ -5649,7 +5657,7 @@ exports.Transfer = _transfer.Transfer;
 
 /* generate start */
 
-var version = exports.version = '0.2.2-5';
+var version = exports.version = '0.2.2-6';
 
 /* generate end */
 
@@ -9173,7 +9181,8 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         className = _self$get.className,
         autoWidth = _self$get.autoWidth,
         fluid = _self$get.fluid,
-        width = _self$get.width;
+        width = _self$get.width,
+        autocomplete = _self$get.autocomplete;
 
     var classNameObj = (_classNameObj = {
         'k-input': true
@@ -9284,6 +9293,12 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         }.call(this), 'tabindex': function () {
             try {
                 return [tabindex][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'autocomplete': function () {
+            try {
+                return [autocomplete][0];
             } catch (e) {
                 _e(e);
             }
@@ -16726,6 +16741,13 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
         this._calcHeaderPadding();
     };
 
+    Table.prototype.get = function get(key, defaultValue) {
+        if (key === 'data' && !Array.isArray(_Intact.prototype.get.call(this, 'data', defaultValue))) {
+            return [];
+        }
+        return _Intact.prototype.get.call(this, key, defaultValue);
+    };
+
     Table.prototype.isCheckAll = function isCheckAll() {
         var checkedKeys = this.get('checkedKeys');
         var dataLength = this.get('data').length;
@@ -16826,15 +16848,8 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
         var _this5 = this;
 
         var disabledAmount = 0;
-
-        var _get2 = this.get(),
-            data = _get2.data,
-            disableRow = _get2.disableRow;
-
-        if (!Array.isArray(data)) {
-            data = [];
-            this.set('data', data, { silent: true });
-        }
+        var data = this.get('data');
+        var disableRow = this.get('disableRow');
 
         data.forEach(function (item, index) {
             if (disableRow.call(_this5, item, index)) {
@@ -18029,7 +18044,8 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             children = _self$get.children,
             _value = _self$get._value,
             className = _self$get.className,
-            size = _self$get.size;
+            size = _self$get.size,
+            disabled = _self$get.disabled;
 
         return h('a', { 'ev-click': function () {
                         try {
@@ -18050,7 +18066,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                         return [(_ref = {
                                 'k-tab': true,
                                 'k-active': value !== undefined && value === _value
-                        }, _ref[className] = className, _ref)][0];
+                        }, _ref[className] = className, _ref['k-disabled'] = disabled, _ref)][0];
                 } catch (e) {
                         _e(e);
                 }
