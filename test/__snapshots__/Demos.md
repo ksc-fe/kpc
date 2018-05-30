@@ -56,31 +56,31 @@
     <span>关机</span>
     </button><button class=\"k-btn\" tabindex=\"0\" type=\"button\">
     <span>重启</span>
-    </button></div><div class=\"k-btns\"><button class=\"k-btn k-primary k-small\" tabindex=\"0\" type=\"button\">
+    </button></div><div class=\"k-btns\"><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\">
     <span>开机</span>
-    </button><button class=\"k-btn k-primary k-small\" tabindex=\"0\" type=\"button\">
+    </button><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\">
     <span>关机</span>
-    </button><button class=\"k-btn k-primary k-small\" tabindex=\"0\" type=\"button\">
+    </button><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\">
     <span>重启</span>
-    </button></div><div class=\"k-btns\"><button class=\"k-btn k-primary k-small k-icon-left\" tabindex=\"0\" type=\"button\">
+    </button></div><div class=\"k-btns\"><button class=\"k-btn k-primary k-icon-left\" tabindex=\"0\" type=\"button\">
     <i class=\"k-icon ion-ios-arrow-left\"></i><span>上一页
         </span>
-    </button><button class=\"k-btn k-primary k-small k-icon-right\" tabindex=\"0\" type=\"button\">
+    </button><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\">
     <span>
             下一页</span><i class=\"k-icon ion-ios-arrow-right\"></i>
-    </button></div><br><br><p>纵向按钮组</p><div class=\"k-btns k-vertical\"><button class=\"k-btn k-primary k-small\" tabindex=\"0\" type=\"button\">
+    </button></div><br><br><p>纵向按钮组</p><div class=\"k-btns k-vertical\"><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\">
     <span>开机</span>
-    </button><button class=\"k-btn k-primary k-small\" tabindex=\"0\" type=\"button\">
+    </button><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\">
     <span>关机</span>
-    </button><button class=\"k-btn k-primary k-small\" tabindex=\"0\" type=\"button\">
+    </button><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\">
     <span>重启</span>
-    </button></div><br><br><p>radio按钮组</p><div class=\"k-btns\"><button class=\"k-btn k-small k-active\" tabindex=\"0\" type=\"button\">
+    </button></div><br><br><p>radio按钮组</p><div class=\"k-btns\"><button class=\"k-btn k-active\" tabindex=\"0\" type=\"button\">
     <span>北京</span>
-    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-small\" tabindex=\"0\" type=\"button\">
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn\" tabindex=\"0\" type=\"button\">
     <span>上海</span>
-    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-small\" tabindex=\"0\" type=\"button\">
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn\" tabindex=\"0\" type=\"button\">
     <span>广州</span>
-    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-small\" tabindex=\"0\" type=\"button\">
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn\" tabindex=\"0\" type=\"button\">
     <span>深圳</span>
     <input type=\"radio\" tabindex=\"-1\"></button></div><p>checkbox按钮组</p><div class=\"k-btns\"><button class=\"k-btn k-small\" tabindex=\"0\" type=\"button\">
     <span>北京</span>
@@ -128,13 +128,17 @@
 #### `Button size`
 
 ```
-"<div><button class=\"k-btn\" tabindex=\"0\" type=\"button\">
+"<div><button class=\"k-btn k-large\" tabindex=\"0\" type=\"button\">
+    <span>large</span>
+    </button><button class=\"k-btn\" tabindex=\"0\" type=\"button\">
     <span>default</span>
     </button><button class=\"k-btn k-small\" tabindex=\"0\" type=\"button\">
     <span>small</span>
     </button><button class=\"k-btn k-mini\" tabindex=\"0\" type=\"button\">
     <span>mini</span>
-    </button><br><br><button class=\"k-btn k-btn-icon k-circle\" tabindex=\"0\" type=\"button\">
+    </button><br><br><button class=\"k-btn k-btn-icon k-large k-circle\" tabindex=\"0\" type=\"button\">
+    <i class=\"k-icon ion-ios-search\"></i>
+    </button><button class=\"k-btn k-btn-icon k-circle\" tabindex=\"0\" type=\"button\">
     <i class=\"k-icon ion-ios-search\"></i>
     </button><button class=\"k-btn k-btn-icon k-small k-circle\" tabindex=\"0\" type=\"button\">
     <i class=\"k-icon ion-ios-search\"></i>
@@ -283,6 +287,14 @@
 "<div><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\">
     <span>
             hover </span><i class=\"k-icon ion-arrow-down-b\"></i>
+    </button><!--placeholder--></div>"
+```
+
+#### `Dropdown checkbox`
+
+```
+"<div><button class=\"k-btn\" tabindex=\"0\" type=\"button\">
+    <span>More &gt;</span>
     </button><!--placeholder--></div>"
 ```
 
@@ -448,7 +460,7 @@
 #### `Input size`
 
 ```
-"<div><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><br><div class=\"k-input k-small\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><div class=\"k-input k-small k-group\"><div class=\"k-prepend\">http://</div><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"></div><div class=\"k-append\">.com</div></div><div class=\"k-input k-small k-group\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"></div><div class=\"k-append\"><button class=\"k-btn k-primary k-btn-icon k-small\" tabindex=\"0\" type=\"button\">
+"<div><div class=\"k-input k-large\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><br><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><br><div class=\"k-input k-small\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><div class=\"k-input k-small k-group\"><div class=\"k-prepend\">http://</div><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"></div><div class=\"k-append\">.com</div></div><div class=\"k-input k-small k-group\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"></div><div class=\"k-append\"><button class=\"k-btn k-primary k-btn-icon k-small\" tabindex=\"0\" type=\"button\">
     <i class=\"ion-ios-search\"></i>
     </button></div></div><div class=\"k-input k-small k-group\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"></div><div class=\"k-append\"><button class=\"k-btn k-primary k-small\" tabindex=\"0\" type=\"button\">
     <span>Search</span>
@@ -496,25 +508,161 @@
 #### `Pagination basic`
 
 ```
-"<div><div class=\"k-pagination\"><div class=\"k-pages\"><div class=\"k-prev k-disabled\"><i class=\"ion-ios-arrow-left\"></i></div><div class=\"k-page k-active\">1</div><div class=\"k-page\">2</div><div class=\"k-page\">3</div><div class=\"k-page\">4</div><div class=\"k-page\">5</div><div class=\"k-ellipsis\">...</div><div class=\"k-page\">20</div><div class=\"k-next\"><i class=\"ion-ios-arrow-right\"></i></div></div><div class=\"k-limits\"><div class=\"k-select k-active\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><input type=\"hidden\" value=\"10\"><span class=\"k-value c-ellipsis\">10 条 / 页</span><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div></div><div class=\"k-total\">共 200 条</div></div><div class=\"k-pagination\"><div class=\"k-pages\"><div class=\"k-prev k-disabled\"><i class=\"ion-ios-arrow-left\"></i></div><div class=\"k-page k-active\">1</div><div class=\"k-page\">2</div><div class=\"k-page\">3</div><div class=\"k-page\">4</div><div class=\"k-page\">5</div><div class=\"k-ellipsis\">...</div><div class=\"k-page\">10</div><div class=\"k-next\"><i class=\"ion-ios-arrow-right\"></i></div></div><div class=\"k-limits\"><div class=\"k-select k-active\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><input type=\"hidden\" value=\"20\"><span class=\"k-value c-ellipsis\">20 条 / 页</span><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div></div><div class=\"k-total\">共 200 条</div></div><div class=\"k-pagination\"><div class=\"k-pages\"><div class=\"k-prev k-disabled\"><i class=\"ion-ios-arrow-left\"></i></div><div class=\"k-page k-active\">1</div><div class=\"k-page\">2</div><div class=\"k-page\">3</div><div class=\"k-page\">4</div><div class=\"k-page\">5</div><div class=\"k-ellipsis\">...</div><div class=\"k-page\">10</div><div class=\"k-next\"><i class=\"ion-ios-arrow-right\"></i></div></div><div class=\"k-limits\"><div class=\"k-select k-active\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><input type=\"hidden\" value=\"20\"><span class=\"k-value c-ellipsis\">20 条 / 页</span><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div></div><div class=\"k-total\">共 200 条</div></div></div>"
+"<div><div class=\"k-pagination\"><div class=\"k-btns\"><button class=\"k-btn k-btn-icon k-disabled\" tabindex=\"-1\" type=\"button\">
+    <i class=\"k-icon ion-ios-arrow-left\"></i>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-active\" tabindex=\"0\" type=\"button\">
+    <span>1</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>2</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>3</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>4</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>5</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-ellipsis\" tabindex=\"0\" type=\"button\">
+    <span>...</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>20</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <i class=\"k-icon ion-ios-arrow-right\"></i>
+    <input type=\"radio\" tabindex=\"-1\"></button></div><div class=\"k-limits\"><div class=\"k-select k-active\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><input type=\"hidden\" value=\"10\"><span class=\"k-value c-ellipsis\">10 条 / 页</span><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div></div><div class=\"k-total\">共 200 条</div></div><div class=\"k-pagination\"><div class=\"k-btns\"><button class=\"k-btn k-btn-icon k-disabled\" tabindex=\"-1\" type=\"button\">
+    <i class=\"k-icon ion-ios-arrow-left\"></i>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-active\" tabindex=\"0\" type=\"button\">
+    <span>1</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>2</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>3</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>4</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>5</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-ellipsis\" tabindex=\"0\" type=\"button\">
+    <span>...</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>10</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <i class=\"k-icon ion-ios-arrow-right\"></i>
+    <input type=\"radio\" tabindex=\"-1\"></button></div><div class=\"k-limits\"><div class=\"k-select k-active\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><input type=\"hidden\" value=\"20\"><span class=\"k-value c-ellipsis\">20 条 / 页</span><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div></div><div class=\"k-total\">共 200 条</div></div><div class=\"k-pagination\"><div class=\"k-btns\"><button class=\"k-btn k-btn-icon k-disabled\" tabindex=\"-1\" type=\"button\">
+    <i class=\"k-icon ion-ios-arrow-left\"></i>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-active\" tabindex=\"0\" type=\"button\">
+    <span>1</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>2</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>3</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>4</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>5</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-ellipsis\" tabindex=\"0\" type=\"button\">
+    <span>...</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>10</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <i class=\"k-icon ion-ios-arrow-right\"></i>
+    <input type=\"radio\" tabindex=\"-1\"></button></div><div class=\"k-limits\"><div class=\"k-select k-active\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><input type=\"hidden\" value=\"20\"><span class=\"k-value c-ellipsis\">20 条 / 页</span><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div></div><div class=\"k-total\">共 200 条</div></div></div>"
 ```
 
 #### `Pagination counts`
 
 ```
-"<div><div class=\"k-pagination\"><div class=\"k-pages\"><div class=\"k-prev k-disabled\"><i class=\"ion-ios-arrow-left\"></i></div><div class=\"k-page k-active\">1</div><div class=\"k-page\">2</div><div class=\"k-page\">3</div><div class=\"k-page\">4</div><div class=\"k-page\">5</div><div class=\"k-page\">6</div><div class=\"k-page\">7</div><div class=\"k-page\">8</div><div class=\"k-ellipsis\">...</div><div class=\"k-page\">20</div><div class=\"k-next\"><i class=\"ion-ios-arrow-right\"></i></div></div><div class=\"k-limits\"><div class=\"k-select k-active\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><input type=\"hidden\" value=\"10\"><span class=\"k-value c-ellipsis\">10 条 / 页</span><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div></div><div class=\"k-total\">共 200 条</div></div><div class=\"k-pagination\"><div class=\"k-pages\"><div class=\"k-prev k-disabled\"><i class=\"ion-ios-arrow-left\"></i></div><div class=\"k-page k-active\">1</div><div class=\"k-page\">2</div><div class=\"k-page\">3</div><div class=\"k-page\">4</div><div class=\"k-page\">5</div><div class=\"k-page\">6</div><div class=\"k-page\">7</div><div class=\"k-ellipsis\">...</div><div class=\"k-page\">20</div><div class=\"k-next\"><i class=\"ion-ios-arrow-right\"></i></div></div><div class=\"k-limits\"><div class=\"k-select k-active\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><input type=\"hidden\" value=\"10\"><span class=\"k-value c-ellipsis\">10 条 / 页</span><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div></div><div class=\"k-total\">共 200 条</div></div></div>"
+"<div><div class=\"k-pagination\"><div class=\"k-btns\"><button class=\"k-btn k-btn-icon k-disabled\" tabindex=\"-1\" type=\"button\">
+    <i class=\"k-icon ion-ios-arrow-left\"></i>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-active\" tabindex=\"0\" type=\"button\">
+    <span>1</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>2</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>3</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>4</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>5</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>6</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>7</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>8</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-ellipsis\" tabindex=\"0\" type=\"button\">
+    <span>...</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>20</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <i class=\"k-icon ion-ios-arrow-right\"></i>
+    <input type=\"radio\" tabindex=\"-1\"></button></div><div class=\"k-limits\"><div class=\"k-select k-active\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><input type=\"hidden\" value=\"10\"><span class=\"k-value c-ellipsis\">10 条 / 页</span><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div></div><div class=\"k-total\">共 200 条</div></div><div class=\"k-pagination\"><div class=\"k-btns\"><button class=\"k-btn k-btn-icon k-disabled\" tabindex=\"-1\" type=\"button\">
+    <i class=\"k-icon ion-ios-arrow-left\"></i>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-active\" tabindex=\"0\" type=\"button\">
+    <span>1</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>2</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>3</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>4</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>5</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>6</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>7</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-ellipsis\" tabindex=\"0\" type=\"button\">
+    <span>...</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>20</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <i class=\"k-icon ion-ios-arrow-right\"></i>
+    <input type=\"radio\" tabindex=\"-1\"></button></div><div class=\"k-limits\"><div class=\"k-select k-active\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><input type=\"hidden\" value=\"10\"><span class=\"k-value c-ellipsis\">10 条 / 页</span><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div></div><div class=\"k-total\">共 200 条</div></div></div>"
 ```
 
 #### `Pagination current`
 
 ```
-"<div><div class=\"k-pagination\"><div class=\"k-pages\"><div class=\"k-prev k-disabled\"><i class=\"ion-ios-arrow-left\"></i></div><div class=\"k-page k-active\">1</div><div class=\"k-page\">2</div><div class=\"k-page\">3</div><div class=\"k-page\">4</div><div class=\"k-page\">5</div><div class=\"k-ellipsis\">...</div><div class=\"k-page\">20</div><div class=\"k-next\"><i class=\"ion-ios-arrow-right\"></i></div></div><div class=\"k-limits\"><div class=\"k-select k-active\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><input type=\"hidden\" value=\"10\"><span class=\"k-value c-ellipsis\">10 条 / 页</span><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div></div><div class=\"k-total\">共 200 条</div></div></div>"
+"<div><div class=\"k-pagination\"><div class=\"k-btns\"><button class=\"k-btn k-btn-icon k-disabled\" tabindex=\"-1\" type=\"button\">
+    <i class=\"k-icon ion-ios-arrow-left\"></i>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-active\" tabindex=\"0\" type=\"button\">
+    <span>1</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>2</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>3</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>4</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>5</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-ellipsis\" tabindex=\"0\" type=\"button\">
+    <span>...</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>20</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <i class=\"k-icon ion-ios-arrow-right\"></i>
+    <input type=\"radio\" tabindex=\"-1\"></button></div><div class=\"k-limits\"><div class=\"k-select k-active\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><input type=\"hidden\" value=\"10\"><span class=\"k-value c-ellipsis\">10 条 / 页</span><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div></div><div class=\"k-total\">共 200 条</div></div></div>"
 ```
 
 #### `Pagination goto`
 
 ```
-"<div><div class=\"k-pagination\"><div class=\"k-pages\"><div class=\"k-prev k-disabled\"><i class=\"ion-ios-arrow-left\"></i></div><div class=\"k-page k-active\">1</div><div class=\"k-page\">2</div><div class=\"k-page\">3</div><div class=\"k-page\">4</div><div class=\"k-page\">5</div><div class=\"k-ellipsis\">...</div><div class=\"k-page\">20</div><div class=\"k-next\"><i class=\"ion-ios-arrow-right\"></i></div></div><div class=\"k-limits\"><div class=\"k-select k-active\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><input type=\"hidden\" value=\"10\"><span class=\"k-value c-ellipsis\">10 条 / 页</span><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div></div><div class=\"k-goto\">
+"<div><div class=\"k-pagination\"><div class=\"k-btns\"><button class=\"k-btn k-btn-icon k-disabled\" tabindex=\"-1\" type=\"button\">
+    <i class=\"k-icon ion-ios-arrow-left\"></i>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-active\" tabindex=\"0\" type=\"button\">
+    <span>1</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>2</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>3</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>4</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>5</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-ellipsis\" tabindex=\"0\" type=\"button\">
+    <span>...</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>20</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <i class=\"k-icon ion-ios-arrow-right\"></i>
+    <input type=\"radio\" tabindex=\"-1\"></button></div><div class=\"k-limits\"><div class=\"k-select k-active\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><input type=\"hidden\" value=\"10\"><span class=\"k-value c-ellipsis\">10 条 / 页</span><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div></div><div class=\"k-goto\">
         跳至<div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div>页
     </div><div class=\"k-total\">共 200 条</div></div></div>"
 ```
@@ -522,7 +670,79 @@
 #### `Pagination size`
 
 ```
-"<div><div class=\"k-pagination\"><div class=\"k-pages\"><div class=\"k-prev k-disabled\"><i class=\"ion-ios-arrow-left\"></i></div><div class=\"k-page k-active\">1</div><div class=\"k-page\">2</div><div class=\"k-page\">3</div><div class=\"k-page\">4</div><div class=\"k-page\">5</div><div class=\"k-ellipsis\">...</div><div class=\"k-page\">20</div><div class=\"k-next\"><i class=\"ion-ios-arrow-right\"></i></div></div><div class=\"k-limits\"><div class=\"k-select k-active\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><input type=\"hidden\" value=\"10\"><span class=\"k-value c-ellipsis\">10 条 / 页</span><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div></div><div class=\"k-total\">共 200 条</div></div><div class=\"k-pagination k-small\"><div class=\"k-pages\"><div class=\"k-prev k-disabled\"><i class=\"ion-ios-arrow-left\"></i></div><div class=\"k-page k-active\">1</div><div class=\"k-page\">2</div><div class=\"k-page\">3</div><div class=\"k-page\">4</div><div class=\"k-page\">5</div><div class=\"k-ellipsis\">...</div><div class=\"k-page\">20</div><div class=\"k-next\"><i class=\"ion-ios-arrow-right\"></i></div></div><div class=\"k-limits\"><div class=\"k-select k-small k-active\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><input type=\"hidden\" value=\"10\"><span class=\"k-value c-ellipsis\">10 条 / 页</span><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div></div><div class=\"k-total\">共 200 条</div></div><div class=\"k-pagination k-mini\"><div class=\"k-pages\"><div class=\"k-prev k-disabled\"><i class=\"ion-ios-arrow-left\"></i></div><div class=\"k-page k-active\">1</div><div class=\"k-page\">2</div><div class=\"k-page\">3</div><div class=\"k-page\">4</div><div class=\"k-page\">5</div><div class=\"k-ellipsis\">...</div><div class=\"k-page\">20</div><div class=\"k-next\"><i class=\"ion-ios-arrow-right\"></i></div></div><div class=\"k-limits\"><div class=\"k-select k-mini k-active\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><input type=\"hidden\" value=\"10\"><span class=\"k-value c-ellipsis\">10 条 / 页</span><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div></div><div class=\"k-total\">共 200 条</div></div></div>"
+"<div><div class=\"k-pagination k-large\"><div class=\"k-btns\"><button class=\"k-btn k-btn-icon k-large k-disabled\" tabindex=\"-1\" type=\"button\">
+    <i class=\"k-icon ion-ios-arrow-left\"></i>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-large k-active\" tabindex=\"0\" type=\"button\">
+    <span>1</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-large\" tabindex=\"0\" type=\"button\">
+    <span>2</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-large\" tabindex=\"0\" type=\"button\">
+    <span>3</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-large\" tabindex=\"0\" type=\"button\">
+    <span>4</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-large\" tabindex=\"0\" type=\"button\">
+    <span>5</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-large k-ellipsis\" tabindex=\"0\" type=\"button\">
+    <span>...</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-large\" tabindex=\"0\" type=\"button\">
+    <span>20</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-large\" tabindex=\"0\" type=\"button\">
+    <i class=\"k-icon ion-ios-arrow-right\"></i>
+    <input type=\"radio\" tabindex=\"-1\"></button></div><div class=\"k-limits\"><div class=\"k-select k-large k-active\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><input type=\"hidden\" value=\"10\"><span class=\"k-value c-ellipsis\">10 条 / 页</span><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div></div><div class=\"k-total\">共 200 条</div></div><div class=\"k-pagination\"><div class=\"k-btns\"><button class=\"k-btn k-btn-icon k-disabled\" tabindex=\"-1\" type=\"button\">
+    <i class=\"k-icon ion-ios-arrow-left\"></i>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-active\" tabindex=\"0\" type=\"button\">
+    <span>1</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>2</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>3</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>4</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>5</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-ellipsis\" tabindex=\"0\" type=\"button\">
+    <span>...</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <span>20</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\">
+    <i class=\"k-icon ion-ios-arrow-right\"></i>
+    <input type=\"radio\" tabindex=\"-1\"></button></div><div class=\"k-limits\"><div class=\"k-select k-active\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><input type=\"hidden\" value=\"10\"><span class=\"k-value c-ellipsis\">10 条 / 页</span><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div></div><div class=\"k-total\">共 200 条</div></div><div class=\"k-pagination k-small\"><div class=\"k-btns\"><button class=\"k-btn k-btn-icon k-small k-disabled\" tabindex=\"-1\" type=\"button\">
+    <i class=\"k-icon ion-ios-arrow-left\"></i>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-small k-active\" tabindex=\"0\" type=\"button\">
+    <span>1</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-small\" tabindex=\"0\" type=\"button\">
+    <span>2</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-small\" tabindex=\"0\" type=\"button\">
+    <span>3</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-small\" tabindex=\"0\" type=\"button\">
+    <span>4</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-small\" tabindex=\"0\" type=\"button\">
+    <span>5</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-small k-ellipsis\" tabindex=\"0\" type=\"button\">
+    <span>...</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-small\" tabindex=\"0\" type=\"button\">
+    <span>20</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-small\" tabindex=\"0\" type=\"button\">
+    <i class=\"k-icon ion-ios-arrow-right\"></i>
+    <input type=\"radio\" tabindex=\"-1\"></button></div><div class=\"k-limits\"><div class=\"k-select k-small k-active\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><input type=\"hidden\" value=\"10\"><span class=\"k-value c-ellipsis\">10 条 / 页</span><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div></div><div class=\"k-total\">共 200 条</div></div><div class=\"k-pagination k-mini\"><div class=\"k-btns\"><button class=\"k-btn k-btn-icon k-mini k-disabled\" tabindex=\"-1\" type=\"button\">
+    <i class=\"k-icon ion-ios-arrow-left\"></i>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-mini k-active\" tabindex=\"0\" type=\"button\">
+    <span>1</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-mini\" tabindex=\"0\" type=\"button\">
+    <span>2</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-mini\" tabindex=\"0\" type=\"button\">
+    <span>3</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-mini\" tabindex=\"0\" type=\"button\">
+    <span>4</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-mini\" tabindex=\"0\" type=\"button\">
+    <span>5</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-mini k-ellipsis\" tabindex=\"0\" type=\"button\">
+    <span>...</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-mini\" tabindex=\"0\" type=\"button\">
+    <span>20</span>
+    <input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-btn-icon k-mini\" tabindex=\"0\" type=\"button\">
+    <i class=\"k-icon ion-ios-arrow-right\"></i>
+    <input type=\"radio\" tabindex=\"-1\"></button></div><div class=\"k-limits\"><div class=\"k-select k-mini k-active\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><input type=\"hidden\" value=\"10\"><span class=\"k-value c-ellipsis\">10 条 / 页</span><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div></div><div class=\"k-total\">共 200 条</div></div></div>"
 ```
 
 #### `Progress basic`
@@ -645,7 +865,7 @@
 #### `Select size`
 
 ```
-"<div><div class=\"k-select\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div><div class=\"k-select k-small\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div><div class=\"k-select k-mini\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div></div>"
+"<div><div class=\"k-select k-large\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div><div class=\"k-select\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div><div class=\"k-select k-small\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div><div class=\"k-select k-mini\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div></div>"
 ```
 
 #### `Slider basic`
@@ -709,7 +929,11 @@
 #### `Spinner size`
 
 ```
-"<div><div class=\"k-spinner\"><button class=\"k-btn k-btn-icon k-left\" tabindex=\"0\" type=\"button\">
+"<div><div class=\"k-spinner k-large\"><button class=\"k-btn k-btn-icon k-large k-left\" tabindex=\"0\" type=\"button\">
+    <span>-</span>
+    </button><div class=\"k-input k-large\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><button class=\"k-btn k-btn-icon k-large k-right\" tabindex=\"0\" type=\"button\">
+    <span>+</span>
+    </button></div><div class=\"k-spinner\"><button class=\"k-btn k-btn-icon k-left\" tabindex=\"0\" type=\"button\">
     <span>-</span>
     </button><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><button class=\"k-btn k-btn-icon k-right\" tabindex=\"0\" type=\"button\">
     <span>+</span>
@@ -758,12 +982,6 @@
 "<div><div class=\"k-switch k-default\" tabindex=\"0\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"><div class=\"k-bar\"><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div><div class=\"k-switch k-default k-disabled\" tabindex=\"-1\"><input type=\"checkbox\" disabled=\"\" tabindex=\"-1\" value=\"true\"><div class=\"k-bar\"><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div></div>"
 ```
 
-#### `Switch disabled`
-
-```
-"<div><div class=\"k-switch k-default k-disabled\" tabindex=\"-1\"><input type=\"checkbox\" disabled=\"\" tabindex=\"-1\" value=\"true\"><div class=\"k-off\">关</div><div class=\"k-bar\"><div class=\"k-on\">开</div><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div></div>"
-```
-
 #### `Switch onOff`
 
 ```
@@ -774,6 +992,7 @@
 
 ```
 "<div>
+    large: <div class=\"k-switch k-large\" tabindex=\"0\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"><div class=\"k-bar\"><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div>
     default: <div class=\"k-switch k-default\" tabindex=\"0\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"><div class=\"k-bar\"><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div>
     small: <div class=\"k-switch k-small\" tabindex=\"0\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"><div class=\"k-bar\"><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div>
     mini: <div class=\"k-switch k-mini\" tabindex=\"0\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"><div class=\"k-bar\"><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div></div>"
@@ -814,13 +1033,31 @@
             </tr>
 </tbody>
 </table>
+</div><div class=\"k-table-wrapper\">
+    <table class=\"k-table\">
+    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
+            
+            <th title=\"表头1\"><div class=\"k-th\"><div class=\"c-ellipsis\">表头1</div>
+        
+    </div></th><th title=\"表头2\"><div class=\"k-th\"><div class=\"c-ellipsis\">表头2</div>
+        
+    </div></th>
+        </tr></thead>
+    <tbody>
+    <tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
+                <td title=\"第一行\">第一行</td><td title=\"哈哈2\">哈哈2</td>
+            </tr><tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td>
+                <td title=\"第二行\">第二行</td><td title=\"哈哈2\">哈哈2</td>
+            </tr>
+</tbody>
+</table>
 </div></div>"
 ```
 
 #### `Table checkType`
 
 ```
-"<div class=\"no-data-template\"><div class=\"k-table-wrapper\">
+"<div><div class=\"k-table-wrapper\">
     <table class=\"k-table\">
     <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
             <th title=\"表头\"><div class=\"k-th\"><div class=\"c-ellipsis\">表头</div>
@@ -830,7 +1067,9 @@
         </tr></thead>
     <tbody>
     <tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
-                <td title=\"多选框\">多选框</td>
+                <td title=\"多选1\">多选1</td>
+            </tr><tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td>
+                <td title=\"多选2\">多选2</td>
             </tr>
 </tbody>
 </table>
@@ -844,7 +1083,9 @@
         </tr></thead>
     <tbody>
     <tr class=\"\"><td><label class=\"k-radio\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"radio\" tabindex=\"-1\" name=\"k-table-radio\" value=\"0\"></span></label></td>
-                <td title=\"单选框\">单选框</td>
+                <td title=\"单选1\">单选1</td>
+            </tr><tr class=\"\"><td><label class=\"k-radio\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"radio\" tabindex=\"-1\" name=\"k-table-radio\" value=\"1\"></span></label></td>
+                <td title=\"单选2\">单选2</td>
             </tr>
 </tbody>
 </table>
@@ -858,7 +1099,9 @@
         </tr></thead>
     <tbody>
     <tr class=\"\">
-                <td title=\"无选框\">无选框</td>
+                <td title=\"不可选1\">不可选1</td>
+            </tr><tr class=\"\">
+                <td title=\"不可选2\">不可选2</td>
             </tr>
 </tbody>
 </table>
@@ -940,7 +1183,7 @@
 #### `Table disableRow`
 
 ```
-"<div class=\"no-data-template\"><div class=\"k-table-wrapper\">
+"<div class=\"k-table-wrapper\">
     <table class=\"k-table\">
     <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
             <th title=\"奇数行不可点击\"><div class=\"k-th\"><div class=\"c-ellipsis\">奇数行不可点击</div>
@@ -962,44 +1205,30 @@
             </tr>
 </tbody>
 </table>
-</div></div>"
+</div>"
 ```
 
 #### `Table fixHeader`
 
 ```
-"<div class=\"no-data-template\"><div class=\"k-table-wrapper\">
-    <table class=\"k-table\">
-    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
-            <th title=\"false\"><div class=\"k-th\"><div class=\"c-ellipsis\">false</div>
-        
-    </div></th>
-            
-        </tr></thead>
-    <tbody>
-    <tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
-                <td title=\"false(默认)\">false(默认)</td>
-            </tr>
-</tbody>
-</table>
-</div><div class=\"k-table-wrapper\"><div class=\"k-fixed\" style=\"padding-right: 0px;\"><table class=\"k-table\">
+"<div class=\"wrapper\"><div class=\"k-table-wrapper\"><div class=\"k-fixed\" style=\"padding-right: 0px;\"><table class=\"k-table\">
             <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
-            <th title=\"true\"><div class=\"k-th\"><div class=\"c-ellipsis\">true</div>
+            <th title=\"100px\"><div class=\"k-th\"><div class=\"c-ellipsis\">100px</div>
         
     </div></th>
             
         </tr></thead>
         </table></div>
-    <div class=\"k-scroll\"><table class=\"k-table\">
+    <div class=\"k-scroll\" style=\"max-height: 100px;\"><table class=\"k-table\">
     <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
-            <th title=\"true\"><div class=\"k-th\"><div class=\"c-ellipsis\">true</div>
+            <th title=\"100px\"><div class=\"k-th\"><div class=\"c-ellipsis\">100px</div>
         
     </div></th>
             
         </tr></thead>
     <tbody>
     <tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
-                <td title=\"表头固定但是没有滚动条，展示不出效果\">表头固定但是没有滚动条，展示不出效果</td>
+                <td title=\"表头固定，但内容没有超出最高高度\">表头固定，但内容没有超出最高高度</td>
             </tr>
 </tbody>
 </table></div>
@@ -1037,11 +1266,11 @@
 "<div class=\"no-data-template\"><div class=\"k-table-wrapper\">
     <table class=\"k-table\">
     <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
-            <th title=\"姓名\"><div class=\"k-th\"><div class=\"c-ellipsis\">姓名</div>
+            <th title=\"名称\"><div class=\"k-th\"><div class=\"c-ellipsis\">名称</div>
         
-    </div></th><th title=\"时间\"><div class=\"k-th\"><div class=\"k-group\"><i class=\"k-arrow ion-ios-arrow-down\"></i><!--placeholder--><div class=\"c-ellipsis\">
-                时间
-                
+    </div></th><th title=\"状态\"><div class=\"k-th\"><div class=\"k-group\"><i class=\"k-arrow ion-ios-arrow-down\"></i><!--placeholder--><div class=\"c-ellipsis\">
+                状态
+                (全部)
             </div></div>
         
     </div></th>
@@ -1049,7 +1278,11 @@
         </tr></thead>
     <tbody>
     <tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
-                <td title=\"lihua\">lihua</td><td title=\"10-12-12\">10-12-12</td>
+                <td title=\"主机1\">主机1</td><td title=\"运行中\">运行中</td>
+            </tr><tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td>
+                <td title=\"主机2\">主机2</td><td title=\"已关闭\">已关闭</td>
+            </tr><tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"2\"></span></label></td>
+                <td title=\"主机3\">主机3</td><td title=\"运行中\">运行中</td>
             </tr>
 </tbody>
 </table>
@@ -1057,18 +1290,22 @@
     <table class=\"k-table\">
     <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
             
-            <th title=\"姓名\"><div class=\"k-th\"><div class=\"c-ellipsis\">姓名</div>
+            <th title=\"名称\"><div class=\"k-th\"><div class=\"c-ellipsis\">名称</div>
         
-    </div></th><th title=\"时间\"><div class=\"k-th\"><div class=\"k-group\"><i class=\"k-arrow ion-ios-arrow-down\"></i><!--placeholder--><div class=\"c-ellipsis\">
-                时间
-                
+    </div></th><th title=\"状态\"><div class=\"k-th\"><div class=\"k-group\"><i class=\"k-arrow ion-ios-arrow-down\"></i><!--placeholder--><div class=\"c-ellipsis\">
+                状态
+                (全部)
             </div></div>
         
     </div></th>
         </tr></thead>
     <tbody>
     <tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
-                <td title=\"lihua(标签形式定义表头信息)\">lihua(标签形式定义表头信息)</td><td title=\"10-12-12\">10-12-12</td>
+                <td title=\"主机1\">主机1</td><td title=\"运行中\">运行中</td>
+            </tr><tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td>
+                <td title=\"主机2\">主机2</td><td title=\"已关闭\">已关闭</td>
+            </tr><tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"2\"></span></label></td>
+                <td title=\"主机3\">主机3</td><td title=\"运行中\">运行中</td>
             </tr>
 </tbody>
 </table>
@@ -1129,36 +1366,20 @@
 "<div class=\"no-data-template\"><div class=\"k-table-wrapper\">
     <table class=\"k-table\">
     <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
-            <th title=\"默认不可拖拽\"><div class=\"k-th\"><div class=\"c-ellipsis\">默认不可拖拽</div>
+            <th title=\"通过minColWidth控制最小宽度100px\"><div class=\"k-resize\"></div><div class=\"k-th\"><div class=\"c-ellipsis\">通过minColWidth控制最小宽度100px</div>
         
-    </div></th><th title=\"表头B\"><div class=\"k-th\"><div class=\"c-ellipsis\">表头B</div>
+    </div></th><th title=\"单独设置最小宽度300px\"><div class=\"k-resize\"></div><div class=\"k-th\"><div class=\"c-ellipsis\">单独设置最小宽度300px</div>
         
-    </div></th>
-            
-        </tr></thead>
-    <tbody>
-    <tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
-                <td title=\"A\">A</td><td title=\"B\">B</td>
-            </tr><tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td>
-                <td title=\"A\">A</td><td title=\"B\">B</td>
-            </tr>
-</tbody>
-</table>
-</div><div class=\"k-table-wrapper\">
-    <table class=\"k-table\">
-    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
-            <th title=\"设置为可拖拽\"><div class=\"k-resize\"></div><div class=\"k-th\"><div class=\"c-ellipsis\">设置为可拖拽</div>
-        
-    </div></th><th title=\"表头B\"><div class=\"k-resize\"></div><div class=\"k-th\"><div class=\"c-ellipsis\">表头B</div>
+    </div></th><th title=\"标题\"><div class=\"k-resize\"></div><div class=\"k-th\"><div class=\"c-ellipsis\">标题</div>
         
     </div></th>
             
         </tr></thead>
     <tbody>
     <tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
-                <td title=\"A\">A</td><td title=\"B\">B</td>
+                <td title=\"A\">A</td><td title=\"B\">B</td><td title=\"C\">C</td>
             </tr><tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td>
-                <td title=\"A\">A</td><td title=\"B\">B</td>
+                <td title=\"A\">A</td><td title=\"B\">B</td><td title=\"C\">C</td>
             </tr>
 </tbody>
 </table>
@@ -1210,7 +1431,7 @@
 #### `Table rowClassName`
 
 ```
-"<div class=\"no-data-template\"><div class=\"k-table-wrapper\">
+"<div class=\"k-table-wrapper\">
     <table class=\"k-table\">
     <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
             <th title=\"偶数行背景变换\"><div class=\"k-th\"><div class=\"c-ellipsis\">偶数行背景变换</div>
@@ -1219,20 +1440,20 @@
             
         </tr></thead>
     <tbody>
-    <tr class=\"turn-blue\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
+    <tr class=\"even\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
                 <td title=\"1\">1</td>
-            </tr><tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td>
+            </tr><tr class=\"odd\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td>
                 <td title=\"2\">2</td>
-            </tr><tr class=\"turn-blue\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"2\"></span></label></td>
+            </tr><tr class=\"even\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"2\"></span></label></td>
                 <td title=\"3\">3</td>
-            </tr><tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"3\"></span></label></td>
+            </tr><tr class=\"odd\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"3\"></span></label></td>
                 <td title=\"4\">4</td>
-            </tr><tr class=\"turn-blue\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"4\"></span></label></td>
+            </tr><tr class=\"even\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"4\"></span></label></td>
                 <td title=\"5\">5</td>
             </tr>
 </tbody>
 </table>
-</div></div>"
+</div>"
 ```
 
 #### `Table rowExpandable`
@@ -1280,45 +1501,43 @@
 #### `Table scheme`
 
 ```
-"<div><p>{key: value}形式:</p><div class=\"k-table-wrapper\">
+"<div><div class=\"k-table-wrapper\">
     <table class=\"k-table\">
     <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
-            <th title=\"a只是个id\"><div class=\"k-th\"><div class=\"c-ellipsis\">a只是个id</div>
+            <th title=\"定义该列单元格内容\"><div class=\"k-th\"><div class=\"c-ellipsis\">定义该列单元格内容</div>
         
-    </div></th><th title=\"key-{String}形式\"><div class=\"k-th\"><div class=\"c-ellipsis\">key-{String}形式</div>
+    </div></th><th title=\"key形式\"><div class=\"k-th\"><div class=\"c-ellipsis\">key形式</div>
         
-    </div></th><th title=\"key为一个连续获取的字符串\"><div class=\"k-th\"><div class=\"c-ellipsis\">key为一个连续获取的字符串</div>
+    </div></th><th title=\"key为一个路径字符串\"><div class=\"k-th\"><div class=\"c-ellipsis\">key为一个路径字符串</div>
         
-    </div></th><th title=\"没有这个key\"><div class=\"k-th\"><div class=\"c-ellipsis\">没有这个key</div>
-        
-    </div></th><th title=\"e也只是个id\"><div class=\"k-th\"><div class=\"c-ellipsis\">e也只是个id</div>
+    </div></th><th title=\"没有这个key，则返回空\"><div class=\"k-th\"><div class=\"c-ellipsis\">没有这个key，则返回空</div>
         
     </div></th>
             
         </tr></thead>
     <tbody>
     <tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
-                <td><a>虚拟DOM</a></td><td title=\"获取到了item.b\">获取到了item.b</td><td title=\"item.c.c1\">item.c.c1</td><td></td><td title=\"值形式\">值形式</td>
+                <td><a>虚拟DOM</a></td><td title=\"获取到了item.b\">获取到了item.b</td><td title=\"item.c.c1\">item.c.c1</td><td></td>
             </tr>
 </tbody>
 </table>
-</div><p>标签形式:</p><div class=\"k-table-wrapper\">
+</div><div class=\"k-table-wrapper\">
     <table class=\"k-table\">
     <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
             
-            <th title=\"a\"><div class=\"k-th\"><div class=\"c-ellipsis\">a</div>
+            <th title=\"定义该列单元格内容\"><div class=\"k-th\"><div class=\"c-ellipsis\">定义该列单元格内容</div>
         
-    </div></th><th title=\"key为一个连续获取的字符\"><div class=\"k-th\"><div class=\"c-ellipsis\">key为一个连续获取的字符</div>
+    </div></th><th title=\"key形式\"><div class=\"k-th\"><div class=\"c-ellipsis\">key形式</div>
         
-    </div></th><th title=\"key为一个连续获取的字符\"><div class=\"k-th\"><div class=\"c-ellipsis\">key为一个连续获取的字符</div>
+    </div></th><th title=\"key为一个路径字符串\"><div class=\"k-th\"><div class=\"c-ellipsis\">key为一个路径字符串</div>
         
-    </div></th><th width=\"400\" title=\"这个宽度大一点400px\"><div class=\"k-th\"><div class=\"c-ellipsis\">这个宽度大一点400px</div>
+    </div></th><th title=\"没有这个key，则返回空\"><div class=\"k-th\"><div class=\"c-ellipsis\">没有这个key，则返回空</div>
         
     </div></th>
         </tr></thead>
     <tbody>
     <tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
-                <td><a>虚拟DOM</a></td><td title=\"item.c.c1\">item.c.c1</td><td title=\"值形式\">值形式</td><td title=\"获取到了item.b\">获取到了item.b</td>
+                <td><a>虚拟DOM</a></td><td title=\"获取到了item.b\">获取到了item.b</td><td title=\"item.c.c1\">item.c.c1</td><td></td>
             </tr>
 </tbody>
 </table>
@@ -1333,52 +1552,38 @@
     <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
             <th class=\"k-sortable\" title=\"姓名\"><div class=\"k-th\"><div class=\"c-ellipsis\">姓名</div>
         <div class=\"k-sort\"><i class=\"k-icon icon-sortable\"></i></div>
-    </div></th><th class=\"k-sortable\" title=\"时间\"><div class=\"k-th\"><div class=\"c-ellipsis\">时间</div>
-        <div class=\"k-sort k-asc\"><i class=\"k-icon icon-asc\"></i></div>
+    </div></th><th class=\"k-sortable\" title=\"年龄\"><div class=\"k-th\"><div class=\"c-ellipsis\">年龄</div>
+        <div class=\"k-sort\"><i class=\"k-icon icon-sortable\"></i></div>
     </div></th>
             
         </tr></thead>
     <tbody>
     <tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
-                <td title=\"a默认按照时间升序\">a默认按照时间升序</td><td title=\"2\">2</td>
+                <td title=\"aa\">aa</td><td title=\"1\">1</td>
             </tr><tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td>
-                <td title=\"b 箭头方向默认的是向上的\">b 箭头方向默认的是向上的</td><td title=\"1\">1</td>
+                <td title=\"cc\">cc</td><td title=\"5\">5</td>
+            </tr><tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"2\"></span></label></td>
+                <td title=\"bb\">bb</td><td title=\"9\">9</td>
             </tr>
 </tbody>
 </table>
 </div><div class=\"k-table-wrapper\">
     <table class=\"k-table\">
     <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
+            
             <th class=\"k-sortable\" title=\"姓名\"><div class=\"k-th\"><div class=\"c-ellipsis\">姓名</div>
         <div class=\"k-sort\"><i class=\"k-icon icon-sortable\"></i></div>
-    </div></th><th class=\"k-sortable\" title=\"时间\"><div class=\"k-th\"><div class=\"c-ellipsis\">时间</div>
+    </div></th><th class=\"k-sortable\" title=\"年龄\"><div class=\"k-th\"><div class=\"c-ellipsis\">年龄</div>
         <div class=\"k-sort\"><i class=\"k-icon icon-sortable\"></i></div>
     </div></th>
-            
         </tr></thead>
     <tbody>
     <tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
-                <td title=\"a无默认排序\">a无默认排序</td><td title=\"2\">2</td>
+                <td title=\"aa\">aa</td><td title=\"1\">1</td>
             </tr><tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td>
-                <td title=\"b 观察箭头方向都是双向的\">b 观察箭头方向都是双向的</td><td title=\"1\">1</td>
-            </tr>
-</tbody>
-</table>
-</div><div class=\"k-table-wrapper\">
-    <table class=\"k-table\">
-    <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
-            
-            <th title=\"姓名\"><div class=\"k-th\"><div class=\"c-ellipsis\">姓名</div>
-        
-    </div></th><th class=\"k-sortable\" title=\"时间(标签形式定义排序)\"><div class=\"k-th\"><div class=\"c-ellipsis\">时间(标签形式定义排序)</div>
-        <div class=\"k-sort k-asc\"><i class=\"k-icon icon-asc\"></i></div>
-    </div></th>
-        </tr></thead>
-    <tbody>
-    <tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
-                <td title=\"a默认按照时间升序\">a默认按照时间升序</td><td title=\"2\">2</td>
-            </tr><tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td>
-                <td title=\"b 箭头方向默认的是向上的\">b 箭头方向默认的是向上的</td><td title=\"1\">1</td>
+                <td title=\"cc\">cc</td><td title=\"5\">5</td>
+            </tr><tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"2\"></span></label></td>
+                <td title=\"bb\">bb</td><td title=\"9\">9</td>
             </tr>
 </tbody>
 </table>
@@ -1388,7 +1593,7 @@
 #### `Table type`
 
 ```
-"<div class=\"no-data-template\"><div class=\"k-table-wrapper\">
+"<div class=\"k-table-wrapper k-border\">
     <table class=\"k-table\">
     <thead><tr><th class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
             <th title=\"类型\"><div class=\"k-th\"><div class=\"c-ellipsis\">类型</div>
@@ -1398,21 +1603,49 @@
         </tr></thead>
     <tbody>
     <tr class=\"\"><td><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td>
-                <td title=\"defalut\">defalut</td>
+                <td title=\"border类型\">border类型</td>
             </tr>
 </tbody>
 </table>
-</div></div>"
+</div>"
 ```
 
 #### `Tabs basic`
 
 ```
-"<div><div class=\"k-tabs\" style=\"margin: 20px;\"><a class=\"k-tab\">入站规则</a><a class=\"k-tab\">出站规则</a><a class=\"k-tab k-active\">关联云主机</a>
+"<div><div class=\"k-tabs\" style=\"margin: 20px;\"><a class=\"k-tab\">入站规则</a><a class=\"k-tab k-active\">出站规则</a><a class=\"k-tab\">关联云主机</a>
     
-</div><div class=\"k-tabs\" style=\"margin: 20px;\">
+</div><div style=\"margin: 20px;\">出站规则</div></div>"
+```
+
+#### `Tabs size`
+
+```
+"<div><div class=\"k-tabs\">
+    <a class=\"k-tab k-active\">default1</a><a class=\"k-tab\">defalut2</a>
+</div><div class=\"k-tabs k-large\">
+    <a class=\"k-tab k-active\">large1</a><a class=\"k-tab\">large2</a>
+</div><div class=\"k-tabs k-small\">
+    <a class=\"k-tab k-active\">small1</a><a class=\"k-tab\">small2</a>
+</div><div class=\"k-tabs k-mini\">
+    <a class=\"k-tab k-active\">mini1</a><a class=\"k-tab\">mini2</a>
+</div></div>"
+```
+
+#### `Tabs tab`
+
+```
+"<div><div class=\"k-tabs\" style=\"margin: 20px;\">
     <a class=\"k-tab\">入站规则</a><a class=\"k-tab k-active\">出站规则</a><a class=\"k-tab\">关联云主机</a>
 </div><div style=\"margin: 20px;\">出站规则</div></div>"
+```
+
+#### `Tabs vertical`
+
+```
+"<div><div class=\"k-tabs k-vertical\">
+    <a class=\"k-tab k-active\">入站规则</a><a class=\"k-tab\">出站规则</a><a class=\"k-tab\">关联云主机</a>
+</div></div>"
 ```
 
 #### `Tooltip basic`
@@ -1481,5 +1714,11 @@
     </button></div><div class=\"k-panel\"><div class=\"k-title\">已选择 (0)</div><div class=\"k-input k-group k-clearable k-fluid\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请输入\"><div class=\"k-suffix\"><i class=\"k-clear k-icon ion-ios-close\"></i></div></div><div class=\"k-append\"><button class=\"k-btn k-none k-btn-icon\" tabindex=\"0\" type=\"button\">
     <i class=\"ion-ios-search\"></i>
     </button></div></div><div class=\"k-list\"></div></div></div>"
+```
+
+#### `Switch disabled`
+
+```
+"<div><div class=\"k-switch k-default k-disabled\" tabindex=\"-1\"><input type=\"checkbox\" disabled=\"\" tabindex=\"-1\" value=\"true\"><div class=\"k-off\">关</div><div class=\"k-bar\"><div class=\"k-on\">开</div><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div></div>"
 ```
 

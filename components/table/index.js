@@ -72,6 +72,13 @@ export default class Table extends Intact {
         this._calcHeaderPadding();
     }
 
+    get(key, defaultValue) {
+        if (key === 'data' && !Array.isArray(super.get('data', defaultValue))) {
+            return [];
+        }
+        return super.get(key, defaultValue);
+    }
+
     isCheckAll() {
         const checkedKeys = this.get('checkedKeys');
         const dataLength = this.get('data').length;
@@ -160,12 +167,8 @@ export default class Table extends Intact {
 
     _updateDisabledAmount() {
         let disabledAmount = 0;
-        let {data, disableRow} = this.get();
-
-        if (!Array.isArray(data)) {
-            data = [];
-            this.set('data', data, {silent: true});
-        }
+        const data = this.get('data');
+        const disableRow = this.get('disableRow');
 
         data.forEach((item, index) => {
             if (disableRow.call(this, item, index)) {

@@ -17,8 +17,9 @@ describe('Pagination', () => {
         instance = mount(BasicDemo);
 
         const pagination = instance.element.querySelector('.k-pagination');
-        const prev = pagination.querySelector('.k-prev');
-        const next = pagination.querySelector('.k-next');
+        const btns = pagination.querySelectorAll('.k-btns .k-btn');
+        const prev = btns[0];
+        const next = btns[btns.length - 1];
 
         prev.click();
         expect(pagination.innerHTML).to.matchSnapshot();
