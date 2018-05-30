@@ -3,7 +3,7 @@ title: 开关尺寸
 order: 3
 ---
 
-通过`size`可以定义3中尺寸: `large` `default` `small` `mini`
+通过`size`可以定义尺寸: `large` `default` `small` `mini`
 
 ```vdt
 import {Switch} from 'kpc/components/switch';

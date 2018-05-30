@@ -3,7 +3,7 @@ title: 组件尺寸
 order: 3
 ---
 
-通过`size`可以定义3中尺寸: `default` `large` `small` `mini`
+通过`size`可以定义尺寸: `default` `large` `small` `mini`
 
 ```vdt
 import {Tabs, Tab} from 'kpc/components/tabs';

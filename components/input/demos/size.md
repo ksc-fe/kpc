@@ -3,7 +3,7 @@ title: 尺寸
 order: 2
 ---
 
-添加`size`属性，定义三种尺寸：`large`, `default`，`small`，`mini`
+添加`size`属性，定义如下尺寸：`large`, `default`，`small`，`mini`
 
 ```vdt
 import Input from 'kpc/components/input';

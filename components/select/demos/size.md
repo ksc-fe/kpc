@@ -3,7 +3,7 @@ title: 尺寸
 order: 7
 ---
 
-`size`指定三种尺寸：`large` `default` `small` `mini`
+`size`指定尺寸：`large` `default` `small` `mini`
 
 ```vdt
 import {Select, Option} from 'kpc/components/select';
