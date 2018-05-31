@@ -4,7 +4,7 @@
         "order": 2
     },
     "catalogs": [],
-    "contents": "<p>添加<code>size</code>属性，定义三种尺寸：<code>large</code>, <code>default</code>，<code>small</code>，<code>mini</code></p>\n",
+    "contents": "<p>添加<code>size</code>属性，定义如下尺寸：<code>large</code>, <code>default</code>，<code>small</code>，<code>mini</code></p>\n",
     "codes": [
         {
             "language": "vdt",

@@ -11,7 +11,7 @@
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
         }
     ],
-    "index": 83,
+    "index": 82,
     "sideBars": {
         "undefined": [
             {
@@ -694,6 +694,36 @@
                 ]
             },
             {
+                "title": "开关",
+                "path": "components/switch/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    },
+                    {
+                        "title": "扩展点",
+                        "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
+                        "level": 1,
+                        "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
+                        "text": "扩展点",
+                        "children": []
+                    },
+                    {
+                        "title": "方法",
+                        "path": "#header-%E6%96%B9%E6%B3%95",
+                        "level": 1,
+                        "content": "<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>",
+                        "text": "方法",
+                        "children": []
+                    }
+                ]
+            },
+            {
                 "title": "面包屑",
                 "path": "components/breadcrumb/index.md",
                 "children": [
@@ -721,36 +751,6 @@
                                 "children": []
                             }
                         ]
-                    }
-                ]
-            },
-            {
-                "title": "开关",
-                "path": "components/switch/index.md",
-                "children": [
-                    {
-                        "title": "属性",
-                        "path": "#header-%E5%B1%9E%E6%80%A7",
-                        "level": 1,
-                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                        "text": "属性",
-                        "children": []
-                    },
-                    {
-                        "title": "扩展点",
-                        "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
-                        "level": 1,
-                        "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
-                        "text": "扩展点",
-                        "children": []
-                    },
-                    {
-                        "title": "方法",
-                        "path": "#header-%E6%96%B9%E6%B3%95",
-                        "level": 1,
-                        "content": "<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>",
-                        "text": "方法",
-                        "children": []
                     }
                 ]
             },
@@ -899,6 +899,20 @@
                 ]
             },
             {
+                "title": "穿梭框",
+                "path": "components/transfer/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    }
+                ]
+            },
+            {
                 "title": "可编辑文本",
                 "path": "components/editable/index.md",
                 "children": [
@@ -916,20 +930,6 @@
                         "level": 1,
                         "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
                         "text": "事件",
-                        "children": []
-                    }
-                ]
-            },
-            {
-                "title": "穿梭框",
-                "path": "components/transfer/index.md",
-                "children": [
-                    {
-                        "title": "属性",
-                        "path": "#header-%E5%B1%9E%E6%80%A7",
-                        "level": 1,
-                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                        "text": "属性",
                         "children": []
                     }
                 ]

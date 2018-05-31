@@ -19,7 +19,7 @@
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    defaults() {\n        return { checked: [] };\n    }\n\n    _onSelect(c, e) {\n        console.log('allowDefault', e);\n    }\n\n    _onSelectAndPreventDefault(c, e) {\n        e.preventDefault();\n        console.log('preventDefault', e);\n\n        const checked = this.get('checked').slice(0);\n        const index = checked.indexOf('2');\n        if (index > -1) {\n            checked.splice(index, 1);\n        } else {\n            checked.push('2');\n        }\n        this.set('checked', checked);\n    }\n}"
         }
     ],
-    "index": 109,
+    "index": 112,
     "highlighted": [
         {
             "language": "vdt",

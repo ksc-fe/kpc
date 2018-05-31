@@ -9,7 +9,7 @@
     
     
     <div id="page"><div class="k-app">
-    <div class="main-wrapper document-page"><div class="header-wrapper"><header><a class="logo" href="/">KPC</a><div class="right"><nav><a class="" href="/kpc/docs/getting-started/">教程</a><div class="border"></div></nav><span class="label">切换主题：</span><div class="k-select k-active" style="width:100px;" tabindex="0"><div class="k-wrapper" tabindex="-1" _hasSaved><input type="hidden" value="kpc" /><span class="k-value c-ellipsis">default</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></header></div><div class="content-wrapper"><aside><div class="aside-wrapper"><div class="catalog-section"><ul><li>
+    <div class="main-wrapper document-page"><div class="header-wrapper"><header><a class="logo" href="/">KPC</a><div class="right"><nav><a class="active" href="/kpc/docs/getting-started/">教程</a><div class="border"></div></nav><span class="label">切换主题：</span><div class="k-select k-active" style="width:100px;" tabindex="0"><div class="k-wrapper" tabindex="-1" _hasSaved><input type="hidden" value="kpc" /><span class="k-value c-ellipsis">default</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></header></div><div class="content-wrapper"><aside><div class="aside-wrapper"><div class="catalog-section"><ul><li>
                 <!---->
                 <a href="/kpc/docs/getting-started/">
                     <!---->快速开始<!---->
@@ -99,12 +99,12 @@
                     <!---->Steps<span>步骤条</span>
                 </a></li><li>
                 <!---->
-                <a href="/kpc/components/breadcrumb/">
-                    <!---->Breadcrumb<span>面包屑</span>
-                </a></li><li>
-                <!---->
                 <a href="/kpc/components/switch/">
                     <!---->Switch<span>开关</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/breadcrumb/">
+                    <!---->Breadcrumb<span>面包屑</span>
                 </a></li><li>
                 <!---->
                 <a href="/kpc/components/pagination/">
@@ -119,38 +119,49 @@
                     <!---->Tabs<span>标签</span>
                 </a></li><li>
                 <!---->
-                <a href="/kpc/components/editable/">
-                    <!---->Editable<span>可编辑文本</span>
-                </a></li><li>
-                <!---->
                 <a href="/kpc/components/transfer/">
                     <!---->Transfer<span>穿梭框</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/editable/">
+                    <!---->Editable<span>可编辑文本</span>
                 </a></li></ul></div><div class="aside-border transition"></div></div></aside><article><div class="article-head"><div class="title">标签</div><div class="edit-link">
                     如果你发现文档有问题，请帮忙在
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/components/tabs/index.md">github</a>
                     上修正该文档
                 </div></div><div class="contents"><div><h1>示例</h1>
-        <div class="example index-8"><div class="example-opera"><div><div class="k-tabs" style="margin: 20px;">
+        <div class="example index-8"><div class="example-opera"><div><div class="k-tabs" style="">
     <a class="k-tab">入站规则</a><a class="k-tab k-active">出站规则</a><a class="k-tab">关联云主机</a>
-</div><div style="margin: 20px;">出站规则</div></div></div><div class="example-desc"><div class="title">基本用法</div><div class="desc"><p><code>Tab</code>的基本用法。Tabs嵌套Tab使用，使用<code>v-model</code>进行双向数据绑定。</p>
+</div><div class="content"><div>出站规则</div></div></div></div><div class="example-desc"><div class="title">基本用法</div><div class="desc"><p><code>Tab</code>的基本用法。<code>Tabs</code>嵌套<code>Tab</code>使用，使用<code>v-model</code>进行双向数据绑定。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
                         </a><a class="k-tab">
-                            <!---->index.js<!---->
-                        </a><a class="k-tab">
                             <!---->index.styl<!---->
+                        </a><a class="k-tab">
+                            <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-35"><div class="example-opera"><div><div class="k-tabs" style="margin: 20px;"><a class="k-tab">入站规则</a><a class="k-tab k-active">出站规则</a><a class="k-tab">关联云主机</a>
+</div><div class="code"></div></div></div><div class="example index-33"><div class="example-opera"><div><div class="k-tabs" style=""><a class="k-tab">入站规则</a><a class="k-tab k-active">出站规则</a><a class="k-tab">关联云主机</a>
     <!---->
-</div><div style="margin: 20px;">出站规则</div></div></div><div class="example-desc"><div class="title">data传值形式</div><div class="desc"><p><code>Tabs</code>的基本用法，传入<code>data</code>。需要使用<code>v-model</code>来指定选中标签。</p>
+</div><div class="content"><div>出站规则</div></div></div></div><div class="example-desc"><div class="title">data传值形式</div><div class="desc"><p>还可以使用<code>data</code>，定义<code>Tab</code>内容</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
                         </a><a class="k-tab">
+                            <!---->index.styl<!---->
+                        </a><a class="k-tab">
                             <!---->index.js<!---->
+                        </a>
+</div><div class="code"></div></div></div><div class="example index-62"><div class="example-opera"><div><div class="k-tabs" style="">
+    <a class="k-tab">入站规则</a><a class="k-tab k-disabled">出站规则</a><a class="k-tab">关联云主机</a>
+</div><div class="content"><div>关联云主机</div></div></div></div><div class="example-desc"><div class="title">禁用某一项</div><div class="desc"><p>给<code>Tab</code>添加<code>disabled</code>属性，可以禁用该项选择</p>
+</div></div><div class="example-code"><div class="k-tabs" style="">
+    <a class="k-tab">
+                            <!---->index.vdt<!---->
                         </a><a class="k-tab">
                             <!---->index.styl<!---->
+                        </a><a class="k-tab">
+                            <!---->index.js<!---->
                         </a>
 </div><div class="code"></div></div></div><div class="example index-60"><div class="example-opera"><div><div class="k-tabs k-vertical" style="">
     <a class="k-tab k-active">入站规则</a><a class="k-tab">出站规则</a><a class="k-tab">关联云主机</a>
@@ -161,7 +172,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-80"><div class="example-opera"><div><div class="k-tabs" style="">
+</div><div class="code"></div></div></div><div class="example index-84"><div class="example-opera"><div><div class="k-tabs" style="">
     <a class="k-tab k-active">default1</a><a class="k-tab">defalut2</a>
 </div><div class="k-tabs k-large" style="">
     <a class="k-tab k-active">large1</a><a class="k-tab">large2</a>
@@ -169,7 +180,7 @@
     <a class="k-tab k-active">small1</a><a class="k-tab">small2</a>
 </div><div class="k-tabs k-mini" style="">
     <a class="k-tab k-active">mini1</a><a class="k-tab">mini2</a>
-</div></div></div><div class="example-desc"><div class="title">基本用法</div><div class="desc"><p>通过<code>size</code>可以定义3中尺寸: <code>default</code> <code>large</code> <code>small</code> <code>mini</code></p>
+</div></div></div><div class="example-desc"><div class="title">组件尺寸</div><div class="desc"><p>通过<code>size</code>可以定义尺寸: <code>default</code> <code>large</code> <code>small</code> <code>mini</code></p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
@@ -228,6 +239,12 @@
 <td>选中的值</td>
 <td><code>*</code></td>
 <td><code>undefined</code></td>
+</tr>
+<tr>
+<td>disabled</td>
+<td>是否禁用</td>
+<td><code>Boolean</code></td>
+<td><code>false</code></td>
 </tr>
 </tbody>
                     </table>

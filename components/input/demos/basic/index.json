@@ -8,7 +8,7 @@
     "codes": [
         {
             "language": "vdt",
-            "content": "import Input from 'kpc/components/input';\n\n<div>\n    <Input v-model=\"value\" placeholder=\"please enter\" ref=\"__test\"/> {{ self.get('value') }}\n    <br />\n    <Input disabled placeholder=\"disabled\" />\n</div>"
+            "content": "import Input from 'kpc/components/input';\n\n<div>\n    <Input v-model=\"value\" placeholder=\"please enter\" ref=\"__test\" /> {{ self.get('value') }}\n    <br />\n    <Input disabled placeholder=\"disabled\" />\n</div>"
         },
         {
             "language": "styl",
@@ -23,7 +23,7 @@
     "highlighted": [
         {
             "language": "vdt",
-            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Input <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/input'</span>;\n\n&lt;div&gt;\n    &lt;Input v-model=\"value\" placeholder=\"please enter\" ref=\"__test\"/&gt; {{ self.get('value') }}\n    &lt;br /&gt;\n    &lt;Input disabled placeholder=\"disabled\" /&gt;\n&lt;/div&gt;</code></pre>"
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Input <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/input'</span>;\n\n&lt;div&gt;\n    &lt;Input v-model=\"value\" placeholder=\"please enter\" ref=\"__test\" /&gt; {{ self.get('value') }}\n    &lt;br /&gt;\n    &lt;Input disabled placeholder=\"disabled\" /&gt;\n&lt;/div&gt;</code></pre>"
         },
         {
             "language": "styl",

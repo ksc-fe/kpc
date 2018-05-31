@@ -4,7 +4,7 @@
         "order": 2
     },
     "catalogs": [],
-    "contents": "<p><code>size</code>属性定义3中尺寸：<code>large</code>, <code>default</code>, <code>small</code>, <code>mini</code></p>\n",
+    "contents": "<p><code>size</code>属性定义尺寸：<code>large</code>, <code>default</code>, <code>small</code>, <code>mini</code></p>\n",
     "codes": [
         {
             "language": "vdt",
@@ -19,7 +19,7 @@
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
         }
     ],
-    "index": 66,
+    "index": 67,
     "highlighted": [
         {
             "language": "vdt",

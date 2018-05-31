@@ -5,14 +5,14 @@
         "order": 90
     },
     "catalogs": [],
-    "contents": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1><h2 id='header-Tabs'>Tabs</h2><div class=\"k-table-wrapper k-border\">\n                    <table class=\"k-table\">\n                        <thead><tr>\n<th>属性</th>\n<th>说明</th>\n<th>类型</th>\n<th>默认值</th>\n</tr>\n</thead>\n                        <tbody><tr>\n<td>data</td>\n<td>标签数据</td>\n<td><code>Array</code></td>\n<td><code>[]</code></td>\n</tr>\n<tr>\n<td>value</td>\n<td>被选中的标签,使用<code>v-model</code>进行双向绑定</td>\n<td><code>*</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>vertical</td>\n<td>垂直排列标签</td>\n<td><code>Boolean</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>size</td>\n<td>标签尺寸</td>\n<td><code>&quot;large&quot;</code> &#124; <code>&quot;default&quot;</code> &#124; <code>&quot;small&quot;</code> &#124; <code>&quot;mini&quot;</code></td>\n<td><code>&quot;default&quot;</code></td>\n</tr>\n</tbody>\n                    </table>\n                </div><h2 id='header-Tab'>Tab</h2><div class=\"k-table-wrapper k-border\">\n                    <table class=\"k-table\">\n                        <thead><tr>\n<th>属性</th>\n<th>说明</th>\n<th>类型</th>\n<th>默认值</th>\n</tr>\n</thead>\n                        <tbody><tr>\n<td>value</td>\n<td>选中的值</td>\n<td><code>*</code></td>\n<td><code>undefined</code></td>\n</tr>\n</tbody>\n                    </table>\n                </div>",
+    "contents": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1><h2 id='header-Tabs'>Tabs</h2><div class=\"k-table-wrapper k-border\">\n                    <table class=\"k-table\">\n                        <thead><tr>\n<th>属性</th>\n<th>说明</th>\n<th>类型</th>\n<th>默认值</th>\n</tr>\n</thead>\n                        <tbody><tr>\n<td>data</td>\n<td>标签数据</td>\n<td><code>Array</code></td>\n<td><code>[]</code></td>\n</tr>\n<tr>\n<td>value</td>\n<td>被选中的标签,使用<code>v-model</code>进行双向绑定</td>\n<td><code>*</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>vertical</td>\n<td>垂直排列标签</td>\n<td><code>Boolean</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>size</td>\n<td>标签尺寸</td>\n<td><code>&quot;large&quot;</code> &#124; <code>&quot;default&quot;</code> &#124; <code>&quot;small&quot;</code> &#124; <code>&quot;mini&quot;</code></td>\n<td><code>&quot;default&quot;</code></td>\n</tr>\n</tbody>\n                    </table>\n                </div><h2 id='header-Tab'>Tab</h2><div class=\"k-table-wrapper k-border\">\n                    <table class=\"k-table\">\n                        <thead><tr>\n<th>属性</th>\n<th>说明</th>\n<th>类型</th>\n<th>默认值</th>\n</tr>\n</thead>\n                        <tbody><tr>\n<td>value</td>\n<td>选中的值</td>\n<td><code>*</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>disabled</td>\n<td>是否禁用</td>\n<td><code>Boolean</code></td>\n<td><code>false</code></td>\n</tr>\n</tbody>\n                    </table>\n                </div>",
     "codes": [
         {
             "language": "js",
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
         }
     ],
-    "index": 134,
+    "index": 135,
     "sideBars": {
         "undefined": [
             {
@@ -695,6 +695,36 @@
                 ]
             },
             {
+                "title": "开关",
+                "path": "components/switch/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    },
+                    {
+                        "title": "扩展点",
+                        "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
+                        "level": 1,
+                        "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
+                        "text": "扩展点",
+                        "children": []
+                    },
+                    {
+                        "title": "方法",
+                        "path": "#header-%E6%96%B9%E6%B3%95",
+                        "level": 1,
+                        "content": "<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>",
+                        "text": "方法",
+                        "children": []
+                    }
+                ]
+            },
+            {
                 "title": "面包屑",
                 "path": "components/breadcrumb/index.md",
                 "children": [
@@ -722,36 +752,6 @@
                                 "children": []
                             }
                         ]
-                    }
-                ]
-            },
-            {
-                "title": "开关",
-                "path": "components/switch/index.md",
-                "children": [
-                    {
-                        "title": "属性",
-                        "path": "#header-%E5%B1%9E%E6%80%A7",
-                        "level": 1,
-                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                        "text": "属性",
-                        "children": []
-                    },
-                    {
-                        "title": "扩展点",
-                        "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
-                        "level": 1,
-                        "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
-                        "text": "扩展点",
-                        "children": []
-                    },
-                    {
-                        "title": "方法",
-                        "path": "#header-%E6%96%B9%E6%B3%95",
-                        "level": 1,
-                        "content": "<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>",
-                        "text": "方法",
-                        "children": []
                     }
                 ]
             },
@@ -900,6 +900,20 @@
                 ]
             },
             {
+                "title": "穿梭框",
+                "path": "components/transfer/index.md",
+                "children": [
+                    {
+                        "title": "属性",
+                        "path": "#header-%E5%B1%9E%E6%80%A7",
+                        "level": 1,
+                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                        "text": "属性",
+                        "children": []
+                    }
+                ]
+            },
+            {
                 "title": "可编辑文本",
                 "path": "components/editable/index.md",
                 "children": [
@@ -917,20 +931,6 @@
                         "level": 1,
                         "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
                         "text": "事件",
-                        "children": []
-                    }
-                ]
-            },
-            {
-                "title": "穿梭框",
-                "path": "components/transfer/index.md",
-                "children": [
-                    {
-                        "title": "属性",
-                        "path": "#header-%E5%B1%9E%E6%80%A7",
-                        "level": 1,
-                        "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                        "text": "属性",
                         "children": []
                     }
                 ]

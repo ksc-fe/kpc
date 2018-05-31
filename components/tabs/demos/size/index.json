@@ -1,10 +1,10 @@
 {
     "setting": {
-        "title": "基本用法",
+        "title": "组件尺寸",
         "order": 3
     },
     "catalogs": [],
-    "contents": "<p>通过<code>size</code>可以定义3中尺寸: <code>default</code> <code>large</code> <code>small</code> <code>mini</code></p>\n",
+    "contents": "<p>通过<code>size</code>可以定义尺寸: <code>default</code> <code>large</code> <code>small</code> <code>mini</code></p>\n",
     "codes": [
         {
             "language": "vdt",
@@ -19,7 +19,7 @@
             "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
         }
     ],
-    "index": 80,
+    "index": 84,
     "highlighted": [
         {
             "language": "vdt",
