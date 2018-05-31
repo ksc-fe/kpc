@@ -567,7 +567,7 @@ a {
   outline: none;
 }
 a:hover {
-  color: #195d9f;
+  color: #2b6aac;
   text-decoration: none;
 }
 code,
@@ -3765,7 +3765,7 @@ label {
   color: #595959;
 }
 .k-breadcrumb a.k-item-link:hover {
-  color: #195d9f;
+  color: palette(#4183c4, 1);
 }
 .k-breadcrumb .k-separator {
   margin: 0 0.571428571428571rem;
@@ -3795,7 +3795,7 @@ button.k-btn > span {
   color: #0a5eee;
 }
 .k-btn:active {
-  background-color: #d9e7fd;
+  background-color: #e5f1ff;
 }
 .k-btn.k-primary {
   background-color: #0a5eee;
@@ -3804,12 +3804,12 @@ button.k-btn > span {
 }
 .k-btn.k-primary:hover,
 .k-btn.k-primary:focus {
-  background-color: #367df7;
-  border-color: #367df7;
+  background-color: #3e83f2;
+  border-color: #3e83f2;
 }
 .k-btn.k-primary:active {
-  background-color: #084bbe;
-  border-color: #084bbe;
+  background-color: #064ccc;
+  border-color: #064ccc;
 }
 .k-btn.k-warning {
   background-color: #ff8a00;
@@ -3818,12 +3818,12 @@ button.k-btn > span {
 }
 .k-btn.k-warning:hover,
 .k-btn.k-warning:focus {
-  background-color: #ffa133;
-  border-color: #ffa133;
+  background-color: #ffa139;
+  border-color: #ffa139;
 }
 .k-btn.k-warning:active {
-  background-color: #cc6e00;
-  border-color: #cc6e00;
+  background-color: #d97900;
+  border-color: #d97900;
 }
 .k-btn.k-danger {
   background-color: #db2828;
@@ -3832,12 +3832,12 @@ button.k-btn > span {
 }
 .k-btn.k-danger:hover,
 .k-btn.k-danger:focus {
-  background-color: #e25353;
-  border-color: #e25353;
+  background-color: #e45355;
+  border-color: #e45355;
 }
 .k-btn.k-danger:active {
-  background-color: #b11e1e;
-  border-color: #b11e1e;
+  background-color: #be1d1a;
+  border-color: #be1d1a;
 }
 .k-btn.k-active {
   background-color: #0a5eee;
@@ -3846,12 +3846,12 @@ button.k-btn > span {
 }
 .k-btn.k-active:hover,
 .k-btn.k-active:focus {
-  background-color: #367df7;
-  border-color: #367df7;
+  background-color: #3e83f2;
+  border-color: #3e83f2;
 }
 .k-btn.k-active:active {
-  background-color: #084bbe;
-  border-color: #084bbe;
+  background-color: #064ccc;
+  border-color: #064ccc;
 }
 .k-btn.k-disabled,
 .k-btn.k-disabled:hover {
@@ -3930,34 +3930,34 @@ button.k-btn > span {
 .k-btn.k-loading:hover {
   background-color: #fff;
   color: #acacac;
-  border-color: #e4e8ee;
+  border-color: #dae1ee;
 }
 .k-btn.k-loading .k-icon:not(.icon-loading) {
   display: none;
 }
 .k-btn.k-loading.k-primary,
 .k-btn.k-loading.k-primary:hover {
-  background-color: #81aefa;
+  background-color: #74a8f7;
   color: #fff;
-  border-color: #81aefa;
+  border-color: #74a8f7;
 }
 .k-btn.k-loading.k-warning,
 .k-btn.k-loading.k-warning:hover {
-  background-color: #ffc480;
+  background-color: #ffba73;
   color: #fff;
-  border-color: #ffc480;
+  border-color: #ffba73;
 }
 .k-btn.k-loading.k-danger,
 .k-btn.k-loading.k-danger:hover {
-  background-color: #ed9494;
+  background-color: #ed8084;
   color: #fff;
-  border-color: #ed9494;
+  border-color: #ed8084;
 }
 .k-btn.k-loading.k-active,
 .k-btn.k-loading.k-active:hover {
-  background-color: #81aefa;
+  background-color: #74a8f7;
   color: #fff;
-  border-color: #81aefa;
+  border-color: #74a8f7;
 }
 .k-btn.k-loading:not(.k-btn-icon):not(.k-icon-left):not(.k-icon-right) {
   padding-left: 2.428571428571429em;
@@ -4492,7 +4492,7 @@ button.k-btn > span {
   transition: none;
 }
 .k-scroll-select.k-disabled .k-item {
-  color: #ccc;
+  color: palette(#999, -2);
 }
 .k-scroll-select .k-item {
   line-height: 1.785714285714286rem;
@@ -4803,7 +4803,7 @@ button.k-btn > span {
   width: 2.5em;
   height: 2.5em;
   padding: 0 0.166666666666667em;
-  background: #81aefa;
+  background: #74a8f7;
   left: -0.166666666666667em;
   top: -0.083333333333333em;
   margin-left: -1px;
