@@ -1,8 +1,10 @@
 // $theme-dir := '../../styles/themes/ksyun'
-@require('../../mixin.styl')
-
 use('../../functions.js')
 $theme-dir := __dirname()
+
+// we must require other file after defined $theme-dir
+// otherwise, the __dirname may be weird
+@require('../../mixin.styl')
 
 $primary-color := #0091ea
 $warning-color := #ff9800
