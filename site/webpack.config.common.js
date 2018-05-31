@@ -52,8 +52,7 @@ module.exports = function(theme) {
                 '@': path.resolve(__dirname, './src'),
             }
         },
-        // devtool: isDev ? '#inline-source-map' : 'none',
-        devtool: '#inline-source-map',
+        devtool: isDev ? '#inline-source-map' : 'none',
     });
 
     config.plugins = [
