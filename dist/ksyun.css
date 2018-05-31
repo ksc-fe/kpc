@@ -5378,8 +5378,17 @@ button.k-btn > span {
 .k-pagination.k-mini .k-btns .ion-ios-arrow-right:before {
   font-size: 18px;
 }
+.k-btn > span {
+  line-height: 32px;
+}
 .k-large .k-btn > span {
   line-height: 40px;
+}
+.k-small .k-btn > span {
+  line-height: 24px;
+}
+.k-mini .k-btn > span {
+  line-height: 20px;
 }
 .k-progress {
   position: relative;
