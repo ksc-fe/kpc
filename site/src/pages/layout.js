@@ -2,7 +2,17 @@ import Intact from 'intact';
 import template from './layout.vdt';
 import './layout.styl';
 
-let theme = 'kpc'
+let theme = localStorage.getItem('theme') || 'kpc';
+
+function changeTheme(newTheme, oldTheme) {
+    const link = document.querySelector('link[rel=stylesheet]');
+    link.href = link.href.replace(`theme-${oldTheme}`, `theme-${newTheme}`);
+    theme = newTheme;
+    localStorage.setItem('theme', newTheme);
+}
+if (theme !== 'kpc') {
+    changeTheme(theme, 'kpc');
+}
 
 export default class extends Intact {
     @Intact.template()
@@ -16,19 +26,13 @@ export default class extends Intact {
 
     _init() {
         this.on('$change:theme', (c, v, o) => {
-            this._changeTheme(v, o);
+            changeTheme(v, o);
         });
     }
 
     _mount() {
         this.border = this.element.querySelector('.border');
         this._updateBorder();
-        this.link = document.querySelector('link[rel=stylesheet]');
-    }
-
-    _changeTheme(newTheme, oldTheme) {
-        this.link.href = this.link.href.replace(`theme-${oldTheme}`, `theme-${newTheme}`);
-        theme = newTheme;
     }
 
     _updateBorder() {
