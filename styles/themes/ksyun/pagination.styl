@@ -18,7 +18,10 @@
         // color $primary-color
         // border-color $primary-color
         // background-color lighten($primary-color, 85%)
-    &.k-large
-        .k-btn > span
-            line-height unit($large-height, px)
+    .k-btn > span
+        line-height unit($default-height, px)
+    for size in large small mini
+        &.k-{size}
+            .k-btn > span
+                line-height unit(lookup('$' + size + '-height'), px)
 
