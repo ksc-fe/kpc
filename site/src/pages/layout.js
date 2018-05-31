@@ -3,15 +3,16 @@ import template from './layout.vdt';
 import './layout.styl';
 
 let theme;
+function changeTheme(newTheme, oldTheme) {
+    const link = document.querySelector('link[rel=stylesheet]');
+    link.href = link.href.replace(`theme-${oldTheme}`, `theme-${newTheme}`);
+    theme = newTheme;
+    localStorage.setItem('theme', newTheme);
+}
+
 if (process.browser) {
     theme = localStorage.getItem('theme') || 'kpc';
 
-    function changeTheme(newTheme, oldTheme) {
-        const link = document.querySelector('link[rel=stylesheet]');
-        link.href = link.href.replace(`theme-${oldTheme}`, `theme-${newTheme}`);
-        theme = newTheme;
-        localStorage.setItem('theme', newTheme);
-    }
     if (theme !== 'kpc') {
         changeTheme(theme, 'kpc');
     }
