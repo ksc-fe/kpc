@@ -24,3 +24,79 @@ clearfix()
         content ''
         height 0
 
+hsv(h-hsv, s-hsv, v-hsv, a = 1)
+    if v-hsv == 0
+        return hsla(0, 0, 0, a)
+    else
+        s-hsv = unit(s-hsv, '')
+        v-hsv = unit(v-hsv, '')
+        l-hsl = (v-hsv / 2) * (2 - (s-hsv / 100))
+        if l-hsl == 0 || l-hsl == 100
+            s-hsl = l-hsl 
+        else 
+            s-hsl = (v-hsv * s-hsv) / (l-hsl < 50 ? l-hsl * 2 : 200 - l-hsl * 2)
+        return hsla(h-hsv, s-hsl, l-hsl, a)
+
+toHsv(color)
+    r = red(color);
+    g = green(color);
+    b = blue(color);
+    return rgbToHsv(r, g, b)
+
+hsvhue(color)
+    hsv = toHsv(color);
+    return unit(hsv.h, '')
+
+hsvsaturation(color)
+    hsv = toHsv(color);
+    return unit(hsv.s, '%')
+
+hsvvalue(color)
+    hsv = toHsv(color);
+    return unit(hsv.v, '%')
+
+rgbToHsv(r, g, b)
+    r = (r / 255);
+    g = (g / 255);
+    b = (b / 255);
+    max = max(max(r, g), b);
+    min = min(min(r, g), b);
+    h = s = v = max;
+    d = max - min;
+    s = (max == 0) ? 0 : (d / max);
+    if max == min
+        h = 0;
+    else
+        if max == r
+            h = ((g - b) / d) + (g < b ? 6 : 0);
+        else if max == g
+            h = ((b - r) / d) + 2;
+        else if max == b
+            h = ((r - g) / d) + 4;
+
+    h = (h / 6);
+
+    return { h: h * 360, s: s * 100, v: v * 100 }
+
+palette(color, level)
+    h = hsvhue(color)
+    s = hsvsaturation(color)
+    b = hsvvalue(color)
+
+    if s <= 10% 
+        deS = 0
+    else
+        deS = (s - 10%) / 4
+    inS = (100% - s) / 4
+    deB = (100% - b) / 4
+    if b <= 40%
+        inB = 0
+    else 
+        inB = (b - 40%) / 4
+
+    if (level < 0 && level >= -4)
+        return hsv(h + level, s + level * deS, b - level * deB)
+    else if (level > 0 && level <= 4)
+        return hsv(h + level, s + level * inS, b - level * inB)
+    else
+        return color

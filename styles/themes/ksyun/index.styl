@@ -1,4 +1,6 @@
 // $theme-dir := '../../styles/themes/ksyun'
+@require('../../mixin.styl')
+
 use('../../functions.js')
 $theme-dir := __dirname()
 
@@ -34,7 +36,7 @@ $mini-font-size := 12px
  * btn
  */
 $btn-color := #333
-$btn-primary-border-color := darken($primary-color, 20%) 
+$btn-primary-border-color := palette($primary-color, 1) 
 
 
 /**

@@ -52,7 +52,8 @@ rgbToHsv(r, g, b)
 
     return { h: h * 360, s: s * 100, v: v * 100 }
 
-$color = #000000
+// $color = #000000
+$color = #0091ea
 $h = hsvhue($color)
 $s = hsvsaturation($color)
 $b = hsvvalue($color)
@@ -83,21 +84,21 @@ else
         IB $inB
     for num in (0..4)
         .color{4 - num}
-            // background hsv($h - num, $s - num * $deS, $b + num * $deB)
-            background hsv($h, $s - num * $deS, $b + num * $deB)
+            background hsv($h - num, $s - num * $deS, $b + num * $deB)
+            // background hsv($h, $s - num * $deS, $b + num * $deB)
             &:before
-                // content s('"%s\D\A %s %s %s"', hsv($h - num, $s - num * $deS, $b + num * $deB), $h - num, $s - num * $deS, $b + num * $deB)
-                content s('"%s\D\A %s %s %s"', hsv($h, $s - num * $deS, $b + num * $deB), $h, $s - num * $deS, $b + num * $deB)
+                content s('"%s\D\A %s %s %s"', hsv($h - num, $s - num * $deS, $b + num * $deB), $h - num, $s - num * $deS, $b + num * $deB)
+                // content s('"%s\D\A %s %s %s"', hsv($h, $s - num * $deS, $b + num * $deB), $h, $s - num * $deS, $b + num * $deB)
                 white-space pre
                 color #fff
                 display block
     for num in (1..4)
         .color{num + 4}
-            // background hsv($h + num, $s + num * $inS, $b - num * $inB)
-            background hsv($h, $s + num * $inS, $b - num * $inB)
+            background hsv($h + num, $s + num * $inS, $b - num * $inB)
+            // background hsv($h, $s + num * $inS, $b - num * $inB)
             &:before
-                // content s('"%s\D\A %s %s %s"', hsv($h + num, $s + num * $inS, $b - num * $inB), $h + num, $s + num * $inS, $b - num * $inB)
-                content s('"%s\D\A %s %s %s"', hsv($h, $s + num * $inS, $b - num * $inB), $h, $s + num * $inS, $b - num * $inB)
+                content s('"%s\D\A %s %s %s"', hsv($h + num, $s + num * $inS, $b - num * $inB), $h + num, $s + num * $inS, $b - num * $inB)
+                // content s('"%s\D\A %s %s %s"', hsv($h, $s + num * $inS, $b - num * $inB), $h, $s + num * $inS, $b - num * $inB)
                 white-space pre
                 display block
                 color #fff

@@ -28,7 +28,7 @@ sizes = large small mini
         border-color $btn-hover-border-color
         color $btn-hover-color
     &:active
-        background-color lighten($primary-color, 85%)
+        background-color palette($primary-color, -4)
     for type in types 
         &.k-{type}
             background-color lookup('$btn-' + type + '-bg-color')
@@ -36,11 +36,11 @@ sizes = large small mini
             border-color lookup('$btn-' + type + '-border-color')
             &:hover
             &:focus
-                background-color lighten(@background-color, 20%)
-                border-color lighten(@border-color, 20%)
+                background-color palette(@background-color, -1)
+                border-color palette(@border-color, -1)
             &:active
-                background-color darken(@background-color, 20%)
-                border-color darken(@border-color, 20%)
+                background-color palette(@background-color, 1)
+                border-color palette(@border-color, 1)
     // disabled
     &.k-disabled
         &, &:hover
@@ -100,17 +100,17 @@ sizes = large small mini
     // loading
     &.k-loading
         &, &:hover
-            background-color lighten($btn-bg-color, 50%)
-            color lighten($btn-color, 50%)
-            border-color lighten($btn-border-color, 50%)
+            background-color palette($btn-bg-color, -2)
+            color palette($btn-color, -2)
+            border-color palette($btn-border-color, -2)
         .k-icon:not(.icon-loading)
             display none
         for type in types 
             &.k-{type}
                 &, &:hover
-                    background-color lighten(lookup('$btn-' + type + '-bg-color'), 50%)
-                    color lighten(lookup('$btn-' + type + '-color'), 50%)
-                    border-color lighten(lookup('$btn-' + type + '-border-color'), 50%)
+                    background-color palette(lookup('$btn-' + type + '-bg-color'), -2)
+                    color palette(lookup('$btn-' + type + '-color'), -2)
+                    border-color palette(lookup('$btn-' + type + '-border-color'), -2)
         &:not(.k-btn-icon):not(.k-icon-left):not(.k-icon-right)
             padding-left unit(getLeft($btn-padding) + 1, em)
             .icon-loading

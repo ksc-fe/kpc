@@ -1,3 +1,5 @@
+@require('../mixin.styl');
+
 /******************************
              Theme
 *******************************/
@@ -73,7 +75,7 @@ $h5 := unit(14 / 14, rem)
 
 $link-color := #4183c4
 $link-underline := none
-$link-hover-color := darken(saturate($link-color, 20), 15)
+$link-hover-color := palette($link-color, 1)
 $link-hover-underline := $link-underline
 
 
