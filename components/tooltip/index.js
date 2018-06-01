@@ -99,9 +99,9 @@ class TooltipContent extends Intact {
             of: this.dropdown.element,
             collision: 'flipfit',
             using: (feedback) => {
-                if (!this.get('showArrow')) return;
-
                 this.set('_feedback', feedback);
+
+                if (!this.get('showArrow')) return;
 
                 const arrow = this.refs.arrow;
                 const {target, element} = feedback;

@@ -28,7 +28,7 @@ const classNameObj = {
     ev-keydown={{ self._onKeydown }}
 >
     <Tooltip class="k-datepicker-content" 
-        position={{ {my: 'left top', at: 'left bottom'} }}
+        position={{ {my: 'left top', at: 'left bottom', collision: 'flip'} }}
         trigger="click"
         showArrow={{ false }}
         transition={{ transition }}

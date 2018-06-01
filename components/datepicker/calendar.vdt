@@ -29,7 +29,7 @@ const map = {
 };
 const panel = format.map(item => map[item]);
 
-<div class="k-wrapper" tabindex="0"
+<div class="k-calendar-wrapper" tabindex="0"
     ev-keydown={{ self._onKeydown }}
 >
     <div v-if={{ !_isSelectTime }}>

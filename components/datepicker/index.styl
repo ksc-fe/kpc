@@ -11,13 +11,12 @@
             border $input-focus-border
 
 .k-datepicker-content
-    position absolute
-    border-radius $datepicker-border-radius 
-    box-shadow $datepicker-box-shadow
     color $datepicker-color
     max-width none
-    .k-wrapper
+    padding $datepicker-padding
+    .k-calendar-wrapper
         outline none
+        width $datepicker-content-width
     .k-day
     .k-weekday
         display inline-block
@@ -68,19 +67,13 @@
         .k-text-wrapper
             cursor pointer
 
-    // year picker
-    .k-year-picker
-        width $datepicker-year-picker-width 
-    // time picker
-    .k-time-picker
-        width $datepicker-time-picker-width
     .k-scroll-select
         height $datepicker-scroll-select-height
 
     // range
     .k-range
         white-space nowrap
-        > .k-wrapper
+        .k-calendar-wrapper
             display inline-block
             vertical-align top
             &:last-of-type
