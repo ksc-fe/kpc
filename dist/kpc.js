@@ -3618,8 +3618,25 @@ var TooltipContent = (_dec = _intact2.default.template(), (_class = (_temp = _cl
             my: 'center bottom-10',
             at: 'center top',
             of: this.dropdown.element,
+            collision: 'flipfit',
             using: function using(feedback) {
+                if (!_this5.get('showArrow')) return;
+
                 _this5.set('_feedback', feedback);
+
+                var arrow = _this5.refs.arrow;
+                var target = feedback.target,
+                    element = feedback.element;
+
+                if (feedback.horizontal === 'center') {
+                    var left = target.left - element.left + target.width / 2;
+                    arrow.setAttribute('style', 'left: ' + left + 'px');
+                } else if (feedback.vertical === 'middle') {
+                    var top = target.top - element.top + target.height / 2;
+                    arrow.setAttribute('style', 'top: ' + top + 'px');
+                } else {
+                    arrow.setAttribute('display', 'none');
+                }
             }
         }, pos));
     };
@@ -5657,7 +5674,7 @@ exports.Transfer = _transfer.Transfer;
 
 /* generate start */
 
-var version = exports.version = '0.3.2';
+var version = exports.version = '0.3.3';
 
 /* generate end */
 
@@ -9693,7 +9710,9 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this))) : undefined, function () {
+            }.call(this)), null, function (i) {
+                widgets['arrow'] = i;
+            }) : undefined, function () {
                 try {
                     return [children][0];
                 } catch (e) {

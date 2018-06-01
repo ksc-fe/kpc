@@ -5379,16 +5379,7 @@ button.k-btn > span {
   font-size: 18px;
 }
 .k-pagination .k-btn > span {
-  line-height: 32px;
-}
-.k-pagination.k-large .k-btn > span {
-  line-height: 40px;
-}
-.k-pagination.k-small .k-btn > span {
-  line-height: 24px;
-}
-.k-pagination.k-mini .k-btn > span {
-  line-height: 20px;
+  line-height: 1;
 }
 .k-progress {
   position: relative;
