@@ -31,5 +31,6 @@ const classNameObj = {
             [`k-${_feedback.vertical}`]: _feedback.vertical,
             [`k-${_feedback.horizontal}`]: _feedback.horizontal,
         } }}
+        ref="arrow"
     ></i>{{ children }}</Animate>
 </MoveWrapper>

@@ -97,8 +97,23 @@ class TooltipContent extends Intact {
             my: 'center bottom-10', 
             at: 'center top', 
             of: this.dropdown.element,
+            collision: 'flipfit',
             using: (feedback) => {
+                if (!this.get('showArrow')) return;
+
                 this.set('_feedback', feedback);
+
+                const arrow = this.refs.arrow;
+                const {target, element} = feedback;
+                if (feedback.horizontal === 'center') {
+                    const left = target.left - element.left + target.width / 2;
+                    arrow.setAttribute('style', `left: ${left}px`);
+                } else if (feedback.vertical === 'middle') {
+                    const top = target.top - element.top + target.height / 2;
+                    arrow.setAttribute('style', `top: ${top}px`);
+                } else {
+                    arrow.setAttribute('display', 'none');
+                }
             },
             ...pos
         });
