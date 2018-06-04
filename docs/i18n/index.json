@@ -872,7 +872,7 @@
                 ]
             },
             {
-                "title": "标签",
+                "title": "选项卡",
                 "path": "components/tabs/index.md",
                 "children": [
                     {

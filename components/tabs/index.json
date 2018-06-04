@@ -1,6 +1,6 @@
 {
     "setting": {
-        "title": "标签",
+        "title": "选项卡",
         "category": "组件",
         "order": 90
     },
@@ -869,7 +869,7 @@
                 ]
             },
             {
-                "title": "标签",
+                "title": "选项卡",
                 "path": "components/tabs/index.md",
                 "children": [
                     {
