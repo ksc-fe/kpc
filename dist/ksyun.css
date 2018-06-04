@@ -6138,7 +6138,7 @@ button.k-btn > span {
 .k-table thead {
   font-size: 12px;
   color: #3b3b3b;
-  border-bottom: 1px solid #d3d3d3;
+  border-bottom: 1px solid #ccc;
 }
 .k-table th {
   padding: 0 5px 0 12px;
@@ -6188,7 +6188,7 @@ button.k-btn > span {
   cursor: ew-resize;
 }
 .k-table tbody tr {
-  border-bottom: 1px solid #d3d3d3;
+  border-bottom: 1px solid #ccc;
 }
 .k-table tbody tr:hover {
   background: #f5f5f9;
@@ -6208,12 +6208,12 @@ button.k-btn > span {
 }
 .k-table-wrapper {
   overflow: auto;
-  border-top: 1px solid #d3d3d3;
+  border-top: 1px solid #ccc;
 }
 .k-table-wrapper .k-fixed {
   position: relative;
   z-index: 1;
-  border-bottom: 1px solid #d3d3d3;
+  border-bottom: 1px solid #ccc;
   background: #f5f5f9;
 }
 .k-table-wrapper .k-fixed thead {
@@ -6232,8 +6232,8 @@ button.k-btn > span {
 }
 .k-table-wrapper.k-border .k-fixed,
 .k-table-wrapper.k-border .k-table {
-  border-left: 1px solid #d3d3d3;
-  border-right: 1px solid #d3d3d3;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
 }
 .k-table-wrapper.k-border .k-fixed .k-table {
   border: none;
