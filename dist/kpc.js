@@ -3620,9 +3620,9 @@ var TooltipContent = (_dec = _intact2.default.template(), (_class = (_temp = _cl
             of: this.dropdown.element,
             collision: 'flipfit',
             using: function using(feedback) {
-                if (!_this5.get('showArrow')) return;
-
                 _this5.set('_feedback', feedback);
+
+                if (!_this5.get('showArrow')) return;
 
                 var arrow = _this5.refs.arrow;
                 var target = feedback.target,
@@ -5674,7 +5674,7 @@ exports.Transfer = _transfer.Transfer;
 
 /* generate start */
 
-var version = exports.version = '0.3.3';
+var version = exports.version = '0.3.4';
 
 /* generate end */
 
@@ -8841,7 +8841,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             }
         }.call(this) }, h(_tooltip2.default, { 'className': 'k-datepicker-content', 'position': function () {
             try {
-                return [{ my: 'left top', at: 'left bottom' }][0];
+                return [{ my: 'left top', at: 'left bottom', collision: 'flip' }][0];
             } catch (e) {
                 _e(e);
             }
@@ -10214,7 +10214,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                     } catch (e) {
                         _e(e);
                     }
-                }.call(this), 'children': null, '_context': $this }), '_context': $this })], '_context': $this })], 'k-time-picker', 'time'), 'k-wrapper');
+                }.call(this), 'children': null, '_context': $this }), '_context': $this })], '_context': $this })], 'k-time-picker', 'time'), 'k-calendar-wrapper');
 };
 
 var _button = __webpack_require__(18);

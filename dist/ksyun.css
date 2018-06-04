@@ -494,7 +494,7 @@ body,
   height: 100%;
 }
 html {
-  font-size: 0.875em;
+  font-size: 14px;
 }
 body {
   font-family: 'Microsoft YaHei';
@@ -3780,7 +3780,7 @@ label {
   border-radius: 0.142857142857143rem;
   -webkit-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
-  border: 1px solid #999;
+  border: 1px solid #ccc;
   font-size: 12px;
 }
 button.k-btn > span {
@@ -3927,7 +3927,7 @@ button.k-btn > span {
 .k-btn.k-loading:hover {
   background-color: #fff;
   color: #999;
-  border-color: #ccc;
+  border-color: #e6e6e6;
 }
 .k-btn.k-loading .k-icon:not(.icon-loading) {
   display: none;
@@ -3987,6 +3987,9 @@ button.k-btn > span {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+.k-btn:not(button) .k-icon {
+  line-height: inherit;
 }
 .k-btns {
   display: inline-block;
@@ -4248,7 +4251,7 @@ button.k-btn > span {
   width: 100%;
   font-size: 12px;
   height: 2.285714285714286rem;
-  border: 1px solid #999;
+  border: 1px solid #ccc;
   padding: 0 0.714285714285714rem;
   background-color: #fff;
   -webkit-transition: border 0.25s ease-in-out, background 0.25s ease-in-out, -webkit-box-shadow 0.25s ease-in-out;
@@ -4320,7 +4323,7 @@ button.k-btn > span {
   vertical-align: middle;
   padding: 0 0.5em;
   background: #eee;
-  border: 1px solid #999;
+  border: 1px solid #ccc;
 }
 .k-input .k-prepend .k-btn,
 .k-input .k-append .k-btn {
@@ -4715,22 +4718,20 @@ button.k-btn > span {
   border: 1px solid #0091ea;
 }
 .k-datepicker-content {
-  position: absolute;
-  border-radius: 0.142857142857143rem;
-  -webkit-box-shadow: 0 0 4px 0 rgba(0,0,0,0.3);
-          box-shadow: 0 0 4px 0 rgba(0,0,0,0.3);
   color: #333;
   max-width: none;
+  padding: 0.571428571428571rem 0.714285714285714rem;
 }
-.k-datepicker-content .k-wrapper {
+.k-datepicker-content .k-calendar-wrapper {
   outline: none;
+  width: 20rem;
 }
 .k-datepicker-content .k-day,
 .k-datepicker-content .k-weekday {
   display: inline-block;
   width: 2.5em;
   text-align: center;
-  margin: 0.083333333333333em 0.166666666666667em;
+  margin: 0.166666666666667em 0.416666666666667em;
 }
 .k-datepicker-content .k-day {
   height: 2.5em;
@@ -4748,7 +4749,7 @@ button.k-btn > span {
   color: #999;
 }
 .k-datepicker-content .k-day.k-today {
-  border: 1px solid #999;
+  border: 1px solid #ccc;
 }
 .k-datepicker-content .k-day.k-active {
   background: #0091ea;
@@ -4787,23 +4788,17 @@ button.k-btn > span {
 .k-datepicker-content .k-month .k-text-wrapper {
   cursor: pointer;
 }
-.k-datepicker-content .k-year-picker {
-  width: 19.833333333333332em;
-}
-.k-datepicker-content .k-time-picker {
-  width: 19.833333333333332em;
-}
 .k-datepicker-content .k-scroll-select {
   height: 17.5em;
 }
 .k-datepicker-content .k-range {
   white-space: nowrap;
 }
-.k-datepicker-content .k-range > .k-wrapper {
+.k-datepicker-content .k-range .k-calendar-wrapper {
   display: inline-block;
   vertical-align: top;
 }
-.k-datepicker-content .k-range > .k-wrapper:last-of-type {
+.k-datepicker-content .k-range .k-calendar-wrapper:last-of-type {
   margin-left: 1.666666666666667em;
 }
 .k-datepicker-content .k-in-range {
@@ -4817,10 +4812,10 @@ button.k-btn > span {
           box-sizing: content-box;
   width: 2.5em;
   height: 2.5em;
-  padding: 0 0.166666666666667em;
+  padding: 0 0.416666666666667em;
   background: #6ec6f4;
-  left: -0.166666666666667em;
-  top: -0.083333333333333em;
+  left: -0.416666666666667em;
+  top: -0.166666666666667em;
   margin-left: -1px;
   z-index: -1;
 }
@@ -5137,7 +5132,7 @@ button.k-btn > span {
   cursor: pointer;
   outline: none;
   vertical-align: middle;
-  border: 1px solid #999;
+  border: 1px solid #ccc;
   padding: 0 2.142857142857143rem 0 0.714285714285714rem;
   background: #fff;
   -webkit-transition: border 0.25s ease-in-out, background 0.25s ease-in-out, -webkit-box-shadow 0.25s ease-in-out;
@@ -5948,7 +5943,7 @@ button.k-btn > span {
 }
 .k-switch .k-handle {
   border-radius: 0.142857142857143rem;
-  background: #999;
+  background: #ccc;
   height: 100%;
   cursor: pointer;
   -webkit-transition: left 0.25s ease-in-out;
@@ -6103,7 +6098,7 @@ button.k-btn > span {
   background: #fff;
 }
 .k-switch {
-  border: 1px solid #999;
+  border: 1px solid #ccc;
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
 }
@@ -6451,7 +6446,7 @@ button.k-btn > span {
 }
 .k-transfer .k-list {
   height: 21.428571428571427rem;
-  border: 1px solid #999;
+  border: 1px solid #ccc;
   border-radius: 0.142857142857143rem;
   overflow: auto;
 }

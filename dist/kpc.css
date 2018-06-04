@@ -494,7 +494,7 @@ body,
   height: 100%;
 }
 html {
-  font-size: 0.875em;
+  font-size: 14px;
 }
 body {
   font-family: 'Microsoft YaHei';
@@ -3991,6 +3991,9 @@ button.k-btn > span {
       -ms-flex-pack: center;
           justify-content: center;
 }
+.k-btn:not(button) .k-icon {
+  line-height: inherit;
+}
 .k-btns {
   display: inline-block;
   vertical-align: middle;
@@ -4700,22 +4703,20 @@ button.k-btn > span {
   border: 1px solid #0a5eee;
 }
 .k-datepicker-content {
-  position: absolute;
-  border-radius: 0.142857142857143rem;
-  -webkit-box-shadow: 0 2px 8px 0 rgba(191,191,191,0.5);
-          box-shadow: 0 2px 8px 0 rgba(191,191,191,0.5);
   color: #595959;
   max-width: none;
+  padding: 0.571428571428571rem 0.714285714285714rem;
 }
-.k-datepicker-content .k-wrapper {
+.k-datepicker-content .k-calendar-wrapper {
   outline: none;
+  width: 20rem;
 }
 .k-datepicker-content .k-day,
 .k-datepicker-content .k-weekday {
   display: inline-block;
   width: 2.5em;
   text-align: center;
-  margin: 0.083333333333333em 0.166666666666667em;
+  margin: 0.166666666666667em 0.416666666666667em;
 }
 .k-datepicker-content .k-day {
   height: 2.5em;
@@ -4772,23 +4773,17 @@ button.k-btn > span {
 .k-datepicker-content .k-month .k-text-wrapper {
   cursor: pointer;
 }
-.k-datepicker-content .k-year-picker {
-  width: 19.833333333333332em;
-}
-.k-datepicker-content .k-time-picker {
-  width: 19.833333333333332em;
-}
 .k-datepicker-content .k-scroll-select {
   height: 17.5em;
 }
 .k-datepicker-content .k-range {
   white-space: nowrap;
 }
-.k-datepicker-content .k-range > .k-wrapper {
+.k-datepicker-content .k-range .k-calendar-wrapper {
   display: inline-block;
   vertical-align: top;
 }
-.k-datepicker-content .k-range > .k-wrapper:last-of-type {
+.k-datepicker-content .k-range .k-calendar-wrapper:last-of-type {
   margin-left: 1.666666666666667em;
 }
 .k-datepicker-content .k-in-range {
@@ -4802,10 +4797,10 @@ button.k-btn > span {
           box-sizing: content-box;
   width: 2.5em;
   height: 2.5em;
-  padding: 0 0.166666666666667em;
+  padding: 0 0.416666666666667em;
   background: #74a8f7;
-  left: -0.166666666666667em;
-  top: -0.083333333333333em;
+  left: -0.416666666666667em;
+  top: -0.166666666666667em;
   margin-left: -1px;
   z-index: -1;
 }
