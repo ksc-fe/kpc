@@ -56,7 +56,7 @@ function Catalog(props) {
                     上修正该文档
                 </div>
             </div>
-            <Article ref="article" />
+            <Article />
         </article>
     </b:content>
 </t:parent>

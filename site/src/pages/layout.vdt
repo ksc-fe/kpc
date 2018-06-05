@@ -11,11 +11,11 @@ const nav = [
         /* title: '设计语言', */
         /* href: '/design', */
     /* }, */
-    /* { */
-        /* title: 'Blog', */
-        /* href: '/docs/blog/test/', */
-        /* index: 'blog', */
-    /* }, */
+    {
+        title: 'Blog',
+        href: '/docs/blogs/test/',
+        index: 'blog',
+    },
     /* { */
         /* title: 'API', */
         /* href: 'api' */

@@ -8,15 +8,14 @@ $aside-width = 300px
     background #efefef
     .content-wrapper.fixed
         margin-bottom 0
-        aside
+        .aside-wrapper
             position fixed
             top headerHeight 
             background #fff
             height "calc(100% - %s)" % headerHeight
             overflow auto
             box-sizing border-box
-        article
-            margin-left $aside-width
+            width $aside-width
     .content-wrapper
         width 100%
         display flex

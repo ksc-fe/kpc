@@ -98,7 +98,11 @@ gulp.task('server', () => {
     });
 });
 
-gulp.task('watch', gulp.series('doc', gulp.parallel('server', 'build:themes:css', 'dev:doc:server', /* 'webpack', */ () => {
+gulp.task('clean:doc:dev', () => {
+    return exec(`rm -rf ./site/.dist`);
+});
+
+gulp.task('watch', gulp.series('clean:doc:dev', 'doc', gulp.parallel('server', 'build:themes:css', 'dev:doc:server', /* 'webpack', */ () => {
     gulp.watch('./@(components|docs)/**/*.md', {ignored: /node_modules/}, gulp.parallel('doc'));
 })));
 

@@ -20,7 +20,7 @@ export default new Router([
         }
     },
     {
-        path: /^(?:\/kpc)?(\/docs\/blog\/.*)$/,
+        path: /^(?:\/kpc)?(\/docs\/blogs\/.*)$/,
         action: async (context) => {
             return {
                 Page: await import('../pages/blog'),

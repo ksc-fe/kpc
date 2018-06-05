@@ -84,6 +84,13 @@ module.exports = function(isDev) {
                 let hasJs = false;
                 let hasStylus = false;
                 file.md.codes.forEach(item => {
+                    if (item.example) {
+                        item.content = [
+                            item.content,
+                            `export const example = true;`,
+                        ].join('\n');
+                        return;
+                    };
                     if (item.language === 'js' && !item.file) {
                         hasJs = true;
                         item.content = [
@@ -131,7 +138,7 @@ module.exports = function(isDev) {
                 const _data = JSON.parse(JSON.stringify(data));
                 delete _data.codes;
 
-                const sidebar = data.setting.sidebar;
+                const sidebar = data.setting && data.setting.sidebar;
                 if (sidebar && !hasWrittenSidebar[sidebar]) {
                     await ctx.fsWrite(path.join(root, `${sidebar}.json`), JSON.stringify(data.sideBars, null, 4));
                 }
@@ -162,6 +169,19 @@ module.exports = function(isDev) {
                     });
                 } else {
                     file.extname = '.js';
+                    if (!file.md.setting) return;
+
+                    // generate example demo file
+                    let index = 0;
+                    file.md.codes.forEach(async item => {
+                        if (item.example) {
+                            await ctx.fsWrite(
+                                path.join(file.dirname, `demos/demo${index++}/index.js`),
+                                item.content
+                            );
+                        }
+                    });
+
                     const sidebar = file.md.setting.sidebar;
                     await ctx.fsWrite(
                         file.relative,
@@ -174,7 +194,8 @@ module.exports = function(isDev) {
                             `const demos = r.keys().map(r);`,
                             ``,
                             `export default class extends Article {`,
-                            `    static sidebar = sidebar;`,
+                            sidebar ? `    static sidebar = sidebar;` : undefined,
+                            `    static data = data;`,
                             `    defaults() {`,
                             `        return {...super.defaults(), ...data, demos};`,
                             `    }`,

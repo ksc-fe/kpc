@@ -1,3 +1,5 @@
+const Article = self.get('Article');
+
 <t:parent navIndex="blog" class="document-page blog-page">
     <b:content>
         <aside>
@@ -6,7 +8,8 @@
             </div>
         </aside>
         <article>
-            <div innerHTML={{ self.get('content') }}></div>
+            <h1>{{ Article.data.setting.title }}</h1>
+            <Article />
         </article>
     </b:content>
 </t:parent>

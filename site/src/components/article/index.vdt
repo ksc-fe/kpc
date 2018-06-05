@@ -30,6 +30,14 @@ import {Tabs, Tab} from 'kpc/components/tabs';
             </div>
         }) }}
     </div>
-    <div innerHTML={{ self.get('contents') }} key="contents" class="api"></div>
+    <div key="contents" class="api">
+        {{ __u.map(self.get('contents'), (value, index) => {
+            const Example = self.get('examples')[index];
+            return [
+                <div innerHTML={{ value }}></div>,
+                Example ? <Example.default /> : undefined,
+            ];
+        }) }}
+    </div>
 </div>
 
