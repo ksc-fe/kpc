@@ -2359,9 +2359,18 @@ var Dropdown = (_dec = _intact2.default.template(), (_class = function (_Intact)
         var originProps = children.props;
         var hasSaved = false;
         if (!originProps._hasSaved) {
-            children._evClick = originProps['ev-click'];
-            children._evMouseEnter = originProps['ev-mouseenter'];
-            children._evMouseLeave = originProps['ev-mouseleave'];
+            if (originProps.vueVNode) {
+                // for vue element
+                var data = originProps.vueVNode.data;
+                var on = data && data.on || {};
+                children._evClick = on.click;
+                children._evMouseEnter = on.mouseenter;
+                children._evMouseLeave = on.mouseleave;
+            } else {
+                children._evClick = originProps['ev-click'];
+                children._evMouseEnter = originProps['ev-mouseenter'];
+                children._evMouseLeave = originProps['ev-mouseleave'];
+            }
             hasSaved = true;
         }
         var props = {};
@@ -5674,7 +5683,7 @@ exports.Transfer = _transfer.Transfer;
 
 /* generate start */
 
-var version = exports.version = '0.3.5';
+var version = exports.version = '0.3.6';
 
 /* generate end */
 
