@@ -4,11 +4,22 @@ const Article = self.get('Article');
     <b:content>
         <aside>
             <div class="aside-wrapper">
+                <ul>
+                    <li>
+                        <a ev-click={{ self.scrollTo.bind(self, '__top') }}>{{ Article.data.setting.title }}</a>
+                        <ul class="sub-catalogs">
+                            <li v-for={{ Article.data.catalogs }}>
+                                <a ev-click={{ self.scrollTo.bind(self, value.id) }}
+                                >{{ value.text }}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
                 <div class="aside-border transition"></div>
             </div>
         </aside>
         <article>
-            <h1>{{ Article.data.setting.title }}</h1>
+            <h1 id="__top">{{ Article.data.setting.title }}</h1>
             <Article />
         </article>
     </b:content>
