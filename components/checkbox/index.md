@@ -2,6 +2,7 @@
 title: 复选框
 category: 组件
 order: 4
+sidebar: doc
 ---
 
 # 属性

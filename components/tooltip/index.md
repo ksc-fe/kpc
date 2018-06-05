@@ -2,6 +2,7 @@
 title: 提示弹层
 category: 组件
 order: 13
+sidebar: doc
 ---
 
 # 属性

@@ -9,7 +9,7 @@ function Catalog(props) {
     return <div class="catalog-section">
         <h5 v-if={{ props.key !== 'undefined' }}>{{ props.key }}</h5>
         <ul>
-            <li v-for={{ self.get(`sideBars.${props.key}`)}} class={{ {
+            <li v-for={{ Article.sidebar[props.key] }} class={{ {
                 active: value.path.includes(self.path.slice(1)) 
             } }}>
                 {{ (() => {
@@ -56,7 +56,7 @@ function Catalog(props) {
                     上修正该文档
                 </div>
             </div>
-            <Article />
+            <Article ref="article" />
         </article>
     </b:content>
 </t:parent>

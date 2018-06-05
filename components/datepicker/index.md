@@ -2,6 +2,7 @@
 title: 日期选择
 category: 组件
 order: 7
+sidebar: doc
 ---
 
 # 属性

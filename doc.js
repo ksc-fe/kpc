@@ -16,15 +16,20 @@ const languageMap = function(key) {
 };
 
 module.exports = function(isDev) {
+    const hasWrittenSidebar = {};
+
     let _resolve;
     const promise = new Promise((resolve) => {
         _resolve = resolve;
     });
     promise.resolve = (...args) => _resolve(...args);
+    const root = isDev ? 
+        path.resolve(__dirname, './site/.dist') : 
+        path.resolve(__dirname, `./site/dist`);
 
     const doc = new KDoc(
         './@(docs|components)/**/*.md',
-        isDev ? path.resolve(__dirname, './site/.dist') : path.resolve(__dirname, `./site/dist`)
+        root
     );
 
     doc.use(KDoc.plugins.md);
@@ -68,7 +73,7 @@ module.exports = function(isDev) {
         });
 
         ctx.hook.add('dist.before', async function(files) {
-            await ctx.fsEach(function(file, index) {
+            await ctx.fsEach(async function(file, index) {
                 file.extname = '.json';
                 const basename = path.basename(file.path, '.json');
                 if (basename !== 'index') {
@@ -105,22 +110,34 @@ module.exports = function(isDev) {
                     });
                 }
 
-                const highlighted = file.md.codes.map(item => {
-                    return {
-                        language: item.language,
-                        content: `<pre><code class="hljs ${languageMap(item.language)}">` +
-                            highlight.highlight(languageMap(item.language), item.content).value +
-                        `</code></pre>`,
-                        file: item.file,
-                    };
-                });
-
                 const data = Object.assign({}, file.md, {
                     sideBars: file.sideBars,
-                    highlighted: highlighted,
                 });
+
+                if (/demos/.test(file.path)) {
+                    data.highlighted = file.md.codes.map(item => {
+                        return {
+                            language: item.language,
+                            content: `<pre><code class="hljs ${languageMap(item.language)}">` +
+                                highlight.highlight(languageMap(item.language), item.content).value +
+                            `</code></pre>`,
+                            file: item.file,
+                        };
+                    });
+                }
+
                 delete data.source;
-                file.contents = new Buffer(JSON.stringify(data, null, 4));
+                // remove redundant data
+                const _data = JSON.parse(JSON.stringify(data));
+                delete _data.codes;
+
+                const sidebar = data.setting.sidebar;
+                if (sidebar && !hasWrittenSidebar[sidebar]) {
+                    await ctx.fsWrite(path.join(root, `${sidebar}.json`), JSON.stringify(data.sideBars, null, 4));
+                }
+                delete _data.sideBars;
+
+                file.contents = new Buffer(JSON.stringify(_data, null, 4));
             });
         });
 
@@ -145,16 +162,19 @@ module.exports = function(isDev) {
                     });
                 } else {
                     file.extname = '.js';
+                    const sidebar = file.md.setting.sidebar;
                     await ctx.fsWrite(
                         file.relative,
                         [
                             `import Article from '~/../src/components/article';`,
                             `import data from './index.json';`,
+                            sidebar ? `import sidebar from '~/${sidebar}.json';` : undefined,
                             ``,
                             `const r = require.context('./', true, /demos.*index.js$/);`,
                             `const demos = r.keys().map(r);`,
                             ``,
                             `export default class extends Article {`,
+                            `    static sidebar = sidebar;`,
                             `    defaults() {`,
                             `        return {...super.defaults(), ...data, demos};`,
                             `    }`,

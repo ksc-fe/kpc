@@ -2,6 +2,7 @@
 title: 分页
 category: 组件
 order: 17 
+sidebar: doc
 ---
 
 # 属性

@@ -2,6 +2,7 @@
 title: 表单
 category: 组件
 order: 9
+sidebar: doc
 ---
 
 # 属性

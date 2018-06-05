@@ -2,6 +2,7 @@
 title: 单选框
 category: 组件
 order: 3
+sidebar: doc
 ---
 
 # 属性

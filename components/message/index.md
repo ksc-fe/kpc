@@ -2,6 +2,7 @@
 title: 全局提示
 category: 组件
 order: 12 
+sidebar: doc
 ---
 
 # 属性

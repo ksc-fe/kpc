@@ -2,6 +2,7 @@
 title: 选择框
 category: 组件
 order: 5
+sidebar: doc
 ---
 
 # 属性

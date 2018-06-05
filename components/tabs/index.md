@@ -2,6 +2,7 @@
 title: 选项卡
 category: 组件
 order: 90
+sidebar: doc
 ---
 
 # 属性

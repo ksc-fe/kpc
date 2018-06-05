@@ -2,6 +2,7 @@
 title: 步骤条
 category: 组件
 order: 15 
+sidebar: doc
 ---
 
 # 属性

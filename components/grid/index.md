@@ -2,6 +2,7 @@
 title: 栅格
 category: 组件
 order: 1
+sidebar: doc
 ---
 
 # 属性

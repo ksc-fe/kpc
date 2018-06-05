@@ -1,6 +1,7 @@
 ---
 title: 更新日志
 order: 99
+sidebar: doc
 ---
 
 ## v0.2.0

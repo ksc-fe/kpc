@@ -2,6 +2,7 @@
 title: 滑块
 category: 组件
 order: 8
+sidebar: doc
 ---
 
 # 属性

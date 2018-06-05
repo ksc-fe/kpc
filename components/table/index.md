@@ -2,6 +2,7 @@
 title: 表格
 category: 组件
 order: 89 
+sidebar: doc
 ---
 
 # 属性 

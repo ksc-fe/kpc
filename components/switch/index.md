@@ -2,6 +2,7 @@
 title: 开关
 category: 组件
 order: 16
+sidebar: doc
 ---
 
 # 属性

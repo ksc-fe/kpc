@@ -2,6 +2,7 @@
 title: 弹窗
 category: 组件
 order: 10
+sidebar: doc
 ---
 
 # 属性

@@ -1,6 +1,7 @@
 ---
 title: Vue中使用
 order: 1
+sidebar: doc
 ---
 
 kpc同时兼容intact和vue框架，我们只需要引入vue兼容层[intact-vue][1]即可。

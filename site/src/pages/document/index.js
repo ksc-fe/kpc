@@ -18,14 +18,13 @@ export default class extends Layout {
 
         this.path = path;
 
-        const data = await req(`.${path}/index.json`);
         const Article = await req(`.${path}/index.js`);
-        this.set({...data, Article});
+        this.set({Article});
     }
 
     _mount() {
         super._mount();
-        document.title = this.get('setting.title');
+        document.title = this.refs.article.get('setting.title');
 
         window.addEventListener('scroll', this._onScroll);
         window.scrollTo(0, 0);

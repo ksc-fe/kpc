@@ -2,6 +2,7 @@
 title: 进度条
 category: 组件
 order: 14 
+sidebar: doc
 ---
 
 # 属性

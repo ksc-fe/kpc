@@ -2,6 +2,7 @@
 title: 穿梭框
 category: 组件
 order: 99 
+sidebar: doc
 ---
 
 # 属性

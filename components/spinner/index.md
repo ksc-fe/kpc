@@ -2,6 +2,7 @@
 title: 数字输入框
 category: 组件
 order: 6
+sidebar: doc
 ---
 
 # 属性

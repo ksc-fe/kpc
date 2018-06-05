@@ -1,6 +1,7 @@
 ---
 title: 快速开始
 order: 0
+sidebar: doc
 ---
 
 # 准备工作

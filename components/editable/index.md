@@ -2,6 +2,7 @@
 title: 可编辑文本
 category: 组件
 order: 99 
+sidebar: doc
 ---
 
 # 属性
