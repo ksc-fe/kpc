@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>指定<code>clearable</code>可以展示快速清除按钮</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Input from 'kpc/components/input';\n\n<div>\n    <Input clearable placeholder=\"please enter\" />\n    <br />\n    <Input clearable placeholder=\"please enter\">\n        <b:suffix><i class=\"ion-ios-search\"></i></b:suffix>\n    </Input>\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".k-input\n    margin 5px"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 89,
     "highlighted": [
         {

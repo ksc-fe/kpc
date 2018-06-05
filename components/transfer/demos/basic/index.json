@@ -5,16 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>穿梭框基本用法，支持Shift进行多选</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Transfer from 'kpc/components/transfer';\n\n<Transfer data={{ self.get('data') }}/>"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    defaults() {\n        return {\n            data: [\n                {label: '主机名0'},\n                {label: '主机名1'},\n                {label: '主机名2'},\n                {label: '主机名3', disabled: true},\n                {label: '主机名4'},\n            ]\n        }\n    }\n}"
-        }
-    ],
     "index": 3,
     "highlighted": [
         {

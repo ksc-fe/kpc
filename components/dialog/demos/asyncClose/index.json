@@ -5,16 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p><code>Dialog</code>默认点击确定按钮会立即关闭弹窗并触发<code>ok</code>事件，我们可以给<code>ok</code>属性（并非<code>ok</code>事件）指定一个函数来去掉默认函数行为，此时你可以自己控制弹窗的关闭情况。<code>cancel</code>属性同理。</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Dialog from 'kpc/components/dialog';\nimport {Form, FormItem} from 'kpc/components/form';\nimport {Input} from 'kpc/components/input';\nimport {Button} from 'kpc/components/button';\n\n<div>\n    <Button type=\"primary\"\n        ev-click={{ self.set.bind(self, 'show', true) }}\n    >Close Dialog Asynchronously</Button>\n    <Dialog v-model=\"show\" title=\"Customized ok callback\"\n        ok={{ self.ok }}\n    >\n        <Form ref=\"form\">\n            <FormItem model=\"code\" rules={{ {required: true, digits: true} }} label=\"Code:\">\n                <Input placeholder=\"please enter digits\" v-model=\"code\" />\n            </FormItem>\n        </Form>\n    </Dialog>\n</div>"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nimport Message from 'kpc/components/message';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    async ok(dialog) {\n        // validate the form firstly\n        if (await this.refs.form.validate()) {\n            // make the ok button show loading\n            dialog.showLoading(); \n            // mock api\n            new Promise((resolve, reject) => {\n                setTimeout(() => {\n                    if (Math.random() > 0.5) {\n                        resolve();\n                    } else {\n                        reject();\n                    }\n                }, 2000);\n            }).then(() => {\n                // if success, close dialog \n                dialog.hideLoading();\n                dialog.close();\n            }, () => {\n                // if error, don't close dialog\n                dialog.hideLoading();\n                Message.error('error occured');\n            });\n        }\n    }\n}"
-        }
-    ],
     "index": 111,
     "highlighted": [
         {

@@ -5,16 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>使用<code>Message</code>提供的静态方法，展示提示。包括：<code>info</code>, <code>error</code>, <code>warning</code>, <code>success</code>。提示默认会在5s后自动关闭</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import {ButtonGroup, Button} from 'kpc/components/button';\n\n<ButtonGroup>\n    <Button v-for={{ ['info', 'error', 'warning', 'success'] }}\n        ev-click={{ self.showMessage.bind(self, value) }}\n    >{{ value }}</Button>\n</ButtonGroup>"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nimport Message from 'kpc/components/message';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    showMessage(type) {\n        Message[type](type);\n    }\n}"
-        }
-    ],
     "index": 26,
     "highlighted": [
         {

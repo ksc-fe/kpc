@@ -5,16 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>当需要自定义提示的内容时，我们可以将<code>Message</code>当做组件定义在模板中，而非调用它的静态方法。此时我们需要给<code>Message</code>指定唯一的<code>key</code>。</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Message from 'kpc/components/message';\nimport {Button} from 'kpc/components/button';\nimport {Progress} from 'kpc/components/progress';\n\n<div>\n    <Button ev-click={{ () => self.set('show', true) }}>custom message</Button>\n    <Message v-model=\"show\" key=\"message\" \n        duration={{ 0 }} \n        type={{ self.get('percent') >= 100 ? 'success' : 'info' }}\n    >\n        <Progress style=\"width: 200px\" \n            percent={{ self.get('percent') }}\n            ev-click={{ self.add }}\n        />\n    </Message>\n</div>"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    defaults() {\n        return {\n            percent: 10, \n            show: false\n        };\n    }\n\n    add() {\n        this.set('percent', this.get('percent') + 5);\n    }\n}"
-        }
-    ],
     "index": 57,
     "highlighted": [
         {

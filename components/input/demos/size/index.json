@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>添加<code>size</code>属性，定义如下尺寸：<code>large</code>, <code>default</code>，<code>small</code>，<code>mini</code></p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Input from 'kpc/components/input';\nimport Button from 'kpc/components/button';\n\n<div>\n    <Input size=\"large\" value=\"large\" />\n    <br />\n    <Input value=\"default\" />\n    <br />\n    <Input value=\"small\" size=\"small\" />\n    <Input size=\"small\" placeholder=\"please enter\">\n        <b:prepend>http://</b:prepend>\n        <b:append>.com</b:append>\n    </Input>\n    <Input size=\"small\" placeholder=\"please enter\">\n        <b:append><Button size=\"small\" icon type=\"primary\"><i class=\"ion-ios-search\"></i></Button></b:append>\n    </Input>\n    <Input size=\"small\" placeholder=\"please enter\">\n        <b:append><Button type=\"primary\" size=\"small\">Search</Button></b:append>\n    </Input>\n\n    <Input value=\"mini\" size=\"mini\" />\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".k-input\n    margin 5px"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 53,
     "highlighted": [
         {

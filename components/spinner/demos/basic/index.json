@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>使用<code>v-model</code>进行双向数据绑定，<code>disabled</code>禁用组件</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Spinner from 'kpc/components/spinner';\n\n<div>\n    <Spinner v-model=\"value\" />\n    <Spinner disabled />\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".k-spinner\n    margin-right 20px"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 14,
     "highlighted": [
         {

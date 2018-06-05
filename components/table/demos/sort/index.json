@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>sort</code>属性来指定当前表格的排序方式。它的数据格式如下：</p>\n<p><code>{ key: &#39;当前排序的列的key&#39;, type: &#39;当前排序方式（desc: 降序，asc: 升序）&#39; }</code></p>\n<p>当该列可排序时，只需要在定义表格结构的<code>scheme</code>或者<code>TableColumn</code>中加入<code>sortable</code>并且取值为<code>true</code>即可</p>\n<p>当排序方式改变时，可以监听默认事件<code>$change:sort</code>来执行自定义排序逻辑</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Table, {TableColumn} from 'kpc/components/table';\n\nconst scheme = {\n    name: {\n        title: '姓名',\n        sortable: true\n    },\n    age: {\n        title: '年龄',\n        sortable: true\n    }\n};\n\n<div class='no-data-template'>\n    <Table scheme={{ scheme }} \n        data={{ self.get('data') }} \n        sort={{ self.get('sort') }}\n        ev-$change:sort={{ self._onSort }}\n    />\n    <Table data={{ self.get('data') }} \n        sort={{ self.get('sort') }}\n        ev-$change:sort={{ self._onSort }}\n    >\n        <TableColumn title='姓名' key='name' sortable />\n        <TableColumn title='年龄' key='age' sortable />\n    </Table>\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".no-data-template\n    display: flex\n    .k-table-wrapper\n        margin-left: 10px"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    defaults() {\n        return {\n            data: [{name: 'aa', age: 1}, {name: 'cc', age: 5}, {name: 'bb', age: 9}],\n            sort: {}\n        }\n    }\n\n    _onSort(c, sort) {\n        console.log(sort);\n        const data = this.get('data').slice(0);\n        data.sort((a, b) => {\n            return sort.type === 'desc' ? \n                (a[sort.key] > b[sort.key] ? -1 : 1) : \n                (a[sort.key] > b[sort.key] ? 1 : -1);\n        });\n        this.set({data, sort});\n    }\n}"
-        }
-    ],
     "index": 121,
     "highlighted": [
         {

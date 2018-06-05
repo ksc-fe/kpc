@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>status</code>来指定状态：<code>active</code> <code>normal</code> <code>error</code> <code>success</code></p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Progress from 'kpc/components/progress';\n\n<div>\n    <Progress percent=\"50\" />\n    <Progress percent=\"50\" status=\"normal\" />\n    <Progress percent=\"50\" status=\"error\" />\n    <Progress percent=\"50\" status=\"success\" />\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".k-progress\n    margin 10px 0"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 37,
     "highlighted": [
         {

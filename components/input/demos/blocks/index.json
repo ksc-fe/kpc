@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>使用<code>append</code>，<code>prepend</code>，<code>suffix</code>，<code>prefix</code>扩展点，可以往组件追加内容</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Input from 'kpc/components/input';\nimport Button from 'kpc/components/button';\n\n<div>\n    <Input placeholder=\"please enter\">\n        <b:prepend>http://</b:prepend>\n        <b:append>.com</b:append>\n    </Input>\n    <Input placeholder=\"please enter\">\n        <b:append><Button icon type=\"none\"><i class=\"ion-ios-search\"></i></Button></b:append>\n    </Input>\n    <Input placeholder=\"please enter\">\n        <b:append><Button icon type=\"primary\"><i class=\"ion-ios-search\"></i></Button></b:append>\n    </Input>\n    <Input placeholder=\"please enter\">\n        <b:append><Button type=\"primary\">搜索</Button></b:append>\n    </Input>\n    <Input placeholder=\"please enter\">\n        <b:prefix><i class=\"ion-earth\"></i></b:prefix>\n        <b:suffix><i class=\"ion-ios-search\"></i></b:suffix>\n    </Input>\n    <Input placeholder=\"please enter\">\n        <b:prepend>http://</b:prepend>\n        <b:append>.com</b:append>\n        <b:prefix><i class=\"ion-earth\"></i></b:prefix>\n        <b:suffix><i class=\"ion-ios-search\"></i></b:suffix>\n    </Input>\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".k-input\n    margin 5px"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 51,
     "highlighted": [
         {

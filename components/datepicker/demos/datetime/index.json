@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>将<code>type</code>属性指定为<code>datetime</code>，即可让日期支持选择时间。通过<code>disabledHours &amp; disabledMinutes &amp; disabledSeconds</code>可以禁用时分秒的选择。</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Datepicker from 'kpc/components/datepicker';\n\n<div>\n    <Datepicker type=\"datetime\" v-model=\"datetime1\" />\n    <Datepicker type=\"datetime\" v-model=\"datetime2\" \n        placeholder=\"时间精确到小时\"\n        disabledMinutes\n        disabledSeconds\n    />\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".k-datepicker\n    margin-right 20px"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 102,
     "highlighted": [
         {

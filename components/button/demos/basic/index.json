@@ -5,24 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>有如下几种类型：默认按钮，主按钮，警告按钮，危险按钮，文字按钮。</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Button from 'kpc/components/button';\n\n<div>\n    <Button>default</Button>\n    <Button type=\"primary\">primay</Button>\n    <Button type=\"warning\">warning</Button>\n    <Button type=\"danger\">danger</Button>\n    <Button type=\"none\">none</Button>\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".k-btn\n    margin-right 20px"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        },
-        {
-            "language": "vue",
-            "content": "<template>\n    <div>\n        <Button>default</Button>\n        <Button type=\"primary\">primay</Button>\n        <Button type=\"warning\">warning</Button>\n        <Button type=\"danger\">danger</Button>\n        <Button type=\"none\">none</Button>\n    </div>\n</template>\n<style src=\"./index.styl\" lang=\"stylus\"></style>\n<script>\nimport Button from 'kpc/components/button';\n\nexport default {\n    components: {\n        Button\n    }\n}\n</script>"
-        }
-    ],
     "index": 13,
     "highlighted": [
         {

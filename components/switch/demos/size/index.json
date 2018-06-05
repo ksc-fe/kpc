@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>size</code>可以定义尺寸: <code>large</code> <code>default</code> <code>small</code> <code>mini</code></p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import {Switch} from 'kpc/components/switch';\n\n<div>\n    large: <Switch size=\"large\" />\n    default: <Switch />\n    small: <Switch size='small' />\n    mini: <Switch size='mini' />\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".k-switch\n    margin-right 20px"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 87,
     "highlighted": [
         {

@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p><code>max</code>和<code>min</code>可指定取值范围，<code>step</code>指定步长</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Spinner from 'kpc/components/spinner';\n\n<div>\n    <Spinner v-model=\"value1\" max={{ 10 }} min={{ 0 }} step={{ 1.2 }} />\n    <Spinner v-model=\"value2\" max={{ 10 }} min={{ -10 }} step={{ 0.1 }} />\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".k-spinner\n    margin-right 20px"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 27,
     "highlighted": [
         {

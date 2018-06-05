@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>position</code>属性，可以定义菜单相对触发器的位置。位置对象中<code>my</code>指菜单，<code>at</code>指触发器</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';\nimport Button from 'kpc/components/button';\n\n<div>\n    <Dropdown position={{ {my: 'left top', at: 'left bottom+5'} }}>\n        <Button type=\"primary\">\n            left <i class=\"k-icon ion-arrow-down-b\"></i>\n        </Button>\n        <DropdownMenu>\n            <DropdownItem>item 1</DropdownItem>\n            <DropdownItem>item 2</DropdownItem>\n            <DropdownItem>item 3</DropdownItem>\n        </DropdownMenu>\n    </Dropdown>\n\n    <Dropdown position={{ {my: 'right top', at: 'right bottom+5'} }}>\n        <Button type=\"primary\">\n            right <i class=\"k-icon ion-arrow-down-b\"></i>\n        </Button>\n        <DropdownMenu>\n            <DropdownItem>item 1</DropdownItem>\n            <DropdownItem>item 2</DropdownItem>\n            <DropdownItem>item 3</DropdownItem>\n        </DropdownMenu>\n    </Dropdown>\n\n    <Dropdown position={{ {my: 'center bottom-5', at: 'center top'} }}>\n        <Button type=\"primary\">\n            top center <i class=\"k-icon ion-arrow-down-b\"></i>\n        </Button>\n        <DropdownMenu>\n            <DropdownItem>item 1</DropdownItem>\n            <DropdownItem>item 2</DropdownItem>\n            <DropdownItem>item 3</DropdownItem>\n        </DropdownMenu>\n    </Dropdown>\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".k-btn\n    margin-right 20px"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 70,
     "highlighted": [
         {

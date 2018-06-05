@@ -5,16 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>提示默认会在5s后关闭，我们可以指定<code>duration</code>来自定义时长（单位ms）。当指定为<code>0</code>时，提示不会自动关闭。</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import {ButtonGroup, Button} from 'kpc/components/button';\n\n<ButtonGroup>\n    <Button ev-click={{ self.showMessage1 }}>close after 10s</Button>\n    <Button ev-click={{ self.showMessage2 }}>stick message</Button>\n</ButtonGroup>"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nimport Message from 'kpc/components/message';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    showMessage1() {\n        Message.info('close after 10s', 10000);\n    }\n\n    showMessage2() {\n        Message.info('stick message', 0);\n    }\n}"
-        }
-    ],
     "index": 49,
     "highlighted": [
         {

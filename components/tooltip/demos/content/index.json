@@ -5,16 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>使用<code>content</code>扩展点，可以自定义复杂的提示内容</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Tooltip from 'kpc/components/tooltip';\nimport {Slider} from 'kpc/components/slider';\nimport {Button} from 'kpc/components/button';\n\n<div>\n    <Tooltip trigger=\"click\">\n        <Button>Adjust Volume</Button>\n        <b:content>\n            <Slider v-model=\"volume\" \n                style=\"width: 200px; padding: 10px;\"\n                isShowInput={{ false }} \n                isShowEnd={{ false }}\n            />\n        </b:content>\n    </Tooltip>\n</div>"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 86,
     "highlighted": [
         {

@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>percent</code>指定当前进度条百分比</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Progress from 'kpc/components/progress';\n\n<div>\n    <Progress percent=\"50\" />\n    <Progress percent=\"100\" />\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".k-progress\n    margin 10px 0"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 22,
     "highlighted": [
         {

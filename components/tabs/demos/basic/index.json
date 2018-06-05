@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p><code>Tab</code>的基本用法。<code>Tabs</code>嵌套<code>Tab</code>使用，使用<code>v-model</code>进行双向数据绑定。</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import {Tabs, Tab} from 'kpc/components/tabs';\n\n<div>\n    <Tabs v-model=\"tab\">\n        <Tab value=\"rulein\">入站规则</Tab>\n        <Tab value=\"ruleout\">出站规则</Tab>\n        <Tab value=\"relatedVM\">关联云主机</Tab>\n    </Tabs>\n\n    <div class=\"content\">\n        <div v-if={{ self.get('tab') == 'rulein' }}>入站规则</div>\n        <div v-else-if={{ self.get('tab') == 'ruleout' }}>出站规则</div>\n        <div v-else>关联云主机</div> \n    </div>\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".content\n    margin 20px"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    defaults() {\n        return {\n            tab: 'ruleout',\n        }\n    }\n}"
-        }
-    ],
     "index": 8,
     "highlighted": [
         {

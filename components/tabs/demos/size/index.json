@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>size</code>可以定义尺寸: <code>default</code> <code>large</code> <code>small</code> <code>mini</code></p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import {Tabs, Tab} from 'kpc/components/tabs';\n\n<div>\n    <Tabs value=\"1\">\n        <Tab value=\"1\">default1</Tab>\n        <Tab value=\"2\">defalut2</Tab>\n    </Tabs>\n    <Tabs size=\"large\" value=\"1\">\n        <Tab value=\"1\">large1</Tab>\n        <Tab value=\"2\">large2</Tab>\n    </Tabs>\n    <Tabs size=\"small\" value=\"1\">\n        <Tab value=\"1\">small1</Tab>\n        <Tab value=\"2\">small2</Tab>\n    </Tabs>\n    <Tabs size=\"mini\" value=\"1\">\n        <Tab value=\"1\">mini1</Tab>\n        <Tab value=\"2\">mini2</Tab>\n    </Tabs>\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".k-tabs\n    margin-bottom 10px"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 84,
     "highlighted": [
         {

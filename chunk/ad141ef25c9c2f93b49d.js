@@ -1,639 +1,6 @@
 require("source-map-support").install();
-exports.ids = [2];
+exports.ids = [3];
 exports.modules = {
-
-/***/ "./components/button/group.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.default = undefined;
-
-var _getOwnPropertyDescriptor = __webpack_require__("babel-runtime/core-js/object/get-own-property-descriptor");
-
-var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
-
-var _classCallCheck2 = __webpack_require__("babel-runtime/helpers/classCallCheck");
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__("babel-runtime/helpers/createClass");
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__("babel-runtime/helpers/possibleConstructorReturn");
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__("babel-runtime/helpers/inherits");
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _dec, _desc, _value, _class, _class2, _temp;
-
-var _intact = __webpack_require__("intact");
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _group = __webpack_require__("./components/button/group.vdt");
-
-var _group2 = _interopRequireDefault(_group);
-
-__webpack_require__("./components/button/index.styl");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-    var desc = {};
-    Object['ke' + 'ys'](descriptor).forEach(function (key) {
-        desc[key] = descriptor[key];
-    });
-    desc.enumerable = !!desc.enumerable;
-    desc.configurable = !!desc.configurable;
-
-    if ('value' in desc || desc.initializer) {
-        desc.writable = true;
-    }
-
-    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-        return decorator(target, property, desc) || desc;
-    }, desc);
-
-    if (context && desc.initializer !== void 0) {
-        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-        desc.initializer = undefined;
-    }
-
-    if (desc.initializer === void 0) {
-        Object['define' + 'Property'](target, property, desc);
-        desc = null;
-    }
-
-    return desc;
-}
-
-var ButtonGroup = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
-    (0, _inherits3.default)(ButtonGroup, _Intact);
-
-    function ButtonGroup() {
-        (0, _classCallCheck3.default)(this, ButtonGroup);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
-    }
-
-    ButtonGroup.prototype.defaults = function defaults() {
-        return {
-            vertical: false,
-            value: undefined,
-            radio: false, // @deprecated: use checkType instead of
-            checkType: 'none' // radio | checkbox | none
-        };
-    };
-
-    ButtonGroup.prototype._init = function _init() {
-        /* istanbul ignore if */
-        if (this.get('radio')) {
-            this.set('checkType', 'radio', { silent: true });
-        }
-    };
-
-    (0, _createClass3.default)(ButtonGroup, [{
-        key: 'template',
-        get: function get() {
-            return _group2.default;
-        }
-    }]);
-    return ButtonGroup;
-}(_intact2.default), _class2.propTypes = {
-    vertical: Boolean,
-    radio: Boolean
-}, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
-exports.default = ButtonGroup;
-module.exports = exports['default'];
-
-/***/ }),
-
-/***/ "./components/button/group.vdt":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _extends2 = __webpack_require__("babel-runtime/helpers/extends");
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    var _classNameObj;
-
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-
-    var _self$get = self.get(),
-        className = _self$get.className,
-        vertical = _self$get.vertical,
-        style = _self$get.style,
-        children = _self$get.children,
-        value = _self$get.value,
-        fluid = _self$get.fluid,
-        checkType = _self$get.checkType;
-
-    var classNameObj = (_classNameObj = {
-        'k-btns': true,
-        'k-vertical': vertical
-    }, _classNameObj[className] = className, _classNameObj['k-fluid'] = fluid, _classNameObj);
-
-    return h('div', { 'style': function () {
-            try {
-                return [style][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, function () {
-        try {
-            return [checkType !== 'none' ? __u.map(children ? Array.isArray(children) ? children : [children] : children, function (vNode) {
-                if (vNode.tag === _2.default) {
-                    vNode.props = (0, _extends3.default)({}, vNode.props, {
-                        _value: value,
-                        _checkType: checkType
-                    });
-                }
-                return vNode;
-            }) : children][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), _className(function () {
-        try {
-            return [classNameObj][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)));
-};
-
-var _ = __webpack_require__("./components/button/index.js");
-
-var _2 = _interopRequireDefault(_);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
-
-/***/ }),
-
-/***/ "./components/button/index.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.ButtonGroup = exports.Button = exports.default = undefined;
-
-var _getOwnPropertyDescriptor = __webpack_require__("babel-runtime/core-js/object/get-own-property-descriptor");
-
-var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
-
-var _classCallCheck2 = __webpack_require__("babel-runtime/helpers/classCallCheck");
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__("babel-runtime/helpers/createClass");
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__("babel-runtime/helpers/possibleConstructorReturn");
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__("babel-runtime/helpers/inherits");
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _dec, _desc, _value2, _class, _class2, _temp;
-
-var _intact = __webpack_require__("intact");
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _index = __webpack_require__("./components/button/index.vdt");
-
-var _index2 = _interopRequireDefault(_index);
-
-var _group = __webpack_require__("./components/button/group.js");
-
-var _group2 = _interopRequireDefault(_group);
-
-__webpack_require__("./styles/kpc.styl");
-
-__webpack_require__("./components/button/index.styl");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-    var desc = {};
-    Object['ke' + 'ys'](descriptor).forEach(function (key) {
-        desc[key] = descriptor[key];
-    });
-    desc.enumerable = !!desc.enumerable;
-    desc.configurable = !!desc.configurable;
-
-    if ('value' in desc || desc.initializer) {
-        desc.writable = true;
-    }
-
-    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-        return decorator(target, property, desc) || desc;
-    }, desc);
-
-    if (context && desc.initializer !== void 0) {
-        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-        desc.initializer = undefined;
-    }
-
-    if (desc.initializer === void 0) {
-        Object['define' + 'Property'](target, property, desc);
-        desc = null;
-    }
-
-    return desc;
-}
-
-var Button = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
-    (0, _inherits3.default)(Button, _Intact);
-
-    function Button() {
-        (0, _classCallCheck3.default)(this, Button);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
-    }
-
-    Button.prototype.defaults = function defaults() {
-        return {
-            type: 'default', // primary | warning | danger
-            size: 'default', // small | mini
-            icon: false,
-            circle: false,
-            loading: false,
-            disabled: false,
-            fluid: false,
-            htmlType: 'button',
-            tagName: 'button',
-            tagProps: undefined,
-            value: undefined,
-            name: undefined,
-            tabindex: '0',
-
-            _value: undefined,
-            _checkType: 'none'
-        };
-    };
-
-    Button.prototype._mount = function _mount() {
-        var parentVNode = this.parentVNode;
-
-        while (parentVNode && parentVNode.tag !== _group2.default) {
-            parentVNode = parentVNode.parentVNode;
-        }
-
-        if (parentVNode) {
-            this.group = parentVNode.children;
-
-            this.set({
-                _checkType: this.group.get('checkType'),
-                _value: this.group.get('value')
-            });
-        }
-    };
-
-    Button.prototype._beforeUpdate = function _beforeUpdate() {
-        if (this.group) {
-            this.set({
-                _checkType: this.group.get('checkType'),
-                _value: this.group.get('value')
-            }, { silent: true });
-        }
-    };
-
-    Button.prototype.showLoading = function showLoading() {
-        this.set('loading', true);
-    };
-
-    Button.prototype.hideLoading = function hideLoading() {
-        this.set('loading', false);
-    };
-
-    Button.prototype.disable = function disable() {
-        this.set('disabled', true);
-    };
-
-    Button.prototype.enable = function enable() {
-        this.set('disabled', false);
-    };
-
-    Button.prototype._onClick = function _onClick(e) {
-        if (this.get('disabled') || this.get('loading')) {
-            return e.preventDefault();
-        }
-
-        if (this.group) {
-            var _get = this.get(),
-                _checkType = _get._checkType,
-                value = _get.value,
-                _value = _get._value;
-
-            if (value !== undefined) {
-                if (_checkType === 'radio') {
-                    this.group.set('value', value);
-                } else if (_checkType === 'checkbox') {
-                    if (!Array.isArray(_value)) {
-                        _value = [];
-                    }
-                    _value = _value.slice(0);
-                    var index = _value.indexOf(value);
-                    if (!~index) {
-                        _value.push(value);
-                    } else {
-                        _value.splice(index, 1);
-                    }
-                    this.group.set('value', _value);
-                }
-            }
-        }
-
-        e.component = this;
-        this.trigger('click', e);
-    };
-
-    Button.prototype._blur = function _blur() {
-        // when click, blur it to remove the focus style
-        this.element.blur();
-    };
-
-    (0, _createClass3.default)(Button, [{
-        key: 'template',
-        get: function get() {
-            return _index2.default;
-        }
-    }]);
-    return Button;
-}(_intact2.default), _class2.propTypes = {
-    type: String,
-    size: String,
-    icon: Boolean,
-    circle: Boolean,
-    loading: Boolean,
-    disabled: Boolean,
-    fluid: Boolean,
-    htmlType: String,
-    tagName: [String, Function],
-    name: String
-}, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
-exports.default = Button;
-exports.Button = Button;
-exports.ButtonGroup = _group2.default;
-
-/***/ }),
-
-/***/ "./components/button/index.styl":
-/***/ (function(module, exports, __webpack_require__) {
-
-// removed by extract-text-webpack-plugin
-    if(false) {
-      // 1528101718334
-      var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
-      module.hot.dispose(cssReload);
-      module.hot.accept(undefined, cssReload);
-    }
-  
-
-/***/ }),
-
-/***/ "./components/button/index.vdt":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _extends2 = __webpack_require__("babel-runtime/helpers/extends");
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__("babel-runtime/helpers/objectWithoutProperties");
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    var _classNameObj,
-        _this = this;
-
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-
-    var _self$get = self.get(),
-        type = _self$get.type,
-        className = _self$get.className,
-        size = _self$get.size,
-        icon = _self$get.icon,
-        circle = _self$get.circle,
-        ref = _self$get.ref,
-        key = _self$get.key,
-        tabindex = _self$get.tabindex,
-        tagName = _self$get.tagName,
-        htmlType = _self$get.htmlType,
-        fluid = _self$get.fluid,
-        children = _self$get.children,
-        loading = _self$get.loading,
-        disabled = _self$get.disabled,
-        value = _self$get.value,
-        _value = _self$get._value,
-        name = _self$get.name,
-        tagProps = _self$get.tagProps,
-        _checkType = _self$get._checkType,
-        rest = (0, _objectWithoutProperties3.default)(_self$get, ['type', 'className', 'size', 'icon', 'circle', 'ref', 'key', 'tabindex', 'tagName', 'htmlType', 'fluid', 'children', 'loading', 'disabled', 'value', '_value', 'name', 'tagProps', '_checkType']);
-
-    var checked = value !== undefined ? _checkType === 'radio' ? value === _value : _checkType === 'checkbox' ? Array.isArray(_value) && !!~_value.indexOf(value) : false : false;
-
-    var classNameObj = (_classNameObj = {
-        'k-btn': true
-    }, _classNameObj['k-' + type] = type !== 'default', _classNameObj['k-btn-icon'] = icon, _classNameObj['k-' + size] = size !== 'default', _classNameObj[className] = className, _classNameObj['k-circle'] = circle, _classNameObj['k-loading'] = loading, _classNameObj['k-fluid'] = fluid, _classNameObj['k-active'] = checked, _classNameObj['k-disabled'] = disabled || loading, _classNameObj);
-
-    var Button = function Button(props) {
-        if (props.href && tagName === 'button') {
-            tagName = 'a';
-        }
-        if (tagName === 'button') {
-            // set type of html button
-            props.type = htmlType;
-        }
-        // disable button when loading
-        /* if (loading) props.disabled = true; */
-        return h(tagName, props, props.children);
-    };
-
-    // hack for loading transition of width
-    if (!icon && Array.isArray(children)) {
-        children.forEach(function (child, index) {
-            if (child) {
-                if (child.type === 1 || (0, _utils.isStringOrNumberNotEmpty)(child)) {
-                    // is a text node
-                    // wrap text node with span
-                    children[index] = h('span', null, function () {
-                        try {
-                            return [child][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this));
-                }
-                // whether the icon is on the left side or right
-                if (index === 0) {
-                    if (child.className && child.className.indexOf('icon') > -1) {
-                        classNameObj['k-icon-left'] = true;
-                    }
-                } else if (index === children.length - 1) {
-                    if (child.className && child.className.indexOf('icon') > -1) {
-                        classNameObj['k-icon-right'] = true;
-                    }
-                }
-            }
-        });
-    } else if ((0, _utils.isStringOrNumberNotEmpty)(children)) {
-        // wrap text node with span
-        children = h('span', null, function () {
-            try {
-                return [children][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this));
-    }
-
-    return h(Button, (0, _extends3.default)({ 'className': _className(function () {
-            try {
-                return [classNameObj][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this)) }, function () {
-        try {
-            return [rest][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), function () {
-        try {
-            return [tagProps][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), { 'ev-click': function () {
-            try {
-                return [self._onClick][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'tabindex': function () {
-            try {
-                return [disabled || loading ? "-1" : tabindex][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-mouseup': function () {
-            try {
-                return [self._blur][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'children': ['\n    ', function () {
-            try {
-                return [loading ? classNameObj['k-icon-right'] ? [children, h('i', null, null, 'k-icon ion-load-c icon-loading')] : [h('i', null, null, 'k-icon ion-load-c icon-loading'), children] : children][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), '\n    ', function () {
-            try {
-                return [_checkType !== 'none'][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) ? h('input', { 'type': function () {
-                try {
-                    return [_checkType][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'name': function () {
-                try {
-                    return [name][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'checked': function () {
-                try {
-                    return [checked][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'tabindex': '-1' }) : undefined], '_context': $this }));
-};
-
-var _utils = __webpack_require__("./components/utils.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
-
-/***/ }),
 
 /***/ "./components/dropdown/dropdown.js":
 /***/ (function(module, exports, __webpack_require__) {
@@ -944,7 +311,7 @@ exports.DropdownItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528101719283
+      // 1528174812553
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1901,7 +1268,7 @@ exports.Input = Input;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528101719351
+      // 1528174812648
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -3450,7 +2817,7 @@ exports.OptionGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528101719128
+      // 1528174812321
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -4043,7 +3410,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "./site/src/pages/index/index.js":
+/***/ "./site/src/pages/design/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4074,7 +3441,7 @@ var _intact = __webpack_require__("intact");
 
 var _intact2 = _interopRequireDefault(_intact);
 
-var _index = __webpack_require__("./site/src/pages/index/index.vdt");
+var _index = __webpack_require__("./site/src/pages/design/index.vdt");
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -4082,7 +3449,7 @@ var _layout = __webpack_require__("./site/src/pages/layout.js");
 
 var _layout2 = _interopRequireDefault(_layout);
 
-__webpack_require__("./site/src/pages/index/index.styl");
+__webpack_require__("./site/src/pages/design/index.styl");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4138,12 +3505,12 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "./site/src/pages/index/index.styl":
+/***/ "./site/src/pages/design/index.styl":
 /***/ (function(module, exports, __webpack_require__) {
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528101716712
+      // 1528174809818
       var cssReload = require("!../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -4152,7 +3519,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "./site/src/pages/index/index.vdt":
+/***/ "./site/src/pages/design/index.vdt":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4185,9 +3552,8 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         scope = obj,
         Animate = self && self.Animate,
         parent = ($callee || {})._super;
-
     return function () {
-        var _obj = { 'className': 'index-page', 'children': null };
+        var _obj = { 'className': 'design-page', 'children': null };
         if (_obj.hasOwnProperty("arguments")) {
             extend(_obj, _obj.arguments === true ? obj : _obj.arguments);
             delete _obj.arguments;
@@ -4196,21 +3562,21 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             var _blocks = {},
                 __blocks = extend({}, blocks);
             return (_blocks["content"] = function (parent) {
-                return h('article', null, ['\n			', hc(' <img src=\"images/logo.png\" /> '), h('h1', null, 'KPC'), h('p', null, '支持多框架的前端高质量组件库'), h('div', null, [h(_button.Button, { 'tagName': function () {
+                return h('ul', null, _Vdt.utils.map(function () {
+                    try {
+                        return [Array.apply(null, { length: 9 })][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), function (value, key) {
+                    return h('li', null, null, _className(function () {
                         try {
-                            return [_link.Link][0];
+                            return ["color color" + key][0];
                         } catch (e) {
                             _e(e);
                         }
-                    }.call(this), 'type': 'primary', 'tagProps': function () {
-                        try {
-                            return [{
-                                href: "/kpc" + '/docs/getting-started/'
-                            }][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this), 'className': 'button', 'children': '开始', '_context': $this }), h(_button.Button, { 'href': 'https://github.com/ksc-fe/kpc', 'className': 'button', 'target': '_blank', 'children': 'GitHub', '_context': $this })], 'actions'), h('div', null, [h('div', null, [h('h2', null, '支持多框架', 'blue'), h('div', null, '\n                        同时支持Intact和Vue框架\n					')], 'feature'), h('div', null, [h('h2', null, '忠于原生，增强原生', 'yellow'), h('div', null, '\n                        在保持浏览器原生特性的基础上，增强交互能力\n					')], 'feature'), h('div', null, [h('h2', null, '便捷开发', 'red'), h('div', null, '\n                        支持按需加载，主题定制，国际化等特性。并且提供了配套的脚手架方便快速初始化项目\n					')], 'feature')], 'features')], 'home-header');
+                    }.call(this)));
+                }, this));
             }) && (__blocks["content"] = function (parent) {
                 var self = this;
                 return blocks["content"] ? blocks["content"].call(this, function () {
@@ -4220,10 +3586,6 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         }.call(this, blocks), parent);
     }.call(this);
 };
-
-var _button = __webpack_require__("./components/button/index.js");
-
-var _link = __webpack_require__("./components/link/index.js");
 
 module.exports = exports['default'];
 
@@ -4373,7 +3735,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528101717302
+      // 1528174810471
       var cssReload = require("!../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);

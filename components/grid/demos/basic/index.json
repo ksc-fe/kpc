@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>将<code>Col</code>嵌套在<code>Row</code>中，然后用<code>span</code>属性定义所占的宽度，宽度为百分比，每一份是<code>1/24</code></p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import {Row, Col} from 'kpc/components/grid';\n\n<div>\n    <Row> \n        <Col span=\"12\">col-12</Col>\n        <Col span=\"12\">col-12</Col>\n    </Row>\n    <Row>\n        <Col span=\"4\">col-4</Col>\n        <Col span=\"6\">col-6</Col>\n        <Col span=\"8\">col-8</Col>\n        <Col span=\"6\">col-6</Col>\n    </Row>\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".k-col\n    line-height 40px\n    text-align center\n    color #fff\n    &:nth-of-type(even)\n        background #0a5eee\n    &:nth-of-type(odd)\n        background lighten(#0a5eee, 30%)\n.k-row\n    margin-bottom 20px"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 24,
     "highlighted": [
         {

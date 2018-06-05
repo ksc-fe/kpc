@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>分组需要两个<code>group</code>来指定：</p>\n<ol>\n<li>第一个是<code>Table</code>上的<code>group</code>属性，该属性指定当前分组的方式，形式为：<code>{[&quot;分组的列的key&quot;]: [&quot;当前列选择的分组的值&quot;]}</code></li>\n<li>第二个是<code>TableColumn</code>或者<code>scheme</code>上的<code>group</code>属性，该属性指定当前列有哪些可选的分组方式，\n如果该列支持多选，还可以添加<code>multiple</code>属性，默认为单选。形式为：<code>[{label: &quot;分组展示文案&quot;, value: &quot;选择后的值&quot;}]</code></li>\n</ol>\n<p>当分组方式改变时，可以监听默认事件<code>$change:group</code>来执行自定义分组逻辑</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Table, {TableColumn} from 'kpc/components/table';\n\nconst scheme = {\n    name: '名称',\n    status: {\n        title: '状态',\n        template(data) {\n            return data.status === 'active' ? '运行中' : '已关闭';\n        },\n        group: [\n            {label: '全部', value: ''},\n            {label: '运行中', value: 'active'},\n            {label: '已关闭', value: 'stopped'},\n        ]\n    }\n};\n\n\n<div class='no-data-template'>\n    <Table scheme={{ scheme }} \n        data={{ self.get('data') }} \n        group={{ self.get('group') }}\n        ev-$change:group={{ self._onChangeGroup }}\n    />\n    <Table data={{ self.get('data') }} \n        group={{ self.get('group') }}\n        ev-$change:group={{ self._onChangeGroup }}\n    >\n        <TableColumn title='名称' key='name' />\n        <TableColumn title='状态' key='status' \n            template={{ (data) => data.status === 'active' ? '运行中' : '已关闭' }}\n            group={{ [ \n                {label: '全部', value: ''},\n                {label: '运行中', value: 'active'},\n                {label: '已关闭', value: 'stopped'},\n            ] }}\n        />\n    </Table>\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".no-data-template\n    display: flex\n    .k-table-wrapper\n        margin-left: 10px"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nconst oData = [\n    {name: '主机1', status: 'active'},\n    {name: '主机2', status: 'stopped'},\n    {name: '主机3', status: 'active'},\n];\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    defaults() {\n        return {\n            data: oData, \n            group: {status: ''}\n        }\n    }\n\n    _onChangeGroup(c, group) {\n        console.log(group);\n        const data = oData.filter(item => {\n            let matched = true;\n            for (let key in group) {\n                const value = group[key];\n                if (value && item[key] !== value) {\n                    matched = false;\n                    break;\n                }\n            }\n            return matched;\n        });\n\n        this.set({data, group});\n    }\n}"
-        }
-    ],
     "index": 124,
     "highlighted": [
         {

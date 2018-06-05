@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>定义表格结构有两种形式：</p>\n<ol>\n<li>通过<code>TableColumn</code>组件定义 </li>\n<li>通过<code>scheme</code>属性定义</li>\n</ol>\n<p><code>TableColumn</code>详细说明，见下文属性说明，<code>scheme</code>属性值的结构与之相对应</p>\n<blockquote>\n<p>对于简单的表格，默认会使用<code>key</code>去取<code>data</code>中的数据，例如本例中，<code>key</code>为<code>a</code>的列，默认会取<code>data</code>中对应<code>key</code>为<code>a</code>的数据进行展示，<code>key</code>支持路径取值，例如：<code>a.b.0</code>。当然我们也可以通过<code>template</code>属性指定复杂内容</p>\n</blockquote>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Table, {TableColumn} from 'kpc/components/table';\n\nconst data = [{a: '虚拟DOM', b: '获取到了item.b', c: {c1: 'item.c.c1'}}];\nconst scheme = {\n    a: {\n        title: '定义该列单元格内容',\n        template: function(item) {\n           return <a>{{item.a}}</a>\n        }\n    },\n    b: 'key形式',\n    'c.c1': 'key为一个路径字符串',\n    'd.d1': '没有这个key，则返回空',\n};\n\n<div>\n    <Table scheme={{ scheme }} data={{ data }} />\n    <Table data={{data}}>\n        <TableColumn \n            title='定义该列单元格内容'\n            template={{ function(item) {\n                return <a>{{item.a}}</a>\n            } }} \n            key='a'\n        />\n        <TableColumn title='key形式' key='b' />\n        <TableColumn title='key为一个路径字符串' key='c.c1' />\n        <TableColumn title='没有这个key，则返回空' key='d.d1' />\n    </Table>\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".k-table-wrapper\n    margin-bottom 20px"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 36,
     "highlighted": [
         {

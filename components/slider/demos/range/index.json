@@ -5,16 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>指定<code>isRange</code>使组件支持范围选择，此时<code>v-model</code>绑定的数据为数组，并且不会展示<code>input</code>输入框。</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Slider from 'kpc/components/slider';\n\n<Slider isRange v-model=\"values\" />"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    defaults() {\n        return {\n            values: [50, 76],\n        }\n    }\n}"
-        }
-    ],
     "index": 80,
     "highlighted": [
         {

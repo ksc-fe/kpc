@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>step</code>可以设置步长，默认步长为<code>1</code></p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Slider from 'kpc/components/slider';\n\n<div>\n    <Slider v-model=\"value1\" step={{ 5 }} isShowEnd={{ false }} />\n    <Slider v-model=\"value2\" min={{ 50 }} max={{ 500 }} step={{ 0.1 }} />\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".k-slider\n    margin-bottom 20px"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 29,
     "highlighted": [
         {

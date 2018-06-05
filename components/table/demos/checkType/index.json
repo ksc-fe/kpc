@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>checkType</code>设置行选择类型，<code>checkbox</code>多选(默认) / <code>radio</code>单选 / <code>none</code>不可选</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Table from 'kpc/components/table';\n\nconst scheme = {a: '表头'};\nconst data1 = [{a: '多选1'}, {a: '多选2'}];\nconst data2 = [{a: '单选1'}, {a: '单选2'}];\nconst data3 = [{a: '不可选1'}, {a: '不可选2'}];\n\n<div>\n    <Table scheme={{ scheme }} data={{ data1 }} />\n    <Table scheme={{ scheme }} data={{ data2 }} checkType=\"radio\" />\n    <Table scheme={{ scheme }} data={{ data3 }} checkType=\"none\" />\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".k-table-wrapper\n    margin-bottom 20px"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 64,
     "highlighted": [
         {

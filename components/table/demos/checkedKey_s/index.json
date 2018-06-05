@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>checkedKey</code>（radio类型）或者<code>checkedKeys</code>（checkbox类型）来控制哪些列被选中，默认他们的取值为行的索引或索引数组。但我们也可以通过<code>rowKey</code>函数为每一行指定唯一的<code>key</code>，此时他们的取值为<code>key</code>值或<code>key</code>值的数组</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Table from 'kpc/components/table';\n\nconst data1 = [{a: '赋默认值选中'}, {a: '不选中'}];\nconst data2 = [{text: '选中', id: 'yes'}, {text: '不选中', id: 'no'}];\nconst data3 = [{a: '赋默认值选中'}, {a: '不选中'}, {a: '赋默认值选中，可设置多个'}];\n\n<div>\n    <div class='no-data-template'>\n        <Table scheme={{ {a: 'radio不指定rowKey'} }}\n            data={{ data1 }}\n            checkedKey={{ 0 }}\n            checkType='radio'\n        />\n        <Table scheme={{ {text: 'radio指定为item的id'} }} \n            data={{ data2 }} \n            checkType='radio' \n            rowKey={{ self.setRowKey }}  \n            checkedKey={{ 'yes' }}\n        />\n    </div>\n    <div class='no-data-template'>\n        <Table scheme={{ {a: 'checkbox不指定rowKey'} }} \n            data={{ data3 }} \n            checkedKeys={{ [0, 2] }}\n        />\n        <Table scheme={{ {text: 'checkbox指定为item的id'} }} \n            data={{ data2 }} \n            rowKey={{ self.setRowKey }} \n            checkedKeys={{ ['yes'] }}\n        />\n    </div>\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".no-data-template\n    display: flex\n    margin-bottom: 20px\n    .k-table-wrapper\n        margin-left: 20px"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    setRowKey(value, index) {\n        return value.id;\n    }\n}"
-        }
-    ],
     "index": 72,
     "highlighted": [
         {

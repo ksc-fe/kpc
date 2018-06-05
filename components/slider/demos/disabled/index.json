@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>添加<code>disabled</code>禁用组件</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Slider from 'kpc/components/slider';\n\n<div>\n    <Slider disabled value={{ 50 }} />\n    <Slider disabled isRange value={{ [55, 80] }} min={{ 50 }} max={{ 100 }} />\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".k-slider\n    margin-bottom 20px"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 71,
     "highlighted": [
         {

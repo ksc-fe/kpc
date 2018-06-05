@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p><code>Dropdown</code>提供了两种触发方式来弹窗菜单，<code>hover</code>悬停触发（默认），<code>click</code>点击触发。通过<code>trigger</code>属性来指定它们。</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';\nimport Button from 'kpc/components/button';\n\n<div>\n    <Dropdown>\n        <Button type=\"primary\">\n            hover <i class=\"k-icon ion-arrow-down-b\"></i>\n        </Button>\n        <DropdownMenu>\n            <DropdownItem>item 1</DropdownItem>\n            <DropdownItem>item 2</DropdownItem>\n            <DropdownItem>item 3</DropdownItem>\n        </DropdownMenu>\n    </Dropdown>\n\n    <Dropdown trigger=\"click\">\n        <Button type=\"primary\">\n            click <i class=\"k-icon ion-arrow-down-b\"></i>\n        </Button>\n        <DropdownMenu>\n            <DropdownItem>item 1</DropdownItem>\n            <DropdownItem>item 2</DropdownItem>\n            <DropdownItem>item 3</DropdownItem>\n        </DropdownMenu>\n    </Dropdown>\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".k-btn\n    margin-right 20px"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 19,
     "highlighted": [
         {

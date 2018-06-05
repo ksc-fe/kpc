@@ -5,16 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>使用<code>Tooltip</code>包裹需要提示的菜单项<code>DropdownItem</code>即可添加提示，需要注意的是：在Intact下，当用<code>Tooltip</code>包裹触发器时，需要使用另外的元素将它包裹起来，因为<code>Tooltip</code>实际返回的是两个元素，一个是它的触发器，一个是提示内容层。而<code>Dropdown</code>的触发器只能接受一个元素，所以需要另外再包起来（如本例中<code>item 4</code>)。Vue下不需要，因为Vue不支持返回多元素，本身就会被包裹。</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';\nimport Button from 'kpc/components/button';\nimport Tooltip from 'kpc/components/tooltip';\n\n<div>\n    <Dropdown>\n        <Button>DropdownItem with Tooltip</Button>\n        <DropdownMenu>\n            <Tooltip content=\"item 1\">\n                <DropdownItem>item 1</DropdownItem>\n            </Tooltip>\n            <DropdownItem>item 2</DropdownItem>\n            <Tooltip content=\"disabled\">\n                <DropdownItem disabled>item 3</DropdownItem>\n            </Tooltip>\n            <Dropdown position={{ {my: 'left top', at: 'right top'} }}>\n                <div>\n                    <Tooltip content=\"This is a nested Dropdown.\">\n                        <DropdownItem>item 4</DropdownItem>\n                    </Tooltip>\n                </div>\n                <DropdownMenu>\n                    <DropdownItem>item 1</DropdownItem>\n                    <Tooltip content=\"nested DropdownItem\">\n                        <DropdownItem>item 2</DropdownItem>\n                    </Tooltip>\n                </DropdownMenu>\n            </Dropdown>\n        </DropdownMenu>\n    </Dropdown>\n</div>"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 100,
     "highlighted": [
         {

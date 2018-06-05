@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>width</code>/<code>height</code>，可定义开关长度/高度，不用加单位（默认<code>px</code>）。</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import {Switch} from 'kpc/components/switch';\n\n<div>\n    <Switch on=\"开启\" off=\"关闭\" width=\"100\" />\n    <Switch height=\"30\" />\n    <Switch on=\"开启\" off=\"关闭\" width=\"100\" height=\"30\" />\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".k-switch\n    margin-right 20px"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 65,
     "highlighted": [
         {

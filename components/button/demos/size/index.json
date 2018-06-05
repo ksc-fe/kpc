@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>size</code>属性可以指定按钮的尺寸：<code>large</code>, <code>default</code>,<code>small</code>, <code>mini</code>。</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Button from 'kpc/components/button';\n\n<div>\n    <Button size=\"large\">large</Button>\n    <Button>default</Button>\n    <Button size=\"small\">small</Button>\n    <Button size=\"mini\">mini</Button>\n    <br /><br />\n    <Button icon circle size=\"large\"><i class=\"k-icon ion-ios-search\"></i></Button>\n    <Button icon circle><i class=\"k-icon ion-ios-search\"></i></Button>\n    <Button icon circle size=\"small\"><i class=\"k-icon ion-ios-search\"></i></Button>\n    <Button icon circle size=\"mini\"><i class=\"k-icon ion-ios-search\"></i></Button>\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".k-btn\n    margin-right 20px"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 93,
     "highlighted": [
         {

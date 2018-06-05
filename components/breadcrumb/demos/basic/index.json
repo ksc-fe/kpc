@@ -5,16 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>通过添加<code>to</code>属性，来展示超链接</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';\n\n<Breadcrumb>\n    <BreadcrumbItem to=\"#/\">item 1</BreadcrumbItem>\n    <BreadcrumbItem to=\"/components/breadcrumb/\">item 2</BreadcrumbItem>\n    <BreadcrumbItem>item 3</BreadcrumbItem>\n</Breadcrumb>"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 1,
     "highlighted": [
         {

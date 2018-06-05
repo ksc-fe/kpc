@@ -5,16 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p><code>Option</code>的子元素可以是任意dom结构，而非仅仅只是字符串。此时如果需要支持<code>filterable</code>，我们应该指定<code>label</code>，以便组件知道筛选的内容。</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import {Select, Option} from 'kpc/components/select';\n\nconst data = [\n    {label: '星期一', value: 'Monday'},\n    {label: '星期二', value: 'Tuesday'},\n    {label: '星期三', value: 'Wednesday'},\n    {label: '星期四', value: 'Thursday'},\n    {label: '星期五', value: 'Friday'},\n    {label: '星期六', value: 'Saturday'},\n    {label: '星期天', value: 'Sunday'},\n];\n\n<Select v-model=\"day\" filterable>\n    <Option v-for={{ data }} value={{ value.value }} label={{ value.label }}>\n        <div>\n            <span>{{ value.label }}</span>\n            <span style=\"float: right; color: #ccc\">{{ value.value }}</span>\n        </div>\n    </Option>\n</Select>"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 103,
     "highlighted": [
         {

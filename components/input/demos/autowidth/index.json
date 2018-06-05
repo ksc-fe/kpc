@@ -5,16 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>指定<code>autoWidth</code>可以让输入框宽度随文本长度变化而变化</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Input from 'kpc/components/input';\n\n\n<Input placeholder=\"auto width\" autoWidth />"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 106,
     "highlighted": [
         {

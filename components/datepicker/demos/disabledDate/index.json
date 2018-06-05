@@ -5,16 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>disabledDate</code>属性，可以定义个方法，来指定哪些日期被禁止选择。组件会将一个日期字符串作为方法的参数，如果方法返回“真”则禁用掉该日期，否则不禁用。</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Datepicker from 'kpc/components/datepicker';\n\n<Datepicker disabledDate={{ (date) => {\n    // 禁用掉2018-02-05和2018-03-05\n    return ~['2018-02-05', '2018-03-05'].indexOf(date);\n} }} />"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 75,
     "highlighted": [
         {

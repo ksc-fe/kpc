@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>指定行展开后的模板函数<code>expand</code>即可实现点击当前行时，展开内容。是否支持点击该行任何区域都展开内容，是由<code>rowExpandable</code>控制的，默认情况下它为<code>true</code>。你也可以将它设为<code>false</code>，来自定义展开逻辑。例如：点击某个<code>icon</code>后展开改行，而点击其它元素无效。自定义展开逻辑，需要调用<code>shrinkRow(key)</code>和<code>expandRow(key)</code>方法来实现收起和展开，或者修改<code>expandedKeys</code>属性值，来指定哪些<code>key</code>对应的行展开。</p>\n<ul>\n<li><code>expand</code>：指定行展开后要展示的模板内容，类型<code>Function</code>，默认<code>undefined</code></li>\n<li><code>rowExpandable</code>：是否点击整行即展开，类型<code>Boolean</code>，默认<code>true</code></li>\n<li><code>expandedKeys</code>：指定哪些<code>key</code>对应行展开，类型<code>Array</code>，默认<code>[]</code></li>\n</ul>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import {Table, TableColumn} from 'kpc/components/table';\n\nvar data = [\n    {name: 'Javey', email: 'jiawei23716@sina.com'}, \n    {name: 'Jiawei', email: 'zoujiawei@gmail.com'}\n];\n\n<div class='no-data-template'>\n    <Table \n        data={{ data }} \n        expand={{ function(data, index) {\n            return <div>Email: {{ data.email }}</div>\n        } }}\n        checkType=\"none\"\n    >\n        <TableColumn title=\"点击整行展开内容\" key=\"name\" />\n    </Table>\n\n    <Table \n        data={{ data }} \n        expand={{ function(data, index) {\n            return <div>Email: {{ data.email }}</div>\n        } }} \n        checkType=\"none\"\n        rowExpandable={{ false }}\n        expandedKeys={{ self.get('expandedKeys') }}\n    >\n        <TableColumn title=\"点击+，展开内容\" key=\"name\" \n            template={{ (data, index) => {\n                return <div>\n                    <i \n                        class={{ {\n                            \"icon\": true,\n                            \"ion-ios-plus-outline\": self.get('expandedKeys').indexOf(index) < 0,\n                            \"ion-ios-minus-outline\": self.get('expandedKeys').indexOf(index) > -1,\n                        } }}\n                        ev-click={{ self.toggleExpand.bind(self, data, index) }}\n                    ></i>\n                    {{ data.name }}\n                </div>\n            } }}\n        />\n    </Table>\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".no-data-template\n    display: flex\n    .k-table-wrapper\n        margin-left: 10px\n.icon\n    vertical-align middle\n    margin-right 10px\n    cursor pointer"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    defaults() {\n        return {\n            expandedKeys: []\n        };\n    }\n\n    toggleExpand(data, index) {\n        const expandedKeys = this.get('expandedKeys').slice(0);\n        const i = expandedKeys.indexOf(index);\n        if (i > -1) {\n            expandedKeys.splice(i, 1);\n        } else {\n            expandedKeys.push(index);\n        }\n        this.set('expandedKeys', expandedKeys);\n    }\n}"
-        }
-    ],
     "index": 110,
     "highlighted": [
         {

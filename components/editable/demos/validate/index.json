@@ -5,16 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>使用<code>validate</code>属性，指定输入验证规则，改值可以是函数/正则/正则字符串。验证失败，输入框会添加className: <code>k-invalid</code>，用以改变样式。我们还可以绑定<code>error</code>事件弹出更多错误提示。</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Editable from 'kpc/components/editable';\n\n<div>\n    <Editable v-model=\"value\" validate={{ value => /\\d+/.test(value) }}\n        ref=\"__test1\"\n    >{{ self.get('value') }}</Editable>\n    <br />\n    <Editable v-model=\"value\" validate={{ /\\d+/ }}\n        ref=\"__test2\"\n    >{{ self.get('value') }}</Editable>\n    <br />\n    <Editable v-model=\"value\" validate=\"\\d+\"\n        ev-error={{ self._showErrorTip }}\n        ref=\"__test3\"\n    >{{ self.get('value') }}</Editable>\n</div>"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nimport Message from 'kpc/components/message';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    defaults() {\n        return {value: 100};\n    }\n\n    _showErrorTip(c, value) {\n        Message.error('Please enter digits.');\n    }\n} "
-        }
-    ],
     "index": 39,
     "highlighted": [
         {

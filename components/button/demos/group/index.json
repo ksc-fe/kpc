@@ -5,24 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>将<code>Button</code>作为<code>ButtonGroup</code>的子元素，可以展示按钮组。给<code>ButtonGroup</code>添加<code>vertical</code>属性，可以是按钮组纵向排列。给<code>ButtonGroup</code>添加<code>checkType</code>属性，可以使按钮组拥有单选或复选能力。</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import {Button, ButtonGroup} from 'kpc/components/button';\n\n<div>\n    <ButtonGroup>\n        <Button>开机</Button>\n        <Button>关机</Button>\n        <Button>重启</Button>\n    </ButtonGroup>\n    <ButtonGroup>\n        <Button type=\"primary\">开机</Button>\n        <Button type=\"primary\">关机</Button>\n        <Button type=\"primary\">重启</Button>\n    </ButtonGroup>\n    <ButtonGroup>\n        <Button type=\"primary\">\n            <i class=\"k-icon ion-ios-arrow-left\"></i>上一页\n        </Button>\n        <Button type=\"primary\">\n            下一页<i class=\"k-icon ion-ios-arrow-right\"></i>\n        </Button>\n    </ButtonGroup>\n    <br /><br />\n    <p>纵向按钮组</p>\n    <ButtonGroup vertical>\n        <Button type=\"primary\">开机</Button>\n        <Button type=\"primary\">关机</Button>\n        <Button type=\"primary\">重启</Button>\n    </ButtonGroup>\n    <br /><br />\n    <p>radio按钮组</p>\n    <ButtonGroup checkType=\"radio\" v-model=\"city\">\n        <Button value=\"beijing\">北京</Button>\n        <Button value=\"shanghai\" ref=\"__radioShanghai\">上海</Button>\n        <Button value=\"guangzhou\">广州</Button>\n        <Button value=\"shenzhen\">深圳</Button>\n    </ButtonGroup>\n    <p>checkbox按钮组</p>\n    <ButtonGroup checkType=\"checkbox\" v-model=\"cities\">\n        <Button value=\"beijing\" size=\"small\">北京</Button>\n        <Button value=\"shanghai\" size=\"small\" ref=\"__checkboxShanghai\">上海</Button>\n        <Button value=\"guangzhou\" size=\"small\">广州</Button>\n        <Button value=\"shenzhen\" size=\"small\">深圳</Button>\n    </ButtonGroup>\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".k-btns\n    margin-right 20px"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    defaults() {\n        return {\n            city: 'beijing'\n        };\n    }\n}"
-        },
-        {
-            "language": "vue",
-            "content": "<template>\n    <div>\n        <ButtonGroup>\n            <Button>开机</Button>\n            <Button>关机</Button>\n            <Button>重启</Button>\n        </ButtonGroup>\n        <ButtonGroup>\n            <Button type=\"primary\" size=\"small\">开机</Button>\n            <Button type=\"primary\" size=\"small\">关机</Button>\n            <Button type=\"primary\" size=\"small\">重启</Button>\n        </ButtonGroup>\n        <ButtonGroup vertical>\n            <Button type=\"primary\" size=\"small\">开机</Button>\n            <Button type=\"primary\" size=\"small\">关机</Button>\n            <Button type=\"primary\" size=\"small\">重启</Button>\n        </ButtonGroup>\n    </div>\n</template>\n<style src=\"./index.styl\" lang=\"stylus\"></style>\n<script>\nimport {Button, ButtonGroup} from 'kpc/components/button';\n\nexport default {\n    components: {\n        Button, ButtonGroup\n    }\n}\n</script>"
-        }
-    ],
     "index": 45,
     "highlighted": [
         {

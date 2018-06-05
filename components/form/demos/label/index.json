@@ -5,16 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>label</code>扩展点，我们可以定义更复杂的<code>label</code>，而不仅仅只是文本</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import {Form, FormItem} from 'kpc/components/form';\nimport {Input} from 'kpc/components/input';\n\n<Form>\n    <FormItem>\n        <b:label><i style=\"color: red\">*</i> 姓名</b:label>\n        <Input />\n    </FormItem>\n    <FormItem>\n        <b:label><i class=\"ion-person\"/> 姓名</b:label>\n        <Input />\n    </FormItem>\n</Form>"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 83,
     "highlighted": [
         {

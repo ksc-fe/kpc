@@ -5,26 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>当弹窗很复杂时，我们可以通过继承<code>Dialog</code>的方式，将所有业务逻辑封装成一个新弹窗组件。经常地，我们需要在弹窗打开时获取数据，一种方式是，弹窗同步打开，然后使用loading动画来过渡数据加载过程，另一种方式，我们还可以在弹窗数据加载完成后再打开弹窗。这种方式只需要在继承的弹窗的<code>_init</code>生命周期函数中返回<code>Promise</code>对象即可。另外我们还可以通过<code>open</code>, <code>close</code>来处理打开关闭后的逻辑。</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "<t:parent>\n    <b:body>\n        Hello {{ self.get('name') }}\n    </b:body>\n</t:parent>",
-            "file": "dialog.vdt"
-        },
-        {
-            "language": "js",
-            "content": "import Dialog from 'kpc/components/dialog';\nimport template from './dialog.vdt';\n\nexport default class extends Dialog {\n    @Intact.template()\n    static template = template;\n\n    defaults() {\n        return {\n            ...super.defaults(),\n            title: 'Async Open Dialog'\n        };\n    }\n\n    _init() {\n        // call super method firstly\n        super._init();\n\n        // return a promise\n        return new Promise((resolve, reject) => {\n            // mock api\n            setTimeout(() => {\n                resolve({name: 'KPC'});\n            }, 2000);\n        }).then(data => {\n            this.set('name', data.name);\n        });\n    }\n}",
-            "file": "dialog.js"
-        },
-        {
-            "language": "vdt",
-            "content": "import Button from 'kpc/components/button';\n\n<Button type=\"primary\" ev-click={{ self.showDialog }}>Show Dialog Asynchronously</Button>"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nimport Dialog from './dialog';\nimport Message from 'kpc/components/message';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    showDialog(e) {\n        // button show loading\n        e.component.showLoading();\n\n        const dialog = new Dialog();\n\n        dialog.show();\n        dialog.on('ok', (data) => {\n            Message.info(`You clicked ok.`);\n        });\n\n        // button hide loading\n        dialog.on('open', () => e.component.hideLoading());\n\n        // for unit test\n        this.dialog = dialog;\n    }\n}"
-        }
-    ],
     "index": 101,
     "highlighted": [
         {

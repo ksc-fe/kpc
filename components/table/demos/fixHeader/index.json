@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p><code>fixHeader</code>：设置表头固定，类型<code>Boolean</code> | <code>Number</code>，默认：<code>false</code></p>\n<ol>\n<li>如果取值为<code>Boolean</code>，<code>false</code>表示不固定表头，<code>true</code>表示固定高度，但需要自己定义表格高度</li>\n<li>如果取值为<code>Number</code>，则表示，当表格超出该高度时即展示滚动条，并固定表头</li>\n</ol>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Table from 'kpc/components/table';\n\nconst data1 = [{a: '表头固定，但内容没有超出最高高度'}];\nconst data2 = [{a: '表头固定啦'}, {a: '下拉'}, {a: 'yeah!'}];\n\n<div class=\"wrapper\">\n    <Table scheme={{ {a: '100px'} }} data={{ data1 }} fixHeader=\"100\" />\n    <Table scheme={{ {a: '100px' } }} data={{ data2 }} fixHeader=\"100\" />\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".wrapper\n    display flex\n.k-table-wrapper\n    margin-left: 20px"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 117,
     "highlighted": [
         {

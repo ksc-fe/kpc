@@ -5,16 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>规则<code>rules</code>的值是响应式的，这意味着我们可以实时改变验证规则。</p>\n<p>例如本例中，用户可以不输入姓名，但如果输入了“姓”，就必须输入“名”，反之亦然。</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import {Form, FormItem} from 'kpc/components/form';\nimport {Input} from 'kpc/components/input';\nimport {Row, Col} from 'kpc/components/grid';\n\n<Form>\n    <FormItem label=\"姓名\">\n        <Row gutter=\"16\">\n            <Col span=\"12\">\n                <FormItem hideLabel model=\"firstName\" rules={{ {\n                    // 该规则取值，随着lastName的存在与否而改变\n                    required: self.get('lastName')\n                } }}> \n                    <Input v-model=\"firstName\" />\n                </FormItem>\n            </Col>\n            <Col span=\"12\">\n                <FormItem hideLabel model=\"lastName\" rules={{ {\n                    // 该规则取值，随着firstName的存在与否而改变\n                    required: self.get('firstName')\n                } }}> \n                    <Input v-model=\"lastName\" />\n                </FormItem>\n            </Col>\n        </Row>\n    </FormItem>\n</Form>"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 78,
     "highlighted": [
         {

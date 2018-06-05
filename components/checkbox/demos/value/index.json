@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p><code>Checkbox</code>默认选中的值为<code>true</code>，非选中的值为<code>false</code>，通过<code>trueValue</code>和<code>falseValue</code>属性，我们可以指定选中和非选中的值。</p>\n<blockquote>\n<p>当指定值为对象时，不要在模板中直接定义对象字面量（如：trueValue={{ {a: 1} }}），因为在模板中创建的对象每次执行模板都会生成一份新数据，使全等判断(<code>===</code>)失效。此时应该在js中定义该对象，然后模板中引用它。</p>\n</blockquote>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Checkbox from 'kpc/components/checkbox';\n\n<div>\n    <Checkbox v-model=\"value1\">默认值: {{ JSON.stringify(self.get('value1')) }}</Checkbox>\n    <Checkbox v-model=\"value2\" trueValue=\"checked\">\n        指定选中时取值为\"checked\": {{ JSON.stringify(self.get('value2')) }}\n    </Checkbox>\n    <Checkbox v-model=\"value3\" trueValue={{ 0 }} falseValue={{ self.get(\"uncheckedValue\") }}>\n        指定非选中时取值为对象：{{ JSON.stringify(self.get('value3')) }}\n    </Checkbox>\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".k-checkbox\n    margin-right 20px"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n\n    defaults() {\n        return {\n            uncheckedValue: {\n                unchecked: true\n            }\n        };\n    }\n}"
-        }
-    ],
     "index": 50,
     "highlighted": [
         {

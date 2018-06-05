@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>定义开关开启/关闭时文案，可以通过以下两种方式来定义：</p>\n<ol>\n<li>通过属性<code>on</code> <code>off</code>来定义，可以传入字符串或者<code>vNode</code>对象</li>\n<li>通过扩展点<code>on</code> <code>off</code>来定义</li>\n</ol>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import {Switch} from 'kpc/components/switch';\n\n<div>\n    <Switch on=\"开\" off=\"关\" />\n    <Switch value={{ true }}>\n        <b:on><i class=\"ion-ios-checkmark-empty\"></i></b:on>\n        <b:off><i class=\"ion-ios-close-empty\"></i></b:off>\n    </Switch>\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".k-switch\n    margin-right 20px"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 41,
     "highlighted": [
         {

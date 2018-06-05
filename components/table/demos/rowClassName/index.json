@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p><code>rowClassName</code>：给行添加样式，类型<code>Function</code>，默认：<code>function(value, index) {  }</code>，该函数返回的字符串将被当做<code>className</code>添加到该行上</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Table from 'kpc/components/table';\n\nconst scheme = {a: '偶数行背景变换'};\nconst data = [{a: '1'}, {a: '2'}, {a: '3'}, {a: '4'}, {a: '5'}]\n\n\n<Table scheme={{ scheme }} data={{ data }} \n    rowClassName={{ (value, index) => index % 2 === 0 ? 'even' : 'odd' }}\n/>"
-        },
-        {
-            "language": "styl",
-            "content": ".even\n    background #efefef"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 105,
     "highlighted": [
         {

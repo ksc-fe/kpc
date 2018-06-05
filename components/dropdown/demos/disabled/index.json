@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>通过给<code>Dropdown</code>和<code>DropdownItem</code>添加<code>disabled</code>属性，可以分别禁用菜单和菜单项。</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';\nimport Button from 'kpc/components/button';\n\n<div>\n    <Dropdown disabled>\n        <Button type=\"primary\">\n            disabled <i class=\"k-icon ion-arrow-down-b\"></i>\n        </Button>\n        <DropdownMenu>\n            <DropdownItem>item 1</DropdownItem>\n            <DropdownItem>item 2</DropdownItem>\n            <DropdownItem>item 3</DropdownItem>\n        </DropdownMenu>\n    </Dropdown>\n\n    <Dropdown>\n        <Button type=\"primary\">\n            disabled item<i class=\"k-icon ion-arrow-down-b\"></i>\n        </Button>\n        <DropdownMenu>\n            <DropdownItem>item 1</DropdownItem>\n            <DropdownItem disabled>item 2</DropdownItem>\n            <DropdownItem>item 3</DropdownItem>\n        </DropdownMenu>\n    </Dropdown>\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".k-btn\n    margin-right 20px"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 76,
     "highlighted": [
         {

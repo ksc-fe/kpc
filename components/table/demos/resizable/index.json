@@ -5,16 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p><code>resizable</code>：表头是否可拖动，类型<code>Boolean</code>，<code>false</code>(默认)</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Table from 'kpc/components/table';\n\nvar data = [{a: 'A', b: 'B', c: 'C'}, {a: 'A', b: 'B', c: 'C'}];\n\n<div class='no-data-template'>\n    <Table \n        scheme={{ {\n            a: '通过minColWidth控制最小宽度100px',\n            b: {\n                title: '单独设置最小宽度300px',\n                minWidth: 300\n            },\n            c: {\n                title: '标题'\n            }\n        } }} \n        data={{ data }}\n        resizable\n        minColWidth={{ 100 }}\n    />\n</div>"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 126,
     "highlighted": [
         {

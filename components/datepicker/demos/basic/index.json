@@ -5,20 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>基本用法和禁用状态</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Datepicker from 'kpc/components/datepicker';\n\n<div>\n    <Datepicker v-model=\"date\" ref=\"__demo\"/>\n    <Datepicker disabled value=\"2018-01-01\"/>\n</div>"
-        },
-        {
-            "language": "styl",
-            "content": ".k-datepicker\n    margin-right 20px"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\nimport './index.styl'; \n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 7,
     "highlighted": [
         {

@@ -5,16 +5,6 @@
     },
     "catalogs": [],
     "contents": "<p>指定<code>type</code>为<code>textarea</code>渲染成文本框，同时可以用<code>rows</code>来指定展示的行数</p>\n",
-    "codes": [
-        {
-            "language": "vdt",
-            "content": "import Input from 'kpc/components/input';\n\n<div>\n    <Input type=\"textarea\" placeholder=\"please enter\" />\n    <br />\n    <Input type=\"textarea\" rows=\"5\" placeholder=\"please enter\" />\n</div>"
-        },
-        {
-            "language": "js",
-            "content": "import Intact from 'intact';\nimport template from './index.vdt';\n\nexport default class extends Intact {\n    @Intact.template()\n    static template = template;\n}"
-        }
-    ],
     "index": 85,
     "highlighted": [
         {
