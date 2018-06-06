@@ -7,6 +7,14 @@
     </Transfer>
 </template>
 
+<style>
+.k-transfer .k-text p {
+    margin: 0;
+    font-size: 12px;
+    line-height: 25px;
+}
+</style>
+
 <script>
 import Transfer from 'components/transfer';
 

@@ -1,6 +1,7 @@
 import Button from '../button';
 import Checkbox from '../checkbox';
 import Input from '../input';
+import {_$} from '../utils';
 
 const {
     data, className, style, value, 
@@ -18,8 +19,12 @@ const Panel = props => {
     return <div class="k-panel">
         <div class="k-title">
             {{ props.title }} 
-            <a class="k-op" v-if={{ batchable && props.model == 'left' }} ev-click={{ self._selectAll.bind(self) }}>全选</a>
-            <a class="k-op" v-if={{ batchable && props.model == 'right' }} ev-click={{ self._clearAll.bind(self) }}>清空</a>
+            <a class="k-op" v-if={{ batchable && props.model == 'left' }}
+                ev-click={{ self._selectAll }}
+            >{{ _$('全选') }}</a>
+            <a class="k-op" v-if={{ batchable && props.model == 'right' }} 
+                ev-click={{ self._clearAll }}
+            >{{ _$('清空') }}</a>
         </div>
         <Input v-if={{ filterable }} placeholder={{ placeholder }}
             v-model={{ `${props.model}Keywords` }}

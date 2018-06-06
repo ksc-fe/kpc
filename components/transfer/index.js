@@ -8,6 +8,11 @@ export default class Transfer extends Intact {
     @Intact.template()
     static template = template;
 
+    static propTypes = {
+        filterable: Boolean,
+        batchable: Boolean,
+    };
+
     defaults() {
         return {
             data: [],
@@ -126,11 +131,12 @@ export default class Transfer extends Intact {
         }
         this.set('leftChecked', leftChecked);
     }
+
     _clearAll() {
         this.set({
             value: [],
             rightChecked: [],
-        })
+        });
     }
 
     _destroy() {
