@@ -9,7 +9,7 @@
     
     
     <div id="page"><div class="k-app">
-    <div class="main-wrapper document-page"><div class="header-wrapper"><header><a class="logo" href="/">KPC</a><div class="right"><nav><a class="active" href="/kpc/docs/getting-started/">教程</a><div class="border"></div></nav><span class="label">切换主题：</span><div class="k-select k-active" style="width:100px;" tabindex="0"><div class="k-wrapper" tabindex="-1" _hasSaved><input type="hidden" value="kpc" /><span class="k-value c-ellipsis">default</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></header></div><div class="content-wrapper"><aside><div class="aside-wrapper"><div class="catalog-section"><ul><li>
+    <div class="main-wrapper document-page"><div class="header-wrapper"><header><a class="logo" href="/">KPC</a><div class="right"><nav><a class="active" href="/kpc/docs/getting-started/">教程</a><a class="" href="/kpc/docs/blogs/design/">Blog</a><div class="border"></div></nav><span class="label">切换主题：</span><div class="k-select k-active" style="width:100px;" tabindex="0"><div class="k-wrapper" tabindex="-1" _hasSaved><input type="hidden" value="kpc" /><span class="k-value c-ellipsis">default</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></header></div><div class="content-wrapper"><aside><div class="aside-wrapper"><div class="catalog-section"><ul><li>
                 <!---->
                 <a href="/kpc/docs/getting-started/">
                     <!---->快速开始<!---->
@@ -119,17 +119,18 @@
                     <!---->Tabs<span>选项卡</span>
                 </a></li><li>
                 <!---->
-                <a href="/kpc/components/transfer/">
-                    <!---->Transfer<span>穿梭框</span>
-                </a></li><li>
-                <!---->
                 <a href="/kpc/components/editable/">
                     <!---->Editable<span>可编辑文本</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/transfer/">
+                    <!---->Transfer<span>穿梭框</span>
                 </a></li></ul></div><div class="aside-border transition"></div></div></aside><article><div class="article-head"><div class="title">定制主题</div><div class="edit-link">
                     如果你发现文档有问题，请帮忙在
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/docs/theme.md">github</a>
                     上修正该文档
-                </div></div><div class="contents"><div class="api"><p>在快速开始章节我们提到过“多文件半构建版”可以支持主题定制。因为这个版本样式文件使用了源码<code>stylus</code>，所以我们可以引入主题文件在构建时生成自定义主题的css样式。</p>
+                </div></div><div class="contents"><div class="api">
+        <div><p>在快速开始章节我们提到过“多文件半构建版”可以支持主题定制。因为这个版本样式文件使用了源码<code>stylus</code>，所以我们可以引入主题文件在构建时生成自定义主题的css样式。</p>
 <p>得益于<code>stylus-loader</code>的<code>import</code>配置，我们可以指定一个主题文件，它会在编译每一个stylus文件时引入它。</p>
 <h1 id='header-%E9%85%8D%E7%BD%AEwebpack.config.js'>配置<code>webpack.config.js</code></h1><pre><code class="hljs js"><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>);
 
@@ -139,7 +140,7 @@
     <span class="hljs-attr">loader</span>: <span class="hljs-string">'stylus-loader'</span>,
     <span class="hljs-attr">options</span>: {
         <span class="hljs-string">'incluce css'</span>: <span class="hljs-literal">true</span>,
-        <span class="hljs-comment">// 引入自定义主题文件mytheme.styl</span>
+        <span class="hljs-comment">// 引入自定义主题文件mytheme/index.styl</span>
         <span class="hljs-keyword">import</span>: path.resolve(__dirname, <span class="hljs-string">'styles/mytheme/index.styl'</span>)
     }
 }
@@ -199,7 +200,8 @@
 <p>此时，当我们加载<code>Button</code>组件时，上述样式也会加载进来。真正做到按需加载，并且无需额外插件支持。</p>
 <h1 id='header-%E5%8F%91%E5%B8%83%E4%B8%BB%E9%A2%98'>发布主题</h1><p>我们可以将定义好的主题文件，发布到npm供他人使用。使用者只需要改变<code>stylus-loader</code>中的<code>import</code>配置，指向你发布的主题文件<code>index.styl</code>即可。</p>
 <p>热烈欢迎大家积极发布自己的主题来让kpc丰富多彩起来 <i class="k-icon ion-android-happy"></i></p>
-</div></div></article></div></div>
+</div>
+    </div></div></article></div></div>
     </div></div>
     <script src="/kpc/static/client.js" type="text/javascript"></script>
 </body>

@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>label</code>扩展点，我们可以定义更复杂的<code>label</code>，而不仅仅只是文本</p>\n",
-    "index": 83,
+    "index": 85,
     "highlighted": [
         {
             "language": "vdt",

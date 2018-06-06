@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>将<code>Button</code>作为<code>ButtonGroup</code>的子元素，可以展示按钮组。给<code>ButtonGroup</code>添加<code>vertical</code>属性，可以是按钮组纵向排列。给<code>ButtonGroup</code>添加<code>checkType</code>属性，可以使按钮组拥有单选或复选能力。</p>\n",
-    "index": 45,
+    "index": 38,
     "highlighted": [
         {
             "language": "vdt",

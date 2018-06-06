@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>使用<code>position</code>属性改变弹层位置，该属性值为对象，其中<code>my</code>指弹层，<code>at</code>指触发器。组件同时提供了4中快捷取值：<code>left</code>, <code>right</code>, <code>top</code>, <code>bottom</code></p>\n",
-    "index": 38,
+    "index": 53,
     "highlighted": [
         {
             "language": "vdt",

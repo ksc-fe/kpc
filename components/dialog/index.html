@@ -9,7 +9,7 @@
     
     
     <div id="page"><div class="k-app">
-    <div class="main-wrapper document-page"><div class="header-wrapper"><header><a class="logo" href="/">KPC</a><div class="right"><nav><a class="active" href="/kpc/docs/getting-started/">教程</a><div class="border"></div></nav><span class="label">切换主题：</span><div class="k-select k-active" style="width:100px;" tabindex="0"><div class="k-wrapper" tabindex="-1" _hasSaved><input type="hidden" value="kpc" /><span class="k-value c-ellipsis">default</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></header></div><div class="content-wrapper"><aside><div class="aside-wrapper"><div class="catalog-section"><ul><li>
+    <div class="main-wrapper document-page"><div class="header-wrapper"><header><a class="logo" href="/">KPC</a><div class="right"><nav><a class="active" href="/kpc/docs/getting-started/">教程</a><a class="" href="/kpc/docs/blogs/design/">Blog</a><div class="border"></div></nav><span class="label">切换主题：</span><div class="k-select k-active" style="width:100px;" tabindex="0"><div class="k-wrapper" tabindex="-1" _hasSaved><input type="hidden" value="kpc" /><span class="k-value c-ellipsis">default</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></header></div><div class="content-wrapper"><aside><div class="aside-wrapper"><div class="catalog-section"><ul><li>
                 <!---->
                 <a href="/kpc/docs/getting-started/">
                     <!---->快速开始<!---->
@@ -119,18 +119,18 @@
                     <!---->Tabs<span>选项卡</span>
                 </a></li><li>
                 <!---->
-                <a href="/kpc/components/transfer/">
-                    <!---->Transfer<span>穿梭框</span>
-                </a></li><li>
-                <!---->
                 <a href="/kpc/components/editable/">
                     <!---->Editable<span>可编辑文本</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/transfer/">
+                    <!---->Transfer<span>穿梭框</span>
                 </a></li></ul></div><div class="aside-border transition"></div></div></aside><article><div class="article-head"><div class="title">弹窗</div><div class="edit-link">
                     如果你发现文档有问题，请帮忙在
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/components/dialog/index.md">github</a>
                     上修正该文档
                 </div></div><div class="contents"><div><h1>示例</h1>
-        <div class="example index-0"><div class="example-opera"><div><button class="k-btn k-primary" tabindex="0" type="button">
+        <div class="example index-13"><div class="example-opera"><div><button class="k-btn k-primary" tabindex="0" type="button">
     <span>Show Dialog</span>
     </button><div class="k-dialog-wrapper"></div></div></div><div class="example-desc"><div class="title">基本用法</div><div class="desc"><p>定义一个弹窗，然后通过<code>v-model</code>建立绑定，当该绑定的值为<code>true</code>时，展示弹窗。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
@@ -139,7 +139,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-52"><div class="example-opera"><div><button class="k-btn k-primary" tabindex="0" type="button">
+</div><div class="code"></div></div></div><div class="example index-50"><div class="example-opera"><div><button class="k-btn k-primary" tabindex="0" type="button">
     <span>Show Dialog</span>
     </button><div class="k-dialog-wrapper"></div></div></div><div class="example-desc"><div class="title">自定义头部和底部</div><div class="desc"><p>组件提供了<code>header</code>和<code>footer</code>扩展点（block），通过它们可以自定义头部和底部。</p>
 <blockquote>
@@ -151,7 +151,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-66"><div class="example-opera"><div><button class="k-btn k-primary" tabindex="0" type="button">
+</div><div class="code"></div></div></div><div class="example index-70"><div class="example-opera"><div><button class="k-btn k-primary" tabindex="0" type="button">
     <span>Show Dialog</span>
     </button><div class="k-dialog-wrapper"></div></div></div><div class="example-desc"><div class="title">事件回调</div><div class="desc"><p>弹窗点击“确认”和“取消”时，分别会派发出<code>ok</code>和<code>cancel</code>事件，通过它们可以执行相应的回调逻辑。此时弹窗会自动立即关闭，如果需要控制更多细节，可以使用<code>ok</code>和<code>cancel</code>属性，详见异步关闭。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
@@ -173,7 +173,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-101"><div class="example-opera"><button class="k-btn k-primary" tabindex="0" type="button">
+</div><div class="code"></div></div></div><div class="example index-102"><div class="example-opera"><button class="k-btn k-primary" tabindex="0" type="button">
     <span>Show Dialog Asynchronously</span>
     </button></div><div class="example-desc"><div class="title">异步打开</div><div class="desc"><p>当弹窗很复杂时，我们可以通过继承<code>Dialog</code>的方式，将所有业务逻辑封装成一个新弹窗组件。经常地，我们需要在弹窗打开时获取数据，一种方式是，弹窗同步打开，然后使用loading动画来过渡数据加载过程，另一种方式，我们还可以在弹窗数据加载完成后再打开弹窗。这种方式只需要在继承的弹窗的<code>_init</code>生命周期函数中返回<code>Promise</code>对象即可。另外我们还可以通过<code>open</code>, <code>close</code>来处理打开关闭后的逻辑。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
@@ -196,7 +196,8 @@
                             <!---->index.js<!---->
                         </a>
 </div><div class="code"></div></div></div>
-    </div><div class="api"><h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1><div class="k-table-wrapper k-border">
+    </div><div class="api">
+        <div><h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1><div class="k-table-wrapper k-border">
                     <table class="k-table">
                         <thead><tr>
 <th>属性</th>
@@ -367,7 +368,8 @@
 </tr>
 </tbody>
                     </table>
-                </div></div></div></article></div></div>
+                </div></div>
+    </div></div></article></div></div>
     </div></div>
     <script src="/kpc/static/client.js" type="text/javascript"></script>
 </body>

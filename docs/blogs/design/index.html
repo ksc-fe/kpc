@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>KPC设计思路</title>
+    <link rel="stylesheet" href="/kpc/theme-kpc.css" />
+</head>
+<body>
+    
+    
+    <div id="page"><div class="k-app">
+    <div class="main-wrapper document-page blog-page"><div class="header-wrapper"><header><a class="logo" href="/">KPC</a><div class="right"><nav><a class="" href="/kpc/docs/getting-started/">教程</a><a class="active" href="/kpc/docs/blogs/design/">Blog</a><div class="border"></div></nav><span class="label">切换主题：</span><div class="k-select k-active" style="width:100px;" tabindex="0"><div class="k-wrapper" tabindex="-1" _hasSaved><input type="hidden" value="kpc" /><span class="k-value c-ellipsis">default</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></header></div><div class="content-wrapper"><aside><div class="aside-wrapper"><ul><li><a>KPC设计思路</a><ul class="sub-catalogs"><li><a>目录结构</a></li><li><a>样式</a></li><li class="sub-catalogs"><a>主题定制</a></li><li><a>构建打包</a></li><li class="sub-catalogs"><a>单文件构建版</a></li><li class="sub-catalogs"><a>多文件css构建版</a></li><li class="sub-catalogs"><a>多文件stylus构建版</a></li><li><a>文档生成</a></li><li><a>test</a></li><li><a>hello</a></li></ul></li></ul><div class="aside-border transition"></div></div></aside><article><h1 id="__top">KPC设计思路</h1><div class="contents"><div class="api">
+        <div><h2 id='header-%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84'>目录结构</h2><p>整体上看，目录结构涉及组件源码，调试相关，文档展示，单元测试，构建打包等方面，具体如下：</p>
+<pre><code class="hljs js">.
+├── components <span class="hljs-comment">// 组件源码</span>
+├── styles <span class="hljs-comment">// 全局样式</span>
+├── i18n <span class="hljs-comment">// 国际化</span>
+├
+├── pages <span class="hljs-comment">// 调试页面</span>
+├── app <span class="hljs-comment">// 调试服务启动文件</span>
+├── views <span class="hljs-comment">// 调试服务vdt模板文件</span>
+├
+├── docs <span class="hljs-comment">// markdown文档</span>
+├── site <span class="hljs-comment">// 文档网站代码</span>
+├
+├── test <span class="hljs-comment">// 测试代码</span>
+├
+├── dist <span class="hljs-comment">// 单文件构建目录</span>
+├── <span class="hljs-meta">@css</span> <span class="hljs-comment">// css多文件构建目录</span>
+└── <span class="hljs-meta">@stylus</span> <span class="hljs-comment">// stylus多文件构建目录</span>
+</code></pre>
+<p>与组件相关的文件，全部放到一起，包括：组件逻辑，模板，样式，单元测试，文档，示例</p>
+<pre><code class="hljs js">components/checkbox
+├── demos <span class="hljs-comment">// 文档示例</span>
+│   ├── basic<span class="hljs-selector-class">.md</span>
+│   ├── group<span class="hljs-selector-class">.md</span>
+│   └── value<span class="hljs-selector-class">.md</span>
+├── index<span class="hljs-selector-class">.js</span> <span class="hljs-comment">// 组件逻辑</span>
+├── index<span class="hljs-selector-class">.md</span> <span class="hljs-comment">// 组件文档</span>
+├── index<span class="hljs-selector-class">.spec</span><span class="hljs-selector-class">.js</span> <span class="hljs-comment">// 单元测试</span>
+├── index<span class="hljs-selector-class">.styl</span> <span class="hljs-comment">// 组件样式</span>
+├── index<span class="hljs-selector-class">.vdt</span> <span class="hljs-comment">// 组件模板</span>
+└── variables<span class="hljs-selector-class">.styl</span> <span class="hljs-comment">// 样式变量申明</span>
+</code></pre>
+<h2 id='header-%E6%A0%B7%E5%BC%8F'>样式</h2><p>对于样式要考虑的一个目标是：主题定制。所以我们不能将样式写死，在kpc中一切可能改变的样式值都为变量。借助<code>stylus</code>等可编译样式语言，这很容易办到。</p>
+<ol>
+<li>样式变量申明</li>
+</ol>
+<p>变量申明分为两部分：全局申明和组件申明。全局申明用于定义全局的样式，例如：主题色，边框色，字体带下，尺寸等；组件申明会使用全局申明中定义的变量，加上自身特有变量来申明，这样既可以做到一改全改，又可以针对组件进行特殊化定制。</p>
+<p>全局申明文件：<code>styles/themes/defaults.styl</code></p>
+<pre><code class="hljs stylus"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span>
+<span class="hljs-code">             Theme</span>
+<span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span>*/</span></span>
+use(<span class="hljs-string">'../functions.js'</span>)
+$theme-dir := __dirname()
+$fonts-dir := <span class="hljs-string">'./fonts'</span>;
+
+<span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span>
+<span class="hljs-code">             Colors</span>
+<span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span>*/</span></span>
+
+$red := #db2828
+$blue := #<span class="hljs-number">0</span>a5eee
+$light-black := #<span class="hljs-number">595959</span>
+
+
+<span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span>
+<span class="hljs-code">            Page</span>
+<span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span>*/</span></span>
+
+$font-family := <span class="hljs-string">'Microsoft YaHei'</span>
+$font-size := <span class="hljs-number">14</span>px 
+$text-color := $light-black 
+$primary-color := $blue
+$disabled-bg-color := #f7f7f7
+$disabled-border-color := #d9d9d9
+
+<span class="hljs-comment">// size</span>
+$<span class="hljs-keyword">default</span>-font-size := <span class="hljs-number">1</span>rem
+$small-height := <span class="hljs-number">30</span>
+$small-font-size := unit(<span class="hljs-number">12</span> / <span class="hljs-number">14</span>, rem)
+
+<span class="hljs-comment">// box-shadow</span>
+$box-shadow := <span class="hljs-number">0</span> <span class="hljs-number">2</span>px <span class="hljs-number">8</span>px <span class="hljs-number">0</span> rgba(<span class="hljs-number">191</span>, <span class="hljs-number">191</span>, <span class="hljs-number">191</span>, <span class="hljs-number">.5</span>)
+$border-radius := unit(<span class="hljs-number">2</span> / <span class="hljs-number">14</span>, rem) 
+
+...
+
+</code></pre>
+<p>组件申明文件：<code>components/checkbox/variables.styl</code></p>
+<pre><code class="hljs stylus">@require(<span class="hljs-string">'../../styles/themes/default.styl'</span>)
+
+$checkbox-width := <span class="hljs-keyword">unit</span>(<span class="hljs-number">14</span> / <span class="hljs-number">14</span>, rem) 
+$checkbox-border-<span class="hljs-keyword">color</span> := $dark-border-<span class="hljs-keyword">color</span>
+$checkbox-border-radius := <span class="hljs-number">2</span>px
+$checkbox-bg-<span class="hljs-keyword">color</span> := #fff
+
+<span class="hljs-comment">// text</span>
+$checkbox-<span class="hljs-keyword">text</span>-margin-left := <span class="hljs-keyword">unit</span>(<span class="hljs-number">8</span> / <span class="hljs-number">14</span>, em)
+
+<span class="hljs-comment">// checked</span>
+$checkbox-checked-border-<span class="hljs-keyword">color</span> := $primary-<span class="hljs-keyword">color</span> 
+$checkbox-checked-bg-<span class="hljs-keyword">color</span> := $checkbox-checked-border-<span class="hljs-keyword">color</span>
+
+...
+</code></pre>
+<ol start="2">
+<li>组件样式定义</li>
+</ol>
+<p>每一个组件都有个样式文件，该样式文件中样式值都使用前面定义的变量进行定义（除非该定义本不该改变）。</p>
+<p>样式文件：<code>components/checkbox/index.styl</code></p>
+<pre><code class="hljs stylus">@require(<span class="hljs-string">'./variables.styl'</span>);
+
+<span class="hljs-selector-class">.k-checkbox</span>
+    <span class="hljs-attribute">display</span> inline-block
+    <span class="hljs-attribute">cursor</span> pointer
+    <span class="hljs-selector-class">.k-wrapper</span>
+        <span class="hljs-attribute">display</span> inline-block
+        <span class="hljs-attribute">width</span> <span class="hljs-variable">$checkbox-width</span>
+        <span class="hljs-attribute">height</span> <span class="hljs-variable">$checkbox-width</span> 
+        <span class="hljs-attribute">vertical-align</span> middle
+        <span class="hljs-attribute">border</span> 1px solid <span class="hljs-variable">$checkbox-border-color</span> 
+        <span class="hljs-attribute">border-radius</span> <span class="hljs-variable">$checkbox-border-radius</span> 
+        <span class="hljs-attribute">position</span> relative
+        <span class="hljs-attribute">transition</span> all <span class="hljs-variable">$transition</span>
+        <span class="hljs-attribute">background</span> <span class="hljs-variable">$checkbox-bg-color</span>
+
+...
+</code></pre>
+<h3 id='header-%E4%B8%BB%E9%A2%98%E5%AE%9A%E5%88%B6'>主题定制</h3><p>在上面变量申明中，我们使用<code>:=</code>进行赋值，这是<code>stylus</code>的特有语法，意为：如果该变量已被定义则忽略本次定义。借助该特性，我们可以在编译时提前引入一个主题文件来改变默认变量定义。借助<code>stylus-loader</code>我们可以为每一个<code>stylus</code>统一引入一个文件，该文件中定义了所有需要重新定义的变量。</p>
+<pre><code class="hljs js">{
+    <span class="hljs-attribute">loader</span>: <span class="hljs-string">'stylus-loader'</span>,
+    options: {
+        // 引入自定义主题文件mytheme/index.styl
+        import: path.<span class="hljs-built_in">resolve</span>(__dirname, <span class="hljs-string">'styles/mytheme/index.styl'</span>)
+    }
+}
+</code></pre>
+<p>实际主题定制中，仅仅通过改变变量并不能完成100%的定制需求，当我们需要为组件添加新样式时，仅有的变量便无法满足，因为新增的样式kpc并没有申明相应的变量。所以还需一种方式引入额外样式申明文件。</p>
+<p>例如：<code>Select</code>默认主题并没有定义<code>border-radius</code>，也没有相应的变量申明，此时我们需要在自定义主题中添加<code>border-radius</code>怎么办？</p>
+</div><div><div class="k-select" style="" tabindex="0"><div class="k-wrapper" tabindex="-1" _hasSaved><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div>
+    You selected: <!---->
+</div><div><p>kpc为每个组件的样式文件<code>index.styl</code>添加了一句代码</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-title">require</span><span class="hljs-params">(<span class="hljs-variable">$theme</span>-dir + <span class="hljs-string">'/select.styl'</span>)</span></span>
+</code></pre>
+<p>这里<code>require</code>方法是自定义的方法，定义在文件<code>styles/functions.js</code>中，它的意思是：当文件存在时就包含该文件。所以我们只需要在<code>$theme-dir</code>定义的文件夹中申明<code>select.styl</code>文件，组件就会默认包含该样式文件。</p>
+<p>这里我们在自定义主题文件中申明<code>$theme-dir</code>指向当前主题所在文件夹，然后在该文件下定义<code>select.styl</code>文件添加样式定义即可。</p>
+<p><code>styles/mytheme/index.styl</code></p>
+<pre><code class="hljs stylus"><span class="hljs-variable">$theme-dir</span> := __dirname(); <span class="hljs-comment">// __dirname也为自定义方法，用于获取当前文件所在的文件夹的绝对路径</span>
+</code></pre>
+<p><code>styles/mytheme/select.styl</code></p>
+<pre><code class="hljs stylus"><span class="hljs-selector-class">.k-select</span>
+    <span class="hljs-selector-class">.k-wrapper</span>
+        <span class="hljs-attribute">border-radius</span> <span class="hljs-variable">$border</span>-radius
+</code></pre>
+<blockquote>
+<p>由于我们必须在<code>stylus</code>编译时引入变量定义和新增样式申明，因此当我们需要定制主题时，必须使用<code>stylus</code>多文件构建版。</p>
+</blockquote>
+<h2 id='header-%E6%9E%84%E5%BB%BA%E6%89%93%E5%8C%85'>构建打包</h2><p>kpc使用了3中方式进行构建打包，每种方式都有特定的适用场景。</p>
+<h3 id='header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88'>单文件构建版</h3><p>该打包方式将所有组件合并成到一个文件<code>kpc.js</code>中，所有的样式经过编译后合并到文件<code>kpc.css</code>中。该打包方式适合不需要经过<code>webpack</code>构建的项目，只需要在html文件中直接全量引入即可。但是缺点是，由于全量引入也会引入不需要的组件，造成代码冗余。</p>
+<p>全量打包大致分为两步：</p>
+<ol>
+<li>生成索引文件</li>
+</ol>
+<p>索引文件是编译的入口文件，它会将所有的组件<code>import</code>进来，然后<code>export</code>出去。但是当组件数变得庞大时，手动维护该文件会非常麻烦。kpc采用扫描所有组件文件，自动生成索引文件的方式来维护该文件。</p>
+<p>在每个组件入口文件<code>index.js</code>中，最后一句代码是暴露该组件的接口，例如：<code>components/select/index.js</code></p>
+<pre><code class="hljs js"><span class="hljs-builtin-name">export</span> {Select, Option,<span class="hljs-built_in"> Group </span>as OptionGroup};
+</code></pre>
+<p>构建时，正则匹配该代码，提取组件名称：<code>Select, Option, OptionGroup</code>，然后生成索引代码至<code>components/index.js</code></p>
+<pre><code class="hljs js">import {<span class="hljs-keyword">Select</span>, <span class="hljs-keyword">Option</span>, OptionGroup} <span class="hljs-keyword">from</span> <span class="hljs-string">'./select'</span>;
+
+export {
+    <span class="hljs-keyword">Select</span>,
+    <span class="hljs-keyword">Option</span>,
+    OptionGroup
+};
+</code></pre>
+<ol start="2">
+<li>webpack构建</li>
+</ol>
+<p>将上述生成的索引文件<code>components/index.js</code>作为编译入口，使用<code>extract-text-webpack-plugin</code>提取所有css文件即可。</p>
+<h3 id='header-%E5%A4%9A%E6%96%87%E4%BB%B6css%E6%9E%84%E5%BB%BA%E7%89%88'>多文件css构建版</h3><p>多文件构建版分为css构建版和stylus构建版，它们都能够做到按需加载。唯一的区别是对<code>stylus</code>样式文件的处理方式不同。css构建版，会将所有的<code>stylus</code>编译成<code>css</code>，而stylus构建版，则保留<code>stylus</code>源码。所以stylus构建版能够在开发时进行主题定制，而css构建版则不能。</p>
+<p>多文件构建时，由于不存在打包过程，所以不需要<code>webpack</code>来构建，通过<code>gulp</code>将各种类型编译即可。</p>
+<ol>
+<li>编译js</li>
+</ol>
+<p><code>js</code>文件需要通过<code>babel</code>编译，但是这里需要进行额外的一步替换操作。因为<code>js</code>源码中的样式加载代码为：</p>
+<pre><code class="hljs js"><span class="hljs-meta"><span class="hljs-meta-keyword">import</span> './index.styl';</span>
+</code></pre>
+<p>进过<code>balel</code>编译后，会变成</p>
+<pre><code class="hljs js"><span class="hljs-built_in">require</span>(<span class="hljs-string">'./index.styl'</span>);
+</code></pre>
+<p>实际<code>index.styl</code>文件会编译成<code>index.css</code>，所以这里需要将<code>require(&#39;./index.styl&#39;)</code>替换成<code>require(&#39;./index.css&#39;)</code></p>
+<ol start="2">
+<li>编译vdt</li>
+</ol>
+<p>模板<code>index.vdt</code>文件会编译成<code>index.vdt.js</code>文件。而<code>js</code>中引入的<code>vdt</code>文件不用像<code>stylus</code>一样需要替换，依然为：</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-title">require</span><span class="hljs-params">(<span class="hljs-string">'./index.vdt'</span>)</span></span>
+</code></pre>
+<p>不需要替换的原因是，<code>require</code>方法有一个特性：当不存在<code>./index.vdt</code>时，会去找<code>./index.vdt.js</code>。</p>
+<ol start="3">
+<li>编译stylus</li>
+</ol>
+<p><code>stylus</code>会进过<code>postcss</code>处理，提高兼容性。</p>
+<h3 id='header-%E5%A4%9A%E6%96%87%E4%BB%B6stylus%E6%9E%84%E5%BB%BA%E7%89%88'>多文件stylus构建版</h3><p>stylus构建版与css构建的构建原理相同，只是比它更简单，因为需要编译<code>stylus</code>，所以不需要替换<code>js</code>的源码。除了编译<code>js</code>和<code>vdt</code>外，剩下的文件简单复制即可。</p>
+<h2 id='header-%E6%96%87%E6%A1%A3%E7%94%9F%E6%88%90'>文档生成</h2><h2 id='header-test'>test</h2></div><button class="k-btn" tabindex="0" type="button">
+    <span>Hello</span>
+    </button><div><h2 id='header-hello'>hello</h2></div>
+    </div></div></article></div></div>
+    </div></div>
+    <script src="/kpc/static/client.js" type="text/javascript"></script>
+</body>
+</html>

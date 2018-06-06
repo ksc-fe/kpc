@@ -39,7 +39,7 @@ module.exports =
 /******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
 /******/ 		// "0" is the signal for "already loaded"
 /******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("./chunk/" + {"0":"244837454210f4cc40f0","1":"45593022098fc8af3ddf","2":"b9f6e411f541eb98033a","3":"ad141ef25c9c2f93b49d"}[chunkId] + ".js");
+/******/ 			var chunk = require("./chunk/" + {"0":"8a8e5224349b413b7853","1":"db1346298f4edd523789","2":"fbf2bd4685af7a9bb454","3":"335100ebff4ed134b5dc"}[chunkId] + ".js");
 /******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				modules[moduleId] = moreModules[moduleId];
@@ -266,7 +266,7 @@ exports.App = App;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528174809811
+      // 1528273970214
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -952,7 +952,7 @@ exports.default = new _universalRouter2.default([{
         };
     }()
 }, {
-    path: /^(?:\/kpc)?(\/docs\/blog\/.*)$/,
+    path: /^(?:\/kpc)?(\/docs\/blogs\/.*)$/,
     action: function () {
         var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3(context) {
             return _regenerator2.default.wrap(function _callee3$(_context3) {
@@ -1027,7 +1027,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528174812386
+      // 1528273972957
       var cssReload = require("!../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);

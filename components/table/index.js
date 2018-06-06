@@ -7,6 +7,7 @@ const demos = r.keys().map(r);
 
 export default class extends Article {
     static sidebar = sidebar;
+    static data = data;
     defaults() {
         return {...super.defaults(), ...data, demos};
     }

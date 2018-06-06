@@ -4620,6 +4620,7 @@ body {
   margin: 0;
   color: #333;
   height: 100%;
+  background: #efefef;
 }
 a {
   color: #2d8cf0;
@@ -4945,7 +4946,7 @@ blockquote:before {
 .document-page .content-wrapper.fixed {
   margin-bottom: 0;
 }
-.document-page .content-wrapper.fixed aside {
+.document-page .content-wrapper.fixed .aside-wrapper {
   position: fixed;
   top: 80px;
   background: #fff;
@@ -4953,9 +4954,7 @@ blockquote:before {
   overflow: auto;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-}
-.document-page .content-wrapper.fixed article {
-  margin-left: 300px;
+  width: 300px;
 }
 .document-page .content-wrapper {
   width: 100%;
@@ -5308,22 +5307,22 @@ blockquote:before {
   line-height: calc(1.857142857142857rem - 2px);
   padding: 0 0.714285714285714rem;
 }
-.example.index-13 .k-btn {
+.example.index-14 .k-btn {
   margin-right: 20px;
 }
-.example.index-45 .k-btns {
+.example.index-38 .k-btns {
   margin-right: 20px;
 }
-.example.index-28 .k-btn {
+.example.index-44 .k-btn {
   margin-right: 20px;
 }
-.example.index-58 .k-btn {
+.example.index-59 .k-btn {
   margin-right: 20px;
 }
-.example.index-93 .k-btn {
+.example.index-94 .k-btn {
   margin-right: 20px;
 }
-.example.index-98 .k-btn {
+.example.index-109 .k-btn {
   margin-right: 20px;
 }
 .k-checkbox {
@@ -5396,13 +5395,13 @@ blockquote:before {
 .k-checkbox.k-disabled .k-wrapper:before {
   border-color: #999;
 }
-.example.index-5 .k-checkbox {
+.example.index-6 .k-checkbox {
   margin-right: 20px;
 }
 .example.index-46 .k-checkbox {
   margin-right: 20px;
 }
-.example.index-50 .k-checkbox {
+.example.index-49 .k-checkbox {
   margin-right: 20px;
 }
 .k-tooltip {
@@ -5830,10 +5829,10 @@ blockquote:before {
 .example.index-7 .k-datepicker {
   margin-right: 20px;
 }
-.example.index-102 .k-datepicker {
+.example.index-101 .k-datepicker {
   margin-right: 20px;
 }
-.example.index-63 .k-datepicker {
+.example.index-60 .k-datepicker {
   margin-right: 10px;
 }
 .k-dialog-wrapper {
@@ -6036,7 +6035,7 @@ blockquote:before {
 .k-dropdown-menu .ion-ios-arrow-right:before {
   font-size: inherit;
 }
-.example.index-70 .k-btn {
+.example.index-63 .k-btn {
   margin-right: 20px;
 }
 .example.index-19 .k-btn {
@@ -6054,7 +6053,7 @@ blockquote:before {
 .k-editable.k-invalid .k-input .k-inner {
   border: 1px solid #db2828;
 }
-.example.index-20 .ion-ios-location {
+.example.index-21 .ion-ios-location {
   margin-right: 10px;
 }
 .k-radio {
@@ -6453,18 +6452,18 @@ blockquote:before {
       -ms-transform: none;
           transform: none;
 }
-.example.index-21 .k-form-item > .k-label {
+.example.index-22 .k-form-item > .k-label {
   width: 150px;
 }
-.example.index-21 .k-slider,
-.example.index-21 .k-select {
+.example.index-22 .k-slider,
+.example.index-22 .k-select {
   width: 300px;
 }
-.example.index-21 .k-radio,
-.example.index-21 .k-checkbox {
+.example.index-22 .k-radio,
+.example.index-22 .k-checkbox {
   margin-right: 10px;
 }
-.example.index-21 .k-slider {
+.example.index-22 .k-slider {
   margin-top: 15px;
 }
 .example.index-42 .k-form-item .k-form-item {
@@ -6498,16 +6497,16 @@ blockquote:before {
 .example.index-47 .k-row {
   margin-bottom: 20px;
 }
-.example.index-25 .k-input {
+.example.index-26 .k-input {
   margin: 5px;
 }
 .example.index-51 .k-input {
   margin: 5px;
 }
-.example.index-89 .k-input {
+.example.index-92 .k-input {
   margin: 5px;
 }
-.example.index-53 .k-input {
+.example.index-66 .k-input {
   margin: 5px;
 }
 .k-progress {
@@ -6712,57 +6711,57 @@ blockquote:before {
 .k-pagination.k-mini .k-btns .k-btn {
   margin-right: 0.357142857142857rem;
 }
-.example.index-23 .k-pagination {
+.example.index-25 .k-pagination {
   margin-bottom: 20px;
 }
-.example.index-61 .k-pagination {
+.example.index-64 .k-pagination {
   margin-bottom: 20px;
 }
-.example.index-44 .k-pagination {
+.example.index-45 .k-pagination {
   margin-bottom: 20px;
 }
-.example.index-22 .k-progress {
+.example.index-23 .k-progress {
   margin: 10px 0;
 }
-.example.index-96 .k-progress {
+.example.index-95 .k-progress {
   display: inline-block;
   vertical-align: middle;
   margin-right: 20px;
 }
-.example.index-54 .k-progress {
+.example.index-58 .k-progress {
   margin: 10px 0;
 }
-.example.index-37 .k-progress {
+.example.index-43 .k-progress {
   margin: 10px 0;
 }
-.example.index-18 .k-radio {
+.example.index-20 .k-radio {
   margin-right: 20px;
 }
-.example.index-34 .k-radio {
+.example.index-35 .k-radio {
   margin-right: 20px;
 }
-.example.index-69 .k-radio {
+.example.index-61 .k-radio {
   margin-right: 20px;
 }
-.example.index-113 .k-select {
+.example.index-116 .k-select {
   margin-right: 10px;
 }
-.example.index-16 .k-slider {
+.example.index-17 .k-slider {
   margin-bottom: 20px;
 }
-.example.index-71 .k-slider {
+.example.index-77 .k-slider {
   margin-bottom: 20px;
 }
-.example.index-29 .k-slider {
+.example.index-31 .k-slider {
   margin-bottom: 20px;
 }
-.example.index-14 .k-spinner {
+.example.index-15 .k-spinner {
   margin-right: 20px;
 }
-.example.index-67 .k-spinner {
+.example.index-69 .k-spinner {
   margin-right: 20px;
 }
-.example.index-27 .k-spinner {
+.example.index-28 .k-spinner {
   margin-right: 20px;
 }
 .k-steps {
@@ -6860,10 +6859,10 @@ blockquote:before {
 .k-steps .k-error .k-main {
   color: #db2828;
 }
-.example.index-12 .k-btn {
+.example.index-0 .k-btn {
   margin-top: 20px;
 }
-.example.index-10 .k-switch {
+.example.index-11 .k-switch {
   margin-right: 20px;
 }
 .example.index-41 .k-switch {
@@ -6872,94 +6871,103 @@ blockquote:before {
 .example.index-87 .k-switch {
   margin-right: 20px;
 }
-.example.index-65 .k-switch {
+.example.index-73 .k-switch {
   margin-right: 20px;
 }
-.example.index-9 .k-table-wrapper {
+.example.index-10 .k-table-wrapper {
   margin-bottom: 20px;
 }
-.example.index-64 .k-table-wrapper {
+.example.index-72 .k-table-wrapper {
   margin-bottom: 20px;
 }
-.example.index-72 .no-data-template {
+.example.index-88 .no-data-template {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 20px;
 }
-.example.index-72 .no-data-template .k-table-wrapper {
+.example.index-88 .no-data-template .k-table-wrapper {
   margin-left: 20px;
 }
-.example.index-115 .k-disabled {
+.example.index-117 .k-disabled {
   background-color: #d9d9d9;
 }
-.example.index-117 .wrapper {
+.example.index-121 .wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-.example.index-117 .k-table-wrapper {
+.example.index-121 .k-table-wrapper {
   margin-left: 20px;
 }
-.example.index-124 .no-data-template {
+.example.index-128 .no-data-template {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-.example.index-124 .no-data-template .k-table-wrapper {
+.example.index-128 .no-data-template .k-table-wrapper {
   margin-left: 10px;
 }
-.example.index-120 .no-data-template {
+.example.index-123 .no-data-template {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-.example.index-120 .no-data-template .k-table-wrapper {
+.example.index-123 .no-data-template .k-table-wrapper {
   margin-left: 10px;
 }
-.example.index-88 .k-table-wrapper {
+.example.index-91 .k-table-wrapper {
   margin-bottom: 20px;
 }
-.example.index-88 .k-table-wrapper .k-checked {
+.example.index-91 .k-table-wrapper .k-checked {
   background-color: #f4f8fb;
 }
-.example.index-105 .even {
+.example.index-108 .even {
   background: #efefef;
 }
-.example.index-110 .no-data-template {
+.example.index-114 .no-data-template {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-.example.index-110 .no-data-template .k-table-wrapper {
+.example.index-114 .no-data-template .k-table-wrapper {
   margin-left: 10px;
 }
-.example.index-110 .icon {
+.example.index-114 .icon {
   vertical-align: middle;
   margin-right: 10px;
   cursor: pointer;
 }
-.example.index-36 .k-table-wrapper {
+.example.index-37 .k-table-wrapper {
   margin-bottom: 20px;
 }
-.example.index-121 .no-data-template {
+.example.index-125 .no-data-template {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-.example.index-121 .no-data-template .k-table-wrapper {
+.example.index-125 .no-data-template .k-table-wrapper {
   margin-left: 10px;
 }
-.example.index-8 .content {
+.example.index-54 .k-table-wrapper {
+  margin-bottom: 20px;
+}
+.example.index-54 .k-table-wrapper .title {
+  margin-right: 8px;
+}
+.example.index-54 .k-table-wrapper .ion-ios-help-outline {
+  line-height: 14px;
+}
+.example.index-9 .content {
   margin: 20px;
 }
-.example.index-33 .content {
+.example.index-34 .content {
   margin: 20px;
 }
-.example.index-62 .content {
+.example.index-67 .content {
   margin: 20px;
 }
-.example.index-84 .k-tabs {
+.example.index-83 .k-tabs {
   margin-bottom: 10px;
 }
 .k-transfer .k-panel,
@@ -6975,11 +6983,15 @@ blockquote:before {
   line-height: 2.142857142857143rem;
   font-size: 1rem;
 }
+.k-transfer .k-title .k-op {
+  float: right;
+}
 .k-transfer .k-list {
   height: 21.428571428571427rem;
   border: 1px solid #cad0dd;
   border-radius: 0.142857142857143rem;
   overflow: auto;
+  position: relative;
 }
 .k-transfer .k-item {
   color: #595959;
@@ -7007,7 +7019,11 @@ blockquote:before {
   display: block;
   margin: 0.714285714285714rem;
 }
-.example.index-30 .k-item p {
+.example.index-62 .k-item p {
+  margin: 0;
+  font-size: 12px;
+}
+.example.index-32 .k-item p {
   margin: 0;
   font-size: 12px;
 }
@@ -7036,11 +7052,15 @@ blockquote:before {
   left: 0;
   right: auto !important;
 }
+.blog-page .content-wrapper.fixed {
+  margin-bottom: 15px;
+}
 .blog-page .content-wrapper.fixed .aside-wrapper {
   margin-right: -999px;
   padding-right: 999px;
   background: none;
   width: auto;
+  height: calc(100% - 125px);
 }
 .k-app {
   height: 100%;

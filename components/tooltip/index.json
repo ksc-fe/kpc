@@ -7,5 +7,5 @@
     },
     "catalogs": [],
     "contents": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1><div class=\"k-table-wrapper k-border\">\n                    <table class=\"k-table\">\n                        <thead><tr>\n<th>属性</th>\n<th>说明</th>\n<th>类型</th>\n<th>默认值</th>\n</tr>\n</thead>\n                        <tbody><tr>\n<td>trigger</td>\n<td>触发方式，点击触发<code>click</code>, 悬浮触发<code>hover</code></td>\n<td><code>&quot;hover&quot;</code> &#124; <code>&quot;click&quot;</code></td>\n<td><code>&quot;hover&quot;</code></td>\n</tr>\n<tr>\n<td>canHover</td>\n<td>对于悬浮触发<code>hover</code>的方式，提示内容弹层是否在鼠标悬浮时仍然展示，默认鼠标离开触发元素弹层就会关闭</td>\n<td><code>Boolean</code></td>\n<td><code>false</code></td>\n</tr>\n<tr>\n<td>showArrow</td>\n<td>弹层是否展示箭头</td>\n<td><code>Boolean</code></td>\n<td><code>true</code></td>\n</tr>\n<tr>\n<td>position</td>\n<td>弹层的位置</td>\n<td><code>&quot;left&quot;</code> &#124; <code>&quot;bottom&quot;</code> &#124; <code>&quot;right&quot;</code> &#124; <code>&quot;top&quot;</code> &#124; <code>Object</code></td>\n<td><code>{my: &#39;center bottom-10&#39;, at: &#39;center top&#39;}</code></td>\n</tr>\n<tr>\n<td>transition</td>\n<td>弹层动画，默认只提供<code>fade</code>，你也可以传入任意自定义动画类型</td>\n<td><code>String</code></td>\n<td><code>&quot;fade&quot;</code></td>\n</tr>\n</tbody>\n                    </table>\n                </div>",
-    "index": 128
+    "index": 131
 }

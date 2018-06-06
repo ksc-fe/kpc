@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>表单需要<code>Form</code>嵌套<code>FormItem</code>进行使用，<code>FormItem</code>中可以包含任意组件或原生元素。同时我们可以指定<code>FormItem</code>的表单验证规则：</p>\n<ol>\n<li>给<code>FormItem</code>添加<code>model</code>属性，指定需要验证的字段名。如果不指定，则不会进行任何验证</li>\n<li>给<code>FormItem</code>添加<code>rules</code>属性，指定需要验证的规则。如果不指定，则不会进行任何验证。内置的验证规则如下：<ol>\n<li><code>required {Boolean}</code>：必须填写</li>\n<li><code>digits {Boolean}</code>： 请输入数字</li>\n<li><code>email {Boolean}</code>: 请输入正确的邮箱地址</li>\n<li><code>url {Boolean}</code>: 请输入正确的网址</li>\n<li><code>date {Boolean}</code>：请输入正确的日期</li>\n<li><code>dateISO {Boolean}</code>：请输入正确的日期（YYYY-MM-DD）</li>\n<li><code>number {Boolean}</code>：请输入正确的数</li>\n<li><code>maxLength {Number}</code>：如果检验的值是数组：最多选择n项；如果检验的值是字符串：最多输入n个字符</li>\n<li><code>minLength {Number}</code>：同上（检验最少长度）</li>\n<li><code>rangeLength {Array&lt;Number&gt;}</code>：同上，检验长度的范围</li>\n<li><code>max {Number}</code>：请输入不大于n的数</li>\n<li><code>min {Number}</code>：请输入不小于n的数</li>\n<li><code>range {Array&lt;Number&gt;}</code>：请输入min到max之间的数</li>\n<li><code>step {Number}</code>：请输入步长为n的数</li>\n<li><code>equalTo {String}</code>：两次输入不一致</li>\n</ol>\n</li>\n<li>给<code>FormItem</code>添加<code>messages</code>属性，指定验证失败时展示的错误内容。默认内容如上所示</li>\n<li>给<code>FormItem</code>添加<code>classNames</code>属性，指定验证失败时错误元素需要额外添加的className，默认不添加</li>\n</ol>\n",
-    "index": 21,
+    "index": 22,
     "highlighted": [
         {
             "language": "vdt",

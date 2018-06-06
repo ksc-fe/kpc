@@ -9,7 +9,7 @@
     
     
     <div id="page"><div class="k-app">
-    <div class="main-wrapper document-page"><div class="header-wrapper"><header><a class="logo" href="/">KPC</a><div class="right"><nav><a class="active" href="/kpc/docs/getting-started/">教程</a><div class="border"></div></nav><span class="label">切换主题：</span><div class="k-select k-active" style="width:100px;" tabindex="0"><div class="k-wrapper" tabindex="-1" _hasSaved><input type="hidden" value="kpc" /><span class="k-value c-ellipsis">default</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></header></div><div class="content-wrapper"><aside><div class="aside-wrapper"><div class="catalog-section"><ul><li>
+    <div class="main-wrapper document-page"><div class="header-wrapper"><header><a class="logo" href="/">KPC</a><div class="right"><nav><a class="active" href="/kpc/docs/getting-started/">教程</a><a class="" href="/kpc/docs/blogs/design/">Blog</a><div class="border"></div></nav><span class="label">切换主题：</span><div class="k-select k-active" style="width:100px;" tabindex="0"><div class="k-wrapper" tabindex="-1" _hasSaved><input type="hidden" value="kpc" /><span class="k-value c-ellipsis">default</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></header></div><div class="content-wrapper"><aside><div class="aside-wrapper"><div class="catalog-section"><ul><li>
                 <!---->
                 <a href="/kpc/docs/getting-started/">
                     <!---->快速开始<!---->
@@ -119,18 +119,18 @@
                     <!---->Tabs<span>选项卡</span>
                 </a></li><li>
                 <!---->
-                <a href="/kpc/components/transfer/">
-                    <!---->Transfer<span>穿梭框</span>
-                </a></li><li>
-                <!---->
                 <a href="/kpc/components/editable/">
                     <!---->Editable<span>可编辑文本</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/transfer/">
+                    <!---->Transfer<span>穿梭框</span>
                 </a></li></ul></div><div class="aside-border transition"></div></div></aside><article><div class="article-head"><div class="title">下拉菜单</div><div class="edit-link">
                     如果你发现文档有问题，请帮忙在
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/components/dropdown/index.md">github</a>
                     上修正该文档
                 </div></div><div class="contents"><div><h1>示例</h1>
-        <div class="example index-15"><div class="example-opera"><div><button class="k-btn k-primary k-icon-right" _hasSaved tabindex="0" type="button">
+        <div class="example index-16"><div class="example-opera"><div><button class="k-btn k-primary k-icon-right" _hasSaved tabindex="0" type="button">
     <span>
             hover </span><i class="k-icon ion-arrow-down-b"></i>
     </button><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">基础用法</div><div class="desc"><p>一个完整的菜单需要用到<code>Dropdown</code>，<code>DropdownMenu</code>和<code>DropdownItem</code>三个组件。<code>Dropdown</code>会将第一个子元素作为触发器，第二个元素为菜单<code>DropdownMenu</code>。</p>
@@ -158,7 +158,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-70"><div class="example-opera"><div><button class="k-btn k-primary k-icon-right" _hasSaved tabindex="0" type="button">
+</div><div class="code"></div></div></div><div class="example index-63"><div class="example-opera"><div><button class="k-btn k-primary k-icon-right" _hasSaved tabindex="0" type="button">
     <span>
             left </span><i class="k-icon ion-arrow-down-b"></i>
     </button><!--MoveWrapper--><button class="k-btn k-primary k-icon-right" _hasSaved tabindex="0" type="button">
@@ -191,7 +191,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-91"><div class="example-opera"><div><button class="k-btn k-primary k-icon-right" _hasSaved tabindex="0" type="button">
+</div><div class="code"></div></div></div><div class="example index-96"><div class="example-opera"><div><button class="k-btn k-primary k-icon-right" _hasSaved tabindex="0" type="button">
     <span>
             click </span><i class="k-icon ion-arrow-down-b"></i>
     </button><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">嵌套菜单</div><div class="desc"><p><code>Dropdown</code>可以嵌套使用，实现级联菜单。子菜单需要指定展示的位置<code>position</code>。我们还可以通过<code>trigger</code>单独子菜单触发方式。</p>
@@ -203,7 +203,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-100"><div class="example-opera"><div><button class="k-btn" _hasSaved tabindex="0" type="button">
+</div><div class="code"></div></div></div><div class="example index-105"><div class="example-opera"><div><button class="k-btn" _hasSaved tabindex="0" type="button">
     <span>DropdownItem with Tooltip</span>
     </button><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">菜单项添加Tooltip提示</div><div class="desc"><p>使用<code>Tooltip</code>包裹需要提示的菜单项<code>DropdownItem</code>即可添加提示，需要注意的是：在Intact下，当用<code>Tooltip</code>包裹触发器时，需要使用另外的元素将它包裹起来，因为<code>Tooltip</code>实际返回的是两个元素，一个是它的触发器，一个是提示内容层。而<code>Dropdown</code>的触发器只能接受一个元素，所以需要另外再包起来（如本例中<code>item 4</code>)。Vue下不需要，因为Vue不支持返回多元素，本身就会被包裹。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
@@ -212,7 +212,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-112"><div class="example-opera"><div><button class="k-btn" _hasSaved tabindex="0" type="button">
+</div><div class="code"></div></div></div><div class="example index-110"><div class="example-opera"><div><button class="k-btn" _hasSaved tabindex="0" type="button">
     <span>More &gt;</span>
     </button><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">菜单项添加Checkbox</div><div class="desc"><p>在<code>DropdownItem</code>中使用<code>Checkbox</code>，需要注意的是：</p>
 <p>如果给<code>DropdownItem</code>绑定<code>select</code>事件，该事件会触发两次，这是因为，<code>Checkbox</code>会使用<code>label</code>包裹<code>input</code>元素，两次事件，一次来源于<code>label</code>，另一次来源于<code>input</code>，所以当你需要自己在<code>select</code>中处理选中的值时，需要阻止<code>label</code> <code>click</code>事件的默认行为</p>
@@ -228,7 +228,8 @@
                             <!---->index.js<!---->
                         </a>
 </div><div class="code"></div></div></div>
-    </div><div class="api"><blockquote>
+    </div><div class="api">
+        <div><blockquote>
 <p><code>kpc/component/dropdown</code>暴露出来的并非<code>Dropdown</code>组件本身，而是包装该组件的函数（vdt中称作宏函数）所以不要试图继承它。</p>
 </blockquote>
 <h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1><h2 id='header-Dropdown'>Dropdown</h2><div class="k-table-wrapper k-border">
@@ -313,7 +314,8 @@
 </tr>
 </tbody>
                     </table>
-                </div></div></div></article></div></div>
+                </div></div>
+    </div></div></article></div></div>
     </div></div>
     <script src="/kpc/static/client.js" type="text/javascript"></script>
 </body>

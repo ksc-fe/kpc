@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>label</code>属性，可以自定义列表渲染逻辑。此时如果你需要启动列表过滤功能<code>filterable</code>，需要通过<code>filter</code>属性，指定自定义过滤函数。</p>\n",
-    "index": 30,
+    "index": 32,
     "highlighted": [
         {
             "language": "vdt",
