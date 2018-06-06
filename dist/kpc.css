@@ -6150,11 +6150,15 @@ button.k-btn > span {
   line-height: 2.142857142857143rem;
   font-size: 1rem;
 }
+.k-transfer .k-title .k-op {
+  float: right;
+}
 .k-transfer .k-list {
   height: 21.428571428571427rem;
   border: 1px solid #cad0dd;
   border-radius: 0.142857142857143rem;
   overflow: auto;
+  position: relative;
 }
 .k-transfer .k-item {
   color: #595959;

@@ -5683,7 +5683,7 @@ exports.Transfer = _transfer.Transfer;
 
 /* generate start */
 
-var version = exports.version = '0.3.6';
+var version = exports.version = '0.3.7';
 
 /* generate end */
 
@@ -17163,7 +17163,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                     colSpan++;
                     keys[key] = true;
 
-                    if (!__u.isObject(item)) {
+                    if (!__u.isObject(item) || item.type) {
                         item = { title: item };
                     }
 
@@ -17724,6 +17724,8 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         sort = _$parent$get.sort,
         resizable = _$parent$get.resizable;
 
+    var groupText = group ? self._getGroupText() : '';
+
     return h('th', { 'width': function () {
             try {
                 return [width][0];
@@ -17732,7 +17734,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             }
         }.call(this), 'title': function () {
             try {
-                return [title][0];
+                return [(0, _utils.isStringOrNumber)(title) ? title + groupText : undefined][0];
             } catch (e) {
                 _e(e);
             }
@@ -17766,13 +17768,20 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         } catch (e) {
             _e(e);
         }
-    }.call(this) ? h('div', null, function () {
-        try {
-            return [title][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), 'c-ellipsis') : undefined, function () {
+    }.call(this) ? h('div', null, (_blocks["title"] = function (parent) {
+        return function () {
+            try {
+                return [title][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this);
+    }) && (__blocks["title"] = function (parent) {
+        var self = this;
+        return blocks["title"] ? blocks["title"].call(this, function () {
+            return _blocks["title"].call(self, parent);
+        }) : _blocks["title"].call(this, parent);
+    }) && __blocks["title"].call(this), 'c-ellipsis') : undefined, function () {
         try {
             return [group][0];
         } catch (e) {
@@ -17840,15 +17849,22 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                             _e(e);
                         }
                     }.call(this)), '_context': $this });
-            }, this), '_context': $this })], '_context': $this }), h('div', null, ['\n                ', function () {
+            }, this), '_context': $this })], '_context': $this }), h('div', null, [(_blocks["title"] = function (parent) {
+        return function () {
+            try {
+                return [title][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this);
+    }) && (__blocks["title"] = function (parent) {
+        var self = this;
+        return blocks["title"] ? blocks["title"].call(this, function () {
+            return _blocks["title"].call(self, parent);
+        }) : _blocks["title"].call(this, parent);
+    }) && __blocks["title"].call(this), '\n                ', function () {
         try {
-            return [title][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), '\n                ', function () {
-        try {
-            return [self._getGroupText()][0];
+            return [groupText][0];
         } catch (e) {
             _e(e);
         }
@@ -17903,6 +17919,8 @@ var _dropdown = __webpack_require__(40);
 var _checkbox = __webpack_require__(37);
 
 var _radio = __webpack_require__(58);
+
+var _utils = __webpack_require__(7);
 
 module.exports = exports['default'];
 
@@ -18314,6 +18332,7 @@ var Transfer = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
             leftChecked: [],
             rightChecked: [],
             filterable: false,
+            batchable: false,
             filter: function filter(data, keywords) {
                 return data.label.includes(keywords);
             },
@@ -18415,13 +18434,40 @@ var Transfer = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
         }
     };
 
+    Transfer.prototype._selectAll = function _selectAll() {
+        var value = this.get('value');
+        var data = this.get('data');
+        var leftChecked = data.filter(function (item) {
+            return !~value.indexOf(item) && !item.disabled;
+        });
+        var keywords = this.get('leftKeywords');
+        if (this.get('filterable') && keywords) {
+            var filter = this.get('filter');
+            var tem = leftChecked.filter(function (item) {
+                return filter(item, keywords);
+            });
+            leftChecked = tem;
+        }
+        this.set('leftChecked', leftChecked);
+    };
+
+    Transfer.prototype._clearAll = function _clearAll() {
+        this.set({
+            value: [],
+            rightChecked: []
+        });
+    };
+
     Transfer.prototype._destroy = function _destroy() {
         document.removeEventListener('keydown', this._onKeydown);
         document.removeEventListener('keyup', this._onKeyup);
     };
 
     return Transfer;
-}(_intact2.default), _class2.template = _index2.default, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
+}(_intact2.default), _class2.template = _index2.default, _class2.propTypes = {
+    filterable: Boolean,
+    batchable: Boolean
+}, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
     enumerable: true,
     configurable: true,
     writable: true,
@@ -18478,6 +18524,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         leftChecked = _self$get.leftChecked,
         rightChecked = _self$get.rightChecked,
         filterable = _self$get.filterable,
+        batchable = _self$get.batchable,
         filter = _self$get.filter,
         label = _self$get.label,
         placeholder = _self$get.placeholder,
@@ -18490,13 +18537,49 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
 
     var Panel = function Panel(props) {
         var keywords = self.get(props.model + 'Keywords');
-        return h('div', null, [h('div', null, function () {
+        return h('div', null, [h('div', null, ['\n            ', function () {
             try {
                 return [props.title][0];
             } catch (e) {
                 _e(e);
             }
-        }.call(_this), 'k-title'), function () {
+        }.call(_this), ' \n            ', function () {
+            try {
+                return [batchable && props.model == 'left'][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(_this) ? h('a', { 'ev-click': function () {
+                try {
+                    return [self._selectAll][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(_this) }, function () {
+            try {
+                return [(0, _utils._$)('全选')][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(_this), 'k-op') : undefined, function () {
+            try {
+                return [batchable && props.model == 'right'][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(_this) ? h('a', { 'ev-click': function () {
+                try {
+                    return [self._clearAll][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(_this) }, function () {
+            try {
+                return [(0, _utils._$)('清空')][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(_this), 'k-op') : undefined], 'k-title'), function () {
             try {
                 return [filterable][0];
             } catch (e) {
@@ -18740,6 +18823,8 @@ var _checkbox2 = _interopRequireDefault(_checkbox);
 var _input = __webpack_require__(22);
 
 var _input2 = _interopRequireDefault(_input);
+
+var _utils = __webpack_require__(7);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
