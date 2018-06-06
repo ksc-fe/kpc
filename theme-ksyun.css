@@ -4637,8 +4637,12 @@ html,
 body {
   margin: 0;
   color: #333;
+}
+html {
   height: 100%;
-  background: #efefef;
+}
+body {
+  min-height: 100%;
 }
 a {
   color: #2d8cf0;
@@ -4692,7 +4696,7 @@ blockquote:before {
 }
 #page,
 .main-wrapper {
-  height: 100%;
+  min-height: 100vh;
 }
 .main-wrapper {
   padding-top: 95px;
@@ -7321,6 +7325,9 @@ blockquote:before {
   margin: 0;
   font-size: 12px;
 }
+.blog-page {
+  padding-bottom: 15px;
+}
 .blog-page .content-wrapper {
   -webkit-box-shadow: none;
           box-shadow: none;
@@ -7345,9 +7352,6 @@ blockquote:before {
 .blog-page .content-wrapper .aside-wrapper .aside-border {
   left: 0;
   right: auto !important;
-}
-.blog-page .content-wrapper.fixed {
-  margin-bottom: 15px;
 }
 .blog-page .content-wrapper.fixed .aside-wrapper {
   margin-right: -999px;
