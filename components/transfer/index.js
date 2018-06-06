@@ -15,6 +15,7 @@ export default class Transfer extends Intact {
             leftChecked: [],
             rightChecked: [],
             filterable: false,
+            batchable: false,
             filter(data, keywords) {
                 return data.label.includes(keywords);
             },
@@ -109,6 +110,27 @@ export default class Transfer extends Intact {
             e.preventDefault();
             e.target.click();
         }
+    }
+
+    _selectAll() {
+        let value = this.get('value');
+        let data = this.get('data');
+        let leftChecked = data.filter(item => {
+            return !~value.indexOf(item) && !item.disabled;
+        });
+        let keywords = this.get('leftKeywords');
+        if (this.get('filterable') && keywords) {
+            let filter = this.get('filter');
+            let tem = leftChecked.filter(item => filter(item, keywords));
+            leftChecked = tem;
+        }
+        this.set('leftChecked', leftChecked);
+    }
+    _clearAll() {
+        this.set({
+            value: [],
+            rightChecked: [],
+        })
     }
 
     _destroy() {

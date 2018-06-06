@@ -4,7 +4,7 @@ import Input from '../input';
 
 const {
     data, className, style, value, 
-    leftChecked, rightChecked, filterable,
+    leftChecked, rightChecked, filterable, batchable,
     filter, label, placeholder, leftTitle, rightTitle
 } = self.get();
 
@@ -16,7 +16,11 @@ const classNameObj = {
 const Panel = props => {
     const keywords = self.get(`${props.model}Keywords`);
     return <div class="k-panel">
-        <div class="k-title">{{ props.title }}</div>
+        <div class="k-title">
+            {{ props.title }} 
+            <a class="k-op" v-if={{ batchable && props.model == 'left' }} ev-click={{ self._selectAll.bind(self) }}>全选</a>
+            <a class="k-op" v-if={{ batchable && props.model == 'right' }} ev-click={{ self._clearAll.bind(self) }}>清空</a>
+        </div>
         <Input v-if={{ filterable }} placeholder={{ placeholder }}
             v-model={{ `${props.model}Keywords` }}
             clearable
