@@ -287,6 +287,33 @@ stylus构建版与css构建的构建原理相同，只是比它更简单，因�
 
 ## 文档生成
 
+kpc采用`markdown`书写文档和示例，然后再编译成网站。构建的过程大致如下：
+
+<div class="mermaid">
+graph LR
+	A[markdown文件] --> | kdoc-plugin-md分析 | B{判断是否是demo}
+	B --> | 是 | C>.js .vdt .styl .json]
+	B --> | 否 | D>.js .vdt .styl .json]
+	C --> | require | D
+	D --> | webpack | E[client.js]
+</div>
+
+例如：`Button`组件下存在`index.md`和`demos/basic.md`等`markdown`文件。它们会进过`kdoc-plugin-md`
+插件分析：
+
+<div class="mermaid">
+graph TB
+    A[markdown]
+    A --> B[分析yaml]
+    A --> C[分析code]
+    C -- js --> D[index.js]
+    C -- vdt --> E[index.vdt]
+    C -- stylus --> F[index.styl]
+    A --> G[编译mardown为html]
+    B --> H[index.json]
+    G --> H 
+</div>
+
 ## test
 
 ```example
