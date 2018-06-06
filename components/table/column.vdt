@@ -9,7 +9,7 @@ const {
 } = self.get();
 
 const {sort, resizable} = $parent.get();
-const groupText = group ? self._getGroupText() : '';
+const groupText = group && self._getGroupText() || '';
 
 <th width={{ width }} 
     title={{ isStringOrNumber(title) ? title + groupText : undefined }}
