@@ -5355,7 +5355,7 @@ var TableColumn = (_temp = _class = function (_Intact) {
 
     TableColumn.prototype.defaults = function defaults() {
         return {
-            title: '',
+            title: undefined,
             template: function template(data, index) {},
 
             key: '',
@@ -5683,7 +5683,7 @@ exports.Transfer = _transfer.Transfer;
 
 /* generate start */
 
-var version = exports.version = '0.3.7';
+var version = exports.version = '0.3.8';
 
 /* generate end */
 
@@ -17724,7 +17724,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         sort = _$parent$get.sort,
         resizable = _$parent$get.resizable;
 
-    var groupText = group ? self._getGroupText() : '';
+    var groupText = group && self._getGroupText() || '';
 
     return h('th', { 'width': function () {
             try {

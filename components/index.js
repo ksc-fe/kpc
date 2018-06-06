@@ -71,7 +71,7 @@ export {
     Transfer
 };
 
-export const version = '0.3.7';
+export const version = '0.3.8';
 
 /* generate end */
 
