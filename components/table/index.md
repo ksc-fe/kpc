@@ -55,6 +55,13 @@ sidebar: doc
 | --- | --- |
 | no-data | 自定义无数据展示模板 |
 
+## TableColumn
+
+| 名称 | 说明 |
+| --- | --- |
+| title | 自定义复杂表头内容 |
+
+
 # 方法
 
 ## Table

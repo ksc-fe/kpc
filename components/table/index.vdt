@@ -32,7 +32,7 @@ const theadCreator = () => {
                 colSpan++;
                 keys[key] = true;
 
-                if (!__u.isObject(item)) {
+                if (!__u.isObject(item) || item.type) {
                     item = {title: item};
                 }
 

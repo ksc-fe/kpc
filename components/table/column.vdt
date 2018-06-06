@@ -1,6 +1,7 @@
 import {Dropdown, DropdownMenu, DropdownItem} from '../dropdown';
 import {Checkbox} from '../checkbox';
 import {Radio} from '../radio';
+import {isStringOrNumber} from '../utils';
 
 const {
     width, title, key, group, multiple,
@@ -8,9 +9,10 @@ const {
 } = self.get();
 
 const {sort, resizable} = $parent.get();
+const groupText = group ? self._getGroupText() : '';
 
 <th width={{ width }} 
-    title={{ title }}
+    title={{ isStringOrNumber(title) ? title + groupText : undefined }}
     class={{ {'k-sortable': sortable} }}
     ev-click={{ self.onClick }}
 >
@@ -19,7 +21,9 @@ const {sort, resizable} = $parent.get();
         ev-click={{ self._stopPropagation }} 
     ></div>
     <div class={{ {"k-th": true, "k-group-show": _show} }}>
-        <div v-if={{ !group }} class="c-ellipsis">{{ title }}</div>
+        <div v-if={{ !group }} class="c-ellipsis">
+            <b:title>{{ title }}</b:title>
+        </div>
         <div class="k-group" v-if={{ group }}>
             <Dropdown>
                 <i class="k-arrow ion-ios-arrow-down"></i>
@@ -39,8 +43,8 @@ const {sort, resizable} = $parent.get();
                 </DropdownMenu>
             </Dropdown>
             <div class="c-ellipsis">
-                {{ title }}
-                {{ self._getGroupText() }}
+                <b:title>{{ title }}</b:title>
+                {{ groupText }}
             </div>
         </div>
         {{ do {
