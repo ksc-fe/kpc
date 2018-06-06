@@ -21,7 +21,7 @@ const path = require('path');
     loader: 'stylus-loader',
     options: {
         'incluce css': true,
-        // 引入自定义主题文件mytheme.styl
+        // 引入自定义主题文件mytheme/index.styl
         import: path.resolve(__dirname, 'styles/mytheme/index.styl')
     }
 }

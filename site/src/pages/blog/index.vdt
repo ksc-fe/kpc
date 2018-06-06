@@ -8,7 +8,9 @@ const Article = self.get('Article');
                     <li>
                         <a ev-click={{ self.scrollTo.bind(self, '__top') }}>{{ Article.data.setting.title }}</a>
                         <ul class="sub-catalogs">
-                            <li v-for={{ Article.data.catalogs }}>
+                            <li v-for={{ Article.data.catalogs }} 
+                                class={{ {'sub-catalogs': value.level > 2} }}
+                            >
                                 <a ev-click={{ self.scrollTo.bind(self, value.id) }}
                                 >{{ value.text }}</a>
                             </li>

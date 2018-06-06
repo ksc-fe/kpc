@@ -13,7 +13,7 @@ const nav = [
     /* }, */
     {
         title: 'Blog',
-        href: '/docs/blogs/test/',
+        href: '/docs/blogs/design/',
         index: 'blog',
     },
     /* { */
