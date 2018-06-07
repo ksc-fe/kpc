@@ -1,7 +1,11 @@
 import Document from '../document';
 import template from './index.vdt';
 import './index.styl';
-import mermaid from 'mermaid';
+
+let mermaid;
+if (process.browser) {
+    mermaid = require('mermaid');
+}
 
 export default class extends Document {
     @Intact.template()
