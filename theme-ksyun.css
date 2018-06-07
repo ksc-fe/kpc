@@ -5038,6 +5038,7 @@ blockquote:before {
   position: absolute;
   right: 0;
   top: 0;
+  height: 30px;
 }
 .document-page .content-wrapper article {
   -webkit-box-flex: 1;
