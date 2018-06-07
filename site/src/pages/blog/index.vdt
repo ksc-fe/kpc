@@ -3,13 +3,16 @@ const Article = self.get('Article');
 <t:parent navIndex="blog" class="document-page blog-page">
     <b:content>
         <aside>
-            <div class="aside-wrapper">
+            <div class="aside-wrapper" ref="aside">
                 <ul>
                     <li>
                         <a ev-click={{ self.scrollTo.bind(self, '__top') }}>{{ Article.data.setting.title }}</a>
                         <ul class="sub-catalogs">
-                            <li v-for={{ Article.data.catalogs }} 
-                                class={{ {'sub-catalogs': value.level > 2} }}
+                            <li v-for={{ Article.data.catalogs.filter(item => item.level <= 3) }} 
+                                class={{ {
+                                    'sub-catalogs': value.level > 2,
+                                    'active': self.get(`active${value.level}`) === value.id,
+                                } }}
                             >
                                 <a ev-click={{ self.scrollTo.bind(self, value.id) }}
                                 >{{ value.text }}</a>
@@ -17,7 +20,7 @@ const Article = self.get('Article');
                         </ul>
                     </li>
                 </ul>
-                <div class="aside-border transition"></div>
+                <div class="aside-border transition" style={{ self.get('borderStyle') }}></div>
             </div>
         </aside>
         <article>
