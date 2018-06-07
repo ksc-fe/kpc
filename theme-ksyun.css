@@ -4988,7 +4988,7 @@ blockquote:before {
   border-radius: 5px;
   -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.08);
           box-shadow: 0 1px 1px rgba(0,0,0,0.08);
-  min-height: calc(100% - 15px);
+  min-height: calc(100vh - 15px);
 }
 .document-page .content-wrapper aside {
   width: 300px;

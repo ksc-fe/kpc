@@ -1,5 +1,5 @@
 require("source-map-support").install();
-exports.ids = [1];
+exports.ids = [0,1];
 exports.modules = {
 
 /***/ "./components/breadcrumb/index.js":
@@ -110,7 +110,7 @@ exports.BreadcrumbItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275710610
+      // 1528355132577
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -820,7 +820,7 @@ exports.ButtonGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275708696
+      // 1528355131087
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1144,7 +1144,7 @@ exports.Checkbox = Checkbox;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275710317
+      // 1528355132358
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -2536,7 +2536,7 @@ exports.Datepicker = Datepicker;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275710535
+      // 1528355132591
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -3303,7 +3303,7 @@ exports.Dialog = Dialog;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275710522
+      // 1528355132564
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -3836,7 +3836,7 @@ exports.DropdownItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275710335
+      // 1528355132374
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -4820,7 +4820,7 @@ exports.Editable = Editable;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275710359
+      // 1528355132407
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5758,7 +5758,7 @@ exports.FormItem = _formItemWrapper2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275709766
+      // 1528355131940
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -6163,7 +6163,7 @@ exports.Col = _col2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711809
+      // 1528355133697
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -6551,7 +6551,7 @@ exports.Input = Input;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275710399
+      // 1528355132446
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -7423,7 +7423,7 @@ exports.Message = Message;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275709724
+      // 1528355131909
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -8362,7 +8362,7 @@ exports.Pagination = Pagination;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711978
+      // 1528355133849
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -8784,7 +8784,7 @@ exports.Progress = Progress;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711970
+      // 1528355133840
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -9139,7 +9139,7 @@ exports.Radio = Radio;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275710508
+      // 1528355132553
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -9574,7 +9574,7 @@ exports.ScrollSelect = ScrollSelect;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711857
+      // 1528355133758
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -10135,7 +10135,7 @@ exports.OptionGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275710049
+      // 1528355132133
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -11101,7 +11101,7 @@ exports.Slider = Slider;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275710550
+      // 1528355132613
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -11606,7 +11606,7 @@ exports.Spinner = Spinner;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711623
+      // 1528355133516
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -11866,7 +11866,7 @@ exports.Step = _step2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711911
+      // 1528355133789
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -12393,7 +12393,7 @@ exports.Switch = Switch;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275710491
+      // 1528355132534
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -13508,7 +13508,7 @@ exports.TableColumn = _column2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275706859
+      // 1528355129417
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -14260,7 +14260,7 @@ exports.Tab = _tab2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275710786
+      // 1528355132837
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -14912,7 +14912,7 @@ exports.Tooltip = _Wrapper;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275710350
+      // 1528355132393
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -15291,7 +15291,7 @@ exports.Transfer = Transfer;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275710772
+      // 1528355132825
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -15928,7 +15928,6 @@ var map = {
 	"./components/transfer/index.js": "./site/dist/components/transfer/index.js",
 	"./components/transfer/index.json": "./site/dist/components/transfer/index.json",
 	"./docs/blogs/design/demos/demo0/index.js": "./site/dist/docs/blogs/design/demos/demo0/index.js",
-	"./docs/blogs/design/demos/demo1/index.js": "./site/dist/docs/blogs/design/demos/demo1/index.js",
 	"./docs/blogs/design/index.js": "./site/dist/docs/blogs/design/index.js",
 	"./docs/blogs/design/index.json": "./site/dist/docs/blogs/design/index.json",
 	"./docs/changelog/index.js": "./site/dist/docs/changelog/index.js",
@@ -16245,7 +16244,7 @@ module.exports = {"setting":{"title":"指定分隔符","order":1},"catalogs":[],
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275709461
+      // 1528355131638
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -16509,7 +16508,7 @@ module.exports = {"setting":{"title":"按钮类型","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275709453
+      // 1528355131645
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -16863,7 +16862,7 @@ module.exports = {"setting":{"title":"按钮组","order":1},"catalogs":[],"conte
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275709478
+      // 1528355131654
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -17040,7 +17039,7 @@ module.exports = {"setting":{"title":"图标按钮","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275709471
+      // 1528355131662
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -17235,7 +17234,7 @@ module.exports = {"setting":{"title":"加载状态按钮","order":2},"catalogs":
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275709491
+      // 1528355131670
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -17486,7 +17485,7 @@ module.exports = {"setting":{"title":"按钮尺寸","order":4},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275709484
+      // 1528355131683
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -17701,7 +17700,7 @@ module.exports = {"setting":{"title":"指定按钮tagName","order":5},"catalogs"
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275709497
+      // 1528355131677
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -17971,7 +17970,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275709504
+      // 1528355131689
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -18165,7 +18164,7 @@ module.exports = {"setting":{"title":"Checkbox组","order":1},"catalogs":[],"con
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275709511
+      // 1528355131727
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -18356,7 +18355,7 @@ module.exports = {"setting":{"title":"指定选中和非选中的取值","order"
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275709517
+      // 1528355131704
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -18664,7 +18663,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275709524
+      // 1528355131697
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -19000,7 +18999,7 @@ module.exports = {"setting":{"title":"选择时间","order":5},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275709531
+      // 1528355131720
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -19343,7 +19342,7 @@ module.exports = {"setting":{"title":"最大和最小日期","order":2},"catalog
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275709538
+      // 1528355131711
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -21776,7 +21775,7 @@ module.exports = {"setting":{"title":"菜单项添加Checkbox","order":6},"catal
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275709548
+      // 1528355131749
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -21985,7 +21984,7 @@ module.exports = {"setting":{"title":"禁用菜单（项）","order":3},"catalog
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275709562
+      // 1528355131734
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -22166,7 +22165,7 @@ module.exports = {"setting":{"title":"嵌套菜单","order":4},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275709555
+      // 1528355131759
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -22359,7 +22358,7 @@ module.exports = {"setting":{"title":"菜单位置","order":2},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275709568
+      // 1528355131742
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -22715,7 +22714,7 @@ module.exports = {"setting":{"title":"触发方式","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275709575
+      // 1528355131766
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -22986,7 +22985,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275709582
+      // 1528355131773
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -23503,7 +23502,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275709628
+      // 1528355131805
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -23841,7 +23840,7 @@ module.exports = {"setting":{"title":"自定义验证规则","order":1},"catalog
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275709619
+      // 1528355131812
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -24544,7 +24543,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711945
+      // 1528355133825
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -24707,7 +24706,7 @@ module.exports = {"setting":{"title":"间距","order":1},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711956
+      // 1528355133819
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -25127,7 +25126,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711937
+      // 1528355133812
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -25310,7 +25309,7 @@ module.exports = {"setting":{"title":"追加内容","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711931
+      // 1528355133806
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -25594,7 +25593,7 @@ module.exports = {"setting":{"title":"可清除","order":4},"catalogs":[],"conte
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711925
+      // 1528355133800
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -25784,7 +25783,7 @@ module.exports = {"setting":{"title":"尺寸","order":2},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711919
+      // 1528355133795
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -26894,7 +26893,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711893
+      // 1528355133774
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -27099,7 +27098,7 @@ module.exports = {"setting":{"title":"改变翻页按钮数量","order":2},"cata
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711899
+      // 1528355133769
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -27624,7 +27623,7 @@ module.exports = {"setting":{"title":"指定尺寸","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711887
+      // 1528355133763
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -27914,7 +27913,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711881
+      // 1528355133749
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -28097,7 +28096,7 @@ module.exports = {"setting":{"title":"自定义百分比内容","order":4},"cata
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711875
+      // 1528355133743
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -28459,7 +28458,7 @@ module.exports = {"setting":{"title":"尺寸","order":2},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711869
+      // 1528355133738
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -28626,7 +28625,7 @@ module.exports = {"setting":{"title":"状态","order":1},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711863
+      // 1528355133732
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -28890,7 +28889,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711841
+      // 1528355133723
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -29077,7 +29076,7 @@ module.exports = {"setting":{"title":"Radio组","order":1},"catalogs":[],"conten
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711836
+      // 1528355133717
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -29264,7 +29263,7 @@ module.exports = {"setting":{"title":"指定选中的值","order":2},"catalogs":
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711847
+      // 1528355133710
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -30884,7 +30883,7 @@ module.exports = {"setting":{"title":"尺寸","order":7},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711788
+      // 1528355133666
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -31160,7 +31159,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711749
+      // 1528355133672
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -31345,7 +31344,7 @@ module.exports = {"setting":{"title":"禁用组件","order":3},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711738
+      // 1528355133658
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -31719,7 +31718,7 @@ module.exports = {"setting":{"title":"设置步长","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711744
+      // 1528355133619
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -32017,7 +32016,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711682
+      // 1528355133612
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -32192,7 +32191,7 @@ module.exports = {"setting":{"title":"尺寸","order":2},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711688
+      // 1528355133599
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -32359,7 +32358,7 @@ module.exports = {"setting":{"title":"最大/小值及步长","order":1},"catalo
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711677
+      // 1528355133605
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -32672,7 +32671,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711648
+      // 1528355133548
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -33101,7 +33100,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711615
+      // 1528355133490
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -33272,7 +33271,7 @@ module.exports = {"setting":{"title":"定义文案","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711609
+      // 1528355133389
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -33459,7 +33458,7 @@ module.exports = {"setting":{"title":"开关尺寸","order":3},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711603
+      // 1528355133400
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -33797,7 +33796,7 @@ module.exports = {"setting":{"title":"长/宽","order":2},"catalogs":[],"content
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711503
+      // 1528355133327
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -34069,7 +34068,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711357
+      // 1528355133209
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -34253,7 +34252,7 @@ module.exports = {"setting":{"title":"选择框的类型","order":2},"catalogs":
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711296
+      // 1528355133162
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -34465,7 +34464,7 @@ module.exports = {"setting":{"title":"行选中","order":3},"catalogs":[],"conte
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711273
+      // 1528355133168
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -34720,7 +34719,7 @@ module.exports = {"setting":{"title":"禁用行可选","order":7},"catalogs":[],
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711267
+      // 1528355133173
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -34910,7 +34909,7 @@ module.exports = {"setting":{"title":"表头固定","order":8},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711261
+      // 1528355133203
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -35130,7 +35129,7 @@ module.exports = {"setting":{"title":"分组","order":11},"catalogs":[],"content
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711255
+      // 1528355133179
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -35365,7 +35364,7 @@ module.exports = {"setting":{"title":"自定义无内容时的展示信息","ord
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711249
+      // 1528355133197
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -35775,7 +35774,7 @@ module.exports = {"setting":{"title":"整行选中","order":4},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275711290
+      // 1528355133185
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -35977,7 +35976,7 @@ module.exports = {"setting":{"title":"行样式","order":5},"catalogs":[],"conte
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275710937
+      // 1528355132939
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -36184,7 +36183,7 @@ module.exports = {"setting":{"title":"行展开","order":6},"catalogs":[],"conte
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275710928
+      // 1528355132933
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -36433,7 +36432,7 @@ module.exports = {"setting":{"title":"定义表格结构","order":1},"catalogs":
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275710899
+      // 1528355132876
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -36667,7 +36666,7 @@ module.exports = {"setting":{"title":"排序","order":10},"catalogs":[],"content
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275710892
+      // 1528355132859
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -36899,7 +36898,7 @@ module.exports = {"setting":{"title":"自定义title内容","order":1.1},"catalo
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275710125
+      // 1528355132237
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -37386,7 +37385,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275710064
+      // 1528355132094
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -37569,7 +37568,7 @@ module.exports = {"setting":{"title":"data传值形式","order":1},"catalogs":[]
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275709870
+      // 1528355132020
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -37761,7 +37760,7 @@ module.exports = {"setting":{"title":"禁用某一项","order":2},"catalogs":[],
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275709842
+      // 1528355132006
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -37944,7 +37943,7 @@ module.exports = {"setting":{"title":"组件尺寸","order":3},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275709833
+      // 1528355132012
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -39297,7 +39296,7 @@ module.exports = {"setting":{"title":"支持全选/清空","order":2},"catalogs"
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275709819
+      // 1528355131998
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -39524,7 +39523,7 @@ module.exports = {"setting":{"title":"自定义渲染列表","order":1},"catalog
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275709812
+      // 1528355131986
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -39710,8 +39709,7 @@ module.exports = {"undefined":[{"title":"快速开始","path":"docs/getting-star
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./demos/demo0/index.js": "./site/dist/docs/blogs/design/demos/demo0/index.js",
-	"./demos/demo1/index.js": "./site/dist/docs/blogs/design/demos/demo1/index.js"
+	"./demos/demo0/index.js": "./site/dist/docs/blogs/design/demos/demo0/index.js"
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -39747,26 +39745,6 @@ var _basic2 = _interopRequireDefault(_basic);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = _basic2.default;
-var example = exports.example = true;
-
-/***/ }),
-
-/***/ "./site/dist/docs/blogs/design/demos/demo1/index.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.example = undefined;
-
-var _test = __webpack_require__("./site/src/components/test/index.js");
-
-var _test2 = _interopRequireDefault(_test);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _test2.default;
 var example = exports.example = true;
 
 /***/ }),
@@ -39834,7 +39812,7 @@ module.exports = exports['default'];
 /***/ "./site/dist/docs/blogs/design/index.json":
 /***/ (function(module, exports) {
 
-module.exports = {"setting":{"title":"KPC设计思路","order":0},"catalogs":[{"text":"目录结构","level":2,"id":"header-%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84","content":"<h2 id='header-%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84'>目录结构</h2>"},{"text":"样式","level":2,"id":"header-%E6%A0%B7%E5%BC%8F","content":"<h2 id='header-%E6%A0%B7%E5%BC%8F'>样式</h2>"},{"text":"主题定制","level":3,"id":"header-%E4%B8%BB%E9%A2%98%E5%AE%9A%E5%88%B6","content":"<h3 id='header-%E4%B8%BB%E9%A2%98%E5%AE%9A%E5%88%B6'>主题定制</h3>"},{"text":"构建打包","level":2,"id":"header-%E6%9E%84%E5%BB%BA%E6%89%93%E5%8C%85","content":"<h2 id='header-%E6%9E%84%E5%BB%BA%E6%89%93%E5%8C%85'>构建打包</h2>"},{"text":"单文件构建版","level":3,"id":"header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88","content":"<h3 id='header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88'>单文件构建版</h3>"},{"text":"多文件css构建版","level":3,"id":"header-%E5%A4%9A%E6%96%87%E4%BB%B6css%E6%9E%84%E5%BB%BA%E7%89%88","content":"<h3 id='header-%E5%A4%9A%E6%96%87%E4%BB%B6css%E6%9E%84%E5%BB%BA%E7%89%88'>多文件css构建版</h3>"},{"text":"多文件stylus构建版","level":3,"id":"header-%E5%A4%9A%E6%96%87%E4%BB%B6stylus%E6%9E%84%E5%BB%BA%E7%89%88","content":"<h3 id='header-%E5%A4%9A%E6%96%87%E4%BB%B6stylus%E6%9E%84%E5%BB%BA%E7%89%88'>多文件stylus构建版</h3>"},{"text":"文档生成","level":2,"id":"header-%E6%96%87%E6%A1%A3%E7%94%9F%E6%88%90","content":"<h2 id='header-%E6%96%87%E6%A1%A3%E7%94%9F%E6%88%90'>文档生成</h2>"},{"text":"test","level":2,"id":"header-test","content":"<h2 id='header-test'>test</h2>"},{"text":"hello","level":2,"id":"header-hello","content":"<h2 id='header-hello'>hello</h2>"}],"contents":"<h2 id='header-%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84'>目录结构</h2><p>整体上看，目录结构涉及组件源码，调试相关，文档展示，单元测试，构建打包等方面，具体如下：</p>\n<pre><code class=\"hljs js\">.\n├── components <span class=\"hljs-comment\">// 组件源码</span>\n├── styles <span class=\"hljs-comment\">// 全局样式</span>\n├── i18n <span class=\"hljs-comment\">// 国际化</span>\n├\n├── pages <span class=\"hljs-comment\">// 调试页面</span>\n├── app <span class=\"hljs-comment\">// 调试服务启动文件</span>\n├── views <span class=\"hljs-comment\">// 调试服务vdt模板文件</span>\n├\n├── docs <span class=\"hljs-comment\">// markdown文档</span>\n├── site <span class=\"hljs-comment\">// 文档网站代码</span>\n├\n├── test <span class=\"hljs-comment\">// 测试代码</span>\n├\n├── dist <span class=\"hljs-comment\">// 单文件构建目录</span>\n├── <span class=\"hljs-meta\">@css</span> <span class=\"hljs-comment\">// css多文件构建目录</span>\n└── <span class=\"hljs-meta\">@stylus</span> <span class=\"hljs-comment\">// stylus多文件构建目录</span>\n</code></pre>\n<p>与组件相关的文件，全部放到一起，包括：组件逻辑，模板，样式，单元测试，文档，示例</p>\n<pre><code class=\"hljs js\">components/checkbox\n├── demos <span class=\"hljs-comment\">// 文档示例</span>\n│   ├── basic<span class=\"hljs-selector-class\">.md</span>\n│   ├── group<span class=\"hljs-selector-class\">.md</span>\n│   └── value<span class=\"hljs-selector-class\">.md</span>\n├── index<span class=\"hljs-selector-class\">.js</span> <span class=\"hljs-comment\">// 组件逻辑</span>\n├── index<span class=\"hljs-selector-class\">.md</span> <span class=\"hljs-comment\">// 组件文档</span>\n├── index<span class=\"hljs-selector-class\">.spec</span><span class=\"hljs-selector-class\">.js</span> <span class=\"hljs-comment\">// 单元测试</span>\n├── index<span class=\"hljs-selector-class\">.styl</span> <span class=\"hljs-comment\">// 组件样式</span>\n├── index<span class=\"hljs-selector-class\">.vdt</span> <span class=\"hljs-comment\">// 组件模板</span>\n└── variables<span class=\"hljs-selector-class\">.styl</span> <span class=\"hljs-comment\">// 样式变量申明</span>\n</code></pre>\n<h2 id='header-%E6%A0%B7%E5%BC%8F'>样式</h2><p>对于样式要考虑的一个目标是：主题定制。所以我们不能将样式写死，在kpc中一切可能改变的样式值都为变量。借助<code>stylus</code>等可编译样式语言，这很容易办到。</p>\n<ol>\n<li>样式变量申明</li>\n</ol>\n<p>变量申明分为两部分：全局申明和组件申明。全局申明用于定义全局的样式，例如：主题色，边框色，字体带下，尺寸等；组件申明会使用全局申明中定义的变量，加上自身特有变量来申明，这样既可以做到一改全改，又可以针对组件进行特殊化定制。</p>\n<p>全局申明文件：<code>styles/themes/defaults.styl</code></p>\n<pre><code class=\"hljs stylus\"><span class=\"hljs-comment\"><span class=\"markdown\">/<span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span>\n<span class=\"hljs-code\">             Theme</span>\n<span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span>*/</span></span>\nuse(<span class=\"hljs-string\">'../functions.js'</span>)\n$theme-dir := __dirname()\n$fonts-dir := <span class=\"hljs-string\">'./fonts'</span>;\n\n<span class=\"hljs-comment\"><span class=\"markdown\">/<span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span>\n<span class=\"hljs-code\">             Colors</span>\n<span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span>*/</span></span>\n\n$red := #db2828\n$blue := #<span class=\"hljs-number\">0</span>a5eee\n$light-black := #<span class=\"hljs-number\">595959</span>\n\n\n<span class=\"hljs-comment\"><span class=\"markdown\">/<span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span>\n<span class=\"hljs-code\">            Page</span>\n<span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span>*/</span></span>\n\n$font-family := <span class=\"hljs-string\">'Microsoft YaHei'</span>\n$font-size := <span class=\"hljs-number\">14</span>px \n$text-color := $light-black \n$primary-color := $blue\n$disabled-bg-color := #f7f7f7\n$disabled-border-color := #d9d9d9\n\n<span class=\"hljs-comment\">// size</span>\n$<span class=\"hljs-keyword\">default</span>-font-size := <span class=\"hljs-number\">1</span>rem\n$small-height := <span class=\"hljs-number\">30</span>\n$small-font-size := unit(<span class=\"hljs-number\">12</span> / <span class=\"hljs-number\">14</span>, rem)\n\n<span class=\"hljs-comment\">// box-shadow</span>\n$box-shadow := <span class=\"hljs-number\">0</span> <span class=\"hljs-number\">2</span>px <span class=\"hljs-number\">8</span>px <span class=\"hljs-number\">0</span> rgba(<span class=\"hljs-number\">191</span>, <span class=\"hljs-number\">191</span>, <span class=\"hljs-number\">191</span>, <span class=\"hljs-number\">.5</span>)\n$border-radius := unit(<span class=\"hljs-number\">2</span> / <span class=\"hljs-number\">14</span>, rem) \n\n...\n\n</code></pre>\n<p>组件申明文件：<code>components/checkbox/variables.styl</code></p>\n<pre><code class=\"hljs stylus\">@require(<span class=\"hljs-string\">'../../styles/themes/default.styl'</span>)\n\n$checkbox-width := <span class=\"hljs-keyword\">unit</span>(<span class=\"hljs-number\">14</span> / <span class=\"hljs-number\">14</span>, rem) \n$checkbox-border-<span class=\"hljs-keyword\">color</span> := $dark-border-<span class=\"hljs-keyword\">color</span>\n$checkbox-border-radius := <span class=\"hljs-number\">2</span>px\n$checkbox-bg-<span class=\"hljs-keyword\">color</span> := #fff\n\n<span class=\"hljs-comment\">// text</span>\n$checkbox-<span class=\"hljs-keyword\">text</span>-margin-left := <span class=\"hljs-keyword\">unit</span>(<span class=\"hljs-number\">8</span> / <span class=\"hljs-number\">14</span>, em)\n\n<span class=\"hljs-comment\">// checked</span>\n$checkbox-checked-border-<span class=\"hljs-keyword\">color</span> := $primary-<span class=\"hljs-keyword\">color</span> \n$checkbox-checked-bg-<span class=\"hljs-keyword\">color</span> := $checkbox-checked-border-<span class=\"hljs-keyword\">color</span>\n\n...\n</code></pre>\n<ol start=\"2\">\n<li>组件样式定义</li>\n</ol>\n<p>每一个组件都有个样式文件，该样式文件中样式值都使用前面定义的变量进行定义（除非该定义本不该改变）。</p>\n<p>样式文件：<code>components/checkbox/index.styl</code></p>\n<pre><code class=\"hljs stylus\">@require(<span class=\"hljs-string\">'./variables.styl'</span>);\n\n<span class=\"hljs-selector-class\">.k-checkbox</span>\n    <span class=\"hljs-attribute\">display</span> inline-block\n    <span class=\"hljs-attribute\">cursor</span> pointer\n    <span class=\"hljs-selector-class\">.k-wrapper</span>\n        <span class=\"hljs-attribute\">display</span> inline-block\n        <span class=\"hljs-attribute\">width</span> <span class=\"hljs-variable\">$checkbox-width</span>\n        <span class=\"hljs-attribute\">height</span> <span class=\"hljs-variable\">$checkbox-width</span> \n        <span class=\"hljs-attribute\">vertical-align</span> middle\n        <span class=\"hljs-attribute\">border</span> 1px solid <span class=\"hljs-variable\">$checkbox-border-color</span> \n        <span class=\"hljs-attribute\">border-radius</span> <span class=\"hljs-variable\">$checkbox-border-radius</span> \n        <span class=\"hljs-attribute\">position</span> relative\n        <span class=\"hljs-attribute\">transition</span> all <span class=\"hljs-variable\">$transition</span>\n        <span class=\"hljs-attribute\">background</span> <span class=\"hljs-variable\">$checkbox-bg-color</span>\n\n...\n</code></pre>\n<h3 id='header-%E4%B8%BB%E9%A2%98%E5%AE%9A%E5%88%B6'>主题定制</h3><p>在上面变量申明中，我们使用<code>:=</code>进行赋值，这是<code>stylus</code>的特有语法，意为：如果该变量已被定义则忽略本次定义。借助该特性，我们可以在编译时提前引入一个主题文件来改变默认变量定义。借助<code>stylus-loader</code>我们可以为每一个<code>stylus</code>统一引入一个文件，该文件中定义了所有需要重新定义的变量。</p>\n<pre><code class=\"hljs js\">{\n    <span class=\"hljs-attribute\">loader</span>: <span class=\"hljs-string\">'stylus-loader'</span>,\n    options: {\n        // 引入自定义主题文件mytheme/index.styl\n        import: path.<span class=\"hljs-built_in\">resolve</span>(__dirname, <span class=\"hljs-string\">'styles/mytheme/index.styl'</span>)\n    }\n}\n</code></pre>\n<p>实际主题定制中，仅仅通过改变变量并不能完成100%的定制需求，当我们需要为组件添加新样式时，仅有的变量便无法满足，因为新增的样式kpc并没有申明相应的变量。所以还需一种方式引入额外样式申明文件。</p>\n<p>例如：<code>Select</code>默认主题并没有定义<code>border-radius</code>，也没有相应的变量申明，此时我们需要在自定义主题中添加<code>border-radius</code>怎么办？</p>\n<!-- example --><p>kpc为每个组件的样式文件<code>index.styl</code>添加了一句代码</p>\n<pre><code class=\"hljs js\"><span class=\"hljs-function\"><span class=\"hljs-title\">require</span><span class=\"hljs-params\">(<span class=\"hljs-variable\">$theme</span>-dir + <span class=\"hljs-string\">'/select.styl'</span>)</span></span>\n</code></pre>\n<p>这里<code>require</code>方法是自定义的方法，定义在文件<code>styles/functions.js</code>中，它的意思是：当文件存在时就包含该文件。所以我们只需要在<code>$theme-dir</code>定义的文件夹中申明<code>select.styl</code>文件，组件就会默认包含该样式文件。</p>\n<p>这里我们在自定义主题文件中申明<code>$theme-dir</code>指向当前主题所在文件夹，然后在该文件下定义<code>select.styl</code>文件添加样式定义即可。</p>\n<p><code>styles/mytheme/index.styl</code></p>\n<pre><code class=\"hljs stylus\"><span class=\"hljs-variable\">$theme-dir</span> := __dirname(); <span class=\"hljs-comment\">// __dirname也为自定义方法，用于获取当前文件所在的文件夹的绝对路径</span>\n</code></pre>\n<p><code>styles/mytheme/select.styl</code></p>\n<pre><code class=\"hljs stylus\"><span class=\"hljs-selector-class\">.k-select</span>\n    <span class=\"hljs-selector-class\">.k-wrapper</span>\n        <span class=\"hljs-attribute\">border-radius</span> <span class=\"hljs-variable\">$border</span>-radius\n</code></pre>\n<blockquote>\n<p>由于我们必须在<code>stylus</code>编译时引入变量定义和新增样式申明，因此当我们需要定制主题时，必须使用<code>stylus</code>多文件构建版。</p>\n</blockquote>\n<h2 id='header-%E6%9E%84%E5%BB%BA%E6%89%93%E5%8C%85'>构建打包</h2><p>kpc使用了3中方式进行构建打包，每种方式都有特定的适用场景。</p>\n<h3 id='header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88'>单文件构建版</h3><p>该打包方式将所有组件合并成到一个文件<code>kpc.js</code>中，所有的样式经过编译后合并到文件<code>kpc.css</code>中。该打包方式适合不需要经过<code>webpack</code>构建的项目，只需要在html文件中直接全量引入即可。但是缺点是，由于全量引入也会引入不需要的组件，造成代码冗余。</p>\n<p>全量打包大致分为两步：</p>\n<ol>\n<li>生成索引文件</li>\n</ol>\n<p>索引文件是编译的入口文件，它会将所有的组件<code>import</code>进来，然后<code>export</code>出去。但是当组件数变得庞大时，手动维护该文件会非常麻烦。kpc采用扫描所有组件文件，自动生成索引文件的方式来维护该文件。</p>\n<p>在每个组件入口文件<code>index.js</code>中，最后一句代码是暴露该组件的接口，例如：<code>components/select/index.js</code></p>\n<pre><code class=\"hljs js\"><span class=\"hljs-builtin-name\">export</span> {Select, Option,<span class=\"hljs-built_in\"> Group </span>as OptionGroup};\n</code></pre>\n<p>构建时，正则匹配该代码，提取组件名称：<code>Select, Option, OptionGroup</code>，然后生成索引代码至<code>components/index.js</code></p>\n<pre><code class=\"hljs js\">import {<span class=\"hljs-keyword\">Select</span>, <span class=\"hljs-keyword\">Option</span>, OptionGroup} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./select'</span>;\n\nexport {\n    <span class=\"hljs-keyword\">Select</span>,\n    <span class=\"hljs-keyword\">Option</span>,\n    OptionGroup\n};\n</code></pre>\n<ol start=\"2\">\n<li>webpack构建</li>\n</ol>\n<p>将上述生成的索引文件<code>components/index.js</code>作为编译入口，使用<code>extract-text-webpack-plugin</code>提取所有css文件即可。</p>\n<h3 id='header-%E5%A4%9A%E6%96%87%E4%BB%B6css%E6%9E%84%E5%BB%BA%E7%89%88'>多文件css构建版</h3><p>多文件构建版分为css构建版和stylus构建版，它们都能够做到按需加载。唯一的区别是对<code>stylus</code>样式文件的处理方式不同。css构建版，会将所有的<code>stylus</code>编译成<code>css</code>，而stylus构建版，则保留<code>stylus</code>源码。所以stylus构建版能够在开发时进行主题定制，而css构建版则不能。</p>\n<p>多文件构建时，由于不存在打包过程，所以不需要<code>webpack</code>来构建，通过<code>gulp</code>将各种类型编译即可。</p>\n<ol>\n<li>编译js</li>\n</ol>\n<p><code>js</code>文件需要通过<code>babel</code>编译，但是这里需要进行额外的一步替换操作。因为<code>js</code>源码中的样式加载代码为：</p>\n<pre><code class=\"hljs js\"><span class=\"hljs-meta\"><span class=\"hljs-meta-keyword\">import</span> './index.styl';</span>\n</code></pre>\n<p>进过<code>balel</code>编译后，会变成</p>\n<pre><code class=\"hljs js\"><span class=\"hljs-built_in\">require</span>(<span class=\"hljs-string\">'./index.styl'</span>);\n</code></pre>\n<p>实际<code>index.styl</code>文件会编译成<code>index.css</code>，所以这里需要将<code>require(&#39;./index.styl&#39;)</code>替换成<code>require(&#39;./index.css&#39;)</code></p>\n<ol start=\"2\">\n<li>编译vdt</li>\n</ol>\n<p>模板<code>index.vdt</code>文件会编译成<code>index.vdt.js</code>文件。而<code>js</code>中引入的<code>vdt</code>文件不用像<code>stylus</code>一样需要替换，依然为：</p>\n<pre><code class=\"hljs js\"><span class=\"hljs-function\"><span class=\"hljs-title\">require</span><span class=\"hljs-params\">(<span class=\"hljs-string\">'./index.vdt'</span>)</span></span>\n</code></pre>\n<p>不需要替换的原因是，<code>require</code>方法有一个特性：当不存在<code>./index.vdt</code>时，会去找<code>./index.vdt.js</code>。</p>\n<ol start=\"3\">\n<li>编译stylus</li>\n</ol>\n<p><code>stylus</code>会进过<code>postcss</code>处理，提高兼容性。</p>\n<h3 id='header-%E5%A4%9A%E6%96%87%E4%BB%B6stylus%E6%9E%84%E5%BB%BA%E7%89%88'>多文件stylus构建版</h3><p>stylus构建版与css构建的构建原理相同，只是比它更简单，因为需要编译<code>stylus</code>，所以不需要替换<code>js</code>的源码。除了编译<code>js</code>和<code>vdt</code>外，剩下的文件简单复制即可。</p>\n<h2 id='header-%E6%96%87%E6%A1%A3%E7%94%9F%E6%88%90'>文档生成</h2><h2 id='header-test'>test</h2><!-- example --><h2 id='header-hello'>hello</h2>","index":3}
+module.exports = {"setting":{"title":"KPC设计思路","order":0},"catalogs":[{"text":"目录结构","level":2,"id":"header-%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84","content":"<h2 id='header-%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84'>目录结构</h2>"},{"text":"样式","level":2,"id":"header-%E6%A0%B7%E5%BC%8F","content":"<h2 id='header-%E6%A0%B7%E5%BC%8F'>样式</h2>"},{"text":"主题定制","level":3,"id":"header-%E4%B8%BB%E9%A2%98%E5%AE%9A%E5%88%B6","content":"<h3 id='header-%E4%B8%BB%E9%A2%98%E5%AE%9A%E5%88%B6'>主题定制</h3>"},{"text":"构建打包","level":2,"id":"header-%E6%9E%84%E5%BB%BA%E6%89%93%E5%8C%85","content":"<h2 id='header-%E6%9E%84%E5%BB%BA%E6%89%93%E5%8C%85'>构建打包</h2>"},{"text":"单文件构建版","level":3,"id":"header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88","content":"<h3 id='header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88'>单文件构建版</h3>"},{"text":"多文件css构建版","level":3,"id":"header-%E5%A4%9A%E6%96%87%E4%BB%B6css%E6%9E%84%E5%BB%BA%E7%89%88","content":"<h3 id='header-%E5%A4%9A%E6%96%87%E4%BB%B6css%E6%9E%84%E5%BB%BA%E7%89%88'>多文件css构建版</h3>"},{"text":"多文件stylus构建版","level":3,"id":"header-%E5%A4%9A%E6%96%87%E4%BB%B6stylus%E6%9E%84%E5%BB%BA%E7%89%88","content":"<h3 id='header-%E5%A4%9A%E6%96%87%E4%BB%B6stylus%E6%9E%84%E5%BB%BA%E7%89%88'>多文件stylus构建版</h3>"},{"text":"文档生成","level":2,"id":"header-%E6%96%87%E6%A1%A3%E7%94%9F%E6%88%90","content":"<h2 id='header-%E6%96%87%E6%A1%A3%E7%94%9F%E6%88%90'>文档生成</h2>"},{"text":"单元测试","level":2,"id":"header-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95","content":"<h2 id='header-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95'>单元测试</h2>"},{"text":"测试工具","level":3,"id":"header-%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7","content":"<h3 id='header-%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7'>测试工具</h3>"},{"text":"demo测试","level":3,"id":"header-demo%E6%B5%8B%E8%AF%95","content":"<h3 id='header-demo%E6%B5%8B%E8%AF%95'>demo测试</h3>"},{"text":"交互测试","level":3,"id":"header-%E4%BA%A4%E4%BA%92%E6%B5%8B%E8%AF%95","content":"<h3 id='header-%E4%BA%A4%E4%BA%92%E6%B5%8B%E8%AF%95'>交互测试</h3>"}],"contents":"<h2 id='header-%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84'>目录结构</h2><p>整体上看，目录结构涉及组件源码，调试相关，文档展示，单元测试，构建打包等方面，具体如下：</p>\n<pre><code class=\"hljs js\">.\n├── components <span class=\"hljs-comment\">// 组件源码</span>\n├── styles <span class=\"hljs-comment\">// 全局样式</span>\n├── i18n <span class=\"hljs-comment\">// 国际化</span>\n├\n├── pages <span class=\"hljs-comment\">// 调试页面</span>\n├── app <span class=\"hljs-comment\">// 调试服务启动文件</span>\n├── views <span class=\"hljs-comment\">// 调试服务vdt模板文件</span>\n├\n├── docs <span class=\"hljs-comment\">// markdown文档</span>\n├── site <span class=\"hljs-comment\">// 文档网站代码</span>\n├\n├── test <span class=\"hljs-comment\">// 测试代码</span>\n├\n├── dist <span class=\"hljs-comment\">// 单文件构建目录</span>\n├── <span class=\"hljs-meta\">@css</span> <span class=\"hljs-comment\">// css多文件构建目录</span>\n└── <span class=\"hljs-meta\">@stylus</span> <span class=\"hljs-comment\">// stylus多文件构建目录</span>\n</code></pre>\n<p>与组件相关的文件，全部放到一起，包括：组件逻辑，模板，样式，单元测试，文档，示例</p>\n<pre><code class=\"hljs js\">components/checkbox\n├── demos <span class=\"hljs-comment\">// 文档示例</span>\n│   ├── basic<span class=\"hljs-selector-class\">.md</span>\n│   ├── group<span class=\"hljs-selector-class\">.md</span>\n│   └── value<span class=\"hljs-selector-class\">.md</span>\n├── index<span class=\"hljs-selector-class\">.js</span> <span class=\"hljs-comment\">// 组件逻辑</span>\n├── index<span class=\"hljs-selector-class\">.md</span> <span class=\"hljs-comment\">// 组件文档</span>\n├── index<span class=\"hljs-selector-class\">.spec</span><span class=\"hljs-selector-class\">.js</span> <span class=\"hljs-comment\">// 单元测试</span>\n├── index<span class=\"hljs-selector-class\">.styl</span> <span class=\"hljs-comment\">// 组件样式</span>\n├── index<span class=\"hljs-selector-class\">.vdt</span> <span class=\"hljs-comment\">// 组件模板</span>\n└── variables<span class=\"hljs-selector-class\">.styl</span> <span class=\"hljs-comment\">// 样式变量申明</span>\n</code></pre>\n<h2 id='header-%E6%A0%B7%E5%BC%8F'>样式</h2><p>对于样式要考虑的一个目标是：主题定制。所以我们不能将样式写死，在kpc中一切可能改变的样式值都为变量。借助<code>stylus</code>等可编译样式语言，这很容易办到。</p>\n<ol>\n<li>样式变量申明</li>\n</ol>\n<p>变量申明分为两部分：全局申明和组件申明。全局申明用于定义全局的样式，例如：主题色，边框色，字体带下，尺寸等；组件申明会使用全局申明中定义的变量，加上自身特有变量来申明，这样既可以做到一改全改，又可以针对组件进行特殊化定制。</p>\n<p>全局申明文件：<code>styles/themes/defaults.styl</code></p>\n<pre><code class=\"hljs stylus\"><span class=\"hljs-comment\"><span class=\"markdown\">/<span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span>\n<span class=\"hljs-code\">             Theme</span>\n<span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span>*/</span></span>\nuse(<span class=\"hljs-string\">'../functions.js'</span>)\n$theme-dir := __dirname()\n$fonts-dir := <span class=\"hljs-string\">'./fonts'</span>;\n\n<span class=\"hljs-comment\"><span class=\"markdown\">/<span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span>\n<span class=\"hljs-code\">             Colors</span>\n<span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span>*/</span></span>\n\n$red := #db2828\n$blue := #<span class=\"hljs-number\">0</span>a5eee\n$light-black := #<span class=\"hljs-number\">595959</span>\n\n\n<span class=\"hljs-comment\"><span class=\"markdown\">/<span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span>\n<span class=\"hljs-code\">            Page</span>\n<span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span><span class=\"hljs-strong\">*****</span>*/</span></span>\n\n$font-family := <span class=\"hljs-string\">'Microsoft YaHei'</span>\n$font-size := <span class=\"hljs-number\">14</span>px \n$text-color := $light-black \n$primary-color := $blue\n$disabled-bg-color := #f7f7f7\n$disabled-border-color := #d9d9d9\n\n<span class=\"hljs-comment\">// size</span>\n$<span class=\"hljs-keyword\">default</span>-font-size := <span class=\"hljs-number\">1</span>rem\n$small-height := <span class=\"hljs-number\">30</span>\n$small-font-size := unit(<span class=\"hljs-number\">12</span> / <span class=\"hljs-number\">14</span>, rem)\n\n<span class=\"hljs-comment\">// box-shadow</span>\n$box-shadow := <span class=\"hljs-number\">0</span> <span class=\"hljs-number\">2</span>px <span class=\"hljs-number\">8</span>px <span class=\"hljs-number\">0</span> rgba(<span class=\"hljs-number\">191</span>, <span class=\"hljs-number\">191</span>, <span class=\"hljs-number\">191</span>, <span class=\"hljs-number\">.5</span>)\n$border-radius := unit(<span class=\"hljs-number\">2</span> / <span class=\"hljs-number\">14</span>, rem) \n\n...\n\n</code></pre>\n<p>组件申明文件：<code>components/checkbox/variables.styl</code></p>\n<pre><code class=\"hljs stylus\">@require(<span class=\"hljs-string\">'../../styles/themes/default.styl'</span>)\n\n$checkbox-width := <span class=\"hljs-keyword\">unit</span>(<span class=\"hljs-number\">14</span> / <span class=\"hljs-number\">14</span>, rem) \n$checkbox-border-<span class=\"hljs-keyword\">color</span> := $dark-border-<span class=\"hljs-keyword\">color</span>\n$checkbox-border-radius := <span class=\"hljs-number\">2</span>px\n$checkbox-bg-<span class=\"hljs-keyword\">color</span> := #fff\n\n<span class=\"hljs-comment\">// text</span>\n$checkbox-<span class=\"hljs-keyword\">text</span>-margin-left := <span class=\"hljs-keyword\">unit</span>(<span class=\"hljs-number\">8</span> / <span class=\"hljs-number\">14</span>, em)\n\n<span class=\"hljs-comment\">// checked</span>\n$checkbox-checked-border-<span class=\"hljs-keyword\">color</span> := $primary-<span class=\"hljs-keyword\">color</span> \n$checkbox-checked-bg-<span class=\"hljs-keyword\">color</span> := $checkbox-checked-border-<span class=\"hljs-keyword\">color</span>\n\n...\n</code></pre>\n<ol start=\"2\">\n<li>组件样式定义</li>\n</ol>\n<p>每一个组件都有个样式文件，该样式文件中样式值都使用前面定义的变量进行定义（除非该定义本不该改变）。</p>\n<p>样式文件：<code>components/checkbox/index.styl</code></p>\n<pre><code class=\"hljs stylus\">@require(<span class=\"hljs-string\">'./variables.styl'</span>);\n\n<span class=\"hljs-selector-class\">.k-checkbox</span>\n    <span class=\"hljs-attribute\">display</span> inline-block\n    <span class=\"hljs-attribute\">cursor</span> pointer\n    <span class=\"hljs-selector-class\">.k-wrapper</span>\n        <span class=\"hljs-attribute\">display</span> inline-block\n        <span class=\"hljs-attribute\">width</span> <span class=\"hljs-variable\">$checkbox-width</span>\n        <span class=\"hljs-attribute\">height</span> <span class=\"hljs-variable\">$checkbox-width</span> \n        <span class=\"hljs-attribute\">vertical-align</span> middle\n        <span class=\"hljs-attribute\">border</span> 1px solid <span class=\"hljs-variable\">$checkbox-border-color</span> \n        <span class=\"hljs-attribute\">border-radius</span> <span class=\"hljs-variable\">$checkbox-border-radius</span> \n        <span class=\"hljs-attribute\">position</span> relative\n        <span class=\"hljs-attribute\">transition</span> all <span class=\"hljs-variable\">$transition</span>\n        <span class=\"hljs-attribute\">background</span> <span class=\"hljs-variable\">$checkbox-bg-color</span>\n\n...\n</code></pre>\n<h3 id='header-%E4%B8%BB%E9%A2%98%E5%AE%9A%E5%88%B6'>主题定制</h3><p>在上面变量申明中，我们使用<code>:=</code>进行赋值，这是<code>stylus</code>的特有语法，意为：如果该变量已被定义则忽略本次定义。借助该特性，我们可以在编译时提前引入一个主题文件来改变默认变量定义。借助<code>stylus-loader</code>我们可以为每一个<code>stylus</code>统一引入一个文件，该文件中定义了所有需要重新定义的变量。</p>\n<pre><code class=\"hljs js\">{\n    <span class=\"hljs-attribute\">loader</span>: <span class=\"hljs-string\">'stylus-loader'</span>,\n    options: {\n        // 引入自定义主题文件mytheme/index.styl\n        import: path.<span class=\"hljs-built_in\">resolve</span>(__dirname, <span class=\"hljs-string\">'styles/mytheme/index.styl'</span>)\n    }\n}\n</code></pre>\n<p>实际主题定制中，仅仅通过改变变量并不能完成100%的定制需求，当我们需要为组件添加新样式时，仅有的变量便无法满足，因为新增的样式kpc并没有申明相应的变量。所以还需一种方式引入额外样式申明文件。</p>\n<p>例如：<code>Select</code>默认主题并没有定义<code>border-radius</code>，也没有相应的变量申明，此时我们需要在自定义主题中添加<code>border-radius</code>怎么办？</p>\n<!-- example --><p>kpc为每个组件的样式文件<code>index.styl</code>添加了一句代码</p>\n<pre><code class=\"hljs js\"><span class=\"hljs-function\"><span class=\"hljs-title\">require</span><span class=\"hljs-params\">(<span class=\"hljs-variable\">$theme</span>-dir + <span class=\"hljs-string\">'/select.styl'</span>)</span></span>\n</code></pre>\n<p>这里<code>require</code>方法是自定义的方法，定义在文件<code>styles/functions.js</code>中，它的意思是：当文件存在时就包含该文件。所以我们只需要在<code>$theme-dir</code>定义的文件夹中申明<code>select.styl</code>文件，组件就会默认包含该样式文件。</p>\n<p>这里我们在自定义主题文件中申明<code>$theme-dir</code>指向当前主题所在文件夹，然后在该文件下定义<code>select.styl</code>文件添加样式定义即可。</p>\n<p><code>styles/mytheme/index.styl</code></p>\n<pre><code class=\"hljs stylus\"><span class=\"hljs-variable\">$theme-dir</span> := __dirname(); <span class=\"hljs-comment\">// __dirname也为自定义方法，用于获取当前文件所在的文件夹的绝对路径</span>\n</code></pre>\n<p><code>styles/mytheme/select.styl</code></p>\n<pre><code class=\"hljs stylus\"><span class=\"hljs-selector-class\">.k-select</span>\n    <span class=\"hljs-selector-class\">.k-wrapper</span>\n        <span class=\"hljs-attribute\">border-radius</span> <span class=\"hljs-variable\">$border</span>-radius\n</code></pre>\n<blockquote>\n<p>由于我们必须在<code>stylus</code>编译时引入变量定义和新增样式申明，因此当我们需要定制主题时，必须使用<code>stylus</code>多文件构建版。</p>\n</blockquote>\n<h2 id='header-%E6%9E%84%E5%BB%BA%E6%89%93%E5%8C%85'>构建打包</h2><p>kpc使用了3中方式进行构建打包，每种方式都有特定的适用场景。</p>\n<h3 id='header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88'>单文件构建版</h3><p>该打包方式将所有组件合并成到一个文件<code>kpc.js</code>中，所有的样式经过编译后合并到文件<code>kpc.css</code>中。该打包方式适合不需要经过<code>webpack</code>构建的项目，只需要在html文件中直接全量引入即可。但是缺点是，由于全量引入也会引入不需要的组件，造成代码冗余。</p>\n<p>全量打包大致分为两步：</p>\n<ol>\n<li>生成索引文件</li>\n</ol>\n<p>索引文件是编译的入口文件，它会将所有的组件<code>import</code>进来，然后<code>export</code>出去。但是当组件数变得庞大时，手动维护该文件会非常麻烦。kpc采用扫描所有组件文件，自动生成索引文件的方式来维护该文件。</p>\n<p>在每个组件入口文件<code>index.js</code>中，最后一句代码是暴露该组件的接口，例如：<code>components/select/index.js</code></p>\n<pre><code class=\"hljs js\"><span class=\"hljs-builtin-name\">export</span> {Select, Option,<span class=\"hljs-built_in\"> Group </span>as OptionGroup};\n</code></pre>\n<p>构建时，正则匹配该代码，提取组件名称：<code>Select, Option, OptionGroup</code>，然后生成索引代码至<code>components/index.js</code></p>\n<pre><code class=\"hljs js\">import {<span class=\"hljs-keyword\">Select</span>, <span class=\"hljs-keyword\">Option</span>, OptionGroup} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./select'</span>;\n\nexport {\n    <span class=\"hljs-keyword\">Select</span>,\n    <span class=\"hljs-keyword\">Option</span>,\n    OptionGroup\n};\n</code></pre>\n<ol start=\"2\">\n<li>webpack构建</li>\n</ol>\n<p>将上述生成的索引文件<code>components/index.js</code>作为编译入口，使用<code>extract-text-webpack-plugin</code>提取所有css文件即可。</p>\n<h3 id='header-%E5%A4%9A%E6%96%87%E4%BB%B6css%E6%9E%84%E5%BB%BA%E7%89%88'>多文件css构建版</h3><p>多文件构建版分为css构建版和stylus构建版，它们都能够做到按需加载。唯一的区别是对<code>stylus</code>样式文件的处理方式不同。css构建版，会将所有的<code>stylus</code>编译成<code>css</code>，而stylus构建版，则保留<code>stylus</code>源码。所以stylus构建版能够在开发时进行主题定制，而css构建版则不能。</p>\n<p>多文件构建时，由于不存在打包过程，所以不需要<code>webpack</code>来构建，通过<code>gulp</code>将各种类型编译即可。</p>\n<ol>\n<li>编译js</li>\n</ol>\n<p><code>js</code>文件需要通过<code>babel</code>编译，但是这里需要进行额外的一步替换操作。因为<code>js</code>源码中的样式加载代码为：</p>\n<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'../../styles/kpc.styl'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>;\n</code></pre>\n<p>进过<code>balel</code>编译后，会变成</p>\n<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">var</span> Intact = <span class=\"hljs-built_in\">require</span>(<span class=\"hljs-string\">'intact'</span>);\n<span class=\"hljs-keyword\">var</span> template = <span class=\"hljs-built_in\">require</span>(<span class=\"hljs-string\">'./index.vdt'</span>);\n<span class=\"hljs-built_in\">require</span>(<span class=\"hljs-string\">'../../styles/kpc.styl'</span>);\n<span class=\"hljs-built_in\">require</span>(<span class=\"hljs-string\">'./index.styl);</span>\n</code></pre>\n<p>实际<code>index.styl</code>文件会编译成<code>index.css</code>，所以这里需要将<code>require(&#39;./index.styl&#39;)</code>替换成<code>require(&#39;./index.css&#39;)</code></p>\n<ol start=\"2\">\n<li>编译vdt</li>\n</ol>\n<p>模板<code>index.vdt</code>文件会编译成<code>index.vdt.js</code>文件。而<code>js</code>中引入的<code>vdt</code>文件不用像<code>stylus</code>一样需要替换，依然为：</p>\n<pre><code class=\"hljs js\"><span class=\"hljs-function\"><span class=\"hljs-title\">require</span><span class=\"hljs-params\">(<span class=\"hljs-string\">'./index.vdt'</span>)</span></span>\n</code></pre>\n<p>不需要替换的原因是，<code>require</code>方法有一个特性：当不存在<code>./index.vdt</code>时，会去找<code>./index.vdt.js</code>。</p>\n<ol start=\"3\">\n<li>编译stylus</li>\n</ol>\n<p><code>stylus</code>会进过<code>postcss</code>处理，提高兼容性。</p>\n<h3 id='header-%E5%A4%9A%E6%96%87%E4%BB%B6stylus%E6%9E%84%E5%BB%BA%E7%89%88'>多文件stylus构建版</h3><p>stylus构建版与css构建的构建原理相同，只是比它更简单，因为需要编译<code>stylus</code>，所以不需要替换<code>js</code>的源码。除了编译<code>js</code>和<code>vdt</code>外，剩下的文件简单复制即可。</p>\n<h2 id='header-%E6%96%87%E6%A1%A3%E7%94%9F%E6%88%90'>文档生成</h2><p>kpc采用<code>markdown</code>书写文档和示例，然后再编译成网站。构建的过程大致如下：</p>\n<div class=\"mermaid\">\ngraph LR\n    A[markdown文件] --&gt; | kdoc-plugin-md分析 | B{判断是否是demo}\n    B --&gt; | 是 | C&gt;.js .vdt .styl .json]\n    B --&gt; | 否 | D&gt;.js .vdt .styl .json]\n    C -.-&gt; | require | D\n    D --&gt; | webpack | E[client.js]\n    D --&gt; | webpack | F[index.html]\n</div>\n\n<p>例如：<code>Button</code>组件下存在<code>index.md</code>和<code>demos/basic.md</code>等<code>markdown</code>文件。它们会进过<code>kdoc-plugin-md</code>插件分析：</p>\n<div class=\"mermaid\">\ngraph TB\n    A[markdown]\n    A --&gt; B[分析yaml]\n    A -- demo --&gt; C[分析code]\n    C -- js --&gt; D&gt;index.js]\n    C -- vdt --&gt; E&gt;index.vdt]\n    C -- stylus --&gt; F&gt;index.styl]\n    A --&gt; G[编译mardown为html]\n    B --&gt; H&gt;index.json]\n    G --&gt; H \n</div>\n\n<p><code>index.md</code></p>\n<pre><code class=\"hljs markdown\"><span class=\"hljs-meta\">---</span>\n<span class=\"hljs-attr\">title:</span> <span class=\"hljs-string\">按钮</span>\n<span class=\"hljs-attr\">category:</span> <span class=\"hljs-string\">组件</span>\n<span class=\"hljs-attr\">order:</span> <span class=\"hljs-number\">0</span>\n<span class=\"hljs-attr\">sidebar:</span> <span class=\"hljs-string\">doc</span>\n<span class=\"hljs-meta\">---</span>\n\n<span class=\"hljs-comment\"># 属性</span>\n\n<span class=\"hljs-comment\">## Button</span>\n</code></pre>\n<p>上述<code>markdown</code>文件最终生成文件如下：</p>\n<p><code>index.json</code></p>\n<pre><code class=\"hljs json\">{\n    <span class=\"hljs-attr\">\"setting\"</span>: {\n        <span class=\"hljs-attr\">\"title\"</span>: <span class=\"hljs-string\">\"按钮\"</span>,\n        <span class=\"hljs-attr\">\"category\"</span>: <span class=\"hljs-string\">\"组件\"</span>,\n        <span class=\"hljs-attr\">\"order\"</span>: <span class=\"hljs-number\">0</span>,\n        <span class=\"hljs-attr\">\"sidebar\"</span>: <span class=\"hljs-string\">\"doc\"</span>\n    },\n    <span class=\"hljs-attr\">\"contents\"</span>: <span class=\"hljs-string\">\"&lt;h1 id='header-%E5%B1%9E%E6%80%A7'&gt;属性&lt;/h1&gt;&lt;h2 id='header-Button'&gt;Button&lt;/h2&gt;\"</span>\n}\n</code></pre>\n<p><code>index.js</code></p>\n<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Article <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'~/../src/components/article'</span>;\n<span class=\"hljs-keyword\">import</span> data <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.json'</span>;\n\n<span class=\"hljs-keyword\">const</span> r = <span class=\"hljs-built_in\">require</span>.context(<span class=\"hljs-string\">'./'</span>, <span class=\"hljs-literal\">true</span>, <span class=\"hljs-regexp\">/demos.*index.js$/</span>);\n<span class=\"hljs-keyword\">const</span> demos = r.keys().map(r);\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Article</span> {</span>\n    static data = data;\n\n    defaults() {\n        <span class=\"hljs-keyword\">return</span> {...<span class=\"hljs-keyword\">super</span>.defaults(), ...data, demos};\n    }\n}\n</code></pre>\n<p>静态化入口文件：<code>index.html</code></p>\n<pre><code class=\"hljs html\"><span class=\"hljs-meta\">&lt;!DOCTYPE html&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">html</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">head</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">meta</span> <span class=\"hljs-attr\">charset</span>=<span class=\"hljs-string\">\"utf-8\"</span> /&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">title</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">title</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">link</span> <span class=\"hljs-attr\">rel</span>=<span class=\"hljs-string\">\"stylesheet\"</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"/theme-kpc.css\"</span> /&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">head</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">body</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span> <span class=\"hljs-attr\">id</span>=<span class=\"hljs-string\">\"page\"</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">script</span> <span class=\"hljs-attr\">src</span>=<span class=\"hljs-string\">\"/static/client.js\"</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"text/javascript\"</span>&gt;</span><span class=\"undefined\"></span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">script</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">body</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">html</span>&gt;</span>\n</code></pre>\n<p>对于demo文件<code>demos/basic.md</code></p>\n<pre><code class=\"hljs markdown\">---\ntitle: 按钮类型\norder: <span class=\"hljs-number\">0</span>\n---\n\n有如下几种类型：默认按钮，主按钮，警告按钮，危险按钮，文字按钮。\n\n```<span class=\"javascript\">vdt\n<span class=\"hljs-keyword\">import</span> Button <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/button'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span>&gt;</span>default<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"primary\"</span>&gt;</span>primay<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"warning\"</span>&gt;</span>warning<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"danger\"</span>&gt;</span>danger<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"none\"</span>&gt;</span>none<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span>\n</span>```\n\n```<span class=\"javascript\">styl\n.k-btn\n    margin-right <span class=\"hljs-number\">20</span>px\n</span>```\n</code></pre>\n<p>demo文件最终生成如下文件：</p>\n<p><code>demos/basic/index.js</code></p>\n<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">export</span> {<span class=\"hljs-keyword\">default</span> <span class=\"hljs-keyword\">as</span> data} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.json'</span>;\n<span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> {</span>\n    @Intact.template()\n    static template = template;\n}\n</code></pre>\n<p><code>demos/basic/index.vdt</code></p>\n<pre><code class=\"hljs vdt\"><span class=\"hljs-keyword\">import</span> Button <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/button'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span>&gt;</span>default<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"primary\"</span>&gt;</span>primay<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"warning\"</span>&gt;</span>warning<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"danger\"</span>&gt;</span>danger<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"none\"</span>&gt;</span>none<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span>\n</code></pre>\n<p><code>demos/basic/index.styl</code></p>\n<pre><code class=\"hljs stylus\"><span class=\"hljs-selector-class\">.example</span><span class=\"hljs-selector-class\">.index-14</span>\n    <span class=\"hljs-selector-class\">.k-btn</span>\n        <span class=\"hljs-attribute\">margin-right</span> <span class=\"hljs-number\">20px</span>\n</code></pre>\n<p><code>demos/basic/index.json</code></p>\n<pre><code class=\"hljs json\">{\n    \"setting\": {\n        \"title\": \"按钮类型\",\n        \"order\": 0\n    },\n    \"contents\": \"<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">p</span>&gt;</span>有如下几种类型：默认按钮，主按钮，警告按钮，危险按钮，文字按钮。<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">p</span>&gt;</span>\\n\",\n    \"highlighted\": [\n        {\n            \"language\": \"vdt\",\n            \"content\": \"<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">pre</span>&gt;</span><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">code</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs</span> <span class=\"hljs-attr\">jsx</span>\\\"&gt;</span><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-keyword</span>\\\"&gt;</span>import<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span> Button <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-keyword</span>\\\"&gt;</span>from<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span> <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-string</span>\\\"&gt;</span>'kpc/components/button'<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>;\\n\\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">xml</span>\\\"&gt;</span><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-tag</span>\\\"&gt;</span>&amp;lt;<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-name</span>\\\"&gt;</span>div<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>&amp;gt;<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>\\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-tag</span>\\\"&gt;</span>&amp;lt;<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-name</span>\\\"&gt;</span>Button<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>&amp;gt;<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>default<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-tag</span>\\\"&gt;</span>&amp;lt;/<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-name</span>\\\"&gt;</span>Button<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>&amp;gt;<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>\\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-tag</span>\\\"&gt;</span>&amp;lt;<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-name</span>\\\"&gt;</span>Button<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span> <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-attr</span>\\\"&gt;</span>type<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>=<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-string</span>\\\"&gt;</span>\\\"primary\\\"<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>&amp;gt;<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>primay<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-tag</span>\\\"&gt;</span>&amp;lt;/<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-name</span>\\\"&gt;</span>Button<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>&amp;gt;<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>\\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-tag</span>\\\"&gt;</span>&amp;lt;<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-name</span>\\\"&gt;</span>Button<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span> <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-attr</span>\\\"&gt;</span>type<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>=<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-string</span>\\\"&gt;</span>\\\"warning\\\"<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>&amp;gt;<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>warning<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-tag</span>\\\"&gt;</span>&amp;lt;/<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-name</span>\\\"&gt;</span>Button<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>&amp;gt;<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>\\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-tag</span>\\\"&gt;</span>&amp;lt;<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-name</span>\\\"&gt;</span>Button<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span> <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-attr</span>\\\"&gt;</span>type<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>=<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-string</span>\\\"&gt;</span>\\\"danger\\\"<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>&amp;gt;<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>danger<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-tag</span>\\\"&gt;</span>&amp;lt;/<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-name</span>\\\"&gt;</span>Button<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>&amp;gt;<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>\\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-tag</span>\\\"&gt;</span>&amp;lt;<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-name</span>\\\"&gt;</span>Button<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span> <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-attr</span>\\\"&gt;</span>type<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>=<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-string</span>\\\"&gt;</span>\\\"none\\\"<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>&amp;gt;<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>none<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-tag</span>\\\"&gt;</span>&amp;lt;/<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-name</span>\\\"&gt;</span>Button<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>&amp;gt;<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>\\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-tag</span>\\\"&gt;</span>&amp;lt;/<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-name</span>\\\"&gt;</span>div<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>&amp;gt;<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">code</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">pre</span>&gt;</span>\"\n        },\n        {\n            \"language\": \"styl\",\n            \"content\": \"<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">pre</span>&gt;</span><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">code</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs</span> <span class=\"hljs-attr\">styl</span>\\\"&gt;</span><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-selector-class</span>\\\"&gt;</span>.k-btn<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>\\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-attribute</span>\\\"&gt;</span>margin-right<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span> <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-number</span>\\\"&gt;</span>20px<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">code</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">pre</span>&gt;</span>\"\n        },\n        {\n            \"language\": \"js\",\n            \"content\": \"<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">pre</span>&gt;</span><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">code</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs</span> <span class=\"hljs-attr\">js</span>\\\"&gt;</span><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-keyword</span>\\\"&gt;</span>import<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span> Intact <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-keyword</span>\\\"&gt;</span>from<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span> <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-string</span>\\\"&gt;</span>'intact'<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>;\\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-keyword</span>\\\"&gt;</span>import<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span> template <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-keyword</span>\\\"&gt;</span>from<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span> <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-string</span>\\\"&gt;</span>'./index.vdt'<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>;\\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-keyword</span>\\\"&gt;</span>import<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span> <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-string</span>\\\"&gt;</span>'./index.styl'<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>; \\n\\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-keyword</span>\\\"&gt;</span>export<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span> <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-keyword</span>\\\"&gt;</span>default<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span> <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-class</span>\\\"&gt;</span><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-keyword</span>\\\"&gt;</span>class<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span> <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-keyword</span>\\\"&gt;</span>extends<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span> <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-title</span>\\\"&gt;</span>Intact<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span> <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>{\\n    @Intact.template()\\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\\</span>\"<span class=\"hljs-attr\">hljs-keyword</span>\\\"&gt;</span>static<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span> template = template;\\n}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">code</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">pre</span>&gt;</span>\"\n        }\n    ]\n}\n</code></pre>\n<p>有了上述编译结果，便可以组织成网页了</p>\n<h2 id='header-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95'>单元测试</h2><p>单元测试分为两部分</p>\n<ol>\n<li>通过文档生成工具生成的demo示例，可以直接使用，完成初步测试，这部分能够达到50%的覆盖率</li>\n<li>利用demo，完成交互测试</li>\n</ol>\n<h3 id='header-%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7'>测试工具</h3><p>kpc使用的测试工具如下：</p>\n<ol>\n<li><code>karma</code>：测试平台</li>\n<li><code>mocha</code>：测试框架</li>\n<li><code>sinon-chai</code>：断言</li>\n<li><code>snapshot</code>：快照断言</li>\n<li><code>istanbul</code>：测试覆盖率统计</li>\n</ol>\n<h3 id='header-demo%E6%B5%8B%E8%AF%95'>demo测试</h3><p>测试程序首先会全量加载所有文档生成的示例组件，逐个渲染，第一次通过<code>snapshot</code>生成快照，以后则使用快照与渲染结果进行比较</p>\n<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> {render} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./utils'</span>;\n\n<span class=\"hljs-comment\">// 加载所有示例组件</span>\n<span class=\"hljs-keyword\">const</span> req = <span class=\"hljs-built_in\">require</span>.context(<span class=\"hljs-string\">'../site/dist/components/'</span>, <span class=\"hljs-literal\">true</span>, <span class=\"hljs-regexp\">/demos\\/.*index\\.js$/</span>);\n\ndescribe(<span class=\"hljs-string\">'Demos'</span>, <span class=\"hljs-function\"><span class=\"hljs-params\">()</span> =&gt;</span> {\n    <span class=\"hljs-keyword\">let</span> demo;\n\n    afterEach(<span class=\"hljs-function\"><span class=\"hljs-params\">()</span> =&gt;</span> {\n        demo.destroy();\n    });\n\n    req.keys().forEach(<span class=\"hljs-function\"><span class=\"hljs-params\">item</span> =&gt;</span> {\n        <span class=\"hljs-keyword\">const</span> paths = item.split(<span class=\"hljs-string\">'/'</span>);\n        <span class=\"hljs-keyword\">const</span> name = paths[<span class=\"hljs-number\">1</span>];\n        <span class=\"hljs-keyword\">const</span> <span class=\"hljs-keyword\">type</span> = paths[<span class=\"hljs-number\">3</span>];\n        <span class=\"hljs-keyword\">const</span> Demo = req(item).default;\n\n        it(<span class=\"hljs-string\">`<span class=\"hljs-subst\">${name[0].toUpperCase()}</span><span class=\"hljs-subst\">${name.substring(1)}</span> <span class=\"hljs-subst\">${type}</span>`</span>, <span class=\"hljs-function\"><span class=\"hljs-params\">()</span> =&gt;</span> {\n            demo = render(Demo);\n            <span class=\"hljs-comment\">// 比较快照和渲染结果</span>\n            expect(demo.element.outerHTML).to.matchSnapshot();\n        });\n    });\n});\n</code></pre>\n<h3 id='header-%E4%BA%A4%E4%BA%92%E6%B5%8B%E8%AF%95'>交互测试</h3><p>demo测试仅仅能够测试首次渲染的结果，不能测试交互后组件的表现结果。所以需要单独为每个组件编写测试代码，来测试交互逻辑。这里我们依然可以利用示例组件这一现成的组件来进行测试。</p>\n<p>例如：<code>ButtonGroup</code>的交互逻辑时</p>\n<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> {dispatchEvent, mount} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'test/utils'</span>;\n<span class=\"hljs-comment\">// 利用示例组件</span>\n<span class=\"hljs-keyword\">import</span> GroupDemo <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'~/components/button/demos/group'</span>;\n\ndescribe(<span class=\"hljs-string\">'Button'</span>, () =&gt; {\n    <span class=\"hljs-keyword\">let</span> <span class=\"hljs-keyword\">instance</span>;\n\n    afterEach(() =&gt; {\n        <span class=\"hljs-keyword\">instance</span>.destroy();\n        document.body.removeChild(<span class=\"hljs-keyword\">instance</span>.element);\n    });\n\n    it(<span class=\"hljs-string\">'should change value when click radio buttons'</span>, () =&gt; {\n        <span class=\"hljs-keyword\">instance</span> = mount(GroupDemo);\n\n        dispatchEvent(<span class=\"hljs-keyword\">instance</span>.refs.__radioShanghai.element, <span class=\"hljs-string\">'click'</span>);\n        expect(<span class=\"hljs-keyword\">instance</span>.get(<span class=\"hljs-string\">'city'</span>)).to.eql(<span class=\"hljs-string\">'shanghai'</span>);\n        dispatchEvent(<span class=\"hljs-keyword\">instance</span>.refs.__checkboxShanghai.element, <span class=\"hljs-string\">'click'</span>);\n        expect(<span class=\"hljs-keyword\">instance</span>.get(<span class=\"hljs-string\">'cities'</span>)).to.eql([<span class=\"hljs-string\">'shanghai'</span>]);\n        dispatchEvent(<span class=\"hljs-keyword\">instance</span>.refs.__checkboxShanghai.element, <span class=\"hljs-string\">'click'</span>);\n        expect(<span class=\"hljs-keyword\">instance</span>.get(<span class=\"hljs-string\">'cities'</span>)).to.eql([]);\n    });\n});\n</code></pre>\n<blockquote>\n<p>所以demo示例中，可能存在<code>ref=&quot;__test&quot;</code>这样的代码，它们是为单元测试服务的</p>\n</blockquote>\n","index":3}
 
 /***/ }),
 
@@ -40600,11 +40578,11 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "./site/src/components/test/index.js":
+/***/ "./site/src/pages/blog/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(Intact) {
 
 exports.__esModule = true;
 exports.default = undefined;
@@ -40627,15 +40605,15 @@ var _inherits3 = _interopRequireDefault(_inherits2);
 
 var _dec, _desc, _value, _class, _init, _class2, _temp;
 
-var _intact = __webpack_require__("intact");
+var _document = __webpack_require__("./site/src/pages/document/index.js");
 
-var _intact2 = _interopRequireDefault(_intact);
+var _document2 = _interopRequireDefault(_document);
 
-var _index = __webpack_require__("./site/src/components/test/index.vdt");
+var _index = __webpack_require__("./site/src/pages/blog/index.vdt");
 
 var _index2 = _interopRequireDefault(_index);
 
-__webpack_require__("./site/src/components/test/index.styl");
+__webpack_require__("./site/src/pages/blog/index.styl");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -40668,16 +40646,35 @@ function _applyDecoratedDescriptor(target, property, decorators, descriptor, con
     return desc;
 }
 
-var _default = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
-    (0, _inherits3.default)(_default, _Intact);
+var mermaid = void 0;
+if (process.browser) {
+    mermaid = __webpack_require__("mermaid");
+}
+
+var _default = (_dec = Intact.template(), (_class = (_temp = _class2 = function (_Document) {
+    (0, _inherits3.default)(_default, _Document);
 
     function _default() {
         (0, _classCallCheck3.default)(this, _default);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+        return (0, _possibleConstructorReturn3.default)(this, _Document.apply(this, arguments));
     }
 
+    _default.prototype._mount = function _mount() {
+        _Document.prototype._mount.call(this);
+        mermaid.init(undefined, '.mermaid');
+    };
+
+    _default.prototype.scrollTo = function scrollTo(id) {
+        var header = document.getElementById(id);
+        if (header) {
+            var top = header.getBoundingClientRect().top + window.pageYOffset - 80;
+
+            window.scrollTo(0, top);
+        }
+    };
+
     return _default;
-}(_intact2.default), _class2.template = _index2.default, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
+}(_document2.default), _class2.template = _index2.default, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
     enumerable: true,
     configurable: true,
     writable: true,
@@ -40688,15 +40685,16 @@ var _default = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
 
 exports.default = _default;
 module.exports = exports['default'];
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("intact")))
 
 /***/ }),
 
-/***/ "./site/src/components/test/index.styl":
+/***/ "./site/src/pages/blog/index.styl":
 /***/ (function(module, exports, __webpack_require__) {
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275710625
+      // 1528355129423
       var cssReload = require("!../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -40705,7 +40703,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "./site/src/components/test/index.vdt":
+/***/ "./site/src/pages/blog/index.vdt":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40714,39 +40712,96 @@ module.exports = exports['default'];
 exports.__esModule = true;
 
 exports.default = function (obj, _Vdt, blocks, $callee) {
-  _Vdt || (_Vdt = Vdt);
-  obj || (obj = {});
-  blocks || (blocks = {});
-  var h = _Vdt.miss.h,
-      hc = _Vdt.miss.hc,
-      hu = _Vdt.miss.hu,
-      widgets = this && this.widgets || {},
-      _blocks = {},
-      __blocks = {},
-      __u = _Vdt.utils,
-      extend = __u.extend,
-      _e = __u.error,
-      _className = __u.className,
-      __o = __u.Options,
-      _getModel = __o.getModel,
-      _setModel = __o.setModel,
-      _setCheckboxModel = __u.setCheckboxModel,
-      _detectCheckboxChecked = __u.detectCheckboxChecked,
-      _setSelectModel = __u.setSelectModel,
-      self = this.data,
-      $this = this,
-      scope = obj,
-      Animate = self && self.Animate,
-      parent = ($callee || {})._super;
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+    var Article = self.get('Article');
 
-  return h(_button2.default, { 'children': 'Hello', '_context': $this });
+    return function () {
+        var _obj = { 'navIndex': 'blog', 'className': 'document-page blog-page', 'children': null };
+        if (_obj.hasOwnProperty("arguments")) {
+            extend(_obj, _obj.arguments === true ? obj : _obj.arguments);
+            delete _obj.arguments;
+        }
+        return parent.call(this, _obj, _Vdt, function (blocks) {
+            var _blocks = {},
+                __blocks = extend({}, blocks);
+            return (_blocks["content"] = function (parent) {
+                return [h('aside', null, h('div', null, [h('ul', null, h('li', null, [h('a', { 'ev-click': function () {
+                        try {
+                            return [self.scrollTo.bind(self, '__top')][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this) }, function () {
+                    try {
+                        return [Article.data.setting.title][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this)), h('ul', null, _Vdt.utils.map(function () {
+                    try {
+                        return [Article.data.catalogs][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), function (value, key) {
+                    return h('li', null, h('a', { 'ev-click': function () {
+                            try {
+                                return [self.scrollTo.bind(self, value.id)][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(this) }, function () {
+                        try {
+                            return [value.text][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this)), _className(function () {
+                        try {
+                            return [{ 'sub-catalogs': value.level > 2 }][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this)));
+                }, this), 'sub-catalogs')])), h('div', null, null, 'aside-border transition')], 'aside-wrapper')), h('article', null, [h('h1', { 'id': '__top' }, function () {
+                    try {
+                        return [Article.data.setting.title][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this)), h(Article, { 'children': null, '_context': $this })])];
+            }) && (__blocks["content"] = function (parent) {
+                var self = this;
+                return blocks["content"] ? blocks["content"].call(this, function () {
+                    return _blocks["content"].call(self, parent);
+                }) : _blocks["content"].call(this, parent);
+            }), __blocks;
+        }.call(this, blocks), parent);
+    }.call(this);
 };
-
-var _button = __webpack_require__("./components/button/index.js");
-
-var _button2 = _interopRequireDefault(_button);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = exports['default'];
 
@@ -40923,7 +40978,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275707378
+      // 1528355129813
       var cssReload = require("!../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -41241,7 +41296,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528275707589
+      // 1528355130029
       var cssReload = require("!../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
