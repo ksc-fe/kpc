@@ -254,15 +254,23 @@ export {
 
 `js`文件需要通过`babel`编译，但是这里需要进行额外的一步替换操作。因为`js`源码中的样式加载代码为：
 
+
 ```js
+import Intact from 'intact';
+import template from './index.vdt';
+import '../../styles/kpc.styl';
 import './index.styl';
 ```
 
 进过`balel`编译后，会变成
 
 ```js
-require('./index.styl');
+var Intact = require('intact');
+var template = require('./index.vdt');
+require('../../styles/kpc.styl');
+require('./index.styl);
 ```
+
 实际`index.styl`文件会编译成`index.css`，所以这里需要将`require('./index.styl')`替换成`require('./index.css')`
 
 2. 编译vdt
@@ -294,8 +302,9 @@ graph LR
 	A[markdown文件] --> | kdoc-plugin-md分析 | B{判断是否是demo}
 	B --> | 是 | C>.js .vdt .styl .json]
 	B --> | 否 | D>.js .vdt .styl .json]
-	C --> | require | D
+	C -.-> | require | D
 	D --> | webpack | E[client.js]
+    D --> | webpack | F[index.html]
 </div>
 
 例如：`Button`组件下存在`index.md`和`demos/basic.md`等`markdown`文件。它们会进过`kdoc-plugin-md`
@@ -305,21 +314,256 @@ graph LR
 graph TB
     A[markdown]
     A --> B[分析yaml]
-    A --> C[分析code]
-    C -- js --> D[index.js]
-    C -- vdt --> E[index.vdt]
-    C -- stylus --> F[index.styl]
+    A -- demo --> C[分析code]
+    C -- js --> D>index.js]
+    C -- vdt --> E>index.vdt]
+    C -- stylus --> F>index.styl]
     A --> G[编译mardown为html]
-    B --> H[index.json]
+    B --> H>index.json]
     G --> H 
 </div>
 
-## test
+`index.md`
 
-```example
-import Button from '~/../src/components/test';
+```markdown
+---
+title: 按钮
+category: 组件
+order: 0
+sidebar: doc
+---
 
-export default Button;
+# 属性
+
+## Button
 ```
 
-## hello
+上述`markdown`文件最终生成文件如下：
+
+`index.json`
+
+```json
+{
+    "setting": {
+        "title": "按钮",
+        "category": "组件",
+        "order": 0,
+        "sidebar": "doc"
+    },
+    "contents": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1><h2 id='header-Button'>Button</h2>"
+}
+```
+
+`index.js`
+
+```js
+import Article from '~/../src/components/article';
+import data from './index.json';
+
+const r = require.context('./', true, /demos.*index.js$/);
+const demos = r.keys().map(r);
+
+export default class extends Article {
+    static data = data;
+
+    defaults() {
+        return {...super.defaults(), ...data, demos};
+    }
+}
+```
+
+静态化入口文件：`index.html`
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="/theme-kpc.css" />
+</head>
+<body>
+    <div id="page"></div>
+    <script src="/static/client.js" type="text/javascript"></script>
+</body>
+</html>
+```
+
+对于demo文件`demos/basic.md`
+
+``````markdown
+---
+title: 按钮类型
+order: 0
+---
+
+有如下几种类型：默认按钮，主按钮，警告按钮，危险按钮，文字按钮。
+
+```vdt
+import Button from 'kpc/components/button';
+
+<div>
+    <Button>default</Button>
+    <Button type="primary">primay</Button>
+    <Button type="warning">warning</Button>
+    <Button type="danger">danger</Button>
+    <Button type="none">none</Button>
+</div>
+```
+
+```styl
+.k-btn
+    margin-right 20px
+```
+``````
+
+demo文件最终生成如下文件：
+
+`demos/basic/index.js`
+
+```js
+export {default as data} from './index.json';
+import Intact from 'intact';
+import template from './index.vdt';
+import './index.styl'; 
+
+export default class extends Intact {
+    @Intact.template()
+    static template = template;
+}
+```
+
+`demos/basic/index.vdt`
+
+```vdt
+import Button from 'kpc/components/button';
+
+<div>
+    <Button>default</Button>
+    <Button type="primary">primay</Button>
+    <Button type="warning">warning</Button>
+    <Button type="danger">danger</Button>
+    <Button type="none">none</Button>
+</div>
+```
+
+`demos/basic/index.styl`
+
+```stylus
+.example.index-14
+    .k-btn
+        margin-right 20px
+```
+
+`demos/basic/index.json`
+
+```json
+{
+    "setting": {
+        "title": "按钮类型",
+        "order": 0
+    },
+    "contents": "<p>有如下几种类型：默认按钮，主按钮，警告按钮，危险按钮，文字按钮。</p>\n",
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Button <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/button'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span>&gt;</span>default<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"primary\"</span>&gt;</span>primay<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"warning\"</span>&gt;</span>warning<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"danger\"</span>&gt;</span>danger<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"none\"</span>&gt;</span>none<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span></code></pre>"
+        },
+        {
+            "language": "styl",
+            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-btn</span>\n    <span class=\"hljs-attribute\">margin-right</span> <span class=\"hljs-number\">20px</span></code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
+        }
+    ]
+}
+```
+
+有了上述编译结果，便可以组织成网页了
+
+## 单元测试
+
+单元测试分为两部分
+
+1. 通过文档生成工具生成的demo示例，可以直接使用，完成初步测试，这部分能够达到50%的覆盖率
+2. 利用demo，完成交互测试
+
+### 测试工具
+
+kpc使用的测试工具如下：
+
+1. `karma`：测试平台
+2. `mocha`：测试框架
+3. `sinon-chai`：断言
+4. `snapshot`：快照断言
+5. `istanbul`：测试覆盖率统计
+
+### demo测试
+
+测试程序首先会全量加载所有文档生成的示例组件，逐个渲染，第一次通过`snapshot`生成快照，以后则
+使用快照与渲染结果进行比较
+
+```js
+import {render} from './utils';
+
+// 加载所有示例组件
+const req = require.context('../site/dist/components/', true, /demos\/.*index\.js$/);
+
+describe('Demos', () => {
+    let demo;
+
+    afterEach(() => {
+        demo.destroy();
+    });
+
+    req.keys().forEach(item => {
+        const paths = item.split('/');
+        const name = paths[1];
+        const type = paths[3];
+        const Demo = req(item).default;
+
+        it(`${name[0].toUpperCase()}${name.substring(1)} ${type}`, () => {
+            demo = render(Demo);
+            // 比较快照和渲染结果
+            expect(demo.element.outerHTML).to.matchSnapshot();
+        });
+    });
+});
+```
+
+### 交互测试
+
+demo测试仅仅能够测试首次渲染的结果，不能测试交互后组件的表现结果。所以需要单独为每个组件编写
+测试代码，来测试交互逻辑。这里我们依然可以利用示例组件这一现成的组件来进行测试。
+
+例如：`ButtonGroup`的交互逻辑时
+
+```js
+import {dispatchEvent, mount} from 'test/utils';
+// 利用示例组件
+import GroupDemo from '~/components/button/demos/group';
+
+describe('Button', () => {
+    let instance;
+
+    afterEach(() => {
+        instance.destroy();
+        document.body.removeChild(instance.element);
+    });
+
+    it('should change value when click radio buttons', () => {
+        instance = mount(GroupDemo);
+
+        dispatchEvent(instance.refs.__radioShanghai.element, 'click');
+        expect(instance.get('city')).to.eql('shanghai');
+        dispatchEvent(instance.refs.__checkboxShanghai.element, 'click');
+        expect(instance.get('cities')).to.eql(['shanghai']);
+        dispatchEvent(instance.refs.__checkboxShanghai.element, 'click');
+        expect(instance.get('cities')).to.eql([]);
+    });
+});
+```
+
+> 所以demo示例中，可能存在`ref="__test"`这样的代码，它们是为单元测试服务的

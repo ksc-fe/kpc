@@ -15,7 +15,7 @@ module.exports = {
         rules: [
             {
                 test: /\.m?js$/,
-                exclude: [/node_modules(?!([\/\\]universal\-router))/],
+                exclude: [/node_modules(?!([\/\\]universal\-router)|([\/\\]graphlibrary))/],
                 use: [
                     {
                         loader: 'babel-loader',
