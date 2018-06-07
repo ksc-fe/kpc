@@ -6,7 +6,7 @@ import {Tabs, Tab} from 'kpc/components/tabs';
         {{ self.get('demos').sort((a, b) => {
             return a.data.setting.order - b.data.setting.order;
         }).map(Demo => {
-            return <div class={{ `example index-${Demo.data.index}` }}>
+            return <div class={{ `example index-${Demo.data.index}` }} key={{ Demo.data.index }}>
                 <div class="example-opera">
                     <Demo.default /> 
                 </div>
