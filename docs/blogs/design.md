@@ -40,21 +40,21 @@ components/checkbox
 ├── index.spec.js // 单元测试
 ├── index.styl // 组件样式
 ├── index.vdt // 组件模板
-└── variables.styl // 样式变量申明
+└── variables.styl // 样式变量声明
 ```
 
 ## 样式
 
-对于样式要考虑的一个目标是：主题定制。所以我们不能将样式写死，在kpc中一切可能改变的样式值都为
-变量。借助`stylus`等可编译样式语言，这很容易办到。
+对于样式要考虑的一个目标是：主题定制。所以我们不能将样式写死，借助`stylus`可编译样式语言，我们
+将kpc中一切可能改变的样式值都定义为变量。
 
-1. 样式变量申明
+1. 样式变量声明
 
-变量申明分为两部分：全局申明和组件申明。全局申明用于定义全局的样式，例如：主题色，边框色，字体
-带下，尺寸等；组件申明会使用全局申明中定义的变量，加上自身特有变量来申明，这样既可以做到一改全改，
+变量声明分为两部分：全局声明和组件声明。全局声明用于定义全局的样式，例如：主题色，边框色，字体，
+尺寸等；组件声明会使用全局声明中定义的变量来定义组件使用的变量，这样既可以做到一改全改，
 又可以针对组件进行特殊化定制。
 
-全局申明文件：`styles/themes/defaults.styl`
+全局声明文件：`styles/themes/defaults.styl`
 
 ```stylus
 /******************************
@@ -97,7 +97,7 @@ $border-radius := unit(2 / 14, rem)
 
 ```
 
-组件申明文件：`components/checkbox/variables.styl`
+组件声明文件：`components/checkbox/variables.styl`
 
 ```stylus
 @require('../../styles/themes/default.styl')
@@ -145,8 +145,8 @@ $checkbox-checked-bg-color := $checkbox-checked-border-color
 
 ### 主题定制
 
-在上面变量申明中，我们使用`:=`进行赋值，这是`stylus`的特有语法，意为：如果该变量已被定义则忽略
-本次定义。借助该特性，我们可以在编译时提前引入一个主题文件来改变默认变量定义。借助`stylus-loader`
+在上面变量声明中，我们使用`:=`进行赋值，这是`stylus`的特有语法，意为：如果该变量已被赋值则忽略
+本次赋值。借助该特性，我们可以在编译时提前引入一个主题文件来改变默认变量定义。借助`stylus-loader`
 我们可以为每一个`stylus`统一引入一个文件，该文件中定义了所有需要重新定义的变量。
 
 ```js
@@ -160,9 +160,9 @@ $checkbox-checked-bg-color := $checkbox-checked-border-color
 ```
 
 实际主题定制中，仅仅通过改变变量并不能完成100%的定制需求，当我们需要为组件添加新样式时，仅有的
-变量便无法满足，因为新增的样式kpc并没有申明相应的变量。所以还需一种方式引入额外样式申明文件。
+变量便无法满足，因为新增的样式kpc并没有声明相应的变量。所以还需一种方式引入额外样式声明文件。
 
-例如：`Select`默认主题并没有定义`border-radius`，也没有相应的变量申明，此时我们需要在自定义主题
+例如：`Select`默认主题并没有定义`border-radius`，也没有相应的变量声明，此时我们需要在自定义主题
 中添加`border-radius`怎么办？
 
 ```example
@@ -178,10 +178,10 @@ require($theme-dir + '/select.styl')
 ```
 
 这里`require`方法是自定义的方法，定义在文件`styles/functions.js`中，它的意思是：当文件存在时就
-包含该文件。所以我们只需要在`$theme-dir`定义的文件夹中申明`select.styl`文件，组件就会默认包含
+包含该文件。所以我们只需要在`$theme-dir`定义的文件夹中创建`select.styl`文件，组件就会默认包含
 该样式文件。
 
-这里我们在自定义主题文件中申明`$theme-dir`指向当前主题所在文件夹，然后在该文件下定义`select.styl`
+这里我们在自定义主题文件中声明`$theme-dir`指向当前主题所在文件夹，然后在该文件下定义`select.styl`
 文件添加样式定义即可。
 
 `styles/mytheme/index.styl`
@@ -198,7 +198,7 @@ $theme-dir := __dirname(); // __dirname也为自定义方法，用于获取当�
         border-radius $border-radius
 ```
 
-> 由于我们必须在`stylus`编译时引入变量定义和新增样式申明，因此当我们需要定制主题
+> 由于我们必须在`stylus`编译时引入变量定义和新增样式声明，因此当我们需要定制主题
 > 时，必须使用`stylus`多文件构建版。
 
 ## 构建打包
@@ -209,7 +209,7 @@ kpc使用了3中方式进行构建打包，每种方式都有特定的适用场�
 
 该打包方式将所有组件合并成到一个文件`kpc.js`中，所有的样式经过编译后合并到文件`kpc.css`中。该打包
 方式适合不需要经过`webpack`构建的项目，只需要在html文件中直接全量引入即可。但是缺点是，由于全量
-引入也会引入不需要的组件，造成代码冗余。
+引入加载了不需要的组件，会造成代码冗余。
 
 全量打包大致分为两步：
 
@@ -218,7 +218,7 @@ kpc使用了3中方式进行构建打包，每种方式都有特定的适用场�
 索引文件是编译的入口文件，它会将所有的组件`import`进来，然后`export`出去。但是当组件数变得庞大时，
 手动维护该文件会非常麻烦。kpc采用扫描所有组件文件，自动生成索引文件的方式来维护该文件。
 
-在每个组件入口文件`index.js`中，最后一句代码是暴露该组件的接口，例如：`components/select/index.js`
+在每个组件入口文件`index.js`中，最后一句代码来暴露该组件的接口，例如：`components/select/index.js`
 
 ```js
 export {Select, Option, Group as OptionGroup};
@@ -239,8 +239,8 @@ export {
 
 2. webpack构建
 
-将上述生成的索引文件`components/index.js`作为编译入口，使用`extract-text-webpack-plugin`提取所有css
-文件即可。
+将上述生成的索引文件`components/index.js`作为编译入口生成打包后的文件`kpc.js`，期间使用
+`extract-text-webpack-plugin`提取所有css文件至`kpc.css`即可。
 
 ### 多文件css构建版
 
@@ -248,7 +248,7 @@ export {
 方式不同。css构建版，会将所有的`stylus`编译成`css`，而stylus构建版，则保留`stylus`源码。所以stylus构建
 版能够在开发时进行主题定制，而css构建版则不能。
 
-多文件构建时，由于不存在打包过程，所以不需要`webpack`来构建，通过`gulp`将各种类型编译即可。
+多文件构建时，由于不存在打包过程，所以不需要`webpack`来构建，通过`gulp`将各种类型文件单独编译即可。
 
 1. 编译js
 
@@ -290,7 +290,7 @@ require('./index.vdt')
 
 ### 多文件stylus构建版
 
-stylus构建版与css构建的构建原理相同，只是比它更简单，因为需要编译`stylus`，所以不需要替换`js`的
+stylus构建版与css构建的构建原理相同，只是比它更简单，因为不需要编译`stylus`，所以不需要替换`js`的
 源码。除了编译`js`和`vdt`外，剩下的文件简单复制即可。
 
 ## 文档生成
@@ -298,30 +298,27 @@ stylus构建版与css构建的构建原理相同，只是比它更简单，因�
 kpc采用`markdown`书写文档和示例，然后再编译成网站。构建的过程大致如下：
 
 <div class="mermaid">
-graph LR
-	A[markdown文件] --> | kdoc-plugin-md分析 | B{判断是否是demo}
-	B --> | 是 | C>.js .vdt .styl .json]
-	B --> | 否 | D>.js .vdt .styl .json]
-	C -.-> | require | D
-	D --> | webpack | E[client.js]
-    D --> | webpack | F[index.html]
-</div>
-
-例如：`Button`组件下存在`index.md`和`demos/basic.md`等`markdown`文件。它们会进过`kdoc-plugin-md`
-插件分析：
-
-<div class="mermaid">
 graph TB
     A[markdown]
     A --> B[分析yaml]
-    A -- demo --> C[分析code]
+    A --> G[编译mardown为html]
+    B --> B1{是否是demo}
+    G --> B1
+    B1 -- 是 --> C[分析code]
+    B1 -- 否 --> I>index.js, index.json]
+    I -- webpack --> J>client.js]
+    I -- webpack --> render>render.js]
+    render -- 静态化 --> html>index.html]
     C -- js --> D>index.js]
     C -- vdt --> E>index.vdt]
     C -- stylus --> F>index.styl]
-    A --> G[编译mardown为html]
-    B --> H>index.json]
-    G --> H 
+    D --> demoJson>index.json]
+    E --> demoJson
+    F --> demoJson
+    D -.-> | require | I
 </div>
+
+例如：`Button`组件下存在`index.md`和`demos/basic.md`等`markdown`文件
 
 `index.md`
 
@@ -535,7 +532,7 @@ describe('Demos', () => {
 
 ### 交互测试
 
-demo测试仅仅能够测试首次渲染的结果，不能测试交互后组件的表现结果。所以需要单独为每个组件编写
+demo测试仅仅能够测试首次渲染的结果，不能测试交互后组件的表现。所以需要单独为每个组件编写
 测试代码，来测试交互逻辑。这里我们依然可以利用示例组件这一现成的组件来进行测试。
 
 例如：`ButtonGroup`的交互逻辑时
