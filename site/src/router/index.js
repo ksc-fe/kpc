@@ -14,9 +14,14 @@ export default new Router([
         }
     },
     {
-        path: /^\/(kpc\/)?design\/?$/,
-        action: async () => {
-            return {Page: await import('../pages/design')}
+        path: /^(?:\/kpc)?(\/docs\/design\/.*)$/,
+        action: async (context) => {
+            return {
+                Page: await import('../pages/design'),
+                data: {
+                    path: context.params[0]
+                }
+            };
         }
     },
     {

@@ -104,7 +104,7 @@ module.exports = {
             'intact$': 'intact-vue/dist/intact.vue.js',
             'kpc': path.resolve(__dirname),
         },
-        extensions: ['.mjs', '.js', '.vdt'],
+        extensions: ['.mjs', '.js', '.vdt', '.json'],
     },
     plugins: [
         new webpack.ProvidePlugin({

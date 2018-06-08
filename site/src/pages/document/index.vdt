@@ -40,8 +40,7 @@ function Catalog(props) {
     <b:content>
         <aside>
             <div class="aside-wrapper">
-                <Catalog key="undefined" />
-                <Catalog key="组件" />
+                <Catalog key={{ key }} v-for={{ Article.sidebar }} />
                 <div class="aside-border transition"></div>
             </div>
         </aside>
