@@ -14,6 +14,8 @@ order: 1
 > `data`中对应`key`为`a`的数据进行展示，`key`支持路径取值，例如：`a.b.0`。当然我们也可以
 > 通过`template`属性指定复杂内容
 
+> 为了保证列顺序正确，`key`不要以数字开头
+
 ```vdt
 import Table, {TableColumn} from 'kpc/components/table';
 

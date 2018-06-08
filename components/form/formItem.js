@@ -188,7 +188,7 @@ export default class FormItem extends Intact {
         // so we put off validating it 
         setTimeout(() => {
             this.validate()
-        }, 50);
+        }, 100);
         // if (this.$nextTick) {
             // this.$nextTick(this.validate);
         // } else {
