@@ -5683,7 +5683,7 @@ exports.Transfer = _transfer.Transfer;
 
 /* generate start */
 
-var version = exports.version = '0.3.8';
+var version = exports.version = '0.3.9';
 
 /* generate end */
 
@@ -12498,7 +12498,7 @@ var FormItem = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
         // so we put off validating it 
         setTimeout(function () {
             _this3.validate();
-        }, 50);
+        }, 100);
         // if (this.$nextTick) {
         // this.$nextTick(this.validate);
         // } else {
