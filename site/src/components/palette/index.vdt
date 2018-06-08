@@ -12,6 +12,6 @@ import Input from 'kpc/components/input';
 	</ul> 
     <Input ev-change={{ self._changeColor }} 
         defaultValue={{ self.get('primaryColor') }} 
-        placehoder="请输入正确的颜色值"
+        placeholder="请输入正确的颜色值"
     />
 </div>
