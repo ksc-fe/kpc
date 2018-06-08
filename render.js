@@ -39,7 +39,7 @@ module.exports =
 /******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
 /******/ 		// "0" is the signal for "already loaded"
 /******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("./chunk/" + {"0":"e78986de22130b297557","1":"9ab870db83262e4d3771","2":"594bd75ef06ebf109c7b","3":"eab7799709ebe282ac46"}[chunkId] + ".js");
+/******/ 			var chunk = require("./chunk/" + {"0":"85f8d4a2fac4bf018c9b","1":"56f6579fc8f334c08e32","2":"207dfa6466199ad9820e","3":"9c69d259f31763e0f951"}[chunkId] + ".js");
 /******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				modules[moduleId] = moreModules[moduleId];
@@ -266,7 +266,7 @@ exports.App = App;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528361388525
+      // 1528452492105
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -902,7 +902,7 @@ exports.default = new _universalRouter2.default([{
                     switch (_context.prev = _context.next) {
                         case 0:
                             _context.next = 2;
-                            return __webpack_require__.e/* import() */(2).then(__webpack_require__.bind(null, "./site/src/pages/index/index.js"));
+                            return __webpack_require__.e/* import() */(3).then(__webpack_require__.bind(null, "./site/src/pages/index/index.js"));
 
                         case 2:
                             _context.t0 = _context.sent;
@@ -923,23 +923,27 @@ exports.default = new _universalRouter2.default([{
         };
     }()
 }, {
-    path: /^\/(kpc\/)?design\/?$/,
+    path: /^(?:\/kpc)?(\/docs\/design\/.*)$/,
     action: function () {
-        var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2() {
+        var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(context) {
             return _regenerator2.default.wrap(function _callee2$(_context2) {
                 while (1) {
                     switch (_context2.prev = _context2.next) {
                         case 0:
                             _context2.next = 2;
-                            return __webpack_require__.e/* import() */(3).then(__webpack_require__.bind(null, "./site/src/pages/design/index.js"));
+                            return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, "./site/src/pages/design/index.js"));
 
                         case 2:
                             _context2.t0 = _context2.sent;
+                            _context2.t1 = {
+                                path: context.params[0]
+                            };
                             return _context2.abrupt('return', {
-                                Page: _context2.t0
+                                Page: _context2.t0,
+                                data: _context2.t1
                             });
 
-                        case 4:
+                        case 5:
                         case 'end':
                             return _context2.stop();
                     }
@@ -947,7 +951,7 @@ exports.default = new _universalRouter2.default([{
             }, _callee2, undefined);
         }));
 
-        return function action() {
+        return function action(_x) {
             return _ref2.apply(this, arguments);
         };
     }()
@@ -960,7 +964,7 @@ exports.default = new _universalRouter2.default([{
                     switch (_context3.prev = _context3.next) {
                         case 0:
                             _context3.next = 2;
-                            return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, "./site/src/pages/blog/index.js"));
+                            return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, "./site/src/pages/blog/index.js"));
 
                         case 2:
                             _context3.t0 = _context3.sent;
@@ -980,7 +984,7 @@ exports.default = new _universalRouter2.default([{
             }, _callee3, undefined);
         }));
 
-        return function action(_x) {
+        return function action(_x2) {
             return _ref3.apply(this, arguments);
         };
     }()
@@ -993,7 +997,7 @@ exports.default = new _universalRouter2.default([{
                     switch (_context4.prev = _context4.next) {
                         case 0:
                             _context4.next = 2;
-                            return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, "./site/src/pages/document/index.js"));
+                            return __webpack_require__.e/* import() */(2).then(__webpack_require__.bind(null, "./site/src/pages/document/index.js"));
 
                         case 2:
                             _context4.t0 = _context4.sent;
@@ -1013,7 +1017,7 @@ exports.default = new _universalRouter2.default([{
             }, _callee4, undefined);
         }));
 
-        return function action(_x2) {
+        return function action(_x3) {
             return _ref4.apply(this, arguments);
         };
     }()
@@ -1027,7 +1031,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1528361391583
+      // 1528452495224
       var cssReload = require("!../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1145,6 +1149,13 @@ module.exports = require("babel-runtime/helpers/typeof");
 /***/ (function(module, exports) {
 
 module.exports = require("babel-runtime/regenerator");
+
+/***/ }),
+
+/***/ "chroma-js":
+/***/ (function(module, exports) {
+
+module.exports = require("chroma-js");
 
 /***/ }),
 

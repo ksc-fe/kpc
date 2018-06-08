@@ -4864,102 +4864,6 @@ blockquote:before {
   font-size: 2em;
   margin: 10px 0;
 }
-.design-page .content-wrapper {
-  padding-left: 20px;
-}
-.design-page .color {
-  width: 100px;
-  height: 100px;
-  float: left;
-  H: 202.82051282051285;
-  S: 100%;
-  B: 91.76470588235294%;
-  DS: 22.5%;
-  IS: 0%;
-  DB: 2.058823529411764%;
-  IB: 12.941176470588236%;
-}
-.design-page .color4 {
-  background: #0091ea;
-}
-.design-page .color4:before {
-  content: "#0091ea\D\A   202.82051282051285 100% 91.76470588235294%";
-  white-space: pre;
-  color: #fff;
-  display: block;
-}
-.design-page .color3 {
-  background: #36acef;
-}
-.design-page .color3:before {
-  content: "#36acef\D\A   201.82051282051285 77.5% 93.82352941176471%";
-  white-space: pre;
-  color: #fff;
-  display: block;
-}
-.design-page .color2 {
-  background: #6ec6f4;
-}
-.design-page .color2:before {
-  content: "#6ec6f4\D\A   200.82051282051285 55% 95.88235294117646%";
-  white-space: pre;
-  color: #fff;
-  display: block;
-}
-.design-page .color1 {
-  background: #a9dffa;
-}
-.design-page .color1:before {
-  content: "#a9dffa\D\A   199.82051282051285 32.5% 97.94117647058823%";
-  white-space: pre;
-  color: #fff;
-  display: block;
-}
-.design-page .color0 {
-  background: #e5f7ff;
-}
-.design-page .color0:before {
-  content: "#e5f7ff\D\A   198.82051282051285 10% 100%";
-  white-space: pre;
-  color: #fff;
-  display: block;
-}
-.design-page .color5 {
-  background: #0079c9;
-}
-.design-page .color5:before {
-  content: "#0079c9\D\A   203.82051282051285 100% 78.82352941176471%";
-  white-space: pre;
-  display: block;
-  color: #fff;
-}
-.design-page .color6 {
-  background: #0063a8;
-}
-.design-page .color6:before {
-  content: "#0063a8\D\A   204.82051282051285 100% 65.88235294117646%";
-  white-space: pre;
-  display: block;
-  color: #fff;
-}
-.design-page .color7 {
-  background: #004d87;
-}
-.design-page .color7:before {
-  content: "#004d87\D\A   205.82051282051285 100% 52.94117647058823%";
-  white-space: pre;
-  display: block;
-  color: #fff;
-}
-.design-page .color8 {
-  background: #003866;
-}
-.design-page .color8:before {
-  content: "#003866\D\A   206.82051282051285 100% 40%";
-  white-space: pre;
-  display: block;
-  color: #fff;
-}
 .document-page {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -4976,7 +4880,7 @@ blockquote:before {
   overflow: auto;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  width: 300px;
+  width: 299px;
 }
 .document-page .content-wrapper {
   width: 100%;
@@ -5038,7 +4942,6 @@ blockquote:before {
   position: absolute;
   right: 0;
   top: 0;
-  height: 30px;
 }
 .document-page .content-wrapper article {
   -webkit-box-flex: 1;
@@ -5331,10 +5234,10 @@ blockquote:before {
 .k-breadcrumb .k-separator {
   margin: 0 6px;
 }
-.example.index-40 .separator {
+.example.index-50 .separator {
   color: #ffa133;
 }
-.example.index-40 i {
+.example.index-50 i {
   margin-right: 3px;
 }
 .k-tabs {
@@ -5443,22 +5346,22 @@ blockquote:before {
   right: auto;
   bottom: -1px;
 }
-.example.index-14 .k-btn {
+.example.index-3 .k-btn {
   margin-right: 20px;
 }
-.example.index-38 .k-btns {
+.example.index-45 .k-btns {
   margin-right: 20px;
 }
-.example.index-44 .k-btn {
+.example.index-54 .k-btn {
   margin-right: 20px;
 }
-.example.index-59 .k-btn {
+.example.index-68 .k-btn {
   margin-right: 20px;
 }
-.example.index-94 .k-btn {
+.example.index-98 .k-btn {
   margin-right: 20px;
 }
-.example.index-109 .k-btn {
+.example.index-104 .k-btn {
   margin-right: 20px;
 }
 .k-checkbox {
@@ -5534,13 +5437,13 @@ blockquote:before {
 .k-checkbox {
   margin: 0;
 }
-.example.index-6 .k-checkbox {
+.example.index-11 .k-checkbox {
   margin-right: 20px;
 }
-.example.index-46 .k-checkbox {
+.example.index-34 .k-checkbox {
   margin-right: 20px;
 }
-.example.index-49 .k-checkbox {
+.example.index-35 .k-checkbox {
   margin-right: 20px;
 }
 .k-tooltip {
@@ -5965,13 +5868,13 @@ blockquote:before {
   margin-left: -1px;
   z-index: -1;
 }
-.example.index-7 .k-datepicker {
+.example.index-15 .k-datepicker {
   margin-right: 20px;
 }
-.example.index-101 .k-datepicker {
+.example.index-106 .k-datepicker {
   margin-right: 20px;
 }
-.example.index-60 .k-datepicker {
+.example.index-58 .k-datepicker {
   margin-right: 10px;
 }
 .k-dialog-wrapper {
@@ -6222,7 +6125,7 @@ blockquote:before {
 .k-dropdown-menu.checkbox-menu .k-checkbox {
   padding: 8px 16px;
 }
-.example.index-76 .k-btn {
+.example.index-90 .k-btn {
   margin-right: 20px;
 }
 .k-dropdown-menu .ion-ios-arrow-right {
@@ -6231,10 +6134,10 @@ blockquote:before {
 .k-dropdown-menu .ion-ios-arrow-right:before {
   font-size: inherit;
 }
-.example.index-63 .k-btn {
+.example.index-75 .k-btn {
   margin-right: 20px;
 }
-.example.index-19 .k-btn {
+.example.index-27 .k-btn {
   margin-right: 20px;
 }
 .k-editable {
@@ -6249,7 +6152,7 @@ blockquote:before {
 .k-editable.k-invalid .k-input .k-inner {
   border: 1px solid #f44336;
 }
-.example.index-21 .ion-ios-location {
+.example.index-26 .ion-ios-location {
   margin-right: 10px;
 }
 .k-radio {
@@ -6693,61 +6596,61 @@ blockquote:before {
 .k-slider.k-disabled .k-handle {
   background-color: #f1f1f5;
 }
-.example.index-22 .k-form-item > .k-label {
+.example.index-24 .k-form-item > .k-label {
   width: 150px;
 }
-.example.index-22 .k-slider,
-.example.index-22 .k-select {
+.example.index-24 .k-slider,
+.example.index-24 .k-select {
   width: 300px;
 }
-.example.index-22 .k-radio,
-.example.index-22 .k-checkbox {
+.example.index-24 .k-radio,
+.example.index-24 .k-checkbox {
   margin-right: 10px;
 }
-.example.index-22 .k-slider {
+.example.index-24 .k-slider {
   margin-top: 15px;
 }
-.example.index-42 .k-form-item .k-form-item {
+.example.index-39 .k-form-item .k-form-item {
   margin-bottom: 20px;
 }
-.example.index-24 .k-col {
+.example.index-23 .k-col {
   line-height: 40px;
   text-align: center;
   color: #fff;
 }
-.example.index-24 .k-col:nth-of-type(even) {
+.example.index-23 .k-col:nth-of-type(even) {
   background: #0a5eee;
 }
-.example.index-24 .k-col:nth-of-type(odd) {
+.example.index-23 .k-col:nth-of-type(odd) {
   background: #4f8df8;
 }
-.example.index-24 .k-row {
+.example.index-23 .k-row {
   margin-bottom: 20px;
 }
-.example.index-47 .k-col {
+.example.index-43 .k-col {
   line-height: 40px;
   text-align: center;
   color: #fff;
 }
-.example.index-47 .k-col:nth-of-type(even) div {
+.example.index-43 .k-col:nth-of-type(even) div {
   background: #0a5eee;
 }
-.example.index-47 .k-col:nth-of-type(odd) div {
+.example.index-43 .k-col:nth-of-type(odd) div {
   background: #4f8df8;
 }
-.example.index-47 .k-row {
+.example.index-43 .k-row {
   margin-bottom: 20px;
 }
-.example.index-26 .k-input {
+.example.index-22 .k-input {
   margin: 5px;
 }
-.example.index-51 .k-input {
+.example.index-46 .k-input {
   margin: 5px;
 }
-.example.index-92 .k-input {
+.example.index-97 .k-input {
   margin: 5px;
 }
-.example.index-66 .k-input {
+.example.index-65 .k-input {
   margin: 5px;
 }
 .k-progress {
@@ -6955,57 +6858,57 @@ blockquote:before {
 .k-pagination .k-btn > span {
   line-height: 1;
 }
-.example.index-25 .k-pagination {
+.example.index-20 .k-pagination {
   margin-bottom: 20px;
 }
-.example.index-64 .k-pagination {
+.example.index-59 .k-pagination {
   margin-bottom: 20px;
 }
-.example.index-45 .k-pagination {
+.example.index-55 .k-pagination {
   margin-bottom: 20px;
 }
-.example.index-23 .k-progress {
+.example.index-19 .k-progress {
   margin: 10px 0;
 }
-.example.index-95 .k-progress {
+.example.index-99 .k-progress {
   display: inline-block;
   vertical-align: middle;
   margin-right: 20px;
 }
-.example.index-58 .k-progress {
+.example.index-60 .k-progress {
   margin: 10px 0;
 }
-.example.index-43 .k-progress {
+.example.index-29 .k-progress {
   margin: 10px 0;
 }
-.example.index-20 .k-radio {
+.example.index-0 .k-radio {
   margin-right: 20px;
 }
-.example.index-35 .k-radio {
+.example.index-49 .k-radio {
   margin-right: 20px;
 }
-.example.index-61 .k-radio {
+.example.index-64 .k-radio {
   margin-right: 20px;
 }
-.example.index-116 .k-select {
+.example.index-120 .k-select {
   margin-right: 10px;
 }
 .example.index-17 .k-slider {
   margin-bottom: 20px;
 }
-.example.index-77 .k-slider {
+.example.index-80 .k-slider {
   margin-bottom: 20px;
 }
-.example.index-31 .k-slider {
+.example.index-41 .k-slider {
   margin-bottom: 20px;
 }
-.example.index-15 .k-spinner {
+.example.index-16 .k-spinner {
   margin-right: 20px;
 }
-.example.index-69 .k-spinner {
+.example.index-71 .k-spinner {
   margin-right: 20px;
 }
-.example.index-28 .k-spinner {
+.example.index-38 .k-spinner {
   margin-right: 20px;
 }
 .k-steps {
@@ -7158,87 +7061,54 @@ blockquote:before {
 .k-steps .k-active .k-title {
   font-weight: bold;
 }
-.example.index-0 .k-btn {
+.example.index-14 .k-btn {
   margin-top: 20px;
 }
-.example.index-11 .k-switch {
+.example.index-12 .k-switch {
   margin-right: 20px;
 }
-.example.index-41 .k-switch {
+.example.index-33 .k-switch {
   margin-right: 20px;
 }
-.example.index-87 .k-switch {
+.example.index-88 .k-switch {
   margin-right: 20px;
 }
-.example.index-73 .k-switch {
+.example.index-69 .k-switch {
   margin-right: 20px;
 }
-.example.index-10 .k-table-wrapper {
+.example.index-9 .k-table-wrapper {
   margin-bottom: 20px;
 }
-.example.index-72 .k-table-wrapper {
+.example.index-67 .k-table-wrapper {
   margin-bottom: 20px;
 }
-.example.index-88 .no-data-template {
+.example.index-92 .no-data-template {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 20px;
 }
-.example.index-88 .no-data-template .k-table-wrapper {
+.example.index-92 .no-data-template .k-table-wrapper {
   margin-left: 20px;
 }
-.example.index-117 .k-disabled {
+.example.index-118 .k-disabled {
   background-color: #d9d9d9;
 }
-.example.index-121 .wrapper {
+.example.index-122 .wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-.example.index-121 .k-table-wrapper {
+.example.index-122 .k-table-wrapper {
   margin-left: 20px;
 }
-.example.index-128 .no-data-template {
+.example.index-130 .no-data-template {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-.example.index-128 .no-data-template .k-table-wrapper {
+.example.index-130 .no-data-template .k-table-wrapper {
   margin-left: 10px;
-}
-.example.index-123 .no-data-template {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-.example.index-123 .no-data-template .k-table-wrapper {
-  margin-left: 10px;
-}
-.example.index-91 .k-table-wrapper {
-  margin-bottom: 20px;
-}
-.example.index-91 .k-table-wrapper .k-checked {
-  background-color: #f4f8fb;
-}
-.example.index-108 .even {
-  background: #efefef;
-}
-.example.index-114 .no-data-template {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-.example.index-114 .no-data-template .k-table-wrapper {
-  margin-left: 10px;
-}
-.example.index-114 .icon {
-  vertical-align: middle;
-  margin-right: 10px;
-  cursor: pointer;
-}
-.example.index-37 .k-table-wrapper {
-  margin-bottom: 20px;
 }
 .example.index-125 .no-data-template {
   display: -webkit-box;
@@ -7248,25 +7118,58 @@ blockquote:before {
 .example.index-125 .no-data-template .k-table-wrapper {
   margin-left: 10px;
 }
-.example.index-54 .k-table-wrapper {
+.example.index-101 .k-table-wrapper {
   margin-bottom: 20px;
 }
-.example.index-54 .k-table-wrapper .title {
+.example.index-101 .k-table-wrapper .k-checked {
+  background-color: #f4f8fb;
+}
+.example.index-110 .even {
+  background: #efefef;
+}
+.example.index-116 .no-data-template {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.example.index-116 .no-data-template .k-table-wrapper {
+  margin-left: 10px;
+}
+.example.index-116 .icon {
+  vertical-align: middle;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.example.index-31 .k-table-wrapper {
+  margin-bottom: 20px;
+}
+.example.index-126 .no-data-template {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.example.index-126 .no-data-template .k-table-wrapper {
+  margin-left: 10px;
+}
+.example.index-56 .k-table-wrapper {
+  margin-bottom: 20px;
+}
+.example.index-56 .k-table-wrapper .title {
   margin-right: 8px;
 }
-.example.index-54 .k-table-wrapper .ion-ios-help-outline {
+.example.index-56 .k-table-wrapper .ion-ios-help-outline {
   line-height: 14px;
 }
-.example.index-9 .content {
+.example.index-8 .content {
   margin: 20px;
 }
-.example.index-34 .content {
+.example.index-32 .content {
   margin: 20px;
 }
-.example.index-67 .content {
+.example.index-73 .content {
   margin: 20px;
 }
-.example.index-83 .k-tabs {
+.example.index-87 .k-tabs {
   margin-bottom: 10px;
 }
 .k-transfer .k-panel,
@@ -7318,13 +7221,37 @@ blockquote:before {
   display: block;
   margin: 0.714285714285714rem;
 }
-.example.index-62 .k-item p {
+.example.index-66 .k-item p {
   margin: 0;
   font-size: 12px;
 }
-.example.index-32 .k-item p {
+.example.index-51 .k-item p {
   margin: 0;
   font-size: 12px;
+}
+.palette .color-block {
+  width: 100px;
+  height: 100px;
+  float: left;
+  text-align: center;
+  line-height: 50px;
+  cursor: pointer;
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+.palette .color-block:hover {
+  position: relative;
+  z-index: 1;
+  height: 110px;
+  margin-top: -10px;
+  border-radius: 2px 2px 0 0;
+}
+.palette .index {
+  font-size: 20px;
+}
+.palette .k-input {
+  width: 150px;
+  margin-top: 16px;
 }
 .blog-page {
   padding-bottom: 15px;
@@ -7360,6 +7287,9 @@ blockquote:before {
   background: none;
   width: auto;
   height: calc(100% - 125px);
+}
+.blog-page .content-wrapper .aside-border {
+  height: 30px;
 }
 .k-app {
   height: 100%;

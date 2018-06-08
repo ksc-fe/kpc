@@ -9,7 +9,7 @@
     
     
     <div id="page"><div class="k-app">
-    <div class="main-wrapper document-page"><div class="header-wrapper"><header><a class="logo" href="/">KPC</a><div class="right"><nav><a class="active" href="/kpc/docs/getting-started/">教程</a><a class="" href="/kpc/docs/blogs/design/">Blog</a><div class="border"></div></nav><span class="label">切换主题：</span><div class="k-select k-active" style="width:100px;" tabindex="0"><div class="k-wrapper" tabindex="-1" _hasSaved><input type="hidden" value="kpc" /><span class="k-value c-ellipsis">default</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></header></div><div class="content-wrapper"><aside><div class="aside-wrapper"><div class="catalog-section"><ul><li>
+    <div class="main-wrapper document-page"><div class="header-wrapper"><header><a class="logo" href="/">KPC</a><div class="right"><nav><a class="" href="/kpc/docs/design/language/">设计语言</a><a class="active" href="/kpc/docs/getting-started/">教程</a><a class="" href="/kpc/docs/blogs/design/">Blog</a><div class="border"></div></nav><span class="label">切换主题：</span><div class="k-select k-active" style="width:100px;" tabindex="0"><div class="k-wrapper" tabindex="-1" _hasSaved><input type="hidden" value="kpc" /><span class="k-value c-ellipsis">default</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></header></div><div class="content-wrapper"><aside><div class="aside-wrapper"><div class="catalog-section"><ul><li>
                 <!---->
                 <a href="/kpc/docs/getting-started/">
                     <!---->快速开始<!---->
@@ -99,12 +99,12 @@
                     <!---->Steps<span>步骤条</span>
                 </a></li><li>
                 <!---->
-                <a href="/kpc/components/switch/">
-                    <!---->Switch<span>开关</span>
-                </a></li><li>
-                <!---->
                 <a href="/kpc/components/breadcrumb/">
                     <!---->Breadcrumb<span>面包屑</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/switch/">
+                    <!---->Switch<span>开关</span>
                 </a></li><li>
                 <!---->
                 <a href="/kpc/components/pagination/">
@@ -130,7 +130,7 @@
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/components/table/index.md">github</a>
                     上修正该文档
                 </div></div><div class="contents"><div><h1>示例</h1>
-        <div class="example index-10"><div class="example-opera"><div><div class="k-table-wrapper" style="">
+        <div class="example index-9"><div class="example-opera"><div><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="表头1"><div class="k-th"><div class="c-ellipsis">表头1</div>
@@ -175,7 +175,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-37"><div class="example-opera"><div><div class="k-table-wrapper" style="">
+</div><div class="code"></div></div></div><div class="example index-31"><div class="example-opera"><div><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="定义该列单元格内容"><div class="k-th"><div class="c-ellipsis">定义该列单元格内容</div>
@@ -224,6 +224,9 @@
 <blockquote>
 <p>对于简单的表格，默认会使用<code>key</code>去取<code>data</code>中的数据，例如本例中，<code>key</code>为<code>a</code>的列，默认会取<code>data</code>中对应<code>key</code>为<code>a</code>的数据进行展示，<code>key</code>支持路径取值，例如：<code>a.b.0</code>。当然我们也可以通过<code>template</code>属性指定复杂内容</p>
 </blockquote>
+<blockquote>
+<p>为了保证列顺序正确，<code>key</code>不要以数字开头</p>
+</blockquote>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
@@ -232,7 +235,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-54"><div class="example-opera"><div><div class="k-table-wrapper" style="">
+</div><div class="code"></div></div></div><div class="example index-56"><div class="example-opera"><div><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th class="k-sortable"><div class="k-th"><div class="k-group"><i class="k-arrow ion-ios-arrow-down" _hasSaved></i><!--MoveWrapper--><div class="c-ellipsis"><div><span class="c-middle title" title="自定义表头内容">自定义表头内容</span><i class="ion-ios-help-outline c-middle" _hasSaved></i><!--MoveWrapper--></div>
@@ -285,7 +288,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-72"><div class="example-opera"><div><div class="k-table-wrapper" style="">
+</div><div class="code"></div></div></div><div class="example index-67"><div class="example-opera"><div><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="表头"><div class="k-th"><div class="c-ellipsis">表头</div>
@@ -342,7 +345,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-88"><div class="example-opera"><div><div class="no-data-template"><div class="k-table-wrapper" style="">
+</div><div class="code"></div></div></div><div class="example index-92"><div class="example-opera"><div><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"></th>
             <th title="radio不指定rowKey"><div class="k-th"><div class="c-ellipsis">radio不指定rowKey</div>
@@ -417,7 +420,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-91"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
+</div><div class="code"></div></div></div><div class="example index-101"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="不整行选中"><div class="k-th"><div class="c-ellipsis">不整行选中</div>
@@ -465,7 +468,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-108"><div class="example-opera"><div class="k-table-wrapper" style="">
+</div><div class="code"></div></div></div><div class="example index-110"><div class="example-opera"><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="偶数行背景变换"><div class="k-th"><div class="c-ellipsis">偶数行背景变换</div>
@@ -496,7 +499,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-114"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
+</div><div class="code"></div></div></div><div class="example index-116"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr>
             <!---->
@@ -546,7 +549,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-117"><div class="example-opera"><div class="k-table-wrapper" style="">
+</div><div class="code"></div></div></div><div class="example index-118"><div class="example-opera"><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="奇数行不可点击"><div class="k-th"><div class="c-ellipsis">奇数行不可点击</div>
@@ -580,7 +583,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-121"><div class="example-opera"><div class="wrapper"><div class="k-table-wrapper" style=""><div class="k-fixed" style="padding-right:0px;"><table class="k-table">
+</div><div class="code"></div></div></div><div class="example index-122"><div class="example-opera"><div class="wrapper"><div class="k-table-wrapper" style=""><div class="k-fixed" style="padding-right:0px;"><table class="k-table">
             <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="100px"><div class="k-th"><div class="c-ellipsis">100px</div>
         <!---->
@@ -639,7 +642,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-123"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
+</div><div class="code"></div></div></div><div class="example index-125"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="表头1"><div class="k-th"><div class="c-ellipsis">表头1</div>
@@ -690,7 +693,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-125"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
+</div><div class="code"></div></div></div><div class="example index-126"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th class="k-sortable" title="姓名"><div class="k-th"><div class="c-ellipsis">姓名</div>
@@ -742,7 +745,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-127"><div class="example-opera"><div class="k-table-wrapper k-border" style="">
+</div><div class="code"></div></div></div><div class="example index-129"><div class="example-opera"><div class="k-table-wrapper k-border" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="类型"><div class="k-th"><div class="c-ellipsis">类型</div>
@@ -763,7 +766,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-128"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
+</div><div class="code"></div></div></div><div class="example index-130"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="名称"><div class="k-th"><div class="c-ellipsis">名称</div>
@@ -822,7 +825,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-</div><div class="code"></div></div></div><div class="example index-129"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
+</div><div class="code"></div></div></div><div class="example index-132"><div class="example-opera"><div class="no-data-template"><div class="k-table-wrapper" style="">
     <table class="k-table">
     <thead><tr><th class="k-th-check"><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span></label></th>
             <th title="通过minColWidth控制最小宽度100px"><div class="k-resize"></div><div class="k-th"><div class="c-ellipsis">通过minColWidth控制最小宽度100px</div>
@@ -1145,6 +1148,7 @@
                 </div></div>
     </div></div></article></div></div>
     </div></div>
+    <script src="http://stylus-lang.com/try/stylus.min.js" type="text/javascript"></script>
     <script src="/kpc/static/client.js" type="text/javascript"></script>
 </body>
 </html>

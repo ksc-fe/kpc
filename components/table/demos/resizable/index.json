@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>resizable</code>：表头是否可拖动，类型<code>Boolean</code>，<code>false</code>(默认)</p>\n",
-    "index": 129,
+    "index": 132,
     "highlighted": [
         {
             "language": "vdt",

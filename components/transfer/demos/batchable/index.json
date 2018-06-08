@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>给组件添加<code>batchable</code>属性，可以支持“全选”和“清空”，当和<code>filterable</code>一起使用时，交互逻辑如下：</p>\n<ol>\n<li>左侧未过滤，全选则选中所有非<code>disabled</code>的选项</li>\n<li>左侧已过滤，全选则选中当前过滤出的非<code>disabled</code>的选项</li>\n<li>左侧先全选，再过滤，过滤掉的选项保持选中状态</li>\n<li>右侧清空会全部清空，不受<code>filter</code>影响</li>\n</ol>\n",
-    "index": 62,
+    "index": 66,
     "highlighted": [
         {
             "language": "vdt",
