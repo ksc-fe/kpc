@@ -77,12 +77,14 @@
         display table-cell
         width 1px
         vertical-align middle
-        padding 0 $input-group-padding-horizontal
         background $input-group-bg-color 
         border $input-border
+        text-align center
         .k-btn
-            margin s('-1px -%s', unit(($input-group-padding-horizontal * 14 + 1) / 14, em))
+            margin -1px 0
             border-radius 0
+    > .k-padding
+        padding 0 $input-group-padding-horizontal
     .k-prepend
         border-right none
         white-space nowrap

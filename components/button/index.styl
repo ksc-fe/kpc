@@ -1,7 +1,7 @@
 @require('./variables.styl')
 @require('../../styles/mixin.styl')
 
-types = primary warning danger active
+types = primary warning danger active success
 sizes = large small mini
 
 .k-btn
@@ -112,12 +112,12 @@ sizes = large small mini
                     color palette(lookup('$btn-' + type + '-color'), -2)
                     border-color palette(lookup('$btn-' + type + '-border-color'), -2)
         &:not(.k-btn-icon):not(.k-icon-left):not(.k-icon-right)
-            padding-left unit(getLeft($btn-padding) + 1, em)
+            padding-left s("calc(%s + 1em)", getLeft($btn-padding))
             .icon-loading
                 margin-left -1em
             for size in sizes 
                 &.k-{size}
-                    padding-left unit(getLeft(lookup('$btn-' + size + '-padding')) + 1, em)
+                    padding-left s("calc(%s + 1em)", getLeft(lookup('$btn-' + size + '-padding')))
 
     // radio
     input

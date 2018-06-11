@@ -7,16 +7,19 @@ $theme-dir := __dirname()
 @require('../../mixin.styl')
 
 $primary-color := #0091ea
-$warning-color := #ff9800
-$danger-color := #f44336
-$success-color := #3ba645
-$disabled-color := #999
-$disabled-bg-color := #f1f1f5
-$disabled-border-color := #d3d3d3
-$text-color := #333
+$warning-color := #ffad33
+$danger-color := #ff4133
+$success-color := #36b342
+$disabled-color := #ccc
+$disabled-bg-color := #f2f2f2
+$disabled-border-color := #ccc
+$text-color := #404040
+$ghost-text-color := #737373
 $border-color := #ccc
-$bg-color := #f5f5f9
-$title-color := #333
+$bg-color := #f1f1f5
+$title-color := #262626
+$dark-border-color := #999
+$placeholder-color := #b2b2b2
 
 $box-shadow := 0 0 4px 0 rgba(0, 0, 0, .3)
 
@@ -30,22 +33,34 @@ $default-height := 32
 $default-font-size := 12px
 $small-height := 24 
 $small-font-size := 12px
-$mini-height := 20
+$mini-height := 16 
 $mini-font-size := 12px
 
 
 /**
  * btn
  */
-$btn-color := #333
+$btn-color := $ghost-text-color 
+// type
 $btn-primary-border-color := palette($primary-color, 1) 
+$btn-warning-border-color := palette($warning-color, 1)
+$btn-danger-border-color := palette($danger-color, 1)
+$btn-success-border-color := palette($success-color, 1)
+$btn-active-color := $primary-color
+$btn-active-border-color := $primary-color
+$btn-active-bg-color := palette($primary-color, -4)
+// size
+$btn-large-padding := 0 24px 
+$btn-padding := 0 16px 
+$btn-small-padding := 0 8px 
+$btn-mini-padding := 0 8px 
 
 
 /**
  * radio
  */
-$radio-width := 16px
-$radio-inner-width := 10px
+$radio-width := 14px
+$radio-inner-width := 8px
 $radio-disabled-inner-color := $disabled-border-color
 
 
@@ -84,14 +99,19 @@ $switch-disabled-bg-color := #fff
 /**
  * input
  */
-// $input-font-size := 12px
-// $input-large-font-size := 14px
+$input-padding := 0 16px 
+$input-group-bg-color := $bg-color
+$input-group-padding-horizontal := unit(16 / 14, em)
+$input-prefix-padding := 48px
+$input-suffix-padding := 48px
 
 
 /**
  * select
  */
 $select-width := 300px
+$select-padding-right := 48px
+$select-padding-left := 16px
 $select-multiple-values-margin := 4px
 $select-multiple-tag-padding := 0 5px
 $select-multiple-tag-margin := 0 2px 3px 0

@@ -1,4 +1,4 @@
-import {addStyle} from '../utils';
+import {addStyle, isTextVNode} from '../utils';
 
 const {
     type, name, value, placeholder, tabindex,
@@ -39,9 +39,18 @@ const wrapperEvents = [
     style={{ width != null ? addStyle(style, {width: `${width}px`}) : style }} 
     {{ ...wrapperEvents }}
 >
-    <div class="k-prepend" v-if={{ blocks.prepend }}>
-        <b:prepend />
-    </div>
+    {{ do {
+        if (blocks.prepend) {
+            // if the children of this block is text node
+            // we add a padding to the wrapper node
+            // so we handle this block manually
+            const children = blocks.append.call(this, () => {});
+            <div class={{ {
+                "k-prepend": true, 
+                "k-padding": isTextVNode(children)
+            } }}>{{ children }}</div>
+        }
+    } }}
     <div class="k-wrapper">
         <div class="k-prefix" v-if={{ blocks.prefix }}>
             <b:prefix />
@@ -90,7 +99,13 @@ const wrapperEvents = [
             ref="fake"
         >{{ value == null || value === '' ? placeholder : value }}</div>
     </div>
-    <div class="k-append" v-if={{ blocks.append }}>
-        <b:append />
-    </div>
+    {{ do {
+        if (blocks.append) {
+            const children = blocks.append.call(this, () => {});
+            <div class={{ {
+                "k-append": true, 
+                "k-padding": isTextVNode(children)
+            } }}>{{ children }}</div>
+        }
+    } }}
 </div>

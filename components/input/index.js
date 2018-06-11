@@ -43,6 +43,7 @@ export default class Input extends Intact {
     }
 
     _mount() {
+        this.input = this.refs.input;
         this._adjustWidth();
     }
 
@@ -74,6 +75,12 @@ export default class Input extends Intact {
 
     _proxyEvent(name, e) {
         this.trigger(name, e);
+    }
+
+    _destroy() {
+        if (this.get('autoWidth')) {
+            this.input.style.width = '';
+        }
     }
 }
 

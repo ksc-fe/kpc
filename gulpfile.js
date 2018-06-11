@@ -50,7 +50,7 @@ function webpackWatch(theme) {
                 compiler.watch({
                     aggregateTimeout: 300,
                     poll: 1000, 
-                    ignored: /theme\-/
+                    ignored: /(theme\-)|(hot\-update)|(static\/client)/
                 }, callback) : 
                 compiler.run(callback);
         })

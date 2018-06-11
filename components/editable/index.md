@@ -18,6 +18,12 @@ sidebar: doc
 | trim | 是否去掉前后空白字符 | `Boolean` | `true` |
 | invalid | 是否为验证失败状态 | `Boolean` | `false` |
 
+# 方法
+
+| 方法名 | 说明 | 参数 | 返回值 |
+| --- | --- | --- | --- |
+| reset | 还原到上次的结果 | - | `undefined` |
+
 # 事件
 
 | 事件名 | 说明 | 参数 |
