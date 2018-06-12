@@ -156,7 +156,7 @@ if (hasValue && !label && !labels.length) {
     ev-keydown={{ self._onKeydown }}
 >
     <Dropdown
-        position={{ {my: 'left top', at: 'left bottom'} }} 
+        position={{ {my: 'left top+8', at: 'left bottom'} }} 
         trigger="click"
         disabled={{ disabled }}
         ref="dropdown"
