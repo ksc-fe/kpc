@@ -21,14 +21,14 @@ import Button from 'kpc/components/button';
             <DropdownItem>item 3</DropdownItem>
             <Dropdown position={{ {my: 'left top', at: 'right top'} }}>
                 <DropdownItem>
-                    <span class="c-middle" style="margin-right: 10px">hover</span>
-                    <i class="c-middle ion-ios-arrow-right"></i>
+                    <span>hover</span>
+                    <i class="ion-ios-arrow-right"></i>
                 </DropdownItem>
                 <DropdownMenu>
                     <Dropdown position={{ {my: 'left top', at: 'right top'} }}>
                         <DropdownItem>
-                            <span class="c-middle" style="margin-right: 10px">hover</span>
-                            <i class="c-middle ion-ios-arrow-right"></i>
+                            <span>hover</span>
+                            <i class="ion-ios-arrow-right"></i>
                         </DropdownItem>
                         <DropdownMenu>
                             <DropdownItem>item 1</DropdownItem>
@@ -40,14 +40,14 @@ import Button from 'kpc/components/button';
             </Dropdown>
             <Dropdown trigger="click" position={{ {my: 'left top', at: 'right top'} }}>
                 <DropdownItem>
-                    <span class="c-middle" style="margin-right: 10px">click</span>
-                    <i class="c-middle ion-ios-arrow-right"></i>
+                    <span>click</span>
+                    <i class="ion-ios-arrow-right"></i>
                 </DropdownItem>
                 <DropdownMenu>
                     <Dropdown trigger="click" position={{ {my: 'left top', at: 'right top'} }}>
                         <DropdownItem>
-                            <span class="c-middle" style="margin-right: 10px">click</span>
-                            <i class="c-middle ion-ios-arrow-right"></i>
+                            <span>click</span>
+                            <i class="ion-ios-arrow-right"></i>
                         </DropdownItem>
                         <DropdownMenu>
                             <DropdownItem>item 1</DropdownItem>
@@ -67,6 +67,7 @@ import Button from 'kpc/components/button';
 /.k-dropdown-menu
     .ion-ios-arrow-right
         float right
+        height 32px
         &:before
             font-size inherit
 ```

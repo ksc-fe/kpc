@@ -1,4 +1,6 @@
 /* import {proxyEvent} from '../utils'; */
+import {Checkbox} from '../checkbox';
+import {Radio} from '../radio';
 
 const {children, disabled, className, _isFocus} = self.get();
 
@@ -7,6 +9,7 @@ const classNameObj = {
     'k-disabled': disabled,
     [className]: className,
     'k-hover': _isFocus,
+    'k-no-padding': children && (children.tag === Checkbox || children.tag === Radio),
 }
 
 <div class={{ classNameObj }}

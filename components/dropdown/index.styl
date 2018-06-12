@@ -20,9 +20,13 @@
     .k-item
         padding $dropdown-item-padding 
         cursor pointer
+        if $dropdown-item-height != auto
+            height $dropdown-item-height
+            line-height $dropdown-item-height
         &.k-hover
             background $dropdown-item-hover-bg-color 
-            color $dropdown-item-hover-color 
+            if $dropdown-item-hover-color != inherit
+                color $dropdown-item-hover-color 
         &:first-of-type
             border-radius $dropdown-border-radius $dropdown-border-radius 0 0 
         &:last-of-type
@@ -33,6 +37,18 @@
             background $dropdown-item-disabled-bg-color 
             color $dropdown-item-disabled-color 
             cursor not-allowed
+
+        // checkbox | radio
+        .k-checkbox
+        .k-radio
+            display block
+            padding $dropdown-item-padding
+            > .k-wrapper
+                vertical-align text-bottom
+            > .k-text
+                vertical-align baseline
+        &.k-no-padding
+            padding 0
 
     &.dropdown-leave-active
         pointer-events none

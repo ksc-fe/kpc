@@ -34,14 +34,6 @@ import Button from 'kpc/components/button';
 </div>
 ```
 
-```styl
-/.k-dropdown-menu.checkbox-menu
-    .k-item
-        padding 0
-    .k-checkbox
-        padding 8px 16px
-```
-
 ```js
 export default class extends Intact {
     @Intact.template()
