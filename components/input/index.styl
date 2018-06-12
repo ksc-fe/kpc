@@ -21,6 +21,8 @@
         outline none
         &:focus
             border $input-focus-border
+            position relative
+            z-index 1
     // fluid
     &.k-fluid
         width 100%
@@ -83,6 +85,19 @@
         .k-btn
             margin -1px 0
             border-radius 0
+        // select
+        .k-select
+            margin -1px
+            text-align left
+    .k-prepend
+        .k-select
+            z-index 1
+            > .k-wrapper
+                border-radius $border-radius 0 0 $border-radius
+    .k-append
+        .k-select
+            > .k-wrapper
+                border-radius 0 $border-radius $border-radius 0
     > .k-padding
         padding 0 $input-group-padding-horizontal
     .k-prepend

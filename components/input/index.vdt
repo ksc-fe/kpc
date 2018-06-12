@@ -44,7 +44,7 @@ const wrapperEvents = [
             // if the children of this block is text node
             // we add a padding to the wrapper node
             // so we handle this block manually
-            const children = blocks.append.call(this, () => {});
+            const children = blocks.prepend.call(this, () => {});
             <div class={{ {
                 "k-prepend": true, 
                 "k-padding": isTextVNode(children)
