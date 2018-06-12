@@ -39,10 +39,12 @@ module.exports = function(theme) {
                 },
                 {
                     test: /\.(styl|css)$/,
-                    use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
-                        // the third rule is a stylus rule
-                        use: commonConfig.module.rules[2].use,
-                    })),
+                    use: !process.env.THEME ?
+                        ['css-hot-loader'].concat(ExtractTextPlugin.extract({
+                            // the third rule is a stylus rule
+                            use: commonConfig.module.rules[2].use,
+                        })) :
+                        ['style-loader'].concat(commonConfig.module.rules[2].use),
                 },
             ]
         },
@@ -60,11 +62,16 @@ module.exports = function(theme) {
             Intact: 'intact'
         }),
         new webpack.NamedModulesPlugin(),
-        new ExtractTextPlugin({
-            filename: theme ? `theme-${theme}.css` : 'theme-kpc.css',
-            allChunks: true,
-        }),
     ];
+
+    if (!process.env.THEME) {
+        config.plugins.push(
+            new ExtractTextPlugin({
+                filename: theme ? `theme-${theme}.css` : 'theme-kpc.css',
+                allChunks: true,
+            })
+        );
+    }
 
     return config;
 }

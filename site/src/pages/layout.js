@@ -5,6 +5,8 @@ import './layout.styl';
 let theme;
 function changeTheme(newTheme, oldTheme) {
     const link = document.querySelector('link[rel=stylesheet]');
+    if (!link) return;
+
     link.href = link.href.replace(`theme-${oldTheme}`, `theme-${newTheme}`);
     theme = newTheme;
     localStorage.setItem('theme', newTheme);

@@ -16,12 +16,13 @@ module.exports = function(theme) {
     })(commonConfig, {
         entry: {
             // don't let different theme to change the same entry file
-            [!theme ? 'static/client' : '__nouse']: isDev && !theme ? 
-                [
-                    'webpack-hot-middleware/client?reload=true',
+            [!theme || process.env.THEME ? 'static/client' : '__nouse']: 
+                isDev && (!theme || process.env.THEME) ? 
+                    [
+                        'webpack-hot-middleware/client?reload=true',
+                        path.resolve(__dirname, './src/client.js'),
+                    ] :
                     path.resolve(__dirname, './src/client.js'),
-                ] :
-                path.resolve(__dirname, './src/client.js'),
         },
         externals: {
             fs: 'null',
@@ -40,7 +41,7 @@ module.exports = function(theme) {
                 }),
             ];
 
-            if (isDev && !theme) {
+            if (isDev && (!theme || process.env.THEME)) {
                 plugins.push(new webpack.HotModuleReplacementPlugin());
             } else {
                 plugins.push(new webpack.optimize.UglifyJsPlugin());

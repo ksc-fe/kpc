@@ -2,7 +2,9 @@
 <head>
     <meta charset="utf-8" />
     <title>{{ self.title  }}</title>
-    <link rel="stylesheet" href={{ process.URL_PREFIX + "/theme-kpc.css" }} />
+    <link rel="stylesheet" href={{ process.URL_PREFIX + "/theme-kpc.css" }}
+        v-if={{ !process.env.THEME }}
+    />
 </head>
 <body>
     {{ /* 必须保证后端输出的css在页面渲染完成前一直生效，所以只能放到body中 */ }}

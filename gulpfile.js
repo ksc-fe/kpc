@@ -84,7 +84,7 @@ gulp.task('dev:doc:server', async () => {
 });
 
 gulp.task('server', () => {
-    const [compiler] = webpackWatch();
+    const [compiler] = webpackWatch(process.env.THEME);
 
     const webpackHotMiddleware = require('webpack-hot-middleware');
     return connect.server({
@@ -102,9 +102,25 @@ gulp.task('clean:doc:dev', () => {
     return exec(`rm -rf ./site/.dist`);
 });
 
-gulp.task('watch', gulp.series('clean:doc:dev', 'doc', gulp.parallel('server', 'build:themes:css', 'dev:doc:server', /* 'webpack', */ () => {
-    gulp.watch('./@(components|docs)/**/*.md', {ignored: /node_modules/}, gulp.parallel('doc'));
-})));
+gulp.task('noop', () => {});
+
+gulp.task('watch', gulp.series(
+    'clean:doc:dev', 
+    'doc', 
+    gulp.parallel(
+        'server', 
+        process.env.THEME ? 'noop' : 'build:themes:css', 
+        'dev:doc:server', 
+        /* 'webpack', */ 
+        () => {
+            gulp.watch(
+                './@(components|docs)/**/*.md', 
+                {ignored: /node_modules/}, 
+                gulp.parallel('doc')
+            );
+        }
+    )
+));
 
 const rm = (path) => {
     return new Promise(resolve => {
