@@ -15,7 +15,7 @@
         font-size $input-font-size
         height $input-height
         border $input-border 
-        padding $input-padding
+        padding 0 $input-padding-right 0 $input-padding-left
         background-color $input-bg-color 
         transition border $transition, background $transition, box-shadow $transition 
         outline none
@@ -48,9 +48,9 @@
         transform translateY(-50%)
         z-index 2
     .k-prefix
-        left ($input-prefix-padding / 3)
+        left $input-padding-left
     .k-suffix
-        right ($input-suffix-padding / 3)
+        right $input-padding-right 
 
     // clearable
     .k-clear
@@ -65,7 +65,7 @@
             margin-right $input-clear-margin-right
     &.k-with-suffix.k-clearable
         .k-inner
-            padding-right $input-suffix-padding + $input-clear-margin-right * 3
+            padding-right $input-suffix-padding + $input-padding-right
     .k-inner:focus + .k-suffix .k-clear.k-show
     &:hover .k-clear.k-show
         opacity 1
