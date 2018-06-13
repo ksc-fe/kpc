@@ -2,10 +2,12 @@
 sizes = large small mini
 
 .k-tabs
-    border-bottom $tabs-border-bottom
+    border-bottom $tabs-border
+    position relative
     .k-tab
-        height $tabs-height 
-        line-height s('calc(%s - 2px)', @height)
+        if $tabs-height != auto
+            height $tabs-height 
+            line-height s('calc(%s - 2px)', @height)
         padding $tabs-padding 
         margin $tabs-margin 
         cursor pointer
@@ -14,48 +16,115 @@ sizes = large small mini
         color $tabs-color 
         position relative
         vertical-align middle
+        &:hover
         &.k-active
             color $tabs-active-color 
-            &:after
-                content ''
-                display block
-                position absolute
-                left 0
-                height $tabs-highlight-height 
-                width 100%
-                background $tabs-highlight-bg-color 
-                bottom $tabs-highlight-bottom 
         // disabled
         &.k-disabled
             color $disabled-color
             cursor not-allowed
 
+    // active-bar
+    .k-active-bar
+        transition all $transition
+        position absolute
+        left 0
+        height $tabs-highlight-height 
+        background $tabs-highlight-bg-color 
+        bottom $tabs-highlight-bottom 
+
     // vertical
     &.k-vertical
         display inline-block
         border-bottom none
-        border-right $tabs-border-bottom
+        border-right $tabs-border
         .k-tab
             display block
             margin 0
             padding $tabs-vertical-padding
+        // active-bar
+        .k-active-bar
+            left auto
+            top 0
+            right $tabs-highlight-bottom 
+            width $tabs-highlight-height
+            height auto
+
+    // card
+    &.k-card
+        .k-tab
+            margin 0
+            border $tabs-border-width solid #fff
+            border-width $tabs-border-width $tabs-border-width 0 $tabs-border-width
+            margin-left -($tabs-border-width)
+            &:first-of-type
+                margin-left 0
             &.k-active
+                border-color $tabs-border-color 
+                z-index 1
                 &:after
-                    left auto
-                    right $tabs-highlight-bottom 
-                    width $tabs-highlight-height
-                    top 0
-                    bottom 0
-                    height auto
+                &:before
+                    content ""
+                    display block
+                    position absolute
+                &:after
+                    height $tabs-border-width
+                    background #fff
+                    bottom -($tabs-border-width)
+                    left 0
+                    width 100%
+                &:before
+                    height $tabs-highlight-height
+                    background $primary-color
+                    top -($tabs-border-width)
+                    left -($tabs-border-width)
+                    right -($tabs-border-width)
+        // vertical card
+        &.k-vertical
+            .k-tab
+                border-width $tabs-border-width 0 $tabs-border-width $tabs-border-width
+                margin-top -($tabs-border-width)
+                &:first-of-type
+                    margin-top 0
+                &.k-active
+                    &:after
+                        left auto
+                        right -($tabs-border-width)
+                        width $tabs-border-width
+                        top 0
+                        bottom 0
+                        height auto
+                    &:before
+                        height auto
+                        top -($tabs-border-width)
+                        bottom -($tabs-border-width)
+                        left -($tabs-border-width)
+                        right auto
+                        width $tabs-highlight-height
+
+    // border-card
+    &.k-border-card
+        border $tabs-border
+        border-bottom none
+        background $tabs-border-card-bg-color
+        .k-tab
+            margin 0
+            &.k-active
+                background #fff
+        // vertical border-card
+        &.k-vertical
+            border-right none
+            border-bottom $tabs-border
+
 
     // size
     for size in sizes 
         &.k-{size}
             .k-tab
-                font-size lookup('$tab-' + size + '-font-size')
-                height lookup('$tab-' + size + '-height')
+                font-size lookup('$tabs-' + size + '-font-size')
+                height lookup('$tabs-' + size + '-height')
                 line-height s('calc(%s - 2px)', @height)
-                padding lookup('$tab-' + size + '-padding')
+                padding lookup('$tabs-' + size + '-padding')
 
 $dir = $theme-dir + '/tabs.styl';
 @import $dir if exists($dir) 

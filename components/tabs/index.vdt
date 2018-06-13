@@ -1,12 +1,16 @@
 import Tab from './tab';
 
-const {className, data, value, children, style, vertical, size} = self.get();
+const {
+    className, data, value, children,
+    style, vertical, size, type, _activeBarStyle
+} = self.get();
 
 const classNameObj = {
     'k-tabs': true,
     [className]: className,
     [`k-${size}`]: size !== 'default',
     'k-vertical': vertical,
+    [`k-${type}`]: type !== 'default',
 };
 
 <div class={{ classNameObj }} style={{ style }}>
@@ -24,4 +28,7 @@ const classNameObj = {
         }
         return vNode;
     }) }}
+    <div class="k-active-bar" v-if={{ type === 'default' }}
+        style={{ _activeBarStyle }}
+    ></div>
 </div>

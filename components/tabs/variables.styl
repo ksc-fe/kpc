@@ -1,6 +1,8 @@
 @require('../../styles/themes/default.styl')
 
-$tabs-border-bottom := 1px solid $border-color
+$tabs-border-color := $border-color
+$tabs-border-width := 1px
+$tabs-border := $tabs-border-width solid $tabs-border-color
 $tabs-height := unit(59 / 14, rem)
 $tabs-padding := 0 unit(8 / 14, rem)
 $tabs-margin := 0 unit(10 / 14, rem)
@@ -16,12 +18,16 @@ $tabs-highlight-bottom := -($tabs-highlight-height / 2)
 $tabs-highlight-bg-color := $primary-color
 
 // size
-$tab-large-font-size := $large-font-size
-$tab-large-height := unit($large-height / 14, rem)
-$tab-large-padding := 0 unit(25 / 14, rem)
-$tab-small-font-size := $small-font-size 
-$tab-small-height := unit($small-height / 14, rem)
-$tab-small-padding := 0 unit(15 / 14, rem)
-$tab-mini-font-size := $mini-font-size 
-$tab-mini-height := unit($mini-height / 14, rem)
-$tab-mini-padding := 0 unit(10 / 14, rem)
+$tabs-large-font-size := $large-font-size
+$tabs-large-height := unit($large-height / 14, rem)
+$tabs-large-padding := 0 unit(25 / 14, rem)
+$tabs-small-font-size := $small-font-size 
+$tabs-small-height := unit($small-height / 14, rem)
+$tabs-small-padding := 0 unit(15 / 14, rem)
+$tabs-mini-font-size := $mini-font-size 
+$tabs-mini-height := unit($mini-height / 14, rem)
+$tabs-mini-padding := 0 unit(10 / 14, rem)
+
+// border-card
+$tabs-border-card-bg-color := $bg-color
+

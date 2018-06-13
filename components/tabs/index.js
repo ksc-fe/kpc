@@ -13,7 +13,10 @@ export default class Tabs extends Intact {
             data: undefined,
             value: undefined,
             vertical: false,
-            size: 'default', // large mini small
+            size: 'default', // large default mini small
+            type: 'default', // default card border-card
+
+            _activeBarStyle: undefined,
         };
     }
 
@@ -28,6 +31,30 @@ export default class Tabs extends Intact {
             this.set('value', item.value);
         } else {
             window.location.href = item.to;
+        }
+    }
+
+    _mount() {
+        this.on('$changed:value', this._setActiveBarStyle);
+        this._setActiveBarStyle();
+    }
+
+    _setActiveBarStyle() {
+        if (this.get('type') !== 'default') return;
+
+        const vertical = this.get('vertical');
+        const activeTab = this.element.querySelector('.k-tab.k-active');
+
+        if (activeTab) {
+            if (!vertical) {
+                const width = activeTab.offsetWidth;
+                const left = activeTab.offsetLeft;
+                this.set('_activeBarStyle', {left: left + 'px', width: width + 'px'});
+            } else {
+                const height = activeTab.offsetHeight;
+                const top = activeTab.offsetTop;
+                this.set('_activeBarStyle', {top: top + 'px', height: height + 'px'});
+            }
         }
     }
 }
