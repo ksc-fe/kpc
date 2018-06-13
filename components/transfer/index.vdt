@@ -16,33 +16,32 @@ const classNameObj = {
 
 const Panel = props => {
     const keywords = self.get(`${props.model}Keywords`);
+    const data = keywords ? 
+        props.data.filter(item => filter(item, keywords)) : 
+        props.data;
     return <div class="k-panel">
         <div class="k-title">
-            {{ props.title }} 
-            <a class="k-op" v-if={{ batchable && props.model == 'left' }}
-                ev-click={{ self._selectAll }}
-            >{{ _$('全选') }}</a>
-            <a class="k-op" v-if={{ batchable && props.model == 'right' }} 
-                ev-click={{ self._clearAll }}
-            >{{ _$('清空') }}</a>
+            <div class="k-count">
+                {{ self.get(`${props.model}Checked.length`) }} /
+                {{ data.length }}
+            </div>
+            <Checkbox class="c-ellipsis" 
+                value={{ self._isCheckAll(props.model) }}
+                ev-click={{ self._toggleCheckAll.bind(self, props.model) }}
+            >{{ props.title }}</Checkbox>
         </div>
         <Input v-if={{ filterable }} placeholder={{ placeholder }}
             v-model={{ `${props.model}Keywords` }}
             clearable
-            fluid
+            size="small"
         >
-            <b:append>
-                <Button icon type="none">
-                    <i class="ion-ios-search"></i>
-                </Button>
-            </b:append>
+            <b:prefix>
+                <i class="ion-ios-search"></i>
+            </b:prefix>
         </Input>
         <Animate class="k-list">
             <Animate 
-                v-for={{ keywords ? 
-                    props.data.filter(item => filter(item, keywords)) : 
-                    props.data 
-                }} 
+                v-for={{ data }} 
                 class={{ {"k-item": true, "k-disabled": value.disabled} }}
                 key={{ value }}
                 a:transition="fade"
@@ -66,17 +65,21 @@ const Panel = props => {
     <div class="k-arrows">
         <Button circle icon disabled={{ !rightChecked.length }}
             ev-click={{ self._remove }}
+            type="primary"
+            size="large"
         >
             <i class="k-icon ion-ios-arrow-left" />
         </Button>
         <Button circle icon disabled={{ !leftChecked.length }}
             ev-click={{ self._add }}
+            type="primary"
+            size="large"
         >
             <i class="k-icon ion-ios-arrow-right" />
         </Button>
     </div>
     <Panel data={{ data.filter(item => ~value.indexOf(item)) }} 
         model="right" 
-        title={{ `${rightTitle} (${value.length})` }}
+        title={{ rightTitle }}
     />
 </div>

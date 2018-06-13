@@ -1,24 +1,33 @@
 @require('./variables.styl')
 
 .k-transfer
+    font-size $transfer-font-size
     .k-panel
     .k-arrows
         display inline-block
         vertical-align middle
     .k-panel
         width $transfer-panel-width
-    .k-title
-        color $transfer-title-color 
-        line-height $transfer-title-line-height 
-        font-size $transfer-title-font-size
-        .k-op
-            float: right
-    .k-list
-        height $transfer-panel-height
         border $transfer-panel-border 
         border-radius $transfer-panel-border-radius 
+        height $transfer-panel-height
+
+    // title
+    .k-title
+        line-height $transfer-title-line-height 
+        background $transfer-title-bg-color
+        padding $transfer-title-padding
+        .k-checkbox
+            color $transfer-title-color 
+            font-size $transfer-title-font-size
+            display block
+        .k-count
+            float right
+            margin-left $transfer-title-count-margin-left
+    .k-list
         overflow auto
         position relative
+        height 251px
     .k-item
         color $transfer-item-color 
         background $transfer-item-bg-color 
@@ -26,14 +35,17 @@
         display table
         width 100%
         &:not(.k-disabled):hover
-            background $transfer-item-hover-bg-color 
-    .k-checkbox
-        padding $transfer-item-padding
-        display table-cell
-        height 40px
-        vertical-align middle
+            if $transfer-item-hover-bg-hover != transparent
+                background $transfer-item-hover-bg-color 
+            color $primary-color
+        .k-checkbox
+            padding $transfer-item-padding
+            display table-cell
+            height $transfer-item-height
+            vertical-align middle
     .k-input
-        margin-bottom -1px
+        width auto
+        margin $transfer-search-margin
 
     .k-arrows
         .k-btn

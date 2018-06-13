@@ -117,26 +117,42 @@ export default class Transfer extends Intact {
         }
     }
 
-    _selectAll() {
-        let value = this.get('value');
-        let data = this.get('data');
-        let leftChecked = data.filter(item => {
-            return !~value.indexOf(item) && !item.disabled;
-        });
-        let keywords = this.get('leftKeywords');
-        if (this.get('filterable') && keywords) {
-            let filter = this.get('filter');
-            let tem = leftChecked.filter(item => filter(item, keywords));
-            leftChecked = tem;
+    _isCheckAll(model) {
+        const checked = this.get(`${model}Checked`);
+        let data = this.get('value');
+
+        if (model === 'left') {
+            data = this.get('data').filter(item => {
+                return !~data.indexOf(item) && !item.disabled;
+            });
         }
-        this.set('leftChecked', leftChecked);
+
+        return data.length && checked.length >= data.length;
     }
 
-    _clearAll() {
-        this.set({
-            value: [],
-            rightChecked: [],
-        });
+    _toggleCheckAll(model, e) {
+        if (e.target.checked) {
+            this._selectAll(model);
+        }  else {
+            this.set(`${model}Checked`, []);
+        }
+    }
+
+    _selectAll(model) {
+        let data = this.get('value');
+        if (model === 'left') {
+            data = this.get('data').filter(item => {
+                return !~data.indexOf(item) && !item.disabled;
+            });
+        }
+
+        let keywords = this.get(`${model}Keywords`);
+        if (this.get('filterable') && keywords) {
+            let filter = this.get('filter');
+            data = data.filter(item => filter(item, keywords));
+        }
+
+        this.set(`${model}Checked`, data);
     }
 
     _destroy() {
