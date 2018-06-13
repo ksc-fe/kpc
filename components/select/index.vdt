@@ -115,6 +115,15 @@ const OptionsVNodes = ({children}) => {
                 });
             }
 
+            // if the multiple select option is active
+            // add a √ icon
+            if (active && multiple) {
+                props.children = [
+                    props.children,
+                    <i class="k-checkmark ion-ios-checkmark-empty"></i>
+                ];
+            }
+
             // return the cloned vNode
             return h(Option, props);
         } else if (vNode.tag === OptionGroup) {
