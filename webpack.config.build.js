@@ -22,6 +22,7 @@ module.exports = function(theme) {
             filename: '[name].js',
             library: 'Kpc',
             libraryTarget: 'umd',
+            publicPath: '',
         },
         externals: {
             intact: {
