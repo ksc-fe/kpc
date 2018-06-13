@@ -3,7 +3,7 @@ title: 支持全选/清空
 order: 2
 ---
 
-给组件添加`batchable`属性，可以支持“全选”和“清空”，当和`filterable`一起使用时，交互逻辑如下：
+当和`filterable`一起使用时，交互逻辑如下：
 
 1. 左侧未过滤，全选则选中所有非`disabled`的选项
 2. 左侧已过滤，全选则选中当前过滤出的非`disabled`的选项
@@ -26,7 +26,6 @@ import Transfer from 'kpc/components/transfer';
             data.ip.includes(keywords);
     } }}
     filterable
-    batchable
 />
 ```
 

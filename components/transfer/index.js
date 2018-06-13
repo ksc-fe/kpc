@@ -10,7 +10,7 @@ export default class Transfer extends Intact {
 
     static propTypes = {
         filterable: Boolean,
-        batchable: Boolean,
+        // batchable: Boolean,
     };
 
     defaults() {
@@ -20,7 +20,7 @@ export default class Transfer extends Intact {
             leftChecked: [],
             rightChecked: [],
             filterable: false,
-            batchable: false,
+            // batchable: false,
             filter(data, keywords) {
                 return data.label.includes(keywords);
             },
