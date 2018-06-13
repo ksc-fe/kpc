@@ -19,4 +19,5 @@ sidebar: doc
 | placeholder | 当开启过滤功能时，用于输入框展示的占位文案 | `String` | `"请输入"` |
 | leftTitle | 左边顶部展示的标题 | `String` | `"请选择"` |
 | rightTitle | 右边顶部展示的标题 | `String` | `"已选择"` |
+| keyName | 指定每一行数据的哪个属性当做列表的`key`属性，默认会取`key`或者`label`当做`key` | `String` | `"key"` |
 

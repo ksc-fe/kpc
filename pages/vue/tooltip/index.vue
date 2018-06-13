@@ -1,7 +1,7 @@
 <template>
     <div class="tooltip-demo">
         <div>
-            <Tooltip>
+            <Tooltip class="aa">
                 <button @click="onClick">test</button>
                 <div slot="content">message</div>  
             </Tooltip>

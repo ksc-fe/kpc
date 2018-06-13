@@ -14,3 +14,4 @@ sidebar: doc
 | showArrow | 弹层是否展示箭头 | `Boolean` | `true` |
 | position | 弹层的位置 | `"left"` &#124; `"bottom"` &#124; `"right"` &#124; `"top"` &#124; `Object` | `{my: 'center bottom-10', at: 'center top'}` |
 | transition | 弹层动画，默认只提供`fade`，你也可以传入任意自定义动画类型 | `String` | `"fade"` |
+| class | 样式名。特别说明：该属性会往内容弹出层上添加，vue下会同时往触发元素和弹层元素上添加 | `String` &#124; `Object` | `undefined` |

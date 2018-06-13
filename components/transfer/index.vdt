@@ -4,7 +4,7 @@ import Input from '../input';
 import {_$} from '../utils';
 
 const {
-    data, className, style, value, 
+    data, className, style, value, keyName,
     leftChecked, rightChecked, filterable, batchable,
     filter, label, placeholder, leftTitle, rightTitle
 } = self.get();
@@ -43,7 +43,7 @@ const Panel = props => {
             <Animate 
                 v-for={{ data }} 
                 class={{ {"k-item": true, "k-disabled": value.disabled} }}
-                key={{ value }}
+                key={{ value[keyName] || value.label || value }}
                 a:transition="fade"
                 ev-click={{ self._onClickLabel }}
             >

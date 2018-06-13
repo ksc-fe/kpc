@@ -6,6 +6,13 @@ order: 1
 通过`label`属性，可以自定义列表渲染逻辑。此时如果你需要启动列表过滤功能`filterable`，
 需要通过`filter`属性，指定自定义过滤函数。
 
+全选和`filterable`一起作用时，交互逻辑如下：
+
+1. 左侧未过滤，全选则选中所有非`disabled`的选项
+2. 左侧已过滤，全选则选中当前过滤出的非`disabled`的选项
+3. 左侧先全选，再过滤，过滤掉的选项保持选中状态
+
+
 ```vdt
 import Transfer from 'kpc/components/transfer';
 
@@ -22,6 +29,7 @@ import Transfer from 'kpc/components/transfer';
             data.ip.includes(keywords);
     } }}
     filterable
+    keyName="name"
 />
 ```
 
@@ -53,7 +61,7 @@ export default class extends Intact {
 
 ```vue
 <template>
-    <Transfer :data="data" :filter="filter" filterable>
+    <Transfer :data="data" :filter="filter" filterable keyName="name">
         <div slot="label" slot-scope="data, index, type">
             <div>{{ data.name }}</div>
             <p>{{ data.desc }} | {{ data.ip }}</p>

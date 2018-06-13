@@ -27,6 +27,7 @@ export default class Transfer extends Intact {
             label(data, index) {
                 return data.label;
             },
+            keyName: 'key',
             placeholder: _$('请输入'),
             leftTitle: _$('请选择'),
             rightTitle: _$('已选择'),

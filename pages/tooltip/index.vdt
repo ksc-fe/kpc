@@ -4,7 +4,7 @@ import Slider from 'components/slider';
 
 <div class="tooltip-demo">
     <div>
-        <Tooltip>
+        <Tooltip class="aa">
             <button ev-click={{ () => console.log(1) }}>test</button>
             <b:content>
                 <div>message</div>  
