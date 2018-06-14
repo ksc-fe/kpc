@@ -13,8 +13,3 @@ import Slider from 'kpc/components/slider';
     <Slider disabled isRange value={{ [55, 80] }} min={{ 50 }} max={{ 100 }} />
 </div>
 ```
-
-```styl
-.k-slider
-    margin-bottom 20px
-```

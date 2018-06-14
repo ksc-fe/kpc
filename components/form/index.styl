@@ -17,6 +17,11 @@
         vertical-align middle
         line-height 1
 
+    // slider
+    .k-slider.k-show-end
+        .k-slider-wrapper
+            margin-bottom 0
+
     // invalid 
     .k-error
         position absolute
@@ -42,5 +47,7 @@
     > .k-append
         display table-cell
         padding $form-item-append-padding
+
+    
 
 @import $theme-dir + '/form.styl' if exists($theme-dir + '/form.styl') 

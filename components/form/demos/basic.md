@@ -118,8 +118,6 @@ import {Datepicker} from 'kpc/components/datepicker';
 .k-radio
 .k-checkbox
     margin-right 10px
-.k-slider
-    margin-top 15px
 ```
 
 ```js

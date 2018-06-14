@@ -13,6 +13,8 @@ const classNameObj = {
     'k-disabled': disabled,
     [className]: className,
     'k-dragging': _isDragging,
+    'k-show-input': isShowInput && !isRange,
+    'k-show-end': isShowEnd,
 };
 
 const sliderWidth = max - min;
