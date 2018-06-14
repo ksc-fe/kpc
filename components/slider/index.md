@@ -16,4 +16,5 @@ sidebar: doc
 | isShowEnd | 是否展示最小值和最大值刻度 | `Boolean` | `true` |
 | isShowInput | 是否展示输入框 | `Boolean` | `true` |
 | step | 步长 | `Number` | `1` |
+| isShowStop | 是否展示间隔点 | `Boolean` | `false` |
 

@@ -5,7 +5,7 @@ const {
     disabled, isRange, isInnerText,
     isShowInput, isShowEnd, unit,
     step, _isDragging, _isFirst, _inputValue,
-    _isSecond, _sliderValue, style,
+    _isSecond, _sliderValue, style, isShowStop,
 } = self.get();
 
 const classNameObj = {
@@ -83,6 +83,18 @@ const sliderWidth = max - min;
             >
                 <div v-if={{ isInnerText }}>{{ value[1] }}</div>
             </div>
+            {{ do {
+                if (isShowStop) {
+                    const counts = (max - min) / step;
+                    const ret = [];
+                    for (let i = 1; i < counts; i++) {
+                        ret.push(<i class="k-point" 
+                            style={{ {left: (i / counts * 100) + '%'} }}
+                        ></i>)
+                    }
+                    ret;
+                }
+            } }} 
         </div>
         <div class="k-box" v-if={{ isShowEnd }}>
             <span>{{ min + unit }} </span>

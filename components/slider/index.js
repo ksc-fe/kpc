@@ -19,6 +19,7 @@ export default class Slider extends Intact {
             isShowEnd: true,
             isShowInput: true,
             step: 1,
+            isShowStop: false,
 
             _sliderValue: 0,
             _inputValue:0,

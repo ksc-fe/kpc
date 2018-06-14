@@ -38,6 +38,7 @@
             background-color $slider-handle-bg-color 
             transition all $transition 
             outline none
+            z-index 1
             &:hover
             &:focus
                 transform $slider-handle-hover-transform 
@@ -75,5 +76,13 @@
                 background-color $slider-handle-disabled-bg-color
                 cursor not-allowed
                 transform none
+
+    // stop point
+    .k-point
+        position absolute
+        top 0
+        width 4px
+        height 4px
+        background #fff
 
 require($theme-dir + '/slider.styl')
