@@ -25,8 +25,16 @@ $slider-handle-hover-transform := scale(1.5)
 $slider-handle-hover-bg-color := $slider-bar-color
 $slider-handle-disabled-bg-color := #fff
 
-$slider-box-padding := 10px 2px 0
+$slider-box-padding := unit(10 / 14, rem) unit(2 / 14, rem) 0
 $slider-disabled-color = $disabled-color
 $slider-disabled-bg-color = $disabled-bg-color
 $slider-spinner-width := unit(135 / 14, rem)
 // $slider-spinner-top := -(_$margin)
+
+// stop point
+$slider-stop-point-width := $slider-height 
+$slider-stop-point-height := $slider-stop-point-width
+$slider-stop-point-bg-color := #fff
+
+// marks
+$slider-marks-height := unit(26 / 14, rem)

@@ -81,8 +81,24 @@
     .k-point
         position absolute
         top 0
-        width 4px
-        height 4px
-        background #fff
+        width $slider-stop-point-width
+        height $slider-stop-point-height
+        background $slider-stop-point-bg-color
+        margin-left -(@width / 2)
+
+    // marks
+    .k-marks
+        position relative
+        height $slider-marks-height
+        span
+            position absolute
+            transform translateX(-50%) 
+            white-space nowrap
+            padding $slider-box-padding 
+            cursor pointer
+        :first-child
+            transform none
+        :last-child
+            transform translateX(-100%)
 
 require($theme-dir + '/slider.styl')

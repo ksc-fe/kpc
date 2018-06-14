@@ -5,7 +5,8 @@ const {
     disabled, isRange, isInnerText,
     isShowInput, isShowEnd, unit,
     step, _isDragging, _isFirst, _inputValue,
-    _isSecond, _sliderValue, style, isShowStop,
+    _isSecond, _sliderValue, style,
+    isShowStop, marks,
 } = self.get();
 
 const classNameObj = {
@@ -85,7 +86,7 @@ const sliderWidth = max - min;
             </div>
             {{ do {
                 if (isShowStop) {
-                    const counts = (max - min) / step;
+                    const counts = Math.floor((max - min) / step);
                     const ret = [];
                     for (let i = 1; i < counts; i++) {
                         ret.push(<i class="k-point" 
@@ -96,10 +97,19 @@ const sliderWidth = max - min;
                 }
             } }} 
         </div>
-        <div class="k-box" v-if={{ isShowEnd }}>
+        <div class="k-box" v-if={{ isShowEnd && !marks }}>
             <span>{{ min + unit }} </span>
             <span>{{ max + unit }}</span>
         </div>
+        <div class="k-marks" v-if={{ marks }}>{{ do {
+            const counts = Math.floor((max - min) / step);
+            <span v-for={{ marks }}
+                style={{ {
+                    left: ((key - min) / counts * 100) + '%'
+                } }}
+                ev-click={{ self._setOneValue.bind(self, key) }}
+            >{{ value }}</span>
+        } }}</div>
     </div>
     <div class="k-spinner-wrapper"
         v-if={{ isShowInput && !isRange }}

@@ -20,6 +20,7 @@ export default class Slider extends Intact {
             isShowInput: true,
             step: 1,
             isShowStop: false,
+            marks: undefined,
 
             _sliderValue: 0,
             _inputValue:0,
@@ -102,18 +103,19 @@ export default class Slider extends Intact {
         let currentPosition = e.clientX;
         let newValue = this._getSlidingValue(currentPosition);
         if (this.get('isRange')) {
-            let leftBtnPosition = this.$sliderFirstBtn.getBoundingClientRect().left,
-                rightBtnPosition = this.$sliderSecondBtn.getBoundingClientRect().left,
-                valueArr = this.get('value').slice();
-            if (Math.abs(leftBtnPosition - currentPosition) <= Math.abs(rightBtnPosition - currentPosition))  {
-                valueArr[0] = newValue;
-            } else {
-                valueArr[1] = newValue;
-            }
-            newValue = valueArr;
+            newValue = this._generateRangeValue(newValue);
         }
 
         this._setFixedValue(newValue);
+    }
+
+    _generateRangeValue(v) {
+        const [min, max] = this.get('value');
+        if (Math.abs(min - v) <= Math.abs(max - v)) {
+            return [v, max];
+        } else {
+            return [min, v];
+        }
     }
     
     _getSlidingValue(pos) {
@@ -306,6 +308,14 @@ export default class Slider extends Intact {
                 this.$sliderSecondBtn.blur();
                 this.$sliderFirstBtn.focus();
             }
+        }
+    }
+
+    _setOneValue(v) {
+        if (!this.get('isRange')) {
+            this._setFixedValue(v);
+        } else {
+            this._setFixedValue(this._generateRangeValue(v));
         }
     }
 
