@@ -17,4 +17,5 @@ sidebar: doc
 | isShowInput | 是否展示输入框 | `Boolean` | `true` |
 | step | 步长 | `Number` | `1` |
 | isShowStop | 是否展示间隔点 | `Boolean` | `false` |
+| marks | 标注刻度 | `Object` | `undefined` |
 

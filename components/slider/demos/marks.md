@@ -3,7 +3,8 @@ title: 展示标签
 order: 5
 ---
 
-给`Slider`指定`isShowStop`属性，可以展示间隔点，在间隔点不密集时使用。
+通过`marks`属性，可以给`Slider`标注刻度，该属性类型为`Object`，`key`表示组件的值，`value`为该
+值对应展示的标注文案。
 
 ```vdt
 import Slider from 'kpc/components/slider';
