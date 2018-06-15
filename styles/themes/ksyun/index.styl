@@ -29,13 +29,19 @@ $box-shadow := 0 0 4px 0 rgba(0, 0, 0, .3)
  */
 $large-height := 40
 $large-font-size := 14px
+$large-padding := 24
 $default-height := 32 
 $default-font-size := 12px
+$default-padding := 16
 $small-height := 24 
 $small-font-size := 12px
+$small-padding := 8
 $mini-height := 16 
 $mini-font-size := 12px
+$mini-padding := 8
 
+// the gutter between icon and text
+$icon-text-gutter := 8
 
 /**
  * btn
@@ -49,11 +55,6 @@ $btn-success-border-color := palette($success-color, 1)
 $btn-active-color := $primary-color
 $btn-active-border-color := $primary-color
 $btn-active-bg-color := palette($primary-color, -4)
-// size
-$btn-large-padding := 0 24px 
-$btn-padding := 0 16px 
-$btn-small-padding := 0 8px 
-$btn-mini-padding := 0 8px 
 
 
 /**
@@ -99,20 +100,24 @@ $switch-disabled-bg-color := #fff
 /**
  * input
  */
-$input-padding := 0 16px 
-$input-padding-left := 16px
+$input-padding-left := unit($default-padding, px)
 $input-group-bg-color := $bg-color
 $input-group-padding-horizontal := unit(16 / 14, em)
-$input-prefix-padding := 38px
-$input-suffix-padding := 38px
+$input-large-padding-left-right := unit($large-padding, px)
+$input-small-padding-left-right := unit($small-padding, px)
+$input-mini-padding-left-right := unit($mini-padding, px)
 
 
 /**
  * select
  */
 $select-width := 300px
-$select-padding-right := 38px
-$select-padding-left := 16px
+
+$select-padding-left := unit($default-padding, px)
+$select-large-padding-left := unit($large-padding, px)
+$select-small-padding-left := unit($small-padding, px)
+$select-mini-padding-left := unit($mini-padding, px)
+
 $select-multiple-values-margin := 4px
 $select-multiple-tag-padding := 3px 8px 4px 8px
 $select-multiple-tag-margin := 0 8px 3px 0
@@ -120,7 +125,7 @@ $select-multiple-tag-delete-icon-margin-left := 8px
 $select-multiple-tag-bg-color := $bg-color
 $select-multiple-tag-delete-icon-font-size := 14px
 $select-large-font-size := 14px
-// $select-font-size := 12px
+
 
 
 /**

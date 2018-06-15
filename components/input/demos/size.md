@@ -20,9 +20,11 @@ import Button from 'kpc/components/button';
         <b:append>.com</b:append>
     </Input>
     <Input size="small" placeholder="please enter">
+        <b:prefix><i class="ion-earth"></i></b:prefix>
+        <b:suffix><i class="ion-ios-search"></i></b:suffix>
         <b:append><Button size="small" icon type="primary"><i class="ion-ios-search"></i></Button></b:append>
     </Input>
-    <Input size="small" placeholder="please enter">
+    <Input size="small" placeholder="please enter" clearable>
         <b:append><Button type="primary" size="small">Search</Button></b:append>
     </Input>
 

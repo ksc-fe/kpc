@@ -1,15 +1,15 @@
 @require('../../styles/themes/default.styl')
+@require('../../styles/mixin.styl')
 
 $select-width := unit(200 / 14, rem)
 $select-height := unit($default-height / 14, rem)
 $select-border := 1px solid $border-color
 $select-bg-color := #fff
 $select-font-size := $default-font-size
-$select-padding-right := unit(30 / 14, rem)
-$select-padding-left := unit(10 / 14, rem)
+$select-padding-left := unit($mini-padding / 14, rem)
 $select-focus-border := 1px solid $primary-color
 
-$select-clear-margin-right := unit(5 / 14, rem)
+$select-clear-margin-right := unit($icon-text-gutter / 14, rem)
 $select-placeholder-color := $placeholder-color 
 
 // disabled
@@ -38,6 +38,12 @@ $select-large-font-size := $large-font-size
 $select-large-multiple-values-margin := unit(1 / 14, rem)
 $select-large-multiple-tag-margin := 0 unit(2 / 14, rem) unit(1 / 14, rem) 0
 
+$select-default-padding-left = $select-padding-left
+$select-default-height = $select-height
+$select-default-font-size = $select-font-size
+$select-default-multiple-values-margin = $select-multiple-values-margin
+$select-default-multiple-tag-margin = $select-multiple-tag-margin
+
 $select-small-height := unit($small-height / 14, rem)
 $select-small-font-size := $small-font-size 
 $select-small-multiple-values-margin := unit(1 / 14, rem)
@@ -47,6 +53,13 @@ $select-mini-height := unit($mini-height / 14, rem)
 $select-mini-font-size := $mini-font-size 
 $select-mini-multiple-values-margin := unit(1 / 14, rem)
 $select-mini-multiple-tag-margin := 0 unit(2 / 14, rem) unit(1 / 14, rem) 0
+
+for size in large default small mini
+    if lookup('$select-' + size + '-padding-left')
+        if !lookup('$select-' + size + '-padding-right')
+            define('$select-' + size + '-padding-right', add(lookup('$select-' + size + '-padding-left'), 14, $icon-text-gutter))
+        if !lookup('$select-' + size + '-clearable-padding-right')
+            define('$select-' + size + '-clearable-padding-right', add(lookup('$select-' + size + '-padding-left'), 14, $icon-text-gutter, 14, $icon-text-gutter))
 
 // dropdown
 $select-dropdown-max-height := unit(200 / 14, rem)

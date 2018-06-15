@@ -1,25 +1,20 @@
 @require('../../styles/themes/default.styl')
+@require('../../styles/mixin.styl')
 
 $input-font-size := $default-font-size
 $input-height := unit($default-height / 14, rem)
 $input-width := unit(300 / 14, rem)
 $input-border := 1px solid $border-color
-$input-padding := 0 unit(10 / 14, rem) 
-$input-padding-left := unit(10 / 14, rem)
-$input-padding-right := $input-padding-left
+$input-padding-left-right := unit($mini-padding / 14, rem) 
 $input-bg-color := #fff
 $input-focus-border := 1px solid $primary-color
 
 // textarea
-$input-textarea-padding := unit(5 / 14, rem) unit(10 / 14, rem)
+$input-textarea-padding := unit(5 / 14, rem) $input-padding-left-right
 
 // group
 $input-group-bg-color := #eee
 $input-group-padding-horizontal := unit(7 / 14, em)
-
-// prefix & suffix
-$input-prefix-padding := unit(30 / 14, rem)
-$input-suffix-padding := unit(30 / 14, rem)
 
 // clearable
 $input-clear-margin-right := unit(5 / 14, rem)
@@ -32,8 +27,23 @@ $input-disabled-bg-color := $disabled-bg-color
 // size
 $input-large-font-size := $large-font-size 
 $input-large-height := unit($large-height / 14, rem)
+$input-default-padding-left-right = $input-padding-left-right
+$input-default-font-size = $input-font-size
+$input-default-height = $input-height
 $input-small-font-size := $small-font-size 
 $input-small-height := unit($small-height / 14, rem)
 $input-mini-font-size := $mini-font-size 
 $input-mini-height := unit($mini-height / 14, rem)
+
+/** 
+ * calculate the padding for different size
+ */
+for size in large default small mini
+    if lookup('$input-' + size + '-padding-left-right')
+        if !lookup('$input-' + size + '-prefix-padding-left')
+            define('$input-' + size + '-prefix-padding-left', add(lookup('$input-' + size + '-padding-left-right'), 14, $icon-text-gutter))
+        if !lookup('$input-' + size + '-suffix-padding-right')
+            define('$input-' + size + '-suffix-padding-right', add(lookup('$input-' + size + '-padding-left-right'), 14, $icon-text-gutter))
+        if !lookup('$input-' + size + '-clearable-suffix-padding-right')
+            define('$input-' + size + '-clearable-suffix-padding-right', add(lookup('$input-' + size + '-padding-left-right'), 14, $icon-text-gutter, 14, $icon-text-gutter))
 

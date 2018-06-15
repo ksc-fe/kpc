@@ -5,16 +5,12 @@
     vertical-align middle
     position relative
     width $select-width
-    font-size $select-font-size
     > .k-wrapper
         width 100%
-        min-height $select-height
-        // line-height s('calc(%s - 2px)', @min-height)
         cursor pointer
         outline none
         vertical-align middle
         border $select-border 
-        padding 0 $select-padding-right 0 $select-padding-left
         background $select-bg-color
         transition border $transition, background $transition, box-shadow $transition 
     .k-suffix
@@ -40,15 +36,11 @@
         .k-clear.k-show
             opacity 1
             pointer-events all
-    &.k-clearable
-        > .k-wrapper
-            padding-right ($select-padding-right + $select-clear-margin-right * 3)
 
     // filterable
     .k-input
         .k-inner
             width 100%
-            height s('calc(%s - 2px)', $select-height)
             border none !important
             padding 0
             &:focus
@@ -58,10 +50,6 @@
         // display inline-block
         color $select-placeholder-color
 
-    .k-input
-    .k-placeholder
-    .k-value
-        line-height s('calc(%s - 2px)', $select-height)
     .k-placeholder
     .k-value
         display block
@@ -97,15 +85,11 @@
     // multiple
     .k-values
         display inline-block
-        margin-top $select-multiple-values-margin 
-        .k-input
-            margin-top -($select-multiple-values-margin) 
     .k-tag
         padding $select-multiple-tag-padding 
         background $select-multiple-tag-bg-color
         // border 1px solid $disabled-border-color
         border-radius $select-multiple-tag-border-radius 
-        margin $select-multiple-tag-margin 
         &
         .k-text
         .k-icon
@@ -119,25 +103,36 @@
             &:hover
                 color $select-multiple-tag-delete-icon-hover-color
     // size
-    for size in large small mini
-        &.k-{size}
-            font-size lookup('$select-' + size + '-font-size')
+    generate(size)
+        font-size lookup('$select-' + size + '-font-size')
+        > .k-wrapper
+            min-height lookup('$select-' + size + '-height')
+            padding 0 lookup('$select-' + size + '-padding-right') 0 lookup('$select-' + size + '-padding-left')
+            .k-input
+            .k-placeholder
+            .k-value
+                line-height s('calc(%s - 2px)', lookup('$select-' + size + '-height'))
+            .k-input
+                .k-inner
+                    height s('calc(%s - 2px)', lookup('$select-' + size + '-height'))
+            .k-values
+                margin-top lookup('$select-' + size + '-multiple-values-margin')
+                .k-input
+                    margin-top -(lookup('$select-' + size + '-multiple-values-margin')) 
+            .k-tag
+                margin lookup('$select-' + size + '-multiple-tag-margin')
+        &.k-clearable
             > .k-wrapper
-                min-height lookup('$select-' + size + '-height')
-                .k-input
-                .k-placeholder
-                .k-value
-                    line-height s('calc(%s - 2px)', lookup('$select-' + size + '-height'))
-                .k-input
-                    .k-inner
-                        height s('calc(%s - 2px)', lookup('$select-' + size + '-height'))
-                .k-values
-                    margin-top lookup('$select-' + size + '-multiple-values-margin')
-                    .k-input
-                        margin-top -(lookup('$select-' + size + '-multiple-values-margin')) 
-                .k-tag
-                    margin lookup('$select-' + size + '-multiple-tag-margin')
+                padding-right lookup('$select-' + size + '-clearable-padding-right') 
 
+
+    for size in large default small mini
+        if size != default 
+            &.k-{size}
+                generate(size)
+        else
+            generate(size)
+       
 .k-select-dropdown
     min-width auto
     max-height $select-dropdown-max-height

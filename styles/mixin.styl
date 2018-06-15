@@ -24,6 +24,16 @@ clearfix()
         content ''
         height 0
 
+add(main, args...)
+    if unit(main) == 'rem' || unit(main) == 'em'
+        for arg in args
+            main = main + unit(arg / 14, rem)
+    else
+        for arg in args
+            main = main + unit(arg, px)
+
+    return main
+
 hsv(h-hsv, s-hsv, v-hsv, a = 1)
     if v-hsv == 0
         return hsla(0, 0, 0, a)

@@ -1,7 +1,6 @@
 @require('./variables.styl')
 
 .k-input
-    font-size $input-font-size
     display inline-block
     width $input-width
     vertical-align middle
@@ -12,10 +11,8 @@
     .k-inner
         display inline-block
         width 100%
-        font-size $input-font-size
-        height $input-height
         border $input-border 
-        padding 0 $input-padding-right 0 $input-padding-left
+        padding 0 $input-padding-left-right
         background-color $input-bg-color 
         transition border $transition, background $transition, box-shadow $transition 
         outline none
@@ -34,23 +31,12 @@
         line-height 1.5
 
     // prefix & suffix
-    &.k-with-prefix
-        .k-inner
-            padding-left $input-prefix-padding 
-    &.k-with-suffix
-    &.k-clearable
-        .k-inner
-            padding-right $input-suffix-padding 
     .k-prefix
     .k-suffix
         position absolute
         top 50%
         transform translateY(-50%)
         z-index 2
-    .k-prefix
-        left $input-padding-left
-    .k-suffix
-        right $input-padding-right 
 
     // clearable
     .k-clear
@@ -60,12 +46,6 @@
         pointer-events none
         &:hover
             color $primary-color
-    &.k-with-suffix
-        .k-clear
-            margin-right $input-clear-margin-right
-    &.k-with-suffix.k-clearable
-        .k-inner
-            padding-right $input-suffix-padding + $input-padding-right
     .k-inner:focus + .k-suffix .k-clear.k-show
     &:hover .k-clear.k-show
         opacity 1
@@ -117,14 +97,37 @@
             border-color $input-disabled-border-color
             background $input-disabled-bg-color
             cursor not-allowed
-    
+
     // size
-    for size in large small mini
-        &.k-{size}
+    generate(size)
+        font-size lookup('$input-' + size + '-font-size')
+        .k-inner
+            height lookup('$input-' + size + '-height')
             font-size lookup('$input-' + size + '-font-size')
-            .k-inner
-                height lookup('$input-' + size + '-height')
-                font-size lookup('$input-' + size + '-font-size')
+            if lookup('$input-' + size + '-padding-left-right')
+                padding 0 lookup('$input-' + size + '-padding-left-right')
+        if lookup('$input-' + size + '-padding-left-right')
+            .k-prefix
+                left lookup('$input-' + size + '-padding-left-right')
+            .k-suffix
+                right lookup('$input-' + size + '-padding-left-right')
+            &.k-with-prefix
+                .k-inner
+                    padding-left lookup('$input-' + size + '-prefix-padding-left')
+            &.k-with-suffix
+            &.k-clearable
+                .k-inner
+                    padding-right lookup('$input-' + size + '-suffix-padding-right') 
+            &.k-with-suffix.k-clearable
+                .k-inner
+                    padding-right lookup('$input-' + size + '-clearable-suffix-padding-right')
+    for size in large default small mini
+        if size != default
+            &.k-{size}
+                generate(size)
+        else
+            generate(size)
+            
 
     // fake dom for get value's width
     .k-fake
