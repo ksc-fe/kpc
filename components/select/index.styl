@@ -18,7 +18,6 @@
         top 50%
         transform translateY(-50%)
         // line-height 1
-        right $select-padding-left
 
     // fluid
     &.k-fluid
@@ -107,7 +106,11 @@
         font-size lookup('$select-' + size + '-font-size')
         > .k-wrapper
             min-height lookup('$select-' + size + '-height')
-            padding 0 lookup('$select-' + size + '-padding-right') 0 lookup('$select-' + size + '-padding-left')
+            if lookup('$select-' + size + '-padding-left')
+                padding 0 lookup('$select-' + size + '-padding-right') 0 lookup('$select-' + size + '-padding-left')
+            if lookup('$select-' + size + '-padding-left')
+                .k-suffix
+                    right lookup('$select-' + size + '-padding-left')
             .k-input
             .k-placeholder
             .k-value
@@ -121,11 +124,10 @@
                     margin-top -(lookup('$select-' + size + '-multiple-values-margin')) 
             .k-tag
                 margin lookup('$select-' + size + '-multiple-tag-margin')
-        &.k-clearable
-            > .k-wrapper
-                padding-right lookup('$select-' + size + '-clearable-padding-right') 
-
-
+        if lookup('$select-' + size + '-padding-left')
+            &.k-clearable
+                > .k-wrapper
+                    padding-right lookup('$select-' + size + '-clearable-padding-right') 
     for size in large default small mini
         if size != default 
             &.k-{size}

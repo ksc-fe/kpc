@@ -9,7 +9,7 @@ process.URL_PREFIX = isDev ? '' : '/kpc';
 module.exports = function(theme) {
     // add theme
     const commonConfig = merge.smartStrategy()(webpackConfig);
-    if (theme) {
+    if (theme && theme !== 'default') {
         commonConfig.module.rules[2].use[2].options.import =
             path.resolve(__dirname, `../styles/themes/${theme}/index.styl`);
     }

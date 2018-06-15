@@ -12,6 +12,7 @@
     "start": "node server.js",
     "build": "NODE_ENV=production gulp build",
     "dev:doc": "THEME=ksyun gulp watch",
+    "dev:doc:default": "THEME=default gulp watch",
     "preview:doc": "gulp watch",
     "build:doc": "NODE_ENV=production gulp build:doc",
     "deploy:doc": "NODE_ENV=production gulp deploy:doc",
