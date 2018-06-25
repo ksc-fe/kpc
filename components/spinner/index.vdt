@@ -3,7 +3,7 @@ import {Input} from '../input';
 
 const {
     className, disabled, max, min, step,
-    children, style, size
+    children, style, size, vertical,
 } = self.get();
 
 const classNameObj = {
@@ -11,6 +11,7 @@ const classNameObj = {
     'k-disabled': disabled,
     [`k-${size}`]: size !== 'default',
     [className]: className,
+    'k-vertical': vertical,
 };
 
 <div class={{ classNameObj }} style={{ style }}>
@@ -18,7 +19,10 @@ const classNameObj = {
         disabled={{ self._disableDecrease() }}
         class="k-left"
         size={{ size }}
-    >-</Button>
+    >
+        <i v-if={{ !vertical }} class="k-icon ion-ios-minus-empty"></i>
+        <i v-else class="ion-ios-arrow-down"></i>
+    </Button>
     <Input disabled={{ disabled }} 
         ev-change={{ self._changeValue }}
         v-model="_value"
@@ -28,5 +32,8 @@ const classNameObj = {
         disabled={{ self._disableIncrease() }}
         class="k-right"
         size={{ size }}
-    >+</Button>
+    >
+        <i v-if={{ !vertical }} class="k-icon ion-ios-plus-empty"></i>
+        <i v-else class="ion-ios-arrow-up"></i>
+    </Button>
 </div>

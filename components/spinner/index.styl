@@ -2,8 +2,9 @@
 
 .k-spinner
     display inline-block
+    vertical-align middle
     .k-btn
-        // vertical-align middle
+        vertical-align top
         &:hover
         &:focus
             z-index 1
@@ -22,10 +23,45 @@
     .k-inner
         text-align center
         padding 0
+    .k-icon
+        font-size $spinner-icon-font-size
+
+    // vertical
+    &.k-vertical
+        position relative
+        .k-input
+            margin-right -1px
+        .k-left
+        .k-right
+            position absolute
+            right 0
+            margin 0
+            height calc(50% + 1px)
+            line-height 50%
+        .k-right
+            top 0
+        .k-left
+            bottom 0
+        i:before
+            font-size inherit
+        // size
+        generate(size)
+            .k-input
+                padding-right lookup('$spinner-vertical-' + size + '-padding-right') 
+                width lookup('$spinner-vertical-' + size + '-width')
+        for size in large default small mini
+            if size != default
+                &.k-{size}
+                    generate(size)
+            else
+                generate(size)
 
     // size
     for size in large small mini
         &.k-{size}            
+            .k-btn
+                .k-icon
+                    font-size lookup('$spinner-' + size + '-icon-font-size')
             .k-input
                 width lookup('$spinner-' + size + '-input-width')
 

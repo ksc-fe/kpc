@@ -16,6 +16,7 @@ export default class Spinner extends Intact {
             min: Number.NEGATIVE_INFINITY,
             step: 1,
             size: 'default',
+            vertical: false,
         };
     }
 
@@ -23,7 +24,8 @@ export default class Spinner extends Intact {
         disabled: Boolean,
         max: Number,
         min: Number,
-        step: Number
+        step: Number,
+        vertical: Boolean,
     }
 
     _init() {

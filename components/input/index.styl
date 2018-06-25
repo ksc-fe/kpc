@@ -23,12 +23,6 @@
     &.k-fluid
         width 100%
 
-    // textarea
-    .k-textarea
-        padding $input-textarea-padding
-        height auto
-        line-height 1.5
-
     // prefix & suffix
     .k-prefix
     .k-suffix
@@ -102,6 +96,7 @@
         font-size lookup('$input-' + size + '-font-size')
         .k-inner
             height lookup('$input-' + size + '-height')
+            line-height @height
             font-size lookup('$input-' + size + '-font-size')
             if lookup('$input-' + size + '-padding-left-right')
                 padding 0 lookup('$input-' + size + '-padding-left-right')
@@ -127,6 +122,11 @@
         else
             generate(size)
             
+    // textarea
+    .k-textarea
+        padding $input-textarea-padding
+        height auto
+        line-height 1.5
 
     // fake dom for get value's width
     .k-fake
