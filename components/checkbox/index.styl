@@ -38,13 +38,24 @@
         margin-left $checkbox-text-margin-left
         display inline-block
 
+    // indeterminate
     // checked
     &.k-checked
+    &.k-indeterminate
         .k-wrapper
             border-color $checkbox-checked-border-color
             background $checkbox-checked-bg-color
+    &.k-indeterminate
+        .k-wrapper
+            &:before
+                transform rotate(90deg) scale(1) 
+                border-bottom 0
+                left $checkbox-indeterminate-inner-left
+    &.k-checked
+        .k-wrapper
             &:before
                 transform rotate(45deg) scale(1) 
+
     // focus
     &:focus
         outline none

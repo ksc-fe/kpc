@@ -1,7 +1,7 @@
 const {
     className, disabled, falseValue, 
     children, value, trueValue, style,
-    ref, key, ...rest
+    ref, key, indeterminate, ...rest
 } = self.get();
 
 const classNameObj = {
@@ -9,6 +9,7 @@ const classNameObj = {
     'k-disabled': disabled,
     'k-checked': self.isChecked(),
     [className]: className,
+    'k-indeterminate': indeterminate,
 };
 
 <label class={{ classNameObj }} style={{ style }} 
