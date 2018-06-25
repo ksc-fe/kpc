@@ -71,8 +71,9 @@
         transform $dialog-transform 
         opacity 0
 
-    // small size
-    &.k-small
-        width $dialog-small-width
+    // size
+    for size in large small mini
+        &.k-{size}
+            width lookup('$dialog-' + size + '-width')
 
 @import $theme-dir + '/dialog.styl' if exists($theme-dir + '/dialog.styl') 

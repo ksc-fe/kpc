@@ -2,6 +2,8 @@ import Button from '../button';
 import MoveWrapper from '../moveWrapper';
 import {_$} from '../utils';
 
+const {size} = self.get();
+
 <MoveWrapper autoDestroy={{ false }}>
     <div class={{ {
         "k-dialog-wrapper": true,
@@ -12,7 +14,7 @@ import {_$} from '../utils';
             class={{ {
                 "k-dialog": true, 
                 'k-dragging': self.get('_dragging'),
-                "k-small": self.get('size') === 'small',
+                [`k-${size}`]: size !== 'default',
             } }}
             ref={{ i => self.dialog = i ? i.element : null }}
             v-if={{ self.get('value') }}
