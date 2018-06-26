@@ -28,7 +28,8 @@ const classNameObj = {
 let hasValue = value != null && (!multiple && value !== '' || multiple && value.length);
 const isGroup = Array.isArray(self.get('data.0.data'));
 
-let label = isStringOrNumber(value) ? value : null;
+// only show value as label when allowUnmatch is true, #40
+let label = allowUnmatch && isStringOrNumber(value) ? value : null;
 let labels = [];
 
 const handleProps = props => {
