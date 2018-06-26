@@ -159,6 +159,10 @@ export default class Select extends Intact {
             this.refs.dropdown.hide();
         }
     }
+
+    _clearValue() {
+        this.set('value', '', {update: false});
+    }
 }
 
 export {Select, Option, Group as OptionGroup};
