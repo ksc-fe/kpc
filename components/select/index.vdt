@@ -148,6 +148,9 @@ const Menu = (
 // if the value is not in options, then set hasValue to false
 if (hasValue && !label && !labels.length) {
     hasValue = false;
+    // if this is a value, but the value does not exist in options
+    // we set it to empty, #41
+    self._clearValue();
 }
 
 <div class={{ {...classNameObj, 'k-active': hasValue} }}
