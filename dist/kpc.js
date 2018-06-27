@@ -4880,6 +4880,10 @@ var Select = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
         }
     };
 
+    Select.prototype._clearValue = function _clearValue() {
+        this.set('value', '', { update: false });
+    };
+
     return Select;
 }(_intact2.default), _class2.template = _index2.default, _class2.propTypes = {
     multiple: Boolean,
@@ -5683,7 +5687,7 @@ exports.Transfer = _transfer.Transfer;
 
 /* generate start */
 
-var version = exports.version = '0.3.8';
+var version = exports.version = '0.3.10';
 
 /* generate end */
 
@@ -12498,7 +12502,7 @@ var FormItem = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
         // so we put off validating it 
         setTimeout(function () {
             _this3.validate();
-        }, 50);
+        }, 100);
         // if (this.$nextTick) {
         // this.$nextTick(this.validate);
         // } else {
@@ -13934,7 +13938,8 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     var hasValue = value != null && (!multiple && value !== '' || multiple && value.length);
     var isGroup = Array.isArray(self.get('data.0.data'));
 
-    var label = (0, _utils.isStringOrNumber)(value) ? value : null;
+    // only show value as label when allowUnmatch is true, #40
+    var label = allowUnmatch && (0, _utils.isStringOrNumber)(value) ? value : null;
     var labels = [];
 
     var handleProps = function handleProps(props) {
@@ -14119,6 +14124,9 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     // if the value is not in options, then set hasValue to false
     if (hasValue && !label && !labels.length) {
         hasValue = false;
+        // if this is a value, but the value does not exist in options
+        // we set it to empty, #41
+        self._clearValue();
     }
 
     return h('div', { 'style': function () {
