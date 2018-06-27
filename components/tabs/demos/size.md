@@ -9,13 +9,13 @@ order: 3
 import {Tabs, Tab} from 'kpc/components/tabs';
 
 <div>
-    <Tabs value="1">
-        <Tab value="1">default1</Tab>
-        <Tab value="2">defalut2</Tab>
-    </Tabs>
     <Tabs size="large" value="1">
         <Tab value="1">large1</Tab>
         <Tab value="2">large2</Tab>
+    </Tabs>
+    <Tabs value="1">
+        <Tab value="1">default1</Tab>
+        <Tab value="2">defalut2</Tab>
     </Tabs>
     <Tabs size="small" value="1">
         <Tab value="1">small1</Tab>

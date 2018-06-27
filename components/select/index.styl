@@ -151,18 +151,17 @@
     // card group
     &.k-card
         display flex
-        height 160px
+        height $select-card-group-height
         .k-tabs
             border none
         .k-groups
             flex 1
             overflow auto
         .k-item.k-hover
-            background transparent
-            color $primary-color
+            background $select-card-group-item-hover-bg-color 
+            color $select-card-group-item-hover-color 
         .k-tab
-        .k-group > .k-item
-            padding 0 16px
+            padding $select-card-group-tab-padding
 
     // multiple
     .k-checkmark
