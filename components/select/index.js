@@ -17,13 +17,14 @@ export default class Select extends Intact {
         filterable: Boolean,
         fluid: Boolean,
         allowUnmatch: Boolean,
+        card: Boolean,
     };
 
     defaults() {
         return {
             data: [],
             value: '',
-            multiple: false, //支持多选li
+            multiple: false, // 是否支持多选
             disabled: false,
             clearable: false, // 是否可清空 
             filterable: false, // 搜索筛选
@@ -33,8 +34,10 @@ export default class Select extends Intact {
             fluid: false,
             width: undefined,
             allowUnmatch: false,
+            card: false, // 卡片式分组
 
             _show: false,
+            _activeLabel: undefined,
         }
     }
 
@@ -90,6 +93,8 @@ export default class Select extends Intact {
 
     _onChangeShow(c, value) {
         this.set('_show', value);
+        // reset the _activeLabel if show
+        this._setActiveLabelSilent(undefined);
     }
 
     /**
@@ -162,6 +167,10 @@ export default class Select extends Intact {
 
     _clearValue() {
         this.set('value', '', {update: false});
+    }
+
+    _setActiveLabelSilent(label) {
+        this.set('_activeLabel', label, {silent: true});
     }
 }
 

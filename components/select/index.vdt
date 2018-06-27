@@ -3,13 +3,16 @@ import Dropdown, {DropdownItem, DropdownMenu} from '../dropdown';
 import {isStringOrNumber, getTextByChildren, addStyle, _$} from '../utils';
 import Option from './option';
 import OptionGroup from './group';
+import {Tabs, Tab} from '../tabs';
 
 const {
     className, clearable, data, value, multiple,
     disabled, filterable, keywords, _show,
     placeholder, size, style, name, children,
-    fluid, width, allowUnmatch,
+    fluid, width, allowUnmatch, card,
 } = self.get();
+
+let _activeLabel = self.get('_activeLabel');
 
 const _placeholder = placeholder == null ?
     (allowUnmatch && filterable) ? _$('请输入或选择') : _$('请选择') :
@@ -80,6 +83,7 @@ const Options = props => {
         if (item.text) item.label = item.text;
         
         const {valid, active} = handleProps(item);
+
         if (valid) {
             ret.push(
                 <DropdownItem 
@@ -89,13 +93,21 @@ const Options = props => {
                     hideOnSelect={{ !multiple }}
                 >{{ item.template ? item.template(item, index) : item.label }}</DropdownItem>
             );
+
+            // for card type groups, we need to highlight the parent label
+            if (active && card) {
+                if (!_activeLabel && _show) {
+                    _activeLabel = props.parentLabel;
+                    self._setActiveLabelSilent(_activeLabel);
+                }
+            }
         }
     });
 
     return ret;
 }
 
-const OptionsVNodes = ({children}) => {
+const OptionsVNodes = ({children, parentLabel}) => {
     return __u.map(children ? (Array.isArray(children) ? children : [children]) : children, vNode => {
         if (vNode.tag === Option) {
             let props = vNode.props;
@@ -104,7 +116,7 @@ const OptionsVNodes = ({children}) => {
                 'ev-select': self._onSelect.bind(self, props.value),
                 hideOnSelect: !multiple,
                 label: props.label || getTextByChildren(props.children),
-                children: props.children || props.label 
+                children: props.children || props.label ,
             };
             const {active, valid} = handleProps(props);
             if (!valid) {
@@ -114,6 +126,14 @@ const OptionsVNodes = ({children}) => {
                     [props.className]: props.className,
                     'k-active': active,
                 });
+            }
+
+            // for card type groups, we need to highlight the parent label
+            if (active && card) {
+                if (!_activeLabel && _show) {
+                    _activeLabel = parentLabel;
+                    self._setActiveLabelSilent(_activeLabel);
+                }
             }
 
             // if the multiple select option is active
@@ -131,7 +151,7 @@ const OptionsVNodes = ({children}) => {
             let props = vNode.props;
             props = {
                 ...props,
-                children: <OptionsVNodes>{{ props.children }}</OptionsVNodes>
+                children: <OptionsVNodes parentLabel={{ props.label }}>{{ props.children }}</OptionsVNodes>
             };
             return h(OptionGroup, props);
         }
@@ -140,18 +160,72 @@ const OptionsVNodes = ({children}) => {
     }); 
 } 
 
+const labelList = [];
+
 const Menu = (
     <DropdownMenu ev-$changed:show={{ self._position }}
         ref="menu"
-        class="k-select-dropdown"
+        class={{ {
+            "k-select-dropdown": true,
+            "k-card": card,
+        } }}
         ev-$change:show={{ self._onChangeShow }}
-    >
-        <Options v-if={{ !isGroup }} data={{ data }} />
-        <OptionGroup v-else v-for={{ data }} label={{ value.label }}>
-            <Options data={{ value.data }} />
-        </OptionGroup>
-        <OptionsVNodes>{{ children }}</OptionsVNodes>
-    </DropdownMenu>
+    >{{ do {
+        const _children = [];
+        if (!isGroup) {
+            _children.push(<Options data={{ data }} />);
+        } else {
+            _children.push(
+                <OptionGroup v-for={{ data }} label={{ value.label }}>
+                    <Options data={{ value.data }} parentLabel={{ value.label }} />
+                </OptionGroup>
+            );
+        }
+        _children.push(<OptionsVNodes>{{ children }}</OptionsVNodes>);
+
+        // if it is card type group, we extract the label as navBar
+        if (card) {
+            const vNodes = [];
+            function flatten(children) {
+                children.forEach(vNode => {
+                    if (Array.isArray(vNode)) {
+                        flatten(vNode);
+                    } else if (vNode) {
+                        if (vNode.tag === OptionGroup) {
+                            const props = vNode.props;
+                            labelList.push({
+                                label: props.label
+                            });
+                            vNode.props = {...props, _card: true};
+
+                            // if the _activeLabel is undefined
+                            // we active the first label
+                            if (!_activeLabel && _show) {
+                                _activeLabel = props.label;
+                                self._setActiveLabelSilent(props.label);
+                            }
+
+                            // only render the active options
+                            if (_activeLabel === props.label) {
+                                vNodes.push(vNode);
+                            }
+                        } else {
+                            vNodes.push(vNode);
+                        }
+                    }
+                });
+            }
+            flatten(_children);
+            [ 
+                <Tabs vertical type="border-card" v-model="_activeLabel">
+                    <Tab v-for={{ labelList }} value={{ value.label }}>{{ value.label }}</Tab>
+                </Tabs>,
+                <div class="k-groups">{{ vNodes }}</div>
+            ];
+        } else {
+            _children;
+        }
+    } }}</DropdownMenu>
 );
 
 // if the value is not in options, then set hasValue to false
