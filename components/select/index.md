@@ -30,3 +30,20 @@ sidebar: doc
 | value | 选中的值 | `*` | `undefined` |
 | label | 该值有两个作用，1. 当`children`不存在时，作为展示文案；2. 作为筛选的内容，不存在时，则使用`children`的文本作为筛选内容 | `String`  | `undefined` |
 | disabled | 是否禁用该项选择 | `Boolean` | `false` |
+
+## OptionGroup
+
+| 属性 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| label | 分组标签名 | `String` &#124; `Number` &#124; `vNode` | `""` |
+
+
+# 扩展点
+
+## OptionGroup
+
+| 名称 | 说明 |
+| --- | --- |
+| label | 定义复杂的分组标签名 |
+
+

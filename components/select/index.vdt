@@ -34,6 +34,7 @@ const isGroup = Array.isArray(self.get('data.0.data'));
 // only show value as label when allowUnmatch is true, #40
 let label = allowUnmatch && isStringOrNumber(value) ? value : null;
 let labels = [];
+let groupIndex = 0;
 
 const handleProps = props => {
     let active = false;
@@ -96,8 +97,8 @@ const Options = props => {
 
             // for card type groups, we need to highlight the parent label
             if (active && card) {
-                if (!_activeLabel && _show) {
-                    _activeLabel = props.parentLabel;
+                if (_activeLabel == null && _show) {
+                    _activeLabel = groupIndex;
                     self._setActiveLabelSilent(_activeLabel);
                 }
             }
@@ -107,7 +108,7 @@ const Options = props => {
     return ret;
 }
 
-const OptionsVNodes = ({children, parentLabel}) => {
+const OptionsVNodes = ({children}) => {
     return __u.map(children ? (Array.isArray(children) ? children : [children]) : children, vNode => {
         if (vNode.tag === Option) {
             let props = vNode.props;
@@ -130,8 +131,8 @@ const OptionsVNodes = ({children, parentLabel}) => {
 
             // for card type groups, we need to highlight the parent label
             if (active && card) {
-                if (!_activeLabel && _show) {
-                    _activeLabel = parentLabel;
+                if (_activeLabel == null && _show) {
+                    _activeLabel = groupIndex;
                     self._setActiveLabelSilent(_activeLabel);
                 }
             }
@@ -151,8 +152,9 @@ const OptionsVNodes = ({children, parentLabel}) => {
             let props = vNode.props;
             props = {
                 ...props,
-                children: <OptionsVNodes parentLabel={{ props.label }}>{{ props.children }}</OptionsVNodes>
+                children: <OptionsVNodes>{{ props.children }}</OptionsVNodes>
             };
+            groupIndex++;
             return h(OptionGroup, props);
         }
 
@@ -186,6 +188,7 @@ const Menu = (
         // if it is card type group, we extract the label as navBar
         if (card) {
             const vNodes = [];
+            let index = 0;
             function flatten(children) {
                 children.forEach(vNode => {
                     if (Array.isArray(vNode)) {
@@ -193,22 +196,22 @@ const Menu = (
                     } else if (vNode) {
                         if (vNode.tag === OptionGroup) {
                             const props = vNode.props;
-                            labelList.push({
-                                label: props.label
-                            });
+                            const label = (props._blocks || {}).label || props.label;
+                            labelList.push({label});
                             vNode.props = {...props, _card: true};
 
                             // if the _activeLabel is undefined
                             // we active the first label
-                            if (!_activeLabel && _show) {
-                                _activeLabel = props.label;
-                                self._setActiveLabelSilent(props.label);
+                            if (_activeLabel == null && _show) {
+                                _activeLabel = index;
+                                self._setActiveLabelSilent(index);
                             }
 
                             // only render the active options
-                            if (_activeLabel === props.label) {
+                            if (_activeLabel === index) {
                                 vNodes.push(vNode);
                             }
+                            index++;
                         } else {
                             vNodes.push(vNode);
                         }
@@ -218,7 +221,14 @@ const Menu = (
             flatten(_children);
             [ 
                 <Tabs vertical type="border-card" v-model="_activeLabel">
-                    <Tab v-for={{ labelList }} value={{ value.label }}>{{ value.label }}</Tab>
+                    <Tab v-for={{ labelList }} value={{ key }}>
+                        {{ typeof value.label === 'function' ? 
+                            // pass by block
+                            value.label(() => {}) :
+                            // pass by property
+                            value.label
+                        }}
+                    </Tab>
                 </Tabs>,
                 <div class="k-groups">{{ vNodes }}</div>
             ];

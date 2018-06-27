@@ -1,6 +1,8 @@
 const {children, label, _card, className} = self.get();
 
 <div class={{ {"k-group": true, [className]: className} }}>
-    <div class="k-label" v-if={{ !_card }}>{{ label }}</div>
+    <div class="k-label" v-if={{ !_card }}>
+        <b:label>{{ label }}</b:label>
+    </div>
     {{ children }}
 </div>
