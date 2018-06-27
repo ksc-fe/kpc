@@ -4,9 +4,9 @@
     .k-step
         display block
         text-align center
-        height 40px
-        line-height 40px
-        background #fff
+        height unit($default-height, px)
+        line-height @height
+        background $bg-color
     .k-head
     .k-main
         float none
@@ -19,21 +19,21 @@
         left auto
         right -20px
         width 28px
-        height 40px
+        height unit($default-height, px)
         overflow hidden
         z-index 1
         &:after, &:before
             content ''
-            border-width 28px
+            border-width 24px
             border-style solid
             border-color transparent
             position absolute
             top -8px 
         &:after
-            border-left-color #fff
+            border-left-color $bg-color
             left -8px 
         &:before
-            border-left-color #f8f8f8
+            border-left-color #fff
             left 0 
     .k-head
         .k-inner

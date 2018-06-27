@@ -11,7 +11,8 @@
     .k-head
         float left
         padding-right $steps-head-padding-right 
-        background #fff
+        if $steps-bg-color != transparent
+            background $steps-bg-color
         position relative
         .k-inner
             width $steps-head-inner-width 
@@ -32,7 +33,8 @@
         line-height $steps-head-inner-width 
         font-weight $steps-main-title-font-weight 
         padding-right $steps-main-title-padding-right 
-        background #fff
+        if $steps-bg-color != transparent
+            background $steps-bg-color
         display inline-block
         white-space nowrap
     .k-content
