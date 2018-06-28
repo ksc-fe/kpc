@@ -15,6 +15,9 @@ import Button from 'kpc/components/button';
         <Step title="选择弹性IP">请选择主机弹性IP的配置信息</Step>
         <Step title="设置VPC" />
     </Steps>
+    <Button type="primary" ev-click={{ self.previous }}
+        disabled={{ self.get('index') === 0 }}
+    >Previous Step</Button>
     <Button type="primary" ev-click={{ self.next }}
         disabled={{ self.get('index') === 2 }}
     >Next Step</Button>
@@ -23,7 +26,7 @@ import Button from 'kpc/components/button';
 
 ```styl
 .k-btn
-    margin-top 20px
+    margin 20px 20px 0 0
 ```
 
 ```js
@@ -35,6 +38,10 @@ export default class extends Intact {
         return {
             index: 0
         }
+    }
+
+    previous() {
+        this.set('index', this.get('index') - 1);
     }
 
     next() {

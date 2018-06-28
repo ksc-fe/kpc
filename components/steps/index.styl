@@ -20,8 +20,9 @@
             line-height s('calc(%s - 2px)', @width)
             border-radius 50%
             text-align center
-            border $steps-head-inner-border 
-            color $steps-head-color 
+            border $steps-head-inner-border
+            if $steps-head-color != inherit
+                color $steps-head-color 
         .k-icon:before
             font-size $steps-head-icon-font-size 
             line-height s('calc(%s - 2px)', $steps-head-inner-width)
