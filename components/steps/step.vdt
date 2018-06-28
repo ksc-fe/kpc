@@ -12,15 +12,17 @@ const classNameObj = {
 
 <div class={{ classNameObj }} style={{ {width: width} }}>
     <div class="k-tail"></div>
-    <div class="k-head">
-        <div class="k-inner">
-            {{ /* <i class="ion-ios-checkmark-empty k-icon" v-if={{ done }}></i> */ }}
-            <i class="ion-ios-close-empty k-icon" v-if={{ error }}></i>
-            <span v-else>{{ index + 1 }}</span>
+    <div class="k-wrapper">
+        <div class="k-head">
+            <div class="k-inner">
+                {{ /* <i class="ion-ios-checkmark-empty k-icon" v-if={{ done }}></i> */ }}
+                <i class="ion-ios-close-empty k-icon" v-if={{ error }}></i>
+                <span v-else>{{ index + 1 }}</span>
+            </div>
         </div>
-    </div>
-    <div class="k-main">
-        <div class="k-title">{{ title }}</div>
-        <div class="k-content">{{ children }}</div>
+        <div class="k-main">
+            <div class="k-title">{{ title }}</div>
+            <div class="k-content">{{ children }}</div>
+        </div>
     </div>
 </div>

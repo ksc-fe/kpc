@@ -12,6 +12,8 @@ export default class Steps extends Intact {
         return {
             value: undefined,
             status: 'normal',
+
+            type: 'default', // default | line
         };
     }
 }

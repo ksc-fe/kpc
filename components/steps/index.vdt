@@ -1,9 +1,10 @@
 import Step from './step';
 
-const {children, value, style, status} = self.get();
+const {children, value, style, status, type} = self.get();
 
 const classNameObj = {
     'k-steps c-clearfix': true,
+    [`k-${type}`]: true,
 };
 
 let stepIndex = 0;

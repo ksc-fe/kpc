@@ -1,48 +1,53 @@
 .k-steps
-    display block
     font-size 12px
-    .k-step
-        display block
-        text-align center
-        height unit($default-height, px)
-        line-height @height
-        background $bg-color
-    .k-head
-    .k-main
-        float none
-        display inline-block
-        .k-content
-            margin 0
-            display inline-block
-    .k-tail
-        top 0
-        left auto
-        right -20px
-        width 28px
-        height unit($default-height, px)
-        overflow hidden
-        z-index 1
-        &:after, &:before
-            content ''
-            border-width 24px
-            border-style solid
-            border-color transparent
-            position absolute
-            top -8px 
-        &:after
-            border-left-color $bg-color
-            left -8px 
-        &:before
-            border-left-color #fff
-            left 0 
-    .k-head
-        .k-inner
-            display inline-block
-            vertical-align middle
-            margin-top -1px
-
     .k-done
         .k-inner
             background $primary-color
         .k-main
             color $primary-color
+    &.k-line
+        .k-head
+        .k-main
+            float none
+        .k-head
+            display flex
+            padding 0
+            .k-inner
+                width 32px
+                height 32px
+                line-height 30px
+                font-size 18px
+            &:before
+            &:after
+                content ''
+                display block
+                flex 1
+                height 1px
+                background $placeholder-color
+                top 16px
+                position relative
+        .k-step:first-of-type .k-head:before
+        .k-step:last-of-type .k-head:after
+            background transparent
+        .k-done
+            .k-head
+                &:before
+                &:after
+                    background $primary-color
+        .k-active
+            .k-head
+                &:before
+                    background $primary-color
+        .k-icon:before
+            line-height 30px
+        .k-title
+            font-size 14px
+            padding 0
+            margin-top 16px
+        .k-wrapper
+            display inline-block !important
+            text-align center
+        .k-tail
+            right 0
+            top 16px
+
