@@ -1,0 +1,12 @@
+import Input from '../input';
+
+const {data, className, style} = self.get();
+
+const classNameObj = {
+    'k-cascader': true,
+    [className]: className,
+};
+
+<div class={{ classNameObj }} style={{ style }}>
+    <Input readonly/>
+</div>

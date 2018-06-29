@@ -246,7 +246,7 @@ if (hasValue && !label && !labels.length) {
     self._clearValue();
 }
 
-<div class={{ {...classNameObj, 'k-active': hasValue} }}
+<div class={{ {...classNameObj, 'k-has-value': hasValue} }}
     style={{ width != null ? addStyle(style, {width: `${width}px`}) : style }} 
     tabindex={{ disabled ? "-1" : "0" }}
     ev-keypress={{ self._onKeypress }}
