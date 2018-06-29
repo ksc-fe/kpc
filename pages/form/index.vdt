@@ -9,8 +9,9 @@ import Input from 'components/input';
     ev-submit={{ self.submit.bind(self) }}
     class="form-page"
 >
-    <FormItem label="用户名" model="model.userName" rules={{ {required: true, checkName: true} }} classNames={{ {required: 'test'} }}>
+    <FormItem label="用户名" model={{ self.get('remove') ? undefined : "model.userName" }} rules={{ {required: true, checkName: true} }} classNames={{ {required: 'test'} }}>
         <Input v-model="model.userName" />
+        <b:append><Button ev-click={{ self.set.bind(self, 'remove', !self.get('remove')) }}>toggle model</Button></b:append>
     </FormItem>
     <FormItem label="姓名" class="real-user-name">
         <Row gutter="16">

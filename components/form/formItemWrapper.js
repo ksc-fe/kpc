@@ -10,10 +10,14 @@ function Wrapper(props) {
     }
     return h(FormItem, {
         key, model, _context, 
-        'ev-$change:value': function(c, v) {
-            _context.data.set(model, v);
-        },
-        value: _context.data.get(model),
+        ...(
+            model ? {
+                'ev-$change:value': function(c, v) {
+                    _context.data.set(model, v);
+                },
+                value: _context.data.get(model),
+            } : {}
+        ),
         ...rest
     });
 }
