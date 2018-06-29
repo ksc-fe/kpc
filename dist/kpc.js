@@ -5687,7 +5687,7 @@ exports.Transfer = _transfer.Transfer;
 
 /* generate start */
 
-var version = exports.version = '0.3.10';
+var version = exports.version = '0.3.11';
 
 /* generate end */
 
@@ -12219,12 +12219,13 @@ function Wrapper(props) {
         key = '$fi.' + model;
     }
     return h(_formItem2.default, (0, _extends3.default)({
-        key: key, model: model, _context: _context,
+        key: key, model: model, _context: _context
+    }, model ? {
         'ev-$change:value': function ev$changeValue(c, v) {
             _context.data.set(model, v);
         },
         value: _context.data.get(model)
-    }, rest));
+    } : {}, rest));
 }
 
 exports.default = _intact2.default.functionalWrapper ? _intact2.default.functionalWrapper(Wrapper) : Wrapper;
