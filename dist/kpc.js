@@ -4887,6 +4887,10 @@ var Select = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
         }
     };
 
+    Select.prototype._clearValue = function _clearValue() {
+        this.set('value', '', { update: false });
+    };
+
     return Select;
 }(_intact2.default), _class2.template = _index2.default, _class2.propTypes = {
     multiple: Boolean,
@@ -5690,7 +5694,11 @@ exports.Transfer = _transfer.Transfer;
 
 /* generate start */
 
+<<<<<<< HEAD
 var version = exports.version = '0.3.9';
+=======
+var version = exports.version = '0.3.12';
+>>>>>>> hotfix
 
 /* generate end */
 
@@ -11910,7 +11918,8 @@ var Editable = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
         }
 
         if (!valid) {
-            this.set('value', value, { silent: true });
+            // do not change the value if invalid, #51
+            // this.set('value', value, {silent: true});
             this.set('invalid', true);
             return this.trigger('error', this, value);
         }
@@ -12404,12 +12413,13 @@ function Wrapper(props) {
         key = '$fi.' + model;
     }
     return h(_formItem2.default, (0, _extends3.default)({
-        key: key, model: model, _context: _context,
+        key: key, model: model, _context: _context
+    }, model ? {
         'ev-$change:value': function ev$changeValue(c, v) {
             _context.data.set(model, v);
         },
         value: _context.data.get(model)
-    }, rest));
+    } : {}, rest));
 }
 
 exports.default = _intact2.default.functionalWrapper ? _intact2.default.functionalWrapper(Wrapper) : Wrapper;
@@ -14123,7 +14133,8 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     var hasValue = value != null && (!multiple && value !== '' || multiple && value.length);
     var isGroup = Array.isArray(self.get('data.0.data'));
 
-    var label = (0, _utils.isStringOrNumber)(value) ? value : null;
+    // only show value as label when allowUnmatch is true, #40
+    var label = allowUnmatch && (0, _utils.isStringOrNumber)(value) ? value : null;
     var labels = [];
 
     var handleProps = function handleProps(props) {
@@ -14314,6 +14325,9 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     // if the value is not in options, then set hasValue to false
     if (hasValue && !label && !labels.length) {
         hasValue = false;
+        // if this is a value, but the value does not exist in options
+        // we set it to empty, #41
+        self._clearValue();
     }
 
     return h('div', { 'style': function () {

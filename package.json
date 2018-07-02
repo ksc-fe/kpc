@@ -1,6 +1,6 @@
 {
   "name": "kpc",
-  "version": "0.3.9",
+  "version": "0.3.12",
   "description": "A component library written in intact for intact and vue",
   "browser": "@css/components/index.js",
   "main": "dist/kpc.js",
@@ -16,12 +16,12 @@
     "preview:doc": "gulp watch",
     "build:doc": "NODE_ENV=production gulp build:doc",
     "deploy:doc": "NODE_ENV=production gulp deploy:doc",
-    "prepublishOnly": "npm run build && git commit -am 'chore: build' && git push",
+    "prepublishOnly": "npm run build && git commit -am 'chore: build'",
     "release": "npm run release-patch",
-    "prelease": "npm version prerelease && git push && npm publish",
-    "release-patch": "git checkout master && npm version patch && git push && npm publish",
-    "release-minor": "git checkout master && npm version minor && git push && npm publish",
-    "release-major": "git checkout master && npm version major && git push && npm publish"
+    "prelease": "npm version prerelease && npm publish",
+    "release-patch": "npm version patch && npm publish",
+    "release-minor": "npm version minor && npm publish",
+    "release-major": "npm version major && npm publish"
   },
   "repository": {
     "type": "git",
