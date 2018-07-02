@@ -5687,7 +5687,7 @@ exports.Transfer = _transfer.Transfer;
 
 /* generate start */
 
-var version = exports.version = '0.3.11';
+var version = exports.version = '0.3.12';
 
 /* generate end */
 
@@ -11725,7 +11725,8 @@ var Editable = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
         }
 
         if (!valid) {
-            this.set('value', value, { silent: true });
+            // do not change the value if invalid, #51
+            // this.set('value', value, {silent: true});
             this.set('invalid', true);
             return this.trigger('error', this, value);
         }
