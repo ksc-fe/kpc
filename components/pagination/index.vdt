@@ -88,7 +88,7 @@ const paginationDot = function(callback) {
     </ButtonGroup>
 
     <div class="k-limits">
-        <Select v-model="limit"
+        <Select v-model="limit" filterable allowUnmatch
             data={{ limits.map(item => {
                 return {'value': item, 'label': _$('{n} 条 / 页', {n: item})};
             }) }}
