@@ -88,12 +88,12 @@ export default class DropdownItem extends Intact {
     }
 
     unFocus() {
-        this.set('_isFocus', false);
+        return this.set('_isFocus', false);
 
-        const dropdown = this._isSubMenu();
-        if (dropdown) {
-            dropdown.hide(null, null, true);
-        }
+        // const dropdown = this._isSubMenu();
+        // if (dropdown) {
+            // dropdown.hide(null, null, true);
+        // }
     }
 
     showMenuAndFocus() {

@@ -42,6 +42,17 @@ export default class DropdownMenu extends Intact {
         this.set('show', true);
         const parent = this._findParentDropdownMenu();
         if (parent) {
+            const showedMenu = parent._showedMenu;
+            if (showedMenu && showedMenu !== this) {
+                showedMenu.hide(true);
+            }
+            parent._showedMenu = this;
+            // hide last showed menu will unlock the parent
+            // so we lock it here when show this menu
+            parent.locked = true;
+
+            // because parent will hide when click outside
+            // we call parent show method to clear the timer of hiding
             parent.show();
         }
     }
@@ -155,19 +166,19 @@ export default class DropdownMenu extends Intact {
     }
 
     _focusNextItem(e) {
-        const parent = this._findParentDropdownMenu();
-        if (parent && this.focusIndex < 0) {
-            return;
-        }
+        // const parent = this._findParentDropdownMenu();
+        // if (parent && this.focusIndex < 0) {
+            // return;
+        // }
         e.preventDefault();
         this.focusItemByIndex(this.focusIndex + 1, 'down');
     }
 
     _focusPrevItem(e) {
-        const parent = this._findParentDropdownMenu();
-        if (parent && this.focusIndex < 0) {
-            return;
-        }
+        // const parent = this._findParentDropdownMenu();
+        // if (parent && this.focusIndex < 0) {
+            // return;
+        // }
         e.preventDefault();
         this.focusItemByIndex(this.focusIndex - 1, 'up');
     }
