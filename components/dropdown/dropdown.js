@@ -41,23 +41,23 @@ export default class Dropdown extends Intact {
                 // for vue element
                 const data = originProps.vueVNode.data;
                 const on = data && data.on || {};
-                children._evClick = on.click;
-                children._evMouseEnter = on.mouseenter;
-                children._evMouseLeave = on.mouseleave;
+                originProps._evClick = on.click;
+                originProps._evMouseEnter = on.mouseenter;
+                originProps._evMouseLeave = on.mouseleave;
             } else {
-                children._evClick = originProps['ev-click'];
-                children._evMouseEnter = originProps['ev-mouseenter'];
-                children._evMouseLeave = originProps['ev-mouseleave'];
+                originProps._evClick = originProps['ev-click'];
+                originProps._evMouseEnter = originProps['ev-mouseenter'];
+                originProps._evMouseLeave = originProps['ev-mouseleave'];
             }
             hasSaved = true;
         }
         const props = {};
         // if (trigger === 'click') {
-            props['ev-click'] = this.show.bind(this, children._evClick);
+            props['ev-click'] = this.show.bind(this, originProps._evClick);
         // } else {
         if (trigger === 'hover') {
-            props['ev-mouseenter'] = this.show.bind(this, children._evMouseEnter);
-            props['ev-mouseleave'] = this.hide.bind(this, children._evMouseLeave);
+            props['ev-mouseenter'] = this.show.bind(this, originProps._evMouseEnter);
+            props['ev-mouseleave'] = this.hide.bind(this, originProps._evMouseLeave);
         }
         if (hasSaved) {
             props._hasSaved = true;
