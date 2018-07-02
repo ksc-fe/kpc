@@ -76,7 +76,8 @@ export default class Editable extends Intact {
         }
 
         if (!valid) {
-            this.set('value', value, {silent: true});
+            // do not change the value if invalid, #51
+            // this.set('value', value, {silent: true});
             this.set('invalid', true);
             return this.trigger('error', this, value);
         }
