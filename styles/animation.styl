@@ -15,6 +15,8 @@ $origins = {
 for type, value in $origins
     .slide{type}-enter
     .slide{type}-leave
+    .slide{type}-appear
+        transform-origin value 
         opacity 0
         if type == down || type == up
             transform scaleY(.8)
@@ -22,6 +24,7 @@ for type, value in $origins
             transform scaleX(.8)
     .slide{type}-enter-active
     .slide{type}-leave-active
+    .slide{type}-appear-active
         transform-origin value 
         transition opacity $transition, transform $transition
 

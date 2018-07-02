@@ -44,6 +44,7 @@ const Options = (props) => {
                             "k-select-dropdown": true,
                             "k-cascader-dropdown": true,
                         } }}
+                        id={{ item.label }}
                     >
                         <Options data={{ item.children }} level={{ level + 1 }} />
                     </DropdownMenu>
@@ -62,6 +63,7 @@ const Menu = (
             "k-cascader-dropdown": true,
         } }}
         ev-$change:show={{ self._onChangeShow }}
+        id="wrapper"
     >
         <Options data={{ data }} level={{ 0 }} />
     </DropdownMenu>

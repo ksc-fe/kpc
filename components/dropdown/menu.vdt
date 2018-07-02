@@ -14,6 +14,7 @@ if (trigger === 'hover') {
     <Animate v-if={{ show }}
         class={{ {"k-dropdown-menu": true, [className]: className} }}
         a:transition={{ transition }}
+        a:appear={{ true }}
         ref="menu"
         {{ ...events }}
         a:delayDestroy={{ false }}

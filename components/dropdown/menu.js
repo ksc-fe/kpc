@@ -73,23 +73,40 @@ export default class DropdownMenu extends Intact {
     }
 
     position() {
+        // if the dropdown menu is nested, then show the parent first
+        // and show the child menu later
+        const p = (_of, transition) => {
+            position(this.refs.menu.element, {
+                my: 'center top+8', 
+                at: 'center bottom', 
+                of: _of,
+                using: (feedback) => {
+                    // let the child menu has the same transition with parent menu
+                    this.set('transition', transition || getTransition(feedback));
+                },
+                ...this.get('position')
+            });
+            this.positioned = true;
+            this.trigger('positioned')
+        }
+
         let _of = this.dropdown.element;
         if (this.get('of') === 'parent') {
             const parent = this._findParentDropdownMenu();
             if (parent) {
                 _of = parent.refs.menu.element;
+                if (parent.positioned) {
+                    p(_of);
+                } else {
+                    parent.one('positioned', () => {
+                        p(_of, parent.get('transition'));
+                    });
+                }
             }
+        } else {
+            p(_of);
         }
 
-        position(this.refs.menu.element, {
-            my: 'center top+8', 
-            at: 'center bottom', 
-            of: _of,
-            using: (feedback) => {
-                this.set('transition', getTransition(feedback));
-            },
-            ...this.get('position')
-        });
     }
 
     _onShow() {
@@ -112,6 +129,7 @@ export default class DropdownMenu extends Intact {
     }
 
     _removeDocumentEvents() {
+        this.positioned = false;
         const parent = this._findParentDropdownMenu();
         if (!parent) {
             // if (this.get('trigger') === 'click') {
