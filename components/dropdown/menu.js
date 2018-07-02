@@ -221,7 +221,7 @@ export default class DropdownMenu extends Intact {
         this._showSubMenu(e);
         if (this.focusIndex > -1) {
             e.preventDefault();
-            this.items[this.focusIndex].select();
+            this.items[this.focusIndex] && this.items[this.focusIndex].select(e);
         }
     }
 
@@ -233,7 +233,7 @@ export default class DropdownMenu extends Intact {
         if (parent && this.focusIndex < 0) {
             this.focusItemByIndex(0);
         } else if (this.focusIndex > -1) {
-            this.items[this.focusIndex].showMenuAndFocus();
+            this.items[this.focusIndex] && this.items[this.focusIndex].showMenuAndFocus();
         }
     }
 
