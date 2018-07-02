@@ -48,7 +48,7 @@ export default class extends Intact {
 
     _changeColor(e) {
         const value = e.target.value.trim();
-        if (/#[0-9a-f]{6}/.test(value)) {
+        if (/#[0-9a-f]{6}/i.test(value)) {
             this.set('primaryColor', e.target.value);
         } else {
             Message.error('请输入hex格式颜色值');

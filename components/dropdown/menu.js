@@ -29,7 +29,8 @@ export default class DropdownMenu extends Intact {
         if (parent) parent.subDropdowns.push(this);
 
         if (this.get('show')) {
-            this._addDocumentEvents();
+            // this._onShow();
+            // this.show();
         }
     }
 
@@ -233,6 +234,7 @@ export default class DropdownMenu extends Intact {
         if (parent && this.focusIndex < 0) {
             this.focusItemByIndex(0);
         } else if (this.focusIndex > -1) {
+            // maybe the items has been filtered, #50
             this.items[this.focusIndex] && this.items[this.focusIndex].showMenuAndFocus();
         }
     }

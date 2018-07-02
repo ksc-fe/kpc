@@ -4,7 +4,7 @@ import '../../styles/kpc.styl';
 import './index.styl';
 import Option from './option';
 import Group from './group';
-import {selectInput, _$} from '../utils';
+import {selectInput, _$, isStringOrNumber} from '../utils';
 
 export default class Select extends Intact {
     @Intact.template()
@@ -171,6 +171,47 @@ export default class Select extends Intact {
 
     _setActiveLabelSilent(label) {
         this.set('_activeLabel', label, {silent: true});
+    }
+
+    handleProps(props, labelObj) {
+        const {multiple, value, filterable, keywords} = this.get();
+        let active = false;
+        let valid = false;
+
+        if (!multiple) {
+            if (props.value === value) {
+                // set label
+                labelObj.label = props.label;
+                active = true;
+            } else {
+                active = false;
+            }
+        } else if (Array.isArray(value)) {
+            const index = value.indexOf(props.value);
+            if (~index) {
+                // keep order consistent
+                labelObj.labels[index] = props.label;
+                active = true;
+            } else {
+                active = false;
+            }
+        }
+
+        let tmp;
+        if (
+            !filterable && 
+            props.label || 
+            keywords == null || 
+            ~props.label.toLowerCase().indexOf((tmp = keywords.toLowerCase())) || 
+            (
+                isStringOrNumber(props.value) && 
+                ~String(props.value).toLowerCase().indexOf(tmp)
+            )
+        ) {
+            valid = true; 
+        }
+
+        return {active, valid};
     }
 }
 

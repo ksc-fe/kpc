@@ -21,6 +21,7 @@ const _placeholder = placeholder == null ?
 const classNameObj = {
     'k-select': true,
     [className]: className,
+    [scope.className]: scope.className,
     'k-disabled': disabled,
     'k-show': _show,
     'k-clearable': clearable,
@@ -31,50 +32,12 @@ const classNameObj = {
 let hasValue = value != null && (!multiple && value !== '' || multiple && value.length);
 const isGroup = Array.isArray(self.get('data.0.data'));
 
-// only show value as label when allowUnmatch is true, #40
-let label = allowUnmatch && isStringOrNumber(value) ? value : null;
-let labels = [];
-let groupIndex = 0;
-
-const handleProps = props => {
-    let active = false;
-    let valid = false;
-
-    if (!multiple) {
-        if (props.value === value) {
-            // set label
-            label = props.label;
-            active = true;
-        } else {
-            active = false;
-        }
-    } else if (Array.isArray(value)) {
-        const index = value.indexOf(props.value);
-        if (~index) {
-            // keep order consistent
-            labels[index] = props.label;
-            active = true;
-        } else {
-            active = false;
-        }
-    }
-
-    let tmp;
-    if (
-        !filterable && 
-        props.label || 
-        keywords == null || 
-        ~props.label.toLowerCase().indexOf((tmp = keywords.toLowerCase())) || 
-        (
-            isStringOrNumber(props.value) && 
-            ~String(props.value).toLowerCase().indexOf(tmp)
-        )
-    ) {
-        valid = true; 
-    }
-
-    return {active, valid};
+const labelObj = scope.labelObj || {
+    // only show value as label when allowUnmatch is true, #40
+    label: allowUnmatch && isStringOrNumber(value) ? value : null,
+    labels: [],
 };
+let groupIndex = 0;
 
 const Options = props => {
     const data = props.data;
@@ -83,7 +46,7 @@ const Options = props => {
         // deprecate text, use label instead of
         if (item.text) item.label = item.text;
         
-        const {valid, active} = handleProps(item);
+        const {valid, active} = self.handleProps(item, labelObj);
 
         if (valid) {
             ret.push(
@@ -119,7 +82,7 @@ const OptionsVNodes = ({children}) => {
                 label: props.label || getTextByChildren(props.children),
                 children: props.children || props.label ,
             };
-            const {active, valid} = handleProps(props);
+            const {active, valid} = self.handleProps(props, labelObj);
             if (!valid) {
                 return <!---->;
             } else {
@@ -164,7 +127,7 @@ const OptionsVNodes = ({children}) => {
 
 const labelList = [];
 
-const Menu = (
+const Menu = scope.Menu || (
     <DropdownMenu ev-$changed:show={{ self._position }}
         ref="menu"
         class={{ {
@@ -239,7 +202,7 @@ const Menu = (
 );
 
 // if the value is not in options, then set hasValue to false
-if (hasValue && !label && !labels.length) {
+if (hasValue && !labelObj.label && !labelObj.labels.length) {
     hasValue = false;
     // if this is a value, but the value does not exist in options
     // we set it to empty, #41
@@ -261,7 +224,7 @@ if (hasValue && !label && !labels.length) {
         <div class="k-wrapper" ev-click={{ self._focusInput }} tabindex="-1" ref="wrapper">
             <input type="hidden" value={{ value }} name={{ name }} />
             <Input v-if={{ !multiple && filterable }}
-                value={{ keywords == null ? label : keywords }}
+                value={{ keywords == null ? labelObj.label : keywords }}
                 ev-input={{ self._onSearch }}
                 ev-blur={{ self._onBlur }}
                 ev-focus={{ self._selectInput }}
@@ -272,10 +235,10 @@ if (hasValue && !label && !labels.length) {
                 fluid
             />
             <span class="k-placeholder c-ellipsis" v-else-if={{ !filterable && !hasValue }}>{{ _placeholder }}</span>
-            <span class="k-value c-ellipsis" v-else-if={{ !multiple }}>{{ label }}</span>
+            <span class="k-value c-ellipsis" v-else-if={{ !multiple }}>{{ labelObj.label }}</span>
             <Animate a:tag="span" a:disabled class="k-values" v-else>
                 <Animate a:tag="span" class="k-tag" 
-                    v-for={{ labels }} 
+                    v-for={{ labelObj.labels }} 
                     v-for-value="item"
                     v-for-key="index"
                     key={{ value[index] }}

@@ -1,12 +1,70 @@
 import Input from '../input';
+import Dropdown, {DropdownItem, DropdownMenu} from '../dropdown';
 
-const {data, className, style} = self.get();
+const {data, className, style, value} = self.get();
 
-const classNameObj = {
-    'k-cascader': true,
-    [className]: className,
+const labelObj = {
+    label: null,
+    labels: [],
 };
 
-<div class={{ classNameObj }} style={{ style }}>
-    <Input readonly/>
-</div>
+const Options = (props) => {
+    const data = props.data;
+    const level = props.level;
+    const ret = [];
+
+    data.forEach((item, index) => {
+        const {valid, active} = self.handleProps(item, labelObj, level);
+
+        const Item = () => {
+            return (
+                <DropdownItem
+                    ev-click={{ self._onClick.bind(self, item.value, level) }}
+                    disabled={{ item.disabled }}
+                    class={{ {'k-active': active} }}
+                >
+                    {{ item.template ? item.template(item, index) : item.label }}
+                    <i v-if={{ item.children }} class="k-arrow ion-ios-arrow-right"></i>
+                </DropdownItem>
+            );
+        };
+
+        ret.push(
+            !item.children ? <Item /> :
+                <Dropdown 
+                    position={{ {my: 'left top', at: 'right top'} }}
+                    of="parent"
+                    disabled={{ item.disabled }}
+                    trigger="click"
+                    show={{ active }}
+                >
+                    <Item />
+                    <DropdownMenu
+                        class={{ {
+                            "k-select-dropdown": true,
+                            "k-cascader-dropdown": true,
+                        } }}
+                    >
+                        <Options data={{ item.children }} level={{ level + 1 }} />
+                    </DropdownMenu>
+                </Dropdown>
+        );
+    });
+
+    return ret;
+}
+
+const Menu = (
+    <DropdownMenu ev-$changed:show={{ self._position }}
+        ref="menu"
+        class={{ {
+            "k-select-dropdown": true,
+            "k-cascader-dropdown": true,
+        } }}
+        ev-$change:show={{ self._onChangeShow }}
+    >
+        <Options data={{ data }} level={{ 0 }} />
+    </DropdownMenu>
+);
+
+<t:parent Menu={{ Menu }} class="k-cascader" labelObj={{ labelObj }} />

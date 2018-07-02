@@ -6,7 +6,10 @@ order: 0
 ```vdt
 import Cascader from 'kpc/components/cascader';
 
-<Cascader data={{ self.get('data') }} />
+<div>
+    <Cascader data={{ self.get('data') }} v-model="value" />
+    You selected: {{ JSON.stringify(self.get('value')) }}
+</div>
 ```
 
 ```js
