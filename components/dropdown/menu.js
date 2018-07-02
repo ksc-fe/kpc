@@ -13,6 +13,7 @@ export default class DropdownMenu extends Intact {
             trigger: 'hover',
             position: {},
             transition: 'slidedown',
+            of: 'self', // self | parent
         };
     }
 
@@ -60,10 +61,18 @@ export default class DropdownMenu extends Intact {
     }
 
     position() {
+        let _of = this.dropdown.element;
+        if (this.get('of') === 'parent') {
+            const parent = this._findParentDropdownMenu();
+            if (parent) {
+                _of = parent.refs.menu.element;
+            }
+        }
+
         position(this.refs.menu.element, {
             my: 'center top+8', 
             at: 'center bottom', 
-            of: this.dropdown.element,
+            of: _of,
             using: (feedback) => {
                 this.set('transition', getTransition(feedback));
             },
