@@ -28,6 +28,25 @@ export default class Select extends Intact {
             disabled: false,
             clearable: false, // 是否可清空 
             filterable: false, // 搜索筛选
+            filter: (keywords, props) => {
+                let valid = false;
+                let tmp;
+                if (
+                    keywords == null || 
+                    (
+                        props.label &&
+                        ~props.label.toLowerCase().indexOf((tmp = keywords.toLowerCase()))
+                    ) || 
+                    (
+                        isStringOrNumber(props.value) && 
+                        ~String(props.value).toLowerCase().indexOf(tmp)
+                    )
+                ) {
+                    valid = true; 
+                }
+
+                return valid;
+            },
             keywords: undefined,
             placeholder: undefined,
             size: 'default',
@@ -174,7 +193,7 @@ export default class Select extends Intact {
     }
 
     handleProps(props, labelObj) {
-        const {multiple, value, filterable, keywords} = this.get();
+        const {multiple, value, filterable, keywords, filter} = this.get();
         let active = false;
         let valid = false;
 
@@ -197,18 +216,8 @@ export default class Select extends Intact {
             }
         }
 
-        let tmp;
-        if (
-            !filterable && 
-            props.label || 
-            keywords == null || 
-            ~props.label.toLowerCase().indexOf((tmp = keywords.toLowerCase())) || 
-            (
-                isStringOrNumber(props.value) && 
-                ~String(props.value).toLowerCase().indexOf(tmp)
-            )
-        ) {
-            valid = true; 
+        if (!filterable || filter.call(this, keywords, props)) {
+            valid = true;
         }
 
         return {active, valid};

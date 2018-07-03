@@ -4,7 +4,7 @@ order: 5
 ---
 
 `Option`的子元素可以是任意dom结构，而非仅仅只是字符串。此时如果需要支持`filterable`，我们应该
-指定`label`，以便组件知道筛选的内容。
+指定`label`，以便组件知道筛选的内容，当然你也可以通过`filter`指定过滤函数。
 
 ```vdt
 import {Select, Option} from 'kpc/components/select';

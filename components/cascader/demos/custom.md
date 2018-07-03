@@ -1,21 +1,27 @@
 ---
-title: 基本用法
-order: 0
+title: 自定义结果显示
+order: 5
 ---
 
-通过`data`给组件传入数据，`v-model`进行数据双向绑定，绑定的结果是选中的每一项组成的数组。
-其中`data`的数据格式如示例所示：
-1. `value`选中后的值
-2. `label`展示的文案
-3. `children`如果存在子选项，需要递归地指定该属性
+给组件指定`format`属性，可以自定义选择结果显示。该属性值为`Function`类型，
+组件会将当前选择的数据项以数组的格式作为参数传入
+
+> Vue下通过`slot="format" slot-scope="values"`指定
 
 ```vdt
 import Cascader from 'kpc/components/cascader';
 
-<div>
-    <Cascader data={{ self.get('data') }} v-model="value" />
-    You selected: {{ JSON.stringify(self.get('value')) }}
-</div>
+<Cascader data={{ self.get('data') }} 
+    format={{ (values) => {
+        if (values.length) {
+            return <div>
+                <i class="ion-ios-location" style="line-height: 1;"></i>
+                {{ values[values.length - 1].label }}
+            </div>
+        }
+    } }}
+    clearable
+/>
 ```
 
 ```js

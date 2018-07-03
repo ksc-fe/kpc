@@ -251,7 +251,8 @@ export default function position(elem, options) {
     position.left += myOffset[0];
     position.top += myOffset[1];
 
-    ['left', 'top'].forEach((dir, i) => {
+    const collisionDirection = options.collisionDirection || ['left', 'top'];
+    collisionDirection.forEach((dir, i) => {
         const coll = collision[i];
         if (rules[coll]) {
             rules[coll][dir](position, {

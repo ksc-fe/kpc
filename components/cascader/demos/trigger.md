@@ -1,21 +1,14 @@
----
-title: 基本用法
-order: 0
+--- 
+title: 触发方式
+order: 2
 ---
 
-通过`data`给组件传入数据，`v-model`进行数据双向绑定，绑定的结果是选中的每一项组成的数组。
-其中`data`的数据格式如示例所示：
-1. `value`选中后的值
-2. `label`展示的文案
-3. `children`如果存在子选项，需要递归地指定该属性
+子菜单的触发的方式默认是`click`点击展开，通过设置`trigger`属性为`hover`，可以指定为移入展开
 
 ```vdt
 import Cascader from 'kpc/components/cascader';
 
-<div>
-    <Cascader data={{ self.get('data') }} v-model="value" />
-    You selected: {{ JSON.stringify(self.get('value')) }}
-</div>
+<Cascader data={{ self.get('data') }} trigger="hover" />
 ```
 
 ```js

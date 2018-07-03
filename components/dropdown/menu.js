@@ -28,10 +28,22 @@ export default class DropdownMenu extends Intact {
         const parent = this._findParentDropdownMenu();
         if (parent) parent.subDropdowns.push(this);
 
-        if (this.get('show')) {
+        // because the DropdownMenu can be change by key
+        // and it can not be found in Dropdown
+        // so we handle it here again
+        if (!this.dropdown) {
+            // the previous sibling is Dropdown
+            const siblings = this.parentVNode.children;
+            const index = siblings.indexOf(this.vNode);
+            const dropdown = siblings[index - 1].children;
+            this.dropdown = dropdown;
+            dropdown.menu = this.vNode;
+        }
+
+        // if (this.get('show')) {
             // this._onShow();
             // this.show();
-        }
+        // }
     }
 
     _findParentDropdownMenu() {

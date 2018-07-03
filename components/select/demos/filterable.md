@@ -3,7 +3,8 @@ title: 可筛选
 order: 4
 ---
 
-指定`filterable`支持筛选，组件会同时对`label`和`value`进行筛选
+指定`filterable`支持筛选，组件会同时对`label`和`value`进行筛选，你也可以通过
+`filter`属性来自定义筛选函数
 
 ```vdt
 import {Select, Option} from 'kpc/components/select';

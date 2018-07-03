@@ -1,11 +1,15 @@
 import Input from '../input';
 import Dropdown, {DropdownItem, DropdownMenu} from '../dropdown';
 
-const {data, className, style, value} = self.get();
+const {
+    data, className, style, value, trigger,
+    changeOnSelect, format, filterable, keywords,
+} = self.get();
 
 const labelObj = {
     label: null,
     labels: [],
+    values: [],
 };
 
 const Options = (props) => {
@@ -14,14 +18,23 @@ const Options = (props) => {
     const ret = [];
 
     data.forEach((item, index) => {
-        const {valid, active} = self.handleProps(item, labelObj, level);
+        const {active} = self.handleProps(item, labelObj, level);
 
         const Item = () => {
+            const events = {};
+            events['ev-click'] = self._onClick.bind(self, item.value, level);
+            if (trigger === 'hover') {
+                events['ev-mouseenter'] = self._onClick.bind(self, item.value, level);
+            }
+            if (!changeOnSelect) {
+                events['ev-select'] = self._onSelect;
+            }
+
             return (
                 <DropdownItem
-                    ev-click={{ self._onClick.bind(self, item.value, level) }}
                     disabled={{ item.disabled }}
                     class={{ {'k-active': active} }}
+                    {{ ...events }}
                 >
                     {{ item.template ? item.template(item, index) : item.label }}
                     <i v-if={{ item.children }} class="k-arrow ion-ios-arrow-right"></i>
@@ -30,12 +43,13 @@ const Options = (props) => {
         };
 
         ret.push(
-            !item.children ? <Item /> :
+            !item.children ? 
+                <Item /> :
                 <Dropdown 
-                    position={{ {my: 'left top', at: 'right top'} }}
+                    position={{ {my: 'left top', at: 'right top', collisionDirection: ['left']} }}
                     of="parent"
                     disabled={{ item.disabled }}
-                    trigger="click"
+                    trigger={{ trigger }}
                     show={{ active }}
                 >
                     <Item />
@@ -44,7 +58,6 @@ const Options = (props) => {
                             "k-select-dropdown": true,
                             "k-cascader-dropdown": true,
                         } }}
-                        id={{ item.label }}
                     >
                         <Options data={{ item.children }} level={{ level + 1 }} />
                     </DropdownMenu>
@@ -55,18 +68,52 @@ const Options = (props) => {
     return ret;
 }
 
-const Menu = (
-    <DropdownMenu ev-$changed:show={{ self._position }}
-        ref="menu"
-        class={{ {
-            "k-select-dropdown": true,
-            "k-cascader-dropdown": true,
-        } }}
-        ev-$change:show={{ self._onChangeShow }}
-        id="wrapper"
-    >
-        <Options data={{ data }} level={{ 0 }} />
-    </DropdownMenu>
-);
+let Menu
+if (!filterable || !keywords) {
+    Menu = (
+        <DropdownMenu
+            ref="cascader"
+            class={{ {
+                "k-select-dropdown": true,
+                "k-cascader-dropdown": true,
+            } }}
+            ev-$change:show={{ self._onChangeShow }}
+            key="cascader"
+        >
+            <Options data={{ data }} level={{ 0 }} />
+        </DropdownMenu>
+    );
+} else {
+    Menu = (
+        <DropdownMenu ev-$changed:show={{ self._position }}
+            ref="menu"
+            class={{ {
+                "k-select-dropdown": true,
+                "k-cascader-filterable-dropdown": true, 
+            } }}
+            ev-$change:show={{ self._onChangeShow }}
+            key="filterable"
+        >
+            <DropdownItem v-for={{ self._filter() }}
+                ev-select={{ self._selectByFilter.bind(self, value) }}
+                disabled={{ value.disabled }}
+            >{{ do {
+                // highlight keywords
+                const label = value.map(item => item.label).join(' / ');
+                const labels = label.split(keywords);
+                const length = labels.length; 
+                labels.map((item, index) => {
+                    const ret = [item];
+                    if (index !== length - 1) {
+                        ret.push(<em>{{ keywords }}</em>);
+                    }
+                    return ret;
+                });
+            } }}</DropdownItem>
+        </DropdownMenu>
+    )
+}
+
+labelObj.label = format.call(this, labelObj.values);
 
 <t:parent Menu={{ Menu }} class="k-cascader" labelObj={{ labelObj }} />

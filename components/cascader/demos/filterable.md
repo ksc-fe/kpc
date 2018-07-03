@@ -1,20 +1,16 @@
 ---
-title: 基本用法
-order: 0
+title: 可搜索
+order: 6
 ---
 
-通过`data`给组件传入数据，`v-model`进行数据双向绑定，绑定的结果是选中的每一项组成的数组。
-其中`data`的数据格式如示例所示：
-1. `value`选中后的值
-2. `label`展示的文案
-3. `children`如果存在子选项，需要递归地指定该属性
+添加`filterable`属性，即可实现搜索。默认会根据`label`进行搜索，你也可以通过`filter`属性，传入
+自定义的搜索逻辑，组件会将当前的搜索关键词和每一项数据作为参数传入
 
 ```vdt
 import Cascader from 'kpc/components/cascader';
 
 <div>
-    <Cascader data={{ self.get('data') }} v-model="value" />
-    You selected: {{ JSON.stringify(self.get('value')) }}
+    <Cascader data={{ self.get('data') }} filterable />
 </div>
 ```
 
@@ -51,6 +47,7 @@ export default class extends Intact {
                         {
                             value: 'changsha',
                             label: '长沙市',
+                            disabled: true,
                             children: [
                                 {
                                     value: 'yuelu',

@@ -64,10 +64,10 @@ export default class DropdownItem extends Intact {
     select(e) {
         // is not a sub dropdown trigger
         const dropdown = this._isSubMenu();
+        this.trigger('click', e);
         if (!dropdown) {
             this.trigger('select', this);
         } else {
-            this.trigger('click', e);
             dropdown.show();
         }
     }

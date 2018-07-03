@@ -1,21 +1,23 @@
 ---
-title: 基本用法
-order: 0
+title: 禁用状态
+order: 1
 ---
 
-通过`data`给组件传入数据，`v-model`进行数据双向绑定，绑定的结果是选中的每一项组成的数组。
-其中`data`的数据格式如示例所示：
-1. `value`选中后的值
-2. `label`展示的文案
-3. `children`如果存在子选项，需要递归地指定该属性
+给组件添加`disabled`属性，可以禁用整个组件；给`data`数据项添加`disabled`属性
+可以单独禁用该项
 
 ```vdt
 import Cascader from 'kpc/components/cascader';
 
 <div>
-    <Cascader data={{ self.get('data') }} v-model="value" />
-    You selected: {{ JSON.stringify(self.get('value')) }}
+    <Cascader data={{ self.get('data') }} disabled/>
+    <Cascader data={{ self.get('data') }} />
 </div>
+```
+
+```styl
+.k-cascader
+    margin-right 20px
 ```
 
 ```js
@@ -29,6 +31,7 @@ export default class extends Intact {
                 {
                     value: 'beijing',
                     label: '北京',
+                    disabled: true,
                     children: [
                         {
                             value: 'haidian',
@@ -51,6 +54,7 @@ export default class extends Intact {
                         {
                             value: 'changsha',
                             label: '长沙市',
+                            disabled: true,
                             children: [
                                 {
                                     value: 'yuelu',
@@ -65,6 +69,7 @@ export default class extends Intact {
                                 {
                                     value: 'yueyanglou',
                                     label: '岳阳楼区',
+                                    disabled: true,
                                 },
                                 {
                                     value: 'yueyangxian',
@@ -79,3 +84,4 @@ export default class extends Intact {
     }
 }
 ```
+

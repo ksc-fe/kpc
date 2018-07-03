@@ -70,6 +70,10 @@ export default class Dropdown extends Intact {
         // the next sibling is DropdownMenu
         // we can not get the menu by call get('menu') directly,
         // because the vNode may be cloned
+        // 
+        // we only handle it when mount 
+        // so you can not change the DropdownMenu by key
+        // ohterwise it can not be found 
         const siblings = this.parentVNode.children;
         const index = siblings.indexOf(this.vNode);
         const menu = siblings[index + 1];

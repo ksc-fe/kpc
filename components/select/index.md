@@ -16,6 +16,7 @@ sidebar: doc
 | disabled | 是否禁用 | `Boolean` | `false` |
 | clearable | 是否可清空 | `Boolean` | `false` |
 | filterable | 是否支持筛选 | `Boolean` | `false` |
+| filter | 当支持筛选时，可以自定义筛选规则 | `Function` | `(keywords, props) => ...` |
 | keywords | 如果支持筛选，当前关键词 | `String` | `undefined` |
 | placeholder | 占位文案 | `String` | `"请选择"` |
 | size | 尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |

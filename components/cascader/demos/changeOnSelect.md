@@ -1,19 +1,15 @@
 ---
-title: 基本用法
-order: 0
+title: 选择即改变
+order: 3
 ---
 
-通过`data`给组件传入数据，`v-model`进行数据双向绑定，绑定的结果是选中的每一项组成的数组。
-其中`data`的数据格式如示例所示：
-1. `value`选中后的值
-2. `label`展示的文案
-3. `children`如果存在子选项，需要递归地指定该属性
+添加`changeOnSelect`属性，即可使组件选择即改变`value`，这样可以只选中父级
 
 ```vdt
 import Cascader from 'kpc/components/cascader';
 
 <div>
-    <Cascader data={{ self.get('data') }} v-model="value" />
+    <Cascader data={{ self.get('data') }} v-model="value" changeOnSelect />
     You selected: {{ JSON.stringify(self.get('value')) }}
 </div>
 ```
