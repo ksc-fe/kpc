@@ -103,7 +103,11 @@ export default class Cascader extends Select {
     }
 
     _selectByFilter(value) {
-        this.set('value', value.map(item => item.value), {async: true});
+        const _value = value.map(item => item.value);
+        this.set({
+            value: _value,
+            _value: _value,
+        }, {async: true});
         this._resetSearch();
     }
 }

@@ -114,5 +114,8 @@
     "webpack-hot-middleware": "^2.21.2",
     "webpack-merge": "^4.1.2",
     "webpack-node-externals": "^1.6.0"
+  },
+  "dependencies": {
+    "kdoc-plugin-md": "^1.1.2"
   }
 }
