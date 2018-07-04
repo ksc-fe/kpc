@@ -120,15 +120,17 @@ class TooltipContent extends Intact {
     }
 
     _addDocumentClick() {
-        if (this.get('trigger') === 'click') {
+        // no matter what the trigger is
+        // we should let the layer hide when click document. #52
+        // if (this.get('trigger') === 'click') {
             document.addEventListener('click', this._onDocumentClick);
-        }
+        // }
     }
 
     _removeDocumentClick() {
-        if (this.get('trigger') === 'click') {
+        // if (this.get('trigger') === 'click') {
             document.removeEventListener('click', this._onDocumentClick);
-        }
+        // }
     }
 
     _onDocumentClick(e) {

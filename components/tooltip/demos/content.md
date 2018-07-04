@@ -15,7 +15,7 @@ import {Button} from 'kpc/components/button';
         <Button>Adjust Volume</Button>
         <b:content>
             <Slider v-model="volume" 
-                style="width: 200px; padding: 10px;"
+                style="width: 200px;"
                 isShowInput={{ false }} 
                 isShowEnd={{ false }}
             />
