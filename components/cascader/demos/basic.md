@@ -8,6 +8,7 @@ order: 0
 1. `value`选中后的值
 2. `label`展示的文案
 3. `children`如果存在子选项，需要递归地指定该属性
+4. `disabled`禁用该项
 
 ```vdt
 import Cascader from 'kpc/components/cascader';
