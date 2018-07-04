@@ -23,7 +23,7 @@ export default class Progress extends Intact{
             isOuterText: true,
             isInnerText: false,
             status: 'active', // success | error | active | normal
-            strokeWidth: 10, 
+            strokeWidth: 4, 
         };
     }
 

@@ -49,15 +49,19 @@ sizes = mini small
             margin $progress-innertext-margin
             width 100%
             text-align right
-            padding-right 10px
+            padding-right $progress-innertext-padding-right
             
         // status
         &.k-success
             .k-bg
                 background $progress-success-color
+            .k-icon
+                color $progress-success-color
         &.k-error
             .k-bg
                 background $progress-error-color
+            .k-icon
+                color $progress-error-color
         &.k-active
             .k-bg
                 &:before
@@ -67,9 +71,9 @@ sizes = mini small
                     bottom 0
                     right 0
                     left 0
-                    background-color #ffffff
+                    background-color #fff
                     animation progress-bar-animation 2s ease infinite
-                    border-radius 14px
+                    border-radius $progress-height
 
         // size
         for size in sizes
@@ -79,9 +83,8 @@ sizes = mini small
                     height lookup('$progress-' + size + '-height')
 
         .k-text
-            margin-left 15px
+            margin-left $progress-text-margin-left
             width $progress-text-width
-
 
 
     // circle
