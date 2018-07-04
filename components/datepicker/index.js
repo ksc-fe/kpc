@@ -265,9 +265,10 @@ export default class Datepicker extends Intact {
     }
 
     _onHide() {
-        this.refs.input.focus();
+        const input = this.refs.input;
+        input.focus();
         setTimeout(() => {
-            this.refs.input.blur();
+            input.blur();
         });
     }
 }
