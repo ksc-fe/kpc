@@ -23,8 +23,9 @@
     width 100%
     > .k-container
         display inline-block
-        box-shadow $box-shadow 
-        background #fff
+        if $message-box-shadow != none
+            box-shadow $message-box-shadow 
+        background $message-bg-color
         border-radius $message-border-radius
         margin-bottom $message-margin-bottom 
         pointer-events all
@@ -32,13 +33,15 @@
             display inline-block
             vertical-align middle
             padding-left $message-icon-padding-left 
-            color $primary-color
+            if $message-icon-color != inherit
+                color $message-icon-color
             &:before
                 font-size $message-icon-font-size 
         > .k-content
             display inline-block
             padding $message-content-padding 
             vertical-align middle
+            word-break break-all
         > .k-close
             vertical-align middle
             .k-icon:before

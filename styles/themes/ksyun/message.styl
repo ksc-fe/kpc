@@ -1,11 +1,9 @@
 .k-message
     font-size 12px
+    color $ghost-text-color
     > .k-container
-        width 380px
-        text-align left
+        width 400px
         position relative
-        > .k-icon
-            display none
         > .k-close
             position absolute
             right 0
@@ -16,7 +14,5 @@
     for type in danger success warning
         &.k-{type}
             > .k-container
-                color #fff
-                background lookup('$' + type + '-color')
-                > .k-close
-                    color #fff
+                color lookup('$' + type + '-color')
+                background palette(lookup('$' + type + '-color'), -4)

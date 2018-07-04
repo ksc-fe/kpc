@@ -1,13 +1,18 @@
 import Button from '../button';
 
-const {type, content, children, closable} = self.get();
+const {type, content, children, closable, hideIcon} = self.get();
 
 <div class={{ {"k-message": true, [`k-${type}`]: type !== 'info'} }}
     ev-mouseenter={{ self.onMouseEnter }}
     ev-mouseleave={{ self.onMouseLeave }}
 >
     <div class="k-container">
-        <i class="k-icon ion-ios-information"></i>
+        <i v-if={{ !hideIcon }} class={{ {
+            "k-icon": true,
+            "ion-ios-information-outline": type === 'info' || type === 'warning',
+            "ion-ios-checkmark-outline": type === 'success',
+            "ion-ios-close-outline": type === 'danger'
+        } }}></i>
         <div v-if={{ typeof content === 'string' || typeof content === 'number' }}
             class="k-content" innerHTML={{ content }}
         ></div>

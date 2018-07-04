@@ -58,6 +58,7 @@ export default class Message extends Intact {
             key: id++,
             value: false,
             closable: true,
+            hideIcon: false,
 
             // if this component is used as instance or not
             _isInstance: false,

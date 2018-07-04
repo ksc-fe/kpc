@@ -16,6 +16,7 @@ import {Progress} from 'kpc/components/progress';
     <Message v-model="show" key="message" 
         duration={{ 0 }} 
         type={{ self.get('percent') >= 100 ? 'success' : 'info' }}
+        hideIcon
     >
         <Progress style="width: 200px" 
             percent={{ self.get('percent') }}
