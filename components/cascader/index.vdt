@@ -17,14 +17,19 @@ const Options = (props) => {
     const level = props.level;
     const ret = [];
 
+    // show loading
+    if (!data.length) {
+        return  <i class="ion-load-c icon-loading"></i>
+    }
+
     data.forEach((item, index) => {
         const {active} = self.handleProps(item, labelObj, level);
 
         const Item = () => {
             const events = {};
-            events['ev-click'] = self._onClick.bind(self, item.value, level);
+            events['ev-click'] = self._onClick.bind(self, item, level);
             if (trigger === 'hover') {
-                events['ev-mouseenter'] = self._onClick.bind(self, item.value, level);
+                events['ev-mouseenter'] = self._onClick.bind(self, item, level);
             }
             if (!changeOnSelect) {
                 events['ev-select'] = self._onSelect;
@@ -58,6 +63,7 @@ const Options = (props) => {
                             "k-select-dropdown": true,
                             "k-cascader-dropdown": true,
                         } }}
+                        ev-show={{ self._onSubMenuShow.bind(self, item) }}
                     >
                         <Options data={{ item.children }} level={{ level + 1 }} />
                     </DropdownMenu>

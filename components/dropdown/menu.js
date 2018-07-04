@@ -125,6 +125,7 @@ export default class DropdownMenu extends Intact {
         this.focusIndex = -1;
         this._addDocumentEvents();
         this.position();
+        this.trigger('show')
     }
 
     _addDocumentEvents() {

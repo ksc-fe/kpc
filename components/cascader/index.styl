@@ -1,15 +1,29 @@
+@require('./variables.styl')
+
 .k-cascader-dropdown
-    width 140px
-    height 160px
+    width $cascader-width
+    height $cascader-height
     .k-arrow
         float right
         height 100%
         &:before
             font-size 16px
+
     // make the sub-menu position correctly when flip to top
     &.slideup-appear
         transform-origin center top 0
+
+    // loading animation
+    .icon-loading
+        display block
+        text-align center
+        margin-top $cascader-loading-margin-top
+
+// filterable
 .k-cascader-filterable-dropdown
     em
         font-style normal
-        color $danger-color
+        color $cascader-keywords-color
+
+
+require($theme-dir + '/cascader.styl')

@@ -27,6 +27,12 @@ sidebar: doc
 
 ## 事件
 
+## DropdownMenu
+
+| 事件名 | 说明 | 参数 |
+| --- | --- | --- |
+| show | 菜单展示事件 | - |
+
 ## DropdownItem
 
 | 事件名 | 说明 | 参数 |

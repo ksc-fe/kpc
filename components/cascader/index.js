@@ -16,6 +16,7 @@ export default class Cascader extends Select {
             changeOnSelect: false,
             format: (values) => values.map(value => value.label).join(' / '),
             filter: (keywords, props) => props.label.indexOf(keywords) > -1,
+            loadData: (item) => {},
 
             _value: [],
         };
@@ -28,7 +29,7 @@ export default class Cascader extends Select {
         });
     }
 
-    _onClick(value, index) {
+    _onClick(item, index) {
         let values = this.get('_value');
         if (!Array.isArray(values)) {
             values = [];
@@ -36,7 +37,7 @@ export default class Cascader extends Select {
             values = values.slice(0, index);
         }
 
-        values[index] = value;
+        values[index] = item.value;
 
         this.set('_value', values, {async: true});
         if (this.get('changeOnSelect')) {
@@ -46,6 +47,16 @@ export default class Cascader extends Select {
 
     _onSelect() {
         this.set('value', this.get('_value').slice(0));
+    }
+
+    /**
+     * on sub menu showed, load data if children is empty
+     */
+    async _onSubMenuShow(item) {
+        if (item.children && !item.children.length) {
+            await this.get('loadData').call(this, item);
+            this.update();
+        }
     }
 
     _clearValue() {  }
