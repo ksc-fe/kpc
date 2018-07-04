@@ -31,6 +31,7 @@ export default class Datepicker extends Intact {
 
             _value: undefined, // for range
             _rangeEndDate: undefined,
+            _isShow: false,
         }
     }
 
@@ -72,7 +73,7 @@ export default class Datepicker extends Intact {
     }
 
     _onChangeShow(c, v) {
-        this._isShow = v;
+        this.set('_isShow', v);
         this._hasSelectByArrowKey = false;
     }
 
@@ -240,7 +241,7 @@ export default class Datepicker extends Intact {
             case 40:
             case 37:
             case 39:
-                if (this._isShow) {
+                if (this.get('_isShow')) {
                     this._hasSelectByArrowKey = true;
                     this.refs.begin._onKeydown(e);
                 }
@@ -250,6 +251,24 @@ export default class Datepicker extends Intact {
 
     _focus() {
         this.refs.input.focus();
+    }
+
+    /**
+     * don't trigger focusout event when datepicker layer is showing
+     * trigger focusout when it hidden to make FormItem to validate it
+     * #46
+     */
+    onInputFocusOut(e) {
+        if (this.get('_isShow')) {
+            e.stopPropagation();
+        }
+    }
+
+    _onHide() {
+        this.refs.input.focus();
+        setTimeout(() => {
+            this.refs.input.blur();
+        });
     }
 }
 

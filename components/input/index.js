@@ -67,6 +67,10 @@ export default class Input extends Intact {
     focus() {
         this.refs.input.focus();
     }
+    
+    blur() {
+        this.refs.input.blur();
+    }
 
     _onInput(e) {
         this.set('value', e.target.value);

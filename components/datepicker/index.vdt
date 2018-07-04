@@ -4,7 +4,7 @@ import {_$} from '../utils';
 import Calendar from './calendar';
 
 const {
-    value, clearable, className, style,
+    value, clearable, className, style, _isShow,
     name, disabled, placeholder, size, transition,
     _value, range, type, ref, key, ...rest
 } = self.get();
@@ -20,6 +20,7 @@ for (let key in rest) {
 const classNameObj = {
     'k-datepicker': true,
     'k-disabled': disabled,
+    'k-show': _isShow,
     [className]: className,
 }
 
@@ -35,6 +36,7 @@ const classNameObj = {
         ref="calendar"
         disabled={{ disabled }}
         ev-show={{ self._onShow }}
+        ev-hide={{ self._onHide }}
         ev-$changed:show={{ self._onChangeShow }}
     >
         <Input
@@ -51,6 +53,7 @@ const classNameObj = {
             size={{ size }}
             ref="input"
             tabindex="-1"
+            ev-focusout={{ self.onInputFocusOut }}
         >
             <b:suffix><i class="ion-ios-calendar-outline"></i></b:suffix>
         </Input>
