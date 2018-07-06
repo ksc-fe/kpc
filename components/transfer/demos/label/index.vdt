@@ -13,4 +13,5 @@ import Transfer from 'kpc/components/transfer';
             data.ip.includes(keywords);
     } }}
     filterable
+    keyName="name"
 />

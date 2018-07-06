@@ -1,0 +1,13 @@
+import Cascader from 'kpc/components/cascader';
+
+<Cascader data={{ self.get('data') }} 
+    format={{ (values) => {
+        if (values.length) {
+            return <div>
+                <i class="ion-ios-location" style="line-height: 1;"></i>
+                {{ values[values.length - 1].label }}
+            </div>
+        }
+    } }}
+    clearable
+/>

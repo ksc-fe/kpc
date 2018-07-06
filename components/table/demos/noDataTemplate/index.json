@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>当<code>data</code>为空数组<code>[]</code>时, 可设置<code>noDataTemplate</code>来展示提示信息（默认为： /(ㄒoㄒ)/~~ 没有找到亲要的数据哦~）。或者你也可以通过<code>no-data</code>扩展点，来定义内容</p>\n",
-    "index": 125,
+    "index": 127,
     "highlighted": [
         {
             "language": "vdt",

@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>separator</code>属性可以指定分隔符，该属性值会使用<code>innerHTML</code>写入，所以可以使用任意html字符串。</p>\n<blockquote>\n<p>使用<code>innerHTML</code>存在XSS风险，需要自行规避</p>\n</blockquote>\n",
-    "index": 50,
+    "index": 82,
     "highlighted": [
         {
             "language": "vdt",

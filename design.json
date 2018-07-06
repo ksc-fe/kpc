@@ -1,40 +1,6 @@
 {
     "undefined": [
         {
-            "title": "设计语言",
-            "path": "docs/design/language.md",
-            "children": [
-                {
-                    "children": [
-                        {
-                            "title": "通用设计语言 King Design Language",
-                            "path": "#header-%E9%80%9A%E7%94%A8%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80%20King%20Design%20Language",
-                            "level": 2,
-                            "content": "<h2 id='header-%E9%80%9A%E7%94%A8%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80%20King%20Design%20Language'>通用设计语言 King Design Language</h2>",
-                            "text": "通用设计语言 King Design Language",
-                            "children": []
-                        },
-                        {
-                            "title": "KDL的价值",
-                            "path": "#header-KDL%E7%9A%84%E4%BB%B7%E5%80%BC",
-                            "level": 2,
-                            "content": "<h2 id='header-KDL%E7%9A%84%E4%BB%B7%E5%80%BC'>KDL的价值</h2>",
-                            "text": "KDL的价值",
-                            "children": []
-                        },
-                        {
-                            "title": "设计原则",
-                            "path": "#header-%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99",
-                            "level": 2,
-                            "content": "<h2 id='header-%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99'>设计原则</h2>",
-                            "text": "设计原则",
-                            "children": []
-                        }
-                    ]
-                }
-            ]
-        },
-        {
             "title": "颜色",
             "path": "docs/design/color.md",
             "children": [
@@ -70,6 +36,40 @@
                             "level": 2,
                             "content": "<h2 id='header-%E8%89%B2%E6%9D%BF%E7%94%9F%E6%88%90%E5%99%A8'>色板生成器</h2>",
                             "text": "色板生成器",
+                            "children": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "设计语言",
+            "path": "docs/design/language.md",
+            "children": [
+                {
+                    "children": [
+                        {
+                            "title": "通用设计语言 King Design Language",
+                            "path": "#header-%E9%80%9A%E7%94%A8%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80%20King%20Design%20Language",
+                            "level": 2,
+                            "content": "<h2 id='header-%E9%80%9A%E7%94%A8%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80%20King%20Design%20Language'>通用设计语言 King Design Language</h2>",
+                            "text": "通用设计语言 King Design Language",
+                            "children": []
+                        },
+                        {
+                            "title": "KDL的价值",
+                            "path": "#header-KDL%E7%9A%84%E4%BB%B7%E5%80%BC",
+                            "level": 2,
+                            "content": "<h2 id='header-KDL%E7%9A%84%E4%BB%B7%E5%80%BC'>KDL的价值</h2>",
+                            "text": "KDL的价值",
+                            "children": []
+                        },
+                        {
+                            "title": "设计原则",
+                            "path": "#header-%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99",
+                            "level": 2,
+                            "content": "<h2 id='header-%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99'>设计原则</h2>",
+                            "text": "设计原则",
                             "children": []
                         }
                     ]

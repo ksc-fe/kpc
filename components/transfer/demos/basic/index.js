@@ -9,11 +9,11 @@ export default class extends Intact {
     defaults() {
         return {
             data: [
-                {label: '主机名0'},
-                {label: '主机名1'},
-                {label: '主机名2'},
-                {label: '主机名3', disabled: true},
-                {label: '主机名4'},
+                {label: '主机名0', key: 0},
+                {label: '主机名1', key: 1},
+                {label: '主机名2', key: 2},
+                {label: '主机名3', key: 3, disabled: true},
+                {label: '主机名4', key: 4},
             ]
         }
     }

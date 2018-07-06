@@ -1,0 +1,17 @@
+import Button, {ButtonGroup} from 'kpc/components/button';
+import Dialog from 'kpc/components/dialog';
+
+<div>
+    <ButtonGroup>
+        {{ do {
+            ['large', 'default', 'small', 'mini'].map(value => {
+                return [
+                    <Button ev-click={{ self.set.bind(self, `show${value}`, true) }}>Show {{ value }} Dialog</Button>,
+                    <Dialog v-model={{ `show${value}` }} title="Dialog Title" size={{ value }}>
+                        Size: {{ value }}
+                    </Dialog>
+                ]
+            })
+        } }}
+    </ButtonGroup>
+</div>

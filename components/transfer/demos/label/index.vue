@@ -1,5 +1,5 @@
 <template>
-    <Transfer :data="data" :filter="filter" filterable>
+    <Transfer :data="data" :filter="filter" filterable keyName="name">
         <div slot="label" slot-scope="data, index, type">
             <div>{{ data.name }}</div>
             <p>{{ data.desc }} | {{ data.ip }}</p>

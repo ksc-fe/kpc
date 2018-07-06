@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>Dropdown</code>提供了两种触发方式来弹窗菜单，<code>hover</code>悬停触发（默认），<code>click</code>点击触发。通过<code>trigger</code>属性来指定它们。</p>\n",
-    "index": 27,
+    "index": 47,
     "highlighted": [
         {
             "language": "vdt",

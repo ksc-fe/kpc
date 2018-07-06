@@ -1,0 +1,19 @@
+{
+    "setting": {
+        "title": "尺寸",
+        "order": 0.1
+    },
+    "catalogs": [],
+    "contents": "<p>添加<code>size</code>属性，定义如下尺寸：<code>large</code>, <code>default</code>，<code>small</code>，<code>mini</code></p>\n",
+    "index": 39,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Button, {ButtonGroup} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/button'</span>;\n<span class=\"hljs-keyword\">import</span> Dialog <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/dialog'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">ButtonGroup</span>&gt;</span>\n        {{ do {\n            ['large', 'default', 'small', 'mini'].map(value =&gt; {\n                return [\n                    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span> <span class=\"hljs-attr\">ev-click</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">self.set.bind</span>(<span class=\"hljs-attr\">self</span>, `<span class=\"hljs-attr\">show</span>${<span class=\"hljs-attr\">value</span>}`, <span class=\"hljs-attr\">true</span>) }}&gt;</span>Show {{ value }} Dialog<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>,\n                    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Dialog</span> <span class=\"hljs-attr\">v-model</span>=<span class=\"hljs-string\">{{</span> `<span class=\"hljs-attr\">show</span>${<span class=\"hljs-attr\">value</span>}` }} <span class=\"hljs-attr\">title</span>=<span class=\"hljs-string\">\"Dialog Title\"</span> <span class=\"hljs-attr\">size</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">value</span> }}&gt;</span>\n                        Size: {{ value }}\n                    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Dialog</span>&gt;</span>\n                ]\n            })\n        } }}\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">ButtonGroup</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span></code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
+        }
+    ]
+}

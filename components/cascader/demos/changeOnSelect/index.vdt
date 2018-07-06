@@ -1,0 +1,6 @@
+import Cascader from 'kpc/components/cascader';
+
+<div>
+    <Cascader data={{ self.get('data') }} v-model="value" changeOnSelect />
+    You selected: {{ JSON.stringify(self.get('value')) }}
+</div>

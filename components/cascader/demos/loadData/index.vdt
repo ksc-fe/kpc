@@ -1,0 +1,3 @@
+import Cascader from 'kpc/components/cascader';
+
+<Cascader data={{ self.get('data') }} loadData={{ self.loadData }}/>

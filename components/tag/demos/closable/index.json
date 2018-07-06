@@ -1,0 +1,23 @@
+{
+    "setting": {
+        "title": "关闭按钮",
+        "order": 1
+    },
+    "catalogs": [],
+    "contents": "<p>给组件添加<code>closable</code>属性，可以关闭标签，关闭后会触发<code>close</code>事件</p>\n<blockquote>\n<p>如果仅仅指定了<code>closable</code>属性，那么组件的开启和关闭是组件内部自己维护的状态，一旦组件被重新创建，那么又会回到默认开启状态，所以如果你需要维持组件的状态，需要自己维护<code>closed</code>属性，或者通过<code>v-if</code>来控制组件</p>\n</blockquote>\n",
+    "index": 145,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Tag <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/tag'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Tag</span> <span class=\"hljs-attr\">v-for</span>=<span class=\"hljs-string\">{{</span> ['<span class=\"hljs-attr\">default</span>', '<span class=\"hljs-attr\">primary</span>', '<span class=\"hljs-attr\">success</span>', '<span class=\"hljs-attr\">warning</span>', '<span class=\"hljs-attr\">danger</span>'] }}\n        <span class=\"hljs-attr\">key</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">value</span> }}\n        <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">value</span> }}\n        <span class=\"hljs-attr\">closable</span>\n    &gt;</span>{{ value }}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Tag</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Tag</span> <span class=\"hljs-attr\">disabled</span> <span class=\"hljs-attr\">closable</span>&gt;</span>disabled<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Tag</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span></code></pre>"
+        },
+        {
+            "language": "styl",
+            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-tag</span>\n    <span class=\"hljs-attribute\">margin-right</span> <span class=\"hljs-number\">16px</span></code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
+        }
+    ]
+}

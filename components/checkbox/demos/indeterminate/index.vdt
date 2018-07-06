@@ -1,0 +1,17 @@
+import Checkbox from 'kpc/components/checkbox';
+
+const length = self.get('languages').length;
+
+<div>
+    <Checkbox indeterminate={{ length > 0 && length < 3 }}
+        value={{ length === 3 }}
+        ev-$change:value={{ self._toggleSelectAll }}
+    >全选</Checkbox>
+    <hr />
+    <Checkbox v-for={{ self.get('options') }}
+        name="languages" 
+        trueValue={{ value }}
+        v-model="languages"
+    >{{ value }}</Checkbox>
+    Your selected: {{ JSON.stringify(self.get('languages')) }}
+</div>

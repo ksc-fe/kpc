@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>使用<code>v-model</code>进行双向数据绑定，<code>disabled</code>禁用组件</p>\n",
-    "index": 16,
+    "index": 106,
     "highlighted": [
         {
             "language": "vdt",

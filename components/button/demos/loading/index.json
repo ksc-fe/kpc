@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>添加<code>loading</code>属性，可以将按钮设为加载状态，此时按钮不可点。</p>\n",
-    "index": 68,
+    "index": 7,
     "highlighted": [
         {
             "language": "vdt",

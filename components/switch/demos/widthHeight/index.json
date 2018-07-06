@@ -5,11 +5,11 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>width</code>/<code>height</code>，可定义开关长度/高度，不用加单位（默认<code>px</code>）。</p>\n",
-    "index": 69,
+    "index": 119,
     "highlighted": [
         {
             "language": "vdt",
-            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> {Switch} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/switch'</span>;\n\n&lt;div&gt;\n    &lt;Switch on=\"开启\" off=\"关闭\" width=\"100\" /&gt;\n    &lt;Switch height=\"30\" /&gt;\n    &lt;Switch on=\"开启\" off=\"关闭\" width=\"100\" height=\"30\" /&gt;\n&lt;/div&gt;</code></pre>"
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> {Switch} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/switch'</span>;\n\n&lt;div&gt;\n    &lt;Switch on=\"开启\" off=\"关闭\" width=\"62\" /&gt;\n    &lt;Switch height=\"30\" /&gt;\n    &lt;Switch on=\"开启\" off=\"关闭\" width=\"100\" height=\"30\" /&gt;\n&lt;/div&gt;</code></pre>"
         },
         {
             "language": "styl",

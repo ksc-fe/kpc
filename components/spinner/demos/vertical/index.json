@@ -1,0 +1,23 @@
+{
+    "setting": {
+        "title": "竖直排列按钮",
+        "order": 3
+    },
+    "catalogs": [],
+    "contents": "<p>添加<code>vertical</code>属性，即可实现控制按钮竖直排列的数字输入框</p>\n",
+    "index": 109,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Spinner <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/spinner'</span>;\n\n&lt;div&gt;\n    &lt;Spinner max={{ 5 }} min={{ -5 }} vertical size=\"large\" /&gt;\n    &lt;Spinner max={{ 5 }} min={{ -5 }} vertical /&gt;\n    &lt;Spinner max={{ 5 }} min={{ -5 }} vertical size=\"small\" /&gt;\n    &lt;Spinner max={{ 5 }} min={{ -5 }} vertical size=\"mini\" /&gt;\n&lt;/div&gt;</code></pre>"
+        },
+        {
+            "language": "styl",
+            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-spinner</span>\n    <span class=\"hljs-attribute\">margin-right</span> <span class=\"hljs-number\">16px</span></code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
+        }
+    ]
+}
