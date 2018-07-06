@@ -1,0 +1,22 @@
+@require('../../styles/themes/default.styl')
+@require('../../styles/mixin.styl')
+
+$tag-color := inherit
+$tag-border-color := $border-color
+$tag-padding := unit(7 / 14, rem) unit(16 / 14, rem)
+$tag-closable-padding-right := unit(30 / 14, rem)
+$tag-close-icon-font-size := unit(26/ 14, rem)
+
+// type
+for type in primary success warning danger
+    if !lookup('$tag-' + type + '-color')
+        define('$tag-' + type + '-color', lookup('$' + type + '-color'))
+    if !lookup('$tag-' + type + '-border-color')
+        define('$tag-' + type + '-border-color', lookup('$tag-' + type + '-color'))
+    if !lookup('$tag-' + type + '-bg-color')
+        define('$tag-' + type + '-bg-color', palette(lookup('$tag-' + type + '-color'), -4))
+
+// disabled
+$tag-disabled-color := $disabled-color
+$tag-disabled-border-color := $disabled-border-color
+$tag-disabled-bg-color := $disabled-bg-color

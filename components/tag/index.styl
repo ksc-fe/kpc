@@ -1,0 +1,32 @@
+@require('./variables.styl')
+
+.k-tag
+    display inline-block
+    padding $tag-padding
+    border 1px solid $tag-border-color
+    border-radius $border-radius
+    position relative
+    if $tag-color != inherit
+        color $tag-color
+
+    // closable
+    &.k-closable
+        padding-right $tag-closable-padding-right
+    .k-close
+        position absolute
+        right -1px
+        top -1px
+        color inherit
+        .k-icon
+            font-size $tag-close-icon-font-size
+
+    for type in primary success warning danger disabled
+        &.k-{type}
+            color lookup('$tag-' + type + '-color')
+            border-color lookup('$tag-' + type + '-border-color')
+            background lookup('$tag-' + type + '-bg-color') 
+            if type != disabled
+                .k-close:hover
+                    color palette(lookup('$tag-' + type + '-color'), -2)
+                .k-close:active
+                    color palette(lookup('$tag-' + type + '-color'), 2)

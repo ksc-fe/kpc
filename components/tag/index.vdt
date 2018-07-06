@@ -1,0 +1,34 @@
+import Button from '../button';
+
+const {
+    className, children, type,
+    disabled, closable, closed,
+    ...rest,
+} = self.get();
+
+if (closed) return;
+
+const classNameObj = {
+    'k-tag': true,
+    [className]: className,
+    [`k-${type}`]: type !== 'default',
+    'k-disabled': disabled,
+    'k-closable': closable,
+};
+
+<Animate
+    a:disabled={{ disabled }}
+    a:transition="fade" 
+    class={{ classNameObj }}
+    {{ ...rest }}
+>
+    {{ children }}
+    <Button type="none" v-if={{ closable }} 
+        icon
+        class="k-close"
+        disabled={{ disabled }}
+        ev-click={{ self._close }}
+    >
+        <i class="k-icon ion-ios-close-empty"></i>
+    </Button>
+</Animate>

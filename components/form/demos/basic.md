@@ -77,7 +77,7 @@ import {Datepicker} from 'kpc/components/datepicker';
             <Button value="C++">C++</Button>
         </ButtonGroup>
     </FormItem>
-    <FormItem label="Switch">
+    <FormItem label="Switch" model="model.switch">
         <Switch v-model="model.switch" />
     </FormItem>
     <FormItem model="model.slider" rules={{ {required: true, min: 1} }} label="Slider">
