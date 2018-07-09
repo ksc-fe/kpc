@@ -1,0 +1,32 @@
+@require('./variables.styl')
+
+.k-badge
+    display inline-block
+    vertical-align middle
+    position relative
+    > .k-text
+        display inline-block
+        position absolute
+        width $badge-width
+        height $badge-height
+        border-radius 50%
+        top 0
+        right 0
+        transform translate(50%, -50%)
+        background $badge-bg-color
+
+    // has-text
+    &.k-has-text
+        > .k-text
+            width auto
+            height $badge-text-height
+            line-height @height
+            border-radius (@height / 2)
+            padding $badge-text-padding
+            color $badge-text-color
+
+    // alone
+    &.k-alone
+        > .k-text
+            position static
+            transform none

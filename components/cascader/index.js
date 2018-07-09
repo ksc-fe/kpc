@@ -122,3 +122,5 @@ export default class Cascader extends Select {
         this._resetSearch();
     }
 }
+
+export {Cascader};

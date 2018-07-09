@@ -1,0 +1,20 @@
+let {
+    className, style, children, text, disabled,
+    max,
+} = self.get();
+
+if (typeof text === 'number' && max && text > max) {
+    text = `${max}+`;
+}
+
+const classNameObj = {
+    'k-badge': true,
+    [className]: className,
+    'k-has-text': text != null,
+    'k-alone': !children,
+};
+
+<div class={{ classNameObj }} style={{ style }}>
+    {{ children }}
+    <sup class="k-text" v-if={{ !disabled }}>{{ text }}</sup>
+</div>
