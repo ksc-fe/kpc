@@ -141,6 +141,7 @@ module.exports = function(isDev) {
                 const sidebar = data.setting && data.setting.sidebar;
                 if (sidebar && !hasWrittenSidebar[sidebar]) {
                     await ctx.fsWrite(path.join(root, `${sidebar}.json`), JSON.stringify(data.sideBars, null, 4));
+                    hasWrittenSidebar[sidebar] = true;
                 }
                 delete _data.sideBars;
 
