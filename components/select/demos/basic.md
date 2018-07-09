@@ -5,6 +5,9 @@ order: 0
 
 `Select`嵌套`Option`使用，用`v-model`进行双向数据绑定。(支持键盘选择)
 
+> 当`Select`传入的`value`在`Option`中不存在时，组件会强制将`value`置为空字符串。你也可以通过
+> 添加`allowUnmatch`属性让它不置空
+
 ```vdt
 import {Select, Option} from 'kpc/components/select';
 

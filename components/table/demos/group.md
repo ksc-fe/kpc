@@ -11,6 +11,8 @@ order: 11
 
 当分组方式改变时，可以监听默认事件`$change:group`来执行自定义分组逻辑
 
+> `group`属性不会双向绑定，所以在改变时，你应该同步更新当前属性值(`sort`也一样)
+
 ```vdt
 import Table, {TableColumn} from 'kpc/components/table';
 
