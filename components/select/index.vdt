@@ -237,7 +237,7 @@ if (hasValue && !labelObj.label && !labelObj.labels.length) {
             <span class="k-placeholder c-ellipsis" v-else-if={{ !filterable && !hasValue }}>{{ _placeholder }}</span>
             <span class="k-value c-ellipsis" v-else-if={{ !multiple }}>{{ labelObj.label }}</span>
             <Animate a:tag="span" a:disabled class="k-values" v-else>
-                <Animate a:tag="span" class="k-tag" 
+                <Animate a:tag="span" class="k-select-tag" 
                     v-for={{ labelObj.labels }} 
                     v-for-value="item"
                     v-for-key="index"
