@@ -90,7 +90,7 @@
     "karma-spec-reporter": "0.0.26",
     "karma-webpack": "^2.0.13",
     "kdoc": "^1.0.0",
-    "kdoc-plugin-md": "^1.1.2",
+    "kdoc-plugin-md": "^1.2.0",
     "mermaid": "^8.0.0-rc.8",
     "mocha": "^3.2.0",
     "node-style-loader": "0.0.1-alpha",
