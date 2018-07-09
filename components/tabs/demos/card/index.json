@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>改变<code>type</code>属性，可以呈现不同的样式，可选取值为：<code>default</code> <code>card</code> <code>border-card</code></p>\n",
-    "index": 122,
+    "index": 125,
     "highlighted": [
         {
             "language": "vdt",

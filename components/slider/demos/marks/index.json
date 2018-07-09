@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>marks</code>属性，可以给<code>Slider</code>标注刻度，该属性类型为<code>Object</code>，<code>key</code>表示组件的值，<code>value</code>为该值对应展示的标注文案。</p>\n",
-    "index": 124,
+    "index": 131,
     "highlighted": [
         {
             "language": "vdt",

@@ -7,5 +7,5 @@
     },
     "catalogs": [],
     "contents": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1><h2 id='header-Row'>Row</h2><div class=\"k-table-wrapper k-border\">\n                    <table class=\"k-table\">\n                        <thead><tr>\n<th>属性</th>\n<th>说明</th>\n<th>类型</th>\n<th>默认值</th>\n</tr>\n</thead>\n                        <tbody><tr>\n<td>gutter</td>\n<td>栅格间距，单位<code>px</code></td>\n<td><code>Number</code></td>\n<td><code>0</code></td>\n</tr>\n</tbody>\n                    </table>\n                </div><h2 id='header-Col'>Col</h2><div class=\"k-table-wrapper k-border\">\n                    <table class=\"k-table\">\n                        <thead><tr>\n<th>属性</th>\n<th>说明</th>\n<th>类型</th>\n<th>默认值</th>\n</tr>\n</thead>\n                        <tbody><tr>\n<td>span</td>\n<td>栅格所占宽度，可选值为0到24的整数</td>\n<td><code>String</code> &#124; <code>Number</code></td>\n<td>24</td>\n</tr>\n<tr>\n<td>offset</td>\n<td>栅格左侧偏移量</td>\n<td><code>String</code> &#124; <code>Number</code></td>\n<td>0</td>\n</tr>\n</tbody>\n                    </table>\n                </div>",
-    "index": 59
+    "index": 53
 }

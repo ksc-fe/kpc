@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>fixHeader</code>：设置表头固定，类型<code>Boolean</code> | <code>Number</code>，默认：<code>false</code></p>\n<ol>\n<li>如果取值为<code>Boolean</code>，<code>false</code>表示不固定表头，<code>true</code>表示固定高度，但需要自己定义表格高度</li>\n<li>如果取值为<code>Number</code>，则表示，当表格超出该高度时即展示滚动条，并固定表头</li>\n</ol>\n",
-    "index": 140,
+    "index": 147,
     "highlighted": [
         {
             "language": "vdt",
