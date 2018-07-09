@@ -5582,28 +5582,28 @@ blockquote:before {
 .k-breadcrumb .k-separator {
   margin: 0 0.571428571428571rem;
 }
-.example.index-82 .separator {
+.example.index-45 .separator {
   color: #ffa133;
 }
-.example.index-82 i {
+.example.index-45 i {
   margin-right: 3px;
 }
-.example.index-3 .k-btn {
+.example.index-16 .k-btn {
   margin-right: 20px;
 }
-.example.index-5 .k-btns {
+.example.index-39 .k-btns {
   margin-right: 20px;
 }
-.example.index-6 .k-btn {
+.example.index-41 .k-btn {
   margin-right: 20px;
 }
-.example.index-7 .k-btn {
+.example.index-73 .k-btn {
   margin-right: 20px;
 }
-.example.index-8 .k-btn {
+.example.index-107 .k-btn {
   margin-right: 20px;
 }
-.example.index-9 .k-btn {
+.example.index-116 .k-btn {
   margin-right: 20px;
 }
 .k-cascader-dropdown {
@@ -5631,22 +5631,22 @@ blockquote:before {
   font-style: normal;
   color: #db2828;
 }
-.example.index-14 .k-cascader {
+.example.index-55 .k-cascader {
   margin-right: 20px;
 }
-.example.index-17 .k-cascader {
+.example.index-108 .k-cascader {
   margin-right: 20px;
 }
-.example.index-20 .k-checkbox {
+.example.index-10 .k-checkbox {
   margin-right: 20px;
 }
-.example.index-21 .k-checkbox {
+.example.index-40 .k-checkbox {
   margin-right: 20px;
 }
-.example.index-22 .k-checkbox {
+.example.index-75 .k-checkbox {
   margin-right: 20px;
 }
-.example.index-23 .k-checkbox {
+.example.index-43 .k-checkbox {
   margin-right: 20px;
 }
 .k-tooltip {
@@ -6072,13 +6072,13 @@ blockquote:before {
   margin-left: -1px;
   z-index: -1;
 }
-.example.index-25 .k-datepicker {
+.example.index-12 .k-datepicker {
   margin-right: 20px;
 }
-.example.index-27 .k-datepicker {
+.example.index-114 .k-datepicker {
   margin-right: 20px;
 }
-.example.index-29 .k-datepicker {
+.example.index-82 .k-datepicker {
   margin-right: 10px;
 }
 .k-dialog-wrapper {
@@ -6276,7 +6276,7 @@ blockquote:before {
 .k-message.k-warning > .k-container > .k-icon {
   color: #ff8a00;
 }
-.example.index-43 .k-btn {
+.example.index-87 .k-btn {
   margin-right: 20px;
 }
 .k-dropdown-menu .ion-ios-arrow-right {
@@ -6286,10 +6286,10 @@ blockquote:before {
 .k-dropdown-menu .ion-ios-arrow-right:before {
   font-size: inherit;
 }
-.example.index-45 .k-btn {
+.example.index-77 .k-btn {
   margin-right: 20px;
 }
-.example.index-47 .k-btn {
+.example.index-25 .k-btn {
   margin-right: 20px;
 }
 .k-editable {
@@ -6304,7 +6304,7 @@ blockquote:before {
 .k-editable.k-invalid .k-input .k-inner {
   border: 1px solid #db2828;
 }
-.example.index-49 .ion-ios-location {
+.example.index-26 .ion-ios-location {
   margin-right: 10px;
 }
 .k-switch {
@@ -6719,32 +6719,32 @@ blockquote:before {
       -ms-transform: translateX(-100%);
           transform: translateX(-100%);
 }
-.example.index-52 .k-form-item > .k-label {
+.example.index-28 .k-form-item > .k-label {
   width: 150px;
 }
-.example.index-52 .k-slider,
-.example.index-52 .k-select {
+.example.index-28 .k-slider,
+.example.index-28 .k-select {
   width: 300px;
 }
-.example.index-52 .k-radio,
-.example.index-52 .k-checkbox {
+.example.index-28 .k-radio,
+.example.index-28 .k-checkbox {
   margin-right: 10px;
 }
 .example.index-53 .k-form-item .k-form-item {
   margin-bottom: 20px;
 }
-.example.index-57 .k-col {
+.example.index-20 .k-col {
   line-height: 40px;
   text-align: center;
   color: #fff;
 }
-.example.index-57 .k-col:nth-of-type(even) {
+.example.index-20 .k-col:nth-of-type(even) {
   background: #0a5eee;
 }
-.example.index-57 .k-col:nth-of-type(odd) {
+.example.index-20 .k-col:nth-of-type(odd) {
   background: #4f8df8;
 }
-.example.index-57 .k-row {
+.example.index-20 .k-row {
   margin-bottom: 20px;
 }
 .example.index-58 .k-col {
@@ -6761,16 +6761,16 @@ blockquote:before {
 .example.index-58 .k-row {
   margin-bottom: 20px;
 }
-.example.index-61 .k-input {
+.example.index-30 .k-input {
   margin: 5px;
 }
-.example.index-62 .k-input {
+.example.index-56 .k-input {
   margin: 5px;
 }
-.example.index-63 .k-input {
+.example.index-106 .k-input {
   margin: 5px;
 }
-.example.index-65 .k-input {
+.example.index-76 .k-input {
   margin: 5px;
 }
 .k-progress {
@@ -6981,42 +6981,42 @@ blockquote:before {
 .k-pagination.k-mini .k-btns .k-btn {
   margin-right: 0.357142857142857rem;
 }
-.example.index-72 .k-pagination {
+.example.index-27 .k-pagination {
   margin-bottom: 20px;
 }
-.example.index-73 .k-pagination {
+.example.index-71 .k-pagination {
   margin-bottom: 20px;
 }
-.example.index-76 .k-pagination {
+.example.index-48 .k-pagination {
   margin-bottom: 20px;
 }
-.example.index-78 .k-progress {
+.example.index-24 .k-progress {
   margin: 10px 0;
 }
-.example.index-79 .k-progress {
+.example.index-111 .k-progress {
   display: inline-block;
   vertical-align: middle;
   margin-right: 20px;
 }
-.example.index-81 .k-progress {
+.example.index-62 .k-progress {
   margin: 10px 0;
 }
-.example.index-0 .k-progress {
+.example.index-64 .k-progress {
   margin: 10px 0;
 }
-.example.index-83 .k-progress {
+.example.index-44 .k-progress {
   margin: 10px 0;
 }
-.example.index-85 .k-radio {
+.example.index-23 .k-radio {
   margin-right: 20px;
 }
-.example.index-86 .k-radio {
+.example.index-42 .k-radio {
   margin-right: 20px;
 }
-.example.index-87 .k-radio {
+.example.index-81 .k-radio {
   margin-right: 20px;
 }
-.example.index-95 .k-select {
+.example.index-135 .k-select {
   margin-right: 10px;
 }
 .k-select-dropdown .ion-wineglass {
@@ -7025,22 +7025,22 @@ blockquote:before {
 .k-select-dropdown .k-tab {
   text-align: right;
 }
-.example.index-97 .k-select {
+.example.index-136 .k-select {
   margin-right: 10px;
 }
-.example.index-103 .k-slider {
+.example.index-34 .k-slider {
   margin-bottom: 20px;
 }
-.example.index-106 .k-spinner {
+.example.index-17 .k-spinner {
   margin-right: 20px;
 }
-.example.index-107 .k-spinner {
+.example.index-68 .k-spinner {
   margin-right: 20px;
 }
-.example.index-108 .k-spinner {
+.example.index-32 .k-spinner {
   margin-right: 20px;
 }
-.example.index-109 .k-spinner {
+.example.index-98 .k-spinner {
   margin-right: 16px;
 }
 .k-steps {
@@ -7197,124 +7197,124 @@ blockquote:before {
 .k-steps.k-line .k-done .k-tail {
   background: #0a5eee;
 }
-.example.index-111 .k-btn {
+.example.index-0 .k-btn {
   margin: 20px 20px 0 0;
 }
-.example.index-113 .k-btn {
+.example.index-74 .k-btn {
   margin: 20px 20px 20px 0;
 }
-.example.index-115 .k-switch {
+.example.index-14 .k-switch {
   margin-right: 20px;
 }
-.example.index-116 .k-switch {
+.example.index-52 .k-switch {
   margin-right: 20px;
 }
-.example.index-117 .k-switch {
+.example.index-99 .k-switch {
   margin-right: 20px;
 }
-.example.index-119 .k-switch {
+.example.index-66 .k-switch {
   margin-right: 20px;
 }
-.example.index-121 .k-table-wrapper {
+.example.index-13 .k-table-wrapper {
   margin-bottom: 20px;
 }
-.example.index-123 .k-table-wrapper {
+.example.index-69 .k-table-wrapper {
   margin-bottom: 20px;
 }
-.example.index-122 .no-data-template {
+.example.index-95 .no-data-template {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 20px;
 }
-.example.index-122 .no-data-template .k-table-wrapper {
+.example.index-95 .no-data-template .k-table-wrapper {
   margin-left: 20px;
 }
-.example.index-124 .k-disabled {
+.example.index-139 .k-disabled {
   background-color: #d9d9d9;
 }
-.example.index-125 .wrapper {
+.example.index-140 .wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-.example.index-125 .k-table-wrapper {
+.example.index-140 .k-table-wrapper {
   margin-left: 20px;
 }
-.example.index-126 .no-data-template {
+.example.index-147 .no-data-template {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-.example.index-126 .no-data-template .k-table-wrapper {
+.example.index-147 .no-data-template .k-table-wrapper {
   margin-left: 10px;
 }
-.example.index-127 .no-data-template {
+.example.index-143 .no-data-template {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-.example.index-127 .no-data-template .k-table-wrapper {
+.example.index-143 .no-data-template .k-table-wrapper {
   margin-left: 10px;
 }
-.example.index-129 .k-table-wrapper {
+.example.index-103 .k-table-wrapper {
   margin-bottom: 20px;
 }
-.example.index-129 .k-table-wrapper .k-checked {
+.example.index-103 .k-table-wrapper .k-checked {
   background-color: #f4f8fb;
 }
-.example.index-130 .even {
+.example.index-125 .even {
   background: #efefef;
 }
-.example.index-131 .no-data-template {
+.example.index-130 .no-data-template {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-.example.index-131 .no-data-template .k-table-wrapper {
+.example.index-130 .no-data-template .k-table-wrapper {
   margin-left: 10px;
 }
-.example.index-131 .icon {
+.example.index-130 .icon {
   vertical-align: middle;
   margin-right: 10px;
   cursor: pointer;
 }
-.example.index-132 .k-table-wrapper {
+.example.index-46 .k-table-wrapper {
   margin-bottom: 20px;
 }
-.example.index-133 .no-data-template {
+.example.index-146 .no-data-template {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-.example.index-133 .no-data-template .k-table-wrapper {
+.example.index-146 .no-data-template .k-table-wrapper {
   margin-left: 10px;
 }
-.example.index-134 .k-table-wrapper {
+.example.index-61 .k-table-wrapper {
   margin-bottom: 20px;
 }
-.example.index-134 .k-table-wrapper .title {
+.example.index-61 .k-table-wrapper .title {
   margin-right: 8px;
 }
-.example.index-134 .k-table-wrapper .ion-ios-help-outline {
+.example.index-61 .k-table-wrapper .ion-ios-help-outline {
   line-height: 14px;
 }
-.example.index-137 .content {
+.example.index-11 .content {
   margin: 20px;
 }
-.example.index-138 .k-tabs {
+.example.index-122 .k-tabs {
   margin-bottom: 16px;
 }
-.example.index-139 .content {
+.example.index-37 .content {
   margin: 20px;
 }
-.example.index-140 .content {
+.example.index-79 .content {
   margin: 20px;
 }
-.example.index-141 .k-tabs {
+.example.index-93 .k-tabs {
   margin-bottom: 10px;
 }
-.example.index-142 .k-tabs {
+.example.index-128 .k-tabs {
   margin-right: 16px;
 }
 .k-tag {
@@ -7385,10 +7385,10 @@ blockquote:before {
   border-color: #d9d9d9;
   background: #f7f7f7;
 }
-.example.index-144 .k-tag {
+.example.index-9 .k-tag {
   margin-right: 16px;
 }
-.example.index-145 .k-tag {
+.example.index-33 .k-tag {
   margin-right: 16px;
 }
 .k-transfer {
@@ -7463,7 +7463,7 @@ blockquote:before {
   margin: 1.142857142857143rem 2.142857142857143rem;
   font-size: 1.571428571428571rem;
 }
-.example.index-153 .k-item p {
+.example.index-47 .k-item p {
   margin: 0;
   font-size: 12px;
 }

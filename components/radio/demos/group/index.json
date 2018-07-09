@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>和浏览器原生行为一样，给<code>Radio</code>指定相同的<code>name</code>，它们便组成了单选框组。</p>\n",
-    "index": 86,
+    "index": 42,
     "highlighted": [
         {
             "language": "vdt",

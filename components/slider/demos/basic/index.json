@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>用<code>min</code>和<code>max</code>指定取值范围，<code>v-model</code>进行双向数据绑定</p>\n",
-    "index": 99,
+    "index": 19,
     "highlighted": [
         {
             "language": "vdt",
