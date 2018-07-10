@@ -1,0 +1,24 @@
+const {className, style, value, children, title, _parent} = self.get();
+
+const active = _parent._isActive(value);
+const classNameObj = {
+    'k-collapse-item': true,
+    [className]: className,
+    'k-active': active,
+};
+
+<div class={{ classNameObj }} style={{ style }}>
+    <div class="k-title" ev-click={{ self._toggle }}>
+        <b:title>{{ title }}</b:title>
+        <i class="k-arrow ion-ios-arrow-right"></i>
+    </div>
+    <Animate class="k-content"
+        v-if={{ active }}
+        a:transition="expand"
+        ev-a:enterStart={{ self._enterStart }}
+        ev-a:leaveStart={{ self._leaveStart }}
+        ev-a:enterEnd={{ self._enterEnd }}
+    >
+        <div class="k-wrapper">{{ children }}</div>
+    </Animate>
+</div>

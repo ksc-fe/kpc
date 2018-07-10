@@ -1,0 +1,25 @@
+import CollapseItem from './item';
+import {mapChildren} from '../utils';
+
+const {className, style, value, children} = self.get();
+
+const classNameObj = {
+    'k-collapse': true,
+    [className]: className,
+};
+
+let index = 0;
+const _children = mapChildren(children, vNode => {
+    if (vNode.tag === CollapseItem) {
+        const props = vNode.props;
+        const _props = {_parent: self};
+        if (props.value == null) {
+            _props.value = `$${index++}`;
+        }
+
+        vNode.props = {...props, ..._props};
+    }
+    return vNode;
+});
+
+<div class={{ classNameObj }} style={{ style }}>{{ _children }}</div>

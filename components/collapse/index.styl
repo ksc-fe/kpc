@@ -1,0 +1,41 @@
+@require('./variables.styl')
+
+.k-collapse
+    // border 1px solid $border-color
+    border-radius $border-radius
+    padding 0 24px
+    box-shadow $box-shadow
+    font-size 12px
+.k-collapse-item
+    border-bottom 1px solid #e5e5e5
+    // height 40px
+    // overflow hidden
+    &:last-of-type
+        border-bottom-color transparent
+    > .k-title
+        height 40px
+        line-height 40px
+        cursor pointer
+        .k-arrow
+            float right
+            transition transform $transition
+            transform-origin left center 0
+    > .k-content
+        overflow hidden
+        > .k-wrapper
+            overflow hidden
+            padding 0 16px 16px
+    &.k-active
+        // height auto
+        > .k-title
+            .k-arrow
+                transform rotate(90deg)
+
+    .expand-enter
+    .expand-leave
+        height 0 !important
+        opacity 0
+    .expand-enter-active
+    .expand-leave-active
+        transition all $transition 
+

@@ -163,3 +163,24 @@ export function getTransition(feedback) {
     }
     return 'slidedown';
 }
+
+export function mapChildren(children, callback) {
+    const vNodes = [];
+    function map(children) {
+        if (!children) return;
+        if (!Array.isArray(children)) {
+            return vNodes.push(callback(children));
+        }
+        children.forEach(vNode => {
+            if (Array.isArray(vNode)) {
+                map(vNode);
+            } else if (vNode) {
+                vNodes.push(callback(vNode));
+            }
+        });
+    }
+
+    map(children);
+
+    return vNodes;
+}
