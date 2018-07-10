@@ -9,6 +9,7 @@ export default class Pagination extends Intact {
 
     static propTypes = {
         showGoto: Boolean,
+        noBorder: Boolean,
     };
 
     defaults() {
@@ -22,6 +23,7 @@ export default class Pagination extends Intact {
             // value: '',
             showGoto: false,
             size: 'default',
+            noBorder: false,
         };
     }
 

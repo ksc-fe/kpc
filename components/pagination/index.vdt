@@ -6,7 +6,7 @@ import {_$} from '../utils';
 const {
     total, current, limit, limits, 
     className, showTotal, showGoto,
-    counts, size, ...rest
+    counts, size, noBorder, ...rest
 } = self.get();
 
 if (!total) return <!-- pagination -->
@@ -15,18 +15,24 @@ const classNameObj = {
     'k-pagination': true,
     [className]: className,
     [`k-${size}`]: size !== 'default',
+    ['k-no-border']: noBorder,
 };
+
+let type = 'default';
+if (noBorder) {
+    type = 'none';
+}
 
 const totalPages = (Math.ceil(total / limit)) || 0;
 
 const paginationButton = function(page) {
     return (
-        <Button size={{ size }} icon value={{ page }}>{{ page }}</Button>
+        <Button type={{ type }} size={{ size }} icon value={{ page }}>{{ page }}</Button>
     );
 };
 
 const paginationDot = function(callback) {
-    return <Button size={{ size }} icon class="k-ellipsis" ev-click={{ callback }}>...</Button>
+    return <Button type={{ type }} size={{ size }} icon class="k-ellipsis" ev-click={{ callback }}>...</Button>
 };
 
 <div class={{ classNameObj }}>
@@ -34,6 +40,7 @@ const paginationDot = function(callback) {
         <Button icon size={{ size }}
             disabled={{ current <= 1 }}
             ev-click={{ self.prev }}
+            type={{ type }}
         ><i class="k-icon ion-ios-arrow-left"></i></Button>{{ 
             do {
                 let items = [];
@@ -84,6 +91,7 @@ const paginationDot = function(callback) {
         }}<Button icon size={{ size }}
             disabled={{ current >= totalPages }}
             ev-click={{ self.next }}
+            type={{ type }}
         ><i class="k-icon ion-ios-arrow-right"></i></Button>
     </ButtonGroup>
 

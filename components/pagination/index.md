@@ -17,6 +17,7 @@ sidebar: doc
 | showGoto | 显示快速跳转框 | `Boolean` | `false` |
 | limit | 页面条数 | `Number` | `10` |
 | limits | 页面条数 | `Array<Number>` | `[10, 20, 50]` |
+| noBorder | 是否展示无边框样式，默认有边框 | `Boolean` | `false` |
 
 
 # 方法

@@ -36,4 +36,13 @@
                     .k-btn
                         margin-right lookup('$pagination-' + size + '-btn-margin-right')
 
+    // noBorder
+    &.k-no-border
+        .k-select
+            &
+            &:hover
+            &.k-show
+                .k-wrapper
+                    border none
+
 @import $theme-dir + '/pagination.styl' if exists($theme-dir + '/pagination.styl') 
