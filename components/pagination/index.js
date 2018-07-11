@@ -31,8 +31,17 @@ export default class Pagination extends Intact {
         // avoid setting incorrect value
         this.changePage(this.get('current'));
 
-        this.on('$change:limit', () => {
-            this.set('current', 1);
+        this.on('$change:limit', (c, v) => {
+            const oldCurrent = this.get('current');
+            if (oldCurrent !== 1) {
+                this.set('current', 1, {silent: true});
+                this.update();
+            }
+            this.trigger('change', {limit: v, current: 1});
+        });
+
+        this.on('$change:current', (c, v) => {
+            this.trigger('change', {limit: this.get('limit'), current: v});
         });
     }
 

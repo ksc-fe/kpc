@@ -22,10 +22,14 @@ sidebar: doc
 
 # 方法
 
-## Pagination
-
 | 方法名 | 说明 | 参数 | 返回值 |
 | --- | --- | --- | --- |
 | changePage | 切换页码 | 要切换到的页码 | `undefined` |
 | prev | 上一页 | - | `undefined` |
 | next | 下一页 | - | `undefined` |
+
+# 事件
+
+| 事件名 | 说明 | 参数 |
+| --- | --- | --- |
+| change | `current`和`limit`变化时触发，同时变化不会重复触发 | `{current, limit}` |
