@@ -6,6 +6,7 @@ import {App} from './app';
 import {Badge} from './badge';
 import {Breadcrumb, BreadcrumbItem} from './breadcrumb';
 import {Button, ButtonGroup} from './button';
+import {Cascader} from './cascader';
 import {Checkbox} from './checkbox';
 import {Collapse, CollapseItem} from './collapse';
 import {Datepicker} from './datepicker';
@@ -32,7 +33,6 @@ import {Tabs, Tab} from './tabs';
 import {Tag} from './tag';
 import {Tooltip} from './tooltip';
 import {Transfer} from './transfer';
-import {cader} from './cascader';
 
 export {
     App,
@@ -41,6 +41,7 @@ export {
     BreadcrumbItem,
     Button,
     ButtonGroup,
+    Cascader,
     Checkbox,
     Col,
     Collapse,
@@ -76,8 +77,7 @@ export {
     Tabs,
     Tag,
     Tooltip,
-    Transfer,
-    cader
+    Transfer
 };
 
 export const version = '0.4.0';
