@@ -5687,7 +5687,7 @@ exports.Transfer = _transfer.Transfer;
 
 /* generate start */
 
-var version = exports.version = '0.3.12';
+var version = exports.version = '0.3.13';
 
 /* generate end */
 
@@ -15122,7 +15122,14 @@ var Slider = (_temp = _class = function (_Intact) {
             return max;
         } else {
             // for the accuracy
-            return Number((Math.round(v / step) * step).toFixed(10));
+            var fixedValue = Number((Math.round(v / step) * step).toFixed(10));
+            if (fixedValue < min) {
+                return min;
+            } else if (fixedValue > max) {
+                return max;
+            } else {
+                return fixedValue;
+            }
         }
     };
 
