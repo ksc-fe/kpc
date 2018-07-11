@@ -3,9 +3,11 @@ import {_$, localize} from './utils';
 /* generate start */
 
 import {App} from './app';
+import {Badge} from './badge';
 import {Breadcrumb, BreadcrumbItem} from './breadcrumb';
 import {Button, ButtonGroup} from './button';
 import {Checkbox} from './checkbox';
+import {Collapse, CollapseItem} from './collapse';
 import {Datepicker} from './datepicker';
 import {Dialog} from './dialog';
 import {Dropdown, DropdownMenu, DropdownItem} from './dropdown';
@@ -27,17 +29,22 @@ import {Steps, Step} from './steps';
 import {Switch} from './switch';
 import {Table, TableColumn} from './table';
 import {Tabs, Tab} from './tabs';
+import {Tag} from './tag';
 import {Tooltip} from './tooltip';
 import {Transfer} from './transfer';
+import {cader} from './cascader';
 
 export {
     App,
+    Badge,
     Breadcrumb,
     BreadcrumbItem,
     Button,
     ButtonGroup,
     Checkbox,
     Col,
+    Collapse,
+    CollapseItem,
     Datepicker,
     Dialog,
     Dropdown,
@@ -67,11 +74,13 @@ export {
     Table,
     TableColumn,
     Tabs,
+    Tag,
     Tooltip,
-    Transfer
+    Transfer,
+    cader
 };
 
-export const version = '0.3.12';
+export const version = '0.4.0';
 
 /* generate end */
 
