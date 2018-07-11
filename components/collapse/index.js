@@ -8,9 +8,17 @@ export default class Collapse extends Intact {
     @Intact.template()
     static template = template;
 
+    static propTypes = {
+        accordion: Boolean,
+        noBorder: Boolean,
+    };
+
     defaults() {
         return {
+            value: undefined,
             accordion: false,
+            arrow: 'right', // 'right' | 'left'
+            noBorder: false,
         }
     }
 
@@ -20,9 +28,11 @@ export default class Collapse extends Intact {
             this.set('value', [v]);
         } else {
             const index = value.indexOf(v);
-            const _value = value.slice(0);
+            let _value = value.slice(0);
             if (~index) {
                 _value.splice(index, 1);
+            } else if (accordion) {
+                _value = [v];
             } else {
                 _value.push(v);
             }
@@ -31,7 +41,7 @@ export default class Collapse extends Intact {
     }
 
     _isActive(v) {
-        const {value, accordion} = this.get();
+        const {value} = this.get();
         if (!Array.isArray(value)) return false;
         return ~value.indexOf(v);
     }

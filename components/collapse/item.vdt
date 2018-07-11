@@ -1,10 +1,14 @@
-const {className, style, value, children, title, _parent} = self.get();
+const {
+    className, style, value, children,
+    title, _parent, disabled,
+} = self.get();
 
 const active = _parent._isActive(value);
 const classNameObj = {
     'k-collapse-item': true,
     [className]: className,
     'k-active': active,
+    'k-disabled': disabled,
 };
 
 <div class={{ classNameObj }} style={{ style }}>
@@ -18,6 +22,8 @@ const classNameObj = {
         ev-a:enterStart={{ self._enterStart }}
         ev-a:leaveStart={{ self._leaveStart }}
         ev-a:enterEnd={{ self._enterEnd }}
+        ev-$mounted={{ self._onShow }}
+        ev-$destroyed={{ self._onHide }}
     >
         <div class="k-wrapper">{{ children }}</div>
     </Animate>

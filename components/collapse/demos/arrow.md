@@ -1,18 +1,17 @@
 ---
-title: 基础用法
-order: 0
+title: 箭头位置
+order: 3
 ---
 
-使用`CollapseItem`定义每一项，`CollapseItem`的`title`属性是要展示的标题，`disabled`属性用来禁用
-该项，`value`属性是选中该项的取值，如果没有提供`value`属性，则默认会使用形如`$0`的索引字符串当作
-`value`。给`Collapse`添加`value`可以展开指定的`CollapseItem`，`Collapse`的`value`是`Array`类型，
-可以使用`v-model`进行双向绑定
+默认情况下箭头展示在标题右边，某些情况下，如：你需要在标题后面添加说明文字，我们可能需要将
+箭头展示在左边。指定`arrow`属性为`left`即可
 
 ```vdt
 import {Collapse, CollapseItem} from 'kpc/components/collapse';
 
-<Collapse value={{ ["$0"] }}>
-    <CollapseItem title="设计语言" ev-show={{ (c) => console.log(c) }}>
+<Collapse value={{ ["$0"] }} accordion arrow="left">
+    <CollapseItem>
+        <b:title>设计语言<a href="/docs/design/language/">详细说明</a></b:title>
         <p>语言是合作的基础。在团队中工作，没有共同的语言，一群人不能共同有效地合作。同理，因为每个人都会有不同的心智模式去达成各自的目的，如果没有共同的设计语言，对界面元素的共同理解，那么我们很难通过协作输出协调一致并具备高可用性的产品。</p>
         <p>拥有通用语言意味着我们有相同的方法来命名界面元素和定义设计模式，或者在设计文件和前端框架中使用相同的名称。通用设计语言让团队成员达成了相互理解，基于共同的理解，参与产品创建的每个人都知道这个元素是什么: 它的名称和目的, 为什么这样设计, 以及如何及何时使用它。</p>
         <p>当设计语言是通用知识时，它就成为一个强大的设计和协作工具，产品创建过程中便可停止专注于界面样式本身，而更多地关注用户。</p>
@@ -25,9 +24,14 @@ import {Collapse, CollapseItem} from 'kpc/components/collapse';
             <li>品牌统一性、视觉一致性、提升团队协作效率，不用每次重新创造。</li>
         </ol>
     </CollapseItem>
-    <CollapseItem title="设计原则" disabled>
+    <CollapseItem title="设计原则">
         原则顺序必须按照给定的顺序执行。也就是说，美不可以建立在清晰和效率之上，效率也不可以妥协于一致性之下，清晰永远都是第一优先级。在制定任何设计决策时都应按照设计原则，考虑优先级。
         设计由设计者的选择而决定，设计原则为设计者提供了选择依据，从众多存在矛盾或价值冲突的设计决策中找到平衡。
     </CollapseItem>
 </Collapse>
+```
+
+```styl
+a
+    float right
 ```

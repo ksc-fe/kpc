@@ -1,11 +1,13 @@
 import CollapseItem from './item';
 import {mapChildren} from '../utils';
 
-const {className, style, value, children} = self.get();
+const {className, style, value, children, arrow, noBorder} = self.get();
 
 const classNameObj = {
     'k-collapse': true,
     [className]: className,
+    'k-left': arrow === 'left',
+    'k-border': !noBorder,
 };
 
 let index = 0;
