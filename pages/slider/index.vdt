@@ -5,9 +5,9 @@ import Slider from 'components/slider';
     <Slider disabled ></Slider>
     <div>
          <span>选中值为： {{ self.get('currentVal') }}</span>
-         <Slider v-model="currentVal" step={{ self.get('step') }} ev-stop={{ self.stop.bind(self)}}></Slider>
+         <Slider v-model="currentVal" step={{ self.get('step') }} ev-stop={{ self.stop.bind(self)}} min={{ 1 }} max={{ 99 }}></Slider>
     </div>
     <Slider isShowInput={{ self.get('isShowInput') }} min={{ 50 }}></Slider>
     <Slider isRange={{ self.get('range') }} v-model="valueArr"></Slider>
-    <Slider disabled isRange={{ self.get('range') }} value={{ [40, 70] }}></Slider>
+    <Slider disabled isRange={{ self.get('range') }} value={{ [40, 70] }} ></Slider>
 </div>
