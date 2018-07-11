@@ -20,3 +20,5 @@ export default class Tag extends Intact {
         this.trigger('close');
     }
 }
+
+export {Tag};
