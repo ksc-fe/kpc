@@ -93,7 +93,14 @@ export default class Slider extends Intact {
             return max;
         } else {
             // for the accuracy
-            return Number((Math.round(v / step) * step).toFixed(10));
+            let fixedValue = Number((Math.round(v / step) * step).toFixed(10));
+            if (fixedValue < min) {
+                return min;
+            } else if (fixedValue > max) {
+                return max;
+            } else {
+                return fixedValue;
+            }
         }
     }
 
