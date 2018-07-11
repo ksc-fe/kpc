@@ -4,6 +4,22 @@ order: 99
 sidebar: doc
 ---
 
+## v0.4.0
+
+1. `Add` 新增级联选择组件`Cascader`
+1. `Add` 新增标签组件`Tag`
+1. `Add` 新增徽标组件`Badge`
+1. `Add` 新增折叠面板组件`Collapse`
+1. `Add` `Pagination`支持无边框样式，[#33](https://github.com/ksc-fe/kpc/issues/33)
+1. `Add` 嵌套`Dropdown`支持子菜单相对父菜单定位
+1. `Change` 更新ksyun主题`Message`样式
+1. `Change` 优化`Dropdown`键盘操作
+1. `Change` 更新ksyun主题`Progress`样式
+1. `Fix` 修复`Datepicker`在点击年份等区域导致input失焦，然后`FormItem`立即验证的问题，[#46](https://github.com/ksc-fe/kpc/issues/46)
+1. `Fix` 修复`Tooltip` `hover`触发方式下，有时不能消失的问题，[#52](https://github.com/ksc-fe/kpc/issues/52)
+1. `Fix` 修复`Pagination`当传入的`limit`不是可选项时，页码错误的问题， [#48](https://github.com/ksc-fe/kpc/issues/48)
+1. `Fix` 修复`Select`键盘选中某项然后搜索导致该项不存在，此时按回车会报错的问题，[#50](https://github.com/ksc-fe/kpc/issues/50)
+
 ## v0.3.12
 
 1. `Add` `TableColumn`支持`title`扩展点，[#19](https://github.com/ksc-fe/kpc/issues/19)
