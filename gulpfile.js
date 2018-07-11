@@ -227,7 +227,7 @@ gulp.task('index', () => {
             }
             const matches = lastLine.match(/\{(.*?)\}/);
             const names = matches[1].split(',').map(name => {
-                name = name.split('as');
+                name = name.split(' as ');
                 return name[name.length - 1].trim();
             });
             components.push(...names);

@@ -885,13 +885,13 @@ var _intact = __webpack_require__(0);
 
 var _intact2 = _interopRequireDefault(_intact);
 
-var _index = __webpack_require__(170);
+var _index = __webpack_require__(168);
 
 var _index2 = _interopRequireDefault(_index);
 
 __webpack_require__(6);
 
-__webpack_require__(171);
+__webpack_require__(169);
 
 var _utils = __webpack_require__(7);
 
@@ -1176,6 +1176,125 @@ module.exports = { "default": __webpack_require__(125), __esModule: true };
 
 
 exports.__esModule = true;
+exports.DropdownItem = exports.DropdownMenu = exports.Dropdown = undefined;
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _possibleConstructorReturn2 = __webpack_require__(2);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _extends2 = __webpack_require__(5);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__(12);
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _dropdown = __webpack_require__(57);
+
+var _dropdown2 = _interopRequireDefault(_dropdown);
+
+var _menu = __webpack_require__(58);
+
+var _menu2 = _interopRequireDefault(_menu);
+
+var _item = __webpack_require__(171);
+
+var _item2 = _interopRequireDefault(_item);
+
+__webpack_require__(6);
+
+__webpack_require__(177);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var h = _intact2.default.Vdt.miss.h;
+
+function Wrapper(props, inVue) {
+    var children = props.children,
+        position = props.position,
+        key = props.key,
+        ref = props.ref,
+        rest = (0, _objectWithoutProperties3.default)(props, ['children', 'position', 'key', 'ref']);
+
+
+    var element = children[0];
+    var menu = children[1];
+
+    menu.props = (0, _extends3.default)({
+        position: position,
+        key: key == null ? key : key + '.menu'
+    }, rest, menu.props);
+
+    return !inVue ? [h(_dropdown2.default, (0, _extends3.default)({
+        key: key == null ? key : key + '.trigger',
+        ref: ref,
+        children: element
+    }, rest)), menu] : h(DropdownVueWrapper, (0, _extends3.default)({
+        children: [h(_dropdown2.default, (0, _extends3.default)({
+            key: key == null ? key : key + '.trigger',
+            ref: ref,
+            children: [element]
+        }, rest)), menu]
+    }, rest));
+}
+
+// Vue only support return one element from functional component,
+// so we wrap them. This will lead to damage the dom struction,
+// because we must wrap them with a div
+var _className = _intact2.default.Vdt.utils.className;
+
+var DropdownVueWrapper = function (_Intact) {
+    (0, _inherits3.default)(DropdownVueWrapper, _Intact);
+
+    function DropdownVueWrapper() {
+        (0, _classCallCheck3.default)(this, DropdownVueWrapper);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+    }
+
+    DropdownVueWrapper.prototype.template = function template(data) {
+        var _className2;
+
+        var _data$get = data.get(),
+            className = _data$get.className,
+            children = _data$get.children,
+            rest = (0, _objectWithoutProperties3.default)(_data$get, ['className', 'children']);
+
+        return h('div', rest, children, _className((_className2 = {
+            'k-dropdown': true
+        }, _className2[className] = className, _className2)));
+    };
+
+    return DropdownVueWrapper;
+}(_intact2.default);
+
+var _Wrapper = _intact2.default.functionalWrapper ? _intact2.default.functionalWrapper(Wrapper) : Wrapper;
+
+exports.default = _Wrapper;
+exports.Dropdown = _Wrapper;
+exports.DropdownMenu = _menu2.default;
+exports.DropdownItem = _item2.default;
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
 exports.Checkbox = exports.default = undefined;
 
 var _classCallCheck2 = __webpack_require__(1);
@@ -1200,13 +1319,13 @@ var _intact = __webpack_require__(0);
 
 var _intact2 = _interopRequireDefault(_intact);
 
-var _index = __webpack_require__(162);
+var _index = __webpack_require__(173);
 
 var _index2 = _interopRequireDefault(_index);
 
 __webpack_require__(6);
 
-__webpack_require__(163);
+__webpack_require__(174);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1277,125 +1396,6 @@ var Checkbox = (_temp = _class = function (_Intact) {
     indeterminate: Boolean }, _temp);
 exports.default = Checkbox;
 exports.Checkbox = Checkbox;
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.DropdownItem = exports.DropdownMenu = exports.Dropdown = undefined;
-
-var _classCallCheck2 = __webpack_require__(1);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _possibleConstructorReturn2 = __webpack_require__(2);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(3);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _extends2 = __webpack_require__(5);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(12);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _intact = __webpack_require__(0);
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _dropdown = __webpack_require__(56);
-
-var _dropdown2 = _interopRequireDefault(_dropdown);
-
-var _menu = __webpack_require__(57);
-
-var _menu2 = _interopRequireDefault(_menu);
-
-var _item = __webpack_require__(187);
-
-var _item2 = _interopRequireDefault(_item);
-
-__webpack_require__(6);
-
-__webpack_require__(191);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var h = _intact2.default.Vdt.miss.h;
-
-function Wrapper(props, inVue) {
-    var children = props.children,
-        position = props.position,
-        key = props.key,
-        ref = props.ref,
-        rest = (0, _objectWithoutProperties3.default)(props, ['children', 'position', 'key', 'ref']);
-
-
-    var element = children[0];
-    var menu = children[1];
-
-    menu.props = (0, _extends3.default)({
-        position: position,
-        key: key == null ? key : key + '.menu'
-    }, rest, menu.props);
-
-    return !inVue ? [h(_dropdown2.default, (0, _extends3.default)({
-        key: key == null ? key : key + '.trigger',
-        ref: ref,
-        children: element
-    }, rest)), menu] : h(DropdownVueWrapper, (0, _extends3.default)({
-        children: [h(_dropdown2.default, (0, _extends3.default)({
-            key: key == null ? key : key + '.trigger',
-            ref: ref,
-            children: [element]
-        }, rest)), menu]
-    }, rest));
-}
-
-// Vue only support return one element from functional component,
-// so we wrap them. This will lead to damage the dom struction,
-// because we must wrap them with a div
-var _className = _intact2.default.Vdt.utils.className;
-
-var DropdownVueWrapper = function (_Intact) {
-    (0, _inherits3.default)(DropdownVueWrapper, _Intact);
-
-    function DropdownVueWrapper() {
-        (0, _classCallCheck3.default)(this, DropdownVueWrapper);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
-    }
-
-    DropdownVueWrapper.prototype.template = function template(data) {
-        var _className2;
-
-        var _data$get = data.get(),
-            className = _data$get.className,
-            children = _data$get.children,
-            rest = (0, _objectWithoutProperties3.default)(_data$get, ['className', 'children']);
-
-        return h('div', rest, children, _className((_className2 = {
-            'k-dropdown': true
-        }, _className2[className] = className, _className2)));
-    };
-
-    return DropdownVueWrapper;
-}(_intact2.default);
-
-var _Wrapper = _intact2.default.functionalWrapper ? _intact2.default.functionalWrapper(Wrapper) : Wrapper;
-
-exports.default = _Wrapper;
-exports.Dropdown = _Wrapper;
-exports.DropdownMenu = _menu2.default;
-exports.DropdownItem = _item2.default;
 
 /***/ }),
 /* 33 */
@@ -2081,13 +2081,13 @@ var _intact = __webpack_require__(0);
 
 var _intact2 = _interopRequireDefault(_intact);
 
-var _index = __webpack_require__(189);
+var _index = __webpack_require__(175);
 
 var _index2 = _interopRequireDefault(_index);
 
 __webpack_require__(6);
 
-__webpack_require__(190);
+__webpack_require__(176);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2366,6 +2366,326 @@ module.exports.f = function (C) {
 
 
 exports.__esModule = true;
+exports.OptionGroup = exports.Option = exports.Select = exports.default = undefined;
+
+var _getOwnPropertyDescriptor = __webpack_require__(4);
+
+var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _possibleConstructorReturn2 = __webpack_require__(2);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _dec, _desc, _value, _class, _init, _class2, _temp;
+
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _index = __webpack_require__(167);
+
+var _index2 = _interopRequireDefault(_index);
+
+__webpack_require__(6);
+
+__webpack_require__(182);
+
+var _option = __webpack_require__(79);
+
+var _option2 = _interopRequireDefault(_option);
+
+var _group = __webpack_require__(80);
+
+var _group2 = _interopRequireDefault(_group);
+
+var _utils = __webpack_require__(7);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
+
+    return desc;
+}
+
+var Select = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
+    (0, _inherits3.default)(Select, _Intact);
+
+    function Select() {
+        (0, _classCallCheck3.default)(this, Select);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+    }
+
+    Select.prototype.defaults = function defaults() {
+        return {
+            data: [],
+            value: '',
+            multiple: false, // 是否支持多选
+            disabled: false,
+            clearable: false, // 是否可清空 
+            filterable: false, // 搜索筛选
+            filter: function filter(keywords, props) {
+                var valid = false;
+                var tmp = void 0;
+                if (keywords == null || props.label && ~props.label.toLowerCase().indexOf(tmp = keywords.toLowerCase()) || (0, _utils.isStringOrNumber)(props.value) && ~String(props.value).toLowerCase().indexOf(tmp)) {
+                    valid = true;
+                }
+
+                return valid;
+            },
+            keywords: undefined,
+            placeholder: undefined,
+            size: 'default',
+            fluid: false,
+            width: undefined,
+            allowUnmatch: false,
+            card: false, // 卡片式分组
+
+            _show: false,
+            _activeLabel: undefined
+        };
+    };
+
+    Select.prototype._init = function _init() {
+        var _this2 = this;
+
+        this.on('$changed:value', function () {
+            if (_this2.get('multiple') && _this2.get('_show')) {
+                _this2.refs.menu.position();
+            }
+        });
+    };
+
+    Select.prototype._onClear = function _onClear(e) {
+        e.stopPropagation();
+        this.set('value', '');
+    };
+
+    Select.prototype._onSelect = function _onSelect(value) {
+        if (!this.get('multiple')) {
+            this.set('value', value, { async: true });
+        } else {
+            var values = this.get('value');
+            if (!Array.isArray(values)) {
+                values = [];
+            } else {
+                values = values.slice(0);
+            }
+            var index = values.indexOf(value);
+            if (~index) {
+                // if find, delete it
+                values.splice(index, 1);
+            } else {
+                values.push(value);
+            }
+            this.set('value', values, { async: true });
+            this._focusInput();
+        }
+        this._resetSearch();
+    };
+
+    Select.prototype._onSearch = function _onSearch(e) {
+        this.set('keywords', e.target.value.trim());
+        // always show menu on searching
+        this.refs.menu.show();
+        this.refs.menu.focusItemByIndex(0);
+        // the position may be flip, and the select input height my change height too,
+        // so we should reset the position
+        this.refs.menu.position();
+    };
+
+    Select.prototype._resetSearch = function _resetSearch() {
+        this.set('keywords', undefined, { async: true });
+    };
+
+    Select.prototype._onChangeShow = function _onChangeShow(c, value) {
+        this.set('_show', value);
+        // reset the _activeLabel if show
+        this._setActiveLabelSilent(undefined);
+    };
+
+    /**
+     * @brief let the blur method called after select
+     * if we selected the option, then the keywords has been set to undefind
+     * in this case, we do nothing, otherwise we reset it
+     */
+
+
+    Select.prototype._onBlur = function _onBlur() {
+        var _this3 = this;
+
+        var _get = this.get(),
+            keywords = _get.keywords,
+            allowUnmatch = _get.allowUnmatch;
+
+        if (allowUnmatch && keywords != null) {
+            this.set({
+                value: keywords
+            });
+        }
+
+        this.timer = setTimeout(function () {
+            if (_this3.get('keywords') != null) {
+                _this3._resetSearch();
+            }
+        }, 200);
+    };
+
+    Select.prototype._selectInput = function _selectInput(e) {
+        (0, _utils.selectInput)(e.target);
+    };
+
+    Select.prototype._onFocus = function _onFocus(e) {
+        clearTimeout(this.timer);
+    };
+
+    Select.prototype._onFocusout = function _onFocusout() {
+        this.refs.dropdown.hide();
+    };
+
+    Select.prototype._delete = function _delete(value, e) {
+        e.stopPropagation();
+        var values = this.get('value').slice(0);
+        var index = values.indexOf(value);
+        values.splice(index, 1);
+        this.set('value', values);
+        this._focusInput();
+    };
+
+    Select.prototype._focusInput = function _focusInput() {
+        if (this.get('filterable')) {
+            this.refs.input.focus();
+        }
+    };
+
+    Select.prototype._position = function _position() {
+        var menuElement = this.refs.menu.vdt.vNode.children.element;
+        var width = this.element.offsetWidth;
+        var menuWidth = menuElement.offsetWidth;
+        if (width > menuWidth) {
+            menuElement.style.width = width + 'px';
+        }
+    };
+
+    Select.prototype._onKeypress = function _onKeypress(e) {
+        if (e.keyCode === 13) {
+            this.refs.wrapper.click();
+        }
+    };
+
+    Select.prototype._onKeydown = function _onKeydown(e) {
+        if (e.keyCode === 9) {
+            // tab
+            this.refs.dropdown.hide();
+        }
+    };
+
+    Select.prototype._clearValue = function _clearValue() {
+        this.set('value', '', { update: false });
+    };
+
+    Select.prototype._setActiveLabelSilent = function _setActiveLabelSilent(label) {
+        this.set('_activeLabel', label, { silent: true });
+    };
+
+    Select.prototype.handleProps = function handleProps(props, labelObj) {
+        var _get2 = this.get(),
+            multiple = _get2.multiple,
+            value = _get2.value,
+            filterable = _get2.filterable,
+            keywords = _get2.keywords,
+            filter = _get2.filter;
+
+        var active = false;
+        var valid = false;
+
+        if (!multiple) {
+            if (props.value === value) {
+                // set label
+                labelObj.label = props.label;
+                active = true;
+            } else {
+                active = false;
+            }
+        } else if (Array.isArray(value)) {
+            var index = value.indexOf(props.value);
+            if (~index) {
+                // keep order consistent
+                labelObj.labels[index] = props.label;
+                active = true;
+            } else {
+                active = false;
+            }
+        }
+
+        if (!filterable || filter.call(this, keywords, props)) {
+            valid = true;
+        }
+
+        return { active: active, valid: valid };
+    };
+
+    return Select;
+}(_intact2.default), _class2.template = _index2.default, _class2.propTypes = {
+    multiple: Boolean,
+    disabled: Boolean,
+    clearable: Boolean,
+    filterable: Boolean,
+    fluid: Boolean,
+    allowUnmatch: Boolean,
+    card: Boolean
+}, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    initializer: function initializer() {
+        return _init;
+    }
+}), _class)), _class));
+exports.default = Select;
+exports.Select = Select;
+exports.Option = _option2.default;
+exports.OptionGroup = _group2.default;
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
 exports.default = undefined;
 
 var _getOwnPropertyDescriptor = __webpack_require__(4);
@@ -2400,7 +2720,7 @@ var _intact2 = _interopRequireDefault(_intact);
 
 var _utils = __webpack_require__(7);
 
-var _menu = __webpack_require__(57);
+var _menu = __webpack_require__(58);
 
 var _menu2 = _interopRequireDefault(_menu);
 
@@ -2555,7 +2875,7 @@ exports.default = Dropdown;
 module.exports = exports['default'];
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2590,7 +2910,7 @@ var _intact = __webpack_require__(0);
 
 var _intact2 = _interopRequireDefault(_intact);
 
-var _menu = __webpack_require__(172);
+var _menu = __webpack_require__(170);
 
 var _menu2 = _interopRequireDefault(_menu);
 
@@ -2963,7 +3283,7 @@ exports.default = DropdownMenu;
 module.exports = exports['default'];
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3023,326 +3343,6 @@ function isLT(a, b) {
 function isGT(a, b) {
     return isLT(b, a);
 }
-
-/***/ }),
-/* 59 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.OptionGroup = exports.Option = exports.Select = exports.default = undefined;
-
-var _getOwnPropertyDescriptor = __webpack_require__(4);
-
-var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
-
-var _classCallCheck2 = __webpack_require__(1);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _possibleConstructorReturn2 = __webpack_require__(2);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(3);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _dec, _desc, _value, _class, _init, _class2, _temp;
-
-var _intact = __webpack_require__(0);
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _index = __webpack_require__(210);
-
-var _index2 = _interopRequireDefault(_index);
-
-__webpack_require__(6);
-
-__webpack_require__(215);
-
-var _option = __webpack_require__(86);
-
-var _option2 = _interopRequireDefault(_option);
-
-var _group = __webpack_require__(87);
-
-var _group2 = _interopRequireDefault(_group);
-
-var _utils = __webpack_require__(7);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-    var desc = {};
-    Object['ke' + 'ys'](descriptor).forEach(function (key) {
-        desc[key] = descriptor[key];
-    });
-    desc.enumerable = !!desc.enumerable;
-    desc.configurable = !!desc.configurable;
-
-    if ('value' in desc || desc.initializer) {
-        desc.writable = true;
-    }
-
-    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-        return decorator(target, property, desc) || desc;
-    }, desc);
-
-    if (context && desc.initializer !== void 0) {
-        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-        desc.initializer = undefined;
-    }
-
-    if (desc.initializer === void 0) {
-        Object['define' + 'Property'](target, property, desc);
-        desc = null;
-    }
-
-    return desc;
-}
-
-var Select = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
-    (0, _inherits3.default)(Select, _Intact);
-
-    function Select() {
-        (0, _classCallCheck3.default)(this, Select);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
-    }
-
-    Select.prototype.defaults = function defaults() {
-        return {
-            data: [],
-            value: '',
-            multiple: false, // 是否支持多选
-            disabled: false,
-            clearable: false, // 是否可清空 
-            filterable: false, // 搜索筛选
-            filter: function filter(keywords, props) {
-                var valid = false;
-                var tmp = void 0;
-                if (keywords == null || props.label && ~props.label.toLowerCase().indexOf(tmp = keywords.toLowerCase()) || (0, _utils.isStringOrNumber)(props.value) && ~String(props.value).toLowerCase().indexOf(tmp)) {
-                    valid = true;
-                }
-
-                return valid;
-            },
-            keywords: undefined,
-            placeholder: undefined,
-            size: 'default',
-            fluid: false,
-            width: undefined,
-            allowUnmatch: false,
-            card: false, // 卡片式分组
-
-            _show: false,
-            _activeLabel: undefined
-        };
-    };
-
-    Select.prototype._init = function _init() {
-        var _this2 = this;
-
-        this.on('$changed:value', function () {
-            if (_this2.get('multiple') && _this2.get('_show')) {
-                _this2.refs.menu.position();
-            }
-        });
-    };
-
-    Select.prototype._onClear = function _onClear(e) {
-        e.stopPropagation();
-        this.set('value', '');
-    };
-
-    Select.prototype._onSelect = function _onSelect(value) {
-        if (!this.get('multiple')) {
-            this.set('value', value, { async: true });
-        } else {
-            var values = this.get('value');
-            if (!Array.isArray(values)) {
-                values = [];
-            } else {
-                values = values.slice(0);
-            }
-            var index = values.indexOf(value);
-            if (~index) {
-                // if find, delete it
-                values.splice(index, 1);
-            } else {
-                values.push(value);
-            }
-            this.set('value', values, { async: true });
-            this._focusInput();
-        }
-        this._resetSearch();
-    };
-
-    Select.prototype._onSearch = function _onSearch(e) {
-        this.set('keywords', e.target.value.trim());
-        // always show menu on searching
-        this.refs.menu.show();
-        this.refs.menu.focusItemByIndex(0);
-        // the position may be flip, and the select input height my change height too,
-        // so we should reset the position
-        this.refs.menu.position();
-    };
-
-    Select.prototype._resetSearch = function _resetSearch() {
-        this.set('keywords', undefined, { async: true });
-    };
-
-    Select.prototype._onChangeShow = function _onChangeShow(c, value) {
-        this.set('_show', value);
-        // reset the _activeLabel if show
-        this._setActiveLabelSilent(undefined);
-    };
-
-    /**
-     * @brief let the blur method called after select
-     * if we selected the option, then the keywords has been set to undefind
-     * in this case, we do nothing, otherwise we reset it
-     */
-
-
-    Select.prototype._onBlur = function _onBlur() {
-        var _this3 = this;
-
-        var _get = this.get(),
-            keywords = _get.keywords,
-            allowUnmatch = _get.allowUnmatch;
-
-        if (allowUnmatch && keywords != null) {
-            this.set({
-                value: keywords
-            });
-        }
-
-        this.timer = setTimeout(function () {
-            if (_this3.get('keywords') != null) {
-                _this3._resetSearch();
-            }
-        }, 200);
-    };
-
-    Select.prototype._selectInput = function _selectInput(e) {
-        (0, _utils.selectInput)(e.target);
-    };
-
-    Select.prototype._onFocus = function _onFocus(e) {
-        clearTimeout(this.timer);
-    };
-
-    Select.prototype._onFocusout = function _onFocusout() {
-        this.refs.dropdown.hide();
-    };
-
-    Select.prototype._delete = function _delete(value, e) {
-        e.stopPropagation();
-        var values = this.get('value').slice(0);
-        var index = values.indexOf(value);
-        values.splice(index, 1);
-        this.set('value', values);
-        this._focusInput();
-    };
-
-    Select.prototype._focusInput = function _focusInput() {
-        if (this.get('filterable')) {
-            this.refs.input.focus();
-        }
-    };
-
-    Select.prototype._position = function _position() {
-        var menuElement = this.refs.menu.vdt.vNode.children.element;
-        var width = this.element.offsetWidth;
-        var menuWidth = menuElement.offsetWidth;
-        if (width > menuWidth) {
-            menuElement.style.width = width + 'px';
-        }
-    };
-
-    Select.prototype._onKeypress = function _onKeypress(e) {
-        if (e.keyCode === 13) {
-            this.refs.wrapper.click();
-        }
-    };
-
-    Select.prototype._onKeydown = function _onKeydown(e) {
-        if (e.keyCode === 9) {
-            // tab
-            this.refs.dropdown.hide();
-        }
-    };
-
-    Select.prototype._clearValue = function _clearValue() {
-        this.set('value', '', { update: false });
-    };
-
-    Select.prototype._setActiveLabelSilent = function _setActiveLabelSilent(label) {
-        this.set('_activeLabel', label, { silent: true });
-    };
-
-    Select.prototype.handleProps = function handleProps(props, labelObj) {
-        var _get2 = this.get(),
-            multiple = _get2.multiple,
-            value = _get2.value,
-            filterable = _get2.filterable,
-            keywords = _get2.keywords,
-            filter = _get2.filter;
-
-        var active = false;
-        var valid = false;
-
-        if (!multiple) {
-            if (props.value === value) {
-                // set label
-                labelObj.label = props.label;
-                active = true;
-            } else {
-                active = false;
-            }
-        } else if (Array.isArray(value)) {
-            var index = value.indexOf(props.value);
-            if (~index) {
-                // keep order consistent
-                labelObj.labels[index] = props.label;
-                active = true;
-            } else {
-                active = false;
-            }
-        }
-
-        if (!filterable || filter.call(this, keywords, props)) {
-            valid = true;
-        }
-
-        return { active: active, valid: valid };
-    };
-
-    return Select;
-}(_intact2.default), _class2.template = _index2.default, _class2.propTypes = {
-    multiple: Boolean,
-    disabled: Boolean,
-    clearable: Boolean,
-    filterable: Boolean,
-    fluid: Boolean,
-    allowUnmatch: Boolean,
-    card: Boolean
-}, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    initializer: function initializer() {
-        return _init;
-    }
-}), _class)), _class));
-exports.default = Select;
-exports.Select = Select;
-exports.Option = _option2.default;
-exports.OptionGroup = _group2.default;
 
 /***/ }),
 /* 60 */
@@ -3857,6 +3857,50 @@ module.exports = exports['default'];
 exports.__esModule = true;
 exports.default = undefined;
 
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _possibleConstructorReturn2 = __webpack_require__(2);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _dropdown = __webpack_require__(31);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Option = function (_DropdownItem) {
+  (0, _inherits3.default)(Option, _DropdownItem);
+
+  function Option() {
+    (0, _classCallCheck3.default)(this, Option);
+    return (0, _possibleConstructorReturn3.default)(this, _DropdownItem.apply(this, arguments));
+  }
+
+  return Option;
+}(_dropdown.DropdownItem);
+
+exports.default = Option;
+module.exports = exports['default'];
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.default = undefined;
+
 var _getOwnPropertyDescriptor = __webpack_require__(4);
 
 var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
@@ -3879,7 +3923,366 @@ var _intact = __webpack_require__(0);
 
 var _intact2 = _interopRequireDefault(_intact);
 
-var _item = __webpack_require__(166);
+var _group = __webpack_require__(178);
+
+var _group2 = _interopRequireDefault(_group);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
+
+    return desc;
+}
+
+var OptionGroup = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
+    (0, _inherits3.default)(OptionGroup, _Intact);
+
+    function OptionGroup() {
+        (0, _classCallCheck3.default)(this, OptionGroup);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+    }
+
+    OptionGroup.prototype.defaults = function defaults() {
+        return {
+            label: '',
+
+            _card: false
+        };
+    };
+
+    return OptionGroup;
+}(_intact2.default), _class2.template = _group2.default, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    initializer: function initializer() {
+        return _init;
+    }
+}), _class)), _class));
+exports.default = OptionGroup;
+module.exports = exports['default'];
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.Tab = exports.Tabs = exports.default = undefined;
+
+var _getOwnPropertyDescriptor = __webpack_require__(4);
+
+var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(8);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(2);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _dec, _desc, _value, _class, _class2, _temp;
+
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _tab = __webpack_require__(82);
+
+var _tab2 = _interopRequireDefault(_tab);
+
+var _index = __webpack_require__(180);
+
+var _index2 = _interopRequireDefault(_index);
+
+__webpack_require__(6);
+
+__webpack_require__(181);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
+
+    return desc;
+}
+
+var Tabs = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
+    (0, _inherits3.default)(Tabs, _Intact);
+
+    function Tabs() {
+        (0, _classCallCheck3.default)(this, Tabs);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+    }
+
+    Tabs.prototype.defaults = function defaults() {
+        return {
+            data: undefined,
+            value: undefined,
+            vertical: false,
+            size: 'default', // large default mini small
+            type: 'default', // default card border-card
+
+            _activeBarStyle: undefined
+        };
+    };
+
+    Tabs.prototype._changeTab = function _changeTab(item) {
+        // if exits 'to', we don't change the value,
+        // while let the page to change it by pass value
+        if (!item.to) {
+            this.set('value', item.value);
+        } else {
+            window.location.href = item.to;
+        }
+    };
+
+    Tabs.prototype._mount = function _mount() {
+        this.on('$changed:value', this._setActiveBarStyle);
+        this._setActiveBarStyle();
+    };
+
+    Tabs.prototype._setActiveBarStyle = function _setActiveBarStyle() {
+        if (this.get('type') !== 'default') return;
+
+        var vertical = this.get('vertical');
+        var activeTab = this.element.querySelector('.k-tab.k-active');
+
+        if (activeTab) {
+            if (!vertical) {
+                var width = activeTab.offsetWidth;
+                var left = activeTab.offsetLeft;
+                this.set('_activeBarStyle', { left: left + 'px', width: width + 'px' });
+            } else {
+                var height = activeTab.offsetHeight;
+                var top = activeTab.offsetTop;
+                this.set('_activeBarStyle', { top: top + 'px', height: height + 'px' });
+            }
+        }
+    };
+
+    (0, _createClass3.default)(Tabs, [{
+        key: 'template',
+        get: function get() {
+            return _index2.default;
+        }
+    }]);
+    return Tabs;
+}(_intact2.default), _class2.propTypes = {
+    vertical: Boolean
+}, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
+exports.default = Tabs;
+exports.Tabs = Tabs;
+exports.Tab = _tab2.default;
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.default = undefined;
+
+var _getOwnPropertyDescriptor = __webpack_require__(4);
+
+var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(8);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(2);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _dec, _desc, _value, _class, _class2, _temp;
+
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _tab = __webpack_require__(179);
+
+var _tab2 = _interopRequireDefault(_tab);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
+
+    return desc;
+}
+
+var Tab = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
+    (0, _inherits3.default)(Tab, _Intact);
+
+    function Tab() {
+        (0, _classCallCheck3.default)(this, Tab);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+    }
+
+    Tab.prototype.defaults = function defaults() {
+        return {
+            value: undefined,
+            to: undefined,
+            disabled: false,
+
+            // passed by parent
+            _value: undefined,
+            _parent: undefined
+        };
+    };
+
+    Tab.prototype._isActive = function _isActive() {
+        var value = this.get('value');
+        return value !== undefined && value === this.get('_value');
+    };
+
+    Tab.prototype._changeTab = function _changeTab(e) {
+        if (this.get('disabled')) {
+            return e.preventDefault();
+        }
+
+        this.get('_parent')._changeTab(this.get());
+    };
+
+    (0, _createClass3.default)(Tab, [{
+        key: 'template',
+        get: function get() {
+            return _tab2.default;
+        }
+    }]);
+    return Tab;
+}(_intact2.default), _class2.propTypes = {
+    disabled: Boolean
+}, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
+exports.default = Tab;
+module.exports = exports['default'];
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.default = undefined;
+
+var _getOwnPropertyDescriptor = __webpack_require__(4);
+
+var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _possibleConstructorReturn2 = __webpack_require__(2);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _dec, _desc, _value, _class, _init, _class2, _temp;
+
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _item = __webpack_require__(187);
 
 var _item2 = _interopRequireDefault(_item);
 
@@ -3971,7 +4374,7 @@ exports.default = CollapseItem;
 module.exports = exports['default'];
 
 /***/ }),
-/* 80 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4013,7 +4416,7 @@ var _intact = __webpack_require__(0);
 
 var _intact2 = _interopRequireDefault(_intact);
 
-var _dropdown = __webpack_require__(56);
+var _dropdown = __webpack_require__(57);
 
 var _dropdown2 = _interopRequireDefault(_dropdown);
 
@@ -4021,13 +4424,13 @@ var _position2 = __webpack_require__(40);
 
 var _position3 = _interopRequireDefault(_position2);
 
-var _index = __webpack_require__(173);
+var _index = __webpack_require__(191);
 
 var _index2 = _interopRequireDefault(_index);
 
 __webpack_require__(6);
 
-__webpack_require__(174);
+__webpack_require__(192);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4302,7 +4705,7 @@ exports.default = _Wrapper;
 exports.Tooltip = _Wrapper;
 
 /***/ }),
-/* 81 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4333,13 +4736,13 @@ var _intact = __webpack_require__(0);
 
 var _intact2 = _interopRequireDefault(_intact);
 
-var _calendar = __webpack_require__(175);
+var _calendar = __webpack_require__(193);
 
 var _calendar2 = _interopRequireDefault(_calendar);
 
 var _utils = __webpack_require__(7);
 
-var _utils2 = __webpack_require__(58);
+var _utils2 = __webpack_require__(59);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4680,7 +5083,7 @@ exports.default = Calendar;
 module.exports = exports['default'];
 
 /***/ }),
-/* 82 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4711,13 +5114,13 @@ var _intact = __webpack_require__(0);
 
 var _intact2 = _interopRequireDefault(_intact);
 
-var _index = __webpack_require__(176);
+var _index = __webpack_require__(194);
 
 var _index2 = _interopRequireDefault(_index);
 
 __webpack_require__(6);
 
-__webpack_require__(177);
+__webpack_require__(195);
 
 var _utils = __webpack_require__(7);
 
@@ -4960,7 +5363,7 @@ exports.default = ScrollSelect;
 exports.ScrollSelect = ScrollSelect;
 
 /***/ }),
-/* 83 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4969,17 +5372,17 @@ exports.ScrollSelect = ScrollSelect;
 exports.__esModule = true;
 exports.Col = exports.Row = undefined;
 
-var _row = __webpack_require__(178);
+var _row = __webpack_require__(196);
 
 var _row2 = _interopRequireDefault(_row);
 
-var _col = __webpack_require__(180);
+var _col = __webpack_require__(198);
 
 var _col2 = _interopRequireDefault(_col);
 
 __webpack_require__(6);
 
-__webpack_require__(182);
+__webpack_require__(200);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4987,7 +5390,7 @@ exports.Row = _row2.default;
 exports.Col = _col2.default;
 
 /***/ }),
-/* 84 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5021,7 +5424,7 @@ function gutterStyle(gutter, style) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 85 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5060,11 +5463,11 @@ var _intact = __webpack_require__(0);
 
 var _intact2 = _interopRequireDefault(_intact);
 
-var _form = __webpack_require__(196);
+var _form = __webpack_require__(209);
 
 var _form2 = _interopRequireDefault(_form);
 
-var _methods = __webpack_require__(197);
+var _methods = __webpack_require__(210);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5178,409 +5581,6 @@ exports.default = Form;
 module.exports = exports['default'];
 
 /***/ }),
-/* 86 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.default = undefined;
-
-var _classCallCheck2 = __webpack_require__(1);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _possibleConstructorReturn2 = __webpack_require__(2);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(3);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _intact = __webpack_require__(0);
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _dropdown = __webpack_require__(32);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Option = function (_DropdownItem) {
-  (0, _inherits3.default)(Option, _DropdownItem);
-
-  function Option() {
-    (0, _classCallCheck3.default)(this, Option);
-    return (0, _possibleConstructorReturn3.default)(this, _DropdownItem.apply(this, arguments));
-  }
-
-  return Option;
-}(_dropdown.DropdownItem);
-
-exports.default = Option;
-module.exports = exports['default'];
-
-/***/ }),
-/* 87 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.default = undefined;
-
-var _getOwnPropertyDescriptor = __webpack_require__(4);
-
-var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
-
-var _classCallCheck2 = __webpack_require__(1);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _possibleConstructorReturn2 = __webpack_require__(2);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(3);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _dec, _desc, _value, _class, _init, _class2, _temp;
-
-var _intact = __webpack_require__(0);
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _group = __webpack_require__(211);
-
-var _group2 = _interopRequireDefault(_group);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-    var desc = {};
-    Object['ke' + 'ys'](descriptor).forEach(function (key) {
-        desc[key] = descriptor[key];
-    });
-    desc.enumerable = !!desc.enumerable;
-    desc.configurable = !!desc.configurable;
-
-    if ('value' in desc || desc.initializer) {
-        desc.writable = true;
-    }
-
-    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-        return decorator(target, property, desc) || desc;
-    }, desc);
-
-    if (context && desc.initializer !== void 0) {
-        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-        desc.initializer = undefined;
-    }
-
-    if (desc.initializer === void 0) {
-        Object['define' + 'Property'](target, property, desc);
-        desc = null;
-    }
-
-    return desc;
-}
-
-var OptionGroup = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
-    (0, _inherits3.default)(OptionGroup, _Intact);
-
-    function OptionGroup() {
-        (0, _classCallCheck3.default)(this, OptionGroup);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
-    }
-
-    OptionGroup.prototype.defaults = function defaults() {
-        return {
-            label: '',
-
-            _card: false
-        };
-    };
-
-    return OptionGroup;
-}(_intact2.default), _class2.template = _group2.default, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    initializer: function initializer() {
-        return _init;
-    }
-}), _class)), _class));
-exports.default = OptionGroup;
-module.exports = exports['default'];
-
-/***/ }),
-/* 88 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.Tab = exports.Tabs = exports.default = undefined;
-
-var _getOwnPropertyDescriptor = __webpack_require__(4);
-
-var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
-
-var _classCallCheck2 = __webpack_require__(1);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(8);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(2);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(3);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _dec, _desc, _value, _class, _class2, _temp;
-
-var _intact = __webpack_require__(0);
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _tab = __webpack_require__(89);
-
-var _tab2 = _interopRequireDefault(_tab);
-
-var _index = __webpack_require__(213);
-
-var _index2 = _interopRequireDefault(_index);
-
-__webpack_require__(6);
-
-__webpack_require__(214);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-    var desc = {};
-    Object['ke' + 'ys'](descriptor).forEach(function (key) {
-        desc[key] = descriptor[key];
-    });
-    desc.enumerable = !!desc.enumerable;
-    desc.configurable = !!desc.configurable;
-
-    if ('value' in desc || desc.initializer) {
-        desc.writable = true;
-    }
-
-    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-        return decorator(target, property, desc) || desc;
-    }, desc);
-
-    if (context && desc.initializer !== void 0) {
-        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-        desc.initializer = undefined;
-    }
-
-    if (desc.initializer === void 0) {
-        Object['define' + 'Property'](target, property, desc);
-        desc = null;
-    }
-
-    return desc;
-}
-
-var Tabs = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
-    (0, _inherits3.default)(Tabs, _Intact);
-
-    function Tabs() {
-        (0, _classCallCheck3.default)(this, Tabs);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
-    }
-
-    Tabs.prototype.defaults = function defaults() {
-        return {
-            data: undefined,
-            value: undefined,
-            vertical: false,
-            size: 'default', // large default mini small
-            type: 'default', // default card border-card
-
-            _activeBarStyle: undefined
-        };
-    };
-
-    Tabs.prototype._changeTab = function _changeTab(item) {
-        // if exits 'to', we don't change the value,
-        // while let the page to change it by pass value
-        if (!item.to) {
-            this.set('value', item.value);
-        } else {
-            window.location.href = item.to;
-        }
-    };
-
-    Tabs.prototype._mount = function _mount() {
-        this.on('$changed:value', this._setActiveBarStyle);
-        this._setActiveBarStyle();
-    };
-
-    Tabs.prototype._setActiveBarStyle = function _setActiveBarStyle() {
-        if (this.get('type') !== 'default') return;
-
-        var vertical = this.get('vertical');
-        var activeTab = this.element.querySelector('.k-tab.k-active');
-
-        if (activeTab) {
-            if (!vertical) {
-                var width = activeTab.offsetWidth;
-                var left = activeTab.offsetLeft;
-                this.set('_activeBarStyle', { left: left + 'px', width: width + 'px' });
-            } else {
-                var height = activeTab.offsetHeight;
-                var top = activeTab.offsetTop;
-                this.set('_activeBarStyle', { top: top + 'px', height: height + 'px' });
-            }
-        }
-    };
-
-    (0, _createClass3.default)(Tabs, [{
-        key: 'template',
-        get: function get() {
-            return _index2.default;
-        }
-    }]);
-    return Tabs;
-}(_intact2.default), _class2.propTypes = {
-    vertical: Boolean
-}, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
-exports.default = Tabs;
-exports.Tabs = Tabs;
-exports.Tab = _tab2.default;
-
-/***/ }),
-/* 89 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.default = undefined;
-
-var _getOwnPropertyDescriptor = __webpack_require__(4);
-
-var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
-
-var _classCallCheck2 = __webpack_require__(1);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(8);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(2);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(3);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _dec, _desc, _value, _class, _class2, _temp;
-
-var _intact = __webpack_require__(0);
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _tab = __webpack_require__(212);
-
-var _tab2 = _interopRequireDefault(_tab);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-    var desc = {};
-    Object['ke' + 'ys'](descriptor).forEach(function (key) {
-        desc[key] = descriptor[key];
-    });
-    desc.enumerable = !!desc.enumerable;
-    desc.configurable = !!desc.configurable;
-
-    if ('value' in desc || desc.initializer) {
-        desc.writable = true;
-    }
-
-    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-        return decorator(target, property, desc) || desc;
-    }, desc);
-
-    if (context && desc.initializer !== void 0) {
-        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-        desc.initializer = undefined;
-    }
-
-    if (desc.initializer === void 0) {
-        Object['define' + 'Property'](target, property, desc);
-        desc = null;
-    }
-
-    return desc;
-}
-
-var Tab = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
-    (0, _inherits3.default)(Tab, _Intact);
-
-    function Tab() {
-        (0, _classCallCheck3.default)(this, Tab);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
-    }
-
-    Tab.prototype.defaults = function defaults() {
-        return {
-            value: undefined,
-            to: undefined,
-            disabled: false,
-
-            // passed by parent
-            _value: undefined,
-            _parent: undefined
-        };
-    };
-
-    Tab.prototype._isActive = function _isActive() {
-        var value = this.get('value');
-        return value !== undefined && value === this.get('_value');
-    };
-
-    Tab.prototype._changeTab = function _changeTab(e) {
-        if (this.get('disabled')) {
-            return e.preventDefault();
-        }
-
-        this.get('_parent')._changeTab(this.get());
-    };
-
-    (0, _createClass3.default)(Tab, [{
-        key: 'template',
-        get: function get() {
-            return _tab2.default;
-        }
-    }]);
-    return Tab;
-}(_intact2.default), _class2.propTypes = {
-    disabled: Boolean
-}, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
-exports.default = Tab;
-module.exports = exports['default'];
-
-/***/ }),
 /* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5612,13 +5612,13 @@ var _intact = __webpack_require__(0);
 
 var _intact2 = _interopRequireDefault(_intact);
 
-var _index = __webpack_require__(225);
+var _index = __webpack_require__(232);
 
 var _index2 = _interopRequireDefault(_index);
 
 __webpack_require__(6);
 
-__webpack_require__(226);
+__webpack_require__(233);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5788,7 +5788,7 @@ var _intact = __webpack_require__(0);
 
 var _intact2 = _interopRequireDefault(_intact);
 
-var _step = __webpack_require__(230);
+var _step = __webpack_require__(237);
 
 var _step2 = _interopRequireDefault(_step);
 
@@ -5889,7 +5889,7 @@ var _intact = __webpack_require__(0);
 
 var _intact2 = _interopRequireDefault(_intact);
 
-var _column = __webpack_require__(239);
+var _column = __webpack_require__(246);
 
 var _column2 = _interopRequireDefault(_column);
 
@@ -6016,7 +6016,7 @@ module.exports = exports['default'];
 /* WEBPACK VAR INJECTION */(function(global) {
 
 exports.__esModule = true;
-exports.localize = exports._$ = exports.version = exports.cader = exports.Transfer = exports.Tooltip = exports.Tag = exports.Tabs = exports.TableColumn = exports.Table = exports.Tab = exports.Switch = exports.Steps = exports.Step = exports.Spinner = exports.Slider = exports.Select = exports.ScrollSelect = exports.Row = exports.Radio = exports.Progress = exports.Pagination = exports.OptionGroup = exports.Option = exports.MoveWrapper = exports.Message = exports.Link = exports.Input = exports.FormItem = exports.Form = exports.Editable = exports.DropdownMenu = exports.DropdownItem = exports.Dropdown = exports.Dialog = exports.Datepicker = exports.CollapseItem = exports.Collapse = exports.Col = exports.Checkbox = exports.ButtonGroup = exports.Button = exports.BreadcrumbItem = exports.Breadcrumb = exports.Badge = exports.App = undefined;
+exports.localize = exports._$ = exports.version = exports.Transfer = exports.Tooltip = exports.Tag = exports.Tabs = exports.TableColumn = exports.Table = exports.Tab = exports.Switch = exports.Steps = exports.Step = exports.Spinner = exports.Slider = exports.Select = exports.ScrollSelect = exports.Row = exports.Radio = exports.Progress = exports.Pagination = exports.OptionGroup = exports.Option = exports.MoveWrapper = exports.Message = exports.Link = exports.Input = exports.FormItem = exports.Form = exports.Editable = exports.DropdownMenu = exports.DropdownItem = exports.Dropdown = exports.Dialog = exports.Datepicker = exports.CollapseItem = exports.Collapse = exports.Col = exports.Checkbox = exports.Cascader = exports.ButtonGroup = exports.Button = exports.BreadcrumbItem = exports.Breadcrumb = exports.Badge = exports.App = undefined;
 exports.install = install;
 
 var _utils = __webpack_require__(7);
@@ -6029,59 +6029,59 @@ var _breadcrumb = __webpack_require__(155);
 
 var _button = __webpack_require__(15);
 
-var _checkbox = __webpack_require__(31);
+var _cascader = __webpack_require__(162);
 
-var _collapse = __webpack_require__(164);
+var _checkbox = __webpack_require__(32);
 
-var _datepicker = __webpack_require__(168);
+var _collapse = __webpack_require__(185);
 
-var _dialog = __webpack_require__(184);
+var _datepicker = __webpack_require__(189);
 
-var _dropdown = __webpack_require__(32);
+var _dialog = __webpack_require__(202);
 
-var _editable = __webpack_require__(192);
+var _dropdown = __webpack_require__(31);
 
-var _form = __webpack_require__(195);
+var _editable = __webpack_require__(205);
+
+var _form = __webpack_require__(208);
 
 var _input = __webpack_require__(19);
 
-var _link = __webpack_require__(202);
+var _link = __webpack_require__(215);
 
-var _message = __webpack_require__(204);
+var _message = __webpack_require__(217);
 
 var _moveWrapper = __webpack_require__(39);
 
-var _pagination = __webpack_require__(208);
+var _pagination = __webpack_require__(221);
 
-var _progress = __webpack_require__(217);
+var _progress = __webpack_require__(224);
 
 var _radio = __webpack_require__(41);
 
-var _grid = __webpack_require__(83);
+var _grid = __webpack_require__(87);
 
-var _scrollSelect = __webpack_require__(82);
+var _scrollSelect = __webpack_require__(86);
 
-var _select = __webpack_require__(59);
+var _select = __webpack_require__(56);
 
-var _slider = __webpack_require__(220);
+var _slider = __webpack_require__(227);
 
 var _spinner = __webpack_require__(90);
 
-var _steps = __webpack_require__(228);
+var _steps = __webpack_require__(235);
 
-var _switch = __webpack_require__(232);
+var _switch = __webpack_require__(239);
 
-var _table = __webpack_require__(235);
+var _table = __webpack_require__(242);
 
-var _tabs = __webpack_require__(88);
+var _tabs = __webpack_require__(81);
 
-var _tag = __webpack_require__(241);
+var _tag = __webpack_require__(248);
 
-var _tooltip = __webpack_require__(80);
+var _tooltip = __webpack_require__(84);
 
-var _transfer = __webpack_require__(244);
-
-var _cascader = __webpack_require__(247);
+var _transfer = __webpack_require__(251);
 
 exports.App = _app.App;
 exports.Badge = _badge.Badge;
@@ -6089,6 +6089,7 @@ exports.Breadcrumb = _breadcrumb.Breadcrumb;
 exports.BreadcrumbItem = _breadcrumb.BreadcrumbItem;
 exports.Button = _button.Button;
 exports.ButtonGroup = _button.ButtonGroup;
+exports.Cascader = _cascader.Cascader;
 exports.Checkbox = _checkbox.Checkbox;
 exports.Col = _grid.Col;
 exports.Collapse = _collapse.Collapse;
@@ -6125,7 +6126,6 @@ exports.Tabs = _tabs.Tabs;
 exports.Tag = _tag.Tag;
 exports.Tooltip = _tooltip.Tooltip;
 exports.Transfer = _transfer.Transfer;
-exports.cader = _cascader.cader;
 
 /* generate start */
 
@@ -8896,11481 +8896,17 @@ module.exports = exports['default'];
 
 
 exports.__esModule = true;
-
-var _extends2 = __webpack_require__(5);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(12);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    var _classNameObj;
-
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-
-    var _self$get = self.get(),
-        className = _self$get.className,
-        disabled = _self$get.disabled,
-        falseValue = _self$get.falseValue,
-        children = _self$get.children,
-        value = _self$get.value,
-        trueValue = _self$get.trueValue,
-        style = _self$get.style,
-        ref = _self$get.ref,
-        key = _self$get.key,
-        indeterminate = _self$get.indeterminate,
-        rest = (0, _objectWithoutProperties3.default)(_self$get, ['className', 'disabled', 'falseValue', 'children', 'value', 'trueValue', 'style', 'ref', 'key', 'indeterminate']);
-
-    var classNameObj = (_classNameObj = {
-        'k-checkbox': true,
-        'k-disabled': disabled,
-        'k-checked': self.isChecked()
-    }, _classNameObj[className] = className, _classNameObj['k-indeterminate'] = indeterminate, _classNameObj);
-
-    return h('label', { 'style': function () {
-            try {
-                return [style][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'tabindex': function () {
-            try {
-                return [disabled ? null : "0"][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-keypress': function () {
-            try {
-                return [self._onKeypress][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, [h('span', null, h('input', (0, _extends3.default)({ 'type': 'checkbox', 'disabled': function () {
-            try {
-                return [disabled][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'v-model': 'value', 'value': function () {
-            try {
-                return [trueValue][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'tabindex': '-1' }, function () {
-        try {
-            return [rest][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), { checked: _detectCheckboxChecked(self, 'value', function () {
-            try {
-                return [trueValue][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this)), 'ev-change': function evChange(__e) {
-            _setCheckboxModel(self, 'value', function () {
-                try {
-                    return [trueValue][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), function () {
-                try {
-                    return [falseValue][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), __e, $this);
-        } }), null, null, null, function (i) {
-        widgets['input'] = i;
-    }), 'k-wrapper'), function () {
-        try {
-            return [children][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('span', null, function () {
-        try {
-            return [children][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), 'k-text') : undefined], _className(function () {
-        try {
-            return [classNameObj][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)));
-};
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 163 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 164 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.CollapseItem = exports.Collapse = exports.default = undefined;
-
-var _getOwnPropertyDescriptor = __webpack_require__(4);
-
-var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
-
-var _classCallCheck2 = __webpack_require__(1);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _possibleConstructorReturn2 = __webpack_require__(2);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(3);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _dec, _desc, _value2, _class, _init, _class2, _temp;
-
-var _intact = __webpack_require__(0);
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _index = __webpack_require__(165);
-
-var _index2 = _interopRequireDefault(_index);
-
-var _item = __webpack_require__(79);
-
-var _item2 = _interopRequireDefault(_item);
-
-__webpack_require__(6);
-
-__webpack_require__(167);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-    var desc = {};
-    Object['ke' + 'ys'](descriptor).forEach(function (key) {
-        desc[key] = descriptor[key];
-    });
-    desc.enumerable = !!desc.enumerable;
-    desc.configurable = !!desc.configurable;
-
-    if ('value' in desc || desc.initializer) {
-        desc.writable = true;
-    }
-
-    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-        return decorator(target, property, desc) || desc;
-    }, desc);
-
-    if (context && desc.initializer !== void 0) {
-        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-        desc.initializer = undefined;
-    }
-
-    if (desc.initializer === void 0) {
-        Object['define' + 'Property'](target, property, desc);
-        desc = null;
-    }
-
-    return desc;
-}
-
-var Collapse = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
-    (0, _inherits3.default)(Collapse, _Intact);
-
-    function Collapse() {
-        (0, _classCallCheck3.default)(this, Collapse);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
-    }
-
-    Collapse.prototype.defaults = function defaults() {
-        return {
-            value: undefined,
-            accordion: false,
-            arrow: 'right', // 'right' | 'left'
-            noBorder: false
-        };
-    };
-
-    Collapse.prototype._changeValue = function _changeValue(v) {
-        var _get = this.get(),
-            value = _get.value,
-            accordion = _get.accordion;
-
-        if (!Array.isArray(value)) {
-            this.set('value', [v]);
-        } else {
-            var index = value.indexOf(v);
-            var _value = value.slice(0);
-            if (~index) {
-                _value.splice(index, 1);
-            } else if (accordion) {
-                _value = [v];
-            } else {
-                _value.push(v);
-            }
-            this.set('value', _value);
-        }
-    };
-
-    Collapse.prototype._isActive = function _isActive(v) {
-        var _get2 = this.get(),
-            value = _get2.value;
-
-        if (!Array.isArray(value)) return false;
-        return ~value.indexOf(v);
-    };
-
-    return Collapse;
-}(_intact2.default), _class2.template = _index2.default, _class2.propTypes = {
-    accordion: Boolean,
-    noBorder: Boolean
-}, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    initializer: function initializer() {
-        return _init;
-    }
-}), _class)), _class));
-exports.default = Collapse;
-exports.Collapse = Collapse;
-exports.CollapseItem = _item2.default;
-
-/***/ }),
-/* 165 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _extends2 = __webpack_require__(5);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    var _classNameObj;
-
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-
-    var _self$get = self.get(),
-        className = _self$get.className,
-        style = _self$get.style,
-        value = _self$get.value,
-        children = _self$get.children,
-        arrow = _self$get.arrow,
-        noBorder = _self$get.noBorder;
-
-    var classNameObj = (_classNameObj = {
-        'k-collapse': true
-    }, _classNameObj[className] = className, _classNameObj['k-left'] = arrow === 'left', _classNameObj['k-border'] = !noBorder, _classNameObj);
-
-    var index = 0;
-    var _children = (0, _utils.mapChildren)(children, function (vNode) {
-        if (vNode.tag === _item2.default) {
-            var props = vNode.props;
-            var _props = { _parent: self };
-            if (props.value == null) {
-                _props.value = '$' + index++;
-            }
-
-            vNode.props = (0, _extends3.default)({}, props, _props);
-        }
-        return vNode;
-    });
-
-    return h('div', { 'style': function () {
-            try {
-                return [style][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, function () {
-        try {
-            return [_children][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), _className(function () {
-        try {
-            return [classNameObj][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)));
-};
-
-var _item = __webpack_require__(79);
-
-var _item2 = _interopRequireDefault(_item);
-
-var _utils = __webpack_require__(7);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 166 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    var _classNameObj;
-
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-
-    var _self$get = self.get(),
-        className = _self$get.className,
-        style = _self$get.style,
-        value = _self$get.value,
-        children = _self$get.children,
-        title = _self$get.title,
-        _parent = _self$get._parent,
-        disabled = _self$get.disabled;
-
-    var active = _parent._isActive(value);
-    var classNameObj = (_classNameObj = {
-        'k-collapse-item': true
-    }, _classNameObj[className] = className, _classNameObj['k-active'] = active, _classNameObj['k-disabled'] = disabled, _classNameObj);
-
-    return h('div', { 'style': function () {
-            try {
-                return [style][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, [h('div', { 'ev-click': function () {
-            try {
-                return [self._toggle][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, [(_blocks["title"] = function (parent) {
-        return function () {
-            try {
-                return [title][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this);
-    }) && (__blocks["title"] = function (parent) {
-        var self = this;
-        return blocks["title"] ? blocks["title"].call(this, function () {
-            return _blocks["title"].call(self, parent);
-        }) : _blocks["title"].call(this, parent);
-    }) && __blocks["title"].call(this), h('i', null, null, 'k-arrow ion-ios-arrow-right')], 'k-title'), function () {
-        try {
-            return [active][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h(Animate, { 'className': 'k-content', 'a:transition': 'expand', 'ev-a:enterStart': function () {
-            try {
-                return [self._enterStart][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-a:leaveStart': function () {
-            try {
-                return [self._leaveStart][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-a:enterEnd': function () {
-            try {
-                return [self._enterEnd][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-$mounted': function () {
-            try {
-                return [self._onShow][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-$destroyed': function () {
-            try {
-                return [self._onHide][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'children': h('div', null, function () {
-            try {
-                return [children][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'k-wrapper'), '_context': $this }) : undefined], _className(function () {
-        try {
-            return [classNameObj][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)));
-};
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 167 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 168 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.Datepicker = exports.default = undefined;
-
-var _getOwnPropertyDescriptor = __webpack_require__(4);
-
-var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
-
-var _classCallCheck2 = __webpack_require__(1);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _possibleConstructorReturn2 = __webpack_require__(2);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(3);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _dec, _desc, _value, _class, _init, _class2, _temp;
-
-var _intact = __webpack_require__(0);
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _index = __webpack_require__(169);
-
-var _index2 = _interopRequireDefault(_index);
-
-__webpack_require__(6);
-
-__webpack_require__(183);
-
-var _calendar = __webpack_require__(81);
-
-var _calendar2 = _interopRequireDefault(_calendar);
-
-var _utils = __webpack_require__(58);
-
-var _utils2 = __webpack_require__(7);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-    var desc = {};
-    Object['ke' + 'ys'](descriptor).forEach(function (key) {
-        desc[key] = descriptor[key];
-    });
-    desc.enumerable = !!desc.enumerable;
-    desc.configurable = !!desc.configurable;
-
-    if ('value' in desc || desc.initializer) {
-        desc.writable = true;
-    }
-
-    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-        return decorator(target, property, desc) || desc;
-    }, desc);
-
-    if (context && desc.initializer !== void 0) {
-        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-        desc.initializer = undefined;
-    }
-
-    if (desc.initializer === void 0) {
-        Object['define' + 'Property'](target, property, desc);
-        desc = null;
-    }
-
-    return desc;
-}
-
-var isEqual = _intact2.default.utils.isEqual;
-var Datepicker = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
-    (0, _inherits3.default)(Datepicker, _Intact);
-
-    function Datepicker() {
-        (0, _classCallCheck3.default)(this, Datepicker);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
-    }
-
-    Datepicker.prototype.defaults = function defaults() {
-        return {
-            value: undefined,
-            clearable: false,
-            placeholder: undefined,
-            disabled: false,
-            size: 'default',
-            type: 'date', // date | datetime
-            range: false,
-            transition: 'slidedown',
-
-            _value: undefined, // for range
-            _rangeEndDate: undefined,
-            _isShow: false
-        };
-    };
-
-    Datepicker.prototype._init = function _init() {
-        var _this2 = this;
-
-        this.set('_value', this.get('value'));
-
-        // proxy _value to value
-        this.on('$change:_value', function (c, v) {
-            // if only select one date for range, set with undefined
-            if (v && v.length === 1) {
-                v = undefined;
-            }
-            _this2.set('value', v);
-        });
-
-        this.on('$receive:value', function (c, v) {
-            _this2.set('_value', v);
-        });
-    };
-
-    Datepicker.prototype.onClear = function onClear(e) {
-        e.stopPropagation();
-        if (this.get('range')) {
-            this.set('_value', undefined);
-        } else {
-            this.set('value', undefined);
-        }
-    };
-
-    Datepicker.prototype._hide = function _hide() {
-        if (this.get('range')) return;
-
-        this.refs.calendar.hide();
-    };
-
-    Datepicker.prototype._onShow = function _onShow(c) {
-        var feedback = c.get('_feedback');
-        this.set('transition', (0, _utils2.getTransition)(feedback));
-    };
-
-    Datepicker.prototype._onChangeShow = function _onChangeShow(c, v) {
-        this.set('_isShow', v);
-        this._hasSelectByArrowKey = false;
-    };
-
-    Datepicker.prototype._onChangeShowDate = function _onChangeShowDate(type, c, v) {
-        var begin = this.refs.begin;
-        var end = this.refs.end;
-        if (type === 'begin') {
-            var endShowDate = end.getShowDate();
-            endShowDate.setDate(1);
-            if (v >= endShowDate) {
-                var _endShowDate = new Date(v);
-                _endShowDate.setMonth(_endShowDate.getMonth() + 1);
-                end.setShowDate(_endShowDate);
-            }
-        } else {
-            var beginShowDate = begin.getShowDate();
-            v.setDate(1);
-            if (v <= beginShowDate) {
-                var _beginShowDate = new Date(v);
-                _beginShowDate.setMonth(_beginShowDate.getMonth() - 1);
-                begin.setShowDate(_beginShowDate);
-            }
-        }
-    };
-
-    Datepicker.prototype._setBeginShowDate = function _setBeginShowDate(c) {
-        var _ref = this.get('_value') || [],
-            start = _ref[0];
-
-        var date = start ? new Date(start) : (0, _utils.getNowDate)();
-        c.set('_showDate', date, { silent: true });
-    };
-
-    Datepicker.prototype._setEndShowDate = function _setEndShowDate(c) {
-        var _ref2 = this.get('_value') || [],
-            start = _ref2[0],
-            end = _ref2[1];
-
-        var date = void 0;
-        // if in the same month, show next month
-        if (start && end) {
-            start = new Date(start);
-            end = new Date(end);
-            if (start.getFullYear() === end.getFullYear() && start.getMonth() === end.getMonth()) {
-                end.setMonth(end.getMonth() + 1);
-            }
-            date = end;
-        } else {
-            date = (0, _utils.getNowDate)();
-            date.setMonth(date.getMonth() + 1);
-        }
-
-        c.set('_showDate', date, { silent: true });
-    };
-
-    Datepicker.prototype._checkDateInRange = function _checkDateInRange(date, isOut) {
-        var _ref3 = this.get('_value') || [],
-            start = _ref3[0],
-            end = _ref3[1];
-
-        var _rangeEndDate = this.get('_rangeEndDate');
-
-        if (start) {
-            var _start = new Date(start);
-            if (end) {
-                return {
-                    'k-in-range': !isOut && (0, _utils.isGT)(date, _start) && (0, _utils.isLT)(date, new Date(end))
-                };
-            } else if (_rangeEndDate) {
-                return {
-                    'k-in-range': !isOut && (0, _utils.isGT)(date, _start >= _rangeEndDate ? _rangeEndDate : _start) && (0, _utils.isLT)(date, _start <= _rangeEndDate ? _rangeEndDate : _start)
-                };
-            }
-        }
-    };
-
-    Datepicker.prototype._onChangeValueForRange = function _onChangeValueForRange(type, c, v) {
-        var value = this.get('_value');
-
-        if (isEqual(v, value)) return;
-
-        var _refs = this.refs,
-            begin = _refs.begin,
-            end = _refs.end;
-
-
-        if (c.isSelectTime) {
-            value = value.slice(0);
-            if (type === 'begin' && end.get('_isSelectTime')) {
-                value[0] = v[0];
-                c._index = 0;
-                end._index = 1;
-            } else if (type === 'end' && begin.get('_isSelectTime')) {
-                value[1] = v[1];
-                c._index = 1;
-                begin._index = 0;
-            } else {
-                value[c._index] = v[c._index];
-            }
-            if (value.length === 2) {
-                if (value[1] < value[0]) {
-                    // reverse the index
-                    c._index = c._index === 0 ? 1 : 0;
-                }
-            }
-            value.sort();
-            this.set('_value', value);
-        } else if (!v.length) {
-            // calendar cancelled the selected value
-            this.set('_value', undefined);
-        } else if (!value || value.length === 0 || value.length === 2) {
-            value = [v[v.length - 1]];
-            if (type === 'end') {
-                begin.set('_isSelectTime', false);
-            } else {
-                end.set('_isSelectTime', false);
-            }
-            c._index = 0;
-            this.set('_value', value);
-        } else {
-            value = value.slice(0);
-            value[1] = v[v.length - 1];
-            // set time
-            if (this.get('type') === 'datetime') {
-                var _value$1$split = value[1].split(' '),
-                    date = _value$1$split[0];
-
-                var _value$0$split = value[0].split(' '),
-                    time = _value$0$split[1];
-
-                value[1] = [date, time].join(' ');
-            }
-            if (value[1] < value[0]) {
-                c._index = 0;
-            } else {
-                c._index = 1;
-            }
-            value.sort();
-            this.set('_value', value);
-
-            if (this.get('type') !== 'datetime') {
-                this.refs.calendar.hide();
-            }
-        }
-    };
-
-    Datepicker.prototype._highlightRangeDays = function _highlightRangeDays(date, isOut) {
-        var _ref4 = this.get('_value') || [],
-            start = _ref4[0],
-            end = _ref4[1];
-
-        if (start && !end) {
-            this.set('_rangeEndDate', date);
-        } else {
-            this.set('_rangeEndDate', undefined);
-        }
-    };
-
-    Datepicker.prototype._clearRangeEndDate = function _clearRangeEndDate() {
-        this.set('_rangeEndDate', undefined);
-    };
-
-    Datepicker.prototype._onKeydown = function _onKeydown(e) {
-        switch (e.keyCode) {
-            case 13:
-                e.preventDefault();
-                if (!this._hasSelectByArrowKey) {
-                    this.refs.input.element.click();
-                } else {
-                    this.refs.begin._selectFocusDate();
-                }
-                break;
-            case 9:
-                this.refs.calendar.hide();
-                break;
-            case 38:
-            case 40:
-            case 37:
-            case 39:
-                if (this.get('_isShow')) {
-                    this._hasSelectByArrowKey = true;
-                    this.refs.begin._onKeydown(e);
-                }
-                break;
-        }
-    };
-
-    Datepicker.prototype._focus = function _focus() {
-        this.refs.input.focus();
-    };
-
-    /**
-     * don't trigger focusout event when datepicker layer is showing
-     * trigger focusout when it hidden to make FormItem to validate it
-     * #46
-     */
-
-
-    Datepicker.prototype.onInputFocusOut = function onInputFocusOut(e) {
-        if (this.get('_isShow')) {
-            e.stopPropagation();
-        }
-    };
-
-    Datepicker.prototype._onHide = function _onHide() {
-        var input = this.refs.input;
-        input.focus();
-        setTimeout(function () {
-            input.blur();
-        });
-    };
-
-    return Datepicker;
-}(_intact2.default), _class2.template = _index2.default, _class2.propTypes = {
-    clearable: Boolean,
-    disabled: Boolean,
-    range: Boolean
-}, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    initializer: function initializer() {
-        return _init;
-    }
-}), _class)), _class));
-exports.default = Datepicker;
-exports.Datepicker = Datepicker;
-
-/***/ }),
-/* 169 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _extends2 = __webpack_require__(5);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(12);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    var _classNameObj;
-
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-
-    var _self$get = self.get(),
-        value = _self$get.value,
-        clearable = _self$get.clearable,
-        className = _self$get.className,
-        style = _self$get.style,
-        _isShow = _self$get._isShow,
-        name = _self$get.name,
-        disabled = _self$get.disabled,
-        placeholder = _self$get.placeholder,
-        size = _self$get.size,
-        transition = _self$get.transition,
-        _value = _self$get._value,
-        range = _self$get.range,
-        type = _self$get.type,
-        ref = _self$get.ref,
-        key = _self$get.key,
-        rest = (0, _objectWithoutProperties3.default)(_self$get, ['value', 'clearable', 'className', 'style', '_isShow', 'name', 'disabled', 'placeholder', 'size', 'transition', '_value', 'range', 'type', 'ref', 'key']);
-
-    // pass the rest props to Calendar, except events
-
-
-    var _rest = {};
-    for (var _key in rest) {
-        if (_key.substring(0, 3) !== 'ev-') {
-            _rest[_key] = rest[_key];
-        }
-    }
-
-    var classNameObj = (_classNameObj = {
-        'k-datepicker': true,
-        'k-disabled': disabled,
-        'k-show': _isShow
-    }, _classNameObj[className] = className, _classNameObj);
-
-    return h('div', { 'style': function () {
-            try {
-                return [style][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'tabindex': function () {
-            try {
-                return [disabled ? '-1' : '0'][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-keydown': function () {
-            try {
-                return [self._onKeydown][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, h(_tooltip2.default, { 'className': 'k-datepicker-content', 'position': function () {
-            try {
-                return [{ my: 'left top', at: 'left bottom', collision: 'flip' }][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'trigger': 'click', 'showArrow': function () {
-            try {
-                return [false][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'transition': function () {
-            try {
-                return [transition][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'disabled': function () {
-            try {
-                return [disabled][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-show': function () {
-            try {
-                return [self._onShow][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-hide': function () {
-            try {
-                return [self._onHide][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-$changed:show': function () {
-            try {
-                return [self._onChangeShow][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'children': h(_input2.default, { 'placeholder': function () {
-                try {
-                    return [placeholder == null ? type === 'datetime' ? (0, _utils._$)('请选择日期和时间') : (0, _utils._$)('请选择日期') : placeholder][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'readonly': function () {
-                try {
-                    return [true][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'value': function () {
-                try {
-                    return [Array.isArray(value) ? range ? value.join(' ~ ') : value.join(', ') : value][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'clearable': function () {
-                try {
-                    return [clearable][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'ev-clear': function () {
-                try {
-                    return [self.onClear][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'name': function () {
-                try {
-                    return [name][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'disabled': function () {
-                try {
-                    return [disabled][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'size': function () {
-                try {
-                    return [size][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'tabindex': '-1', 'ev-focusout': function () {
-                try {
-                    return [self.onInputFocusOut][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'children': null, '_context': $this, '_blocks': function (blocks) {
-                var _blocks = {},
-                    __blocks = extend({}, blocks);
-                return (_blocks["suffix"] = function (parent) {
-                    return h('i', null, null, 'ion-ios-calendar-outline');
-                }) && (__blocks["suffix"] = function (parent) {
-                    var self = this;
-                    return blocks["suffix"] ? blocks["suffix"].call(this, function () {
-                        return _blocks["suffix"].call(self, parent);
-                    }) : _blocks["suffix"].call(this, parent);
-                }), __blocks;
-            }.call(this, {}) }, null, null, null, function (i) {
-            widgets['input'] = i;
-        }), '_context': $this, '_blocks': function (blocks) {
-            var _blocks = {},
-                __blocks = extend({}, blocks);
-            return (_blocks["content"] = function (parent) {
-                return function () {
-                    try {
-                        return [!range][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this) ? h(_calendar2.default, (0, _extends3.default)({ 'v-model': 'value' }, function () {
-                    try {
-                        return [_rest][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this), { 'ev-hide': function () {
-                        try {
-                            return [self._hide][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this), 'type': function () {
-                        try {
-                            return [type][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this), 'ev-enter:select': function () {
-                        try {
-                            return [self._focus][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this), 'children': null, '_context': $this, value: _getModel(self, 'value'), 'ev-$change:value': function ev$changeValue(__c, __n) {
-                        _setModel(self, 'value', __n, $this);
-                    } }), null, null, null, function (i) {
-                    widgets['begin'] = i;
-                }) : h('div', { 'ev-mouseleave': function () {
-                        try {
-                            return [self._clearRangeEndDate][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this) }, [h(_calendar2.default, (0, _extends3.default)({}, function () {
-                    try {
-                        return [_rest][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this), { 'value': function () {
-                        try {
-                            return [_value][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this), 'ev-$change:value': function () {
-                        try {
-                            return [self._onChangeValueForRange.bind(self, 'begin')][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this), 'ev-hide': function () {
-                        try {
-                            return [self._hide][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this), 'type': function () {
-                        try {
-                            return [type][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this), 'ev-$change:_showDate': function () {
-                        try {
-                            return [self._onChangeShowDate.bind(self, 'begin')][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this), 'ev-$inited': function () {
-                        try {
-                            return [self._setBeginShowDate][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this), 'dayClassNames': function () {
-                        try {
-                            return [self._checkDateInRange][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this), 'onMouseEnterDay': function () {
-                        try {
-                            return [self._highlightRangeDays][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this), 'multiple': function () {
-                        try {
-                            return [true][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this), 'children': null, '_context': $this }), null, null, null, function (i) {
-                    widgets['begin'] = i;
-                }), h(_calendar2.default, (0, _extends3.default)({}, function () {
-                    try {
-                        return [_rest][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this), { 'value': function () {
-                        try {
-                            return [_value][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this), 'ev-$change:value': function () {
-                        try {
-                            return [self._onChangeValueForRange.bind(self, 'end')][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this), 'ev-hide': function () {
-                        try {
-                            return [self._hide][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this), 'type': function () {
-                        try {
-                            return [type][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this), 'ev-$change:_showDate': function () {
-                        try {
-                            return [self._onChangeShowDate.bind(self, 'end')][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this), 'ev-$inited': function () {
-                        try {
-                            return [self._setEndShowDate][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this), 'dayClassNames': function () {
-                        try {
-                            return [self._checkDateInRange][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this), 'onMouseEnterDay': function () {
-                        try {
-                            return [self._highlightRangeDays][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this), 'multiple': function () {
-                        try {
-                            return [true][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this), 'children': null, '_context': $this }), null, null, null, function (i) {
-                    widgets['end'] = i;
-                })], 'k-range c-clearfix');
-            }) && (__blocks["content"] = function (parent) {
-                var self = this;
-                return blocks["content"] ? blocks["content"].call(this, function () {
-                    return _blocks["content"].call(self, parent);
-                }) : _blocks["content"].call(this, parent);
-            }), __blocks;
-        }.call(this, {}) }, null, null, null, function (i) {
-        widgets['calendar'] = i;
-    }), _className(function () {
-        try {
-            return [classNameObj][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)));
-};
-
-var _input = __webpack_require__(19);
-
-var _input2 = _interopRequireDefault(_input);
-
-var _tooltip = __webpack_require__(80);
-
-var _tooltip2 = _interopRequireDefault(_tooltip);
-
-var _utils = __webpack_require__(7);
-
-var _calendar = __webpack_require__(81);
-
-var _calendar2 = _interopRequireDefault(_calendar);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 170 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _extends2 = __webpack_require__(5);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    var _classNameObj;
-
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-
-    var _self$get = self.get(),
-        type = _self$get.type,
-        name = _self$get.name,
-        value = _self$get.value,
-        placeholder = _self$get.placeholder,
-        tabindex = _self$get.tabindex,
-        readonly = _self$get.readonly,
-        clearable = _self$get.clearable,
-        disabled = _self$get.disabled,
-        size = _self$get.size,
-        rows = _self$get.rows,
-        spellcheck = _self$get.spellcheck,
-        defaultValue = _self$get.defaultValue,
-        style = _self$get.style,
-        className = _self$get.className,
-        autoWidth = _self$get.autoWidth,
-        fluid = _self$get.fluid,
-        width = _self$get.width,
-        autocomplete = _self$get.autocomplete;
-
-    var classNameObj = (_classNameObj = {
-        'k-input': true
-    }, _classNameObj['k-' + size] = size !== 'default', _classNameObj['k-group'] = blocks.prepend || blocks.append, _classNameObj['k-disabled'] = disabled, _classNameObj['k-with-prefix'] = blocks.prefix, _classNameObj['k-with-suffix'] = blocks.suffix, _classNameObj['k-clearable'] = clearable, _classNameObj['k-auto-width'] = autoWidth, _classNameObj['k-fluid'] = fluid, _classNameObj[className] = className, _classNameObj);
-
-    var events = ['keydown', 'keyup', 'change', 'keypress', 'focus', 'blur', /* 'input' */
-    'focusout'].reduce(function (memo, name) {
-        memo['ev-' + name] = self._proxyEvent.bind(self, name);
-        return memo;
-    }, {});
-
-    var wrapperEvents = ['click', 'mouseenter', 'mouseleave'].reduce(function (memo, name) {
-        memo['ev-' + name] = self._proxyEvent.bind(self, name);
-        return memo;
-    }, {});
-
-    return h('div', (0, _extends3.default)({ 'style': function () {
-            try {
-                return [width != null ? (0, _utils.addStyle)(style, { width: width + 'px' }) : style][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, function () {
-        try {
-            return [wrapperEvents][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)), ['\n    ', function () {
-        var _this = this;
-
-        try {
-            return [function () {
-                if (blocks.prepend) {
-                    // if the children of this block is text node
-                    // we add a padding to the wrapper node
-                    // so we handle this block manually
-                    var children = blocks.prepend.call(_this, function () {});
-                    return h('div', null, function () {
-                        try {
-                            return [children][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this), _className(function () {
-                        try {
-                            return [{
-                                "k-prepend": true,
-                                "k-padding": (0, _utils.isTextVNode)(children)
-                            }][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this)));
-                }
-            }()][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), '\n    ', h('div', null, [function () {
-        try {
-            return [blocks.prefix][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('div', null, (_blocks["prefix"] = function (parent) {
-        return null;
-    }) && (__blocks["prefix"] = function (parent) {
-        var self = this;
-        return blocks["prefix"] ? blocks["prefix"].call(this, function () {
-            return _blocks["prefix"].call(self, parent);
-        }) : _blocks["prefix"].call(this, parent);
-    }) && __blocks["prefix"].call(this), 'k-prefix') : undefined, function () {
-        try {
-            return [type !== 'textarea'][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('input', (0, _extends3.default)({ 'type': function () {
-            try {
-                return [type][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'name': function () {
-            try {
-                return [name][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'value': function () {
-            try {
-                return [value][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-input': function () {
-            try {
-                return [self._onInput][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'defaultValue': function () {
-            try {
-                return [defaultValue][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'readOnly': function () {
-            try {
-                return [readonly][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'placeholder': function () {
-            try {
-                return [placeholder][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'disabled': function () {
-            try {
-                return [disabled][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'tabindex': function () {
-            try {
-                return [tabindex][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'autocomplete': function () {
-            try {
-                return [autocomplete][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, function () {
-        try {
-            return [events][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)), null, 'k-inner', null, function (i) {
-        widgets['input'] = i;
-    }) : h('textarea', (0, _extends3.default)({ 'value': function () {
-            try {
-                return [value][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-input': function () {
-            try {
-                return [self._onInput][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'defaultValue': function () {
-            try {
-                return [defaultValue][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'name': function () {
-            try {
-                return [name][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'readOnly': function () {
-            try {
-                return [readonly][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'placeholder': function () {
-            try {
-                return [placeholder][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'disabled': function () {
-            try {
-                return [disabled][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'rows': function () {
-            try {
-                return [rows][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'spellcheck': function () {
-            try {
-                return [spellcheck][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'tabindex': function () {
-            try {
-                return [tabindex][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, function () {
-        try {
-            return [events][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)), null, 'k-inner k-textarea', null, function (i) {
-        widgets['input'] = i;
-    }), function () {
-        try {
-            return [blocks.suffix || clearable][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('div', null, [function () {
-        try {
-            return [clearable][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('i', { 'ev-click': function () {
-            try {
-                return [self.clear][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, null, _className(function () {
-        try {
-            return [{
-                "k-clear k-icon ion-ios-close": true,
-                "k-show": value
-            }][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this))) : undefined, (_blocks["suffix"] = function (parent) {
-        return null;
-    }) && (__blocks["suffix"] = function (parent) {
-        var self = this;
-        return blocks["suffix"] ? blocks["suffix"].call(this, function () {
-            return _blocks["suffix"].call(self, parent);
-        }) : _blocks["suffix"].call(this, parent);
-    }) && __blocks["suffix"].call(this)], 'k-suffix') : undefined, function () {
-        try {
-            return [autoWidth][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('div', null, function () {
-        try {
-            return [value == null || value === '' ? placeholder : value][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), 'k-fake', null, function (i) {
-        widgets['fake'] = i;
-    }) : undefined], 'k-wrapper'), '\n    ', function () {
-        var _this2 = this;
-
-        try {
-            return [function () {
-                if (blocks.append) {
-                    var children = blocks.append.call(_this2, function () {});
-                    return h('div', null, function () {
-                        try {
-                            return [children][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this2), _className(function () {
-                        try {
-                            return [{
-                                "k-append": true,
-                                "k-padding": (0, _utils.isTextVNode)(children)
-                            }][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this2)));
-                }
-            }()][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), '\n'], _className(function () {
-        try {
-            return [classNameObj][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)));
-};
-
-var _utils = __webpack_require__(7);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 171 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 172 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _extends2 = __webpack_require__(5);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-
-    var _self$get = self.get(),
-        children = _self$get.children,
-        show = _self$get.show,
-        trigger = _self$get.trigger,
-        className = _self$get.className,
-        transition = _self$get.transition;
-
-    var events = {};
-    // no matter what the trigger is, we should show menu when enter it.
-    // for this case: hover trigger nests click trigger
-    events['ev-mouseenter'] = self.show;
-    if (trigger === 'hover') {
-        events['ev-mouseleave'] = self.hide.bind(self, false);
-    }
-
-    return h(_moveWrapper2.default, { '_parent': function () {
-            try {
-                return [self][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'children': function () {
-            try {
-                return [show][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) ? h(Animate, (0, _extends3.default)({ 'className': _className(function () {
-                try {
-                    var _ref;
-
-                    return [(_ref = { "k-dropdown-menu": true }, _ref[className] = className, _ref)][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this)), 'a:transition': function () {
-                try {
-                    return [transition][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'a:appear': function () {
-                try {
-                    return [true][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this) }, function () {
-            try {
-                return [events][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), { 'a:delayDestroy': function () {
-                try {
-                    return [false][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'ev-$destroyed': function () {
-                try {
-                    return [self._removeDocumentEvents][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'ev-$mounted': function () {
-                try {
-                    return [self._onShow][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'children': function () {
-                try {
-                    return [children][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), '_context': $this }), null, null, null, function (i) {
-            widgets['menu'] = i;
-        }) : undefined, '_context': $this }, null, null, null, function (i) {
-        widgets['wrapper'] = i;
-    });
-};
-
-var _moveWrapper = __webpack_require__(39);
-
-var _moveWrapper2 = _interopRequireDefault(_moveWrapper);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 173 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _extends2 = __webpack_require__(5);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    var _classNameObj;
-
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-
-    var _self$get = self.get(),
-        children = _self$get.children,
-        show = _self$get.show,
-        trigger = _self$get.trigger,
-        showArrow = _self$get.showArrow,
-        canHover = _self$get.canHover,
-        className = _self$get.className,
-        _feedback = _self$get._feedback,
-        transition = _self$get.transition;
-
-    var events = {};
-    if (canHover && trigger === 'hover') {
-        events['ev-mouseenter'] = self.show;
-        events['ev-mouseleave'] = self.hide.bind(self, false);
-    }
-
-    var classNameObj = (_classNameObj = {
-        "k-tooltip-content": true,
-        'k-cannot-hover': trigger === 'hover' && !canHover
-    }, _classNameObj[className] = className, _classNameObj);
-
-    return h(_moveWrapper2.default, { 'children': function () {
-            try {
-                return [show][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) ? h(Animate, (0, _extends3.default)({ 'className': _className(function () {
-                try {
-                    return [classNameObj][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this)), 'a:transition': function () {
-                try {
-                    return [transition][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this) }, function () {
-            try {
-                return [events][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), { 'a:delayDestroy': function () {
-                try {
-                    return [false][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'children': [function () {
-                try {
-                    return [showArrow][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this) ? h('i', null, null, _className(function () {
-                try {
-                    var _ref;
-
-                    return [(_ref = {
-                        "k-arrow": true
-                    }, _ref['k-' + _feedback.vertical] = _feedback.vertical, _ref['k-' + _feedback.horizontal] = _feedback.horizontal, _ref)][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this)), null, function (i) {
-                widgets['arrow'] = i;
-            }) : undefined, function () {
-                try {
-                    return [children][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this)], '_context': $this }), null, null, null, function (i) {
-            widgets['content'] = i;
-        }) : undefined, '_context': $this });
-};
-
-var _moveWrapper = __webpack_require__(39);
-
-var _moveWrapper2 = _interopRequireDefault(_moveWrapper);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 174 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 175 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _extends2 = __webpack_require__(5);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-
-    var _self$get = self.get(),
-        value = _self$get.value,
-        maxDate = _self$get.maxDate,
-        minDate = _self$get.minDate,
-        dayClassNames = _self$get.dayClassNames,
-        disabledDate = _self$get.disabledDate,
-        multiple = _self$get.multiple,
-        onMouseEnterDay = _self$get.onMouseEnterDay,
-        type = _self$get.type,
-        hours = _self$get.hours,
-        minutes = _self$get.minutes,
-        seconds = _self$get.seconds,
-        disabledHours = _self$get.disabledHours,
-        disabledMinutes = _self$get.disabledMinutes,
-        disabledSeconds = _self$get.disabledSeconds,
-        _isShowYearPicker = _self$get._isShowYearPicker,
-        _isSelectTime = _self$get._isSelectTime,
-        _now = _self$get._now,
-        _showDate = _self$get._showDate,
-        _focusDate = _self$get._focusDate;
-
-    var values = multiple ? value || [] : [value];
-
-    var valueDate = new Date(values[self._index] || _now);
-    var showDate = new Date(_showDate || valueDate);
-
-    var yearMonthFormat = (0, _utils._$)('yearMonthFormat');
-    if (yearMonthFormat === 'yearMonthFormat') {
-        yearMonthFormat = 'YYYY MM';
-    }
-    var format = yearMonthFormat.split(' ');
-    var map = {
-        'MM': h('span', null, function () {
-            try {
-                return [(0, _utils._$)(showDate.getMonth() + 1 + '\u6708')][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'k-text'),
-        'YYYY': h('span', null, function () {
-            try {
-                return [(0, _utils._$)('{n}\u5E74', { n: showDate.getFullYear() })][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'k-text')
-    };
-    var panel = format.map(function (item) {
-        return map[item];
-    });
-
-    return h('div', { 'tabindex': '0', 'ev-keydown': function () {
-            try {
-                return [self._onKeydown][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, function () {
-        try {
-            return [!_isSelectTime][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('div', null, [h('div', null, [h(_button2.default, { 'icon': function () {
-            try {
-                return [true][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'type': 'none', 'size': 'small', 'className': 'k-prev', 'tagName': 'div', 'tabindex': function () {
-            try {
-                return [null][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-click': function () {
-            try {
-                return [self.prevYear][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'children': [h('i', null, null, 'k-icon ion-ios-arrow-left'), h('i', null, null, 'k-icon ion-ios-arrow-left')], '_context': $this }), h(_button2.default, { 'icon': function () {
-            try {
-                return [true][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'type': 'none', 'size': 'small', 'className': 'k-prev', 'tagName': 'div', 'tabindex': function () {
-            try {
-                return [null][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-click': function () {
-            try {
-                return [self.prevMonth][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'children': h('i', null, null, 'k-icon ion-ios-arrow-left'), '_context': $this }), h('span', { 'ev-click': function () {
-            try {
-                return [self.showYearPicker][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, function () {
-        try {
-            return [panel][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), 'k-text-wrapper'), h(_button2.default, { 'icon': function () {
-            try {
-                return [true][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'type': 'none', 'size': 'small', 'className': 'k-next', 'tagName': 'div', 'tabindex': function () {
-            try {
-                return [null][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-click': function () {
-            try {
-                return [self.nextYear][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'children': [h('i', null, null, 'k-icon ion-ios-arrow-right'), h('i', null, null, 'k-icon ion-ios-arrow-right')], '_context': $this }), h(_button2.default, { 'icon': function () {
-            try {
-                return [true][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'type': 'none', 'size': 'small', 'className': 'k-next', 'tagName': 'div', 'tabindex': function () {
-            try {
-                return [null][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-click': function () {
-            try {
-                return [self.nextMonth][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'children': h('i', null, null, 'k-icon ion-ios-arrow-right'), '_context': $this })], 'k-month c-clearfix'), function () {
-        try {
-            return [!_isShowYearPicker][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('div', null, _Vdt.utils.map(function () {
-        try {
-            return [[(0, _utils._$)('日'), (0, _utils._$)('一'), (0, _utils._$)('二'), (0, _utils._$)('三'), (0, _utils._$)('四'), (0, _utils._$)('五'), (0, _utils._$)('六')]][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), function (value, key) {
-        return h('div', null, function () {
-            try {
-                return [value][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'k-weekday');
-    }, this), 'k-weekdays') : undefined, function () {
-        try {
-            return [!_isShowYearPicker][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('div', { 'ev-mouseleave': function () {
-            try {
-                return [self._onMouseLeaveDays][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, ['\n            ', function () {
-        var _this = this;
-
-        try {
-            return [function () {
-                var ret = [];
-                var start = new Date(showDate);
-                var month = start.getMonth();
-                start.setDate(1);
-                start.setHours(0);
-                start.setMinutes(0);
-                start.setSeconds(0);
-                var startWeekday = start.getDay();
-                start.setDate(1 - startWeekday);
-
-                var _maxDate = new Date(maxDate);
-                var _minDate = new Date(minDate);
-
-                var _loop = function _loop(i) {
-                    var _date = start.getDate();
-                    var _month = start.getMonth();
-                    var disabled = (0, _utils2.isGT)(start, _maxDate) || (0, _utils2.isLT)(start, _minDate) || disabledDate.call(self, self.getDateString(start));
-                    var isOut = _month !== month;
-                    var classNames = dayClassNames ? dayClassNames.call(self, new Date(start), isOut) : null;
-                    ret.push(h('div', { 'ev-click': function () {
-                            try {
-                                return [!disabled && self.select.bind(self, new Date(start))][0];
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call(_this), 'ev-mouseenter': function () {
-                            try {
-                                return [self._onMouseEnter.bind(self, new Date(start), isOut)][0];
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call(_this) }, function () {
-                        try {
-                            return [_date][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this), _className(function () {
-                        try {
-                            return [(0, _extends3.default)({
-                                "k-day": true,
-                                "k-out": isOut,
-                                "k-active": !isOut && values.find(function (value) {
-                                    return (0, _utils2.isEqual)(new Date(value), start);
-                                }),
-                                "k-today": (0, _utils2.isEqual)(_now, start),
-                                "k-disabled": disabled,
-                                "k-hover": (0, _utils2.isEqual)(start, _focusDate)
-                            }, classNames)][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this))));
-                    start.setDate(start.getDate() + 1);
-                };
-
-                for (var i = 0; i < 42; i++) {
-                    _loop(i);
-                }
-                var result = [];
-
-                var _loop2 = function _loop2(i) {
-                    result.push(h('div', null, function () {
-                        try {
-                            return [ret.slice(7 * i, 7 * (i + 1))][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this)));
-                };
-
-                for (var i = 0; i < 6; i++) {
-                    _loop2(i);
-                }
-                return result;
-            }()][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), '\n        '], 'k-calendar') : undefined, function () {
-        try {
-            return [_isShowYearPicker][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h(_grid.Row, { 'className': 'k-year-picker', 'children': ['\n            ', function () {
-            var _this2 = this;
-
-            try {
-                return [function () {
-                    var map = {
-                        MM: h(_grid.Col, { 'span': '12', 'children': h(_scrollSelect2.default, { 'data': function () {
-                                    try {
-                                        return [(0, _utils.range)(0, 11).map(function (i) {
-                                            return { label: (0, _utils._$)(i + 1 + '\u6708'), value: i };
-                                        })][0];
-                                    } catch (e) {
-                                        _e(e);
-                                    }
-                                }.call(_this2), 'value': function () {
-                                    try {
-                                        return [showDate.getMonth()][0];
-                                    } catch (e) {
-                                        _e(e);
-                                    }
-                                }.call(_this2), 'ev-$change:value': function () {
-                                    try {
-                                        return [self.onChangeMonth][0];
-                                    } catch (e) {
-                                        _e(e);
-                                    }
-                                }.call(_this2), 'children': null, '_context': $this }), '_context': $this }),
-                        YYYY: h(_grid.Col, { 'span': '12', 'children': h(_scrollSelect2.default, { 'data': function () {
-                                    try {
-                                        return [function (value) {
-                                            return (0, _utils.range)(value - 5, value + 5);
-                                        }][0];
-                                    } catch (e) {
-                                        _e(e);
-                                    }
-                                }.call(_this2), 'value': function () {
-                                    try {
-                                        return [showDate.getFullYear()][0];
-                                    } catch (e) {
-                                        _e(e);
-                                    }
-                                }.call(_this2), 'ev-$change:value': function () {
-                                    try {
-                                        return [self.onChangeYear][0];
-                                    } catch (e) {
-                                        _e(e);
-                                    }
-                                }.call(_this2), 'children': null, '_context': $this }), '_context': $this })
-                    };
-
-                    return format.map(function (item) {
-                        return map[item];
-                    });
-                }()][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), '\n        '], '_context': $this }) : undefined]) : h('div', null, [h('div', null, ['\n            ', hc('<Button type=\"none\" size=\"small\" class=\"k-prev\"\n                ev-click={{ self.cancel.bind(self) }}\n            >取消</Button>'), h('span', { 'ev-click': function () {
-            try {
-                return [self.cancel][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, function () {
-        try {
-            return [panel][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), 'k-text-wrapper'), '\n            ', hc('<Button type=\"none\" size=\"small\" class=\"k-next\"\n                ev-click={{ self.confirm.bind(self) }}\n            >确认</Button>')], 'k-month c-clearfix'), h(_grid.Row, { 'children': [h(_grid.Col, { 'span': '8', 'children': h(_scrollSelect2.default, { 'data': function () {
-                    try {
-                        return [hours.map(function (v) {
-                            return { label: (0, _utils.strPad)(v, 2), value: v };
-                        })][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this), 'value': function () {
-                    try {
-                        return [valueDate.getHours()][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this), 'ev-$change:value': function () {
-                    try {
-                        return [self.onChangeTime.bind(self, 'Hours')][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this), 'disabled': function () {
-                    try {
-                        return [disabledHours][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this), 'children': null, '_context': $this, '_blocks': function (blocks) {
-                    var _blocks = {},
-                        __blocks = extend({}, blocks);
-                    return (_blocks["append"] = function (parent) {
-                        return ':';
-                    }) && (__blocks["append"] = function (parent) {
-                        var self = this;
-                        return blocks["append"] ? blocks["append"].call(this, function () {
-                            return _blocks["append"].call(self, parent);
-                        }) : _blocks["append"].call(this, parent);
-                    }), __blocks;
-                }.call(this, {}) }), '_context': $this }), h(_grid.Col, { 'span': '8', 'children': h(_scrollSelect2.default, { 'data': function () {
-                    try {
-                        return [minutes.map(function (v) {
-                            return { label: (0, _utils.strPad)(v, 2), value: v };
-                        })][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this), 'value': function () {
-                    try {
-                        return [valueDate.getMinutes()][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this), 'ev-$change:value': function () {
-                    try {
-                        return [self.onChangeTime.bind(self, 'Minutes')][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this), 'disabled': function () {
-                    try {
-                        return [disabledMinutes][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this), 'children': null, '_context': $this, '_blocks': function (blocks) {
-                    var _blocks = {},
-                        __blocks = extend({}, blocks);
-                    return (_blocks["append"] = function (parent) {
-                        return ':';
-                    }) && (__blocks["append"] = function (parent) {
-                        var self = this;
-                        return blocks["append"] ? blocks["append"].call(this, function () {
-                            return _blocks["append"].call(self, parent);
-                        }) : _blocks["append"].call(this, parent);
-                    }), __blocks;
-                }.call(this, {}) }), '_context': $this }), h(_grid.Col, { 'span': '8', 'children': h(_scrollSelect2.default, { 'data': function () {
-                    try {
-                        return [seconds.map(function (v) {
-                            return { label: (0, _utils.strPad)(v, 2), value: v };
-                        })][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this), 'value': function () {
-                    try {
-                        return [valueDate.getSeconds()][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this), 'ev-$change:value': function () {
-                    try {
-                        return [self.onChangeTime.bind(self, 'Seconds')][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this), 'disabled': function () {
-                    try {
-                        return [disabledSeconds][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this), 'children': null, '_context': $this }), '_context': $this })], '_context': $this })], 'k-time-picker', 'time'), 'k-calendar-wrapper');
-};
-
-var _button = __webpack_require__(15);
-
-var _button2 = _interopRequireDefault(_button);
-
-var _scrollSelect = __webpack_require__(82);
-
-var _scrollSelect2 = _interopRequireDefault(_scrollSelect);
-
-var _grid = __webpack_require__(83);
-
-var _utils = __webpack_require__(7);
-
-var _utils2 = __webpack_require__(58);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 176 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-
-    var _self$get = self.get(),
-        value = _self$get.value,
-        _list = _self$get._list,
-        disabled = _self$get.disabled,
-        _translate = _self$get._translate,
-        _marginTop = _self$get._marginTop,
-        _dragging = _self$get._dragging;
-
-    var classNameObj = {
-        "k-scroll-select": true,
-        "k-dragging": _dragging,
-        "k-disabled": disabled
-    };
-
-    return h('div', null, [h('div', { 'style': function () {
-            try {
-                return [{
-                    transform: "translateY(" + _translate + "px)",
-                    marginTop: _marginTop + "px"
-                }][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-mousedown': function () {
-            try {
-                return [!disabled ? self._dragStart : undefined][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-wheel': function () {
-            try {
-                return [!disabled ? self._onWheel : undefined][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, _Vdt.utils.map(function () {
-        try {
-            return [_list][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), function (item, key) {
-        return h('div', { 'ev-click': function () {
-                try {
-                    return [!disabled ? self._select.bind(self, item, key) : undefined][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this) }, function () {
-            try {
-                return [item.label][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), _className(function () {
-            try {
-                return [{
-                    "k-item": true,
-                    "k-active": item.value === value
-                }][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this)), function () {
-            try {
-                return [item.key][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), function () {
-            try {
-                return [key === 0 ? function (dom) {
-                    return self.refs.item = dom;
-                } : undefined][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this));
-    }, this), 'k-wrapper', null, function (i) {
-        widgets['wrapper'] = i;
-    }), function () {
-        try {
-            return [blocks.append][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('div', null, (_blocks["append"] = function (parent) {
-        return null;
-    }) && (__blocks["append"] = function (parent) {
-        var self = this;
-        return blocks["append"] ? blocks["append"].call(this, function () {
-            return _blocks["append"].call(self, parent);
-        }) : _blocks["append"].call(this, parent);
-    }) && __blocks["append"].call(this), 'k-append') : undefined], _className(function () {
-        try {
-            return [classNameObj][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)));
-};
-
-module.exports = exports["default"];
-
-/***/ }),
-/* 177 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 178 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.default = undefined;
-
-var _getOwnPropertyDescriptor = __webpack_require__(4);
-
-var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
-
-var _classCallCheck2 = __webpack_require__(1);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(8);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(2);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(3);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _dec, _desc, _value, _class;
-
-var _intact = __webpack_require__(0);
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _row = __webpack_require__(179);
-
-var _row2 = _interopRequireDefault(_row);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-    var desc = {};
-    Object['ke' + 'ys'](descriptor).forEach(function (key) {
-        desc[key] = descriptor[key];
-    });
-    desc.enumerable = !!desc.enumerable;
-    desc.configurable = !!desc.configurable;
-
-    if ('value' in desc || desc.initializer) {
-        desc.writable = true;
-    }
-
-    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-        return decorator(target, property, desc) || desc;
-    }, desc);
-
-    if (context && desc.initializer !== void 0) {
-        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-        desc.initializer = undefined;
-    }
-
-    if (desc.initializer === void 0) {
-        Object['define' + 'Property'](target, property, desc);
-        desc = null;
-    }
-
-    return desc;
-}
-
-var Row = (_dec = _intact2.default.template(), (_class = function (_Intact) {
-    (0, _inherits3.default)(Row, _Intact);
-
-    function Row() {
-        (0, _classCallCheck3.default)(this, Row);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
-    }
-
-    Row.prototype.defaults = function defaults() {
-        return {
-            gutter: 0
-        };
-    };
-
-    (0, _createClass3.default)(Row, [{
-        key: 'template',
-        get: function get() {
-            return _row2.default;
-        }
-    }]);
-    return Row;
-}(_intact2.default), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
-exports.default = Row;
-module.exports = exports['default'];
-
-/***/ }),
-/* 179 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    var _classNameObj;
-
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-    var gutterStyle = __webpack_require__(84);
-
-    var _self$get = self.get(),
-        children = _self$get.children,
-        className = _self$get.className,
-        style = _self$get.style,
-        gutter = _self$get.gutter;
-
-    var hasGutter = gutter > 0;
-    if (hasGutter) {
-        style = gutterStyle(gutter, style);
-    }
-
-    var classNameObj = (_classNameObj = {
-        'k-row': true
-    }, _classNameObj[className] = className, _classNameObj['k-gutter'] = hasGutter, _classNameObj);
-
-    return h('div', { 'style': function () {
-            try {
-                return [style][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, function () {
-        try {
-            return [hasGutter ? children.map(function (vNode) {
-                if (vNode) {
-                    vNode.props.gutter = gutter;
-                    return vNode;
-                }
-            }) : children][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), _className(function () {
-        try {
-            return [classNameObj][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)));
-};
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 180 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.default = undefined;
-
-var _getOwnPropertyDescriptor = __webpack_require__(4);
-
-var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
-
-var _classCallCheck2 = __webpack_require__(1);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(8);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(2);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(3);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _dec, _desc, _value, _class;
-
-var _intact = __webpack_require__(0);
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _col = __webpack_require__(181);
-
-var _col2 = _interopRequireDefault(_col);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-    var desc = {};
-    Object['ke' + 'ys'](descriptor).forEach(function (key) {
-        desc[key] = descriptor[key];
-    });
-    desc.enumerable = !!desc.enumerable;
-    desc.configurable = !!desc.configurable;
-
-    if ('value' in desc || desc.initializer) {
-        desc.writable = true;
-    }
-
-    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-        return decorator(target, property, desc) || desc;
-    }, desc);
-
-    if (context && desc.initializer !== void 0) {
-        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-        desc.initializer = undefined;
-    }
-
-    if (desc.initializer === void 0) {
-        Object['define' + 'Property'](target, property, desc);
-        desc = null;
-    }
-
-    return desc;
-}
-
-var Col = (_dec = _intact2.default.template(), (_class = function (_Intact) {
-    (0, _inherits3.default)(Col, _Intact);
-
-    function Col() {
-        (0, _classCallCheck3.default)(this, Col);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
-    }
-
-    Col.prototype.defaults = function defaults() {
-        return {
-            span: 24,
-            offset: 0,
-            gutter: 0
-        };
-    };
-
-    (0, _createClass3.default)(Col, [{
-        key: 'template',
-        get: function get() {
-            return _col2.default;
-        }
-    }]);
-    return Col;
-}(_intact2.default), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
-exports.default = Col;
-module.exports = exports['default'];
-
-/***/ }),
-/* 181 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    var _classNameObj;
-
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-    var gutterStyle = __webpack_require__(84);
-
-    var _self$get = self.get(),
-        children = _self$get.children,
-        span = _self$get.span,
-        className = _self$get.className,
-        style = _self$get.style,
-        gutter = _self$get.gutter,
-        offset = _self$get.offset;
-
-    var hasGutter = gutter > 0;
-    if (hasGutter) {
-        style = gutterStyle(gutter, style, 'padding');
-    }
-
-    var classNameObj = (_classNameObj = {
-        'k-col': true
-    }, _classNameObj['k-' + span] = true, _classNameObj[className] = className && !hasGutter, _classNameObj['k-offset-' + offset] = offset > 0, _classNameObj);
-
-    return h('div', { 'style': function () {
-            try {
-                return [style][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, function () {
-        try {
-            return [hasGutter ? h('div', null, function () {
-                try {
-                    return [children][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), _className(function () {
-                try {
-                    return [className][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this))) : children][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), _className(function () {
-        try {
-            return [classNameObj][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)));
-};
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 182 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 183 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 184 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.Dialog = exports.default = undefined;
-
-var _getOwnPropertyDescriptor = __webpack_require__(4);
-
-var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
-
-var _promise = __webpack_require__(30);
-
-var _promise2 = _interopRequireDefault(_promise);
-
-var _classCallCheck2 = __webpack_require__(1);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _possibleConstructorReturn2 = __webpack_require__(2);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(3);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _dec, _desc, _value, _class, _init, _class2, _temp;
-
-var _intact = __webpack_require__(0);
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _index = __webpack_require__(185);
-
-var _index2 = _interopRequireDefault(_index);
-
-__webpack_require__(6);
-
-__webpack_require__(186);
-
-var _position = __webpack_require__(40);
-
-var _utils = __webpack_require__(7);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-    var desc = {};
-    Object['ke' + 'ys'](descriptor).forEach(function (key) {
-        desc[key] = descriptor[key];
-    });
-    desc.enumerable = !!desc.enumerable;
-    desc.configurable = !!desc.configurable;
-
-    if ('value' in desc || desc.initializer) {
-        desc.writable = true;
-    }
-
-    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-        return decorator(target, property, desc) || desc;
-    }, desc);
-
-    if (context && desc.initializer !== void 0) {
-        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-        desc.initializer = undefined;
-    }
-
-    if (desc.initializer === void 0) {
-        Object['define' + 'Property'](target, property, desc);
-        desc = null;
-    }
-
-    return desc;
-}
-
-var Dialog = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
-    (0, _inherits3.default)(Dialog, _Intact);
-
-    function Dialog() {
-        (0, _classCallCheck3.default)(this, Dialog);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
-    }
-
-    Dialog.prototype.defaults = function defaults() {
-        return {
-            title: (0, _utils._$)('提示'),
-            value: false,
-            size: 'default', // large | default | small | mini
-            loading: false,
-            disabledOk: false,
-            okText: (0, _utils._$)('确认'),
-            cancelText: (0, _utils._$)('取消'),
-            ok: undefined,
-            cancel: undefined,
-
-            _dragging: false
-        };
-    };
-
-    Dialog.prototype._init = function _init() {
-        var _this2 = this;
-
-        this.on('$changed:value', function (c, isShow) {
-            if (isShow) {
-                _this2.trigger('open');
-                _this2._center();
-            } else {
-                _this2.trigger('close');
-            }
-        });
-    };
-
-    Dialog.prototype._create = function _create() {
-        // use as component
-        if (this.vNode) {
-            this._useAsComponent = true;
-        }
-    };
-
-    Dialog.prototype._mount = function _mount(lastVNode, nextVNode) {
-        // for debug
-        window.__dialog = this;
-
-        this._center();
-
-        document.addEventListener('keydown', this._escClose);
-    };
-
-    Dialog.prototype.showLoading = function showLoading() {
-        this.set('loading', true);
-    };
-
-    Dialog.prototype.hideLoading = function hideLoading() {
-        this.set('loading', false);
-    };
-
-    Dialog.prototype.disableOk = function disableOk() {
-        this.set('disabledOk', true);
-    };
-
-    Dialog.prototype.enableOk = function enableOk() {
-        this.set('disabledOk', false);
-    };
-
-    Dialog.prototype.close = function close() {
-        this.set('value', false);
-    };
-
-    Dialog.prototype.cancel = function cancel() {
-        var callback = this.get('cancel');
-        if (typeof callback === 'function') {
-            callback.call(this, this);
-        } else {
-            this.trigger('cancel', this);
-            this.close();
-        }
-    };
-
-    Dialog.prototype.ok = function ok() {
-        var callback = this.get('ok');
-        if (typeof callback === 'function') {
-            callback.call(this, this);
-        } else {
-            this.trigger('ok', this);
-            this.close();
-        }
-    };
-
-    Dialog.prototype.show = function show() {
-        var _this3 = this;
-
-        return new _promise2.default(function (resolve) {
-            if (_this3.get('value')) return;
-            // use as component
-            if (_this3._useAsComponent) {
-                return _this3.set('value', true);
-            }
-            // use as instance
-            if (_this3.rendered) {
-                _this3.set('value', true);
-            } else {
-                var show = function show() {
-                    _this3.init();
-                    _this3.mount();
-                    _this3.set('value', true);
-                    resolve();
-                };
-                if (_this3.inited) {
-                    show();
-                } else {
-                    _this3.on('$inited', show);
-                }
-            }
-        });
-    };
-
-    Dialog.prototype._escClose = function _escClose(e) {
-        // Esc
-        if (e.keyCode === 27) this.close();
-    };
-
-    Dialog.prototype._leaveEnd = function _leaveEnd() {
-        // use as instance or use as component but it has be destroyed
-        // then remove the element
-        if (!this._useAsComponent || this._useAsComponent && this.destroyed) {
-            this.vdt.vNode.children._$destroy();
-        }
-    };
-
-    Dialog.prototype._center = function _center() {
-        if (!this.mounted || !this.get('value')) return;
-        // move to center
-        (0, _position.position)(this.dialog, {
-            // ensure title visible always
-            using: function using(feedback, position) {
-                var height = feedback.element.height;
-                var scrollTop = window.pageYOffset;
-                var outerHeight = window.document.documentElement.clientHeight;
-                if (height > outerHeight) {
-                    position.top = scrollTop;
-                }
-            }
-        });
-    };
-
-    Dialog.prototype._dragStart = function _dragStart(e) {
-        // left key
-        if (e.which !== 1 || !this.get('value')) return;
-
-        this.set('_dragging', true);
-        var dialog = this.dialog;
-        this._x = dialog.offsetLeft - e.clientX;
-        this._y = dialog.offsetTop - e.clientY;
-        this._width = dialog.offsetWidth;
-        this._height = dialog.offsetHeight;
-
-        document.addEventListener('mousemove', this._move);
-        document.addEventListener('mouseup', this._dragEnd);
-    };
-
-    Dialog.prototype._move = function _move(e) {
-        // TODO; drag out of screen
-        if (this.get('_dragging')) {
-            var style = this.dialog.style;
-            var body = document.body;
-            var html = document.documentElement;
-            var left = Math.min(Math.max(this._x + e.clientX, 0), Math.max(Math.max(body.scrollWidth, html.scrollWidth) - this._width, 0));
-            var top = Math.min(Math.max(this._y + e.clientY, 0), Math.max(Math.max(body.scrollHeight, html.scrollHeight) - this._height, 0));
-            style.left = left + 'px';
-            style.top = top + 'px';
-        }
-    };
-
-    Dialog.prototype._dragEnd = function _dragEnd() {
-        if (this.get('_dragging')) {
-            this.set('_dragging', false);
-            document.removeEventListener('mousemove', this._move);
-            document.removeEventListener('mouseup', this._dragEnd);
-        }
-    };
-
-    Dialog.prototype._destroy = function _destroy() {
-        document.removeEventListener('keydown', this._escClose);
-        if (this.get('value')) {
-            this.close();
-        } else {
-            var _vdt$vNode$children;
-
-            (_vdt$vNode$children = this.vdt.vNode.children)._$destroy.apply(_vdt$vNode$children, arguments);
-        }
-        this._dragEnd();
-    };
-
-    return Dialog;
-}(_intact2.default), _class2.template = _index2.default, _class2.propTypes = {
-    value: Boolean,
-    loading: Boolean
-}, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    initializer: function initializer() {
-        return _init;
-    }
-}), _class)), _class));
-exports.default = Dialog;
-exports.Dialog = Dialog;
-
-/***/ }),
-/* 185 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-                _Vdt || (_Vdt = Vdt);
-                obj || (obj = {});
-                blocks || (blocks = {});
-                var h = _Vdt.miss.h,
-                    hc = _Vdt.miss.hc,
-                    hu = _Vdt.miss.hu,
-                    widgets = this && this.widgets || {},
-                    _blocks = {},
-                    __blocks = {},
-                    __u = _Vdt.utils,
-                    extend = __u.extend,
-                    _e = __u.error,
-                    _className = __u.className,
-                    __o = __u.Options,
-                    _getModel = __o.getModel,
-                    _setModel = __o.setModel,
-                    _setCheckboxModel = __u.setCheckboxModel,
-                    _detectCheckboxChecked = __u.detectCheckboxChecked,
-                    _setSelectModel = __u.setSelectModel,
-                    self = this.data,
-                    $this = this,
-                    scope = obj,
-                    Animate = self && self.Animate,
-                    parent = ($callee || {})._super;
-
-                var _self$get = self.get(),
-                    size = _self$get.size;
-
-                return h(_moveWrapper2.default, { 'autoDestroy': function () {
-                                                try {
-                                                                return [false][0];
-                                                } catch (e) {
-                                                                _e(e);
-                                                }
-                                }.call(this), 'children': h('div', null, [function () {
-                                                try {
-                                                                return [self.get('value')][0];
-                                                } catch (e) {
-                                                                _e(e);
-                                                }
-                                }.call(this) ? h(Animate, { 'className': 'k-overlay', 'key': 'overlay', 'children': null, '_context': $this }) : undefined, function () {
-                                                try {
-                                                                return [self.get('value')][0];
-                                                } catch (e) {
-                                                                _e(e);
-                                                }
-                                }.call(this) ? h(Animate, { 'className': _className(function () {
-                                                                try {
-                                                                                var _ref;
-
-                                                                                return [(_ref = {
-                                                                                                "k-dialog": true,
-                                                                                                'k-dragging': self.get('_dragging')
-                                                                                }, _ref['k-' + size] = size !== 'default', _ref)][0];
-                                                                } catch (e) {
-                                                                                _e(e);
-                                                                }
-                                                }.call(this)), 'ref': function () {
-                                                                try {
-                                                                                return [function (i) {
-                                                                                                return self.dialog = i ? i.element : null;
-                                                                                }][0];
-                                                                } catch (e) {
-                                                                                _e(e);
-                                                                }
-                                                }.call(this), 'ev-a:leaveEnd': function () {
-                                                                try {
-                                                                                return [self._leaveEnd][0];
-                                                                } catch (e) {
-                                                                                _e(e);
-                                                                }
-                                                }.call(this), 'key': 'dialog', 'children': [h('div', { 'ev-mousedown': function () {
-                                                                                try {
-                                                                                                return [self._dragStart][0];
-                                                                                } catch (e) {
-                                                                                                _e(e);
-                                                                                }
-                                                                }.call(this) }, [(_blocks["header"] = function (parent) {
-                                                                return h('span', null, function () {
-                                                                                try {
-                                                                                                return [self.get('title')][0];
-                                                                                } catch (e) {
-                                                                                                _e(e);
-                                                                                }
-                                                                }.call(this), 'k-title');
-                                                }) && (__blocks["header"] = function (parent) {
-                                                                var self = this;
-                                                                return blocks["header"] ? blocks["header"].call(this, function () {
-                                                                                return _blocks["header"].call(self, parent);
-                                                                }) : _blocks["header"].call(this, parent);
-                                                }) && __blocks["header"].call(this), h(_button2.default, { 'type': 'none', 'icon': function () {
-                                                                                try {
-                                                                                                return [true][0];
-                                                                                } catch (e) {
-                                                                                                _e(e);
-                                                                                }
-                                                                }.call(this), 'title': function () {
-                                                                                try {
-                                                                                                return [(0, _utils._$)("关闭")][0];
-                                                                                } catch (e) {
-                                                                                                _e(e);
-                                                                                }
-                                                                }.call(this), 'className': 'k-close', 'ev-click': function () {
-                                                                                try {
-                                                                                                return [self.close][0];
-                                                                                } catch (e) {
-                                                                                                _e(e);
-                                                                                }
-                                                                }.call(this), 'children': h('i', null, null, 'k-icon ion-ios-close-empty'), '_context': $this })], 'k-header'), h('div', null, (_blocks["body"] = function (parent) {
-                                                                return function () {
-                                                                                try {
-                                                                                                return [self.get('children')][0];
-                                                                                } catch (e) {
-                                                                                                _e(e);
-                                                                                }
-                                                                }.call(this);
-                                                }) && (__blocks["body"] = function (parent) {
-                                                                var self = this;
-                                                                return blocks["body"] ? blocks["body"].call(this, function () {
-                                                                                return _blocks["body"].call(self, parent);
-                                                                }) : _blocks["body"].call(this, parent);
-                                                }) && __blocks["body"].call(this), 'k-body'), h('div', null, (_blocks["footer"] = function (parent) {
-                                                                return [h(_button2.default, { 'ev-click': function () {
-                                                                                                try {
-                                                                                                                return [self.cancel][0];
-                                                                                                } catch (e) {
-                                                                                                                _e(e);
-                                                                                                }
-                                                                                }.call(this), 'children': function () {
-                                                                                                try {
-                                                                                                                return [self.get('cancelText')][0];
-                                                                                                } catch (e) {
-                                                                                                                _e(e);
-                                                                                                }
-                                                                                }.call(this), '_context': $this }), h(_button2.default, { 'type': 'primary', 'ev-click': function () {
-                                                                                                try {
-                                                                                                                return [self.ok][0];
-                                                                                                } catch (e) {
-                                                                                                                _e(e);
-                                                                                                }
-                                                                                }.call(this), 'loading': function () {
-                                                                                                try {
-                                                                                                                return [self.get('loading')][0];
-                                                                                                } catch (e) {
-                                                                                                                _e(e);
-                                                                                                }
-                                                                                }.call(this), 'disabled': function () {
-                                                                                                try {
-                                                                                                                return [self.get('disabledOk')][0];
-                                                                                                } catch (e) {
-                                                                                                                _e(e);
-                                                                                                }
-                                                                                }.call(this), 'children': function () {
-                                                                                                try {
-                                                                                                                return [self.get('okText')][0];
-                                                                                                } catch (e) {
-                                                                                                                _e(e);
-                                                                                                }
-                                                                                }.call(this), '_context': $this })];
-                                                }) && (__blocks["footer"] = function (parent) {
-                                                                var self = this;
-                                                                return blocks["footer"] ? blocks["footer"].call(this, function () {
-                                                                                return _blocks["footer"].call(self, parent);
-                                                                }) : _blocks["footer"].call(this, parent);
-                                                }) && __blocks["footer"].call(this), 'k-footer')], '_context': $this }) : undefined], _className(function () {
-                                                try {
-                                                                var _ref2;
-
-                                                                return [(_ref2 = {
-                                                                                "k-dialog-wrapper": true
-                                                                }, _ref2[self.get('className')] = self.get('className'), _ref2)][0];
-                                                } catch (e) {
-                                                                _e(e);
-                                                }
-                                }.call(this)), null, function () {
-                                                try {
-                                                                return [function (dom) {
-                                                                                return self.$element = dom;
-                                                                }][0];
-                                                } catch (e) {
-                                                                _e(e);
-                                                }
-                                }.call(this)), '_context': $this });
-};
-
-var _button = __webpack_require__(15);
-
-var _button2 = _interopRequireDefault(_button);
-
-var _moveWrapper = __webpack_require__(39);
-
-var _moveWrapper2 = _interopRequireDefault(_moveWrapper);
-
-var _utils = __webpack_require__(7);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 186 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 187 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.default = undefined;
-
-var _getOwnPropertyDescriptor = __webpack_require__(4);
-
-var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
-
-var _classCallCheck2 = __webpack_require__(1);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _possibleConstructorReturn2 = __webpack_require__(2);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(3);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _dec, _desc, _value, _class, _init, _class2, _temp;
-
-var _intact = __webpack_require__(0);
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _item = __webpack_require__(188);
-
-var _item2 = _interopRequireDefault(_item);
-
-var _dropdown = __webpack_require__(56);
-
-var _dropdown2 = _interopRequireDefault(_dropdown);
-
-var _menu = __webpack_require__(57);
-
-var _menu2 = _interopRequireDefault(_menu);
-
-var _utils = __webpack_require__(7);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-    var desc = {};
-    Object['ke' + 'ys'](descriptor).forEach(function (key) {
-        desc[key] = descriptor[key];
-    });
-    desc.enumerable = !!desc.enumerable;
-    desc.configurable = !!desc.configurable;
-
-    if ('value' in desc || desc.initializer) {
-        desc.writable = true;
-    }
-
-    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-        return decorator(target, property, desc) || desc;
-    }, desc);
-
-    if (context && desc.initializer !== void 0) {
-        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-        desc.initializer = undefined;
-    }
-
-    if (desc.initializer === void 0) {
-        Object['define' + 'Property'](target, property, desc);
-        desc = null;
-    }
-
-    return desc;
-}
-
-var DropdownItem = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
-    (0, _inherits3.default)(DropdownItem, _Intact);
-
-    function DropdownItem() {
-        (0, _classCallCheck3.default)(this, DropdownItem);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
-    }
-
-    DropdownItem.prototype.defaults = function defaults() {
-        return {
-            disabled: false,
-            hideOnSelect: true,
-
-            _isFocus: false
-        };
-    };
-
-    DropdownItem.prototype._init = function _init() {
-        var _this2 = this;
-
-        // if selected hide all dropdown menu
-        this.on('select', function () {
-            if (_this2.get('hideOnSelect')) {
-                var ancestor = _this2._findAncestorDropdownMenu();
-                ancestor.hide(true);
-            }
-        });
-    };
-
-    DropdownItem.prototype._mount = function _mount() {
-        var parent = this.parent = this._findAncestorDropdownMenu(true);
-        parent.items.push(this);
-    };
-
-    DropdownItem.prototype._onClick = function _onClick(e) {
-        if (this.get('disabled')) return;
-
-        this.trigger('click', e);
-
-        // is not a sub dropdown trigger
-        if (this.parentVNode.tag !== _dropdown2.default) {
-            this.trigger('select', this, e);
-        }
-    };
-
-    DropdownItem.prototype._onMouseEnter = function _onMouseEnter(e) {
-        this.trigger('mouseenter', e);
-
-        if (this.get('disabled')) return;
-
-        this.parent.focusItem(this);
-    };
-
-    DropdownItem.prototype._onMouseLeave = function _onMouseLeave(e) {
-        this.trigger('mouseleave', e);
-        // if (this.get('disabled')) return;
-    };
-
-    DropdownItem.prototype.select = function select(e) {
-        // is not a sub dropdown trigger
-        var dropdown = this._isSubMenu();
-        this.trigger('click', e);
-        if (!dropdown) {
-            this.trigger('select', this);
-        } else {
-            dropdown.show();
-        }
-    };
-
-    DropdownItem.prototype.focus = function focus() {
-        this.set('_isFocus', true);
-
-        var elRect = this.element.getBoundingClientRect();
-        var pEl = this.parent.refs.menu.element;
-        var pElRect = pEl.getBoundingClientRect();
-        var bottomOverflowDistance = elRect.bottom - pElRect.bottom;
-        var topOverflowDistance = elRect.top - pElRect.top;
-
-        if (bottomOverflowDistance > 0) {
-            pEl.scrollTop += bottomOverflowDistance;
-        } else if (topOverflowDistance < 0) {
-            pEl.scrollTop += topOverflowDistance;
-        }
-    };
-
-    DropdownItem.prototype.unFocus = function unFocus() {
-        return this.set('_isFocus', false);
-
-        // const dropdown = this._isSubMenu();
-        // if (dropdown) {
-        // dropdown.hide(null, null, true);
-        // }
-    };
-
-    DropdownItem.prototype.showMenuAndFocus = function showMenuAndFocus() {
-        var dropdown = this._isSubMenu();
-        if (dropdown) {
-            dropdown.show(null, null, true);
-        }
-    };
-
-    DropdownItem.prototype.hideMenu = function hideMenu() {
-        var dropdown = this._isSubMenu();
-        if (dropdown) {
-            dropdown.hide(null, null, true);
-        }
-    };
-
-    DropdownItem.prototype._isSubMenu = function _isSubMenu() {
-        if (this.parentVNode.tag === _dropdown2.default) {
-            return this.parentVNode.children;
-        }
-    };
-
-    DropdownItem.prototype._findAncestorDropdownMenu = function _findAncestorDropdownMenu(isFirst) {
-        return (0, _utils.findParentComponent)(_menu2.default, this, isFirst);
-    };
-
-    DropdownItem.prototype._destroy = function _destroy() {
-        var items = this.parent.items;
-        items.splice(items.indexOf(this), 1);
-    };
-
-    return DropdownItem;
-}(_intact2.default), _class2.template = _item2.default, _class2.propTypes = {
-    disabled: Boolean,
-    hideOnSelect: Boolean
-}, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    initializer: function initializer() {
-        return _init;
-    }
-}), _class)), _class));
-exports.default = DropdownItem;
-module.exports = exports['default'];
-
-/***/ }),
-/* 188 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    var _classNameObj;
-
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-    /* import {proxyEvent} from '../utils'; */
-
-    var _self$get = self.get(),
-        children = _self$get.children,
-        disabled = _self$get.disabled,
-        className = _self$get.className,
-        _isFocus = _self$get._isFocus;
-
-    var classNameObj = (_classNameObj = {
-        'k-item': true,
-        'k-disabled': disabled
-    }, _classNameObj[className] = className, _classNameObj['k-hover'] = _isFocus, _classNameObj['k-no-padding'] = children && (children.tag === _checkbox.Checkbox || children.tag === _radio.Radio), _classNameObj);
-
-    return h('div', { 'ev-click': function () {
-            try {
-                return [self._onClick][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-mouseenter': function () {
-            try {
-                return [self._onMouseEnter][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-mouseleave': function () {
-            try {
-                return [self._onMouseLeave][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, function () {
-        try {
-            return [children][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), _className(function () {
-        try {
-            return [classNameObj][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)));
-};
-
-var _checkbox = __webpack_require__(31);
-
-var _radio = __webpack_require__(41);
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 189 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _extends2 = __webpack_require__(5);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(12);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    var _classNameObj;
-
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-
-    var _self$get = self.get(),
-        className = _self$get.className,
-        disabled = _self$get.disabled,
-        trueValue = _self$get.trueValue,
-        style = _self$get.style,
-        children = _self$get.children,
-        value = _self$get.value,
-        ref = _self$get.ref,
-        key = _self$get.key,
-        rest = (0, _objectWithoutProperties3.default)(_self$get, ['className', 'disabled', 'trueValue', 'style', 'children', 'value', 'ref', 'key']);
-
-    var classNameObj = (_classNameObj = {
-        'k-radio': true,
-        'k-disabled': disabled,
-        'k-checked': self.isChecked()
-    }, _classNameObj[className] = className, _classNameObj);
-
-    return h('label', { 'style': function () {
-            try {
-                return [style][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'tabindex': function () {
-            try {
-                return [disabled ? "-1" : "0"][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-keypress': function () {
-            try {
-                return [self._onKeypress][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, [h('span', null, h('input', (0, _extends3.default)({ 'type': 'radio', 'disabled': function () {
-            try {
-                return [disabled][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'v-model': 'value', 'value': function () {
-            try {
-                return [trueValue][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'tabindex': '-1' }, function () {
-        try {
-            return [rest][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), { checked: _getModel(self, 'value') === function () {
-            try {
-                return [trueValue][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-change': function evChange(__e) {
-            _setModel(self, 'value', __e.target.checked ? function () {
-                try {
-                    return [trueValue][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this) : false, $this);
-        } }), null, null, null, function (i) {
-        widgets['input'] = i;
-    }), 'k-wrapper'), function () {
-        try {
-            return [children][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('span', null, function () {
-        try {
-            return [children][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), 'k-text') : undefined], _className(function () {
-        try {
-            return [classNameObj][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)));
-};
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 190 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 191 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 192 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.Editable = exports.default = undefined;
-
-var _getOwnPropertyDescriptor = __webpack_require__(4);
-
-var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
-
-var _classCallCheck2 = __webpack_require__(1);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(8);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(2);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(3);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _dec, _desc, _value, _class, _class2, _temp;
-
-var _intact = __webpack_require__(0);
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _index = __webpack_require__(193);
-
-var _index2 = _interopRequireDefault(_index);
-
-__webpack_require__(6);
-
-__webpack_require__(194);
-
-var _utils = __webpack_require__(7);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-    var desc = {};
-    Object['ke' + 'ys'](descriptor).forEach(function (key) {
-        desc[key] = descriptor[key];
-    });
-    desc.enumerable = !!desc.enumerable;
-    desc.configurable = !!desc.configurable;
-
-    if ('value' in desc || desc.initializer) {
-        desc.writable = true;
-    }
-
-    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-        return decorator(target, property, desc) || desc;
-    }, desc);
-
-    if (context && desc.initializer !== void 0) {
-        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-        desc.initializer = undefined;
-    }
-
-    if (desc.initializer === void 0) {
-        Object['define' + 'Property'](target, property, desc);
-        desc = null;
-    }
-
-    return desc;
-}
-
-var Editable = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
-    (0, _inherits3.default)(Editable, _Intact);
-
-    function Editable() {
-        (0, _classCallCheck3.default)(this, Editable);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
-    }
-
-    Editable.prototype.defaults = function defaults() {
-        return {
-            editing: false,
-            value: undefined,
-            required: true,
-            validate: undefined,
-            disabled: false,
-            tip: (0, _utils._$)('编辑'),
-            trim: true,
-            invalid: false
-        };
-    };
-
-    Editable.prototype._init = function _init() {
-        this.initValue = this.get('value');
-    };
-
-    Editable.prototype._edit = function _edit() {
-        this.set('editing', true);
-        var input = this.refs.input;
-        (0, _utils.selectInput)(input);
-    };
-
-    Editable.prototype._onBlur = function _onBlur(e) {
-        this._setValue(e.target.value);
-    };
-
-    Editable.prototype._onKeydown = function _onKeydown(e) {
-        switch (e.keyCode) {
-            case 27:
-                // esc 
-                this.set('editing', false);
-                break;
-            case 13:
-                // enter
-                this._onBlur(e);
-                break;
-        }
-    };
-
-    Editable.prototype._setValue = function _setValue(value) {
-        var _get = this.get(),
-            validate = _get.validate,
-            required = _get.required,
-            trim = _get.trim;
-
-        if (trim) value = value.trim();
-
-        var valid = true;
-
-        if (required && !value) {
-            valid = false;
-        } else if (validate && value) {
-            if (typeof validate === 'function') {
-                valid = validate.call(this, value);
-            } else if (validate instanceof RegExp) {
-                valid = validate.test(value);
-            } else if (typeof validate === 'string') {
-                valid = new RegExp(validate).test(value);
-            }
-        }
-
-        if (!valid) {
-            // do not change the value if invalid, #51
-            // this.set('value', value, {silent: true});
-            this.set('invalid', true);
-            return this.trigger('error', this, value);
-        }
-
-        this.set({
-            invalid: false,
-            editing: false,
-            value: value
-        });
-    };
-
-    Editable.prototype.reset = function reset() {
-        this.set({
-            'value': this.initValue,
-            'editing': false,
-            'invalid': false
-        });
-    };
-
-    (0, _createClass3.default)(Editable, [{
-        key: 'template',
-        get: function get() {
-            return _index2.default;
-        }
-    }]);
-    return Editable;
-}(_intact2.default), _class2.propTypes = {
-    editing: Boolean,
-    required: Boolean,
-    disabled: Boolean,
-    tip: [String, Number],
-    trim: Boolean,
-    invalid: Boolean
-}, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
-exports.default = Editable;
-exports.Editable = Editable;
-
-/***/ }),
-/* 193 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    var _classNameObj;
-
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-
-    var _self$get = self.get(),
-        editing = _self$get.editing,
-        value = _self$get.value,
-        validate = _self$get.validate,
-        disabled = _self$get.disabled,
-        style = _self$get.style,
-        tip = _self$get.tip,
-        children = _self$get.children,
-        invalid = _self$get.invalid,
-        className = _self$get.className;
-
-    var classNameObj = (_classNameObj = {
-        'k-editable': true,
-        'k-editing': editing,
-        'k-disabled': disabled,
-        'k-invalid': invalid
-    }, _classNameObj[className] = className, _classNameObj);
-
-    return h('div', { 'style': function () {
-            try {
-                return [style][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, [function () {
-        try {
-            return [!disabled && !editing][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('i', { 'title': function () {
-            try {
-                return [tip][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-click': function () {
-            try {
-                return [self._edit][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, null, 'ion-edit k-edit') : undefined, function () {
-        try {
-            return [value || editing][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('div', null, ['\n        ', function () {
-        try {
-            return [!editing ? children : h(_input2.default, { 'size': 'small', 'defaultValue': function () {
-                    try {
-                        return [value][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this), 'ev-blur': function () {
-                    try {
-                        return [self._onBlur][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this), 'ev-keydown': function () {
-                    try {
-                        return [self._onKeydown][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this), 'children': null, '_context': $this }, null, null, null, function (i) {
-                widgets['input'] = i;
-            })][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), '\n    '], 'c-ellipsis') : undefined], _className(function () {
-        try {
-            return [classNameObj][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)));
-};
-
-var _input = __webpack_require__(19);
-
-var _input2 = _interopRequireDefault(_input);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 194 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 195 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.FormItem = exports.Form = undefined;
-
-var _form = __webpack_require__(85);
-
-var _form2 = _interopRequireDefault(_form);
-
-var _formItemWrapper = __webpack_require__(198);
-
-var _formItemWrapper2 = _interopRequireDefault(_formItemWrapper);
-
-__webpack_require__(6);
-
-__webpack_require__(201);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _form2.default;
-exports.Form = _form2.default;
-exports.FormItem = _formItemWrapper2.default;
-
-/***/ }),
-/* 196 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    var _classNameObj;
-
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-
-    var _self$get = self.get(),
-        children = _self$get.children,
-        className = _self$get.className,
-        ref = _self$get.ref,
-        key = _self$get.key,
-        style = _self$get.style;
-
-    var classNameObj = (_classNameObj = {
-        'k-form': true
-    }, _classNameObj[className] = className, _classNameObj);
-
-    return h('form', { 'style': function () {
-            try {
-                return [style][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-submit': function () {
-            try {
-                return [self.submit][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'noValidate': function () {
-            try {
-                return [true][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, function () {
-        try {
-            return [children][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), _className(function () {
-        try {
-            return [classNameObj][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)));
-};
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 197 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.addMethod = exports.classNames = exports.messages = exports.methods = undefined;
-
-var _utils = __webpack_require__(7);
-
-function decimalPlaces(num) {
-    var match = ("" + num).match(/(?:\.(\d+))?$/);
-    if (!match) {
-        return 0;
-    }
-
-    // Number of digits right of decimal point.
-    return match[1] ? match[1].length : 0;
-}
-
-var methods = exports.methods = {
-    required: function required(value) {
-        return value != null && (typeof value === 'string' || Array.isArray(value) ? value.length > 0 : true);
-    },
-    digits: function digits(value) {
-        return (/^\d+$/.test(value)
-        );
-    },
-    email: function email(value) {
-        return (/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(value)
-        );
-    },
-    url: function url(value) {
-        return (/^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})).?)(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(value)
-        );
-    },
-    date: function date(value) {
-        return !/Invalid|NaN/.test(new Date(value).toString());
-    },
-    dateISO: function dateISO(value) {
-        return (/^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/.test(value)
-        );
-    },
-    number: function number(value) {
-        return (/^(?:-?\d+|-?\d{1,3}(?:,\d{3})+)?(?:\.\d+)?$/.test(value)
-        );
-    },
-    minLength: function minLength(value, item, param) {
-        return value.length >= Number(param);
-    },
-    maxLength: function maxLength(value, item, param) {
-        return value.length <= Number(param);
-    },
-    rangeLength: function rangeLength(value, item, param) {
-        var length = value.length;
-        return length >= Number(param[0]) && length <= Number(param[1]);
-    },
-    min: function min(value, item, param) {
-        return Number(value) >= Number(param);
-    },
-    max: function max(value, item, param) {
-        return Number(value) <= Number(param);
-    },
-    range: function range(value, item, param) {
-        return Number(value) >= Number(param[0]) && Number(value) <= Number(param[1]);
-    },
-    step: function step(value, item, param) {
-        var decimals = decimalPlaces(param);
-        var toInt = function toInt(num) {
-            return Math.round(num * Math.pow(10, decimals));
-        };
-
-        return decimalPlaces(value) <= decimals && toInt(value) % toInt(param) === 0;
-    },
-    equalTo: function equalTo(value, item, param) {
-        var equalValue = item.form.get('_context').data.get(param);
-        var equalItem = item.form.getItem(param);
-        if (!equalItem._hasBindEqualToCallback) {
-            item._equalToCallback = function () {
-                item.validateIfDirty();
-            };
-            equalItem.on('$changed:value', item._equalToCallback);
-            equalItem._hasBindEqualToCallback = true;
-
-            // remove listener when destroy or change rules
-            ['$destroyed' /*, '$change:rules'*/].forEach(function (name) {
-                item.on(name, function () {
-                    equalItem.off('$changed:value', item._equalToCallback);
-                    equalItem._hasBindEqualToCallback = false;
-                });
-            });
-        }
-
-        return value === equalValue;
-    }
-};
-
-function count(num) {
-    return num === 2 ? (0, _utils._$)('两') : num;
-}
-
-var messages = exports.messages = {
-    required: function required() {
-        return (0, _utils._$)('必须填写');
-    },
-    digits: function digits() {
-        return (0, _utils._$)('请输入数字');
-    },
-    email: function email() {
-        return (0, _utils._$)('请输入正确的邮箱地址');
-    },
-    url: function url() {
-        return (0, _utils._$)('请输入正确的网址');
-    },
-    date: function date() {
-        return (0, _utils._$)('请输入正确的日期');
-    },
-    dateISO: function dateISO() {
-        return (0, _utils._$)('请输入正确的日期 (YYYY-MM-DD)');
-    },
-    number: function number() {
-        return (0, _utils._$)('请输入正确的数');
-    },
-    maxLength: function maxLength(value, item, param) {
-        if (Array.isArray(value)) {
-            return (0, _utils._$)('\u6700\u591A\u9009\u62E9 {n} \u9879', { n: count(param) });
-        } else {
-            return (0, _utils._$)('\u6700\u591A\u8F93\u5165 {n} \u4E2A\u5B57\u7B26', { n: count(param) });
-        }
-    },
-    minLength: function minLength(value, item, param) {
-        if (Array.isArray(value)) {
-            return (0, _utils._$)('\u6700\u5C11\u9009\u62E9 {n} \u9879', { n: count(param) });
-        } else {
-            return (0, _utils._$)('\u6700\u5C11\u8F93\u5165 {n} \u4E2A\u5B57\u7B26', { n: count(param) });
-        }
-    },
-    rangeLength: function rangeLength(value, item, param) {
-        if (Array.isArray(value)) {
-            return (0, _utils._$)('\u8BF7\u9009\u62E9 {n} \u5230 {m} \u9879', { n: count(param[0]), m: count(param[1]) });
-        } else {
-            return (0, _utils._$)('\u8BF7\u8F93\u5165 {n} \u5230 {m} \u4E2A\u5B57\u7B26', { n: count(param[0]), m: count(param[1]) });
-        }
-    },
-    max: function max(value, item, param) {
-        return (0, _utils._$)('\u8BF7\u8F93\u5165\u4E0D\u5927\u4E8E {n} \u7684\u6570', { n: param });
-    },
-    min: function min(value, item, param) {
-        return (0, _utils._$)('\u8BF7\u8F93\u5165\u4E0D\u5C0F\u4E8E {n} \u7684\u6570', { n: param });
-    },
-    range: function range(value, item, param) {
-        return (0, _utils._$)('\u8BF7\u8F93\u5165 {n[0]} \u5230 {n[1]} \u4E4B\u95F4\u7684\u6570', { n: param });
-    },
-    step: function step(value, item, param) {
-        return (0, _utils._$)('\u8BF7\u8F93\u5165\u6B65\u957F\u4E3A {n} \u7684\u6570', { n: param });
-    },
-
-    equalTo: function equalTo() {
-        return (0, _utils._$)('两次输入不一致');
-    }
-};
-
-var classNames = exports.classNames = {};
-
-var addMethod = exports.addMethod = function addMethod(name, method, message, className) {
-    methods[name] = method;
-    messages[name] = message !== undefined ? message : messages[name];
-    classNames[name] = className;
-};
-
-/***/ }),
-/* 198 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _extends2 = __webpack_require__(5);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(12);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _intact = __webpack_require__(0);
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _formItem = __webpack_require__(199);
-
-var _formItem2 = _interopRequireDefault(_formItem);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var h = _intact2.default.Vdt.miss.h;
-
-function Wrapper(props) {
-    var key = props.key,
-        _context = props._context,
-        model = props.model,
-        rest = (0, _objectWithoutProperties3.default)(props, ['key', '_context', 'model']);
-
-    if (!key && model) {
-        key = '$fi.' + model;
-    }
-    return h(_formItem2.default, (0, _extends3.default)({
-        key: key, model: model, _context: _context
-    }, model ? {
-        'ev-$change:value': function ev$changeValue(c, v) {
-            _context.data.set(model, v);
-        },
-        value: _context.data.get(model)
-    } : {}, rest));
-}
-
-exports.default = _intact2.default.functionalWrapper ? _intact2.default.functionalWrapper(Wrapper) : Wrapper;
-module.exports = exports['default'];
-
-/***/ }),
-/* 199 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.default = undefined;
-
-var _getOwnPropertyDescriptor = __webpack_require__(4);
-
-var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
-
-var _promise = __webpack_require__(30);
-
-var _promise2 = _interopRequireDefault(_promise);
-
-var _assign = __webpack_require__(24);
-
-var _assign2 = _interopRequireDefault(_assign);
-
-var _classCallCheck2 = __webpack_require__(1);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(8);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(2);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(3);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _dec, _desc, _value, _class, _class2, _temp;
-
-var _intact = __webpack_require__(0);
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _formItem = __webpack_require__(200);
-
-var _formItem2 = _interopRequireDefault(_formItem);
-
-var _form = __webpack_require__(85);
-
-var _form2 = _interopRequireDefault(_form);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-    var desc = {};
-    Object['ke' + 'ys'](descriptor).forEach(function (key) {
-        desc[key] = descriptor[key];
-    });
-    desc.enumerable = !!desc.enumerable;
-    desc.configurable = !!desc.configurable;
-
-    if ('value' in desc || desc.initializer) {
-        desc.writable = true;
-    }
-
-    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-        return decorator(target, property, desc) || desc;
-    }, desc);
-
-    if (context && desc.initializer !== void 0) {
-        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-        desc.initializer = undefined;
-    }
-
-    if (desc.initializer === void 0) {
-        Object['define' + 'Property'](target, property, desc);
-        desc = null;
-    }
-
-    return desc;
-}
-
-var FormItem = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
-    (0, _inherits3.default)(FormItem, _Intact);
-
-    function FormItem() {
-        (0, _classCallCheck3.default)(this, FormItem);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
-    }
-
-    FormItem.prototype.defaults = function defaults() {
-        return {
-            value: undefined,
-            model: undefined,
-            rules: {},
-            isValid: undefined,
-            isDirty: false,
-            message: '',
-            messages: {},
-            classNames: {},
-            errorClassName: '',
-            label: undefined,
-            htmlFor: undefined,
-            hideLabel: false,
-            force: false
-        };
-    };
-
-    FormItem.prototype._init = function _init() {
-        this.initValue = this.get('value');
-        this.on('$change:value', this.validateIfDirty);
-        this.on('$change:rules', this.validateIfDirty);
-    };
-
-    FormItem.prototype._mount = function _mount() {
-        if (!this.get('model')) return;
-
-        var form = this.parentVNode;
-        while (form && form.tag !== _form2.default) {
-            form = form.parentVNode;
-        }
-        if (!form) {
-            throw new Error('FormItem must be used as the descendant of Form');
-        }
-        this.form = form = form.children;
-        var items = form.get('items');
-        items.push(this);
-    };
-
-    FormItem.prototype.getRules = function getRules() {
-        var formRules = this.form.get('rules.' + this.get('model'));
-        var selfRules = this.get('rules');
-
-        return (0, _assign2.default)({}, formRules, selfRules);
-    };
-
-    FormItem.prototype.getMessage = function getMessage(name) {
-        var defaultMessages = _form2.default.messages;
-        var customMessages = this.get('messages');
-        var message = customMessages[name] || defaultMessages[name];
-
-        if (typeof message === 'function') {
-            var rules = this.getRules();
-            return message.call(this.form, this.get('value'), this, rules[name]);
-        }
-
-        return message;
-    };
-
-    FormItem.prototype.getClassName = function getClassName(name) {
-        var defaultClassNames = _form2.default.classNames;
-        var customClassNames = this.get('classNames');
-        var className = customClassNames[name] || defaultClassNames[name];
-
-        if (typeof className === 'function') {
-            var rules = this.getRules();
-            return className.call(this.form, this.get('value'), this, rules[name]);
-        }
-
-        return className;
-    };
-
-    FormItem.prototype.validate = function validate() {
-        var _this2 = this;
-
-        if (!this.get('model')) return;
-
-        this._cancel();
-
-        var rules = this.getRules();
-        var promises = [];
-        var keys = [];
-
-        // check required firstly
-        var required = _form2.default.methods.required.call(this.form, this.get('value'), this);
-        if (rules.required) {
-            promises.push(required);
-            keys.push('required');
-        }
-
-        // if the field is not empty, then check other rules
-        if (required) {
-            for (var key in rules) {
-                var rule = rules[key];
-                if (key === 'required' || rule === false) continue;
-                var fn = void 0;
-                if (typeof rule === 'function') {
-                    fn = rule;
-                } else {
-                    fn = _form2.default.methods[key];
-                    if (!fn) {
-                        console.warn('Can not find validate method: ' + key);
-                        continue;
-                    }
-                }
-                promises.push(fn.call(this.form, this.get('value'), this, rules[key]));
-                keys.push(key);
-            }
-        }
-
-        var p = this.promise = _promise2.default.all(promises).then(function (values) {
-            for (var index = 0; index < values.length; index++) {
-                if (values[index] !== true) {
-                    return [false, values[index] || _this2.getMessage(keys[index]), _this2.getClassName(keys[index])];
-                }
-            }
-            return [true, '', null];
-        }, function (err) {
-            var message = void 0;
-            var className = void 0;
-            if (typeof err === 'string') {
-                message = err;
-            } else if (err) {
-                message = err.message || _this2.getMessage(err.name);
-                className = err.className || _this2.getClassName(err.name);
-            }
-            return [false, message, className];
-        }).then(function (_ref) {
-            var isValid = _ref[0],
-                message = _ref[1],
-                className = _ref[2];
-
-            if (p.cancelled) return;
-            _this2.set({
-                isDirty: true,
-                isValid: isValid,
-                message: message,
-                errorClassName: className
-            });
-            return isValid;
-        });
-
-        return p;
-    };
-
-    FormItem.prototype.validateIfDirty = function validateIfDirty() {
-        // if force is true, it will been validated when update
-        // so we do nothing for this case
-        if (this.get('force')) return;
-
-        if (this.get('isDirty')) {
-            this.validate();
-        }
-    };
-
-    FormItem.prototype._beforeUpdate = function _beforeUpdate() {
-        if (this.get('force') && this.get('isDirty')) {
-            this.validate();
-        }
-    };
-
-    FormItem.prototype.reset = function reset() {
-        this._cancel();
-
-        this.set({
-            isDirty: false,
-            isValid: undefined,
-            value: Array.isArray(this.get('value')) ? [].concat(this.initValue) : this.initValue
-        });
-    };
-
-    FormItem.prototype._dirty = function _dirty() {
-        var _this3 = this;
-
-        if (!this.get('model')) return;
-        if (this.get('isDirty')) return;
-
-        // for select, the focusout event triggers before select
-        // so we put off validating it 
-        setTimeout(function () {
-            _this3.validate();
-        }, 100);
-        // if (this.$nextTick) {
-        // this.$nextTick(this.validate);
-        // } else {
-        // this.validate();
-        // }
-    };
-
-    FormItem.prototype._cancel = function _cancel() {
-        // cancel the last promise
-        if (this.promise) {
-            this.promise.cancelled = true;
-        }
-    };
-
-    FormItem.prototype._destroy = function _destroy() {
-        if (!this.get('model')) return;
-        var items = this.form.get('items');
-        items.splice(items.indexOf(this), 1);
-        // this.reset();
-    };
-
-    (0, _createClass3.default)(FormItem, [{
-        key: 'template',
-        get: function get() {
-            return _formItem2.default;
-        }
-    }]);
-    return FormItem;
-}(_intact2.default), _class2.propTypes = {
-    hideLabel: Boolean,
-    force: Boolean
-}, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
-exports.default = FormItem;
-module.exports = exports['default'];
-
-/***/ }),
-/* 200 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    var _classNameObj;
-
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-
-    var _self$get = self.get(),
-        className = _self$get.className,
-        children = _self$get.children,
-        label = _self$get.label,
-        style = _self$get.style,
-        isValid = _self$get.isValid,
-        isDirty = _self$get.isDirty,
-        hideLabel = _self$get.hideLabel,
-        htmlFor = _self$get.htmlFor,
-        errorClassName = _self$get.errorClassName;
-
-    var classNameObj = (_classNameObj = {
-        'k-form-item': true,
-        'k-invalid': isDirty && !isValid,
-        'k-valid': isDirty && isValid
-    }, _classNameObj[className] = className, _classNameObj);
-
-    // vdt does not support return `v-if & v-else` element in root,
-    // like: 
-    //     '<div v-if={{ true }}>true</div>'
-    //     '<label v-else>false</label>'
-    // so wrap it.
-    // const Wrapper = (props) => {
-    //     return h(props._tagName, props, props.children); 
-    // }
-
-    return h('div', { 'style': function () {
-            try {
-                return [style][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-change': function () {
-            try {
-                return [self._dirty][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-focusout': function () {
-            try {
-                return [self._dirty][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, [function () {
-        try {
-            return [!hideLabel][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('label', { 'htmlFor': function () {
-            try {
-                return [htmlFor][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, (_blocks["label"] = function (parent) {
-        return function () {
-            try {
-                return [label][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this);
-    }) && (__blocks["label"] = function (parent) {
-        var self = this;
-        return blocks["label"] ? blocks["label"].call(this, function () {
-            return _blocks["label"].call(self, parent);
-        }) : _blocks["label"].call(this, parent);
-    }) && __blocks["label"].call(this), 'k-label') : undefined, h('div', null, [(_blocks["content"] = function (parent) {
-        return function () {
-            try {
-                return [children][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this);
-    }) && (__blocks["content"] = function (parent) {
-        var self = this;
-        return blocks["content"] ? blocks["content"].call(this, function () {
-            return _blocks["content"].call(self, parent);
-        }) : _blocks["content"].call(this, parent);
-    }) && __blocks["content"].call(this), function () {
-        try {
-            return [self.get('isValid') === false][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h(Animate, { 'className': _className(function () {
-            try {
-                var _ref;
-
-                return [(_ref = { "k-error": true }, _ref[errorClassName] = errorClassName, _ref)][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this)), 'a:transition': 'fade', 'children': function () {
-            try {
-                return [self.get('message')][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), '_context': $this }) : undefined], 'k-content'), function () {
-        try {
-            return [blocks.append][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('div', null, (_blocks["append"] = function (parent) {
-        return null;
-    }) && (__blocks["append"] = function (parent) {
-        var self = this;
-        return blocks["append"] ? blocks["append"].call(this, function () {
-            return _blocks["append"].call(self, parent);
-        }) : _blocks["append"].call(this, parent);
-    }) && __blocks["append"].call(this), 'k-append') : undefined], _className(function () {
-        try {
-            return [classNameObj][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)));
-};
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 201 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 202 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.Link = exports.default = undefined;
-
-var _getOwnPropertyDescriptor = __webpack_require__(4);
-
-var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
-
-var _classCallCheck2 = __webpack_require__(1);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(8);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(2);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(3);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _dec, _desc, _value, _class, _class2, _temp;
-
-var _intact = __webpack_require__(0);
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _index = __webpack_require__(203);
-
-var _index2 = _interopRequireDefault(_index);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-    var desc = {};
-    Object['ke' + 'ys'](descriptor).forEach(function (key) {
-        desc[key] = descriptor[key];
-    });
-    desc.enumerable = !!desc.enumerable;
-    desc.configurable = !!desc.configurable;
-
-    if ('value' in desc || desc.initializer) {
-        desc.writable = true;
-    }
-
-    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-        return decorator(target, property, desc) || desc;
-    }, desc);
-
-    if (context && desc.initializer !== void 0) {
-        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-        desc.initializer = undefined;
-    }
-
-    if (desc.initializer === void 0) {
-        Object['define' + 'Property'](target, property, desc);
-        desc = null;
-    }
-
-    return desc;
-}
-
-var Link = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
-    (0, _inherits3.default)(Link, _Intact);
-
-    function Link() {
-        (0, _classCallCheck3.default)(this, Link);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
-    }
-
-    Link.prototype.defaults = function defaults() {
-        return {
-            href: undefined,
-            name: undefined,
-            isReplace: false
-        };
-    };
-
-    Link.prototype.to = function to(e) {
-        e.preventDefault();
-        this.trigger('click', e);
-        var href = this.get('href');
-        var name = this.get('name');
-        var history = Link.history;
-        var url = void 0;
-        if (href != null) {
-            url = href;
-        } else if (name != null) {
-            if (Array.isArray(name)) {
-                url = Link.url.apply(Link.url, name);
-            } else {
-                url = Link.url(name);
-            }
-        }
-        if (url) {
-            // if the href is equal to the current href, then do nothing
-            var _history$location = history.location,
-                pathname = _history$location.pathname,
-                search = _history$location.search;
-
-            if (pathname + search === url) return;
-
-            if (this.get('isReplace')) {
-                history.replace(url);
-            } else {
-                history.push(url);
-            }
-        }
-    };
-
-    (0, _createClass3.default)(Link, [{
-        key: 'template',
-        get: function get() {
-            return _index2.default;
-        }
-    }]);
-    return Link;
-}(_intact2.default), _class2.history = undefined, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
-exports.default = Link;
-exports.Link = Link;
-
-/***/ }),
-/* 203 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _extends2 = __webpack_require__(5);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(12);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-  _Vdt || (_Vdt = Vdt);
-  obj || (obj = {});
-  blocks || (blocks = {});
-  var h = _Vdt.miss.h,
-      hc = _Vdt.miss.hc,
-      hu = _Vdt.miss.hu,
-      widgets = this && this.widgets || {},
-      _blocks = {},
-      __blocks = {},
-      __u = _Vdt.utils,
-      extend = __u.extend,
-      _e = __u.error,
-      _className = __u.className,
-      __o = __u.Options,
-      _getModel = __o.getModel,
-      _setModel = __o.setModel,
-      _setCheckboxModel = __u.setCheckboxModel,
-      _detectCheckboxChecked = __u.detectCheckboxChecked,
-      _setSelectModel = __u.setSelectModel,
-      self = this.data,
-      $this = this,
-      scope = obj,
-      Animate = self && self.Animate,
-      parent = ($callee || {})._super;
-
-  var _self$get = self.get(),
-      name = _self$get.name,
-      isReplace = _self$get.isReplace,
-      rest = (0, _objectWithoutProperties3.default)(_self$get, ['name', 'isReplace']);
-
-  return h('a', (0, _extends3.default)({}, function () {
-    try {
-      return [rest][0];
-    } catch (e) {
-      _e(e);
-    }
-  }.call(this), { 'ev-click': function () {
-      try {
-        return [self.to][0];
-      } catch (e) {
-        _e(e);
-      }
-    }.call(this) }), function () {
-    try {
-      return [self.get('children')][0];
-    } catch (e) {
-      _e(e);
-    }
-  }.call(this));
-};
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 204 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.Message = exports.default = undefined;
-
-var _getOwnPropertyDescriptor = __webpack_require__(4);
-
-var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
-
-var _extends2 = __webpack_require__(5);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _assign = __webpack_require__(24);
-
-var _assign2 = _interopRequireDefault(_assign);
-
-var _typeof2 = __webpack_require__(25);
-
-var _typeof3 = _interopRequireDefault(_typeof2);
-
-var _classCallCheck2 = __webpack_require__(1);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _possibleConstructorReturn2 = __webpack_require__(2);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(3);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _dec, _desc, _value, _class, _init, _class2, _temp, _dec2, _desc2, _value2, _class3, _init2, _class4, _temp2;
-
-var _intact = __webpack_require__(0);
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _index = __webpack_require__(205);
-
-var _index2 = _interopRequireDefault(_index);
-
-var _message = __webpack_require__(206);
-
-var _message2 = _interopRequireDefault(_message);
-
-__webpack_require__(6);
-
-__webpack_require__(207);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-    var desc = {};
-    Object['ke' + 'ys'](descriptor).forEach(function (key) {
-        desc[key] = descriptor[key];
-    });
-    desc.enumerable = !!desc.enumerable;
-    desc.configurable = !!desc.configurable;
-
-    if ('value' in desc || desc.initializer) {
-        desc.writable = true;
-    }
-
-    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-        return decorator(target, property, desc) || desc;
-    }, desc);
-
-    if (context && desc.initializer !== void 0) {
-        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-        desc.initializer = undefined;
-    }
-
-    if (desc.initializer === void 0) {
-        Object['define' + 'Property'](target, property, desc);
-        desc = null;
-    }
-
-    return desc;
-}
-
-var messages = void 0;
-var id = 0;
-
-var Message = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
-    (0, _inherits3.default)(Message, _Intact);
-
-    function Message() {
-        (0, _classCallCheck3.default)(this, Message);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
-    }
-
-    Message.notice = function notice(content) {
-        var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 5000;
-        var type = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'info';
-
-        if (!messages) {
-            messages = _intact2.default.mount(Messages, document.body);
-        }
-
-        if (content !== null && (typeof content === 'undefined' ? 'undefined' : (0, _typeof3.default)(content)) === 'object' && !content.tag) {
-            content = (0, _assign2.default)({}, content, { type: type });
-        } else {
-            content = { content: content, duration: duration, type: type };
-        }
-
-        var message = new Message((0, _extends3.default)({}, content, {
-            value: true,
-            _isInstance: true
-        }));
-
-        messages.notice(message);
-
-        return message;
-    };
-
-    Message.prototype.defaults = function defaults() {
-        return {
-            content: undefined,
-            duration: 5000,
-            type: 'info',
-            key: id++,
-            value: false,
-            closable: true,
-            hideIcon: false,
-
-            // if this component is used as instance or not
-            _isInstance: false
-        };
-    };
-
-    Message.prototype.init = function init() {
-        var _Intact$prototype$ini2;
-
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-        }
-
-        if (!this.get('value')) {
-            var _Intact$prototype$ini;
-
-            // when use as component, render the component
-            // but don't append it to parentDom, use a
-            // placeholder instead of
-            this.parentDom = null;
-            (_Intact$prototype$ini = _Intact.prototype.init).call.apply(_Intact$prototype$ini, [this].concat(args));
-            return this.placeholder = document.createComment("message");
-        } else if (this.element) {
-            // Messages render this component, return the 
-            // original dom
-            return this.element;
-        }
-        return (_Intact$prototype$ini2 = _Intact.prototype.init).call.apply(_Intact$prototype$ini2, [this].concat(args));
-    };
-
-    Message.prototype.hydrate = function hydrate(vNode) {
-        // don't hydrate it, but initialize it
-        this.init(null, vNode);
-        return this.placeholder = document.createComment('message');
-    };
-
-    Message.prototype.update = function update(lastVNode, nextVNode) {
-        // when this updating is from original parent,
-        // update the original dom, but return the placeholder,
-        // otherwise return the original dom which has been updated
-        if (!lastVNode ||
-        // it may have not parentVNode in vue
-        lastVNode.parentVNode && lastVNode.parentVNode.tag === MessageAnimate) {
-            return this.element;
-        }
-        _Intact.prototype.update.call(this, lastVNode, nextVNode);
-        return this.placeholder;
-    };
-
-    Message.prototype.toString = function toString() {
-        // return the placeholder string for ssr
-        return '<!--message-->';
-    };
-
-    Message.prototype._init = function _init() {
-        var _this2 = this;
-
-        this.on('$change:value', function (c, value) {
-            if (value) {
-                messages.notice(_this2);
-            } else {
-                messages.delete(_this2);
-            }
-        });
-    };
-
-    Message.prototype._create = function _create() {
-        if (!messages) {
-            messages = _intact2.default.mount(Messages, document.body);
-        }
-    };
-
-    Message.prototype._mount = function _mount() {
-        var _this3 = this;
-
-        if (!this.get('value')) return;
-
-        var duration = this.get('duration');
-        if (duration) {
-            this.timer = setTimeout(function () {
-                _this3.close();
-            }, duration);
-        }
-    };
-
-    Message.prototype.close = function close() {
-        clearTimeout(this.timer);
-        if (!this.get('_isInstance')) {
-            this.set('value', false);
-        } else {
-            messages.delete(this);
-        }
-    };
-
-    Message.prototype.onMouseEnter = function onMouseEnter() {
-        clearTimeout(this.timer);
-    };
-
-    Message.prototype.onMouseLeave = function onMouseLeave() {
-        clearTimeout(this.timer);
-        this._mount();
-    };
-
-    Message.prototype.destroy = function destroy(vNode) {
-        if (this._isVue && !vNode) {
-            messages.delete(this);
-        } else if (vNode.parentVNode.tag === MessageAnimate && !this.get('_isInstance')) {
-            return;
-        } else if (vNode.parentVNode.tag !== MessageAnimate) {
-            messages.delete(this);
-        } else {
-            _Intact.prototype.destroy.call(this, vNode);
-        }
-    };
-
-    return Message;
-}(_intact2.default), _class2.template = _message2.default, _class2.info = function (content, duration) {
-    Message.notice(content, duration, 'info');
-}, _class2.error = function (content, duration) {
-    Message.notice(content, duration, 'danger');
-}, _class2.success = function (content, duration) {
-    Message.notice(content, duration, 'success');
-}, _class2.warning = function (content, duration) {
-    Message.notice(content, duration, 'warning');
-}, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    initializer: function initializer() {
-        return _init;
-    }
-}), _class)), _class));
-exports.default = Message;
-var Messages = (_dec2 = _intact2.default.template(), (_class3 = (_temp2 = _class4 = function (_Intact2) {
-    (0, _inherits3.default)(Messages, _Intact2);
-
-    function Messages() {
-        (0, _classCallCheck3.default)(this, Messages);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact2.apply(this, arguments));
-    }
-
-    Messages.prototype.defaults = function defaults() {
-        return {
-            messages: []
-        };
-    };
-
-    Messages.prototype._init = function _init() {
-        this.MessageAnimate = MessageAnimate;
-    };
-
-    Messages.prototype.notice = function notice(message) {
-        this.get('messages').push(message);
-        this.update();
-    };
-
-    Messages.prototype.delete = function _delete(message) {
-        var messages = this.get('messages');
-        var index = messages.indexOf(message);
-        if (~index) {
-            messages.splice(index, 1);
-            this.update();
-        }
-    };
-
-    return Messages;
-}(_intact2.default), _class4.template = _index2.default, _temp2), (_applyDecoratedDescriptor(_class3, 'template', [_dec2], (_init2 = (0, _getOwnPropertyDescriptor2.default)(_class3, 'template'), _init2 = _init2 ? _init2.value : undefined, {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    initializer: function initializer() {
-        return _init2;
-    }
-}), _class3)), _class3));
-
-// MessageAniamte type for type checking
-
-var MessageAnimate = function (_Intact$Animate) {
-    (0, _inherits3.default)(MessageAnimate, _Intact$Animate);
-
-    function MessageAnimate() {
-        (0, _classCallCheck3.default)(this, MessageAnimate);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact$Animate.apply(this, arguments));
-    }
-
-    return MessageAnimate;
-}(_intact2.default.Animate);
-
-exports.Message = Message;
-
-/***/ }),
-/* 205 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-  _Vdt || (_Vdt = Vdt);
-  obj || (obj = {});
-  blocks || (blocks = {});
-  var h = _Vdt.miss.h,
-      hc = _Vdt.miss.hc,
-      hu = _Vdt.miss.hu,
-      widgets = this && this.widgets || {},
-      _blocks = {},
-      __blocks = {},
-      __u = _Vdt.utils,
-      extend = __u.extend,
-      _e = __u.error,
-      _className = __u.className,
-      __o = __u.Options,
-      _getModel = __o.getModel,
-      _setModel = __o.setModel,
-      _setCheckboxModel = __u.setCheckboxModel,
-      _detectCheckboxChecked = __u.detectCheckboxChecked,
-      _setSelectModel = __u.setSelectModel,
-      self = this.data,
-      $this = this,
-      scope = obj,
-      Animate = self && self.Animate,
-      parent = ($callee || {})._super;
-  var MessageAnimate = self.MessageAnimate;
-
-  // we must add key for k-messages, 
-  // beacase it may reuse other MoveWrapper Animate dom
-  // the key will prevent this case.
-  return h(Animate, { 'className': 'k-messages', 'key': 'k-messages', 'children': _Vdt.utils.map(function () {
-      try {
-        return [self.get('messages')][0];
-      } catch (e) {
-        _e(e);
-      }
-    }.call(this), function (value, key) {
-      return h(MessageAnimate, { 'a:tag': function () {
-          try {
-            return [value][0];
-          } catch (e) {
-            _e(e);
-          }
-        }.call(this), 'key': function () {
-          try {
-            return [value.get('key')][0];
-          } catch (e) {
-            _e(e);
-          }
-        }.call(this), 'children': null, '_context': $this });
-    }, this), '_context': $this });
-};
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 206 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-            _Vdt || (_Vdt = Vdt);
-            obj || (obj = {});
-            blocks || (blocks = {});
-            var h = _Vdt.miss.h,
-                hc = _Vdt.miss.hc,
-                hu = _Vdt.miss.hu,
-                widgets = this && this.widgets || {},
-                _blocks = {},
-                __blocks = {},
-                __u = _Vdt.utils,
-                extend = __u.extend,
-                _e = __u.error,
-                _className = __u.className,
-                __o = __u.Options,
-                _getModel = __o.getModel,
-                _setModel = __o.setModel,
-                _setCheckboxModel = __u.setCheckboxModel,
-                _detectCheckboxChecked = __u.detectCheckboxChecked,
-                _setSelectModel = __u.setSelectModel,
-                self = this.data,
-                $this = this,
-                scope = obj,
-                Animate = self && self.Animate,
-                parent = ($callee || {})._super;
-
-            var _self$get = self.get(),
-                type = _self$get.type,
-                content = _self$get.content,
-                children = _self$get.children,
-                closable = _self$get.closable,
-                hideIcon = _self$get.hideIcon;
-
-            return h('div', { 'ev-mouseenter': function () {
-                                    try {
-                                                return [self.onMouseEnter][0];
-                                    } catch (e) {
-                                                _e(e);
-                                    }
-                        }.call(this), 'ev-mouseleave': function () {
-                                    try {
-                                                return [self.onMouseLeave][0];
-                                    } catch (e) {
-                                                _e(e);
-                                    }
-                        }.call(this) }, h('div', null, [function () {
-                        try {
-                                    return [!hideIcon][0];
-                        } catch (e) {
-                                    _e(e);
-                        }
-            }.call(this) ? h('i', null, null, _className(function () {
-                        try {
-                                    return [{
-                                                "k-icon": true,
-                                                "ion-ios-information-outline": type === 'info' || type === 'warning',
-                                                "ion-ios-checkmark-outline": type === 'success',
-                                                "ion-ios-close-outline": type === 'danger'
-                                    }][0];
-                        } catch (e) {
-                                    _e(e);
-                        }
-            }.call(this))) : undefined, function () {
-                        try {
-                                    return [typeof content === 'string' || typeof content === 'number'][0];
-                        } catch (e) {
-                                    _e(e);
-                        }
-            }.call(this) ? h('div', { 'innerHTML': function () {
-                                    try {
-                                                return [content][0];
-                                    } catch (e) {
-                                                _e(e);
-                                    }
-                        }.call(this) }, null, 'k-content') : h('div', null, function () {
-                        try {
-                                    return [children][0];
-                        } catch (e) {
-                                    _e(e);
-                        }
-            }.call(this), 'k-content'), function () {
-                        try {
-                                    return [closable][0];
-                        } catch (e) {
-                                    _e(e);
-                        }
-            }.call(this) ? h(_button2.default, { 'type': 'none', 'icon': function () {
-                                    try {
-                                                return [true][0];
-                                    } catch (e) {
-                                                _e(e);
-                                    }
-                        }.call(this), 'className': 'k-close', 'ev-click': function () {
-                                    try {
-                                                return [self.close][0];
-                                    } catch (e) {
-                                                _e(e);
-                                    }
-                        }.call(this), 'children': h('i', null, null, 'k-icon ion-ios-close-empty'), '_context': $this }) : undefined], 'k-container'), _className(function () {
-                        try {
-                                    var _ref;
-
-                                    return [(_ref = { "k-message": true }, _ref['k-' + type] = type !== 'info', _ref)][0];
-                        } catch (e) {
-                                    _e(e);
-                        }
-            }.call(this)));
-};
-
-var _button = __webpack_require__(15);
-
-var _button2 = _interopRequireDefault(_button);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 207 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 208 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.Pagination = exports.default = undefined;
-
-var _getOwnPropertyDescriptor = __webpack_require__(4);
-
-var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
-
-var _classCallCheck2 = __webpack_require__(1);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _possibleConstructorReturn2 = __webpack_require__(2);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(3);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _dec, _desc, _value, _class, _init, _class2, _temp;
-
-var _intact = __webpack_require__(0);
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _index = __webpack_require__(209);
-
-var _index2 = _interopRequireDefault(_index);
-
-__webpack_require__(6);
-
-__webpack_require__(216);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-    var desc = {};
-    Object['ke' + 'ys'](descriptor).forEach(function (key) {
-        desc[key] = descriptor[key];
-    });
-    desc.enumerable = !!desc.enumerable;
-    desc.configurable = !!desc.configurable;
-
-    if ('value' in desc || desc.initializer) {
-        desc.writable = true;
-    }
-
-    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-        return decorator(target, property, desc) || desc;
-    }, desc);
-
-    if (context && desc.initializer !== void 0) {
-        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-        desc.initializer = undefined;
-    }
-
-    if (desc.initializer === void 0) {
-        Object['define' + 'Property'](target, property, desc);
-        desc = null;
-    }
-
-    return desc;
-}
-
-var Pagination = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
-    (0, _inherits3.default)(Pagination, _Intact);
-
-    function Pagination() {
-        (0, _classCallCheck3.default)(this, Pagination);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
-    }
-
-    Pagination.prototype.defaults = function defaults() {
-        return {
-            total: 0,
-            current: 1,
-            limit: 10,
-            counts: 7,
-            showTotal: true,
-            limits: [10, 20, 50],
-            // value: '',
-            showGoto: false,
-            size: 'default',
-            noBorder: false
-        };
-    };
-
-    Pagination.prototype._init = function _init() {
-        var _this2 = this;
-
-        // avoid setting incorrect value
-        this.changePage(this.get('current'));
-
-        this.on('$change:limit', function () {
-            _this2.set('current', 1);
-        });
-    };
-
-    Pagination.prototype.changePage = function changePage(page) {
-        var _get = this.get(),
-            total = _get.total,
-            limit = _get.limit;
-
-        var totalPages = Math.ceil(total / limit);
-
-        if (page > totalPages) {
-            page = totalPages;
-        }
-        if (page < 1) {
-            page = 1;
-        }
-
-        this.set('current', page);
-    };
-
-    Pagination.prototype.prev = function prev() {
-        this.changePage(this.get('current') - 1);
-    };
-
-    Pagination.prototype.next = function next() {
-        this.changePage(this.get('current') + 1);
-    };
-
-    Pagination.prototype.fastPrev = function fastPrev() {
-        var page = this.get('current') - Math.ceil(this.get('counts') / 2);
-        this.changePage(page);
-    };
-
-    Pagination.prototype.fastNext = function fastNext() {
-        var page = this.get('current') + Math.ceil(this.get('counts') / 2);
-        this.changePage(page);
-    };
-
-    Pagination.prototype._goto = function _goto(e) {
-        // const regexp = /^[1-9]\d*$/;
-        var value = parseInt(e.target.value) || 1;
-        this.changePage(value);
-    };
-
-    return Pagination;
-}(_intact2.default), _class2.template = _index2.default, _class2.propTypes = {
-    showGoto: Boolean,
-    noBorder: Boolean
-}, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    initializer: function initializer() {
-        return _init;
-    }
-}), _class)), _class));
-exports.default = Pagination;
-exports.Pagination = Pagination;
-
-/***/ }),
-/* 209 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _objectWithoutProperties2 = __webpack_require__(12);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    var _classNameObj;
-
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-
-    var _self$get = self.get(),
-        total = _self$get.total,
-        current = _self$get.current,
-        limit = _self$get.limit,
-        limits = _self$get.limits,
-        className = _self$get.className,
-        showTotal = _self$get.showTotal,
-        showGoto = _self$get.showGoto,
-        counts = _self$get.counts,
-        size = _self$get.size,
-        noBorder = _self$get.noBorder,
-        rest = (0, _objectWithoutProperties3.default)(_self$get, ['total', 'current', 'limit', 'limits', 'className', 'showTotal', 'showGoto', 'counts', 'size', 'noBorder']);
-
-    if (!total) return hc(' pagination ');
-
-    var classNameObj = (_classNameObj = {
-        'k-pagination': true
-    }, _classNameObj[className] = className, _classNameObj['k-' + size] = size !== 'default', _classNameObj['k-no-border'] = noBorder, _classNameObj);
-
-    var type = 'default';
-    if (noBorder) {
-        type = 'none';
-    }
-
-    var totalPages = Math.ceil(total / limit) || 0;
-
-    var paginationButton = function paginationButton(page) {
-        return h(_button.Button, { 'type': function () {
-                try {
-                    return [type][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'size': function () {
-                try {
-                    return [size][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'icon': function () {
-                try {
-                    return [true][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'value': function () {
-                try {
-                    return [page][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'children': function () {
-                try {
-                    return [page][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), '_context': $this });
-    };
-
-    var paginationDot = function paginationDot(callback) {
-        return h(_button.Button, { 'type': function () {
-                try {
-                    return [type][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'size': function () {
-                try {
-                    return [size][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'icon': function () {
-                try {
-                    return [true][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'className': 'k-ellipsis', 'ev-click': function () {
-                try {
-                    return [callback][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'children': '...', '_context': $this });
-    };
-
-    return h('div', null, [h(_button.ButtonGroup, { 'checkType': 'radio', 'v-model': 'current', 'children': [h(_button.Button, { 'icon': function () {
-                try {
-                    return [true][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'size': function () {
-                try {
-                    return [size][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'disabled': function () {
-                try {
-                    return [current <= 1][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'ev-click': function () {
-                try {
-                    return [self.prev][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'type': function () {
-                try {
-                    return [type][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'children': h('i', null, null, 'k-icon ion-ios-arrow-left'), '_context': $this }), function () {
-            try {
-                return [function () {
-                    var items = [];
-                    var minCount = Math.ceil(counts / 2);
-                    var maxCount = totalPages - minCount;
-                    var prevPage = current - 1;
-                    var nextPage = current + 1;
-
-                    if (totalPages > counts) {
-                        if (current <= minCount) {
-                            var max = counts - 2;
-                            for (var i = 1; i <= max; i++) {
-                                items.push(paginationButton(i));
-                            }
-                            items.push(paginationDot(self.fastNext));
-                            items.push(paginationButton(totalPages));
-                        } else if (current > minCount && current <= maxCount) {
-                            items.push(paginationButton(1));
-                            items.push(paginationDot(self.fastPrev));
-
-                            var midCount = counts - 4;
-                            var mid = Math.floor(midCount / 2);
-                            var min = current - mid;
-                            var _max = midCount % 2 === 1 ? current + mid : current + mid - 1;
-                            for (var _i = min; _i <= _max; _i++) {
-                                items.push(paginationButton(_i));
-                            }
-
-                            items.push(paginationDot(self.fastNext));
-                            items.push(paginationButton(totalPages));
-                        } else {
-                            items.push(paginationButton(1));
-                            items.push(paginationDot(self.fastPrev));
-
-                            var _min = totalPages - counts + 3;
-                            for (var _i2 = _min; _i2 <= totalPages; _i2++) {
-                                items.push(paginationButton(_i2));
-                            }
-                        }
-                    } else {
-                        for (var _i3 = 1; _i3 <= totalPages; _i3++) {
-                            items.push(paginationButton(_i3));
-                        }
-                    }
-
-                    return items;
-                }()][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), h(_button.Button, { 'icon': function () {
-                try {
-                    return [true][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'size': function () {
-                try {
-                    return [size][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'disabled': function () {
-                try {
-                    return [current >= totalPages][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'ev-click': function () {
-                try {
-                    return [self.next][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'type': function () {
-                try {
-                    return [type][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'children': h('i', null, null, 'k-icon ion-ios-arrow-right'), '_context': $this })], '_context': $this, value: _getModel(self, 'current'), 'ev-$change:value': function ev$changeValue(__c, __n) {
-            _setModel(self, 'current', __n, $this);
-        } }), h('div', null, h(_select2.default, { 'v-model': 'limit', 'allowUnmatch': function () {
-            try {
-                return [true][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'data': function () {
-            try {
-                return [limits.map(function (item) {
-                    return { 'value': item, 'label': (0, _utils._$)('{n} 条 / 页', { n: item }) };
-                })][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'size': function () {
-            try {
-                return [size][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'children': null, '_context': $this, value: _getModel(self, 'limit'), 'ev-$change:value': function ev$changeValue(__c, __n) {
-            _setModel(self, 'limit', __n, $this);
-        } }), 'k-limits'), function () {
-        try {
-            return [showGoto][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('div', null, ['\n        ', function () {
-        try {
-            return [(0, _utils._$)('跳至')][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), h(_input2.default, { 'size': function () {
-            try {
-                return [size][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'value': function () {
-            try {
-                return [current][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-change': function () {
-            try {
-                return [self._goto][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'children': null, '_context': $this }), function () {
-        try {
-            return [(0, _utils._$)('页')][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), '\n    '], 'k-goto') : undefined, function () {
-        try {
-            return [showTotal][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('div', null, function () {
-        try {
-            return [(0, _utils._$)('共 {n} 条', { n: total })][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), 'k-total') : undefined], _className(function () {
-        try {
-            return [classNameObj][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)));
-};
-
-var _select = __webpack_require__(59);
-
-var _select2 = _interopRequireDefault(_select);
-
-var _input = __webpack_require__(19);
-
-var _input2 = _interopRequireDefault(_input);
-
-var _button = __webpack_require__(15);
-
-var _utils = __webpack_require__(7);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 210 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _extends2 = __webpack_require__(5);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    var _classNameObj,
-        _this = this;
-
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-
-    var _self$get = self.get(),
-        className = _self$get.className,
-        clearable = _self$get.clearable,
-        data = _self$get.data,
-        value = _self$get.value,
-        multiple = _self$get.multiple,
-        disabled = _self$get.disabled,
-        filterable = _self$get.filterable,
-        keywords = _self$get.keywords,
-        _show = _self$get._show,
-        placeholder = _self$get.placeholder,
-        size = _self$get.size,
-        style = _self$get.style,
-        name = _self$get.name,
-        children = _self$get.children,
-        fluid = _self$get.fluid,
-        width = _self$get.width,
-        allowUnmatch = _self$get.allowUnmatch,
-        card = _self$get.card;
-
-    var _activeLabel = self.get('_activeLabel');
-
-    var _placeholder = placeholder == null ? allowUnmatch && filterable ? (0, _utils._$)('请输入或选择') : (0, _utils._$)('请选择') : placeholder;
-
-    var classNameObj = (_classNameObj = {
-        'k-select': true
-    }, _classNameObj[className] = className, _classNameObj[scope.className] = scope.className, _classNameObj['k-disabled'] = disabled, _classNameObj['k-show'] = _show, _classNameObj['k-clearable'] = clearable, _classNameObj['k-' + size] = size !== 'default', _classNameObj['k-fluid'] = fluid, _classNameObj);
-
-    var hasValue = value != null && (!multiple && value !== '' || multiple && value.length);
-    var isGroup = Array.isArray(self.get('data.0.data'));
-
-    var labelObj = scope.labelObj || {
-        // only show value as label when allowUnmatch is true, #40
-        label: allowUnmatch && (0, _utils.isStringOrNumber)(value) ? value : null,
-        labels: []
-    };
-    var groupIndex = 0;
-
-    var Options = function Options(props) {
-        var data = props.data;
-        var ret = [];
-        data.forEach(function (item, index) {
-            // deprecate text, use label instead of
-            if (item.text) item.label = item.text;
-
-            var _self$handleProps = self.handleProps(item, labelObj),
-                valid = _self$handleProps.valid,
-                active = _self$handleProps.active;
-
-            if (valid) {
-                ret.push(h(_dropdown.DropdownItem, { 'ev-select': function () {
-                        try {
-                            return [self._onSelect.bind(self, item.value)][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this), 'disabled': function () {
-                        try {
-                            return [item.disabled][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this), 'className': _className(function () {
-                        try {
-                            return [{ 'k-active': active }][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this)), 'hideOnSelect': function () {
-                        try {
-                            return [!multiple][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this), 'children': function () {
-                        try {
-                            return [item.template ? item.template(item, index) : item.label][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this), '_context': $this }));
-
-                // for card type groups, we need to highlight the parent label
-                if (active && card) {
-                    if (_activeLabel == null && _show) {
-                        _activeLabel = groupIndex;
-                        self._setActiveLabelSilent(_activeLabel);
-                    }
-                }
-            }
-        });
-
-        return ret;
-    };
-
-    var OptionsVNodes = function OptionsVNodes(_ref) {
-        var children = _ref.children;
-
-        return __u.map(children ? Array.isArray(children) ? children : [children] : children, function (vNode) {
-            if (vNode.tag === _option2.default) {
-                var props = vNode.props;
-                props = (0, _extends3.default)({}, props, {
-                    'ev-select': self._onSelect.bind(self, props.value),
-                    hideOnSelect: !multiple,
-                    label: props.label || (0, _utils.getTextByChildren)(props.children),
-                    children: props.children || props.label
-                });
-
-                var _self$handleProps2 = self.handleProps(props, labelObj),
-                    active = _self$handleProps2.active,
-                    valid = _self$handleProps2.valid;
-
-                if (!valid) {
-                    return hc('');
-                } else {
-                    var _className2;
-
-                    props.className = _className((_className2 = {}, _className2[props.className] = props.className, _className2['k-active'] = active, _className2));
-                }
-
-                // for card type groups, we need to highlight the parent label
-                if (active && card) {
-                    if (_activeLabel == null && _show) {
-                        _activeLabel = groupIndex;
-                        self._setActiveLabelSilent(_activeLabel);
-                    }
-                }
-
-                // if the multiple select option is active
-                // add a √ icon
-                if (active && multiple) {
-                    props.children = [props.children, h('i', null, null, 'k-checkmark ion-ios-checkmark-empty')];
-                }
-
-                // return the cloned vNode
-                return h(_option2.default, props);
-            } else if (vNode.tag === _group2.default) {
-                var _props = vNode.props;
-                _props = (0, _extends3.default)({}, _props, {
-                    children: h(OptionsVNodes, { 'children': function () {
-                            try {
-                                return [_props.children][0];
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call(_this), '_context': $this })
-                });
-                groupIndex++;
-                return h(_group2.default, _props);
-            }
-
-            return vNode;
-        });
-    };
-
-    var labelList = [];
-
-    var Menu = scope.Menu || h(_dropdown.DropdownMenu, { 'ev-$changed:show': function () {
-            try {
-                return [self._position][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'className': _className(function () {
-            try {
-                return [{
-                    "k-select-dropdown": true,
-                    "k-card": card
-                }][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this)), 'ev-$change:show': function () {
-            try {
-                return [self._onChangeShow][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'children': function () {
-            var _this2 = this;
-
-            try {
-                return [function () {
-                    var _children = [];
-                    if (!isGroup) {
-                        _children.push(h(Options, { 'data': function () {
-                                try {
-                                    return [data][0];
-                                } catch (e) {
-                                    _e(e);
-                                }
-                            }.call(_this2), 'children': null, '_context': $this }));
-                    } else {
-                        _children.push(_Vdt.utils.map(function () {
-                            try {
-                                return [data][0];
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call(_this2), function (value, key) {
-                            return h(_group2.default, { 'label': function () {
-                                    try {
-                                        return [value.label][0];
-                                    } catch (e) {
-                                        _e(e);
-                                    }
-                                }.call(this), 'children': h(Options, { 'data': function () {
-                                        try {
-                                            return [value.data][0];
-                                        } catch (e) {
-                                            _e(e);
-                                        }
-                                    }.call(this), 'parentLabel': function () {
-                                        try {
-                                            return [value.label][0];
-                                        } catch (e) {
-                                            _e(e);
-                                        }
-                                    }.call(this), 'children': null, '_context': $this }), '_context': $this });
-                        }, _this2));
-                    }
-                    _children.push(h(OptionsVNodes, { 'children': function () {
-                            try {
-                                return [children][0];
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call(_this2), '_context': $this }));
-
-                    // if it is card type group, we extract the label as navBar
-                    if (card) {
-                        var _flatten = function _flatten(children) {
-                            children.forEach(function (vNode) {
-                                if (Array.isArray(vNode)) {
-                                    _flatten(vNode);
-                                } else if (vNode) {
-                                    if (vNode.tag === _group2.default) {
-                                        var props = vNode.props;
-                                        var label = (props._blocks || {}).label || props.label;
-                                        labelList.push({ label: label });
-                                        vNode.props = (0, _extends3.default)({}, props, { _card: true });
-
-                                        // if the _activeLabel is undefined
-                                        // we active the first label
-                                        if (_activeLabel == null && _show) {
-                                            _activeLabel = index;
-                                            self._setActiveLabelSilent(index);
-                                        }
-
-                                        // only render the active options
-                                        if (_activeLabel === index) {
-                                            vNodes.push(vNode);
-                                        }
-                                        index++;
-                                    } else {
-                                        vNodes.push(vNode);
-                                    }
-                                }
-                            });
-                        };
-
-                        var vNodes = [];
-                        var index = 0;
-
-                        _flatten(_children);
-                        return [h(_tabs.Tabs, { 'vertical': function () {
-                                try {
-                                    return [true][0];
-                                } catch (e) {
-                                    _e(e);
-                                }
-                            }.call(_this2), 'type': 'border-card', 'v-model': '_activeLabel', 'children': _Vdt.utils.map(function () {
-                                try {
-                                    return [labelList][0];
-                                } catch (e) {
-                                    _e(e);
-                                }
-                            }.call(_this2), function (value, key) {
-                                return h(_tabs.Tab, { 'value': function () {
-                                        try {
-                                            return [key][0];
-                                        } catch (e) {
-                                            _e(e);
-                                        }
-                                    }.call(this), 'children': ['\n                        ', function () {
-                                        try {
-                                            return [typeof value.label === 'function' ?
-                                            // pass by block
-                                            value.label(function () {}) :
-                                            // pass by property
-                                            value.label][0];
-                                        } catch (e) {
-                                            _e(e);
-                                        }
-                                    }.call(this), '\n                    '], '_context': $this });
-                            }, _this2), '_context': $this, value: _getModel(self, '_activeLabel'), 'ev-$change:value': function ev$changeValue(__c, __n) {
-                                _setModel(self, '_activeLabel', __n, $this);
-                            } }), h('div', null, function () {
-                            try {
-                                return [vNodes][0];
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call(_this2), 'k-groups')];
-                    } else {
-                        return _children;
-                    }
-                }()][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), '_context': $this }, null, null, null, function (i) {
-        widgets['menu'] = i;
-    });
-
-    // if the value is not in options, then set hasValue to false
-    if (hasValue && !labelObj.label && !labelObj.labels.length) {
-        hasValue = false;
-        // if this is a value, but the value does not exist in options
-        // we set it to empty, #41
-        self._clearValue();
-    }
-
-    return h('div', { 'style': function () {
-            try {
-                return [width != null ? (0, _utils.addStyle)(style, { width: width + 'px' }) : style][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'tabindex': function () {
-            try {
-                return [disabled ? "-1" : "0"][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-keypress': function () {
-            try {
-                return [self._onKeypress][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-keydown': function () {
-            try {
-                return [self._onKeydown][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, h(_dropdown2.default, { 'position': function () {
-            try {
-                return [{ my: 'left top+8', at: 'left bottom' }][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'trigger': 'click', 'disabled': function () {
-            try {
-                return [disabled][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'children': [h('div', { 'ev-click': function () {
-                try {
-                    return [self._focusInput][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'tabindex': '-1' }, [h('input', { 'type': 'hidden', 'value': function () {
-                try {
-                    return [value][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'name': function () {
-                try {
-                    return [name][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this) }), function () {
-            try {
-                return [!multiple && filterable][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) ? h(_input2.default, { 'value': function () {
-                try {
-                    return [keywords == null ? labelObj.label : keywords][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'ev-input': function () {
-                try {
-                    return [self._onSearch][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'ev-blur': function () {
-                try {
-                    return [self._onBlur][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'ev-focus': function () {
-                try {
-                    return [self._selectInput][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'disabled': function () {
-                try {
-                    return [disabled][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'placeholder': function () {
-                try {
-                    return [_placeholder][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'size': function () {
-                try {
-                    return [size][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'fluid': function () {
-                try {
-                    return [true][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'children': null, '_context': $this }, null, null, null, function (i) {
-            widgets['input'] = i;
-        }) : function () {
-            try {
-                return [!filterable && !hasValue][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) ? h('span', null, function () {
-            try {
-                return [_placeholder][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'k-placeholder c-ellipsis') : function () {
-            try {
-                return [!multiple][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) ? h('span', null, function () {
-            try {
-                return [labelObj.label][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'k-value c-ellipsis') : h(Animate, { 'a:tag': 'span', 'a:disabled': function () {
-                try {
-                    return [true][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'className': 'k-values', 'children': [_Vdt.utils.map(function () {
-                try {
-                    return [labelObj.labels][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), function (item, index) {
-                return h(Animate, { 'a:tag': 'span', 'className': 'k-select-tag', 'key': function () {
-                        try {
-                            return [value[index]][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this), 'a:transition': 'fade', 'children': [h('span', null, function () {
-                        try {
-                            return [item][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this), 'k-text'), h('i', { 'ev-click': function () {
-                            try {
-                                return [self._delete.bind(self, value[index])][0];
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call(this) }, null, 'k-icon ion-ios-close-empty')], '_context': $this });
-            }, this), function () {
-                try {
-                    return [filterable][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this) ? h(_input2.default, { 'value': function () {
-                    try {
-                        return [keywords][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this), 'ev-input': function () {
-                    try {
-                        return [self._onSearch][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this), 'ev-blur': function () {
-                    try {
-                        return [self._onBlur][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this), 'ev-focus': function () {
-                    try {
-                        return [self._onFocus][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this), 'disabled': function () {
-                    try {
-                        return [disabled][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this), 'placeholder': function () {
-                    try {
-                        return [!hasValue ? _placeholder : ''][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this), 'autoWidth': function () {
-                    try {
-                        return [true][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this), 'size': function () {
-                    try {
-                        return [size][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this), 'children': null, '_context': $this }, null, null, null, function (i) {
-                widgets['input'] = i;
-            }) : undefined], '_context': $this }), h('span', null, [function () {
-            try {
-                return [clearable][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) ? h('i', { 'ev-click': function () {
-                try {
-                    return [self._onClear][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this) }, null, _className(function () {
-            try {
-                return [{ "k-clear ion-ios-close": true, "k-show": hasValue }][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this))) : undefined, h('i', null, null, 'k-arrow ion-arrow-down-b')], 'k-suffix')], 'k-wrapper', null, function (i) {
-            widgets['wrapper'] = i;
-        }), function () {
-            try {
-                return [Menu][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this)], '_context': $this }, null, null, null, function (i) {
-        widgets['dropdown'] = i;
-    }), _className(function () {
-        try {
-            return [(0, _extends3.default)({}, classNameObj, { 'k-has-value': hasValue })][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)));
-};
-
-var _input = __webpack_require__(19);
-
-var _input2 = _interopRequireDefault(_input);
-
-var _dropdown = __webpack_require__(32);
-
-var _dropdown2 = _interopRequireDefault(_dropdown);
-
-var _utils = __webpack_require__(7);
-
-var _option = __webpack_require__(86);
-
-var _option2 = _interopRequireDefault(_option);
-
-var _group = __webpack_require__(87);
-
-var _group2 = _interopRequireDefault(_group);
-
-var _tabs = __webpack_require__(88);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 211 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-  _Vdt || (_Vdt = Vdt);
-  obj || (obj = {});
-  blocks || (blocks = {});
-  var h = _Vdt.miss.h,
-      hc = _Vdt.miss.hc,
-      hu = _Vdt.miss.hu,
-      widgets = this && this.widgets || {},
-      _blocks = {},
-      __blocks = {},
-      __u = _Vdt.utils,
-      extend = __u.extend,
-      _e = __u.error,
-      _className = __u.className,
-      __o = __u.Options,
-      _getModel = __o.getModel,
-      _setModel = __o.setModel,
-      _setCheckboxModel = __u.setCheckboxModel,
-      _detectCheckboxChecked = __u.detectCheckboxChecked,
-      _setSelectModel = __u.setSelectModel,
-      self = this.data,
-      $this = this,
-      scope = obj,
-      Animate = self && self.Animate,
-      parent = ($callee || {})._super;
-
-  var _self$get = self.get(),
-      children = _self$get.children,
-      label = _self$get.label,
-      _card = _self$get._card,
-      className = _self$get.className;
-
-  return h('div', null, [function () {
-    try {
-      return [!_card][0];
-    } catch (e) {
-      _e(e);
-    }
-  }.call(this) ? h('div', null, (_blocks["label"] = function (parent) {
-    return function () {
-      try {
-        return [label][0];
-      } catch (e) {
-        _e(e);
-      }
-    }.call(this);
-  }) && (__blocks["label"] = function (parent) {
-    var self = this;
-    return blocks["label"] ? blocks["label"].call(this, function () {
-      return _blocks["label"].call(self, parent);
-    }) : _blocks["label"].call(this, parent);
-  }) && __blocks["label"].call(this), 'k-label') : undefined, '\n    ', function () {
-    try {
-      return [children][0];
-    } catch (e) {
-      _e(e);
-    }
-  }.call(this), '\n'], _className(function () {
-    try {
-      var _ref;
-
-      return [(_ref = { "k-group": true }, _ref[className] = className, _ref)][0];
-    } catch (e) {
-      _e(e);
-    }
-  }.call(this)));
-};
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 212 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-        _Vdt || (_Vdt = Vdt);
-        obj || (obj = {});
-        blocks || (blocks = {});
-        var h = _Vdt.miss.h,
-            hc = _Vdt.miss.hc,
-            hu = _Vdt.miss.hu,
-            widgets = this && this.widgets || {},
-            _blocks = {},
-            __blocks = {},
-            __u = _Vdt.utils,
-            extend = __u.extend,
-            _e = __u.error,
-            _className = __u.className,
-            __o = __u.Options,
-            _getModel = __o.getModel,
-            _setModel = __o.setModel,
-            _setCheckboxModel = __u.setCheckboxModel,
-            _detectCheckboxChecked = __u.detectCheckboxChecked,
-            _setSelectModel = __u.setSelectModel,
-            self = this.data,
-            $this = this,
-            scope = obj,
-            Animate = self && self.Animate,
-            parent = ($callee || {})._super;
-
-        var _self$get = self.get(),
-            value = _self$get.value,
-            children = _self$get.children,
-            _value = _self$get._value,
-            className = _self$get.className,
-            size = _self$get.size,
-            disabled = _self$get.disabled;
-
-        return h('a', { 'ev-click': function () {
-                        try {
-                                return [self._changeTab][0];
-                        } catch (e) {
-                                _e(e);
-                        }
-                }.call(this) }, function () {
-                try {
-                        return [self.get('children')][0];
-                } catch (e) {
-                        _e(e);
-                }
-        }.call(this), _className(function () {
-                try {
-                        var _ref;
-
-                        return [(_ref = {
-                                'k-tab': true,
-                                'k-active': value !== undefined && value === _value
-                        }, _ref[className] = className, _ref['k-disabled'] = disabled, _ref)][0];
-                } catch (e) {
-                        _e(e);
-                }
-        }.call(this)));
-};
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 213 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _extends2 = __webpack_require__(5);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    var _classNameObj;
-
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-
-    var _self$get = self.get(),
-        className = _self$get.className,
-        data = _self$get.data,
-        value = _self$get.value,
-        children = _self$get.children,
-        style = _self$get.style,
-        vertical = _self$get.vertical,
-        size = _self$get.size,
-        type = _self$get.type,
-        _activeBarStyle = _self$get._activeBarStyle;
-
-    var classNameObj = (_classNameObj = {
-        'k-tabs': true
-    }, _classNameObj[className] = className, _classNameObj['k-' + size] = size !== 'default', _classNameObj['k-vertical'] = vertical, _classNameObj['k-' + type] = type !== 'default', _classNameObj);
-
-    return h('div', { 'style': function () {
-            try {
-                return [style][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, [_Vdt.utils.map(function () {
-        try {
-            return [data][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), function (item, key) {
-        return h('a', { 'ev-click': function () {
-                try {
-                    return [self._changeTab.bind(self, item)][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this) }, function () {
-            try {
-                return [item.text][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), _className(function () {
-            try {
-                return [{
-                    'k-tab': true,
-                    'k-active': item.value === value
-                }][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this)));
-    }, this), '\n    ', function () {
-        try {
-            return [__u.map(children ? Array.isArray(children) ? children : [children] : children, function (vNode) {
-                if (vNode.tag === _tab2.default) {
-                    vNode.props = (0, _extends3.default)({}, vNode.props, { _value: value, _parent: self });
-                }
-                return vNode;
-            })][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), '\n    ', function () {
-        try {
-            return [type === 'default'][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('div', { 'style': function () {
-            try {
-                return [_activeBarStyle][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, null, 'k-active-bar') : undefined], _className(function () {
-        try {
-            return [classNameObj][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)));
-};
-
-var _tab = __webpack_require__(89);
-
-var _tab2 = _interopRequireDefault(_tab);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 214 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 215 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 216 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 217 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.Progress = exports.default = undefined;
-
-var _classCallCheck2 = __webpack_require__(1);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(8);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(2);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(3);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _intact = __webpack_require__(0);
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _index = __webpack_require__(218);
-
-var _index2 = _interopRequireDefault(_index);
-
-__webpack_require__(6);
-
-__webpack_require__(219);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Created by sylvia on 2017/10/16.
- */
-function fixPercent(percent) {
-    if (percent > 100) percent = 100;
-    if (percent < 0) percent = 0;
-    return percent;
-}
-
-var Progress = function (_Intact) {
-    (0, _inherits3.default)(Progress, _Intact);
-
-    function Progress() {
-        (0, _classCallCheck3.default)(this, Progress);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
-    }
-
-    Progress.prototype.defaults = function defaults() {
-        return {
-            type: 'bar', // bar circle
-            percent: 0, // 0~100
-            size: 'default', // small mini
-            isOuterText: true,
-            isInnerText: false,
-            status: 'active', // success | error | active | normal
-            strokeWidth: 4
-        };
-    };
-
-    Progress.prototype._init = function _init() {
-        var _this2 = this;
-
-        this._initStatus = this.get('status');
-
-        this.on('$change:percent', function (c, percent) {
-            percent = fixPercent(percent);
-            var status = percent === 100 ? 'success' : _this2._initStatus;
-            _this2.set({
-                status: status,
-                percent: percent
-            });
-        });
-        this.on('$change:status', function (c, status) {
-            if (status !== 'success') _this2._initStatus = status;
-        });
-
-        this.set('percent', fixPercent(this.get('percent')));
-
-        if (this.get('percent') == 100) {
-            this.set('status', 'success');
-        }
-    };
-
-    (0, _createClass3.default)(Progress, [{
-        key: 'template',
-        get: function get() {
-            return _index2.default;
-        }
-    }]);
-    return Progress;
-}(_intact2.default);
-
-exports.default = Progress;
-exports.Progress = Progress;
-
-/***/ }),
-/* 218 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _extends2 = __webpack_require__(5);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(12);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    var _classNameObj;
-
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-
-    var _self$get = self.get(),
-        type = _self$get.type,
-        className = _self$get.className,
-        percent = _self$get.percent,
-        status = _self$get.status,
-        size = _self$get.size,
-        isOuterText = _self$get.isOuterText,
-        isInnerText = _self$get.isInnerText,
-        ref = _self$get.ref,
-        key = _self$get.key,
-        strokeWidth = _self$get.strokeWidth,
-        children = _self$get.children,
-        rest = (0, _objectWithoutProperties3.default)(_self$get, ['type', 'className', 'percent', 'status', 'size', 'isOuterText', 'isInnerText', 'ref', 'key', 'strokeWidth', 'children']);
-
-    var classNameObj = (_classNameObj = {
-        'k-progress': true
-    }, _classNameObj['k-' + type] = type, _classNameObj[className] = className, _classNameObj['k-' + status] = status !== 'normal', _classNameObj['k-' + size] = size !== 'default', _classNameObj);
-
-    return h('div', (0, _extends3.default)({}, function () {
-        try {
-            return [rest][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)), [function () {
-        try {
-            return [type === 'bar'][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('div', null, h('div', null, h('div', { 'style': function () {
-            try {
-                return [{ width: percent + '%' }][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, function () {
-        try {
-            return [isInnerText][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('div', null, ['\n                    ', function () {
-        try {
-            return [percent][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), ' %\n                '], 'k-inner-text') : undefined, 'k-bg'), 'k-content'), 'k-container') : undefined, function () {
-        try {
-            return [type === 'circle'][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('svg', { 'viewBox': '0 0 120 120' }, ['\n        ', function () {
-        var _this = this;
-
-        try {
-            return [function () {
-                var r = (120 - strokeWidth) / 2;
-                var circumference = 2 * Math.PI * r;
-
-                return [h('circle', { 'cx': '60', 'cy': '60', 'r': function () {
-                        try {
-                            return [r][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this), 'stroke-width': function () {
-                        try {
-                            return [strokeWidth][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this) }, null, 'k-meter'), h('circle', { 'cx': '60', 'cy': '60', 'r': function () {
-                        try {
-                            return [r][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this), 'stroke-dashoffset': function () {
-                        try {
-                            return [circumference * (1 - percent / 100)][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this), 'stroke-dasharray': function () {
-                        try {
-                            return [circumference][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this), 'stroke-width': function () {
-                        try {
-                            return [strokeWidth][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this) }, null, 'k-value'), function () {
-                    try {
-                        return [status === 'active'][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(_this) ? h('circle', { 'cx': '60', 'cy': '60', 'r': function () {
-                        try {
-                            return [r][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this), 'stroke-width': function () {
-                        try {
-                            return [strokeWidth][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this), 'stroke-dasharray': function () {
-                        try {
-                            return [circumference][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this), 'stroke-dashoffset': function () {
-                        try {
-                            return [circumference][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this) }, [h('animate', { 'attributeName': 'stroke-dashoffset', 'begin': '0s', 'dur': '2s', 'repeatCount': 'indefinite', 'from': function () {
-                        try {
-                            return [circumference][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this), 'to': function () {
-                        try {
-                            return [circumference * (1 - percent / 100)][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this) }), h('animate', { 'attributeName': 'opacity', 'begin': '0s', 'dur': '2s', 'repeatCount': 'indefinite', 'from': '0.2', 'to': '0' })], 'k-animate') : undefined];
-            }()][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), '\n    '], 'k-canvas') : undefined, function () {
-        try {
-            return [children][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('div', null, function () {
-        try {
-            return [children][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), 'k-text') : function () {
-        try {
-            return [isOuterText][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('div', null, function () {
-        try {
-            return [status !== 'success' && status !== 'error'][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('span', null, [function () {
-        try {
-            return [percent][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), '%']) : function () {
-        try {
-            return [status === 'success'][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('span', null, h('i', null, null, 'k-icon ion-ios-checkmark-outline')) : function () {
-        try {
-            return [status === 'error'][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('span', null, h('i', null, null, 'k-icon ion-ios-close-outline')) : undefined, 'k-text') : undefined], _className(function () {
-        try {
-            return [classNameObj][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)));
-};
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 219 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 220 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.Slider = exports.default = undefined;
-
-var _isNan = __webpack_require__(221);
-
-var _isNan2 = _interopRequireDefault(_isNan);
-
-var _classCallCheck2 = __webpack_require__(1);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(8);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(2);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(3);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _class, _temp; /**
-                    * Created by sylvia on 2017/10/18.
-                    */
-
-
-var _intact = __webpack_require__(0);
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _index = __webpack_require__(224);
-
-var _index2 = _interopRequireDefault(_index);
-
-__webpack_require__(6);
-
-__webpack_require__(227);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Slider = (_temp = _class = function (_Intact) {
-    (0, _inherits3.default)(Slider, _Intact);
-
-    function Slider() {
-        (0, _classCallCheck3.default)(this, Slider);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
-    }
-
-    Slider.prototype.defaults = function defaults() {
-        return {
-            max: 100,
-            min: 0,
-            value: 0,
-            isRange: false,
-            unit: '',
-            isShowEnd: true,
-            isShowInput: true,
-            step: 1,
-            isShowStop: false,
-            marks: undefined,
-
-            _sliderValue: 0,
-            _inputValue: 0,
-            _isDragging: false,
-            _isFirst: false,
-            _isSecond: false
-        };
-    };
-
-    Slider.prototype._init = function _init() {
-        var _this2 = this;
-
-        this._setFixedValue(this.get('value'));
-
-        this.on("$change:_inputValue", function (c, val) {
-            if (!_this2.get('_isDragging')) {
-                _this2._setFixedValue(val);
-            }
-        });
-        this.on('$receive:value', function (c, val) {
-            if (!_this2.get('_isDragging')) {
-                _this2._setFixedValue(val);
-            }
-        });
-    };
-
-    Slider.prototype._setFixedValue = function _setFixedValue(value) {
-        var fixedValue = this._getFixedValue(value);
-        this.set({
-            value: fixedValue,
-            _inputValue: fixedValue,
-            _sliderValue: fixedValue
-        });
-    };
-
-    Slider.prototype._getFixedValue = function _getFixedValue(value) {
-        var _get = this.get(),
-            min = _get.min,
-            isRange = _get.isRange;
-
-        var fixedValue = void 0;
-        if (isRange) {
-            if (!Array.isArray(value)) {
-                fixedValue = [min, min];
-            } else {
-                fixedValue = [this._fix(value[0]), this._fix(value[1])];
-            }
-        } else {
-            fixedValue = this._fix(value);
-        }
-
-        return fixedValue;
-    };
-
-    Slider.prototype._fix = function _fix(v) {
-        var _get2 = this.get(),
-            step = _get2.step,
-            max = _get2.max,
-            min = _get2.min;
-
-        if ((0, _isNan2.default)(Number(v))) {
-            return min;
-        } else if (v < min) {
-            return min;
-        } else if (v > max) {
-            return max;
-        } else {
-            // for the accuracy
-            return Number((Math.round(v / step) * step).toFixed(10));
-        }
-    };
-
-    Slider.prototype._clickWrapper = function _clickWrapper(e) {
-        if (this.get('disabled') || this.get('_isDragging')) return;
-
-        var currentPosition = e.clientX;
-        var newValue = this._getSlidingValue(currentPosition);
-        if (this.get('isRange')) {
-            newValue = this._generateRangeValue(newValue);
-        }
-
-        this._setFixedValue(newValue);
-    };
-
-    Slider.prototype._generateRangeValue = function _generateRangeValue(v) {
-        var _get3 = this.get('value'),
-            min = _get3[0],
-            max = _get3[1];
-
-        if (Math.abs(min - v) <= Math.abs(max - v)) {
-            return [v, max];
-        } else {
-            return [min, v];
-        }
-    };
-
-    Slider.prototype._getSlidingValue = function _getSlidingValue(pos) {
-        var rect = this.$slider.getBoundingClientRect();
-        var percent = (pos - rect.left) / rect.width;
-
-        var _get4 = this.get(),
-            max = _get4.max,
-            min = _get4.min;
-
-        var sliderWidth = max - min;
-
-        if (percent <= 0) {
-            return min;
-        } else if (percent >= 1) {
-            return max;
-        } else {
-            return min + sliderWidth * percent;
-        }
-    };
-
-    Slider.prototype._onDrag = function _onDrag(indexFlag, e) {
-        if (this.get('disabled')) return;
-
-        this._isDragging = true;
-
-        // when start drag, the element has been focusin
-        // so we need not handle it here
-
-        this.__onRangeSliding = this._onRangeSliding.bind(this, indexFlag);
-        this.__onRangeSlideEnd = this._onRangeSlideEnd.bind(this, indexFlag);
-        window.addEventListener('mousemove', this.__onRangeSliding);
-        window.addEventListener('mouseup', this.__onRangeSlideEnd);
-    };
-
-    Slider.prototype._onRangeSliding = function _onRangeSliding(indexFlag, e) {
-        var tempValue = this._getSlidingValue(e.clientX, this.get('_isDragging'));
-        var fixedValue = void 0;
-
-        tempValue = this._getTempValue(tempValue, indexFlag, this._min, this._max, indexFlag === '_isFirst');
-
-        fixedValue = this._getFixedValue(tempValue);
-
-        this.set({
-            value: fixedValue,
-            _inputValue: fixedValue,
-            _sliderValue: tempValue
-        });
-    };
-
-    Slider.prototype._getTempValue = function _getTempValue(value, isRange, min, max, isFirst) {
-        if (isRange) {
-            if (isFirst) {
-                return [Math.min(value, max), Math.max(value, max)];
-            } else {
-                return [Math.min(value, min), Math.max(value, min)];
-            }
-        }
-        return value;
-    };
-
-    Slider.prototype._onRangeSlideEnd = function _onRangeSlideEnd(indexFlag, e) {
-        if (this.get('_isDragging')) {
-            this.set('_isDragging', false, { async: true });
-            var newValue = this._getSlidingValue(e.clientX);
-            if (indexFlag) {
-                if (indexFlag === '_isFirst') {
-                    this.$sliderFirstBtn.blur();
-
-                    this.set('_isFirst', false, { async: true });
-                    newValue = [Math.min(newValue, this._max), Math.max(newValue, this._max)];
-                } else {
-                    this.$sliderSecondBtn.blur();
-
-                    this.set('_isSecond', false, { async: true });
-                    newValue = [Math.min(newValue, this._min), Math.max(newValue, this._min)];
-                }
-            } else {
-                this.$sliderFirstBtn.blur();
-            }
-
-            this._setFixedValue(newValue);
-
-            this.trigger('stop', this.get('value'));
-
-            window.removeEventListener('mousemove', this.__onRangeSliding);
-            window.removeEventListener('mouseup', this.__onRangeSlideEnd);
-
-            this._isDragging = false;
-        }
-    };
-
-    Slider.prototype._onFocusin = function _onFocusin(indexFlag, e) {
-        if (this.get('disabled')) return;
-
-        // if the focusin is invoked by dragging
-        // let the handle element blur
-        // because k-active will add focus style
-        if (this._isDragging) {
-            e.target.blur();
-        }
-
-        if (this.get('isRange')) {
-            var value = this.get('value');
-            this._min = value[0];
-            this._max = value[1];
-            if (indexFlag === '_isFirst') {
-                this._initValue = this._min;
-                this.set({
-                    _isDragging: true,
-                    _isFirst: true,
-                    _isSecond: false
-                });
-            } else {
-                this._initValue = this._max;
-                this.set({
-                    _isDragging: true,
-                    _isFirst: false,
-                    _isSecond: true
-                });
-            }
-        } else {
-            this.set('_isDragging', true);
-        }
-    };
-
-    Slider.prototype._onFocusout = function _onFocusout(indexFlag) {
-        if (this.get('disabled') || this._isDragging) return;
-
-        if (this.get('isRange')) {
-            if (indexFlag === '_isFirst') {
-                this.set('_isFirst', false, { async: true });
-            } else {
-                this.set('_isSecond', false, { async: true });
-            }
-        }
-
-        this.set('_isDragging', false, { async: true });
-    };
-
-    Slider.prototype._onKeydown = function _onKeydown(indexFlag, e) {
-        if (this.get('disabled')) return;
-
-        var step = this.get('step');
-        if (e.keyCode === 37) {
-            // left
-            this._setValue(indexFlag, -step);
-        } else if (e.keyCode === 39) {
-            // right
-            this._setValue(indexFlag, step);
-        }
-    };
-
-    Slider.prototype._setValue = function _setValue(indexFlag, step) {
-        var value = this.get('value');
-
-        if (!this.get('isRange')) {
-            return this._setFixedValue(value + step);
-        }
-
-        this._initValue += step;
-        this._initValue = this._fix(this._initValue);
-
-        var _value = this._getTempValue(this._initValue, indexFlag, this._min, this._max, indexFlag === '_isFirst');
-
-        this._setFixedValue(_value);
-
-        // if overstep the boundary, reverse it
-        if (indexFlag === '_isFirst') {
-            if (this._initValue > this._max) {
-                this.$sliderFirstBtn.blur();
-                this.$sliderSecondBtn.focus();
-            }
-        } else if (indexFlag === '_isSecond') {
-            if (this._initValue < this._min) {
-                this.$sliderSecondBtn.blur();
-                this.$sliderFirstBtn.focus();
-            }
-        }
-    };
-
-    Slider.prototype._setOneValue = function _setOneValue(v) {
-        if (!this.get('isRange')) {
-            this._setFixedValue(v);
-        } else {
-            this._setFixedValue(this._generateRangeValue(v));
-        }
-    };
-
-    Slider.prototype._stopPropagation = function _stopPropagation(e) {
-        /* istanbul ignore next */
-        e.stopPropagation();
-    };
-
-    Slider.prototype._destory = function _destory() {
-        this._onRangeSlideEnd();
-    };
-
-    (0, _createClass3.default)(Slider, [{
-        key: 'template',
-        get: function get() {
-            return _index2.default;
-        }
-    }]);
-    return Slider;
-}(_intact2.default), _class.propTypes = {
-    max: Number,
-    min: Number,
-    value: Number,
-    isRange: Boolean,
-    unit: String,
-    isShowEnd: Boolean,
-    isShowInput: Boolean,
-    step: Number
-}, _temp);
-exports.default = Slider;
-exports.Slider = Slider;
-
-/***/ }),
-/* 221 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(222), __esModule: true };
-
-/***/ }),
-/* 222 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(223);
-module.exports = __webpack_require__(9).Number.isNaN;
-
-
-/***/ }),
-/* 223 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 20.1.2.4 Number.isNaN(number)
-var $export = __webpack_require__(13);
-
-$export($export.S, 'Number', {
-  isNaN: function isNaN(number) {
-    // eslint-disable-next-line no-self-compare
-    return number != number;
-  }
-});
-
-
-/***/ }),
-/* 224 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _typeof2 = __webpack_require__(25);
-
-var _typeof3 = _interopRequireDefault(_typeof2);
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    var _classNameObj;
-
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-
-    var _self$get = self.get(),
-        value = _self$get.value,
-        min = _self$get.min,
-        max = _self$get.max,
-        className = _self$get.className,
-        disabled = _self$get.disabled,
-        isRange = _self$get.isRange,
-        isInnerText = _self$get.isInnerText,
-        isShowInput = _self$get.isShowInput,
-        isShowEnd = _self$get.isShowEnd,
-        unit = _self$get.unit,
-        step = _self$get.step,
-        _isDragging = _self$get._isDragging,
-        _isFirst = _self$get._isFirst,
-        _inputValue = _self$get._inputValue,
-        _isSecond = _self$get._isSecond,
-        _sliderValue = _self$get._sliderValue,
-        style = _self$get.style,
-        isShowStop = _self$get.isShowStop,
-        marks = _self$get.marks;
-
-    var classNameObj = (_classNameObj = {
-        'k-slider': true,
-        'k-disabled': disabled
-    }, _classNameObj[className] = className, _classNameObj['k-dragging'] = _isDragging, _classNameObj['k-show-input'] = isShowInput && !isRange, _classNameObj['k-show-end'] = isShowEnd, _classNameObj);
-
-    var sliderWidth = max - min;
-
-    return h('div', { 'style': function () {
-            try {
-                return [style][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, [h('div', null, [h('div', { 'ev-click': function () {
-            try {
-                return [self._clickWrapper][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, [h('div', { 'style': function () {
-            try {
-                return [isRange ? {
-                    width: Math.abs(_sliderValue[1] - _sliderValue[0]) / sliderWidth * 100 + '%',
-                    left: (Math.min(_sliderValue[0], _sliderValue[1]) - min) / sliderWidth * 100 + '%'
-                } : {
-                    width: (_sliderValue - min) / sliderWidth * 100 + '%'
-                }][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, null, 'k-bar'), h('div', { 'style': function () {
-            try {
-                return [{
-                    left: isRange ? (_sliderValue[0] - min) / sliderWidth * 100 + '%' : (_sliderValue - min) / sliderWidth * 100 + '%'
-                }][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-mousedown': function () {
-            try {
-                return [isRange ? self._onDrag.bind(self, '_isFirst') : self._onDrag.bind(self, undefined)][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-click': function () {
-            try {
-                return [self._stopPropagation][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'tabindex': function () {
-            try {
-                return [disabled ? "-1" : "0"][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-keydown': function () {
-            try {
-                return [isRange ? self._onKeydown.bind(self, '_isFirst') : self._onKeydown.bind(self, undefined)][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-focusin': function () {
-            try {
-                return [self._onFocusin.bind(self, '_isFirst')][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-focusout': function () {
-            try {
-                return [self._onFocusout.bind(self, '_isFirst')][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, function () {
-        try {
-            return [isInnerText][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('div', null, function () {
-        try {
-            return [isRange ? value : value[0]][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)) : undefined, _className(function () {
-        try {
-            return [{
-                "k-handle": true,
-                "k-active": _isFirst && _sliderValue[1] === self._max || _isSecond && value[0] !== self._min
-            }][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)), null, function () {
-        try {
-            return [function (dom) {
-                return self.$sliderFirstBtn = dom;
-            }][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)), function () {
-        try {
-            return [isRange][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('div', { 'ev-mousedown': function () {
-            try {
-                return [self._onDrag.bind(self, "_isSecond")][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'style': function () {
-            try {
-                return [{
-                    left: (_sliderValue[1] - min) / sliderWidth * 100 + '%'
-                }][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'tabindex': function () {
-            try {
-                return [disabled ? "-1" : "0"][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-keydown': function () {
-            try {
-                return [self._onKeydown.bind(self, '_isSecond')][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-focusin': function () {
-            try {
-                return [self._onFocusin.bind(self, '_isSecond')][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-focusout': function () {
-            try {
-                return [self._onFocusout.bind(self, '_isSecond')][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-click': function () {
-            try {
-                return [self._stopPropagation][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, function () {
-        try {
-            return [isInnerText][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('div', null, function () {
-        try {
-            return [value[1]][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)) : undefined, _className(function () {
-        try {
-            return [{
-                "k-handle": true,
-                "k-active": _isSecond && _sliderValue[0] === self._min || _isFirst && _sliderValue[1] !== self._max
-            }][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)), null, function () {
-        try {
-            return [function (dom) {
-                return self.$sliderSecondBtn = dom;
-            }][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)) : undefined, '\n            ', function () {
-        var _this = this;
-
-        try {
-            return [function () {
-                if (isShowStop) {
-                    var _ret = function () {
-                        var counts = Math.floor((max - min) / step);
-                        var ret = [];
-
-                        var _loop = function _loop(i) {
-                            ret.push(h('i', { 'style': function () {
-                                    try {
-                                        return [{ left: i / counts * 100 + '%' }][0];
-                                    } catch (e) {
-                                        _e(e);
-                                    }
-                                }.call(_this) }, null, 'k-point'));
-                        };
-
-                        for (var i = 1; i < counts; i++) {
-                            _loop(i);
-                        }
-                        return {
-                            v: ret
-                        };
-                    }();
-
-                    if ((typeof _ret === 'undefined' ? 'undefined' : (0, _typeof3.default)(_ret)) === "object") return _ret.v;
-                }
-            }()][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), ' \n        '], 'k-wrapper', null, function () {
-        try {
-            return [function (dom) {
-                return self.$slider = dom;
-            }][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)), function () {
-        try {
-            return [isShowEnd && !marks][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('div', null, [h('span', null, [function () {
-        try {
-            return [min + unit][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), ' ']), h('span', null, function () {
-        try {
-            return [max + unit][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this))], 'k-box') : undefined, function () {
-        try {
-            return [marks][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('div', null, function () {
-        var _this2 = this;
-
-        try {
-            return [function () {
-                var counts = Math.floor((max - min) / step);
-                return _Vdt.utils.map(function () {
-                    try {
-                        return [marks][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(_this2), function (value, key) {
-                    return h('span', { 'style': function () {
-                            try {
-                                return [{
-                                    left: (key - min) / counts * 100 + '%'
-                                }][0];
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call(this), 'ev-click': function () {
-                            try {
-                                return [self._setOneValue.bind(self, key)][0];
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call(this) }, function () {
-                        try {
-                            return [value][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this));
-                }, _this2);
-            }()][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), 'k-marks') : undefined], 'k-slider-wrapper'), function () {
-        try {
-            return [isShowInput && !isRange][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('div', null, h(_spinner2.default, { 'disabled': function () {
-            try {
-                return [disabled][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'max': function () {
-            try {
-                return [max][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'min': function () {
-            try {
-                return [min][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'v-model': '_inputValue', 'step': function () {
-            try {
-                return [step][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'children': null, '_context': $this, value: _getModel(self, '_inputValue'), 'ev-$change:value': function ev$changeValue(__c, __n) {
-            _setModel(self, '_inputValue', __n, $this);
-        } }, null, null, null, function (i) {
-        widgets['spinner'] = i;
-    }), 'k-spinner-wrapper') : undefined], _className(function () {
-        try {
-            return [classNameObj][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)));
-};
-
-var _spinner = __webpack_require__(90);
-
-var _spinner2 = _interopRequireDefault(_spinner);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 225 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    var _classNameObj;
-
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-
-    var _self$get = self.get(),
-        className = _self$get.className,
-        disabled = _self$get.disabled,
-        max = _self$get.max,
-        min = _self$get.min,
-        step = _self$get.step,
-        children = _self$get.children,
-        style = _self$get.style,
-        size = _self$get.size,
-        vertical = _self$get.vertical;
-
-    var classNameObj = (_classNameObj = {
-        'k-spinner': true,
-        'k-disabled': disabled
-    }, _classNameObj['k-' + size] = size !== 'default', _classNameObj[className] = className, _classNameObj['k-vertical'] = vertical, _classNameObj);
-
-    return h('div', { 'style': function () {
-            try {
-                return [style][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, [h(_button.Button, { 'icon': function () {
-            try {
-                return [true][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-click': function () {
-            try {
-                return [self._decrease][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'disabled': function () {
-            try {
-                return [self._disableDecrease()][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'className': 'k-left', 'size': function () {
-            try {
-                return [size][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'children': function () {
-            try {
-                return [!vertical][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) ? h('i', null, null, 'k-icon ion-ios-minus-empty') : h('i', null, null, 'ion-ios-arrow-down'), '_context': $this }), h(_input.Input, { 'disabled': function () {
-            try {
-                return [disabled][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-change': function () {
-            try {
-                return [self._changeValue][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'v-model': '_value', 'size': function () {
-            try {
-                return [size][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'children': null, '_context': $this, value: _getModel(self, '_value'), 'ev-$change:value': function ev$changeValue(__c, __n) {
-            _setModel(self, '_value', __n, $this);
-        } }), h(_button.Button, { 'icon': function () {
-            try {
-                return [true][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-click': function () {
-            try {
-                return [self._increase][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'disabled': function () {
-            try {
-                return [self._disableIncrease()][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'className': 'k-right', 'size': function () {
-            try {
-                return [size][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'children': function () {
-            try {
-                return [!vertical][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) ? h('i', null, null, 'k-icon ion-ios-plus-empty') : h('i', null, null, 'ion-ios-arrow-up'), '_context': $this })], _className(function () {
-        try {
-            return [classNameObj][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)));
-};
-
-var _button = __webpack_require__(15);
-
-var _input = __webpack_require__(19);
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 226 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 227 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 228 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.Step = exports.Steps = exports.default = undefined;
-
-var _getOwnPropertyDescriptor = __webpack_require__(4);
-
-var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
-
-var _classCallCheck2 = __webpack_require__(1);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _possibleConstructorReturn2 = __webpack_require__(2);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(3);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _dec, _desc, _value, _class, _init, _class2, _temp;
-
-var _intact = __webpack_require__(0);
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _index = __webpack_require__(229);
-
-var _index2 = _interopRequireDefault(_index);
-
-var _step = __webpack_require__(91);
-
-var _step2 = _interopRequireDefault(_step);
-
-__webpack_require__(6);
-
-__webpack_require__(231);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-    var desc = {};
-    Object['ke' + 'ys'](descriptor).forEach(function (key) {
-        desc[key] = descriptor[key];
-    });
-    desc.enumerable = !!desc.enumerable;
-    desc.configurable = !!desc.configurable;
-
-    if ('value' in desc || desc.initializer) {
-        desc.writable = true;
-    }
-
-    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-        return decorator(target, property, desc) || desc;
-    }, desc);
-
-    if (context && desc.initializer !== void 0) {
-        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-        desc.initializer = undefined;
-    }
-
-    if (desc.initializer === void 0) {
-        Object['define' + 'Property'](target, property, desc);
-        desc = null;
-    }
-
-    return desc;
-}
-
-var Steps = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
-    (0, _inherits3.default)(Steps, _Intact);
-
-    function Steps() {
-        (0, _classCallCheck3.default)(this, Steps);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
-    }
-
-    Steps.prototype.defaults = function defaults() {
-        return {
-            value: undefined,
-            status: 'normal',
-
-            type: 'default' // default | line
-        };
-    };
-
-    return Steps;
-}(_intact2.default), _class2.template = _index2.default, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    initializer: function initializer() {
-        return _init;
-    }
-}), _class)), _class));
-exports.default = Steps;
-exports.Steps = Steps;
-exports.Step = _step2.default;
-
-/***/ }),
-/* 229 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _extends2 = __webpack_require__(5);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    var _classNameObj;
-
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-
-    var _self$get = self.get(),
-        children = _self$get.children,
-        value = _self$get.value,
-        style = _self$get.style,
-        status = _self$get.status,
-        type = _self$get.type;
-
-    var classNameObj = (_classNameObj = {
-        'k-steps c-clearfix': true
-    }, _classNameObj['k-' + type] = true, _classNameObj);
-
-    var stepIndex = 0;
-    var steps = (Array.isArray(children) ? children : [children]).filter(function (vNode) {
-        if (vNode && vNode.tag === _step2.default) {
-            vNode.props = (0, _extends3.default)({}, vNode.props, { index: stepIndex });
-            if (value == stepIndex) {
-                vNode.props.selected = true;
-                if (status === 'error') {
-                    vNode.props.error = true;
-                }
-            } else if (value > stepIndex) {
-                vNode.props.done = true;
-            }
-            stepIndex++;
-            return true;
-        }
-        return false;
-    });
-
-    // add width
-    steps = steps.map(function (vNode) {
-        vNode.props.width = 100 / stepIndex + '%';
-        return vNode;
-    });
-
-    return h('div', { 'style': function () {
-            try {
-                return [style][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, function () {
-        try {
-            return [steps][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), _className(function () {
-        try {
-            return [classNameObj][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)));
-};
-
-var _step = __webpack_require__(91);
-
-var _step2 = _interopRequireDefault(_step);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 230 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-
-    var _self$get = self.get(),
-        children = _self$get.children,
-        selected = _self$get.selected,
-        done = _self$get.done,
-        title = _self$get.title,
-        index = _self$get.index,
-        width = _self$get.width,
-        error = _self$get.error;
-
-    var classNameObj = {
-        'k-step': true,
-        'k-active': selected,
-        'k-done': done,
-        'k-error': error
-    };
-
-    return h('div', { 'style': function () {
-            try {
-                return [{ width: width }][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, [h('div', null, null, 'k-tail'), h('div', null, [h('div', null, h('div', null, ['\n                ', function () {
-        try {
-            return [/* <i class="ion-ios-checkmark-empty k-icon" v-if={{ done }}></i> */][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), '\n                ', function () {
-        try {
-            return [error][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('i', null, null, 'ion-ios-close-empty k-icon') : h('span', null, function () {
-        try {
-            return [index + 1][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this))], 'k-inner'), 'k-head'), h('div', null, [h('div', null, function () {
-        try {
-            return [title][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), 'k-title'), h('div', null, function () {
-        try {
-            return [children][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), 'k-content')], 'k-main')], 'k-wrapper')], _className(function () {
-        try {
-            return [classNameObj][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)));
-};
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 231 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 232 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.Switch = exports.default = undefined;
-
-var _getOwnPropertyDescriptor = __webpack_require__(4);
-
-var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
-
-var _classCallCheck2 = __webpack_require__(1);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(8);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(2);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(3);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _dec, _desc, _value, _class, _class2, _temp;
-
-var _intact = __webpack_require__(0);
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _index = __webpack_require__(233);
-
-var _index2 = _interopRequireDefault(_index);
-
-__webpack_require__(6);
-
-__webpack_require__(234);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-    var desc = {};
-    Object['ke' + 'ys'](descriptor).forEach(function (key) {
-        desc[key] = descriptor[key];
-    });
-    desc.enumerable = !!desc.enumerable;
-    desc.configurable = !!desc.configurable;
-
-    if ('value' in desc || desc.initializer) {
-        desc.writable = true;
-    }
-
-    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-        return decorator(target, property, desc) || desc;
-    }, desc);
-
-    if (context && desc.initializer !== void 0) {
-        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-        desc.initializer = undefined;
-    }
-
-    if (desc.initializer === void 0) {
-        Object['define' + 'Property'](target, property, desc);
-        desc = null;
-    }
-
-    return desc;
-}
-
-var Switch = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
-    (0, _inherits3.default)(Switch, _Intact);
-
-    function Switch() {
-        (0, _classCallCheck3.default)(this, Switch);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
-    }
-
-    Switch.prototype.defaults = function defaults() {
-        return {
-            name: undefined,
-            on: undefined,
-            off: undefined,
-            value: false,
-            trueValue: true,
-            falseValue: false,
-            width: undefined,
-            height: undefined,
-            size: 'default',
-            disabled: false,
-
-            _dragging: false
-        };
-    };
-
-    Switch.prototype._init = function _init() {
-        this._move = this._move.bind(this);
-        this._dragEnd = this._dragEnd.bind(this);
-    };
-
-    Switch.prototype._dragStart = function _dragStart(e) {
-        if (this.get('disabled') || e.which !== 1) return;
-
-        this._x = e.clientX;
-        this._height = this.refs.bar.clientHeight;
-        this._width = this.refs.bar.clientWidth;
-        this._maxWidth = this.element.clientWidth;
-
-        document.addEventListener('mousemove', this._move);
-        document.addEventListener('mouseup', this._dragEnd);
-    };
-
-    Switch.prototype._move = function _move(e) {
-        this.set('_dragging', true);
-
-        var left = e.clientX - this._x;
-        var width = Math.min(Math.max(this._height, this._width + left), this._maxWidth);
-        this.refs.bar.style.width = width + 'px';
-    };
-
-    Switch.prototype._dragEnd = function _dragEnd(e) {
-        this.set('_dragging', false);
-
-        this.element.blur();
-        var bar = this.refs.bar;
-
-        // treat mousedown -> mouseup as click
-        if (this._x === e.clientX) {
-            bar.style.width = '';
-            this._toggle();
-        } else {
-            var percent = (bar.clientWidth - this._height / 2) / this._maxWidth;
-
-            if (!this.isChecked()) {
-                if (percent >= 0.5) {
-                    this.check();
-                }
-            } else if (percent < 0.5) {
-                this.uncheck();
-            }
-            if (!this.isChecked() && this.get('width') && this.get('height')) {
-                // if is set width and height
-                bar.style.width = this.get('height') + 'px';
-            } else {
-                bar.style.width = '';
-            }
-        }
-
-        document.removeEventListener('mousemove', this._move);
-        document.removeEventListener('mouseup', this._dragEnd);
-    };
-
-    Switch.prototype._toggle = function _toggle(e, isKeypress) {
-        if (this.get('disabled')) return;
-
-        // if is not keypress, we blur it to remove focus style
-        if (!isKeypress) {
-            this.element.blur();
-        }
-
-        if (this.isChecked()) {
-            this.uncheck();
-        } else {
-            this.check();
-        }
-    };
-
-    Switch.prototype._onKeypress = function _onKeypress(e) {
-
-        if (e.keyCode === 13) {
-            this._toggle(e, true);
-        }
-    };
-
-    Switch.prototype.isChecked = function isChecked() {
-        return this.get('value') === this.get('trueValue');
-    };
-
-    Switch.prototype.check = function check() {
-        this.set('value', this.get('trueValue'));
-    };
-
-    Switch.prototype.uncheck = function uncheck() {
-        this.set('value', this.get('falseValue'));
-    };
-
-    Switch.prototype._handleClick = function _handleClick(e) {
-        e.stopPropagation();
-    };
-
-    (0, _createClass3.default)(Switch, [{
-        key: 'template',
-        get: function get() {
-            return _index2.default;
-        }
-    }]);
-    return Switch;
-}(_intact2.default), _class2.propTypes = {
-    disabled: Boolean
-}, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
-exports.default = Switch;
-exports.Switch = Switch;
-
-/***/ }),
-/* 233 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _assign = __webpack_require__(24);
-
-var _assign2 = _interopRequireDefault(_assign);
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    var _classNameObj;
-
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-
-    var _require = __webpack_require__(7),
-        addStyle = _require.addStyle;
-
-    var _self$get = self.get(),
-        className = _self$get.className,
-        style = _self$get.style,
-        children = _self$get.children,
-        name = _self$get.name,
-        on = _self$get.on,
-        off = _self$get.off,
-        value = _self$get.value,
-        trueValue = _self$get.trueValue,
-        falseValue = _self$get.falseValue,
-        width = _self$get.width,
-        height = _self$get.height,
-        size = _self$get.size,
-        disabled = _self$get.disabled,
-        _dragging = _self$get._dragging;
-
-    var classNameObj = (_classNameObj = {
-        'k-switch': true
-    }, _classNameObj[className] = className, _classNameObj['k-checked'] = value === trueValue, _classNameObj['k-' + size] = true, _classNameObj['k-disabled'] = disabled, _classNameObj['k-dragging'] = _dragging, _classNameObj);
-
-    var onStyle = void 0;
-    var offStyle = void 0;
-    var barStyle = void 0;
-    if (width || height) {
-        var _style = {};
-        onStyle = {};
-        offStyle = {};
-        if (width) {
-            _style.width = width + 'px';
-            onStyle.width = _style.width;
-            offStyle.width = _style.width;
-        }
-        if (height) {
-            _style.height = height + 'px';
-
-            (0, _assign2.default)(onStyle, {
-                height: _style.height,
-                lineHeight: _style.height,
-                padding: '0 ' + _style.height + ' 0 ' + height / 3 + 'px'
-            });
-
-            (0, _assign2.default)(offStyle, {
-                height: _style.height,
-                lineHeight: _style.height,
-                padding: '0 ' + height / 3 + 'px 0 ' + _style.height
-            });
-
-            barStyle = {
-                width: value === trueValue ? '100%' : height + 'px'
-            };
-        }
-        style = addStyle(style, _style);
-    }
-
-    return h('div', { 'style': function () {
-            try {
-                return [style][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-click': function () {
-            try {
-                return [self._toggle][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'tabindex': function () {
-            try {
-                return [disabled ? "-1" : "0"][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-keypress': function () {
-            try {
-                return [self._onKeypress][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, [h('input', { 'type': 'checkbox', 'name': function () {
-            try {
-                return [name][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'disabled': function () {
-            try {
-                return [disabled][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'v-model': 'value', 'value': function () {
-            try {
-                return [trueValue][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'tabindex': '-1', checked: _detectCheckboxChecked(self, 'value', function () {
-            try {
-                return [trueValue][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this)), 'ev-change': function evChange(__e) {
-            _setCheckboxModel(self, 'value', function () {
-                try {
-                    return [trueValue][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), function () {
-                try {
-                    return [falseValue][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), __e, $this);
-        } }, null, null, null, function (i) {
-        widgets['input'] = i;
-    }), function () {
-        try {
-            return [off || blocks.off][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('div', { 'style': function () {
-            try {
-                return [offStyle][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, (_blocks["off"] = function (parent) {
-        return function () {
-            try {
-                return [off][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this);
-    }) && (__blocks["off"] = function (parent) {
-        var self = this;
-        return blocks["off"] ? blocks["off"].call(this, function () {
-            return _blocks["off"].call(self, parent);
-        }) : _blocks["off"].call(this, parent);
-    }) && __blocks["off"].call(this), 'k-off') : undefined, h('div', { 'style': function () {
-            try {
-                return [barStyle][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, [function () {
-        try {
-            return [on || blocks.on][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('div', { 'style': function () {
-            try {
-                return [onStyle][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, (_blocks["on"] = function (parent) {
-        return function () {
-            try {
-                return [on][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this);
-    }) && (__blocks["on"] = function (parent) {
-        var self = this;
-        return blocks["on"] ? blocks["on"].call(this, function () {
-            return _blocks["on"].call(self, parent);
-        }) : _blocks["on"].call(this, parent);
-    }) && __blocks["on"].call(this), 'k-on') : undefined, h('div', null, h('div', { 'ev-click': function () {
-            try {
-                return [self._handleClick][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-mousedown': function () {
-            try {
-                return [self._dragStart][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, h('img', { 'src': 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' }), 'k-handle', null, function (i) {
-        widgets['handle'] = i;
-    }), 'k-wrapper')], 'k-bar', null, function (i) {
-        widgets['bar'] = i;
-    })], _className(function () {
-        try {
-            return [classNameObj][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)));
-};
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 234 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 235 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.TableColumn = exports.Table = exports.default = undefined;
-
-var _getOwnPropertyDescriptor = __webpack_require__(4);
-
-var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
-
-var _assign = __webpack_require__(24);
-
-var _assign2 = _interopRequireDefault(_assign);
-
-var _classCallCheck2 = __webpack_require__(1);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(8);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(2);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(3);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _dec, _desc, _value, _class, _class2, _temp;
-
-var _intact = __webpack_require__(0);
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _index = __webpack_require__(236);
-
-var _index2 = _interopRequireDefault(_index);
-
-__webpack_require__(6);
-
-__webpack_require__(240);
-
-var _column = __webpack_require__(92);
-
-var _column2 = _interopRequireDefault(_column);
-
-var _utils = __webpack_require__(7);
-
-var _position = __webpack_require__(40);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-    var desc = {};
-    Object['ke' + 'ys'](descriptor).forEach(function (key) {
-        desc[key] = descriptor[key];
-    });
-    desc.enumerable = !!desc.enumerable;
-    desc.configurable = !!desc.configurable;
-
-    if ('value' in desc || desc.initializer) {
-        desc.writable = true;
-    }
-
-    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-        return decorator(target, property, desc) || desc;
-    }, desc);
-
-    if (context && desc.initializer !== void 0) {
-        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-        desc.initializer = undefined;
-    }
-
-    if (desc.initializer === void 0) {
-        Object['define' + 'Property'](target, property, desc);
-        desc = null;
-    }
-
-    return desc;
-}
-
-var slice = Array.prototype.slice;
-
-var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
-    (0, _inherits3.default)(Table, _Intact);
-
-    function Table() {
-        (0, _classCallCheck3.default)(this, Table);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
-    }
-
-    Table.prototype.defaults = function defaults() {
-        return {
-            data: [],
-            scheme: {},
-            checkType: 'checkbox', // radio | none 
-            rowKey: function rowKey(value, index) {
-                return index;
-            },
-            rowClassName: function rowClassName(value, index) {},
-            // add className for tr
-            checkedKeys: [], // for checkbox
-            checkedKey: undefined, // for radio
-            rowCheckable: true, // click row to check
-            rowExpandable: true, // click row to expand
-            noDataTemplate: (0, _utils._$)('/(ㄒoㄒ)/~~ 没有找到亲要的数据哦~'),
-            disableRow: function disableRow(data, index) {
-                return false;
-            },
-
-            sort: {},
-            group: {},
-            resizable: false,
-            expand: undefined, // expand template callback
-            expandedKeys: [],
-            type: 'default', // default border
-            fixHeader: false,
-            minColWidth: 40,
-
-            _padding: 0,
-            _disabledAmount: 0
-        };
-    };
-
-    Table.prototype._init = function _init() {
-        var _this2 = this;
-
-        // keep the event consistent
-        this.on('$change:checkedKeys', function (c, newValue, oldValue) {
-            _this2.trigger('$change:checked', c, newValue, oldValue);
-        });
-        this.on('$change:checkedKey', function (c, newValue, oldValue) {
-            _this2.trigger('$change:checked', c, [newValue], [oldValue]);
-        });
-        // calculate padding of header when some props have changed
-        ['data', 'fixHeader'].forEach(function (item) {
-            _this2.on('$changed:' + item, _this2._calcHeaderPadding);
-        });
-        // update disabled amount when some props have changed
-        ['data', 'disableRow'].forEach(function (item) {
-            _this2.on('$change:' + item, _this2._updateDisabledAmount);
-        });
-        this._updateDisabledAmount();
-
-        this._move = this._move.bind(this);
-        this._dragEnd = this._dragEnd.bind(this);
-    };
-
-    Table.prototype._mount = function _mount() {
-        this._calcHeaderPadding();
-    };
-
-    Table.prototype.get = function get(key, defaultValue) {
-        if (key === 'data' && !Array.isArray(_Intact.prototype.get.call(this, 'data', defaultValue))) {
-            return [];
-        }
-        return _Intact.prototype.get.call(this, key, defaultValue);
-    };
-
-    Table.prototype.isCheckAll = function isCheckAll() {
-        var checkedKeys = this.get('checkedKeys');
-        var dataLength = this.get('data').length;
-        var disabledAmount = this.get("_disabledAmount");
-        var amount = dataLength - disabledAmount;
-        return amount && checkedKeys.length >= amount;
-    };
-
-    Table.prototype.isChecked = function isChecked(key) {
-        var _get = this.get(),
-            checkType = _get.checkType,
-            checkedKey = _get.checkedKey,
-            checkedKeys = _get.checkedKeys;
-
-        if (checkType === 'checkbox') {
-            return ~checkedKeys.indexOf(key);
-        } else if (checkType === 'radio') {
-            return checkedKey === key;
-        }
-        return false;
-    };
-
-    Table.prototype.checkAll = function checkAll() {
-        var _this3 = this;
-
-        var rowKey = this.get('rowKey');
-        var disableRow = this.get('disableRow');
-        var checkedKeys = [];
-        this.get('data').forEach(function (value, index) {
-            if (!disableRow.call(_this3, value, index)) {
-                checkedKeys.push(rowKey.call(_this3, value, index));
-            }
-        });
-        this.set('checkedKeys', checkedKeys);
-    };
-
-    Table.prototype.uncheckAll = function uncheckAll() {
-        this.set('checkedKeys', []);
-    };
-
-    Table.prototype.checkRow = function checkRow(key) {
-        this._checkUncheckRow(key, true, false);
-    };
-
-    Table.prototype.uncheckRow = function uncheckRow(key) {
-        this._checkUncheckRow(key, false, false);
-    };
-
-    Table.prototype.shrinkRow = function shrinkRow(key) {
-        this._expandShrinkRow(key, false, false);
-    };
-
-    Table.prototype.expandRow = function expandRow(key) {
-        this._expandShrinkRow(key, true, false);
-    };
-
-    /**
-     * @brief get the checked data
-     * @return {Array}
-     */
-
-
-    Table.prototype.getCheckedData = function getCheckedData() {
-        var _this4 = this;
-
-        var rowKey = this.get('rowKey');
-        var checkType = this.get('checkType');
-        if (checkType === 'checkbox') {
-            var checkedKeys = this.get('checkedKeys');
-            var checkedKeysMap = {};
-            checkedKeys.forEach(function (item) {
-                checkedKeysMap[item] = true;
-            });
-            return this.get('data').filter(function (value, index) {
-                var key = rowKey.call(_this4, value, index);
-                return checkedKeysMap[key];
-            });
-        } else if (checkType === 'radio') {
-            var checkedKey = this.get('checkedKey');
-            return this.get('data').filter(function (value, index) {
-                return rowKey.call(_this4, value, index) === checkedKey;
-            });
-        } else {
-            return [];
-        }
-    };
-
-    Table.prototype._calcHeaderPadding = function _calcHeaderPadding() {
-        if (this.get('fixHeader')) {
-            var tableHeight = this.table.offsetHeight;
-            var containerHeight = this.scroll.offsetHeight;
-            var headerHeight = this.header.offsetHeight;
-            this.set('_padding', tableHeight - headerHeight > containerHeight ? (0, _position.scrollbarWidth)() : 0);
-        }
-    };
-
-    Table.prototype._updateDisabledAmount = function _updateDisabledAmount() {
-        var _this5 = this;
-
-        var disabledAmount = 0;
-        var data = this.get('data');
-        var disableRow = this.get('disableRow');
-
-        data.forEach(function (item, index) {
-            if (disableRow.call(_this5, item, index)) {
-                disabledAmount++;
-            }
-        });
-        this.set('_disabledAmount', disabledAmount);
-    };
-
-    Table.prototype._toggleCheckAll = function _toggleCheckAll(e) {
-        if (e.target.checked) {
-            this.checkAll();
-        } else {
-            this.uncheckAll();
-        }
-    };
-
-    Table.prototype._clickRow = function _clickRow(value, index, key, e) {
-        // if is from checkbox or radio then do nothing
-        if (e.target.tagName.toLowerCase() === 'input') return;
-        // in chrome of macos, the target is input's parent element
-        // maybe beacause input's opacity is 0
-        var children = e.target.children;
-        if (children[0] && children[0].tagName.toLowerCase() === 'input') return;
-        if (this.get('disableRow').call(this, value, index)) return;
-
-        if (this.get('rowCheckable')) {
-            this._checkUncheckRow(key);
-        }
-
-        if (this.get('rowExpandable')) {
-            this._expandShrinkRow(key);
-        }
-    };
-
-    Table.prototype._checkUncheckRow = function _checkUncheckRow(key) {
-        var isCheck = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-        var isToggle = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-
-        var checkType = this.get('checkType');
-        if (checkType === 'checkbox') {
-            var checkedKeys = this.get('checkedKeys').slice(0);
-            var i = checkedKeys.indexOf(key);
-            if ((!isCheck || isToggle) && i > -1) {
-                checkedKeys.splice(i, 1);
-                this.set('checkedKeys', checkedKeys);
-            } else if (isCheck || isToggle) {
-                checkedKeys.push(key);
-                this.set('checkedKeys', checkedKeys);
-            }
-        } else if (checkType === 'radio') {
-            if (!isToggle) {
-                // isToggle is false means call this by checkRow & uncheckRow
-                if (isCheck) {
-                    this.set('checkedKey', key);
-                } else if (this.get('checkedKey') === key) {
-                    // only change it when we uncheck the checked row
-                    this.set('checkedKey', undefined);
-                }
-            } else {
-                this.set('checkedKey', key);
-            }
-        }
-    };
-
-    Table.prototype._expandShrinkRow = function _expandShrinkRow(key) {
-        var isExpand = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-        var isToggle = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-
-        if (typeof this.get('expand') !== 'function') return;
-
-        var expandedKeys = this.get('expandedKeys').slice(0);
-        var i = expandedKeys.indexOf(key);
-        if ((!isExpand || isToggle) && i > -1) {
-            expandedKeys.splice(i, 1);
-            this.set('expandedKeys', expandedKeys);
-        } else if (isExpand || isToggle) {
-            expandedKeys.push(key);
-            this.set('expandedKeys', expandedKeys);
-        }
-    };
-
-    Table.prototype._onRowDestroyed = function _onRowDestroyed(key) {
-        this.shrinkRow(key);
-        this.uncheckRow(key);
-    };
-
-    Table.prototype._sort = function _sort(key, value) {
-        var sort = (0, _assign2.default)({}, this.get('sort'));
-        sort.key = key;
-        sort.type = sort.type === 'desc' ? 'asc' : 'desc';
-        this.set('sort', sort);
-    };
-
-    Table.prototype._dragStart = function _dragStart(props, e) {
-        // left key
-        if (e.which !== 1) return;
-
-        this._resizing = true;
-        this._containerWidth = this.element.offsetWidth;
-        this._x = e.clientX;
-
-        this._minWidth = props.minWidth || this.get('minColWidth');
-
-        var currentTh = e.target.parentNode;
-        var prevTh = currentTh.previousElementSibling;
-
-        this._currentThs = [currentTh];
-        this._prevThs = [prevTh];
-        this._tables = [this.table];
-
-        if (this.get('fixHeader')) {
-            var ths = this.table.children[0].getElementsByTagName('th');
-            var fixThs = currentTh.parentNode.children;
-            var index = slice.call(fixThs).indexOf(currentTh);
-            this._currentThs.push(ths[index]);
-            this._prevThs.push(ths[index - 1]);
-            // this._tables.push(this.header.children[0]);
-            // if fixHeader we should change the width of header and scroll
-            this._tables = [this.header, this.scroll];
-        }
-
-        document.addEventListener('mousemove', this._move);
-        document.addEventListener('mouseup', this._dragEnd);
-    };
-
-    Table.prototype._move = function _move(e) {
-        e.preventDefault();
-
-        if (this._resizing) {
-            var delX = e.clientX - this._x;
-            var prevWidth = this._prevThs[0].offsetWidth + delX;
-            var tableWidth = this._tables[0].offsetWidth + delX;
-
-            if (prevWidth < this._minWidth) return;
-
-            this._prevThs.forEach(function (item) {
-                item.style.width = prevWidth + 'px';
-            });
-
-            if (this._containerWidth >= tableWidth) {
-                this._tables.forEach(function (item) {
-                    item.style.width = '100%';
-                });
-            } else {
-                this._tables.forEach(function (item) {
-                    item.style.width = tableWidth + 'px';
-                });
-            }
-
-            this._x = e.clientX;
-        }
-    };
-
-    Table.prototype._dragEnd = function _dragEnd(e) {
-        if (this._resizing) {
-            this._resizing = false;
-            document.removeEventListener('mousemove', this._move);
-            document.removeEventListener('mouseup', this._dragEnd);
-        }
-    };
-
-    Table.prototype._destroy = function _destroy() {
-        this._dragEnd();
-    };
-
-    (0, _createClass3.default)(Table, [{
-        key: 'template',
-        get: function get() {
-            return _index2.default;
-        }
-    }]);
-    return Table;
-}(_intact2.default), _class2.propTypes = {
-    rowCheckable: Boolean,
-    rowExpandable: Boolean,
-    resizable: Boolean,
-    fixHeader: Boolean
-}, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
-exports.default = Table;
-exports.Table = Table;
-exports.TableColumn = _column2.default;
-
-/***/ }),
-/* 236 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _extends2 = __webpack_require__(5);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    var _this = this,
-        _classNameObj;
-
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-
-    var _self$get = self.get(),
-        checkType = _self$get.checkType,
-        scheme = _self$get.scheme,
-        checkedKeys = _self$get.checkedKeys,
-        data = _self$get.data,
-        rowKey = _self$get.rowKey,
-        className = _self$get.className,
-        fixHeader = _self$get.fixHeader,
-        noDataTemplate = _self$get.noDataTemplate,
-        disableRow = _self$get.disableRow,
-        resizable = _self$get.resizable,
-        expand = _self$get.expand,
-        expandedKeys = _self$get.expandedKeys,
-        type = _self$get.type,
-        style = _self$get.style,
-        rowClassName = _self$get.rowClassName,
-        children = _self$get.children,
-        sort = _self$get.sort,
-        group = _self$get.group;
-
-    var colSpan = checkType === 'checkbox' || checkType === 'radio' ? 1 : 0;
-    var expandable = typeof expand === 'function';
-    var _scheme = {};
-
-    var prevItem = checkType === 'checkbox' || checkType === 'radio' ? { minWidth: 40 } : {};
-
-    var theadCreator = function theadCreator() {
-        var keys = {};
-        return h('thead', null, h('tr', null, [function () {
-            try {
-                return [checkType === 'checkbox'][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(_this) ? h('th', null, h(_checkbox2.default, { 'value': function () {
-                try {
-                    return [self.isCheckAll()][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(_this), 'ev-click': function () {
-                try {
-                    return [self._toggleCheckAll][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(_this), 'children': null, '_context': $this }), 'k-th-check') : function () {
-            try {
-                return [checkType === 'radio'][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(_this) ? h('th', null, null, 'k-th-check') : undefined, '\n            ', function () {
-            var _this2 = this;
-
-            try {
-                return [__u.map(scheme, function (item, key) {
-                    colSpan++;
-                    keys[key] = true;
-
-                    if (!__u.isObject(item) || item.type) {
-                        item = { title: item };
-                    }
-
-                    // because we use the last resize handle to controll the previous column
-                    // so we bind prevItem here
-                    var dragStart = self._dragStart.bind(self, prevItem);
-                    prevItem = item;
-
-                    return h(_column2.default, (0, _extends3.default)({}, function () {
-                        try {
-                            return [item][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this2), { 'key': function () {
-                            try {
-                                return [key][0];
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call(_this2), '$parent': function () {
-                            try {
-                                return [self][0];
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call(_this2), 'ev-click': function () {
-                            try {
-                                return [item.sortable ? self._sort.bind(self, key, item) : undefined][0];
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call(_this2), 'ev-dragStart': function () {
-                            try {
-                                return [dragStart][0];
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call(_this2), 'v-model': function () {
-                            try {
-                                return ['group.' + key][0];
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call(_this2), 'children': null, '_context': $this, value: _getModel(self, function () {
-                            try {
-                                return ['group.' + key][0];
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call(_this2)), 'ev-$change:value': function ev$changeValue(__c, __n) {
-                            _setModel(self, function () {
-                                try {
-                                    return ['group.' + key][0];
-                                } catch (e) {
-                                    _e(e);
-                                }
-                            }.call(this), __n, $this);
-                        } }));
-                })][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(_this), '\n            ', function () {
-            try {
-                return [// for using TableColumn as children
-                __u.map(children ? Array.isArray(children) ? children : [children] : children, function (vNode) {
-                    if (vNode.tag === _column2.default) {
-                        colSpan++;
-
-                        var props = (0, _extends3.default)({}, vNode.props, { $parent: self });
-                        vNode.props = props;
-                        if (props.key == null) {
-                            _e(new Error('key for TableColumn must be specified.'));
-                        } else if (/^\d+$/.test(props.key)) {
-                            // avoid digital key
-                            _e(new Error('don\'t use digits as key.'));
-                        } else if (keys[props.key]) {
-                            _e(new Error('Reduplicated key: ' + props.key));
-                        }
-
-                        keys[props.key] = true;
-                        props.value = group[props.key];
-
-                        var dragStart = self._dragStart.bind(self, prevItem);
-                        prevItem = props;
-
-                        // add a flag to detect if the vNode has attached events of bellow
-                        // we should not attach them again, when the same vNode come again
-                        if (!vNode._$) {
-                            props['ev-$change:value'] = function (c, v) {
-                                return self.set('group.' + props.key, v);
-                            };
-                            props['ev-click'] = props.sortable ? self._sort.bind(self, props.key, props) : undefined;
-                            props['ev-dragStart'] = dragStart;
-                            vNode._$ = true;
-                        }
-                        _scheme[props.key] = {
-                            title: props.title,
-                            template: props.template || props.default
-                        };
-                        return vNode;
-                    }
-                })][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(_this), '\n        ']));
-    };
-
-    var thead = theadCreator();
-
-    var tbody = h('tbody', null, ['\n    ', function () {
-        var _this3 = this;
-
-        try {
-            return [data && data.length ? __u.map(data, function (value, index) {
-                var key = rowKey.call(self, value, index);
-                var disabled = disableRow.call(self, value, index);
-                var className = rowClassName.call(self, value, index);
-                var tr = h(_row2.default, { 'key': function () {
-                        try {
-                            return [key][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this3), 'ev-click': function () {
-                        try {
-                            return [self._clickRow.bind(self, value, index, key)][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this3), 'className': _className(function () {
-                        try {
-                            var _ref;
-
-                            return [(_ref = {
-                                'k-disabled': disabled
-                            }, _ref[className] = className, _ref['k-checked'] = self.isChecked(key), _ref)][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this3)), 'ev-$destroyed': function () {
-                        try {
-                            return [self._onRowDestroyed.bind(self, key)][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this3), 'children': [function () {
-                        try {
-                            return [checkType === 'checkbox'][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this3) ? h('td', null, h(_checkbox2.default, { 'v-model': 'checkedKeys', 'name': 'k-table-checkbox', 'trueValue': function () {
-                            try {
-                                return [key][0];
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call(_this3), 'disabled': function () {
-                            try {
-                                return [disabled][0];
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call(_this3), 'children': null, '_context': $this, value: _getModel(self, 'checkedKeys'), 'ev-$change:value': function ev$changeValue(__c, __n) {
-                            _setModel(self, 'checkedKeys', __n, $this);
-                        } })) : function () {
-                        try {
-                            return [checkType === 'radio'][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this3) ? h('td', null, h(_radio2.default, { 'v-model': 'checkedKey', 'name': 'k-table-radio', 'trueValue': function () {
-                            try {
-                                return [key][0];
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call(_this3), 'disabled': function () {
-                            try {
-                                return [disabled][0];
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call(_this3), 'children': null, '_context': $this, value: _getModel(self, 'checkedKey'), 'ev-$change:value': function ev$changeValue(__c, __n) {
-                            _setModel(self, 'checkedKey', __n, $this);
-                        } })) : undefined, '\n                ', function () {
-                        var _this4 = this;
-
-                        try {
-                            return [__u.map(__u.extend({}, scheme, _scheme), function (item, key) {
-                                var td = void 0;
-                                if (__u.isObject(item) && item.template) {
-                                    if (typeof item.template === 'function') {
-                                        td = item.template.call(self, value, index);
-                                        // for Intact-Vue
-                                        if (_intact.normalize) {
-                                            td = (0, _intact.normalize)(td);
-                                        }
-                                    } else {
-                                        td = item.template;
-                                    }
-                                } else if (value[key] !== undefined) {
-                                    td = value[key];
-                                } else {
-                                    var _obj = value,
-                                        keys = key.split('.'),
-                                        i = 0;
-                                    while (_obj != null && i < keys.length) {
-                                        _obj = _obj[keys[i++]];
-                                    }
-                                    td = i && i === keys.length ? _obj : null;
-                                }
-                                return h('td', { 'title': function () {
-                                        try {
-                                            return [typeof td === 'string' || typeof td === 'number' ? td : undefined][0];
-                                        } catch (e) {
-                                            _e(e);
-                                        }
-                                    }.call(_this4) }, function () {
-                                    try {
-                                        return [typeof td === 'boolean' ? String(td) : td][0];
-                                    } catch (e) {
-                                        _e(e);
-                                    }
-                                }.call(_this4));
-                            })][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this3), '\n            '], '_context': $this });
-
-                if (expandable && expandedKeys.indexOf(key) > -1) {
-                    return [tr, h('tr', null, h('td', { 'colspan': function () {
-                            try {
-                                return [colSpan][0];
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call(_this3) }, function () {
-                        try {
-                            return [expand.call(self, value, index)][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this3)), 'k-expand', function () {
-                        try {
-                            return [key + '.expand'][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this3))];
-                } else {
-                    return tr;
-                }
-            }) : h('tr', null, h('td', { 'colspan': function () {
-                    try {
-                        return [colSpan][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this) }, (_blocks["no-data"] = function (parent) {
-                return function () {
-                    try {
-                        return [noDataTemplate][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this);
-            }) && (__blocks["no-data"] = function (parent) {
-                var self = this;
-                return blocks["no-data"] ? blocks["no-data"].call(this, function () {
-                    return _blocks["no-data"].call(self, parent);
-                }) : _blocks["no-data"].call(this, parent);
-            }) && __blocks["no-data"].call(this), 'k-no-data'), null, 'table_no_data')][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), '\n']);
-
-    var classNameObj = (_classNameObj = {
-        'k-table-wrapper': true
-    }, _classNameObj[className] = className, _classNameObj['k-' + type] = type !== 'default', _classNameObj);
-
-    var table = h('table', null, ['\n    ', function () {
-        try {
-            return [thead][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), '\n    ', function () {
-        try {
-            return [tbody][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), '\n'], 'k-table', null, function () {
-        try {
-            return [function (dom) {
-                return self.table = dom;
-            }][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this));
-
-    return h('div', { 'style': function () {
-            try {
-                return [style][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, [function () {
-        try {
-            return [fixHeader][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('div', { 'style': function () {
-            try {
-                return [{ paddingRight: self.get('_padding') + 'px' }][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, h('table', null, ['\n            ', function () {
-        try {
-            return [theadCreator()][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), '\n        '], 'k-table'), 'k-fixed', null, function () {
-        try {
-            return [function (dom) {
-                return self.header = dom;
-            }][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)) : undefined, '\n    ', function () {
-        try {
-            return [fixHeader ? h('div', { 'style': function () {
-                    try {
-                        return [typeof fixHeader === 'number' || typeof fixHeader === 'string' ? { maxHeight: fixHeader + 'px' } : undefined][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this) }, function () {
-                try {
-                    return [table][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'k-scroll', null, function () {
-                try {
-                    return [function (dom) {
-                        return self.scroll = dom;
-                    }][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this)) : table][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), '\n'], _className(function () {
-        try {
-            return [classNameObj][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)));
-};
-
-var _checkbox = __webpack_require__(31);
-
-var _checkbox2 = _interopRequireDefault(_checkbox);
-
-var _radio = __webpack_require__(41);
-
-var _radio2 = _interopRequireDefault(_radio);
-
-var _row = __webpack_require__(237);
-
-var _row2 = _interopRequireDefault(_row);
-
-var _intact = __webpack_require__(0);
-
-var _column = __webpack_require__(92);
-
-var _column2 = _interopRequireDefault(_column);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 237 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.default = undefined;
-
-var _classCallCheck2 = __webpack_require__(1);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(8);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(2);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(3);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _intact = __webpack_require__(0);
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _row = __webpack_require__(238);
-
-var _row2 = _interopRequireDefault(_row);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// for tr $destroyed event
-var TableRow = function (_Intact) {
-    (0, _inherits3.default)(TableRow, _Intact);
-
-    function TableRow() {
-        (0, _classCallCheck3.default)(this, TableRow);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
-    }
-
-    (0, _createClass3.default)(TableRow, [{
-        key: 'template',
-        get: function get() {
-            return _row2.default;
-        }
-    }]);
-    return TableRow;
-}(_intact2.default);
-
-exports.default = TableRow;
-module.exports = exports['default'];
-
-/***/ }),
-/* 238 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _extends2 = __webpack_require__(5);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-  _Vdt || (_Vdt = Vdt);
-  obj || (obj = {});
-  blocks || (blocks = {});
-  var h = _Vdt.miss.h,
-      hc = _Vdt.miss.hc,
-      hu = _Vdt.miss.hu,
-      widgets = this && this.widgets || {},
-      _blocks = {},
-      __blocks = {},
-      __u = _Vdt.utils,
-      extend = __u.extend,
-      _e = __u.error,
-      _className = __u.className,
-      __o = __u.Options,
-      _getModel = __o.getModel,
-      _setModel = __o.setModel,
-      _setCheckboxModel = __u.setCheckboxModel,
-      _detectCheckboxChecked = __u.detectCheckboxChecked,
-      _setSelectModel = __u.setSelectModel,
-      self = this.data,
-      $this = this,
-      scope = obj,
-      Animate = self && self.Animate,
-      parent = ($callee || {})._super;
-  return h('tr', (0, _extends3.default)({}, function () {
-    try {
-      return [self.get()][0];
-    } catch (e) {
-      _e(e);
-    }
-  }.call(this)), function () {
-    try {
-      return [self.get('children')][0];
-    } catch (e) {
-      _e(e);
-    }
-  }.call(this));
-};
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 239 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-
-    var _self$get = self.get(),
-        width = _self$get.width,
-        title = _self$get.title,
-        key = _self$get.key,
-        group = _self$get.group,
-        multiple = _self$get.multiple,
-        sortable = _self$get.sortable,
-        $parent = _self$get.$parent,
-        _show = _self$get._show;
-
-    var _$parent$get = $parent.get(),
-        sort = _$parent$get.sort,
-        resizable = _$parent$get.resizable;
-
-    var groupText = group && self._getGroupText() || '';
-
-    return h('th', { 'width': function () {
-            try {
-                return [width][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'title': function () {
-            try {
-                return [(0, _utils.isStringOrNumber)(title) ? title + groupText : undefined][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-click': function () {
-            try {
-                return [self.onClick][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, [function () {
-        try {
-            return [resizable][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('div', { 'ev-mousedown': function () {
-            try {
-                return [self.onDragStart][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-click': function () {
-            try {
-                return [self._stopPropagation][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, null, 'k-resize') : undefined, h('div', null, [function () {
-        try {
-            return [!group][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('div', null, (_blocks["title"] = function (parent) {
-        return function () {
-            try {
-                return [title][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this);
-    }) && (__blocks["title"] = function (parent) {
-        var self = this;
-        return blocks["title"] ? blocks["title"].call(this, function () {
-            return _blocks["title"].call(self, parent);
-        }) : _blocks["title"].call(this, parent);
-    }) && __blocks["title"].call(this), 'c-ellipsis') : undefined, function () {
-        try {
-            return [group][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this) ? h('div', null, [h(_dropdown.Dropdown, { 'children': [h('i', null, null, 'k-arrow ion-ios-arrow-down'), h(_dropdown.DropdownMenu, { 'className': _className(function () {
-                try {
-                    return [{ 'k-table-dropdown': true, 'k-multiple': multiple }][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this)), 'ev-$change:show': function () {
-                try {
-                    return [self._onChangeShow][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'children': _Vdt.utils.map(function () {
-                try {
-                    return [group][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), function (value, key) {
-                return h(_dropdown.DropdownItem, { 'className': _className(function () {
-                        try {
-                            return [{ 'k-active': self._isChecked(value.value) }][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this)), 'ev-select': function () {
-                        try {
-                            return [self._onSelect.bind(self, value.value)][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this), 'hideOnSelect': function () {
-                        try {
-                            return [!multiple][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this), 'children': function () {
-                        try {
-                            return [multiple][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this) ? h(_checkbox.Checkbox, { 'name': 'key', 'value': function () {
-                            try {
-                                return [self._isChecked(value.value)][0];
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call(this), 'children': function () {
-                            try {
-                                return [value.label][0];
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call(this), '_context': $this }) : h('span', null, function () {
-                        try {
-                            return [value.label][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this)), '_context': $this });
-            }, this), '_context': $this })], '_context': $this }), h('div', null, [(_blocks["title"] = function (parent) {
-        return function () {
-            try {
-                return [title][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this);
-    }) && (__blocks["title"] = function (parent) {
-        var self = this;
-        return blocks["title"] ? blocks["title"].call(this, function () {
-            return _blocks["title"].call(self, parent);
-        }) : _blocks["title"].call(this, parent);
-    }) && __blocks["title"].call(this), '\n                ', function () {
-        try {
-            return [groupText][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), '\n            '], 'c-ellipsis')], 'k-group') : undefined, '\n        ', function () {
-        var _this = this;
-
-        try {
-            return [function () {
-                if (sortable) {
-                    var type = key === sort.key ? sort.type : '';
-                    return h('div', null, h('i', null, null, _className(function () {
-                        try {
-                            var _ref;
-
-                            return [(_ref = {
-                                'k-icon': true
-                            }, _ref['icon-' + type] = type, _ref['icon-sortable'] = !type, _ref)][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this))), _className(function () {
-                        try {
-                            var _ref2;
-
-                            return [(_ref2 = { 'k-sort': true }, _ref2['k-' + type] = type, _ref2)][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(_this)));
-                }
-            }()][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), '\n    '], _className(function () {
-        try {
-            return [{ "k-th": true, "k-group-show": _show }][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)))], _className(function () {
-        try {
-            return [{ 'k-sortable': sortable }][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)));
-};
-
-var _dropdown = __webpack_require__(32);
-
-var _checkbox = __webpack_require__(31);
-
-var _radio = __webpack_require__(41);
-
-var _utils = __webpack_require__(7);
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 240 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 241 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.Tag = exports.default = undefined;
-
-var _getOwnPropertyDescriptor = __webpack_require__(4);
-
-var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
-
-var _classCallCheck2 = __webpack_require__(1);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _possibleConstructorReturn2 = __webpack_require__(2);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(3);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _dec, _desc, _value, _class, _init, _class2, _temp;
-
-var _intact = __webpack_require__(0);
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _index = __webpack_require__(242);
-
-var _index2 = _interopRequireDefault(_index);
-
-__webpack_require__(6);
-
-__webpack_require__(243);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-    var desc = {};
-    Object['ke' + 'ys'](descriptor).forEach(function (key) {
-        desc[key] = descriptor[key];
-    });
-    desc.enumerable = !!desc.enumerable;
-    desc.configurable = !!desc.configurable;
-
-    if ('value' in desc || desc.initializer) {
-        desc.writable = true;
-    }
-
-    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-        return decorator(target, property, desc) || desc;
-    }, desc);
-
-    if (context && desc.initializer !== void 0) {
-        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-        desc.initializer = undefined;
-    }
-
-    if (desc.initializer === void 0) {
-        Object['define' + 'Property'](target, property, desc);
-        desc = null;
-    }
-
-    return desc;
-}
-
-var Tag = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
-    (0, _inherits3.default)(Tag, _Intact);
-
-    function Tag() {
-        (0, _classCallCheck3.default)(this, Tag);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
-    }
-
-    Tag.prototype.defaults = function defaults() {
-        return {
-            type: 'default',
-            closable: false,
-            closed: false
-        };
-    };
-
-    Tag.prototype._close = function _close() {
-        this.set('closed', true);
-        this.trigger('close');
-    };
-
-    return Tag;
-}(_intact2.default), _class2.template = _index2.default, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    initializer: function initializer() {
-        return _init;
-    }
-}), _class)), _class));
-exports.default = Tag;
-exports.Tag = Tag;
-
-/***/ }),
-/* 242 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _extends2 = __webpack_require__(5);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(12);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    var _classNameObj;
-
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-
-    var _self$get = self.get(),
-        className = _self$get.className,
-        children = _self$get.children,
-        type = _self$get.type,
-        disabled = _self$get.disabled,
-        closable = _self$get.closable,
-        closed = _self$get.closed,
-        rest = (0, _objectWithoutProperties3.default)(_self$get, ['className', 'children', 'type', 'disabled', 'closable', 'closed']);
-
-    if (closed) return;
-
-    var classNameObj = (_classNameObj = {
-        'k-tag': true
-    }, _classNameObj[className] = className, _classNameObj['k-' + type] = type !== 'default', _classNameObj['k-disabled'] = disabled, _classNameObj['k-closable'] = closable, _classNameObj);
-
-    return h(Animate, (0, _extends3.default)({ 'a:disabled': function () {
-            try {
-                return [disabled][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'a:transition': 'fade', 'className': _className(function () {
-            try {
-                return [classNameObj][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this)) }, function () {
-        try {
-            return [rest][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this), { 'children': ['\n    ', function () {
-            try {
-                return [children][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), '\n    ', function () {
-            try {
-                return [closable][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) ? h(_button2.default, { 'type': 'none', 'icon': function () {
-                try {
-                    return [true][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'className': 'k-close', 'disabled': function () {
-                try {
-                    return [disabled][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'ev-click': function () {
-                try {
-                    return [self._close][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(this), 'children': h('i', null, null, 'k-icon ion-ios-close-empty'), '_context': $this }) : undefined], '_context': $this }));
-};
-
-var _button = __webpack_require__(15);
-
-var _button2 = _interopRequireDefault(_button);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 243 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 244 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.Transfer = exports.default = undefined;
-
-var _getOwnPropertyDescriptor = __webpack_require__(4);
-
-var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
-
-var _classCallCheck2 = __webpack_require__(1);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _possibleConstructorReturn2 = __webpack_require__(2);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(3);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _dec, _desc, _value, _class, _init, _class2, _temp;
-
-var _intact = __webpack_require__(0);
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _index = __webpack_require__(245);
-
-var _index2 = _interopRequireDefault(_index);
-
-__webpack_require__(6);
-
-__webpack_require__(246);
-
-var _utils = __webpack_require__(7);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-    var desc = {};
-    Object['ke' + 'ys'](descriptor).forEach(function (key) {
-        desc[key] = descriptor[key];
-    });
-    desc.enumerable = !!desc.enumerable;
-    desc.configurable = !!desc.configurable;
-
-    if ('value' in desc || desc.initializer) {
-        desc.writable = true;
-    }
-
-    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-        return decorator(target, property, desc) || desc;
-    }, desc);
-
-    if (context && desc.initializer !== void 0) {
-        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-        desc.initializer = undefined;
-    }
-
-    if (desc.initializer === void 0) {
-        Object['define' + 'Property'](target, property, desc);
-        desc = null;
-    }
-
-    return desc;
-}
-
-var Transfer = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
-    (0, _inherits3.default)(Transfer, _Intact);
-
-    function Transfer() {
-        (0, _classCallCheck3.default)(this, Transfer);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
-    }
-
-    Transfer.prototype.defaults = function defaults() {
-        return {
-            data: [],
-            value: [],
-            leftChecked: [],
-            rightChecked: [],
-            filterable: false,
-            // batchable: false,
-            filter: function filter(data, keywords) {
-                return data.label.includes(keywords);
-            },
-            label: function label(data, index) {
-                return data.label;
-            },
-
-            keyName: 'key',
-            placeholder: (0, _utils._$)('请输入'),
-            leftTitle: (0, _utils._$)('请选择'),
-            rightTitle: (0, _utils._$)('已选择')
-        };
-    };
-
-    Transfer.prototype._mount = function _mount() {
-        document.addEventListener('keydown', this._onKeydown);
-        document.addEventListener('keyup', this._onKeyup);
-    };
-
-    Transfer.prototype._onKeydown = function _onKeydown(e) {
-        if (e.keyCode === 16) {
-            this.shiftKey = true;
-        }
-    };
-
-    Transfer.prototype._onKeyup = function _onKeyup(e) {
-        if (e.keyCode === 16) {
-            this.shiftKey = false;
-        }
-    };
-
-    Transfer.prototype._add = function _add() {
-        var value = this.get('value').concat(this.get('leftChecked'));
-        this.set({
-            leftChecked: [],
-            value: value
-        });
-    };
-
-    Transfer.prototype._remove = function _remove() {
-        var value = this.get('value').slice(0);
-        this.get('rightChecked').forEach(function (item) {
-            var index = value.indexOf(item);
-            value.splice(index, 1);
-        });
-        this.set({
-            rightChecked: [],
-            value: value
-        });
-    };
-
-    Transfer.prototype._onCheckboxChange = function _onCheckboxChange(type, index, e) {
-        var keywords = this.get(type + 'Keywords');
-        var data = type === 'left' ? this.get('data') : this.get('value');
-        var filter = this.get('filter');
-
-        if (this.startIndex === undefined || !this.shiftKey) {
-            this.startIndex = index;
-            this.checked = e.target.checked;
-        } else if (this.shiftKey) {
-            var values = data;
-            if (this.get('filterable') && keywords) {
-                values = data.filter(function (item) {
-                    return filter(item, keywords);
-                });
-            }
-            if (index > this.startIndex) {
-                values = values.slice(this.startIndex, index + 1);
-            } else if (index < this.startIndex) {
-                values = values.slice(index, this.startIndex + 1);
-            }
-            values = values.filter(function (item) {
-                return !item.disabled;
-            });
-            var checkedValues = this.get(type + 'Checked');
-            var _values = [];
-
-            if (this.checked) {
-                checkedValues.forEach(function (item) {
-                    if (!~values.indexOf(item)) {
-                        _values.push(item);
-                    }
-                });
-                this.set(type + 'Checked', values.concat(_values));
-            } else {
-                checkedValues.forEach(function (item) {
-                    if (!~values.indexOf(item)) {
-                        _values.push(item);
-                    }
-                });
-                this.set(type + 'Checked', _values);
-            }
-        }
-    };
-
-    Transfer.prototype._onClickLabel = function _onClickLabel(e) {
-        if (e.shiftKey && e.target.tagName !== 'INPUT') {
-            e.preventDefault();
-            e.target.click();
-        }
-    };
-
-    Transfer.prototype._isCheckAll = function _isCheckAll(model) {
-        var checked = this.get(model + 'Checked');
-        var data = this.get('value');
-
-        if (model === 'left') {
-            data = this.get('data').filter(function (item) {
-                return !~data.indexOf(item) && !item.disabled;
-            });
-        }
-
-        return data.length && checked.length >= data.length;
-    };
-
-    Transfer.prototype._toggleCheckAll = function _toggleCheckAll(model, e) {
-        if (e.target.checked) {
-            this._selectAll(model);
-        } else {
-            this.set(model + 'Checked', []);
-        }
-    };
-
-    Transfer.prototype._selectAll = function _selectAll(model) {
-        var data = this.get('value');
-        if (model === 'left') {
-            data = this.get('data').filter(function (item) {
-                return !~data.indexOf(item) && !item.disabled;
-            });
-        }
-
-        var keywords = this.get(model + 'Keywords');
-        if (this.get('filterable') && keywords) {
-            var filter = this.get('filter');
-            data = data.filter(function (item) {
-                return filter(item, keywords);
-            });
-        }
-
-        this.set(model + 'Checked', data);
-    };
-
-    Transfer.prototype._destroy = function _destroy() {
-        document.removeEventListener('keydown', this._onKeydown);
-        document.removeEventListener('keyup', this._onKeyup);
-    };
-
-    return Transfer;
-}(_intact2.default), _class2.template = _index2.default, _class2.propTypes = {
-    filterable: Boolean
-    // batchable: Boolean,
-}, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    initializer: function initializer() {
-        return _init;
-    }
-}), _class)), _class));
-exports.default = Transfer;
-exports.Transfer = Transfer;
-
-/***/ }),
-/* 245 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-exports.default = function (obj, _Vdt, blocks, $callee) {
-    var _classNameObj,
-        _this = this;
-
-    _Vdt || (_Vdt = Vdt);
-    obj || (obj = {});
-    blocks || (blocks = {});
-    var h = _Vdt.miss.h,
-        hc = _Vdt.miss.hc,
-        hu = _Vdt.miss.hu,
-        widgets = this && this.widgets || {},
-        _blocks = {},
-        __blocks = {},
-        __u = _Vdt.utils,
-        extend = __u.extend,
-        _e = __u.error,
-        _className = __u.className,
-        __o = __u.Options,
-        _getModel = __o.getModel,
-        _setModel = __o.setModel,
-        _setCheckboxModel = __u.setCheckboxModel,
-        _detectCheckboxChecked = __u.detectCheckboxChecked,
-        _setSelectModel = __u.setSelectModel,
-        self = this.data,
-        $this = this,
-        scope = obj,
-        Animate = self && self.Animate,
-        parent = ($callee || {})._super;
-
-    var _self$get = self.get(),
-        data = _self$get.data,
-        className = _self$get.className,
-        style = _self$get.style,
-        value = _self$get.value,
-        keyName = _self$get.keyName,
-        leftChecked = _self$get.leftChecked,
-        rightChecked = _self$get.rightChecked,
-        filterable = _self$get.filterable,
-        batchable = _self$get.batchable,
-        filter = _self$get.filter,
-        label = _self$get.label,
-        placeholder = _self$get.placeholder,
-        leftTitle = _self$get.leftTitle,
-        rightTitle = _self$get.rightTitle;
-
-    var classNameObj = (_classNameObj = {
-        'k-transfer': true
-    }, _classNameObj[className] = className, _classNameObj);
-
-    var Panel = function Panel(props) {
-        var keywords = self.get(props.model + 'Keywords');
-        var data = keywords ? props.data.filter(function (item) {
-            return filter(item, keywords);
-        }) : props.data;
-        return h('div', null, [h('div', null, [h('div', null, ['\n                ', function () {
-            try {
-                return [self.get(props.model + 'Checked.length')][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(_this), ' /\n                ', function () {
-            try {
-                return [data.length][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(_this), '\n            '], 'k-count'), h(_checkbox2.default, { 'className': 'c-ellipsis', 'value': function () {
-                try {
-                    return [self._isCheckAll(props.model)][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(_this), 'ev-click': function () {
-                try {
-                    return [self._toggleCheckAll.bind(self, props.model)][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(_this), 'children': function () {
-                try {
-                    return [props.title][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(_this), '_context': $this })], 'k-title'), function () {
-            try {
-                return [filterable][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(_this) ? h(_input2.default, { 'placeholder': function () {
-                try {
-                    return [placeholder][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(_this), 'v-model': function () {
-                try {
-                    return [props.model + 'Keywords'][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(_this), 'clearable': function () {
-                try {
-                    return [true][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(_this), 'size': 'small', 'children': null, '_context': $this, '_blocks': function (blocks) {
-                var _blocks = {},
-                    __blocks = extend({}, blocks);
-                return (_blocks["prefix"] = function (parent) {
-                    return h('i', null, null, 'ion-ios-search');
-                }) && (__blocks["prefix"] = function (parent) {
-                    var self = this;
-                    return blocks["prefix"] ? blocks["prefix"].call(this, function () {
-                        return _blocks["prefix"].call(self, parent);
-                    }) : _blocks["prefix"].call(this, parent);
-                }), __blocks;
-            }.call(_this, {}), value: _getModel(self, function () {
-                try {
-                    return [props.model + 'Keywords'][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(_this)), 'ev-$change:value': function ev$changeValue(__c, __n) {
-                _setModel(self, function () {
-                    try {
-                        return [props.model + 'Keywords'][0];
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call(this), __n, $this);
-            } }) : undefined, h(Animate, { 'className': 'k-list', 'children': _Vdt.utils.map(function () {
-                try {
-                    return [data][0];
-                } catch (e) {
-                    _e(e);
-                }
-            }.call(_this), function (value, key) {
-                return h(Animate, { 'className': _className(function () {
-                        try {
-                            return [{ "k-item": true, "k-disabled": value.disabled }][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this)), 'key': function () {
-                        try {
-                            return [value[keyName] || value.label || value][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this), 'a:transition': 'fade', 'ev-click': function () {
-                        try {
-                            return [self._onClickLabel][0];
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call(this), 'children': h(_checkbox2.default, { 'v-model': function () {
-                            try {
-                                return [props.model + 'Checked'][0];
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call(this), 'name': function () {
-                            try {
-                                return [props.model][0];
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call(this), 'trueValue': function () {
-                            try {
-                                return [value][0];
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call(this), 'disabled': function () {
-                            try {
-                                return [value.disabled][0];
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call(this), 'ev-click': function () {
-                            try {
-                                return [self._onCheckboxChange.bind(self, props.model, key)][0];
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call(this), 'children': function () {
-                            try {
-                                return [label.call(self, value, key, props.model)][0];
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call(this), '_context': $this, value: _getModel(self, function () {
-                            try {
-                                return [props.model + 'Checked'][0];
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call(this)), 'ev-$change:value': function ev$changeValue(__c, __n) {
-                            _setModel(self, function () {
-                                try {
-                                    return [props.model + 'Checked'][0];
-                                } catch (e) {
-                                    _e(e);
-                                }
-                            }.call(this), __n, $this);
-                        } }), '_context': $this });
-            }, _this), '_context': $this })], 'k-panel');
-    };
-
-    return h('div', { 'style': function () {
-            try {
-                return [style][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, [h(Panel, { 'data': function () {
-            try {
-                return [data.filter(function (item) {
-                    return !~value.indexOf(item);
-                })][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'model': 'left', 'title': function () {
-            try {
-                return [leftTitle][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'children': null, '_context': $this }), h('div', null, [h(_button2.default, { 'circle': function () {
-            try {
-                return [true][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'icon': function () {
-            try {
-                return [true][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'disabled': function () {
-            try {
-                return [!rightChecked.length][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-click': function () {
-            try {
-                return [self._remove][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'type': 'primary', 'size': 'large', 'children': h('i', null, null, 'k-icon ion-ios-arrow-left'), '_context': $this }), h(_button2.default, { 'circle': function () {
-            try {
-                return [true][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'icon': function () {
-            try {
-                return [true][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'disabled': function () {
-            try {
-                return [!leftChecked.length][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'ev-click': function () {
-            try {
-                return [self._add][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'type': 'primary', 'size': 'large', 'children': h('i', null, null, 'k-icon ion-ios-arrow-right'), '_context': $this })], 'k-arrows'), h(Panel, { 'data': function () {
-            try {
-                return [data.filter(function (item) {
-                    return ~value.indexOf(item);
-                })][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'model': 'right', 'title': function () {
-            try {
-                return [rightTitle][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'children': null, '_context': $this })], _className(function () {
-        try {
-            return [classNameObj][0];
-        } catch (e) {
-            _e(e);
-        }
-    }.call(this)));
-};
-
-var _button = __webpack_require__(15);
-
-var _button2 = _interopRequireDefault(_button);
-
-var _checkbox = __webpack_require__(31);
-
-var _checkbox2 = _interopRequireDefault(_checkbox);
-
-var _input = __webpack_require__(19);
-
-var _input2 = _interopRequireDefault(_input);
-
-var _utils = __webpack_require__(7);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 246 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 247 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
 exports.Cascader = exports.default = undefined;
 
 var _getOwnPropertyDescriptor = __webpack_require__(4);
 
 var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
 
-var _regenerator = __webpack_require__(248);
+var _regenerator = __webpack_require__(163);
 
 var _regenerator2 = _interopRequireDefault(_regenerator);
 
-var _asyncToGenerator2 = __webpack_require__(251);
+var _asyncToGenerator2 = __webpack_require__(166);
 
 var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
@@ -20396,17 +8932,17 @@ var _intact = __webpack_require__(0);
 
 var _intact2 = _interopRequireDefault(_intact);
 
-var _select = __webpack_require__(59);
+var _select = __webpack_require__(56);
 
 var _select2 = _interopRequireDefault(_select);
 
-var _index = __webpack_require__(252);
+var _index = __webpack_require__(183);
 
 var _index2 = _interopRequireDefault(_index);
 
 __webpack_require__(6);
 
-__webpack_require__(253);
+__webpack_require__(184);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20623,14 +9159,14 @@ exports.default = Cascader;
 exports.Cascader = Cascader;
 
 /***/ }),
-/* 248 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(249);
+module.exports = __webpack_require__(164);
 
 
 /***/ }),
-/* 249 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -20655,7 +9191,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(250);
+module.exports = __webpack_require__(165);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -20671,7 +9207,7 @@ if (hadRuntime) {
 
 
 /***/ }),
-/* 250 */
+/* 165 */
 /***/ (function(module, exports) {
 
 /**
@@ -21404,7 +9940,7 @@ if (hadRuntime) {
 
 
 /***/ }),
-/* 251 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21448,7 +9984,2057 @@ exports.default = function (fn) {
 };
 
 /***/ }),
-/* 252 */
+/* 167 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _extends2 = __webpack_require__(5);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _classNameObj,
+        _this = this;
+
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var _self$get = self.get(),
+        className = _self$get.className,
+        clearable = _self$get.clearable,
+        data = _self$get.data,
+        value = _self$get.value,
+        multiple = _self$get.multiple,
+        disabled = _self$get.disabled,
+        filterable = _self$get.filterable,
+        keywords = _self$get.keywords,
+        _show = _self$get._show,
+        placeholder = _self$get.placeholder,
+        size = _self$get.size,
+        style = _self$get.style,
+        name = _self$get.name,
+        children = _self$get.children,
+        fluid = _self$get.fluid,
+        width = _self$get.width,
+        allowUnmatch = _self$get.allowUnmatch,
+        card = _self$get.card;
+
+    var _activeLabel = self.get('_activeLabel');
+
+    var _placeholder = placeholder == null ? allowUnmatch && filterable ? (0, _utils._$)('请输入或选择') : (0, _utils._$)('请选择') : placeholder;
+
+    var classNameObj = (_classNameObj = {
+        'k-select': true
+    }, _classNameObj[className] = className, _classNameObj[scope.className] = scope.className, _classNameObj['k-disabled'] = disabled, _classNameObj['k-show'] = _show, _classNameObj['k-clearable'] = clearable, _classNameObj['k-' + size] = size !== 'default', _classNameObj['k-fluid'] = fluid, _classNameObj);
+
+    var hasValue = value != null && (!multiple && value !== '' || multiple && value.length);
+    var isGroup = Array.isArray(self.get('data.0.data'));
+
+    var labelObj = scope.labelObj || {
+        // only show value as label when allowUnmatch is true, #40
+        label: allowUnmatch && (0, _utils.isStringOrNumber)(value) ? value : null,
+        labels: []
+    };
+    var groupIndex = 0;
+
+    var Options = function Options(props) {
+        var data = props.data;
+        var ret = [];
+        data.forEach(function (item, index) {
+            // deprecate text, use label instead of
+            if (item.text) item.label = item.text;
+
+            var _self$handleProps = self.handleProps(item, labelObj),
+                valid = _self$handleProps.valid,
+                active = _self$handleProps.active;
+
+            if (valid) {
+                ret.push(h(_dropdown.DropdownItem, { 'ev-select': function () {
+                        try {
+                            return [self._onSelect.bind(self, item.value)][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this), 'disabled': function () {
+                        try {
+                            return [item.disabled][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this), 'className': _className(function () {
+                        try {
+                            return [{ 'k-active': active }][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this)), 'hideOnSelect': function () {
+                        try {
+                            return [!multiple][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this), 'children': function () {
+                        try {
+                            return [item.template ? item.template(item, index) : item.label][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this), '_context': $this }));
+
+                // for card type groups, we need to highlight the parent label
+                if (active && card) {
+                    if (_activeLabel == null && _show) {
+                        _activeLabel = groupIndex;
+                        self._setActiveLabelSilent(_activeLabel);
+                    }
+                }
+            }
+        });
+
+        return ret;
+    };
+
+    var OptionsVNodes = function OptionsVNodes(_ref) {
+        var children = _ref.children;
+
+        return __u.map(children ? Array.isArray(children) ? children : [children] : children, function (vNode) {
+            if (vNode.tag === _option2.default) {
+                var props = vNode.props;
+                props = (0, _extends3.default)({}, props, {
+                    'ev-select': self._onSelect.bind(self, props.value),
+                    hideOnSelect: !multiple,
+                    label: props.label || (0, _utils.getTextByChildren)(props.children),
+                    children: props.children || props.label
+                });
+
+                var _self$handleProps2 = self.handleProps(props, labelObj),
+                    active = _self$handleProps2.active,
+                    valid = _self$handleProps2.valid;
+
+                if (!valid) {
+                    return hc('');
+                } else {
+                    var _className2;
+
+                    props.className = _className((_className2 = {}, _className2[props.className] = props.className, _className2['k-active'] = active, _className2));
+                }
+
+                // for card type groups, we need to highlight the parent label
+                if (active && card) {
+                    if (_activeLabel == null && _show) {
+                        _activeLabel = groupIndex;
+                        self._setActiveLabelSilent(_activeLabel);
+                    }
+                }
+
+                // if the multiple select option is active
+                // add a √ icon
+                if (active && multiple) {
+                    props.children = [props.children, h('i', null, null, 'k-checkmark ion-ios-checkmark-empty')];
+                }
+
+                // return the cloned vNode
+                return h(_option2.default, props);
+            } else if (vNode.tag === _group2.default) {
+                var _props = vNode.props;
+                _props = (0, _extends3.default)({}, _props, {
+                    children: h(OptionsVNodes, { 'children': function () {
+                            try {
+                                return [_props.children][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(_this), '_context': $this })
+                });
+                groupIndex++;
+                return h(_group2.default, _props);
+            }
+
+            return vNode;
+        });
+    };
+
+    var labelList = [];
+
+    var Menu = scope.Menu || h(_dropdown.DropdownMenu, { 'ev-$changed:show': function () {
+            try {
+                return [self._position][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'className': _className(function () {
+            try {
+                return [{
+                    "k-select-dropdown": true,
+                    "k-card": card
+                }][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this)), 'ev-$change:show': function () {
+            try {
+                return [self._onChangeShow][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'children': function () {
+            var _this2 = this;
+
+            try {
+                return [function () {
+                    var _children = [];
+                    if (!isGroup) {
+                        _children.push(h(Options, { 'data': function () {
+                                try {
+                                    return [data][0];
+                                } catch (e) {
+                                    _e(e);
+                                }
+                            }.call(_this2), 'children': null, '_context': $this }));
+                    } else {
+                        _children.push(_Vdt.utils.map(function () {
+                            try {
+                                return [data][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(_this2), function (value, key) {
+                            return h(_group2.default, { 'label': function () {
+                                    try {
+                                        return [value.label][0];
+                                    } catch (e) {
+                                        _e(e);
+                                    }
+                                }.call(this), 'children': h(Options, { 'data': function () {
+                                        try {
+                                            return [value.data][0];
+                                        } catch (e) {
+                                            _e(e);
+                                        }
+                                    }.call(this), 'parentLabel': function () {
+                                        try {
+                                            return [value.label][0];
+                                        } catch (e) {
+                                            _e(e);
+                                        }
+                                    }.call(this), 'children': null, '_context': $this }), '_context': $this });
+                        }, _this2));
+                    }
+                    _children.push(h(OptionsVNodes, { 'children': function () {
+                            try {
+                                return [children][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(_this2), '_context': $this }));
+
+                    // if it is card type group, we extract the label as navBar
+                    if (card) {
+                        var _flatten = function _flatten(children) {
+                            children.forEach(function (vNode) {
+                                if (Array.isArray(vNode)) {
+                                    _flatten(vNode);
+                                } else if (vNode) {
+                                    if (vNode.tag === _group2.default) {
+                                        var props = vNode.props;
+                                        var label = (props._blocks || {}).label || props.label;
+                                        labelList.push({ label: label });
+                                        vNode.props = (0, _extends3.default)({}, props, { _card: true });
+
+                                        // if the _activeLabel is undefined
+                                        // we active the first label
+                                        if (_activeLabel == null && _show) {
+                                            _activeLabel = index;
+                                            self._setActiveLabelSilent(index);
+                                        }
+
+                                        // only render the active options
+                                        if (_activeLabel === index) {
+                                            vNodes.push(vNode);
+                                        }
+                                        index++;
+                                    } else {
+                                        vNodes.push(vNode);
+                                    }
+                                }
+                            });
+                        };
+
+                        var vNodes = [];
+                        var index = 0;
+
+                        _flatten(_children);
+                        return [h(_tabs.Tabs, { 'vertical': function () {
+                                try {
+                                    return [true][0];
+                                } catch (e) {
+                                    _e(e);
+                                }
+                            }.call(_this2), 'type': 'border-card', 'v-model': '_activeLabel', 'children': _Vdt.utils.map(function () {
+                                try {
+                                    return [labelList][0];
+                                } catch (e) {
+                                    _e(e);
+                                }
+                            }.call(_this2), function (value, key) {
+                                return h(_tabs.Tab, { 'value': function () {
+                                        try {
+                                            return [key][0];
+                                        } catch (e) {
+                                            _e(e);
+                                        }
+                                    }.call(this), 'children': ['\n                        ', function () {
+                                        try {
+                                            return [typeof value.label === 'function' ?
+                                            // pass by block
+                                            value.label(function () {}) :
+                                            // pass by property
+                                            value.label][0];
+                                        } catch (e) {
+                                            _e(e);
+                                        }
+                                    }.call(this), '\n                    '], '_context': $this });
+                            }, _this2), '_context': $this, value: _getModel(self, '_activeLabel'), 'ev-$change:value': function ev$changeValue(__c, __n) {
+                                _setModel(self, '_activeLabel', __n, $this);
+                            } }), h('div', null, function () {
+                            try {
+                                return [vNodes][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(_this2), 'k-groups')];
+                    } else {
+                        return _children;
+                    }
+                }()][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), '_context': $this }, null, null, null, function (i) {
+        widgets['menu'] = i;
+    });
+
+    // if the value is not in options, then set hasValue to false
+    if (hasValue && !labelObj.label && !labelObj.labels.length) {
+        hasValue = false;
+        // if this is a value, but the value does not exist in options
+        // we set it to empty, #41
+        self._clearValue();
+    }
+
+    return h('div', { 'style': function () {
+            try {
+                return [width != null ? (0, _utils.addStyle)(style, { width: width + 'px' }) : style][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'tabindex': function () {
+            try {
+                return [disabled ? "-1" : "0"][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-keypress': function () {
+            try {
+                return [self._onKeypress][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-keydown': function () {
+            try {
+                return [self._onKeydown][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, h(_dropdown2.default, { 'position': function () {
+            try {
+                return [{ my: 'left top+8', at: 'left bottom' }][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'trigger': 'click', 'disabled': function () {
+            try {
+                return [disabled][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'children': [h('div', { 'ev-click': function () {
+                try {
+                    return [self._focusInput][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'tabindex': '-1' }, [h('input', { 'type': 'hidden', 'value': function () {
+                try {
+                    return [value][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'name': function () {
+                try {
+                    return [name][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this) }), function () {
+            try {
+                return [!multiple && filterable][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) ? h(_input2.default, { 'value': function () {
+                try {
+                    return [keywords == null ? labelObj.label : keywords][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'ev-input': function () {
+                try {
+                    return [self._onSearch][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'ev-blur': function () {
+                try {
+                    return [self._onBlur][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'ev-focus': function () {
+                try {
+                    return [self._selectInput][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'disabled': function () {
+                try {
+                    return [disabled][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'placeholder': function () {
+                try {
+                    return [_placeholder][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'size': function () {
+                try {
+                    return [size][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'fluid': function () {
+                try {
+                    return [true][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'children': null, '_context': $this }, null, null, null, function (i) {
+            widgets['input'] = i;
+        }) : function () {
+            try {
+                return [!filterable && !hasValue][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) ? h('span', null, function () {
+            try {
+                return [_placeholder][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'k-placeholder c-ellipsis') : function () {
+            try {
+                return [!multiple][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) ? h('span', null, function () {
+            try {
+                return [labelObj.label][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'k-value c-ellipsis') : h(Animate, { 'a:tag': 'span', 'a:disabled': function () {
+                try {
+                    return [true][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'className': 'k-values', 'children': [_Vdt.utils.map(function () {
+                try {
+                    return [labelObj.labels][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), function (item, index) {
+                return h(Animate, { 'a:tag': 'span', 'className': 'k-select-tag', 'key': function () {
+                        try {
+                            return [value[index]][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), 'a:transition': 'fade', 'children': [h('span', null, function () {
+                        try {
+                            return [item][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), 'k-text'), h('i', { 'ev-click': function () {
+                            try {
+                                return [self._delete.bind(self, value[index])][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(this) }, null, 'k-icon ion-ios-close-empty')], '_context': $this });
+            }, this), function () {
+                try {
+                    return [filterable][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this) ? h(_input2.default, { 'value': function () {
+                    try {
+                        return [keywords][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), 'ev-input': function () {
+                    try {
+                        return [self._onSearch][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), 'ev-blur': function () {
+                    try {
+                        return [self._onBlur][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), 'ev-focus': function () {
+                    try {
+                        return [self._onFocus][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), 'disabled': function () {
+                    try {
+                        return [disabled][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), 'placeholder': function () {
+                    try {
+                        return [!hasValue ? _placeholder : ''][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), 'autoWidth': function () {
+                    try {
+                        return [true][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), 'size': function () {
+                    try {
+                        return [size][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), 'children': null, '_context': $this }, null, null, null, function (i) {
+                widgets['input'] = i;
+            }) : undefined], '_context': $this }), h('span', null, [function () {
+            try {
+                return [clearable][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) ? h('i', { 'ev-click': function () {
+                try {
+                    return [self._onClear][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this) }, null, _className(function () {
+            try {
+                return [{ "k-clear ion-ios-close": true, "k-show": hasValue }][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this))) : undefined, h('i', null, null, 'k-arrow ion-arrow-down-b')], 'k-suffix')], 'k-wrapper', null, function (i) {
+            widgets['wrapper'] = i;
+        }), function () {
+            try {
+                return [Menu][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this)], '_context': $this }, null, null, null, function (i) {
+        widgets['dropdown'] = i;
+    }), _className(function () {
+        try {
+            return [(0, _extends3.default)({}, classNameObj, { 'k-has-value': hasValue })][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)));
+};
+
+var _input = __webpack_require__(19);
+
+var _input2 = _interopRequireDefault(_input);
+
+var _dropdown = __webpack_require__(31);
+
+var _dropdown2 = _interopRequireDefault(_dropdown);
+
+var _utils = __webpack_require__(7);
+
+var _option = __webpack_require__(79);
+
+var _option2 = _interopRequireDefault(_option);
+
+var _group = __webpack_require__(80);
+
+var _group2 = _interopRequireDefault(_group);
+
+var _tabs = __webpack_require__(81);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 168 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _extends2 = __webpack_require__(5);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _classNameObj;
+
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var _self$get = self.get(),
+        type = _self$get.type,
+        name = _self$get.name,
+        value = _self$get.value,
+        placeholder = _self$get.placeholder,
+        tabindex = _self$get.tabindex,
+        readonly = _self$get.readonly,
+        clearable = _self$get.clearable,
+        disabled = _self$get.disabled,
+        size = _self$get.size,
+        rows = _self$get.rows,
+        spellcheck = _self$get.spellcheck,
+        defaultValue = _self$get.defaultValue,
+        style = _self$get.style,
+        className = _self$get.className,
+        autoWidth = _self$get.autoWidth,
+        fluid = _self$get.fluid,
+        width = _self$get.width,
+        autocomplete = _self$get.autocomplete;
+
+    var classNameObj = (_classNameObj = {
+        'k-input': true
+    }, _classNameObj['k-' + size] = size !== 'default', _classNameObj['k-group'] = blocks.prepend || blocks.append, _classNameObj['k-disabled'] = disabled, _classNameObj['k-with-prefix'] = blocks.prefix, _classNameObj['k-with-suffix'] = blocks.suffix, _classNameObj['k-clearable'] = clearable, _classNameObj['k-auto-width'] = autoWidth, _classNameObj['k-fluid'] = fluid, _classNameObj[className] = className, _classNameObj);
+
+    var events = ['keydown', 'keyup', 'change', 'keypress', 'focus', 'blur', /* 'input' */
+    'focusout'].reduce(function (memo, name) {
+        memo['ev-' + name] = self._proxyEvent.bind(self, name);
+        return memo;
+    }, {});
+
+    var wrapperEvents = ['click', 'mouseenter', 'mouseleave'].reduce(function (memo, name) {
+        memo['ev-' + name] = self._proxyEvent.bind(self, name);
+        return memo;
+    }, {});
+
+    return h('div', (0, _extends3.default)({ 'style': function () {
+            try {
+                return [width != null ? (0, _utils.addStyle)(style, { width: width + 'px' }) : style][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, function () {
+        try {
+            return [wrapperEvents][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)), ['\n    ', function () {
+        var _this = this;
+
+        try {
+            return [function () {
+                if (blocks.prepend) {
+                    // if the children of this block is text node
+                    // we add a padding to the wrapper node
+                    // so we handle this block manually
+                    var children = blocks.prepend.call(_this, function () {});
+                    return h('div', null, function () {
+                        try {
+                            return [children][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this), _className(function () {
+                        try {
+                            return [{
+                                "k-prepend": true,
+                                "k-padding": (0, _utils.isTextVNode)(children)
+                            }][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this)));
+                }
+            }()][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), '\n    ', h('div', null, [function () {
+        try {
+            return [blocks.prefix][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('div', null, (_blocks["prefix"] = function (parent) {
+        return null;
+    }) && (__blocks["prefix"] = function (parent) {
+        var self = this;
+        return blocks["prefix"] ? blocks["prefix"].call(this, function () {
+            return _blocks["prefix"].call(self, parent);
+        }) : _blocks["prefix"].call(this, parent);
+    }) && __blocks["prefix"].call(this), 'k-prefix') : undefined, function () {
+        try {
+            return [type !== 'textarea'][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('input', (0, _extends3.default)({ 'type': function () {
+            try {
+                return [type][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'name': function () {
+            try {
+                return [name][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'value': function () {
+            try {
+                return [value][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-input': function () {
+            try {
+                return [self._onInput][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'defaultValue': function () {
+            try {
+                return [defaultValue][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'readOnly': function () {
+            try {
+                return [readonly][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'placeholder': function () {
+            try {
+                return [placeholder][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'disabled': function () {
+            try {
+                return [disabled][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'tabindex': function () {
+            try {
+                return [tabindex][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'autocomplete': function () {
+            try {
+                return [autocomplete][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, function () {
+        try {
+            return [events][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)), null, 'k-inner', null, function (i) {
+        widgets['input'] = i;
+    }) : h('textarea', (0, _extends3.default)({ 'value': function () {
+            try {
+                return [value][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-input': function () {
+            try {
+                return [self._onInput][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'defaultValue': function () {
+            try {
+                return [defaultValue][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'name': function () {
+            try {
+                return [name][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'readOnly': function () {
+            try {
+                return [readonly][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'placeholder': function () {
+            try {
+                return [placeholder][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'disabled': function () {
+            try {
+                return [disabled][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'rows': function () {
+            try {
+                return [rows][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'spellcheck': function () {
+            try {
+                return [spellcheck][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'tabindex': function () {
+            try {
+                return [tabindex][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, function () {
+        try {
+            return [events][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)), null, 'k-inner k-textarea', null, function (i) {
+        widgets['input'] = i;
+    }), function () {
+        try {
+            return [blocks.suffix || clearable][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('div', null, [function () {
+        try {
+            return [clearable][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('i', { 'ev-click': function () {
+            try {
+                return [self.clear][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, null, _className(function () {
+        try {
+            return [{
+                "k-clear k-icon ion-ios-close": true,
+                "k-show": value
+            }][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this))) : undefined, (_blocks["suffix"] = function (parent) {
+        return null;
+    }) && (__blocks["suffix"] = function (parent) {
+        var self = this;
+        return blocks["suffix"] ? blocks["suffix"].call(this, function () {
+            return _blocks["suffix"].call(self, parent);
+        }) : _blocks["suffix"].call(this, parent);
+    }) && __blocks["suffix"].call(this)], 'k-suffix') : undefined, function () {
+        try {
+            return [autoWidth][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('div', null, function () {
+        try {
+            return [value == null || value === '' ? placeholder : value][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), 'k-fake', null, function (i) {
+        widgets['fake'] = i;
+    }) : undefined], 'k-wrapper'), '\n    ', function () {
+        var _this2 = this;
+
+        try {
+            return [function () {
+                if (blocks.append) {
+                    var children = blocks.append.call(_this2, function () {});
+                    return h('div', null, function () {
+                        try {
+                            return [children][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this2), _className(function () {
+                        try {
+                            return [{
+                                "k-append": true,
+                                "k-padding": (0, _utils.isTextVNode)(children)
+                            }][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this2)));
+                }
+            }()][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), '\n'], _className(function () {
+        try {
+            return [classNameObj][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)));
+};
+
+var _utils = __webpack_require__(7);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 169 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 170 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _extends2 = __webpack_require__(5);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var _self$get = self.get(),
+        children = _self$get.children,
+        show = _self$get.show,
+        trigger = _self$get.trigger,
+        className = _self$get.className,
+        transition = _self$get.transition;
+
+    var events = {};
+    // no matter what the trigger is, we should show menu when enter it.
+    // for this case: hover trigger nests click trigger
+    events['ev-mouseenter'] = self.show;
+    if (trigger === 'hover') {
+        events['ev-mouseleave'] = self.hide.bind(self, false);
+    }
+
+    return h(_moveWrapper2.default, { '_parent': function () {
+            try {
+                return [self][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'children': function () {
+            try {
+                return [show][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) ? h(Animate, (0, _extends3.default)({ 'className': _className(function () {
+                try {
+                    var _ref;
+
+                    return [(_ref = { "k-dropdown-menu": true }, _ref[className] = className, _ref)][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this)), 'a:transition': function () {
+                try {
+                    return [transition][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'a:appear': function () {
+                try {
+                    return [true][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this) }, function () {
+            try {
+                return [events][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), { 'a:delayDestroy': function () {
+                try {
+                    return [false][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'ev-$destroyed': function () {
+                try {
+                    return [self._removeDocumentEvents][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'ev-$mounted': function () {
+                try {
+                    return [self._onShow][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'children': function () {
+                try {
+                    return [children][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), '_context': $this }), null, null, null, function (i) {
+            widgets['menu'] = i;
+        }) : undefined, '_context': $this }, null, null, null, function (i) {
+        widgets['wrapper'] = i;
+    });
+};
+
+var _moveWrapper = __webpack_require__(39);
+
+var _moveWrapper2 = _interopRequireDefault(_moveWrapper);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 171 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.default = undefined;
+
+var _getOwnPropertyDescriptor = __webpack_require__(4);
+
+var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _possibleConstructorReturn2 = __webpack_require__(2);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _dec, _desc, _value, _class, _init, _class2, _temp;
+
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _item = __webpack_require__(172);
+
+var _item2 = _interopRequireDefault(_item);
+
+var _dropdown = __webpack_require__(57);
+
+var _dropdown2 = _interopRequireDefault(_dropdown);
+
+var _menu = __webpack_require__(58);
+
+var _menu2 = _interopRequireDefault(_menu);
+
+var _utils = __webpack_require__(7);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
+
+    return desc;
+}
+
+var DropdownItem = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
+    (0, _inherits3.default)(DropdownItem, _Intact);
+
+    function DropdownItem() {
+        (0, _classCallCheck3.default)(this, DropdownItem);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+    }
+
+    DropdownItem.prototype.defaults = function defaults() {
+        return {
+            disabled: false,
+            hideOnSelect: true,
+
+            _isFocus: false
+        };
+    };
+
+    DropdownItem.prototype._init = function _init() {
+        var _this2 = this;
+
+        // if selected hide all dropdown menu
+        this.on('select', function () {
+            if (_this2.get('hideOnSelect')) {
+                var ancestor = _this2._findAncestorDropdownMenu();
+                ancestor.hide(true);
+            }
+        });
+    };
+
+    DropdownItem.prototype._mount = function _mount() {
+        var parent = this.parent = this._findAncestorDropdownMenu(true);
+        parent.items.push(this);
+    };
+
+    DropdownItem.prototype._onClick = function _onClick(e) {
+        if (this.get('disabled')) return;
+
+        this.trigger('click', e);
+
+        // is not a sub dropdown trigger
+        if (this.parentVNode.tag !== _dropdown2.default) {
+            this.trigger('select', this, e);
+        }
+    };
+
+    DropdownItem.prototype._onMouseEnter = function _onMouseEnter(e) {
+        this.trigger('mouseenter', e);
+
+        if (this.get('disabled')) return;
+
+        this.parent.focusItem(this);
+    };
+
+    DropdownItem.prototype._onMouseLeave = function _onMouseLeave(e) {
+        this.trigger('mouseleave', e);
+        // if (this.get('disabled')) return;
+    };
+
+    DropdownItem.prototype.select = function select(e) {
+        // is not a sub dropdown trigger
+        var dropdown = this._isSubMenu();
+        this.trigger('click', e);
+        if (!dropdown) {
+            this.trigger('select', this);
+        } else {
+            dropdown.show();
+        }
+    };
+
+    DropdownItem.prototype.focus = function focus() {
+        this.set('_isFocus', true);
+
+        var elRect = this.element.getBoundingClientRect();
+        var pEl = this.parent.refs.menu.element;
+        var pElRect = pEl.getBoundingClientRect();
+        var bottomOverflowDistance = elRect.bottom - pElRect.bottom;
+        var topOverflowDistance = elRect.top - pElRect.top;
+
+        if (bottomOverflowDistance > 0) {
+            pEl.scrollTop += bottomOverflowDistance;
+        } else if (topOverflowDistance < 0) {
+            pEl.scrollTop += topOverflowDistance;
+        }
+    };
+
+    DropdownItem.prototype.unFocus = function unFocus() {
+        return this.set('_isFocus', false);
+
+        // const dropdown = this._isSubMenu();
+        // if (dropdown) {
+        // dropdown.hide(null, null, true);
+        // }
+    };
+
+    DropdownItem.prototype.showMenuAndFocus = function showMenuAndFocus() {
+        var dropdown = this._isSubMenu();
+        if (dropdown) {
+            dropdown.show(null, null, true);
+        }
+    };
+
+    DropdownItem.prototype.hideMenu = function hideMenu() {
+        var dropdown = this._isSubMenu();
+        if (dropdown) {
+            dropdown.hide(null, null, true);
+        }
+    };
+
+    DropdownItem.prototype._isSubMenu = function _isSubMenu() {
+        if (this.parentVNode.tag === _dropdown2.default) {
+            return this.parentVNode.children;
+        }
+    };
+
+    DropdownItem.prototype._findAncestorDropdownMenu = function _findAncestorDropdownMenu(isFirst) {
+        return (0, _utils.findParentComponent)(_menu2.default, this, isFirst);
+    };
+
+    DropdownItem.prototype._destroy = function _destroy() {
+        var items = this.parent.items;
+        items.splice(items.indexOf(this), 1);
+    };
+
+    return DropdownItem;
+}(_intact2.default), _class2.template = _item2.default, _class2.propTypes = {
+    disabled: Boolean,
+    hideOnSelect: Boolean
+}, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    initializer: function initializer() {
+        return _init;
+    }
+}), _class)), _class));
+exports.default = DropdownItem;
+module.exports = exports['default'];
+
+/***/ }),
+/* 172 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _classNameObj;
+
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+    /* import {proxyEvent} from '../utils'; */
+
+    var _self$get = self.get(),
+        children = _self$get.children,
+        disabled = _self$get.disabled,
+        className = _self$get.className,
+        _isFocus = _self$get._isFocus;
+
+    var classNameObj = (_classNameObj = {
+        'k-item': true,
+        'k-disabled': disabled
+    }, _classNameObj[className] = className, _classNameObj['k-hover'] = _isFocus, _classNameObj['k-no-padding'] = children && (children.tag === _checkbox.Checkbox || children.tag === _radio.Radio), _classNameObj);
+
+    return h('div', { 'ev-click': function () {
+            try {
+                return [self._onClick][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-mouseenter': function () {
+            try {
+                return [self._onMouseEnter][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-mouseleave': function () {
+            try {
+                return [self._onMouseLeave][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, function () {
+        try {
+            return [children][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), _className(function () {
+        try {
+            return [classNameObj][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)));
+};
+
+var _checkbox = __webpack_require__(32);
+
+var _radio = __webpack_require__(41);
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 173 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _extends2 = __webpack_require__(5);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__(12);
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _classNameObj;
+
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var _self$get = self.get(),
+        className = _self$get.className,
+        disabled = _self$get.disabled,
+        falseValue = _self$get.falseValue,
+        children = _self$get.children,
+        value = _self$get.value,
+        trueValue = _self$get.trueValue,
+        style = _self$get.style,
+        ref = _self$get.ref,
+        key = _self$get.key,
+        indeterminate = _self$get.indeterminate,
+        rest = (0, _objectWithoutProperties3.default)(_self$get, ['className', 'disabled', 'falseValue', 'children', 'value', 'trueValue', 'style', 'ref', 'key', 'indeterminate']);
+
+    var classNameObj = (_classNameObj = {
+        'k-checkbox': true,
+        'k-disabled': disabled,
+        'k-checked': self.isChecked()
+    }, _classNameObj[className] = className, _classNameObj['k-indeterminate'] = indeterminate, _classNameObj);
+
+    return h('label', { 'style': function () {
+            try {
+                return [style][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'tabindex': function () {
+            try {
+                return [disabled ? null : "0"][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-keypress': function () {
+            try {
+                return [self._onKeypress][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, [h('span', null, h('input', (0, _extends3.default)({ 'type': 'checkbox', 'disabled': function () {
+            try {
+                return [disabled][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'v-model': 'value', 'value': function () {
+            try {
+                return [trueValue][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'tabindex': '-1' }, function () {
+        try {
+            return [rest][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), { checked: _detectCheckboxChecked(self, 'value', function () {
+            try {
+                return [trueValue][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this)), 'ev-change': function evChange(__e) {
+            _setCheckboxModel(self, 'value', function () {
+                try {
+                    return [trueValue][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), function () {
+                try {
+                    return [falseValue][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), __e, $this);
+        } }), null, null, null, function (i) {
+        widgets['input'] = i;
+    }), 'k-wrapper'), function () {
+        try {
+            return [children][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('span', null, function () {
+        try {
+            return [children][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), 'k-text') : undefined], _className(function () {
+        try {
+            return [classNameObj][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)));
+};
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 174 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 175 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _extends2 = __webpack_require__(5);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__(12);
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _classNameObj;
+
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var _self$get = self.get(),
+        className = _self$get.className,
+        disabled = _self$get.disabled,
+        trueValue = _self$get.trueValue,
+        style = _self$get.style,
+        children = _self$get.children,
+        value = _self$get.value,
+        ref = _self$get.ref,
+        key = _self$get.key,
+        rest = (0, _objectWithoutProperties3.default)(_self$get, ['className', 'disabled', 'trueValue', 'style', 'children', 'value', 'ref', 'key']);
+
+    var classNameObj = (_classNameObj = {
+        'k-radio': true,
+        'k-disabled': disabled,
+        'k-checked': self.isChecked()
+    }, _classNameObj[className] = className, _classNameObj);
+
+    return h('label', { 'style': function () {
+            try {
+                return [style][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'tabindex': function () {
+            try {
+                return [disabled ? "-1" : "0"][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-keypress': function () {
+            try {
+                return [self._onKeypress][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, [h('span', null, h('input', (0, _extends3.default)({ 'type': 'radio', 'disabled': function () {
+            try {
+                return [disabled][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'v-model': 'value', 'value': function () {
+            try {
+                return [trueValue][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'tabindex': '-1' }, function () {
+        try {
+            return [rest][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), { checked: _getModel(self, 'value') === function () {
+            try {
+                return [trueValue][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-change': function evChange(__e) {
+            _setModel(self, 'value', __e.target.checked ? function () {
+                try {
+                    return [trueValue][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this) : false, $this);
+        } }), null, null, null, function (i) {
+        widgets['input'] = i;
+    }), 'k-wrapper'), function () {
+        try {
+            return [children][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('span', null, function () {
+        try {
+            return [children][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), 'k-text') : undefined], _className(function () {
+        try {
+            return [classNameObj][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)));
+};
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 176 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 177 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 178 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+  _Vdt || (_Vdt = Vdt);
+  obj || (obj = {});
+  blocks || (blocks = {});
+  var h = _Vdt.miss.h,
+      hc = _Vdt.miss.hc,
+      hu = _Vdt.miss.hu,
+      widgets = this && this.widgets || {},
+      _blocks = {},
+      __blocks = {},
+      __u = _Vdt.utils,
+      extend = __u.extend,
+      _e = __u.error,
+      _className = __u.className,
+      __o = __u.Options,
+      _getModel = __o.getModel,
+      _setModel = __o.setModel,
+      _setCheckboxModel = __u.setCheckboxModel,
+      _detectCheckboxChecked = __u.detectCheckboxChecked,
+      _setSelectModel = __u.setSelectModel,
+      self = this.data,
+      $this = this,
+      scope = obj,
+      Animate = self && self.Animate,
+      parent = ($callee || {})._super;
+
+  var _self$get = self.get(),
+      children = _self$get.children,
+      label = _self$get.label,
+      _card = _self$get._card,
+      className = _self$get.className;
+
+  return h('div', null, [function () {
+    try {
+      return [!_card][0];
+    } catch (e) {
+      _e(e);
+    }
+  }.call(this) ? h('div', null, (_blocks["label"] = function (parent) {
+    return function () {
+      try {
+        return [label][0];
+      } catch (e) {
+        _e(e);
+      }
+    }.call(this);
+  }) && (__blocks["label"] = function (parent) {
+    var self = this;
+    return blocks["label"] ? blocks["label"].call(this, function () {
+      return _blocks["label"].call(self, parent);
+    }) : _blocks["label"].call(this, parent);
+  }) && __blocks["label"].call(this), 'k-label') : undefined, '\n    ', function () {
+    try {
+      return [children][0];
+    } catch (e) {
+      _e(e);
+    }
+  }.call(this), '\n'], _className(function () {
+    try {
+      var _ref;
+
+      return [(_ref = { "k-group": true }, _ref[className] = className, _ref)][0];
+    } catch (e) {
+      _e(e);
+    }
+  }.call(this)));
+};
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 179 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+        _Vdt || (_Vdt = Vdt);
+        obj || (obj = {});
+        blocks || (blocks = {});
+        var h = _Vdt.miss.h,
+            hc = _Vdt.miss.hc,
+            hu = _Vdt.miss.hu,
+            widgets = this && this.widgets || {},
+            _blocks = {},
+            __blocks = {},
+            __u = _Vdt.utils,
+            extend = __u.extend,
+            _e = __u.error,
+            _className = __u.className,
+            __o = __u.Options,
+            _getModel = __o.getModel,
+            _setModel = __o.setModel,
+            _setCheckboxModel = __u.setCheckboxModel,
+            _detectCheckboxChecked = __u.detectCheckboxChecked,
+            _setSelectModel = __u.setSelectModel,
+            self = this.data,
+            $this = this,
+            scope = obj,
+            Animate = self && self.Animate,
+            parent = ($callee || {})._super;
+
+        var _self$get = self.get(),
+            value = _self$get.value,
+            children = _self$get.children,
+            _value = _self$get._value,
+            className = _self$get.className,
+            size = _self$get.size,
+            disabled = _self$get.disabled;
+
+        return h('a', { 'ev-click': function () {
+                        try {
+                                return [self._changeTab][0];
+                        } catch (e) {
+                                _e(e);
+                        }
+                }.call(this) }, function () {
+                try {
+                        return [self.get('children')][0];
+                } catch (e) {
+                        _e(e);
+                }
+        }.call(this), _className(function () {
+                try {
+                        var _ref;
+
+                        return [(_ref = {
+                                'k-tab': true,
+                                'k-active': value !== undefined && value === _value
+                        }, _ref[className] = className, _ref['k-disabled'] = disabled, _ref)][0];
+                } catch (e) {
+                        _e(e);
+                }
+        }.call(this)));
+};
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 180 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _extends2 = __webpack_require__(5);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _classNameObj;
+
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var _self$get = self.get(),
+        className = _self$get.className,
+        data = _self$get.data,
+        value = _self$get.value,
+        children = _self$get.children,
+        style = _self$get.style,
+        vertical = _self$get.vertical,
+        size = _self$get.size,
+        type = _self$get.type,
+        _activeBarStyle = _self$get._activeBarStyle;
+
+    var classNameObj = (_classNameObj = {
+        'k-tabs': true
+    }, _classNameObj[className] = className, _classNameObj['k-' + size] = size !== 'default', _classNameObj['k-vertical'] = vertical, _classNameObj['k-' + type] = type !== 'default', _classNameObj);
+
+    return h('div', { 'style': function () {
+            try {
+                return [style][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, [_Vdt.utils.map(function () {
+        try {
+            return [data][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), function (item, key) {
+        return h('a', { 'ev-click': function () {
+                try {
+                    return [self._changeTab.bind(self, item)][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this) }, function () {
+            try {
+                return [item.text][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), _className(function () {
+            try {
+                return [{
+                    'k-tab': true,
+                    'k-active': item.value === value
+                }][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this)));
+    }, this), '\n    ', function () {
+        try {
+            return [__u.map(children ? Array.isArray(children) ? children : [children] : children, function (vNode) {
+                if (vNode.tag === _tab2.default) {
+                    vNode.props = (0, _extends3.default)({}, vNode.props, { _value: value, _parent: self });
+                }
+                return vNode;
+            })][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), '\n    ', function () {
+        try {
+            return [type === 'default'][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('div', { 'style': function () {
+            try {
+                return [_activeBarStyle][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, null, 'k-active-bar') : undefined], _className(function () {
+        try {
+            return [classNameObj][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)));
+};
+
+var _tab = __webpack_require__(82);
+
+var _tab2 = _interopRequireDefault(_tab);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 181 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 182 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21754,9 +12340,9423 @@ var _input = __webpack_require__(19);
 
 var _input2 = _interopRequireDefault(_input);
 
-var _dropdown = __webpack_require__(32);
+var _dropdown = __webpack_require__(31);
 
 var _dropdown2 = _interopRequireDefault(_dropdown);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 184 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 185 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.CollapseItem = exports.Collapse = exports.default = undefined;
+
+var _getOwnPropertyDescriptor = __webpack_require__(4);
+
+var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _possibleConstructorReturn2 = __webpack_require__(2);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _dec, _desc, _value2, _class, _init, _class2, _temp;
+
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _index = __webpack_require__(186);
+
+var _index2 = _interopRequireDefault(_index);
+
+var _item = __webpack_require__(83);
+
+var _item2 = _interopRequireDefault(_item);
+
+__webpack_require__(6);
+
+__webpack_require__(188);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
+
+    return desc;
+}
+
+var Collapse = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
+    (0, _inherits3.default)(Collapse, _Intact);
+
+    function Collapse() {
+        (0, _classCallCheck3.default)(this, Collapse);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+    }
+
+    Collapse.prototype.defaults = function defaults() {
+        return {
+            value: undefined,
+            accordion: false,
+            arrow: 'right', // 'right' | 'left'
+            noBorder: false
+        };
+    };
+
+    Collapse.prototype._changeValue = function _changeValue(v) {
+        var _get = this.get(),
+            value = _get.value,
+            accordion = _get.accordion;
+
+        if (!Array.isArray(value)) {
+            this.set('value', [v]);
+        } else {
+            var index = value.indexOf(v);
+            var _value = value.slice(0);
+            if (~index) {
+                _value.splice(index, 1);
+            } else if (accordion) {
+                _value = [v];
+            } else {
+                _value.push(v);
+            }
+            this.set('value', _value);
+        }
+    };
+
+    Collapse.prototype._isActive = function _isActive(v) {
+        var _get2 = this.get(),
+            value = _get2.value;
+
+        if (!Array.isArray(value)) return false;
+        return ~value.indexOf(v);
+    };
+
+    return Collapse;
+}(_intact2.default), _class2.template = _index2.default, _class2.propTypes = {
+    accordion: Boolean,
+    noBorder: Boolean
+}, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    initializer: function initializer() {
+        return _init;
+    }
+}), _class)), _class));
+exports.default = Collapse;
+exports.Collapse = Collapse;
+exports.CollapseItem = _item2.default;
+
+/***/ }),
+/* 186 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _extends2 = __webpack_require__(5);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _classNameObj;
+
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var _self$get = self.get(),
+        className = _self$get.className,
+        style = _self$get.style,
+        value = _self$get.value,
+        children = _self$get.children,
+        arrow = _self$get.arrow,
+        noBorder = _self$get.noBorder;
+
+    var classNameObj = (_classNameObj = {
+        'k-collapse': true
+    }, _classNameObj[className] = className, _classNameObj['k-left'] = arrow === 'left', _classNameObj['k-border'] = !noBorder, _classNameObj);
+
+    var index = 0;
+    var _children = (0, _utils.mapChildren)(children, function (vNode) {
+        if (vNode.tag === _item2.default) {
+            var props = vNode.props;
+            var _props = { _parent: self };
+            if (props.value == null) {
+                _props.value = '$' + index++;
+            }
+
+            vNode.props = (0, _extends3.default)({}, props, _props);
+        }
+        return vNode;
+    });
+
+    return h('div', { 'style': function () {
+            try {
+                return [style][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, function () {
+        try {
+            return [_children][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), _className(function () {
+        try {
+            return [classNameObj][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)));
+};
+
+var _item = __webpack_require__(83);
+
+var _item2 = _interopRequireDefault(_item);
+
+var _utils = __webpack_require__(7);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 187 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _classNameObj;
+
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var _self$get = self.get(),
+        className = _self$get.className,
+        style = _self$get.style,
+        value = _self$get.value,
+        children = _self$get.children,
+        title = _self$get.title,
+        _parent = _self$get._parent,
+        disabled = _self$get.disabled;
+
+    var active = _parent._isActive(value);
+    var classNameObj = (_classNameObj = {
+        'k-collapse-item': true
+    }, _classNameObj[className] = className, _classNameObj['k-active'] = active, _classNameObj['k-disabled'] = disabled, _classNameObj);
+
+    return h('div', { 'style': function () {
+            try {
+                return [style][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, [h('div', { 'ev-click': function () {
+            try {
+                return [self._toggle][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, [(_blocks["title"] = function (parent) {
+        return function () {
+            try {
+                return [title][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this);
+    }) && (__blocks["title"] = function (parent) {
+        var self = this;
+        return blocks["title"] ? blocks["title"].call(this, function () {
+            return _blocks["title"].call(self, parent);
+        }) : _blocks["title"].call(this, parent);
+    }) && __blocks["title"].call(this), h('i', null, null, 'k-arrow ion-ios-arrow-right')], 'k-title'), function () {
+        try {
+            return [active][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h(Animate, { 'className': 'k-content', 'a:transition': 'expand', 'ev-a:enterStart': function () {
+            try {
+                return [self._enterStart][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-a:leaveStart': function () {
+            try {
+                return [self._leaveStart][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-a:enterEnd': function () {
+            try {
+                return [self._enterEnd][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-$mounted': function () {
+            try {
+                return [self._onShow][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-$destroyed': function () {
+            try {
+                return [self._onHide][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'children': h('div', null, function () {
+            try {
+                return [children][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'k-wrapper'), '_context': $this }) : undefined], _className(function () {
+        try {
+            return [classNameObj][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)));
+};
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 188 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 189 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.Datepicker = exports.default = undefined;
+
+var _getOwnPropertyDescriptor = __webpack_require__(4);
+
+var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _possibleConstructorReturn2 = __webpack_require__(2);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _dec, _desc, _value, _class, _init, _class2, _temp;
+
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _index = __webpack_require__(190);
+
+var _index2 = _interopRequireDefault(_index);
+
+__webpack_require__(6);
+
+__webpack_require__(201);
+
+var _calendar = __webpack_require__(85);
+
+var _calendar2 = _interopRequireDefault(_calendar);
+
+var _utils = __webpack_require__(59);
+
+var _utils2 = __webpack_require__(7);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
+
+    return desc;
+}
+
+var isEqual = _intact2.default.utils.isEqual;
+var Datepicker = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
+    (0, _inherits3.default)(Datepicker, _Intact);
+
+    function Datepicker() {
+        (0, _classCallCheck3.default)(this, Datepicker);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+    }
+
+    Datepicker.prototype.defaults = function defaults() {
+        return {
+            value: undefined,
+            clearable: false,
+            placeholder: undefined,
+            disabled: false,
+            size: 'default',
+            type: 'date', // date | datetime
+            range: false,
+            transition: 'slidedown',
+
+            _value: undefined, // for range
+            _rangeEndDate: undefined,
+            _isShow: false
+        };
+    };
+
+    Datepicker.prototype._init = function _init() {
+        var _this2 = this;
+
+        this.set('_value', this.get('value'));
+
+        // proxy _value to value
+        this.on('$change:_value', function (c, v) {
+            // if only select one date for range, set with undefined
+            if (v && v.length === 1) {
+                v = undefined;
+            }
+            _this2.set('value', v);
+        });
+
+        this.on('$receive:value', function (c, v) {
+            _this2.set('_value', v);
+        });
+    };
+
+    Datepicker.prototype.onClear = function onClear(e) {
+        e.stopPropagation();
+        if (this.get('range')) {
+            this.set('_value', undefined);
+        } else {
+            this.set('value', undefined);
+        }
+    };
+
+    Datepicker.prototype._hide = function _hide() {
+        if (this.get('range')) return;
+
+        this.refs.calendar.hide();
+    };
+
+    Datepicker.prototype._onShow = function _onShow(c) {
+        var feedback = c.get('_feedback');
+        this.set('transition', (0, _utils2.getTransition)(feedback));
+    };
+
+    Datepicker.prototype._onChangeShow = function _onChangeShow(c, v) {
+        this.set('_isShow', v);
+        this._hasSelectByArrowKey = false;
+    };
+
+    Datepicker.prototype._onChangeShowDate = function _onChangeShowDate(type, c, v) {
+        var begin = this.refs.begin;
+        var end = this.refs.end;
+        if (type === 'begin') {
+            var endShowDate = end.getShowDate();
+            endShowDate.setDate(1);
+            if (v >= endShowDate) {
+                var _endShowDate = new Date(v);
+                _endShowDate.setMonth(_endShowDate.getMonth() + 1);
+                end.setShowDate(_endShowDate);
+            }
+        } else {
+            var beginShowDate = begin.getShowDate();
+            v.setDate(1);
+            if (v <= beginShowDate) {
+                var _beginShowDate = new Date(v);
+                _beginShowDate.setMonth(_beginShowDate.getMonth() - 1);
+                begin.setShowDate(_beginShowDate);
+            }
+        }
+    };
+
+    Datepicker.prototype._setBeginShowDate = function _setBeginShowDate(c) {
+        var _ref = this.get('_value') || [],
+            start = _ref[0];
+
+        var date = start ? new Date(start) : (0, _utils.getNowDate)();
+        c.set('_showDate', date, { silent: true });
+    };
+
+    Datepicker.prototype._setEndShowDate = function _setEndShowDate(c) {
+        var _ref2 = this.get('_value') || [],
+            start = _ref2[0],
+            end = _ref2[1];
+
+        var date = void 0;
+        // if in the same month, show next month
+        if (start && end) {
+            start = new Date(start);
+            end = new Date(end);
+            if (start.getFullYear() === end.getFullYear() && start.getMonth() === end.getMonth()) {
+                end.setMonth(end.getMonth() + 1);
+            }
+            date = end;
+        } else {
+            date = (0, _utils.getNowDate)();
+            date.setMonth(date.getMonth() + 1);
+        }
+
+        c.set('_showDate', date, { silent: true });
+    };
+
+    Datepicker.prototype._checkDateInRange = function _checkDateInRange(date, isOut) {
+        var _ref3 = this.get('_value') || [],
+            start = _ref3[0],
+            end = _ref3[1];
+
+        var _rangeEndDate = this.get('_rangeEndDate');
+
+        if (start) {
+            var _start = new Date(start);
+            if (end) {
+                return {
+                    'k-in-range': !isOut && (0, _utils.isGT)(date, _start) && (0, _utils.isLT)(date, new Date(end))
+                };
+            } else if (_rangeEndDate) {
+                return {
+                    'k-in-range': !isOut && (0, _utils.isGT)(date, _start >= _rangeEndDate ? _rangeEndDate : _start) && (0, _utils.isLT)(date, _start <= _rangeEndDate ? _rangeEndDate : _start)
+                };
+            }
+        }
+    };
+
+    Datepicker.prototype._onChangeValueForRange = function _onChangeValueForRange(type, c, v) {
+        var value = this.get('_value');
+
+        if (isEqual(v, value)) return;
+
+        var _refs = this.refs,
+            begin = _refs.begin,
+            end = _refs.end;
+
+
+        if (c.isSelectTime) {
+            value = value.slice(0);
+            if (type === 'begin' && end.get('_isSelectTime')) {
+                value[0] = v[0];
+                c._index = 0;
+                end._index = 1;
+            } else if (type === 'end' && begin.get('_isSelectTime')) {
+                value[1] = v[1];
+                c._index = 1;
+                begin._index = 0;
+            } else {
+                value[c._index] = v[c._index];
+            }
+            if (value.length === 2) {
+                if (value[1] < value[0]) {
+                    // reverse the index
+                    c._index = c._index === 0 ? 1 : 0;
+                }
+            }
+            value.sort();
+            this.set('_value', value);
+        } else if (!v.length) {
+            // calendar cancelled the selected value
+            this.set('_value', undefined);
+        } else if (!value || value.length === 0 || value.length === 2) {
+            value = [v[v.length - 1]];
+            if (type === 'end') {
+                begin.set('_isSelectTime', false);
+            } else {
+                end.set('_isSelectTime', false);
+            }
+            c._index = 0;
+            this.set('_value', value);
+        } else {
+            value = value.slice(0);
+            value[1] = v[v.length - 1];
+            // set time
+            if (this.get('type') === 'datetime') {
+                var _value$1$split = value[1].split(' '),
+                    date = _value$1$split[0];
+
+                var _value$0$split = value[0].split(' '),
+                    time = _value$0$split[1];
+
+                value[1] = [date, time].join(' ');
+            }
+            if (value[1] < value[0]) {
+                c._index = 0;
+            } else {
+                c._index = 1;
+            }
+            value.sort();
+            this.set('_value', value);
+
+            if (this.get('type') !== 'datetime') {
+                this.refs.calendar.hide();
+            }
+        }
+    };
+
+    Datepicker.prototype._highlightRangeDays = function _highlightRangeDays(date, isOut) {
+        var _ref4 = this.get('_value') || [],
+            start = _ref4[0],
+            end = _ref4[1];
+
+        if (start && !end) {
+            this.set('_rangeEndDate', date);
+        } else {
+            this.set('_rangeEndDate', undefined);
+        }
+    };
+
+    Datepicker.prototype._clearRangeEndDate = function _clearRangeEndDate() {
+        this.set('_rangeEndDate', undefined);
+    };
+
+    Datepicker.prototype._onKeydown = function _onKeydown(e) {
+        switch (e.keyCode) {
+            case 13:
+                e.preventDefault();
+                if (!this._hasSelectByArrowKey) {
+                    this.refs.input.element.click();
+                } else {
+                    this.refs.begin._selectFocusDate();
+                }
+                break;
+            case 9:
+                this.refs.calendar.hide();
+                break;
+            case 38:
+            case 40:
+            case 37:
+            case 39:
+                if (this.get('_isShow')) {
+                    this._hasSelectByArrowKey = true;
+                    this.refs.begin._onKeydown(e);
+                }
+                break;
+        }
+    };
+
+    Datepicker.prototype._focus = function _focus() {
+        this.refs.input.focus();
+    };
+
+    /**
+     * don't trigger focusout event when datepicker layer is showing
+     * trigger focusout when it hidden to make FormItem to validate it
+     * #46
+     */
+
+
+    Datepicker.prototype.onInputFocusOut = function onInputFocusOut(e) {
+        if (this.get('_isShow')) {
+            e.stopPropagation();
+        }
+    };
+
+    Datepicker.prototype._onHide = function _onHide() {
+        var input = this.refs.input;
+        input.focus();
+        setTimeout(function () {
+            input.blur();
+        });
+    };
+
+    return Datepicker;
+}(_intact2.default), _class2.template = _index2.default, _class2.propTypes = {
+    clearable: Boolean,
+    disabled: Boolean,
+    range: Boolean
+}, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    initializer: function initializer() {
+        return _init;
+    }
+}), _class)), _class));
+exports.default = Datepicker;
+exports.Datepicker = Datepicker;
+
+/***/ }),
+/* 190 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _extends2 = __webpack_require__(5);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__(12);
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _classNameObj;
+
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var _self$get = self.get(),
+        value = _self$get.value,
+        clearable = _self$get.clearable,
+        className = _self$get.className,
+        style = _self$get.style,
+        _isShow = _self$get._isShow,
+        name = _self$get.name,
+        disabled = _self$get.disabled,
+        placeholder = _self$get.placeholder,
+        size = _self$get.size,
+        transition = _self$get.transition,
+        _value = _self$get._value,
+        range = _self$get.range,
+        type = _self$get.type,
+        ref = _self$get.ref,
+        key = _self$get.key,
+        rest = (0, _objectWithoutProperties3.default)(_self$get, ['value', 'clearable', 'className', 'style', '_isShow', 'name', 'disabled', 'placeholder', 'size', 'transition', '_value', 'range', 'type', 'ref', 'key']);
+
+    // pass the rest props to Calendar, except events
+
+
+    var _rest = {};
+    for (var _key in rest) {
+        if (_key.substring(0, 3) !== 'ev-') {
+            _rest[_key] = rest[_key];
+        }
+    }
+
+    var classNameObj = (_classNameObj = {
+        'k-datepicker': true,
+        'k-disabled': disabled,
+        'k-show': _isShow
+    }, _classNameObj[className] = className, _classNameObj);
+
+    return h('div', { 'style': function () {
+            try {
+                return [style][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'tabindex': function () {
+            try {
+                return [disabled ? '-1' : '0'][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-keydown': function () {
+            try {
+                return [self._onKeydown][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, h(_tooltip2.default, { 'className': 'k-datepicker-content', 'position': function () {
+            try {
+                return [{ my: 'left top', at: 'left bottom', collision: 'flip' }][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'trigger': 'click', 'showArrow': function () {
+            try {
+                return [false][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'transition': function () {
+            try {
+                return [transition][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'disabled': function () {
+            try {
+                return [disabled][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-show': function () {
+            try {
+                return [self._onShow][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-hide': function () {
+            try {
+                return [self._onHide][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-$changed:show': function () {
+            try {
+                return [self._onChangeShow][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'children': h(_input2.default, { 'placeholder': function () {
+                try {
+                    return [placeholder == null ? type === 'datetime' ? (0, _utils._$)('请选择日期和时间') : (0, _utils._$)('请选择日期') : placeholder][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'readonly': function () {
+                try {
+                    return [true][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'value': function () {
+                try {
+                    return [Array.isArray(value) ? range ? value.join(' ~ ') : value.join(', ') : value][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'clearable': function () {
+                try {
+                    return [clearable][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'ev-clear': function () {
+                try {
+                    return [self.onClear][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'name': function () {
+                try {
+                    return [name][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'disabled': function () {
+                try {
+                    return [disabled][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'size': function () {
+                try {
+                    return [size][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'tabindex': '-1', 'ev-focusout': function () {
+                try {
+                    return [self.onInputFocusOut][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'children': null, '_context': $this, '_blocks': function (blocks) {
+                var _blocks = {},
+                    __blocks = extend({}, blocks);
+                return (_blocks["suffix"] = function (parent) {
+                    return h('i', null, null, 'ion-ios-calendar-outline');
+                }) && (__blocks["suffix"] = function (parent) {
+                    var self = this;
+                    return blocks["suffix"] ? blocks["suffix"].call(this, function () {
+                        return _blocks["suffix"].call(self, parent);
+                    }) : _blocks["suffix"].call(this, parent);
+                }), __blocks;
+            }.call(this, {}) }, null, null, null, function (i) {
+            widgets['input'] = i;
+        }), '_context': $this, '_blocks': function (blocks) {
+            var _blocks = {},
+                __blocks = extend({}, blocks);
+            return (_blocks["content"] = function (parent) {
+                return function () {
+                    try {
+                        return [!range][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this) ? h(_calendar2.default, (0, _extends3.default)({ 'v-model': 'value' }, function () {
+                    try {
+                        return [_rest][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), { 'ev-hide': function () {
+                        try {
+                            return [self._hide][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), 'type': function () {
+                        try {
+                            return [type][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), 'ev-enter:select': function () {
+                        try {
+                            return [self._focus][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), 'children': null, '_context': $this, value: _getModel(self, 'value'), 'ev-$change:value': function ev$changeValue(__c, __n) {
+                        _setModel(self, 'value', __n, $this);
+                    } }), null, null, null, function (i) {
+                    widgets['begin'] = i;
+                }) : h('div', { 'ev-mouseleave': function () {
+                        try {
+                            return [self._clearRangeEndDate][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this) }, [h(_calendar2.default, (0, _extends3.default)({}, function () {
+                    try {
+                        return [_rest][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), { 'value': function () {
+                        try {
+                            return [_value][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), 'ev-$change:value': function () {
+                        try {
+                            return [self._onChangeValueForRange.bind(self, 'begin')][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), 'ev-hide': function () {
+                        try {
+                            return [self._hide][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), 'type': function () {
+                        try {
+                            return [type][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), 'ev-$change:_showDate': function () {
+                        try {
+                            return [self._onChangeShowDate.bind(self, 'begin')][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), 'ev-$inited': function () {
+                        try {
+                            return [self._setBeginShowDate][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), 'dayClassNames': function () {
+                        try {
+                            return [self._checkDateInRange][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), 'onMouseEnterDay': function () {
+                        try {
+                            return [self._highlightRangeDays][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), 'multiple': function () {
+                        try {
+                            return [true][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), 'children': null, '_context': $this }), null, null, null, function (i) {
+                    widgets['begin'] = i;
+                }), h(_calendar2.default, (0, _extends3.default)({}, function () {
+                    try {
+                        return [_rest][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), { 'value': function () {
+                        try {
+                            return [_value][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), 'ev-$change:value': function () {
+                        try {
+                            return [self._onChangeValueForRange.bind(self, 'end')][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), 'ev-hide': function () {
+                        try {
+                            return [self._hide][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), 'type': function () {
+                        try {
+                            return [type][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), 'ev-$change:_showDate': function () {
+                        try {
+                            return [self._onChangeShowDate.bind(self, 'end')][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), 'ev-$inited': function () {
+                        try {
+                            return [self._setEndShowDate][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), 'dayClassNames': function () {
+                        try {
+                            return [self._checkDateInRange][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), 'onMouseEnterDay': function () {
+                        try {
+                            return [self._highlightRangeDays][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), 'multiple': function () {
+                        try {
+                            return [true][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), 'children': null, '_context': $this }), null, null, null, function (i) {
+                    widgets['end'] = i;
+                })], 'k-range c-clearfix');
+            }) && (__blocks["content"] = function (parent) {
+                var self = this;
+                return blocks["content"] ? blocks["content"].call(this, function () {
+                    return _blocks["content"].call(self, parent);
+                }) : _blocks["content"].call(this, parent);
+            }), __blocks;
+        }.call(this, {}) }, null, null, null, function (i) {
+        widgets['calendar'] = i;
+    }), _className(function () {
+        try {
+            return [classNameObj][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)));
+};
+
+var _input = __webpack_require__(19);
+
+var _input2 = _interopRequireDefault(_input);
+
+var _tooltip = __webpack_require__(84);
+
+var _tooltip2 = _interopRequireDefault(_tooltip);
+
+var _utils = __webpack_require__(7);
+
+var _calendar = __webpack_require__(85);
+
+var _calendar2 = _interopRequireDefault(_calendar);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 191 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _extends2 = __webpack_require__(5);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _classNameObj;
+
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var _self$get = self.get(),
+        children = _self$get.children,
+        show = _self$get.show,
+        trigger = _self$get.trigger,
+        showArrow = _self$get.showArrow,
+        canHover = _self$get.canHover,
+        className = _self$get.className,
+        _feedback = _self$get._feedback,
+        transition = _self$get.transition;
+
+    var events = {};
+    if (canHover && trigger === 'hover') {
+        events['ev-mouseenter'] = self.show;
+        events['ev-mouseleave'] = self.hide.bind(self, false);
+    }
+
+    var classNameObj = (_classNameObj = {
+        "k-tooltip-content": true,
+        'k-cannot-hover': trigger === 'hover' && !canHover
+    }, _classNameObj[className] = className, _classNameObj);
+
+    return h(_moveWrapper2.default, { 'children': function () {
+            try {
+                return [show][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) ? h(Animate, (0, _extends3.default)({ 'className': _className(function () {
+                try {
+                    return [classNameObj][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this)), 'a:transition': function () {
+                try {
+                    return [transition][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this) }, function () {
+            try {
+                return [events][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), { 'a:delayDestroy': function () {
+                try {
+                    return [false][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'children': [function () {
+                try {
+                    return [showArrow][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this) ? h('i', null, null, _className(function () {
+                try {
+                    var _ref;
+
+                    return [(_ref = {
+                        "k-arrow": true
+                    }, _ref['k-' + _feedback.vertical] = _feedback.vertical, _ref['k-' + _feedback.horizontal] = _feedback.horizontal, _ref)][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this)), null, function (i) {
+                widgets['arrow'] = i;
+            }) : undefined, function () {
+                try {
+                    return [children][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this)], '_context': $this }), null, null, null, function (i) {
+            widgets['content'] = i;
+        }) : undefined, '_context': $this });
+};
+
+var _moveWrapper = __webpack_require__(39);
+
+var _moveWrapper2 = _interopRequireDefault(_moveWrapper);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 192 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 193 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _extends2 = __webpack_require__(5);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var _self$get = self.get(),
+        value = _self$get.value,
+        maxDate = _self$get.maxDate,
+        minDate = _self$get.minDate,
+        dayClassNames = _self$get.dayClassNames,
+        disabledDate = _self$get.disabledDate,
+        multiple = _self$get.multiple,
+        onMouseEnterDay = _self$get.onMouseEnterDay,
+        type = _self$get.type,
+        hours = _self$get.hours,
+        minutes = _self$get.minutes,
+        seconds = _self$get.seconds,
+        disabledHours = _self$get.disabledHours,
+        disabledMinutes = _self$get.disabledMinutes,
+        disabledSeconds = _self$get.disabledSeconds,
+        _isShowYearPicker = _self$get._isShowYearPicker,
+        _isSelectTime = _self$get._isSelectTime,
+        _now = _self$get._now,
+        _showDate = _self$get._showDate,
+        _focusDate = _self$get._focusDate;
+
+    var values = multiple ? value || [] : [value];
+
+    var valueDate = new Date(values[self._index] || _now);
+    var showDate = new Date(_showDate || valueDate);
+
+    var yearMonthFormat = (0, _utils._$)('yearMonthFormat');
+    if (yearMonthFormat === 'yearMonthFormat') {
+        yearMonthFormat = 'YYYY MM';
+    }
+    var format = yearMonthFormat.split(' ');
+    var map = {
+        'MM': h('span', null, function () {
+            try {
+                return [(0, _utils._$)(showDate.getMonth() + 1 + '\u6708')][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'k-text'),
+        'YYYY': h('span', null, function () {
+            try {
+                return [(0, _utils._$)('{n}\u5E74', { n: showDate.getFullYear() })][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'k-text')
+    };
+    var panel = format.map(function (item) {
+        return map[item];
+    });
+
+    return h('div', { 'tabindex': '0', 'ev-keydown': function () {
+            try {
+                return [self._onKeydown][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, function () {
+        try {
+            return [!_isSelectTime][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('div', null, [h('div', null, [h(_button2.default, { 'icon': function () {
+            try {
+                return [true][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'type': 'none', 'size': 'small', 'className': 'k-prev', 'tagName': 'div', 'tabindex': function () {
+            try {
+                return [null][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-click': function () {
+            try {
+                return [self.prevYear][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'children': [h('i', null, null, 'k-icon ion-ios-arrow-left'), h('i', null, null, 'k-icon ion-ios-arrow-left')], '_context': $this }), h(_button2.default, { 'icon': function () {
+            try {
+                return [true][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'type': 'none', 'size': 'small', 'className': 'k-prev', 'tagName': 'div', 'tabindex': function () {
+            try {
+                return [null][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-click': function () {
+            try {
+                return [self.prevMonth][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'children': h('i', null, null, 'k-icon ion-ios-arrow-left'), '_context': $this }), h('span', { 'ev-click': function () {
+            try {
+                return [self.showYearPicker][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, function () {
+        try {
+            return [panel][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), 'k-text-wrapper'), h(_button2.default, { 'icon': function () {
+            try {
+                return [true][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'type': 'none', 'size': 'small', 'className': 'k-next', 'tagName': 'div', 'tabindex': function () {
+            try {
+                return [null][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-click': function () {
+            try {
+                return [self.nextYear][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'children': [h('i', null, null, 'k-icon ion-ios-arrow-right'), h('i', null, null, 'k-icon ion-ios-arrow-right')], '_context': $this }), h(_button2.default, { 'icon': function () {
+            try {
+                return [true][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'type': 'none', 'size': 'small', 'className': 'k-next', 'tagName': 'div', 'tabindex': function () {
+            try {
+                return [null][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-click': function () {
+            try {
+                return [self.nextMonth][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'children': h('i', null, null, 'k-icon ion-ios-arrow-right'), '_context': $this })], 'k-month c-clearfix'), function () {
+        try {
+            return [!_isShowYearPicker][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('div', null, _Vdt.utils.map(function () {
+        try {
+            return [[(0, _utils._$)('日'), (0, _utils._$)('一'), (0, _utils._$)('二'), (0, _utils._$)('三'), (0, _utils._$)('四'), (0, _utils._$)('五'), (0, _utils._$)('六')]][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), function (value, key) {
+        return h('div', null, function () {
+            try {
+                return [value][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'k-weekday');
+    }, this), 'k-weekdays') : undefined, function () {
+        try {
+            return [!_isShowYearPicker][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('div', { 'ev-mouseleave': function () {
+            try {
+                return [self._onMouseLeaveDays][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, ['\n            ', function () {
+        var _this = this;
+
+        try {
+            return [function () {
+                var ret = [];
+                var start = new Date(showDate);
+                var month = start.getMonth();
+                start.setDate(1);
+                start.setHours(0);
+                start.setMinutes(0);
+                start.setSeconds(0);
+                var startWeekday = start.getDay();
+                start.setDate(1 - startWeekday);
+
+                var _maxDate = new Date(maxDate);
+                var _minDate = new Date(minDate);
+
+                var _loop = function _loop(i) {
+                    var _date = start.getDate();
+                    var _month = start.getMonth();
+                    var disabled = (0, _utils2.isGT)(start, _maxDate) || (0, _utils2.isLT)(start, _minDate) || disabledDate.call(self, self.getDateString(start));
+                    var isOut = _month !== month;
+                    var classNames = dayClassNames ? dayClassNames.call(self, new Date(start), isOut) : null;
+                    ret.push(h('div', { 'ev-click': function () {
+                            try {
+                                return [!disabled && self.select.bind(self, new Date(start))][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(_this), 'ev-mouseenter': function () {
+                            try {
+                                return [self._onMouseEnter.bind(self, new Date(start), isOut)][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(_this) }, function () {
+                        try {
+                            return [_date][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this), _className(function () {
+                        try {
+                            return [(0, _extends3.default)({
+                                "k-day": true,
+                                "k-out": isOut,
+                                "k-active": !isOut && values.find(function (value) {
+                                    return (0, _utils2.isEqual)(new Date(value), start);
+                                }),
+                                "k-today": (0, _utils2.isEqual)(_now, start),
+                                "k-disabled": disabled,
+                                "k-hover": (0, _utils2.isEqual)(start, _focusDate)
+                            }, classNames)][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this))));
+                    start.setDate(start.getDate() + 1);
+                };
+
+                for (var i = 0; i < 42; i++) {
+                    _loop(i);
+                }
+                var result = [];
+
+                var _loop2 = function _loop2(i) {
+                    result.push(h('div', null, function () {
+                        try {
+                            return [ret.slice(7 * i, 7 * (i + 1))][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this)));
+                };
+
+                for (var i = 0; i < 6; i++) {
+                    _loop2(i);
+                }
+                return result;
+            }()][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), '\n        '], 'k-calendar') : undefined, function () {
+        try {
+            return [_isShowYearPicker][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h(_grid.Row, { 'className': 'k-year-picker', 'children': ['\n            ', function () {
+            var _this2 = this;
+
+            try {
+                return [function () {
+                    var map = {
+                        MM: h(_grid.Col, { 'span': '12', 'children': h(_scrollSelect2.default, { 'data': function () {
+                                    try {
+                                        return [(0, _utils.range)(0, 11).map(function (i) {
+                                            return { label: (0, _utils._$)(i + 1 + '\u6708'), value: i };
+                                        })][0];
+                                    } catch (e) {
+                                        _e(e);
+                                    }
+                                }.call(_this2), 'value': function () {
+                                    try {
+                                        return [showDate.getMonth()][0];
+                                    } catch (e) {
+                                        _e(e);
+                                    }
+                                }.call(_this2), 'ev-$change:value': function () {
+                                    try {
+                                        return [self.onChangeMonth][0];
+                                    } catch (e) {
+                                        _e(e);
+                                    }
+                                }.call(_this2), 'children': null, '_context': $this }), '_context': $this }),
+                        YYYY: h(_grid.Col, { 'span': '12', 'children': h(_scrollSelect2.default, { 'data': function () {
+                                    try {
+                                        return [function (value) {
+                                            return (0, _utils.range)(value - 5, value + 5);
+                                        }][0];
+                                    } catch (e) {
+                                        _e(e);
+                                    }
+                                }.call(_this2), 'value': function () {
+                                    try {
+                                        return [showDate.getFullYear()][0];
+                                    } catch (e) {
+                                        _e(e);
+                                    }
+                                }.call(_this2), 'ev-$change:value': function () {
+                                    try {
+                                        return [self.onChangeYear][0];
+                                    } catch (e) {
+                                        _e(e);
+                                    }
+                                }.call(_this2), 'children': null, '_context': $this }), '_context': $this })
+                    };
+
+                    return format.map(function (item) {
+                        return map[item];
+                    });
+                }()][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), '\n        '], '_context': $this }) : undefined]) : h('div', null, [h('div', null, ['\n            ', hc('<Button type=\"none\" size=\"small\" class=\"k-prev\"\n                ev-click={{ self.cancel.bind(self) }}\n            >取消</Button>'), h('span', { 'ev-click': function () {
+            try {
+                return [self.cancel][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, function () {
+        try {
+            return [panel][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), 'k-text-wrapper'), '\n            ', hc('<Button type=\"none\" size=\"small\" class=\"k-next\"\n                ev-click={{ self.confirm.bind(self) }}\n            >确认</Button>')], 'k-month c-clearfix'), h(_grid.Row, { 'children': [h(_grid.Col, { 'span': '8', 'children': h(_scrollSelect2.default, { 'data': function () {
+                    try {
+                        return [hours.map(function (v) {
+                            return { label: (0, _utils.strPad)(v, 2), value: v };
+                        })][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), 'value': function () {
+                    try {
+                        return [valueDate.getHours()][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), 'ev-$change:value': function () {
+                    try {
+                        return [self.onChangeTime.bind(self, 'Hours')][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), 'disabled': function () {
+                    try {
+                        return [disabledHours][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), 'children': null, '_context': $this, '_blocks': function (blocks) {
+                    var _blocks = {},
+                        __blocks = extend({}, blocks);
+                    return (_blocks["append"] = function (parent) {
+                        return ':';
+                    }) && (__blocks["append"] = function (parent) {
+                        var self = this;
+                        return blocks["append"] ? blocks["append"].call(this, function () {
+                            return _blocks["append"].call(self, parent);
+                        }) : _blocks["append"].call(this, parent);
+                    }), __blocks;
+                }.call(this, {}) }), '_context': $this }), h(_grid.Col, { 'span': '8', 'children': h(_scrollSelect2.default, { 'data': function () {
+                    try {
+                        return [minutes.map(function (v) {
+                            return { label: (0, _utils.strPad)(v, 2), value: v };
+                        })][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), 'value': function () {
+                    try {
+                        return [valueDate.getMinutes()][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), 'ev-$change:value': function () {
+                    try {
+                        return [self.onChangeTime.bind(self, 'Minutes')][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), 'disabled': function () {
+                    try {
+                        return [disabledMinutes][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), 'children': null, '_context': $this, '_blocks': function (blocks) {
+                    var _blocks = {},
+                        __blocks = extend({}, blocks);
+                    return (_blocks["append"] = function (parent) {
+                        return ':';
+                    }) && (__blocks["append"] = function (parent) {
+                        var self = this;
+                        return blocks["append"] ? blocks["append"].call(this, function () {
+                            return _blocks["append"].call(self, parent);
+                        }) : _blocks["append"].call(this, parent);
+                    }), __blocks;
+                }.call(this, {}) }), '_context': $this }), h(_grid.Col, { 'span': '8', 'children': h(_scrollSelect2.default, { 'data': function () {
+                    try {
+                        return [seconds.map(function (v) {
+                            return { label: (0, _utils.strPad)(v, 2), value: v };
+                        })][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), 'value': function () {
+                    try {
+                        return [valueDate.getSeconds()][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), 'ev-$change:value': function () {
+                    try {
+                        return [self.onChangeTime.bind(self, 'Seconds')][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), 'disabled': function () {
+                    try {
+                        return [disabledSeconds][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), 'children': null, '_context': $this }), '_context': $this })], '_context': $this })], 'k-time-picker', 'time'), 'k-calendar-wrapper');
+};
+
+var _button = __webpack_require__(15);
+
+var _button2 = _interopRequireDefault(_button);
+
+var _scrollSelect = __webpack_require__(86);
+
+var _scrollSelect2 = _interopRequireDefault(_scrollSelect);
+
+var _grid = __webpack_require__(87);
+
+var _utils = __webpack_require__(7);
+
+var _utils2 = __webpack_require__(59);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 194 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var _self$get = self.get(),
+        value = _self$get.value,
+        _list = _self$get._list,
+        disabled = _self$get.disabled,
+        _translate = _self$get._translate,
+        _marginTop = _self$get._marginTop,
+        _dragging = _self$get._dragging;
+
+    var classNameObj = {
+        "k-scroll-select": true,
+        "k-dragging": _dragging,
+        "k-disabled": disabled
+    };
+
+    return h('div', null, [h('div', { 'style': function () {
+            try {
+                return [{
+                    transform: "translateY(" + _translate + "px)",
+                    marginTop: _marginTop + "px"
+                }][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-mousedown': function () {
+            try {
+                return [!disabled ? self._dragStart : undefined][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-wheel': function () {
+            try {
+                return [!disabled ? self._onWheel : undefined][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, _Vdt.utils.map(function () {
+        try {
+            return [_list][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), function (item, key) {
+        return h('div', { 'ev-click': function () {
+                try {
+                    return [!disabled ? self._select.bind(self, item, key) : undefined][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this) }, function () {
+            try {
+                return [item.label][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), _className(function () {
+            try {
+                return [{
+                    "k-item": true,
+                    "k-active": item.value === value
+                }][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this)), function () {
+            try {
+                return [item.key][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), function () {
+            try {
+                return [key === 0 ? function (dom) {
+                    return self.refs.item = dom;
+                } : undefined][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this));
+    }, this), 'k-wrapper', null, function (i) {
+        widgets['wrapper'] = i;
+    }), function () {
+        try {
+            return [blocks.append][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('div', null, (_blocks["append"] = function (parent) {
+        return null;
+    }) && (__blocks["append"] = function (parent) {
+        var self = this;
+        return blocks["append"] ? blocks["append"].call(this, function () {
+            return _blocks["append"].call(self, parent);
+        }) : _blocks["append"].call(this, parent);
+    }) && __blocks["append"].call(this), 'k-append') : undefined], _className(function () {
+        try {
+            return [classNameObj][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)));
+};
+
+module.exports = exports["default"];
+
+/***/ }),
+/* 195 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 196 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.default = undefined;
+
+var _getOwnPropertyDescriptor = __webpack_require__(4);
+
+var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(8);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(2);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _dec, _desc, _value, _class;
+
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _row = __webpack_require__(197);
+
+var _row2 = _interopRequireDefault(_row);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
+
+    return desc;
+}
+
+var Row = (_dec = _intact2.default.template(), (_class = function (_Intact) {
+    (0, _inherits3.default)(Row, _Intact);
+
+    function Row() {
+        (0, _classCallCheck3.default)(this, Row);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+    }
+
+    Row.prototype.defaults = function defaults() {
+        return {
+            gutter: 0
+        };
+    };
+
+    (0, _createClass3.default)(Row, [{
+        key: 'template',
+        get: function get() {
+            return _row2.default;
+        }
+    }]);
+    return Row;
+}(_intact2.default), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
+exports.default = Row;
+module.exports = exports['default'];
+
+/***/ }),
+/* 197 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _classNameObj;
+
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+    var gutterStyle = __webpack_require__(88);
+
+    var _self$get = self.get(),
+        children = _self$get.children,
+        className = _self$get.className,
+        style = _self$get.style,
+        gutter = _self$get.gutter;
+
+    var hasGutter = gutter > 0;
+    if (hasGutter) {
+        style = gutterStyle(gutter, style);
+    }
+
+    var classNameObj = (_classNameObj = {
+        'k-row': true
+    }, _classNameObj[className] = className, _classNameObj['k-gutter'] = hasGutter, _classNameObj);
+
+    return h('div', { 'style': function () {
+            try {
+                return [style][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, function () {
+        try {
+            return [hasGutter ? children.map(function (vNode) {
+                if (vNode) {
+                    vNode.props.gutter = gutter;
+                    return vNode;
+                }
+            }) : children][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), _className(function () {
+        try {
+            return [classNameObj][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)));
+};
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 198 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.default = undefined;
+
+var _getOwnPropertyDescriptor = __webpack_require__(4);
+
+var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(8);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(2);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _dec, _desc, _value, _class;
+
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _col = __webpack_require__(199);
+
+var _col2 = _interopRequireDefault(_col);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
+
+    return desc;
+}
+
+var Col = (_dec = _intact2.default.template(), (_class = function (_Intact) {
+    (0, _inherits3.default)(Col, _Intact);
+
+    function Col() {
+        (0, _classCallCheck3.default)(this, Col);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+    }
+
+    Col.prototype.defaults = function defaults() {
+        return {
+            span: 24,
+            offset: 0,
+            gutter: 0
+        };
+    };
+
+    (0, _createClass3.default)(Col, [{
+        key: 'template',
+        get: function get() {
+            return _col2.default;
+        }
+    }]);
+    return Col;
+}(_intact2.default), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
+exports.default = Col;
+module.exports = exports['default'];
+
+/***/ }),
+/* 199 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _classNameObj;
+
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+    var gutterStyle = __webpack_require__(88);
+
+    var _self$get = self.get(),
+        children = _self$get.children,
+        span = _self$get.span,
+        className = _self$get.className,
+        style = _self$get.style,
+        gutter = _self$get.gutter,
+        offset = _self$get.offset;
+
+    var hasGutter = gutter > 0;
+    if (hasGutter) {
+        style = gutterStyle(gutter, style, 'padding');
+    }
+
+    var classNameObj = (_classNameObj = {
+        'k-col': true
+    }, _classNameObj['k-' + span] = true, _classNameObj[className] = className && !hasGutter, _classNameObj['k-offset-' + offset] = offset > 0, _classNameObj);
+
+    return h('div', { 'style': function () {
+            try {
+                return [style][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, function () {
+        try {
+            return [hasGutter ? h('div', null, function () {
+                try {
+                    return [children][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), _className(function () {
+                try {
+                    return [className][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this))) : children][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), _className(function () {
+        try {
+            return [classNameObj][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)));
+};
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 200 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 201 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 202 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.Dialog = exports.default = undefined;
+
+var _getOwnPropertyDescriptor = __webpack_require__(4);
+
+var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
+
+var _promise = __webpack_require__(30);
+
+var _promise2 = _interopRequireDefault(_promise);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _possibleConstructorReturn2 = __webpack_require__(2);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _dec, _desc, _value, _class, _init, _class2, _temp;
+
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _index = __webpack_require__(203);
+
+var _index2 = _interopRequireDefault(_index);
+
+__webpack_require__(6);
+
+__webpack_require__(204);
+
+var _position = __webpack_require__(40);
+
+var _utils = __webpack_require__(7);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
+
+    return desc;
+}
+
+var Dialog = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
+    (0, _inherits3.default)(Dialog, _Intact);
+
+    function Dialog() {
+        (0, _classCallCheck3.default)(this, Dialog);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+    }
+
+    Dialog.prototype.defaults = function defaults() {
+        return {
+            title: (0, _utils._$)('提示'),
+            value: false,
+            size: 'default', // large | default | small | mini
+            loading: false,
+            disabledOk: false,
+            okText: (0, _utils._$)('确认'),
+            cancelText: (0, _utils._$)('取消'),
+            ok: undefined,
+            cancel: undefined,
+
+            _dragging: false
+        };
+    };
+
+    Dialog.prototype._init = function _init() {
+        var _this2 = this;
+
+        this.on('$changed:value', function (c, isShow) {
+            if (isShow) {
+                _this2.trigger('open');
+                _this2._center();
+            } else {
+                _this2.trigger('close');
+            }
+        });
+    };
+
+    Dialog.prototype._create = function _create() {
+        // use as component
+        if (this.vNode) {
+            this._useAsComponent = true;
+        }
+    };
+
+    Dialog.prototype._mount = function _mount(lastVNode, nextVNode) {
+        // for debug
+        window.__dialog = this;
+
+        this._center();
+
+        document.addEventListener('keydown', this._escClose);
+    };
+
+    Dialog.prototype.showLoading = function showLoading() {
+        this.set('loading', true);
+    };
+
+    Dialog.prototype.hideLoading = function hideLoading() {
+        this.set('loading', false);
+    };
+
+    Dialog.prototype.disableOk = function disableOk() {
+        this.set('disabledOk', true);
+    };
+
+    Dialog.prototype.enableOk = function enableOk() {
+        this.set('disabledOk', false);
+    };
+
+    Dialog.prototype.close = function close() {
+        this.set('value', false);
+    };
+
+    Dialog.prototype.cancel = function cancel() {
+        var callback = this.get('cancel');
+        if (typeof callback === 'function') {
+            callback.call(this, this);
+        } else {
+            this.trigger('cancel', this);
+            this.close();
+        }
+    };
+
+    Dialog.prototype.ok = function ok() {
+        var callback = this.get('ok');
+        if (typeof callback === 'function') {
+            callback.call(this, this);
+        } else {
+            this.trigger('ok', this);
+            this.close();
+        }
+    };
+
+    Dialog.prototype.show = function show() {
+        var _this3 = this;
+
+        return new _promise2.default(function (resolve) {
+            if (_this3.get('value')) return;
+            // use as component
+            if (_this3._useAsComponent) {
+                return _this3.set('value', true);
+            }
+            // use as instance
+            if (_this3.rendered) {
+                _this3.set('value', true);
+            } else {
+                var show = function show() {
+                    _this3.init();
+                    _this3.mount();
+                    _this3.set('value', true);
+                    resolve();
+                };
+                if (_this3.inited) {
+                    show();
+                } else {
+                    _this3.on('$inited', show);
+                }
+            }
+        });
+    };
+
+    Dialog.prototype._escClose = function _escClose(e) {
+        // Esc
+        if (e.keyCode === 27) this.close();
+    };
+
+    Dialog.prototype._leaveEnd = function _leaveEnd() {
+        // use as instance or use as component but it has be destroyed
+        // then remove the element
+        if (!this._useAsComponent || this._useAsComponent && this.destroyed) {
+            this.vdt.vNode.children._$destroy();
+        }
+    };
+
+    Dialog.prototype._center = function _center() {
+        if (!this.mounted || !this.get('value')) return;
+        // move to center
+        (0, _position.position)(this.dialog, {
+            // ensure title visible always
+            using: function using(feedback, position) {
+                var height = feedback.element.height;
+                var scrollTop = window.pageYOffset;
+                var outerHeight = window.document.documentElement.clientHeight;
+                if (height > outerHeight) {
+                    position.top = scrollTop;
+                }
+            }
+        });
+    };
+
+    Dialog.prototype._dragStart = function _dragStart(e) {
+        // left key
+        if (e.which !== 1 || !this.get('value')) return;
+
+        this.set('_dragging', true);
+        var dialog = this.dialog;
+        this._x = dialog.offsetLeft - e.clientX;
+        this._y = dialog.offsetTop - e.clientY;
+        this._width = dialog.offsetWidth;
+        this._height = dialog.offsetHeight;
+
+        document.addEventListener('mousemove', this._move);
+        document.addEventListener('mouseup', this._dragEnd);
+    };
+
+    Dialog.prototype._move = function _move(e) {
+        // TODO; drag out of screen
+        if (this.get('_dragging')) {
+            var style = this.dialog.style;
+            var body = document.body;
+            var html = document.documentElement;
+            var left = Math.min(Math.max(this._x + e.clientX, 0), Math.max(Math.max(body.scrollWidth, html.scrollWidth) - this._width, 0));
+            var top = Math.min(Math.max(this._y + e.clientY, 0), Math.max(Math.max(body.scrollHeight, html.scrollHeight) - this._height, 0));
+            style.left = left + 'px';
+            style.top = top + 'px';
+        }
+    };
+
+    Dialog.prototype._dragEnd = function _dragEnd() {
+        if (this.get('_dragging')) {
+            this.set('_dragging', false);
+            document.removeEventListener('mousemove', this._move);
+            document.removeEventListener('mouseup', this._dragEnd);
+        }
+    };
+
+    Dialog.prototype._destroy = function _destroy() {
+        document.removeEventListener('keydown', this._escClose);
+        if (this.get('value')) {
+            this.close();
+        } else {
+            var _vdt$vNode$children;
+
+            (_vdt$vNode$children = this.vdt.vNode.children)._$destroy.apply(_vdt$vNode$children, arguments);
+        }
+        this._dragEnd();
+    };
+
+    return Dialog;
+}(_intact2.default), _class2.template = _index2.default, _class2.propTypes = {
+    value: Boolean,
+    loading: Boolean
+}, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    initializer: function initializer() {
+        return _init;
+    }
+}), _class)), _class));
+exports.default = Dialog;
+exports.Dialog = Dialog;
+
+/***/ }),
+/* 203 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+                _Vdt || (_Vdt = Vdt);
+                obj || (obj = {});
+                blocks || (blocks = {});
+                var h = _Vdt.miss.h,
+                    hc = _Vdt.miss.hc,
+                    hu = _Vdt.miss.hu,
+                    widgets = this && this.widgets || {},
+                    _blocks = {},
+                    __blocks = {},
+                    __u = _Vdt.utils,
+                    extend = __u.extend,
+                    _e = __u.error,
+                    _className = __u.className,
+                    __o = __u.Options,
+                    _getModel = __o.getModel,
+                    _setModel = __o.setModel,
+                    _setCheckboxModel = __u.setCheckboxModel,
+                    _detectCheckboxChecked = __u.detectCheckboxChecked,
+                    _setSelectModel = __u.setSelectModel,
+                    self = this.data,
+                    $this = this,
+                    scope = obj,
+                    Animate = self && self.Animate,
+                    parent = ($callee || {})._super;
+
+                var _self$get = self.get(),
+                    size = _self$get.size;
+
+                return h(_moveWrapper2.default, { 'autoDestroy': function () {
+                                                try {
+                                                                return [false][0];
+                                                } catch (e) {
+                                                                _e(e);
+                                                }
+                                }.call(this), 'children': h('div', null, [function () {
+                                                try {
+                                                                return [self.get('value')][0];
+                                                } catch (e) {
+                                                                _e(e);
+                                                }
+                                }.call(this) ? h(Animate, { 'className': 'k-overlay', 'key': 'overlay', 'children': null, '_context': $this }) : undefined, function () {
+                                                try {
+                                                                return [self.get('value')][0];
+                                                } catch (e) {
+                                                                _e(e);
+                                                }
+                                }.call(this) ? h(Animate, { 'className': _className(function () {
+                                                                try {
+                                                                                var _ref;
+
+                                                                                return [(_ref = {
+                                                                                                "k-dialog": true,
+                                                                                                'k-dragging': self.get('_dragging')
+                                                                                }, _ref['k-' + size] = size !== 'default', _ref)][0];
+                                                                } catch (e) {
+                                                                                _e(e);
+                                                                }
+                                                }.call(this)), 'ref': function () {
+                                                                try {
+                                                                                return [function (i) {
+                                                                                                return self.dialog = i ? i.element : null;
+                                                                                }][0];
+                                                                } catch (e) {
+                                                                                _e(e);
+                                                                }
+                                                }.call(this), 'ev-a:leaveEnd': function () {
+                                                                try {
+                                                                                return [self._leaveEnd][0];
+                                                                } catch (e) {
+                                                                                _e(e);
+                                                                }
+                                                }.call(this), 'key': 'dialog', 'children': [h('div', { 'ev-mousedown': function () {
+                                                                                try {
+                                                                                                return [self._dragStart][0];
+                                                                                } catch (e) {
+                                                                                                _e(e);
+                                                                                }
+                                                                }.call(this) }, [(_blocks["header"] = function (parent) {
+                                                                return h('span', null, function () {
+                                                                                try {
+                                                                                                return [self.get('title')][0];
+                                                                                } catch (e) {
+                                                                                                _e(e);
+                                                                                }
+                                                                }.call(this), 'k-title');
+                                                }) && (__blocks["header"] = function (parent) {
+                                                                var self = this;
+                                                                return blocks["header"] ? blocks["header"].call(this, function () {
+                                                                                return _blocks["header"].call(self, parent);
+                                                                }) : _blocks["header"].call(this, parent);
+                                                }) && __blocks["header"].call(this), h(_button2.default, { 'type': 'none', 'icon': function () {
+                                                                                try {
+                                                                                                return [true][0];
+                                                                                } catch (e) {
+                                                                                                _e(e);
+                                                                                }
+                                                                }.call(this), 'title': function () {
+                                                                                try {
+                                                                                                return [(0, _utils._$)("关闭")][0];
+                                                                                } catch (e) {
+                                                                                                _e(e);
+                                                                                }
+                                                                }.call(this), 'className': 'k-close', 'ev-click': function () {
+                                                                                try {
+                                                                                                return [self.close][0];
+                                                                                } catch (e) {
+                                                                                                _e(e);
+                                                                                }
+                                                                }.call(this), 'children': h('i', null, null, 'k-icon ion-ios-close-empty'), '_context': $this })], 'k-header'), h('div', null, (_blocks["body"] = function (parent) {
+                                                                return function () {
+                                                                                try {
+                                                                                                return [self.get('children')][0];
+                                                                                } catch (e) {
+                                                                                                _e(e);
+                                                                                }
+                                                                }.call(this);
+                                                }) && (__blocks["body"] = function (parent) {
+                                                                var self = this;
+                                                                return blocks["body"] ? blocks["body"].call(this, function () {
+                                                                                return _blocks["body"].call(self, parent);
+                                                                }) : _blocks["body"].call(this, parent);
+                                                }) && __blocks["body"].call(this), 'k-body'), h('div', null, (_blocks["footer"] = function (parent) {
+                                                                return [h(_button2.default, { 'ev-click': function () {
+                                                                                                try {
+                                                                                                                return [self.cancel][0];
+                                                                                                } catch (e) {
+                                                                                                                _e(e);
+                                                                                                }
+                                                                                }.call(this), 'children': function () {
+                                                                                                try {
+                                                                                                                return [self.get('cancelText')][0];
+                                                                                                } catch (e) {
+                                                                                                                _e(e);
+                                                                                                }
+                                                                                }.call(this), '_context': $this }), h(_button2.default, { 'type': 'primary', 'ev-click': function () {
+                                                                                                try {
+                                                                                                                return [self.ok][0];
+                                                                                                } catch (e) {
+                                                                                                                _e(e);
+                                                                                                }
+                                                                                }.call(this), 'loading': function () {
+                                                                                                try {
+                                                                                                                return [self.get('loading')][0];
+                                                                                                } catch (e) {
+                                                                                                                _e(e);
+                                                                                                }
+                                                                                }.call(this), 'disabled': function () {
+                                                                                                try {
+                                                                                                                return [self.get('disabledOk')][0];
+                                                                                                } catch (e) {
+                                                                                                                _e(e);
+                                                                                                }
+                                                                                }.call(this), 'children': function () {
+                                                                                                try {
+                                                                                                                return [self.get('okText')][0];
+                                                                                                } catch (e) {
+                                                                                                                _e(e);
+                                                                                                }
+                                                                                }.call(this), '_context': $this })];
+                                                }) && (__blocks["footer"] = function (parent) {
+                                                                var self = this;
+                                                                return blocks["footer"] ? blocks["footer"].call(this, function () {
+                                                                                return _blocks["footer"].call(self, parent);
+                                                                }) : _blocks["footer"].call(this, parent);
+                                                }) && __blocks["footer"].call(this), 'k-footer')], '_context': $this }) : undefined], _className(function () {
+                                                try {
+                                                                var _ref2;
+
+                                                                return [(_ref2 = {
+                                                                                "k-dialog-wrapper": true
+                                                                }, _ref2[self.get('className')] = self.get('className'), _ref2)][0];
+                                                } catch (e) {
+                                                                _e(e);
+                                                }
+                                }.call(this)), null, function () {
+                                                try {
+                                                                return [function (dom) {
+                                                                                return self.$element = dom;
+                                                                }][0];
+                                                } catch (e) {
+                                                                _e(e);
+                                                }
+                                }.call(this)), '_context': $this });
+};
+
+var _button = __webpack_require__(15);
+
+var _button2 = _interopRequireDefault(_button);
+
+var _moveWrapper = __webpack_require__(39);
+
+var _moveWrapper2 = _interopRequireDefault(_moveWrapper);
+
+var _utils = __webpack_require__(7);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 204 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 205 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.Editable = exports.default = undefined;
+
+var _getOwnPropertyDescriptor = __webpack_require__(4);
+
+var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(8);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(2);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _dec, _desc, _value, _class, _class2, _temp;
+
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _index = __webpack_require__(206);
+
+var _index2 = _interopRequireDefault(_index);
+
+__webpack_require__(6);
+
+__webpack_require__(207);
+
+var _utils = __webpack_require__(7);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
+
+    return desc;
+}
+
+var Editable = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
+    (0, _inherits3.default)(Editable, _Intact);
+
+    function Editable() {
+        (0, _classCallCheck3.default)(this, Editable);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+    }
+
+    Editable.prototype.defaults = function defaults() {
+        return {
+            editing: false,
+            value: undefined,
+            required: true,
+            validate: undefined,
+            disabled: false,
+            tip: (0, _utils._$)('编辑'),
+            trim: true,
+            invalid: false
+        };
+    };
+
+    Editable.prototype._init = function _init() {
+        this.initValue = this.get('value');
+    };
+
+    Editable.prototype._edit = function _edit() {
+        this.set('editing', true);
+        var input = this.refs.input;
+        (0, _utils.selectInput)(input);
+    };
+
+    Editable.prototype._onBlur = function _onBlur(e) {
+        this._setValue(e.target.value);
+    };
+
+    Editable.prototype._onKeydown = function _onKeydown(e) {
+        switch (e.keyCode) {
+            case 27:
+                // esc 
+                this.set('editing', false);
+                break;
+            case 13:
+                // enter
+                this._onBlur(e);
+                break;
+        }
+    };
+
+    Editable.prototype._setValue = function _setValue(value) {
+        var _get = this.get(),
+            validate = _get.validate,
+            required = _get.required,
+            trim = _get.trim;
+
+        if (trim) value = value.trim();
+
+        var valid = true;
+
+        if (required && !value) {
+            valid = false;
+        } else if (validate && value) {
+            if (typeof validate === 'function') {
+                valid = validate.call(this, value);
+            } else if (validate instanceof RegExp) {
+                valid = validate.test(value);
+            } else if (typeof validate === 'string') {
+                valid = new RegExp(validate).test(value);
+            }
+        }
+
+        if (!valid) {
+            // do not change the value if invalid, #51
+            // this.set('value', value, {silent: true});
+            this.set('invalid', true);
+            return this.trigger('error', this, value);
+        }
+
+        this.set({
+            invalid: false,
+            editing: false,
+            value: value
+        });
+    };
+
+    Editable.prototype.reset = function reset() {
+        this.set({
+            'value': this.initValue,
+            'editing': false,
+            'invalid': false
+        });
+    };
+
+    (0, _createClass3.default)(Editable, [{
+        key: 'template',
+        get: function get() {
+            return _index2.default;
+        }
+    }]);
+    return Editable;
+}(_intact2.default), _class2.propTypes = {
+    editing: Boolean,
+    required: Boolean,
+    disabled: Boolean,
+    tip: [String, Number],
+    trim: Boolean,
+    invalid: Boolean
+}, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
+exports.default = Editable;
+exports.Editable = Editable;
+
+/***/ }),
+/* 206 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _classNameObj;
+
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var _self$get = self.get(),
+        editing = _self$get.editing,
+        value = _self$get.value,
+        validate = _self$get.validate,
+        disabled = _self$get.disabled,
+        style = _self$get.style,
+        tip = _self$get.tip,
+        children = _self$get.children,
+        invalid = _self$get.invalid,
+        className = _self$get.className;
+
+    var classNameObj = (_classNameObj = {
+        'k-editable': true,
+        'k-editing': editing,
+        'k-disabled': disabled,
+        'k-invalid': invalid
+    }, _classNameObj[className] = className, _classNameObj);
+
+    return h('div', { 'style': function () {
+            try {
+                return [style][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, [function () {
+        try {
+            return [!disabled && !editing][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('i', { 'title': function () {
+            try {
+                return [tip][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-click': function () {
+            try {
+                return [self._edit][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, null, 'ion-edit k-edit') : undefined, function () {
+        try {
+            return [value || editing][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('div', null, ['\n        ', function () {
+        try {
+            return [!editing ? children : h(_input2.default, { 'size': 'small', 'defaultValue': function () {
+                    try {
+                        return [value][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), 'ev-blur': function () {
+                    try {
+                        return [self._onBlur][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), 'ev-keydown': function () {
+                    try {
+                        return [self._onKeydown][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), 'children': null, '_context': $this }, null, null, null, function (i) {
+                widgets['input'] = i;
+            })][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), '\n    '], 'c-ellipsis') : undefined], _className(function () {
+        try {
+            return [classNameObj][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)));
+};
+
+var _input = __webpack_require__(19);
+
+var _input2 = _interopRequireDefault(_input);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 207 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 208 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.FormItem = exports.Form = undefined;
+
+var _form = __webpack_require__(89);
+
+var _form2 = _interopRequireDefault(_form);
+
+var _formItemWrapper = __webpack_require__(211);
+
+var _formItemWrapper2 = _interopRequireDefault(_formItemWrapper);
+
+__webpack_require__(6);
+
+__webpack_require__(214);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _form2.default;
+exports.Form = _form2.default;
+exports.FormItem = _formItemWrapper2.default;
+
+/***/ }),
+/* 209 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _classNameObj;
+
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var _self$get = self.get(),
+        children = _self$get.children,
+        className = _self$get.className,
+        ref = _self$get.ref,
+        key = _self$get.key,
+        style = _self$get.style;
+
+    var classNameObj = (_classNameObj = {
+        'k-form': true
+    }, _classNameObj[className] = className, _classNameObj);
+
+    return h('form', { 'style': function () {
+            try {
+                return [style][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-submit': function () {
+            try {
+                return [self.submit][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'noValidate': function () {
+            try {
+                return [true][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, function () {
+        try {
+            return [children][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), _className(function () {
+        try {
+            return [classNameObj][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)));
+};
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 210 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.addMethod = exports.classNames = exports.messages = exports.methods = undefined;
+
+var _utils = __webpack_require__(7);
+
+function decimalPlaces(num) {
+    var match = ("" + num).match(/(?:\.(\d+))?$/);
+    if (!match) {
+        return 0;
+    }
+
+    // Number of digits right of decimal point.
+    return match[1] ? match[1].length : 0;
+}
+
+var methods = exports.methods = {
+    required: function required(value) {
+        return value != null && (typeof value === 'string' || Array.isArray(value) ? value.length > 0 : true);
+    },
+    digits: function digits(value) {
+        return (/^\d+$/.test(value)
+        );
+    },
+    email: function email(value) {
+        return (/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(value)
+        );
+    },
+    url: function url(value) {
+        return (/^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})).?)(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(value)
+        );
+    },
+    date: function date(value) {
+        return !/Invalid|NaN/.test(new Date(value).toString());
+    },
+    dateISO: function dateISO(value) {
+        return (/^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/.test(value)
+        );
+    },
+    number: function number(value) {
+        return (/^(?:-?\d+|-?\d{1,3}(?:,\d{3})+)?(?:\.\d+)?$/.test(value)
+        );
+    },
+    minLength: function minLength(value, item, param) {
+        return value.length >= Number(param);
+    },
+    maxLength: function maxLength(value, item, param) {
+        return value.length <= Number(param);
+    },
+    rangeLength: function rangeLength(value, item, param) {
+        var length = value.length;
+        return length >= Number(param[0]) && length <= Number(param[1]);
+    },
+    min: function min(value, item, param) {
+        return Number(value) >= Number(param);
+    },
+    max: function max(value, item, param) {
+        return Number(value) <= Number(param);
+    },
+    range: function range(value, item, param) {
+        return Number(value) >= Number(param[0]) && Number(value) <= Number(param[1]);
+    },
+    step: function step(value, item, param) {
+        var decimals = decimalPlaces(param);
+        var toInt = function toInt(num) {
+            return Math.round(num * Math.pow(10, decimals));
+        };
+
+        return decimalPlaces(value) <= decimals && toInt(value) % toInt(param) === 0;
+    },
+    equalTo: function equalTo(value, item, param) {
+        var equalValue = item.form.get('_context').data.get(param);
+        var equalItem = item.form.getItem(param);
+        if (!equalItem._hasBindEqualToCallback) {
+            item._equalToCallback = function () {
+                item.validateIfDirty();
+            };
+            equalItem.on('$changed:value', item._equalToCallback);
+            equalItem._hasBindEqualToCallback = true;
+
+            // remove listener when destroy or change rules
+            ['$destroyed' /*, '$change:rules'*/].forEach(function (name) {
+                item.on(name, function () {
+                    equalItem.off('$changed:value', item._equalToCallback);
+                    equalItem._hasBindEqualToCallback = false;
+                });
+            });
+        }
+
+        return value === equalValue;
+    }
+};
+
+function count(num) {
+    return num === 2 ? (0, _utils._$)('两') : num;
+}
+
+var messages = exports.messages = {
+    required: function required() {
+        return (0, _utils._$)('必须填写');
+    },
+    digits: function digits() {
+        return (0, _utils._$)('请输入数字');
+    },
+    email: function email() {
+        return (0, _utils._$)('请输入正确的邮箱地址');
+    },
+    url: function url() {
+        return (0, _utils._$)('请输入正确的网址');
+    },
+    date: function date() {
+        return (0, _utils._$)('请输入正确的日期');
+    },
+    dateISO: function dateISO() {
+        return (0, _utils._$)('请输入正确的日期 (YYYY-MM-DD)');
+    },
+    number: function number() {
+        return (0, _utils._$)('请输入正确的数');
+    },
+    maxLength: function maxLength(value, item, param) {
+        if (Array.isArray(value)) {
+            return (0, _utils._$)('\u6700\u591A\u9009\u62E9 {n} \u9879', { n: count(param) });
+        } else {
+            return (0, _utils._$)('\u6700\u591A\u8F93\u5165 {n} \u4E2A\u5B57\u7B26', { n: count(param) });
+        }
+    },
+    minLength: function minLength(value, item, param) {
+        if (Array.isArray(value)) {
+            return (0, _utils._$)('\u6700\u5C11\u9009\u62E9 {n} \u9879', { n: count(param) });
+        } else {
+            return (0, _utils._$)('\u6700\u5C11\u8F93\u5165 {n} \u4E2A\u5B57\u7B26', { n: count(param) });
+        }
+    },
+    rangeLength: function rangeLength(value, item, param) {
+        if (Array.isArray(value)) {
+            return (0, _utils._$)('\u8BF7\u9009\u62E9 {n} \u5230 {m} \u9879', { n: count(param[0]), m: count(param[1]) });
+        } else {
+            return (0, _utils._$)('\u8BF7\u8F93\u5165 {n} \u5230 {m} \u4E2A\u5B57\u7B26', { n: count(param[0]), m: count(param[1]) });
+        }
+    },
+    max: function max(value, item, param) {
+        return (0, _utils._$)('\u8BF7\u8F93\u5165\u4E0D\u5927\u4E8E {n} \u7684\u6570', { n: param });
+    },
+    min: function min(value, item, param) {
+        return (0, _utils._$)('\u8BF7\u8F93\u5165\u4E0D\u5C0F\u4E8E {n} \u7684\u6570', { n: param });
+    },
+    range: function range(value, item, param) {
+        return (0, _utils._$)('\u8BF7\u8F93\u5165 {n[0]} \u5230 {n[1]} \u4E4B\u95F4\u7684\u6570', { n: param });
+    },
+    step: function step(value, item, param) {
+        return (0, _utils._$)('\u8BF7\u8F93\u5165\u6B65\u957F\u4E3A {n} \u7684\u6570', { n: param });
+    },
+
+    equalTo: function equalTo() {
+        return (0, _utils._$)('两次输入不一致');
+    }
+};
+
+var classNames = exports.classNames = {};
+
+var addMethod = exports.addMethod = function addMethod(name, method, message, className) {
+    methods[name] = method;
+    messages[name] = message !== undefined ? message : messages[name];
+    classNames[name] = className;
+};
+
+/***/ }),
+/* 211 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _extends2 = __webpack_require__(5);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__(12);
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _formItem = __webpack_require__(212);
+
+var _formItem2 = _interopRequireDefault(_formItem);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var h = _intact2.default.Vdt.miss.h;
+
+function Wrapper(props) {
+    var key = props.key,
+        _context = props._context,
+        model = props.model,
+        rest = (0, _objectWithoutProperties3.default)(props, ['key', '_context', 'model']);
+
+    if (!key && model) {
+        key = '$fi.' + model;
+    }
+    return h(_formItem2.default, (0, _extends3.default)({
+        key: key, model: model, _context: _context
+    }, model ? {
+        'ev-$change:value': function ev$changeValue(c, v) {
+            _context.data.set(model, v);
+        },
+        value: _context.data.get(model)
+    } : {}, rest));
+}
+
+exports.default = _intact2.default.functionalWrapper ? _intact2.default.functionalWrapper(Wrapper) : Wrapper;
+module.exports = exports['default'];
+
+/***/ }),
+/* 212 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.default = undefined;
+
+var _getOwnPropertyDescriptor = __webpack_require__(4);
+
+var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
+
+var _promise = __webpack_require__(30);
+
+var _promise2 = _interopRequireDefault(_promise);
+
+var _assign = __webpack_require__(24);
+
+var _assign2 = _interopRequireDefault(_assign);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(8);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(2);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _dec, _desc, _value, _class, _class2, _temp;
+
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _formItem = __webpack_require__(213);
+
+var _formItem2 = _interopRequireDefault(_formItem);
+
+var _form = __webpack_require__(89);
+
+var _form2 = _interopRequireDefault(_form);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
+
+    return desc;
+}
+
+var FormItem = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
+    (0, _inherits3.default)(FormItem, _Intact);
+
+    function FormItem() {
+        (0, _classCallCheck3.default)(this, FormItem);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+    }
+
+    FormItem.prototype.defaults = function defaults() {
+        return {
+            value: undefined,
+            model: undefined,
+            rules: {},
+            isValid: undefined,
+            isDirty: false,
+            message: '',
+            messages: {},
+            classNames: {},
+            errorClassName: '',
+            label: undefined,
+            htmlFor: undefined,
+            hideLabel: false,
+            force: false
+        };
+    };
+
+    FormItem.prototype._init = function _init() {
+        this.initValue = this.get('value');
+        this.on('$change:value', this.validateIfDirty);
+        this.on('$change:rules', this.validateIfDirty);
+    };
+
+    FormItem.prototype._mount = function _mount() {
+        if (!this.get('model')) return;
+
+        var form = this.parentVNode;
+        while (form && form.tag !== _form2.default) {
+            form = form.parentVNode;
+        }
+        if (!form) {
+            throw new Error('FormItem must be used as the descendant of Form');
+        }
+        this.form = form = form.children;
+        var items = form.get('items');
+        items.push(this);
+    };
+
+    FormItem.prototype.getRules = function getRules() {
+        var formRules = this.form.get('rules.' + this.get('model'));
+        var selfRules = this.get('rules');
+
+        return (0, _assign2.default)({}, formRules, selfRules);
+    };
+
+    FormItem.prototype.getMessage = function getMessage(name) {
+        var defaultMessages = _form2.default.messages;
+        var customMessages = this.get('messages');
+        var message = customMessages[name] || defaultMessages[name];
+
+        if (typeof message === 'function') {
+            var rules = this.getRules();
+            return message.call(this.form, this.get('value'), this, rules[name]);
+        }
+
+        return message;
+    };
+
+    FormItem.prototype.getClassName = function getClassName(name) {
+        var defaultClassNames = _form2.default.classNames;
+        var customClassNames = this.get('classNames');
+        var className = customClassNames[name] || defaultClassNames[name];
+
+        if (typeof className === 'function') {
+            var rules = this.getRules();
+            return className.call(this.form, this.get('value'), this, rules[name]);
+        }
+
+        return className;
+    };
+
+    FormItem.prototype.validate = function validate() {
+        var _this2 = this;
+
+        if (!this.get('model')) return;
+
+        this._cancel();
+
+        var rules = this.getRules();
+        var promises = [];
+        var keys = [];
+
+        // check required firstly
+        var required = _form2.default.methods.required.call(this.form, this.get('value'), this);
+        if (rules.required) {
+            promises.push(required);
+            keys.push('required');
+        }
+
+        // if the field is not empty, then check other rules
+        if (required) {
+            for (var key in rules) {
+                var rule = rules[key];
+                if (key === 'required' || rule === false) continue;
+                var fn = void 0;
+                if (typeof rule === 'function') {
+                    fn = rule;
+                } else {
+                    fn = _form2.default.methods[key];
+                    if (!fn) {
+                        console.warn('Can not find validate method: ' + key);
+                        continue;
+                    }
+                }
+                promises.push(fn.call(this.form, this.get('value'), this, rules[key]));
+                keys.push(key);
+            }
+        }
+
+        var p = this.promise = _promise2.default.all(promises).then(function (values) {
+            for (var index = 0; index < values.length; index++) {
+                if (values[index] !== true) {
+                    return [false, values[index] || _this2.getMessage(keys[index]), _this2.getClassName(keys[index])];
+                }
+            }
+            return [true, '', null];
+        }, function (err) {
+            var message = void 0;
+            var className = void 0;
+            if (typeof err === 'string') {
+                message = err;
+            } else if (err) {
+                message = err.message || _this2.getMessage(err.name);
+                className = err.className || _this2.getClassName(err.name);
+            }
+            return [false, message, className];
+        }).then(function (_ref) {
+            var isValid = _ref[0],
+                message = _ref[1],
+                className = _ref[2];
+
+            if (p.cancelled) return;
+            _this2.set({
+                isDirty: true,
+                isValid: isValid,
+                message: message,
+                errorClassName: className
+            });
+            return isValid;
+        });
+
+        return p;
+    };
+
+    FormItem.prototype.validateIfDirty = function validateIfDirty() {
+        // if force is true, it will been validated when update
+        // so we do nothing for this case
+        if (this.get('force')) return;
+
+        if (this.get('isDirty')) {
+            this.validate();
+        }
+    };
+
+    FormItem.prototype._beforeUpdate = function _beforeUpdate() {
+        if (this.get('force') && this.get('isDirty')) {
+            this.validate();
+        }
+    };
+
+    FormItem.prototype.reset = function reset() {
+        this._cancel();
+
+        this.set({
+            isDirty: false,
+            isValid: undefined,
+            value: Array.isArray(this.get('value')) ? [].concat(this.initValue) : this.initValue
+        });
+    };
+
+    FormItem.prototype._dirty = function _dirty() {
+        var _this3 = this;
+
+        if (!this.get('model')) return;
+        if (this.get('isDirty')) return;
+
+        // for select, the focusout event triggers before select
+        // so we put off validating it 
+        setTimeout(function () {
+            _this3.validate();
+        }, 100);
+        // if (this.$nextTick) {
+        // this.$nextTick(this.validate);
+        // } else {
+        // this.validate();
+        // }
+    };
+
+    FormItem.prototype._cancel = function _cancel() {
+        // cancel the last promise
+        if (this.promise) {
+            this.promise.cancelled = true;
+        }
+    };
+
+    FormItem.prototype._destroy = function _destroy() {
+        if (!this.get('model')) return;
+        var items = this.form.get('items');
+        items.splice(items.indexOf(this), 1);
+        // this.reset();
+    };
+
+    (0, _createClass3.default)(FormItem, [{
+        key: 'template',
+        get: function get() {
+            return _formItem2.default;
+        }
+    }]);
+    return FormItem;
+}(_intact2.default), _class2.propTypes = {
+    hideLabel: Boolean,
+    force: Boolean
+}, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
+exports.default = FormItem;
+module.exports = exports['default'];
+
+/***/ }),
+/* 213 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _classNameObj;
+
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var _self$get = self.get(),
+        className = _self$get.className,
+        children = _self$get.children,
+        label = _self$get.label,
+        style = _self$get.style,
+        isValid = _self$get.isValid,
+        isDirty = _self$get.isDirty,
+        hideLabel = _self$get.hideLabel,
+        htmlFor = _self$get.htmlFor,
+        errorClassName = _self$get.errorClassName;
+
+    var classNameObj = (_classNameObj = {
+        'k-form-item': true,
+        'k-invalid': isDirty && !isValid,
+        'k-valid': isDirty && isValid
+    }, _classNameObj[className] = className, _classNameObj);
+
+    // vdt does not support return `v-if & v-else` element in root,
+    // like: 
+    //     '<div v-if={{ true }}>true</div>'
+    //     '<label v-else>false</label>'
+    // so wrap it.
+    // const Wrapper = (props) => {
+    //     return h(props._tagName, props, props.children); 
+    // }
+
+    return h('div', { 'style': function () {
+            try {
+                return [style][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-change': function () {
+            try {
+                return [self._dirty][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-focusout': function () {
+            try {
+                return [self._dirty][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, [function () {
+        try {
+            return [!hideLabel][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('label', { 'htmlFor': function () {
+            try {
+                return [htmlFor][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, (_blocks["label"] = function (parent) {
+        return function () {
+            try {
+                return [label][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this);
+    }) && (__blocks["label"] = function (parent) {
+        var self = this;
+        return blocks["label"] ? blocks["label"].call(this, function () {
+            return _blocks["label"].call(self, parent);
+        }) : _blocks["label"].call(this, parent);
+    }) && __blocks["label"].call(this), 'k-label') : undefined, h('div', null, [(_blocks["content"] = function (parent) {
+        return function () {
+            try {
+                return [children][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this);
+    }) && (__blocks["content"] = function (parent) {
+        var self = this;
+        return blocks["content"] ? blocks["content"].call(this, function () {
+            return _blocks["content"].call(self, parent);
+        }) : _blocks["content"].call(this, parent);
+    }) && __blocks["content"].call(this), function () {
+        try {
+            return [self.get('isValid') === false][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h(Animate, { 'className': _className(function () {
+            try {
+                var _ref;
+
+                return [(_ref = { "k-error": true }, _ref[errorClassName] = errorClassName, _ref)][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this)), 'a:transition': 'fade', 'children': function () {
+            try {
+                return [self.get('message')][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), '_context': $this }) : undefined], 'k-content'), function () {
+        try {
+            return [blocks.append][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('div', null, (_blocks["append"] = function (parent) {
+        return null;
+    }) && (__blocks["append"] = function (parent) {
+        var self = this;
+        return blocks["append"] ? blocks["append"].call(this, function () {
+            return _blocks["append"].call(self, parent);
+        }) : _blocks["append"].call(this, parent);
+    }) && __blocks["append"].call(this), 'k-append') : undefined], _className(function () {
+        try {
+            return [classNameObj][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)));
+};
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 214 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 215 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.Link = exports.default = undefined;
+
+var _getOwnPropertyDescriptor = __webpack_require__(4);
+
+var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(8);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(2);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _dec, _desc, _value, _class, _class2, _temp;
+
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _index = __webpack_require__(216);
+
+var _index2 = _interopRequireDefault(_index);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
+
+    return desc;
+}
+
+var Link = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
+    (0, _inherits3.default)(Link, _Intact);
+
+    function Link() {
+        (0, _classCallCheck3.default)(this, Link);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+    }
+
+    Link.prototype.defaults = function defaults() {
+        return {
+            href: undefined,
+            name: undefined,
+            isReplace: false
+        };
+    };
+
+    Link.prototype.to = function to(e) {
+        e.preventDefault();
+        this.trigger('click', e);
+        var href = this.get('href');
+        var name = this.get('name');
+        var history = Link.history;
+        var url = void 0;
+        if (href != null) {
+            url = href;
+        } else if (name != null) {
+            if (Array.isArray(name)) {
+                url = Link.url.apply(Link.url, name);
+            } else {
+                url = Link.url(name);
+            }
+        }
+        if (url) {
+            // if the href is equal to the current href, then do nothing
+            var _history$location = history.location,
+                pathname = _history$location.pathname,
+                search = _history$location.search;
+
+            if (pathname + search === url) return;
+
+            if (this.get('isReplace')) {
+                history.replace(url);
+            } else {
+                history.push(url);
+            }
+        }
+    };
+
+    (0, _createClass3.default)(Link, [{
+        key: 'template',
+        get: function get() {
+            return _index2.default;
+        }
+    }]);
+    return Link;
+}(_intact2.default), _class2.history = undefined, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
+exports.default = Link;
+exports.Link = Link;
+
+/***/ }),
+/* 216 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _extends2 = __webpack_require__(5);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__(12);
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+  _Vdt || (_Vdt = Vdt);
+  obj || (obj = {});
+  blocks || (blocks = {});
+  var h = _Vdt.miss.h,
+      hc = _Vdt.miss.hc,
+      hu = _Vdt.miss.hu,
+      widgets = this && this.widgets || {},
+      _blocks = {},
+      __blocks = {},
+      __u = _Vdt.utils,
+      extend = __u.extend,
+      _e = __u.error,
+      _className = __u.className,
+      __o = __u.Options,
+      _getModel = __o.getModel,
+      _setModel = __o.setModel,
+      _setCheckboxModel = __u.setCheckboxModel,
+      _detectCheckboxChecked = __u.detectCheckboxChecked,
+      _setSelectModel = __u.setSelectModel,
+      self = this.data,
+      $this = this,
+      scope = obj,
+      Animate = self && self.Animate,
+      parent = ($callee || {})._super;
+
+  var _self$get = self.get(),
+      name = _self$get.name,
+      isReplace = _self$get.isReplace,
+      rest = (0, _objectWithoutProperties3.default)(_self$get, ['name', 'isReplace']);
+
+  return h('a', (0, _extends3.default)({}, function () {
+    try {
+      return [rest][0];
+    } catch (e) {
+      _e(e);
+    }
+  }.call(this), { 'ev-click': function () {
+      try {
+        return [self.to][0];
+      } catch (e) {
+        _e(e);
+      }
+    }.call(this) }), function () {
+    try {
+      return [self.get('children')][0];
+    } catch (e) {
+      _e(e);
+    }
+  }.call(this));
+};
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 217 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.Message = exports.default = undefined;
+
+var _getOwnPropertyDescriptor = __webpack_require__(4);
+
+var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
+
+var _extends2 = __webpack_require__(5);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _assign = __webpack_require__(24);
+
+var _assign2 = _interopRequireDefault(_assign);
+
+var _typeof2 = __webpack_require__(25);
+
+var _typeof3 = _interopRequireDefault(_typeof2);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _possibleConstructorReturn2 = __webpack_require__(2);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _dec, _desc, _value, _class, _init, _class2, _temp, _dec2, _desc2, _value2, _class3, _init2, _class4, _temp2;
+
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _index = __webpack_require__(218);
+
+var _index2 = _interopRequireDefault(_index);
+
+var _message = __webpack_require__(219);
+
+var _message2 = _interopRequireDefault(_message);
+
+__webpack_require__(6);
+
+__webpack_require__(220);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
+
+    return desc;
+}
+
+var messages = void 0;
+var id = 0;
+
+var Message = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
+    (0, _inherits3.default)(Message, _Intact);
+
+    function Message() {
+        (0, _classCallCheck3.default)(this, Message);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+    }
+
+    Message.notice = function notice(content) {
+        var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 5000;
+        var type = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'info';
+
+        if (!messages) {
+            messages = _intact2.default.mount(Messages, document.body);
+        }
+
+        if (content !== null && (typeof content === 'undefined' ? 'undefined' : (0, _typeof3.default)(content)) === 'object' && !content.tag) {
+            content = (0, _assign2.default)({}, content, { type: type });
+        } else {
+            content = { content: content, duration: duration, type: type };
+        }
+
+        var message = new Message((0, _extends3.default)({}, content, {
+            value: true,
+            _isInstance: true
+        }));
+
+        messages.notice(message);
+
+        return message;
+    };
+
+    Message.prototype.defaults = function defaults() {
+        return {
+            content: undefined,
+            duration: 5000,
+            type: 'info',
+            key: id++,
+            value: false,
+            closable: true,
+            hideIcon: false,
+
+            // if this component is used as instance or not
+            _isInstance: false
+        };
+    };
+
+    Message.prototype.init = function init() {
+        var _Intact$prototype$ini2;
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        if (!this.get('value')) {
+            var _Intact$prototype$ini;
+
+            // when use as component, render the component
+            // but don't append it to parentDom, use a
+            // placeholder instead of
+            this.parentDom = null;
+            (_Intact$prototype$ini = _Intact.prototype.init).call.apply(_Intact$prototype$ini, [this].concat(args));
+            return this.placeholder = document.createComment("message");
+        } else if (this.element) {
+            // Messages render this component, return the 
+            // original dom
+            return this.element;
+        }
+        return (_Intact$prototype$ini2 = _Intact.prototype.init).call.apply(_Intact$prototype$ini2, [this].concat(args));
+    };
+
+    Message.prototype.hydrate = function hydrate(vNode) {
+        // don't hydrate it, but initialize it
+        this.init(null, vNode);
+        return this.placeholder = document.createComment('message');
+    };
+
+    Message.prototype.update = function update(lastVNode, nextVNode) {
+        // when this updating is from original parent,
+        // update the original dom, but return the placeholder,
+        // otherwise return the original dom which has been updated
+        if (!lastVNode ||
+        // it may have not parentVNode in vue
+        lastVNode.parentVNode && lastVNode.parentVNode.tag === MessageAnimate) {
+            return this.element;
+        }
+        _Intact.prototype.update.call(this, lastVNode, nextVNode);
+        return this.placeholder;
+    };
+
+    Message.prototype.toString = function toString() {
+        // return the placeholder string for ssr
+        return '<!--message-->';
+    };
+
+    Message.prototype._init = function _init() {
+        var _this2 = this;
+
+        this.on('$change:value', function (c, value) {
+            if (value) {
+                messages.notice(_this2);
+            } else {
+                messages.delete(_this2);
+            }
+        });
+    };
+
+    Message.prototype._create = function _create() {
+        if (!messages) {
+            messages = _intact2.default.mount(Messages, document.body);
+        }
+    };
+
+    Message.prototype._mount = function _mount() {
+        var _this3 = this;
+
+        if (!this.get('value')) return;
+
+        var duration = this.get('duration');
+        if (duration) {
+            this.timer = setTimeout(function () {
+                _this3.close();
+            }, duration);
+        }
+    };
+
+    Message.prototype.close = function close() {
+        clearTimeout(this.timer);
+        if (!this.get('_isInstance')) {
+            this.set('value', false);
+        } else {
+            messages.delete(this);
+        }
+    };
+
+    Message.prototype.onMouseEnter = function onMouseEnter() {
+        clearTimeout(this.timer);
+    };
+
+    Message.prototype.onMouseLeave = function onMouseLeave() {
+        clearTimeout(this.timer);
+        this._mount();
+    };
+
+    Message.prototype.destroy = function destroy(vNode) {
+        if (this._isVue && !vNode) {
+            messages.delete(this);
+        } else if (vNode.parentVNode.tag === MessageAnimate && !this.get('_isInstance')) {
+            return;
+        } else if (vNode.parentVNode.tag !== MessageAnimate) {
+            messages.delete(this);
+        } else {
+            _Intact.prototype.destroy.call(this, vNode);
+        }
+    };
+
+    return Message;
+}(_intact2.default), _class2.template = _message2.default, _class2.info = function (content, duration) {
+    Message.notice(content, duration, 'info');
+}, _class2.error = function (content, duration) {
+    Message.notice(content, duration, 'danger');
+}, _class2.success = function (content, duration) {
+    Message.notice(content, duration, 'success');
+}, _class2.warning = function (content, duration) {
+    Message.notice(content, duration, 'warning');
+}, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    initializer: function initializer() {
+        return _init;
+    }
+}), _class)), _class));
+exports.default = Message;
+var Messages = (_dec2 = _intact2.default.template(), (_class3 = (_temp2 = _class4 = function (_Intact2) {
+    (0, _inherits3.default)(Messages, _Intact2);
+
+    function Messages() {
+        (0, _classCallCheck3.default)(this, Messages);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact2.apply(this, arguments));
+    }
+
+    Messages.prototype.defaults = function defaults() {
+        return {
+            messages: []
+        };
+    };
+
+    Messages.prototype._init = function _init() {
+        this.MessageAnimate = MessageAnimate;
+    };
+
+    Messages.prototype.notice = function notice(message) {
+        this.get('messages').push(message);
+        this.update();
+    };
+
+    Messages.prototype.delete = function _delete(message) {
+        var messages = this.get('messages');
+        var index = messages.indexOf(message);
+        if (~index) {
+            messages.splice(index, 1);
+            this.update();
+        }
+    };
+
+    return Messages;
+}(_intact2.default), _class4.template = _index2.default, _temp2), (_applyDecoratedDescriptor(_class3, 'template', [_dec2], (_init2 = (0, _getOwnPropertyDescriptor2.default)(_class3, 'template'), _init2 = _init2 ? _init2.value : undefined, {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    initializer: function initializer() {
+        return _init2;
+    }
+}), _class3)), _class3));
+
+// MessageAniamte type for type checking
+
+var MessageAnimate = function (_Intact$Animate) {
+    (0, _inherits3.default)(MessageAnimate, _Intact$Animate);
+
+    function MessageAnimate() {
+        (0, _classCallCheck3.default)(this, MessageAnimate);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact$Animate.apply(this, arguments));
+    }
+
+    return MessageAnimate;
+}(_intact2.default.Animate);
+
+exports.Message = Message;
+
+/***/ }),
+/* 218 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+  _Vdt || (_Vdt = Vdt);
+  obj || (obj = {});
+  blocks || (blocks = {});
+  var h = _Vdt.miss.h,
+      hc = _Vdt.miss.hc,
+      hu = _Vdt.miss.hu,
+      widgets = this && this.widgets || {},
+      _blocks = {},
+      __blocks = {},
+      __u = _Vdt.utils,
+      extend = __u.extend,
+      _e = __u.error,
+      _className = __u.className,
+      __o = __u.Options,
+      _getModel = __o.getModel,
+      _setModel = __o.setModel,
+      _setCheckboxModel = __u.setCheckboxModel,
+      _detectCheckboxChecked = __u.detectCheckboxChecked,
+      _setSelectModel = __u.setSelectModel,
+      self = this.data,
+      $this = this,
+      scope = obj,
+      Animate = self && self.Animate,
+      parent = ($callee || {})._super;
+  var MessageAnimate = self.MessageAnimate;
+
+  // we must add key for k-messages, 
+  // beacase it may reuse other MoveWrapper Animate dom
+  // the key will prevent this case.
+  return h(Animate, { 'className': 'k-messages', 'key': 'k-messages', 'children': _Vdt.utils.map(function () {
+      try {
+        return [self.get('messages')][0];
+      } catch (e) {
+        _e(e);
+      }
+    }.call(this), function (value, key) {
+      return h(MessageAnimate, { 'a:tag': function () {
+          try {
+            return [value][0];
+          } catch (e) {
+            _e(e);
+          }
+        }.call(this), 'key': function () {
+          try {
+            return [value.get('key')][0];
+          } catch (e) {
+            _e(e);
+          }
+        }.call(this), 'children': null, '_context': $this });
+    }, this), '_context': $this });
+};
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 219 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+            _Vdt || (_Vdt = Vdt);
+            obj || (obj = {});
+            blocks || (blocks = {});
+            var h = _Vdt.miss.h,
+                hc = _Vdt.miss.hc,
+                hu = _Vdt.miss.hu,
+                widgets = this && this.widgets || {},
+                _blocks = {},
+                __blocks = {},
+                __u = _Vdt.utils,
+                extend = __u.extend,
+                _e = __u.error,
+                _className = __u.className,
+                __o = __u.Options,
+                _getModel = __o.getModel,
+                _setModel = __o.setModel,
+                _setCheckboxModel = __u.setCheckboxModel,
+                _detectCheckboxChecked = __u.detectCheckboxChecked,
+                _setSelectModel = __u.setSelectModel,
+                self = this.data,
+                $this = this,
+                scope = obj,
+                Animate = self && self.Animate,
+                parent = ($callee || {})._super;
+
+            var _self$get = self.get(),
+                type = _self$get.type,
+                content = _self$get.content,
+                children = _self$get.children,
+                closable = _self$get.closable,
+                hideIcon = _self$get.hideIcon;
+
+            return h('div', { 'ev-mouseenter': function () {
+                                    try {
+                                                return [self.onMouseEnter][0];
+                                    } catch (e) {
+                                                _e(e);
+                                    }
+                        }.call(this), 'ev-mouseleave': function () {
+                                    try {
+                                                return [self.onMouseLeave][0];
+                                    } catch (e) {
+                                                _e(e);
+                                    }
+                        }.call(this) }, h('div', null, [function () {
+                        try {
+                                    return [!hideIcon][0];
+                        } catch (e) {
+                                    _e(e);
+                        }
+            }.call(this) ? h('i', null, null, _className(function () {
+                        try {
+                                    return [{
+                                                "k-icon": true,
+                                                "ion-ios-information-outline": type === 'info' || type === 'warning',
+                                                "ion-ios-checkmark-outline": type === 'success',
+                                                "ion-ios-close-outline": type === 'danger'
+                                    }][0];
+                        } catch (e) {
+                                    _e(e);
+                        }
+            }.call(this))) : undefined, function () {
+                        try {
+                                    return [typeof content === 'string' || typeof content === 'number'][0];
+                        } catch (e) {
+                                    _e(e);
+                        }
+            }.call(this) ? h('div', { 'innerHTML': function () {
+                                    try {
+                                                return [content][0];
+                                    } catch (e) {
+                                                _e(e);
+                                    }
+                        }.call(this) }, null, 'k-content') : h('div', null, function () {
+                        try {
+                                    return [children][0];
+                        } catch (e) {
+                                    _e(e);
+                        }
+            }.call(this), 'k-content'), function () {
+                        try {
+                                    return [closable][0];
+                        } catch (e) {
+                                    _e(e);
+                        }
+            }.call(this) ? h(_button2.default, { 'type': 'none', 'icon': function () {
+                                    try {
+                                                return [true][0];
+                                    } catch (e) {
+                                                _e(e);
+                                    }
+                        }.call(this), 'className': 'k-close', 'ev-click': function () {
+                                    try {
+                                                return [self.close][0];
+                                    } catch (e) {
+                                                _e(e);
+                                    }
+                        }.call(this), 'children': h('i', null, null, 'k-icon ion-ios-close-empty'), '_context': $this }) : undefined], 'k-container'), _className(function () {
+                        try {
+                                    var _ref;
+
+                                    return [(_ref = { "k-message": true }, _ref['k-' + type] = type !== 'info', _ref)][0];
+                        } catch (e) {
+                                    _e(e);
+                        }
+            }.call(this)));
+};
+
+var _button = __webpack_require__(15);
+
+var _button2 = _interopRequireDefault(_button);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 220 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 221 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.Pagination = exports.default = undefined;
+
+var _getOwnPropertyDescriptor = __webpack_require__(4);
+
+var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _possibleConstructorReturn2 = __webpack_require__(2);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _dec, _desc, _value, _class, _init, _class2, _temp;
+
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _index = __webpack_require__(222);
+
+var _index2 = _interopRequireDefault(_index);
+
+__webpack_require__(6);
+
+__webpack_require__(223);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
+
+    return desc;
+}
+
+var Pagination = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
+    (0, _inherits3.default)(Pagination, _Intact);
+
+    function Pagination() {
+        (0, _classCallCheck3.default)(this, Pagination);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+    }
+
+    Pagination.prototype.defaults = function defaults() {
+        return {
+            total: 0,
+            current: 1,
+            limit: 10,
+            counts: 7,
+            showTotal: true,
+            limits: [10, 20, 50],
+            // value: '',
+            showGoto: false,
+            size: 'default',
+            noBorder: false
+        };
+    };
+
+    Pagination.prototype._init = function _init() {
+        var _this2 = this;
+
+        // avoid setting incorrect value
+        this.changePage(this.get('current'));
+
+        this.on('$change:limit', function () {
+            _this2.set('current', 1);
+        });
+    };
+
+    Pagination.prototype.changePage = function changePage(page) {
+        var _get = this.get(),
+            total = _get.total,
+            limit = _get.limit;
+
+        var totalPages = Math.ceil(total / limit);
+
+        if (page > totalPages) {
+            page = totalPages;
+        }
+        if (page < 1) {
+            page = 1;
+        }
+
+        this.set('current', page);
+    };
+
+    Pagination.prototype.prev = function prev() {
+        this.changePage(this.get('current') - 1);
+    };
+
+    Pagination.prototype.next = function next() {
+        this.changePage(this.get('current') + 1);
+    };
+
+    Pagination.prototype.fastPrev = function fastPrev() {
+        var page = this.get('current') - Math.ceil(this.get('counts') / 2);
+        this.changePage(page);
+    };
+
+    Pagination.prototype.fastNext = function fastNext() {
+        var page = this.get('current') + Math.ceil(this.get('counts') / 2);
+        this.changePage(page);
+    };
+
+    Pagination.prototype._goto = function _goto(e) {
+        // const regexp = /^[1-9]\d*$/;
+        var value = parseInt(e.target.value) || 1;
+        this.changePage(value);
+    };
+
+    return Pagination;
+}(_intact2.default), _class2.template = _index2.default, _class2.propTypes = {
+    showGoto: Boolean,
+    noBorder: Boolean
+}, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    initializer: function initializer() {
+        return _init;
+    }
+}), _class)), _class));
+exports.default = Pagination;
+exports.Pagination = Pagination;
+
+/***/ }),
+/* 222 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _objectWithoutProperties2 = __webpack_require__(12);
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _classNameObj;
+
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var _self$get = self.get(),
+        total = _self$get.total,
+        current = _self$get.current,
+        limit = _self$get.limit,
+        limits = _self$get.limits,
+        className = _self$get.className,
+        showTotal = _self$get.showTotal,
+        showGoto = _self$get.showGoto,
+        counts = _self$get.counts,
+        size = _self$get.size,
+        noBorder = _self$get.noBorder,
+        rest = (0, _objectWithoutProperties3.default)(_self$get, ['total', 'current', 'limit', 'limits', 'className', 'showTotal', 'showGoto', 'counts', 'size', 'noBorder']);
+
+    if (!total) return hc(' pagination ');
+
+    var classNameObj = (_classNameObj = {
+        'k-pagination': true
+    }, _classNameObj[className] = className, _classNameObj['k-' + size] = size !== 'default', _classNameObj['k-no-border'] = noBorder, _classNameObj);
+
+    var type = 'default';
+    if (noBorder) {
+        type = 'none';
+    }
+
+    var totalPages = Math.ceil(total / limit) || 0;
+
+    var paginationButton = function paginationButton(page) {
+        return h(_button.Button, { 'type': function () {
+                try {
+                    return [type][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'size': function () {
+                try {
+                    return [size][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'icon': function () {
+                try {
+                    return [true][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'value': function () {
+                try {
+                    return [page][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'children': function () {
+                try {
+                    return [page][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), '_context': $this });
+    };
+
+    var paginationDot = function paginationDot(callback) {
+        return h(_button.Button, { 'type': function () {
+                try {
+                    return [type][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'size': function () {
+                try {
+                    return [size][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'icon': function () {
+                try {
+                    return [true][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'className': 'k-ellipsis', 'ev-click': function () {
+                try {
+                    return [callback][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'children': '...', '_context': $this });
+    };
+
+    return h('div', null, [h(_button.ButtonGroup, { 'checkType': 'radio', 'v-model': 'current', 'children': [h(_button.Button, { 'icon': function () {
+                try {
+                    return [true][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'size': function () {
+                try {
+                    return [size][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'disabled': function () {
+                try {
+                    return [current <= 1][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'ev-click': function () {
+                try {
+                    return [self.prev][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'type': function () {
+                try {
+                    return [type][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'children': h('i', null, null, 'k-icon ion-ios-arrow-left'), '_context': $this }), function () {
+            try {
+                return [function () {
+                    var items = [];
+                    var minCount = Math.ceil(counts / 2);
+                    var maxCount = totalPages - minCount;
+                    var prevPage = current - 1;
+                    var nextPage = current + 1;
+
+                    if (totalPages > counts) {
+                        if (current <= minCount) {
+                            var max = counts - 2;
+                            for (var i = 1; i <= max; i++) {
+                                items.push(paginationButton(i));
+                            }
+                            items.push(paginationDot(self.fastNext));
+                            items.push(paginationButton(totalPages));
+                        } else if (current > minCount && current <= maxCount) {
+                            items.push(paginationButton(1));
+                            items.push(paginationDot(self.fastPrev));
+
+                            var midCount = counts - 4;
+                            var mid = Math.floor(midCount / 2);
+                            var min = current - mid;
+                            var _max = midCount % 2 === 1 ? current + mid : current + mid - 1;
+                            for (var _i = min; _i <= _max; _i++) {
+                                items.push(paginationButton(_i));
+                            }
+
+                            items.push(paginationDot(self.fastNext));
+                            items.push(paginationButton(totalPages));
+                        } else {
+                            items.push(paginationButton(1));
+                            items.push(paginationDot(self.fastPrev));
+
+                            var _min = totalPages - counts + 3;
+                            for (var _i2 = _min; _i2 <= totalPages; _i2++) {
+                                items.push(paginationButton(_i2));
+                            }
+                        }
+                    } else {
+                        for (var _i3 = 1; _i3 <= totalPages; _i3++) {
+                            items.push(paginationButton(_i3));
+                        }
+                    }
+
+                    return items;
+                }()][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), h(_button.Button, { 'icon': function () {
+                try {
+                    return [true][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'size': function () {
+                try {
+                    return [size][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'disabled': function () {
+                try {
+                    return [current >= totalPages][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'ev-click': function () {
+                try {
+                    return [self.next][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'type': function () {
+                try {
+                    return [type][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'children': h('i', null, null, 'k-icon ion-ios-arrow-right'), '_context': $this })], '_context': $this, value: _getModel(self, 'current'), 'ev-$change:value': function ev$changeValue(__c, __n) {
+            _setModel(self, 'current', __n, $this);
+        } }), h('div', null, h(_select2.default, { 'v-model': 'limit', 'allowUnmatch': function () {
+            try {
+                return [true][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'data': function () {
+            try {
+                return [limits.map(function (item) {
+                    return { 'value': item, 'label': (0, _utils._$)('{n} 条 / 页', { n: item }) };
+                })][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'size': function () {
+            try {
+                return [size][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'children': null, '_context': $this, value: _getModel(self, 'limit'), 'ev-$change:value': function ev$changeValue(__c, __n) {
+            _setModel(self, 'limit', __n, $this);
+        } }), 'k-limits'), function () {
+        try {
+            return [showGoto][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('div', null, ['\n        ', function () {
+        try {
+            return [(0, _utils._$)('跳至')][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), h(_input2.default, { 'size': function () {
+            try {
+                return [size][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'value': function () {
+            try {
+                return [current][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-change': function () {
+            try {
+                return [self._goto][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'children': null, '_context': $this }), function () {
+        try {
+            return [(0, _utils._$)('页')][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), '\n    '], 'k-goto') : undefined, function () {
+        try {
+            return [showTotal][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('div', null, function () {
+        try {
+            return [(0, _utils._$)('共 {n} 条', { n: total })][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), 'k-total') : undefined], _className(function () {
+        try {
+            return [classNameObj][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)));
+};
+
+var _select = __webpack_require__(56);
+
+var _select2 = _interopRequireDefault(_select);
+
+var _input = __webpack_require__(19);
+
+var _input2 = _interopRequireDefault(_input);
+
+var _button = __webpack_require__(15);
+
+var _utils = __webpack_require__(7);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 223 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 224 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.Progress = exports.default = undefined;
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(8);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(2);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _index = __webpack_require__(225);
+
+var _index2 = _interopRequireDefault(_index);
+
+__webpack_require__(6);
+
+__webpack_require__(226);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Created by sylvia on 2017/10/16.
+ */
+function fixPercent(percent) {
+    if (percent > 100) percent = 100;
+    if (percent < 0) percent = 0;
+    return percent;
+}
+
+var Progress = function (_Intact) {
+    (0, _inherits3.default)(Progress, _Intact);
+
+    function Progress() {
+        (0, _classCallCheck3.default)(this, Progress);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+    }
+
+    Progress.prototype.defaults = function defaults() {
+        return {
+            type: 'bar', // bar circle
+            percent: 0, // 0~100
+            size: 'default', // small mini
+            isOuterText: true,
+            isInnerText: false,
+            status: 'active', // success | error | active | normal
+            strokeWidth: 4
+        };
+    };
+
+    Progress.prototype._init = function _init() {
+        var _this2 = this;
+
+        this._initStatus = this.get('status');
+
+        this.on('$change:percent', function (c, percent) {
+            percent = fixPercent(percent);
+            var status = percent === 100 ? 'success' : _this2._initStatus;
+            _this2.set({
+                status: status,
+                percent: percent
+            });
+        });
+        this.on('$change:status', function (c, status) {
+            if (status !== 'success') _this2._initStatus = status;
+        });
+
+        this.set('percent', fixPercent(this.get('percent')));
+
+        if (this.get('percent') == 100) {
+            this.set('status', 'success');
+        }
+    };
+
+    (0, _createClass3.default)(Progress, [{
+        key: 'template',
+        get: function get() {
+            return _index2.default;
+        }
+    }]);
+    return Progress;
+}(_intact2.default);
+
+exports.default = Progress;
+exports.Progress = Progress;
+
+/***/ }),
+/* 225 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _extends2 = __webpack_require__(5);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__(12);
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _classNameObj;
+
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var _self$get = self.get(),
+        type = _self$get.type,
+        className = _self$get.className,
+        percent = _self$get.percent,
+        status = _self$get.status,
+        size = _self$get.size,
+        isOuterText = _self$get.isOuterText,
+        isInnerText = _self$get.isInnerText,
+        ref = _self$get.ref,
+        key = _self$get.key,
+        strokeWidth = _self$get.strokeWidth,
+        children = _self$get.children,
+        rest = (0, _objectWithoutProperties3.default)(_self$get, ['type', 'className', 'percent', 'status', 'size', 'isOuterText', 'isInnerText', 'ref', 'key', 'strokeWidth', 'children']);
+
+    var classNameObj = (_classNameObj = {
+        'k-progress': true
+    }, _classNameObj['k-' + type] = type, _classNameObj[className] = className, _classNameObj['k-' + status] = status !== 'normal', _classNameObj['k-' + size] = size !== 'default', _classNameObj);
+
+    return h('div', (0, _extends3.default)({}, function () {
+        try {
+            return [rest][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)), [function () {
+        try {
+            return [type === 'bar'][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('div', null, h('div', null, h('div', { 'style': function () {
+            try {
+                return [{ width: percent + '%' }][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, function () {
+        try {
+            return [isInnerText][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('div', null, ['\n                    ', function () {
+        try {
+            return [percent][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), ' %\n                '], 'k-inner-text') : undefined, 'k-bg'), 'k-content'), 'k-container') : undefined, function () {
+        try {
+            return [type === 'circle'][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('svg', { 'viewBox': '0 0 120 120' }, ['\n        ', function () {
+        var _this = this;
+
+        try {
+            return [function () {
+                var r = (120 - strokeWidth) / 2;
+                var circumference = 2 * Math.PI * r;
+
+                return [h('circle', { 'cx': '60', 'cy': '60', 'r': function () {
+                        try {
+                            return [r][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this), 'stroke-width': function () {
+                        try {
+                            return [strokeWidth][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this) }, null, 'k-meter'), h('circle', { 'cx': '60', 'cy': '60', 'r': function () {
+                        try {
+                            return [r][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this), 'stroke-dashoffset': function () {
+                        try {
+                            return [circumference * (1 - percent / 100)][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this), 'stroke-dasharray': function () {
+                        try {
+                            return [circumference][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this), 'stroke-width': function () {
+                        try {
+                            return [strokeWidth][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this) }, null, 'k-value'), function () {
+                    try {
+                        return [status === 'active'][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(_this) ? h('circle', { 'cx': '60', 'cy': '60', 'r': function () {
+                        try {
+                            return [r][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this), 'stroke-width': function () {
+                        try {
+                            return [strokeWidth][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this), 'stroke-dasharray': function () {
+                        try {
+                            return [circumference][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this), 'stroke-dashoffset': function () {
+                        try {
+                            return [circumference][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this) }, [h('animate', { 'attributeName': 'stroke-dashoffset', 'begin': '0s', 'dur': '2s', 'repeatCount': 'indefinite', 'from': function () {
+                        try {
+                            return [circumference][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this), 'to': function () {
+                        try {
+                            return [circumference * (1 - percent / 100)][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this) }), h('animate', { 'attributeName': 'opacity', 'begin': '0s', 'dur': '2s', 'repeatCount': 'indefinite', 'from': '0.2', 'to': '0' })], 'k-animate') : undefined];
+            }()][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), '\n    '], 'k-canvas') : undefined, function () {
+        try {
+            return [children][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('div', null, function () {
+        try {
+            return [children][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), 'k-text') : function () {
+        try {
+            return [isOuterText][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('div', null, function () {
+        try {
+            return [status !== 'success' && status !== 'error'][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('span', null, [function () {
+        try {
+            return [percent][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), '%']) : function () {
+        try {
+            return [status === 'success'][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('span', null, h('i', null, null, 'k-icon ion-ios-checkmark-outline')) : function () {
+        try {
+            return [status === 'error'][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('span', null, h('i', null, null, 'k-icon ion-ios-close-outline')) : undefined, 'k-text') : undefined], _className(function () {
+        try {
+            return [classNameObj][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)));
+};
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 226 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 227 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.Slider = exports.default = undefined;
+
+var _isNan = __webpack_require__(228);
+
+var _isNan2 = _interopRequireDefault(_isNan);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(8);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(2);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _class, _temp; /**
+                    * Created by sylvia on 2017/10/18.
+                    */
+
+
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _index = __webpack_require__(231);
+
+var _index2 = _interopRequireDefault(_index);
+
+__webpack_require__(6);
+
+__webpack_require__(234);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Slider = (_temp = _class = function (_Intact) {
+    (0, _inherits3.default)(Slider, _Intact);
+
+    function Slider() {
+        (0, _classCallCheck3.default)(this, Slider);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+    }
+
+    Slider.prototype.defaults = function defaults() {
+        return {
+            max: 100,
+            min: 0,
+            value: 0,
+            isRange: false,
+            unit: '',
+            isShowEnd: true,
+            isShowInput: true,
+            step: 1,
+            isShowStop: false,
+            marks: undefined,
+
+            _sliderValue: 0,
+            _inputValue: 0,
+            _isDragging: false,
+            _isFirst: false,
+            _isSecond: false
+        };
+    };
+
+    Slider.prototype._init = function _init() {
+        var _this2 = this;
+
+        this._setFixedValue(this.get('value'));
+
+        this.on("$change:_inputValue", function (c, val) {
+            if (!_this2.get('_isDragging')) {
+                _this2._setFixedValue(val);
+            }
+        });
+        this.on('$receive:value', function (c, val) {
+            if (!_this2.get('_isDragging')) {
+                _this2._setFixedValue(val);
+            }
+        });
+    };
+
+    Slider.prototype._setFixedValue = function _setFixedValue(value) {
+        var fixedValue = this._getFixedValue(value);
+        this.set({
+            value: fixedValue,
+            _inputValue: fixedValue,
+            _sliderValue: fixedValue
+        });
+    };
+
+    Slider.prototype._getFixedValue = function _getFixedValue(value) {
+        var _get = this.get(),
+            min = _get.min,
+            isRange = _get.isRange;
+
+        var fixedValue = void 0;
+        if (isRange) {
+            if (!Array.isArray(value)) {
+                fixedValue = [min, min];
+            } else {
+                fixedValue = [this._fix(value[0]), this._fix(value[1])];
+            }
+        } else {
+            fixedValue = this._fix(value);
+        }
+
+        return fixedValue;
+    };
+
+    Slider.prototype._fix = function _fix(v) {
+        var _get2 = this.get(),
+            step = _get2.step,
+            max = _get2.max,
+            min = _get2.min;
+
+        if ((0, _isNan2.default)(Number(v))) {
+            return min;
+        } else if (v < min) {
+            return min;
+        } else if (v > max) {
+            return max;
+        } else {
+            // for the accuracy
+            return Number((Math.round(v / step) * step).toFixed(10));
+        }
+    };
+
+    Slider.prototype._clickWrapper = function _clickWrapper(e) {
+        if (this.get('disabled') || this.get('_isDragging')) return;
+
+        var currentPosition = e.clientX;
+        var newValue = this._getSlidingValue(currentPosition);
+        if (this.get('isRange')) {
+            newValue = this._generateRangeValue(newValue);
+        }
+
+        this._setFixedValue(newValue);
+    };
+
+    Slider.prototype._generateRangeValue = function _generateRangeValue(v) {
+        var _get3 = this.get('value'),
+            min = _get3[0],
+            max = _get3[1];
+
+        if (Math.abs(min - v) <= Math.abs(max - v)) {
+            return [v, max];
+        } else {
+            return [min, v];
+        }
+    };
+
+    Slider.prototype._getSlidingValue = function _getSlidingValue(pos) {
+        var rect = this.$slider.getBoundingClientRect();
+        var percent = (pos - rect.left) / rect.width;
+
+        var _get4 = this.get(),
+            max = _get4.max,
+            min = _get4.min;
+
+        var sliderWidth = max - min;
+
+        if (percent <= 0) {
+            return min;
+        } else if (percent >= 1) {
+            return max;
+        } else {
+            return min + sliderWidth * percent;
+        }
+    };
+
+    Slider.prototype._onDrag = function _onDrag(indexFlag, e) {
+        if (this.get('disabled')) return;
+
+        this._isDragging = true;
+
+        // when start drag, the element has been focusin
+        // so we need not handle it here
+
+        this.__onRangeSliding = this._onRangeSliding.bind(this, indexFlag);
+        this.__onRangeSlideEnd = this._onRangeSlideEnd.bind(this, indexFlag);
+        window.addEventListener('mousemove', this.__onRangeSliding);
+        window.addEventListener('mouseup', this.__onRangeSlideEnd);
+    };
+
+    Slider.prototype._onRangeSliding = function _onRangeSliding(indexFlag, e) {
+        var tempValue = this._getSlidingValue(e.clientX, this.get('_isDragging'));
+        var fixedValue = void 0;
+
+        tempValue = this._getTempValue(tempValue, indexFlag, this._min, this._max, indexFlag === '_isFirst');
+
+        fixedValue = this._getFixedValue(tempValue);
+
+        this.set({
+            value: fixedValue,
+            _inputValue: fixedValue,
+            _sliderValue: tempValue
+        });
+    };
+
+    Slider.prototype._getTempValue = function _getTempValue(value, isRange, min, max, isFirst) {
+        if (isRange) {
+            if (isFirst) {
+                return [Math.min(value, max), Math.max(value, max)];
+            } else {
+                return [Math.min(value, min), Math.max(value, min)];
+            }
+        }
+        return value;
+    };
+
+    Slider.prototype._onRangeSlideEnd = function _onRangeSlideEnd(indexFlag, e) {
+        if (this.get('_isDragging')) {
+            this.set('_isDragging', false, { async: true });
+            var newValue = this._getSlidingValue(e.clientX);
+            if (indexFlag) {
+                if (indexFlag === '_isFirst') {
+                    this.$sliderFirstBtn.blur();
+
+                    this.set('_isFirst', false, { async: true });
+                    newValue = [Math.min(newValue, this._max), Math.max(newValue, this._max)];
+                } else {
+                    this.$sliderSecondBtn.blur();
+
+                    this.set('_isSecond', false, { async: true });
+                    newValue = [Math.min(newValue, this._min), Math.max(newValue, this._min)];
+                }
+            } else {
+                this.$sliderFirstBtn.blur();
+            }
+
+            this._setFixedValue(newValue);
+
+            this.trigger('stop', this.get('value'));
+
+            window.removeEventListener('mousemove', this.__onRangeSliding);
+            window.removeEventListener('mouseup', this.__onRangeSlideEnd);
+
+            this._isDragging = false;
+        }
+    };
+
+    Slider.prototype._onFocusin = function _onFocusin(indexFlag, e) {
+        if (this.get('disabled')) return;
+
+        // if the focusin is invoked by dragging
+        // let the handle element blur
+        // because k-active will add focus style
+        if (this._isDragging) {
+            e.target.blur();
+        }
+
+        if (this.get('isRange')) {
+            var value = this.get('value');
+            this._min = value[0];
+            this._max = value[1];
+            if (indexFlag === '_isFirst') {
+                this._initValue = this._min;
+                this.set({
+                    _isDragging: true,
+                    _isFirst: true,
+                    _isSecond: false
+                });
+            } else {
+                this._initValue = this._max;
+                this.set({
+                    _isDragging: true,
+                    _isFirst: false,
+                    _isSecond: true
+                });
+            }
+        } else {
+            this.set('_isDragging', true);
+        }
+    };
+
+    Slider.prototype._onFocusout = function _onFocusout(indexFlag) {
+        if (this.get('disabled') || this._isDragging) return;
+
+        if (this.get('isRange')) {
+            if (indexFlag === '_isFirst') {
+                this.set('_isFirst', false, { async: true });
+            } else {
+                this.set('_isSecond', false, { async: true });
+            }
+        }
+
+        this.set('_isDragging', false, { async: true });
+    };
+
+    Slider.prototype._onKeydown = function _onKeydown(indexFlag, e) {
+        if (this.get('disabled')) return;
+
+        var step = this.get('step');
+        if (e.keyCode === 37) {
+            // left
+            this._setValue(indexFlag, -step);
+        } else if (e.keyCode === 39) {
+            // right
+            this._setValue(indexFlag, step);
+        }
+    };
+
+    Slider.prototype._setValue = function _setValue(indexFlag, step) {
+        var value = this.get('value');
+
+        if (!this.get('isRange')) {
+            return this._setFixedValue(value + step);
+        }
+
+        this._initValue += step;
+        this._initValue = this._fix(this._initValue);
+
+        var _value = this._getTempValue(this._initValue, indexFlag, this._min, this._max, indexFlag === '_isFirst');
+
+        this._setFixedValue(_value);
+
+        // if overstep the boundary, reverse it
+        if (indexFlag === '_isFirst') {
+            if (this._initValue > this._max) {
+                this.$sliderFirstBtn.blur();
+                this.$sliderSecondBtn.focus();
+            }
+        } else if (indexFlag === '_isSecond') {
+            if (this._initValue < this._min) {
+                this.$sliderSecondBtn.blur();
+                this.$sliderFirstBtn.focus();
+            }
+        }
+    };
+
+    Slider.prototype._setOneValue = function _setOneValue(v) {
+        if (!this.get('isRange')) {
+            this._setFixedValue(v);
+        } else {
+            this._setFixedValue(this._generateRangeValue(v));
+        }
+    };
+
+    Slider.prototype._stopPropagation = function _stopPropagation(e) {
+        /* istanbul ignore next */
+        e.stopPropagation();
+    };
+
+    Slider.prototype._destory = function _destory() {
+        this._onRangeSlideEnd();
+    };
+
+    (0, _createClass3.default)(Slider, [{
+        key: 'template',
+        get: function get() {
+            return _index2.default;
+        }
+    }]);
+    return Slider;
+}(_intact2.default), _class.propTypes = {
+    max: Number,
+    min: Number,
+    value: Number,
+    isRange: Boolean,
+    unit: String,
+    isShowEnd: Boolean,
+    isShowInput: Boolean,
+    step: Number
+}, _temp);
+exports.default = Slider;
+exports.Slider = Slider;
+
+/***/ }),
+/* 228 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(229), __esModule: true };
+
+/***/ }),
+/* 229 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(230);
+module.exports = __webpack_require__(9).Number.isNaN;
+
+
+/***/ }),
+/* 230 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 20.1.2.4 Number.isNaN(number)
+var $export = __webpack_require__(13);
+
+$export($export.S, 'Number', {
+  isNaN: function isNaN(number) {
+    // eslint-disable-next-line no-self-compare
+    return number != number;
+  }
+});
+
+
+/***/ }),
+/* 231 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _typeof2 = __webpack_require__(25);
+
+var _typeof3 = _interopRequireDefault(_typeof2);
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _classNameObj;
+
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var _self$get = self.get(),
+        value = _self$get.value,
+        min = _self$get.min,
+        max = _self$get.max,
+        className = _self$get.className,
+        disabled = _self$get.disabled,
+        isRange = _self$get.isRange,
+        isInnerText = _self$get.isInnerText,
+        isShowInput = _self$get.isShowInput,
+        isShowEnd = _self$get.isShowEnd,
+        unit = _self$get.unit,
+        step = _self$get.step,
+        _isDragging = _self$get._isDragging,
+        _isFirst = _self$get._isFirst,
+        _inputValue = _self$get._inputValue,
+        _isSecond = _self$get._isSecond,
+        _sliderValue = _self$get._sliderValue,
+        style = _self$get.style,
+        isShowStop = _self$get.isShowStop,
+        marks = _self$get.marks;
+
+    var classNameObj = (_classNameObj = {
+        'k-slider': true,
+        'k-disabled': disabled
+    }, _classNameObj[className] = className, _classNameObj['k-dragging'] = _isDragging, _classNameObj['k-show-input'] = isShowInput && !isRange, _classNameObj['k-show-end'] = isShowEnd, _classNameObj);
+
+    var sliderWidth = max - min;
+
+    return h('div', { 'style': function () {
+            try {
+                return [style][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, [h('div', null, [h('div', { 'ev-click': function () {
+            try {
+                return [self._clickWrapper][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, [h('div', { 'style': function () {
+            try {
+                return [isRange ? {
+                    width: Math.abs(_sliderValue[1] - _sliderValue[0]) / sliderWidth * 100 + '%',
+                    left: (Math.min(_sliderValue[0], _sliderValue[1]) - min) / sliderWidth * 100 + '%'
+                } : {
+                    width: (_sliderValue - min) / sliderWidth * 100 + '%'
+                }][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, null, 'k-bar'), h('div', { 'style': function () {
+            try {
+                return [{
+                    left: isRange ? (_sliderValue[0] - min) / sliderWidth * 100 + '%' : (_sliderValue - min) / sliderWidth * 100 + '%'
+                }][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-mousedown': function () {
+            try {
+                return [isRange ? self._onDrag.bind(self, '_isFirst') : self._onDrag.bind(self, undefined)][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-click': function () {
+            try {
+                return [self._stopPropagation][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'tabindex': function () {
+            try {
+                return [disabled ? "-1" : "0"][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-keydown': function () {
+            try {
+                return [isRange ? self._onKeydown.bind(self, '_isFirst') : self._onKeydown.bind(self, undefined)][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-focusin': function () {
+            try {
+                return [self._onFocusin.bind(self, '_isFirst')][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-focusout': function () {
+            try {
+                return [self._onFocusout.bind(self, '_isFirst')][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, function () {
+        try {
+            return [isInnerText][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('div', null, function () {
+        try {
+            return [isRange ? value : value[0]][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)) : undefined, _className(function () {
+        try {
+            return [{
+                "k-handle": true,
+                "k-active": _isFirst && _sliderValue[1] === self._max || _isSecond && value[0] !== self._min
+            }][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)), null, function () {
+        try {
+            return [function (dom) {
+                return self.$sliderFirstBtn = dom;
+            }][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)), function () {
+        try {
+            return [isRange][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('div', { 'ev-mousedown': function () {
+            try {
+                return [self._onDrag.bind(self, "_isSecond")][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'style': function () {
+            try {
+                return [{
+                    left: (_sliderValue[1] - min) / sliderWidth * 100 + '%'
+                }][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'tabindex': function () {
+            try {
+                return [disabled ? "-1" : "0"][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-keydown': function () {
+            try {
+                return [self._onKeydown.bind(self, '_isSecond')][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-focusin': function () {
+            try {
+                return [self._onFocusin.bind(self, '_isSecond')][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-focusout': function () {
+            try {
+                return [self._onFocusout.bind(self, '_isSecond')][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-click': function () {
+            try {
+                return [self._stopPropagation][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, function () {
+        try {
+            return [isInnerText][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('div', null, function () {
+        try {
+            return [value[1]][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)) : undefined, _className(function () {
+        try {
+            return [{
+                "k-handle": true,
+                "k-active": _isSecond && _sliderValue[0] === self._min || _isFirst && _sliderValue[1] !== self._max
+            }][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)), null, function () {
+        try {
+            return [function (dom) {
+                return self.$sliderSecondBtn = dom;
+            }][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)) : undefined, '\n            ', function () {
+        var _this = this;
+
+        try {
+            return [function () {
+                if (isShowStop) {
+                    var _ret = function () {
+                        var counts = Math.floor((max - min) / step);
+                        var ret = [];
+
+                        var _loop = function _loop(i) {
+                            ret.push(h('i', { 'style': function () {
+                                    try {
+                                        return [{ left: i / counts * 100 + '%' }][0];
+                                    } catch (e) {
+                                        _e(e);
+                                    }
+                                }.call(_this) }, null, 'k-point'));
+                        };
+
+                        for (var i = 1; i < counts; i++) {
+                            _loop(i);
+                        }
+                        return {
+                            v: ret
+                        };
+                    }();
+
+                    if ((typeof _ret === 'undefined' ? 'undefined' : (0, _typeof3.default)(_ret)) === "object") return _ret.v;
+                }
+            }()][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), ' \n        '], 'k-wrapper', null, function () {
+        try {
+            return [function (dom) {
+                return self.$slider = dom;
+            }][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)), function () {
+        try {
+            return [isShowEnd && !marks][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('div', null, [h('span', null, [function () {
+        try {
+            return [min + unit][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), ' ']), h('span', null, function () {
+        try {
+            return [max + unit][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this))], 'k-box') : undefined, function () {
+        try {
+            return [marks][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('div', null, function () {
+        var _this2 = this;
+
+        try {
+            return [function () {
+                var counts = Math.floor((max - min) / step);
+                return _Vdt.utils.map(function () {
+                    try {
+                        return [marks][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(_this2), function (value, key) {
+                    return h('span', { 'style': function () {
+                            try {
+                                return [{
+                                    left: (key - min) / counts * 100 + '%'
+                                }][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(this), 'ev-click': function () {
+                            try {
+                                return [self._setOneValue.bind(self, key)][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(this) }, function () {
+                        try {
+                            return [value][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this));
+                }, _this2);
+            }()][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), 'k-marks') : undefined], 'k-slider-wrapper'), function () {
+        try {
+            return [isShowInput && !isRange][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('div', null, h(_spinner2.default, { 'disabled': function () {
+            try {
+                return [disabled][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'max': function () {
+            try {
+                return [max][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'min': function () {
+            try {
+                return [min][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'v-model': '_inputValue', 'step': function () {
+            try {
+                return [step][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'children': null, '_context': $this, value: _getModel(self, '_inputValue'), 'ev-$change:value': function ev$changeValue(__c, __n) {
+            _setModel(self, '_inputValue', __n, $this);
+        } }, null, null, null, function (i) {
+        widgets['spinner'] = i;
+    }), 'k-spinner-wrapper') : undefined], _className(function () {
+        try {
+            return [classNameObj][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)));
+};
+
+var _spinner = __webpack_require__(90);
+
+var _spinner2 = _interopRequireDefault(_spinner);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 232 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _classNameObj;
+
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var _self$get = self.get(),
+        className = _self$get.className,
+        disabled = _self$get.disabled,
+        max = _self$get.max,
+        min = _self$get.min,
+        step = _self$get.step,
+        children = _self$get.children,
+        style = _self$get.style,
+        size = _self$get.size,
+        vertical = _self$get.vertical;
+
+    var classNameObj = (_classNameObj = {
+        'k-spinner': true,
+        'k-disabled': disabled
+    }, _classNameObj['k-' + size] = size !== 'default', _classNameObj[className] = className, _classNameObj['k-vertical'] = vertical, _classNameObj);
+
+    return h('div', { 'style': function () {
+            try {
+                return [style][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, [h(_button.Button, { 'icon': function () {
+            try {
+                return [true][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-click': function () {
+            try {
+                return [self._decrease][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'disabled': function () {
+            try {
+                return [self._disableDecrease()][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'className': 'k-left', 'size': function () {
+            try {
+                return [size][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'children': function () {
+            try {
+                return [!vertical][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) ? h('i', null, null, 'k-icon ion-ios-minus-empty') : h('i', null, null, 'ion-ios-arrow-down'), '_context': $this }), h(_input.Input, { 'disabled': function () {
+            try {
+                return [disabled][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-change': function () {
+            try {
+                return [self._changeValue][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'v-model': '_value', 'size': function () {
+            try {
+                return [size][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'children': null, '_context': $this, value: _getModel(self, '_value'), 'ev-$change:value': function ev$changeValue(__c, __n) {
+            _setModel(self, '_value', __n, $this);
+        } }), h(_button.Button, { 'icon': function () {
+            try {
+                return [true][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-click': function () {
+            try {
+                return [self._increase][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'disabled': function () {
+            try {
+                return [self._disableIncrease()][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'className': 'k-right', 'size': function () {
+            try {
+                return [size][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'children': function () {
+            try {
+                return [!vertical][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) ? h('i', null, null, 'k-icon ion-ios-plus-empty') : h('i', null, null, 'ion-ios-arrow-up'), '_context': $this })], _className(function () {
+        try {
+            return [classNameObj][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)));
+};
+
+var _button = __webpack_require__(15);
+
+var _input = __webpack_require__(19);
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 233 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 234 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 235 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.Step = exports.Steps = exports.default = undefined;
+
+var _getOwnPropertyDescriptor = __webpack_require__(4);
+
+var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _possibleConstructorReturn2 = __webpack_require__(2);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _dec, _desc, _value, _class, _init, _class2, _temp;
+
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _index = __webpack_require__(236);
+
+var _index2 = _interopRequireDefault(_index);
+
+var _step = __webpack_require__(91);
+
+var _step2 = _interopRequireDefault(_step);
+
+__webpack_require__(6);
+
+__webpack_require__(238);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
+
+    return desc;
+}
+
+var Steps = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
+    (0, _inherits3.default)(Steps, _Intact);
+
+    function Steps() {
+        (0, _classCallCheck3.default)(this, Steps);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+    }
+
+    Steps.prototype.defaults = function defaults() {
+        return {
+            value: undefined,
+            status: 'normal',
+
+            type: 'default' // default | line
+        };
+    };
+
+    return Steps;
+}(_intact2.default), _class2.template = _index2.default, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    initializer: function initializer() {
+        return _init;
+    }
+}), _class)), _class));
+exports.default = Steps;
+exports.Steps = Steps;
+exports.Step = _step2.default;
+
+/***/ }),
+/* 236 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _extends2 = __webpack_require__(5);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _classNameObj;
+
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var _self$get = self.get(),
+        children = _self$get.children,
+        value = _self$get.value,
+        style = _self$get.style,
+        status = _self$get.status,
+        type = _self$get.type;
+
+    var classNameObj = (_classNameObj = {
+        'k-steps c-clearfix': true
+    }, _classNameObj['k-' + type] = true, _classNameObj);
+
+    var stepIndex = 0;
+    var steps = (Array.isArray(children) ? children : [children]).filter(function (vNode) {
+        if (vNode && vNode.tag === _step2.default) {
+            vNode.props = (0, _extends3.default)({}, vNode.props, { index: stepIndex });
+            if (value == stepIndex) {
+                vNode.props.selected = true;
+                if (status === 'error') {
+                    vNode.props.error = true;
+                }
+            } else if (value > stepIndex) {
+                vNode.props.done = true;
+            }
+            stepIndex++;
+            return true;
+        }
+        return false;
+    });
+
+    // add width
+    steps = steps.map(function (vNode) {
+        vNode.props.width = 100 / stepIndex + '%';
+        return vNode;
+    });
+
+    return h('div', { 'style': function () {
+            try {
+                return [style][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, function () {
+        try {
+            return [steps][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), _className(function () {
+        try {
+            return [classNameObj][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)));
+};
+
+var _step = __webpack_require__(91);
+
+var _step2 = _interopRequireDefault(_step);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 237 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var _self$get = self.get(),
+        children = _self$get.children,
+        selected = _self$get.selected,
+        done = _self$get.done,
+        title = _self$get.title,
+        index = _self$get.index,
+        width = _self$get.width,
+        error = _self$get.error;
+
+    var classNameObj = {
+        'k-step': true,
+        'k-active': selected,
+        'k-done': done,
+        'k-error': error
+    };
+
+    return h('div', { 'style': function () {
+            try {
+                return [{ width: width }][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, [h('div', null, null, 'k-tail'), h('div', null, [h('div', null, h('div', null, ['\n                ', function () {
+        try {
+            return [/* <i class="ion-ios-checkmark-empty k-icon" v-if={{ done }}></i> */][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), '\n                ', function () {
+        try {
+            return [error][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('i', null, null, 'ion-ios-close-empty k-icon') : h('span', null, function () {
+        try {
+            return [index + 1][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this))], 'k-inner'), 'k-head'), h('div', null, [h('div', null, function () {
+        try {
+            return [title][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), 'k-title'), h('div', null, function () {
+        try {
+            return [children][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), 'k-content')], 'k-main')], 'k-wrapper')], _className(function () {
+        try {
+            return [classNameObj][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)));
+};
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 238 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 239 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.Switch = exports.default = undefined;
+
+var _getOwnPropertyDescriptor = __webpack_require__(4);
+
+var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(8);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(2);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _dec, _desc, _value, _class, _class2, _temp;
+
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _index = __webpack_require__(240);
+
+var _index2 = _interopRequireDefault(_index);
+
+__webpack_require__(6);
+
+__webpack_require__(241);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
+
+    return desc;
+}
+
+var Switch = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
+    (0, _inherits3.default)(Switch, _Intact);
+
+    function Switch() {
+        (0, _classCallCheck3.default)(this, Switch);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+    }
+
+    Switch.prototype.defaults = function defaults() {
+        return {
+            name: undefined,
+            on: undefined,
+            off: undefined,
+            value: false,
+            trueValue: true,
+            falseValue: false,
+            width: undefined,
+            height: undefined,
+            size: 'default',
+            disabled: false,
+
+            _dragging: false
+        };
+    };
+
+    Switch.prototype._init = function _init() {
+        this._move = this._move.bind(this);
+        this._dragEnd = this._dragEnd.bind(this);
+    };
+
+    Switch.prototype._dragStart = function _dragStart(e) {
+        if (this.get('disabled') || e.which !== 1) return;
+
+        this._x = e.clientX;
+        this._height = this.refs.bar.clientHeight;
+        this._width = this.refs.bar.clientWidth;
+        this._maxWidth = this.element.clientWidth;
+
+        document.addEventListener('mousemove', this._move);
+        document.addEventListener('mouseup', this._dragEnd);
+    };
+
+    Switch.prototype._move = function _move(e) {
+        this.set('_dragging', true);
+
+        var left = e.clientX - this._x;
+        var width = Math.min(Math.max(this._height, this._width + left), this._maxWidth);
+        this.refs.bar.style.width = width + 'px';
+    };
+
+    Switch.prototype._dragEnd = function _dragEnd(e) {
+        this.set('_dragging', false);
+
+        this.element.blur();
+        var bar = this.refs.bar;
+
+        // treat mousedown -> mouseup as click
+        if (this._x === e.clientX) {
+            bar.style.width = '';
+            this._toggle();
+        } else {
+            var percent = (bar.clientWidth - this._height / 2) / this._maxWidth;
+
+            if (!this.isChecked()) {
+                if (percent >= 0.5) {
+                    this.check();
+                }
+            } else if (percent < 0.5) {
+                this.uncheck();
+            }
+            if (!this.isChecked() && this.get('width') && this.get('height')) {
+                // if is set width and height
+                bar.style.width = this.get('height') + 'px';
+            } else {
+                bar.style.width = '';
+            }
+        }
+
+        document.removeEventListener('mousemove', this._move);
+        document.removeEventListener('mouseup', this._dragEnd);
+    };
+
+    Switch.prototype._toggle = function _toggle(e, isKeypress) {
+        if (this.get('disabled')) return;
+
+        // if is not keypress, we blur it to remove focus style
+        if (!isKeypress) {
+            this.element.blur();
+        }
+
+        if (this.isChecked()) {
+            this.uncheck();
+        } else {
+            this.check();
+        }
+    };
+
+    Switch.prototype._onKeypress = function _onKeypress(e) {
+
+        if (e.keyCode === 13) {
+            this._toggle(e, true);
+        }
+    };
+
+    Switch.prototype.isChecked = function isChecked() {
+        return this.get('value') === this.get('trueValue');
+    };
+
+    Switch.prototype.check = function check() {
+        this.set('value', this.get('trueValue'));
+    };
+
+    Switch.prototype.uncheck = function uncheck() {
+        this.set('value', this.get('falseValue'));
+    };
+
+    Switch.prototype._handleClick = function _handleClick(e) {
+        e.stopPropagation();
+    };
+
+    (0, _createClass3.default)(Switch, [{
+        key: 'template',
+        get: function get() {
+            return _index2.default;
+        }
+    }]);
+    return Switch;
+}(_intact2.default), _class2.propTypes = {
+    disabled: Boolean
+}, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
+exports.default = Switch;
+exports.Switch = Switch;
+
+/***/ }),
+/* 240 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _assign = __webpack_require__(24);
+
+var _assign2 = _interopRequireDefault(_assign);
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _classNameObj;
+
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var _require = __webpack_require__(7),
+        addStyle = _require.addStyle;
+
+    var _self$get = self.get(),
+        className = _self$get.className,
+        style = _self$get.style,
+        children = _self$get.children,
+        name = _self$get.name,
+        on = _self$get.on,
+        off = _self$get.off,
+        value = _self$get.value,
+        trueValue = _self$get.trueValue,
+        falseValue = _self$get.falseValue,
+        width = _self$get.width,
+        height = _self$get.height,
+        size = _self$get.size,
+        disabled = _self$get.disabled,
+        _dragging = _self$get._dragging;
+
+    var classNameObj = (_classNameObj = {
+        'k-switch': true
+    }, _classNameObj[className] = className, _classNameObj['k-checked'] = value === trueValue, _classNameObj['k-' + size] = true, _classNameObj['k-disabled'] = disabled, _classNameObj['k-dragging'] = _dragging, _classNameObj);
+
+    var onStyle = void 0;
+    var offStyle = void 0;
+    var barStyle = void 0;
+    if (width || height) {
+        var _style = {};
+        onStyle = {};
+        offStyle = {};
+        if (width) {
+            _style.width = width + 'px';
+            onStyle.width = _style.width;
+            offStyle.width = _style.width;
+        }
+        if (height) {
+            _style.height = height + 'px';
+
+            (0, _assign2.default)(onStyle, {
+                height: _style.height,
+                lineHeight: _style.height,
+                padding: '0 ' + _style.height + ' 0 ' + height / 3 + 'px'
+            });
+
+            (0, _assign2.default)(offStyle, {
+                height: _style.height,
+                lineHeight: _style.height,
+                padding: '0 ' + height / 3 + 'px 0 ' + _style.height
+            });
+
+            barStyle = {
+                width: value === trueValue ? '100%' : height + 'px'
+            };
+        }
+        style = addStyle(style, _style);
+    }
+
+    return h('div', { 'style': function () {
+            try {
+                return [style][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-click': function () {
+            try {
+                return [self._toggle][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'tabindex': function () {
+            try {
+                return [disabled ? "-1" : "0"][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-keypress': function () {
+            try {
+                return [self._onKeypress][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, [h('input', { 'type': 'checkbox', 'name': function () {
+            try {
+                return [name][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'disabled': function () {
+            try {
+                return [disabled][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'v-model': 'value', 'value': function () {
+            try {
+                return [trueValue][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'tabindex': '-1', checked: _detectCheckboxChecked(self, 'value', function () {
+            try {
+                return [trueValue][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this)), 'ev-change': function evChange(__e) {
+            _setCheckboxModel(self, 'value', function () {
+                try {
+                    return [trueValue][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), function () {
+                try {
+                    return [falseValue][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), __e, $this);
+        } }, null, null, null, function (i) {
+        widgets['input'] = i;
+    }), function () {
+        try {
+            return [off || blocks.off][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('div', { 'style': function () {
+            try {
+                return [offStyle][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, (_blocks["off"] = function (parent) {
+        return function () {
+            try {
+                return [off][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this);
+    }) && (__blocks["off"] = function (parent) {
+        var self = this;
+        return blocks["off"] ? blocks["off"].call(this, function () {
+            return _blocks["off"].call(self, parent);
+        }) : _blocks["off"].call(this, parent);
+    }) && __blocks["off"].call(this), 'k-off') : undefined, h('div', { 'style': function () {
+            try {
+                return [barStyle][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, [function () {
+        try {
+            return [on || blocks.on][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('div', { 'style': function () {
+            try {
+                return [onStyle][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, (_blocks["on"] = function (parent) {
+        return function () {
+            try {
+                return [on][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this);
+    }) && (__blocks["on"] = function (parent) {
+        var self = this;
+        return blocks["on"] ? blocks["on"].call(this, function () {
+            return _blocks["on"].call(self, parent);
+        }) : _blocks["on"].call(this, parent);
+    }) && __blocks["on"].call(this), 'k-on') : undefined, h('div', null, h('div', { 'ev-click': function () {
+            try {
+                return [self._handleClick][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-mousedown': function () {
+            try {
+                return [self._dragStart][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, h('img', { 'src': 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' }), 'k-handle', null, function (i) {
+        widgets['handle'] = i;
+    }), 'k-wrapper')], 'k-bar', null, function (i) {
+        widgets['bar'] = i;
+    })], _className(function () {
+        try {
+            return [classNameObj][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)));
+};
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 241 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 242 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.TableColumn = exports.Table = exports.default = undefined;
+
+var _getOwnPropertyDescriptor = __webpack_require__(4);
+
+var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
+
+var _assign = __webpack_require__(24);
+
+var _assign2 = _interopRequireDefault(_assign);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(8);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(2);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _dec, _desc, _value, _class, _class2, _temp;
+
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _index = __webpack_require__(243);
+
+var _index2 = _interopRequireDefault(_index);
+
+__webpack_require__(6);
+
+__webpack_require__(247);
+
+var _column = __webpack_require__(92);
+
+var _column2 = _interopRequireDefault(_column);
+
+var _utils = __webpack_require__(7);
+
+var _position = __webpack_require__(40);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
+
+    return desc;
+}
+
+var slice = Array.prototype.slice;
+
+var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
+    (0, _inherits3.default)(Table, _Intact);
+
+    function Table() {
+        (0, _classCallCheck3.default)(this, Table);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+    }
+
+    Table.prototype.defaults = function defaults() {
+        return {
+            data: [],
+            scheme: {},
+            checkType: 'checkbox', // radio | none 
+            rowKey: function rowKey(value, index) {
+                return index;
+            },
+            rowClassName: function rowClassName(value, index) {},
+            // add className for tr
+            checkedKeys: [], // for checkbox
+            checkedKey: undefined, // for radio
+            rowCheckable: true, // click row to check
+            rowExpandable: true, // click row to expand
+            noDataTemplate: (0, _utils._$)('/(ㄒoㄒ)/~~ 没有找到亲要的数据哦~'),
+            disableRow: function disableRow(data, index) {
+                return false;
+            },
+
+            sort: {},
+            group: {},
+            resizable: false,
+            expand: undefined, // expand template callback
+            expandedKeys: [],
+            type: 'default', // default border
+            fixHeader: false,
+            minColWidth: 40,
+
+            _padding: 0,
+            _disabledAmount: 0
+        };
+    };
+
+    Table.prototype._init = function _init() {
+        var _this2 = this;
+
+        // keep the event consistent
+        this.on('$change:checkedKeys', function (c, newValue, oldValue) {
+            _this2.trigger('$change:checked', c, newValue, oldValue);
+        });
+        this.on('$change:checkedKey', function (c, newValue, oldValue) {
+            _this2.trigger('$change:checked', c, [newValue], [oldValue]);
+        });
+        // calculate padding of header when some props have changed
+        ['data', 'fixHeader'].forEach(function (item) {
+            _this2.on('$changed:' + item, _this2._calcHeaderPadding);
+        });
+        // update disabled amount when some props have changed
+        ['data', 'disableRow'].forEach(function (item) {
+            _this2.on('$change:' + item, _this2._updateDisabledAmount);
+        });
+        this._updateDisabledAmount();
+
+        this._move = this._move.bind(this);
+        this._dragEnd = this._dragEnd.bind(this);
+    };
+
+    Table.prototype._mount = function _mount() {
+        this._calcHeaderPadding();
+    };
+
+    Table.prototype.get = function get(key, defaultValue) {
+        if (key === 'data' && !Array.isArray(_Intact.prototype.get.call(this, 'data', defaultValue))) {
+            return [];
+        }
+        return _Intact.prototype.get.call(this, key, defaultValue);
+    };
+
+    Table.prototype.isCheckAll = function isCheckAll() {
+        var checkedKeys = this.get('checkedKeys');
+        var dataLength = this.get('data').length;
+        var disabledAmount = this.get("_disabledAmount");
+        var amount = dataLength - disabledAmount;
+        return amount && checkedKeys.length >= amount;
+    };
+
+    Table.prototype.isChecked = function isChecked(key) {
+        var _get = this.get(),
+            checkType = _get.checkType,
+            checkedKey = _get.checkedKey,
+            checkedKeys = _get.checkedKeys;
+
+        if (checkType === 'checkbox') {
+            return ~checkedKeys.indexOf(key);
+        } else if (checkType === 'radio') {
+            return checkedKey === key;
+        }
+        return false;
+    };
+
+    Table.prototype.checkAll = function checkAll() {
+        var _this3 = this;
+
+        var rowKey = this.get('rowKey');
+        var disableRow = this.get('disableRow');
+        var checkedKeys = [];
+        this.get('data').forEach(function (value, index) {
+            if (!disableRow.call(_this3, value, index)) {
+                checkedKeys.push(rowKey.call(_this3, value, index));
+            }
+        });
+        this.set('checkedKeys', checkedKeys);
+    };
+
+    Table.prototype.uncheckAll = function uncheckAll() {
+        this.set('checkedKeys', []);
+    };
+
+    Table.prototype.checkRow = function checkRow(key) {
+        this._checkUncheckRow(key, true, false);
+    };
+
+    Table.prototype.uncheckRow = function uncheckRow(key) {
+        this._checkUncheckRow(key, false, false);
+    };
+
+    Table.prototype.shrinkRow = function shrinkRow(key) {
+        this._expandShrinkRow(key, false, false);
+    };
+
+    Table.prototype.expandRow = function expandRow(key) {
+        this._expandShrinkRow(key, true, false);
+    };
+
+    /**
+     * @brief get the checked data
+     * @return {Array}
+     */
+
+
+    Table.prototype.getCheckedData = function getCheckedData() {
+        var _this4 = this;
+
+        var rowKey = this.get('rowKey');
+        var checkType = this.get('checkType');
+        if (checkType === 'checkbox') {
+            var checkedKeys = this.get('checkedKeys');
+            var checkedKeysMap = {};
+            checkedKeys.forEach(function (item) {
+                checkedKeysMap[item] = true;
+            });
+            return this.get('data').filter(function (value, index) {
+                var key = rowKey.call(_this4, value, index);
+                return checkedKeysMap[key];
+            });
+        } else if (checkType === 'radio') {
+            var checkedKey = this.get('checkedKey');
+            return this.get('data').filter(function (value, index) {
+                return rowKey.call(_this4, value, index) === checkedKey;
+            });
+        } else {
+            return [];
+        }
+    };
+
+    Table.prototype._calcHeaderPadding = function _calcHeaderPadding() {
+        if (this.get('fixHeader')) {
+            var tableHeight = this.table.offsetHeight;
+            var containerHeight = this.scroll.offsetHeight;
+            var headerHeight = this.header.offsetHeight;
+            this.set('_padding', tableHeight - headerHeight > containerHeight ? (0, _position.scrollbarWidth)() : 0);
+        }
+    };
+
+    Table.prototype._updateDisabledAmount = function _updateDisabledAmount() {
+        var _this5 = this;
+
+        var disabledAmount = 0;
+        var data = this.get('data');
+        var disableRow = this.get('disableRow');
+
+        data.forEach(function (item, index) {
+            if (disableRow.call(_this5, item, index)) {
+                disabledAmount++;
+            }
+        });
+        this.set('_disabledAmount', disabledAmount);
+    };
+
+    Table.prototype._toggleCheckAll = function _toggleCheckAll(e) {
+        if (e.target.checked) {
+            this.checkAll();
+        } else {
+            this.uncheckAll();
+        }
+    };
+
+    Table.prototype._clickRow = function _clickRow(value, index, key, e) {
+        // if is from checkbox or radio then do nothing
+        if (e.target.tagName.toLowerCase() === 'input') return;
+        // in chrome of macos, the target is input's parent element
+        // maybe beacause input's opacity is 0
+        var children = e.target.children;
+        if (children[0] && children[0].tagName.toLowerCase() === 'input') return;
+        if (this.get('disableRow').call(this, value, index)) return;
+
+        if (this.get('rowCheckable')) {
+            this._checkUncheckRow(key);
+        }
+
+        if (this.get('rowExpandable')) {
+            this._expandShrinkRow(key);
+        }
+    };
+
+    Table.prototype._checkUncheckRow = function _checkUncheckRow(key) {
+        var isCheck = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+        var isToggle = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+
+        var checkType = this.get('checkType');
+        if (checkType === 'checkbox') {
+            var checkedKeys = this.get('checkedKeys').slice(0);
+            var i = checkedKeys.indexOf(key);
+            if ((!isCheck || isToggle) && i > -1) {
+                checkedKeys.splice(i, 1);
+                this.set('checkedKeys', checkedKeys);
+            } else if (isCheck || isToggle) {
+                checkedKeys.push(key);
+                this.set('checkedKeys', checkedKeys);
+            }
+        } else if (checkType === 'radio') {
+            if (!isToggle) {
+                // isToggle is false means call this by checkRow & uncheckRow
+                if (isCheck) {
+                    this.set('checkedKey', key);
+                } else if (this.get('checkedKey') === key) {
+                    // only change it when we uncheck the checked row
+                    this.set('checkedKey', undefined);
+                }
+            } else {
+                this.set('checkedKey', key);
+            }
+        }
+    };
+
+    Table.prototype._expandShrinkRow = function _expandShrinkRow(key) {
+        var isExpand = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+        var isToggle = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+
+        if (typeof this.get('expand') !== 'function') return;
+
+        var expandedKeys = this.get('expandedKeys').slice(0);
+        var i = expandedKeys.indexOf(key);
+        if ((!isExpand || isToggle) && i > -1) {
+            expandedKeys.splice(i, 1);
+            this.set('expandedKeys', expandedKeys);
+        } else if (isExpand || isToggle) {
+            expandedKeys.push(key);
+            this.set('expandedKeys', expandedKeys);
+        }
+    };
+
+    Table.prototype._onRowDestroyed = function _onRowDestroyed(key) {
+        this.shrinkRow(key);
+        this.uncheckRow(key);
+    };
+
+    Table.prototype._sort = function _sort(key, value) {
+        var sort = (0, _assign2.default)({}, this.get('sort'));
+        sort.key = key;
+        sort.type = sort.type === 'desc' ? 'asc' : 'desc';
+        this.set('sort', sort);
+    };
+
+    Table.prototype._dragStart = function _dragStart(props, e) {
+        // left key
+        if (e.which !== 1) return;
+
+        this._resizing = true;
+        this._containerWidth = this.element.offsetWidth;
+        this._x = e.clientX;
+
+        this._minWidth = props.minWidth || this.get('minColWidth');
+
+        var currentTh = e.target.parentNode;
+        var prevTh = currentTh.previousElementSibling;
+
+        this._currentThs = [currentTh];
+        this._prevThs = [prevTh];
+        this._tables = [this.table];
+
+        if (this.get('fixHeader')) {
+            var ths = this.table.children[0].getElementsByTagName('th');
+            var fixThs = currentTh.parentNode.children;
+            var index = slice.call(fixThs).indexOf(currentTh);
+            this._currentThs.push(ths[index]);
+            this._prevThs.push(ths[index - 1]);
+            // this._tables.push(this.header.children[0]);
+            // if fixHeader we should change the width of header and scroll
+            this._tables = [this.header, this.scroll];
+        }
+
+        document.addEventListener('mousemove', this._move);
+        document.addEventListener('mouseup', this._dragEnd);
+    };
+
+    Table.prototype._move = function _move(e) {
+        e.preventDefault();
+
+        if (this._resizing) {
+            var delX = e.clientX - this._x;
+            var prevWidth = this._prevThs[0].offsetWidth + delX;
+            var tableWidth = this._tables[0].offsetWidth + delX;
+
+            if (prevWidth < this._minWidth) return;
+
+            this._prevThs.forEach(function (item) {
+                item.style.width = prevWidth + 'px';
+            });
+
+            if (this._containerWidth >= tableWidth) {
+                this._tables.forEach(function (item) {
+                    item.style.width = '100%';
+                });
+            } else {
+                this._tables.forEach(function (item) {
+                    item.style.width = tableWidth + 'px';
+                });
+            }
+
+            this._x = e.clientX;
+        }
+    };
+
+    Table.prototype._dragEnd = function _dragEnd(e) {
+        if (this._resizing) {
+            this._resizing = false;
+            document.removeEventListener('mousemove', this._move);
+            document.removeEventListener('mouseup', this._dragEnd);
+        }
+    };
+
+    Table.prototype._destroy = function _destroy() {
+        this._dragEnd();
+    };
+
+    (0, _createClass3.default)(Table, [{
+        key: 'template',
+        get: function get() {
+            return _index2.default;
+        }
+    }]);
+    return Table;
+}(_intact2.default), _class2.propTypes = {
+    rowCheckable: Boolean,
+    rowExpandable: Boolean,
+    resizable: Boolean,
+    fixHeader: Boolean
+}, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
+exports.default = Table;
+exports.Table = Table;
+exports.TableColumn = _column2.default;
+
+/***/ }),
+/* 243 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _extends2 = __webpack_require__(5);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _this = this,
+        _classNameObj;
+
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var _self$get = self.get(),
+        checkType = _self$get.checkType,
+        scheme = _self$get.scheme,
+        checkedKeys = _self$get.checkedKeys,
+        data = _self$get.data,
+        rowKey = _self$get.rowKey,
+        className = _self$get.className,
+        fixHeader = _self$get.fixHeader,
+        noDataTemplate = _self$get.noDataTemplate,
+        disableRow = _self$get.disableRow,
+        resizable = _self$get.resizable,
+        expand = _self$get.expand,
+        expandedKeys = _self$get.expandedKeys,
+        type = _self$get.type,
+        style = _self$get.style,
+        rowClassName = _self$get.rowClassName,
+        children = _self$get.children,
+        sort = _self$get.sort,
+        group = _self$get.group;
+
+    var colSpan = checkType === 'checkbox' || checkType === 'radio' ? 1 : 0;
+    var expandable = typeof expand === 'function';
+    var _scheme = {};
+
+    var prevItem = checkType === 'checkbox' || checkType === 'radio' ? { minWidth: 40 } : {};
+
+    var theadCreator = function theadCreator() {
+        var keys = {};
+        return h('thead', null, h('tr', null, [function () {
+            try {
+                return [checkType === 'checkbox'][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(_this) ? h('th', null, h(_checkbox2.default, { 'value': function () {
+                try {
+                    return [self.isCheckAll()][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(_this), 'ev-click': function () {
+                try {
+                    return [self._toggleCheckAll][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(_this), 'children': null, '_context': $this }), 'k-th-check') : function () {
+            try {
+                return [checkType === 'radio'][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(_this) ? h('th', null, null, 'k-th-check') : undefined, '\n            ', function () {
+            var _this2 = this;
+
+            try {
+                return [__u.map(scheme, function (item, key) {
+                    colSpan++;
+                    keys[key] = true;
+
+                    if (!__u.isObject(item) || item.type) {
+                        item = { title: item };
+                    }
+
+                    // because we use the last resize handle to controll the previous column
+                    // so we bind prevItem here
+                    var dragStart = self._dragStart.bind(self, prevItem);
+                    prevItem = item;
+
+                    return h(_column2.default, (0, _extends3.default)({}, function () {
+                        try {
+                            return [item][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this2), { 'key': function () {
+                            try {
+                                return [key][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(_this2), '$parent': function () {
+                            try {
+                                return [self][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(_this2), 'ev-click': function () {
+                            try {
+                                return [item.sortable ? self._sort.bind(self, key, item) : undefined][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(_this2), 'ev-dragStart': function () {
+                            try {
+                                return [dragStart][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(_this2), 'v-model': function () {
+                            try {
+                                return ['group.' + key][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(_this2), 'children': null, '_context': $this, value: _getModel(self, function () {
+                            try {
+                                return ['group.' + key][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(_this2)), 'ev-$change:value': function ev$changeValue(__c, __n) {
+                            _setModel(self, function () {
+                                try {
+                                    return ['group.' + key][0];
+                                } catch (e) {
+                                    _e(e);
+                                }
+                            }.call(this), __n, $this);
+                        } }));
+                })][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(_this), '\n            ', function () {
+            try {
+                return [// for using TableColumn as children
+                __u.map(children ? Array.isArray(children) ? children : [children] : children, function (vNode) {
+                    if (vNode.tag === _column2.default) {
+                        colSpan++;
+
+                        var props = (0, _extends3.default)({}, vNode.props, { $parent: self });
+                        vNode.props = props;
+                        if (props.key == null) {
+                            _e(new Error('key for TableColumn must be specified.'));
+                        } else if (/^\d+$/.test(props.key)) {
+                            // avoid digital key
+                            _e(new Error('don\'t use digits as key.'));
+                        } else if (keys[props.key]) {
+                            _e(new Error('Reduplicated key: ' + props.key));
+                        }
+
+                        keys[props.key] = true;
+                        props.value = group[props.key];
+
+                        var dragStart = self._dragStart.bind(self, prevItem);
+                        prevItem = props;
+
+                        // add a flag to detect if the vNode has attached events of bellow
+                        // we should not attach them again, when the same vNode come again
+                        if (!vNode._$) {
+                            props['ev-$change:value'] = function (c, v) {
+                                return self.set('group.' + props.key, v);
+                            };
+                            props['ev-click'] = props.sortable ? self._sort.bind(self, props.key, props) : undefined;
+                            props['ev-dragStart'] = dragStart;
+                            vNode._$ = true;
+                        }
+                        _scheme[props.key] = {
+                            title: props.title,
+                            template: props.template || props.default
+                        };
+                        return vNode;
+                    }
+                })][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(_this), '\n        ']));
+    };
+
+    var thead = theadCreator();
+
+    var tbody = h('tbody', null, ['\n    ', function () {
+        var _this3 = this;
+
+        try {
+            return [data && data.length ? __u.map(data, function (value, index) {
+                var key = rowKey.call(self, value, index);
+                var disabled = disableRow.call(self, value, index);
+                var className = rowClassName.call(self, value, index);
+                var tr = h(_row2.default, { 'key': function () {
+                        try {
+                            return [key][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this3), 'ev-click': function () {
+                        try {
+                            return [self._clickRow.bind(self, value, index, key)][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this3), 'className': _className(function () {
+                        try {
+                            var _ref;
+
+                            return [(_ref = {
+                                'k-disabled': disabled
+                            }, _ref[className] = className, _ref['k-checked'] = self.isChecked(key), _ref)][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this3)), 'ev-$destroyed': function () {
+                        try {
+                            return [self._onRowDestroyed.bind(self, key)][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this3), 'children': [function () {
+                        try {
+                            return [checkType === 'checkbox'][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this3) ? h('td', null, h(_checkbox2.default, { 'v-model': 'checkedKeys', 'name': 'k-table-checkbox', 'trueValue': function () {
+                            try {
+                                return [key][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(_this3), 'disabled': function () {
+                            try {
+                                return [disabled][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(_this3), 'children': null, '_context': $this, value: _getModel(self, 'checkedKeys'), 'ev-$change:value': function ev$changeValue(__c, __n) {
+                            _setModel(self, 'checkedKeys', __n, $this);
+                        } })) : function () {
+                        try {
+                            return [checkType === 'radio'][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this3) ? h('td', null, h(_radio2.default, { 'v-model': 'checkedKey', 'name': 'k-table-radio', 'trueValue': function () {
+                            try {
+                                return [key][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(_this3), 'disabled': function () {
+                            try {
+                                return [disabled][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(_this3), 'children': null, '_context': $this, value: _getModel(self, 'checkedKey'), 'ev-$change:value': function ev$changeValue(__c, __n) {
+                            _setModel(self, 'checkedKey', __n, $this);
+                        } })) : undefined, '\n                ', function () {
+                        var _this4 = this;
+
+                        try {
+                            return [__u.map(__u.extend({}, scheme, _scheme), function (item, key) {
+                                var td = void 0;
+                                if (__u.isObject(item) && item.template) {
+                                    if (typeof item.template === 'function') {
+                                        td = item.template.call(self, value, index);
+                                        // for Intact-Vue
+                                        if (_intact.normalize) {
+                                            td = (0, _intact.normalize)(td);
+                                        }
+                                    } else {
+                                        td = item.template;
+                                    }
+                                } else if (value[key] !== undefined) {
+                                    td = value[key];
+                                } else {
+                                    var _obj = value,
+                                        keys = key.split('.'),
+                                        i = 0;
+                                    while (_obj != null && i < keys.length) {
+                                        _obj = _obj[keys[i++]];
+                                    }
+                                    td = i && i === keys.length ? _obj : null;
+                                }
+                                return h('td', { 'title': function () {
+                                        try {
+                                            return [typeof td === 'string' || typeof td === 'number' ? td : undefined][0];
+                                        } catch (e) {
+                                            _e(e);
+                                        }
+                                    }.call(_this4) }, function () {
+                                    try {
+                                        return [typeof td === 'boolean' ? String(td) : td][0];
+                                    } catch (e) {
+                                        _e(e);
+                                    }
+                                }.call(_this4));
+                            })][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this3), '\n            '], '_context': $this });
+
+                if (expandable && expandedKeys.indexOf(key) > -1) {
+                    return [tr, h('tr', null, h('td', { 'colspan': function () {
+                            try {
+                                return [colSpan][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(_this3) }, function () {
+                        try {
+                            return [expand.call(self, value, index)][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this3)), 'k-expand', function () {
+                        try {
+                            return [key + '.expand'][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this3))];
+                } else {
+                    return tr;
+                }
+            }) : h('tr', null, h('td', { 'colspan': function () {
+                    try {
+                        return [colSpan][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this) }, (_blocks["no-data"] = function (parent) {
+                return function () {
+                    try {
+                        return [noDataTemplate][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this);
+            }) && (__blocks["no-data"] = function (parent) {
+                var self = this;
+                return blocks["no-data"] ? blocks["no-data"].call(this, function () {
+                    return _blocks["no-data"].call(self, parent);
+                }) : _blocks["no-data"].call(this, parent);
+            }) && __blocks["no-data"].call(this), 'k-no-data'), null, 'table_no_data')][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), '\n']);
+
+    var classNameObj = (_classNameObj = {
+        'k-table-wrapper': true
+    }, _classNameObj[className] = className, _classNameObj['k-' + type] = type !== 'default', _classNameObj);
+
+    var table = h('table', null, ['\n    ', function () {
+        try {
+            return [thead][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), '\n    ', function () {
+        try {
+            return [tbody][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), '\n'], 'k-table', null, function () {
+        try {
+            return [function (dom) {
+                return self.table = dom;
+            }][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this));
+
+    return h('div', { 'style': function () {
+            try {
+                return [style][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, [function () {
+        try {
+            return [fixHeader][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('div', { 'style': function () {
+            try {
+                return [{ paddingRight: self.get('_padding') + 'px' }][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, h('table', null, ['\n            ', function () {
+        try {
+            return [theadCreator()][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), '\n        '], 'k-table'), 'k-fixed', null, function () {
+        try {
+            return [function (dom) {
+                return self.header = dom;
+            }][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)) : undefined, '\n    ', function () {
+        try {
+            return [fixHeader ? h('div', { 'style': function () {
+                    try {
+                        return [typeof fixHeader === 'number' || typeof fixHeader === 'string' ? { maxHeight: fixHeader + 'px' } : undefined][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this) }, function () {
+                try {
+                    return [table][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'k-scroll', null, function () {
+                try {
+                    return [function (dom) {
+                        return self.scroll = dom;
+                    }][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this)) : table][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), '\n'], _className(function () {
+        try {
+            return [classNameObj][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)));
+};
+
+var _checkbox = __webpack_require__(32);
+
+var _checkbox2 = _interopRequireDefault(_checkbox);
+
+var _radio = __webpack_require__(41);
+
+var _radio2 = _interopRequireDefault(_radio);
+
+var _row = __webpack_require__(244);
+
+var _row2 = _interopRequireDefault(_row);
+
+var _intact = __webpack_require__(0);
+
+var _column = __webpack_require__(92);
+
+var _column2 = _interopRequireDefault(_column);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 244 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.default = undefined;
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(8);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(2);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _row = __webpack_require__(245);
+
+var _row2 = _interopRequireDefault(_row);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// for tr $destroyed event
+var TableRow = function (_Intact) {
+    (0, _inherits3.default)(TableRow, _Intact);
+
+    function TableRow() {
+        (0, _classCallCheck3.default)(this, TableRow);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+    }
+
+    (0, _createClass3.default)(TableRow, [{
+        key: 'template',
+        get: function get() {
+            return _row2.default;
+        }
+    }]);
+    return TableRow;
+}(_intact2.default);
+
+exports.default = TableRow;
+module.exports = exports['default'];
+
+/***/ }),
+/* 245 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _extends2 = __webpack_require__(5);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+  _Vdt || (_Vdt = Vdt);
+  obj || (obj = {});
+  blocks || (blocks = {});
+  var h = _Vdt.miss.h,
+      hc = _Vdt.miss.hc,
+      hu = _Vdt.miss.hu,
+      widgets = this && this.widgets || {},
+      _blocks = {},
+      __blocks = {},
+      __u = _Vdt.utils,
+      extend = __u.extend,
+      _e = __u.error,
+      _className = __u.className,
+      __o = __u.Options,
+      _getModel = __o.getModel,
+      _setModel = __o.setModel,
+      _setCheckboxModel = __u.setCheckboxModel,
+      _detectCheckboxChecked = __u.detectCheckboxChecked,
+      _setSelectModel = __u.setSelectModel,
+      self = this.data,
+      $this = this,
+      scope = obj,
+      Animate = self && self.Animate,
+      parent = ($callee || {})._super;
+  return h('tr', (0, _extends3.default)({}, function () {
+    try {
+      return [self.get()][0];
+    } catch (e) {
+      _e(e);
+    }
+  }.call(this)), function () {
+    try {
+      return [self.get('children')][0];
+    } catch (e) {
+      _e(e);
+    }
+  }.call(this));
+};
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 246 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var _self$get = self.get(),
+        width = _self$get.width,
+        title = _self$get.title,
+        key = _self$get.key,
+        group = _self$get.group,
+        multiple = _self$get.multiple,
+        sortable = _self$get.sortable,
+        $parent = _self$get.$parent,
+        _show = _self$get._show;
+
+    var _$parent$get = $parent.get(),
+        sort = _$parent$get.sort,
+        resizable = _$parent$get.resizable;
+
+    var groupText = group && self._getGroupText() || '';
+
+    return h('th', { 'width': function () {
+            try {
+                return [width][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'title': function () {
+            try {
+                return [(0, _utils.isStringOrNumber)(title) ? title + groupText : undefined][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-click': function () {
+            try {
+                return [self.onClick][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, [function () {
+        try {
+            return [resizable][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('div', { 'ev-mousedown': function () {
+            try {
+                return [self.onDragStart][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-click': function () {
+            try {
+                return [self._stopPropagation][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, null, 'k-resize') : undefined, h('div', null, [function () {
+        try {
+            return [!group][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('div', null, (_blocks["title"] = function (parent) {
+        return function () {
+            try {
+                return [title][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this);
+    }) && (__blocks["title"] = function (parent) {
+        var self = this;
+        return blocks["title"] ? blocks["title"].call(this, function () {
+            return _blocks["title"].call(self, parent);
+        }) : _blocks["title"].call(this, parent);
+    }) && __blocks["title"].call(this), 'c-ellipsis') : undefined, function () {
+        try {
+            return [group][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this) ? h('div', null, [h(_dropdown.Dropdown, { 'children': [h('i', null, null, 'k-arrow ion-ios-arrow-down'), h(_dropdown.DropdownMenu, { 'className': _className(function () {
+                try {
+                    return [{ 'k-table-dropdown': true, 'k-multiple': multiple }][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this)), 'ev-$change:show': function () {
+                try {
+                    return [self._onChangeShow][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'children': _Vdt.utils.map(function () {
+                try {
+                    return [group][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), function (value, key) {
+                return h(_dropdown.DropdownItem, { 'className': _className(function () {
+                        try {
+                            return [{ 'k-active': self._isChecked(value.value) }][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this)), 'ev-select': function () {
+                        try {
+                            return [self._onSelect.bind(self, value.value)][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), 'hideOnSelect': function () {
+                        try {
+                            return [!multiple][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), 'children': function () {
+                        try {
+                            return [multiple][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this) ? h(_checkbox.Checkbox, { 'name': 'key', 'value': function () {
+                            try {
+                                return [self._isChecked(value.value)][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(this), 'children': function () {
+                            try {
+                                return [value.label][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(this), '_context': $this }) : h('span', null, function () {
+                        try {
+                            return [value.label][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this)), '_context': $this });
+            }, this), '_context': $this })], '_context': $this }), h('div', null, [(_blocks["title"] = function (parent) {
+        return function () {
+            try {
+                return [title][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this);
+    }) && (__blocks["title"] = function (parent) {
+        var self = this;
+        return blocks["title"] ? blocks["title"].call(this, function () {
+            return _blocks["title"].call(self, parent);
+        }) : _blocks["title"].call(this, parent);
+    }) && __blocks["title"].call(this), '\n                ', function () {
+        try {
+            return [groupText][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), '\n            '], 'c-ellipsis')], 'k-group') : undefined, '\n        ', function () {
+        var _this = this;
+
+        try {
+            return [function () {
+                if (sortable) {
+                    var type = key === sort.key ? sort.type : '';
+                    return h('div', null, h('i', null, null, _className(function () {
+                        try {
+                            var _ref;
+
+                            return [(_ref = {
+                                'k-icon': true
+                            }, _ref['icon-' + type] = type, _ref['icon-sortable'] = !type, _ref)][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this))), _className(function () {
+                        try {
+                            var _ref2;
+
+                            return [(_ref2 = { 'k-sort': true }, _ref2['k-' + type] = type, _ref2)][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(_this)));
+                }
+            }()][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), '\n    '], _className(function () {
+        try {
+            return [{ "k-th": true, "k-group-show": _show }][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)))], _className(function () {
+        try {
+            return [{ 'k-sortable': sortable }][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)));
+};
+
+var _dropdown = __webpack_require__(31);
+
+var _checkbox = __webpack_require__(32);
+
+var _radio = __webpack_require__(41);
+
+var _utils = __webpack_require__(7);
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 247 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 248 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.Tag = exports.default = undefined;
+
+var _getOwnPropertyDescriptor = __webpack_require__(4);
+
+var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _possibleConstructorReturn2 = __webpack_require__(2);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _dec, _desc, _value, _class, _init, _class2, _temp;
+
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _index = __webpack_require__(249);
+
+var _index2 = _interopRequireDefault(_index);
+
+__webpack_require__(6);
+
+__webpack_require__(250);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
+
+    return desc;
+}
+
+var Tag = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
+    (0, _inherits3.default)(Tag, _Intact);
+
+    function Tag() {
+        (0, _classCallCheck3.default)(this, Tag);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+    }
+
+    Tag.prototype.defaults = function defaults() {
+        return {
+            type: 'default',
+            closable: false,
+            closed: false
+        };
+    };
+
+    Tag.prototype._close = function _close() {
+        this.set('closed', true);
+        this.trigger('close');
+    };
+
+    return Tag;
+}(_intact2.default), _class2.template = _index2.default, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    initializer: function initializer() {
+        return _init;
+    }
+}), _class)), _class));
+exports.default = Tag;
+exports.Tag = Tag;
+
+/***/ }),
+/* 249 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _extends2 = __webpack_require__(5);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__(12);
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _classNameObj;
+
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var _self$get = self.get(),
+        className = _self$get.className,
+        children = _self$get.children,
+        type = _self$get.type,
+        disabled = _self$get.disabled,
+        closable = _self$get.closable,
+        closed = _self$get.closed,
+        rest = (0, _objectWithoutProperties3.default)(_self$get, ['className', 'children', 'type', 'disabled', 'closable', 'closed']);
+
+    if (closed) return;
+
+    var classNameObj = (_classNameObj = {
+        'k-tag': true
+    }, _classNameObj[className] = className, _classNameObj['k-' + type] = type !== 'default', _classNameObj['k-disabled'] = disabled, _classNameObj['k-closable'] = closable, _classNameObj);
+
+    return h(Animate, (0, _extends3.default)({ 'a:disabled': function () {
+            try {
+                return [disabled][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'a:transition': 'fade', 'className': _className(function () {
+            try {
+                return [classNameObj][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this)) }, function () {
+        try {
+            return [rest][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this), { 'children': ['\n    ', function () {
+            try {
+                return [children][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), '\n    ', function () {
+            try {
+                return [closable][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) ? h(_button2.default, { 'type': 'none', 'icon': function () {
+                try {
+                    return [true][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'className': 'k-close', 'disabled': function () {
+                try {
+                    return [disabled][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'ev-click': function () {
+                try {
+                    return [self._close][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this), 'children': h('i', null, null, 'k-icon ion-ios-close-empty'), '_context': $this }) : undefined], '_context': $this }));
+};
+
+var _button = __webpack_require__(15);
+
+var _button2 = _interopRequireDefault(_button);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 250 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 251 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.Transfer = exports.default = undefined;
+
+var _getOwnPropertyDescriptor = __webpack_require__(4);
+
+var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _possibleConstructorReturn2 = __webpack_require__(2);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _dec, _desc, _value, _class, _init, _class2, _temp;
+
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _index = __webpack_require__(252);
+
+var _index2 = _interopRequireDefault(_index);
+
+__webpack_require__(6);
+
+__webpack_require__(253);
+
+var _utils = __webpack_require__(7);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
+
+    return desc;
+}
+
+var Transfer = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
+    (0, _inherits3.default)(Transfer, _Intact);
+
+    function Transfer() {
+        (0, _classCallCheck3.default)(this, Transfer);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+    }
+
+    Transfer.prototype.defaults = function defaults() {
+        return {
+            data: [],
+            value: [],
+            leftChecked: [],
+            rightChecked: [],
+            filterable: false,
+            // batchable: false,
+            filter: function filter(data, keywords) {
+                return data.label.includes(keywords);
+            },
+            label: function label(data, index) {
+                return data.label;
+            },
+
+            keyName: 'key',
+            placeholder: (0, _utils._$)('请输入'),
+            leftTitle: (0, _utils._$)('请选择'),
+            rightTitle: (0, _utils._$)('已选择')
+        };
+    };
+
+    Transfer.prototype._mount = function _mount() {
+        document.addEventListener('keydown', this._onKeydown);
+        document.addEventListener('keyup', this._onKeyup);
+    };
+
+    Transfer.prototype._onKeydown = function _onKeydown(e) {
+        if (e.keyCode === 16) {
+            this.shiftKey = true;
+        }
+    };
+
+    Transfer.prototype._onKeyup = function _onKeyup(e) {
+        if (e.keyCode === 16) {
+            this.shiftKey = false;
+        }
+    };
+
+    Transfer.prototype._add = function _add() {
+        var value = this.get('value').concat(this.get('leftChecked'));
+        this.set({
+            leftChecked: [],
+            value: value
+        });
+    };
+
+    Transfer.prototype._remove = function _remove() {
+        var value = this.get('value').slice(0);
+        this.get('rightChecked').forEach(function (item) {
+            var index = value.indexOf(item);
+            value.splice(index, 1);
+        });
+        this.set({
+            rightChecked: [],
+            value: value
+        });
+    };
+
+    Transfer.prototype._onCheckboxChange = function _onCheckboxChange(type, index, e) {
+        var keywords = this.get(type + 'Keywords');
+        var data = type === 'left' ? this.get('data') : this.get('value');
+        var filter = this.get('filter');
+
+        if (this.startIndex === undefined || !this.shiftKey) {
+            this.startIndex = index;
+            this.checked = e.target.checked;
+        } else if (this.shiftKey) {
+            var values = data;
+            if (this.get('filterable') && keywords) {
+                values = data.filter(function (item) {
+                    return filter(item, keywords);
+                });
+            }
+            if (index > this.startIndex) {
+                values = values.slice(this.startIndex, index + 1);
+            } else if (index < this.startIndex) {
+                values = values.slice(index, this.startIndex + 1);
+            }
+            values = values.filter(function (item) {
+                return !item.disabled;
+            });
+            var checkedValues = this.get(type + 'Checked');
+            var _values = [];
+
+            if (this.checked) {
+                checkedValues.forEach(function (item) {
+                    if (!~values.indexOf(item)) {
+                        _values.push(item);
+                    }
+                });
+                this.set(type + 'Checked', values.concat(_values));
+            } else {
+                checkedValues.forEach(function (item) {
+                    if (!~values.indexOf(item)) {
+                        _values.push(item);
+                    }
+                });
+                this.set(type + 'Checked', _values);
+            }
+        }
+    };
+
+    Transfer.prototype._onClickLabel = function _onClickLabel(e) {
+        if (e.shiftKey && e.target.tagName !== 'INPUT') {
+            e.preventDefault();
+            e.target.click();
+        }
+    };
+
+    Transfer.prototype._isCheckAll = function _isCheckAll(model) {
+        var checked = this.get(model + 'Checked');
+        var data = this.get('value');
+
+        if (model === 'left') {
+            data = this.get('data').filter(function (item) {
+                return !~data.indexOf(item) && !item.disabled;
+            });
+        }
+
+        return data.length && checked.length >= data.length;
+    };
+
+    Transfer.prototype._toggleCheckAll = function _toggleCheckAll(model, e) {
+        if (e.target.checked) {
+            this._selectAll(model);
+        } else {
+            this.set(model + 'Checked', []);
+        }
+    };
+
+    Transfer.prototype._selectAll = function _selectAll(model) {
+        var data = this.get('value');
+        if (model === 'left') {
+            data = this.get('data').filter(function (item) {
+                return !~data.indexOf(item) && !item.disabled;
+            });
+        }
+
+        var keywords = this.get(model + 'Keywords');
+        if (this.get('filterable') && keywords) {
+            var filter = this.get('filter');
+            data = data.filter(function (item) {
+                return filter(item, keywords);
+            });
+        }
+
+        this.set(model + 'Checked', data);
+    };
+
+    Transfer.prototype._destroy = function _destroy() {
+        document.removeEventListener('keydown', this._onKeydown);
+        document.removeEventListener('keyup', this._onKeyup);
+    };
+
+    return Transfer;
+}(_intact2.default), _class2.template = _index2.default, _class2.propTypes = {
+    filterable: Boolean
+    // batchable: Boolean,
+}, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    initializer: function initializer() {
+        return _init;
+    }
+}), _class)), _class));
+exports.default = Transfer;
+exports.Transfer = Transfer;
+
+/***/ }),
+/* 252 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _classNameObj,
+        _this = this;
+
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var _self$get = self.get(),
+        data = _self$get.data,
+        className = _self$get.className,
+        style = _self$get.style,
+        value = _self$get.value,
+        keyName = _self$get.keyName,
+        leftChecked = _self$get.leftChecked,
+        rightChecked = _self$get.rightChecked,
+        filterable = _self$get.filterable,
+        batchable = _self$get.batchable,
+        filter = _self$get.filter,
+        label = _self$get.label,
+        placeholder = _self$get.placeholder,
+        leftTitle = _self$get.leftTitle,
+        rightTitle = _self$get.rightTitle;
+
+    var classNameObj = (_classNameObj = {
+        'k-transfer': true
+    }, _classNameObj[className] = className, _classNameObj);
+
+    var Panel = function Panel(props) {
+        var keywords = self.get(props.model + 'Keywords');
+        var data = keywords ? props.data.filter(function (item) {
+            return filter(item, keywords);
+        }) : props.data;
+        return h('div', null, [h('div', null, [h('div', null, ['\n                ', function () {
+            try {
+                return [self.get(props.model + 'Checked.length')][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(_this), ' /\n                ', function () {
+            try {
+                return [data.length][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(_this), '\n            '], 'k-count'), h(_checkbox2.default, { 'className': 'c-ellipsis', 'value': function () {
+                try {
+                    return [self._isCheckAll(props.model)][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(_this), 'ev-click': function () {
+                try {
+                    return [self._toggleCheckAll.bind(self, props.model)][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(_this), 'children': function () {
+                try {
+                    return [props.title][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(_this), '_context': $this })], 'k-title'), function () {
+            try {
+                return [filterable][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(_this) ? h(_input2.default, { 'placeholder': function () {
+                try {
+                    return [placeholder][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(_this), 'v-model': function () {
+                try {
+                    return [props.model + 'Keywords'][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(_this), 'clearable': function () {
+                try {
+                    return [true][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(_this), 'size': 'small', 'children': null, '_context': $this, '_blocks': function (blocks) {
+                var _blocks = {},
+                    __blocks = extend({}, blocks);
+                return (_blocks["prefix"] = function (parent) {
+                    return h('i', null, null, 'ion-ios-search');
+                }) && (__blocks["prefix"] = function (parent) {
+                    var self = this;
+                    return blocks["prefix"] ? blocks["prefix"].call(this, function () {
+                        return _blocks["prefix"].call(self, parent);
+                    }) : _blocks["prefix"].call(this, parent);
+                }), __blocks;
+            }.call(_this, {}), value: _getModel(self, function () {
+                try {
+                    return [props.model + 'Keywords'][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(_this)), 'ev-$change:value': function ev$changeValue(__c, __n) {
+                _setModel(self, function () {
+                    try {
+                        return [props.model + 'Keywords'][0];
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call(this), __n, $this);
+            } }) : undefined, h(Animate, { 'className': 'k-list', 'children': _Vdt.utils.map(function () {
+                try {
+                    return [data][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(_this), function (value, key) {
+                return h(Animate, { 'className': _className(function () {
+                        try {
+                            return [{ "k-item": true, "k-disabled": value.disabled }][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this)), 'key': function () {
+                        try {
+                            return [value[keyName] || value.label || value][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), 'a:transition': 'fade', 'ev-click': function () {
+                        try {
+                            return [self._onClickLabel][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), 'children': h(_checkbox2.default, { 'v-model': function () {
+                            try {
+                                return [props.model + 'Checked'][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(this), 'name': function () {
+                            try {
+                                return [props.model][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(this), 'trueValue': function () {
+                            try {
+                                return [value][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(this), 'disabled': function () {
+                            try {
+                                return [value.disabled][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(this), 'ev-click': function () {
+                            try {
+                                return [self._onCheckboxChange.bind(self, props.model, key)][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(this), 'children': function () {
+                            try {
+                                return [label.call(self, value, key, props.model)][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(this), '_context': $this, value: _getModel(self, function () {
+                            try {
+                                return [props.model + 'Checked'][0];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call(this)), 'ev-$change:value': function ev$changeValue(__c, __n) {
+                            _setModel(self, function () {
+                                try {
+                                    return [props.model + 'Checked'][0];
+                                } catch (e) {
+                                    _e(e);
+                                }
+                            }.call(this), __n, $this);
+                        } }), '_context': $this });
+            }, _this), '_context': $this })], 'k-panel');
+    };
+
+    return h('div', { 'style': function () {
+            try {
+                return [style][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this) }, [h(Panel, { 'data': function () {
+            try {
+                return [data.filter(function (item) {
+                    return !~value.indexOf(item);
+                })][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'model': 'left', 'title': function () {
+            try {
+                return [leftTitle][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'children': null, '_context': $this }), h('div', null, [h(_button2.default, { 'circle': function () {
+            try {
+                return [true][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'icon': function () {
+            try {
+                return [true][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'disabled': function () {
+            try {
+                return [!rightChecked.length][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-click': function () {
+            try {
+                return [self._remove][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'type': 'primary', 'size': 'large', 'children': h('i', null, null, 'k-icon ion-ios-arrow-left'), '_context': $this }), h(_button2.default, { 'circle': function () {
+            try {
+                return [true][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'icon': function () {
+            try {
+                return [true][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'disabled': function () {
+            try {
+                return [!leftChecked.length][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'ev-click': function () {
+            try {
+                return [self._add][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'type': 'primary', 'size': 'large', 'children': h('i', null, null, 'k-icon ion-ios-arrow-right'), '_context': $this })], 'k-arrows'), h(Panel, { 'data': function () {
+            try {
+                return [data.filter(function (item) {
+                    return ~value.indexOf(item);
+                })][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'model': 'right', 'title': function () {
+            try {
+                return [rightTitle][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'children': null, '_context': $this })], _className(function () {
+        try {
+            return [classNameObj][0];
+        } catch (e) {
+            _e(e);
+        }
+    }.call(this)));
+};
+
+var _button = __webpack_require__(15);
+
+var _button2 = _interopRequireDefault(_button);
+
+var _checkbox = __webpack_require__(32);
+
+var _checkbox2 = _interopRequireDefault(_checkbox);
+
+var _input = __webpack_require__(19);
+
+var _input2 = _interopRequireDefault(_input);
+
+var _utils = __webpack_require__(7);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
