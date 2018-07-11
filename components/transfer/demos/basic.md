@@ -8,7 +8,7 @@ order: 0
 > 你需要给每一行数据指定`key`，默认会取数据项中的`key`值，没有则会取`label`值。你也可以通过
 > `keyName`属性来指定取哪个值当做`key`
 
-> `Transfer`选中的值为原始数据`data`数组中的同一引用
+> `value`选中的值为原始数据`data`数组中的同一引用
 
 ```vdt
 import Transfer from 'kpc/components/transfer';
