@@ -10,7 +10,6 @@ export default class Transfer extends Intact {
 
     static propTypes = {
         filterable: Boolean,
-        // batchable: Boolean,
     };
 
     defaults() {
@@ -20,7 +19,6 @@ export default class Transfer extends Intact {
             leftChecked: [],
             rightChecked: [],
             filterable: false,
-            // batchable: false,
             filter(data, keywords) {
                 return data.label.includes(keywords);
             },
@@ -32,6 +30,16 @@ export default class Transfer extends Intact {
             leftTitle: _$('请选择'),
             rightTitle: _$('已选择'),
         };
+    }
+
+    _init() {
+        const fixValue = (v) => {
+            if (!Array.isArray(v)) {
+                this.set('value', [], {silent: true});
+            }
+        };
+        fixValue(this.get('value'));
+        this.on('$receive:value', (c, v) => fixValue(v));
     }
 
     _mount() {
@@ -126,6 +134,8 @@ export default class Transfer extends Intact {
             data = this.get('data').filter(item => {
                 return !~data.indexOf(item) && !item.disabled;
             });
+        } else {
+            data = data.filter(item => !item.disabled);
         }
 
         return data.length && checked.length >= data.length;
@@ -145,6 +155,8 @@ export default class Transfer extends Intact {
             data = this.get('data').filter(item => {
                 return !~data.indexOf(item) && !item.disabled;
             });
+        } else {
+            data = data.filter(item => !item.disabled);
         }
 
         let keywords = this.get(`${model}Keywords`);

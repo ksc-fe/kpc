@@ -58,7 +58,7 @@ const Panel = props => {
 };
 
 <div class={{ classNameObj }} style={{ style }}>
-    <Panel data={{ data.filter(item => !~value.indexOf(item)) }}
+    <Panel data={{ data.filter(item => !~(value || []).indexOf(item)) }}
         model="left" 
         title={{ leftTitle }}
     />
