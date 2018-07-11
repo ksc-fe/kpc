@@ -15,12 +15,12 @@
                     <!---->快速开始<!---->
                 </a></li><li>
                 <!---->
-                <a href="/kpc/docs/vue/">
-                    <!---->Vue中使用<!---->
-                </a></li><li>
-                <!---->
                 <a href="/kpc/docs/theme/">
                     <!---->定制主题<!---->
+                </a></li><li>
+                <!---->
+                <a href="/kpc/docs/vue/">
+                    <!---->Vue中使用<!---->
                 </a></li><li>
                 <!---->
                 <a href="/kpc/docs/i18n/">
@@ -131,18 +131,22 @@
                     <!---->Tabs<span>选项卡</span>
                 </a></li><li>
                 <!---->
-                <a href="/kpc/components/editable/">
-                    <!---->Editable<span>可编辑文本</span>
+                <a href="/kpc/components/collapse/">
+                    <!---->Collapse<span>折叠面板</span>
                 </a></li><li>
                 <!---->
                 <a href="/kpc/components/transfer/">
                     <!---->Transfer<span>穿梭框</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/editable/">
+                    <!---->Editable<span>可编辑文本</span>
                 </a></li></ul></div><div class="aside-border transition"></div></div></aside><article><div class="article-head"><div class="title">开关</div><div class="edit-link">
                     如果你发现文档有问题，请帮忙在
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/components/switch/index.md">github</a>
                     上修正该文档
                 </div></div><div class="contents"><div><h1>示例</h1>
-        <div class="example index-21"><div class="example-opera"><div><div class="k-switch k-default" style="" tabindex="0"><input type="checkbox" v-model="value" value tabindex="-1" /><div class="k-bar" style=""><div class="k-wrapper"><div class="k-handle"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div></div></div></div><div class="k-switch k-default k-disabled" style="" tabindex="-1"><input type="checkbox" disabled v-model="value" value tabindex="-1" /><div class="k-bar" style=""><div class="k-wrapper"><div class="k-handle"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div></div></div></div></div></div><div class="example-desc"><div class="title">基础用法</div><div class="desc"><p>通过<code>disabled</code>禁用组件，<code>v-model</code>进行数据双向绑定。</p>
+        <div class="example index-17"><div class="example-opera"><div><div class="k-switch k-default" style="" tabindex="0"><input type="checkbox" v-model="value" value tabindex="-1" /><div class="k-bar" style=""><div class="k-wrapper"><div class="k-handle"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div></div></div></div><div class="k-switch k-default k-disabled" style="" tabindex="-1"><input type="checkbox" disabled v-model="value" value tabindex="-1" /><div class="k-bar" style=""><div class="k-wrapper"><div class="k-handle"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div></div></div></div></div></div><div class="example-desc"><div class="title">基础用法</div><div class="desc"><p>通过<code>disabled</code>禁用组件，<code>v-model</code>进行数据双向绑定。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
@@ -151,7 +155,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-59"><div class="example-opera"><div><div class="k-switch k-default" style="" tabindex="0"><input type="checkbox" v-model="value" value tabindex="-1" /><div class="k-off" style="">关</div><div class="k-bar" style=""><div class="k-on" style="">开</div><div class="k-wrapper"><div class="k-handle"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div></div></div></div><div class="k-switch k-checked k-default" style="" tabindex="0"><input type="checkbox" v-model="value" value tabindex="-1" checked /><div class="k-off" style=""><i class="ion-ios-close-empty"></i></div><div class="k-bar" style=""><div class="k-on" style=""><i class="ion-ios-checkmark-empty"></i></div><div class="k-wrapper"><div class="k-handle"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div></div></div></div></div></div><div class="example-desc"><div class="title">定义文案</div><div class="desc"><p>定义开关开启/关闭时文案，可以通过以下两种方式来定义：</p>
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-55"><div class="example-opera"><div><div class="k-switch k-default" style="" tabindex="0"><input type="checkbox" v-model="value" value tabindex="-1" /><div class="k-off" style="">关</div><div class="k-bar" style=""><div class="k-on" style="">开</div><div class="k-wrapper"><div class="k-handle"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div></div></div></div><div class="k-switch k-checked k-default" style="" tabindex="0"><input type="checkbox" v-model="value" value tabindex="-1" checked /><div class="k-off" style=""><i class="ion-ios-close-empty"></i></div><div class="k-bar" style=""><div class="k-on" style=""><i class="ion-ios-checkmark-empty"></i></div><div class="k-wrapper"><div class="k-handle"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div></div></div></div></div></div><div class="example-desc"><div class="title">定义文案</div><div class="desc"><p>定义开关开启/关闭时文案，可以通过以下两种方式来定义：</p>
 <ol>
 <li>通过属性<code>on</code> <code>off</code>来定义，可以传入字符串或者<code>vNode</code>对象</li>
 <li>通过扩展点<code>on</code> <code>off</code>来定义</li>
@@ -164,7 +168,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-68"><div class="example-opera"><div><div class="k-switch k-default" style="width:62px;" tabindex="0"><input type="checkbox" v-model="value" value tabindex="-1" /><div class="k-off" style="width:62px;">关闭</div><div class="k-bar" style=""><div class="k-on" style="width:62px;">开启</div><div class="k-wrapper"><div class="k-handle"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div></div></div></div><div class="k-switch k-default" style="height:30px;" tabindex="0"><input type="checkbox" v-model="value" value tabindex="-1" /><div class="k-bar" style="width:30px;"><div class="k-wrapper"><div class="k-handle"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div></div></div></div><div class="k-switch k-default" style="width:100px;height:30px;" tabindex="0"><input type="checkbox" v-model="value" value tabindex="-1" /><div class="k-off" style="width:100px;height:30px;line-height:30px;padding:0 10px 0 30px;">关闭</div><div class="k-bar" style="width:30px;"><div class="k-on" style="width:100px;height:30px;line-height:30px;padding:0 30px 0 10px;">开启</div><div class="k-wrapper"><div class="k-handle"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div></div></div></div></div></div><div class="example-desc"><div class="title">长/宽</div><div class="desc"><p>通过<code>width</code>/<code>height</code>，可定义开关长度/高度，不用加单位（默认<code>px</code>）。</p>
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-86"><div class="example-opera"><div><div class="k-switch k-default" style="width:62px;" tabindex="0"><input type="checkbox" v-model="value" value tabindex="-1" /><div class="k-off" style="width:62px;">关闭</div><div class="k-bar" style=""><div class="k-on" style="width:62px;">开启</div><div class="k-wrapper"><div class="k-handle"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div></div></div></div><div class="k-switch k-default" style="height:30px;" tabindex="0"><input type="checkbox" v-model="value" value tabindex="-1" /><div class="k-bar" style="width:30px;"><div class="k-wrapper"><div class="k-handle"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div></div></div></div><div class="k-switch k-default" style="width:100px;height:30px;" tabindex="0"><input type="checkbox" v-model="value" value tabindex="-1" /><div class="k-off" style="width:100px;height:30px;line-height:30px;padding:0 10px 0 30px;">关闭</div><div class="k-bar" style="width:30px;"><div class="k-on" style="width:100px;height:30px;line-height:30px;padding:0 30px 0 10px;">开启</div><div class="k-wrapper"><div class="k-handle"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div></div></div></div></div></div><div class="example-desc"><div class="title">长/宽</div><div class="desc"><p>通过<code>width</code>/<code>height</code>，可定义开关长度/高度，不用加单位（默认<code>px</code>）。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
@@ -173,7 +177,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-91"><div class="example-opera"><div>
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-101"><div class="example-opera"><div>
     large: <div class="k-switch k-large" style="" tabindex="0"><input type="checkbox" v-model="value" value tabindex="-1" /><div class="k-bar" style=""><div class="k-wrapper"><div class="k-handle"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div></div></div></div>
     default: <div class="k-switch k-default" style="" tabindex="0"><input type="checkbox" v-model="value" value tabindex="-1" /><div class="k-bar" style=""><div class="k-wrapper"><div class="k-handle"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div></div></div></div>
     small: <div class="k-switch k-small" style="" tabindex="0"><input type="checkbox" v-model="value" value tabindex="-1" /><div class="k-bar" style=""><div class="k-wrapper"><div class="k-handle"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div></div></div></div>
@@ -186,7 +190,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-123"><div class="example-opera"><div><div style="margin-bottom: 20px"><div class="k-switch k-default" style="" tabindex="0"><input type="checkbox" v-model="value" value tabindex="-1" /><div class="k-bar" style=""><div class="k-wrapper"><div class="k-handle"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div></div></div></div> <!---->
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-130"><div class="example-opera"><div><div style="margin-bottom: 20px"><div class="k-switch k-default" style="" tabindex="0"><input type="checkbox" v-model="value" value tabindex="-1" /><div class="k-bar" style=""><div class="k-wrapper"><div class="k-handle"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div></div></div></div> <!---->
     </div><div><div class="k-switch k-default" style="" tabindex="0"><input type="checkbox" v-model="value" value="1" tabindex="-1" /><div class="k-bar" style=""><div class="k-wrapper"><div class="k-handle"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div></div></div></div> <!---->
     </div></div></div><div class="example-desc"><div class="title">开关值</div><div class="desc"><p><code>Switch</code>默认选中的值为<code>true</code>，非选中的值为<code>false</code>，通过<code>trueValue</code>和<code>falseValue</code>属性，我们可以指定选中和非选中的值。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">

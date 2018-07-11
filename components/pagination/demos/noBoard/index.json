@@ -1,0 +1,23 @@
+{
+    "setting": {
+        "title": "无边框样式",
+        "order": 1.1
+    },
+    "catalogs": [],
+    "contents": "<p>添加<code>noBorder</code>属性，可以展示无边框的样式效果</p>\n",
+    "index": 67,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Pagination <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/pagination'</span>;\n\n&lt;div&gt;\n    &lt;Pagination noBorder total={{ 200 }} size=\"large\" /&gt;\n    &lt;Pagination noBorder total={{ 200 }} /&gt;\n    &lt;Pagination noBorder total={{ 200 }} size=\"small\" /&gt;\n    &lt;Pagination noBorder total={{ 200 }} size=\"mini\" /&gt;\n&lt;/div&gt;</code></pre>"
+        },
+        {
+            "language": "styl",
+            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-pagination</span>\n    <span class=\"hljs-attribute\">margin-bottom</span> <span class=\"hljs-number\">20px</span></code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
+        }
+    ]
+}

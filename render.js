@@ -39,7 +39,7 @@ module.exports =
 /******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
 /******/ 		// "0" is the signal for "already loaded"
 /******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("./chunk/" + {"0":"83df1d8e96bec00202e6","1":"c5f17a448a514b481087","2":"6a7c462fea16594cb43c","3":"dbd0efc2cf34bdc54abc"}[chunkId] + ".js");
+/******/ 			var chunk = require("./chunk/" + {"0":"2d55af70df298c50f186","1":"8f02af5f609e2432e1ad","2":"3014b4177044c2ff294c","3":"d0df51647f59ece20cb5"}[chunkId] + ".js");
 /******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				modules[moduleId] = moreModules[moduleId];
@@ -266,7 +266,7 @@ exports.App = App;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1531125361303
+      // 1531287436900
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -368,6 +368,7 @@ exports.selectInput = selectInput;
 exports._$ = _$;
 exports.localize = localize;
 exports.getTransition = getTransition;
+exports.mapChildren = mapChildren;
 
 var _intact = __webpack_require__("intact");
 
@@ -542,6 +543,27 @@ function getTransition(feedback) {
         }
     }
     return 'slidedown';
+}
+
+function mapChildren(children, callback) {
+    var vNodes = [];
+    function map(children) {
+        if (!children) return;
+        if (!Array.isArray(children)) {
+            return vNodes.push(callback(children));
+        }
+        children.forEach(function (vNode) {
+            if (Array.isArray(vNode)) {
+                map(vNode);
+            } else if (vNode) {
+                vNodes.push(callback(vNode));
+            }
+        });
+    }
+
+    map(children);
+
+    return vNodes;
 }
 
 /***/ }),
@@ -1031,7 +1053,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1531125364922
+      // 1531287439529
       var cssReload = require("!../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);

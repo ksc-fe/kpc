@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>折叠面板</title>
+    <link rel="stylesheet" href="/kpc/theme-kpc.css" />
+</head>
+<body>
+    
+    
+    <div id="page"><div class="k-app">
+    <div class="main-wrapper document-page"><div class="header-wrapper"><header><a class="logo" href="/">KPC</a><div class="right"><nav><a class="" href="/kpc/docs/design/language/">设计语言</a><a class="active" href="/kpc/docs/getting-started/">教程</a><a class="" href="/kpc/docs/blogs/design/">Blog</a><div class="border"></div></nav><span class="label">切换主题：</span><div class="k-select k-has-value" style="width:100px;" tabindex="0"><div class="k-wrapper" tabindex="-1" _hasSaved><input type="hidden" value="kpc" /><span class="k-value c-ellipsis">default</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></header></div><div class="content-wrapper"><aside><div class="aside-wrapper"><div class="catalog-section"><ul><li>
+                <!---->
+                <a href="/kpc/docs/getting-started/">
+                    <!---->快速开始<!---->
+                </a></li><li>
+                <!---->
+                <a href="/kpc/docs/theme/">
+                    <!---->定制主题<!---->
+                </a></li><li>
+                <!---->
+                <a href="/kpc/docs/vue/">
+                    <!---->Vue中使用<!---->
+                </a></li><li>
+                <!---->
+                <a href="/kpc/docs/i18n/">
+                    <!---->国际化<!---->
+                </a></li><li>
+                <!---->
+                <a href="/kpc/docs/icon/">
+                    <!---->字体icon<!---->
+                </a></li><li>
+                <!---->
+                <a href="/kpc/docs/changelog/">
+                    <!---->更新日志<!---->
+                </a></li></ul></div><div class="catalog-section"><h5>组件</h5><ul><li>
+                <!---->
+                <a href="/kpc/components/button/">
+                    <!---->Button<span>按钮</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/badge/">
+                    <!---->Badge<span>徽标</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/grid/">
+                    <!---->Grid<span>栅格</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/input/">
+                    <!---->Input<span>输入框</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/radio/">
+                    <!---->Radio<span>单选框</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/checkbox/">
+                    <!---->Checkbox<span>复选框</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/select/">
+                    <!---->Select<span>选择框</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/cascader/">
+                    <!---->Cascader<span>级联选择</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/spinner/">
+                    <!---->Spinner<span>数字输入框</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/datepicker/">
+                    <!---->Datepicker<span>日期选择</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/slider/">
+                    <!---->Slider<span>滑块</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/form/">
+                    <!---->Form<span>表单</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/dialog/">
+                    <!---->Dialog<span>弹窗</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/dropdown/">
+                    <!---->Dropdown<span>下拉菜单</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/message/">
+                    <!---->Message<span>全局提示</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/tooltip/">
+                    <!---->Tooltip<span>提示弹层</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/progress/">
+                    <!---->Progress<span>进度条</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/steps/">
+                    <!---->Steps<span>步骤条</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/switch/">
+                    <!---->Switch<span>开关</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/breadcrumb/">
+                    <!---->Breadcrumb<span>面包屑</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/pagination/">
+                    <!---->Pagination<span>分页</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/tag/">
+                    <!---->Tag<span>标签</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/table/">
+                    <!---->Table<span>表格</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/tabs/">
+                    <!---->Tabs<span>选项卡</span>
+                </a></li><li class="active">
+                <!---->
+                <a href="/kpc/components/collapse/">
+                    <!---->Collapse<span>折叠面板</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/transfer/">
+                    <!---->Transfer<span>穿梭框</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/editable/">
+                    <!---->Editable<span>可编辑文本</span>
+                </a></li></ul></div><div class="aside-border transition"></div></div></aside><article><div class="article-head"><div class="title">折叠面板</div><div class="edit-link">
+                    如果你发现文档有问题，请帮忙在
+                    <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/components/collapse/index.md">github</a>
+                    上修正该文档
+                </div></div><div class="contents"><div><h1>示例</h1>
+        <div class="example index-16"><div class="example-opera"><div class="k-collapse k-border" style=""><div class="k-collapse-item k-active" style=""><div class="k-title">设计语言<i class="k-arrow ion-ios-arrow-right"></i></div><div class="k-content"><div class="k-wrapper"><p>语言是合作的基础。在团队中工作，没有共同的语言，一群人不能共同有效地合作。同理，因为每个人都会有不同的心智模式去达成各自的目的，如果没有共同的设计语言，对界面元素的共同理解，那么我们很难通过协作输出协调一致并具备高可用性的产品。</p><p>拥有通用语言意味着我们有相同的方法来命名界面元素和定义设计模式，或者在设计文件和前端框架中使用相同的名称。通用设计语言让团队成员达成了相互理解，基于共同的理解，参与产品创建的每个人都知道这个元素是什么: 它的名称和目的, 为什么这样设计, 以及如何及何时使用它。</p><p>当设计语言是通用知识时，它就成为一个强大的设计和协作工具，产品创建过程中便可停止专注于界面样式本身，而更多地关注用户。</p></div></div></div><div class="k-collapse-item" style=""><div class="k-title">KDL的价值<i class="k-arrow ion-ios-arrow-right"></i></div></div><div class="k-collapse-item k-disabled" style=""><div class="k-title">设计原则<i class="k-arrow ion-ios-arrow-right"></i></div></div></div></div><div class="example-desc"><div class="title">基础用法</div><div class="desc"><p>使用<code>CollapseItem</code>定义每一项，<code>CollapseItem</code>的<code>title</code>属性是要展示的标题，<code>disabled</code>属性用来禁用该项，<code>value</code>属性是选中该项的取值，如果没有提供<code>value</code>属性，则默认会使用形如<code>$0</code>的索引字符串当作<code>value</code>。给<code>Collapse</code>添加<code>value</code>可以展开指定的<code>CollapseItem</code>，<code>Collapse</code>的<code>value</code>是<code>Array</code>类型，可以使用<code>v-model</code>进行双向绑定</p>
+</div></div><div class="example-code"><div class="k-tabs" style="">
+    <a class="k-tab">
+                            <!---->index.vdt<!---->
+                        </a><a class="k-tab">
+                            <!---->index.js<!---->
+                        </a>
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-53"><div class="example-opera"><div class="k-collapse k-border" style=""><div class="k-collapse-item k-active" style=""><div class="k-title">设计语言<i class="k-arrow ion-ios-arrow-right"></i></div><div class="k-content"><div class="k-wrapper"><p>语言是合作的基础。在团队中工作，没有共同的语言，一群人不能共同有效地合作。同理，因为每个人都会有不同的心智模式去达成各自的目的，如果没有共同的设计语言，对界面元素的共同理解，那么我们很难通过协作输出协调一致并具备高可用性的产品。</p><p>拥有通用语言意味着我们有相同的方法来命名界面元素和定义设计模式，或者在设计文件和前端框架中使用相同的名称。通用设计语言让团队成员达成了相互理解，基于共同的理解，参与产品创建的每个人都知道这个元素是什么: 它的名称和目的, 为什么这样设计, 以及如何及何时使用它。</p><p>当设计语言是通用知识时，它就成为一个强大的设计和协作工具，产品创建过程中便可停止专注于界面样式本身，而更多地关注用户。</p></div></div></div><div class="k-collapse-item" style=""><div class="k-title">KDL的价值<i class="k-arrow ion-ios-arrow-right"></i></div></div><div class="k-collapse-item" style=""><div class="k-title">设计原则<i class="k-arrow ion-ios-arrow-right"></i></div></div></div></div><div class="example-desc"><div class="title">手风琴</div><div class="desc"><p>添加<code>accordion</code>属性，可以实现类似手风琴的交互风格，即一次只能展开一项</p>
+<blockquote>
+<p>手风琴风格的<code>value</code>依然是<code>Array</code>类型</p>
+</blockquote>
+</div></div><div class="example-code"><div class="k-tabs" style="">
+    <a class="k-tab">
+                            <!---->index.vdt<!---->
+                        </a><a class="k-tab">
+                            <!---->index.js<!---->
+                        </a>
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-90"><div class="example-opera"><div class="k-collapse k-border" style=""><div class="k-collapse-item" style=""><div class="k-title"><i class="ion-cube"></i>设计语言<i class="k-arrow ion-ios-arrow-right"></i></div></div><div class="k-collapse-item" style=""><div class="k-title">KDL的价值<i class="k-arrow ion-ios-arrow-right"></i></div></div><div class="k-collapse-item" style=""><div class="k-title">设计原则<i class="k-arrow ion-ios-arrow-right"></i></div></div></div></div><div class="example-desc"><div class="title">自定义标题</div><div class="desc"><p>使用<code>title</code>扩展点，可以定义复杂的标题内容</p>
+</div></div><div class="example-code"><div class="k-tabs" style="">
+    <a class="k-tab">
+                            <!---->index.vdt<!---->
+                        </a><a class="k-tab">
+                            <!---->index.styl<!---->
+                        </a><a class="k-tab">
+                            <!---->index.js<!---->
+                        </a>
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-102"><div class="example-opera"><div class="k-collapse k-left k-border" style=""><div class="k-collapse-item k-active" style=""><div class="k-title">设计语言<a href="/docs/design/language/">详细说明</a><i class="k-arrow ion-ios-arrow-right"></i></div><div class="k-content"><div class="k-wrapper"><p>语言是合作的基础。在团队中工作，没有共同的语言，一群人不能共同有效地合作。同理，因为每个人都会有不同的心智模式去达成各自的目的，如果没有共同的设计语言，对界面元素的共同理解，那么我们很难通过协作输出协调一致并具备高可用性的产品。</p><p>拥有通用语言意味着我们有相同的方法来命名界面元素和定义设计模式，或者在设计文件和前端框架中使用相同的名称。通用设计语言让团队成员达成了相互理解，基于共同的理解，参与产品创建的每个人都知道这个元素是什么: 它的名称和目的, 为什么这样设计, 以及如何及何时使用它。</p><p>当设计语言是通用知识时，它就成为一个强大的设计和协作工具，产品创建过程中便可停止专注于界面样式本身，而更多地关注用户。</p></div></div></div><div class="k-collapse-item" style=""><div class="k-title">KDL的价值<i class="k-arrow ion-ios-arrow-right"></i></div></div><div class="k-collapse-item" style=""><div class="k-title">设计原则<i class="k-arrow ion-ios-arrow-right"></i></div></div></div></div><div class="example-desc"><div class="title">箭头位置</div><div class="desc"><p>默认情况下箭头展示在标题右边，某些情况下，如：你需要在标题后面添加说明文字，我们可能需要将箭头展示在左边。指定<code>arrow</code>属性为<code>left</code>即可</p>
+</div></div><div class="example-code"><div class="k-tabs" style="">
+    <a class="k-tab">
+                            <!---->index.vdt<!---->
+                        </a><a class="k-tab">
+                            <!---->index.styl<!---->
+                        </a><a class="k-tab">
+                            <!---->index.js<!---->
+                        </a>
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-123"><div class="example-opera"><div class="k-collapse" style=""><div class="k-collapse-item k-active" style=""><div class="k-title">设计语言<i class="k-arrow ion-ios-arrow-right"></i></div><div class="k-content"><div class="k-wrapper"><p>语言是合作的基础。在团队中工作，没有共同的语言，一群人不能共同有效地合作。同理，因为每个人都会有不同的心智模式去达成各自的目的，如果没有共同的设计语言，对界面元素的共同理解，那么我们很难通过协作输出协调一致并具备高可用性的产品。</p><p>拥有通用语言意味着我们有相同的方法来命名界面元素和定义设计模式，或者在设计文件和前端框架中使用相同的名称。通用设计语言让团队成员达成了相互理解，基于共同的理解，参与产品创建的每个人都知道这个元素是什么: 它的名称和目的, 为什么这样设计, 以及如何及何时使用它。</p><p>当设计语言是通用知识时，它就成为一个强大的设计和协作工具，产品创建过程中便可停止专注于界面样式本身，而更多地关注用户。</p></div></div></div><div class="k-collapse-item" style=""><div class="k-title">KDL的价值<i class="k-arrow ion-ios-arrow-right"></i></div></div><div class="k-collapse-item" style=""><div class="k-title">设计原则<i class="k-arrow ion-ios-arrow-right"></i></div></div></div></div><div class="example-desc"><div class="title">无边框样式</div><div class="desc"><p>添加<code>noBorder</code>属性，可以展示无边框的简洁样式</p>
+</div></div><div class="example-code"><div class="k-tabs" style="">
+    <a class="k-tab">
+                            <!---->index.vdt<!---->
+                        </a><a class="k-tab">
+                            <!---->index.js<!---->
+                        </a>
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div>
+    </div><div class="api">
+        <div><h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1><h2 id='header-Collapse'>Collapse</h2><div class="k-table-wrapper k-border">
+                    <table class="k-table">
+                        <thead><tr>
+<th>属性</th>
+<th>说明</th>
+<th>类型</th>
+<th>默认值</th>
+</tr>
+</thead>
+                        <tbody><tr>
+<td>value</td>
+<td>当前展开的<code>CollapseItem</code>取值</td>
+<td><code>Array</code></td>
+<td><code>undefined</code></td>
+</tr>
+<tr>
+<td>accordion</td>
+<td>是否展示手风琴风格</td>
+<td><code>Boolean</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>arrow</td>
+<td>指定箭头位置</td>
+<td><code>&quot;right&quot;</code> &#124; <code>&quot;left&quot;</code></td>
+<td><code>&quot;right&quot;</code></td>
+</tr>
+<tr>
+<td>noBorder</td>
+<td>是否展示无边框的简洁样式</td>
+<td><code>Boolean</code></td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+                    </table>
+                </div><h2 id='header-CollapseItem'>CollapseItem</h2><div class="k-table-wrapper k-border">
+                    <table class="k-table">
+                        <thead><tr>
+<th>属性</th>
+<th>说明</th>
+<th>类型</th>
+<th>默认值</th>
+</tr>
+</thead>
+                        <tbody><tr>
+<td>value</td>
+<td>当前<code>CollapseItem</code>的取值，默认会使用<code>$</code> + 索引的组合</td>
+<td><code>String</code></td>
+<td><code>$${index}</code></td>
+</tr>
+<tr>
+<td>title</td>
+<td>标题内容</td>
+<td><code>String</code> &#124; <code>vNode</code></td>
+<td><code>undefined</code></td>
+</tr>
+<tr>
+<td>disabled</td>
+<td>是否禁用</td>
+<td><code>Boolean</code></td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+                    </table>
+                </div><h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1><h2 id='header-CollapseItem'>CollapseItem</h2><div class="k-table-wrapper k-border">
+                    <table class="k-table">
+                        <thead><tr>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+                        <tbody><tr>
+<td>title</td>
+<td>扩展标题</td>
+</tr>
+</tbody>
+                    </table>
+                </div><h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1><h2 id='header-CollapseItem'>CollapseItem</h2><div class="k-table-wrapper k-border">
+                    <table class="k-table">
+                        <thead><tr>
+<th>事件名</th>
+<th>说明</th>
+<th>参数</th>
+</tr>
+</thead>
+                        <tbody><tr>
+<td>show</td>
+<td>展开时触发</td>
+<td><code>CollapseItem</code>实例</td>
+</tr>
+<tr>
+<td>hide</td>
+<td>收起时触发</td>
+<td><code>CollapseItem</code>实例</td>
+</tr>
+</tbody>
+                    </table>
+                </div></div>
+    </div></div></article></div></div>
+    </div></div>
+    <script src="/kpc/static/client.js" type="text/javascript"></script>
+</body>
+</html>

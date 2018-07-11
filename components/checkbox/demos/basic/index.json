@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>Checkbox</code>的基本用法，及禁用状态。通过<code>v-model</code>进行数据双向绑定。由于<code>trueValue</code>的默认值为<code>true</code>，所以可以直接传入<code>value=true</code>来指定选中状态。</p>\n<blockquote>\n<p>选中状态的判定条件是<code>value === trueValue || value.indexOf(trueValue)</code>，对于值为对象的情况要注意。</p>\n</blockquote>\n",
-    "index": 13,
+    "index": 14,
     "highlighted": [
         {
             "language": "vdt",
