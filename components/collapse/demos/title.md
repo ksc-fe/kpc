@@ -8,7 +8,7 @@ order: 2
 ```vdt
 import {Collapse, CollapseItem} from 'kpc/components/collapse';
 
-<Collapse value={{ ["$0"] }}>
+<Collapse v-model="value">
     <CollapseItem>
         <b:title><i class="ion-cube"></i>设计语言</b:title>
         <p>语言是合作的基础。在团队中工作，没有共同的语言，一群人不能共同有效地合作。同理，因为每个人都会有不同的心智模式去达成各自的目的，如果没有共同的设计语言，对界面元素的共同理解，那么我们很难通过协作输出协调一致并具备高可用性的产品。</p>
