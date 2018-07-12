@@ -53,7 +53,7 @@ const classNameObj = {
             size={{ size }}
             ref="input"
             tabindex="-1"
-            ev-focusout={{ self.onInputFocusOut }}
+            ev-blur={{ self.onInputFocusOut }}
         >
             <b:suffix><i class="ion-ios-calendar-outline"></i></b:suffix>
         </Input>

@@ -23,7 +23,6 @@ const classNameObj = {
 const events = [
     'keydown', 'keyup', 'change',
     'keypress', 'focus', 'blur', /* 'input' */
-    'focusout',
 ].reduce((memo, name) => {
     memo[`ev-${name}`] = self._proxyEvent.bind(self, name);
     return memo;
