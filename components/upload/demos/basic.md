@@ -1,0 +1,44 @@
+---
+title: 基本用法
+order: 0
+---
+
+
+```vdt
+import Upload from 'kpc/components/upload';
+import Button from 'kpc/components/button';
+
+<Upload multiple
+    onRemove={{ self._onRemove }}
+>
+    <Button type="primary">点击上传</Button>
+    <b:tip>只能上传JPG/PNG格式文件，且不超过500kb</b:tip>
+</Upload>
+```
+
+```styl
+.k-upload
+    width 400px
+```
+
+```js
+import Dialog from 'kpc/components/dialog';
+
+export default class extends Intact {
+    @Intact.template()
+    static template = template;
+
+    _onRemove(file) {
+        return new Promise((resolve, reject) => {
+            const dialog = new Dialog({
+                size: 'mini',
+                title: '确认删除',
+                children: `确认删除文件：${file.name}`, 
+            });
+            dialog.show();
+            dialog.on('ok', resolve);
+            dialog.on('cancel', reject);
+        });
+    }
+}
+```

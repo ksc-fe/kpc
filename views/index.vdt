@@ -2,6 +2,9 @@
 <head>
     <meta charset="utf-8" />
     <title>KPC 4.0</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
     {{= self.style }}
 </head>
 <body>

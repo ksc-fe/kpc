@@ -23,18 +23,6 @@ export default class CollapseItem extends Intact {
         this.get('_parent')._changeValue(this.get('value'));
     }
 
-    _enterStart(el) {
-        el.style.height = el.children[0].clientHeight + 'px'; 
-    }
-
-    _leaveStart(el) {
-        el.style.height = el.children[0].clientHeight + 'px'; 
-    }
-
-    _enterEnd(el) {
-        el.style.height = '';
-    }
-
     _onShow() {
         this.trigger('show', this);
     }

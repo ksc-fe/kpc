@@ -1,3 +1,5 @@
+import {expandAnimationCallbacks} from '../utils';
+
 const {
     className, style, value, children,
     title, _parent, disabled,
@@ -19,11 +21,9 @@ const classNameObj = {
     <Animate class="k-content"
         v-if={{ active }}
         a:transition="expand"
-        ev-a:enterStart={{ self._enterStart }}
-        ev-a:leaveStart={{ self._leaveStart }}
-        ev-a:enterEnd={{ self._enterEnd }}
         ev-$mounted={{ self._onShow }}
         ev-$destroyed={{ self._onHide }}
+        {{ ...expandAnimationCallbacks }}
     >
         <div class="k-wrapper">{{ children }}</div>
     </Animate>

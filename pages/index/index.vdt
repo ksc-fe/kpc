@@ -10,6 +10,7 @@ const list = [
     'tooltip', 'pagination', 'datepicker',
     'scrollSelect', 'steps', 'tabs',
     'editable', 'test', 'transfer',
+    'demo',
 ];
 
 <ul>

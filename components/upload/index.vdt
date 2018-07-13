@@ -1,0 +1,56 @@
+import Button from '../button';
+import Progress from '../progress';
+import {expandAnimationCallbacks} from '../utils';
+
+const {
+    className, style, accept, multiple,
+    files, children
+} = self.get();
+
+const classNameObj = {
+    'k-upload': true,
+    [className]: className,
+};
+
+<div class={{ classNameObj }} style={{ style }}>
+    <input type="file" 
+        accept={{ accept }}
+        class="c-hidden" 
+        ref="input" 
+        ev-change={{ self._addFile }}
+        multiple={{ multiple }}
+    />
+    <div class="k-handle" ev-click={{ self._selectFile }}>
+        {{ children }}
+    </div>
+    <div class="k-tip" v-if={{ blocks.tip }}><b:tip /></div>
+    <div class="k-files">
+        <Animate v-for={{ files }} class="k-file"
+            key={{ value.uid }}
+            a:transition="expand"
+            {{ ...expandAnimationCallbacks }}
+        >
+            <div class="k-wrapper">
+                <div class="k-name c-ellipsis">
+                    <i class="k-file-icon ion-document"></i>
+                    {{ value.name }}
+                    <div class="k-icons">
+                        <Button type="none" icon size="mini" class="k-close"
+                            ev-click={{ self._removeFile.bind(self, value, key) }}
+                        >
+                            <i class="k-icon ion-ios-close-empty"></i>
+                        </Button>
+                        <i class="k-done-icon ion-ios-checkmark-outline" v-if={{ value.status === 'done' }}></i>
+                    </div>
+                </div>
+                <Animate key="progress" 
+                    a:transition="expand" 
+                    v-if={{ value.status !== 'done' }}
+                    {{ ...expandAnimationCallbacks }}
+                >
+                    <Progress percent={{ value.percent }} size="mini" />
+                </Animate>
+            </div>
+        </Animate>
+    </div>
+</div>

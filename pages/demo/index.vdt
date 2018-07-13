@@ -1,0 +1,12 @@
+<div class="demo-page">
+	<div class="search">搜索框</div>
+    <div class="map" id="map" ref="map"></div>
+    <div class="locations" 
+        ev-touchstart={{ self._onTouchStart }}
+        ev-touchmove={{ self._onTouchMove }}
+    >
+        <div class="location" v-for={{ self.get('locations') }}>
+            {{ value.name }}
+        </div>
+    </div>
+</div>

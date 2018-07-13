@@ -1,0 +1,54 @@
+@require('./variables.styl')
+
+.k-upload
+    font-size 12px
+    .k-handle
+    .k-tip
+        display inline-block
+        vertical-align middle
+    .k-tip
+        margin-left 16px
+        color $light-black
+    .k-files
+        margin-top 16px
+    .k-file
+        margin 4px 0 
+        border-radius $border-radius
+        cursor default
+        &:hover
+            background $bg-color
+            .k-icons
+                .k-close
+                    display inline-block
+        > .k-wrapper
+            padding 4px
+    .k-name
+        position relative
+        padding-right 40px
+        .k-file-icon 
+            vertical-align middle
+            margin-right 8px
+    .k-icons
+        position absolute
+        top 1px
+        right 0
+        .k-done-icon
+            color $success-color
+            margin-left 8px
+            float right
+            // display inline-block
+            line-height 16px
+            // height 16px
+            // vertical-align middle
+        .k-close
+            display none
+            // vertical-align middle
+            .k-icon:before
+                font-size 24px
+    .k-progress
+        .k-text
+            width auto
+            // position absolute
+            // right 0
+            // top -16px
+

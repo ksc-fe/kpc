@@ -37,4 +37,11 @@ for type, value in $origins
 .fade-move
     transition transform $transition
 
-
+.expand-enter
+.expand-leave
+    height 0 !important
+    opacity 0
+.expand-enter-active
+.expand-leave-active
+    transition all $transition
+    overflow hidden

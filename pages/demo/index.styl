@@ -1,0 +1,24 @@
+@require('../../styles/themes/default.styl')
+
+.k-app
+    overflow hidden
+.demo-page
+    // height 100vh
+    // overflow hidden
+    .search
+        height 50px
+        box-shadow $box-shadow
+        position fixed
+        width 100%
+        background #fff
+        z-index 1
+        top 0
+    .map
+        height 300px
+        background $bg-color
+        margin-top 50px
+    .locations
+        height calc(100vh - 225px)
+        overflow auto
+    .location
+        padding 8px 16px
