@@ -33,6 +33,7 @@ import {Tabs, Tab} from './tabs';
 import {Tag} from './tag';
 import {Tooltip} from './tooltip';
 import {Transfer} from './transfer';
+import {Upload} from './upload';
 
 export {
     App,
@@ -77,10 +78,11 @@ export {
     Tabs,
     Tag,
     Tooltip,
-    Transfer
+    Transfer,
+    Upload
 };
 
-export const version = '0.4.0';
+export const version = '0.4.1';
 
 /* generate end */
 

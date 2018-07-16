@@ -682,6 +682,17 @@ label {
   transition: transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
 }
+.expand-enter,
+.expand-leave {
+  height: 0 !important;
+  opacity: 0;
+}
+.expand-enter-active,
+.expand-leave-active {
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  overflow: hidden;
+}
 @-webkit-keyframes rotate {
   0% {
     -webkit-transform-origin: 50% 50%;
@@ -3769,6 +3780,9 @@ label {
 .c-center {
   text-align: center;
 }
+.c-hidden {
+  display: none;
+}
 .k-app {
   height: 100%;
 }
@@ -5017,6 +5031,11 @@ button.k-btn.k-mini > span {
 .k-select-dropdown .k-active {
   color: #0a5eee;
 }
+.k-select-dropdown .k-item {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .k-select-dropdown .k-group > .k-label {
   color: #999;
   padding: 0.571428571428571rem;
@@ -5126,16 +5145,6 @@ button.k-btn.k-mini > span {
 }
 .k-collapse-item.k-disabled {
   color: #999;
-}
-.k-collapse-item .expand-enter,
-.k-collapse-item .expand-leave {
-  height: 0 !important;
-  opacity: 0;
-}
-.k-collapse-item .expand-enter-active,
-.k-collapse-item .expand-leave-active {
-  -webkit-transition: all 0.25s ease-in-out;
-  transition: all 0.25s ease-in-out;
 }
 .k-tooltip {
   display: inline-block;
@@ -6806,4 +6815,83 @@ button.k-btn.k-mini > span {
   display: block;
   margin: 1.142857142857143rem 2.142857142857143rem;
   font-size: 1.571428571428571rem;
+}
+.k-upload {
+  font-size: 12px;
+}
+.k-upload .k-handle,
+.k-upload .k-tip {
+  display: inline-block;
+  vertical-align: middle;
+}
+.k-upload .k-tip {
+  margin-left: 16px;
+  color: #595959;
+}
+.k-upload .k-files {
+  margin-top: 16px;
+}
+.k-upload .k-file {
+  margin: 4px 0;
+  border-radius: 0.142857142857143rem;
+  cursor: default;
+}
+.k-upload .k-file:hover {
+  background: #eee;
+}
+.k-upload .k-file:hover .k-icons .k-close {
+  display: inline-block;
+}
+.k-upload .k-file > .k-wrapper {
+  padding: 4px;
+}
+.k-upload .k-file .k-icons {
+  position: absolute;
+  top: 1px;
+  right: 0;
+}
+.k-upload .k-file .k-status-icon {
+  color: #4db500;
+  margin-left: 8px;
+  float: right;
+  line-height: 16px;
+}
+.k-upload .k-file .k-close {
+  display: none;
+}
+.k-upload .k-file .k-close .k-icon:before {
+  font-size: 24px;
+}
+.k-upload .k-file.k-error {
+  color: #db2828;
+}
+.k-upload .k-file.k-error .k-status-icon {
+  color: #db2828;
+}
+.k-upload .k-name {
+  position: relative;
+  padding-right: 40px;
+}
+.k-upload .k-name .k-file-icon {
+  vertical-align: middle;
+  margin-right: 8px;
+}
+.k-upload .k-progress .k-text {
+  width: auto;
+}
+.k-upload.k-drag .k-handle {
+  color: #595959;
+  display: block;
+  border: 1px dashed #cad0dd;
+  border-radius: 0.142857142857143rem;
+  cursor: pointer;
+  text-align: center;
+  -webkit-transition: border-color 0.25s ease-in-out;
+  transition: border-color 0.25s ease-in-out;
+}
+.k-upload.k-drag .k-handle:hover {
+  border-color: #0a5eee;
+}
+.k-upload.k-drag.k-dragover .k-handle {
+  border-color: #0a5eee;
 }
