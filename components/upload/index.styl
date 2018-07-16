@@ -22,33 +22,46 @@
                     display inline-block
         > .k-wrapper
             padding 4px
+        .k-icons
+            position absolute
+            top 1px
+            right 0
+        .k-status-icon
+            color $success-color
+            margin-left 8px
+            float right
+            line-height 16px
+        .k-close
+            display none
+            .k-icon:before
+                font-size 24px
+        &.k-error
+            color $danger-color
+            .k-status-icon
+                color $danger-color
+
     .k-name
         position relative
         padding-right 40px
         .k-file-icon 
             vertical-align middle
             margin-right 8px
-    .k-icons
-        position absolute
-        top 1px
-        right 0
-        .k-done-icon
-            color $success-color
-            margin-left 8px
-            float right
-            // display inline-block
-            line-height 16px
-            // height 16px
-            // vertical-align middle
-        .k-close
-            display none
-            // vertical-align middle
-            .k-icon:before
-                font-size 24px
     .k-progress
         .k-text
             width auto
-            // position absolute
-            // right 0
-            // top -16px
 
+    // drag
+    &.k-drag
+        .k-handle
+            color $light-black
+            display block
+            border 1px dashed $border-color
+            border-radius $border-radius
+            cursor pointer
+            text-align center
+            transition border-color $transition
+            &:hover
+                border-color $primary-color
+        &.k-dragover
+            .k-handle
+                border-color $primary-color

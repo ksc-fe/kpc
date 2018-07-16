@@ -1,6 +1,6 @@
 ---
-title: 基本用法
-order: 0
+title: 拖拽上传
+order: 1
 ---
 
 
@@ -9,17 +9,26 @@ import Upload from 'kpc/components/upload';
 import Button from 'kpc/components/button';
 
 <Upload multiple
+    type="drag"
     onRemove={{ self._onRemove }}
     action="//jsonplaceholder.typicode.com/posts/"
 >
-    <Button type="primary">点击上传</Button>
-    <b:tip>只能上传JPG/PNG格式文件，且不超过500kb</b:tip>
+    <div class="drag-area">
+        <i class="ion-upload"></i>
+        <div>将文件拖到此处，或点击上传</div>
+    </div>
 </Upload>
 ```
 
 ```styl
 .k-upload
     width 400px
+.drag-area
+    padding 20px 0 40px 0
+.ion-upload:before
+    line-height 1
+    font-size 80px
+    color #b2b2b2
 ```
 
 ```js

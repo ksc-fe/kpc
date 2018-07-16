@@ -4,13 +4,24 @@ import {expandAnimationCallbacks} from '../utils';
 
 const {
     className, style, accept, multiple,
-    files, children
+    files, children, type, _dragOver,
 } = self.get();
 
 const classNameObj = {
     'k-upload': true,
     [className]: className,
+    'k-drag': type === 'drag', 
+    'k-dragover': _dragOver,
 };
+
+const events = {
+    'ev-click': self._selectFile,
+};
+if (type === 'drag') {
+    events['ev-dragenter'] = self._onDragEnter;
+    events['ev-dragleave'] = self._onDragLeave;
+    events['ev-drop'] = self._onDrop;
+}
 
 <div class={{ classNameObj }} style={{ style }}>
     <input type="file" 
@@ -20,12 +31,11 @@ const classNameObj = {
         ev-change={{ self._addFile }}
         multiple={{ multiple }}
     />
-    <div class="k-handle" ev-click={{ self._selectFile }}>
-        {{ children }}
-    </div>
+    <div class="k-handle" {{ ...events }}>{{ children }}</div>
     <div class="k-tip" v-if={{ blocks.tip }}><b:tip /></div>
     <div class="k-files">
-        <Animate v-for={{ files }} class="k-file"
+        <Animate v-for={{ files }} 
+            class={{ {"k-file": true, 'k-error': value.status === 'error'} }}
             key={{ value.uid }}
             a:transition="expand"
             {{ ...expandAnimationCallbacks }}
@@ -40,12 +50,13 @@ const classNameObj = {
                         >
                             <i class="k-icon ion-ios-close-empty"></i>
                         </Button>
-                        <i class="k-done-icon ion-ios-checkmark-outline" v-if={{ value.status === 'done' }}></i>
+                        <i class="k-status-icon ion-ios-checkmark-outline" v-if={{ value.status === 'done' }}></i>
+                        <i class="k-status-icon ion-ios-close-outline" v-if={{ value.status === 'error' }}></i>
                     </div>
                 </div>
                 <Animate key="progress" 
                     a:transition="expand" 
-                    v-if={{ value.status !== 'done' }}
+                    v-if={{ value.status !== 'done' && value.status !== 'error' }}
                     {{ ...expandAnimationCallbacks }}
                 >
                     <Progress percent={{ value.percent }} size="mini" />

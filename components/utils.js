@@ -1,7 +1,9 @@
 import Intact from 'intact';
 
 const utils = Intact.utils;
-const {get, isNullOrUndefined, isObject} = utils;
+const {get, isNullOrUndefined, isObject, isFunction} = utils;
+
+export {get, isNullOrUndefined, isObject, isFunction};
 
 export function addStyle(style, extra) {
     if (!style) return extra;
