@@ -18,6 +18,7 @@ const events = {
     'ev-click': self._selectFile,
 };
 if (type === 'drag') {
+    events['ev-dragover'] = self._preventDefault;
     events['ev-dragenter'] = self._onDragEnter;
     events['ev-dragleave'] = self._onDragLeave;
     events['ev-drop'] = self._onDrop;
@@ -28,10 +29,10 @@ if (type === 'drag') {
         accept={{ accept }}
         class="c-hidden" 
         ref="input" 
-        ev-change={{ self._addFile }}
+        ev-change={{ self._onInputChange}}
         multiple={{ multiple }}
     />
-    <div class="k-handle" {{ ...events }}>{{ children }}</div>
+    <div class="k-handle" {{ ...events }} ref="handle">{{ children }}</div>
     <div class="k-tip" v-if={{ blocks.tip }}><b:tip /></div>
     <div class="k-files">
         <Animate v-for={{ files }} 

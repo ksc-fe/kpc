@@ -37,6 +37,10 @@ export default class Upload extends Intact {
         };
     }
 
+    _init() {
+        this._counter = 0;
+    }
+
     _selectFile() {
         if (!this.get('disabled')) {
             const input = this.refs.input;
@@ -45,10 +49,14 @@ export default class Upload extends Intact {
         }
     }
 
-    _addFile(e) {
+    _onInputChange(e) {
+        this._addFiles(e.target.files);
+    }
+
+    _addFiles(fileList) {
         const autoUpload = this.get('autoUpload');
         const files = this.get('files').slice(0);
-        const _files = Array.from(e.target.files);
+        const _files = Array.from(fileList);
         const {maxSize, limit, onError} = this.get();
 
         if (limit && (files.length + _files.length > limit)) {
@@ -78,18 +86,30 @@ export default class Upload extends Intact {
     }
 
     _onDrop(e) {
-        console.log(e);
-        e.preventDefault();
+        this._preventDefault(e);
+        this.set('_dragOver', false);
+        this._counter = 0;
+        this._addFiles(e._rawEvent.dataTransfer.files);
     }
 
     _onDragEnter(e) {
-        if (!this.get('disabled')) {
-            this.set('_dragOver', true);
-        }
+        e.preventDefault();
+        this._counter++;
+        if (this.get('_dragOver') || this.get('disabled')) return;
+
+        this.set('_dragOver', true);
     }
 
     _onDragLeave(e) {
-        this.set('_dragOver', false);
+        this._counter--;
+        if (!this._counter) {
+            this.set('_dragOver', false);
+        }
+    }
+
+    _preventDefault(e) {
+        e.stopPropagation();
+        e.preventDefault();
     }
 
     _upload(file) {
