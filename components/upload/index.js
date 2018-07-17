@@ -16,6 +16,7 @@ export default class Upload extends Intact {
             accept: undefined,
             multiple: false,
             type: 'select', // select | drag
+            listType: 'text', // text | picture | gallery
             files: [],
             autoUpload: true,
             disabled: false,
@@ -30,7 +31,7 @@ export default class Upload extends Intact {
             onProgress: undefined,
             onError: undefined,
             onSuccess: undefined,
-            onRemove: undefined,
+            onRemove: () => true,
             onUpload: undefined,
 
             _dragOver: false,
@@ -78,6 +79,9 @@ export default class Upload extends Intact {
                 uid: index++,
                 raw: file,
             };
+            if (URL && URL.createObjectURL) {
+                obj.url = URL.createObjectURL(file);
+            }
             files.push(obj);
             if (autoUpload) this._upload(obj);
         });
@@ -87,9 +91,11 @@ export default class Upload extends Intact {
 
     _onDrop(e) {
         this._preventDefault(e);
-        this.set('_dragOver', false);
         this._counter = 0;
-        this._addFiles(e._rawEvent.dataTransfer.files);
+        if (!this.get('disabled')) {
+            this.set('_dragOver', false);
+            this._addFiles(e._rawEvent.dataTransfer.files);
+        }
     }
 
     _onDragEnter(e) {

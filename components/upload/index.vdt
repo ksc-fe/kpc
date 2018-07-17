@@ -4,7 +4,7 @@ import {expandAnimationCallbacks} from '../utils';
 
 const {
     className, style, accept, multiple,
-    files, children, type, _dragOver,
+    files, children, type, _dragOver, listType
 } = self.get();
 
 const classNameObj = {
@@ -12,6 +12,7 @@ const classNameObj = {
     [className]: className,
     'k-drag': type === 'drag', 
     'k-dragover': _dragOver,
+    'k-gallery': listType === 'gallery',
 };
 
 const events = {
@@ -24,6 +25,24 @@ if (type === 'drag') {
     events['ev-drop'] = self._onDrop;
 }
 
+const handle = (
+    <div class="k-handle" {{ ...events }} ref="handle">
+        <b:content>
+            <b:children v-if={{ children }}>{{ children }}</b:children>
+            <b:_list v-if={{ listType !== 'gallery' }}>
+                <Button type="primary" v-if={{ type === 'select' }}>点击上传</Button>
+                <div class="k-area" v-else>
+                    <i class="k-icon ion-upload"></i>
+                    <div>将文件拖到此处，或点击上传</div>
+                </div>
+            </b:_list>
+            <b:_list v-else>
+                <i class="k-picture-card k-add ion-ios-plus-empty"></i>
+            </b:_list>
+        </b:content>
+    </div>
+);
+
 <div class={{ classNameObj }} style={{ style }}>
     <input type="file" 
         accept={{ accept }}
@@ -32,9 +51,40 @@ if (type === 'drag') {
         ev-change={{ self._onInputChange}}
         multiple={{ multiple }}
     />
-    <div class="k-handle" {{ ...events }} ref="handle">{{ children }}</div>
+    <Animate class="k-pictures" 
+        key="pictures" 
+        a:disabled
+        v-if={{ listType === 'gallery' }}
+    >
+        <Animate 
+            class={{ {
+                "k-picture k-picture-card": true, 
+                'k-error': value.status === 'error'
+            } }}
+            v-for={{ files }}
+            key={{ value.uid }}
+            a:transition="dropdown"
+        >
+            <img src={{ value.url }} />
+            <Animate class="k-overlap" a:transition="fade" key="overlap"
+                v-if={{ value.status !== 'done' && value.status !== 'error' }}
+            >
+                <Progress percent={{ value.percent }} size="mini" />
+            </Animate>
+            <Button type="none" icon size="mini" class="k-close"
+                ev-click={{ self._removeFile.bind(self, value, key) }}
+            >
+                <i class="k-icon ion-ios-close"></i>
+            </Button>
+        </Animate>
+        <Animate key="handle"
+            a:transition="dropdown"
+            class="c-middle"
+        >{{ handle }}</Animate>
+    </Animate>
+    <b:_handle v-else>{{ handle }}</b:_handle>
     <div class="k-tip" v-if={{ blocks.tip }}><b:tip /></div>
-    <div class="k-files">
+    <div class="k-files" v-if={{ listType !== 'gallery' }}>
         <Animate v-for={{ files }} 
             class={{ {"k-file": true, 'k-error': value.status === 'error'} }}
             key={{ value.uid }}

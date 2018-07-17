@@ -6,13 +6,11 @@ order: 0
 
 ```vdt
 import Upload from 'kpc/components/upload';
-import Button from 'kpc/components/button';
 
 <Upload multiple
     onRemove={{ self._onRemove }}
     action="//jsonplaceholder.typicode.com/posts/"
 >
-    <Button type="primary">点击上传</Button>
     <b:tip>只能上传JPG/PNG格式文件，且不超过500kb</b:tip>
 </Upload>
 ```
