@@ -26,6 +26,9 @@ order: 0
 3. 给`FormItem`添加`messages`属性，指定验证失败时展示的错误内容。默认内容如上所示
 4. 给`FormItem`添加`classNames`属性，指定验证失败时错误元素需要额外添加的className，默认不添加
 
+> 验证的字段名必须是当前上下文对象上的直接属性名，在循环中我们必须通过索引来拼接取值路径字符串，
+> 例如："users.0.phone"
+
 ```vdt
 import {Form, FormItem} from 'kpc/components/form';
 import {Input} from 'kpc/components/input';

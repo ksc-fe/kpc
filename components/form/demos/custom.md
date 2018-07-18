@@ -12,6 +12,9 @@ order: 1
 本例中，我们添加一条全局规则`letter`用来验证只能输入字母，同时添加一条局部规则
 `unique`来验证所有输入必须不同
 
+> 验证方法中`param`，即为使用该规则时传入的参数，例如本例中的`letter: true`，`true`会作为`param`
+> 参数传给验证方法。当然我们还可以指定任意值，只要不是`false`就行，因为`false`代表不验证
+
 ```vdt
 import {Form, FormItem} from 'kpc/components/form';
 import {Input} from 'kpc/components/input';
