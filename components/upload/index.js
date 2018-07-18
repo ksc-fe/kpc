@@ -3,7 +3,7 @@ import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
 import {request} from './ajaxUploader';
-import {isFunction} from '../utils';
+import {isFunction, _$} from '../utils';
 
 let index = 0;
 
@@ -60,7 +60,7 @@ export default class Upload extends Intact {
 
     submit() {
         this.get('files').forEach(file => {
-            if (file.status === 'ready') {
+            if (file.status === 'notReady') {
                 this._upload(file);
             }
         });
@@ -79,23 +79,26 @@ export default class Upload extends Intact {
     }
 
     _addFiles(fileList) {
-        const autoUpload = this.get('autoUpload');
         const files = this.get('files').slice(0);
         const _files = Array.from(fileList);
-        const {maxSize, limit} = this.get();
+        const {maxSize, limit, autoUpload} = this.get();
 
         if (limit && (files.length + _files.length > limit)) {
-            const error =  new Error(`超出文件数量最大限制：${limit}`);
+            const error =  new Error(_$('超出文件数量最大限制：{limit}', {limit}));
             return this.trigger('error', error, _files, files);
         }
 
+        const status = autoUpload ? 'ready' : 'notReady';
+
        _files.forEach(file => {
             if (maxSize && file.size > maxSize * 1024) {
-                const error = new Error(`"${file.name}"超出文件最大限制：${maxSize}kb`);
+                const error = new Error(
+                    _$('"{name}" 超出文件最大限制：{maxSize}kb', {name: file.name, maxSize})
+                );
                 return this.trigger('error', error, file, files);
             }
             const obj = {
-                status: 'ready',
+                status: status, 
                 name: file.name,
                 type: file.type,
                 size: file.size,

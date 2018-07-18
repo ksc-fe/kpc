@@ -1,7 +1,7 @@
 import Button from '../button';
 import Progress from '../progress';
 import Dialog from '../dialog';
-import {expandAnimationCallbacks} from '../utils';
+import {expandAnimationCallbacks, _$} from '../utils';
 
 const {
     className, style, accept, multiple, limit,
@@ -30,11 +30,11 @@ const handle = (
     <div class="k-handle" {{ ...events }} ref="handle">
         <b:content>
             <b:children v-if={{ children }}>{{ children }}</b:children>
-            <b:_list v-if={{ listType !== 'gallery' }}>
-                <Button type="primary" v-if={{ type === 'select' }}>点击上传</Button>
+            <b:_list v-else-if={{ listType !== 'gallery' }}>
+                <Button type="primary" v-if={{ type === 'select' }}>{{ _$('点击上传') }}</Button>
                 <div class="k-area" v-else>
                     <i class="k-icon ion-upload"></i>
-                    <div>将文件拖到此处，或点击上传</div>
+                    <div>{{ _$('将文件拖到此处，或点击上传') }}</div>
                 </div>
             </b:_list>
             <b:_list v-else>
@@ -73,7 +73,7 @@ const CloseBtn = (props) => (
         >
             <img src={{ value.url }} />
             <Animate class="k-overlap" a:transition="fade" key="overlap"
-                v-if={{ value.status !== 'done' && value.status !== 'error' }}
+                v-if={{ value.status === 'ready' || value.status === 'uploading' }}
             >
                 <Progress percent={{ value.percent }} size="mini" />
             </Animate>
@@ -109,7 +109,7 @@ const CloseBtn = (props) => (
                 </div>
                 <Animate key="progress" 
                     a:transition="expand" 
-                    v-if={{ value.status !== 'done' && value.status !== 'error' }}
+                    v-if={{ value.status === 'ready' || value.status === 'uploading' }}
                     {{ ...expandAnimationCallbacks }}
                 >
                     <Progress percent={{ value.percent }} size="mini" />
@@ -118,7 +118,7 @@ const CloseBtn = (props) => (
         </Animate>
     </div>
 
-    <Dialog title="查看图片" key="dialog" v-model="_showImage" class="k-upload-dialog">
+    <Dialog title={{ _$("查看图片") }} key="dialog" v-model="_showImage" class="k-upload-dialog">
         <a href={{ self.get('_showedFile.url') }} target="_blank">
             <img src={{ self.get('_showedFile.url') }} />
         </a>

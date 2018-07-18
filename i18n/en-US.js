@@ -72,6 +72,13 @@ const i18n = {
 
     // select
     '请输入或选择': 'Please enter or select',
+
+    // upload
+    '点击上传': 'Click to Upload',
+    '将文件拖到此处，或点击上传': 'Drag file to this area or click to upload',
+    '查看图片': 'View Image',
+    '超出文件数量最大限制：{limit}': 'Exceed the maximum limit of the number of files: {limit}',
+    '"{name}" 超出文件最大限制：{maxSize}kb': '"{name}" exceeds the maximum size of file: {maxSize}kb',
 };
 
 export default i18n; 
