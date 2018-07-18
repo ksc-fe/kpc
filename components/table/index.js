@@ -281,7 +281,7 @@ export default class Table extends Intact {
             this._currentThs.push(ths[index]);
             this._prevThs.push(ths[index - 1]);
             // this._tables.push(this.header.children[0]);
-            // if fixHeader we should change the width of header and scroll
+            // if fixHeader we should change the width of both header and scroll
             this._tables = [this.header, this.scroll];
         }
 
@@ -296,6 +296,7 @@ export default class Table extends Intact {
             const delX = e.clientX - this._x;
             const prevWidth = this._prevThs[0].offsetWidth + delX;
             const tableWidth = this._tables[0].offsetWidth + delX;
+            const currentWidth = this._currentThs[0].offsetWidth - delX;
             
             if (prevWidth < this._minWidth) return;
 
@@ -303,7 +304,11 @@ export default class Table extends Intact {
                 item.style.width = prevWidth + 'px';
             });
 
-            if (this._containerWidth >= tableWidth) {
+            if (this._containerWidth > tableWidth) {
+                this._currentThs.forEach(item => {
+                    item.style.width = currentWidth + 'px'; 
+                });
+            } else if (this._containerWidth === tableWidth) {
                 this._tables.forEach(item => {
                     item.style.width = '100%';
                 });
