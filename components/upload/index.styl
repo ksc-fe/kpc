@@ -11,6 +11,10 @@
         color $upload-tip-color
     .k-close
         display none
+        width $upload-file-status-icon-width !important
+        height @width
+        .k-icon
+            line-height $upload-file-status-icon-width
         .k-icon:before
             font-size $upload-close-font-size
     .k-files
@@ -34,7 +38,10 @@
             color $upload-file-status-icon-color
             margin-left $upload-file-status-icon-margin-left 
             float right
-            line-height $upload-file-status-icon-line-height
+            width $upload-file-status-icon-width
+            height @width
+            line-height @height 
+            text-align center
         &.k-error
             color $upload-file-error-color
             .k-status-icon
@@ -105,7 +112,7 @@
         width $upload-gallery-width
         height $upload-gallery-height 
         border-radius $upload-gallery-border-radius
-        border $upload-gallery- border
+        border $upload-gallery-border
         text-align center
         cursor pointer
         margin $upload-gallery-margin

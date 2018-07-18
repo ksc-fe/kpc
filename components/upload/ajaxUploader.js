@@ -21,7 +21,7 @@ export function request(options) {
         };
     }
 
-    xhr.onerror = (e) => options.onError(e);
+    xhr.onerror = (e) => options.onError(getError(options, xhr));
     if (options.onSuccess) {
         xhr.onload = () => {
             if (xhr.status < 200 || xhr.status >= 300) {
