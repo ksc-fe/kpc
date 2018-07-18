@@ -5161,7 +5161,7 @@ blockquote:before {
   min-height: 100vh;
 }
 .main-wrapper {
-  padding-top: 95px;
+  padding-top: 80px;
 }
 .header-wrapper {
   height: 80px;
@@ -5481,6 +5481,16 @@ blockquote:before {
 .document-page ol li {
   list-style: decimal;
   margin: 5px 0;
+}
+.fixed-aside .content-wrapper .aside-wrapper {
+  position: fixed;
+  top: 80px;
+  background: #fff;
+  height: calc(100% - 80px);
+  overflow: auto;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 299px;
 }
 .k-table {
   font-size: 0.857142857142857rem;
@@ -7858,6 +7868,7 @@ blockquote:before {
 }
 .blog-page {
   padding-bottom: 15px;
+  padding-top: 95px;
 }
 .blog-page .content-wrapper {
   -webkit-box-shadow: none;
