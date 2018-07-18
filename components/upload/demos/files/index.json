@@ -1,0 +1,23 @@
+{
+    "setting": {
+        "title": "定义初始化列表",
+        "order": 3
+    },
+    "catalogs": [],
+    "contents": "<p>你可以通过<code>defaultFiles</code>定义初始化上传列表，该属性取值为数组，数组每一项结构如下：</p>\n<ol>\n<li><code>name</code> 文件名</li>\n<li><code>url</code> 文件对应的url地址</li>\n</ol>\n",
+    "index": 98,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Upload <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/upload'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Upload</span> <span class=\"hljs-attr\">multiple</span>\n    <span class=\"hljs-attr\">action</span>=<span class=\"hljs-string\">\"//jsonplaceholder.typicode.com/posts/\"</span>\n    <span class=\"hljs-attr\">defaultFiles</span>=<span class=\"hljs-string\">{{</span> [\n        {<span class=\"hljs-attr\">name:</span> '<span class=\"hljs-attr\">test1.jpg</span>', <span class=\"hljs-attr\">url:</span> '<span class=\"hljs-attr\">http:</span>//<span class=\"hljs-attr\">www.example.com</span>/<span class=\"hljs-attr\">test1.jpg</span>'},\n        {<span class=\"hljs-attr\">name:</span> '<span class=\"hljs-attr\">test2.png</span>', <span class=\"hljs-attr\">url:</span> '<span class=\"hljs-attr\">http:</span>//<span class=\"hljs-attr\">www.example.com</span>/<span class=\"hljs-attr\">test2.png</span>'},\n    ] }}\n/&gt;</span></span></code></pre>"
+        },
+        {
+            "language": "styl",
+            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-upload</span>\n    <span class=\"hljs-attribute\">width</span> <span class=\"hljs-number\">400px</span></code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
+        }
+    ]
+}

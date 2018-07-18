@@ -1,0 +1,23 @@
+{
+    "setting": {
+        "title": "手动上传",
+        "order": 4
+    },
+    "catalogs": [],
+    "contents": "<p>手动上传需要通过指定<code>autoUpload</code>为<code>false</code>来关闭自动上传，然后调用组件的<code>submit</code>方法来手动上传</p>\n",
+    "index": 117,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Upload <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/upload'</span>;\n<span class=\"hljs-keyword\">import</span> Button <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/button'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Upload</span> \n    <span class=\"hljs-attr\">ref</span>=<span class=\"hljs-string\">\"upload\"</span>\n    <span class=\"hljs-attr\">multiple</span> \n    <span class=\"hljs-attr\">action</span>=<span class=\"hljs-string\">\"//jsonplaceholder.typicode.com/posts/\"</span>\n    <span class=\"hljs-attr\">autoUpload</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">false</span> }}\n&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"primary\"</span>&gt;</span>选择文件<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">b:tip</span>&gt;</span>\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span> <span class=\"hljs-attr\">ev-click</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">self.upload</span> }}&gt;</span>开始上传<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">b:tip</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Upload</span>&gt;</span></span></code></pre>"
+        },
+        {
+            "language": "styl",
+            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-upload</span>\n    <span class=\"hljs-attribute\">width</span> <span class=\"hljs-number\">400px</span></code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n\n    upload(e) {\n        <span class=\"hljs-keyword\">this</span>.refs.upload.submit();\n    }\n}</code></pre>"
+        }
+    ]
+}

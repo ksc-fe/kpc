@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>添加<code>accordion</code>属性，可以实现类似手风琴的交互风格，即一次只能展开一项</p>\n<blockquote>\n<p>手风琴风格的<code>value</code>依然是<code>Array</code>类型</p>\n</blockquote>\n",
-    "index": 53,
+    "index": 48,
     "highlighted": [
         {
             "language": "vdt",

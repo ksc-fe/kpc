@@ -107,12 +107,12 @@
                     <!---->Steps<span>步骤条</span>
                 </a></li><li>
                 <!---->
-                <a href="/kpc/components/switch/">
-                    <!---->Switch<span>开关</span>
-                </a></li><li>
-                <!---->
                 <a href="/kpc/components/breadcrumb/">
                     <!---->Breadcrumb<span>面包屑</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/switch/">
+                    <!---->Switch<span>开关</span>
                 </a></li><li class="active">
                 <!---->
                 <a href="/kpc/components/pagination/">
@@ -127,12 +127,12 @@
                     <!---->Table<span>表格</span>
                 </a></li><li>
                 <!---->
-                <a href="/kpc/components/tabs/">
-                    <!---->Tabs<span>选项卡</span>
-                </a></li><li>
-                <!---->
                 <a href="/kpc/components/collapse/">
                     <!---->Collapse<span>折叠面板</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/tabs/">
+                    <!---->Tabs<span>选项卡</span>
                 </a></li><li>
                 <!---->
                 <a href="/kpc/components/transfer/">
@@ -141,12 +141,16 @@
                 <!---->
                 <a href="/kpc/components/editable/">
                     <!---->Editable<span>可编辑文本</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/upload/">
+                    <!---->Upload<span>上传</span>
                 </a></li></ul></div><div class="aside-border transition"></div></div></aside><article><div class="article-head"><div class="title">分页</div><div class="edit-link">
                     如果你发现文档有问题，请帮忙在
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/components/pagination/index.md">github</a>
                     上修正该文档
                 </div></div><div class="contents"><div><h1>示例</h1>
-        <div class="example index-30"><div class="example-opera"><div><div class="k-pagination"><div class="k-btns" style=""><button class="k-btn k-btn-icon k-disabled" tabindex="-1" type="button">
+        <div class="example index-22"><div class="example-opera"><div><div class="k-pagination"><div class="k-btns" style=""><button class="k-btn k-btn-icon k-disabled" tabindex="-1" type="button">
     <i class="k-icon ion-ios-arrow-left"></i>
     <input type="radio" tabindex="-1" /></button><button class="k-btn k-btn-icon k-active" tabindex="0" type="button">
     <span>1</span>
@@ -200,7 +204,7 @@
     <span>10</span>
     <input type="radio" tabindex="-1" /></button><button class="k-btn k-btn-icon" tabindex="0" type="button">
     <i class="k-icon ion-ios-arrow-right"></i>
-    <input type="radio" tabindex="-1" /></button></div><div class="k-limits"><div class="k-select k-has-value" style="" tabindex="0"><div class="k-wrapper" tabindex="-1" _hasSaved><input type="hidden" value="20" /><span class="k-value c-ellipsis">20 条 / 页</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="k-total">共 200 条</div></div></div></div><div class="example-desc"><div class="title">基本用法</div><div class="desc"><p><code>Pagination</code>的基本用法，通过<code>total</code>指定数据总条数，<code>limit</code>指定每页数据条数，<code>limits</code>数组定义可供选择的条数</p>
+    <input type="radio" tabindex="-1" /></button></div><div class="k-limits"><div class="k-select k-has-value" style="" tabindex="0"><div class="k-wrapper" tabindex="-1" _hasSaved><input type="hidden" value="20" /><span class="k-value c-ellipsis">20 条 / 页</span><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div><div class="k-total">共 200 条</div></div></div></div><div class="example-desc"><div class="title">基本用法</div><div class="desc"><p><code>Pagination</code>的基本用法，通过<code>total</code>指定数据总条数，<code>limit</code>指定每页数据条数，<code>limits</code>数组定义可供选择的条数。可以通过<code>change</code>事件来监听组件<code>current</code>和<code>limit</code>的变化，组件会将<code>current</code>和<code>limit</code>以对象的方式传给事件回调函数。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
@@ -209,7 +213,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-36"><div class="example-opera"><div><div class="k-pagination k-large"><div class="k-btns" style=""><button class="k-btn k-btn-icon k-large k-disabled" tabindex="-1" type="button">
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-62"><div class="example-opera"><div><div class="k-pagination k-large"><div class="k-btns" style=""><button class="k-btn k-btn-icon k-large k-disabled" tabindex="-1" type="button">
     <i class="k-icon ion-ios-arrow-left"></i>
     <input type="radio" tabindex="-1" /></button><button class="k-btn k-btn-icon k-large k-active" tabindex="0" type="button">
     <span>1</span>
@@ -290,7 +294,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-67"><div class="example-opera"><div><div class="k-pagination k-large k-no-border"><div class="k-btns" style=""><button class="k-btn k-none k-btn-icon k-large k-disabled" tabindex="-1" type="button">
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-68"><div class="example-opera"><div><div class="k-pagination k-large k-no-border"><div class="k-btns" style=""><button class="k-btn k-none k-btn-icon k-large k-disabled" tabindex="-1" type="button">
     <i class="k-icon ion-ios-arrow-left"></i>
     <input type="radio" tabindex="-1" /></button><button class="k-btn k-none k-btn-icon k-large k-active" tabindex="0" type="button">
     <span>1</span>
@@ -371,7 +375,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-76"><div class="example-opera"><div><div class="k-pagination"><div class="k-btns" style=""><button class="k-btn k-btn-icon k-disabled" tabindex="-1" type="button">
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-75"><div class="example-opera"><div><div class="k-pagination"><div class="k-btns" style=""><button class="k-btn k-btn-icon k-disabled" tabindex="-1" type="button">
     <i class="k-icon ion-ios-arrow-left"></i>
     <input type="radio" tabindex="-1" /></button><button class="k-btn k-btn-icon k-active" tabindex="0" type="button">
     <span>1</span>
@@ -429,7 +433,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-98"><div class="example-opera"><div><div class="k-pagination"><div class="k-btns" style=""><button class="k-btn k-btn-icon k-disabled" tabindex="-1" type="button">
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-104"><div class="example-opera"><div><div class="k-pagination"><div class="k-btns" style=""><button class="k-btn k-btn-icon k-disabled" tabindex="-1" type="button">
     <i class="k-icon ion-ios-arrow-left"></i>
     <input type="radio" tabindex="-1" /></button><button class="k-btn k-btn-icon k-active" tabindex="0" type="button">
     <span>1</span>
@@ -460,7 +464,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-120"><div class="example-opera"><div><div class="k-pagination"><div class="k-btns" style=""><button class="k-btn k-btn-icon k-disabled" tabindex="-1" type="button">
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-129"><div class="example-opera"><div><div class="k-pagination"><div class="k-btns" style=""><button class="k-btn k-btn-icon k-disabled" tabindex="-1" type="button">
     <i class="k-icon ion-ios-arrow-left"></i>
     <input type="radio" tabindex="-1" /></button><button class="k-btn k-btn-icon k-active" tabindex="0" type="button">
     <span>1</span>
@@ -552,7 +556,7 @@
 </tr>
 </tbody>
                     </table>
-                </div><h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1><h2 id='header-Pagination'>Pagination</h2><div class="k-table-wrapper k-border">
+                </div><h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1><div class="k-table-wrapper k-border">
                     <table class="k-table">
                         <thead><tr>
 <th>方法名</th>
@@ -578,6 +582,21 @@
 <td>下一页</td>
 <td>-</td>
 <td><code>undefined</code></td>
+</tr>
+</tbody>
+                    </table>
+                </div><h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1><div class="k-table-wrapper k-border">
+                    <table class="k-table">
+                        <thead><tr>
+<th>事件名</th>
+<th>说明</th>
+<th>参数</th>
+</tr>
+</thead>
+                        <tbody><tr>
+<td>change</td>
+<td><code>current</code>和<code>limit</code>变化时触发，同时变化不会重复触发</td>
+<td><code>{current, limit}</code></td>
 </tr>
 </tbody>
                     </table>

@@ -107,12 +107,12 @@
                     <!---->Steps<span>步骤条</span>
                 </a></li><li>
                 <!---->
-                <a href="/kpc/components/switch/">
-                    <!---->Switch<span>开关</span>
-                </a></li><li>
-                <!---->
                 <a href="/kpc/components/breadcrumb/">
                     <!---->Breadcrumb<span>面包屑</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/switch/">
+                    <!---->Switch<span>开关</span>
                 </a></li><li>
                 <!---->
                 <a href="/kpc/components/pagination/">
@@ -127,12 +127,12 @@
                     <!---->Table<span>表格</span>
                 </a></li><li>
                 <!---->
-                <a href="/kpc/components/tabs/">
-                    <!---->Tabs<span>选项卡</span>
-                </a></li><li>
-                <!---->
                 <a href="/kpc/components/collapse/">
                     <!---->Collapse<span>折叠面板</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/tabs/">
+                    <!---->Tabs<span>选项卡</span>
                 </a></li><li>
                 <!---->
                 <a href="/kpc/components/transfer/">
@@ -141,12 +141,16 @@
                 <!---->
                 <a href="/kpc/components/editable/">
                     <!---->Editable<span>可编辑文本</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/upload/">
+                    <!---->Upload<span>上传</span>
                 </a></li></ul></div><div class="aside-border transition"></div></div></aside><article><div class="article-head"><div class="title">表单</div><div class="edit-link">
                     如果你发现文档有问题，请帮忙在
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/components/form/index.md">github</a>
                     上修正该文档
                 </div></div><div class="contents"><div><h1>示例</h1>
-        <div class="example index-2"><div class="example-opera"><form class="k-form" style="" noValidate><div class="k-form-item" style=""><label class="k-label">Input</label><div class="k-content"><div class="k-input" style="">
+        <div class="example index-30"><div class="example-opera"><form class="k-form" style="" noValidate><div class="k-form-item" style=""><label class="k-label">Input</label><div class="k-content"><div class="k-input" style="">
     <!---->
     <div class="k-wrapper"><input class="k-inner" type="text" /></div>
     <!---->
@@ -202,6 +206,9 @@
 <li>给<code>FormItem</code>添加<code>messages</code>属性，指定验证失败时展示的错误内容。默认内容如上所示</li>
 <li>给<code>FormItem</code>添加<code>classNames</code>属性，指定验证失败时错误元素需要额外添加的className，默认不添加</li>
 </ol>
+<blockquote>
+<p>验证的字段名必须是当前上下文对象上的直接属性名，在循环中我们必须通过索引来拼接取值路径字符串，例如：&quot;users.0.phone&quot;</p>
+</blockquote>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
@@ -210,7 +217,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-64"><div class="example-opera"><form class="k-form" style="" noValidate><div class="k-form-item" style=""><label class="k-label">描述</label><div class="k-content"><div class="k-form-item" style=""><div class="k-content"><div class="k-input" style="">
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-54"><div class="example-opera"><form class="k-form" style="" noValidate><div class="k-form-item" style=""><label class="k-label">描述</label><div class="k-content"><div class="k-form-item" style=""><div class="k-content"><div class="k-input" style="">
     <!---->
     <div class="k-wrapper"><input class="k-inner" type="text" value="" /></div>
     <!---->
@@ -225,6 +232,9 @@
 <li>通过<code>FormItem</code>的<code>rules</code>属性，定义局部规则，该规则只对该<code>FormItem</code>有效</li>
 </ol>
 <p>本例中，我们添加一条全局规则<code>letter</code>用来验证只能输入字母，同时添加一条局部规则<code>unique</code>来验证所有输入必须不同</p>
+<blockquote>
+<p>验证方法中<code>param</code>，即为使用该规则时传入的参数，例如本例中的<code>letter: true</code>，<code>true</code>会作为<code>param</code>参数传给验证方法。当然我们还可以指定任意值，只要不是<code>false</code>就行，因为<code>false</code>代表不验证</p>
+</blockquote>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
@@ -233,7 +243,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-104"><div class="example-opera"><form class="k-form" style="" noValidate><div class="k-form-item" style=""><label class="k-label"><i style="color: red">*</i> 姓名</label><div class="k-content"><div class="k-input" style="">
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-96"><div class="example-opera"><form class="k-form" style="" noValidate><div class="k-form-item" style=""><label class="k-label"><i style="color: red">*</i> 姓名</label><div class="k-content"><div class="k-input" style="">
     <!---->
     <div class="k-wrapper"><input class="k-inner" type="text" /></div>
     <!---->
@@ -248,7 +258,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-95"><div class="example-opera"><form class="k-form" style="" noValidate><div class="k-form-item" style=""><label class="k-label">姓名</label><div class="k-content"><div class="k-row k-gutter" style="margin-left: -8px; margin-right: -8px;"><div class="k-col k-12" style="padding-left: 8px; padding-right: 8px;"><div><div class="k-form-item" style=""><div class="k-content"><div class="k-input" style="">
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-97"><div class="example-opera"><form class="k-form" style="" noValidate><div class="k-form-item" style=""><label class="k-label">姓名</label><div class="k-content"><div class="k-row k-gutter" style="margin-left: -8px; margin-right: -8px;"><div class="k-col k-12" style="padding-left: 8px; padding-right: 8px;"><div><div class="k-form-item" style=""><div class="k-content"><div class="k-input" style="">
     <!---->
     <div class="k-wrapper"><input class="k-inner" type="text" /></div>
     <!---->
@@ -397,7 +407,7 @@
                         <tbody><tr>
 <td>addMethod</td>
 <td>添加全局验证规则，这样在所有<code>FormItem</code>中如果需要使用该规则，只需要在<code>rules</code>中写上该规则名即可</td>
-<td>1. <code>name</code> 指定规则名称，不能重复 <br /> 2. <code>method</code> 指定该规则的验证函数，该函数返回<code>true</code>或<code>false</code>来标识验证成功或失败，该函数将传入3个参数：1. 当前验证的值，2. 当前验证的<code>FormItem</code>实例，3. 当前规则的参数 <br /> 3. <code>message</code> 验证失败时的错误提示文案，该值可以为字符串或者函数，如果为函数，传入参数同<code>method</code>，用于个性化文案提示 <br /> 4. <code>className</code> 验证失败时添加的类名</td>
+<td>1. <code>name</code> 指定规则名称，不能重复 <br /> 2. <code>method</code> 指定该规则的验证函数，该函数返回<code>true</code>或<code>false</code>来标识验证成功或失败，如果返回字符串，则直接当做错误文案展示，该函数将传入3个参数：1. 当前验证的值，2. 当前验证的<code>FormItem</code>实例，3. 当前规则的参数，即使用该规则时指定的值 <br /> 3. <code>message</code> 验证失败时的错误提示文案，该值可以为字符串或者函数，如果为函数，传入参数同<code>method</code>，用于个性化文案提示 <br /> 4. <code>className</code> 验证失败时添加的类名</td>
 <td><code>undefined</code></td>
 </tr>
 </tbody>

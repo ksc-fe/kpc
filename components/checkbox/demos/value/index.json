@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>Checkbox</code>默认选中的值为<code>true</code>，非选中的值为<code>false</code>，通过<code>trueValue</code>和<code>falseValue</code>属性，我们可以指定选中和非选中的值。</p>\n<blockquote>\n<p>当指定值为对象时，不要在模板中直接定义对象字面量（如：trueValue={{ {a: 1} }}），因为在模板中创建的对象每次执行模板都会生成一份新数据，使全等判断(<code>===</code>)失效。此时应该在js中定义该对象，然后模板中引用它。</p>\n</blockquote>\n",
-    "index": 51,
+    "index": 44,
     "highlighted": [
         {
             "language": "vdt",

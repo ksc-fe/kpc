@@ -1,0 +1,23 @@
+{
+    "setting": {
+        "title": "拖拽上传",
+        "order": 1
+    },
+    "catalogs": [],
+    "contents": "<p>通过指定<code>type</code>为<code>drag</code>可以展示拖拽上传组件</p>\n<blockquote>\n<p>如果你没有给组件指定子元素，则组件会默认根据<code>type</code>展示不同的内容，否则会展示你指定的元素</p>\n</blockquote>\n",
+    "index": 45,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Upload <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/upload'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Upload</span> <span class=\"hljs-attr\">multiple</span>\n    <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"drag\"</span>\n    <span class=\"hljs-attr\">beforeRemove</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">self._beforeRemove</span> }}\n    <span class=\"hljs-attr\">action</span>=<span class=\"hljs-string\">\"//jsonplaceholder.typicode.com/posts/\"</span>\n/&gt;</span></span></code></pre>"
+        },
+        {
+            "language": "styl",
+            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-upload</span>\n    <span class=\"hljs-attribute\">width</span> <span class=\"hljs-number\">400px</span></code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">import</span> Dialog <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/dialog'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n\n    _beforeRemove(file) {\n        <span class=\"hljs-keyword\">return</span> <span class=\"hljs-keyword\">new</span> <span class=\"hljs-built_in\">Promise</span>(<span class=\"hljs-function\">(<span class=\"hljs-params\">resolve, reject</span>) =&gt;</span> {\n            <span class=\"hljs-keyword\">const</span> dialog = <span class=\"hljs-keyword\">new</span> Dialog({\n                <span class=\"hljs-attr\">size</span>: <span class=\"hljs-string\">'mini'</span>,\n                <span class=\"hljs-attr\">title</span>: <span class=\"hljs-string\">'确认删除'</span>,\n                <span class=\"hljs-attr\">children</span>: <span class=\"hljs-string\">`确认删除文件：<span class=\"hljs-subst\">${file.name}</span>`</span>, \n            });\n            dialog.show();\n            dialog.on(<span class=\"hljs-string\">'ok'</span>, resolve);\n            dialog.on(<span class=\"hljs-string\">'cancel'</span>, reject);\n        });\n    }\n}</code></pre>"
+        }
+    ]
+}

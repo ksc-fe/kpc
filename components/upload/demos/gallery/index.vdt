@@ -1,0 +1,9 @@
+import Upload from 'kpc/components/upload';
+
+<Upload multiple
+    action="//jsonplaceholder.typicode.com/posts/"
+    type="gallery"
+    limit={{ 3 }}
+    accept=".jpg, .png"
+    ev-error={{ self._onError }}
+/>

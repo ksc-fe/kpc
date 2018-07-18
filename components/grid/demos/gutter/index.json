@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>给<code>Row</code>添加<code>gutter</code>，可以定义<code>Col</code>之间的间距，单位为<code>px</code></p>\n",
-    "index": 62,
+    "index": 57,
     "highlighted": [
         {
             "language": "vdt",

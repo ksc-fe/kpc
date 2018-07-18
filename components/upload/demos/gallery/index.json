@@ -1,0 +1,19 @@
+{
+    "setting": {
+        "title": "照片墙",
+        "order": 2
+    },
+    "catalogs": [],
+    "contents": "<p>指定<code>type</code>为<code>gallery</code>可以展示照片墙风格的上传组件；我们还可以通过<code>limit</code>限制最大上传数量，当超过该数量时，组件会抛出<code>error</code>事件；通过<code>accept</code>可以指定上传的文件类型：<a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-accept\">accept</a></p>\n",
+    "index": 90,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Upload <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/upload'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Upload</span> <span class=\"hljs-attr\">multiple</span>\n    <span class=\"hljs-attr\">action</span>=<span class=\"hljs-string\">\"//jsonplaceholder.typicode.com/posts/\"</span>\n    <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"gallery\"</span>\n    <span class=\"hljs-attr\">limit</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">3</span> }}\n    <span class=\"hljs-attr\">accept</span>=<span class=\"hljs-string\">\".jpg, .png\"</span>\n    <span class=\"hljs-attr\">ev-error</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">self._onError</span> }}\n/&gt;</span></span></code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">import</span> Dialog <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/dialog'</span>;\n<span class=\"hljs-keyword\">import</span> Message <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/message'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n\n    _onError(err) {\n        Message.error(err.message);\n    }\n}</code></pre>"
+        }
+    ]
+}

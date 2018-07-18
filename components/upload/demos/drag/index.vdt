@@ -1,0 +1,7 @@
+import Upload from 'kpc/components/upload';
+
+<Upload multiple
+    type="drag"
+    beforeRemove={{ self._beforeRemove }}
+    action="//jsonplaceholder.typicode.com/posts/"
+/>

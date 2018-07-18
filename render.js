@@ -39,7 +39,7 @@ module.exports =
 /******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
 /******/ 		// "0" is the signal for "already loaded"
 /******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("./chunk/" + {"0":"2d55af70df298c50f186","1":"8f02af5f609e2432e1ad","2":"3014b4177044c2ff294c","3":"d0df51647f59ece20cb5"}[chunkId] + ".js");
+/******/ 			var chunk = require("./chunk/" + {"0":"43ac7eeb8f4a9cec2a26","1":"414ca919332ad568c616","2":"313158f9c938da894747","3":"0455fb9bc27d97206ff6"}[chunkId] + ".js");
 /******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				modules[moduleId] = moreModules[moduleId];
@@ -266,7 +266,7 @@ exports.App = App;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1531287436900
+      // 1531908708499
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -341,6 +341,7 @@ module.exports = exports['default'];
 
 
 exports.__esModule = true;
+exports.expandAnimationCallbacks = exports.isFunction = exports.isObject = exports.isNullOrUndefined = exports.get = undefined;
 
 var _typeof2 = __webpack_require__("babel-runtime/helpers/typeof");
 
@@ -379,7 +380,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var utils = _intact2.default.utils;
 var get = utils.get,
     isNullOrUndefined = utils.isNullOrUndefined,
-    isObject = utils.isObject;
+    isObject = utils.isObject,
+    isFunction = utils.isFunction;
+exports.get = get;
+exports.isNullOrUndefined = isNullOrUndefined;
+exports.isObject = isObject;
+exports.isFunction = isFunction;
 function addStyle(style, extra) {
     if (!style) return extra;
     if (!extra) return style;
@@ -565,6 +571,17 @@ function mapChildren(children, callback) {
 
     return vNodes;
 }
+
+var setHeight = function setHeight(el) {
+    return el.style.height = el.children[0].offsetHeight + 'px';
+};
+var expandAnimationCallbacks = exports.expandAnimationCallbacks = {
+    'ev-a:leaveStart': setHeight,
+    'ev-a:enterStart': setHeight,
+    'ev-a:enterEnd': function evAEnterEnd(el) {
+        return el.style.height = '';
+    }
+};
 
 /***/ }),
 
@@ -1053,12 +1070,19 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1531287439529
+      // 1531908711184
       var cssReload = require("!../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
     }
   
+
+/***/ }),
+
+/***/ "babel-runtime/core-js/array/from":
+/***/ (function(module, exports) {
+
+module.exports = require("babel-runtime/core-js/array/from");
 
 /***/ }),
 

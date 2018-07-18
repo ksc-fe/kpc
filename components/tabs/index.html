@@ -107,12 +107,12 @@
                     <!---->Steps<span>步骤条</span>
                 </a></li><li>
                 <!---->
-                <a href="/kpc/components/switch/">
-                    <!---->Switch<span>开关</span>
-                </a></li><li>
-                <!---->
                 <a href="/kpc/components/breadcrumb/">
                     <!---->Breadcrumb<span>面包屑</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/switch/">
+                    <!---->Switch<span>开关</span>
                 </a></li><li>
                 <!---->
                 <a href="/kpc/components/pagination/">
@@ -125,14 +125,14 @@
                 <!---->
                 <a href="/kpc/components/table/">
                     <!---->Table<span>表格</span>
-                </a></li><li class="active">
-                <!---->
-                <a href="/kpc/components/tabs/">
-                    <!---->Tabs<span>选项卡</span>
                 </a></li><li>
                 <!---->
                 <a href="/kpc/components/collapse/">
                     <!---->Collapse<span>折叠面板</span>
+                </a></li><li class="active">
+                <!---->
+                <a href="/kpc/components/tabs/">
+                    <!---->Tabs<span>选项卡</span>
                 </a></li><li>
                 <!---->
                 <a href="/kpc/components/transfer/">
@@ -141,12 +141,16 @@
                 <!---->
                 <a href="/kpc/components/editable/">
                     <!---->Editable<span>可编辑文本</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/upload/">
+                    <!---->Upload<span>上传</span>
                 </a></li></ul></div><div class="aside-border transition"></div></div></aside><article><div class="article-head"><div class="title">选项卡</div><div class="edit-link">
                     如果你发现文档有问题，请帮忙在
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/components/tabs/index.md">github</a>
                     上修正该文档
                 </div></div><div class="contents"><div><h1>示例</h1>
-        <div class="example index-13"><div class="example-opera"><div><div class="k-tabs" style="">
+        <div class="example index-27"><div class="example-opera"><div><div class="k-tabs" style="">
     <a class="k-tab">入站规则</a><a class="k-tab k-active">出站规则</a><a class="k-tab">关联云主机</a>
     <div class="k-active-bar" style=""></div></div><div class="content"><div>出站规则</div></div></div></div><div class="example-desc"><div class="title">基本用法</div><div class="desc"><p><code>Tab</code>的基本用法。<code>Tabs</code>嵌套<code>Tab</code>使用，使用<code>v-model</code>进行双向数据绑定。</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
@@ -157,7 +161,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-43"><div class="example-opera"><div><div class="k-tabs" style=""><a class="k-tab">入站规则</a><a class="k-tab k-active">出站规则</a><a class="k-tab">关联云主机</a>
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-67"><div class="example-opera"><div><div class="k-tabs" style=""><a class="k-tab">入站规则</a><a class="k-tab k-active">出站规则</a><a class="k-tab">关联云主机</a>
     <!---->
     <div class="k-active-bar" style=""></div></div><div class="content"><div>出站规则</div></div></div></div><div class="example-desc"><div class="title">data传值形式</div><div class="desc"><p>还可以使用<code>data</code>，定义<code>Tab</code>内容</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
@@ -168,7 +172,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-77"><div class="example-opera"><div><div class="k-tabs" style="">
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-80"><div class="example-opera"><div><div class="k-tabs" style="">
     <a class="k-tab">入站规则</a><a class="k-tab k-disabled">出站规则</a><a class="k-tab">关联云主机</a>
     <div class="k-active-bar" style=""></div></div><div class="content"><div>关联云主机</div></div></div></div><div class="example-desc"><div class="title">禁用某一项</div><div class="desc"><p>给<code>Tab</code>添加<code>disabled</code>属性，可以禁用该项选择</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
@@ -179,7 +183,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-94"><div class="example-opera"><div><div class="k-tabs k-large" style="">
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-115"><div class="example-opera"><div><div class="k-tabs k-large" style="">
     <a class="k-tab k-active">large1</a><a class="k-tab">large2</a>
     <div class="k-active-bar" style=""></div></div><div class="k-tabs" style="">
     <a class="k-tab k-active">default1</a><a class="k-tab">defalut2</a>
@@ -196,7 +200,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-125"><div class="example-opera"><div><div class="k-tabs k-card" style="">
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-141"><div class="example-opera"><div><div class="k-tabs k-card" style="">
     <a class="k-tab k-active">入站规则</a><a class="k-tab">出站规则</a><a class="k-tab">关联云主机</a>
     </div><div class="k-tabs k-border-card" style="">
     <a class="k-tab k-active">入站规则</a><a class="k-tab">出站规则</a><a class="k-tab">关联云主机</a>
@@ -209,7 +213,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-144"><div class="example-opera"><div><div class="k-tabs k-vertical" style="">
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-146"><div class="example-opera"><div><div class="k-tabs k-vertical" style="">
     <a class="k-tab k-active">入站规则</a><a class="k-tab">出站规则</a><a class="k-tab">关联云主机</a>
     <div class="k-active-bar" style=""></div></div><div class="k-tabs k-vertical k-card" style="">
     <a class="k-tab k-active">入站规则</a><a class="k-tab">出站规则</a><a class="k-tab">关联云主机</a>

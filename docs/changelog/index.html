@@ -107,12 +107,12 @@
                     <!---->Steps<span>步骤条</span>
                 </a></li><li>
                 <!---->
-                <a href="/kpc/components/switch/">
-                    <!---->Switch<span>开关</span>
-                </a></li><li>
-                <!---->
                 <a href="/kpc/components/breadcrumb/">
                     <!---->Breadcrumb<span>面包屑</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/switch/">
+                    <!---->Switch<span>开关</span>
                 </a></li><li>
                 <!---->
                 <a href="/kpc/components/pagination/">
@@ -127,12 +127,12 @@
                     <!---->Table<span>表格</span>
                 </a></li><li>
                 <!---->
-                <a href="/kpc/components/tabs/">
-                    <!---->Tabs<span>选项卡</span>
-                </a></li><li>
-                <!---->
                 <a href="/kpc/components/collapse/">
                     <!---->Collapse<span>折叠面板</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/tabs/">
+                    <!---->Tabs<span>选项卡</span>
                 </a></li><li>
                 <!---->
                 <a href="/kpc/components/transfer/">
@@ -141,12 +141,31 @@
                 <!---->
                 <a href="/kpc/components/editable/">
                     <!---->Editable<span>可编辑文本</span>
+                </a></li><li>
+                <!---->
+                <a href="/kpc/components/upload/">
+                    <!---->Upload<span>上传</span>
                 </a></li></ul></div><div class="aside-border transition"></div></div></aside><article><div class="article-head"><div class="title">更新日志</div><div class="edit-link">
                     如果你发现文档有问题，请帮忙在
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/docs/changelog.md">github</a>
                     上修正该文档
                 </div></div><div class="contents"><div class="api">
-        <div><h2 id='header-v0.3.12'>v0.3.12</h2><ol>
+        <div><h2 id='header-v0.4.0'>v0.4.0</h2><ol>
+<li><code>Add</code> 新增级联选择组件<code>Cascader</code></li>
+<li><code>Add</code> 新增标签组件<code>Tag</code></li>
+<li><code>Add</code> 新增徽标组件<code>Badge</code></li>
+<li><code>Add</code> 新增折叠面板组件<code>Collapse</code></li>
+<li><code>Add</code> <code>Pagination</code>支持无边框样式，<a href="https://github.com/ksc-fe/kpc/issues/33">#33</a></li>
+<li><code>Add</code> 嵌套<code>Dropdown</code>支持子菜单相对父菜单定位</li>
+<li><code>Change</code> 更新ksyun主题<code>Message</code>样式</li>
+<li><code>Change</code> 优化<code>Dropdown</code>键盘操作</li>
+<li><code>Change</code> 更新ksyun主题<code>Progress</code>样式</li>
+<li><code>Fix</code> 修复<code>Datepicker</code>在点击年份等区域导致input失焦，然后<code>FormItem</code>立即验证的问题，<a href="https://github.com/ksc-fe/kpc/issues/46">#46</a></li>
+<li><code>Fix</code> 修复<code>Tooltip</code> <code>hover</code>触发方式下，有时不能消失的问题，<a href="https://github.com/ksc-fe/kpc/issues/52">#52</a></li>
+<li><code>Fix</code> 修复<code>Pagination</code>当传入的<code>limit</code>不是可选项时，页码错误的问题， <a href="https://github.com/ksc-fe/kpc/issues/48">#48</a></li>
+<li><code>Fix</code> 修复<code>Select</code>键盘选中某项然后搜索导致该项不存在，此时按回车会报错的问题，<a href="https://github.com/ksc-fe/kpc/issues/50">#50</a></li>
+</ol>
+<h2 id='header-v0.3.12'>v0.3.12</h2><ol>
 <li><code>Add</code> <code>TableColumn</code>支持<code>title</code>扩展点，<a href="https://github.com/ksc-fe/kpc/issues/19">#19</a></li>
 <li><code>Add</code> <code>Transfer</code>支持全选和清空操作，<a href="https://github.com/ksc-fe/kpc/issues/18">#18</a></li>
 <li><code>Fix</code> 修复<code>Editable</code>在invalid的状态下，父组件更新也会触发<code>$changed:value</code>事件的问题，<a href="https://github.com/ksc-fe/kpc/issues/51">#51</a></li>
