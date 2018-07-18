@@ -82,9 +82,6 @@
             vertical-align middle
             &.k-error
                 border-color $danger-color
-            &:hover
-                .k-close
-                    display inline-block
         img
             display inline-block
             width 100%
@@ -93,8 +90,16 @@
             position absolute
             top -8px
             right -8px
+            display inline-block
             .k-icon:before
                 font-size 18px
+        .k-icons
+            opacity 0
+            transition opacity $transition
+        .k-picture:hover
+            .k-icons
+                opacity 1
+
     .k-picture-card
         display inline-block
         width 100px
@@ -118,11 +123,22 @@
         height 100%
         left 0
         top 0
-        background rgba(0, 0, 0, .35)
         color #fff
+        background rgba(0, 0, 0, .35)
         .k-progress
             position absolute
             width 100%
-            padding 0 8px
             top 50%
+            padding 0 8px
             margin-top -8px
+    .k-zoom
+        display inline-block
+        position relative
+        top 50%
+        transform translateY(-50%)
+        &:before
+            font-size 24px
+
+.k-upload-dialog
+    img
+        width 100%

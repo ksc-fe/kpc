@@ -1,10 +1,11 @@
 import Button from '../button';
 import Progress from '../progress';
+import Dialog from '../dialog';
 import {expandAnimationCallbacks} from '../utils';
 
 const {
-    className, style, accept, multiple,
-    files, children, type, _dragOver, listType
+    className, style, accept, multiple, limit,
+    files, children, type, _dragOver, listType,
 } = self.get();
 
 const classNameObj = {
@@ -43,6 +44,14 @@ const handle = (
     </div>
 );
 
+const CloseBtn = (props) => (
+    <Button type="none" icon size="mini" class="k-close"
+        ev-click={{ self._removeFile.bind(self, props.value, props.index) }}
+    >
+        <i class={{ "k-icon " + props.icon }}></i>
+    </Button>
+);
+
 <div class={{ classNameObj }} style={{ style }}>
     <input type="file" 
         accept={{ accept }}
@@ -51,11 +60,8 @@ const handle = (
         ev-change={{ self._onInputChange}}
         multiple={{ multiple }}
     />
-    <Animate class="k-pictures" 
-        key="pictures" 
-        a:disabled
-        v-if={{ listType === 'gallery' }}
-    >
+
+    <Animate class="k-pictures" key="pictures" a:disabled v-if={{ listType === 'gallery' }}>
         <Animate 
             class={{ {
                 "k-picture k-picture-card": true, 
@@ -71,19 +77,19 @@ const handle = (
             >
                 <Progress percent={{ value.percent }} size="mini" />
             </Animate>
-            <Button type="none" icon size="mini" class="k-close"
-                ev-click={{ self._removeFile.bind(self, value, key) }}
-            >
-                <i class="k-icon ion-ios-close"></i>
-            </Button>
+            <div class="k-overlap k-icons" v-else ev-click={{ self._showImage.bind(self, value) }}>
+                <i class="k-zoom ion-ios-eye-outline"></i>
+                <CloseBtn value={{ value }} index={{ key }} icon="ion-ios-close" />
+            </div>
         </Animate>
-        <Animate key="handle"
-            a:transition="dropdown"
-            class="c-middle"
+        <Animate key="handle" a:transition="dropdown" class="c-middle"
+            v-if={{ !limit || files.length < limit }}
         >{{ handle }}</Animate>
     </Animate>
     <b:_handle v-else>{{ handle }}</b:_handle>
+
     <div class="k-tip" v-if={{ blocks.tip }}><b:tip /></div>
+
     <div class="k-files" v-if={{ listType !== 'gallery' }}>
         <Animate v-for={{ files }} 
             class={{ {"k-file": true, 'k-error': value.status === 'error'} }}
@@ -96,11 +102,7 @@ const handle = (
                     <i class="k-file-icon ion-document"></i>
                     {{ value.name }}
                     <div class="k-icons">
-                        <Button type="none" icon size="mini" class="k-close"
-                            ev-click={{ self._removeFile.bind(self, value, key) }}
-                        >
-                            <i class="k-icon ion-ios-close-empty"></i>
-                        </Button>
+                        <CloseBtn value={{ value }} index={{ key }} icon="ion-ios-close-empty" />
                         <i class="k-status-icon ion-ios-checkmark-outline" v-if={{ value.status === 'done' }}></i>
                         <i class="k-status-icon ion-ios-close-outline" v-if={{ value.status === 'error' }}></i>
                     </div>
@@ -115,4 +117,10 @@ const handle = (
             </div>
         </Animate>
     </div>
+
+    <Dialog title="查看图片" key="dialog" v-model="_showImage" class="k-upload-dialog">
+        <a href={{ self.get('_showedFile.url') }} target="_blank">
+            <img src={{ self.get('_showedFile.url') }} />
+        </a>
+    </Dialog>
 </div>

@@ -9,7 +9,7 @@ import Upload from 'kpc/components/upload';
 
 <Upload multiple
     type="drag"
-    onRemove={{ self._onRemove }}
+    beforeRemove={{ self._beforeRemove }}
     action="//jsonplaceholder.typicode.com/posts/"
 />
 ```
@@ -26,7 +26,7 @@ export default class extends Intact {
     @Intact.template()
     static template = template;
 
-    _onRemove(file) {
+    _beforeRemove(file) {
         return new Promise((resolve, reject) => {
             const dialog = new Dialog({
                 size: 'mini',

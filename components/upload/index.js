@@ -11,6 +11,8 @@ export default class Upload extends Intact {
     @Intact.template()
     static template = template;
 
+    static request = request;
+
     defaults() {
         return {
             accept: undefined,
@@ -27,19 +29,41 @@ export default class Upload extends Intact {
             withCredentials: false,
             limit: undefined,
             maxSize: undefined,
+            defaultFiles: undefined,
 
-            onProgress: undefined,
-            onError: undefined,
-            onSuccess: undefined,
-            onRemove: () => true,
-            onUpload: undefined,
+            beforeUpdate: () => true,
+            beforeRemove: () => true,
 
             _dragOver: false,
+            _showImage: false,
         };
     }
 
     _init() {
         this._counter = 0;
+
+        const {files, defaultFiles} = this.get();
+        if (defaultFiles) {
+            defaultFiles.forEach(file => {
+                const obj = {
+                    status: 'done',
+                    name: file.name,
+                    percent: 100,
+                    uid: index++,
+                    raw: file,
+                    url: file.url,
+                };
+                files.push(obj);
+            });
+        }
+    }
+
+    submit() {
+        this.get('files').forEach(file => {
+            if (file.status === 'ready') {
+                this._upload(file);
+            }
+        });
     }
 
     _selectFile() {
@@ -58,17 +82,17 @@ export default class Upload extends Intact {
         const autoUpload = this.get('autoUpload');
         const files = this.get('files').slice(0);
         const _files = Array.from(fileList);
-        const {maxSize, limit, onError} = this.get();
+        const {maxSize, limit} = this.get();
 
         if (limit && (files.length + _files.length > limit)) {
             const error =  new Error(`超出文件数量最大限制：${limit}`);
-            return onError && onError.call(this, err, _files, files);
+            return this.trigger('error', error, _files, files);
         }
 
        _files.forEach(file => {
             if (maxSize && file.size > maxSize * 1024) {
                 const error = new Error(`"${file.name}"超出文件最大限制：${maxSize}kb`);
-                return onError && onError.call(this, error, file);
+                return this.trigger('error', error, file, files);
             }
             const obj = {
                 status: 'ready',
@@ -118,7 +142,12 @@ export default class Upload extends Intact {
         e.preventDefault();
     }
 
-    _upload(file) {
+    async _upload(file) {
+        const beforeUpdate = this.get('beforeUpdate');
+        let ret;
+        try { ret = await beforeUpdate.call(this, file, this.get('files')); } catch (e) {}
+        if (!ret) return;
+
         const data = this.get('data');
         const options = {
             action: this.get('action'),
@@ -139,43 +168,48 @@ export default class Upload extends Intact {
             withCredentials: this.get('withCredentials'),
         };
 
-        request(options);
+        file.request = request(options);
     }
 
     _onProgress(e, file) {
-        const onProgress = this.get('onProgress');
-
         file.status = 'uploading';
         file.percent = e.percent;
-        onProgress && onProgress.call(this, e, file);
+        this.trigger('progress', e, file, this.get('files'))
         this.update();
     }
 
     _onError(e, file) {
-        const onError = this.get('onError');
-
         file.status = 'error';
-        onError && onError.call(this, e, file);
+        this.trigger('error', e, file, this.get('files'))
         this.update();
     }
 
     _onSuccess(res, file) {
-        const onSuccess = this.get('onSuccess');
-
         file.status = 'done';
-        onSuccess && onSuccess.call(this, res, file);
+        this.trigger('success', res, file, this.get('files'))
         this.update();
     }
 
-    async _removeFile(file, index) {
-        const onRemove = this.get('onRemove');
+    async _removeFile(file, index, e) {
+        e.stopPropagation();
+        const beforeRemove = this.get('beforeRemove');
         const files = this.get('files').slice(0);
         let ret;
-        try { ret = await onRemove.call(this, file, files); } catch (e) {}
+        try { ret = await beforeRemove.call(this, file, files); } catch (e) {}
         if (ret) {
             files.splice(index, 1);
+            if (file.status === 'uploading') {
+                file.request.abort();
+            }
             this.set('files', files);
         }
+    }
+
+    _showImage(file) {
+        this.set({
+            '_showImage': true,
+            '_showedFile': file,
+        });
     }
 }
 
