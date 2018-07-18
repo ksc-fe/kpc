@@ -7480,13 +7480,13 @@ blockquote:before {
 }
 .k-tag {
   display: inline-block;
-  padding: 0.5rem 1.142857142857143rem;
+  padding: 0.642857142857143rem 1.428571428571429rem;
   border: 1px solid #cad0dd;
   border-radius: 0.142857142857143rem;
   position: relative;
 }
 .k-tag.k-closable {
-  padding-right: 2.142857142857143rem;
+  padding-right: 2.285714285714286rem;
 }
 .k-tag .k-close {
   position: absolute;
