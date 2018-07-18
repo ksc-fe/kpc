@@ -11,7 +11,7 @@ sidebar: doc
 | --- | --- | --- | --- |
 | accept | `input`的[accept](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-accept)属性，支持的文件的类型 | `String` | `undefined` |
 | multiple | `input`的`multiple`属性，是否支持多选 | `Boolean` | `false` |
-| type | 组件风格 | `"select"` &#124; `"drag"` | `"gallery"` | `"select"` |
+| type | 组件风格 | `"select"` &#124; `"drag"` &#124; `"gallery"` | `"select"` |
 | autoUpload | 是否选择文件后即自动上传 | `Boolean` | `true` |
 | disabled | 是否禁用上传 | `Boolean` | `false` |
 | action | 上传地址 | `String` | `""` |
