@@ -5761,6 +5761,7 @@ blockquote:before {
 }
 .k-collapse-item > .k-title .k-arrow {
   float: right;
+  height: 2.857142857142857rem;
   -webkit-transition: -webkit-transform 0.25s ease-in-out;
   transition: -webkit-transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out;
@@ -7636,6 +7637,7 @@ blockquote:before {
 }
 .k-upload .k-close .k-icon {
   line-height: 1.142857142857143rem;
+  position: relative;
 }
 .k-upload .k-close .k-icon:before {
   font-size: 1.714285714285714rem;
@@ -7724,6 +7726,10 @@ blockquote:before {
 .k-upload .k-pictures .k-picture.k-error {
   border-color: #db2828;
 }
+.k-upload .k-pictures .k-picture:hover .k-close {
+  opacity: 1;
+  pointer-events: all;
+}
 .k-upload .k-pictures img {
   display: inline-block;
   width: 100%;
@@ -7734,9 +7740,24 @@ blockquote:before {
   top: -0.571428571428571rem;
   right: -0.571428571428571rem;
   display: inline-block;
+  opacity: 0;
+  -webkit-transition: opacity 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out;
+  pointer-events: none;
 }
 .k-upload .k-pictures .k-close .k-icon:before {
   font-size: 1.285714285714286rem;
+}
+.k-upload .k-pictures .k-close:before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0.571428571428571rem;
+  height: 0.571428571428571rem;
+  top: 0.285714285714286rem;
+  left: 0.285714285714286rem;
+  border-radius: 50%;
+  background: #fff;
 }
 .k-upload .k-pictures .k-icons {
   opacity: 0;
