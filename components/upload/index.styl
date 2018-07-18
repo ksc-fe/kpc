@@ -15,6 +15,7 @@
         height @width
         .k-icon
             line-height $upload-file-status-icon-width
+            position relative
         .k-icon:before
             font-size $upload-close-font-size
     .k-files
@@ -89,6 +90,10 @@
             vertical-align middle
             &.k-error
                 border-color $upload-gallery-error-border-color 
+            &:hover
+                .k-close
+                    opacity 1
+                    pointer-events all
         img
             display inline-block
             width 100%
@@ -98,8 +103,21 @@
             top $upload-gallery-close-icon-top 
             right $upload-gallery-close-icon-right 
             display inline-block
+            opacity 0
+            transition opacity $transition
+            pointer-events none
             .k-icon:before
                 font-size $upload-gallery-close-icon-font-size
+            &:before
+                content ''
+                position absolute
+                display block
+                width ($upload-file-status-icon-width / 2)
+                height @width
+                top (@width / 2)
+                left @top
+                border-radius 50%
+                background #fff
         .k-icons
             opacity 0
             transition opacity $transition

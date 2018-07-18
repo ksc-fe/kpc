@@ -79,8 +79,8 @@ const CloseBtn = (props) => (
             </Animate>
             <div class="k-overlap k-icons" v-else ev-click={{ self._showImage.bind(self, value) }}>
                 <i class="k-zoom ion-ios-eye-outline"></i>
-                <CloseBtn value={{ value }} index={{ key }} icon="ion-ios-close" />
             </div>
+            <CloseBtn value={{ value }} index={{ key }} icon="ion-ios-close" />
         </Animate>
         <Animate key="handle" a:transition="dropdown" class="c-middle"
             v-if={{ !limit || files.length < limit }}
