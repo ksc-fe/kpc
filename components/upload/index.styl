@@ -1,51 +1,51 @@
 @require('./variables.styl')
 
 .k-upload
-    font-size 12px
+    font-size $upload-font-size
     .k-handle
     .k-tip
         display inline-block
         vertical-align middle
     .k-tip
-        margin-left 16px
-        color $light-black
+        margin-left $upload-tip-margin-left
+        color $upload-tip-color
     .k-close
         display none
         .k-icon:before
-            font-size 24px
+            font-size $upload-close-font-size
     .k-files
-        margin-top 16px
+        margin-top $upload-files-margin-top
     .k-file
-        margin 4px 0 
-        border-radius $border-radius
+        margin $upload-file-margin
+        border-radius $upload-file-border-radius
         cursor default
         &:hover
-            background $bg-color
+            background $upload-file-bg-color
             .k-icons
                 .k-close
                     display inline-block
         > .k-wrapper
-            padding 4px
+            padding $upload-file-padding
         .k-icons
             position absolute
-            top 1px
-            right 0
+            top $upload-file-icons-top
+            right $upload-file-icons-right 
         .k-status-icon
-            color $success-color
-            margin-left 8px
+            color $upload-file-status-icon-color
+            margin-left $upload-file-status-icon-margin-left 
             float right
-            line-height 16px
+            line-height $upload-file-status-icon-line-height
         &.k-error
-            color $danger-color
+            color $upload-file-error-color
             .k-status-icon
-                color $danger-color
+                color $upload-file-error-status-icon-color
 
     .k-name
         position relative
-        padding-right 40px
+        padding-right $upload-file-name-padding-right
         .k-file-icon 
             vertical-align middle
-            margin-right 8px
+            margin-right $upload-file-icon-margin-right
     .k-progress
         .k-text
             width auto
@@ -53,46 +53,46 @@
     // drag
     &.k-drag
         .k-handle
-            color $light-black
+            color $upload-drag-color
             display block
-            border 1px dashed $border-color
-            border-radius $border-radius
+            border $upload-drag-border 
+            border-radius $upload-drag-border-radius
             cursor pointer
             text-align center
             transition border-color $transition
             &:hover
-                border-color $primary-color
+                border-color $upload-drag-hover-border-color
         .k-area
-            padding 20px 0 40px 0
+            padding $upload-drag-padding 
             .k-icon:before
-                font-size 80px
-                color #b2b2b2
+                font-size $upload-drag-icon-font-size
+                color $upload-drag-icon-color 
                 line-height 1
         &.k-dragover
             .k-handle
-                border-color $primary-color
+                border-color $upload-drag-over-border-color
 
     // gallery
     .k-pictures
         display inline-block
         vertical-align middle
         .k-picture
-            padding 8px
+            padding $upload-gallery-padding
             position relative
             vertical-align middle
             &.k-error
-                border-color $danger-color
+                border-color $upload-gallery-error-border-color 
         img
             display inline-block
             width 100%
             height 100%
         .k-close
             position absolute
-            top -8px
-            right -8px
+            top $upload-gallery-close-icon-top 
+            right $upload-gallery-close-icon-right 
             display inline-block
             .k-icon:before
-                font-size 18px
+                font-size $upload-gallery-close-icon-font-size
         .k-icons
             opacity 0
             transition opacity $transition
@@ -102,42 +102,42 @@
 
     .k-picture-card
         display inline-block
-        width 100px
-        height 100px
-        border-radius $border-radius
-        border 1px solid $border-color
+        width $upload-gallery-width
+        height $upload-gallery-height 
+        border-radius $upload-gallery-border-radius
+        border $upload-gallery- border
         text-align center
         cursor pointer
-        margin 0 8px 8px 0
-        background #fff
+        margin $upload-gallery-margin
+        background $upload-gallery-bg-color 
     .k-add
-        border 1px dashed $border-color
+        border $upload-gallery-add-border 
         &:before
-            font-size 44px
-            line-height 98px
+            font-size $upload-gallery-add-font-size 
+            line-height s('calc(%s - 2px)', $upload-gallery-height) 
         &:hover
-            border-color $primary-color
+            border-color $upload-gallery-add-hover-border-color
     .k-overlap
         position absolute
         width 100%
         height 100%
         left 0
         top 0
-        color #fff
-        background rgba(0, 0, 0, .35)
+        color $upload-overlap-color 
+        background $upload-overlap-bg-color 
         .k-progress
             position absolute
             width 100%
             top 50%
-            padding 0 8px
-            margin-top -8px
+            padding $upload-gallery-padding 
+            transform translateY(-50%)
     .k-zoom
         display inline-block
         position relative
         top 50%
         transform translateY(-50%)
         &:before
-            font-size 24px
+            font-size $upload-overlap-zoom-icon-font-size
 
 .k-upload-dialog
     img
