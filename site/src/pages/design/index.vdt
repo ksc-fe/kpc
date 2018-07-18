@@ -1,2 +1,2 @@
-<t:parent navIndex="design" class="document-page design-page">
+<t:parent navIndex="design" class="document-page design-page fixed-aside">
 </t:parent>
