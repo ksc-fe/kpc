@@ -133,3 +133,14 @@ $aside-width = 300px
         li
             list-style decimal
             margin 5px 0
+.fixed-aside
+    .content-wrapper
+        .aside-wrapper
+            position fixed
+            top headerHeight 
+            background #fff
+            height "calc(100% - %s)" % headerHeight
+            overflow auto
+            box-sizing border-box
+            width $aside-width - 1px
+

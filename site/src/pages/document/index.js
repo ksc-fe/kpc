@@ -26,7 +26,6 @@ export default class extends Layout {
         super._mount();
         document.title = this.get('Article.data.setting.title');
 
-        window.addEventListener('scroll', this._onScroll);
         window.scrollTo(0, 0);
     }
 
@@ -37,9 +36,5 @@ export default class extends Layout {
         } else {
             this.refs.wrapper.classList.remove('fixed');
         }
-    }
-
-    _destroy() {
-        window.removeEventListener('scroll', this._onScroll);
     }
 }
