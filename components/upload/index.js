@@ -17,8 +17,7 @@ export default class Upload extends Intact {
         return {
             accept: undefined,
             multiple: false,
-            type: 'select', // select | drag
-            listType: 'text', // text | picture | gallery
+            type: 'select', // select | drag | gallery
             files: [],
             autoUpload: true,
             disabled: false,
@@ -31,7 +30,7 @@ export default class Upload extends Intact {
             maxSize: undefined,
             defaultFiles: undefined,
 
-            beforeUpdate: () => true,
+            beforeUpload: () => true,
             beforeRemove: () => true,
 
             _dragOver: false,
@@ -146,10 +145,15 @@ export default class Upload extends Intact {
     }
 
     async _upload(file) {
-        const beforeUpdate = this.get('beforeUpdate');
+        const beforeUpload= this.get('beforeUpload');
         let ret;
-        try { ret = await beforeUpdate.call(this, file, this.get('files')); } catch (e) {}
-        if (!ret) return;
+        try { ret = await beforeUpload.call(this, file, this.get('files')); } catch (e) {}
+        if (!ret) {
+            const files = this.get('files').slice(0);
+            const index = files.indexOf(file);
+            files.splice(index, 1);
+            return this.set({files});
+        }
 
         const data = this.get('data');
         const options = {

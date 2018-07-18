@@ -5,7 +5,7 @@ import {expandAnimationCallbacks, _$} from '../utils';
 
 const {
     className, style, accept, multiple, limit,
-    files, children, type, _dragOver, listType,
+    files, children, type, _dragOver,
 } = self.get();
 
 const classNameObj = {
@@ -13,7 +13,7 @@ const classNameObj = {
     [className]: className,
     'k-drag': type === 'drag', 
     'k-dragover': _dragOver,
-    'k-gallery': listType === 'gallery',
+    'k-gallery': type === 'gallery',
 };
 
 const events = {
@@ -30,7 +30,7 @@ const handle = (
     <div class="k-handle" {{ ...events }} ref="handle">
         <b:content>
             <b:children v-if={{ children }}>{{ children }}</b:children>
-            <b:_list v-else-if={{ listType !== 'gallery' }}>
+            <b:_list v-else-if={{ type !== 'gallery' }}>
                 <Button type="primary" v-if={{ type === 'select' }}>{{ _$('点击上传') }}</Button>
                 <div class="k-area" v-else>
                     <i class="k-icon ion-upload"></i>
@@ -61,7 +61,7 @@ const CloseBtn = (props) => (
         multiple={{ multiple }}
     />
 
-    <Animate class="k-pictures" key="pictures" a:disabled v-if={{ listType === 'gallery' }}>
+    <Animate class="k-pictures" key="pictures" a:disabled v-if={{ type === 'gallery' }}>
         <Animate 
             class={{ {
                 "k-picture k-picture-card": true, 
@@ -90,7 +90,7 @@ const CloseBtn = (props) => (
 
     <div class="k-tip" v-if={{ blocks.tip }}><b:tip /></div>
 
-    <div class="k-files" v-if={{ listType !== 'gallery' }}>
+    <div class="k-files" v-if={{ type !== 'gallery' }}>
         <Animate v-for={{ files }} 
             class={{ {"k-file": true, 'k-error': value.status === 'error'} }}
             key={{ value.uid }}
