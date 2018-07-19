@@ -19,7 +19,8 @@ var data = [{a: 'A', b: 'B', c: 'C'}, {a: 'A', b: 'B', c: 'C'}];
             },
             b: {
                 title: '单独设置最小宽度300px',
-                minWidth: 300
+                minWidth: 300,
+                width: '10%'
             },
             c: {
                 title: '标题',

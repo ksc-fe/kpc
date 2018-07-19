@@ -273,6 +273,7 @@ export default class Table extends Intact {
         this._currentThs = [currentTh];
         this._prevThs = [prevTh];
         this._tables = [this.table];
+        this._isLastTh = !currentTh.nextElementSibling;
 
         if (this.get('fixHeader')) {
             const ths = this.table.children[0].getElementsByTagName('th');
@@ -298,7 +299,7 @@ export default class Table extends Intact {
             const tableWidth = this._tables[0].offsetWidth + delX;
             const currentWidth = this._currentThs[0].offsetWidth - delX;
             
-            if (prevWidth < this._minWidth) return;
+            if (prevWidth < this._minWidth && delX <= 0) return;
 
             this._prevThs.forEach(item => {
                 item.style.width = prevWidth + 'px';
@@ -306,7 +307,11 @@ export default class Table extends Intact {
 
             if (this._containerWidth > tableWidth) {
                 this._currentThs.forEach(item => {
-                    item.style.width = currentWidth + 'px'; 
+                    if (this._isLastTh) {
+                        item.width = '';
+                    } else {
+                        item.style.width = currentWidth + 'px'; 
+                    }
                 });
             } else if (this._containerWidth === tableWidth) {
                 this._tables.forEach(item => {
