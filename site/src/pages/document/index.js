@@ -25,6 +25,7 @@ export default class extends Layout {
     _mount() {
         super._mount();
         document.title = this.get('Article.data.setting.title');
+        this.set('demos', this.refs.article.get('demos'));
 
         window.scrollTo(0, 0);
     }
@@ -36,5 +37,12 @@ export default class extends Layout {
         } else {
             this.refs.wrapper.classList.remove('fixed');
         }
+    }
+
+    _scrollToView(demo) {
+        const index = demo.data.index;
+        const dom = this.element.querySelector(`.index-${index}`);
+        const top = dom.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo(0, top - 80);
     }
 }

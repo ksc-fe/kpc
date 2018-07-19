@@ -34,7 +34,7 @@ var data = [{a: 'A', b: 'B', c: 'C'}, {a: 'A', b: 'B', c: 'C'}];
     />
     <Form style="margin-top: 20px;">
         <FormItem>
-            <b:label><div style="width: 100px">table in table-cell</div></b:label>
+            <b:label><div style="width: 140px">table in table-cell</div></b:label>
             <Table 
                 fixHeader
                 scheme={{ {

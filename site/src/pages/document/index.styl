@@ -134,6 +134,18 @@ $aside-width = 300px
         li
             list-style decimal
             margin 5px 0
+    .table-of-contents
+        position fixed
+        right 0
+        top 100px
+        width 150px
+        font-size 12px
+        li
+            padding 5px 10px
+            cursor pointer
+            &:hover
+                color $primary-color
+
 .fixed-aside
     .content-wrapper
         .aside-wrapper
@@ -144,4 +156,5 @@ $aside-width = 300px
             overflow auto
             box-sizing border-box
             width $aside-width - 1px
-
+        article
+            padding 10px 150px 10px 20px

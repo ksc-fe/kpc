@@ -55,7 +55,14 @@ function Catalog(props) {
                     上修正该文档
                 </div>
             </div>
-            <Article />
+            <Article ref="article" />
         </article>
+        <ul class="table-of-contents">
+            <li class="c-ellipsis" v-for={{ self.get('demos') }}
+                ev-click={{ self._scrollToView.bind(self, value) }}
+            >
+                {{ value.data.setting.title }}
+            </li>
+        </ul>
     </b:content>
 </t:parent>

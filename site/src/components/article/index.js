@@ -19,9 +19,11 @@ export default class extends Intact {
         });
         
         const _contents = contents ? contents.split('<!-- example -->') : [];
-        
+
         this.set({
-            demos: _demos,
+            demos: _demos.sort((a, b) => {
+                return a.data.setting.order - b.data.setting.order;
+            }),
             examples: examples,
             contents: _contents,
         });
