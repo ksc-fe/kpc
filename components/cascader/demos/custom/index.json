@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>给组件指定<code>format</code>属性，可以自定义选择结果显示。该属性值为<code>Function</code>类型，组件会将当前选择的数据项以数组的格式作为参数传入</p>\n<blockquote>\n<p>Vue下通过<code>slot=&quot;format&quot; slot-scope=&quot;values&quot;</code>指定</p>\n</blockquote>\n",
-    "index": 131,
+    "index": 136,
     "highlighted": [
         {
             "language": "vdt",

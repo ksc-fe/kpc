@@ -201,6 +201,15 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-127"><div class="example-opera"><div><button class="k-btn" _hasSaved tabindex="0" type="button">
+    <span>删除</span>
+    </button><!--MoveWrapper--></div></div><div class="example-desc"><div class="title">确认提示层</div><div class="desc"><p>给组件添加<code>confirm</code>属性，可以展示确认提示弹层。点击“确认”和“取消”按钮分别会触发<code>ok</code>和<code>cancel</code>事件。你还可以通过<code>okText</code>和<code>cancelText</code>属性指定按钮文案</p>
+</div></div><div class="example-code"><div class="k-tabs" style="">
+    <a class="k-tab">
+                            <!---->index.vdt<!---->
+                        </a><a class="k-tab">
+                            <!---->index.js<!---->
+                        </a>
     <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div>
     </div><div class="api">
         <div><h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1><div class="k-table-wrapper k-border">
@@ -213,6 +222,12 @@
 </tr>
 </thead>
                         <tbody><tr>
+<td>value</td>
+<td>提示弹层的展示隐藏状态，可用<code>v-model</code>进行双向绑定</td>
+<td><code>Boolean</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
 <td>trigger</td>
 <td>触发方式，点击触发<code>click</code>, 悬浮触发<code>hover</code></td>
 <td><code>&quot;hover&quot;</code> &#124; <code>&quot;click&quot;</code></td>
@@ -248,6 +263,24 @@
 <td><code>String</code> &#124; <code>Object</code></td>
 <td><code>undefined</code></td>
 </tr>
+<tr>
+<td>confirm</td>
+<td>带“确认”和“取消”按钮的确认弹层</td>
+<td><code>Boolean</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>onText</td>
+<td><code>confirm</code>模式下的“确认”按钮文案</td>
+<td><code>String</code></td>
+<td><code>&quot;确认&quot;</code></td>
+</tr>
+<tr>
+<td>cancelText</td>
+<td><code>confirm</code>模式下的“取消”按钮文案</td>
+<td><code>String</code></td>
+<td><code>&quot;取消&quot;</code></td>
+</tr>
 </tbody>
                     </table>
                 </div><h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1><div class="k-table-wrapper k-border">
@@ -266,6 +299,16 @@
 <tr>
 <td>hide</td>
 <td>弹层隐藏事件</td>
+<td>-</td>
+</tr>
+<tr>
+<td>ok</td>
+<td><code>confirm</code>模式下，点击“确认”按钮触发</td>
+<td>-</td>
+</tr>
+<tr>
+<td>cancel</td>
+<td><code>confirm</code>模式下，点击“取消”按钮触发</td>
 <td>-</td>
 </tr>
 </tbody>

@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>current</code>可以指定当前页码，当页码改变时，会触发默认事件<code>$change:current</code>和<code>$changed:current</code>，我们可以指定相应的回调函数。</p>\n",
-    "index": 129,
+    "index": 123,
     "highlighted": [
         {
             "language": "vdt",
