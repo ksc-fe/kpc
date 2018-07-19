@@ -5483,6 +5483,20 @@ blockquote:before {
   list-style: decimal;
   margin: 5px 0;
 }
+.document-page .table-of-contents {
+  position: fixed;
+  right: 0;
+  top: 100px;
+  width: 150px;
+  font-size: 12px;
+}
+.document-page .table-of-contents li {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.document-page .table-of-contents li:hover {
+  color: #0a5eee;
+}
 .fixed-aside .content-wrapper .aside-wrapper {
   position: fixed;
   top: 80px;
@@ -5492,6 +5506,9 @@ blockquote:before {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 299px;
+}
+.fixed-aside .content-wrapper article {
+  padding: 10px 150px 10px 20px;
 }
 .k-table {
   font-size: 0.857142857142857rem;
