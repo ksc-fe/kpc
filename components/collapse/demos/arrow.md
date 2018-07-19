@@ -11,7 +11,7 @@ import {Collapse, CollapseItem} from 'kpc/components/collapse';
 
 <Collapse value={{ ["$0"] }} accordion arrow="left">
     <CollapseItem>
-        <b:title>设计语言<a href="/docs/design/language/">详细说明</a></b:title>
+        <b:title>设计语言<a class="link" href="/docs/design/language/">详细说明</a></b:title>
         <p>语言是合作的基础。在团队中工作，没有共同的语言，一群人不能共同有效地合作。同理，因为每个人都会有不同的心智模式去达成各自的目的，如果没有共同的设计语言，对界面元素的共同理解，那么我们很难通过协作输出协调一致并具备高可用性的产品。</p>
         <p>拥有通用语言意味着我们有相同的方法来命名界面元素和定义设计模式，或者在设计文件和前端框架中使用相同的名称。通用设计语言让团队成员达成了相互理解，基于共同的理解，参与产品创建的每个人都知道这个元素是什么: 它的名称和目的, 为什么这样设计, 以及如何及何时使用它。</p>
         <p>当设计语言是通用知识时，它就成为一个强大的设计和协作工具，产品创建过程中便可停止专注于界面样式本身，而更多地关注用户。</p>
@@ -32,6 +32,6 @@ import {Collapse, CollapseItem} from 'kpc/components/collapse';
 ```
 
 ```styl
-a
+.link
     float right
 ```

@@ -295,11 +295,13 @@ export default class Table extends Intact {
 
         if (this._resizing) {
             const delX = e.clientX - this._x;
+            if (delX === 0) return;
+
             const prevWidth = this._prevThs[0].offsetWidth + delX;
             const tableWidth = this._tables[0].offsetWidth + delX;
             const currentWidth = this._currentThs[0].offsetWidth - delX;
             
-            if (prevWidth < this._minWidth && delX <= 0) return;
+            if (prevWidth < this._minWidth && delX < 0) return;
 
             this._prevThs.forEach(item => {
                 item.style.width = prevWidth + 'px';
@@ -309,6 +311,7 @@ export default class Table extends Intact {
                 this._currentThs.forEach(item => {
                     if (this._isLastTh) {
                         item.width = '';
+                        item.style.width = '';
                     } else {
                         item.style.width = currentWidth + 'px'; 
                     }
