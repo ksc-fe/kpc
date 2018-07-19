@@ -25,7 +25,9 @@ export default class extends Layout {
     _mount() {
         super._mount();
         document.title = this.get('Article.data.setting.title');
-        this.set('demos', this.refs.article.get('demos'));
+        if (this.refs.article) {
+            this.set('demos', this.refs.article.get('demos'));
+        }
 
         window.scrollTo(0, 0);
     }
