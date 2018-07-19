@@ -1,36 +1,45 @@
 import MoveWrapper from '../moveWrapper';
+import Button from '../button';
 
 const {
-    children, show, trigger, showArrow,
+    children, value, trigger, showArrow, confirm,
     canHover, className, _feedback, transition
 } = self.get();
 
 const events = {};
-if (canHover && trigger === 'hover') {
+if ((canHover || confirm) && trigger === 'hover') {
     events['ev-mouseenter'] = self.show;
     events['ev-mouseleave'] = self.hide.bind(self, false);
 }
 
 const classNameObj = {
     "k-tooltip-content": true, 
-    'k-cannot-hover': trigger === 'hover' && !canHover,
+    'k-cannot-hover': trigger === 'hover' && !canHover && !confirm,
     [className]: className,
 };
 
 <MoveWrapper>
-    <Animate v-if={{ show }}
+    <Animate v-if={{ value }}
         class={{ classNameObj }}
         a:transition={{ transition }}
         ref="content"
         {{ ...events }}
         a:delayDestroy={{ false }}
-    ><i 
-        v-if={{ showArrow }}
-        class={{ {
-            "k-arrow": true,
-            [`k-${_feedback.vertical}`]: _feedback.vertical,
-            [`k-${_feedback.horizontal}`]: _feedback.horizontal,
-        } }}
-        ref="arrow"
-    ></i>{{ children }}</Animate>
+    >
+        <i v-if={{ showArrow }}
+            class={{ {
+                "k-arrow": true,
+                [`k-${_feedback.vertical}`]: _feedback.vertical,
+                [`k-${_feedback.horizontal}`]: _feedback.horizontal,
+            } }}
+            ref="arrow"
+        ></i>
+        {{ children }}
+        <div class="k-buttons" v-if={{ confirm }}>
+            <b:buttons>
+                <Button ev-click={{ self._cancel }} size="small">{{ self.get('cancelText') }}</Button>
+                <Button type="primary" ev-click={{ self._ok }} size="small">{{ self.get('okText') }}</Button>
+            </b:buttons>
+        </div>
+    </Animate>
 </MoveWrapper>

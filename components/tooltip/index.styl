@@ -75,5 +75,11 @@ arrow-short = $tooltip-arrow-width - 2px
     &.k-cannot-hover
         pointer-events none
 
+    // confirm
+    .k-buttons
+        padding-top $tooltip-confirm-buttons-padding-top
+        .k-btn:last-of-type
+            margin-left $tooltip-confirm-buttons-gutter
+
 $dir = $theme-dir + '/tooltip.styl';
 @import $dir if exists($dir) 

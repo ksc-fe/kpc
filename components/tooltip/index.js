@@ -3,10 +3,11 @@
  */
 import Intact from 'intact';
 import Dropdown from '../dropdown/dropdown';
-import position from '../moveWrapper/position'
+import position from '../moveWrapper/position';
 import template from './index.vdt';
 import '../../styles/kpc.styl';
-import './index.styl'
+import './index.styl';
+import {_$} from '../utils';
 
 class Tooltip extends Dropdown {  }
 
@@ -15,30 +16,34 @@ class TooltipContent extends Intact {
     static template = template;
 
     static propTypes = {
-        show: Boolean,
+        value: Boolean,
         canHover: Boolean,
         showArrow: Boolean,
+        confirm: Boolean,
     };
 
     defaults() {
         return {
-            show: false,
+            value: false,
             trigger: 'hover',
             canHover: false,
             showArrow: true,
             positon: {},
             transition: 'fade',
+            confirm: false,
+            okText: _$('确认'),
+            cancelText: _$('取消'),
 
             _feedback: {},
         };
     }
 
     _init() {
-        this.on('$change:show', (c, value) => {
+        this.on('$change:value', (c, value) => {
             this.trigger(value ? 'beforeShow' : 'beforeHide', this);
         });
 
-        this.on('$changed:show', (c, value) => {
+        this.on('$changed:value', (c, value) => {
             if (value) {
                 this._addDocumentClick();
                 this.position();
@@ -51,7 +56,7 @@ class TooltipContent extends Intact {
     }
 
     _mount() {
-        if (this.get('show')) {
+        if (this.get('value')) {
             this._addDocumentClick();
         }
     }
@@ -61,16 +66,16 @@ class TooltipContent extends Intact {
         if (!this.get('children')) return;
 
         clearTimeout(this.timer);
-        this.set('show', true); 
+        this.set('value', true); 
     }
 
     hide(immediately) {
-        if (!immediately && this.get('canHover')) {
+        if (!immediately && (this.get('canHover') || this.get('confirm'))) {
             this.timer = setTimeout(() => {
-                this.set('show', false);
+                this.set('value', false);
             }, 200);
         } else {
-            this.set('show', false);
+            this.set('value', false);
         }
     }
 
@@ -143,6 +148,16 @@ class TooltipContent extends Intact {
         this.hide(true);
     }
 
+    _cancel() {
+        this.trigger('cancel', this);
+        this.hide(true);
+    }
+
+    _ok() {
+        this.trigger('ok', this);
+        this.hide(true);
+    }
+
     _destroy() {
         clearTimeout(this.timer);
         this._removeDocumentClick();
@@ -191,9 +206,7 @@ function Wrapper(props, inVue) {
 }
 
 // for vue Boolean cast
-Wrapper.propTypes = {
-    canHover: Boolean,
-};
+Wrapper.propTypes = TooltipContent.propTypes;
 
 const _className = Intact.Vdt.utils.className;
 class TooltipVueWrapper extends Intact {
