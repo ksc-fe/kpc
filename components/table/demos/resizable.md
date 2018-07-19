@@ -32,11 +32,10 @@ var data = [{a: 'A', b: 'B', c: 'C'}, {a: 'A', b: 'B', c: 'C'}];
         resizable
         minColWidth={{ 100 }}
     />
-    <Form>
+    <Form style="margin-top: 20px;">
         <FormItem>
-            <b:label><div style="width: 100px">test</div></b:label>
+            <b:label><div style="width: 100px">table in table-cell</div></b:label>
             <Table 
-                style="margin-top: 20px;"
                 fixHeader
                 scheme={{ {
                     a: {
