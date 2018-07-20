@@ -150,7 +150,7 @@
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/components/checkbox/index.md">github</a>
                     上修正该文档
                 </div></div><div class="contents"><div><h1>示例</h1>
-        <div class="example index-12"><div class="example-opera"><div><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span><span class="k-text">checkbox</span></label><label class="k-checkbox k-disabled" style=""><span class="k-wrapper"><input type="checkbox" disabled v-model="value" value tabindex="-1" /></span><span class="k-text">disabled checkbox</span></label><label class="k-checkbox k-disabled k-checked" style=""><span class="k-wrapper"><input type="checkbox" disabled v-model="value" value tabindex="-1" checked /></span><span class="k-text">disabled checked checkbox</span></label></div></div><div class="example-desc"><div class="title">基本用法</div><div class="desc"><p><code>Checkbox</code>的基本用法，及禁用状态。通过<code>v-model</code>进行数据双向绑定。由于<code>trueValue</code>的默认值为<code>true</code>，所以可以直接传入<code>value=true</code>来指定选中状态。</p>
+        <div class="example index-12" id="12"><div class="example-opera"><div><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span><span class="k-text">checkbox</span></label><label class="k-checkbox k-disabled" style=""><span class="k-wrapper"><input type="checkbox" disabled v-model="value" value tabindex="-1" /></span><span class="k-text">disabled checkbox</span></label><label class="k-checkbox k-disabled k-checked" style=""><span class="k-wrapper"><input type="checkbox" disabled v-model="value" value tabindex="-1" checked /></span><span class="k-text">disabled checked checkbox</span></label></div></div><div class="example-desc"><div class="title">基本用法</div><div class="desc"><p><code>Checkbox</code>的基本用法，及禁用状态。通过<code>v-model</code>进行数据双向绑定。由于<code>trueValue</code>的默认值为<code>true</code>，所以可以直接传入<code>value=true</code>来指定选中状态。</p>
 <blockquote>
 <p>选中状态的判定条件是<code>value === trueValue || value.indexOf(trueValue)</code>，对于值为对象的情况要注意。</p>
 </blockquote>
@@ -162,7 +162,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-42"><div class="example-opera"><div><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="languages" value="Javascript" tabindex="-1" name="languages" /></span><span class="k-text">Javascript</span></label><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="languages" value="C++" tabindex="-1" name="languages" /></span><span class="k-text">C++</span></label><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="languages" value="PHP" tabindex="-1" name="languages" /></span><span class="k-text">PHP</span></label>
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-42" id="42"><div class="example-opera"><div><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="languages" value="Javascript" tabindex="-1" name="languages" /></span><span class="k-text">Javascript</span></label><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="languages" value="C++" tabindex="-1" name="languages" /></span><span class="k-text">C++</span></label><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="languages" value="PHP" tabindex="-1" name="languages" /></span><span class="k-text">PHP</span></label>
     Your selected: <!---->[]<!---->
 </div></div><div class="example-desc"><div class="title">Checkbox组</div><div class="desc"><p>和浏览器原生行为一样，给<code>Checkbox</code>指定相同的<code>name</code>，它们便组成了复选框组。</p>
 <blockquote>
@@ -176,7 +176,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-44"><div class="example-opera"><div><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value1" value tabindex="-1" /></span><span class="k-text">默认值: </span></label><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value2" value="checked" tabindex="-1" /></span><span class="k-text">
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-44" id="44"><div class="example-opera"><div><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value1" value tabindex="-1" /></span><span class="k-text">默认值: </span></label><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value2" value="checked" tabindex="-1" /></span><span class="k-text">
         指定选中时取值为&quot;checked&quot;: <!---->
     </span></label><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value3" value="0" tabindex="-1" /></span><span class="k-text">
         指定非选中时取值为对象：<!---->
@@ -192,7 +192,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-88"><div class="example-opera"><div><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span><span class="k-text">全选</span></label><hr /><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="languages" value="Javascript" tabindex="-1" name="languages" /></span><span class="k-text">Javascript</span></label><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="languages" value="C++" tabindex="-1" name="languages" /></span><span class="k-text">C++</span></label><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="languages" value="PHP" tabindex="-1" name="languages" /></span><span class="k-text">PHP</span></label>
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-88" id="88"><div class="example-opera"><div><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="value" value tabindex="-1" /></span><span class="k-text">全选</span></label><hr /><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="languages" value="Javascript" tabindex="-1" name="languages" /></span><span class="k-text">Javascript</span></label><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="languages" value="C++" tabindex="-1" name="languages" /></span><span class="k-text">C++</span></label><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" v-model="languages" value="PHP" tabindex="-1" name="languages" /></span><span class="k-text">PHP</span></label>
     Your selected: <!---->[]<!---->
 </div></div><div class="example-desc"><div class="title">半选中状态</div><div class="desc"><p>通过<code>indeterminate</code>属性可以控制<code>Checkbox</code>的半选中状态</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
@@ -253,7 +253,7 @@
 </tbody>
                     </table>
                 </div></div>
-    </div></div></article><ul class="table-of-contents"></ul></div></div>
+    </div></div></article></div></div>
     </div></div>
     <script src="/kpc/static/client.js" type="text/javascript"></script>
 </body>

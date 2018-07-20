@@ -5510,10 +5510,10 @@ blockquote:before {
   margin-left: 10px;
   font-size: 12px;
 }
-.document-page .content-wrapper .aside-wrapper .aside-border {
+.document-page .content-wrapper .aside-border {
   border-right: 2px solid #0091ea;
   position: absolute;
-  right: 0;
+  left: 0;
   top: 0;
 }
 .document-page .content-wrapper article {
@@ -5605,7 +5605,8 @@ blockquote:before {
   padding: 5px 10px;
   cursor: pointer;
 }
-.document-page .table-of-contents li:hover {
+.document-page .table-of-contents li:hover,
+.document-page .table-of-contents li.active {
   color: #0091ea;
 }
 .fixed-aside .content-wrapper .aside-wrapper {
@@ -8254,10 +8255,6 @@ blockquote:before {
 }
 .blog-page .content-wrapper .aside-wrapper {
   margin: 30px;
-}
-.blog-page .content-wrapper .aside-wrapper .aside-border {
-  left: 0;
-  right: auto !important;
 }
 .blog-page .content-wrapper.fixed .aside-wrapper {
   margin-right: -999px;

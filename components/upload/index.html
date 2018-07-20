@@ -150,7 +150,7 @@
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/components/upload/index.md">github</a>
                     上修正该文档
                 </div></div><div class="contents"><div><h1>示例</h1>
-        <div class="example index-15"><div class="example-opera"><div class="k-upload" style=""><input class="c-hidden" type="file" multiple /><div class="k-handle"><button class="k-btn k-primary" tabindex="0" type="button">
+        <div class="example index-15" id="15"><div class="example-opera"><div class="k-upload" style=""><input class="c-hidden" type="file" multiple /><div class="k-handle"><button class="k-btn k-primary" tabindex="0" type="button">
     <span>点击上传</span>
     </button></div><div class="k-tip">只能上传JPG/PNG格式文件，且不超过500kb</div><div class="k-files"></div><div class="k-dialog-wrapper k-upload-dialog"></div></div></div><div class="example-desc"><div class="title">基本用法</div><div class="desc"><p>组件默认为点击上传，并且会展示默认上传按钮；通过<code>action</code>指定上传的地址；如果要支持多选可以添加<code>multiple</code>属性；可以通过<code>tip</code>扩展点来添加提示信息；<code>beforeRemove</code>可以在删除文件之前进行确认，如果函数的返回值为<code>true</code>则删除文件，否则不删除，该函数可以是异步函数或者返回<code>Promise</code>对象</p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
@@ -161,7 +161,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-45"><div class="example-opera"><div class="k-upload k-drag" style=""><input class="c-hidden" type="file" multiple /><div class="k-handle"><div class="k-area"><i class="k-icon ion-upload"></i><div>将文件拖到此处，或点击上传</div></div></div><div class="k-files"></div><div class="k-dialog-wrapper k-upload-dialog"></div></div></div><div class="example-desc"><div class="title">拖拽上传</div><div class="desc"><p>通过指定<code>type</code>为<code>drag</code>可以展示拖拽上传组件</p>
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-45" id="45"><div class="example-opera"><div class="k-upload k-drag" style=""><input class="c-hidden" type="file" multiple /><div class="k-handle"><div class="k-area"><i class="k-icon ion-upload"></i><div>将文件拖到此处，或点击上传</div></div></div><div class="k-files"></div><div class="k-dialog-wrapper k-upload-dialog"></div></div></div><div class="example-desc"><div class="title">拖拽上传</div><div class="desc"><p>通过指定<code>type</code>为<code>drag</code>可以展示拖拽上传组件</p>
 <blockquote>
 <p>如果你没有给组件指定子元素，则组件会默认根据<code>type</code>展示不同的内容，否则会展示你指定的元素</p>
 </blockquote>
@@ -173,14 +173,14 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-90"><div class="example-opera"><div class="k-upload k-gallery" style=""><input class="c-hidden" type="file" accept=".jpg, .png" multiple /><div class="k-pictures"><div class="c-middle"><div class="k-handle"><i class="k-picture-card k-add ion-ios-plus-empty"></i></div></div></div><div class="k-dialog-wrapper k-upload-dialog"></div></div></div><div class="example-desc"><div class="title">照片墙</div><div class="desc"><p>指定<code>type</code>为<code>gallery</code>可以展示照片墙风格的上传组件；我们还可以通过<code>limit</code>限制最大上传数量，当超过该数量时，组件会抛出<code>error</code>事件；通过<code>accept</code>可以指定上传的文件类型：<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-accept">accept</a></p>
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-90" id="90"><div class="example-opera"><div class="k-upload k-gallery" style=""><input class="c-hidden" type="file" accept=".jpg, .png" multiple /><div class="k-pictures"><div class="c-middle"><div class="k-handle"><i class="k-picture-card k-add ion-ios-plus-empty"></i></div></div></div><div class="k-dialog-wrapper k-upload-dialog"></div></div></div><div class="example-desc"><div class="title">照片墙</div><div class="desc"><p>指定<code>type</code>为<code>gallery</code>可以展示照片墙风格的上传组件；我们还可以通过<code>limit</code>限制最大上传数量，当超过该数量时，组件会抛出<code>error</code>事件；通过<code>accept</code>可以指定上传的文件类型：<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-accept">accept</a></p>
 </div></div><div class="example-code"><div class="k-tabs" style="">
     <a class="k-tab">
                             <!---->index.vdt<!---->
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-98"><div class="example-opera"><div class="k-upload" style=""><input class="c-hidden" type="file" multiple /><div class="k-handle"><button class="k-btn k-primary" tabindex="0" type="button">
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-98" id="98"><div class="example-opera"><div class="k-upload" style=""><input class="c-hidden" type="file" multiple /><div class="k-handle"><button class="k-btn k-primary" tabindex="0" type="button">
     <span>点击上传</span>
     </button></div><div class="k-files"><div class="k-file"><div class="k-wrapper"><div class="k-name c-ellipsis"><i class="k-file-icon ion-document"></i>
                     <!---->test1.jpg<!---->
@@ -203,7 +203,7 @@
                         </a><a class="k-tab">
                             <!---->index.js<!---->
                         </a>
-    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-120"><div class="example-opera"><div class="k-upload" style=""><input class="c-hidden" type="file" multiple /><div class="k-handle"><button class="k-btn k-primary" tabindex="0" type="button">
+    <div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-120" id="120"><div class="example-opera"><div class="k-upload" style=""><input class="c-hidden" type="file" multiple /><div class="k-handle"><button class="k-btn k-primary" tabindex="0" type="button">
     <span>选择文件</span>
     </button></div><div class="k-tip"><button class="k-btn" tabindex="0" type="button">
     <span>开始上传</span>
@@ -385,7 +385,7 @@
 </tbody>
                     </table>
                 </div></div>
-    </div></div></article><ul class="table-of-contents"></ul></div></div>
+    </div></div></article></div></div>
     </div></div>
     <script src="/kpc/static/client.js" type="text/javascript"></script>
 </body>
