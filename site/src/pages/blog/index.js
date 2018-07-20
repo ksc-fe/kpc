@@ -14,8 +14,6 @@ export default class extends Document {
     _mount() {
         super._mount();
 
-        window.addEventListener('scroll', this._onScroll);
-
         this.h1s = this.element.querySelectorAll('h1');
         this.h2s = this.element.querySelectorAll('h2');
         this.h3s = this.element.querySelectorAll('h3');
@@ -33,9 +31,12 @@ export default class extends Document {
     }
 
     _onScroll() {
-        super._onScroll();
-
         const scrollTop = window.pageYOffset;
+        if (scrollTop > 15) {
+            this.refs.wrapper.classList.add('fixed');
+        } else {
+            this.refs.wrapper.classList.remove('fixed');
+        }
         
         function findActive(hs, minTop = 0) {
             for (let i = hs.length - 1; i >= 0; i--) {
@@ -66,9 +67,5 @@ export default class extends Document {
         } else {
             this.set('borderStyle', undefined);
         }
-    }
-
-    _destroy() {
-        window.removeEventListener('scroll', this._onScroll);
     }
 }

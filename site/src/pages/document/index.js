@@ -22,23 +22,51 @@ export default class extends Layout {
         this.set({Article});
     }
 
+    _create() {
+        this.examples = this.element.querySelectorAll('.example');
+    }
+
     _mount() {
         super._mount();
         document.title = this.get('Article.data.setting.title');
         if (this.refs.article) {
             this.set('demos', this.refs.article.get('demos'));
         }
+        
+        window.addEventListener('scroll', this._onScroll);
 
         window.scrollTo(0, 0);
     }
 
     _onScroll() {
-        const scrollTop = window.pageYOffset;
-        if (scrollTop > 15) {
-            this.refs.wrapper.classList.add('fixed');
+        const example = this._findActive(this.examples, 0);
+        this.set('activeExample', example.header);
+
+        let active = this.refs.tableContents.querySelectorAll('.active');
+        active = active[active.length - 1];
+        if (active) {
+            this.set('borderStyle', {
+                height: active.offsetHeight + 'px',
+                top: active.offsetTop + 'px',
+            });
         } else {
-            this.refs.wrapper.classList.remove('fixed');
+            this.set('borderStyle', undefined);
         }
+    }
+
+    _findActive(hs, minTop = 0) {
+        const scrollTop = window.pageYOffset;
+
+        for (let i = hs.length - 1; i >= 0; i--) {
+            const h = hs[i];
+            const top = h.getBoundingClientRect().top + scrollTop;
+
+            if (top > minTop && top - 80 <= scrollTop) {
+                return {header: h.id, top: top, elem: h};
+            }
+        }
+
+        return {header: '', top: 0, elem: null};
     }
 
     _scrollToView(demo) {
@@ -46,5 +74,9 @@ export default class extends Layout {
         const dom = this.element.querySelector(`.index-${index}`);
         const top = dom.getBoundingClientRect().top + window.pageYOffset;
         window.scrollTo(0, top - 80);
+    }
+
+    _destroy() {
+        window.removeEventListener('scroll', this._onScroll);
     }
 }

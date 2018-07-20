@@ -4,7 +4,10 @@ import {Tabs, Tab} from 'kpc/components/tabs';
     <div key="demos" v-if={{ self.get('demos').length }}>
         <h1>示例</h1>
         {{ self.get('demos').map(Demo => {
-            return <div class={{ `example index-${Demo.data.index}` }} key={{ Demo.data.index }}>
+            return <div class={{ `example index-${Demo.data.index}` }}
+                key={{ Demo.data.index }}
+                id={{ Demo.data.index }}
+            >
                 <div class="example-opera">
                     <Demo.default /> 
                 </div>

@@ -21,7 +21,7 @@ sidebar: doc
 | placeholder | 占位文案 | `String` | `"请选择"` |
 | size | 尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
 | fluid | 是否宽度100% | `Boolean` | `false` |
-| width | 指定宽度 | `Number` | `undefined` | 
+| width | 指定宽度，组件自动添加单位`px` | `Number` &#124; `String` | `undefined` | 
 | allowUnmatch | 组件的`value`不在可选项中时，是否强制置空，该值为`true`时，不置空；当与`filterable`一起使用，支持输入不匹配项 | `Boolean` | `false` |
 
 ## Option

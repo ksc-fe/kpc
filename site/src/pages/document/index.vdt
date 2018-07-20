@@ -57,12 +57,21 @@ function Catalog(props) {
             </div>
             <Article ref="article" />
         </article>
-        <ul class="table-of-contents">
-            <li class="c-ellipsis" v-for={{ self.get('demos') }}
-                ev-click={{ self._scrollToView.bind(self, value) }}
-            >
-                {{ value.data.setting.title }}
-            </li>
-        </ul>
+        <div class="table-of-contents" v-if={{ self.get('demos') }}
+            ref="tableContents"
+        >
+            <ul>
+                <li v-for={{ self.get('demos') }}
+                    class={{ {
+                        "c-ellipsis": true, 
+                        'active': self.get('activeExample') == value.data.index
+                    } }}
+                    ev-click={{ self._scrollToView.bind(self, value) }}
+                >
+                    {{ value.data.setting.title }}
+                </li>
+            </ul>
+            <div class="aside-border transition" style={{ self.get('borderStyle') }}></div>
+        </div>
     </b:content>
 </t:parent>
