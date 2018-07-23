@@ -4562,6 +4562,8 @@ __webpack_require__(6);
 
 __webpack_require__(194);
 
+var _utils = __webpack_require__(7);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
@@ -4614,12 +4616,15 @@ var TooltipContent = (_dec = _intact2.default.template(), (_class = (_temp = _cl
 
     TooltipContent.prototype.defaults = function defaults() {
         return {
-            show: false,
+            value: false,
             trigger: 'hover',
             canHover: false,
             showArrow: true,
             positon: {},
             transition: 'fade',
+            confirm: false,
+            okText: (0, _utils._$)('确认'),
+            cancelText: (0, _utils._$)('取消'),
 
             _feedback: {}
         };
@@ -4628,11 +4633,11 @@ var TooltipContent = (_dec = _intact2.default.template(), (_class = (_temp = _cl
     TooltipContent.prototype._init = function _init() {
         var _this3 = this;
 
-        this.on('$change:show', function (c, value) {
+        this.on('$change:value', function (c, value) {
             _this3.trigger(value ? 'beforeShow' : 'beforeHide', _this3);
         });
 
-        this.on('$changed:show', function (c, value) {
+        this.on('$changed:value', function (c, value) {
             if (value) {
                 _this3._addDocumentClick();
                 _this3.position();
@@ -4645,7 +4650,7 @@ var TooltipContent = (_dec = _intact2.default.template(), (_class = (_temp = _cl
     };
 
     TooltipContent.prototype._mount = function _mount() {
-        if (this.get('show')) {
+        if (this.get('value')) {
             this._addDocumentClick();
         }
     };
@@ -4655,18 +4660,18 @@ var TooltipContent = (_dec = _intact2.default.template(), (_class = (_temp = _cl
         if (!this.get('children')) return;
 
         clearTimeout(this.timer);
-        this.set('show', true);
+        this.set('value', true);
     };
 
     TooltipContent.prototype.hide = function hide(immediately) {
         var _this4 = this;
 
-        if (!immediately && this.get('canHover')) {
+        if (!immediately && (this.get('canHover') || this.get('confirm'))) {
             this.timer = setTimeout(function () {
-                _this4.set('show', false);
+                _this4.set('value', false);
             }, 200);
         } else {
-            this.set('show', false);
+            this.set('value', false);
         }
     };
 
@@ -4742,6 +4747,16 @@ var TooltipContent = (_dec = _intact2.default.template(), (_class = (_temp = _cl
         this.hide(true);
     };
 
+    TooltipContent.prototype._cancel = function _cancel() {
+        this.trigger('cancel', this);
+        this.hide(true);
+    };
+
+    TooltipContent.prototype._ok = function _ok() {
+        this.trigger('ok', this);
+        this.hide(true);
+    };
+
     TooltipContent.prototype._destroy = function _destroy() {
         clearTimeout(this.timer);
         this._removeDocumentClick();
@@ -4749,9 +4764,10 @@ var TooltipContent = (_dec = _intact2.default.template(), (_class = (_temp = _cl
 
     return TooltipContent;
 }(_intact2.default), _class2.template = _index2.default, _class2.propTypes = {
-    show: Boolean,
+    value: Boolean,
     canHover: Boolean,
-    showArrow: Boolean
+    showArrow: Boolean,
+    confirm: Boolean
 }, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
     enumerable: true,
     configurable: true,
@@ -4799,9 +4815,7 @@ function Wrapper(props, inVue) {
 }
 
 // for vue Boolean cast
-Wrapper.propTypes = {
-    canHover: Boolean
-};
+Wrapper.propTypes = TooltipContent.propTypes;
 
 var _className = _intact2.default.Vdt.utils.className;
 
@@ -13950,28 +13964,29 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
 
     var _self$get = self.get(),
         children = _self$get.children,
-        show = _self$get.show,
+        value = _self$get.value,
         trigger = _self$get.trigger,
         showArrow = _self$get.showArrow,
+        confirm = _self$get.confirm,
         canHover = _self$get.canHover,
         className = _self$get.className,
         _feedback = _self$get._feedback,
         transition = _self$get.transition;
 
     var events = {};
-    if (canHover && trigger === 'hover') {
+    if ((canHover || confirm) && trigger === 'hover') {
         events['ev-mouseenter'] = self.show;
         events['ev-mouseleave'] = self.hide.bind(self, false);
     }
 
     var classNameObj = (_classNameObj = {
         "k-tooltip-content": true,
-        'k-cannot-hover': trigger === 'hover' && !canHover
+        'k-cannot-hover': trigger === 'hover' && !canHover && !confirm
     }, _classNameObj[className] = className, _classNameObj);
 
     return h(_moveWrapper2.default, { 'children': function () {
             try {
-                return [show][0];
+                return [value][0];
             } catch (e) {
                 _e(e);
             }
@@ -14017,13 +14032,50 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 }
             }.call(this)), null, function (i) {
                 widgets['arrow'] = i;
-            }) : undefined, function () {
+            }) : undefined, '\n        ', function () {
                 try {
                     return [children][0];
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this)], '_context': $this }), null, null, null, function (i) {
+            }.call(this), '\n        ', function () {
+                try {
+                    return [confirm][0];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call(this) ? h('div', null, (_blocks["buttons"] = function (parent) {
+                return [h(_button2.default, { 'ev-click': function () {
+                        try {
+                            return [self._cancel][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), 'size': 'small', 'children': function () {
+                        try {
+                            return [self.get('cancelText')][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), '_context': $this }), h(_button2.default, { 'type': 'primary', 'ev-click': function () {
+                        try {
+                            return [self._ok][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), 'size': 'small', 'children': function () {
+                        try {
+                            return [self.get('okText')][0];
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call(this), '_context': $this })];
+            }) && (__blocks["buttons"] = function (parent) {
+                var self = this;
+                return blocks["buttons"] ? blocks["buttons"].call(this, function () {
+                    return _blocks["buttons"].call(self, parent);
+                }) : _blocks["buttons"].call(this, parent);
+            }) && __blocks["buttons"].call(this), 'k-buttons') : undefined], '_context': $this }), null, null, null, function (i) {
             widgets['content'] = i;
         }) : undefined, '_context': $this });
 };
@@ -14031,6 +14083,10 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
 var _moveWrapper = __webpack_require__(40);
 
 var _moveWrapper2 = _interopRequireDefault(_moveWrapper);
+
+var _button = __webpack_require__(14);
+
+var _button2 = _interopRequireDefault(_button);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -15406,7 +15462,8 @@ var Editable = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
         var _get = this.get(),
             validate = _get.validate,
             required = _get.required,
-            trim = _get.trim;
+            trim = _get.trim,
+            oldValue = _get.value;
 
         if (trim) value = value.trim();
 
@@ -15436,6 +15493,10 @@ var Editable = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
             editing: false,
             value: value
         });
+
+        if (oldValue !== value) {
+            this.trigger('change', this, value, oldValue);
+        }
     };
 
     Editable.prototype.reset = function reset() {
@@ -20028,6 +20089,7 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
         this._currentThs = [currentTh];
         this._prevThs = [prevTh];
         this._tables = [this.table];
+        this._isLastTh = !currentTh.nextElementSibling;
 
         if (this.get('fixHeader')) {
             var ths = this.table.children[0].getElementsByTagName('th');
@@ -20045,15 +20107,19 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
     };
 
     Table.prototype._move = function _move(e) {
+        var _this6 = this;
+
         e.preventDefault();
 
         if (this._resizing) {
             var delX = e.clientX - this._x;
+            if (delX === 0) return;
+
             var prevWidth = this._prevThs[0].offsetWidth + delX;
             var tableWidth = this._tables[0].offsetWidth + delX;
             var currentWidth = this._currentThs[0].offsetWidth - delX;
 
-            if (prevWidth < this._minWidth) return;
+            if (prevWidth < this._minWidth && delX < 0) return;
 
             this._prevThs.forEach(function (item) {
                 item.style.width = prevWidth + 'px';
@@ -20061,7 +20127,12 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
 
             if (this._containerWidth > tableWidth) {
                 this._currentThs.forEach(function (item) {
-                    item.style.width = currentWidth + 'px';
+                    if (_this6._isLastTh) {
+                        item.width = '';
+                        item.style.width = '';
+                    } else {
+                        item.style.width = currentWidth + 'px';
+                    }
                 });
             } else if (this._containerWidth === tableWidth) {
                 this._tables.forEach(function (item) {
@@ -22537,7 +22608,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                         } catch (e) {
                             _e(e);
                         }
-                    }.call(this) }, [h('i', null, null, 'k-zoom ion-ios-eye-outline'), h(CloseBtn, { 'value': function () {
+                    }.call(this) }, h('i', null, null, 'k-zoom ion-ios-eye-outline'), 'k-overlap k-icons'), h(CloseBtn, { 'value': function () {
                         try {
                             return [value][0];
                         } catch (e) {
@@ -22549,7 +22620,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                         } catch (e) {
                             _e(e);
                         }
-                    }.call(this), 'icon': 'ion-ios-close', 'children': null, '_context': $this })], 'k-overlap k-icons')], '_context': $this });
+                    }.call(this), 'icon': 'ion-ios-close', 'children': null, '_context': $this })], '_context': $this });
         }, this), function () {
             try {
                 return [!limit || files.length < limit][0];

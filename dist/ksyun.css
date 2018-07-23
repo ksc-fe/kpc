@@ -3853,6 +3853,7 @@ label {
   padding: 0 1.142857142857143rem;
   outline: none;
   border: none;
+  vertical-align: middle;
   color: #737373;
   background-color: #fff;
   text-align: center;
@@ -3962,7 +3963,7 @@ button.k-btn > span {
   padding: 0 1.714285714285714rem;
 }
 .k-btn.k-large .k-icon {
-  line-height: 2.857142857142857rem;
+  line-height: calc(2.857142857142857rem - 2px);
 }
 .k-btn.k-large.k-btn-icon {
   width: 2.857142857142857rem;
@@ -3976,7 +3977,7 @@ button.k-btn.k-large > span {
   padding: 0 0.571428571428571rem;
 }
 .k-btn.k-small .k-icon {
-  line-height: 1.714285714285714rem;
+  line-height: calc(1.714285714285714rem - 2px);
 }
 .k-btn.k-small.k-btn-icon {
   width: 1.714285714285714rem;
@@ -3990,7 +3991,7 @@ button.k-btn.k-small > span {
   padding: 0 0.571428571428571rem;
 }
 .k-btn.k-mini .k-icon {
-  line-height: 1.142857142857143rem;
+  line-height: calc(1.142857142857143rem - 2px);
 }
 .k-btn.k-mini.k-btn-icon {
   width: 1.142857142857143rem;
@@ -4001,7 +4002,7 @@ button.k-btn.k-mini > span {
 .k-btn .k-icon {
   font-size: inherit;
   vertical-align: middle;
-  line-height: 2.285714285714286rem;
+  line-height: calc(2.285714285714286rem - 2px);
 }
 .k-btn .k-icon:before {
   font-size: inherit;
@@ -5241,6 +5242,7 @@ button.k-btn.k-mini > span {
 }
 .k-collapse-item > .k-title .k-arrow {
   float: right;
+  height: 2.857142857142857rem;
   -webkit-transition: -webkit-transform 0.25s ease-in-out;
   transition: -webkit-transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out;
@@ -5354,6 +5356,19 @@ button.k-btn.k-mini > span {
 }
 .k-tooltip-content.k-cannot-hover {
   pointer-events: none;
+}
+.k-tooltip-content .k-buttons {
+  padding-top: 0.571428571428571rem;
+}
+.k-tooltip-content .k-buttons .k-btn:last-of-type {
+  margin-left: 0.571428571428571rem;
+}
+.k-tooltip-content .k-buttons .k-btn:first-of-type {
+  float: right;
+  margin-left: 0.571428571428571rem;
+}
+.k-tooltip-content .k-buttons .k-btn:last-of-type {
+  margin: 0;
 }
 .k-scroll-select {
   text-align: center;
@@ -6917,7 +6932,7 @@ button.k-btn.k-mini > span {
   overflow-x: hidden;
 }
 .k-table-wrapper .k-scroll > .k-table {
-  margin-top: -33px;
+  margin-top: -31px;
 }
 .k-table-wrapper.k-border .k-fixed,
 .k-table-wrapper.k-border thead th {
@@ -7178,6 +7193,7 @@ button.k-btn.k-mini > span {
 }
 .k-upload .k-close .k-icon {
   line-height: 1.142857142857143rem;
+  position: relative;
 }
 .k-upload .k-close .k-icon:before {
   font-size: 1.714285714285714rem;
@@ -7266,6 +7282,10 @@ button.k-btn.k-mini > span {
 .k-upload .k-pictures .k-picture.k-error {
   border-color: #ff4133;
 }
+.k-upload .k-pictures .k-picture:hover .k-close {
+  opacity: 1;
+  pointer-events: all;
+}
 .k-upload .k-pictures img {
   display: inline-block;
   width: 100%;
@@ -7276,9 +7296,24 @@ button.k-btn.k-mini > span {
   top: -0.571428571428571rem;
   right: -0.571428571428571rem;
   display: inline-block;
+  opacity: 0;
+  -webkit-transition: opacity 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out;
+  pointer-events: none;
 }
 .k-upload .k-pictures .k-close .k-icon:before {
   font-size: 1.285714285714286rem;
+}
+.k-upload .k-pictures .k-close:before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0.571428571428571rem;
+  height: 0.571428571428571rem;
+  top: 0.285714285714286rem;
+  left: 0.285714285714286rem;
+  border-radius: 50%;
+  background: #fff;
 }
 .k-upload .k-pictures .k-icons {
   opacity: 0;
