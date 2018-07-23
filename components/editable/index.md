@@ -29,3 +29,4 @@ sidebar: doc
 | 事件名 | 说明 | 参数 |
 | --- | --- | --- |
 | error | 验证失败时触发 | 1. 当前组件实例 <br /> 2. 当前输入的值 |
+| change | 当值改变时触发，与`$change:value`不同的是，该事件只会在用户输入导致变更时触发 | `Editable, newValue, oldValue` |

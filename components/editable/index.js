@@ -57,7 +57,7 @@ export default class Editable extends Intact {
     }
 
     _setValue(value) {
-        const {validate, required, trim} = this.get();
+        const {validate, required, trim, value: oldValue} = this.get();
 
         if (trim) value = value.trim();
         
@@ -87,6 +87,10 @@ export default class Editable extends Intact {
             editing: false,
             value: value
         });
+
+        if (oldValue !== value) {
+            this.trigger('change', this, value, oldValue);
+        }
     }
 
     reset() {
