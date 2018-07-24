@@ -59,10 +59,10 @@ export default class Form extends Intact {
 
     _submit(e) {
         e.preventDefault();
-        this.submit();
+        this.submit(e);
     }
 
-    submit() {
+    submit(e) {
         this.validate().then(isValid => {
             if (isValid) {
                 this.trigger('submit', e, this);
