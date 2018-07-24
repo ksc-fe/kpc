@@ -90,15 +90,15 @@
     .k-marks
         position relative
         height $slider-marks-height
-        span
+        > span
             position absolute
             transform translateX(-50%) 
             white-space nowrap
             padding $slider-box-padding 
             cursor pointer
-        :first-child
-            transform none
-        :last-child
-            transform translateX(-100%)
+            &:first-child
+                transform none
+            &:last-child
+                transform translateX(-100%)
 
 require($theme-dir + '/slider.styl')
