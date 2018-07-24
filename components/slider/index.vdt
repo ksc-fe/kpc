@@ -121,6 +121,7 @@ const sliderWidth = max - min;
             v-model="_inputValue"
             step={{ step }} 
             ref="spinner"
+            vertical
         />
     </div>
 </div>
