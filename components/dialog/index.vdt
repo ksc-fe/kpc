@@ -8,6 +8,7 @@ const {size} = self.get();
     <div class={{ {
         "k-dialog-wrapper": true,
         [self.get('className')]: self.get('className'),
+        [scope.className]: scope.className,
     } }} ref={{ dom => self.$element = dom }}>
         <Animate class="k-overlay" v-if={{ self.get('value') }} key="overlay"></Animate>
         <Animate 
