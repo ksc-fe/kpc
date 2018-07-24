@@ -57,8 +57,12 @@ export default class Form extends Intact {
         return !Form.methods.required.call(this, value, item);
     }
 
-    submit(e) {
+    _submit(e) {
         e.preventDefault();
+        this.submit();
+    }
+
+    submit() {
         this.validate().then(isValid => {
             if (isValid) {
                 this.trigger('submit', e, this);
