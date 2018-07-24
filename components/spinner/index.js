@@ -37,7 +37,7 @@ export default class Spinner extends Intact {
             if (numberReg.test(val)) {
                 val = Number(val);
                 if (val <= max && val >= min) {
-                    this.set('value', val, {update: false});
+                    this.set('value', val);
                 }
             }
         });
