@@ -97,14 +97,12 @@ npm install css-loader style-loader file-loader --save-dev
 `kpc/@css/components/button`
 
 ```js
-const path = require('path');
-
 module.exports = {
     ...
     resolve: {
         alias: {
             // 让kpc组件指向多文件构建版本，可以统一组件加载路径
-            'kpc': path.resolve(__dirname, './node_modules/kpc/@css')
+            'kpc': 'kpc/@css'
         }
     },
     module: {
@@ -173,13 +171,13 @@ npm install postcss-loader autoprefixer stylus-loader --save-dev
 将css加载配置修改为（通过`stylus-loader`的`import`配置，我们可以引入主题文件）：
 
 ```js
-const path = require('path');
+const autoprefixer = require('autoprefixer');
 
 module.export = {
     ...
     resolve: {
         alias: {
-            'kpc': path.resolve(__dirname, './node_modules/kpc/@stylus')
+            'kpc': '/kpc/@stylus'
         }
     },
     module: {
@@ -189,6 +187,9 @@ module.export = {
             {
                 test: /\.(styl|css)$/,
                 use: [
+                    {
+                        loader: 'style-loader'
+                    },
                     {
                         loader: 'css-loader', 
                         options: {
@@ -218,7 +219,19 @@ module.export = {
                         }
                     }
                 ]
-            }
+            },
+            // 引入字体文件
+            {
+                test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            outputPath: 'fonts/',
+                        }
+                    }
+                ]
+            },
         ]
     }
 }

@@ -49,10 +49,12 @@ export default class Slider extends Intact {
                 this._setFixedValue(val);
             }
         });
-        this.on('$receive:value', (c, val) => {
-            if (!this.get('_isDragging')) {
-                this._setFixedValue(val);
-            }
+        ['min', 'max', 'step', 'value'].forEach(item => {
+            this.on(`$receive:${item}`, () => {
+                if (!this.get('_isDragging')) {
+                    this._setFixedValue(this.get('value'));
+                }
+            });
         });
     }
 
