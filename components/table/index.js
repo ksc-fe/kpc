@@ -70,6 +70,8 @@ export default class Table extends Intact {
 
     _mount() {
         this._calcHeaderPadding();
+
+        window.addEventListener('resize', this._resizeTableWhenDragable);
     }
 
     get(key, defaultValue) {
@@ -293,6 +295,8 @@ export default class Table extends Intact {
     _move(e) {
         e.preventDefault();
 
+        this._dragged = true;
+
         if (this._resizing) {
             const delX = e.clientX - this._x;
             if (delX === 0) return;
@@ -338,8 +342,26 @@ export default class Table extends Intact {
         }
     }
 
+    _resizeTableWhenDragable() {
+        if (!this._dragged) return;
+
+        this._containerWidth = this.element.offsetWidth;
+        this._tables = [this.table];
+        if (this.get('fixHeader')) {
+            this._tables = [this.header, this.scroll];
+        } 
+
+        const tableWidth = this._tables[0].offsetWidth;
+        if (this._containerWidth > tableWidth) {
+            this._tables.forEach(table => {
+                table.style.width = '100%';
+            });
+        }
+    }
+
     _destroy() {
         this._dragEnd();
+        window.removeEventListener('resize', this._resizeTableWhenDragable);
     }
 }
 

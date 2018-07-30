@@ -33,7 +33,7 @@ var data = [{a: 'A', b: 'B', c: 'C'}, {a: 'A', b: 'B', c: 'C'}];
         minColWidth={{ 100 }}
     />
     <Form style="margin-top: 20px;">
-        <FormItem>
+        <FormItem style="width: 100%">
             <b:label><div style="width: 140px">table in table-cell</div></b:label>
             <Table 
                 fixHeader
