@@ -492,6 +492,7 @@ html,
 body,
 #app {
   height: 100%;
+  line-height: 1.15;
 }
 html {
   font-size: 14px;
@@ -3798,6 +3799,7 @@ label {
 }
 .k-app {
   height: 100%;
+  width: 100%;
 }
 .k-badge {
   display: inline-block;
@@ -5686,17 +5688,17 @@ button.k-btn.k-mini > span {
   border: 1px solid #db2828;
 }
 .k-form-item:not(:last-of-type) {
-  margin: 0 0 1.428571428571429em 0;
+  margin: 0 0 1.428571428571429rem 0;
 }
 .k-form-item {
   display: table;
 }
 .k-form-item > .k-label {
   display: table-cell;
-  width: 5.714285714285714em;
+  width: 5.714285714285714rem;
   text-align: right;
-  padding-right: 0.714285714285714em;
-  line-height: 2.571428571428572em;
+  padding-right: 0.714285714285714rem;
+  line-height: 2.571428571428572rem;
 }
 .k-form-item > .k-content {
   display: table-cell;
@@ -6210,7 +6212,7 @@ button.k-btn.k-mini > span {
   position: relative;
   height: 1.857142857142857rem;
 }
-.k-slider .k-marks span {
+.k-slider .k-marks > span {
   position: absolute;
   -webkit-transform: translateX(-50%);
       -ms-transform: translateX(-50%);
@@ -6219,12 +6221,12 @@ button.k-btn.k-mini > span {
   padding: 0.714285714285714rem 0.142857142857143rem 0;
   cursor: pointer;
 }
-.k-slider .k-marks :first-child {
+.k-slider .k-marks > span:first-child {
   -webkit-transform: none;
       -ms-transform: none;
           transform: none;
 }
-.k-slider .k-marks :last-child {
+.k-slider .k-marks > span:last-child {
   -webkit-transform: translateX(-100%);
       -ms-transform: translateX(-100%);
           transform: translateX(-100%);

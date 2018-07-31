@@ -5994,10 +5994,14 @@ var Form = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fun
         return !Form.methods.required.call(this, value, item);
     };
 
+    Form.prototype._submit = function _submit(e) {
+        e.preventDefault();
+        this.submit(e);
+    };
+
     Form.prototype.submit = function submit(e) {
         var _this2 = this;
 
-        e.preventDefault();
         this.validate().then(function (isValid) {
             if (isValid) {
                 _this2.trigger('submit', e, _this2);
@@ -6200,7 +6204,7 @@ var Spinner = (_temp = _class = function (_Intact) {
             if (numberReg.test(val)) {
                 val = Number(val);
                 if (val <= max && val >= min) {
-                    _this2.set('value', val, { update: false });
+                    _this2.set('value', val);
                 }
             }
         });
@@ -6672,7 +6676,7 @@ exports.Tag = _tag.Tag;
 exports.Tooltip = _tooltip.Tooltip;
 exports.Transfer = _transfer.Transfer;
 exports.Upload = _upload.Upload;
-var version = exports.version = '0.4.2';
+var version = exports.version = '0.4.3';
 
 /* generate end */
 
@@ -15128,189 +15132,189 @@ module.exports = exports['default'];
 exports.__esModule = true;
 
 exports.default = function (obj, _Vdt, blocks, $callee) {
-                _Vdt || (_Vdt = Vdt);
-                obj || (obj = {});
-                blocks || (blocks = {});
-                var h = _Vdt.miss.h,
-                    hc = _Vdt.miss.hc,
-                    hu = _Vdt.miss.hu,
-                    widgets = this && this.widgets || {},
-                    _blocks = {},
-                    __blocks = {},
-                    __u = _Vdt.utils,
-                    extend = __u.extend,
-                    _e = __u.error,
-                    _className = __u.className,
-                    __o = __u.Options,
-                    _getModel = __o.getModel,
-                    _setModel = __o.setModel,
-                    _setCheckboxModel = __u.setCheckboxModel,
-                    _detectCheckboxChecked = __u.detectCheckboxChecked,
-                    _setSelectModel = __u.setSelectModel,
-                    self = this.data,
-                    $this = this,
-                    scope = obj,
-                    Animate = self && self.Animate,
-                    parent = ($callee || {})._super;
+        _Vdt || (_Vdt = Vdt);
+        obj || (obj = {});
+        blocks || (blocks = {});
+        var h = _Vdt.miss.h,
+            hc = _Vdt.miss.hc,
+            hu = _Vdt.miss.hu,
+            widgets = this && this.widgets || {},
+            _blocks = {},
+            __blocks = {},
+            __u = _Vdt.utils,
+            extend = __u.extend,
+            _e = __u.error,
+            _className = __u.className,
+            __o = __u.Options,
+            _getModel = __o.getModel,
+            _setModel = __o.setModel,
+            _setCheckboxModel = __u.setCheckboxModel,
+            _detectCheckboxChecked = __u.detectCheckboxChecked,
+            _setSelectModel = __u.setSelectModel,
+            self = this.data,
+            $this = this,
+            scope = obj,
+            Animate = self && self.Animate,
+            parent = ($callee || {})._super;
 
-                var _self$get = self.get(),
-                    size = _self$get.size;
+        var _self$get = self.get(),
+            size = _self$get.size;
 
-                return h(_moveWrapper2.default, { 'autoDestroy': function () {
-                                                try {
-                                                                return [false][0];
-                                                } catch (e) {
-                                                                _e(e);
-                                                }
-                                }.call(this), 'children': h('div', null, [function () {
-                                                try {
-                                                                return [self.get('value')][0];
-                                                } catch (e) {
-                                                                _e(e);
-                                                }
-                                }.call(this) ? h(Animate, { 'className': 'k-overlay', 'key': 'overlay', 'children': null, '_context': $this }) : undefined, function () {
-                                                try {
-                                                                return [self.get('value')][0];
-                                                } catch (e) {
-                                                                _e(e);
-                                                }
-                                }.call(this) ? h(Animate, { 'className': _className(function () {
-                                                                try {
-                                                                                var _ref;
+        return h(_moveWrapper2.default, { 'autoDestroy': function () {
+                        try {
+                                return [false][0];
+                        } catch (e) {
+                                _e(e);
+                        }
+                }.call(this), 'children': h('div', null, [function () {
+                        try {
+                                return [self.get('value')][0];
+                        } catch (e) {
+                                _e(e);
+                        }
+                }.call(this) ? h(Animate, { 'className': 'k-overlay', 'key': 'overlay', 'children': null, '_context': $this }) : undefined, function () {
+                        try {
+                                return [self.get('value')][0];
+                        } catch (e) {
+                                _e(e);
+                        }
+                }.call(this) ? h(Animate, { 'className': _className(function () {
+                                try {
+                                        var _ref;
 
-                                                                                return [(_ref = {
-                                                                                                "k-dialog": true,
-                                                                                                'k-dragging': self.get('_dragging')
-                                                                                }, _ref['k-' + size] = size !== 'default', _ref)][0];
-                                                                } catch (e) {
-                                                                                _e(e);
-                                                                }
-                                                }.call(this)), 'ref': function () {
-                                                                try {
-                                                                                return [function (i) {
-                                                                                                return self.dialog = i ? i.element : null;
-                                                                                }][0];
-                                                                } catch (e) {
-                                                                                _e(e);
-                                                                }
-                                                }.call(this), 'ev-a:leaveEnd': function () {
-                                                                try {
-                                                                                return [self._leaveEnd][0];
-                                                                } catch (e) {
-                                                                                _e(e);
-                                                                }
-                                                }.call(this), 'key': 'dialog', 'children': [h('div', { 'ev-mousedown': function () {
-                                                                                try {
-                                                                                                return [self._dragStart][0];
-                                                                                } catch (e) {
-                                                                                                _e(e);
-                                                                                }
-                                                                }.call(this) }, [(_blocks["header"] = function (parent) {
-                                                                return h('span', null, function () {
-                                                                                try {
-                                                                                                return [self.get('title')][0];
-                                                                                } catch (e) {
-                                                                                                _e(e);
-                                                                                }
-                                                                }.call(this), 'k-title');
-                                                }) && (__blocks["header"] = function (parent) {
-                                                                var self = this;
-                                                                return blocks["header"] ? blocks["header"].call(this, function () {
-                                                                                return _blocks["header"].call(self, parent);
-                                                                }) : _blocks["header"].call(this, parent);
-                                                }) && __blocks["header"].call(this), h(_button2.default, { 'type': 'none', 'icon': function () {
-                                                                                try {
-                                                                                                return [true][0];
-                                                                                } catch (e) {
-                                                                                                _e(e);
-                                                                                }
-                                                                }.call(this), 'title': function () {
-                                                                                try {
-                                                                                                return [(0, _utils._$)("关闭")][0];
-                                                                                } catch (e) {
-                                                                                                _e(e);
-                                                                                }
-                                                                }.call(this), 'className': 'k-close', 'ev-click': function () {
-                                                                                try {
-                                                                                                return [self.close][0];
-                                                                                } catch (e) {
-                                                                                                _e(e);
-                                                                                }
-                                                                }.call(this), 'children': h('i', null, null, 'k-icon ion-ios-close-empty'), '_context': $this })], 'k-header'), h('div', null, (_blocks["body"] = function (parent) {
-                                                                return function () {
-                                                                                try {
-                                                                                                return [self.get('children')][0];
-                                                                                } catch (e) {
-                                                                                                _e(e);
-                                                                                }
-                                                                }.call(this);
-                                                }) && (__blocks["body"] = function (parent) {
-                                                                var self = this;
-                                                                return blocks["body"] ? blocks["body"].call(this, function () {
-                                                                                return _blocks["body"].call(self, parent);
-                                                                }) : _blocks["body"].call(this, parent);
-                                                }) && __blocks["body"].call(this), 'k-body'), h('div', null, (_blocks["footer"] = function (parent) {
-                                                                return [h(_button2.default, { 'ev-click': function () {
-                                                                                                try {
-                                                                                                                return [self.cancel][0];
-                                                                                                } catch (e) {
-                                                                                                                _e(e);
-                                                                                                }
-                                                                                }.call(this), 'children': function () {
-                                                                                                try {
-                                                                                                                return [self.get('cancelText')][0];
-                                                                                                } catch (e) {
-                                                                                                                _e(e);
-                                                                                                }
-                                                                                }.call(this), '_context': $this }), h(_button2.default, { 'type': 'primary', 'ev-click': function () {
-                                                                                                try {
-                                                                                                                return [self.ok][0];
-                                                                                                } catch (e) {
-                                                                                                                _e(e);
-                                                                                                }
-                                                                                }.call(this), 'loading': function () {
-                                                                                                try {
-                                                                                                                return [self.get('loading')][0];
-                                                                                                } catch (e) {
-                                                                                                                _e(e);
-                                                                                                }
-                                                                                }.call(this), 'disabled': function () {
-                                                                                                try {
-                                                                                                                return [self.get('disabledOk')][0];
-                                                                                                } catch (e) {
-                                                                                                                _e(e);
-                                                                                                }
-                                                                                }.call(this), 'children': function () {
-                                                                                                try {
-                                                                                                                return [self.get('okText')][0];
-                                                                                                } catch (e) {
-                                                                                                                _e(e);
-                                                                                                }
-                                                                                }.call(this), '_context': $this })];
-                                                }) && (__blocks["footer"] = function (parent) {
-                                                                var self = this;
-                                                                return blocks["footer"] ? blocks["footer"].call(this, function () {
-                                                                                return _blocks["footer"].call(self, parent);
-                                                                }) : _blocks["footer"].call(this, parent);
-                                                }) && __blocks["footer"].call(this), 'k-footer')], '_context': $this }) : undefined], _className(function () {
+                                        return [(_ref = {
+                                                "k-dialog": true,
+                                                'k-dragging': self.get('_dragging')
+                                        }, _ref['k-' + size] = size !== 'default', _ref)][0];
+                                } catch (e) {
+                                        _e(e);
+                                }
+                        }.call(this)), 'ref': function () {
+                                try {
+                                        return [function (i) {
+                                                return self.dialog = i ? i.element : null;
+                                        }][0];
+                                } catch (e) {
+                                        _e(e);
+                                }
+                        }.call(this), 'ev-a:leaveEnd': function () {
+                                try {
+                                        return [self._leaveEnd][0];
+                                } catch (e) {
+                                        _e(e);
+                                }
+                        }.call(this), 'key': 'dialog', 'children': [h('div', { 'ev-mousedown': function () {
+                                        try {
+                                                return [self._dragStart][0];
+                                        } catch (e) {
+                                                _e(e);
+                                        }
+                                }.call(this) }, [(_blocks["header"] = function (parent) {
+                                return h('span', null, function () {
+                                        try {
+                                                return [self.get('title')][0];
+                                        } catch (e) {
+                                                _e(e);
+                                        }
+                                }.call(this), 'k-title');
+                        }) && (__blocks["header"] = function (parent) {
+                                var self = this;
+                                return blocks["header"] ? blocks["header"].call(this, function () {
+                                        return _blocks["header"].call(self, parent);
+                                }) : _blocks["header"].call(this, parent);
+                        }) && __blocks["header"].call(this), h(_button2.default, { 'type': 'none', 'icon': function () {
+                                        try {
+                                                return [true][0];
+                                        } catch (e) {
+                                                _e(e);
+                                        }
+                                }.call(this), 'title': function () {
+                                        try {
+                                                return [(0, _utils._$)("关闭")][0];
+                                        } catch (e) {
+                                                _e(e);
+                                        }
+                                }.call(this), 'className': 'k-close', 'ev-click': function () {
+                                        try {
+                                                return [self.close][0];
+                                        } catch (e) {
+                                                _e(e);
+                                        }
+                                }.call(this), 'children': h('i', null, null, 'k-icon ion-ios-close-empty'), '_context': $this })], 'k-header'), h('div', null, (_blocks["body"] = function (parent) {
+                                return function () {
+                                        try {
+                                                return [self.get('children')][0];
+                                        } catch (e) {
+                                                _e(e);
+                                        }
+                                }.call(this);
+                        }) && (__blocks["body"] = function (parent) {
+                                var self = this;
+                                return blocks["body"] ? blocks["body"].call(this, function () {
+                                        return _blocks["body"].call(self, parent);
+                                }) : _blocks["body"].call(this, parent);
+                        }) && __blocks["body"].call(this), 'k-body'), h('div', null, (_blocks["footer"] = function (parent) {
+                                return [h(_button2.default, { 'ev-click': function () {
                                                 try {
-                                                                var _ref2;
+                                                        return [self.cancel][0];
+                                                } catch (e) {
+                                                        _e(e);
+                                                }
+                                        }.call(this), 'children': function () {
+                                                try {
+                                                        return [self.get('cancelText')][0];
+                                                } catch (e) {
+                                                        _e(e);
+                                                }
+                                        }.call(this), '_context': $this }), h(_button2.default, { 'type': 'primary', 'ev-click': function () {
+                                                try {
+                                                        return [self.ok][0];
+                                                } catch (e) {
+                                                        _e(e);
+                                                }
+                                        }.call(this), 'loading': function () {
+                                                try {
+                                                        return [self.get('loading')][0];
+                                                } catch (e) {
+                                                        _e(e);
+                                                }
+                                        }.call(this), 'disabled': function () {
+                                                try {
+                                                        return [self.get('disabledOk')][0];
+                                                } catch (e) {
+                                                        _e(e);
+                                                }
+                                        }.call(this), 'children': function () {
+                                                try {
+                                                        return [self.get('okText')][0];
+                                                } catch (e) {
+                                                        _e(e);
+                                                }
+                                        }.call(this), '_context': $this })];
+                        }) && (__blocks["footer"] = function (parent) {
+                                var self = this;
+                                return blocks["footer"] ? blocks["footer"].call(this, function () {
+                                        return _blocks["footer"].call(self, parent);
+                                }) : _blocks["footer"].call(this, parent);
+                        }) && __blocks["footer"].call(this), 'k-footer')], '_context': $this }) : undefined], _className(function () {
+                        try {
+                                var _ref2;
 
-                                                                return [(_ref2 = {
-                                                                                "k-dialog-wrapper": true
-                                                                }, _ref2[self.get('className')] = self.get('className'), _ref2)][0];
-                                                } catch (e) {
-                                                                _e(e);
-                                                }
-                                }.call(this)), null, function () {
-                                                try {
-                                                                return [function (dom) {
-                                                                                return self.$element = dom;
-                                                                }][0];
-                                                } catch (e) {
-                                                                _e(e);
-                                                }
-                                }.call(this)), '_context': $this });
+                                return [(_ref2 = {
+                                        "k-dialog-wrapper": true
+                                }, _ref2[self.get('className')] = self.get('className'), _ref2[scope.className] = scope.className, _ref2)][0];
+                        } catch (e) {
+                                _e(e);
+                        }
+                }.call(this)), null, function () {
+                        try {
+                                return [function (dom) {
+                                        return self.$element = dom;
+                                }][0];
+                        } catch (e) {
+                                _e(e);
+                        }
+                }.call(this)), '_context': $this });
 };
 
 var _button = __webpack_require__(14);
@@ -15743,7 +15747,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             }
         }.call(this), 'ev-submit': function () {
             try {
-                return [self.submit][0];
+                return [self._submit][0];
             } catch (e) {
                 _e(e);
             }
@@ -18042,10 +18046,12 @@ var Slider = (_temp = _class = function (_Intact) {
                 _this2._setFixedValue(val);
             }
         });
-        this.on('$receive:value', function (c, val) {
-            if (!_this2.get('_isDragging')) {
-                _this2._setFixedValue(val);
-            }
+        ['min', 'max', 'step', 'value'].forEach(function (item) {
+            _this2.on('$receive:' + item, function () {
+                if (!_this2.get('_isDragging')) {
+                    _this2._setFixedValue(_this2.get('value'));
+                }
+            });
         });
     };
 
@@ -18747,6 +18753,12 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         }.call(this), 'v-model': '_inputValue', 'step': function () {
             try {
                 return [step][0];
+            } catch (e) {
+                _e(e);
+            }
+        }.call(this), 'vertical': function () {
+            try {
+                return [true][0];
             } catch (e) {
                 _e(e);
             }
@@ -19868,6 +19880,8 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
 
     Table.prototype._mount = function _mount() {
         this._calcHeaderPadding();
+
+        window.addEventListener('resize', this._resizeTableWhenDragable);
     };
 
     Table.prototype.get = function get(key, defaultValue) {
@@ -20111,6 +20125,8 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
 
         e.preventDefault();
 
+        this._dragged = true;
+
         if (this._resizing) {
             var delX = e.clientX - this._x;
             if (delX === 0) return;
@@ -20156,8 +20172,26 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
         }
     };
 
+    Table.prototype._resizeTableWhenDragable = function _resizeTableWhenDragable() {
+        if (!this._dragged) return;
+
+        this._containerWidth = this.element.offsetWidth;
+        this._tables = [this.table];
+        if (this.get('fixHeader')) {
+            this._tables = [this.header, this.scroll];
+        }
+
+        var tableWidth = this._tables[0].offsetWidth;
+        if (this._containerWidth > tableWidth) {
+            this._tables.forEach(function (table) {
+                table.style.width = '100%';
+            });
+        }
+    };
+
     Table.prototype._destroy = function _destroy() {
         this._dragEnd();
+        window.removeEventListener('resize', this._resizeTableWhenDragable);
     };
 
     (0, _createClass3.default)(Table, [{
