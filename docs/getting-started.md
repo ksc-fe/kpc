@@ -46,7 +46,7 @@ npm run dev
 如果你的项目没有使用webpack来构建，可以引入单文件构建版。将`kpc.css`和`kpc.js`在html文件中引入。
 此时所有组件都在`Kpc`命名空间下，例如`Kpc.Button` `Kpc.Table`等。
 
-另外你也可以调用`Kpc.install`方法将组件放到全局空间下，此时为了避免命名冲突，
+另外你也可以调用`Kpc.install()`方法将组件放到全局空间下，此时为了避免命名冲突，
 所有组件名前加上`K`作为前缀，例如`KButton` `KTable`等
 
 ```html
@@ -154,7 +154,7 @@ import {Button, ButtonGroup} from 'kpc/components/button';
 ## 多文件半构建版
 
 所谓半构建版与构建版的区别是，样式使用的`stylus`而非编译后的css。当我们需要修改或者引入新主题时，
-通过该版本，可以很方便地实现。详见[定制主题]()
+通过该版本，可以很方便地实现。详见[定制主题][6]
 
 由于使用`stylus`，所以与构建版在使用上唯一的区别是需要引入`stylus-loader`
 
@@ -242,3 +242,4 @@ module.export = {
 [3]: https://cn.vuejs.org/index.html
 [4]: http://javey.github.io/intact/
 [5]: http://yeoman.io/
+[6]: ../theme/

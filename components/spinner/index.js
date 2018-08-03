@@ -57,7 +57,6 @@ export default class Spinner extends Intact {
             '_value': value,
             'value': value,
         });
-        this.initValue = value;
     }
 
     _increase(e) {
@@ -87,10 +86,10 @@ export default class Spinner extends Intact {
     _changeValue(e) {
         let val = e.target.value.trim();
 
-        const {disabled, max, min} = this.get();
+        const {disabled, max, min, value} = this.get();
 
         if (!numberReg.test(val) || disabled) {
-            this.set('_value', this.initValue);
+            this.set('_value', value);
         } else {
             val = Number(val);
             if (val >= max) {
