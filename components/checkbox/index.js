@@ -20,7 +20,6 @@ export default class Checkbox extends Intact {
 
     static propTypes = {
         disabled: Boolean,
-        group: Boolean,
         indeterminate: Boolean,
     }
 

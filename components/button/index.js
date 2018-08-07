@@ -39,7 +39,9 @@ export default class Button extends Intact {
         fluid: Boolean,
         htmlType: String,
         tagName: [String, Function],
+        tagProps: Object,
         name: String,
+        tabindex: [String, Number],
     }
 
     _mount() {

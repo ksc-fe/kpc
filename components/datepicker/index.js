@@ -15,7 +15,10 @@ export default class Datepicker extends Intact {
     static propTypes = {
         clearable: Boolean,
         disabled: Boolean,
+        size: String,
+        type: String,
         range: Boolean,
+        transition: String,
     };
 
     defaults() {
@@ -36,8 +39,6 @@ export default class Datepicker extends Intact {
     }
 
     _init() {
-        this.set('_value', this.get('value'));
-
         // proxy _value to value
         this.on('$change:_value', (c, v) => {
             // if only select one date for range, set with undefined

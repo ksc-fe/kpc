@@ -33,17 +33,17 @@ export default class Slider extends Intact {
     static propTypes = {
         max: Number,
         min: Number,
-        value: Number,
+        value: [Number, Array],
         isRange: Boolean,
         unit: String,
         isShowEnd: Boolean,
         isShowInput: Boolean,
         step: Number,
+        isShowStop: Boolean,
+        marks: Object,
     }
 
     _init() {
-        this._setFixedValue(this.get('value'));
-
         this.on("$change:_inputValue", (c, val) => {
             if (!this.get('_isDragging')) {
                 this._setFixedValue(val);

@@ -25,6 +25,7 @@ export default class Editable extends Intact {
     static propTypes = {
         editing: Boolean,
         required: Boolean,
+        validate: [Function, String, RegExp],
         disabled: Boolean,
         tip: [String, Number],
         trim: Boolean,

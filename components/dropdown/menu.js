@@ -7,6 +7,14 @@ export default class DropdownMenu extends Intact {
     @Intact.template()
     static template = template;
 
+    static propTypes = {
+        show: Boolean,
+        trigger: String,
+        position: Object,
+        transition: String,
+        of: String,
+    }
+
     defaults() {
         return {
             show: false,

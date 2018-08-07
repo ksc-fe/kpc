@@ -11,11 +11,17 @@ export default class Select extends Intact {
     static template = template;
 
     static propTypes = {
+        data: Array,
         multiple: Boolean,
         disabled: Boolean,
         clearable: Boolean,
         filterable: Boolean,
+        filter: Function,
+        keywords: String,
+        placeholder: String,
+        size: String,
         fluid: Boolean,
+        width: [Number, String],
         allowUnmatch: Boolean,
         card: Boolean,
     };

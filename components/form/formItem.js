@@ -6,6 +6,20 @@ export default class FormItem extends Intact {
     @Intact.template()
     get template() { return template; }
 
+    static propTypes = {
+        model: String,
+        rules: Object,
+        // isValid: Boolean,
+        // isDirty: Boolean,
+        // message: String, 
+        messages: Object,
+        classNames: Object,
+        label: String,
+        htmlFor: String,
+        hideLabel: Boolean,
+        force: Boolean,
+    }
+
     defaults() {
         return {
             value: undefined,
@@ -22,11 +36,6 @@ export default class FormItem extends Intact {
             hideLabel: false,
             force: false,
         }
-    }
-
-    static propTypes = {
-        hideLabel: Boolean,
-        force: Boolean,
     }
 
     _init() {

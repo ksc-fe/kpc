@@ -8,7 +8,13 @@ export default class Pagination extends Intact {
     static template = template;
 
     static propTypes = {
+        total: Number,
+        current: Number,
+        limit: Number,
+        counts: [Number, String],
+        limits: Array,
         showGoto: Boolean,
+        size: String,
         noBorder: Boolean,
     };
 

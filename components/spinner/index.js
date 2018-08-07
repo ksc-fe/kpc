@@ -17,19 +17,22 @@ export default class Spinner extends Intact {
             step: 1,
             size: 'default',
             vertical: false,
+
+            _value: 0,
         };
     }
 
     static propTypes = {
         disabled: Boolean,
+        value: [Number, String],
         max: Number,
         min: Number,
         step: Number,
+        size: String,
         vertical: Boolean,
     }
 
     _init() {
-        this._fixValue();
         this.on('$receive:value', this._fixValue);
         this.on('$change:_value', (c, val) => {
             const {max, min} = this.get();

@@ -9,7 +9,17 @@ export default class Transfer extends Intact {
     static template = template;
 
     static propTypes = {
+        data: Array,
+        value: Array,
+        leftChecked: Array,
+        rightChecked: Array,
         filterable: Boolean,
+        filter: Function,
+        label: Function,
+        keyName: String,
+        placeholder: String,
+        leftTitle: [String, Intact.VNode],
+        rightTitle: [String, Intact.VNode],
     };
 
     defaults() {
@@ -38,7 +48,6 @@ export default class Transfer extends Intact {
                 this.set('value', [], {silent: true});
             }
         };
-        fixValue(this.get('value'));
         this.on('$receive:value', (c, v) => fixValue(v));
     }
 

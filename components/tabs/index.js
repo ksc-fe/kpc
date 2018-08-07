@@ -21,7 +21,10 @@ export default class Tabs extends Intact {
     }
 
     static propTypes = {
+        data: Array,
         vertical: Boolean,
+        size: String,
+        type: String,
     }
 
     _changeTab(item) {

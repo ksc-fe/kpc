@@ -38,6 +38,25 @@ export default class Upload extends Intact {
         };
     }
 
+    static propTypes = {
+        accept: String,
+        multiple: Boolean,
+        type: String,
+        files: Array,
+        autoUpload: Boolean,
+        disabled: Boolean,
+        action: String,
+        name: String,
+        headers: Object,
+        data: Object,
+        withCredentials: Boolean,
+        limit: Number,
+        maxSize: Number,
+        defaultFiles: Array,
+        beforeUpload: Function,
+        beforeRemove: Function,
+    }
+
     _init() {
         this._counter = 0;
 

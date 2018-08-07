@@ -10,8 +10,15 @@ export default class Dialog extends Intact {
     static template = template;
 
     static propTypes = {
+        title: String,
         value: Boolean,
+        size: String,
         loading: Boolean,
+        disabledOk: Boolean,
+        okText: String,
+        cancelText: String,
+        ok: Function,
+        cancel: Function,
     };
 
     defaults() {

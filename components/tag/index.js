@@ -12,7 +12,15 @@ export default class Tag extends Intact {
             type: 'default',
             closable: false,
             closed: false,
+            disabled: false,
         };
+    }
+
+    static propTypes = {
+        type: String,
+        closable: Boolean,
+        closed: Boolean,
+        disabled: Boolean,
     }
 
     _close() {

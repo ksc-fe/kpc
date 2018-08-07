@@ -7,6 +7,12 @@ export default class Badge extends Intact {
     @Intact.template()
     static template = template;
 
+    static propTypes = {
+        disabled: Boolean,
+        text: [String, Number],
+        max: Number,
+    };
+
     defaults() {
         return {
             disabled: false,

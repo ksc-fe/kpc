@@ -5,6 +5,11 @@ export default class BreadcrumbItem extends Intact {
     @Intact.template()
     static template = template;
 
+    static propTypes = {
+        to: String,
+        separator: String,
+    };
+
     defaults() {
         return {
             to: undefined,

@@ -10,6 +10,11 @@ export default class Dropdown extends Intact {
         return data.get('children');
     }
 
+    static propTypes = {
+        trigger: String,
+        disabled: Boolean,
+    }
+
     defaults() {
         return {
             trigger: 'hover',
@@ -18,7 +23,6 @@ export default class Dropdown extends Intact {
     }
 
     _init() {
-        this._saveOriginalEvents();
         this.on('$receive:children', () => {
             this._saveOriginalEvents();
         }, {keep: true});
@@ -34,7 +38,7 @@ export default class Dropdown extends Intact {
         }
 
         // save the original event
-        const originProps = children.props;
+        const originProps = {...children.props};
         let hasSaved = false;
         if (!originProps._hasSaved) {
             if (originProps.vueVNode) {

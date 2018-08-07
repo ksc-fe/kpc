@@ -15,6 +15,16 @@ function fixPercent(percent) {
 export default class Progress extends Intact{
     get template() { return template; }
 
+    static propTypes = {
+        type: String,
+        percent: [Number, String],
+        size: String,
+        isOuterText: Boolean,
+        isInnerText: Boolean,
+        status: String,
+        strokeWidth: Number,
+    }
+
     defaults() {
         return {
             type: 'bar', // bar circle

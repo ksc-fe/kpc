@@ -12,6 +12,13 @@ export default class App extends Intact {
     @Intact.template()
     get template() { return template; }
 
+    static propTypes = {
+        loading: Boolean,
+        container: {
+            required: true,
+        }
+    };
+
     defaults() {
         return {
             view: undefined,

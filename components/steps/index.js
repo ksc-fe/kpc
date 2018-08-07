@@ -8,6 +8,12 @@ export default class Steps extends Intact {
     @Intact.template()
     static template = template;
 
+    static propTypes = {
+        value: [Number, String],
+        status: String,
+        type: String,
+    }
+
     defaults() {
         return {
             value: undefined,

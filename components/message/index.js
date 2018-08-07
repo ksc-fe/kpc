@@ -49,6 +49,15 @@ export default class Message extends Intact {
         Message.notice(content, duration, 'warning');
     }
 
+    static propTypes = {
+        content: [String, Intact.VNode],
+        duration: Number,
+        type: String,
+        key: [String, Number],
+        value: Boolean,
+        closable: Boolean,
+        hideIcon: Boolean,
+    }
 
     defaults() {
         return {
@@ -168,7 +177,6 @@ export default class Message extends Intact {
 class Messages extends Intact {
     @Intact.template()
     static template = template;
-
 
     defaults() {
         return {

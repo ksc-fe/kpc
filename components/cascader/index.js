@@ -22,8 +22,17 @@ export default class Cascader extends Select {
         };
     }
 
+    static propTypes = {
+        ...Select.propTypes,
+        data: Array,
+        trigger: String,
+        changeOnSelect: Boolean,
+        format: Function,
+        filter: Function,
+        loadData: Function,
+    };
+
     _init() {
-        this.set('_value', this.get('value'));
         this.on('$receive:value', (c, v) => {
             this.set('_value', v);
         });

@@ -9,9 +9,16 @@ export default class Calendar extends Intact {
 
     static propTypes = {
         multiple: Boolean, 
+        disabledDate: Function,
+        type: String,
+        hours: Array,
+        minutes: Array,
+        seconds: Array,
         disabledHours: Boolean,
         disabledMinutes: Boolean,
         disabledSeconds: Boolean,
+        dayClassNames: String,
+        onMouseEnterDay: Function,
     };
 
     defaults() {

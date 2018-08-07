@@ -15,6 +15,11 @@ export default class Form extends Intact {
     @Intact.template()
     get template() { return template; }
 
+    static propTypes = {
+        items: Array,
+        rules: Object,
+    };
+
     defaults() {
         return {
             items: [],

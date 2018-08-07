@@ -8,6 +8,10 @@ export default class Breadcrumb extends Intact {
     @Intact.template()
     static template = template;
 
+    static propTypes = {
+        separator: String
+    };
+
     defaults() {
         return {
             separator: undefined,

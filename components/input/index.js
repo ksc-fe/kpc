@@ -10,10 +10,21 @@ export default class Input extends Intact {
 
     static propTypes = {
         type: String,
+        name: String,
+        value: [String, Number],
+        defaultValue: String,
+        placeholder: String,
         readonly: Boolean,
         clearable: Boolean,
         disabled: Boolean,
+        size: String,
+        rows: [Number, String],
+        spellcheck: Boolean,
+        autoWidth: Boolean,
         fluid: Boolean,
+        width: [Number, String],
+        tabindex: [Number, String],
+        autocomplete: String,
     };
 
     defaults() {

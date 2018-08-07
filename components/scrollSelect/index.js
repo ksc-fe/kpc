@@ -8,6 +8,12 @@ export default class ScrollSelect extends Intact {
     @Intact.template()
     static template = template;
 
+    static propTypes = {
+        count: Number,
+        data: Array,
+        disabled: Boolean,
+    }
+
     defaults() {
         return {
             value: '',

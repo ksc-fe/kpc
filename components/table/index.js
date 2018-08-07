@@ -40,10 +40,25 @@ export default class Table extends Intact {
     }
 
     static propTypes = {
+        data: Array,
+        scheme: Object,
+        checkType: String,
+        rowKey: Function,
+        rowClassName: Function,
+        checkedKeys: Array,
+        checkedKey: [String, Number],
         rowCheckable: Boolean,
         rowExpandable: Boolean,
+        noDataTemplate: [String, Intact.VNode],
+        disableRow: Function,
+        sort: Object,
+        group: Object,
         resizable: Boolean,
-        fixHeader: Boolean,
+        expand: Function,
+        expandedKeys: Array,
+        type: String,
+        fixHeader: [Boolean, String, Number],
+        minColWidth: Number,
     }
 
     _init() {

@@ -5,8 +5,17 @@ export default class TableColumn extends Intact {
     get template() { return template; }
 
     static propTypes = {
+        title: [String, Intact.VNode],
+        template: Function,
+        key: {
+            type: String,
+            required: true,
+        },
         sortable: Boolean,
+        width: [Number, String],
+        group: Array,
         multiple: Boolean,
+        minWidth: [Number, String],
     };
 
     defaults() {
@@ -19,6 +28,7 @@ export default class TableColumn extends Intact {
             group: undefined,
             multiple: false,
             value: [],
+            minWidth: undefined,
 
             // passed by parent
             $parent: undefined,

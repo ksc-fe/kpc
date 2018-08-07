@@ -25,6 +25,12 @@ export default class Switch extends Intact {
     }
 
     static propTypes = {
+        name: String,
+        on: String,
+        off: String,
+        width: [Number, String],
+        height: [Number, String],
+        size: String,
         disabled: Boolean,
     }
 
