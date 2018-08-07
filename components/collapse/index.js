@@ -11,7 +11,7 @@ export default class Collapse extends Intact {
     static propTypes = {
         accordion: Boolean,
         noBorder: Boolean,
-        arrow: String,
+        arrow: ['right', 'left'],
     };
 
     defaults() {

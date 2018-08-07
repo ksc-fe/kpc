@@ -9,10 +9,10 @@ export default class DropdownMenu extends Intact {
 
     static propTypes = {
         show: Boolean,
-        trigger: String,
+        trigger: ['hover', 'click'],
         position: Object,
         transition: String,
-        of: String,
+        of: ['self', 'parent'],
     }
 
     defaults() {

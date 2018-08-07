@@ -41,7 +41,7 @@ export default class Upload extends Intact {
     static propTypes = {
         accept: String,
         multiple: Boolean,
-        type: String,
+        type: ['select', 'drag', 'gallery'],
         files: Array,
         autoUpload: Boolean,
         disabled: Boolean,

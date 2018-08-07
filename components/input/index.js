@@ -9,7 +9,7 @@ export default class Input extends Intact {
     static template = template;
 
     static propTypes = {
-        type: String,
+        type: ['text', 'textarea'],
         name: String,
         value: [String, Number],
         defaultValue: String,
@@ -17,7 +17,7 @@ export default class Input extends Intact {
         readonly: Boolean,
         clearable: Boolean,
         disabled: Boolean,
-        size: String,
+        size: ['large', 'default', 'small', 'mini'],
         rows: [Number, String],
         spellcheck: Boolean,
         autoWidth: Boolean,

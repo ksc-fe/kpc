@@ -28,7 +28,7 @@ export default class Spinner extends Intact {
         max: Number,
         min: Number,
         step: Number,
-        size: String,
+        size: ['large', 'default', 'small', 'mini'],
         vertical: Boolean,
     }
 

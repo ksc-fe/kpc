@@ -23,13 +23,13 @@ export default class Tabs extends Intact {
     static propTypes = {
         data: Array,
         vertical: Boolean,
-        size: String,
-        type: String,
+        size: ['large', 'default', 'small', 'mini'],
+        type: ['default', 'card', 'border-card'],
     }
 
     _changeTab(item) {
         // if exits 'to', we don't change the value,
-        // while let the page to change it by pass value
+        // while let the page to change it by pass value prop
         if (!item.to) {
             this.set('value', item.value);
         } else {

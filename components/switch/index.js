@@ -30,7 +30,7 @@ export default class Switch extends Intact {
         off: String,
         width: [Number, String],
         height: [Number, String],
-        size: String,
+        size: ['large', 'default', 'small', 'mini'],
         disabled: Boolean,
     }
 

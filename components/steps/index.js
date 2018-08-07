@@ -10,8 +10,8 @@ export default class Steps extends Intact {
 
     static propTypes = {
         value: [Number, String],
-        status: String,
-        type: String,
+        status: ['normal', 'error'],
+        type: ['default', 'line'],
     }
 
     defaults() {

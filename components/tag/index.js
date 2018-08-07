@@ -17,7 +17,7 @@ export default class Tag extends Intact {
     }
 
     static propTypes = {
-        type: String,
+        type: ['default', 'primary', 'danger', 'success', 'warning'],
         closable: Boolean,
         closed: Boolean,
         disabled: Boolean,

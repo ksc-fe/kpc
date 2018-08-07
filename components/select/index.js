@@ -19,7 +19,7 @@ export default class Select extends Intact {
         filter: Function,
         keywords: String,
         placeholder: String,
-        size: String,
+        size: ['large', 'default', 'small', 'mini'],
         fluid: Boolean,
         width: [Number, String],
         allowUnmatch: Boolean,

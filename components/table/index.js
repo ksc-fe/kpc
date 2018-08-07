@@ -42,7 +42,7 @@ export default class Table extends Intact {
     static propTypes = {
         data: Array,
         scheme: Object,
-        checkType: String,
+        checkType: ['checkbox', 'radio', 'none'],
         rowKey: Function,
         rowClassName: Function,
         checkedKeys: Array,
@@ -56,7 +56,7 @@ export default class Table extends Intact {
         resizable: Boolean,
         expand: Function,
         expandedKeys: Array,
-        type: String,
+        type: ['default', 'border'],
         fixHeader: [Boolean, String, Number],
         minColWidth: Number,
     }

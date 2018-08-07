@@ -11,7 +11,7 @@ export default class Dropdown extends Intact {
     }
 
     static propTypes = {
-        trigger: String,
+        trigger: ['hover', 'click'],
         disabled: Boolean,
     }
 

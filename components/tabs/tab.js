@@ -7,6 +7,7 @@ export default class Tab extends Intact {
 
     static propTypes = {
         disabled: Boolean,
+        to: String,
     };
 
     defaults() {

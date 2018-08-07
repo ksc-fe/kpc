@@ -16,12 +16,12 @@ export default class Progress extends Intact{
     get template() { return template; }
 
     static propTypes = {
-        type: String,
+        type: ['bar', 'circle'],
         percent: [Number, String],
-        size: String,
+        size: ['default', 'small', 'mini'],
         isOuterText: Boolean,
         isInnerText: Boolean,
-        status: String,
+        status: ['active', 'success', 'error', 'normal'],
         strokeWidth: Number,
     }
 

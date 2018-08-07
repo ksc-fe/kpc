@@ -14,7 +14,7 @@ export default class Pagination extends Intact {
         counts: [Number, String],
         limits: Array,
         showGoto: Boolean,
-        size: String,
+        size: ['large', 'default', 'small', 'mini'],
         noBorder: Boolean,
     };
 

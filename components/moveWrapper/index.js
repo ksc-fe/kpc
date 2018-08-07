@@ -6,6 +6,10 @@ export default class MoveWrapper extends Intact {
         return children || Vdt.miss.hc('MoveWrapper');
     }
 
+    static propTypes = {
+        autoDestroy: Boolean,
+    }
+
     defaults() {
         return {
             autoDestroy: true, 

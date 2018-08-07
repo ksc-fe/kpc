@@ -12,7 +12,7 @@ export default class Dialog extends Intact {
     static propTypes = {
         title: String,
         value: Boolean,
-        size: String,
+        size: ['large', 'default', 'small', 'mini'],
         loading: Boolean,
         disabledOk: Boolean,
         okText: String,

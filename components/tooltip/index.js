@@ -17,10 +17,10 @@ class TooltipContent extends Intact {
 
     static propTypes = {
         value: Boolean,
-        trigger: String,
+        trigger: ['hover', 'click'],
         canHover: Boolean,
         showArrow: Boolean,
-        position: [Object, String],
+        position: [Object, 'left', 'bottom', 'right', 'top'],
         transition: String,
         confirm: Boolean,
         okText: String,

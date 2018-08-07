@@ -24,4 +24,5 @@ sidebar: doc
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | value | 选中的值 | `*` | `undefined` |
+| to | 点击标签的跳转地址 | `String` | `undefined` |
 | disabled | 是否禁用 | `Boolean` | `false` |

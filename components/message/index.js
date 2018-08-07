@@ -52,7 +52,7 @@ export default class Message extends Intact {
     static propTypes = {
         content: [String, Intact.VNode],
         duration: Number,
-        type: String,
+        type: ['info', 'danger', 'success', 'warning'],
         key: [String, Number],
         value: Boolean,
         closable: Boolean,
