@@ -17,20 +17,17 @@ order: 1
 import Transfer from 'kpc/components/transfer';
 
 <Transfer data={{ self.get('data') }} 
-    label={{ (data, index, type) => {
-        return <div>
+    filter={{ self.filter }}
+    filterable
+    keyName="name"
+>
+    <b:label params="data, index, type">
+        <div>
             <div>{{ data.name }}</div>
             <p>{{ data.desc }} | {{ data.ip }}</p>
         </div>
-    } }}
-    filter={{ (data, keywords) => {
-        return data.name.includes(keywords) || 
-            data.desc.includes(keywords) ||
-            data.ip.includes(keywords);
-    } }}
-    filterable
-    keyName="name"
-/>
+    </b:label>
+</Transfer>
 ```
 
 ```styl
@@ -55,6 +52,12 @@ export default class extends Intact {
                 {name: '主机名4', desc: '前端服务器4', ip: '192.168.1.4'},
             ]
         }
+    }
+
+    filter(data, keywords) {
+        return data.name.includes(keywords) || 
+            data.desc.includes(keywords) ||
+            data.ip.includes(keywords);
     }
 }
 ```

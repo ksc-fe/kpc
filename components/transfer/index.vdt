@@ -51,7 +51,13 @@ const Panel = props => {
                     trueValue={{ value }}
                     disabled={{ value.disabled }}
                     ev-click={{ self._onCheckboxChange.bind(self, props.model, key) }}
-                >{{ label.call(self, value, key, props.model) }}</Checkbox>
+                >
+                    <template>
+                        <b:label args={{ [value, key, props.model] }}>
+                            {{ label.call(self, value, key, props.model) }}
+                        </b:label>
+                    </template>
+                </Checkbox>
             </Animate>
         </Animate>
     </div>

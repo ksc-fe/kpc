@@ -24,7 +24,9 @@ sidebar: doc
 | 名称 | 说明 |
 | --- | --- |
 | header | 扩展弹窗头部 |
+| body | 扩展弹窗主体部分 |
 | footer | 扩展弹窗底部 |
+| footer-wrapper | 扩展弹窗整个底部，上述`footer`是它下面一个子扩展点 |
 
 # 方法
 

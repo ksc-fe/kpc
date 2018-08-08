@@ -35,15 +35,19 @@ const {size} = self.get();
                 </Button>
             </div>
             <div class="k-body"><b:body>{{ self.get('children') }}</b:body></div>
-            <div class="k-footer">
-                <b:footer>
-                    <Button ev-click={{ self.cancel }}>{{ self.get('cancelText') }}</Button>
-                    <Button type="primary" ev-click={{ self.ok }} 
-                        loading={{ self.get('loading') }}
-                        disabled={{ self.get('disabledOk') }}
-                    >{{ self.get('okText') }}</Button>
-                </b:footer>
-            </div>
+            <template>
+                <b:footer-wrapper>
+                    <div class="k-footer">
+                        <b:footer>
+                            <Button ev-click={{ self.cancel }}>{{ self.get('cancelText') }}</Button>
+                            <Button type="primary" ev-click={{ self.ok }} 
+                                loading={{ self.get('loading') }}
+                                disabled={{ self.get('disabledOk') }}
+                            >{{ self.get('okText') }}</Button>
+                        </b:footer>
+                    </div>
+                </b:footer-wrapper>
+            </template>
         </Animate>
     </div>
 </MoveWrapper>

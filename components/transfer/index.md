@@ -21,3 +21,9 @@ sidebar: doc
 | rightTitle | 右边顶部展示的标题 | `String` | `"已选择"` |
 | keyName | 指定每一行数据的哪个属性当做列表的`key`属性，默认会取`key`或者`label`当做`key` | `String` | `"key"` |
 
+# 扩展点
+
+| 名称 | 说明 |
+| --- | --- |
+| label | 自定义每一项的渲染函数，类似于`label`属性 |
+
