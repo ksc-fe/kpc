@@ -43,7 +43,7 @@
   "author": "ksc-fe",
   "license": "MIT",
   "peerDependencies": {
-    "intact": "^2.2.0"
+    "intact": "^2.3.0"
   },
   "devDependencies": {
     "advanced": "^0.4.6",
@@ -76,10 +76,10 @@
     "gulp-vdt": "^0.2.0",
     "highlight.js": "^9.12.0",
     "history": "^4.7.2",
-    "intact": "^2.2.5",
-    "intact-vue": "^0.2.18",
+    "intact": "^2.3.0",
+    "intact-vue": "^0.3.0",
     "istanbul-instrumenter-loader": "^3.0.0",
-    "karma": "^1.4.1",
+    "karma": "^3.0.0",
     "karma-chrome-launcher": "^2.2.0",
     "karma-coverage-istanbul-reporter": "^1.4.2",
     "karma-mocha": "^1.3.0",
@@ -93,7 +93,7 @@
     "kdoc": "^1.0.0",
     "kdoc-plugin-md": "^1.2.0",
     "mermaid": "^8.0.0-rc.8",
-    "mocha": "^3.2.0",
+    "mocha": "^5.2.0",
     "node-style-loader": "0.0.1-alpha",
     "postcss-loader": "^2.1.3",
     "raw-loader": "^0.5.1",
@@ -106,8 +106,8 @@
     "stylus-loader": "^3.0.2",
     "universal-router": "^4.3.0",
     "url-loader": "^0.6.2",
-    "vdt": "^1.2.4",
-    "vdt-loader": "^1.4.1",
+    "vdt": "^1.3.1",
+    "vdt-loader": "^1.5.0",
     "vue": "^2.5.16",
     "vue-loader": "^13.7.1",
     "vue-template-compiler": "^2.5.16",
