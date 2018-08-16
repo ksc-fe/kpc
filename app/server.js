@@ -4,7 +4,6 @@ import path from 'path';
 import router from './router';
 import App from 'components/app';
 import {collectInitial} from 'node-style-loader/collect';
-import DynamicMiddleware from 'dynamic-middleware';
 
 function createRouterMiddleware(router, App) {
     return function(req, res, next) {
@@ -28,7 +27,7 @@ function createRouterMiddleware(router, App) {
     }
 }
 
-let routerMiddleware = DynamicMiddleware.create(createRouterMiddleware(router, App));
+let routerMiddleware = createRouterMiddleware(router, App);
 
 const app = Advanced((app) => {
     app.engine('vdt', Vdt.__express);
@@ -36,7 +35,9 @@ const app = Advanced((app) => {
     app.set('view engine', 'vdt');
     Vdt.configure('delimiters', ['{{', '}}']);
 
-    app.use(routerMiddleware.handler());
+    app.use(function(req, res, next) {
+        routerMiddleware(req, res, next);
+    });
 
     const webpack = require('webpack');
     const webpackConfig = require('../webpack.config.client');
@@ -64,7 +65,7 @@ if (module.hot) {
     module.hot.accept(['./router'], () => {
         const router = require('./router');
         // const App = require('components/app').default;
-        routerMiddleware.replace(createRouterMiddleware(router, App));
+        routerMiddleware = createRouterMiddleware(router, App);
     });
 }
 
