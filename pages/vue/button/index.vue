@@ -1,5 +1,8 @@
 <template>
-    <Button @click="click" :class="city">default</Button>
+    <div>
+        <Button @click="click" :class="city">default</Button>
+        <k-button>test</k-button>
+    </div>
 </template>
 
 <script>

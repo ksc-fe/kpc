@@ -80,6 +80,9 @@ import Kpc from 'kpc';
 Vue.use(Kpc);
 ```
 
+> Vue不能使用`Switch`作为组件名，所以所有的组件命名为`KComponent`形式，例如：`KButton`，
+> 全量安装后，你可以在模板中使用`KButton`或者`k-button`作为元素名
+
 # 按需引入
 
 按需引入只需要在用到该组件才引入，可以最小化减小打包文件的体积

@@ -86,7 +86,7 @@ export const version = '0.4.3';
 
 /* generate end */
 
-export function install(Vue) {
+export default function install(Vue) {
     if (install.installed) return;
 
     if (Vue) {
@@ -94,7 +94,7 @@ export function install(Vue) {
             const code = key.charCodeAt(0);
             // the key which the first char is uppercase is a component
             if (code >= 65 && code <= 90) {
-                Vue.component(key, exports[key]);
+                Vue.component(`K${key}`, exports[key]);
             }
         }
     } else {

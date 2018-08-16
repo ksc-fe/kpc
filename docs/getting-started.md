@@ -83,6 +83,12 @@ npm run dev
 当项目使用webpack构建时，可以使用kpc的多文件构建版，此时可以做到按需加载，而非单文件全量引入。
 多文件构建版样式css和字体，需要通过`css-loader & style-loader`和`file-loader`来引入
 
+> 此版本放在`@css`文件夹下，该文件名的意思是：所有的样式`stylus`文件都被编译成了`css`文件，并非只是
+> 放置css文件的目录。
+> ES6语法的`js`和`vdt`文件也都被编译成了ES5语法的`js`文件，所以你无需`babel-loader`和`vdt-loader`
+> 来处理它们，仅仅只需`css-loader`和`style-loader`处理`css`文件即可。另外`file-loader`处理字体
+> 还是需要的。
+
 1. 安装依赖
 
 ```shell
@@ -157,6 +163,8 @@ import {Button, ButtonGroup} from 'kpc/components/button';
 通过该版本，可以很方便地实现。详见[定制主题][6]
 
 由于使用`stylus`，所以与构建版在使用上唯一的区别是需要引入`stylus-loader`
+
+> 与多文件构建版类似，此版本放在`@stylus`目录下
 
 1. 新增依赖
 

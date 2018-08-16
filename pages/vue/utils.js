@@ -1,5 +1,7 @@
 import Vue from 'vue';
+import Kpc from '../../components';
 
+Vue.use(Kpc);
 global.Vue = Vue;
 
 export default function(Page) {

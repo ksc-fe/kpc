@@ -37,7 +37,8 @@
     "@css",
     "@stylus",
     "styles",
-    "dist"
+    "dist",
+    "i18n"
   ],
   "author": "ksc-fe",
   "license": "MIT",
