@@ -3,20 +3,12 @@ import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
 
-let serverStyleCleanup;
-if (process.ssr) {
-    serverStyleCleanup = require('node-style-loader/clientCleanup');
-}
-
 export default class App extends Intact {
     @Intact.template()
     get template() { return template; }
 
     static propTypes = {
         loading: Boolean,
-        container: {
-            required: true,
-        }
     };
 
     defaults() {
@@ -24,6 +16,7 @@ export default class App extends Intact {
             view: undefined,
             container: undefined,
             loading: false,
+            ssr: false,
         };
     }
 
@@ -36,7 +29,7 @@ export default class App extends Intact {
     }
 
     _init() {
-        if (!process.ssr && process.browser) {
+        if (!this.get('ssr') && this.get('container')) {
             Intact.mount(this, this.get('container'));
         }
     }
@@ -44,20 +37,21 @@ export default class App extends Intact {
     render(Page, data) {
         this._current = Page;
         return new Promise((resolve, reject) => {
-            if (!process.ssr && process.node) return reject();
-
             const page = new Page(data);
-            // for debug
-            if (process.browser) {
-                window.__page = page;
-            }
             page.$app = this;
+
+            // for debug
+            global.__page = page;
 
             const done = () => {
                 if (this._current === Page) {
                     this.set('view', page);
                 }
-                resolve();
+                if (this.get('ssr')) {
+                    resolve(this.toString());
+                } else {
+                    resolve();
+                }
             }
             
             if (page.inited) {
@@ -68,11 +62,11 @@ export default class App extends Intact {
         });
     }
 
-    load(Page, data) {
+    load(Page, data, cleanup) {
         return this.render(Page, data).then(() => {
-            if (process.ssr && process.browser && !this.rendered) {
+            if (this.get('ssr') && !this.rendered) {
                 Intact.hydrate(this, this.get('container'));
-                serverStyleCleanup();
+                cleanup && cleanup();
             }
         });
     }

@@ -8,10 +8,10 @@ import {collectInitial} from 'node-style-loader/collect';
 function createRouterMiddleware(router, App) {
     return function(req, res, next) {
         router.resolve({pathname: req.path}).then(({Page, data}) => {
-            const $app = new App();
-            return $app.render(Page, data).then(() => {
+            const $app = new App({ssr: true});
+            return $app.render(Page, data).then((content) => {
                 res.render('index', {
-                    content: $app.toString(),
+                    content,
                     style: collectInitial()
                 });
             }).catch(e => {
