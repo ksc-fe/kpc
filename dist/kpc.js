@@ -6762,7 +6762,7 @@ exports.Tag = _tag.Tag;
 exports.Tooltip = _tooltip.Tooltip;
 exports.Transfer = _transfer.Transfer;
 exports.Upload = _upload.Upload;
-var version = exports.version = '0.4.3';
+var version = exports.version = '0.5.0';
 
 /* generate end */
 
