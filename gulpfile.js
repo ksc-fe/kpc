@@ -231,7 +231,7 @@ gulp.task('index', () => {
                 return name[name.length - 1].trim();
             });
             components.push(...names);
-            codes.push(`import {${names.join(', ')}} from './${paths[paths.length - 2]}';`);
+            codes.push(`import {${names.join(', ')}} from './components/${paths[paths.length - 2]}';`);
         }))
         .on('end', () => {
             // add position.js
@@ -244,7 +244,7 @@ gulp.task('index', () => {
 
             codes.push('', `export {\n    ${components.join(',\n    ')}\n};`);
             codes.push('', `export const version = '${packageJson.version}';`);
-            const path = './components/index.js';
+            const path = './index.js';
             const contents = fs.readFileSync(path, 'utf-8');
             const startComment = '/* generate start */';
             const startIndex = contents.indexOf(startComment) + startComment.length;
@@ -324,12 +324,12 @@ gulp.task('clean@css', (done) => {
 });
 
 gulp.task('build:js', () => {
-    return gulp.src(['./components/**/*.js', '!./components/**/*.spec.js'], {base: './'})
+    return gulp.src(['./components/**/*.js', '!./components/**/*.spec.js', './index.js'], {base: './'})
         .pipe(babel())
         .pipe(tap(function(file) {
             let contents = file.contents.toString('utf-8');
             contents = contents.replace(/\.styl(['"])/g, '.css$1');
-            file.contents = new Buffer(contents);
+            file.contents = Buffer.from(contents);
         }))
         .pipe(gulp.dest(destPath));
 });
@@ -380,7 +380,7 @@ gulp.task('clean@stylus', (done) => {
 });
 
 gulp.task('build:js@stylus', () => {
-    return gulp.src(['./components/**/*.js', '!./components/**/*.spec.js'], {base: './'})
+    return gulp.src(['./components/**/*.js', '!./components/**/*.spec.js', './index.js'], {base: './'})
         .pipe(babel())
         .pipe(gulp.dest(destPathStylus));
 });
