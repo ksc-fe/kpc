@@ -108,4 +108,4 @@ export default function install(Vue) {
     }
 }
 
-export {_$, localize};
+export {_$, localize, install};

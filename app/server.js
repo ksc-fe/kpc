@@ -52,7 +52,7 @@ const app = Advanced((app) => {
     }));
     app.use(webpackHotMiddleware(compiler));
 
-    // app.use('/static', Advanced.Express.static(path.resolve(__dirname, 'static')));
+    app.use(Advanced.Express.static(path.resolve(__dirname, '../')));
 });
 
 const port = 3000;
