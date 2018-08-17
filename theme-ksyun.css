@@ -5507,6 +5507,7 @@ blockquote:before {
 }
 .document-page .content-wrapper .aside-wrapper {
   position: relative;
+  padding-bottom: 20px;
 }
 .document-page .content-wrapper .aside-wrapper .catalog-section {
   margin-top: 25px;
