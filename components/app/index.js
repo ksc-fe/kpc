@@ -34,7 +34,7 @@ export default class App extends Intact {
         }
     }
 
-    render(Page, data) {
+    _render(Page, data, string) {
         this._current = Page;
         return new Promise((resolve, reject) => {
             const page = new Page(data);
@@ -47,7 +47,7 @@ export default class App extends Intact {
                 if (this._current === Page) {
                     this.set('view', page);
                 }
-                if (this.get('ssr')) {
+                if (string) {
                     resolve(this.toString());
                 } else {
                     resolve();
@@ -62,8 +62,12 @@ export default class App extends Intact {
         });
     }
 
+    render(Page, data) {
+        return this._render(Page, data, true);
+    }
+
     load(Page, data, cleanup) {
-        return this.render(Page, data).then(() => {
+        return this._render(Page, data, false).then(() => {
             if (this.get('ssr') && !this.rendered) {
                 Intact.hydrate(this, this.get('container'));
                 cleanup && cleanup();
