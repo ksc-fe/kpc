@@ -5439,6 +5439,38 @@ blockquote:before {
   font-size: 2em;
   margin: 10px 0;
 }
+.k-badge {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+}
+.k-badge > .k-text {
+  display: inline-block;
+  position: absolute;
+  width: 0.571428571428571rem;
+  height: 0.571428571428571rem;
+  border-radius: 50%;
+  top: 0;
+  right: 0;
+  -webkit-transform: translate(50%, -50%);
+      -ms-transform: translate(50%, -50%);
+          transform: translate(50%, -50%);
+  background: #ff4133;
+}
+.k-badge.k-has-text > .k-text {
+  width: auto;
+  height: 1.142857142857143rem;
+  line-height: 1.142857142857143rem;
+  border-radius: 0.571428571428571rem;
+  padding: 0 0.357142857142857rem;
+  color: #fff;
+}
+.k-badge.k-alone > .k-text {
+  position: static;
+  -webkit-transform: none;
+      -ms-transform: none;
+          transform: none;
+}
 .document-page {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -5511,6 +5543,10 @@ blockquote:before {
 .document-page .content-wrapper .aside-wrapper .sub-catalogs {
   margin-left: 10px;
   font-size: 12px;
+}
+.document-page .content-wrapper .aside-wrapper .k-badge {
+  line-height: 16px;
+  padding-right: 10px;
 }
 .document-page .content-wrapper .aside-border {
   border-right: 2px solid #0091ea;
@@ -5826,38 +5862,6 @@ blockquote:before {
 .k-app {
   height: 100%;
   width: 100%;
-}
-.k-badge {
-  display: inline-block;
-  vertical-align: middle;
-  position: relative;
-}
-.k-badge > .k-text {
-  display: inline-block;
-  position: absolute;
-  width: 0.571428571428571rem;
-  height: 0.571428571428571rem;
-  border-radius: 50%;
-  top: 0;
-  right: 0;
-  -webkit-transform: translate(50%, -50%);
-      -ms-transform: translate(50%, -50%);
-          transform: translate(50%, -50%);
-  background: #ff4133;
-}
-.k-badge.k-has-text > .k-text {
-  width: auto;
-  height: 1.142857142857143rem;
-  line-height: 1.142857142857143rem;
-  border-radius: 0.571428571428571rem;
-  padding: 0 0.357142857142857rem;
-  color: #fff;
-}
-.k-badge.k-alone > .k-text {
-  position: static;
-  -webkit-transform: none;
-      -ms-transform: none;
-          transform: none;
 }
 .example.index-101 .k-badge {
   margin-right: 30px;

@@ -1140,6 +1140,14 @@
                 {
                     "children": [
                         {
+                            "title": "v0.5.0",
+                            "path": "#header-v0.5.0",
+                            "level": 2,
+                            "content": "<h2 id='header-v0.5.0'>v0.5.0</h2>",
+                            "text": "v0.5.0",
+                            "children": []
+                        },
+                        {
                             "title": "v0.4.0",
                             "path": "#header-v0.4.0",
                             "level": 2,
