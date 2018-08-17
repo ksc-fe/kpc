@@ -29,7 +29,7 @@ function Catalog(props) {
                             ];
                         } else {
                             if (value.title === '更新日志') {
-                                <Badge>{{ value.title }}</Badge>
+                                <Badge disabled={{ !!self.get('hasRead') }}>{{ value.title }}</Badge>
                             } else {
                                 value.title;
                             }

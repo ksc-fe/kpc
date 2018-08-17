@@ -4,6 +4,17 @@ order: 99
 sidebar: doc
 ---
 
+## v0.5.0
+
+`0.5.0`版本需要<code>vdt@1.3.0</code><code>intact@2.3.0</code><code>intact-vue@0.3.0</code>支持
+
+1. `Add` 支持组件属性类型检查
+2. `Add` 支持带参数的`block`
+3. `Add` 支持通过`v-model`绑定任意属性值
+4. `Add` 支持同一事件绑定多次回调函数
+5. `Refactor` `App`组件重构，减少依赖 [#65](https://github.com/ksc-fe/kpc/issues/65)
+6. `Fix` 在`Vue`下`Vue.use(Kpc)`全量使用的问题 [#63](https://github.com/ksc-fe/kpc/issues/63) [#64](https://github.com/ksc-fe/kpc/issues/64)
+
 ## v0.4.0
 
 1. `Add` 新增级联选择组件`Cascader`
