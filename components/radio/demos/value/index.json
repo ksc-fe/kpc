@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>Radio</code>默认选中的值为<code>true</code>，通过<code>trueValue</code>属性我们可以指定任意值。</p>\n<blockquote>\n<p>和<code>Checkbox</code>一样，判定选中状态时，当值为对象比较的是引用地址</p>\n</blockquote>\n",
-    "index": 82,
+    "index": 92,
     "highlighted": [
         {
             "language": "vdt",

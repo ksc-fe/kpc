@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>当行可选时，默认点击该行的任意区域都可选中或取消选中，但我们可以通过将<code>rowCheckbable</code>设为<code>false</code>来关闭这一特性。</p>\n<blockquote>\n<p>选中的数据默认会在每一行的元素上有<code>k-checked</code>样式名</p>\n</blockquote>\n",
-    "index": 129,
+    "index": 133,
     "highlighted": [
         {
             "language": "vdt",

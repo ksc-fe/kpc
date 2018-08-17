@@ -5,6 +5,9 @@ import Dialog from 'kpc/components/dialog';
     <Button ev-click={{ self.set.bind(self, 'show', true) }}
         type="primary"
     >Show Dialog</Button>
+    <Button ev-click={{ self.set.bind(self, 'show1', true) }}
+        type="primary"
+    >Show No Footer Dialog</Button>
     <Dialog v-model="show">
         <b:header>
             <div class="k-title">
@@ -19,5 +22,9 @@ import Dialog from 'kpc/components/dialog';
             Custom Footer
             {{ parent() }}
         </b:footer>
+    </Dialog>
+    <Dialog v-model="show1" title="No Footer">
+        <b:body>body</b:body>
+        <b:footer-wrapper />
     </Dialog>
 </div>

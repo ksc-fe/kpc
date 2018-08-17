@@ -7,5 +7,5 @@
     },
     "catalogs": [],
     "contents": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1><h2 id='header-Breadcrumb'>Breadcrumb</h2><div class=\"k-table-wrapper k-border\">\n                    <table class=\"k-table\">\n                        <thead><tr>\n<th>属性</th>\n<th>说明</th>\n<th>类型</th>\n<th>默认值</th>\n</tr>\n</thead>\n                        <tbody><tr>\n<td>separator</td>\n<td>指定分隔符</td>\n<td><code>String</code></td>\n<td><code>undefined</code></td>\n</tr>\n</tbody>\n                    </table>\n                </div><h2 id='header-BreadcrumbItem'>BreadcrumbItem</h2><div class=\"k-table-wrapper k-border\">\n                    <table class=\"k-table\">\n                        <thead><tr>\n<th>属性</th>\n<th>说明</th>\n<th>类型</th>\n<th>默认值</th>\n</tr>\n</thead>\n                        <tbody><tr>\n<td>to</td>\n<td>指定超链接地址</td>\n<td><code>String</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>separator</td>\n<td>指定分隔符，会覆盖<code>Breadcrumb</code>中的定义</td>\n<td><code>String</code></td>\n<td><code>&quot;&gt;&quot;</code></td>\n</tr>\n</tbody>\n                    </table>\n                </div>",
-    "index": 172
+    "index": 175
 }

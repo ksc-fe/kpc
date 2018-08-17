@@ -18,4 +18,10 @@ export default class extends Intact {
             ]
         }
     }
+
+    filter(data, keywords) {
+        return data.name.includes(keywords) || 
+            data.desc.includes(keywords) ||
+            data.ip.includes(keywords);
+    }
 }

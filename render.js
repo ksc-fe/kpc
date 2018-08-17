@@ -39,7 +39,7 @@ module.exports =
 /******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
 /******/ 		// "0" is the signal for "already loaded"
 /******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("./chunk/" + {"0":"a8ef42917f11b7cc9233","1":"7d7ff7048afbcc1c8261","2":"0fca97e20be8c1f39572","3":"c1b5f1dffd0babf44e33"}[chunkId] + ".js");
+/******/ 			var chunk = require("./chunk/" + {"0":"9a39082c327f4b689cae","1":"af604e34269adae23444","2":"6df70ad4fd927af5769c","3":"466a56cc08aa2820e49f"}[chunkId] + ".js");
 /******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				modules[moduleId] = moreModules[moduleId];
@@ -128,7 +128,7 @@ var _inherits2 = __webpack_require__("babel-runtime/helpers/inherits");
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
-var _dec, _desc, _value, _class;
+var _dec, _desc, _value, _class, _class2, _temp;
 
 var _intact = __webpack_require__("intact");
 
@@ -173,12 +173,7 @@ function _applyDecoratedDescriptor(target, property, decorators, descriptor, con
     return desc;
 }
 
-var serverStyleCleanup = void 0;
-if (true) {
-    serverStyleCleanup = __webpack_require__("node-style-loader/clientCleanup");
-}
-
-var App = (_dec = _intact2.default.template(), (_class = function (_Intact) {
+var App = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
     (0, _inherits3.default)(App, _Intact);
 
     function App() {
@@ -190,7 +185,8 @@ var App = (_dec = _intact2.default.template(), (_class = function (_Intact) {
         return {
             view: undefined,
             container: undefined,
-            loading: false
+            loading: false,
+            ssr: false
         };
     };
 
@@ -203,30 +199,31 @@ var App = (_dec = _intact2.default.template(), (_class = function (_Intact) {
     };
 
     App.prototype._init = function _init() {
-        if (false) {
+        if (!this.get('ssr') && this.get('container')) {
             _intact2.default.mount(this, this.get('container'));
         }
     };
 
-    App.prototype.render = function render(Page, data) {
+    App.prototype._render = function _render(Page, data, string) {
         var _this2 = this;
 
         this._current = Page;
         return new _promise2.default(function (resolve, reject) {
-            if (false) return reject();
-
             var page = new Page(data);
-            // for debug
-            if (process.browser) {
-                window.__page = page;
-            }
             page.$app = _this2;
+
+            // for debug
+            global.__page = page;
 
             var done = function done() {
                 if (_this2._current === Page) {
                     _this2.set('view', page);
                 }
-                resolve();
+                if (string) {
+                    resolve(_this2.toString());
+                } else {
+                    resolve();
+                }
             };
 
             if (page.inited) {
@@ -237,13 +234,17 @@ var App = (_dec = _intact2.default.template(), (_class = function (_Intact) {
         });
     };
 
-    App.prototype.load = function load(Page, data) {
+    App.prototype.render = function render(Page, data) {
+        return this._render(Page, data, true);
+    };
+
+    App.prototype.load = function load(Page, data, cleanup) {
         var _this3 = this;
 
-        return this.render(Page, data).then(function () {
-            if (true && process.browser && !_this3.rendered) {
+        return this._render(Page, data, false).then(function () {
+            if (_this3.get('ssr') && !_this3.rendered) {
                 _intact2.default.hydrate(_this3, _this3.get('container'));
-                serverStyleCleanup();
+                cleanup && cleanup();
             }
         });
     };
@@ -255,7 +256,9 @@ var App = (_dec = _intact2.default.template(), (_class = function (_Intact) {
         }
     }]);
     return App;
-}(_intact2.default), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
+}(_intact2.default), _class2.propTypes = {
+    loading: Boolean
+}, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
 exports.default = App;
 exports.App = App;
 
@@ -266,7 +269,7 @@ exports.App = App;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1532058106165
+      // 1534486933259
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -284,50 +287,59 @@ exports.App = App;
 exports.__esModule = true;
 
 exports.default = function (obj, _Vdt, blocks, $callee) {
-  _Vdt || (_Vdt = Vdt);
-  obj || (obj = {});
-  blocks || (blocks = {});
-  var h = _Vdt.miss.h,
-      hc = _Vdt.miss.hc,
-      hu = _Vdt.miss.hu,
-      widgets = this && this.widgets || {},
-      _blocks = {},
-      __blocks = {},
-      __u = _Vdt.utils,
-      extend = __u.extend,
-      _e = __u.error,
-      _className = __u.className,
-      __o = __u.Options,
-      _getModel = __o.getModel,
-      _setModel = __o.setModel,
-      _setCheckboxModel = __u.setCheckboxModel,
-      _detectCheckboxChecked = __u.detectCheckboxChecked,
-      _setSelectModel = __u.setSelectModel,
-      self = this.data,
-      $this = this,
-      scope = obj,
-      Animate = self && self.Animate,
-      parent = ($callee || {})._super;
-  return h('div', null, ['\n    ', function () {
-    try {
-      return [self.get('view')][0];
-    } catch (e) {
-      _e(e);
-    }
-  }.call(this), '\n    ', (_blocks["loading"] = function (parent) {
-    return function () {
-      try {
-        return [self.get('loading')][0];
-      } catch (e) {
-        _e(e);
-      }
-    }.call(this) ? h(Animate, { 'key': 'loading', 'a:transition': 'fade', 'className': 'k-app-loading', 'children': null, '_context': $this }) : undefined;
-  }) && (__blocks["loading"] = function (parent) {
-    var self = this;
-    return blocks["loading"] ? blocks["loading"].call(this, function () {
-      return _blocks["loading"].call(self, parent);
-    }) : _blocks["loading"].call(this, parent);
-  }) && __blocks["loading"].call(this)], 'k-app');
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __slice = __u.slice,
+        __noop = __u.noop,
+        __m = __u.map,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    return h('div', null, [function () {
+        try {
+            return self.get('view');
+        } catch (e) {
+            _e(e);
+        }
+    }.call($this), (_blocks['loading'] = function (parent) {
+        return function () {
+            try {
+                return self.get('loading');
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this) ? h(Animate, {
+            'key': 'loading',
+            'a:transition': 'fade',
+            'className': 'k-app-loading',
+            '_context': $this
+        }) : undefined;
+    }) && (__blocks['loading'] = function (parent) {
+        var args = arguments;
+        return blocks['loading'] ? blocks['loading'].apply($this, [function () {
+            return _blocks['loading'].apply($this, args);
+        }].concat(__slice.call(args, 1))) : _blocks['loading'].apply($this, args);
+    }) && __blocks['loading'].apply($this, [__noop])], 'k-app');
 };
 
 module.exports = exports['default'];
@@ -1070,7 +1082,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1532058109115
+      // 1534486936492
       var cssReload = require("!../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1216,13 +1228,6 @@ module.exports = require("intact");
 /***/ (function(module, exports) {
 
 module.exports = require("mermaid");
-
-/***/ }),
-
-/***/ "node-style-loader/clientCleanup":
-/***/ (function(module, exports) {
-
-module.exports = require("node-style-loader/clientCleanup");
 
 /***/ }),
 

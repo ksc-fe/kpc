@@ -107,7 +107,8 @@ var ButtonGroup = (_dec = _intact2.default.template(), (_class = (_temp = _class
     return ButtonGroup;
 }(_intact2.default), _class2.propTypes = {
     vertical: Boolean,
-    radio: Boolean
+    radio: Boolean,
+    checkType: ['radio', 'checkbox', 'none']
 }, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
 exports.default = ButtonGroup;
 module.exports = exports['default'];
@@ -142,6 +143,9 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         extend = __u.extend,
         _e = __u.error,
         _className = __u.className,
+        __slice = __u.slice,
+        __noop = __u.noop,
+        __m = __u.map,
         __o = __u.Options,
         _getModel = __o.getModel,
         _setModel = __o.setModel,
@@ -168,15 +172,17 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         'k-vertical': vertical
     }, _classNameObj[className] = className, _classNameObj['k-fluid'] = fluid, _classNameObj);
 
-    return h('div', { 'style': function () {
+    return h('div', {
+        'style': function () {
             try {
-                return [style][0];
+                return style;
             } catch (e) {
                 _e(e);
             }
-        }.call(this) }, function () {
+        }.call($this)
+    }, function () {
         try {
-            return [checkType !== 'none' ? __u.map(children ? Array.isArray(children) ? children : [children] : children, function (vNode) {
+            return checkType !== 'none' ? __u.map(children ? Array.isArray(children) ? children : [children] : children, function (vNode) {
                 if (vNode.tag === _2.default) {
                     vNode.props = (0, _extends3.default)({}, vNode.props, {
                         _value: value,
@@ -184,17 +190,17 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                     });
                 }
                 return vNode;
-            }) : children][0];
+            }) : children;
         } catch (e) {
             _e(e);
         }
-    }.call(this), _className(function () {
+    }.call($this), _className(function () {
         try {
-            return [classNameObj][0];
+            return classNameObj;
         } catch (e) {
             _e(e);
         }
-    }.call(this)));
+    }.call($this)));
 };
 
 var _ = __webpack_require__("./components/button/index.js");
@@ -412,7 +418,9 @@ var Button = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
     fluid: Boolean,
     htmlType: String,
     tagName: [String, Function],
-    name: String
+    tagProps: Object,
+    name: String,
+    tabindex: [String, Number]
 }, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
 exports.default = Button;
 exports.Button = Button;
@@ -425,7 +433,7 @@ exports.ButtonGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1532058108116
+      // 1534486935474
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -451,8 +459,7 @@ var _objectWithoutProperties2 = __webpack_require__("babel-runtime/helpers/objec
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
 exports.default = function (obj, _Vdt, blocks, $callee) {
-    var _classNameObj,
-        _this = this;
+    var _classNameObj;
 
     _Vdt || (_Vdt = Vdt);
     obj || (obj = {});
@@ -467,6 +474,9 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         extend = __u.extend,
         _e = __u.error,
         _className = __u.className,
+        __slice = __u.slice,
+        __noop = __u.noop,
+        __m = __u.map,
         __o = __u.Options,
         _getModel = __o.getModel,
         _setModel = __o.setModel,
@@ -529,11 +539,11 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                     // wrap text node with span
                     children[index] = h('span', null, function () {
                         try {
-                            return [child][0];
+                            return child;
                         } catch (e) {
                             _e(e);
                         }
-                    }.call(_this));
+                    }.call($this));
                 }
                 // whether the icon is on the left side or right
                 if (index === 0) {
@@ -551,80 +561,93 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         // wrap text node with span
         children = h('span', null, function () {
             try {
-                return [children][0];
+                return children;
             } catch (e) {
                 _e(e);
             }
-        }.call(this));
+        }.call($this));
     }
 
-    return h(Button, (0, _extends3.default)({ 'className': _className(function () {
+    return h(Button, (0, _extends3.default)({
+        'className': _className(function () {
             try {
-                return [classNameObj][0];
+                return classNameObj;
             } catch (e) {
                 _e(e);
             }
-        }.call(this)) }, function () {
+        }.call($this))
+    }, function () {
         try {
-            return [rest][0];
+            return rest;
         } catch (e) {
             _e(e);
         }
-    }.call(this), function () {
+    }.call($this), function () {
         try {
-            return [tagProps][0];
+            return tagProps;
         } catch (e) {
             _e(e);
         }
-    }.call(this), { 'ev-click': function () {
+    }.call($this), {
+        'tabindex': function () {
             try {
-                return [self._onClick][0];
+                return disabled || loading ? "-1" : tabindex;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'tabindex': function () {
+        }.call($this),
+        'children': [function () {
             try {
-                return [disabled || loading ? "-1" : tabindex][0];
+                return loading ? classNameObj['k-icon-right'] ? [children, h('i', null, null, 'k-icon ion-load-c icon-loading')] : [h('i', null, null, 'k-icon ion-load-c icon-loading'), children] : children;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'ev-mouseup': function () {
+        }.call($this), function () {
             try {
-                return [self._blur][0];
+                return _checkType !== 'none';
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'children': ['\n    ', function () {
-            try {
-                return [loading ? classNameObj['k-icon-right'] ? [children, h('i', null, null, 'k-icon ion-load-c icon-loading')] : [h('i', null, null, 'k-icon ion-load-c icon-loading'), children] : children][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), '\n    ', function () {
-            try {
-                return [_checkType !== 'none'][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) ? h('input', { 'type': function () {
+        }.call($this) ? h('input', {
+            'type': function () {
                 try {
-                    return [_checkType][0];
+                    return _checkType;
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this), 'name': function () {
+            }.call($this),
+            'name': function () {
                 try {
-                    return [name][0];
+                    return name;
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this), 'checked': function () {
+            }.call($this),
+            'checked': function () {
                 try {
-                    return [checked][0];
+                    return checked;
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this), 'tabindex': '-1' }) : undefined], '_context': $this }));
+            }.call($this),
+            'tabindex': '-1'
+        }) : undefined],
+        '_context': $this,
+        'ev-click': function () {
+            try {
+                return self._onClick;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
+        'ev-mouseup': function () {
+            try {
+                return self._blur;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)
+    }));
 };
 
 var _utils = __webpack_require__("./components/utils.js");
@@ -739,7 +762,6 @@ var Checkbox = (_temp = _class = function (_Intact) {
     return Checkbox;
 }(_intact2.default), _class.propTypes = {
     disabled: Boolean,
-    group: Boolean,
     indeterminate: Boolean }, _temp);
 exports.default = Checkbox;
 exports.Checkbox = Checkbox;
@@ -751,7 +773,7 @@ exports.Checkbox = Checkbox;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1532058109310
+      // 1534486936729
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -792,6 +814,9 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         extend = __u.extend,
         _e = __u.error,
         _className = __u.className,
+        __slice = __u.slice,
+        __noop = __u.noop,
+        __m = __u.map,
         __o = __u.Options,
         _getModel = __o.getModel,
         _setModel = __o.setModel,
@@ -823,83 +848,95 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         'k-checked': self.isChecked()
     }, _classNameObj[className] = className, _classNameObj['k-indeterminate'] = indeterminate, _classNameObj);
 
-    return h('label', { 'style': function () {
+    return h('label', {
+        'style': function () {
             try {
-                return [style][0];
+                return style;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'tabindex': function () {
+        }.call($this),
+        'tabindex': function () {
             try {
-                return [disabled ? null : "0"][0];
+                return disabled ? null : "0";
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'ev-keypress': function () {
+        }.call($this),
+        'ev-keypress': function () {
             try {
-                return [self._onKeypress][0];
+                return self._onKeypress;
             } catch (e) {
                 _e(e);
             }
-        }.call(this) }, [h('span', null, h('input', (0, _extends3.default)({ 'type': 'checkbox', 'disabled': function () {
+        }.call($this)
+    }, [h('span', null, h('input', (0, _extends3.default)({
+        'type': 'checkbox',
+        'disabled': function () {
             try {
-                return [disabled][0];
+                return disabled;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'v-model': 'value', 'value': function () {
+        }.call($this),
+        'value': function () {
             try {
-                return [trueValue][0];
+                return trueValue;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'tabindex': '-1' }, function () {
+        }.call($this),
+        'tabindex': '-1'
+    }, function () {
         try {
-            return [rest][0];
+            return rest;
         } catch (e) {
             _e(e);
         }
-    }.call(this), { checked: _detectCheckboxChecked(self, 'value', function () {
+    }.call($this), {
+        'checked': _detectCheckboxChecked(self, 'value', function () {
             try {
-                return [trueValue][0];
+                return trueValue;
             } catch (e) {
                 _e(e);
             }
-        }.call(this)), 'ev-change': function evChange(__e) {
+        }.call($this)),
+        'ev-change': function evChange(__e) {
             _setCheckboxModel(self, 'value', function () {
                 try {
-                    return [trueValue][0];
+                    return trueValue;
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this), function () {
+            }.call($this), function () {
                 try {
-                    return [falseValue][0];
+                    return falseValue;
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this), __e, $this);
-        } }), null, null, null, function (i) {
+            }.call($this), __e, $this);
+        }
+    }), null, null, null, function (i) {
         widgets['input'] = i;
     }), 'k-wrapper'), function () {
         try {
-            return [children][0];
+            return children;
         } catch (e) {
             _e(e);
         }
-    }.call(this) ? h('span', null, function () {
+    }.call($this) ? h('span', null, function () {
         try {
-            return [children][0];
+            return children;
         } catch (e) {
             _e(e);
         }
-    }.call(this), 'k-text') : undefined], _className(function () {
+    }.call($this), 'k-text') : undefined], _className(function () {
         try {
-            return [classNameObj][0];
+            return classNameObj;
         } catch (e) {
             _e(e);
         }
-    }.call(this)));
+    }.call($this)));
 };
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -941,7 +978,7 @@ var _inherits2 = __webpack_require__("babel-runtime/helpers/inherits");
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
-var _dec, _desc, _value, _class;
+var _dec, _desc, _value, _class, _class2, _temp;
 
 var _intact = __webpack_require__("intact");
 
@@ -986,7 +1023,7 @@ function _applyDecoratedDescriptor(target, property, decorators, descriptor, con
 
 var h = _intact2.default.Vdt.miss.h;
 
-var Dropdown = (_dec = _intact2.default.template(), (_class = function (_Intact) {
+var Dropdown = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
     (0, _inherits3.default)(Dropdown, _Intact);
 
     function Dropdown() {
@@ -1008,7 +1045,6 @@ var Dropdown = (_dec = _intact2.default.template(), (_class = function (_Intact)
     Dropdown.prototype._init = function _init() {
         var _this2 = this;
 
-        this._saveOriginalEvents();
         this.on('$receive:children', function () {
             _this2._saveOriginalEvents();
         }, { keep: true });
@@ -1029,7 +1065,7 @@ var Dropdown = (_dec = _intact2.default.template(), (_class = function (_Intact)
         }
 
         // save the original event
-        var originProps = children.props;
+        var originProps = (0, _extends3.default)({}, children.props);
         var hasSaved = false;
         if (!originProps._hasSaved) {
             if (originProps.vueVNode) {
@@ -1099,7 +1135,10 @@ var Dropdown = (_dec = _intact2.default.template(), (_class = function (_Intact)
     };
 
     return Dropdown;
-}(_intact2.default), (_applyDecoratedDescriptor(_class, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _class)), _class));
+}(_intact2.default), _class2.propTypes = {
+    trigger: ['hover', 'click'],
+    disabled: Boolean
+}, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _class)), _class));
 exports.default = Dropdown;
 module.exports = exports['default'];
 
@@ -1230,7 +1269,7 @@ exports.DropdownItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1532058111174
+      // 1534486939053
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1479,6 +1518,9 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         extend = __u.extend,
         _e = __u.error,
         _className = __u.className,
+        __slice = __u.slice,
+        __noop = __u.noop,
+        __m = __u.map,
         __o = __u.Options,
         _getModel = __o.getModel,
         _setModel = __o.setModel,
@@ -1490,6 +1532,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         scope = obj,
         Animate = self && self.Animate,
         parent = ($callee || {})._super;
+
     /* import {proxyEvent} from '../utils'; */
 
     var _self$get = self.get(),
@@ -1503,37 +1546,41 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         'k-disabled': disabled
     }, _classNameObj[className] = className, _classNameObj['k-hover'] = _isFocus, _classNameObj['k-no-padding'] = children && (children.tag === _checkbox.Checkbox || children.tag === _radio.Radio), _classNameObj);
 
-    return h('div', { 'ev-click': function () {
+    return h('div', {
+        'ev-click': function () {
             try {
-                return [self._onClick][0];
+                return self._onClick;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'ev-mouseenter': function () {
+        }.call($this),
+        'ev-mouseenter': function () {
             try {
-                return [self._onMouseEnter][0];
+                return self._onMouseEnter;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'ev-mouseleave': function () {
+        }.call($this),
+        'ev-mouseleave': function () {
             try {
-                return [self._onMouseLeave][0];
+                return self._onMouseLeave;
             } catch (e) {
                 _e(e);
             }
-        }.call(this) }, function () {
+        }.call($this)
+    }, function () {
         try {
-            return [children][0];
+            return children;
         } catch (e) {
             _e(e);
         }
-    }.call(this), _className(function () {
+    }.call($this), _className(function () {
         try {
-            return [classNameObj][0];
+            return classNameObj;
         } catch (e) {
             _e(e);
         }
-    }.call(this)));
+    }.call($this)));
 };
 
 var _checkbox = __webpack_require__("./components/checkbox/index.js");
@@ -1940,7 +1987,13 @@ var DropdownMenu = (_dec = _intact2.default.template(), (_class = (_temp = _clas
     };
 
     return DropdownMenu;
-}(_intact2.default), _class2.template = _menu2.default, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
+}(_intact2.default), _class2.template = _menu2.default, _class2.propTypes = {
+    show: Boolean,
+    trigger: ['hover', 'click'],
+    position: Object,
+    transition: String,
+    of: ['self', 'parent']
+}, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
     enumerable: true,
     configurable: true,
     writable: true,
@@ -1979,6 +2032,9 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         extend = __u.extend,
         _e = __u.error,
         _className = __u.className,
+        __slice = __u.slice,
+        __noop = __u.noop,
+        __m = __u.map,
         __o = __u.Options,
         _getModel = __o.getModel,
         _setModel = __o.setModel,
@@ -2006,72 +2062,88 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         events['ev-mouseleave'] = self.hide.bind(self, false);
     }
 
-    return h(_moveWrapper2.default, { '_parent': function () {
+    return h(_moveWrapper2.default, {
+        'ref': function ref(i) {
+            widgets['wrapper'] = i;
+        },
+        '_parent': function () {
             try {
-                return [self][0];
+                return self;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'children': function () {
+        }.call($this),
+        'children': function () {
             try {
-                return [show][0];
+                return show;
             } catch (e) {
                 _e(e);
             }
-        }.call(this) ? h(Animate, (0, _extends3.default)({ 'className': _className(function () {
+        }.call($this) ? h(Animate, (0, _extends3.default)({
+            'className': _className(function () {
                 try {
                     var _ref;
 
-                    return [(_ref = { "k-dropdown-menu": true }, _ref[className] = className, _ref)][0];
+                    return _ref = { "k-dropdown-menu": true }, _ref[className] = className, _ref;
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this)), 'a:transition': function () {
+            }.call($this)),
+            'a:transition': function () {
                 try {
-                    return [transition][0];
+                    return transition;
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this), 'a:appear': function () {
+            }.call($this),
+            'a:appear': function () {
                 try {
-                    return [true][0];
+                    return true;
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this) }, function () {
+            }.call($this),
+            'ref': function ref(i) {
+                widgets['menu'] = i;
+            }
+        }, function () {
             try {
-                return [events][0];
+                return events;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), { 'a:delayDestroy': function () {
+        }.call($this), {
+            'a:delayDestroy': function () {
                 try {
-                    return [false][0];
+                    return false;
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this), 'ev-$destroyed': function () {
+            }.call($this),
+            'children': function () {
                 try {
-                    return [self._removeDocumentEvents][0];
+                    return children;
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this), 'ev-$mounted': function () {
+            }.call($this),
+            '_context': $this,
+            'ev-$destroyed': function () {
                 try {
-                    return [self._onShow][0];
+                    return self._removeDocumentEvents;
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this), 'children': function () {
+            }.call($this),
+            'ev-$mounted': function () {
                 try {
-                    return [children][0];
+                    return self._onShow;
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this), '_context': $this }), null, null, null, function (i) {
-            widgets['menu'] = i;
-        }) : undefined, '_context': $this }, null, null, null, function (i) {
-        widgets['wrapper'] = i;
+            }.call($this)
+        })) : undefined,
+        '_context': $this
     });
 };
 
@@ -2239,10 +2311,21 @@ var Input = (_dec = _intact2.default.template, (_class = (_temp = _class2 = func
     return Input;
 }(_intact2.default), _class2.template = _index2.default, _class2.propTypes = {
     type: String,
+    name: String,
+    value: [String, Number],
+    defaultValue: String,
+    placeholder: String,
     readonly: Boolean,
     clearable: Boolean,
     disabled: Boolean,
-    fluid: Boolean
+    size: ['large', 'default', 'small', 'mini'],
+    rows: [Number, String],
+    spellcheck: Boolean,
+    autoWidth: Boolean,
+    fluid: Boolean,
+    width: [Number, String],
+    tabindex: [Number, String],
+    autocomplete: String
 }, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
     enumerable: true,
     configurable: true,
@@ -2261,7 +2344,7 @@ exports.Input = Input;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1532058111019
+      // 1534486938817
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -2298,6 +2381,9 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         extend = __u.extend,
         _e = __u.error,
         _className = __u.className,
+        __slice = __u.slice,
+        __noop = __u.noop,
+        __m = __u.map,
         __o = __u.Options,
         _getModel = __o.getModel,
         _setModel = __o.setModel,
@@ -2344,23 +2430,25 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         return memo;
     }, {});
 
-    return h('div', (0, _extends3.default)({ 'style': function () {
+    return h('div', (0, _extends3.default)({
+        'style': function () {
             try {
-                return [width != null ? (0, _utils.addStyle)(style, { width: width + 'px' }) : style][0];
+                return width != null ? (0, _utils.addStyle)(style, { width: width + 'px' }) : style;
             } catch (e) {
                 _e(e);
             }
-        }.call(this) }, function () {
+        }.call($this)
+    }, function () {
         try {
-            return [wrapperEvents][0];
+            return wrapperEvents;
         } catch (e) {
             _e(e);
         }
-    }.call(this)), ['\n    ', function () {
+    }.call($this)), [function () {
         var _this = this;
 
         try {
-            return [function () {
+            return function () {
                 if (blocks.prepend) {
                     // if the children of this block is text node
                     // we add a padding to the wrapper node
@@ -2368,263 +2456,289 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                     var children = blocks.prepend.call(_this, function () {});
                     return h('div', null, function () {
                         try {
-                            return [children][0];
+                            return children;
                         } catch (e) {
                             _e(e);
                         }
-                    }.call(_this), _className(function () {
+                    }.call($this), _className(function () {
                         try {
-                            return [{
+                            return {
                                 "k-prepend": true,
                                 "k-padding": (0, _utils.isTextVNode)(children)
-                            }][0];
+                            };
                         } catch (e) {
                             _e(e);
                         }
-                    }.call(_this)));
+                    }.call($this)));
                 }
-            }()][0];
+            }();
         } catch (e) {
             _e(e);
         }
-    }.call(this), '\n    ', h('div', null, [function () {
+    }.call($this), h('div', null, [function () {
         try {
-            return [blocks.prefix][0];
+            return blocks.prefix;
         } catch (e) {
             _e(e);
         }
-    }.call(this) ? h('div', null, (_blocks["prefix"] = function (parent) {
+    }.call($this) ? h('div', null, (_blocks['prefix'] = function (parent) {
         return null;
-    }) && (__blocks["prefix"] = function (parent) {
-        var self = this;
-        return blocks["prefix"] ? blocks["prefix"].call(this, function () {
-            return _blocks["prefix"].call(self, parent);
-        }) : _blocks["prefix"].call(this, parent);
-    }) && __blocks["prefix"].call(this), 'k-prefix') : undefined, function () {
+    }) && (__blocks['prefix'] = function (parent) {
+        var args = arguments;
+        return blocks['prefix'] ? blocks['prefix'].apply($this, [function () {
+            return _blocks['prefix'].apply($this, args);
+        }].concat(__slice.call(args, 1))) : _blocks['prefix'].apply($this, args);
+    }) && __blocks['prefix'].apply($this, [__noop]), 'k-prefix') : undefined, function () {
         try {
-            return [type !== 'textarea'][0];
+            return type !== 'textarea';
         } catch (e) {
             _e(e);
         }
-    }.call(this) ? h('input', (0, _extends3.default)({ 'type': function () {
+    }.call($this) ? h('input', (0, _extends3.default)({
+        'type': function () {
             try {
-                return [type][0];
+                return type;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'name': function () {
+        }.call($this),
+        'name': function () {
             try {
-                return [name][0];
+                return name;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'value': function () {
+        }.call($this),
+        'value': function () {
             try {
-                return [value][0];
+                return value;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'ev-input': function () {
+        }.call($this),
+        'defaultValue': function () {
             try {
-                return [self._onInput][0];
+                return defaultValue;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'defaultValue': function () {
+        }.call($this),
+        'readOnly': function () {
             try {
-                return [defaultValue][0];
+                return readonly;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'readOnly': function () {
+        }.call($this),
+        'placeholder': function () {
             try {
-                return [readonly][0];
+                return placeholder;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'placeholder': function () {
+        }.call($this),
+        'disabled': function () {
             try {
-                return [placeholder][0];
+                return disabled;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'disabled': function () {
+        }.call($this),
+        'tabindex': function () {
             try {
-                return [disabled][0];
+                return tabindex;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'tabindex': function () {
+        }.call($this),
+        'autocomplete': function () {
             try {
-                return [tabindex][0];
+                return autocomplete;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'autocomplete': function () {
-            try {
-                return [autocomplete][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, function () {
+        }.call($this)
+    }, function () {
         try {
-            return [events][0];
+            return events;
         } catch (e) {
             _e(e);
         }
-    }.call(this)), null, 'k-inner', null, function (i) {
+    }.call($this), {
+        'ev-input': function () {
+            try {
+                return self._onInput;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)
+    }), null, 'k-inner', null, function (i) {
         widgets['input'] = i;
-    }) : h('textarea', (0, _extends3.default)({ 'value': function () {
+    }) : h('textarea', (0, _extends3.default)({
+        'value': function () {
             try {
-                return [value][0];
+                return value;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'ev-input': function () {
+        }.call($this),
+        'defaultValue': function () {
             try {
-                return [self._onInput][0];
+                return defaultValue;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'defaultValue': function () {
+        }.call($this),
+        'name': function () {
             try {
-                return [defaultValue][0];
+                return name;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'name': function () {
+        }.call($this),
+        'readOnly': function () {
             try {
-                return [name][0];
+                return readonly;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'readOnly': function () {
+        }.call($this),
+        'placeholder': function () {
             try {
-                return [readonly][0];
+                return placeholder;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'placeholder': function () {
+        }.call($this),
+        'disabled': function () {
             try {
-                return [placeholder][0];
+                return disabled;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'disabled': function () {
+        }.call($this),
+        'rows': function () {
             try {
-                return [disabled][0];
+                return rows;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'rows': function () {
+        }.call($this),
+        'spellcheck': function () {
             try {
-                return [rows][0];
+                return spellcheck;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'spellcheck': function () {
+        }.call($this),
+        'tabindex': function () {
             try {
-                return [spellcheck][0];
+                return tabindex;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'tabindex': function () {
-            try {
-                return [tabindex][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this) }, function () {
+        }.call($this)
+    }, function () {
         try {
-            return [events][0];
+            return events;
         } catch (e) {
             _e(e);
         }
-    }.call(this)), null, 'k-inner k-textarea', null, function (i) {
+    }.call($this), {
+        'ev-input': function () {
+            try {
+                return self._onInput;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)
+    }), null, 'k-inner k-textarea', null, function (i) {
         widgets['input'] = i;
     }), function () {
         try {
-            return [blocks.suffix || clearable][0];
+            return blocks.suffix || clearable;
         } catch (e) {
             _e(e);
         }
-    }.call(this) ? h('div', null, [function () {
+    }.call($this) ? h('div', null, [function () {
         try {
-            return [clearable][0];
+            return clearable;
         } catch (e) {
             _e(e);
         }
-    }.call(this) ? h('i', { 'ev-click': function () {
+    }.call($this) ? h('i', {
+        'ev-click': function () {
             try {
-                return [self.clear][0];
+                return self.clear;
             } catch (e) {
                 _e(e);
             }
-        }.call(this) }, null, _className(function () {
+        }.call($this)
+    }, null, _className(function () {
         try {
-            return [{
+            return {
                 "k-clear k-icon ion-ios-close": true,
                 "k-show": value
-            }][0];
+            };
         } catch (e) {
             _e(e);
         }
-    }.call(this))) : undefined, (_blocks["suffix"] = function (parent) {
+    }.call($this))) : undefined, (_blocks['suffix'] = function (parent) {
         return null;
-    }) && (__blocks["suffix"] = function (parent) {
-        var self = this;
-        return blocks["suffix"] ? blocks["suffix"].call(this, function () {
-            return _blocks["suffix"].call(self, parent);
-        }) : _blocks["suffix"].call(this, parent);
-    }) && __blocks["suffix"].call(this)], 'k-suffix') : undefined, function () {
+    }) && (__blocks['suffix'] = function (parent) {
+        var args = arguments;
+        return blocks['suffix'] ? blocks['suffix'].apply($this, [function () {
+            return _blocks['suffix'].apply($this, args);
+        }].concat(__slice.call(args, 1))) : _blocks['suffix'].apply($this, args);
+    }) && __blocks['suffix'].apply($this, [__noop])], 'k-suffix') : undefined, function () {
         try {
-            return [autoWidth][0];
+            return autoWidth;
         } catch (e) {
             _e(e);
         }
-    }.call(this) ? h('div', null, function () {
+    }.call($this) ? h('div', null, function () {
         try {
-            return [value == null || value === '' ? placeholder : value][0];
+            return value == null || value === '' ? placeholder : value;
         } catch (e) {
             _e(e);
         }
-    }.call(this), 'k-fake', null, function (i) {
+    }.call($this), 'k-fake', null, function (i) {
         widgets['fake'] = i;
-    }) : undefined], 'k-wrapper'), '\n    ', function () {
+    }) : undefined], 'k-wrapper'), function () {
         var _this2 = this;
 
         try {
-            return [function () {
+            return function () {
                 if (blocks.append) {
                     var children = blocks.append.call(_this2, function () {});
                     return h('div', null, function () {
                         try {
-                            return [children][0];
+                            return children;
                         } catch (e) {
                             _e(e);
                         }
-                    }.call(_this2), _className(function () {
+                    }.call($this), _className(function () {
                         try {
-                            return [{
+                            return {
                                 "k-append": true,
                                 "k-padding": (0, _utils.isTextVNode)(children)
-                            }][0];
+                            };
                         } catch (e) {
                             _e(e);
                         }
-                    }.call(_this2)));
+                    }.call($this)));
                 }
-            }()][0];
+            }();
         } catch (e) {
             _e(e);
         }
-    }.call(this), '\n'], _className(function () {
+    }.call($this)], _className(function () {
         try {
-            return [classNameObj][0];
+            return classNameObj;
         } catch (e) {
             _e(e);
         }
-    }.call(this)));
+    }.call($this)));
 };
 
 var _utils = __webpack_require__("./components/utils.js");
@@ -2760,7 +2874,11 @@ var Link = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fun
         }
     }]);
     return Link;
-}(_intact2.default), _class2.history = undefined, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
+}(_intact2.default), _class2.history = undefined, _class2.propTypes = {
+    href: String,
+    name: String,
+    isReplace: Boolean
+}, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
 exports.default = Link;
 exports.Link = Link;
 
@@ -2783,55 +2901,60 @@ var _objectWithoutProperties2 = __webpack_require__("babel-runtime/helpers/objec
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
 exports.default = function (obj, _Vdt, blocks, $callee) {
-  _Vdt || (_Vdt = Vdt);
-  obj || (obj = {});
-  blocks || (blocks = {});
-  var h = _Vdt.miss.h,
-      hc = _Vdt.miss.hc,
-      hu = _Vdt.miss.hu,
-      widgets = this && this.widgets || {},
-      _blocks = {},
-      __blocks = {},
-      __u = _Vdt.utils,
-      extend = __u.extend,
-      _e = __u.error,
-      _className = __u.className,
-      __o = __u.Options,
-      _getModel = __o.getModel,
-      _setModel = __o.setModel,
-      _setCheckboxModel = __u.setCheckboxModel,
-      _detectCheckboxChecked = __u.detectCheckboxChecked,
-      _setSelectModel = __u.setSelectModel,
-      self = this.data,
-      $this = this,
-      scope = obj,
-      Animate = self && self.Animate,
-      parent = ($callee || {})._super;
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __slice = __u.slice,
+        __noop = __u.noop,
+        __m = __u.map,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
 
-  var _self$get = self.get(),
-      name = _self$get.name,
-      isReplace = _self$get.isReplace,
-      rest = (0, _objectWithoutProperties3.default)(_self$get, ['name', 'isReplace']);
+    var _self$get = self.get(),
+        name = _self$get.name,
+        isReplace = _self$get.isReplace,
+        rest = (0, _objectWithoutProperties3.default)(_self$get, ['name', 'isReplace']);
 
-  return h('a', (0, _extends3.default)({}, function () {
-    try {
-      return [rest][0];
-    } catch (e) {
-      _e(e);
-    }
-  }.call(this), { 'ev-click': function () {
-      try {
-        return [self.to][0];
-      } catch (e) {
-        _e(e);
-      }
-    }.call(this) }), function () {
-    try {
-      return [self.get('children')][0];
-    } catch (e) {
-      _e(e);
-    }
-  }.call(this));
+    return h('a', (0, _extends3.default)({}, function () {
+        try {
+            return rest;
+        } catch (e) {
+            _e(e);
+        }
+    }.call($this), {
+        'ev-click': function () {
+            try {
+                return self.to;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)
+    }), function () {
+        try {
+            return self.get('children');
+        } catch (e) {
+            _e(e);
+        }
+    }.call($this));
 };
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -2861,13 +2984,15 @@ var _inherits2 = __webpack_require__("babel-runtime/helpers/inherits");
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
+var _class, _temp;
+
 var _intact = __webpack_require__("intact");
 
 var _intact2 = _interopRequireDefault(_intact);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var MoveWrapper = function (_Intact) {
+var MoveWrapper = (_temp = _class = function (_Intact) {
     (0, _inherits3.default)(MoveWrapper, _Intact);
 
     function MoveWrapper() {
@@ -2959,8 +3084,9 @@ var MoveWrapper = function (_Intact) {
     };
 
     return MoveWrapper;
-}(_intact2.default);
-
+}(_intact2.default), _class.propTypes = {
+    autoDestroy: Boolean
+}, _temp);
 exports.default = MoveWrapper;
 exports.MoveWrapper = MoveWrapper;
 
@@ -3526,7 +3652,7 @@ exports.Radio = Radio;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1532058112011
+      // 1534486940572
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -3567,6 +3693,9 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         extend = __u.extend,
         _e = __u.error,
         _className = __u.className,
+        __slice = __u.slice,
+        __noop = __u.noop,
+        __m = __u.map,
         __o = __u.Options,
         _getModel = __o.getModel,
         _setModel = __o.setModel,
@@ -3596,77 +3725,89 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         'k-checked': self.isChecked()
     }, _classNameObj[className] = className, _classNameObj);
 
-    return h('label', { 'style': function () {
+    return h('label', {
+        'style': function () {
             try {
-                return [style][0];
+                return style;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'tabindex': function () {
+        }.call($this),
+        'tabindex': function () {
             try {
-                return [disabled ? "-1" : "0"][0];
+                return disabled ? "-1" : "0";
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'ev-keypress': function () {
+        }.call($this),
+        'ev-keypress': function () {
             try {
-                return [self._onKeypress][0];
+                return self._onKeypress;
             } catch (e) {
                 _e(e);
             }
-        }.call(this) }, [h('span', null, h('input', (0, _extends3.default)({ 'type': 'radio', 'disabled': function () {
+        }.call($this)
+    }, [h('span', null, h('input', (0, _extends3.default)({
+        'type': 'radio',
+        'disabled': function () {
             try {
-                return [disabled][0];
+                return disabled;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'v-model': 'value', 'value': function () {
+        }.call($this),
+        'value': function () {
             try {
-                return [trueValue][0];
+                return trueValue;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'tabindex': '-1' }, function () {
+        }.call($this),
+        'tabindex': '-1'
+    }, function () {
         try {
-            return [rest][0];
+            return rest;
         } catch (e) {
             _e(e);
         }
-    }.call(this), { checked: _getModel(self, 'value') === function () {
+    }.call($this), {
+        'checked': _getModel(self, 'value') === function () {
             try {
-                return [trueValue][0];
+                return trueValue;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'ev-change': function evChange(__e) {
+        }.call($this),
+        'ev-change': function evChange(__e) {
             _setModel(self, 'value', __e.target.checked ? function () {
                 try {
-                    return [trueValue][0];
+                    return trueValue;
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this) : false, $this);
-        } }), null, null, null, function (i) {
+            }.call($this) : false, $this);
+        }
+    }), null, null, null, function (i) {
         widgets['input'] = i;
     }), 'k-wrapper'), function () {
         try {
-            return [children][0];
+            return children;
         } catch (e) {
             _e(e);
         }
-    }.call(this) ? h('span', null, function () {
+    }.call($this) ? h('span', null, function () {
         try {
-            return [children][0];
+            return children;
         } catch (e) {
             _e(e);
         }
-    }.call(this), 'k-text') : undefined], _className(function () {
+    }.call($this), 'k-text') : undefined], _className(function () {
         try {
-            return [classNameObj][0];
+            return classNameObj;
         } catch (e) {
             _e(e);
         }
-    }.call(this)));
+    }.call($this)));
 };
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -3758,7 +3899,9 @@ var OptionGroup = (_dec = _intact2.default.template(), (_class = (_temp = _class
     };
 
     return OptionGroup;
-}(_intact2.default), _class2.template = _group2.default, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
+}(_intact2.default), _class2.template = _group2.default, _class2.propTypes = {
+    label: [String, Number, _intact2.default.VNode]
+}, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
     enumerable: true,
     configurable: true,
     writable: true,
@@ -3780,71 +3923,74 @@ module.exports = exports['default'];
 exports.__esModule = true;
 
 exports.default = function (obj, _Vdt, blocks, $callee) {
-  _Vdt || (_Vdt = Vdt);
-  obj || (obj = {});
-  blocks || (blocks = {});
-  var h = _Vdt.miss.h,
-      hc = _Vdt.miss.hc,
-      hu = _Vdt.miss.hu,
-      widgets = this && this.widgets || {},
-      _blocks = {},
-      __blocks = {},
-      __u = _Vdt.utils,
-      extend = __u.extend,
-      _e = __u.error,
-      _className = __u.className,
-      __o = __u.Options,
-      _getModel = __o.getModel,
-      _setModel = __o.setModel,
-      _setCheckboxModel = __u.setCheckboxModel,
-      _detectCheckboxChecked = __u.detectCheckboxChecked,
-      _setSelectModel = __u.setSelectModel,
-      self = this.data,
-      $this = this,
-      scope = obj,
-      Animate = self && self.Animate,
-      parent = ($callee || {})._super;
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __slice = __u.slice,
+        __noop = __u.noop,
+        __m = __u.map,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
 
-  var _self$get = self.get(),
-      children = _self$get.children,
-      label = _self$get.label,
-      _card = _self$get._card,
-      className = _self$get.className;
+    var _self$get = self.get(),
+        children = _self$get.children,
+        label = _self$get.label,
+        _card = _self$get._card,
+        className = _self$get.className;
 
-  return h('div', null, [function () {
-    try {
-      return [!_card][0];
-    } catch (e) {
-      _e(e);
-    }
-  }.call(this) ? h('div', null, (_blocks["label"] = function (parent) {
-    return function () {
-      try {
-        return [label][0];
-      } catch (e) {
-        _e(e);
-      }
-    }.call(this);
-  }) && (__blocks["label"] = function (parent) {
-    var self = this;
-    return blocks["label"] ? blocks["label"].call(this, function () {
-      return _blocks["label"].call(self, parent);
-    }) : _blocks["label"].call(this, parent);
-  }) && __blocks["label"].call(this), 'k-label') : undefined, '\n    ', function () {
-    try {
-      return [children][0];
-    } catch (e) {
-      _e(e);
-    }
-  }.call(this), '\n'], _className(function () {
-    try {
-      var _ref;
+    return h('div', null, [function () {
+        try {
+            return !_card;
+        } catch (e) {
+            _e(e);
+        }
+    }.call($this) ? h('div', null, (_blocks['label'] = function (parent) {
+        return function () {
+            try {
+                return label;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this);
+    }) && (__blocks['label'] = function (parent) {
+        var args = arguments;
+        return blocks['label'] ? blocks['label'].apply($this, [function () {
+            return _blocks['label'].apply($this, args);
+        }].concat(__slice.call(args, 1))) : _blocks['label'].apply($this, args);
+    }) && __blocks['label'].apply($this, [__noop]), 'k-label') : undefined, function () {
+        try {
+            return children;
+        } catch (e) {
+            _e(e);
+        }
+    }.call($this)], _className(function () {
+        try {
+            var _ref;
 
-      return [(_ref = { "k-group": true }, _ref[className] = className, _ref)][0];
-    } catch (e) {
-      _e(e);
-    }
-  }.call(this)));
+            return _ref = { "k-group": true }, _ref[className] = className, _ref;
+        } catch (e) {
+            _e(e);
+        }
+    }.call($this)));
 };
 
 module.exports = exports['default'];
@@ -4150,11 +4296,17 @@ var Select = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
 
     return Select;
 }(_intact2.default), _class2.template = _index2.default, _class2.propTypes = {
+    data: Array,
     multiple: Boolean,
     disabled: Boolean,
     clearable: Boolean,
     filterable: Boolean,
+    filter: Function,
+    keywords: String,
+    placeholder: String,
+    size: ['large', 'default', 'small', 'mini'],
     fluid: Boolean,
+    width: [Number, String],
     allowUnmatch: Boolean,
     card: Boolean
 }, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
@@ -4177,7 +4329,7 @@ exports.OptionGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1532058109210
+      // 1534486936624
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -4199,8 +4351,7 @@ var _extends2 = __webpack_require__("babel-runtime/helpers/extends");
 var _extends3 = _interopRequireDefault(_extends2);
 
 exports.default = function (obj, _Vdt, blocks, $callee) {
-    var _classNameObj,
-        _this = this;
+    var _classNameObj;
 
     _Vdt || (_Vdt = Vdt);
     obj || (obj = {});
@@ -4215,6 +4366,9 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         extend = __u.extend,
         _e = __u.error,
         _className = __u.className,
+        __slice = __u.slice,
+        __noop = __u.noop,
+        __m = __u.map,
         __o = __u.Options,
         _getModel = __o.getModel,
         _setModel = __o.setModel,
@@ -4277,37 +4431,44 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 active = _self$handleProps.active;
 
             if (valid) {
-                ret.push(h(_dropdown.DropdownItem, { 'ev-select': function () {
+                ret.push(h(_dropdown.DropdownItem, {
+                    'disabled': function () {
                         try {
-                            return [self._onSelect.bind(self, item.value)][0];
+                            return item.disabled;
                         } catch (e) {
                             _e(e);
                         }
-                    }.call(_this), 'disabled': function () {
+                    }.call($this),
+                    'className': _className(function () {
                         try {
-                            return [item.disabled][0];
+                            return { 'k-active': active };
                         } catch (e) {
                             _e(e);
                         }
-                    }.call(_this), 'className': _className(function () {
+                    }.call($this)),
+                    'hideOnSelect': function () {
                         try {
-                            return [{ 'k-active': active }][0];
+                            return !multiple;
                         } catch (e) {
                             _e(e);
                         }
-                    }.call(_this)), 'hideOnSelect': function () {
+                    }.call($this),
+                    'children': function () {
                         try {
-                            return [!multiple][0];
+                            return item.template ? item.template(item, index) : item.label;
                         } catch (e) {
                             _e(e);
                         }
-                    }.call(_this), 'children': function () {
+                    }.call($this),
+                    '_context': $this,
+                    'ev-select': function () {
                         try {
-                            return [item.template ? item.template(item, index) : item.label][0];
+                            return self._onSelect.bind(self, item.value);
                         } catch (e) {
                             _e(e);
                         }
-                    }.call(_this), '_context': $this }));
+                    }.call($this)
+                }));
 
                 // for card type groups, we need to highlight the parent label
                 if (active && card) {
@@ -4366,13 +4527,16 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } else if (vNode.tag === _group2.default) {
                 var _props = vNode.props;
                 _props = (0, _extends3.default)({}, _props, {
-                    children: h(OptionsVNodes, { 'children': function () {
+                    children: h(OptionsVNodes, {
+                        'children': function () {
                             try {
-                                return [_props.children][0];
+                                return _props.children;
                             } catch (e) {
                                 _e(e);
                             }
-                        }.call(_this), '_context': $this })
+                        }.call($this),
+                        '_context': $this
+                    })
                 });
                 groupIndex++;
                 return h(_group2.default, _props);
@@ -4384,77 +4548,82 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
 
     var labelList = [];
 
-    var Menu = scope.Menu || h(_dropdown.DropdownMenu, { 'ev-$changed:show': function () {
+    var Menu = scope.Menu || h(_dropdown.DropdownMenu, {
+        'ref': function ref(i) {
+            widgets['menu'] = i;
+        },
+        'className': _className(function () {
             try {
-                return [self._position][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'className': _className(function () {
-            try {
-                return [{
+                return {
                     "k-select-dropdown": true,
                     "k-card": card
-                }][0];
+                };
             } catch (e) {
                 _e(e);
             }
-        }.call(this)), 'ev-$change:show': function () {
+        }.call($this)),
+        'children': function () {
             try {
-                return [self._onChangeShow][0];
-            } catch (e) {
-                _e(e);
-            }
-        }.call(this), 'children': function () {
-            var _this2 = this;
-
-            try {
-                return [function () {
+                return function () {
                     var _children = [];
                     if (!isGroup) {
-                        _children.push(h(Options, { 'data': function () {
+                        _children.push(h(Options, {
+                            'data': function () {
                                 try {
-                                    return [data][0];
+                                    return data;
                                 } catch (e) {
                                     _e(e);
                                 }
-                            }.call(_this2), 'children': null, '_context': $this }));
+                            }.call($this),
+                            '_context': $this
+                        }));
                     } else {
-                        _children.push(_Vdt.utils.map(function () {
+                        _children.push(__m(function () {
                             try {
-                                return [data][0];
+                                return data;
                             } catch (e) {
                                 _e(e);
                             }
-                        }.call(_this2), function (value, key) {
-                            return h(_group2.default, { 'label': function () {
+                        }.call($this), function (value, key) {
+                            return h(_group2.default, {
+                                'label': function () {
                                     try {
-                                        return [value.label][0];
+                                        return value.label;
                                     } catch (e) {
                                         _e(e);
                                     }
-                                }.call(this), 'children': h(Options, { 'data': function () {
+                                }.call($this),
+                                'children': h(Options, {
+                                    'data': function () {
                                         try {
-                                            return [value.data][0];
+                                            return value.data;
                                         } catch (e) {
                                             _e(e);
                                         }
-                                    }.call(this), 'parentLabel': function () {
+                                    }.call($this),
+                                    'parentLabel': function () {
                                         try {
-                                            return [value.label][0];
+                                            return value.label;
                                         } catch (e) {
                                             _e(e);
                                         }
-                                    }.call(this), 'children': null, '_context': $this }), '_context': $this });
-                        }, _this2));
+                                    }.call($this),
+                                    '_context': $this
+                                }),
+                                '_context': $this
+                            });
+                        }, $this));
                     }
-                    _children.push(h(OptionsVNodes, { 'children': function () {
+                    _children.push(h(OptionsVNodes, {
+                        'children': function () {
                             try {
-                                return [children][0];
+                                return children;
                             } catch (e) {
                                 _e(e);
                             }
-                        }.call(_this2), '_context': $this }));
+                        }.call($this),
+                        '_context': $this
+                    }));
 
                     // if it is card type group, we extract the label as navBar
                     if (card) {
@@ -4492,54 +4661,79 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                         var index = 0;
 
                         _flatten(_children);
-                        return [h(_tabs.Tabs, { 'vertical': function () {
+                        return [h(_tabs.Tabs, {
+                            'vertical': function () {
                                 try {
-                                    return [true][0];
+                                    return true;
                                 } catch (e) {
                                     _e(e);
                                 }
-                            }.call(_this2), 'type': 'border-card', 'v-model': '_activeLabel', 'children': _Vdt.utils.map(function () {
+                            }.call($this),
+                            'type': 'border-card',
+                            'children': __m(function () {
                                 try {
-                                    return [labelList][0];
+                                    return labelList;
                                 } catch (e) {
                                     _e(e);
                                 }
-                            }.call(_this2), function (value, key) {
-                                return h(_tabs.Tab, { 'value': function () {
+                            }.call($this), function (value, key) {
+                                return h(_tabs.Tab, {
+                                    'value': function () {
                                         try {
-                                            return [key][0];
+                                            return key;
                                         } catch (e) {
                                             _e(e);
                                         }
-                                    }.call(this), 'children': ['\n                        ', function () {
+                                    }.call($this),
+                                    'children': function () {
                                         try {
-                                            return [typeof value.label === 'function' ?
+                                            return typeof value.label === 'function' ?
                                             // pass by block
                                             value.label(function () {}) :
                                             // pass by property
-                                            value.label][0];
+                                            value.label;
                                         } catch (e) {
                                             _e(e);
                                         }
-                                    }.call(this), '\n                    '], '_context': $this });
-                            }, _this2), '_context': $this, value: _getModel(self, '_activeLabel'), 'ev-$change:value': function ev$changeValue(__c, __n) {
+                                    }.call($this),
+                                    '_context': $this
+                                });
+                            }, $this),
+                            '_context': $this,
+                            'value': _getModel(self, '_activeLabel'),
+                            'ev-$change:value': function ev$changeValue(__c, __n) {
                                 _setModel(self, '_activeLabel', __n, $this);
-                            } }), h('div', null, function () {
+                            }
+                        }), h('div', null, function () {
                             try {
-                                return [vNodes][0];
+                                return vNodes;
                             } catch (e) {
                                 _e(e);
                             }
-                        }.call(_this2), 'k-groups')];
+                        }.call($this), 'k-groups')];
                     } else {
                         return _children;
                     }
-                }()][0];
+                }();
             } catch (e) {
                 _e(e);
             }
-        }.call(this), '_context': $this }, null, null, null, function (i) {
-        widgets['menu'] = i;
+        }.call($this),
+        '_context': $this,
+        'ev-$changed:show': function () {
+            try {
+                return self._position;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
+        'ev-$change:show': function () {
+            try {
+                return self._onChangeShow;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)
     });
 
     // if the value is not in options, then set hasValue to false
@@ -4550,263 +4744,321 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         self._clearValue();
     }
 
-    return h('div', { 'style': function () {
+    return h('div', {
+        'style': function () {
             try {
-                return [width != null ? (0, _utils.addStyle)(style, { width: width + 'px' }) : style][0];
+                return width != null ? (0, _utils.addStyle)(style, { width: width + 'px' }) : style;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'tabindex': function () {
+        }.call($this),
+        'tabindex': function () {
             try {
-                return [disabled ? "-1" : "0"][0];
+                return disabled ? "-1" : "0";
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'ev-keypress': function () {
+        }.call($this),
+        'ev-keypress': function () {
             try {
-                return [self._onKeypress][0];
+                return self._onKeypress;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'ev-keydown': function () {
+        }.call($this),
+        'ev-keydown': function () {
             try {
-                return [self._onKeydown][0];
+                return self._onKeydown;
             } catch (e) {
                 _e(e);
             }
-        }.call(this) }, h(_dropdown2.default, { 'position': function () {
+        }.call($this)
+    }, h(_dropdown2.default, {
+        'position': function () {
             try {
-                return [{ my: 'left top+8', at: 'left bottom' }][0];
+                return { my: 'left top+8', at: 'left bottom' };
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'trigger': 'click', 'disabled': function () {
+        }.call($this),
+        'trigger': 'click',
+        'disabled': function () {
             try {
-                return [disabled][0];
+                return disabled;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'children': [h('div', { 'ev-click': function () {
+        }.call($this),
+        'ref': function ref(i) {
+            widgets['dropdown'] = i;
+        },
+        'children': [h('div', {
+            'tabindex': '-1',
+            'ev-click': function () {
                 try {
-                    return [self._focusInput][0];
+                    return self._focusInput;
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this), 'tabindex': '-1' }, [h('input', { 'type': 'hidden', 'value': function () {
+            }.call($this)
+        }, [h('input', {
+            'type': 'hidden',
+            'value': function () {
                 try {
-                    return [value][0];
+                    return value;
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this), 'name': function () {
+            }.call($this),
+            'name': function () {
                 try {
-                    return [name][0];
+                    return name;
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this) }), function () {
+            }.call($this)
+        }), function () {
             try {
-                return [!multiple && filterable][0];
+                return !multiple && filterable;
             } catch (e) {
                 _e(e);
             }
-        }.call(this) ? h(_input2.default, { 'value': function () {
+        }.call($this) ? h(_input2.default, {
+            'value': function () {
                 try {
-                    return [keywords == null ? labelObj.label : keywords][0];
+                    return keywords == null ? labelObj.label : keywords;
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this), 'ev-input': function () {
+            }.call($this),
+            'disabled': function () {
                 try {
-                    return [self._onSearch][0];
+                    return disabled;
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this), 'ev-blur': function () {
+            }.call($this),
+            'placeholder': function () {
                 try {
-                    return [self._onBlur][0];
+                    return _placeholder;
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this), 'ev-focus': function () {
+            }.call($this),
+            'ref': function ref(i) {
+                widgets['input'] = i;
+            },
+            'size': function () {
                 try {
-                    return [self._selectInput][0];
+                    return size;
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this), 'disabled': function () {
+            }.call($this),
+            'fluid': function () {
                 try {
-                    return [disabled][0];
+                    return true;
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this), 'placeholder': function () {
+            }.call($this),
+            '_context': $this,
+            'ev-input': function () {
                 try {
-                    return [_placeholder][0];
+                    return self._onSearch;
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this), 'size': function () {
+            }.call($this),
+            'ev-blur': function () {
                 try {
-                    return [size][0];
+                    return self._onBlur;
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this), 'fluid': function () {
+            }.call($this),
+            'ev-focus': function () {
                 try {
-                    return [true][0];
+                    return self._selectInput;
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this), 'children': null, '_context': $this }, null, null, null, function (i) {
-            widgets['input'] = i;
+            }.call($this)
         }) : function () {
             try {
-                return [!filterable && !hasValue][0];
+                return !filterable && !hasValue;
             } catch (e) {
                 _e(e);
             }
-        }.call(this) ? h('span', null, function () {
+        }.call($this) ? h('span', null, function () {
             try {
-                return [_placeholder][0];
+                return _placeholder;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'k-placeholder c-ellipsis') : function () {
+        }.call($this), 'k-placeholder c-ellipsis') : function () {
             try {
-                return [!multiple][0];
+                return !multiple;
             } catch (e) {
                 _e(e);
             }
-        }.call(this) ? h('span', null, function () {
+        }.call($this) ? h('span', null, function () {
             try {
-                return [labelObj.label][0];
+                return labelObj.label;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), 'k-value c-ellipsis') : h(Animate, { 'a:tag': 'span', 'a:disabled': function () {
+        }.call($this), 'k-value c-ellipsis') : h(Animate, {
+            'a:tag': 'span',
+            'a:disabled': function () {
                 try {
-                    return [true][0];
+                    return true;
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this), 'className': 'k-values', 'children': [_Vdt.utils.map(function () {
+            }.call($this),
+            'className': 'k-values',
+            'children': [__m(function () {
                 try {
-                    return [labelObj.labels][0];
+                    return labelObj.labels;
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this), function (item, index) {
-                return h(Animate, { 'a:tag': 'span', 'className': 'k-select-tag', 'key': function () {
+            }.call($this), function (item, index) {
+                return h(Animate, {
+                    'a:tag': 'span',
+                    'className': 'k-select-tag',
+                    'key': function () {
                         try {
-                            return [value[index]][0];
+                            return value[index];
                         } catch (e) {
                             _e(e);
                         }
-                    }.call(this), 'a:transition': 'fade', 'children': [h('span', null, function () {
+                    }.call($this),
+                    'a:transition': 'fade',
+                    'children': [h('span', null, function () {
                         try {
-                            return [item][0];
+                            return item;
                         } catch (e) {
                             _e(e);
                         }
-                    }.call(this), 'k-text'), h('i', { 'ev-click': function () {
+                    }.call($this), 'k-text'), h('i', {
+                        'ev-click': function () {
                             try {
-                                return [self._delete.bind(self, value[index])][0];
+                                return self._delete.bind(self, value[index]);
                             } catch (e) {
                                 _e(e);
                             }
-                        }.call(this) }, null, 'k-icon ion-ios-close-empty')], '_context': $this });
-            }, this), function () {
+                        }.call($this)
+                    }, null, 'k-icon ion-ios-close-empty')],
+                    '_context': $this
+                });
+            }, $this), function () {
                 try {
-                    return [filterable][0];
+                    return filterable;
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this) ? h(_input2.default, { 'value': function () {
+            }.call($this) ? h(_input2.default, {
+                'value': function () {
                     try {
-                        return [keywords][0];
+                        return keywords;
                     } catch (e) {
                         _e(e);
                     }
-                }.call(this), 'ev-input': function () {
+                }.call($this),
+                'disabled': function () {
                     try {
-                        return [self._onSearch][0];
+                        return disabled;
                     } catch (e) {
                         _e(e);
                     }
-                }.call(this), 'ev-blur': function () {
+                }.call($this),
+                'placeholder': function () {
                     try {
-                        return [self._onBlur][0];
+                        return !hasValue ? _placeholder : '';
                     } catch (e) {
                         _e(e);
                     }
-                }.call(this), 'ev-focus': function () {
+                }.call($this),
+                'ref': function ref(i) {
+                    widgets['input'] = i;
+                },
+                'autoWidth': function () {
                     try {
-                        return [self._onFocus][0];
+                        return true;
                     } catch (e) {
                         _e(e);
                     }
-                }.call(this), 'disabled': function () {
+                }.call($this),
+                'size': function () {
                     try {
-                        return [disabled][0];
+                        return size;
                     } catch (e) {
                         _e(e);
                     }
-                }.call(this), 'placeholder': function () {
+                }.call($this),
+                '_context': $this,
+                'ev-input': function () {
                     try {
-                        return [!hasValue ? _placeholder : ''][0];
+                        return self._onSearch;
                     } catch (e) {
                         _e(e);
                     }
-                }.call(this), 'autoWidth': function () {
+                }.call($this),
+                'ev-blur': function () {
                     try {
-                        return [true][0];
+                        return self._onBlur;
                     } catch (e) {
                         _e(e);
                     }
-                }.call(this), 'size': function () {
+                }.call($this),
+                'ev-focus': function () {
                     try {
-                        return [size][0];
+                        return self._onFocus;
                     } catch (e) {
                         _e(e);
                     }
-                }.call(this), 'children': null, '_context': $this }, null, null, null, function (i) {
-                widgets['input'] = i;
-            }) : undefined], '_context': $this }), h('span', null, [function () {
+                }.call($this)
+            }) : undefined],
+            '_context': $this
+        }), h('span', null, [function () {
             try {
-                return [clearable][0];
+                return clearable;
             } catch (e) {
                 _e(e);
             }
-        }.call(this) ? h('i', { 'ev-click': function () {
+        }.call($this) ? h('i', {
+            'ev-click': function () {
                 try {
-                    return [self._onClear][0];
+                    return self._onClear;
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this) }, null, _className(function () {
+            }.call($this)
+        }, null, _className(function () {
             try {
-                return [{ "k-clear ion-ios-close": true, "k-show": hasValue }][0];
+                return { "k-clear ion-ios-close": true, "k-show": hasValue };
             } catch (e) {
                 _e(e);
             }
-        }.call(this))) : undefined, h('i', null, null, 'k-arrow ion-arrow-down-b')], 'k-suffix')], 'k-wrapper', null, function (i) {
+        }.call($this))) : undefined, h('i', null, null, 'k-arrow ion-arrow-down-b')], 'k-suffix')], 'k-wrapper', null, function (i) {
             widgets['wrapper'] = i;
         }), function () {
             try {
-                return [Menu][0];
+                return Menu;
             } catch (e) {
                 _e(e);
             }
-        }.call(this)], '_context': $this }, null, null, null, function (i) {
-        widgets['dropdown'] = i;
+        }.call($this)],
+        '_context': $this
     }), _className(function () {
         try {
-            return [(0, _extends3.default)({}, classNameObj, { 'k-has-value': hasValue })][0];
+            return (0, _extends3.default)({}, classNameObj, { 'k-has-value': hasValue });
         } catch (e) {
             _e(e);
         }
-    }.call(this)));
+    }.call($this)));
 };
 
 var _input = __webpack_require__("./components/input/index.js");
@@ -4980,7 +5232,7 @@ var Tabs = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fun
 
     Tabs.prototype._changeTab = function _changeTab(item) {
         // if exits 'to', we don't change the value,
-        // while let the page to change it by pass value
+        // while let the page to change it by pass value prop
         if (!item.to) {
             this.set('value', item.value);
         } else {
@@ -5020,7 +5272,10 @@ var Tabs = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fun
     }]);
     return Tabs;
 }(_intact2.default), _class2.propTypes = {
-    vertical: Boolean
+    data: Array,
+    vertical: Boolean,
+    size: ['large', 'default', 'small', 'mini'],
+    type: ['default', 'card', 'border-card']
 }, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
 exports.default = Tabs;
 exports.Tabs = Tabs;
@@ -5033,7 +5288,7 @@ exports.Tab = _tab2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1532058111042
+      // 1534486938750
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5070,6 +5325,9 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         extend = __u.extend,
         _e = __u.error,
         _className = __u.className,
+        __slice = __u.slice,
+        __noop = __u.noop,
+        __m = __u.map,
         __o = __u.Options,
         _getModel = __o.getModel,
         _setModel = __o.setModel,
@@ -5097,71 +5355,77 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         'k-tabs': true
     }, _classNameObj[className] = className, _classNameObj['k-' + size] = size !== 'default', _classNameObj['k-vertical'] = vertical, _classNameObj['k-' + type] = type !== 'default', _classNameObj);
 
-    return h('div', { 'style': function () {
+    return h('div', {
+        'style': function () {
             try {
-                return [style][0];
+                return style;
             } catch (e) {
                 _e(e);
             }
-        }.call(this) }, [_Vdt.utils.map(function () {
+        }.call($this)
+    }, [__m(function () {
         try {
-            return [data][0];
+            return data;
         } catch (e) {
             _e(e);
         }
-    }.call(this), function (item, key) {
-        return h('a', { 'ev-click': function () {
+    }.call($this), function (item, key) {
+        return h('a', {
+            'ev-click': function () {
                 try {
-                    return [self._changeTab.bind(self, item)][0];
+                    return self._changeTab.bind(self, item);
                 } catch (e) {
                     _e(e);
                 }
-            }.call(this) }, function () {
+            }.call($this)
+        }, function () {
             try {
-                return [item.text][0];
+                return item.text;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), _className(function () {
+        }.call($this), _className(function () {
             try {
-                return [{
+                return {
                     'k-tab': true,
                     'k-active': item.value === value
-                }][0];
+                };
             } catch (e) {
                 _e(e);
             }
-        }.call(this)));
-    }, this), '\n    ', function () {
+        }.call($this)));
+    }, $this), function () {
         try {
-            return [__u.map(children ? Array.isArray(children) ? children : [children] : children, function (vNode) {
+            return __u.map(children ? Array.isArray(children) ? children : [children] : children, function (vNode) {
                 if (vNode.tag === _tab2.default) {
                     vNode.props = (0, _extends3.default)({}, vNode.props, { _value: value, _parent: self });
                 }
                 return vNode;
-            })][0];
+            });
         } catch (e) {
             _e(e);
         }
-    }.call(this), '\n    ', function () {
+    }.call($this), function () {
         try {
-            return [type === 'default'][0];
+            return type === 'default';
         } catch (e) {
             _e(e);
         }
-    }.call(this) ? h('div', { 'style': function () {
+    }.call($this) ? h('div', {
+        'style': function () {
             try {
-                return [_activeBarStyle][0];
+                return _activeBarStyle;
             } catch (e) {
                 _e(e);
             }
-        }.call(this) }, null, 'k-active-bar') : undefined], _className(function () {
+        }.call($this)
+    }, null, 'k-active-bar') : undefined], _className(function () {
         try {
-            return [classNameObj][0];
+            return classNameObj;
         } catch (e) {
             _e(e);
         }
-    }.call(this)));
+    }.call($this)));
 };
 
 var _tab = __webpack_require__("./components/tabs/tab.js");
@@ -5285,7 +5549,8 @@ var Tab = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = func
     }]);
     return Tab;
 }(_intact2.default), _class2.propTypes = {
-    disabled: Boolean
+    disabled: Boolean,
+    to: String
 }, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
 exports.default = Tab;
 module.exports = exports['default'];
@@ -5301,63 +5566,68 @@ module.exports = exports['default'];
 exports.__esModule = true;
 
 exports.default = function (obj, _Vdt, blocks, $callee) {
-        _Vdt || (_Vdt = Vdt);
-        obj || (obj = {});
-        blocks || (blocks = {});
-        var h = _Vdt.miss.h,
-            hc = _Vdt.miss.hc,
-            hu = _Vdt.miss.hu,
-            widgets = this && this.widgets || {},
-            _blocks = {},
-            __blocks = {},
-            __u = _Vdt.utils,
-            extend = __u.extend,
-            _e = __u.error,
-            _className = __u.className,
-            __o = __u.Options,
-            _getModel = __o.getModel,
-            _setModel = __o.setModel,
-            _setCheckboxModel = __u.setCheckboxModel,
-            _detectCheckboxChecked = __u.detectCheckboxChecked,
-            _setSelectModel = __u.setSelectModel,
-            self = this.data,
-            $this = this,
-            scope = obj,
-            Animate = self && self.Animate,
-            parent = ($callee || {})._super;
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __slice = __u.slice,
+        __noop = __u.noop,
+        __m = __u.map,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
 
-        var _self$get = self.get(),
-            value = _self$get.value,
-            children = _self$get.children,
-            _value = _self$get._value,
-            className = _self$get.className,
-            size = _self$get.size,
-            disabled = _self$get.disabled;
+    var _self$get = self.get(),
+        value = _self$get.value,
+        children = _self$get.children,
+        _value = _self$get._value,
+        className = _self$get.className,
+        size = _self$get.size,
+        disabled = _self$get.disabled;
 
-        return h('a', { 'ev-click': function () {
-                        try {
-                                return [self._changeTab][0];
-                        } catch (e) {
-                                _e(e);
-                        }
-                }.call(this) }, function () {
-                try {
-                        return [self.get('children')][0];
-                } catch (e) {
-                        _e(e);
-                }
-        }.call(this), _className(function () {
-                try {
-                        var _ref;
+    return h('a', {
+        'ev-click': function () {
+            try {
+                return self._changeTab;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)
+    }, function () {
+        try {
+            return self.get('children');
+        } catch (e) {
+            _e(e);
+        }
+    }.call($this), _className(function () {
+        try {
+            var _ref;
 
-                        return [(_ref = {
-                                'k-tab': true,
-                                'k-active': value !== undefined && value === _value
-                        }, _ref[className] = className, _ref['k-disabled'] = disabled, _ref)][0];
-                } catch (e) {
-                        _e(e);
-                }
-        }.call(this)));
+            return _ref = {
+                'k-tab': true,
+                'k-active': value !== undefined && value === _value
+            }, _ref[className] = className, _ref['k-disabled'] = disabled, _ref;
+        } catch (e) {
+            _e(e);
+        }
+    }.call($this)));
 };
 
 module.exports = exports['default'];
@@ -5464,7 +5734,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1532058106614
+      // 1534486933603
       var cssReload = require("!../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5495,6 +5765,9 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         extend = __u.extend,
         _e = __u.error,
         _className = __u.className,
+        __slice = __u.slice,
+        __noop = __u.noop,
+        __m = __u.map,
         __o = __u.Options,
         _getModel = __o.getModel,
         _setModel = __o.setModel,
@@ -5508,38 +5781,49 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         parent = ($callee || {})._super;
 
     return function () {
-        var _obj = { 'className': 'index-page', 'children': null };
-        if (_obj.hasOwnProperty("arguments")) {
-            extend(_obj, _obj.arguments === true ? obj : _obj.arguments);
-            delete _obj.arguments;
-        }
-        return parent.call(this, _obj, _Vdt, function (blocks) {
+        var _obj = {
+            'className': 'index-page'
+        };
+        return parent.call($this, _obj, _Vdt, function (blocks) {
             var _blocks = {},
                 __blocks = extend({}, blocks);
-            return (_blocks["content"] = function (parent) {
-                return h('article', null, ['\n			', hc(' <img src=\"images/logo.png\" /> '), h('h1', null, 'KPC'), h('p', null, '支持多框架的前端高质量组件库'), h('div', null, [h(_button.Button, { 'tagName': function () {
+            return (_blocks['content'] = function (parent) {
+                return h('article', null, [hc(' <img src=\"images/logo.png\" /> '), h('h1', null, 'KPC'), h('p', null, '支持多框架的前端高质量组件库'), h('div', null, [h(_button.Button, {
+                    'tagName': function () {
                         try {
-                            return [_link.Link][0];
+                            return _link.Link;
                         } catch (e) {
                             _e(e);
                         }
-                    }.call(this), 'type': 'primary', 'tagProps': function () {
+                    }.call($this),
+                    'type': 'primary',
+                    'tagProps': function () {
                         try {
-                            return [{
+                            return {
                                 href: "/kpc" + '/docs/getting-started/'
-                            }][0];
+                            };
                         } catch (e) {
                             _e(e);
                         }
-                    }.call(this), 'className': 'button', 'children': '开始', '_context': $this }), h(_button.Button, { 'href': 'https://github.com/ksc-fe/kpc', 'className': 'button', 'target': '_blank', 'children': 'GitHub', '_context': $this })], 'actions'), h('div', null, [h('div', null, [h('h2', null, '支持多框架', 'blue'), h('div', null, '\n                        同时支持Intact和Vue框架\n					')], 'feature'), h('div', null, [h('h2', null, '忠于原生，增强原生', 'yellow'), h('div', null, '\n                        在保持浏览器原生特性的基础上，增强交互能力\n					')], 'feature'), h('div', null, [h('h2', null, '便捷开发', 'red'), h('div', null, '\n                        支持按需加载，主题定制，国际化等特性。并且提供了配套的脚手架方便快速初始化项目\n					')], 'feature')], 'features')], 'home-header');
-            }) && (__blocks["content"] = function (parent) {
-                var self = this;
-                return blocks["content"] ? blocks["content"].call(this, function () {
-                    return _blocks["content"].call(self, parent);
-                }) : _blocks["content"].call(this, parent);
+                    }.call($this),
+                    'className': 'button',
+                    'children': '开始',
+                    '_context': $this
+                }), h(_button.Button, {
+                    'href': 'https://github.com/ksc-fe/kpc',
+                    'className': 'button',
+                    'target': '_blank',
+                    'children': 'GitHub',
+                    '_context': $this
+                })], 'actions'), h('div', null, [h('div', null, [h('h2', null, '支持多框架', 'blue'), h('div', null, '\n                        同时支持Intact和Vue框架\n					')], 'feature'), h('div', null, [h('h2', null, '忠于原生，增强原生', 'yellow'), h('div', null, '\n                        在保持浏览器原生特性的基础上，增强交互能力\n					')], 'feature'), h('div', null, [h('h2', null, '便捷开发', 'red'), h('div', null, '\n                        支持按需加载，主题定制，国际化等特性。并且提供了配套的脚手架方便快速初始化项目\n					')], 'feature')], 'features')], 'home-header');
+            }) && (__blocks['content'] = function (parent) {
+                var args = arguments;
+                return blocks['content'] ? blocks['content'].apply($this, [function () {
+                    return _blocks['content'].apply($this, args);
+                }].concat(__slice.call(args, 1))) : _blocks['content'].apply($this, args);
             }), __blocks;
-        }.call(this, blocks), parent);
-    }.call(this);
+        }.call($this, blocks), parent);
+    }.call($this);
 };
 
 var _button = __webpack_require__("./components/button/index.js");
@@ -5696,7 +5980,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1532058106770
+      // 1534486934008
       var cssReload = require("!../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5727,6 +6011,9 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         extend = __u.extend,
         _e = __u.error,
         _className = __u.className,
+        __slice = __u.slice,
+        __noop = __u.noop,
+        __m = __u.map,
         __o = __u.Options,
         _getModel = __o.getModel,
         _setModel = __o.setModel,
@@ -5753,61 +6040,85 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         index: 'blog'
     }];
 
-    return h('div', null, [h('div', null, h('header', null, (_blocks["header"] = function (parent) {
-        return [h(_link2.default, { 'className': 'logo', 'href': '/', 'children': 'KPC', '_context': $this }), h('div', null, [h('nav', null, [_Vdt.utils.map(function () {
+    return h('div', null, [h('div', null, h('header', null, (_blocks['header'] = function (parent) {
+        return [h(_link2.default, {
+            'className': 'logo',
+            'href': '/',
+            'children': 'KPC',
+            '_context': $this
+        }), h('div', null, [h('nav', null, [__m(function () {
             try {
-                return [nav][0];
+                return nav;
             } catch (e) {
                 _e(e);
             }
-        }.call(this), function (value, key) {
-            return h(_link2.default, { 'className': _className(function () {
+        }.call($this), function (value, key) {
+            return h(_link2.default, {
+                'className': _className(function () {
                     try {
-                        return [{
+                        return {
                             active: value.index === scope.navIndex
-                        }][0];
+                        };
                     } catch (e) {
                         _e(e);
                     }
-                }.call(this)), 'href': function () {
+                }.call($this)),
+                'href': function () {
                     try {
-                        return ['' + "/kpc" + value.href][0];
+                        return '' + "/kpc" + value.href;
                     } catch (e) {
                         _e(e);
                     }
-                }.call(this), 'children': function () {
+                }.call($this),
+                'children': function () {
                     try {
-                        return [value.title][0];
+                        return value.title;
                     } catch (e) {
                         _e(e);
                     }
-                }.call(this), '_context': $this });
-        }, this), h('div', null, null, 'border')]), h('span', null, '切换主题：', 'label'), h(_select.Select, { 'v-model': 'theme', 'width': '100', 'children': [h(_select.Option, { 'value': 'kpc', 'children': 'default', '_context': $this }), h(_select.Option, { 'value': 'ksyun', 'children': 'ksyun', '_context': $this })], '_context': $this, value: _getModel(self, 'theme'), 'ev-$change:value': function ev$changeValue(__c, __n) {
+                }.call($this),
+                '_context': $this
+            });
+        }, $this), h('div', null, null, 'border')]), h('span', null, '切换主题：', 'label'), h(_select.Select, {
+            'width': '100',
+            'children': [h(_select.Option, {
+                'value': 'kpc',
+                'children': 'default',
+                '_context': $this
+            }), h(_select.Option, {
+                'value': 'ksyun',
+                'children': 'ksyun',
+                '_context': $this
+            })],
+            '_context': $this,
+            'value': _getModel(self, 'theme'),
+            'ev-$change:value': function ev$changeValue(__c, __n) {
                 _setModel(self, 'theme', __n, $this);
-            } })], 'right')];
-    }) && (__blocks["header"] = function (parent) {
-        var self = this;
-        return blocks["header"] ? blocks["header"].call(this, function () {
-            return _blocks["header"].call(self, parent);
-        }) : _blocks["header"].call(this, parent);
-    }) && __blocks["header"].call(this)), 'header-wrapper'), h('div', null, (_blocks["content"] = function (parent) {
+            }
+        })], 'right')];
+    }) && (__blocks['header'] = function (parent) {
+        var args = arguments;
+        return blocks['header'] ? blocks['header'].apply($this, [function () {
+            return _blocks['header'].apply($this, args);
+        }].concat(__slice.call(args, 1))) : _blocks['header'].apply($this, args);
+    }) && __blocks['header'].apply($this, [__noop])), 'header-wrapper'), h('div', null, (_blocks['content'] = function (parent) {
         return null;
-    }) && (__blocks["content"] = function (parent) {
-        var self = this;
-        return blocks["content"] ? blocks["content"].call(this, function () {
-            return _blocks["content"].call(self, parent);
-        }) : _blocks["content"].call(this, parent);
-    }) && __blocks["content"].call(this), 'content-wrapper', null, function (i) {
+    }) && (__blocks['content'] = function (parent) {
+        var args = arguments;
+        return blocks['content'] ? blocks['content'].apply($this, [function () {
+            return _blocks['content'].apply($this, args);
+        }].concat(__slice.call(args, 1))) : _blocks['content'].apply($this, args);
+    }) && __blocks['content'].apply($this, [__noop]), 'content-wrapper', null, function (i) {
         widgets['wrapper'] = i;
     })], _className(function () {
         try {
             var _ref;
 
-            return [(_ref = { 'main-wrapper': true }, _ref[scope.className] = scope.className, _ref)][0];
+            return _ref = { 'main-wrapper': true }, _ref[scope.className] = scope.className, _ref;
         } catch (e) {
             _e(e);
         }
-    }.call(this)));
+    }.call($this)));
 };
 
 var _link = __webpack_require__("./components/link/index.js");

@@ -1,233 +1,27 @@
 {
-    "undefined": [
-        {
-            "title": "快速开始",
-            "path": "docs/getting-started.md",
-            "children": [
-                {
-                    "title": "准备工作",
-                    "path": "#header-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C'>准备工作</h1>",
-                    "text": "准备工作",
-                    "children": []
-                },
-                {
-                    "title": "使用脚手架",
-                    "path": "#header-%E4%BD%BF%E7%94%A8%E8%84%9A%E6%89%8B%E6%9E%B6",
-                    "level": 1,
-                    "content": "<h1 id='header-%E4%BD%BF%E7%94%A8%E8%84%9A%E6%89%8B%E6%9E%B6'>使用脚手架</h1>",
-                    "text": "使用脚手架",
-                    "children": []
-                },
-                {
-                    "title": "手动引入",
-                    "path": "#header-%E6%89%8B%E5%8A%A8%E5%BC%95%E5%85%A5",
-                    "level": 1,
-                    "content": "<h1 id='header-%E6%89%8B%E5%8A%A8%E5%BC%95%E5%85%A5'>手动引入</h1>",
-                    "text": "手动引入",
-                    "children": [
-                        {
-                            "title": "单文件构建版",
-                            "path": "#header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88",
-                            "level": 2,
-                            "content": "<h2 id='header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88'>单文件构建版</h2>",
-                            "text": "单文件构建版",
-                            "children": []
-                        },
-                        {
-                            "title": "多文件构建版",
-                            "path": "#header-%E5%A4%9A%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88",
-                            "level": 2,
-                            "content": "<h2 id='header-%E5%A4%9A%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88'>多文件构建版</h2>",
-                            "text": "多文件构建版",
-                            "children": []
-                        },
-                        {
-                            "title": "多文件半构建版",
-                            "path": "#header-%E5%A4%9A%E6%96%87%E4%BB%B6%E5%8D%8A%E6%9E%84%E5%BB%BA%E7%89%88",
-                            "level": 2,
-                            "content": "<h2 id='header-%E5%A4%9A%E6%96%87%E4%BB%B6%E5%8D%8A%E6%9E%84%E5%BB%BA%E7%89%88'>多文件半构建版</h2>",
-                            "text": "多文件半构建版",
-                            "children": []
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "title": "定制主题",
-            "path": "docs/theme.md",
-            "children": [
-                {
-                    "title": "配置<code>webpack.config.js</code>",
-                    "path": "#header-%E9%85%8D%E7%BD%AEwebpack.config.js",
-                    "level": 1,
-                    "content": "<h1 id='header-%E9%85%8D%E7%BD%AEwebpack.config.js'>配置<code>webpack.config.js</code></h1>",
-                    "text": "配置<code>webpack.config.js</code>",
-                    "children": []
-                },
-                {
-                    "title": "定义主题",
-                    "path": "#header-%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A2%98",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A2%98'>定义主题</h1>",
-                    "text": "定义主题",
-                    "children": [
-                        {
-                            "title": "修改变量",
-                            "path": "#header-%E4%BF%AE%E6%94%B9%E5%8F%98%E9%87%8F",
-                            "level": 2,
-                            "content": "<h2 id='header-%E4%BF%AE%E6%94%B9%E5%8F%98%E9%87%8F'>修改变量</h2>",
-                            "text": "修改变量",
-                            "children": []
-                        },
-                        {
-                            "title": "添加新样式",
-                            "path": "#header-%E6%B7%BB%E5%8A%A0%E6%96%B0%E6%A0%B7%E5%BC%8F",
-                            "level": 2,
-                            "content": "<h2 id='header-%E6%B7%BB%E5%8A%A0%E6%96%B0%E6%A0%B7%E5%BC%8F'>添加新样式</h2>",
-                            "text": "添加新样式",
-                            "children": [
-                                {
-                                    "title": "指定<code>$theme-dir</code>",
-                                    "path": "#header-%E6%8C%87%E5%AE%9A%24theme-dir",
-                                    "level": 3,
-                                    "content": "<h3 id='header-%E6%8C%87%E5%AE%9A%24theme-dir'>指定<code>$theme-dir</code></h3>",
-                                    "text": "指定<code>$theme-dir</code>",
-                                    "children": []
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "title": "发布主题",
-                    "path": "#header-%E5%8F%91%E5%B8%83%E4%B8%BB%E9%A2%98",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%8F%91%E5%B8%83%E4%B8%BB%E9%A2%98'>发布主题</h1>",
-                    "text": "发布主题",
-                    "children": []
-                }
-            ]
-        },
-        {
-            "title": "Vue中使用",
-            "path": "docs/vue.md",
-            "children": [
-                {
-                    "title": "语法说明",
-                    "path": "#header-%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E",
-                    "level": 1,
-                    "content": "<h1 id='header-%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E'>语法说明</h1>",
-                    "text": "语法说明",
-                    "children": []
-                },
-                {
-                    "title": "安装依赖",
-                    "path": "#header-%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96'>安装依赖</h1>",
-                    "text": "安装依赖",
-                    "children": []
-                },
-                {
-                    "title": "配置<code>webpack.config.js</code>",
-                    "path": "#header-%E9%85%8D%E7%BD%AEwebpack.config.js",
-                    "level": 1,
-                    "content": "<h1 id='header-%E9%85%8D%E7%BD%AEwebpack.config.js'>配置<code>webpack.config.js</code></h1>",
-                    "text": "配置<code>webpack.config.js</code>",
-                    "children": []
-                },
-                {
-                    "title": "全量引入",
-                    "path": "#header-%E5%85%A8%E9%87%8F%E5%BC%95%E5%85%A5",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%85%A8%E9%87%8F%E5%BC%95%E5%85%A5'>全量引入</h1>",
-                    "text": "全量引入",
-                    "children": []
-                },
-                {
-                    "title": "按需引入",
-                    "path": "#header-%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5",
-                    "level": 1,
-                    "content": "<h1 id='header-%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5'>按需引入</h1>",
-                    "text": "按需引入",
-                    "children": []
-                }
-            ]
-        },
-        {
-            "title": "国际化",
-            "path": "docs/i18n.md",
-            "children": [
-                {
-                    "title": "单文件构建版",
-                    "path": "#header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88'>单文件构建版</h1>",
-                    "text": "单文件构建版",
-                    "children": []
-                },
-                {
-                    "title": "通过webpack引入",
-                    "path": "#header-%E9%80%9A%E8%BF%87webpack%E5%BC%95%E5%85%A5",
-                    "level": 1,
-                    "content": "<h1 id='header-%E9%80%9A%E8%BF%87webpack%E5%BC%95%E5%85%A5'>通过webpack引入</h1>",
-                    "text": "通过webpack引入",
-                    "children": []
-                }
-            ]
-        },
-        {
-            "title": "字体icon",
-            "path": "docs/icon.md",
-            "children": []
-        },
-        {
-            "title": "更新日志",
-            "path": "docs/changelog.md",
-            "children": [
-                {
-                    "children": [
-                        {
-                            "title": "v0.4.0",
-                            "path": "#header-v0.4.0",
-                            "level": 2,
-                            "content": "<h2 id='header-v0.4.0'>v0.4.0</h2>",
-                            "text": "v0.4.0",
-                            "children": []
-                        },
-                        {
-                            "title": "v0.3.12",
-                            "path": "#header-v0.3.12",
-                            "level": 2,
-                            "content": "<h2 id='header-v0.3.12'>v0.3.12</h2>",
-                            "text": "v0.3.12",
-                            "children": []
-                        },
-                        {
-                            "title": "v0.2.0",
-                            "path": "#header-v0.2.0",
-                            "level": 2,
-                            "content": "<h2 id='header-v0.2.0'>v0.2.0</h2>",
-                            "text": "v0.2.0",
-                            "children": []
-                        },
-                        {
-                            "title": "v0.1.0",
-                            "path": "#header-v0.1.0",
-                            "level": 2,
-                            "content": "<h2 id='header-v0.1.0'>v0.1.0</h2>",
-                            "text": "v0.1.0",
-                            "children": []
-                        }
-                    ]
-                }
-            ]
-        }
-    ],
     "组件": [
+        {
+            "title": "应用管理",
+            "path": "components/app/index.md",
+            "children": [
+                {
+                    "title": "属性",
+                    "path": "#header-%E5%B1%9E%E6%80%A7",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                    "text": "属性",
+                    "children": []
+                },
+                {
+                    "title": "方法",
+                    "path": "#header-%E6%96%B9%E6%B3%95",
+                    "level": 1,
+                    "content": "<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>",
+                    "text": "方法",
+                    "children": []
+                }
+            ]
+        },
         {
             "title": "按钮",
             "path": "components/button/index.md",
@@ -968,6 +762,37 @@
             ]
         },
         {
+            "title": "选项卡",
+            "path": "components/tabs/index.md",
+            "children": [
+                {
+                    "title": "属性",
+                    "path": "#header-%E5%B1%9E%E6%80%A7",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                    "text": "属性",
+                    "children": [
+                        {
+                            "title": "Tabs",
+                            "path": "#header-Tabs",
+                            "level": 2,
+                            "content": "<h2 id='header-Tabs'>Tabs</h2>",
+                            "text": "Tabs",
+                            "children": []
+                        },
+                        {
+                            "title": "Tab",
+                            "path": "#header-Tab",
+                            "level": 2,
+                            "content": "<h2 id='header-Tab'>Tab</h2>",
+                            "text": "Tab",
+                            "children": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "title": "折叠面板",
             "path": "components/collapse/index.md",
             "children": [
@@ -1033,51 +858,6 @@
             ]
         },
         {
-            "title": "选项卡",
-            "path": "components/tabs/index.md",
-            "children": [
-                {
-                    "title": "属性",
-                    "path": "#header-%E5%B1%9E%E6%80%A7",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                    "text": "属性",
-                    "children": [
-                        {
-                            "title": "Tabs",
-                            "path": "#header-Tabs",
-                            "level": 2,
-                            "content": "<h2 id='header-Tabs'>Tabs</h2>",
-                            "text": "Tabs",
-                            "children": []
-                        },
-                        {
-                            "title": "Tab",
-                            "path": "#header-Tab",
-                            "level": 2,
-                            "content": "<h2 id='header-Tab'>Tab</h2>",
-                            "text": "Tab",
-                            "children": []
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "title": "穿梭框",
-            "path": "components/transfer/index.md",
-            "children": [
-                {
-                    "title": "属性",
-                    "path": "#header-%E5%B1%9E%E6%80%A7",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                    "text": "属性",
-                    "children": []
-                }
-            ]
-        },
-        {
             "title": "可编辑文本",
             "path": "components/editable/index.md",
             "children": [
@@ -1103,6 +883,28 @@
                     "level": 1,
                     "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
                     "text": "事件",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "title": "穿梭框",
+            "path": "components/transfer/index.md",
+            "children": [
+                {
+                    "title": "属性",
+                    "path": "#header-%E5%B1%9E%E6%80%A7",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                    "text": "属性",
+                    "children": []
+                },
+                {
+                    "title": "扩展点",
+                    "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
+                    "level": 1,
+                    "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
+                    "text": "扩展点",
                     "children": []
                 }
             ]
@@ -1142,6 +944,234 @@
                     "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
                     "text": "事件",
                     "children": []
+                }
+            ]
+        }
+    ],
+    "undefined": [
+        {
+            "title": "快速开始",
+            "path": "docs/getting-started.md",
+            "children": [
+                {
+                    "title": "准备工作",
+                    "path": "#header-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C'>准备工作</h1>",
+                    "text": "准备工作",
+                    "children": []
+                },
+                {
+                    "title": "使用脚手架",
+                    "path": "#header-%E4%BD%BF%E7%94%A8%E8%84%9A%E6%89%8B%E6%9E%B6",
+                    "level": 1,
+                    "content": "<h1 id='header-%E4%BD%BF%E7%94%A8%E8%84%9A%E6%89%8B%E6%9E%B6'>使用脚手架</h1>",
+                    "text": "使用脚手架",
+                    "children": []
+                },
+                {
+                    "title": "手动引入",
+                    "path": "#header-%E6%89%8B%E5%8A%A8%E5%BC%95%E5%85%A5",
+                    "level": 1,
+                    "content": "<h1 id='header-%E6%89%8B%E5%8A%A8%E5%BC%95%E5%85%A5'>手动引入</h1>",
+                    "text": "手动引入",
+                    "children": [
+                        {
+                            "title": "单文件构建版",
+                            "path": "#header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88",
+                            "level": 2,
+                            "content": "<h2 id='header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88'>单文件构建版</h2>",
+                            "text": "单文件构建版",
+                            "children": []
+                        },
+                        {
+                            "title": "多文件构建版",
+                            "path": "#header-%E5%A4%9A%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88",
+                            "level": 2,
+                            "content": "<h2 id='header-%E5%A4%9A%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88'>多文件构建版</h2>",
+                            "text": "多文件构建版",
+                            "children": []
+                        },
+                        {
+                            "title": "多文件半构建版",
+                            "path": "#header-%E5%A4%9A%E6%96%87%E4%BB%B6%E5%8D%8A%E6%9E%84%E5%BB%BA%E7%89%88",
+                            "level": 2,
+                            "content": "<h2 id='header-%E5%A4%9A%E6%96%87%E4%BB%B6%E5%8D%8A%E6%9E%84%E5%BB%BA%E7%89%88'>多文件半构建版</h2>",
+                            "text": "多文件半构建版",
+                            "children": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Vue中使用",
+            "path": "docs/vue.md",
+            "children": [
+                {
+                    "title": "语法说明",
+                    "path": "#header-%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E",
+                    "level": 1,
+                    "content": "<h1 id='header-%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E'>语法说明</h1>",
+                    "text": "语法说明",
+                    "children": []
+                },
+                {
+                    "title": "安装依赖",
+                    "path": "#header-%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96'>安装依赖</h1>",
+                    "text": "安装依赖",
+                    "children": []
+                },
+                {
+                    "title": "配置<code>webpack.config.js</code>",
+                    "path": "#header-%E9%85%8D%E7%BD%AEwebpack.config.js",
+                    "level": 1,
+                    "content": "<h1 id='header-%E9%85%8D%E7%BD%AEwebpack.config.js'>配置<code>webpack.config.js</code></h1>",
+                    "text": "配置<code>webpack.config.js</code>",
+                    "children": []
+                },
+                {
+                    "title": "全量引入",
+                    "path": "#header-%E5%85%A8%E9%87%8F%E5%BC%95%E5%85%A5",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%85%A8%E9%87%8F%E5%BC%95%E5%85%A5'>全量引入</h1>",
+                    "text": "全量引入",
+                    "children": []
+                },
+                {
+                    "title": "按需引入",
+                    "path": "#header-%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5",
+                    "level": 1,
+                    "content": "<h1 id='header-%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5'>按需引入</h1>",
+                    "text": "按需引入",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "title": "定制主题",
+            "path": "docs/theme.md",
+            "children": [
+                {
+                    "title": "配置<code>webpack.config.js</code>",
+                    "path": "#header-%E9%85%8D%E7%BD%AEwebpack.config.js",
+                    "level": 1,
+                    "content": "<h1 id='header-%E9%85%8D%E7%BD%AEwebpack.config.js'>配置<code>webpack.config.js</code></h1>",
+                    "text": "配置<code>webpack.config.js</code>",
+                    "children": []
+                },
+                {
+                    "title": "定义主题",
+                    "path": "#header-%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A2%98",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A2%98'>定义主题</h1>",
+                    "text": "定义主题",
+                    "children": [
+                        {
+                            "title": "修改变量",
+                            "path": "#header-%E4%BF%AE%E6%94%B9%E5%8F%98%E9%87%8F",
+                            "level": 2,
+                            "content": "<h2 id='header-%E4%BF%AE%E6%94%B9%E5%8F%98%E9%87%8F'>修改变量</h2>",
+                            "text": "修改变量",
+                            "children": []
+                        },
+                        {
+                            "title": "添加新样式",
+                            "path": "#header-%E6%B7%BB%E5%8A%A0%E6%96%B0%E6%A0%B7%E5%BC%8F",
+                            "level": 2,
+                            "content": "<h2 id='header-%E6%B7%BB%E5%8A%A0%E6%96%B0%E6%A0%B7%E5%BC%8F'>添加新样式</h2>",
+                            "text": "添加新样式",
+                            "children": [
+                                {
+                                    "title": "指定<code>$theme-dir</code>",
+                                    "path": "#header-%E6%8C%87%E5%AE%9A%24theme-dir",
+                                    "level": 3,
+                                    "content": "<h3 id='header-%E6%8C%87%E5%AE%9A%24theme-dir'>指定<code>$theme-dir</code></h3>",
+                                    "text": "指定<code>$theme-dir</code>",
+                                    "children": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "发布主题",
+                    "path": "#header-%E5%8F%91%E5%B8%83%E4%B8%BB%E9%A2%98",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%8F%91%E5%B8%83%E4%B8%BB%E9%A2%98'>发布主题</h1>",
+                    "text": "发布主题",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "title": "国际化",
+            "path": "docs/i18n.md",
+            "children": [
+                {
+                    "title": "单文件构建版",
+                    "path": "#header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88'>单文件构建版</h1>",
+                    "text": "单文件构建版",
+                    "children": []
+                },
+                {
+                    "title": "通过webpack引入",
+                    "path": "#header-%E9%80%9A%E8%BF%87webpack%E5%BC%95%E5%85%A5",
+                    "level": 1,
+                    "content": "<h1 id='header-%E9%80%9A%E8%BF%87webpack%E5%BC%95%E5%85%A5'>通过webpack引入</h1>",
+                    "text": "通过webpack引入",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "title": "字体icon",
+            "path": "docs/icon.md",
+            "children": []
+        },
+        {
+            "title": "更新日志",
+            "path": "docs/changelog.md",
+            "children": [
+                {
+                    "children": [
+                        {
+                            "title": "v0.4.0",
+                            "path": "#header-v0.4.0",
+                            "level": 2,
+                            "content": "<h2 id='header-v0.4.0'>v0.4.0</h2>",
+                            "text": "v0.4.0",
+                            "children": []
+                        },
+                        {
+                            "title": "v0.3.12",
+                            "path": "#header-v0.3.12",
+                            "level": 2,
+                            "content": "<h2 id='header-v0.3.12'>v0.3.12</h2>",
+                            "text": "v0.3.12",
+                            "children": []
+                        },
+                        {
+                            "title": "v0.2.0",
+                            "path": "#header-v0.2.0",
+                            "level": 2,
+                            "content": "<h2 id='header-v0.2.0'>v0.2.0</h2>",
+                            "text": "v0.2.0",
+                            "children": []
+                        },
+                        {
+                            "title": "v0.1.0",
+                            "path": "#header-v0.1.0",
+                            "level": 2,
+                            "content": "<h2 id='header-v0.1.0'>v0.1.0</h2>",
+                            "text": "v0.1.0",
+                            "children": []
+                        }
+                    ]
                 }
             ]
         }

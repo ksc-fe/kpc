@@ -1,0 +1,10 @@
+import {ButtonGroup, Button} from 'kpc/components/button';
+
+
+<div>
+    <ButtonGroup>
+        <Button ev-click={{ self._changePage.bind(self, 'a') }}>PageA</Button>
+        <Button ev-click={{ self._changePage.bind(self, 'b') }}>PageB</Button>
+    </ButtonGroup>
+    <div ref="container"></div>
+</div>

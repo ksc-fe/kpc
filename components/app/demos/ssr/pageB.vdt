@@ -1,0 +1,1 @@
+<div>page b title: {{ self.get('title') }}</div>

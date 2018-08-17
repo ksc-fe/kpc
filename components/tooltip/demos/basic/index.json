@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>使用<code>Tooltip</code>包裹需要展示提示的元素，使用<code>content</code>属性指定提示文本即可</p>\n<blockquote>\n<p>由于<code>Tooltip</code>是一个宏函数，Intact下，会返回两个元素，所以不要当做模板的顶级元素，因为Intact模板只能返回一个元素，此时应该用一个元素将它包起来</p>\n</blockquote>\n",
-    "index": 20,
+    "index": 12,
     "highlighted": [
         {
             "language": "vdt",

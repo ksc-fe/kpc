@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>checkType</code>设置行选择类型，<code>checkbox</code>多选(默认) / <code>radio</code>单选 / <code>none</code>不可选</p>\n",
-    "index": 74,
+    "index": 88,
     "highlighted": [
         {
             "language": "vdt",
