@@ -3,9 +3,10 @@ import router from './router';
 import createHistory from 'history/createBrowserHistory';
 import App from 'kpc/components/app';
 import Link from 'kpc/components/link';
+import serverStyleCleanup from 'node-style-loader/clientCleanup';
 
 const history = createHistory();
-const $app = new App({container: document.getElementById('page')});
+const $app = new App({container: document.getElementById('page'), ssr: true});
 
 $app.history = history;
 Link.history = history;
@@ -16,7 +17,7 @@ function init(router) {
 
     unlisten = history.listen(async ({pathname}, action) => {
         const {Page, data} = await router.resolve({pathname});
-        $app.load(Page, data);
+        $app.load(Page, data, serverStyleCleanup);
     });
     history.replace(location);
 }
