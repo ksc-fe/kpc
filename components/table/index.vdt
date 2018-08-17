@@ -81,7 +81,7 @@ const theadCreator = () => {
                         }
                         _scheme[props.key] = {
                             title: props.title,
-                            template: props.template || props.default,
+                            template: props.template || (props._blocks && props._blocks.default),
                         };
                         return vNode;
                     }
