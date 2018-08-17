@@ -82,7 +82,7 @@ export {
     Upload
 };
 
-export const version = '0.5.1';
+export const version = '0.5.2';
 
 /* generate end */
 
