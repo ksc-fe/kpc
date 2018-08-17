@@ -3,6 +3,7 @@ import Radio from '../radio';
 import Row from './row';
 import {normalize} from 'intact';
 import Column from './column';
+import {noop} from '../utils';
 
 const {
     checkType, scheme, checkedKeys, data, rowKey, 
@@ -81,7 +82,7 @@ const theadCreator = () => {
                         }
                         _scheme[props.key] = {
                             title: props.title,
-                            template: props.template || (props._blocks && props._blocks.default),
+                            template: props.template || (props._blocks && props._blocks.default && ((...args) => props._blocks.default.call(self, noop, ...args))),
                         };
                         return vNode;
                     }

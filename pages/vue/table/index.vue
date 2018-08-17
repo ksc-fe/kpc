@@ -4,6 +4,7 @@
             <TableColumn key="test" title="测试">
                 <template slot-scope="data, index">
                     <div><i class="ion-search"></i>{{ data.test }}</div>
+                    <Button>button</Button>
                 </template>
             </TableColumn>
             <TableColumn key="aa" title="标题" />
