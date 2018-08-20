@@ -2,7 +2,7 @@ import Button from '../button';
 
 const {
     className, children, type,
-    disabled, closable, closed,
+    disabled, closable, closed, size,
     ...rest,
 } = self.get();
 
@@ -12,6 +12,7 @@ const classNameObj = {
     'k-tag': true,
     [className]: className,
     [`k-${type}`]: type !== 'default',
+    [`k-${size}`]: size !== 'default',
     'k-disabled': disabled,
     'k-closable': closable,
 };
@@ -28,6 +29,7 @@ const classNameObj = {
         class="k-close"
         disabled={{ disabled }}
         ev-click={{ self._close }}
+        size={{ size }}
     >
         <i class="k-icon ion-ios-close-empty"></i>
     </Button>

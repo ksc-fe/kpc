@@ -3,7 +3,8 @@
 
 $tag-color := inherit
 $tag-border-color := $border-color
-$tag-padding := unit(9 / 14, rem) unit(20 / 14, rem)
+$tag-font-size := $default-font-size
+$tag-padding := unit(9 / 14, rem) unit($default-padding / 14, rem)
 $tag-closable-padding-right := unit(32 / 14, rem)
 $tag-close-icon-font-size := unit(26/ 14, rem)
 
@@ -20,3 +21,14 @@ for type in primary success warning danger
 $tag-disabled-color := $disabled-color
 $tag-disabled-border-color := $disabled-border-color
 $tag-disabled-bg-color := $disabled-bg-color
+
+// size
+$tag-large-padding := unit(10 / 14, rem) unit($large-padding / 14, rem)
+$tag-large-font-size := $large-font-size
+$tag-large-closable-padding-right := unit(($large-height - 4) / 14, rem)
+$tag-small-padding := unit(8 / 14, rem) unit($small-padding / 14, rem)
+$tag-small-font-size := $small-font-size
+$tag-small-closable-padding-right := unit(($small-height - 4) / 14, rem)
+$tag-mini-padding := unit(6 / 14, rem) unit($mini-padding / 14, rem)
+$tag-mini-font-size := $mini-font-size
+$tag-mini-closable-padding-right := unit(($mini-height - 4) / 14, rem)

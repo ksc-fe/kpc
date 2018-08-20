@@ -6,6 +6,7 @@
     border 1px solid $tag-border-color
     border-radius $border-radius
     position relative
+    font-size $tag-font-size
     if $tag-color != inherit
         color $tag-color
 
@@ -30,3 +31,11 @@
                     color palette(lookup('$tag-' + type + '-color'), -2)
                 .k-close:active
                     color palette(lookup('$tag-' + type + '-color'), 2)
+
+    // size
+    for size in large small mini
+        &.k-{size}
+            font-size lookup('$tag-' + size + '-font-size')
+            padding lookup('$tag-' + size + '-padding')
+            &.k-closable
+                padding-right lookup('$tag-' + size + '-closable-padding-right')

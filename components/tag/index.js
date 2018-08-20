@@ -13,6 +13,7 @@ export default class Tag extends Intact {
             closable: false,
             closed: false,
             disabled: false,
+            size: 'default',
         };
     }
 
@@ -21,6 +22,7 @@ export default class Tag extends Intact {
         closable: Boolean,
         closed: Boolean,
         disabled: Boolean,
+        size: ['large', 'default', 'small', 'mini']
     }
 
     _close() {
