@@ -14,7 +14,8 @@
     &.k-border
         border-radius $collapse-border-radius
         padding $collapse-border-padding
-        box-shadow $collapse-border-box-shadow
+        // box-shadow $collapse-border-box-shadow
+        border $collapse-border 
 
 .k-collapse-item
     border-bottom $collapse-item-border-bottom
@@ -24,6 +25,7 @@
         height $collapse-item-height
         line-height @height
         cursor pointer
+        font-weight bold
         .k-arrow
             float right
             height $collapse-item-height

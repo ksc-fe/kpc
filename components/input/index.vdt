@@ -92,7 +92,7 @@ const wrapperEvents = [
                     "k-show": value,
                 } }}
                 ev-click={{ self.clear }}
-            ></i>
+            ></i>{{ ' ' }}
             <b:suffix />
         </div>
         <div v-if={{ autoWidth }} class="k-fake"

@@ -75,7 +75,7 @@
     "gulp-vdt": "^0.2.0",
     "highlight.js": "^9.12.0",
     "history": "^4.7.2",
-    "intact": "^2.3.1",
+    "intact": "^2.3.2",
     "intact-vue": "^0.3.0",
     "istanbul-instrumenter-loader": "^3.0.0",
     "karma": "^3.0.0",

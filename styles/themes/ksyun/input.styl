@@ -5,6 +5,12 @@
     &.k-group
         .k-inner
             border-radius 0
+        > .k-wrapper:first-child
+            .k-inner
+                border-radius $border-radius 0 0 $border-radius
+        > .k-wrapper:last-child
+            .k-inner
+                border-radius 0 $border-radius $border-radius 0
         .k-prepend
             border-radius $border-radius 0 0 $border-radius
         .k-append

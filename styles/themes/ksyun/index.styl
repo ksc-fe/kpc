@@ -9,15 +9,16 @@ $theme-dir := __dirname()
 $light-black := #737373
 
 $primary-color := #0091ea
-$warning-color := #ffad33
-$danger-color := #ff4133
+$warning-color := #ffad37
+$danger-color := #ff4433
 $success-color := #36b342
 $disabled-color := #ccc
 $disabled-bg-color := #f2f2f2
 $disabled-border-color := #ccc
 $text-color := #404040
 $ghost-text-color := $light-black
-$border-color := #ccc
+// $border-color := #ccc
+$border-color := #b2b2b2
 $bg-color := #f1f1f5
 $title-color := #262626
 $dark-border-color := #999
@@ -25,6 +26,8 @@ $placeholder-color := #b2b2b2
 
 $box-shadow := 0 0 4px 0 rgba(0, 0, 0, .3)
 
+$link-color := $primary-color
+$link-hover-color := palette($link-color, -1)
 
 /**
  * size
@@ -48,14 +51,15 @@ $icon-text-gutter := 8
 /**
  * btn
  */
-$btn-color := $ghost-text-color 
+$btn-color := $text-color 
 // type
 $btn-primary-border-color := palette($primary-color, 1) 
 $btn-warning-border-color := palette($warning-color, 1)
 $btn-danger-border-color := palette($danger-color, 1)
 $btn-success-border-color := palette($success-color, 1)
+$btn-hover-border-color := palette($primary-color, 1)
 $btn-active-color := $primary-color
-$btn-active-border-color := $primary-color
+$btn-active-border-color := palette($primary-color, 1)
 $btn-active-bg-color := palette($primary-color, -4)
 
 
@@ -147,7 +151,7 @@ $table-thead-bg-color := $bg-color
 $table-th-padding := 0 5px 0 12px
 $table-thead-font-size := 12px
 $table-th-font-weight := bold
-$table-thead-color := #3b3b3b
+$table-thead-color := #404040
 $table-tr-hover-bg-color := $bg-color
 $table-border-thead-bg-color := $table-thead-bg-color
 $table-fixed-margin-top := -31px
@@ -158,7 +162,7 @@ $table-check-width := 40px
  */
 $slider-height := 4px
 $slider-bg-color := #e5e5e5
-$slider-border-radius := 0
+$slider-border-radius := 2px
 $slider-handle-height := 12px
 $slider-handle-width := 12px
 $slider-handle-hover-bg-color := #fff
@@ -229,6 +233,7 @@ $steps-line-tail-bg-color := $placeholder-color
  */
 $breadcrumb-active-font-weight := normal
 $breadcrumb-separator-margin := 0 6px
+$breadcrumb-hover-color := $primary-color
 
 
 /**
@@ -254,7 +259,7 @@ $dropdown-item-hover-color := inherit
 /**
  * tag
  */
-$tag-color := $ghost-text-color
+// $tag-color := $ghost-text-color
 $tag-border-color := $placeholder-color
 $tag-padding := unit(7 / 14, rem) unit(16 / 14, rem)
 $tag-closable-padding-right := unit(30 / 14, rem)
