@@ -3,6 +3,8 @@ title: 组件尺寸
 order: 2
 ---
 
+通过`size`可以定义尺寸: `default` `large` `small` `mini`
+
 ```vdt
 import Tag from 'kpc/components/tag';
 
