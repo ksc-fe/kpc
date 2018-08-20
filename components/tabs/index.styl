@@ -116,6 +116,22 @@ sizes = large small mini
             border-right none
             border-bottom $tabs-border
 
+    // no-border-card
+    &.k-no-border-card
+        border-bottom none
+        .k-tab
+            border-color transparent
+            background $tabs-no-border-card-bg-color 
+            margin-right $tabs-no-border-card-gutter 
+            &.k-active
+                background #fff
+                border-color transparent 
+        // vertical
+        &.k-vertical
+            border-right none
+            .k-tab
+                margin-top $tabs-no-border-card-gutter
+
 
     // size
     for size in sizes 

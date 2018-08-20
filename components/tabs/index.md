@@ -18,6 +18,7 @@ sidebar: doc
 | value | 被选中的选项卡,使用`v-model`进行双向绑定 | `*` | `undefined`|
 | vertical | 垂直排列 | `Boolean` | `undefined` |
 | size | 选项卡尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
+| type | 选项卡类型 | `"default"` &#124; `"card"` &#124; `"border-card"` &#124; `"no-border-card"` | `"default"` |
 
 ## Tab
 

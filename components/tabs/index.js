@@ -13,8 +13,8 @@ export default class Tabs extends Intact {
             data: undefined,
             value: undefined,
             vertical: false,
-            size: 'default', // large default mini small
-            type: 'default', // default card border-card
+            size: 'default',
+            type: 'default',
 
             _activeBarStyle: undefined,
         };
@@ -24,7 +24,7 @@ export default class Tabs extends Intact {
         data: Array,
         vertical: Boolean,
         size: ['large', 'default', 'small', 'mini'],
-        type: ['default', 'card', 'border-card'],
+        type: ['default', 'card', 'border-card', 'no-border-card'],
     }
 
     _changeTab(item) {
