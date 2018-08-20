@@ -10,6 +10,13 @@ export default class extends Layout {
     @Intact.template()
     static template = template;
 
+    defaults() {
+        return {
+            ...super.defaults(),
+            hasRead: true,
+        };
+    }
+
     async _init() {
         super._init();
 
