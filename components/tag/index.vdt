@@ -15,6 +15,7 @@ const classNameObj = {
     [`k-${size}`]: size !== 'default',
     'k-disabled': disabled,
     'k-closable': closable,
+    [scope.className]: scope.className,
 };
 
 <Animate
@@ -23,14 +24,20 @@ const classNameObj = {
     class={{ classNameObj }}
     {{ ...rest }}
 >
-    {{ children }}
+    <template>
+        <b:body>{{ children }}</b:body>
+    </template>
     <Button type="none" v-if={{ closable }} 
-        icon
-        class="k-close"
+        icon={{ !blocks.close }}
+        class={{ {"k-close": true, "k-custom": blocks.close} }}
         disabled={{ disabled }}
         ev-click={{ self._close }}
         size={{ size }}
     >
-        <i class="k-icon ion-ios-close-empty"></i>
+        <template>
+            <b:close>
+                <i class="k-icon ion-ios-close-empty"></i>
+            </b:close>
+        </template>
     </Button>
 </Animate>

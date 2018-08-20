@@ -17,7 +17,7 @@
         position absolute
         right -1px
         top -1px
-        color inherit
+        // color inherit
         .k-icon
             font-size $tag-close-icon-font-size
 
@@ -27,6 +27,8 @@
             border-color lookup('$tag-' + type + '-border-color')
             background lookup('$tag-' + type + '-bg-color') 
             if type != disabled
+                .k-close
+                    color lookup('$tag-' + type + '-color')
                 .k-close:hover
                     color palette(lookup('$tag-' + type + '-color'), -2)
                 .k-close:active

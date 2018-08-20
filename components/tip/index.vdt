@@ -1,0 +1,10 @@
+const {children} = self.get();
+
+<t:parent class="k-component-tip">
+    <b:body>
+        <div v-if={{ blocks.title }} class="k-title">
+            <b:title />
+        </div>
+        {{ children }}
+    </b:body>
+</t:parent>

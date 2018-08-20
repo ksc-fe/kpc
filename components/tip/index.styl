@@ -1,0 +1,13 @@
+@require('./variables.styl')
+
+.k-component-tip
+    display block
+    &.k-tag
+        color $text-color
+    > .k-title
+        font-size 14px
+        margin-bottom 8px
+    > .k-close.k-custom
+        color $primary-color
+        &:hover
+            color palette($primary-color, -1)
