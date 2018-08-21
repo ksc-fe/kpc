@@ -1,11 +1,14 @@
-const {size} = self.get();
+const {size, center} = self.get();
 
 const classNameObj = {
     'k-spin': true,
     [`k-${size}`]: size !== 'default',
+    'k-center': center,
 };
 
-<div class={{ classNameObj }}>
+<Animate class={{ classNameObj }}
+    a:transition="fade"
+>
     <div class="k-canvas">
         <b:canvas>
             <svg viewBox="0 0 120 120">
@@ -13,4 +16,4 @@ const classNameObj = {
             </svg>
         </b:canvas>
     </div>
-</div>
+</Animate>

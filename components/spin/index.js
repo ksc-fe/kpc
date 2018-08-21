@@ -9,11 +9,13 @@ export default class Spin extends Intact {
 
     static propTypes = {
         size: ['large', 'default', 'small', 'mini'],
+        center: Boolean,
     };
 
     defaults() {
         return {
             size: 'default',
+            center: false,
         };
     }
 }

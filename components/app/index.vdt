@@ -3,11 +3,6 @@ import Spin from '../spin';
 <div class="k-app">
     {{ self.get('view') }}
     <b:loading>
-        <Animate key="loading" v-if={{ self.get('loading') }}
-            a:transition="fade"
-            class="k-app-loading"
-        >
-            <Spin size="large" />
-        </Animate>
+        <Spin key="loading" center size="large" v-if={{ self.get('loading') }}/>
     </b:loading>
 </div>

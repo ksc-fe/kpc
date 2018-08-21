@@ -26,6 +26,13 @@ c = round(2 * 3.14 * r)
                 width lookup('$spin-' + size + '-width')
                 height @width
 
+    // center
+    &.k-center
+        position absolute
+        top 50%
+        left 50%
+        transform translate(-50%, -50%)
+
 
 @keyframes k-spin-dash {
     0% {
