@@ -3,11 +3,11 @@
 .k-component-tip
     display block
     &.k-tag
-        color $text-color
+        color $tip-color 
     > .k-title
-        font-size 14px
-        margin-bottom 8px
+        font-size $tip-title-font-size 
+        margin-bottom $tip-title-margin-bottom 
     > .k-close.k-custom
-        color $primary-color
+        color $tip-close-custom-color 
         &:hover
-            color palette($primary-color, -1)
+            color $tip-close-custom-hover-color 
