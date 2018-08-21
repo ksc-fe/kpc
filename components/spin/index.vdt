@@ -1,0 +1,16 @@
+const {size} = self.get();
+
+const classNameObj = {
+    'k-spin': true,
+    [`k-${size}`]: size !== 'default',
+};
+
+<div class={{ classNameObj }}>
+    <div class="k-canvas">
+        <b:canvas>
+            <svg viewBox="0 0 120 120">
+                <circle cx="60" cy="60" class="k-circle"></circle>
+            </svg>
+        </b:canvas>
+    </div>
+</div>

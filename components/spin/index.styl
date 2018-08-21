@@ -1,0 +1,45 @@
+@require('./variables.styl')
+
+width = $spin-stroke-width 
+r = 120 - 60 - (width / 2)
+c = round(2 * 3.14 * r)
+
+.k-spin
+    display inline-block
+    .k-canvas
+        width $spin-width 
+        height @width 
+        animation rotate 2s linear infinite
+    .k-circle
+        stroke-dasharray: 1, c;
+        stroke-dashoffset: 0;
+        fill none
+        stroke-width width 
+        stroke $spin-color 
+        r r 
+        animation k-spin-dash 1.5s ease-in-out infinite
+
+    // size
+    for size in large small mini
+        &.k-{size}
+            .k-canvas
+                width lookup('$spin-' + size + '-width')
+                height @width
+
+
+@keyframes k-spin-dash {
+    0% {
+        stroke-dasharray: 1, c;
+        stroke-dashoffset: 0
+    }
+
+    50% {
+        stroke-dasharray: round(c * 0.75), c;
+        stroke-dashoffset: -(c * 0.25)
+    }
+
+    to {
+        stroke-dasharray: round(c * 0.75), c;
+        stroke-dashoffset: -(c)
+    }
+}
