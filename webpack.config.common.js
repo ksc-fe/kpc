@@ -38,7 +38,7 @@ module.exports = {
                         loader: 'vdt-loader',
                         options: {
                             delimiters: ['{{', '}}'],
-                            skipWhitespace: true
+                            skipWhitespace: true,
                         }
                     }
                 ]

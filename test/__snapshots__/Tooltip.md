@@ -9,7 +9,7 @@
 #### `should custom content correctly`
 
 ```
-"<div class=\"k-slider\" style=\"width: 200px; padding: 10px;\"><div class=\"k-slider-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 0%;\"></div><div class=\"k-handle\" tabindex=\"0\" style=\"left: 0%;\"></div></div></div></div>"
+"<div class=\"k-slider\" style=\"width: 200px;\"><div class=\"k-slider-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 0%;\"></div><div class=\"k-handle\" tabindex=\"0\" style=\"left: 0%;\"></div></div></div></div>"
 ```
 
 #### `should position correctly`

@@ -102,8 +102,7 @@ describe('Dialog', () => {
 
         component = render(Component);
         const footer = component.refs.dialog.$element.querySelector('.k-footer');
-        expect(footer.childNodes[0].textContent.trim()).be.equal('dialog footer');
-        expect(footer.childNodes.length).be.equal(4);
+        expect(footer.innerHTML).to.matchSnapshot();
     });
 
     it('basic test', () => {
