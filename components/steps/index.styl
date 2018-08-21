@@ -5,22 +5,8 @@
     .k-step
         float left
         position relative
-    .k-head
-        padding-right $steps-head-padding-right 
-        .k-inner
-            width $steps-head-inner-width 
-            height @width 
-            line-height s('calc(%s - 2px)', @width)
-            border-radius 50%
-            text-align center
-            border $steps-head-inner-border
-            if $steps-head-color != inherit
-                color $steps-head-color 
     .k-icon:before
         font-size $steps-head-icon-font-size 
-        line-height s('calc(%s - 2px)', $steps-head-inner-width)
-    .k-main
-        color $steps-main-color 
     .k-title
         display inline-block
         padding-right $steps-main-title-padding-right 
@@ -29,43 +15,69 @@
     .k-content
         font-size $steps-main-content-font-size 
         white-space nowrap
-    .k-tail
-        position absolute
-    .k-step:last-of-type
-        .k-tail
-            display none
-    // done
-    .k-done
-        .k-inner
-            color $steps-done-head-color 
-            border-color $steps-done-head-inner-border-color 
-    // active
-    .k-active
-        .k-inner
-            color $steps-active-head-color 
-            border-color $steps-active-head-inner-border-color 
-            background $steps-active-head-inner-bg-color 
-        .k-main
-            color $steps-active-main-color 
-    // error
-    .k-error
-        .k-inner
-            color $steps-error-head-color 
-            border-color $steps-error-head-inner-border-color
-            background $steps-error-head-bg-color 
-        .k-main
-            color $steps-error-main-color 
 
-    // default
+    // default and line type
+    &.k-default
+    &.k-line
+        .k-head
+            padding-right $steps-head-padding-right 
+            .k-inner
+                width $steps-head-inner-width 
+                height @width 
+                line-height s('calc(%s - 2px)', @width)
+                border-radius 50%
+                text-align center
+                border $steps-head-inner-border
+                if $steps-head-color != inherit
+                    color $steps-head-color 
+        .k-icon:before
+            line-height s('calc(%s - 2px)', $steps-head-inner-width)
+        .k-main
+            color $steps-main-color 
+        .k-tail
+            position absolute
+        .k-step:last-of-type
+            .k-tail
+                display none
+        // done
+        .k-done
+            .k-inner
+                color $steps-done-head-color 
+                border-color $steps-done-head-inner-border-color 
+        // active
+        .k-active
+            .k-inner
+                color $steps-active-head-color 
+                border-color $steps-active-head-inner-border-color 
+                background $steps-active-head-inner-bg-color 
+            .k-main
+                color $steps-active-main-color 
+        // error
+        .k-error
+            .k-inner
+                color $steps-error-head-color 
+                border-color $steps-error-head-inner-border-color
+                background $steps-error-head-bg-color 
+            .k-main
+                color $steps-error-main-color 
+
+    // default and simple type
+    &.k-simple
     &.k-default
         text-align center
         height $steps-height 
         line-height @height
-        background $steps-bg-color
         .k-head
         .k-main
         .k-content
             display inline-block
+        .k-head
+            .k-inner
+                display inline-block
+
+    // default
+    &.k-default
+        background $steps-bg-color
         .k-tail
             calcBorderWidth()
                 return $steps-height / 2 + $steps-gutter 
@@ -90,10 +102,9 @@
                 left 0 
         .k-head
             .k-inner
-                display inline-block
                 vertical-align middle
                 margin-top -2px
-
+    
     // line type
     &.k-line
         display flex
@@ -124,10 +135,35 @@
                 display flex
             .k-title
                 padding-right 0
-
         // done
         .k-done
             .k-tail
                 background $steps-line-done-tail-bg-color 
+
+    // simple type
+    &.k-simple
+        .k-step
+        .k-main
+            color $steps-simple-color 
+        .k-head
+            padding-right $steps-simple-head-padding-right 
+            vertical-align top
+            if $steps-simple-head-font-weight != normal
+                font-weight $steps-simple-head-font-weight 
+        if $steps-simple-head-font-weight != normal
+            .k-icon:before
+                font-weight $steps-simple-head-font-weight 
+        .k-done
+            .k-main
+            .k-inner
+                color $steps-simple-done-color 
+        .k-active
+            .k-main
+            .k-inner
+                color $steps-simple-active-color
+        .k-error
+            .k-main
+            .k-inner
+                color $steps-simple-error-color
 
 @import $theme-dir + '/steps.styl' if exists($theme-dir + '/steps.styl') 
