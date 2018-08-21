@@ -30,10 +30,10 @@ export default class extends Layout {
     }
 
     _create() {
-        this.set('hasRead', localStorage.getItem('v0.5.0'));
+        this.set('hasRead', localStorage.getItem(process.version));
         if (this.path === '/docs/changelog') {
             this.set('hasRead', true);
-            localStorage.setItem('v0.5.0', 1);
+            localStorage.setItem(process.version, 1);
         }
         this.examples = this.element.querySelectorAll('.example');
     }

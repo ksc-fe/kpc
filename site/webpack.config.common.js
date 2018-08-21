@@ -2,6 +2,7 @@ const webpack = require('webpack'); const path = require('path');
 const webpackConfig = require('../webpack.config.common');
 const merge = require('webpack-merge');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const packageJson = require('../package.json');
 
 const isDev = process.env.NODE_ENV !== 'production';
 process.URL_PREFIX = isDev ? '' : '/kpc';
@@ -62,6 +63,9 @@ module.exports = function(theme) {
             Intact: 'intact'
         }),
         new webpack.NamedModulesPlugin(),
+        new webpack.DefinePlugin({
+            'process.version': JSON.stringify(packageJson.version),
+        }),
     ];
 
     if (!process.env.THEME) {
