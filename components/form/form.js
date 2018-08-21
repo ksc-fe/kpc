@@ -62,6 +62,14 @@ export default class Form extends Intact {
         return !Form.methods.required.call(this, value, item);
     }
 
+    getFirstInvalidFormItem() {
+        return this.get('items').find(item => {
+            if (item.get('isValid') === false) {
+                return item;
+            }
+        });
+    }
+
     _submit(e) {
         e.preventDefault();
         this.submit(e);

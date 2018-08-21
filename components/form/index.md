@@ -46,6 +46,7 @@ sidebar: doc
 | --- | --- | --- | --- |
 | validate | 验证表单所有规则 | - | `Promise`: `.then(valid => {})`，`valid`为`true`验证成功，否则失败 |
 | reset | 重置表单 | - | `undefined` |
+| getFirstInvalidFormItem | 获取第一条出错的`FormItem` | - | `FormItem` |
 
 # 静态方法
 
