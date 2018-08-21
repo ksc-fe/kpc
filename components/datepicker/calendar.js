@@ -161,7 +161,11 @@ export default class Calendar extends Intact {
     getShowDate() {
         const {_showDate, value, _now, multiple} = this.get();
         const values = multiple ? value || [] : [value];
-        return new Date(_showDate || values[this._index] || _now);
+        const showDate = new Date(_showDate || values[this._index] || _now);
+        // set showDate's date to 1, for the days of month is not equal
+        // it will lead to change month incorrectly, #62
+        showDate.setDate(1)
+        return showDate;
     }
 
     setShowDate(date) {
