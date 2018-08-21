@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>App</code>组件是个应用管理组件，用它可以当做整个单页应用的骨架，用来切换各个子页面，在切换的过程中，组件会展示loading动画来作为过渡。该组件实例化时，需要传入<code>container</code>属性来指明组件的挂载点，然后通过<code>load(Page, [data])</code>方法来记载页面</p>\n<ol>\n<li>@param <code>Page</code> 当前要加载的页面组件</li>\n<li>@param <code>data</code> 传入组件的数据</li>\n<li>@return <code>Promise</code> 返回Promise对象</li>\n</ol>\n<p>本例中，我们假设有两个页面<code>PageA</code>和<code>PageB</code>，然后通过点击不同的按钮加载不同的页面，实际使用中，可以根据不同的路由来加载不同的页面。</p>\n<blockquote>\n<p>该组件只适用于Intact框架，Vue下无需该组件来管理页面，应该使用<code>vue-router</code></p>\n</blockquote>\n",
-    "index": 2,
+    "index": 20,
     "highlighted": [
         {
             "language": "vdt",

@@ -433,7 +433,7 @@ exports.ButtonGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534505946660
+      // 1534834275014
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -773,7 +773,7 @@ exports.Checkbox = Checkbox;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534505947858
+      // 1534834276631
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1269,7 +1269,7 @@ exports.DropdownItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534505949785
+      // 1534834278845
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -2344,7 +2344,7 @@ exports.Input = Input;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534505949462
+      // 1534834278384
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -2683,7 +2683,13 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         } catch (e) {
             _e(e);
         }
-    }.call($this))) : undefined, (_blocks['suffix'] = function (parent) {
+    }.call($this))) : undefined, function () {
+        try {
+            return ' ';
+        } catch (e) {
+            _e(e);
+        }
+    }.call($this), (_blocks['suffix'] = function (parent) {
         return null;
     }) && (__blocks['suffix'] = function (parent) {
         var args = arguments;
@@ -3652,7 +3658,7 @@ exports.Radio = Radio;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534505950688
+      // 1534834280132
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -4329,7 +4335,7 @@ exports.OptionGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534505947766
+      // 1534834276413
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5223,8 +5229,8 @@ var Tabs = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fun
             data: undefined,
             value: undefined,
             vertical: false,
-            size: 'default', // large default mini small
-            type: 'default', // default card border-card
+            size: 'default',
+            type: 'default',
 
             _activeBarStyle: undefined
         };
@@ -5275,7 +5281,7 @@ var Tabs = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fun
     data: Array,
     vertical: Boolean,
     size: ['large', 'default', 'small', 'mini'],
-    type: ['default', 'card', 'border-card']
+    type: ['default', 'card', 'border-card', 'no-border-card']
 }, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
 exports.default = Tabs;
 exports.Tabs = Tabs;
@@ -5288,7 +5294,7 @@ exports.Tab = _tab2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534505949639
+      // 1534834278644
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5353,7 +5359,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
 
     var classNameObj = (_classNameObj = {
         'k-tabs': true
-    }, _classNameObj[className] = className, _classNameObj['k-' + size] = size !== 'default', _classNameObj['k-vertical'] = vertical, _classNameObj['k-' + type] = type !== 'default', _classNameObj);
+    }, _classNameObj[className] = className, _classNameObj['k-' + size] = size !== 'default', _classNameObj['k-vertical'] = vertical, _classNameObj['k-card'] = type === 'no-border-card', _classNameObj['k-' + type] = type !== 'default', _classNameObj);
 
     return h('div', {
         'style': function () {
@@ -5734,7 +5740,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534505945359
+      // 1534834273071
       var cssReload = require("!../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5980,7 +5986,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534505945534
+      // 1534834273314
       var cssReload = require("!../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);

@@ -1,0 +1,23 @@
+{
+    "setting": {
+        "title": "展示标题",
+        "order": 2
+    },
+    "catalogs": [],
+    "contents": "<p>通过<code>title</code>扩展点，可以自定义标题内容</p>\n",
+    "index": 83,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Tip <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/tip'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Tip</span> <span class=\"hljs-attr\">v-for</span>=<span class=\"hljs-string\">{{</span> ['<span class=\"hljs-attr\">default</span>', '<span class=\"hljs-attr\">primary</span>', '<span class=\"hljs-attr\">success</span>', '<span class=\"hljs-attr\">warning</span>', '<span class=\"hljs-attr\">danger</span>'] }}\n        <span class=\"hljs-attr\">key</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">value</span> }}\n        <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">value</span> }}\n        <span class=\"hljs-attr\">closable</span>\n    &gt;</span>\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">b:title</span>&gt;</span>{{ value }}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">b:title</span>&gt;</span>\n        This is a {{ value }} tip.\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Tip</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span></code></pre>"
+        },
+        {
+            "language": "styl",
+            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-tag</span>\n    <span class=\"hljs-attribute\">margin-bottom</span> <span class=\"hljs-number\">8px</span></code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
+        }
+    ]
+}
