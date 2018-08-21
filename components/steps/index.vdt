@@ -1,23 +1,28 @@
 import Step from './step';
 
-const {children, value, style, status, type} = self.get();
+const {
+    children, value, style,
+    status, type, clickable
+} = self.get();
 
 const classNameObj = {
     'k-steps c-clearfix': true,
     [`k-${type}`]: true,
+    'k-clickable': clickable,
 };
 
 let stepIndex = 0;
 let steps = (Array.isArray(children) ? children : [children]).filter(vNode => {
     if (vNode && vNode.tag === Step) {
-        vNode.props = {...vNode.props, index: stepIndex};
+        const props = vNode.props = {...vNode.props, index: stepIndex};
         if (value == stepIndex) {
-            vNode.props.selected = true;
+            props.selected = true;
             if (status === 'error') {
-                vNode.props.error = true;
+                props.error = true;
             }
         } else if (value > stepIndex) {
-            vNode.props.done = true;
+            props.done = true;
+            props['ev-click'] = self._changeIndex.bind(self, stepIndex);
         }
         stepIndex++;
         return true;

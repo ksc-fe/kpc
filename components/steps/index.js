@@ -12,15 +12,22 @@ export default class Steps extends Intact {
         value: [Number, String],
         status: ['normal', 'error'],
         type: ['default', 'line', 'simple'],
+        clickable: Boolean,
     }
 
     defaults() {
         return {
             value: undefined,
             status: 'normal',
-
             type: 'default',
+            clickable: false,
         };
+    }
+
+    _changeIndex(index) {
+        if (this.get('clickable')) {
+            this.set('value', index);
+        }
     }
 }
 

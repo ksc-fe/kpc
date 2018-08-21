@@ -1,6 +1,6 @@
 ---
 title: 错误状态
-order: 0
+order: 1
 ---
 
 指定`Steps`的`status`属性为`error`，即可将步骤条置为错误状态

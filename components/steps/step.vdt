@@ -1,6 +1,7 @@
 const {
     children, selected, done, 
-    title, index, width, error
+    title, index, width, error,
+    ...rest
 } = self.get();
 
 const classNameObj = {
@@ -10,7 +11,7 @@ const classNameObj = {
     'k-error': error,
 };
 
-<div class={{ classNameObj }} style={{ {width: width} }}>
+<div class={{ classNameObj }} style={{ {width: width} }} {{ ...rest }}>
     <div class="k-tail"></div>
     <div class="k-wrapper">
         <div class="k-head">
