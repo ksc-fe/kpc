@@ -5182,11 +5182,11 @@ blockquote:before {
   min-height: 100vh;
 }
 .main-wrapper {
-  padding-top: 80px;
+  padding-top: 50px;
 }
 .header-wrapper {
-  height: 80px;
-  line-height: 80px;
+  height: 50px;
+  line-height: 50px;
   -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.08);
           box-shadow: 0 2px 5px rgba(0,0,0,0.08);
   background: #fff;
@@ -5253,7 +5253,7 @@ blockquote:before {
   margin: 0 auto;
   min-height: 100%;
   background: #fff;
-  padding-top: 80px;
+  padding-top: 50px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   text-align: center;
@@ -5389,13 +5389,13 @@ blockquote:before {
 }
 .document-page .content-wrapper.fixed .aside-wrapper {
   position: fixed;
-  top: 80px;
+  top: 50px;
   background: #fff;
-  height: calc(100% - 80px);
+  height: calc(100% - 50px);
   overflow: auto;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  width: 299px;
+  width: 199px;
 }
 .document-page .content-wrapper {
   width: 100%;
@@ -5410,7 +5410,7 @@ blockquote:before {
   min-height: calc(100vh - 15px);
 }
 .document-page .content-wrapper aside {
-  width: 300px;
+  width: 200px;
   border-right: 1px solid #eee;
 }
 .document-page .content-wrapper .aside-wrapper {
@@ -5544,7 +5544,7 @@ blockquote:before {
 .document-page .table-of-contents {
   position: fixed;
   right: 0;
-  top: 100px;
+  top: 70px;
   width: 150px;
   font-size: 12px;
 }
@@ -5558,13 +5558,13 @@ blockquote:before {
 }
 .fixed-aside .content-wrapper .aside-wrapper {
   position: fixed;
-  top: 80px;
+  top: 50px;
   background: #fff;
-  height: calc(100% - 80px);
+  height: calc(100% - 50px);
   overflow: auto;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  width: 299px;
+  width: 199px;
 }
 .fixed-aside .content-wrapper article {
   padding: 10px 150px 10px 20px;
@@ -8121,8 +8121,8 @@ blockquote:before {
   margin-top: 16px;
 }
 .blog-page {
-  padding-bottom: 15px;
-  padding-top: 95px;
+  padding-bottom: 10px;
+  padding-top: 60px;
 }
 .blog-page .content-wrapper {
   -webkit-box-shadow: none;
