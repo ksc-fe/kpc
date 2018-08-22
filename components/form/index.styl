@@ -5,6 +5,7 @@
     margin $form-item-margin
 .k-form-item
     display table 
+    position relative
     // width 100%
     > .k-label
         display table-cell
@@ -28,6 +29,7 @@
         color $form-item-error-color 
         font-size $form-item-error-font-size 
         margin $form-item-error-margin
+        white-space nowrap
     &.k-invalid
         // input
         :not(.k-select) .k-input
