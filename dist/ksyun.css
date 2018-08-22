@@ -580,9 +580,9 @@ samp {
 label {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
-.slidedown-enter,
-.slidedown-leave,
-.slidedown-appear {
+.c-slidedown-enter,
+.c-slidedown-leave,
+.c-slidedown-appear {
   -webkit-transform-origin: center top 0;
       -ms-transform-origin: center top 0;
           transform-origin: center top 0;
@@ -591,9 +591,9 @@ label {
       -ms-transform: scaleY(0.8);
           transform: scaleY(0.8);
 }
-.slidedown-enter-active,
-.slidedown-leave-active,
-.slidedown-appear-active {
+.c-slidedown-enter-active,
+.c-slidedown-leave-active,
+.c-slidedown-appear-active {
   -webkit-transform-origin: center top 0;
       -ms-transform-origin: center top 0;
           transform-origin: center top 0;
@@ -602,9 +602,9 @@ label {
   transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
   transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
 }
-.slideup-enter,
-.slideup-leave,
-.slideup-appear {
+.c-slideup-enter,
+.c-slideup-leave,
+.c-slideup-appear {
   -webkit-transform-origin: center bottom 0;
       -ms-transform-origin: center bottom 0;
           transform-origin: center bottom 0;
@@ -613,9 +613,9 @@ label {
       -ms-transform: scaleY(0.8);
           transform: scaleY(0.8);
 }
-.slideup-enter-active,
-.slideup-leave-active,
-.slideup-appear-active {
+.c-slideup-enter-active,
+.c-slideup-leave-active,
+.c-slideup-appear-active {
   -webkit-transform-origin: center bottom 0;
       -ms-transform-origin: center bottom 0;
           transform-origin: center bottom 0;
@@ -624,9 +624,9 @@ label {
   transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
   transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
 }
-.slideleft-enter,
-.slideleft-leave,
-.slideleft-appear {
+.c-slideleft-enter,
+.c-slideleft-leave,
+.c-slideleft-appear {
   -webkit-transform-origin: right center 0;
       -ms-transform-origin: right center 0;
           transform-origin: right center 0;
@@ -635,9 +635,9 @@ label {
       -ms-transform: scaleX(0.8);
           transform: scaleX(0.8);
 }
-.slideleft-enter-active,
-.slideleft-leave-active,
-.slideleft-appear-active {
+.c-slideleft-enter-active,
+.c-slideleft-leave-active,
+.c-slideleft-appear-active {
   -webkit-transform-origin: right center 0;
       -ms-transform-origin: right center 0;
           transform-origin: right center 0;
@@ -646,9 +646,9 @@ label {
   transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
   transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
 }
-.slideright-enter,
-.slideright-leave,
-.slideright-appear {
+.c-slideright-enter,
+.c-slideright-leave,
+.c-slideright-appear {
   -webkit-transform-origin: left center 0;
       -ms-transform-origin: left center 0;
           transform-origin: left center 0;
@@ -657,9 +657,9 @@ label {
       -ms-transform: scaleX(0.8);
           transform: scaleX(0.8);
 }
-.slideright-enter-active,
-.slideright-leave-active,
-.slideright-appear-active {
+.c-slideright-enter-active,
+.c-slideright-leave-active,
+.c-slideright-appear-active {
   -webkit-transform-origin: left center 0;
       -ms-transform-origin: left center 0;
           transform-origin: left center 0;
@@ -668,46 +668,46 @@ label {
   transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
   transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
 }
-.fade-enter,
-.fade-leave {
+.c-fade-enter,
+.c-fade-leave {
   opacity: 0;
 }
-.fade-enter-active,
-.fade-leave-active {
+.c-fade-enter-active,
+.c-fade-leave-active {
   -webkit-transition: opacity 0.25s ease-in-out;
   transition: opacity 0.25s ease-in-out;
 }
-.fade-move {
+.c-fade-move {
   -webkit-transition: -webkit-transform 0.25s ease-in-out;
   transition: -webkit-transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
 }
-.expand-enter,
-.expand-leave {
+.c-expand-enter,
+.c-expand-leave {
   height: 0 !important;
   opacity: 0;
 }
-.expand-enter-active,
-.expand-leave-active {
+.c-expand-enter-active,
+.c-expand-leave-active {
   -webkit-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
   overflow: hidden;
 }
-.dropdown-enter,
-.dropdown-leave {
+.c-dropdown-enter,
+.c-dropdown-leave {
   opacity: 0;
   -webkit-transform: translateY(-20px);
       -ms-transform: translateY(-20px);
           transform: translateY(-20px);
 }
-.dropdown-enter-active,
-.dropdown-leave-active,
-.dropdown-move {
+.c-dropdown-enter-active,
+.c-dropdown-leave-active,
+.c-dropdown-move {
   -webkit-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
 }
-@-webkit-keyframes rotate {
+@-webkit-keyframes c-rotate {
   0% {
     -webkit-transform-origin: 50% 50%;
             transform-origin: 50% 50%;
@@ -721,7 +721,7 @@ label {
             transform: rotate(360deg);
   }
 }
-@keyframes rotate {
+@keyframes c-rotate {
   0% {
     -webkit-transform-origin: 50% 50%;
             transform-origin: 50% 50%;
@@ -3770,8 +3770,8 @@ label {
   content: "\F30C";
 }
 .icon-loading:before {
-  -webkit-animation: rotate 1s infinite linear;
-          animation: rotate 1s infinite linear;
+  -webkit-animation: c-rotate 1s infinite linear;
+          animation: c-rotate 1s infinite linear;
 }
 .c-ellipsis {
   white-space: nowrap;
@@ -3796,6 +3796,73 @@ label {
 }
 .c-hidden {
   display: none;
+}
+.k-spin {
+  display: inline-block;
+}
+.k-spin .k-canvas {
+  width: 2.857142857142857rem;
+  height: 2.857142857142857rem;
+  -webkit-animation: c-rotate 2s linear infinite;
+          animation: c-rotate 2s linear infinite;
+}
+.k-spin .k-circle {
+  stroke-dasharray: 1, 358;
+  stroke-dashoffset: 0;
+  fill: none;
+  stroke-width: 6;
+  stroke: #0091ea;
+  r: 57;
+  -webkit-animation: k-spin-dash 1.5s ease-in-out infinite;
+          animation: k-spin-dash 1.5s ease-in-out infinite;
+}
+.k-spin.k-large .k-canvas {
+  width: 3.428571428571428rem;
+  height: 3.428571428571428rem;
+}
+.k-spin.k-small .k-canvas {
+  width: 2.285714285714286rem;
+  height: 2.285714285714286rem;
+}
+.k-spin.k-mini .k-canvas {
+  width: 1.714285714285714rem;
+  height: 1.714285714285714rem;
+}
+.k-spin.k-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+@-webkit-keyframes k-spin-dash {
+  0% {
+    stroke-dasharray: 1, 358;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 269, 358;
+    stroke-dashoffset: -89.5;
+  }
+  to {
+    stroke-dasharray: 269, 358;
+    stroke-dashoffset: -358;
+  }
+}
+@keyframes k-spin-dash {
+  0% {
+    stroke-dasharray: 1, 358;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 269, 358;
+    stroke-dashoffset: -89.5;
+  }
+  to {
+    stroke-dasharray: 269, 358;
+    stroke-dashoffset: -358;
+  }
 }
 .k-app {
   height: 100%;
@@ -5849,6 +5916,7 @@ button.k-btn.k-mini > span {
 }
 .k-form-item {
   display: table;
+  position: relative;
 }
 .k-form-item > .k-label {
   display: table-cell;
@@ -5870,6 +5938,7 @@ button.k-btn.k-mini > span {
   color: #f43;
   font-size: 0.857142857142857rem;
   margin: 2px 0 0 0;
+  white-space: nowrap;
 }
 .k-form-item.k-invalid :not(.k-select) .k-input .k-inner {
   border: 1px solid #f43;

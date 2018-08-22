@@ -26,6 +26,7 @@ import {ScrollSelect} from './components/scrollSelect';
 import {Select, Option, OptionGroup} from './components/select';
 import {Slider} from './components/slider';
 import {Spinner} from './components/spinner';
+import {Spin} from './components/spin';
 import {Steps, Step} from './components/steps';
 import {Switch} from './components/switch';
 import {Table, TableColumn} from './components/table';
@@ -69,6 +70,7 @@ export {
     ScrollSelect,
     Select,
     Slider,
+    Spin,
     Spinner,
     Step,
     Steps,
@@ -84,7 +86,7 @@ export {
     Upload
 };
 
-export const version = '0.5.3';
+export const version = '0.5.4';
 
 /* generate end */
 
