@@ -29,9 +29,10 @@ export default class Tab extends Intact {
 
     _changeTab(e) {
         if (this.get('disabled')) {
-            return e.preventDefault();
+            e.preventDefault();
+        } else {
+            this.get('_parent')._changeTab(this.get());
+            this.trigger('click', e);
         }
-
-        this.get('_parent')._changeTab(this.get());
     }
 }

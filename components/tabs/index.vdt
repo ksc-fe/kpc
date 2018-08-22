@@ -15,11 +15,11 @@ const classNameObj = {
 };
 
 <div class={{ classNameObj }} style={{ style }}>
-    <a class={{ {
-        'k-tab': true, 
-        'k-active': item.value === value,
-    } }}
-        v-for={{ data }}
+    <a v-for={{ data }}
+        class={{ {
+            'k-tab': true, 
+            'k-active': item.value === value,
+        } }}
         v-for-value="item"
         ev-click={{ self._changeTab.bind(self, item) }}
     >{{ item.text }}</a>
