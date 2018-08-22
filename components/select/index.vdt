@@ -242,7 +242,7 @@ if (hasValue && !labelObj.label && !labelObj.labels.length) {
                     v-for-value="item"
                     v-for-key="index"
                     key={{ value[index] }}
-                    a:transition="fade"
+                    a:transition="c-fade"
                 >
                     <span class="k-text">{{ item }}</span>
                     <i class="k-icon ion-ios-close-empty"

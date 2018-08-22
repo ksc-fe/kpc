@@ -31,7 +31,7 @@ const classNameObj = {
         <b:content>{{ children }}</b:content>
         <Animate v-if={{ self.get('isValid') === false }}
             class={{ {"k-error": true, [errorClassName]: errorClassName} }}
-            a:transition="fade"
+            a:transition="c-fade"
         >{{ self.get('message') }}</Animate>
     </div>
     <div class="k-append" v-if={{ blocks.append }}>

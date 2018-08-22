@@ -69,10 +69,10 @@ const CloseBtn = (props) => (
             } }}
             v-for={{ files }}
             key={{ value.uid }}
-            a:transition="dropdown"
+            a:transition="c-dropdown"
         >
             <img src={{ value.url }} />
-            <Animate class="k-overlap" a:transition="fade" key="overlap"
+            <Animate class="k-overlap" a:transition="c-fade" key="overlap"
                 v-if={{ value.status === 'ready' || value.status === 'uploading' }}
             >
                 <Progress percent={{ value.percent }} size="mini" />
@@ -82,7 +82,7 @@ const CloseBtn = (props) => (
             </div>
             <CloseBtn value={{ value }} index={{ key }} icon="ion-ios-close" />
         </Animate>
-        <Animate key="handle" a:transition="dropdown" class="c-middle"
+        <Animate key="handle" a:transition="c-dropdown" class="c-middle"
             v-if={{ !limit || files.length < limit }}
         >{{ handle }}</Animate>
     </Animate>
@@ -94,7 +94,7 @@ const CloseBtn = (props) => (
         <Animate v-for={{ files }} 
             class={{ {"k-file": true, 'k-error': value.status === 'error'} }}
             key={{ value.uid }}
-            a:transition="expand"
+            a:transition="c-expand"
             {{ ...expandAnimationCallbacks }}
         >
             <div class="k-wrapper">
@@ -108,7 +108,7 @@ const CloseBtn = (props) => (
                     </div>
                 </div>
                 <Animate key="progress" 
-                    a:transition="expand" 
+                    a:transition="c-expand" 
                     v-if={{ value.status === 'ready' || value.status === 'uploading' }}
                     {{ ...expandAnimationCallbacks }}
                 >

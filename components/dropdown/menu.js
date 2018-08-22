@@ -20,7 +20,7 @@ export default class DropdownMenu extends Intact {
             show: false,
             trigger: 'hover',
             position: {},
-            transition: 'slidedown',
+            transition: 'c-slidedown',
             of: 'self', // self | parent
         };
     }

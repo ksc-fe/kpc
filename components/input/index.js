@@ -12,7 +12,7 @@ export default class Input extends Intact {
         type: String,
         name: String,
         value: [String, Number],
-        defaultValue: String,
+        defaultValue: [String, Number],
         placeholder: String,
         readonly: Boolean,
         clearable: Boolean,

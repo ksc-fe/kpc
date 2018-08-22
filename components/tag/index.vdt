@@ -20,7 +20,7 @@ const classNameObj = {
 
 <Animate
     a:disabled={{ disabled }}
-    a:transition="fade" 
+    a:transition="c-fade" 
     class={{ classNameObj }}
     {{ ...rest }}
 >

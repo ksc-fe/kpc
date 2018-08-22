@@ -7,7 +7,7 @@ const classNameObj = {
 };
 
 <Animate class={{ classNameObj }}
-    a:transition="fade"
+    a:transition="c-fade"
 >
     <div class="k-canvas">
         <b:canvas>

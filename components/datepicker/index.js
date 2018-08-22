@@ -30,7 +30,7 @@ export default class Datepicker extends Intact {
             size: 'default',
             type: 'date', // date | datetime
             range: false,
-            transition: 'slidedown',
+            transition: 'c-slidedown',
 
             _value: undefined, // for range
             _rangeEndDate: undefined,

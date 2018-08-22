@@ -144,26 +144,26 @@ export function getTransition(feedback) {
     const vertical = feedback.vertical;
     if (feedback.important=== 'horizontal') {
         if (horizontal === 'left') {
-            return 'slideright';
+            return 'c-slideright';
         } else if (horizontal === 'right') {
-            return 'slideleft';
+            return 'c-slideleft';
         } else if (vertical === 'bottom') {
-            return 'slideup';
+            return 'c-slideup';
         } else if (vertical === 'top') {
-            return 'slidedown';
+            return 'c-slidedown';
         }
     } else {
         if (vertical === 'bottom') {
-            return 'slideup';
+            return 'c-slideup';
         } else if (vertical === 'top') {
-            return 'slidedown';
+            return 'c-slidedown';
         } else if (horizontal === 'left') {
-            return 'slideright';
+            return 'c-slideright';
         } else if (horizontal === 'right') {
-            return 'slideleft';
+            return 'c-slideleft';
         }
     }
-    return 'slidedown';
+    return 'c-slidedown';
 }
 
 export function mapChildren(children, callback) {

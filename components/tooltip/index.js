@@ -34,7 +34,7 @@ class TooltipContent extends Intact {
             canHover: false,
             showArrow: true,
             positon: {},
-            transition: 'fade',
+            transition: 'c-fade',
             confirm: false,
             okText: _$('确认'),
             cancelText: _$('取消'),

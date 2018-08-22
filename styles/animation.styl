@@ -1,4 +1,4 @@
-@keyframes rotate
+@keyframes c-rotate
     0%
         transform-origin 50% 50%
         transform rotate(0)
@@ -13,44 +13,44 @@ $origins = {
     right: left center 0
 }
 for type, value in $origins
-    .slide{type}-enter
-    .slide{type}-leave
-    .slide{type}-appear
+    .c-slide{type}-enter
+    .c-slide{type}-leave
+    .c-slide{type}-appear
         transform-origin value 
         opacity 0
         if type == down || type == up
             transform scaleY(.8)
         else
             transform scaleX(.8)
-    .slide{type}-enter-active
-    .slide{type}-leave-active
-    .slide{type}-appear-active
+    .c-slide{type}-enter-active
+    .c-slide{type}-leave-active
+    .c-slide{type}-appear-active
         transform-origin value 
         transition opacity $transition, transform $transition
 
-.fade-enter
-.fade-leave
+.c-fade-enter
+.c-fade-leave
     opacity 0
-.fade-enter-active
-.fade-leave-active
+.c-fade-enter-active
+.c-fade-leave-active
     transition opacity $transition 
-.fade-move
+.c-fade-move
     transition transform $transition
 
-.expand-enter
-.expand-leave
+.c-expand-enter
+.c-expand-leave
     height 0 !important
     opacity 0
-.expand-enter-active
-.expand-leave-active
+.c-expand-enter-active
+.c-expand-leave-active
     transition all $transition
     overflow hidden
 
-.dropdown-enter
-.dropdown-leave
+.c-dropdown-enter
+.c-dropdown-leave
     opacity 0
     transform translateY(-20px)
-.dropdown-enter-active
-.dropdown-leave-active
-.dropdown-move
+.c-dropdown-enter-active
+.c-dropdown-leave-active
+.c-dropdown-move
     transition all $transition 
