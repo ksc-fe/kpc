@@ -12,7 +12,10 @@ function Catalog(props) {
         <ul>
             <li v-for={{ props.value }} class={{ {
                 active: (() => {
-                    if (value.path.includes(self.path.slice(1) + '/')) {
+                    const path = self.path.slice(1);
+                    if (value.path.includes(path + '/') ||
+                        value.path.includes(path + '.md')
+                    ) {
                         currentNav = value;
                         return true;
                     }
