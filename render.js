@@ -39,7 +39,7 @@ module.exports =
 /******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
 /******/ 		// "0" is the signal for "already loaded"
 /******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("./chunk/" + {"0":"45661857909741e9f24f","1":"0e7ab85366949961fbff","2":"801442676d3449dbb61b","3":"15d87c063fa03dbf83e6"}[chunkId] + ".js");
+/******/ 			var chunk = require("./chunk/" + {"0":"ab28388d73fba67a14c5","1":"dee4a46f1c6685e4d703","2":"bff55009747a6adba56a","3":"ec11c627d084bd1c2fcc"}[chunkId] + ".js");
 /******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				modules[moduleId] = moreModules[moduleId];
@@ -191,11 +191,11 @@ var App = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = func
     };
 
     App.prototype.showLoading = function showLoading() {
-        this.set('loading', true);
+        this.set('loading', true, { async: true });
     };
 
     App.prototype.hideLoading = function hideLoading() {
-        this.set('loading', false);
+        this.set('loading', false, { async: true });
     };
 
     App.prototype._init = function _init() {
@@ -241,11 +241,13 @@ var App = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = func
     App.prototype.load = function load(Page, data, cleanup) {
         var _this3 = this;
 
+        this.showLoading();
         return this._render(Page, data, false).then(function () {
             if (_this3.get('ssr') && !_this3.rendered) {
                 _intact2.default.hydrate(_this3, _this3.get('container'));
                 cleanup && cleanup();
             }
+            _this3.hideLoading();
         });
     };
 
@@ -269,7 +271,7 @@ exports.App = App;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534834272556
+      // 1534955670809
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -328,10 +330,16 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
-        }.call($this) ? h(Animate, {
+        }.call($this) ? h(_spin2.default, {
             'key': 'loading',
-            'a:transition': 'fade',
-            'className': 'k-app-loading',
+            'center': function () {
+                try {
+                    return true;
+                } catch (e) {
+                    _e(e);
+                }
+            }.call($this),
+            'size': 'large',
             '_context': $this
         }) : undefined;
     }) && (__blocks['loading'] = function (parent) {
@@ -340,6 +348,205 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             return _blocks['loading'].apply($this, args);
         }].concat(__slice.call(args, 1))) : _blocks['loading'].apply($this, args);
     }) && __blocks['loading'].apply($this, [__noop])], 'k-app');
+};
+
+var _spin = __webpack_require__("./components/spin/index.js");
+
+var _spin2 = _interopRequireDefault(_spin);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./components/spin/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.Spin = exports.default = undefined;
+
+var _getOwnPropertyDescriptor = __webpack_require__("babel-runtime/core-js/object/get-own-property-descriptor");
+
+var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
+
+var _classCallCheck2 = __webpack_require__("babel-runtime/helpers/classCallCheck");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _possibleConstructorReturn2 = __webpack_require__("babel-runtime/helpers/possibleConstructorReturn");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__("babel-runtime/helpers/inherits");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _dec, _desc, _value, _class, _init, _class2, _temp;
+
+var _intact = __webpack_require__("intact");
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _index = __webpack_require__("./components/spin/index.vdt");
+
+var _index2 = _interopRequireDefault(_index);
+
+__webpack_require__("./styles/kpc.styl");
+
+__webpack_require__("./components/spin/index.styl");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
+
+    return desc;
+}
+
+var Spin = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
+    (0, _inherits3.default)(Spin, _Intact);
+
+    function Spin() {
+        (0, _classCallCheck3.default)(this, Spin);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+    }
+
+    Spin.prototype.defaults = function defaults() {
+        return {
+            size: 'default',
+            center: false
+        };
+    };
+
+    return Spin;
+}(_intact2.default), _class2.template = _index2.default, _class2.propTypes = {
+    size: ['large', 'default', 'small', 'mini'],
+    center: Boolean
+}, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    initializer: function initializer() {
+        return _init;
+    }
+}), _class)), _class));
+exports.default = Spin;
+exports.Spin = Spin;
+
+/***/ }),
+
+/***/ "./components/spin/index.styl":
+/***/ (function(module, exports, __webpack_require__) {
+
+// removed by extract-text-webpack-plugin
+    if(false) {
+      // 1534955673407
+      var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
+      module.hot.dispose(cssReload);
+      module.hot.accept(undefined, cssReload);
+    }
+  
+
+/***/ }),
+
+/***/ "./components/spin/index.vdt":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _classNameObj;
+
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __slice = __u.slice,
+        __noop = __u.noop,
+        __m = __u.map,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var _self$get = self.get(),
+        size = _self$get.size,
+        center = _self$get.center;
+
+    var classNameObj = (_classNameObj = {
+        'k-spin': true
+    }, _classNameObj['k-' + size] = size !== 'default', _classNameObj['k-center'] = center, _classNameObj);
+
+    return h(Animate, {
+        'className': _className(function () {
+            try {
+                return classNameObj;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)),
+        'a:transition': 'c-fade',
+        'children': h('div', null, (_blocks['canvas'] = function (parent) {
+            return h('svg', {
+                'viewBox': '0 0 120 120'
+            }, h('circle', {
+                'cx': '60',
+                'cy': '60'
+            }, null, 'k-circle'));
+        }) && (__blocks['canvas'] = function (parent) {
+            var args = arguments;
+            return blocks['canvas'] ? blocks['canvas'].apply($this, [function () {
+                return _blocks['canvas'].apply($this, args);
+            }].concat(__slice.call(args, 1))) : _blocks['canvas'].apply($this, args);
+        }) && __blocks['canvas'].apply($this, [__noop]), 'k-canvas'),
+        '_context': $this
+    });
 };
 
 module.exports = exports['default'];
@@ -543,26 +750,26 @@ function getTransition(feedback) {
     var vertical = feedback.vertical;
     if (feedback.important === 'horizontal') {
         if (horizontal === 'left') {
-            return 'slideright';
+            return 'c-slideright';
         } else if (horizontal === 'right') {
-            return 'slideleft';
+            return 'c-slideleft';
         } else if (vertical === 'bottom') {
-            return 'slideup';
+            return 'c-slideup';
         } else if (vertical === 'top') {
-            return 'slidedown';
+            return 'c-slidedown';
         }
     } else {
         if (vertical === 'bottom') {
-            return 'slideup';
+            return 'c-slideup';
         } else if (vertical === 'top') {
-            return 'slidedown';
+            return 'c-slidedown';
         } else if (horizontal === 'left') {
-            return 'slideright';
+            return 'c-slideright';
         } else if (horizontal === 'right') {
-            return 'slideleft';
+            return 'c-slideleft';
         }
     }
-    return 'slidedown';
+    return 'c-slidedown';
 }
 
 function mapChildren(children, callback) {
@@ -1084,7 +1291,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534834276259
+      // 1534955673205
       var cssReload = require("!../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);

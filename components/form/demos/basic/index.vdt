@@ -73,7 +73,7 @@ import {Datepicker} from 'kpc/components/datepicker';
         <Input type="password" v-model="model.confirmPassword" />
     </FormItem>
     <FormItem>
-        <Button type="primary" htmlType="submit">提交</Button>
+        <Button type="primary" htmlType="submit" ev-click={{ self.handleSubmit }}>提交</Button>
         <Button style="margin-left: 20px" ev-click={{ self.reset }}>重置</Button>
     </FormItem>
 </Form>

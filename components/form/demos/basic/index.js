@@ -22,6 +22,15 @@ export default class extends Intact {
         console.log(this.get('model'));
     }
 
+    async handleSubmit() {
+        if (await this.refs.form.validate()) {
+            console.log('验证通过，开始提交');
+        } else {
+            // 验证失败，我们可以获取第一条出错的FormItem
+            console.log(this.refs.form.getFirstInvalidFormItem());
+        }
+    }
+
     reset() {
         this.refs.form.reset();
         console.log(this.get('model'));

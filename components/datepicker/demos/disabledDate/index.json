@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>disabledDate</code>属性，可以定义个方法，来指定哪些日期被禁止选择。组件会将一个日期字符串作为方法的参数，如果方法返回“真”则禁用掉该日期，否则不禁用。</p>\n",
-    "index": 119,
+    "index": 121,
     "highlighted": [
         {
             "language": "vdt",

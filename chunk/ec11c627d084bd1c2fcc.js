@@ -433,7 +433,7 @@ exports.ButtonGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534834275014
+      // 1534955675371
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -773,7 +773,7 @@ exports.Checkbox = Checkbox;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534834276631
+      // 1534955678849
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1269,7 +1269,7 @@ exports.DropdownItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534834278845
+      // 1534955684322
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1680,7 +1680,7 @@ var DropdownMenu = (_dec = _intact2.default.template(), (_class = (_temp = _clas
             show: false,
             trigger: 'hover',
             position: {},
-            transition: 'slidedown',
+            transition: 'c-slidedown',
             of: 'self' // self | parent
         };
     };
@@ -2313,7 +2313,7 @@ var Input = (_dec = _intact2.default.template, (_class = (_temp = _class2 = func
     type: String,
     name: String,
     value: [String, Number],
-    defaultValue: String,
+    defaultValue: [String, Number],
     placeholder: String,
     readonly: Boolean,
     clearable: Boolean,
@@ -2344,7 +2344,7 @@ exports.Input = Input;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534834278384
+      // 1534955683104
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -3658,7 +3658,7 @@ exports.Radio = Radio;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534834280132
+      // 1534955686740
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -4335,7 +4335,7 @@ exports.OptionGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534834276413
+      // 1534955678646
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -4941,7 +4941,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                             _e(e);
                         }
                     }.call($this),
-                    'a:transition': 'fade',
+                    'a:transition': 'c-fade',
                     'children': [h('span', null, function () {
                         try {
                             return item;
@@ -5294,7 +5294,7 @@ exports.Tab = _tab2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534834278644
+      // 1534955682641
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5541,10 +5541,11 @@ var Tab = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = func
 
     Tab.prototype._changeTab = function _changeTab(e) {
         if (this.get('disabled')) {
-            return e.preventDefault();
+            e.preventDefault();
+        } else {
+            this.get('_parent')._changeTab(this.get());
+            this.trigger('click', e);
         }
-
-        this.get('_parent')._changeTab(this.get());
     };
 
     (0, _createClass3.default)(Tab, [{
@@ -5740,7 +5741,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534834273071
+      // 1534955672798
       var cssReload = require("!../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5986,7 +5987,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534834273314
+      // 1534955673182
       var cssReload = require("!../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);

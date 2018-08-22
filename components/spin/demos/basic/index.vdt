@@ -1,0 +1,7 @@
+import Spin from 'kpc/components/spin';
+
+<div>
+    <Spin v-for={{ ['large', 'default', 'small', 'mini'] }}
+        size={{ value }}
+    />
+</div>
