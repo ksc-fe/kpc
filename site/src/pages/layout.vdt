@@ -43,7 +43,7 @@ const nav = [
                         <div class="border"></div>
                     </nav>
                     <span class="label">切换主题：</span>
-                    <Select v-model="theme" width="100">
+                    <Select v-model="theme" width="100" size="small">
                         <Option value="kpc">default</Option>
                         <Option value="ksyun">ksyun</Option>
                     </Select>

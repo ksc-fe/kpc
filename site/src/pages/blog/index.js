@@ -24,7 +24,7 @@ export default class extends Document {
     scrollTo(id) {
         const header = document.getElementById(id);
         if (header) {
-            const top = header.getBoundingClientRect().top + window.pageYOffset - 80;
+            const top = header.getBoundingClientRect().top + window.pageYOffset - 50;
 
             window.scrollTo(0, top);
         }
