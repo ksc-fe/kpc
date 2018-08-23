@@ -17,7 +17,7 @@ export default class Calendar extends Intact {
         disabledHours: Boolean,
         disabledMinutes: Boolean,
         disabledSeconds: Boolean,
-        dayClassNames: String,
+        dayClassNames: Function,
         onMouseEnterDay: Function,
     };
 
