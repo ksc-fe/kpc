@@ -36,7 +36,7 @@ import Button, {ButtonGroup} from 'components/button';
                 <DropdownItem>content</DropdownItem>
                 <DropdownItem>content</DropdownItem>
                 <Dropdown position={{ {my: 'left top', at: 'right top'} }}>
-                    <DropdownItem>
+                    <DropdownItem ev-click={{ () => console.log('click') }}>
                         <span class="c-middle" style="margin-right: 10px">嵌套菜单</span>
                         <i class="c-middle ion-ios-arrow-right"></i>
                     </DropdownItem>

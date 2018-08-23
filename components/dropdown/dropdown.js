@@ -66,7 +66,7 @@ export default class Dropdown extends Intact {
         if (hasSaved) {
             props._hasSaved = true;
         }
-        children.props = {...children.props, ...props};
+        children.props = {...originProps, ...props};
         this.set('children', children, {silent: true});
     }
 
