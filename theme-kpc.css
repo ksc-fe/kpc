@@ -5245,6 +5245,10 @@ blockquote:before {
 .yellow {
   color: #ffc400;
 }
+.index-page .header-wrapper {
+  height: 80px;
+  line-height: 80px;
+}
 .index-page .header-wrapper header {
   width: 1080px;
 }
@@ -5253,7 +5257,7 @@ blockquote:before {
   margin: 0 auto;
   min-height: 100%;
   background: #fff;
-  padding-top: 50px;
+  padding-top: 80px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   text-align: center;
@@ -8131,10 +8135,10 @@ blockquote:before {
   -webkit-box-direction: reverse;
       -ms-flex-direction: row-reverse;
           flex-direction: row-reverse;
-  width: 1280px;
+  width: 1080px;
 }
 .blog-page .content-wrapper aside {
-  width: 350px;
+  width: 250px;
   border: none;
   background: #eee;
 }
