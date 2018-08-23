@@ -21,15 +21,15 @@
     .k-day
     .k-weekday
         display inline-block
+        height $datepicker-day-width 
         width $datepicker-day-width 
+        border 1px solid transparent
+        line-height s('calc(%s - 2px)', $datepicker-day-width)
         text-align center
         margin $datepicker-day-margin 
     .k-day
-        height $datepicker-day-width 
-        line-height s('calc(%s - 2px)', @height)
         border-radius 50%
         cursor pointer
-        border 1px solid transparent
         position relative
         // &:hover
         &.k-hover
@@ -50,8 +50,11 @@
             cursor not-allowed
             &:hover
                 background $datepicker-day-disabled-hover-bg-color 
-    .k-weekday
-        color $datepicker-weekday-color 
+    .k-weekdays
+        border-bottom 1px solid #e5e5e5 
+    if $datepicker-weekday-color != inherit
+        .k-weekday
+            color $datepicker-weekday-color 
 
     .k-month
         text-align center
@@ -66,10 +69,12 @@
         .k-next
             float right
         .k-text-wrapper
+            font-size 14px
             cursor pointer
 
     .k-scroll-select
         height $datepicker-scroll-select-height
+        margin 12px 0
 
     // range
     .k-range

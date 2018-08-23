@@ -2,11 +2,11 @@
 @require('../../styles/mixin.styl')
 
 $datepicker-color := $text-color
-$datepicker-content-width := unit(280 / 14, rem);
-$datepicker-padding := unit(8 / 14, rem) unit(10 / 14, rem);
+$datepicker-content-width := unit(268 / 14, rem)
+$datepicker-padding := unit(16 / 14, rem) unit(16 / 14, rem) unit(4 / 14, rem) 
 
-$datepicker-day-width := unit(30 / 12, em)
-$datepicker-day-margin := unit(2 / 12, em) unit(5 / 12, em)
+$datepicker-day-width := unit(24 / 14, rem)
+$datepicker-day-margin := unit(7 / 14, rem)
 $datepicker-day-hover-bg-color := $bg-color
 $datepicker-day-hover-color := $datepicker-color
 $datepicker-day-out-color := $disabled-color
@@ -22,21 +22,21 @@ $datepicker-day-disabled-color := #ccc
 $datepicker-day-disabled-hover-bg-color := none
 
 // weekday
-$datepicker-weekday-color := $disabled-color
+$datepicker-weekday-color := inherit 
 
 // month
-$datepicker-month-padding := 0 0 unit(5 / 12, em)
-$datepicker-month-text-margin := 0 unit(3 / 12, em)
-$datepicker-month-text-line-height := unit(30 / 12, em)
-$datepicker-month-icon-font-size := unit(14 / 12, em)
+$datepicker-month-padding := 0 unit(6 / 14, rem) unit(12 / 14, rem)
+$datepicker-month-text-margin := 0 unit(3 / 14, rem)
+$datepicker-month-text-line-height := unit($small-height / 14, rem)
+$datepicker-month-icon-font-size := unit(16 / 14, rem)
 
 // year picker
-$datepicker-scroll-select-height := unit(210 / 12, em)
+$datepicker-scroll-select-height := unit((267 - 2 * 12) / 14, rem)
 
 // range
-$datepicker-range-gutter := unit(20 / 12, em)
+$datepicker-range-gutter := unit(32 / 14, rem)
 $datepicker-range-day-bg-color := palette($datepicker-day-active-bg-color, -2) 
 $datepicker-range-day-color := $datepicker-day-active-color
 $datepicker-range-day-left := -(getLeft($datepicker-day-margin))
-$datepicker-range-day-top := -(getTop($datepicker-day-margin))
+$datepicker-range-day-top := -1px
 $datepicker-range-day-padding := 0 getRight($datepicker-day-margin)
