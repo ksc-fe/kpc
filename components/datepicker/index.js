@@ -3,8 +3,9 @@ import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
 import Calendar from './calendar';
-import {getNowDate, isLT, isGT} from './utils';
+import {getNowDate, isLT, isGT, getDateString} from './utils';
 import {getTransition} from '../utils';
+import * as shortcuts from './shortcuts';
 
 const {isEqual} = Intact.utils;
 
@@ -15,10 +16,11 @@ export default class Datepicker extends Intact {
     static propTypes = {
         clearable: Boolean,
         disabled: Boolean,
-        size: String,
-        type: String,
+        size: ['large', 'default', 'small', 'mini'],
+        type: ['date', 'datetime'],
         range: Boolean,
         transition: String,
+        shortcuts: Array,
     };
 
     defaults() {
@@ -31,6 +33,7 @@ export default class Datepicker extends Intact {
             type: 'date', // date | datetime
             range: false,
             transition: 'c-slidedown',
+            shortcuts: undefined, 
 
             _value: undefined, // for range
             _rangeEndDate: undefined,
@@ -274,6 +277,18 @@ export default class Datepicker extends Intact {
             }
         });
     }
+
+    _setValue(value) {
+        const type = this.get('type');
+        if (this.get('range')) {
+            this.set('_value', value.map(value => getDateString(value, type)));
+        } else {
+            this.set('value', getDateString(value, type));
+        }
+        this.refs.calendar.hide();
+    }
 }
+
+Object.assign(Datepicker, shortcuts);
 
 export {Datepicker};

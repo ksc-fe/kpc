@@ -22,6 +22,7 @@
         line-height $scroll-select-item-height 
         color $scroll-select-item-color 
         cursor pointer
+        white-space nowrap
         &.k-active
             color $scroll-select-item-active-color 
             font-size $scroll-select-item-active-font-size 
@@ -32,5 +33,16 @@
         top 50%
         right 0
         transform translateY(-50%)
+
+    // border
+    .k-border
+        position absolute
+        width 100%
+        top 50%
+        margin-top -($scroll-select-item-height / 2)
+        height $scroll-select-item-height
+        border-top $scroll-select-border 
+        border-bottom $scroll-select-border 
+        pointer-events none
 
 @import $theme-dir + '/scrollSelect.styl' if exists($theme-dir + '/scrollSelect.styl') 

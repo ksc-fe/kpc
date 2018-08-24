@@ -10,26 +10,32 @@
     &.k-show
         .k-inner
             border $input-focus-border
+    // range
+    &.k-range
+        .k-input
+            width $datepicker-range-width 
 
 .k-datepicker-content
     color $datepicker-color
     max-width none
-    padding $datepicker-padding
+    padding 0
     .k-calendar-wrapper
         outline none
         width $datepicker-content-width
+        padding $datepicker-padding
+        position relative
     .k-day
     .k-weekday
         display inline-block
+        height $datepicker-day-width 
         width $datepicker-day-width 
+        border 1px solid transparent
+        line-height s('calc(%s - 2px)', $datepicker-day-width)
         text-align center
         margin $datepicker-day-margin 
     .k-day
-        height $datepicker-day-width 
-        line-height s('calc(%s - 2px)', @height)
         border-radius 50%
         cursor pointer
-        border 1px solid transparent
         position relative
         // &:hover
         &.k-hover
@@ -50,8 +56,11 @@
             cursor not-allowed
             &:hover
                 background $datepicker-day-disabled-hover-bg-color 
-    .k-weekday
-        color $datepicker-weekday-color 
+    .k-weekdays
+        border-bottom $datepicker-inner-border 
+    if $datepicker-weekday-color != inherit
+        .k-weekday
+            color $datepicker-weekday-color 
 
     .k-month
         text-align center
@@ -66,10 +75,12 @@
         .k-next
             float right
         .k-text-wrapper
+            font-size 14px
             cursor pointer
 
     .k-scroll-select
         height $datepicker-scroll-select-height
+        margin 12px 0
 
     // range
     .k-range
@@ -94,6 +105,43 @@
             top $datepicker-range-day-top 
             margin-left -1px
             z-index -1
+
+    // shortcuts
+    &.k-with-shortcuts
+        .k-calendar-wrapper
+            margin-left $datepicker-shortcuts-width 
+    .k-shortcuts
+        position absolute
+        left 0
+        top 0
+        bottom 0
+        width $datepicker-shortcuts-width 
+        border-right $datepicker-inner-border 
+        padding $datepicker-shortcuts-padding 
+        .k-item
+            line-height $datepicker-shortcuts-line-height 
+            padding $datepicker-shortcuts-item-padding 
+            cursor pointer
+            &:hover
+                background $datepicker-shortcuts-item-hover-bg-color 
+
+    // datetime
+    .k-tabs
+        position absolute
+        top 0
+        left 0
+        width 100%
+        border none
+        .k-tab
+            width 50%
+    .k-datetime
+        .k-date-picker
+        .k-time-picker
+            margin-top $datepicker-datetime-margin-top  
+    .k-range
+        .k-datetime:nth-child(2)
+            border-left $datepicker-inner-border
+
 
 
 @import $theme-dir + '/datepicker.styl' if exists($theme-dir + '/datepicker.styl') 

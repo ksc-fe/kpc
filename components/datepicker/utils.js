@@ -1,3 +1,5 @@
+import {strPad} from '../utils';
+
 export function getNowDate() {
     // only date without time
     const now = new Date();
@@ -48,4 +50,26 @@ export function isLT(a, b) {
 
 export function isGT(a, b) {
     return isLT(b, a);        
+}
+
+export function getDateString(date, type) {
+    const _date = [
+        date.getFullYear(),
+        strPad(date.getMonth() + 1, 2),
+        strPad(date.getDate(), 2)
+    ].join('-');
+
+    if (type !== 'datetime') {
+        return _date;
+    }
+
+    return `${_date} ${getTimeString(date)}`;
+}
+
+export function getTimeString(date) {
+    return [
+        strPad(date.getHours(), 2),
+        strPad(date.getMinutes(), 2),
+        strPad(date.getSeconds(), 2)
+    ].join(':');
 }

@@ -2,7 +2,8 @@ import Button from '../button';
 import ScrollSelect from '../scrollSelect';
 import {Row, Col} from '../grid';
 import {range, strPad, _$} from '../utils';
-import {isEqual, isLT, isGT} from './utils';
+import {isEqual, isLT, isGT, getDateString, getTimeString} from './utils';
+import {Tabs, Tab} from '../tabs';
 
 const {
     value, maxDate, minDate, dayClassNames,
@@ -29,10 +30,22 @@ const map = {
 };
 const panel = format.map(item => map[item]);
 
-<div class="k-calendar-wrapper" tabindex="0"
+<div 
+    class={{ {
+        "k-calendar-wrapper": true,
+        "k-datetime": type === 'datetime',
+    } }}
+    tabindex="0"
     ev-keydown={{ self._onKeydown }}
 >
-    <div v-if={{ !_isSelectTime }}>
+    <Tabs type="border-card" v-if={{ type === 'datetime' }} 
+        value={{ _isSelectTime ? "time" : "date" }}
+        ev-$change:value={{ self._onChangeTab }}
+    >
+        <Tab value="date">{{ values[self._index] ? getDateString(valueDate) : '0000-00-00' }}</Tab>
+        <Tab value="time">{{ values[self._index] ? getTimeString(valueDate) : '00:00:00' }}</Tab>
+    </Tabs>
+    <div v-if={{ !_isSelectTime }} class="k-date-picker">
         <div class="k-month c-clearfix">
             <Button icon type="none" size="small" class="k-prev"
                 tagName="div" tabindex={{ null }} 
@@ -92,7 +105,7 @@ const panel = format.map(item => map[item]);
                     const _month = start.getMonth();
                     const disabled = isGT(start, _maxDate) ||
                         isLT(start, _minDate) ||
-                        disabledDate.call(self, self.getDateString(start));
+                        disabledDate.call(self, getDateString(start, type));
                     const isOut = _month !== month;
                     const classNames = dayClassNames ? 
                         dayClassNames.call(self, new Date(start), isOut) : 

@@ -34,4 +34,5 @@ const classNameObj = {
     <div class="k-append" v-if={{ blocks.append }}>
         <b:append />
     </div>
+    <div class="k-border"></div>
 </div>

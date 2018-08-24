@@ -10,7 +10,7 @@ export default class ScrollSelect extends Intact {
 
     static propTypes = {
         count: Number,
-        data: Array,
+        data: [Array, Function],
         disabled: Boolean,
     }
 

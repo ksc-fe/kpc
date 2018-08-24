@@ -22,4 +22,4 @@ sidebar: doc
 | disabledHours | 禁用小时选择 | `Boolean` | `false` |
 | disabledMinutes | 禁用分钟选择 | `Boolean` | `false` |
 | disabledSeconds | 禁用秒钟选择 | `Boolean` | `false` |
-
+| shortcuts | 指定快捷方式 | `Array<Object>` | `undefined` |

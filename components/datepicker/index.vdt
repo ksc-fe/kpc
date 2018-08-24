@@ -1,12 +1,13 @@
 import Input from '../input';
 import Tooltip from '../tooltip';
-import {_$} from '../utils';
+import {_$, isFunction} from '../utils';
 import Calendar from './calendar';
 
 const {
     value, clearable, className, style, _isShow,
     name, disabled, placeholder, size, transition,
-    _value, range, type, ref, key, ...rest
+    _value, range, type, ref, key, shortcuts,
+    ...rest,
 } = self.get();
 
 // pass the rest props to Calendar, except events
@@ -22,14 +23,37 @@ const classNameObj = {
     'k-disabled': disabled,
     'k-show': _isShow,
     [className]: className,
+    'k-range': range,
+};
+
+const hasShortcuts = shortcuts && shortcuts.length;
+let _placeholder = placeholder;
+if (placeholder == null) {
+    if (type === 'datetime') {
+        if (range) {
+            _placeholder = _$('开始时间 ~ 结束时间');
+        } else {
+            _placeholder = _$('请选择日期和时间');
+        }
+    } else {
+        if (range) {
+            _placeholder = _$('开始日期 ~ 结束日期');
+        } else {
+            _placeholder = _$('请选择日期');
+        }
+    }
 }
 
 <div class={{ classNameObj }} style={{ style }}
     tabindex={{ disabled ? '-1' : '0' }}
     ev-keydown={{ self._onKeydown }}
 >
-    <Tooltip class="k-datepicker-content" 
-        position={{ {my: 'left top', at: 'left bottom', collision: 'flip'} }}
+    <Tooltip
+        class={{ {
+            "k-datepicker-content": true,
+            'k-with-shortcuts': hasShortcuts,
+        } }}
+        position={{ {my: 'left top+8', at: 'left bottom', collision: 'flip'} }}
         trigger="click"
         showArrow={{ false }}
         transition={{ transition }}
@@ -37,13 +61,10 @@ const classNameObj = {
         disabled={{ disabled }}
         ev-show={{ self._onShow }}
         ev-hide={{ self._onHide }}
-        ev-$changed:show={{ self._onChangeShow }}
+        ev-$changed:value={{ self._onChangeShow }}
     >
         <Input
-            placeholder={{ placeholder == null ? 
-                (type === 'datetime' ? _$('请选择日期和时间') : _$('请选择日期')) :
-                placeholder 
-            }}
+            placeholder={{ _placeholder }}
             readonly 
             value={{ Array.isArray(value) ? range ? value.join(' ~ ') : value.join(', ') : value }}
             clearable={{ clearable }}
@@ -55,9 +76,15 @@ const classNameObj = {
             tabindex="-1"
             ev-blur={{ self.onInputFocusOut }}
         >
-            <b:suffix><i class="ion-ios-calendar-outline"></i></b:suffix>
+            <b:prefix><i class="ion-ios-calendar-outline"></i></b:prefix>
         </Input>
         <b:content>
+            <div class="k-shortcuts" v-if={{ hasShortcuts }}>
+                <div v-for={{ shortcuts }} 
+                    class="k-item c-ellipsis"
+                    ev-click={{ self._setValue.bind(self, value.value()) }}
+                >{{ isFunction(value.label) ? value.label() : value.label }}</div>
+            </div>
             <Calendar v-if={{ !range }}
                 v-model="value" 
                 {{ ..._rest }} 
