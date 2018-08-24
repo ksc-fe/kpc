@@ -1,6 +1,6 @@
 ---
 title: 快捷方式
-order: 0
+order: 0.1
 ---
 
 通过`shortcuts`属性可以指定快捷方式，数组的成员为对象，形如：`{label, value}`:

@@ -58,14 +58,18 @@ export function getDateString(date, type) {
         strPad(date.getMonth() + 1, 2),
         strPad(date.getDate(), 2)
     ].join('-');
+
     if (type !== 'datetime') {
         return _date;
     }
-    const _time = [
+
+    return `${_date} ${getTimeString(date)}`;
+}
+
+export function getTimeString(date) {
+    return [
         strPad(date.getHours(), 2),
         strPad(date.getMinutes(), 2),
         strPad(date.getSeconds(), 2)
     ].join(':');
-
-    return `${_date} ${_time}`;
 }

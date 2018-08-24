@@ -196,7 +196,8 @@ export default class Calendar extends Intact {
 
     cancel(e) {
         e._rawEvent._dropdown = true;
-        this.set('_isSelectTime', false);
+        this.set('_isSelectTime', false, {async: true});
+        this.showYearPicker();
     }
 
     focusAndSelect(e) {
@@ -277,6 +278,10 @@ export default class Calendar extends Intact {
             this.trigger('enter:select', this);
             this.select(new Date(_focusDate));
         }
+    }
+
+    _onChangeTab(c, v) {
+        this.set('_isSelectTime', v === 'time', {async: true});
     }
 }
 
