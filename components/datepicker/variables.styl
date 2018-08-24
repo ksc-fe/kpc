@@ -5,6 +5,8 @@ $datepicker-color := $text-color
 $datepicker-content-width := unit(268 / 14, rem)
 $datepicker-padding := unit(16 / 14, rem) unit(16 / 14, rem) unit(4 / 14, rem) 
 
+$datepicker-inner-border := 1px solid #e5e5e5
+
 $datepicker-day-width := unit(24 / 14, rem)
 $datepicker-day-margin := unit(7 / 14, rem)
 $datepicker-day-hover-bg-color := $bg-color
@@ -34,9 +36,17 @@ $datepicker-month-icon-font-size := unit(16 / 14, rem)
 $datepicker-scroll-select-height := unit((267 - 2 * 12) / 14, rem)
 
 // range
+$datepicker-range-width := unit(350 / 14, rem)
 $datepicker-range-gutter := unit(32 / 14, rem)
 $datepicker-range-day-bg-color := palette($datepicker-day-active-bg-color, -2) 
 $datepicker-range-day-color := $datepicker-day-active-color
 $datepicker-range-day-left := -(getLeft($datepicker-day-margin))
 $datepicker-range-day-top := -1px
 $datepicker-range-day-padding := 0 getRight($datepicker-day-margin)
+
+// shortcuts
+$datepicker-shortcuts-width := unit(100 / 14, rem)
+$datepicker-shortcuts-padding := unit(12 / 14, rem) 0
+$datepicker-shortcuts-line-height := unit(32 / 14, rem)
+$datepicker-shortcuts-item-padding := 0 unit(16 / 14, rem)
+$datepicker-shortcuts-item-hover-bg-color := $bg-color

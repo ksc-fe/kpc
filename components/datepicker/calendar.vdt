@@ -2,7 +2,7 @@ import Button from '../button';
 import ScrollSelect from '../scrollSelect';
 import {Row, Col} from '../grid';
 import {range, strPad, _$} from '../utils';
-import {isEqual, isLT, isGT} from './utils';
+import {isEqual, isLT, isGT, getDateString} from './utils';
 
 const {
     value, maxDate, minDate, dayClassNames,
@@ -92,7 +92,7 @@ const panel = format.map(item => map[item]);
                     const _month = start.getMonth();
                     const disabled = isGT(start, _maxDate) ||
                         isLT(start, _minDate) ||
-                        disabledDate.call(self, self.getDateString(start));
+                        disabledDate.call(self, getDateString(start, type));
                     const isOut = _month !== month;
                     const classNames = dayClassNames ? 
                         dayClassNames.call(self, new Date(start), isOut) : 

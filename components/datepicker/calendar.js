@@ -1,7 +1,7 @@
 import Intact from 'intact';
 import template from './calendar.vdt';
 import {strPad, range} from '../utils';
-import {getNowDate} from './utils';
+import {getNowDate, getDateString} from './utils';
 
 export default class Calendar extends Intact {
     @Intact.template()
@@ -52,7 +52,7 @@ export default class Calendar extends Intact {
     }
 
     select(v, e) {
-        const value = this.getDateString(v);
+        const value = getDateString(v, this.get('type'));
         const type = this.get('type');
         if (!this.get('multiple')) {
             this.set('value', value, {async: true});
@@ -90,23 +90,6 @@ export default class Calendar extends Intact {
         }
 
         this.set('_showDate', v, {async: true});
-    }
-
-    getDateString(date) {
-        const _date = [
-            date.getFullYear(),
-            strPad(date.getMonth() + 1, 2),
-            strPad(date.getDate(), 2)
-        ].join('-');
-        if (this.get('type') !== 'datetime') {
-            return _date;
-        }
-        const _time = [
-            strPad(date.getHours(), 2),
-            strPad(date.getMinutes(), 2),
-            strPad(date.getSeconds(), 2)
-        ].join(':');
-        return `${_date} ${_time}`;
     }
 
     prevMonth() {
@@ -188,7 +171,7 @@ export default class Calendar extends Intact {
             ) || _now
         );
         valueDate['set' + type](v);
-        valueDate = this.getDateString(valueDate);
+        valueDate = getDateString(valueDate, this.get('type'));
 
         if (!multiple) {
             this.set('value', valueDate);

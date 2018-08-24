@@ -10,6 +10,10 @@
     &.k-show
         .k-inner
             border $input-focus-border
+    // range
+    &.k-range
+        .k-input
+            width $datepicker-range-width 
 
 .k-datepicker-content
     color $datepicker-color
@@ -51,7 +55,7 @@
             &:hover
                 background $datepicker-day-disabled-hover-bg-color 
     .k-weekdays
-        border-bottom 1px solid #e5e5e5 
+        border-bottom $datepicker-inner-border 
     if $datepicker-weekday-color != inherit
         .k-weekday
             color $datepicker-weekday-color 
@@ -99,6 +103,25 @@
             top $datepicker-range-day-top 
             margin-left -1px
             z-index -1
+
+    // shortcuts
+    &.k-with-shortcuts
+        .k-calendar-wrapper
+            margin-left $datepicker-shortcuts-width 
+    .k-shortcuts
+        position absolute
+        left 0
+        top 0
+        bottom 0
+        width $datepicker-shortcuts-width 
+        border-right $datepicker-inner-border 
+        padding $datepicker-shortcuts-padding 
+        .k-item
+            line-height $datepicker-shortcuts-line-height 
+            padding $datepicker-shortcuts-item-padding 
+            cursor pointer
+            &:hover
+                background $datepicker-shortcuts-item-hover-bg-color 
 
 
 @import $theme-dir + '/datepicker.styl' if exists($theme-dir + '/datepicker.styl') 
