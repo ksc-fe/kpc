@@ -155,45 +155,45 @@ sizes = large small mini
     // horizontal
     &:not(.k-vertical)
         > .k-btn
-            &:not(:first-of-type)
+            &:not(:first-child)
                 margin-left -1px // !important
-                &:not(:last-of-type)
+                &:not(:last-child)
                     border-radius 0
-            &:not(:only-of-type):first-of-type
+            &:not(:only-of-type):first-child
                 border-top-right-radius 0
                 border-bottom-right-radius 0
-            &:not(:only-of-type):last-of-type
+            &:not(:only-of-type):last-child
                 border-top-left-radius 0
                 border-bottom-left-radius 0
             for type in types
                 if type != 'active'
-                    &.k-{type}:not(:first-of-type)
+                    &.k-{type}:not(:first-child)
                         border-left-color lookup('$btns-' + type + '-border-color')
-                    &.k-{type}:not(:last-of-type)
+                    &.k-{type}:not(:last-child)
                         border-right-color lookup('$btns-' + type + '-border-color')
 
         // for tooltip wrap it in vue
         > .k-tooltip
-            &:not(:first-of-type)
+            &:not(:first-child)
                 .k-btn
                     margin-left -1px
-                &:not(last-of-type)
+                &:not(last-child)
                     .k-btn
                         border-radius 0
-            &:not(:only-of-type):first-of-type
+            &:not(:only-of-type):first-child
                 .k-btn
                     border-top-right-radius 0
                     border-bottom-right-radius 0
-            &:not(:only-of-type):last-of-type
+            &:not(:only-of-type):last-child
                 .k-btn
                     border-top-left-radius 0
                     border-bottom-left-radius 0
             for type in types
                 if type != 'active'
-                    &:not(:first-of-type)
+                    &:not(:first-child)
                         .k-btn.k-{type}
                             border-left-color lookup('$btns-' + type + '-border-color')
-                    &:not(:last-of-type)
+                    &:not(:last-child)
                         .k-btn.k-{type}
                             border-right-color lookup('$btns-' + type + '-border-color')
 
@@ -211,45 +211,45 @@ sizes = large small mini
             display block
             &:not(.k-btn-icon)
                 width 100%
-            &:not(:first-of-type)
+            &:not(:first-child)
                 margin-top -1px
-                &:not(:last-of-type)
+                &:not(:last-child)
                     border-radius 0
-            &:not(:only-of-type):first-of-type
+            &:not(:only-of-type):first-child
                 border-bottom-left-radius 0
                 border-bottom-right-radius 0
-            &:not(:only-of-type):last-of-type
+            &:not(:only-of-type):last-child
                 border-top-left-radius 0
                 border-top-right-radius 0
             for type in types
                 if type != 'active'
-                    &.k-{type}:not(:first-of-type)
+                    &.k-{type}:not(:first-child)
                         border-top-color lookup('$btns-' + type + '-border-color')
-                    &.k-{type}:not(:last-of-type)
+                    &.k-{type}:not(:last-child)
                         border-bottom-color lookup('$btns-' + type + '-border-color')
         > .k-tooltip
             display block
             .k-btn:not(.k-btn-icon)
                 width 100%
-            &:not(:first-of-type)
+            &:not(:first-child)
                 margin-top -1px
-                &:not(:last-of-type)
+                &:not(:last-child)
                     .k-btn
                         border-radius 0
-            &:not(:only-of-type):first-of-type
+            &:not(:only-of-type):first-child
                 .k-btn
                     border-bottom-left-radius 0
                     border-bottom-right-radius 0
-            &:not(:only-of-type):last-of-type
+            &:not(:only-of-type):last-child
                 .k-btn
                     border-top-left-radius 0
                     border-top-right-radius 0
             for type in types
                 if type != 'active'
-                    &:not(:first-of-type)
+                    &:not(:first-child)
                         .k-btn.k-{type}
                             border-top-color lookup('$btns-' + type + '-border-color')
-                    &:not(:last-of-type)
+                    &:not(:last-child)
                         .k-btn.k-{type}
                             border-bottom-color lookup('$btns-' + type + '-border-color')
             
