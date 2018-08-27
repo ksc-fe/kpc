@@ -15,8 +15,9 @@ import Datepicker from 'kpc/components/datepicker';
 
 <div>
     <Datepicker v-model="date" shortcuts={{ [
-        Datepicker.today,
         Datepicker.yesterday,
+        Datepicker.today,
+        Datepicker.tomorrow,
         Datepicker.afterOneWeek,
         Datepicker.afterOneMonth,
         Datepicker.afterThreeMonths,
