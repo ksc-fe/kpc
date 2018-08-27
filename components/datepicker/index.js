@@ -175,13 +175,14 @@ export default class Datepicker extends Intact {
 
         // when the ScrollSelect changed, the refs may not exist
         if (begin && end) {
-            begin._index = 0;
-            end._index = 1;
-
             // if we have selected two dates, change to time picker
-            if (value.length === 2 && this.get('type') === 'datetime') {
-                begin.set('_isSelectTime', true, {async: true});
-                end.set('_isSelectTime', true, {async: true});
+            if (value.length === 2) {
+                if (this.get('type') === 'datetime') {
+                    begin.set('_isSelectTime', true, {async: true});
+                    end.set('_isSelectTime', true, {async: true});
+                } else {
+                    this.refs.calendar.hide();
+                }
             } else if (!c.isSelectTime) {
                 begin.set('_isSelectTime', false, {async: true});
                 end.set('_isSelectTime', false, {async: true});

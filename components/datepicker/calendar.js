@@ -45,18 +45,24 @@ export default class Calendar extends Intact {
             _isShowYearPicker: false,
             _isSelectTime: false,
             _focusDate: undefined,
+            _index: undefined,
         }
     }
 
     _init() {
-        const {value, multiple} = this.get();
-        this._index = multiple && value && value.length - 1 || 0;
+        const {value, multiple, _index} = this.get();
+        if (_index === undefined) {
+            this._index = multiple && value && value.length - 1 || 0;
+        } else {
+            this._index = _index;
+        }
     }
 
     select(v, e) {
         const value = getDateString(v, this.get('type'));
         const type = this.get('type');
         const autoChangeToTimePicker = this.get('autoChangeToTimePicker');
+        const _index = this.get('_index');
 
         // when we set _isSelectTime to true, the dom has
         // been replaced with time selecter, so we set the
@@ -91,7 +97,9 @@ export default class Calendar extends Intact {
                     this.set('_isSelectTime', true, {async: true});
                 }
             }
-            this._index = values.length - 1;
+            if (_index === undefined) {
+                this._index = values.length - 1;
+            }
             this.set('value', values, {async: true});
         }
 
