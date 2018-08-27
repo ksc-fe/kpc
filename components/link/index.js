@@ -9,7 +9,7 @@ export default class Link extends Intact {
 
     static propTypes = {
         href: String,
-        name: String,
+        name: [String, Array],
         isReplace: Boolean,
     }
 
