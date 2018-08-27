@@ -19,6 +19,7 @@ export default class Calendar extends Intact {
         disabledSeconds: Boolean,
         dayClassNames: Function,
         onMouseEnterDay: Function,
+        autoChangeToTimePicker: Boolean,
     };
 
     defaults() {
@@ -37,6 +38,7 @@ export default class Calendar extends Intact {
             disabledSeconds: false,
             dayClassNames: undefined,
             onMouseEnterDay: undefined,
+            autoChangeToTimePicker: true,
 
             _showDate: undefined,
             _now: getNowDate(),
@@ -54,16 +56,19 @@ export default class Calendar extends Intact {
     select(v, e) {
         const value = getDateString(v, this.get('type'));
         const type = this.get('type');
+        const autoChangeToTimePicker = this.get('autoChangeToTimePicker');
+
+        // when we set _isSelectTime to true, the dom has
+        // been replaced with time selecter, so we set the
+        // _dropdown to true to tell TooltipContent that
+        // we click on drodown and don't hide it
+        e && (e._rawEvent._dropdown = true);
+
         if (!this.get('multiple')) {
             this.set('value', value, {async: true});
             if (type !== 'datetime') {
                 this.trigger('hide');
-            } else {
-                // when we set _isSelectTime to true, the dom has
-                // been replaced with time selecter, so we set the
-                // _dropdown to true to tell TooltipContent that
-                // we click on drodown and don't hide it
-                e && (e._rawEvent._dropdown = true);
+            } else if (autoChangeToTimePicker) {
                 this.set('_isSelectTime', true, {async: true});
             }
         } else {
@@ -82,8 +87,9 @@ export default class Calendar extends Intact {
                 }
             } else {
                 values.push(value);
-                e && (e._rawEvent._dropdown = true);
-                this.set('_isSelectTime', true, {async: true});
+                if (autoChangeToTimePicker) {
+                    this.set('_isSelectTime', true, {async: true});
+                }
             }
             this._index = values.length - 1;
             this.set('value', values, {async: true});
@@ -163,13 +169,9 @@ export default class Calendar extends Intact {
         this.isSelectTime = true;
 
         const {value, _now, multiple} = this.get();
+        const originalValue = multiple ? (value && value[this._index]) : value;
 
-        let valueDate = new Date(
-            (multiple ? 
-                (value && value[this._index]) :
-                value
-            ) || _now
-        );
+        let valueDate = new Date(originalValue || _now);
         valueDate['set' + type](v);
         valueDate = getDateString(valueDate, this.get('type'));
 

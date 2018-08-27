@@ -106,6 +106,7 @@ if (placeholder == null) {
                     dayClassNames={{ self._checkDateInRange }}
                     onMouseEnterDay={{ self._highlightRangeDays }}
                     multiple
+                    autoChangeToTimePicker={{ false }}
                 />
                 <Calendar
                     {{ ..._rest }} 
@@ -119,6 +120,7 @@ if (placeholder == null) {
                     dayClassNames={{ self._checkDateInRange }}
                     onMouseEnterDay={{ self._highlightRangeDays }}
                     multiple
+                    autoChangeToTimePicker={{ false }}
                 />
             </div>
         </b:content>

@@ -160,59 +160,37 @@ export default class Datepicker extends Intact {
 
         const {begin, end} = this.refs;
 
-        if (c.isSelectTime) {
-            value = value.slice(0);
-            if (type === 'begin' && end.get('_isSelectTime')) {
-                value[0] = v[0];
-                c._index = 0;
-                end._index = 1;
-            } else if (type === 'end' && begin.get('_isSelectTime')) {
-                value[1] = v[1];
-                c._index = 1;
-                begin._index = 0;
+        if (v) {
+            if (v.length === 2) {
+                // select the first begin/end date
+                value = v.slice(0);
             } else {
-                value[c._index] = v[c._index];
+                // re-select
+                const last = v[v.length - 1];
+                value = [last];
             }
-            if (value.length === 2) {
-                if (value[1] < value[0]) {
-                    // reverse the index
-                    c._index = c._index === 0 ? 1 : 0;
-                }
-            }
-            value.sort();
-            this.set('_value', value);
-        } else if (!v.length) {
-            // calendar cancelled the selected value
-            this.set('_value', undefined);
-        } else if (!value || value.length === 0 || value.length === 2) {
-            value = [v[v.length - 1]];
-            if (type === 'end') {
-                begin.set('_isSelectTime', false);
-            } else {
-                end.set('_isSelectTime', false);
-            }
-            c._index = 0;
-            this.set('_value', value);
         } else {
-            value = value.slice(0);
-            value[1] = v[v.length - 1]; 
-            // set time
-            if (this.get('type') === 'datetime') {
-                const [date] = value[1].split(' ');
-                const [, time] = value[0].split(' '); value[1] = [date, time].join(' ');
-            }
-            if (value[1] < value[0]) {
-                c._index = 0;
-            } else {
-                c._index = 1;
-            }
-            value.sort();
-            this.set('_value', value);
+            this.set('value', undefined);
+        }
 
-            if (this.get('type') !== 'datetime') {
-                this.refs.calendar.hide();
+        // when the ScrollSelect changed, the refs may not exist
+        if (begin && end) {
+            begin._index = 0;
+            end._index = 1;
+
+            // if we have selected two dates, change to time picker
+            if (value.length === 2 && this.get('type') === 'datetime') {
+                begin.set('_isSelectTime', true, {async: true});
+                end.set('_isSelectTime', true, {async: true});
+            } else if (!c.isSelectTime) {
+                begin.set('_isSelectTime', false, {async: true});
+                end.set('_isSelectTime', false, {async: true});
             }
         }
+
+        value.sort();
+
+        this.set('_value', value, {async: true});
     }
 
     _highlightRangeDays(date, isOut) {
