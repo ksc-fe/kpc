@@ -1,0 +1,9 @@
+const {_id} = self.get();
+
+<t:parent>
+    <b:time-head />
+    <b:title>
+        <div class="k-title" v-if={{ _id === '0' }}>开始时间</div>
+        <div class="k-title" v-else-if={{ _id === '1' }}>结束时间</div>
+    </b:title>
+</t:parent>

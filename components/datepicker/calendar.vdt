@@ -38,6 +38,7 @@ const panel = format.map(item => map[item]);
     tabindex="0"
     ev-keydown={{ self._onKeydown }}
 >
+    <b:title />
     <Tabs type="border-card" v-if={{ type === 'datetime' }} 
         value={{ _isSelectTime ? "time" : "date" }}
         ev-$change:value={{ self._onChangeTab }}
@@ -164,17 +165,19 @@ const panel = format.map(item => map[item]);
         </Row>
     </div>
     <div v-else class="k-time-picker" key="time">
-        <div class="k-month c-clearfix">
-            <!--<Button type="none" size="small" class="k-prev"
-                ev-click={{ self.cancel.bind(self) }}
-            >取消</Button>-->
-            <span class="k-text-wrapper"
-                ev-click={{ self.cancel }}
-            >{{ panel }}</span>
-            <!--<Button type="none" size="small" class="k-next"
-                ev-click={{ self.confirm.bind(self) }}
-            >确认</Button>-->
-        </div>
+        <b:time-head>
+            <div class="k-month c-clearfix">
+                <!--<Button type="none" size="small" class="k-prev"
+                    ev-click={{ self.cancel.bind(self) }}
+                >取消</Button>-->
+                <span class="k-text-wrapper"
+                    ev-click={{ self.cancel }}
+                >{{ panel }}</span>
+                <!--<Button type="none" size="small" class="k-next"
+                    ev-click={{ self.confirm.bind(self) }}
+                >确认</Button>-->
+            </div>
+        </b:time-head>
         <Row>
             <Col span="8">
                 <ScrollSelect 

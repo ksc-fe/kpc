@@ -165,7 +165,7 @@ export default class Datepicker extends Intact {
                 // select the first begin/end date
                 value = v.slice(0);
             } else {
-                // re-select
+                // select or re-select
                 const last = v[v.length - 1];
                 value = [last];
             }
@@ -180,7 +180,7 @@ export default class Datepicker extends Intact {
                 if (this.get('type') === 'datetime') {
                     begin.set('_isSelectTime', true, {async: true});
                     end.set('_isSelectTime', true, {async: true});
-                } else {
+                } else if (!c.isSelectTime) {
                     this.refs.calendar.hide();
                 }
             } else if (!c.isSelectTime) {
@@ -265,6 +265,11 @@ export default class Datepicker extends Intact {
             this.set('value', getDateString(value, type));
         }
         this.refs.calendar.hide();
+    }
+
+    _format() {
+        const {value, range} = this.get();
+        return Array.isArray(value) ? range ? value.join(' ~ ') : value.join(', ') : value;
     }
 }
 

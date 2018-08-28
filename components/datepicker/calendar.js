@@ -181,7 +181,7 @@ export default class Calendar extends Intact {
 
         let valueDate = new Date(originalValue || _now);
         valueDate['set' + type](v);
-        valueDate = getDateString(valueDate, this.get('type'));
+        valueDate = this._format(valueDate);
 
         if (!multiple) {
             this.set('value', valueDate);
@@ -198,6 +198,10 @@ export default class Calendar extends Intact {
         }
 
         this.isSelectTime = false;
+    }
+
+    _format(date) {
+        return getDateString(date, this.get('type'));
     }
 
     confirm() {

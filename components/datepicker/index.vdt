@@ -24,11 +24,12 @@ const classNameObj = {
     'k-show': _isShow,
     [className]: className,
     'k-range': range,
+    [scope.className]: scope.className,
 };
 
 const hasShortcuts = shortcuts && shortcuts.length;
-let _placeholder = placeholder;
-if (placeholder == null) {
+let _placeholder = placeholder || scope.placeholder;
+if (_placeholder == null) {
     if (type === 'datetime') {
         if (range) {
             _placeholder = _$('开始时间 ~ 结束时间');
@@ -44,6 +45,65 @@ if (placeholder == null) {
     }
 }
 
+const Panel = scope.Panel || Calendar;
+
+const content = <b:content>
+    <div class="k-shortcuts" v-if={{ hasShortcuts }}>
+        <div v-for={{ shortcuts }} 
+            class="k-item c-ellipsis"
+            ev-click={{ self._setValue.bind(self, value.value()) }}
+        >{{ isFunction(value.label) ? value.label() : value.label }}</div>
+    </div>
+    <template v-if={{ !range }}>
+        <b:singe-panel>
+            <Panel
+                v-model="value" 
+                {{ ..._rest }} 
+                ev-hide={{ self._hide }}
+                type={{ type }}
+                ref="begin"
+                ev-enter:select={{ self._focus }}
+            />
+        </b:singe-panel>
+    </template>
+    <div v-else class="k-range c-clearfix" ev-mouseleave={{ self._clearRangeEndDate }}>
+        <Panel
+            {{ ..._rest }} 
+            value={{ _value }}
+            ev-$change:value={{ self._onChangeValueForRange.bind(self, 'begin') }}
+            ref="begin"
+            ev-hide={{ self._hide }}
+            type={{ type }}
+            ev-$change:_showDate={{ self._onChangeShowDate.bind(self, 'begin') }}
+            ev-$inited={{ self._setBeginShowDate }}
+            dayClassNames={{ self._checkDateInRange }}
+            onMouseEnterDay={{ self._highlightRangeDays }}
+            multiple
+            autoChangeToTimePicker={{ false }}
+            _index={{ 0 }}
+            _id="0"
+        />
+        <Panel
+            {{ ..._rest }} 
+            value={{ _value }}
+            ev-$change:value={{ self._onChangeValueForRange.bind(self, 'end') }}
+            ref="end"
+            ev-hide={{ self._hide }}
+            type={{ type }}
+            ev-$change:_showDate={{ self._onChangeShowDate.bind(self, 'end') }}
+            ev-$inited={{ self._setEndShowDate }}
+            dayClassNames={{ self._checkDateInRange }}
+            onMouseEnterDay={{ self._highlightRangeDays }}
+            multiple
+            autoChangeToTimePicker={{ false }}
+            _index={{ 1 }}
+            _id="1"
+        />
+    </div>
+</b:content>
+
+const prefix = <b:prefix><i class="ion-ios-calendar-outline"></i></b:prefix>
+
 <div class={{ classNameObj }} style={{ style }}
     tabindex={{ disabled ? '-1' : '0' }}
     ev-keydown={{ self._onKeydown }}
@@ -52,6 +112,7 @@ if (placeholder == null) {
         class={{ {
             "k-datepicker-content": true,
             'k-with-shortcuts': hasShortcuts,
+            [scope.className]: scope.className,
         } }}
         position={{ {my: 'left top+8', at: 'left bottom', collision: 'flip'} }}
         trigger="click"
@@ -66,7 +127,7 @@ if (placeholder == null) {
         <Input
             placeholder={{ _placeholder }}
             readonly 
-            value={{ Array.isArray(value) ? range ? value.join(' ~ ') : value.join(', ') : value }}
+            value={{ self._format() }}
             clearable={{ clearable }}
             ev-clear={{ self.onClear }}
             name={{ name }}
@@ -76,55 +137,8 @@ if (placeholder == null) {
             tabindex="-1"
             ev-blur={{ self.onInputFocusOut }}
         >
-            <b:prefix><i class="ion-ios-calendar-outline"></i></b:prefix>
+            <b:prefix>{{ prefix }}</b:prefix>
         </Input>
-        <b:content>
-            <div class="k-shortcuts" v-if={{ hasShortcuts }}>
-                <div v-for={{ shortcuts }} 
-                    class="k-item c-ellipsis"
-                    ev-click={{ self._setValue.bind(self, value.value()) }}
-                >{{ isFunction(value.label) ? value.label() : value.label }}</div>
-            </div>
-            <Calendar v-if={{ !range }}
-                v-model="value" 
-                {{ ..._rest }} 
-                ev-hide={{ self._hide }}
-                type={{ type }}
-                ref="begin"
-                ev-enter:select={{ self._focus }}
-            />
-            <div v-else class="k-range c-clearfix" ev-mouseleave={{ self._clearRangeEndDate }}>
-                <Calendar
-                    {{ ..._rest }} 
-                    value={{ _value }}
-                    ev-$change:value={{ self._onChangeValueForRange.bind(self, 'begin') }}
-                    ref="begin"
-                    ev-hide={{ self._hide }}
-                    type={{ type }}
-                    ev-$change:_showDate={{ self._onChangeShowDate.bind(self, 'begin') }}
-                    ev-$inited={{ self._setBeginShowDate }}
-                    dayClassNames={{ self._checkDateInRange }}
-                    onMouseEnterDay={{ self._highlightRangeDays }}
-                    multiple
-                    autoChangeToTimePicker={{ false }}
-                    _index={{ 0 }}
-                />
-                <Calendar
-                    {{ ..._rest }} 
-                    value={{ _value }}
-                    ev-$change:value={{ self._onChangeValueForRange.bind(self, 'end') }}
-                    ref="end"
-                    ev-hide={{ self._hide }}
-                    type={{ type }}
-                    ev-$change:_showDate={{ self._onChangeShowDate.bind(self, 'end') }}
-                    ev-$inited={{ self._setEndShowDate }}
-                    dayClassNames={{ self._checkDateInRange }}
-                    onMouseEnterDay={{ self._highlightRangeDays }}
-                    multiple
-                    autoChangeToTimePicker={{ false }}
-                    _index={{ 1 }}
-                />
-            </div>
-        </b:content>
+        <b:content>{{ content }}</b:content>
     </Tooltip>
 </div>
