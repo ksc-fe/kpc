@@ -5,8 +5,6 @@ import '../../styles/kpc.styl';
 import './index.styl';
 import {getDateString} from '../datepicker/utils';
 
-const PREFIX = '2018-08-28 ';
-
 export default class TimePanel extends Calendar {
     @Intact.template()
     static template = template;
