@@ -28,6 +28,8 @@ export default class Timepicker extends Datepicker {
     _init() {
         // proxy _value to value
         this.on('$change:_value', (c, v) => {
+            if (this.get('_isShow')) return;
+
             if (this.get('range')) {
                 // if only select one date for range, set with undefined
                 if (v && v.length === 1) {

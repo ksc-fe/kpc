@@ -21,7 +21,7 @@ const classNameObj = {
     >
         <div
             class={{ {
-                "k-item": true,
+                "k-scroll-item": true,
                 "k-active": item.value === value,
             } }}
             v-for={{ _list }}
