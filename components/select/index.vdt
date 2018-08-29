@@ -130,13 +130,13 @@ const OptionsVNodes = ({children}) => {
 const labelList = [];
 
 const Menu = scope.Menu || (
-    <DropdownMenu ev-$changed:show={{ self._position }}
+    <DropdownMenu ev-$changed:value={{ self._position }}
         ref="menu"
         class={{ {
             "k-select-dropdown": true,
             "k-card": card,
         } }}
-        ev-$change:show={{ self._onChangeShow }}
+        ev-$change:value={{ self._onChangeShow }}
     >{{ do {
         const _children = [];
         if (!isGroup) {
