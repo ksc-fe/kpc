@@ -43,6 +43,8 @@ const i18n = {
 
     // timepicker
     '请选择时间': 'Please select time',
+    '开始时间': 'Begin Time',
+    '结束时间': 'End Time',
 
     // dialog
     '提示': 'Tip',
