@@ -14,6 +14,7 @@ export default class Datepicker extends Intact {
     static template = template;
 
     static propTypes = {
+        value: [String, Array, Date, Number],
         clearable: Boolean,
         disabled: Boolean,
         size: ['large', 'default', 'small', 'mini'],

@@ -1,23 +1,45 @@
 import TimePanel from './panel';
 import {_$} from '../utils';
+import {Select, Option} from '../select';
 
-const {range, multiple} = self.get(); 
+const {
+    range, multiple, _options, size,
+    clearable, placeholder, disabled,
+} = self.get(); 
 
-const placeholder = range ?
+const _placeholder = range ?
     _$('开始时间 ~ 结束时间') :
     _$('请选择时间');
 
-<t:parent placeholder={{ placeholder }}
-    class="k-time-picker"
-    Panel={{ TimePanel }}
->
-    <b:prefix><i class="ion-ios-clock-outline"></i></b:prefix>
-    <b:singe-panel>
-        <TimePanel
-            v-model="_value"
-            ev-hide={{ self._hide }}
-            ref="begin"
-            multiple={{ multiple }}
-        />
-    </b:singe-panel>
-</t:parent>
+<template>
+    <t:parent 
+        v-if={{ !_options || range }}
+        placeholder={{ _placeholder }}
+        class={{ {
+            "k-time-picker": true,
+        } }}
+        Panel={{ TimePanel }}
+    >
+        <b:prefix><i class="ion-ios-clock-outline"></i></b:prefix>
+        <b:singe-panel>
+            <TimePanel
+                v-model="_value"
+                ev-hide={{ self._hide }}
+                ref="begin"
+                multiple={{ multiple }}
+            />
+        </b:singe-panel>
+    </t:parent>
+    <Select v-else
+        v-model="value" 
+        multiple={{ multiple }}
+        placeholder={{ placeholder || _placeholder }}
+        hideIcon
+        clearable={{ clearable }}
+        disabled={{ disabled }}
+        size={{ size }}
+    >
+        <Option v-for={{ _options }} value={{ value }}>{{ value }}</Option>
+        <b:prefix><i class="ion-ios-clock-outline"></i></b:prefix>
+    </Select>
+</template>

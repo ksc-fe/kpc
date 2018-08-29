@@ -1,18 +1,27 @@
-import Intact from 'intact';
-import Datepicker from '../datepicker';
+import Intact from 'intact'; import Datepicker from '../datepicker';
 import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
-import {range} from '../utils';
+import {range, strPad} from '../utils';
 import {getTimeString} from '../datepicker/utils';
 
 export default class Timepicker extends Datepicker {
     @Intact.template()
     static template = template;
 
+    static propTypes = {
+        ...Datepicker.propTypes,
+        step: String,
+    }
+
     defaults() {
         return {
             ...super.defaults(),
+            min: undefined,
+            max: undefined,
+            step: undefined,
+
+            _options: undefined,
         }
     }
 
@@ -33,7 +42,7 @@ export default class Timepicker extends Datepicker {
             this.set('value', v);
         });
 
-        // give the time string a date, let it can convert to Date
+        // give the time string a date, let it can be converted to Date
         const prefix = `2018-08-28 `;
         this.on('$receive:value', (c, v) => {
             if (v && v.length) {
@@ -43,6 +52,43 @@ export default class Timepicker extends Datepicker {
             }
             this.set('_value', v);
         });
+
+        ['step', 'min', 'max'].forEach(item => {
+            this.on(`$receive:${item}`, this._options);
+        });
+    }
+
+    _options() {
+        const {step, min, max} = this.get();
+        const ret = [];
+
+        if (step) {
+            const maxValue = this._parseTime(max || '23:59:59');
+            const stepValue = this._parseTime(step);
+            let value = this._parseTime(min || '00:00:00');
+
+            for (; value <= maxValue; value += stepValue) {
+                ret.push(this._stringifyTime(value));
+            }
+
+            this.set('_options', ret);
+        }
+    }
+
+    _parseTime(time) {
+        const [hours, minutes, seconds] = time.split(':').map(item => {
+            return parseInt(item, 10);
+        });
+    
+        return (hours * 60 + (minutes || 0)) * 60 + (seconds || 0);
+    }
+
+    _stringifyTime(time) {
+        const hours = Math.floor(time / 3600);
+        const minutes = Math.floor((time - hours * 3600) / 60);
+        const seconds = Math.floor(time - hours * 3600 - minutes * 60);
+
+        return `${strPad(hours, 2)}:${strPad(minutes, 2)}:${strPad(seconds, 2)}`;
     }
 }
 

@@ -178,41 +178,43 @@ const panel = format.map(item => map[item]);
                 >确认</Button>-->
             </div>
         </b:time-head>
-        <Row>
-            <Col span="8">
-                <ScrollSelect 
-                    data={{ hours.map(v => {
-                        return {label: strPad(v, 2), value: v};
-                    }) }}
-                    value={{ valueDate.getHours() }}
-                    ev-$change:value={{ self.onChangeTime.bind(self, 'Hours') }}
-                    disabled={{ disabledHours }}
-                >
-                    <b:append>:</b:append>
-                </ScrollSelect>
-            </Col>
-            <Col span="8">
-                <ScrollSelect 
-                    data={{ minutes.map(v => {
-                        return {label: strPad(v, 2), value: v};
-                    }) }}
-                    value={{ valueDate.getMinutes() }}
-                    ev-$change:value={{ self.onChangeTime.bind(self, 'Minutes') }}
-                    disabled={{ disabledMinutes }}
-                >
-                    <b:append>:</b:append>
-                </ScrollSelect>
-            </Col>
-            <Col span="8">
-                <ScrollSelect 
-                    data={{ seconds.map(v => {
-                        return {label: strPad(v, 2), value: v};
-                    }) }}
-                    value={{ valueDate.getSeconds() }}
-                    ev-$change:value={{ self.onChangeTime.bind(self, 'Seconds') }}
-                    disabled={{ disabledSeconds }}
-                />
-            </Col>
-        </Row>
+        <b:time-body>
+            <Row>
+                <Col span="8">
+                    <ScrollSelect 
+                        data={{ hours.map(v => {
+                            return {label: strPad(v, 2), value: v};
+                        }) }}
+                        value={{ valueDate.getHours() }}
+                        ev-$change:value={{ self.onChangeTime.bind(self, 'Hours') }}
+                        disabled={{ disabledHours }}
+                    >
+                        <b:append>:</b:append>
+                    </ScrollSelect>
+                </Col>
+                <Col span="8">
+                    <ScrollSelect 
+                        data={{ minutes.map(v => {
+                            return {label: strPad(v, 2), value: v};
+                        }) }}
+                        value={{ valueDate.getMinutes() }}
+                        ev-$change:value={{ self.onChangeTime.bind(self, 'Minutes') }}
+                        disabled={{ disabledMinutes }}
+                    >
+                        <b:append>:</b:append>
+                    </ScrollSelect>
+                </Col>
+                <Col span="8">
+                    <ScrollSelect 
+                        data={{ seconds.map(v => {
+                            return {label: strPad(v, 2), value: v};
+                        }) }}
+                        value={{ valueDate.getSeconds() }}
+                        ev-$change:value={{ self.onChangeTime.bind(self, 'Seconds') }}
+                        disabled={{ disabledSeconds }}
+                    />
+                </Col>
+            </Row>
+        </b:time-body>
     </div>
 </div>

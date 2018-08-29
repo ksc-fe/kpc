@@ -13,6 +13,7 @@
         border $select-border 
         background $select-bg-color
         transition border $transition, background $transition, box-shadow $transition 
+    .k-prefix
     .k-suffix
         position absolute
         top 50%
@@ -25,12 +26,14 @@
 
     // clearable
     .k-clear
-        margin-right $select-clear-margin-right
         opacity 0
         transition opacity $transition
         pointer-events none
         &:hover
             color $primary-color
+    &.k-with-suffix
+        .k-clear
+            margin-right $select-clear-margin-right
     &:hover
         > .k-wrapper
             border $select-hover-border
@@ -108,11 +111,23 @@
         font-size lookup('$select-' + size + '-font-size')
         > .k-wrapper
             min-height lookup('$select-' + size + '-height')
-            if lookup('$select-' + size + '-padding-left')
-                padding 0 lookup('$select-' + size + '-padding-right') 0 lookup('$select-' + size + '-padding-left')
-            if lookup('$select-' + size + '-padding-left')
-                .k-suffix
-                    right lookup('$select-' + size + '-padding-left')
+        if lookup('$select-' + size + '-padding-left-right')
+            .k-main
+                padding 0 lookup('$select-' + size + '-padding-left-right')
+            .k-prefix
+                left lookup('$select-' + size + '-padding-left-right')
+            .k-suffix
+                right lookup('$select-' + size + '-padding-left-right')
+            &.k-with-prefix
+                .k-main
+                    padding-left lookup('$select-' + size + '-prefix-padding-left')
+            &.k-with-suffix
+            &.k-clearable
+                .k-main
+                    padding-right lookup('$select-' + size + '-suffix-padding-right') 
+            &.k-with-suffix.k-clearable
+                .k-main
+                    padding-right lookup('$select-' + size + '-clearable-suffix-padding-right')
             .k-input
             .k-placeholder
             .k-value

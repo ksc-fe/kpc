@@ -7,18 +7,12 @@ arrow-short = $tooltip-arrow-width - 2px
     display inline-block
 .k-tooltip-content
     max-width $tooltip-max-width
-    position absolute
+    min-width 0
     background-color $tooltip-bg-color 
-    box-shadow $box-shadow
     padding $tooltip-padding
-    border-radius $tooltip-border-radius 
-    font-size $tooltip-font-size
     color $tooltip-color
     line-height $tooltip-line-height
-    z-index $max-z-index
-    top 0
-    left 0
-
+    
     // arrow
     > .k-arrow
         &:before, &

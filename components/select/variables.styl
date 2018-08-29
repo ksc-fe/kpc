@@ -6,7 +6,7 @@ $select-height := unit($default-height / 14, rem)
 $select-border := 1px solid $border-color
 $select-bg-color := #fff
 $select-font-size := $default-font-size
-$select-padding-left := unit($mini-padding / 14, rem)
+$select-padding-left-right := unit($mini-padding / 14, rem)
 $select-focus-border := 1px solid $primary-color
 $select-hover-border := 1px solid $dark-border-color
 
@@ -47,7 +47,7 @@ $select-large-font-size := $large-font-size
 $select-large-multiple-values-margin := unit(1 / 14, rem)
 $select-large-multiple-tag-margin := 0 unit(2 / 14, rem) unit(1 / 14, rem) 0
 
-$select-default-padding-left = $select-padding-left
+$select-default-padding-left-right = $select-padding-left-right
 $select-default-height = $select-height
 $select-default-font-size = $select-font-size
 $select-default-multiple-values-margin = $select-multiple-values-margin
@@ -64,11 +64,19 @@ $select-mini-multiple-values-margin := unit(1 / 14, rem)
 $select-mini-multiple-tag-margin := 0 unit(2 / 14, rem) unit(1 / 14, rem) 0
 
 for size in large default small mini
-    if lookup('$select-' + size + '-padding-left')
-        if !lookup('$select-' + size + '-padding-right')
-            define('$select-' + size + '-padding-right', add(lookup('$select-' + size + '-padding-left'), $select-icon-width, $icon-text-gutter))
-        if !lookup('$select-' + size + '-clearable-padding-right')
-            define('$select-' + size + '-clearable-padding-right', add(lookup('$select-' + size + '-padding-left'), $select-icon-width * 2, $icon-text-gutter * 2))
+    if lookup('$select-' + size + '-padding-left-right')
+        if !lookup('$select-' + size + '-prefix-padding-left')
+            define('$select-' + size + '-prefix-padding-left', add(lookup('$select-' + size + '-padding-left-right'), 14, $icon-text-gutter))
+        if !lookup('$select-' + size + '-suffix-padding-right')
+            define('$select-' + size + '-suffix-padding-right', add(lookup('$select-' + size + '-padding-left-right'), 14, $icon-text-gutter))
+        if !lookup('$select-' + size + '-clearable-suffix-padding-right')
+            define('$select-' + size + '-clearable-suffix-padding-right', add(lookup('$select-' + size + '-padding-left-right'), 14, $icon-text-gutter, 14, $icon-text-gutter))
+
+// if lookup('$select-' + size + '-padding-left')
+// if !lookup('$select-' + size + '-padding-right')
+// define('$select-' + size + '-padding-right', add(lookup('$select-' + size + '-padding-left'), $select-icon-width, $icon-text-gutter))
+// if !lookup('$select-' + size + '-clearable-padding-right')
+// define('$select-' + size + '-clearable-padding-right', add(lookup('$select-' + size + '-padding-left'), $select-icon-width * 2, $icon-text-gutter * 2))
 
 // dropdown
 $select-dropdown-max-height := unit(200 / 14, rem)

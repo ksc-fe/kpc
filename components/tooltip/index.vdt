@@ -2,7 +2,7 @@ import MoveWrapper from '../moveWrapper';
 import Button from '../button';
 
 const {
-    children, value, trigger, showArrow, confirm,
+    children, show, trigger, showArrow, confirm,
     canHover, className, _feedback, transition
 } = self.get();
 
@@ -13,18 +13,21 @@ if ((canHover || confirm) && trigger === 'hover') {
 }
 
 const classNameObj = {
+    "k-dropdown-menu": true,
     "k-tooltip-content": true, 
     'k-cannot-hover': trigger === 'hover' && !canHover && !confirm,
     [className]: className,
 };
 
 <MoveWrapper>
-    <Animate v-if={{ value }}
+    <Animate v-if={{ show }}
         class={{ classNameObj }}
         a:transition={{ transition }}
-        ref="content"
+        ref="menu"
         {{ ...events }}
         a:delayDestroy={{ false }}
+        ev-$destroyed={{ self._removeDocumentEvents }}
+        ev-$mounted={{ self._onShow }}
     >
         <i v-if={{ showArrow }}
             class={{ {

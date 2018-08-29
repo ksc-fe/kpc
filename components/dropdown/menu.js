@@ -30,13 +30,22 @@ export default class DropdownMenu extends Intact {
         this.items = [];
         this.focusIndex = -1;
         this.locked = false;
+
+        this.on('$changed:show', (c, value) => {
+            if (value) {
+                this.trigger('show', this);
+            } else {
+                this.trigger('hide', this);
+            }
+        });
+
     }
 
     _mount() {
         const parent = this._findParentDropdownMenu();
         if (parent) parent.subDropdowns.push(this);
 
-        // because the DropdownMenu can be change by key
+        // because the DropdownMenu can be changed by key
         // and it can not be found in Dropdown
         // so we handle it here again
         if (!this.dropdown) {
@@ -133,12 +142,14 @@ export default class DropdownMenu extends Intact {
         this.focusIndex = -1;
         this._addDocumentEvents();
         this.position();
-        this.trigger('show')
     }
 
     _addDocumentEvents() {
         const parent = this._findParentDropdownMenu();
         if (!parent) {
+            // no matter what the trigger is
+            // we should let the layer hide when click document. #52
+
             // if (this.get('trigger') === 'click') {
                 document.addEventListener('click', this._onDocumentClick);
             // }

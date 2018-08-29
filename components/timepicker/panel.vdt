@@ -1,4 +1,10 @@
-const {_id} = self.get();
+import ScrollSelect from '../scrollSelect';
+import {getTimeString} from '../datepicker/utils';
+
+const {_id, _options, multiple, value, _now} = self.get();
+
+const values = multiple ? value || [] : [value];
+const valueDate = new Date(values[self._index] || _now);
 
 <t:parent>
     <b:time-head />
@@ -6,4 +12,13 @@ const {_id} = self.get();
         <div class="k-title" v-if={{ _id === '0' }}>开始时间</div>
         <div class="k-title" v-else-if={{ _id === '1' }}>结束时间</div>
     </b:title>
+    <b:time-body v-if={{ _options }}>
+        <ScrollSelect 
+            data={{ _options.map(v => {
+                return {label: v, value: v};
+            }) }}
+            value={{ getTimeString(valueDate) }}
+            ev-$change:value={{ self.changeTimeByStep }}
+        />
+    </b:time-body>
 </t:parent>
