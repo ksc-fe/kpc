@@ -297,5 +297,62 @@ export default class Calendar extends Intact {
     _onChangeTab(c, v) {
         this.set('_isSelectTime', v === 'time', {async: true});
     }
+
+    _disableHours(v) {
+        const {_id, value} = this.get();
+        if (!_id || !value || _id === '0' && !value[1]) return;
+
+        if (_id === '0') {
+            // begin time
+            return v > new Date(value[1]).getHours();
+        } else {
+            // end time
+            return v < new Date(value[0]).getHours();
+        }
+    }
+
+    _disableMinutes(v) {
+        const {_id, value} = this.get();
+        if (!_id || !value || _id === '0' && !value[1]) return;
+
+        const start = new Date(value[0]);
+        const end = new Date(value[1]);
+        if (this._isDifferent(start, end, 'Hours')) return;
+
+        if (_id === '0') {
+            // begin time
+            return v > end.getMinutes(); 
+        } else {
+            // end time
+            return v < start.getMinutes();
+        }
+    }
+
+    _disableSeconds(v) {
+        const {_id, value} = this.get();
+        if (!_id || !value || _id === '0' && !value[1]) return;
+
+        const start = new Date(value[0]);
+        const end = new Date(value[1]);
+        if (
+            this._isDifferent(start, end, 'Hours') || 
+            this._isDifferent(start, end, 'Minutes')
+        ) return;
+
+        if (_id === '0') {
+            // begin time
+            return v > end.getSeconds(); 
+        } else {
+            // end time
+            return v < start.getSeconds();
+        }
+    }
+
+    _isDifferent(date1, date2, type) {
+        const v1 = date1[`get${type}`]();
+        const v2 = date2[`get${type}`]();
+
+        return v1 !== v2;
+    }
 }
 

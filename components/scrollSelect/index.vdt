@@ -1,5 +1,5 @@
 const {
-    value, _list, disabled,
+    value, _list, disabled, disable,
     _translate, _marginTop, _dragging
 } = self.get();
 
@@ -23,6 +23,7 @@ const classNameObj = {
             class={{ {
                 "k-scroll-item": true,
                 "k-active": item.value === value,
+                "k-disabled": disable.call(self, item.value), 
             } }}
             v-for={{ _list }}
             v-for-value="item"
