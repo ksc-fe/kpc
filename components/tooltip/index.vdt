@@ -2,7 +2,7 @@ import MoveWrapper from '../moveWrapper';
 import Button from '../button';
 
 const {
-    children, show, trigger, showArrow, confirm,
+    children, value, trigger, showArrow, confirm,
     canHover, className, _feedback, transition
 } = self.get();
 
@@ -20,7 +20,7 @@ const classNameObj = {
 };
 
 <MoveWrapper>
-    <Animate v-if={{ show }}
+    <Animate v-if={{ value }}
         class={{ classNameObj }}
         a:transition={{ transition }}
         ref="menu"

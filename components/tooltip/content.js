@@ -37,7 +37,7 @@ export default class TooltipContent extends DropdownMenu {
     _init() {
         super._init();
 
-        this.on('$change:show', (c, value) => {
+        this.on('$change:value', (c, value) => {
             this.trigger(value ? 'beforeShow' : 'beforeHide', this);
         });
     }
@@ -45,7 +45,7 @@ export default class TooltipContent extends DropdownMenu {
     _mount() {
         super._mount();
 
-        if (this.get('show')) {
+        if (this.get('value')) {
             this._addDocumentClick();
         }
     }
@@ -55,16 +55,16 @@ export default class TooltipContent extends DropdownMenu {
         if (!this.get('children')) return;
 
         clearTimeout(this.timer);
-        this.set('show', true); 
+        this.set('value', true); 
     }
 
     hide(immediately) {
         if (!immediately && (this.get('canHover') || this.get('confirm'))) {
             this.timer = setTimeout(() => {
-                this.set('show', false);
+                this.set('value', false);
             }, 200);
         } else {
-            this.set('show', false);
+            this.set('value', false);
         }
     }
 

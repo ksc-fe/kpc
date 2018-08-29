@@ -8,7 +8,7 @@ export default class DropdownMenu extends Intact {
     static template = template;
 
     static propTypes = {
-        show: Boolean,
+        value: Boolean,
         trigger: ['hover', 'click'],
         position: Object,
         transition: String,
@@ -17,7 +17,7 @@ export default class DropdownMenu extends Intact {
 
     defaults() {
         return {
-            show: false,
+            value: false,
             trigger: 'hover',
             position: {},
             transition: 'c-slidedown',
@@ -31,7 +31,7 @@ export default class DropdownMenu extends Intact {
         this.focusIndex = -1;
         this.locked = false;
 
-        this.on('$changed:show', (c, value) => {
+        this.on('$changed:value', (c, value) => {
             if (value) {
                 this.trigger('show', this);
             } else {
@@ -69,7 +69,7 @@ export default class DropdownMenu extends Intact {
 
     show() {
         clearTimeout(this.timer);
-        this.set('show', true);
+        this.set('value', true);
         const parent = this._findParentDropdownMenu();
         if (parent) {
             const showedMenu = parent._showedMenu;
@@ -90,15 +90,15 @@ export default class DropdownMenu extends Intact {
     hide(immediately) {
         if (!immediately) {
             this.timer = setTimeout(() => {
-                this.set('show', false);
+                this.set('value', false);
             }, 200);
         } else {
-            this.set('show', false);
+            this.set('value', false);
         }
     }
 
     toggle() {
-        this.set('show', !this.get('show'));
+        this.set('value', !this.get('value'));
     }
 
     position() {
