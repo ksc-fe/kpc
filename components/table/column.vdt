@@ -28,7 +28,7 @@ const groupText = group && self._getGroupText() || '';
             <Dropdown>
                 <i class="k-arrow ion-ios-arrow-down"></i>
                 <DropdownMenu class={{ {'k-table-dropdown': true, 'k-multiple': multiple} }}
-                    ev-$change:show={{ self._onChangeShow }}
+                    ev-$change:value={{ self._onChangeShow }}
                 >
                     <DropdownItem v-for={{ group }} 
                         class={{ {'k-active': self._isChecked(value.value)} }}

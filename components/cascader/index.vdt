@@ -83,7 +83,7 @@ if (!filterable || !keywords) {
                 "k-select-dropdown": true,
                 "k-cascader-dropdown": true,
             } }}
-            ev-$change:show={{ self._onChangeShow }}
+            ev-$change:value={{ self._onChangeShow }}
             key="cascader"
         >
             <Options data={{ data }} level={{ 0 }} />
@@ -91,13 +91,13 @@ if (!filterable || !keywords) {
     );
 } else {
     Menu = (
-        <DropdownMenu ev-$changed:show={{ self._position }}
+        <DropdownMenu ev-$changed:value={{ self._position }}
             ref="menu"
             class={{ {
                 "k-select-dropdown": true,
                 "k-cascader-filterable-dropdown": true, 
             } }}
-            ev-$change:show={{ self._onChangeShow }}
+            ev-$change:value={{ self._onChangeShow }}
             key="filterable"
         >
             <DropdownItem v-for={{ self._filter() }}
