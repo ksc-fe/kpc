@@ -2,26 +2,19 @@
 
 .k-tooltip-content.k-time-picker
     .k-calendar-wrapper
-        padding 16px
+        padding $timepicker-content-padding
+        width $timepicker-content-width 
     .k-scroll-select
-        height 200px
+        height $timepicker-scroll-select-height 
         margin 0
 
     // range
     .k-range
-        .k-calendar-wrapper
-            width 200px
         .k-time-picker
             border $timepicker-inner-border
-            padding 16px
+            padding $timepicker-range-time-picker-padding
         .k-scroll-select
-            height 150px
+            height $timepicker-range-scroll-select-height 
         .k-title
-            margin-bottom 8px
+            margin-bottom $timepicker-range-title-margin-bottom 
             text-align center
-
-    // time option
-    &.k-time-options
-        width 300px
-        max-height $select-dropdown-max-height
-        overflow auto
