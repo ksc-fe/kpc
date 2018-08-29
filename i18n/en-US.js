@@ -41,6 +41,9 @@ const i18n = {
     '前三个月': 'Last three months',
     '后三个月': 'Next three months',
 
+    // timepicker
+    '请选择时间': 'Please select time',
+
     // dialog
     '提示': 'Tip',
     '确认': 'OK',
