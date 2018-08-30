@@ -8,12 +8,11 @@ import {noop} from '../utils';
 const {
     checkType, scheme, checkedKeys, data, rowKey, 
     className, fixHeader, noDataTemplate, disableRow,
-    resizable, expand, expandedKeys, type,
+    resizable, expandedKeys, type,
     style, rowClassName, children, sort, group,
 } = self.get();
 
 let colSpan = checkType === 'checkbox' || checkType === 'radio' ? 1 : 0;
-const expandable = typeof expand === 'function';
 const _scheme = {};
 
 let prevItem = checkType === 'checkbox' || checkType === 'radio' ? 
@@ -150,11 +149,13 @@ const tbody = <tbody>
                 }) }}
             </Row>;
 
-            if (expandable && expandedKeys.indexOf(key) > -1) {
+            if (blocks.expand && expandedKeys.indexOf(key) > -1) {
                 return [
                     tr,
                     <tr class="k-expand" key={{ `${key}.expand` }}>
-                        <td colspan={{ colSpan }}>{{ expand.call(self, value, index) }}</td>
+                        <td colspan={{ colSpan }}>
+                            <b:expand args={{ [value, index] }} />
+                        </td>
                     </tr>
                 ]
             } else {

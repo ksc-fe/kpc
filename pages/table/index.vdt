@@ -106,10 +106,11 @@ const scheme = {
         } }}
         resizable
         fixHeader="300"
-        expand={{ (data) => {
-            return <div>{{ JSON.stringify(data) }}</div>
-        } }}
-    />
+    >
+        <b:expand params="data">
+            <div>{{ JSON.stringify(data) }}</div>
+        </b:expand>
+    </Table>
 
     <Table
         resizable

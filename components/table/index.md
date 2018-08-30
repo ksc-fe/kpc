@@ -24,7 +24,6 @@ sidebar: doc
 | rowClassName | 通过一个函数定义行的`className`，该函数会传入该行数据和索引当做参数，返回的字符串将被设为该行`className` | `Function` | `function(value, index) {  }` |
 | disableRow | 定义行禁用可选的逻辑，返回`true`，则改行被禁用选择 | `Function` | `function(data, index) { return false }` |
 | rowExpandable | 是否点击改行任意区域即展开 | `Boolean` | `true` |
-| expand | 通过函数指定行展开后要展示的模板内容 | `Function` | `undefined` |
 | expandedKeys | 通过`key`来指定哪些行展开 | `Array` | `[]` |
 | type | 表格类型，默认左右无边框，`"border"`类型会添加边框 | `"default"` &#124; `"border"` | `"default"` |
 | sort | 排序，详见示例说明 | `Object` | `{}` |
@@ -51,9 +50,10 @@ sidebar: doc
 
 ## Table
 
-| 名称 | 说明 |
-| --- | --- |
-| no-data | 自定义无数据展示模板 |
+| 名称 | 说明 | -- |
+| --- | --- | --- |
+| no-data | 自定义无数据展示模板 | - |
+| expand | 指定行展开后要展示的模板内容 | `data, index` |
 
 ## TableColumn
 

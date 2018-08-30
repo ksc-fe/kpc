@@ -8,6 +8,9 @@
                 </template>
             </TableColumn>
             <TableColumn key="aa" title="标题" />
+            <div slot="expand" slot-scope="data, index">
+                <div>{{ index }}</div>
+            </div>
         </Table>
         <Table :data="data" :scheme="scheme" />
         <Table :data="data" :scheme="scheme" checkType="radio" @$change:checkedKey="hello"/>
