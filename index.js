@@ -32,6 +32,7 @@ import {Switch} from './components/switch';
 import {Table, TableColumn} from './components/table';
 import {Tabs, Tab} from './components/tabs';
 import {Tag} from './components/tag';
+import {Timepicker} from './components/timepicker';
 import {Tip} from './components/tip';
 import {Tooltip} from './components/tooltip';
 import {Transfer} from './components/transfer';
@@ -80,13 +81,14 @@ export {
     TableColumn,
     Tabs,
     Tag,
+    Timepicker,
     Tip,
     Tooltip,
     Transfer,
     Upload
 };
 
-export const version = '0.5.4';
+export const version = '0.5.5';
 
 /* generate end */
 
