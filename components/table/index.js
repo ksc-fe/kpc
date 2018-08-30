@@ -28,7 +28,6 @@ export default class Table extends Intact {
             sort: {},
             group: {},
             resizable: false,
-            expand: undefined, // expand template callback
             expandedKeys: [], 
             type: 'default', // default border
             fixHeader: false,
@@ -54,7 +53,6 @@ export default class Table extends Intact {
         sort: Object,
         group: Object,
         resizable: Boolean,
-        expand: Function,
         expandedKeys: Array,
         type: ['default', 'border'],
         fixHeader: [Boolean, String, Number],
@@ -249,7 +247,7 @@ export default class Table extends Intact {
     }
 
     _expandShrinkRow(key, isExpand = false, isToggle = true) {
-        if (typeof this.get('expand') !== 'function') return;
+        if (!this.get('_blocks.expand')) return;
 
         const expandedKeys = this.get('expandedKeys').slice(0);
         const i = expandedKeys.indexOf(key);
