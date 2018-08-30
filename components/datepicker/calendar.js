@@ -1,7 +1,7 @@
 import Intact from 'intact';
 import template from './calendar.vdt';
 import {strPad, range} from '../utils';
-import {getNowDate, getDateString} from './utils';
+import {getNowDate, getDateString, isEqual} from './utils';
 
 export default class Calendar extends Intact {
     @Intact.template()
@@ -298,43 +298,30 @@ export default class Calendar extends Intact {
         this.set('_isSelectTime', v === 'time', {async: true});
     }
 
-    _disableHours(v) {
-        const {_id, value} = this.get();
-
-        if (_id === '0') {
-            // begin time
-            return v > new Date(value[1]).getHours();
-        } else {
-            // end time
-            return v < new Date(value[0]).getHours();
-        }
+    _disableType(_id, type) {
     }
 
     _disableMinutes(v) {
         const {_id, value} = this.get();
-        const start = new Date(value[0]);
-        const end = new Date(value[1]);
 
         if (_id === '0') {
             // begin time
-            return v > end.getMinutes(); 
+            return v > new Date(value[1]).getMinutes(); 
         } else {
             // end time
-            return v < start.getMinutes();
+            return v < new Date(value[0]).getMinutes();
         }
     }
 
     _disableSeconds(v) {
         const {_id, value} = this.get();
-        const start = new Date(value[0]);
-        const end = new Date(value[1]);
 
         if (_id === '0') {
             // begin time
-            return v > end.getSeconds(); 
+            return v > new Date(value[1]).getSeconds(); 
         } else {
             // end time
-            return v < start.getSeconds();
+            return v < new Date(value[0]).getSeconds(); 
         }
     }
 
@@ -349,18 +336,31 @@ export default class Calendar extends Intact {
         const {_id, value} = this.get();
         if (!_id || !value || _id === '0' && !value[1]) return;
 
-        if (type === 'Hours') {
-            return this._disableHours;
-        } else {
-            const start = new Date(value[0]);
-            const end = new Date(value[1]);
+        const start = new Date(value[0]);
+        const end = new Date(value[1]);
+
+        if (!isEqual(start, end)) return;
+
+        if (type !== 'Hours') {
             if (this._isDifferent(start, end, 'Hours')) return;
 
             if (type === 'Seconds') {
                 if (this._isDifferent(start, end, 'Minutes')) return;
-                return this._disableSeconds;
             }
-            return this._disableMinutes;
+        }
+
+        if (_id === '0') {
+            // begin time
+            return (v) => {
+                const value = this.get('value');
+                return v > new Date(value[1])[`get${type}`]();
+            }
+        } else {
+            // end time
+            return (v) => {
+                const value = this.get('value');
+                return v < new Date(value[0])[`get${type}`]();
+            }
         }
     }
 }
