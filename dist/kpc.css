@@ -3888,7 +3888,7 @@ button.k-btn > span {
 .k-btn.k-primary:hover,
 .k-btn.k-primary:focus {
   background-color: #3e83f2;
-  border-color: #3e83f2;
+  border-color: #064ccc;
 }
 .k-btn.k-primary:active {
   background-color: #064ccc;
@@ -3902,7 +3902,7 @@ button.k-btn > span {
 .k-btn.k-warning:hover,
 .k-btn.k-warning:focus {
   background-color: #ffa139;
-  border-color: #ffa139;
+  border-color: #d97900;
 }
 .k-btn.k-warning:active {
   background-color: #d97900;
@@ -3916,7 +3916,7 @@ button.k-btn > span {
 .k-btn.k-danger:hover,
 .k-btn.k-danger:focus {
   background-color: #e45355;
-  border-color: #e45355;
+  border-color: #be1d1a;
 }
 .k-btn.k-danger:active {
   background-color: #be1d1a;
@@ -3930,7 +3930,7 @@ button.k-btn > span {
 .k-btn.k-active:hover,
 .k-btn.k-active:focus {
   background-color: #3e83f2;
-  border-color: #3e83f2;
+  border-color: #064ccc;
 }
 .k-btn.k-active:active {
   background-color: #064ccc;
@@ -3944,7 +3944,7 @@ button.k-btn > span {
 .k-btn.k-success:hover,
 .k-btn.k-success:focus {
   background-color: #71c82d;
-  border-color: #71c82d;
+  border-color: #42a100;
 }
 .k-btn.k-success:active {
   background-color: #42a100;
@@ -4350,6 +4350,7 @@ button.k-btn.k-mini > span {
   -webkit-transition: opacity 0.25s ease-in-out;
   transition: opacity 0.25s ease-in-out;
   pointer-events: none;
+  color: #999;
 }
 .k-input .k-clear:hover {
   color: #0a5eee;
@@ -4806,6 +4807,24 @@ button.k-btn.k-mini > span {
   border-right: none;
   border-bottom: 1px solid #cad0dd;
 }
+.k-tabs.k-no-border-card {
+  border-bottom: none;
+}
+.k-tabs.k-no-border-card .k-tab {
+  border-color: transparent;
+  background: #e5e5e5;
+  margin-right: 0.285714285714286rem;
+}
+.k-tabs.k-no-border-card .k-tab.k-active {
+  background: #fff;
+  border-color: transparent;
+}
+.k-tabs.k-no-border-card.k-vertical {
+  border-right: none;
+}
+.k-tabs.k-no-border-card.k-vertical .k-tab {
+  margin-top: 0.285714285714286rem;
+}
 .k-tabs.k-large .k-tab {
   font-size: 1.142857142857143rem;
   height: 2.857142857142857rem;
@@ -5120,8 +5139,7 @@ button.k-btn.k-mini > span {
 .k-collapse.k-border {
   border-radius: 0.142857142857143rem;
   padding: 0 1.714285714285714rem;
-  -webkit-box-shadow: 0 2px 8px 0 rgba(191,191,191,0.5);
-          box-shadow: 0 2px 8px 0 rgba(191,191,191,0.5);
+  border: 1px solid #eee;
 }
 .k-collapse-item {
   border-bottom: 1px solid #e5e5e5;
@@ -5133,6 +5151,7 @@ button.k-btn.k-mini > span {
   height: 2.857142857142857rem;
   line-height: 2.857142857142857rem;
   cursor: pointer;
+  font-weight: bold;
 }
 .k-collapse-item > .k-title .k-arrow {
   float: right;
@@ -6238,24 +6257,8 @@ button.k-btn.k-mini > span {
   float: left;
   position: relative;
 }
-.k-steps .k-head {
-  padding-right: 0.714285714285714rem;
-}
-.k-steps .k-head .k-inner {
-  width: 1.428571428571429rem;
-  height: 1.428571428571429rem;
-  line-height: calc(1.428571428571429rem - 2px);
-  border-radius: 50%;
-  text-align: center;
-  border: 1px solid #999;
-  color: #999;
-}
 .k-steps .k-icon:before {
   font-size: 1.714285714285714rem;
-  line-height: calc(1.428571428571429rem - 2px);
-}
-.k-steps .k-main {
-  color: #999;
 }
 .k-steps .k-title {
   display: inline-block;
@@ -6267,42 +6270,81 @@ button.k-btn.k-mini > span {
   font-size: 0.857142857142857rem;
   white-space: nowrap;
 }
-.k-steps .k-tail {
+.k-steps.k-default .k-head,
+.k-steps.k-line .k-head {
+  padding-right: 0.714285714285714rem;
+}
+.k-steps.k-default .k-head .k-inner,
+.k-steps.k-line .k-head .k-inner {
+  width: 1.428571428571429rem;
+  height: 1.428571428571429rem;
+  line-height: calc(1.428571428571429rem - 2px);
+  border-radius: 50%;
+  text-align: center;
+  border: 1px solid #999;
+  color: #999;
+}
+.k-steps.k-default .k-icon:before,
+.k-steps.k-line .k-icon:before {
+  line-height: calc(1.428571428571429rem - 2px);
+}
+.k-steps.k-default .k-main,
+.k-steps.k-line .k-main {
+  color: #999;
+}
+.k-steps.k-default .k-tail,
+.k-steps.k-line .k-tail {
   position: absolute;
 }
-.k-steps .k-step:last-of-type .k-tail {
+.k-steps.k-default .k-step:last-of-type .k-tail,
+.k-steps.k-line .k-step:last-of-type .k-tail {
   display: none;
 }
-.k-steps .k-done .k-inner {
+.k-steps.k-default .k-done .k-inner,
+.k-steps.k-line .k-done .k-inner {
   color: #0a5eee;
   border-color: #0a5eee;
 }
-.k-steps .k-active .k-inner {
+.k-steps.k-default .k-active .k-inner,
+.k-steps.k-line .k-active .k-inner {
   color: #fff;
   border-color: #0a5eee;
   background: #0a5eee;
 }
-.k-steps .k-active .k-main {
+.k-steps.k-default .k-active .k-main,
+.k-steps.k-line .k-active .k-main {
   color: #595959;
 }
-.k-steps .k-error .k-inner {
+.k-steps.k-default .k-error .k-inner,
+.k-steps.k-line .k-error .k-inner {
   color: #db2828;
   border-color: #db2828;
   background: transparent;
 }
-.k-steps .k-error .k-main {
+.k-steps.k-default .k-error .k-main,
+.k-steps.k-line .k-error .k-main {
   color: #db2828;
 }
+.k-steps.k-simple,
 .k-steps.k-default {
   text-align: center;
   height: 2.571428571428572rem;
   line-height: 2.571428571428572rem;
-  background: #eee;
 }
+.k-steps.k-simple .k-head,
 .k-steps.k-default .k-head,
+.k-steps.k-simple .k-main,
 .k-steps.k-default .k-main,
+.k-steps.k-simple .k-content,
 .k-steps.k-default .k-content {
   display: inline-block;
+}
+.k-steps.k-simple .k-head .k-inner,
+.k-steps.k-default .k-head .k-inner {
+  display: inline-block;
+}
+.k-steps.k-default {
+  background: #eee;
 }
 .k-steps.k-default .k-tail {
   top: 0;
@@ -6330,7 +6372,6 @@ button.k-btn.k-mini > span {
   left: 0;
 }
 .k-steps.k-default .k-head .k-inner {
-  display: inline-block;
   vertical-align: middle;
   margin-top: -2px;
 }
@@ -6384,6 +6425,33 @@ button.k-btn.k-mini > span {
 }
 .k-steps.k-line .k-done .k-tail {
   background: #0a5eee;
+}
+.k-steps.k-simple .k-step,
+.k-steps.k-simple .k-main {
+  color: #999;
+}
+.k-steps.k-simple .k-head {
+  padding-right: 0.428571428571429rem;
+  vertical-align: top;
+  font-weight: bold;
+}
+.k-steps.k-simple .k-icon:before {
+  font-weight: bold;
+}
+.k-steps.k-simple .k-done .k-main,
+.k-steps.k-simple .k-done .k-inner {
+  color: #595959;
+}
+.k-steps.k-simple .k-active .k-main,
+.k-steps.k-simple .k-active .k-inner {
+  color: #0a5eee;
+}
+.k-steps.k-simple .k-error .k-main,
+.k-steps.k-simple .k-error .k-inner {
+  color: #db2828;
+}
+.k-steps.k-clickable .k-done {
+  cursor: pointer;
 }
 .k-switch {
   display: inline-block;
@@ -6702,6 +6770,7 @@ button.k-btn.k-mini > span {
   border: 1px solid #cad0dd;
   border-radius: 0.142857142857143rem;
   position: relative;
+  font-size: 1rem;
 }
 .k-tag.k-closable {
   padding-right: 2.285714285714286rem;
@@ -6710,7 +6779,6 @@ button.k-btn.k-mini > span {
   position: absolute;
   right: -1px;
   top: -1px;
-  color: inherit;
 }
 .k-tag .k-close .k-icon {
   font-size: 1.857142857142857rem;
@@ -6719,6 +6787,9 @@ button.k-btn.k-mini > span {
   color: #0a5eee;
   border-color: #0a5eee;
   background: #e5f1ff;
+}
+.k-tag.k-primary .k-close {
+  color: #0a5eee;
 }
 .k-tag.k-primary .k-close:hover {
   color: #74a8f7;
@@ -6731,6 +6802,9 @@ button.k-btn.k-mini > span {
   border-color: #4db500;
   background: #f2ffe5;
 }
+.k-tag.k-success .k-close {
+  color: #4db500;
+}
 .k-tag.k-success .k-close:hover {
   color: #99da62;
 }
@@ -6741,6 +6815,9 @@ button.k-btn.k-mini > span {
   color: #ff8a00;
   border-color: #ff8a00;
   background: #fff2e5;
+}
+.k-tag.k-warning .k-close {
+  color: #ff8a00;
 }
 .k-tag.k-warning .k-close:hover {
   color: #ffba73;
@@ -6753,6 +6830,9 @@ button.k-btn.k-mini > span {
   border-color: #db2828;
   background: #ffe5e7;
 }
+.k-tag.k-danger .k-close {
+  color: #db2828;
+}
 .k-tag.k-danger .k-close:hover {
   color: #ed8084;
 }
@@ -6763,6 +6843,43 @@ button.k-btn.k-mini > span {
   color: #999;
   border-color: #d9d9d9;
   background: #f7f7f7;
+}
+.k-tag.k-large {
+  font-size: 1.142857142857143rem;
+  padding: 0.714285714285714rem 1.785714285714286rem;
+}
+.k-tag.k-large.k-closable {
+  padding-right: 2.571428571428572rem;
+}
+.k-tag.k-small {
+  font-size: 0.857142857142857rem;
+  padding: 0.571428571428571rem 1.071428571428571rem;
+}
+.k-tag.k-small.k-closable {
+  padding-right: 1.857142857142857rem;
+}
+.k-tag.k-mini {
+  font-size: 0.857142857142857rem;
+  padding: 0.428571428571429rem 0.714285714285714rem;
+}
+.k-tag.k-mini.k-closable {
+  padding-right: 1.571428571428571rem;
+}
+.k-component-tip {
+  display: block;
+}
+.k-component-tip.k-tag {
+  color: $text-color;
+}
+.k-component-tip > .k-title {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.k-component-tip > .k-close.k-custom {
+  color: $primary-color;
+}
+.k-component-tip > .k-close.k-custom:hover {
+  color: palette($primary-color, -1);
 }
 .k-transfer {
   font-size: 0.857142857142857rem;

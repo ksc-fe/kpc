@@ -31,6 +31,7 @@ import {Switch} from './components/switch';
 import {Table, TableColumn} from './components/table';
 import {Tabs, Tab} from './components/tabs';
 import {Tag} from './components/tag';
+import {Tip} from './components/tip';
 import {Tooltip} from './components/tooltip';
 import {Transfer} from './components/transfer';
 import {Upload} from './components/upload';
@@ -77,12 +78,13 @@ export {
     TableColumn,
     Tabs,
     Tag,
+    Tip,
     Tooltip,
     Transfer,
     Upload
 };
 
-export const version = '0.5.2';
+export const version = '0.5.5';
 
 /* generate end */
 
