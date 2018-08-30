@@ -188,7 +188,7 @@ const panel = format.map(item => map[item]);
                         value={{ valueDate.getHours() }}
                         ev-$change:value={{ self.onChangeTime.bind(self, 'Hours') }}
                         disabled={{ disabledHours }}
-                        disable={{ self._disableHours }}
+                        disable={{ self._getDisableCallback('Hours') }}
                     >
                         <b:append>:</b:append>
                     </ScrollSelect>
@@ -201,7 +201,7 @@ const panel = format.map(item => map[item]);
                         value={{ valueDate.getMinutes() }}
                         ev-$change:value={{ self.onChangeTime.bind(self, 'Minutes') }}
                         disabled={{ disabledMinutes }}
-                        disable={{ self._disableMinutes }}
+                        disable={{ self._getDisableCallback('Minutes') }}
                     >
                         <b:append>:</b:append>
                     </ScrollSelect>
@@ -214,7 +214,7 @@ const panel = format.map(item => map[item]);
                         value={{ valueDate.getSeconds() }}
                         ev-$change:value={{ self.onChangeTime.bind(self, 'Seconds') }}
                         disabled={{ disabledSeconds }}
-                        disable={{ self._disableSeconds }}
+                        disable={{ self._getDisableCallback('Seconds') }}
                     />
                 </Col>
             </Row>

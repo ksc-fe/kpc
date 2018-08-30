@@ -21,7 +21,7 @@ export default class ScrollSelect extends Intact {
             count: 19,
             data: [],
             disabled: false,
-            disable: () => false,
+            disable: undefined,
 
             _list: [],
             _translate: 0,
@@ -40,7 +40,7 @@ export default class ScrollSelect extends Intact {
         });
         this.on('$change:_value', (c, v) => {
             const disable = this.get('disable');
-            if (!disable.call(this, v)) {
+            if (!disable || !disable.call(this, v)) {
                 this.set('value', v);
             }
             this._setList();
@@ -68,6 +68,18 @@ export default class ScrollSelect extends Intact {
         this.set({
             _translate: this._deltaY 
         });
+    }
+
+    _beforeUpdate(vNode) {
+        // if component shows value on a disabled item,
+        // after that the disabled item becomes enabled item,
+        // we should set the value to the showed value.
+        if (vNode) {
+            const {_value, value, disable} = this.get();
+            if (disable && _value !== value && !disable(_value)) {
+                this.set('value', _value);
+            }
+        }
     }
 
     _select(item, index) {
@@ -146,7 +158,7 @@ export default class ScrollSelect extends Intact {
     }
 
     _setByRelativeIndex(index, deltaY, isSetTranslate) {
-        const {_list, _value: value, _marginTop, disable}  = this.get();
+        const {_list, _value: value, _marginTop}  = this.get();
 
         const i = _list.findIndex(v => v.value === value);
         const l = _list.length;

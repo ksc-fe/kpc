@@ -300,7 +300,6 @@ export default class Calendar extends Intact {
 
     _disableHours(v) {
         const {_id, value} = this.get();
-        if (!_id || !value || _id === '0' && !value[1]) return;
 
         if (_id === '0') {
             // begin time
@@ -313,11 +312,8 @@ export default class Calendar extends Intact {
 
     _disableMinutes(v) {
         const {_id, value} = this.get();
-        if (!_id || !value || _id === '0' && !value[1]) return;
-
         const start = new Date(value[0]);
         const end = new Date(value[1]);
-        if (this._isDifferent(start, end, 'Hours')) return;
 
         if (_id === '0') {
             // begin time
@@ -330,14 +326,8 @@ export default class Calendar extends Intact {
 
     _disableSeconds(v) {
         const {_id, value} = this.get();
-        if (!_id || !value || _id === '0' && !value[1]) return;
-
         const start = new Date(value[0]);
         const end = new Date(value[1]);
-        if (
-            this._isDifferent(start, end, 'Hours') || 
-            this._isDifferent(start, end, 'Minutes')
-        ) return;
 
         if (_id === '0') {
             // begin time
@@ -353,6 +343,25 @@ export default class Calendar extends Intact {
         const v2 = date2[`get${type}`]();
 
         return v1 !== v2;
+    }
+
+    _getDisableCallback(type) {
+        const {_id, value} = this.get();
+        if (!_id || !value || _id === '0' && !value[1]) return;
+
+        if (type === 'Hours') {
+            return this._disableHours;
+        } else {
+            const start = new Date(value[0]);
+            const end = new Date(value[1]);
+            if (this._isDifferent(start, end, 'Hours')) return;
+
+            if (type === 'Seconds') {
+                if (this._isDifferent(start, end, 'Minutes')) return;
+                return this._disableSeconds;
+            }
+            return this._disableMinutes;
+        }
     }
 }
 
