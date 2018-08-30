@@ -98,14 +98,14 @@ const panel = format.map(item => map[item]);
                 const startWeekday = start.getDay(); 
                 start.setDate(1 - startWeekday);
 
-                const _maxDate = new Date(maxDate);
-                const _minDate = new Date(minDate);
+                const _maxDate = maxDate && new Date(maxDate);
+                const _minDate = minDate && new Date(minDate);
 
                 for (let i = 0; i < 42; i++) {
                     const _date = start.getDate();
                     const _month = start.getMonth();
-                    const disabled = isGT(start, _maxDate) ||
-                        isLT(start, _minDate) ||
+                    const disabled = _maxDate && isGT(start, _maxDate) ||
+                        _minDate && isLT(start, _minDate) ||
                         disabledDate.call(self, getDateString(start, type));
                     const isOut = _month !== month;
                     const classNames = dayClassNames ? 

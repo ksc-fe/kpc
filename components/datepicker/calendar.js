@@ -298,33 +298,6 @@ export default class Calendar extends Intact {
         this.set('_isSelectTime', v === 'time', {async: true});
     }
 
-    _disableType(_id, type) {
-    }
-
-    _disableMinutes(v) {
-        const {_id, value} = this.get();
-
-        if (_id === '0') {
-            // begin time
-            return v > new Date(value[1]).getMinutes(); 
-        } else {
-            // end time
-            return v < new Date(value[0]).getMinutes();
-        }
-    }
-
-    _disableSeconds(v) {
-        const {_id, value} = this.get();
-
-        if (_id === '0') {
-            // begin time
-            return v > new Date(value[1]).getSeconds(); 
-        } else {
-            // end time
-            return v < new Date(value[0]).getSeconds(); 
-        }
-    }
-
     _isDifferent(date1, date2, type) {
         const v1 = date1[`get${type}`]();
         const v2 = date2[`get${type}`]();
@@ -337,7 +310,8 @@ export default class Calendar extends Intact {
         if (!_id || !value || _id === '0' && !value[1]) return;
 
         const start = new Date(value[0]);
-        const end = new Date(value[1]);
+        // for the end time, we should disable items when selected the start time
+        const end = new Date(value[1] || value[0]);
 
         if (!isEqual(start, end)) return;
 

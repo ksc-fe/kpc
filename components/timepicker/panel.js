@@ -19,6 +19,8 @@ export default class TimePanel extends Calendar {
     }
 
     _init() {
+        this.isSelectTime = true;
+
         const {value, multiple, _index} = this.get();
         if (_index === undefined) {
             // if multiple, add one value showed every time
@@ -56,5 +58,24 @@ export default class TimePanel extends Calendar {
         }
 
         this.isSelectTime = false;
+    }
+
+    _getDisableOptionCallback() {
+        const {_id, value} = this.get();
+        if (!_id || !value || _id === '0' && !value[1]) return;
+
+        return _id === '0' ? (v) => {
+            const value = this.get('value');
+            return v > value[1].split(' ')[1];
+        } : (v) => {
+            const value = this.get('value');
+            return v < value[0].split(' ')[1];
+        }
+    }
+
+    onChangeTime(...args) {
+        super.onChangeTime(...args);
+        // always set this flag to true
+        this.isSelectTime = true;
     }
 }
