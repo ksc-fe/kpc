@@ -190,7 +190,9 @@ export default class Datepicker extends Intact {
             }
         }
 
-        value.sort();
+        if (!c.isSelectTime) {
+            value.sort();
+        }
 
         this.set('_value', value, {async: true});
     }

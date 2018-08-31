@@ -70,18 +70,6 @@ export default class ScrollSelect extends Intact {
         });
     }
 
-    _beforeUpdate(vNode) {
-        // if component shows value on a disabled item,
-        // after that the disabled item becomes enabled item,
-        // we should set the value to the showed value.
-        if (vNode) {
-            const {_value, value, disable} = this.get();
-            if (disable && _value !== value && !disable(_value)) {
-                this.set('value', _value);
-            }
-        }
-    }
-
     _select(item, index) {
         const {count, _translate, _marginTop} = this.get();
         const half = Math.floor(count / 2);
@@ -90,7 +78,7 @@ export default class ScrollSelect extends Intact {
         this.set({
             _translate: _translate - itemHeight * (index - half),
             _marginTop: _marginTop + itemHeight * (index - half),
-            value: item.value,
+            _value: item.value,
         });
     }
 
