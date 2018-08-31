@@ -174,7 +174,6 @@ export default class Calendar extends Intact {
     }
 
     onChangeTime(c, v) {
-        // return console.log(v);
         this.isSelectTime = true;
 
         const {value, _now, multiple} = this.get();
@@ -299,73 +298,6 @@ export default class Calendar extends Intact {
 
     _onChangeTab(c, v) {
         this.set('_isSelectTime', v === 'time', {async: true});
-    }
-
-    _isDifferent(date1, date2, type) {
-        const v1 = date1[`get${type}`]();
-        const v2 = date2[`get${type}`]();
-
-        return v1 !== v2;
-    }
-
-    _getDisableCallback(type) {
-        const {_id, value} = this.get();
-        if (!_id || !value || _id === '0' && !value[1]) return;
-
-        const start = new Date(value[0]);
-        // for the end time, we should disable items when selected the start time
-        const end = new Date(value[1] || value[0]);
-
-        if (!isEqual(start, end)) return;
-
-        // if (type !== 'Hours') {
-            // if (this._isDifferent(start, end, 'Hours')) return;
-
-            // if (type === 'Seconds') {
-                // if (this._isDifferent(start, end, 'Minutes')) return;
-            // }
-        // }
-
-        if (_id === '0') {
-            // begin time
-            return (v) => {
-                const value = this.get('value');
-                return v > new Date(value[1])[`get${type}`]();
-            }
-        } else {
-            // end time
-            return (v) => {
-                let [start, end] = this.get('value');
-                let date;
-                let timeArr;
-
-                if (end) {
-                    const _tmp = end.split(' ');
-                    date = _tmp[0];
-                    timeArr = _tmp[1].split(':');
-                } else {
-                    const _tmp = start.split(' ');
-                    const {hours, minutes, seconds} = this.refs;
-                    date = _tmp[0];
-                    timeArr = [hours.get('_value'), minutes.get('_value'), seconds.get('_value')];
-                }
-
-                const indexMap = {"Hours": 0, "Minutes": 1, "Seconds": 2};
-                timeArr[indexMap[type]] = v;
-                const newDate = `${date} ${timeArr.join(':')}`;
-
-                return newDate < start;
-                // const start = new Date(value[0]);
-                // const end = new Date(value[1]);
-                // if (type === 'Hours') {
-                    // return v < end.getHours();
-                // } else if (type === 'Minutes') {
-                    // const startHours = start.getHours();
-                    // const endHours = end.getHours();
-                // }
-                // return v < new Date(value[0])[`get${type}`]();
-            }
-        }
     }
 }
 

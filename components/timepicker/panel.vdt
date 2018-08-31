@@ -1,4 +1,4 @@
-import ScrollSelect from '../scrollSelect';
+import Time from '../datepicker/time';
 import {getTimeString} from '../datepicker/utils';
 import {_$} from '../utils';
 
@@ -14,13 +14,12 @@ const valueDate = new Date(values[self._index] || _now);
         <div class="k-title" v-else-if={{ _id === '1' }}>{{ _$('结束时间') }}</div>
     </b:title>
     <b:time-body v-if={{ _options }}>
-        <ScrollSelect 
-            data={{ _options.map(v => {
-                return {label: v, value: v};
-            }) }}
-            value={{ getTimeString(valueDate) }}
+        <Time
+            data={{ [_options] }}
+            value={{ [getTimeString(valueDate)] }}
             ev-$change:value={{ self.changeTimeByStep }}
-            disable={{ self._getDisableOptionCallback() }}
+            min={{ _id === '1' ? values[0] && values[0].split(' ')[1] : undefined }}
+            max={{ _id === '0' ? values[1] && values[1].split(' ')[1] : undefined }}
         />
     </b:time-body>
 </t:parent>

@@ -3,10 +3,11 @@ import ScrollSelect from '../scrollSelect';
 
 const {data, _value, value} = self.get();
 
+const span = data.length ? 24 / data.length : 0;
 const append = <b:append />
 
 <Row class="k-scroll-select-group">
-    <Col span={{ 8 }} v-for={{ data }} v-for-value="item">
+    <Col span={{ span }} v-for={{ data }} v-for-value="item">
         <ScrollSelect
             data={{ item }}    
             value={{ value && value[key] }}

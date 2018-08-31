@@ -41,7 +41,7 @@ export default class TimePanel extends Calendar {
         const originalValue = multiple ? (value && value[this._index]) : value;
 
         let valueDate = new Date(originalValue || _now);
-        valueDate = getDateString(valueDate, 'date') + ' ' + v;
+        valueDate = getDateString(valueDate, 'date') + ' ' + v[0];
 
         if (!multiple) {
             this.set('value', valueDate);

@@ -1,4 +1,5 @@
 import Button from '../button';
+import ScrollSelect from '../scrollSelect';
 import Time from './time';
 import {Row, Col} from '../grid';
 import {range, strPad, _$} from '../utils';
@@ -193,46 +194,9 @@ const panel = format.map(item => map[item]);
                 ev-$change:value={{ self.onChangeTime }}
                 min={{ _id === '1' ? values[0] && values[0].split(' ')[1] : undefined }}
                 max={{ _id === '0' ? values[1] && values[1].split(' ')[1] : undefined }}
-                disable={{ self._getDisableOptionCallback() }}
             >
                 <b:append>:</b:append>
             </Time>
-            {{/* <Row>
-                <Col span="8">
-                    <ScrollSelect 
-                        data={{ hours.map(v => strPad(v, 2)) }}
-                        value={{ valueDate.getHours() }}
-                        ev-$change:value={{ self.onChangeTime.bind(self, 'Hours') }}
-                        disabled={{ disabledHours }}
-                        disable={{ self._getDisableCallback('Hours') }}
-                        ref="hours"
-                    >
-                        <b:append>:</b:append>
-                    </ScrollSelect>
-                </Col>
-                <Col span="8">
-                    <ScrollSelect 
-                        data={{ minutes.map(v => strPad(v, 2)) }}
-                        value={{ valueDate.getMinutes() }}
-                        ev-$change:value={{ self.onChangeTime.bind(self, 'Minutes') }}
-                        disabled={{ disabledMinutes }}
-                        disable={{ self._getDisableCallback('Minutes') }}
-                        ref="minutes"
-                    >
-                        <b:append>:</b:append>
-                    </ScrollSelect>
-                </Col>
-                <Col span="8">
-                    <ScrollSelect 
-                        data={{ seconds.map(v => strPad(v, 2)) }}
-                        value={{ valueDate.getSeconds() }}
-                        ev-$change:value={{ self.onChangeTime.bind(self, 'Seconds') }}
-                        disabled={{ disabledSeconds }}
-                        disable={{ self._getDisableCallback('Seconds') }}
-                        ref="seconds"
-                    />
-                </Col>
-            </Row> */}}
         </b:time-body>
     </div>
 </div>
