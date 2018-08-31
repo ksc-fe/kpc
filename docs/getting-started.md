@@ -78,9 +78,9 @@ npm run dev
 
 > kpc样式需要加载字体文件，默认字体文件放在目录`./fonts`下，你可能需要根据实际情况修改该路径
 
-## 多文件构建版
+## 多文件css构建版
 
-当项目使用webpack构建时，可以使用kpc的多文件构建版，此时可以做到按需加载，而非单文件全量引入。
+当项目使用webpack构建时，可以使用kpc的多文件css构建版，此时可以做到按需加载，而非单文件全量引入。
 多文件构建版样式css和字体，需要通过`css-loader & style-loader`和`file-loader`来引入
 
 > 此版本放在`@css`文件夹下，该文件名的意思是：所有的样式`stylus`文件都被编译成了`css`文件，并非只是
@@ -157,14 +157,14 @@ import {Button, ButtonGroup} from 'kpc/components/button';
 </ButtonGroup>
 ```
 
-## 多文件半构建版
+## 多文件stylus构建版
 
-所谓半构建版与构建版的区别是，样式使用的`stylus`而非编译后的css。当我们需要修改或者引入新主题时，
+所谓stylus构建版与css构建版的区别是，样式使用的`stylus`而非编译后的css。当我们需要修改或者引入新主题时，
 通过该版本，可以很方便地实现。详见[定制主题][6]
 
 由于使用`stylus`，所以与构建版在使用上唯一的区别是需要引入`stylus-loader`
 
-> 与多文件构建版类似，此版本放在`@stylus`目录下
+> 与多文件css构建版类似，此版本放在`@stylus`目录下
 
 1. 新增依赖
 
@@ -185,7 +185,7 @@ module.export = {
     ...
     resolve: {
         alias: {
-            'kpc': '/kpc/@stylus'
+            'kpc': 'kpc/@stylus'
         }
     },
     module: {

@@ -63,7 +63,7 @@ module.exports = {
     ...
     resolve: {
         alias: {
-            'intact$': 'intact-vue/dist/intact.vue.js',
+            'intact$': 'intact-vue',
         }
     }
 }

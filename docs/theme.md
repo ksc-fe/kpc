@@ -28,7 +28,7 @@ const path = require('path');
 ```
 
 > kpc内置了一个`ksyun`的主题，我们只需要将`import`指向它即可
-> `import: path.resolve(__dirname, 'node_modules/kpc/styles/themes/ksyun/index.styl')`
+> `import: '~kpc/styles/themes/ksyun/index.styl'`
 
 # 定义主题
 
