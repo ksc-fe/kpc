@@ -192,8 +192,9 @@ const panel = format.map(item => map[item]);
                     strPad(valueDate.getSeconds(), 2),
                 ] }}
                 ev-$change:value={{ self.onChangeTime }}
-                min={{ _id === '1' ? values[0] && values[0].split(' ')[1] : undefined }}
-                max={{ _id === '0' ? values[1] && values[1].split(' ')[1] : undefined }}
+                min={{ self._getMinDate() }}
+                max={{ self._getMaxDate() }}
+                date={{ scope.date || getDateString(valueDate) }}
             >
                 <b:append>:</b:append>
             </Time>

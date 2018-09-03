@@ -5,6 +5,8 @@ import '../../styles/kpc.styl';
 import './index.styl';
 import {getDateString} from '../datepicker/utils';
 
+export const PREFIX = getDateString(new Date()) + ' ';
+
 export default class TimePanel extends Calendar {
     @Intact.template()
     static template = template;
@@ -15,6 +17,7 @@ export default class TimePanel extends Calendar {
 
             _isSelectTime: true,
             _id: undefined,
+            _prefix: PREFIX.trim(),
         };
     }
 
@@ -28,6 +31,16 @@ export default class TimePanel extends Calendar {
         } else {
             this._index = _index;
         }
+        this.on('$receive:min', (c, v) => {
+            if (v) {
+                this.set('minDate', PREFIX + v);
+            }
+        });
+        this.on('$receive:max', (c, v) => {
+            if (v) {
+                this.set('maxDate', PREFIX + v);
+            }
+        });
     }
 
     _format(date) {
@@ -58,19 +71,6 @@ export default class TimePanel extends Calendar {
         }
 
         this.isSelectTime = false;
-    }
-
-    _getDisableOptionCallback() {
-        const {_id, value} = this.get();
-        if (!_id || !value || _id === '0' && !value[1]) return;
-
-        return _id === '0' ? (v) => {
-            const value = this.get('value');
-            return v > value[1].split(' ')[1];
-        } : (v) => {
-            const value = this.get('value');
-            return v < value[0].split(' ')[1];
-        }
     }
 
     onChangeTime(...args) {

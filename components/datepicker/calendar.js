@@ -1,7 +1,7 @@
 import Intact from 'intact';
 import template from './calendar.vdt';
 import {strPad, range} from '../utils';
-import {getNowDate, getDateString, isEqual} from './utils';
+import {getNowDate, getDateString, getTimeString, isEqual} from './utils';
 
 export default class Calendar extends Intact {
     @Intact.template()
@@ -298,6 +298,44 @@ export default class Calendar extends Intact {
 
     _onChangeTab(c, v) {
         this.set('_isSelectTime', v === 'time', {async: true});
+    }
+
+    _getMinDate() {
+        const {minDate, value, _id} = this.get();
+
+        if (_id === '1') {
+            let date;
+            if (value && value[0]) {
+                date = new Date(value[0]);
+            }
+            if (date && minDate) {
+                const _minDate = new Date(minDate);
+                return date > _minDate ? date : _minDate;
+            } else {
+                return date || minDate;
+            }
+        } else if (minDate) {
+            return minDate;
+        }
+    }
+
+    _getMaxDate() {
+        const {maxDate, value, _id} = this.get();
+
+        if (_id === '0') {
+            let date;
+            if (value && value[1]) {
+                date = new Date(value[1]);
+            }
+            if (date && maxDate) {
+                const _maxDate = new Date(maxDate);
+                return date > _maxDate ? _maxDate : date;
+            } else {
+                return date || maxDate;
+            }
+        } else if (maxDate) {
+            return maxDate;
+        }
     }
 }
 

@@ -68,7 +68,7 @@ const content = <b:content>
     </template>
     <div v-else class="k-range c-clearfix" ev-mouseleave={{ self._clearRangeEndDate }}>
         <Panel
-            {{ ..._rest }} 
+            {{ ..._rest }}
             value={{ _value }}
             ev-$change:value={{ self._onChangeValueForRange.bind(self, 'begin') }}
             ref="begin"

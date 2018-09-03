@@ -27,6 +27,8 @@ const _placeholder = range ?
                 ev-hide={{ self._hide }}
                 ref="begin"
                 multiple={{ multiple }}
+                max={{ self.get('max') }}
+                min={{ self.get('min') }}
             />
         </b:singe-panel>
     </t:parent>

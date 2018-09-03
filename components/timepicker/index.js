@@ -4,6 +4,7 @@ import '../../styles/kpc.styl';
 import './index.styl';
 import {range, strPad} from '../utils';
 import {getTimeString} from '../datepicker/utils';
+import {PREFIX} from './panel';
 
 export default class Timepicker extends Datepicker {
     @Intact.template()
@@ -43,12 +44,11 @@ export default class Timepicker extends Datepicker {
         });
 
         // give the time string a date, let it can be converted to Date
-        const prefix = `2018-08-28 `;
         this.on('$receive:value', (c, v) => {
             if (v && v.length) {
-                v = v.map(item => prefix + item);
+                v = v.map(item => PREFIX + item);
             } else if (v) {
-                v = prefix + v;
+                v = PREFIX + v;
             }
             this.set('_value', v);
         });

@@ -12,8 +12,8 @@ sidebar: doc
 | value | 当前选中的时间字符串 | `String` | `undefind` |
 | clearable | 是否能清空当前值 | `Boolean` | `false` |
 | step | 固定时间点的步长 | `String` | `undefined` |
-| max | 最大可选时间 | `String` | `00:00:00` |
-| min | 最小可选时间 | `String` | `23:59:59` |
+| max | 最大可选时间 | `String` | `undefined` |
+| min | 最小可选时间 | `String` | `undefined` |
 | placeholder | 占位文字 | `String` | `"请选择时间"` |
 | disabled | 是否禁用 | `Boolean` | `false` |
 | multiple | 是否支持多选 | `Boolean` | `false` |

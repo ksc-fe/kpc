@@ -8,8 +8,12 @@ export default class DatepickerTime extends Intact {
     static propTypes = {
         data: Array,
         value: Array,
-        min: String,
-        max: String,
+        min: [String, Date],
+        max: [String, Date],
+        date: {
+            required: true,
+            type: [String, Date]
+        }
     };
 
     defaults() {
@@ -18,6 +22,7 @@ export default class DatepickerTime extends Intact {
             value: undefined,
             min: undefined,
             max: undefined,
+            date: undefined,
 
             _value: undefined,
         };
@@ -49,12 +54,17 @@ export default class DatepickerTime extends Intact {
     }
 
     _isDisabled(value) {
-        const min = this.get('min') || '00:00:00';
-        const max = this.get('max') || '24:00:00';
+        const {min, max, date} = this.get();
 
-        value = value.join(':');
+        value = new Date(`${date} ${value.join(':')}`);
 
-        return value < min || value > max;
+        if (min && max) {
+            return value < new Date(min) || value > new Date(max);
+        } else if (min) {
+            return value < new Date(min);
+        } else if (max) {
+            return value > new Date(max);
+        }
     }
 
     _beforeUpdate(vNode) {
