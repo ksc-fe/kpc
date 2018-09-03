@@ -26,10 +26,3 @@ const data2 = [{a: '表头固定啦'}, {a: '下拉'}, {a: 'yeah!'}];
 .k-table-wrapper
     margin-left: 20px
 ```
-
-
-
-
-
-
-

@@ -32,6 +32,7 @@ export default class Table extends Intact {
             type: 'default', // default border
             fixHeader: false,
             minColWidth: 40,
+            stickHeader: false,
 
             _padding: 0,
             _disabledAmount: 0,
@@ -57,6 +58,7 @@ export default class Table extends Intact {
         type: ['default', 'border'],
         fixHeader: [Boolean, String, Number],
         minColWidth: Number,
+        stickHeader: [Boolean, String, Number],
     }
 
     _init() {
@@ -83,8 +85,10 @@ export default class Table extends Intact {
 
     _mount() {
         this._calcHeaderPadding();
+        this._setStickyHeaderStyle();
 
-        window.addEventListener('resize', this._resizeTableWhenDragable);
+        window.addEventListener('resize', this._onWindowResize);
+        window.addEventListener('scroll', this._setStickyHeaderStyle);
     }
 
     get(key, defaultValue) {
@@ -177,6 +181,26 @@ export default class Table extends Intact {
             const containerHeight = this.scroll.offsetHeight;
             const headerHeight = this.header.offsetHeight;
             this.set('_padding', tableHeight - headerHeight > containerHeight ? scrollbarWidth() : 0);
+        }
+    }
+
+    _setStickyHeaderStyle() {
+        let stickHeader = this.get('stickHeader');
+        if (stickHeader !== false && stickHeader != null) {
+            const tableWidth = this.table.offsetWidth;
+            if (stickHeader === true) {
+                stickHeader = 0;
+            }
+            const top = this.table.getBoundingClientRect().top;
+            if (top <= +stickHeader) {
+                this.set('_sticky', {
+                    'width': tableWidth + 'px',
+                    'position': 'fixed',
+                    'top': `${stickHeader}px`,
+                });
+            } else {
+                this.set('_sticky', {});
+            }
         }
     }
 
@@ -355,6 +379,14 @@ export default class Table extends Intact {
         }
     }
 
+    _onWindowResize() {
+        this._resizeTableWhenDragable();
+
+        // reset the sticky header's width
+        // maybe the top of table has changed too
+        this._setStickyHeaderStyle();
+    }
+
     _resizeTableWhenDragable() {
         if (!this._dragged) return;
 
@@ -374,7 +406,8 @@ export default class Table extends Intact {
 
     _destroy() {
         this._dragEnd();
-        window.removeEventListener('resize', this._resizeTableWhenDragable);
+        window.removeEventListener('resize', this._onWindowResize);
+        window.removeEventListener('scroll', this._setStickyHeaderStyle);
     }
 }
 

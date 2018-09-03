@@ -8,9 +8,11 @@ import {noop} from '../utils';
 const {
     checkType, scheme, checkedKeys, data, rowKey, 
     className, fixHeader, noDataTemplate, disableRow,
-    resizable, expandedKeys, type,
+    resizable, expandedKeys, type, stickHeader,
     style, rowClassName, children, sort, group,
 } = self.get();
+
+const isSticky = stickHeader != null && stickHeader !== false;
 
 let colSpan = checkType === 'checkbox' || checkType === 'radio' ? 1 : 0;
 const _scheme = {};
@@ -79,9 +81,11 @@ const theadCreator = () => {
                             props['ev-dragStart'] = dragStart;
                             vNode._$ = true;
                         }
+                        const blockFn = props._blocks && (props._blocks.default || props._blocks.template);
                         _scheme[props.key] = {
                             title: props.title,
-                            template: props.template || (props._blocks && props._blocks.default && ((...args) => props._blocks.default.call(self, noop, ...args))),
+                            template: props.template || 
+                                blockFn && ((...args) => blockFn.call(self, noop, ...args))
                         };
                         return vNode;
                     }
@@ -174,6 +178,7 @@ const classNameObj = {
     'k-table-wrapper': true,
     [className]: className,
     [`k-${type}`]: type !== 'default',
+    'k-sticky': isSticky, 
 };
 
 const table = <table class="k-table"
@@ -184,17 +189,24 @@ const table = <table class="k-table"
 </table>
 
 <div class={{ classNameObj }} style={{ style }}>
-    <div v-if={{ fixHeader }} class="k-fixed"
-        style={{ {paddingRight: self.get('_padding') + 'px'} }}
+    <div v-if={{ fixHeader || isSticky }} class="k-fixed"
+        style={{ do {
+            const style = {paddingRight: self.get('_padding') + 'px'};
+            if (isSticky) {
+                const _sticky = self.get('_sticky');
+                __u.extend(style, _sticky);
+            }
+            style;
+        } }}
         ref={{ dom => self.header = dom }}
     >
         <table class="k-table">
             {{ theadCreator() }}
         </table>
     </div>
-    {{ fixHeader ? 
+    {{ fixHeader || isSticky ? 
         <div class="k-scroll"
-            style={{ typeof fixHeader === 'number' || typeof fixHeader === 'string' ?
+            style={{ !isSticky && typeof fixHeader === 'number' || typeof fixHeader === 'string' ?
                 {maxHeight: `${fixHeader}px`} : undefined
             }}
             ref={{ dom => self.scroll = dom }}

@@ -16,6 +16,8 @@ order: 1
 
 > 为了保证列顺序正确，`key`不要以数字开头
 
+> `@since v0.5.6` 也可以通过`template`block定义单元格内容
+
 ```vdt
 import Table, {TableColumn} from 'kpc/components/table';
 

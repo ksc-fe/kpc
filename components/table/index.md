@@ -15,7 +15,8 @@ sidebar: doc
 | scheme |  定义表格结构：表头，单元格内容 | `Object` | `{}` |
 | checkType | 当行可选择时，定义选择的类型: 单选 `"radio"` , 复选 `"checkbox"`, 不可选`"none"` | `"checkbox"` &#124; `"radio"` &#124; `"none"` | `"checkbox"` |
 | noDataTemplate | 当没有数据的时候展示的内容 | `String` &#124; `vNode` | `"/(ㄒoㄒ)/~~ 没有找到亲要的数据哦~"` |
-| fixHeader | 表头固定，给定需要固定高度的具体数值，当超出改值时，展示滚动条 | `Number` | `false` |
+| fixHeader | 表头固定，给定需要固定高度的具体数值，当超出改值时，展示滚动条 | `Boolean` &#124; `Number` &#124; `String` | `false` |
+| stickHeader | 表头吸顶，给定需要吸顶的高度，表格滚动超出该高度时，将表头固定在顶部 | `Boolean` &#124; `Number` &#124; `String` | `false` |
 | rowKey | 设置行的key | `Function` | function(value, index) {  return `index`; } |
 | checkedKeys | 通过`key`数组来指定哪些行被选中（针对多选） | `Array` | `[]` |
 | checkedKey | 通过`key`指定哪行被选中（针对单选） | `String` | `undefined` |
@@ -50,16 +51,18 @@ sidebar: doc
 
 ## Table
 
-| 名称 | 说明 | -- |
+| 名称 | 说明 | 参数 |
 | --- | --- | --- |
 | no-data | 自定义无数据展示模板 | - |
 | expand | 指定行展开后要展示的模板内容 | `data, index` |
 
 ## TableColumn
 
-| 名称 | 说明 |
-| --- | --- |
-| title | 自定义复杂表头内容 |
+| 名称 | 说明 | 参数 |
+| --- | --- | --- |
+| title | 自定义复杂表头内容 | - |
+| template | 自定义单元格内容 | `data, index` |
+| default | 与`template`扩展点等价，为了方便vue中使用的别名 | `data， index` |
 
 
 # 方法
