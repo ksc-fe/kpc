@@ -53,11 +53,15 @@ export function isGT(a, b) {
 }
 
 export function getDateString(date, type) {
-    const _date = [
-        date.getFullYear(),
-        strPad(date.getMonth() + 1, 2),
-        strPad(date.getDate(), 2)
-    ].join('-');
+    const year = date.getFullYear();
+    if (type === 'year') {
+        return year;
+    }
+    const month = `${year}-${strPad(date.getMonth() + 1, 2)}`;
+    if (type === 'month') {
+        return month;
+    }
+    const _date = `${month}-${strPad(date.getDate(), 2)}`;
 
     if (type !== 'datetime') {
         return _date;

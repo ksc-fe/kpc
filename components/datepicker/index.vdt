@@ -36,6 +36,10 @@ if (_placeholder == null) {
         } else {
             _placeholder = _$('请选择日期和时间');
         }
+    } else if (type === 'year') {
+        _placeholder = _$('请选择年份');
+    } else if (type === 'month') {
+        _placeholder = _$('请选择月份');
     } else {
         if (range) {
             _placeholder = _$('开始日期 ~ 结束日期');

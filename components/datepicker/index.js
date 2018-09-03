@@ -18,7 +18,7 @@ export default class Datepicker extends Intact {
         clearable: Boolean,
         disabled: Boolean,
         size: ['large', 'default', 'small', 'mini'],
-        type: ['date', 'datetime'],
+        type: ['date', 'datetime', 'year', 'month'],
         range: Boolean,
         transition: String,
         shortcuts: Array,

@@ -29,7 +29,7 @@ const map = {
     'MM': <span class="k-text">{{ _$(`${showDate.getMonth() + 1}月`) }}</span>,
     'YYYY': <span class="k-text">{{ _$(`{n}年`, {n: showDate.getFullYear()}) }}</span>
 };
-const panel = format.map(item => map[item]);
+const panel = type === 'year' ? map.YYYY : format.map(item => map[item]);
 
 <div 
     class={{ {
@@ -59,12 +59,13 @@ const panel = format.map(item => map[item]);
             <Button icon type="none" size="small" class="k-prev"
                 tagName="div" tabindex={{ null }} 
                 ev-click={{ self.prevMonth }}
+                v-if={{ type !== 'year' }}
             >
                 <i class="k-icon ion-ios-arrow-left"></i>
             </Button>
             <span
                 class="k-text-wrapper"
-                ev-click={{ self.showYearPicker }}
+                ev-click={{ type === 'year' || type === 'month' ? undefined : self.showYearPicker }}
             >{{ panel }}</span>
             <Button icon type="none" size="small" class="k-next"
                 tagName="div" tabindex={{ null }} 
@@ -76,6 +77,7 @@ const panel = format.map(item => map[item]);
             <Button icon type="none" size="small" class="k-next"
                 tagName="div" tabindex={{ null }} 
                 ev-click={{ self.nextMonth }}
+                v-if={{ type !== 'year' }}
             >
                 <i class="k-icon ion-ios-arrow-right"></i>
             </Button>
@@ -140,8 +142,10 @@ const panel = format.map(item => map[item]);
         </div>
         <Row v-if={{ _isShowYearPicker }} class="k-year-picker">
             {{ do {
+                const span = type === 'year' ? 24 : 12;
                 const map = {
-                    MM: <Col span="12">
+                    MM: (
+                        <Col span={{ span }}>
                             <ScrollSelect 
                                 data={{ range(0, 11).map(i => {
                                     return {label: _$(`${i + 1}月`), value: i};
@@ -149,8 +153,10 @@ const panel = format.map(item => map[item]);
                                 value={{ showDate.getMonth() }}
                                 ev-$change:value={{ self.onChangeMonth }}
                             />
-                        </Col>,
-                    YYYY: <Col span="12">
+                        </Col>
+                    ),
+                    YYYY: (
+                        <Col span={{ span }}>
                             <ScrollSelect 
                                 data={{ (value) => {
                                     return range(value - 5, value + 5);
@@ -159,9 +165,14 @@ const panel = format.map(item => map[item]);
                                 ev-$change:value={{ self.onChangeYear }}
                             />
                         </Col>
+                    )
                 };
 
-                format.map(item => map[item]);
+                if (type === 'year') {
+                    map.YYYY;
+                } else {
+                    format.map(item => map[item]);
+                }
             } }}
         </Row>
     </div>

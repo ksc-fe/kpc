@@ -3,13 +3,16 @@
 .k-tooltip-content.k-time-picker
     .k-calendar-wrapper
         padding $timepicker-content-padding
-        width $timepicker-content-width 
+        if $timepicker-content-width != $datepicker-content-width
+            width $timepicker-content-width 
     .k-scroll-select
         height $timepicker-scroll-select-height 
         margin 0
 
     // range
     .k-range
+        .k-calendar-wrapper
+            width $timepicker-range-content-width 
         .k-time-picker
             border $timepicker-inner-border
             padding $timepicker-range-time-picker-padding

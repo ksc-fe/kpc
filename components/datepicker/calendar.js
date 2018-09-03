@@ -1,5 +1,4 @@
-import Intact from 'intact';
-import template from './calendar.vdt';
+import Intact from 'intact'; import template from './calendar.vdt';
 import {strPad, range} from '../utils';
 import {getNowDate, getDateString, getTimeString, isEqual} from './utils';
 
@@ -56,6 +55,36 @@ export default class Calendar extends Intact {
         } else {
             this._index = _index;
         }
+
+        this.on('$receive:type', (c, v) => {
+            if (v === 'year' || v === 'month') {
+                this.set('_isShowYearPicker', true);
+            }
+        });
+
+        this.on('$receive:value', (c, v) => {
+            const type = this.get('type');
+            const now = new Date();
+            if (type === 'year') {
+                v && now.setFullYear(+v);
+                this.set('_showDate', now);
+            } else if (type === 'month') {
+                if (v) {
+                    const [year, month] = v.split('-');
+                    now.setFullYear(+year);
+                    now.setMonth(month - 1);
+                }
+                this.set('_showDate', now);
+            }
+        });
+
+        this.on('$change:_showDate', (c, v) => {
+            // if is select year or month, set the _showDate to vlue
+            const type = this.get('type');
+            if (type === 'year' || type === 'month') {
+                this.set('value', this._format(v));
+            }
+        });
     }
 
     select(v, e) {
