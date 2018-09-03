@@ -10,7 +10,7 @@ export default class FormItem extends Intact {
         model: String,
         rules: Object,
         // isValid: Boolean,
-        // isDirty: Boolean,
+        isDirty: Boolean,
         // message: String, 
         messages: Object,
         classNames: Object,

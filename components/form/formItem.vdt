@@ -6,8 +6,8 @@ const {
 
 const classNameObj = {
     'k-form-item': true,
-    'k-invalid': isDirty && !isValid,
-    'k-valid': isDirty && isValid,
+    'k-invalid': isDirty && isValid === false,
+    'k-valid': isDirty && isValid === true,
     [className]: className,
 };
 
