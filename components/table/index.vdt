@@ -206,9 +206,18 @@ const table = <table class="k-table"
     </div>
     {{ fixHeader || isSticky ? 
         <div class="k-scroll"
-            style={{ !isSticky && typeof fixHeader === 'number' || typeof fixHeader === 'string' ?
-                {maxHeight: `${fixHeader}px`} : undefined
-            }}
+            style={{ do {
+                let style;
+                if (!isSticky &&
+                    (typeof fixHeader === 'number' || 
+                    typeof fixHeader === 'string')
+                ) {
+                    style = {maxHeight: `${fixHeader}px`};
+                } else if (isSticky && self.get('_sticky.position')) {
+                    style = {paddingTop: self.get('_headerHeight')};
+                }
+                style;
+            } }}
             ref={{ dom => self.scroll = dom }}
         >{{ table }}</div> :
         table

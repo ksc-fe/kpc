@@ -188,18 +188,25 @@ export default class Table extends Intact {
         let stickHeader = this.get('stickHeader');
         if (stickHeader !== false && stickHeader != null) {
             const tableWidth = this.table.offsetWidth;
+            const headerHeight = this.header.offsetHeight;
             if (stickHeader === true) {
                 stickHeader = 0;
             }
             const top = this.table.getBoundingClientRect().top;
             if (top <= +stickHeader) {
-                this.set('_sticky', {
-                    'width': tableWidth + 'px',
-                    'position': 'fixed',
-                    'top': `${stickHeader}px`,
+                this.set({
+                    '_sticky': {
+                        'width': tableWidth + 'px',
+                        'position': 'fixed',
+                        'top': `${stickHeader}px`,
+                    },
+                    '_headerHeight': `${headerHeight}px`,
                 });
             } else {
-                this.set('_sticky', {});
+                this.set({
+                    '_sticky': {},
+                    '_headerHeight': 0,
+                });
             }
         }
     }
