@@ -193,3 +193,18 @@ export const expandAnimationCallbacks = {
     'ev-a:enterStart': setHeight,
     'ev-a:enterEnd': (el) => el.style.height = '',
 };
+
+export function toggleArray(arr, value) {
+    if (!Array.isArray(arr)) {
+        return [value];
+    } else {
+        arr = arr.slice(0);
+        const index = arr.indexOf(value);
+        if (~index) {
+            arr.splice(index, 1);
+        } else {
+            arr.push(value);
+        }
+        return arr;
+    }
+}

@@ -1,5 +1,5 @@
 import Intact from 'intact'; import template from './calendar.vdt';
-import {strPad, range} from '../utils';
+import {strPad, range, toggleArray} from '../utils';
 import {getNowDate, getDateString, getTimeString, isEqual} from './utils';
 
 export default class Calendar extends Intact {
@@ -108,19 +108,14 @@ export default class Calendar extends Intact {
             }
         } else {
             let values = this.get('value');
-            if (!Array.isArray(values)) {
-                values = [];
-            } else {
-                values = values.slice(0);
-            }
             if (type !== 'datetime') {
-                const index = values.indexOf(value);
-                if (~index) {
-                    values.splice(index, 1);
-                } else {
-                    values.push(value);
-                }
+                values = toggleArray(values, value);
             } else {
+                if (!Array.isArray(values)) {
+                    values = [];
+                } else {
+                    values = values.slice(0);
+                }
                 values.push(value);
                 if (autoChangeToTimePicker) {
                     this.set('_isSelectTime', true, {async: true});

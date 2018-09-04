@@ -4,7 +4,7 @@ import '../../styles/kpc.styl';
 import './index.styl';
 import Option from './option';
 import Group from './group';
-import {selectInput, _$, isStringOrNumber} from '../utils';
+import {selectInput, _$, isStringOrNumber, toggleArray} from '../utils';
 
 export default class Select extends Intact {
     @Intact.template()
@@ -84,18 +84,7 @@ export default class Select extends Intact {
             this.set('value', value, {async: true});
         } else {
             let values = this.get('value');
-            if (!Array.isArray(values)) {
-                values = [];
-            } else {
-                values = values.slice(0);
-            }
-            const index = values.indexOf(value);
-            if (~index) {
-                // if find, delete it
-                values.splice(index, 1); 
-            } else {
-                values.push(value);
-            }
+            values = toggleArray(values, value);
             this.set('value', values, {async: true});
             this._focusInput();
         }
