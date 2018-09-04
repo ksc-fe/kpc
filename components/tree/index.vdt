@@ -1,0 +1,33 @@
+import {expandAnimationCallbacks} from '../utils';
+
+const {data, expandedKeys} = self.get();
+
+const TreeNode = ({data, key}) => {
+    return __u.map(data, (value, index) => {
+        const id = value.key || key + index;
+        const expanded = expandedKeys && expandedKeys.indexOf(id) > -1;
+        return <Animate
+            class={{ {
+                "k-node": true,
+                "k-expanded": expanded, 
+            } }}
+            key={{ id }}
+            a:transition="c-expand"
+            a:move={{ false }}
+            {{ ...expandAnimationCallbacks }}
+        >
+            <div class="k-label" ev-click={{ self._toggleExpand.bind(self, value, id) }}>
+                <i class="k-icon ion-android-arrow-dropdown" v-if={{ value.children }}></i>
+                {{ value.label }}
+            </div>
+            <TreeNode data={{ value.children }}
+                key={{ id + '-' }}
+                v-if={{ expanded }}
+            />
+        </Animate>
+    });
+};
+
+<div class="k-tree">
+    <TreeNode data={{ data }} key=""/>
+</div>

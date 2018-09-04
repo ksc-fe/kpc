@@ -187,10 +187,14 @@ export function mapChildren(children, callback) {
     return vNodes;
 }
 
-const setHeight = (el) => el.style.height = el.children[0].offsetHeight + 'px';
 export const expandAnimationCallbacks = {
-    'ev-a:leaveStart': setHeight,
-    'ev-a:enterStart': setHeight,
+    'ev-a:leaveStart': (el) => el.style.height = el.clientHeight + 'px',
+    'ev-a:leave': (el) => el.style.height = 0,
+    'ev-a:enterStart': (el) => {
+        el._height = el.clientHeight + 'px';
+        el.style.height = 0;
+    },
+    'ev-a:enter': (el) => el.style.height = el._height,
     'ev-a:enterEnd': (el) => el.style.height = '',
 };
 
