@@ -36,6 +36,7 @@ export default class Table extends Intact {
 
             _padding: 0,
             _disabledAmount: 0,
+            _isSticky: false,
         }
     }
 
@@ -77,6 +78,21 @@ export default class Table extends Intact {
         ['data', 'disableRow'].forEach(item => {
             this.on(`$change:${item}`, this._updateDisabledAmount);
         });
+        this.on('$changed:_isSticky', (c, v) => {
+            if (v) {
+                this._onStickyHeaderMount();
+            } else {
+                this._onStickyHeaderUnmount();
+            }
+        });
+        this.on('$receive:stickHeader', (c, v) => {
+            this.set('_isSticky', v != null && v !== false);
+        });
+        this.on('$changed:_sticky', (c, v) => {
+            if (v.position === 'fixed') {
+                this.header.scrollLeft = this.element.scrollLeft;
+            }
+        });
         this._updateDisabledAmount();
 
         this._move = this._move.bind(this);
@@ -85,10 +101,30 @@ export default class Table extends Intact {
 
     _mount() {
         this._calcHeaderPadding();
-        this._setStickyHeaderStyle();
-
         window.addEventListener('resize', this._onWindowResize);
+
+        if (this.get('_isSticky')) {
+            this._onStickyHeaderMount();
+        }
+    }
+
+    _onStickyHeaderMount() {
+        this._setStickyHeaderStyle();
         window.addEventListener('scroll', this._setStickyHeaderStyle);
+        // when dragable we must scroll sticky header when table scrolled
+        const elem = this.element;
+        const header = this.header;
+        this._elementScrollCallback = (e) => {
+            if (this.get('_sticky.position') === 'fixed') {
+                header.scrollLeft = elem.scrollLeft;
+            }
+        };
+        elem.addEventListener('scroll', this._elementScrollCallback);
+    }
+
+    _onStickyHeaderUnmount() {
+        window.removeEventListener('scroll', this._setStickyHeaderStyle);
+        this.element.removeEventListener('scroll', this._elementScrollCallback);
     }
 
     get(key, defaultValue) {
@@ -186,28 +222,29 @@ export default class Table extends Intact {
 
     _setStickyHeaderStyle() {
         let stickHeader = this.get('stickHeader');
-        if (stickHeader !== false && stickHeader != null) {
-            const tableWidth = this.table.offsetWidth;
-            const headerHeight = this.header.offsetHeight;
-            if (stickHeader === true) {
-                stickHeader = 0;
-            }
-            const top = this.table.getBoundingClientRect().top;
-            if (top <= +stickHeader) {
-                this.set({
-                    '_sticky': {
-                        'width': tableWidth + 'px',
-                        'position': 'fixed',
-                        'top': `${stickHeader}px`,
-                    },
-                    '_headerHeight': `${headerHeight}px`,
-                });
-            } else {
-                this.set({
-                    '_sticky': {},
-                    '_headerHeight': 0,
-                });
-            }
+        const tableWidth = this.table.offsetWidth;
+        const headerHeight = this.header.offsetHeight;
+        if (stickHeader === true) {
+            stickHeader = 0;
+        }
+        const top = this.table.getBoundingClientRect().top;
+        if (top <= +stickHeader) {
+            const containerWidth = this.element.offsetWidth;
+            this.set({
+                '_sticky': {
+                    'width': containerWidth + 'px',
+                    'position': 'fixed',
+                    'top': `${stickHeader}px`,
+                },
+                '_headerHeight': `${headerHeight}px`,
+            });
+        } else {
+            this.set({
+                '_sticky': {
+                    width: tableWidth + 'px',
+                },
+                '_headerHeight': 0,
+            });
         }
     }
 
@@ -321,7 +358,8 @@ export default class Table extends Intact {
         this._tables = [this.table];
         this._isLastTh = !currentTh.nextElementSibling;
 
-        if (this.get('fixHeader')) {
+        const {fixHeader, _isSticky} = this.get();
+        if (fixHeader || _isSticky) {
             const ths = this.table.children[0].getElementsByTagName('th');
             const fixThs = currentTh.parentNode.children;
             const index = slice.call(fixThs).indexOf(currentTh);
@@ -329,7 +367,15 @@ export default class Table extends Intact {
             this._prevThs.push(ths[index - 1]);
             // this._tables.push(this.header.children[0]);
             // if fixHeader we should change the width of both header and scroll
-            this._tables = [this.header, this.scroll];
+            if (fixHeader) {
+                this._tables = [this.header, this.scroll];
+            } else if (this.get('_sticky.position') === 'fixed') {
+                // if stickHeader set width of the table in header
+                // to make the sticky header don't expand
+                this._tables = [this.headerTable, this.scroll];
+            } else {
+                this._tables = [this.header, this.headerTable, this.scroll];
+            }
         }
 
         document.addEventListener('mousemove', this._move);
@@ -391,7 +437,9 @@ export default class Table extends Intact {
 
         // reset the sticky header's width
         // maybe the top of table has changed too
-        this._setStickyHeaderStyle();
+        if (this.get('_isSticky')) {
+            this._setStickyHeaderStyle();
+        }
     }
 
     _resizeTableWhenDragable() {
@@ -415,6 +463,9 @@ export default class Table extends Intact {
         this._dragEnd();
         window.removeEventListener('resize', this._onWindowResize);
         window.removeEventListener('scroll', this._setStickyHeaderStyle);
+        if (this.get('_isSticky')) {
+            this._onStickyHeaderUnmount();
+        }
     }
 }
 

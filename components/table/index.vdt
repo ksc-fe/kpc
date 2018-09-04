@@ -8,11 +8,9 @@ import {noop} from '../utils';
 const {
     checkType, scheme, checkedKeys, data, rowKey, 
     className, fixHeader, noDataTemplate, disableRow,
-    resizable, expandedKeys, type, stickHeader,
+    resizable, expandedKeys, type, stickHeader, _isSticky,
     style, rowClassName, children, sort, group,
 } = self.get();
-
-const isSticky = stickHeader != null && stickHeader !== false;
 
 let colSpan = checkType === 'checkbox' || checkType === 'radio' ? 1 : 0;
 const _scheme = {};
@@ -178,7 +176,7 @@ const classNameObj = {
     'k-table-wrapper': true,
     [className]: className,
     [`k-${type}`]: type !== 'default',
-    'k-sticky': isSticky, 
+    'k-sticky': _isSticky, 
 };
 
 const table = <table class="k-table"
@@ -189,10 +187,10 @@ const table = <table class="k-table"
 </table>
 
 <div class={{ classNameObj }} style={{ style }}>
-    <div v-if={{ fixHeader || isSticky }} class="k-fixed"
+    <div v-if={{ fixHeader || _isSticky }} class="k-fixed"
         style={{ do {
             const style = {paddingRight: self.get('_padding') + 'px'};
-            if (isSticky) {
+            if (_isSticky) {
                 const _sticky = self.get('_sticky');
                 __u.extend(style, _sticky);
             }
@@ -200,20 +198,20 @@ const table = <table class="k-table"
         } }}
         ref={{ dom => self.header = dom }}
     >
-        <table class="k-table">
+        <table class="k-table" ref={{ dom => self.headerTable = dom }}>
             {{ theadCreator() }}
         </table>
     </div>
-    {{ fixHeader || isSticky ? 
+    {{ fixHeader || _isSticky ? 
         <div class="k-scroll"
             style={{ do {
-                let style;
-                if (!isSticky &&
+                let style = {};
+                if (!_isSticky &&
                     (typeof fixHeader === 'number' || 
                     typeof fixHeader === 'string')
                 ) {
                     style = {maxHeight: `${fixHeader}px`};
-                } else if (isSticky && self.get('_sticky.position')) {
+                } else if (_isSticky && self.get('_sticky.position')) {
                     style = {paddingTop: self.get('_headerHeight')};
                 }
                 style;
