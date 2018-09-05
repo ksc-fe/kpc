@@ -25,15 +25,17 @@ export default class Tree extends Intact {
     }
 
     _toggleExpand(data, key, e) {
-        if (data.disabled) return;
-
         this.set('expandedKeys', toggleArray(this.get('expandedKeys'), key));
         this.trigger('click:node', data, key, e);
     }
 
     _toggleCheck(data, key, e) {
-        e.stopPropagation();
-        e.preventDefault();
         this.set('checkedKeys', toggleArray(this.get('checkedKeys'), key));
+    }
+
+    _updateChecked(node, checked) {
+        // if (checked) {
+            // node.
+        // }
     }
 }

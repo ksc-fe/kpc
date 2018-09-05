@@ -1,26 +1,47 @@
-const {children, checked, indeterminate, disabled, checkbox, expanded, label} = self.get();
+import Checkbox from '../checkbox';
+import {expandAnimationCallbacks} from '../utils';
+
+const {
+    children, checked, indeterminate,
+    disabled, checkbox, label,
+    onClick, data, _root, key,
+} = self.get();
+const TreeNode = self.constructor;
+const expandedKeys = _root.get('expandedKeys');
+const expanded = expandedKeys && expandedKeys.indexOf(key) > -1;
+const checkedKeys = _root.get('checkedKeys');
+const isChecked = (key) => checkedKeys && checkedKeys.indexOf(key) > -1;
 
 <div class={{ {
     "k-node": true,
     "k-expanded": expanded, 
-    "k-disabled": disabled,
+    "k-disabled": data.disabled,
 } }}>
-    <div class="k-label" ev-click={{ self._toggleExpand.bind(self, value, id) }}>
-        <i class="k-icon ion-android-arrow-dropdown" v-if={{ children }}></i>
+    <div class="k-label" ev-click={{ self._toggleExpand }}>
+        <i class="k-icon ion-android-arrow-dropdown" v-if={{ data.children }}></i>
         <Checkbox v-if={{ checkbox }} 
-            disabled={{ disabled }}
-            ev-click={{ self._toggleCheck.bind(self, value, id) }} 
+            disabled={{ data.disabled }}
             value={{ checked }}
+            ev-click={{ self._toggleCheck }}
             indeterminate={{ indeterminate }}
         />
-        <span class="k-text">{{ label }}</span>
+        <span class="k-text">{{ data.label }}</span>
     </div>
     <Animate 
         a:transition="c-expand"
         a:move={{ false }}
         {{ ...expandAnimationCallbacks }}
-        v-if={{ expanded }}
+        v-if={{ expanded && data.children }}
     >
-        {{ children }}
+        <TreeNode v-for={{ data.children }}
+            data={{ value }}
+            checkbox={{ checkbox }}
+            _root={{ _root }}
+            v-for-key="index"
+            key={{ key + '-' + index }}
+            checked={{ !!(checked || isChecked(key + '-' + index)) }}
+            _parent={{ self }}
+            ref={{ (i) => self.nodes[index]= i }}
+        />
     </Animate>
 </div>
