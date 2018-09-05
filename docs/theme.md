@@ -104,6 +104,9 @@ $theme-dir := __dirname()
 
 此时`$theme-dir`指向`styles/mytheme`目录，kpc会在该目录下检测主题文件。
 
+> kpc已经定义好了stylus的`__dirname`方法，你也可以直接使用
+> `use('../../node_modules/kpc/styles/function.js')`。具体加载路径根据你的主题文件路径而定
+
 3. 在`styles/mytheme/`下新建`button.styl`文件（文件名必须与组件名对应），添加`k-dashed`
 样式定义
 
