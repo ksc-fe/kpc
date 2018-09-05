@@ -1,6 +1,6 @@
 ---
-title: 基础用法
-order: 0
+title: 带复选框
+order: 1
 ---
 
 ```vdt
@@ -47,5 +47,5 @@ const data = [
     }
 ];
 
-<Tree data={{ data }} />
+<Tree data={{ data }} checkbox />
 ```

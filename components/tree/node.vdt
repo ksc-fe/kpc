@@ -1,0 +1,26 @@
+const {children, checked, indeterminate, disabled, checkbox, expanded, label} = self.get();
+
+<div class={{ {
+    "k-node": true,
+    "k-expanded": expanded, 
+    "k-disabled": disabled,
+} }}>
+    <div class="k-label" ev-click={{ self._toggleExpand.bind(self, value, id) }}>
+        <i class="k-icon ion-android-arrow-dropdown" v-if={{ children }}></i>
+        <Checkbox v-if={{ checkbox }} 
+            disabled={{ disabled }}
+            ev-click={{ self._toggleCheck.bind(self, value, id) }} 
+            value={{ checked }}
+            indeterminate={{ indeterminate }}
+        />
+        <span class="k-text">{{ label }}</span>
+    </div>
+    <Animate 
+        a:transition="c-expand"
+        a:move={{ false }}
+        {{ ...expandAnimationCallbacks }}
+        v-if={{ expanded }}
+    >
+        {{ children }}
+    </Animate>
+</div>

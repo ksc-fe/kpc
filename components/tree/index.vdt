@@ -1,33 +1,53 @@
+import Checkbox from '../checkbox';
 import {expandAnimationCallbacks} from '../utils';
 
-const {data, expandedKeys} = self.get();
+const {data, expandedKeys, checkbox, checkedKeys} = self.get();
 
-const TreeNode = ({data, key}) => {
+const TreeNode = ({data, key, checked, indeterminate}) => {
     return __u.map(data, (value, index) => {
         const id = value.key || key + index;
         const expanded = expandedKeys && expandedKeys.indexOf(id) > -1;
-        return <Animate
+        let _checked = checked;
+        let _indeterminate = indeterminate;
+        if (!_checked) {
+            _checked = checkedKeys && checkedKeys.indexOf(id) > -1;
+        }
+        if (_checked) {
+            _indeterminate = false;
+        }
+        return <div
             class={{ {
                 "k-node": true,
                 "k-expanded": expanded, 
+                "k-disabled": value.disabled,
             } }}
-            key={{ id }}
-            a:transition="c-expand"
-            a:move={{ false }}
-            {{ ...expandAnimationCallbacks }}
         >
             <div class="k-label" ev-click={{ self._toggleExpand.bind(self, value, id) }}>
                 <i class="k-icon ion-android-arrow-dropdown" v-if={{ value.children }}></i>
-                {{ value.label }}
+                <Checkbox v-if={{ checkbox }} 
+                    disabled={{ value.disabled }}
+                    ev-click={{ self._toggleCheck.bind(self, value, id) }} 
+                    value={{ _checked }}
+                    indeterminate={{ _indeterminate }}
+                />
+                <span class="k-text">{{ value.label }}</span>
             </div>
-            <TreeNode data={{ value.children }}
-                key={{ id + '-' }}
+            <Animate 
+                a:transition="c-expand"
+                a:move={{ false }}
+                {{ ...expandAnimationCallbacks }}
                 v-if={{ expanded }}
-            />
-        </Animate>
+            > 
+                <TreeNode data={{ value.children }}
+                    key={{ id + '-' }}
+                    checked={{ _checked }}
+                    indeterminate={{ _indeterminate }}
+                />
+            </Animate>
+        </div>
     });
 };
 
 <div class="k-tree">
-    <TreeNode data={{ data }} key=""/>
+    <TreeNode data={{ data }} key="" checked={{ false }} indeterminate={{ true }} />
 </div>

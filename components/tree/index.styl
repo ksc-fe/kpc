@@ -3,22 +3,37 @@
 .k-tree
     font-size 12px
     line-height 24px
+    .k-label
+        padding 0 8px
+        &:hover
+            color $primary-color
+    .k-text
+        vertical-align middle
+    .k-icon
+        display inline-block
+        vertical-align middle
+        margin-right 8px
+        color #b2b2b2
+        transform rotate(-90deg)
+        transition transform $transition
     .k-node
         cursor pointer
         .k-node
             padding-left 16px
             overflow hidden
-    .k-label
-        padding 0 8px
-        &:hover
-            color $primary-color
-    .k-icon
-        display inline-block
+        // expaned
+        &.k-expanded
+            > .k-label .k-icon
+                transform rotate(0)
+        // disabled
+        &.k-disabled
+            .k-label
+            .k-icon
+                color $disabled-color
+    // checkbox
+    .k-checkbox
         margin-right 8px
-        color #b2b2b2
-        transform rotate(-90deg)
-        // transition transform $transition
-    .k-node.k-expanded
-        > .k-label .k-icon
-            transform rotate(0)
+
+
+
 
