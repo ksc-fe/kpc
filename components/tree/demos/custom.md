@@ -1,24 +1,30 @@
 ---
-title: 带复选框
-order: 1
+title: 自定义节点内容
+order: 2
 ---
 
 ```vdt
 import Tree from 'kpc/components/tree';
-import Button from 'kpc/components/button';
+import {Button, ButtonGroup} from 'kpc/components/button';
 
 const data = self.get('data');
 
-<div>
-    <Button ev-click={{ self._getCheckedData }}>get checked data</Button>
-    <br />
-    <br />
-    <Tree data={{ data }} 
-        checkbox
-        ref="tree"
-        v-model:checkedKeys="checkedKeys"
-    />
-</div>
+<Tree data={{ data }}>
+    <b:label params="data">
+        <span class="k-text">{{ data.label }}</span>
+        <ButtonGroup v-if={{ !data.disabled }}>
+            <Button icon size="small">+</Button>
+            <Button icon size="small">-</Button>
+        </ButtonGroup>
+    </b:label>
+</Tree>
+```
+
+```styl
+.k-tree
+    width 300px
+.k-btns
+    float right
 ```
 
 ```js
@@ -71,10 +77,6 @@ export default class extends Intact {
             ],
             checkedKeys: ['0-0', 'floor-2.1.1'],
         }
-    }
-
-    _getCheckedData() {
-        console.log(this.refs.tree.getCheckedData());
     }
 }
 

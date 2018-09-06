@@ -14,15 +14,20 @@ const TreeNodes = ({data}) => {
                 "k-disabled": value.originData.disabled,
             } }}
         >
-            <div class="k-label" ev-click={{ self._toggleExpand.bind(self, value) }}>
-                <i class="k-icon ion-android-arrow-dropdown" v-if={{ value.children }}></i>
+            <div class={{ {"k-label": true, "k-leaf": !value.children} }}>
+                <i class="k-icon ion-android-arrow-dropdown"
+                    ev-click={{ self._toggleExpand.bind(self, value) }}
+                    v-if={{ value.children }}
+                ></i>
                 <Checkbox v-if={{ checkbox }} 
                     disabled={{ value.originData.disabled }}
                     ev-click={{ self._toggleCheck.bind(self, value) }}
                     value={{ value.checked }}
                     indeterminate={{ value.indeterminate }}
                 />
-                <span class="k-text">{{ value.originData.label }}</span>
+                <b:label args={{ [value.originData, value] }}>
+                    <span class="k-text">{{ value.originData.label }}</span>
+                </b:label>
             </div>
             <Animate 
                 a:transition="c-expand"
@@ -35,34 +40,6 @@ const TreeNodes = ({data}) => {
         </div>
     });
 };
-
-/* const TreeNodes = ({data, key}) => { */
-    /* return __u.map(data, (value, index) => { */
-        /* const id = value.key || key + index; */
-        /* const expanded = expandedKeys && expandedKeys.indexOf(id) > -1; */
-        /* return <TreeNode */
-            /* disabled={{ value.disabled }}  */
-            /* label={{ value.label }} */
-            /* checkbox={{ checkbox }} */
-            /* expanded={{ expanded }} */
-            /* onClick={{ self._toggleExpand.bind(self, value, id) }} */
-            /* key={{ id }} */
-            /* ev-$change:checked={{ self._updateChecked }} */
-        /* > */
-            /* <TreeNodes data={{ value.children }} key={{ id + '-' }} /> */
-        /* </TreeNode> */
-    /* }); */
-/* }; */
-
-/* <div class="k-tree"> */
-    /* <TreeNode */
-        /* v-for={{ mappingKeys }} */
-        /* data={{ value }} */
-        /* checkbox={{ checkbox }} */
-        /* _root={{ self }} */
-        /* key={{ key }} */
-    /* /> */
-/* </div> */
 
 <div class="k-tree">
     <TreeNodes data={{ _mappingKeys }} />
