@@ -86,7 +86,7 @@ export default class Tree extends Intact {
         e.preventDefault();
         e.stopPropagation();
 
-        updateChildrenStatus(data);
+        updateChildrenStatus(data, !data.checked);
         updateParentStatus(data);
 
         this.trigger('change:checked', data);
@@ -109,6 +109,12 @@ export default class Tree extends Intact {
         loop(this.get('_mappingKeys'));
         return data;
     }
+
+    append(data, node) {
+        data.children || (data.children = []);
+        data.children.push(node);
+        this._mappingKeys();
+    }
 }
 
 /**
@@ -118,8 +124,8 @@ export default class Tree extends Intact {
  *
  * @return 
  */
-function updateChildrenStatus(data) {
-    data.checked = !data.checked;
+function updateChildrenStatus(data, checked) {
+    data.checked = checked;
     data.indeterminate = false;
     
     const children = data.children;
@@ -128,7 +134,7 @@ function updateChildrenStatus(data) {
             const child = children[i];
             if (child.originData.disabled) continue;
 
-            updateChildrenStatus(child);
+            updateChildrenStatus(child, checked);
         }
     }
 }
