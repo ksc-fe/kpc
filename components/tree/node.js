@@ -9,46 +9,20 @@ export default class TreeNode extends Intact {
         disabled: Boolean,
         checked: Boolean,
         indeterminate: Boolean,
+        label: [String, Number, Intact.VNode],
     };
 
     defaults() {
         return {
-            disabled: false,
             checked: false,
             indeterminate: false,
             checkbox: false,
-            expanded: false,
             label: '',
         };
     }
 
     _init() {
         this.nodes = [];
-        const parent = this.get('_parent');
-        if (parent) {
-            this.on('$change:checked', (c, v) => {
-                this.get('_root')._toggleCheck(this.get('data'), this.get('key'));
-                if (v && !parent.get('checked')) {
-                    parent.updateStatus();
-                    // parent.set({
-                        // 'indeterminate': true,
-                    // });
-                } else if (!v) {
-                    parent.updateStatus();
-                    // parent.updateIndeterminate();
-                    // parent.set({
-                        // indeterminate: false,
-                    // });
-                }
-            });
-            this.on('$change:indeterminate', (c, v) => {
-                if (v) {
-                    parent.set({indeterminate: true});
-                } else {
-                    parent.set({indeterminate: false});
-                }
-            });
-        }
     }
 
     _toggleExpand(e) {
@@ -61,39 +35,45 @@ export default class TreeNode extends Intact {
         e.preventDefault();
         e.stopPropagation();
 
-        const checked = !this.get('checked');
-        // this.get('_root')._toggleCheck(this.get('data'), this.get('key'), e);
-        // const parent = this.get('_parent');
-        // if (parent) {
-            // if (checked) {
-                // parent.set({
-                    // indeterminate: true,
-                    // checked: false,
-                // });
-            // } else {
-                // parent.set({
-                    // indeterminate: false,
-                    // checked: false,
-                // });
-            // }
-        // }
-        this.set('checked', checked);
+        this.get('_root')._updateStatus(this, !this.get('checked'));
     }
 
-    updateStatus() {
+    _updateIndeterminate() {
         let checkedCount = 0;
         let count = 0; 
+        let indeterminate;
         for (let i = 0; i < this.nodes.length; i++) {
             const node = this.nodes[i];
-            if (!node) continue;
+            if (!node || node.get('data.disabled')) continue;
             if (node.get('checked')) {
                 checkedCount++;
+            } else if (node.get('indeterminate')) {
+                indeterminate = true;
             }
             count++;
         }
+        if (!indeterminate) {
+            indeterminate = !!(checkedCount && checkedCount < count);
+        }
         this.set({
-            indeterminate: !!(checkedCount && checkedCount < count),
+            indeterminate: indeterminate,
             checked: !!(checkedCount && checkedCount === count),
-        });
+        }, {silent: true});
+    }
+
+    _checkOrUncheck(checked) {
+        const data = this.get('data');
+        const children = data.children;
+        if (!children) return;
+
+        for (let key in children) {
+            const child = children[key];
+            if (child.originData.disabled) return;
+
+            child._checkOrUncheck(checked);
+        }
+
+        data.checked = checked;
+        data.indeterminate = false;
     }
 }

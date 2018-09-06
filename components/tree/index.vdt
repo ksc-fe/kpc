@@ -1,76 +1,69 @@
-import TreeNode from './node';
+import Checkbox from '../checkbox';
+import {expandAnimationCallbacks} from '../utils';
 
-const {data, expandedKeys, checkbox, checkedKeys} = self.get();
+const {_mappingKeys, expandedKeys, checkbox} = self.get();
 
-/* const TreeNode = ({data, key, checked, indeterminate}) => { */
-    /* return __u.map(data, (value, index) => { */
-        /* const id = value.key || key + index; */
-        /* const expanded = expandedKeys && expandedKeys.indexOf(id) > -1; */
-        /* let _checked = checked; */
-        /* let _indeterminate = indeterminate; */
-        /* if (!_checked) { */
-            /* _checked = checkedKeys && checkedKeys.indexOf(id) > -1; */
-        /* } */
-        /* if (_checked) { */
-            /* _indeterminate = false; */
-        /* } */
-        /* return <div */
-            /* class={{ { */
-                /* "k-node": true, */
-                /* "k-expanded": expanded,  */
-                /* "k-disabled": value.disabled, */
-            /* } }} */
-        /* > */
-            /* <div class="k-label" ev-click={{ self._toggleExpand.bind(self, value, id) }}> */
-                /* <i class="k-icon ion-android-arrow-dropdown" v-if={{ value.children }}></i> */
-                /* <Checkbox v-if={{ checkbox }}  */
-                    /* disabled={{ value.disabled }} */
-                    /* ev-click={{ self._toggleCheck.bind(self, value, id) }}  */
-                    /* value={{ _checked }} */
-                    /* indeterminate={{ _indeterminate }} */
-                /* /> */
-                /* <span class="k-text">{{ value.label }}</span> */
-            /* </div> */
-            /* <Animate  */
-                /* a:transition="c-expand" */
-                /* a:move={{ false }} */
-                /* {{ ...expandAnimationCallbacks }} */
-                /* v-if={{ expanded }} */
-            /* >  */
-                /* <TreeNode data={{ value.children }} */
-                    /* key={{ id + '-' }} */
-                    /* checked={{ _checked }} */
-                    /* indeterminate={{ _indeterminate }} */
-                /* /> */
-            /* </Animate> */
-        /* </div> */
-    /* }); */
-/* }; */
+const TreeNodes = ({data}) => {
+    return __u.map(data, value => {
+        const expanded = expandedKeys && expandedKeys.indexOf(value.key) > -1;
 
-const TreeNodes = ({data, key}) => {
-    return __u.map(data, (value, index) => {
-        const id = value.key || key + index;
-        const expanded = expandedKeys && expandedKeys.indexOf(id) > -1;
-        return <TreeNode
-            disabled={{ value.disabled }} 
-            label={{ value.label }}
-            checkbox={{ checkbox }}
-            expanded={{ expanded }}
-            onClick={{ self._toggleExpand.bind(self, value, id) }}
-            key={{ id }}
-            ev-$change:checked={{ self._updateChecked }}
+        return <div
+            class={{ {
+                "k-node": true,
+                "k-expanded": expanded, 
+                "k-disabled": value.originData.disabled,
+            } }}
         >
-            <TreeNodes data={{ value.children }} key={{ id + '-' }} />
-        </TreeNode>
+            <div class="k-label" ev-click={{ self._toggleExpand.bind(self, value) }}>
+                <i class="k-icon ion-android-arrow-dropdown" v-if={{ value.children }}></i>
+                <Checkbox v-if={{ checkbox }} 
+                    disabled={{ value.originData.disabled }}
+                    ev-click={{ self._toggleCheck.bind(self, value) }}
+                    value={{ value.checked }}
+                    indeterminate={{ value.indeterminate }}
+                />
+                <span class="k-text">{{ value.originData.label }}</span>
+            </div>
+            <Animate 
+                a:transition="c-expand"
+                a:move={{ false }}
+                {{ ...expandAnimationCallbacks }}
+                v-if={{ expanded }}
+            > 
+                <TreeNodes data={{ value.children }} />
+            </Animate>
+        </div>
     });
 };
 
+/* const TreeNodes = ({data, key}) => { */
+    /* return __u.map(data, (value, index) => { */
+        /* const id = value.key || key + index; */
+        /* const expanded = expandedKeys && expandedKeys.indexOf(id) > -1; */
+        /* return <TreeNode */
+            /* disabled={{ value.disabled }}  */
+            /* label={{ value.label }} */
+            /* checkbox={{ checkbox }} */
+            /* expanded={{ expanded }} */
+            /* onClick={{ self._toggleExpand.bind(self, value, id) }} */
+            /* key={{ id }} */
+            /* ev-$change:checked={{ self._updateChecked }} */
+        /* > */
+            /* <TreeNodes data={{ value.children }} key={{ id + '-' }} /> */
+        /* </TreeNode> */
+    /* }); */
+/* }; */
+
+/* <div class="k-tree"> */
+    /* <TreeNode */
+        /* v-for={{ mappingKeys }} */
+        /* data={{ value }} */
+        /* checkbox={{ checkbox }} */
+        /* _root={{ self }} */
+        /* key={{ key }} */
+    /* /> */
+/* </div> */
+
 <div class="k-tree">
-    <TreeNode
-        v-for={{ data }}
-        data={{ value }}
-        checkbox={{ checkbox }}
-        _root={{ self }}
-        key={{ String(key) }}
-    />
+    <TreeNodes data={{ _mappingKeys }} />
 </div>
