@@ -9,19 +9,26 @@ import {Button, ButtonGroup} from 'kpc/components/button';
 
 const data = self.get('data');
 
-<Tree data={{ data }} ref="tree" checkbox>
-    <b:label params="data">
-        <span class="k-text">{{ data.label }}</span>
-        <ButtonGroup v-if={{ !data.disabled }}>
-            <Button icon size="small" ev-click={{ self._append.bind(self, data) }}>+</Button>
-            <Button icon size="small">-</Button>
+<div class="wrapper">
+    <div class="c-clearfix">
+        <ButtonGroup>
+            <Button icon size="small" ev-click={{ self._appendToRoot }}>+</Button>
         </ButtonGroup>
-    </b:label>
-</Tree>
+    </div>
+    <Tree data={{ data }} ref="tree" checkbox>
+        <b:label params="data, node">
+            <span class="k-text">{{ data.label }}</span>
+            <ButtonGroup v-if={{ !data.disabled }}>
+                <Button icon size="small" ev-click={{ self._append.bind(self, node) }}>+</Button>
+                <Button icon size="small" ev-click={{ self._remove.bind(self, node) }}>-</Button>
+            </ButtonGroup>
+        </b:label>
+    </Tree>
+</div>
 ```
 
 ```styl
-.k-tree
+.wrapper
     width 300px
 .k-btns
     float right
@@ -75,15 +82,23 @@ export default class extends Intact {
                     ]
                 }
             ],
-            checkedKeys: ['0-0', 'floor-2.1.1'],
         }
     }
 
-    _append(data) {
-        this.refs.tree.append(data, {
+    _append(node) {
+        node.append({
             label: 'Appended node',
         });
     }
-}
 
+    _remove(node) {
+        node.remove();
+    }
+
+    _appendToRoot() {
+        this.refs.tree.root.append({
+            label: 'Appended root node'
+        });
+    }
+}
 ```

@@ -1,18 +1,22 @@
 import Checkbox from '../checkbox';
 import {expandAnimationCallbacks} from '../utils';
 
-const {_mappingKeys, expandedKeys, checkbox} = self.get();
+const {expandedKeys, checkbox} = self.get();
 
 const TreeNodes = ({data}) => {
     return __u.map(data, value => {
         const expanded = expandedKeys && expandedKeys.indexOf(value.key) > -1;
 
-        return <div
+        return <Animate
+            a:transition="c-expand"
+            a:move={{ false }}
+            {{ ...expandAnimationCallbacks }}
             class={{ {
                 "k-node": true,
                 "k-expanded": expanded, 
-                "k-disabled": value.originData.disabled,
+                "k-disabled": value.data.disabled,
             } }}
+            key={{ value.key }}
         >
             <div class={{ {"k-label": true, "k-leaf": !value.children} }}>
                 <i class="k-icon ion-android-arrow-dropdown"
@@ -20,13 +24,13 @@ const TreeNodes = ({data}) => {
                     v-if={{ value.children }}
                 ></i>
                 <Checkbox v-if={{ checkbox }} 
-                    disabled={{ value.originData.disabled }}
+                    disabled={{ value.data.disabled }}
                     ev-click={{ self._toggleCheck.bind(self, value) }}
                     value={{ value.checked }}
                     indeterminate={{ value.indeterminate }}
                 />
-                <b:label args={{ [value.originData, value] }}>
-                    <span class="k-text">{{ value.originData.label }}</span>
+                <b:label args={{ [value.data, value] }}>
+                    <span class="k-text">{{ value.data.label }}</span>
                 </b:label>
             </div>
             <Animate 
@@ -37,10 +41,10 @@ const TreeNodes = ({data}) => {
             > 
                 <TreeNodes data={{ value.children }} />
             </Animate>
-        </div>
+        </Animate>
     });
 };
 
 <div class="k-tree">
-    <TreeNodes data={{ _mappingKeys }} />
+    <TreeNodes data={{ self.root.children }} />
 </div>

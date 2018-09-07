@@ -69,7 +69,7 @@ export default class extends Intact {
                     ]
                 }
             ],
-            checkedKeys: ['0-0', 'floor-2.1.1'],
+            checkedKeys: ['floor-2.1.1'],
         }
     }
 
