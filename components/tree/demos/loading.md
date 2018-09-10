@@ -1,6 +1,6 @@
 ---
 title: 异步加载
-order: 1
+order: 1.1
 ---
 
 ```vdt
@@ -23,7 +23,7 @@ export default class extends Intact {
         return {
             data: [
                 {
-                    label: 'First floor-1',
+                    label: 'parent',
                     children: []
                 },
             ],

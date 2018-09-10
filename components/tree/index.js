@@ -22,8 +22,6 @@ export default class Tree extends Intact {
             checkbox: false,
             checkedKeys: undefined,
             load: undefined,
-
-            _mappingKeys: [],
         }
     }
 
