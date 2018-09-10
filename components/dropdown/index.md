@@ -17,6 +17,7 @@ sidebar: doc
 | trigger | 触发方式，`hover`为悬停触发，`click`为点击触发 | `"hover"` &#124; `"click"` | `"hover"` |
 | disabled | 是否禁用整个菜单 | `Boolean` | `false` |
 | position | 菜单弹出的位置，默认在触发器正下方向下偏移`5px`的地方 | `Object` | `{my: 'center top+5', 'center bottom'}` |
+| value | 是否将弹出菜单展示出来，可通过`v-model`双向绑定 | `Boolean` | `false` |
 
 ## DropdownItem
 
