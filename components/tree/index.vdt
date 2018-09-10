@@ -1,7 +1,7 @@
 import Checkbox from '../checkbox';
 import {expandAnimationCallbacks} from '../utils';
 
-const {expandedKeys, checkbox} = self.get();
+const {expandedKeys, checkbox, load} = self.get();
 
 const TreeNodes = ({data}) => {
     return __u.map(data, value => {
@@ -20,9 +20,10 @@ const TreeNodes = ({data}) => {
         >
             <div class={{ {"k-label": true, "k-leaf": !value.children} }}>
                 <i class="k-icon ion-android-arrow-dropdown"
-                    ev-click={{ self._toggleExpand.bind(self, value) }}
-                    v-if={{ value.children }}
+                    ev-click={{ self._toggleExpand.bind(self, value, expanded) }}
+                    v-if={{ value.children && value.loaded !== false }}
                 ></i>
+                <i class="k-icon ion-load-c icon-loading" v-if={{ value.loaded === false }}></i>
                 <Checkbox v-if={{ checkbox }} 
                     disabled={{ value.data.disabled }}
                     ev-click={{ self._toggleCheck.bind(self, value) }}

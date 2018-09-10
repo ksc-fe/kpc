@@ -12,6 +12,7 @@ export default class Tree extends Intact {
         data: Array,
         expandedKeys: Array,
         checkbox: Boolean,
+        load: Function,
     };
 
     defaults() {
@@ -20,6 +21,7 @@ export default class Tree extends Intact {
             expandedKeys: undefined,
             checkbox: false,
             checkedKeys: undefined,
+            load: undefined,
 
             _mappingKeys: [],
         }
@@ -37,11 +39,26 @@ export default class Tree extends Intact {
         needRecheckNodes.forEach(node => node.updateUpward());
     }
 
-    _toggleExpand(data, e) {
-        if (data.data.disabled) return;
+    async _toggleExpand(node, expanded, e) {
+        if (node.data.disabled) return;
+        
+        const {load} = this.get();
+        if (load && !expanded && !node.loaded) {
+            node.loaded = false;
+            this.update();
+            const children = await load(node);
+            node.loaded = true;
+            node.append(children);
+        }
 
-        this.set('expandedKeys', toggleArray(this.get('expandedKeys'), data.key));
-        this.trigger('click:node', data);
+        if (expanded) {
+            this.shrink(node.key);
+        } else {
+            this.expand(node.key);
+        }
+
+        // this.set('expandedKeys', toggleArray(this.get('expandedKeys'), node.key));
+        // this.trigger('click:node', node);
     }
 
     _toggleCheck(node, e) {
@@ -62,9 +79,26 @@ export default class Tree extends Intact {
         if (!expandedKeys) {
             expandedKeys = [key]; 
         } else {
+            expandedKeys = expandedKeys.slice(0);
             const index = expandedKeys.indexOf(key);
             if (!~index) {
                 expandedKeys.push(key);
+            }
+        }
+        this.set('expandedKeys', expandedKeys, {silent});
+    }
+
+    shrink(key, silent) {
+        if (key === this.root.key) return;
+
+        let expandedKeys = this.get('expandedKeys');
+        if (!expandedKeys) {
+            return;
+        } else {
+            expandedKeys = expandedKeys.slice(0);
+            const index = expandedKeys.indexOf(key);
+            if (~index) {
+                expandedKeys.splice(index, 1);
             }
         }
         this.set('expandedKeys', expandedKeys, {silent});

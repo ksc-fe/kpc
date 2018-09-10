@@ -45,6 +45,7 @@ export default class Node {
         this.key = key;
         this.children = undefined;
         this.tree = tree;
+        this.loaded = undefined;
     }
 
     updateDownward(checked) {
@@ -91,9 +92,15 @@ export default class Node {
     }
 
     append(data) {
+        if (!Array.isArray(data)) {
+            data = [data];
+        }
+        const children = this.children || (this.children = []);
         const needRecheckNodes = [];
-        const node = Node.createNode(data, this, this.tree, needRecheckNodes);
-        (this.children || (this.children = [])).push(node);
+        data.forEach(item => {
+            const node = Node.createNode(item, this, this.tree, needRecheckNodes);
+            children.push(node);
+        });
 
         this.tree.expand(this.key, true);
         this.tree.update();
