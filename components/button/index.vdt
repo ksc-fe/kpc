@@ -75,8 +75,8 @@ if (!icon && Array.isArray(children)) {
 >
     {{ loading ? 
         classNameObj['k-icon-right'] ?
-            [children, <i class="k-icon ion-load-c icon-loading"></i>] :
-            [<i class="k-icon ion-load-c icon-loading"></i>, children] :
+            [children, <i class="k-icon ion-load-c icon-loading" key="k-loading"></i>] :
+            [<i class="k-icon ion-load-c icon-loading" key="k-loading"></i>, children] :
         children 
     }}
     <input type={{ _checkType }} v-if={{ _checkType !== 'none' }}

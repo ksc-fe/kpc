@@ -55,7 +55,7 @@ const Options = (props) => {
                     of="parent"
                     disabled={{ item.disabled }}
                     trigger={{ trigger }}
-                    show={{ active }}
+                    value={{ active }}
                 >
                     <Item />
                     <DropdownMenu
