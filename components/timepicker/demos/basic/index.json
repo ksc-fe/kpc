@@ -1,0 +1,19 @@
+{
+    "setting": {
+        "title": "基础使用",
+        "order": 0
+    },
+    "catalogs": [],
+    "contents": "<p>基础用法，通过<code>v-model</code>双向绑定，值为时间字符串，并非<code>Date</code>对象。添加<code>multiple</code>属性可以支持多选；通过<code>min</code> <code>max</code>属性可以指定最小最大可选时间</p>\n",
+    "index": 18,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Timepicker <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/timepicker'</span>;\n\n&lt;div&gt;\n    &lt;Timepicker v-model=\"time\" min=\"01:34:56\" max=\"15:02:59\" /&gt; You selected: {{ self.get('time') }}\n    &lt;br /&gt;&lt;br /&gt;\n    &lt;Timepicker v-model=\"timeArray\" multiple /&gt; You selected: {{ JSON.stringify(self.get('timeArray')) }}\n&lt;/div&gt;</code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
+        }
+    ]
+}

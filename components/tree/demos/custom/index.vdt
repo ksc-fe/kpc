@@ -1,0 +1,21 @@
+import Tree from 'kpc/components/tree';
+import {Button, ButtonGroup} from 'kpc/components/button';
+
+const data = self.get('data');
+
+<div class="wrapper">
+    <div class="c-clearfix">
+        <ButtonGroup>
+            <Button icon size="small" ev-click={{ self._appendToRoot }}>+</Button>
+        </ButtonGroup>
+    </div>
+    <Tree data={{ data }} ref="tree" checkbox>
+        <b:label params="data, node">
+            <span class="k-text">{{ data.label }}</span>
+            <ButtonGroup v-if={{ !data.disabled }}>
+                <Button icon size="small" ev-click={{ self._append.bind(self, node) }}>+</Button>
+                <Button icon size="small" ev-click={{ self._remove.bind(self, node) }}>-</Button>
+            </ButtonGroup>
+        </b:label>
+    </Tree>
+</div>

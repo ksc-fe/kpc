@@ -39,7 +39,7 @@ module.exports =
 /******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
 /******/ 		// "0" is the signal for "already loaded"
 /******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("./chunk/" + {"0":"e523af8b73a940d17fc3","1":"3bea30806a67805af66f","2":"b934bfe1df7d9cf01606","3":"5731a11c200ad68a2fcc"}[chunkId] + ".js");
+/******/ 			var chunk = require("./chunk/" + {"0":"57ed9a4c8fd4b786ddd6","1":"fadab0ea41c1c958a7bd","2":"cd99777db83a44c3cf94","3":"2e10b8e2cea2edc7c345"}[chunkId] + ".js");
 /******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				modules[moduleId] = moreModules[moduleId];
@@ -271,7 +271,7 @@ exports.App = App;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534999648412
+      // 1536661581547
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -467,7 +467,7 @@ exports.Spin = Spin;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534999648775
+      // 1536661582623
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -589,6 +589,7 @@ exports._$ = _$;
 exports.localize = localize;
 exports.getTransition = getTransition;
 exports.mapChildren = mapChildren;
+exports.toggleArray = toggleArray;
 
 var _intact = __webpack_require__("intact");
 
@@ -793,16 +794,39 @@ function mapChildren(children, callback) {
     return vNodes;
 }
 
-var setHeight = function setHeight(el) {
-    return el.style.height = el.children[0].offsetHeight + 'px';
-};
 var expandAnimationCallbacks = exports.expandAnimationCallbacks = {
-    'ev-a:leaveStart': setHeight,
-    'ev-a:enterStart': setHeight,
+    'ev-a:leaveStart': function evALeaveStart(el) {
+        return el.style.height = el.clientHeight + 'px';
+    },
+    'ev-a:leave': function evALeave(el) {
+        return el.style.height = 0;
+    },
+    'ev-a:enterStart': function evAEnterStart(el) {
+        el._height = el.clientHeight + 'px';
+        el.style.height = 0;
+    },
+    'ev-a:enter': function evAEnter(el) {
+        return el.style.height = el._height;
+    },
     'ev-a:enterEnd': function evAEnterEnd(el) {
         return el.style.height = '';
     }
 };
+
+function toggleArray(arr, value) {
+    if (!Array.isArray(arr)) {
+        return [value];
+    } else {
+        arr = arr.slice(0);
+        var index = arr.indexOf(value);
+        if (~index) {
+            arr.splice(index, 1);
+        } else {
+            arr.push(value);
+        }
+        return arr;
+    }
+}
 
 /***/ }),
 
@@ -1291,7 +1315,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534999653185
+      // 1536661584509
       var cssReload = require("!../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1353,6 +1377,13 @@ module.exports = require("babel-runtime/core-js/object/keys");
 /***/ (function(module, exports) {
 
 module.exports = require("babel-runtime/core-js/promise");
+
+/***/ }),
+
+/***/ "babel-runtime/core-js/set":
+/***/ (function(module, exports) {
+
+module.exports = require("babel-runtime/core-js/set");
 
 /***/ }),
 

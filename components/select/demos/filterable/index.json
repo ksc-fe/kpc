@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>指定<code>filterable</code>支持筛选，组件会同时对<code>label</code>和<code>value</code>进行筛选，你也可以通过<code>filter</code>属性来自定义筛选函数</p>\n",
-    "index": 130,
+    "index": 139,
     "highlighted": [
         {
             "language": "vdt",

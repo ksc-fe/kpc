@@ -1,0 +1,19 @@
+{
+    "setting": {
+        "title": "时间范围",
+        "order": 1
+    },
+    "catalogs": [],
+    "contents": "<p>添加<code>range</code>属性，支持时间范围选择</p>\n",
+    "index": 57,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Timepicker <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/timepicker'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Timepicker</span> <span class=\"hljs-attr\">v-model</span>=<span class=\"hljs-string\">\"time\"</span> <span class=\"hljs-attr\">range</span> <span class=\"hljs-attr\">clearable</span> /&gt;</span>\n    You selected: {{ JSON.stringify(self.get('time')) }}\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span></code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
+        }
+    ]
+}

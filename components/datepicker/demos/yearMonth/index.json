@@ -1,0 +1,23 @@
+{
+    "setting": {
+        "title": "选择年或月",
+        "order": 5.1
+    },
+    "catalogs": [],
+    "contents": "<p>将<code>type</code>属性指定为<code>year</code>或<code>month</code>可以只选择“年”或“月”</p>\n",
+    "index": 164,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Datepicker <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/datepicker'</span>;\n\n&lt;div&gt;\n    &lt;Datepicker type=\"year\" v-model=\"year\" /&gt;\n    &lt;Datepicker type=\"month\" v-model=\"month\" clearable /&gt;\n&lt;/div&gt;</code></pre>"
+        },
+        {
+            "language": "styl",
+            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-datepicker</span>\n    <span class=\"hljs-attribute\">margin-right</span> <span class=\"hljs-number\">20px</span></code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
+        }
+    ]
+}

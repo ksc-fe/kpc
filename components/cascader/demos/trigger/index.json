@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>子菜单的触发的方式默认是<code>click</code>点击展开，通过设置<code>trigger</code>属性为<code>hover</code>，可以指定为移入展开</p>\n",
-    "index": 87,
+    "index": 93,
     "highlighted": [
         {
             "language": "vdt",

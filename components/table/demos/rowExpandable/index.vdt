@@ -8,23 +8,23 @@ var data = [
 <div class='no-data-template'>
     <Table 
         data={{ data }} 
-        expand={{ function(data, index) {
-            return <div>Email: {{ data.email }}</div>
-        } }}
         checkType="none"
     >
+        <b:expand params="data, index">
+            <div>Email: {{ data.email }}</div>
+        </b:expand>
         <TableColumn title="点击整行展开内容" key="name" />
     </Table>
 
     <Table 
         data={{ data }} 
-        expand={{ function(data, index) {
-            return <div>Email: {{ data.email }}</div>
-        } }} 
         checkType="none"
         rowExpandable={{ false }}
         expandedKeys={{ self.get('expandedKeys') }}
     >
+        <b:expand params="data, index">
+            <div>Email: {{ data.email }}</div>
+        </b:expand>
         <TableColumn title="点击+，展开内容" key="name" 
             template={{ (data, index) => {
                 return <div>

@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>用<code>OptionGroup</code>嵌套<code>Option</code>可以实现分组功能。我们还可以通过添加<code>card</code>属性来支持卡片式分组功能。<code>OptionGroup</code>支持<code>label</code>扩展点，用来定义复杂的分组标签展示</p>\n",
-    "index": 162,
+    "index": 167,
     "highlighted": [
         {
             "language": "vdt",

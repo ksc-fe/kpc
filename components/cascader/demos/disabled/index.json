@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>给组件添加<code>disabled</code>属性，可以禁用整个组件；给<code>data</code>数据项添加<code>disabled</code>属性可以单独禁用该项</p>\n",
-    "index": 41,
+    "index": 73,
     "highlighted": [
         {
             "language": "vdt",

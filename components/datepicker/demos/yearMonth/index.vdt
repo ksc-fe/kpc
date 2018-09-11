@@ -1,0 +1,6 @@
+import Datepicker from 'kpc/components/datepicker';
+
+<div>
+    <Datepicker type="year" v-model="year" />
+    <Datepicker type="month" v-model="month" clearable />
+</div>

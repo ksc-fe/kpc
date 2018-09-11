@@ -1,0 +1,19 @@
+import {Table, TableColumn} from 'kpc/components/table';
+
+const data = [
+    {name: 'Javey', sex: 'male'},
+    {name: 'Lisa', sex: 'female'}
+];
+
+<Table data={{ data }} stickHeader="50" resizable>
+    <TableColumn title="姓名" key="name">
+        <b:template params="data">
+            {{ data.name }}
+        </b:template>
+    </TableColumn>
+    <TableColumn title="性别" key="sex">
+        <b:template params="data">
+            {{ data.sex }}
+        </b:template>
+    </TableColumn>
+</Table>

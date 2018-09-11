@@ -1,0 +1,16 @@
+import Tree from 'kpc/components/tree';
+import Button from 'kpc/components/button';
+
+const data = self.get('data');
+
+<div>
+    <Button ev-click={{ self._getCheckedData }}>get checked data</Button>
+    <Button ev-click={{ self._getCheckedLeavesData }}>get checked leaves data</Button>
+    <br />
+    <br />
+    <Tree data={{ data }} 
+        checkbox
+        ref="tree"
+        v-model:checkedKeys="checkedKeys"
+    />
+</div>

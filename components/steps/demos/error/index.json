@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>指定<code>Steps</code>的<code>status</code>属性为<code>error</code>，即可将步骤条置为错误状态</p>\n",
-    "index": 42,
+    "index": 47,
     "highlighted": [
         {
             "language": "vdt",

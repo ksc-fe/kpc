@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>Select</code>嵌套<code>Option</code>使用，用<code>v-model</code>进行双向数据绑定。(支持键盘选择)</p>\n<blockquote>\n<p>当<code>Select</code>传入的<code>value</code>在<code>Option</code>中不存在时，组件会强制将<code>value</code>置为空字符串。你也可以通过添加<code>allowUnmatch</code>属性让它不置空</p>\n</blockquote>\n",
-    "index": 30,
+    "index": 34,
     "highlighted": [
         {
             "language": "vdt",

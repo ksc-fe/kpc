@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>status</code>来指定状态：<code>active</code> <code>normal</code> <code>error</code> <code>success</code></p>\n",
-    "index": 58,
+    "index": 67,
     "highlighted": [
         {
             "language": "vdt",

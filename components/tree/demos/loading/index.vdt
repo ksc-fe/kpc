@@ -1,0 +1,8 @@
+import Tree from 'kpc/components/tree';
+
+const data = self.get('data');
+
+<Tree data={{ data }} 
+    checkbox
+    load={{ self._loadData }}
+/>

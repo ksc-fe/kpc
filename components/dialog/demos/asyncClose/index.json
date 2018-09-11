@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>Dialog</code>默认点击确定按钮会立即关闭弹窗并触发<code>ok</code>事件，我们可以给<code>ok</code>属性（并非<code>ok</code>事件）指定一个函数来去掉默认函数行为，此时你可以自己控制弹窗的关闭情况。<code>cancel</code>属性同理。</p>\n",
-    "index": 156,
+    "index": 169,
     "highlighted": [
         {
             "language": "vdt",

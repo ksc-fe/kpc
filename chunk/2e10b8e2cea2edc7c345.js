@@ -433,7 +433,7 @@ exports.ButtonGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534999652566
+      // 1536661583522
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -598,7 +598,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         }.call($this),
         'children': [function () {
             try {
-                return loading ? classNameObj['k-icon-right'] ? [children, h('i', null, null, 'k-icon ion-load-c icon-loading')] : [h('i', null, null, 'k-icon ion-load-c icon-loading'), children] : children;
+                return loading ? classNameObj['k-icon-right'] ? [children, h('i', null, null, 'k-icon ion-load-c icon-loading', 'k-loading')] : [h('i', null, null, 'k-icon ion-load-c icon-loading', 'k-loading'), children] : children;
             } catch (e) {
                 _e(e);
             }
@@ -773,7 +773,7 @@ exports.Checkbox = Checkbox;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534999653852
+      // 1536661585093
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -848,7 +848,15 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         'k-checked': self.isChecked()
     }, _classNameObj[className] = className, _classNameObj['k-indeterminate'] = indeterminate, _classNameObj);
 
-    return h('label', {
+    var events = ['ev-click', 'ev-mouseenter', 'ev-mouseleave'].reduce(function (memo, name) {
+        if (rest[name]) {
+            memo[name] = rest[name];
+            delete rest[name];
+        }
+        return memo;
+    }, {});
+
+    return h('label', (0, _extends3.default)({
         'style': function () {
             try {
                 return style;
@@ -862,7 +870,14 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
-        }.call($this),
+        }.call($this)
+    }, function () {
+        try {
+            return events;
+        } catch (e) {
+            _e(e);
+        }
+    }.call($this), {
         'ev-keypress': function () {
             try {
                 return self._onKeypress;
@@ -870,7 +885,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 _e(e);
             }
         }.call($this)
-    }, [h('span', null, h('input', (0, _extends3.default)({
+    }), [h('span', null, h('input', (0, _extends3.default)({
         'type': 'checkbox',
         'disabled': function () {
             try {
@@ -1093,7 +1108,7 @@ var Dropdown = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
         if (hasSaved) {
             props._hasSaved = true;
         }
-        children.props = (0, _extends3.default)({}, children.props, props);
+        children.props = (0, _extends3.default)({}, originProps, props);
         this.set('children', children, { silent: true });
     };
 
@@ -1269,7 +1284,7 @@ exports.DropdownItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534999656509
+      // 1536661587089
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1677,7 +1692,7 @@ var DropdownMenu = (_dec = _intact2.default.template(), (_class = (_temp = _clas
 
     DropdownMenu.prototype.defaults = function defaults() {
         return {
-            show: false,
+            value: false,
             trigger: 'hover',
             position: {},
             transition: 'c-slidedown',
@@ -1686,17 +1701,27 @@ var DropdownMenu = (_dec = _intact2.default.template(), (_class = (_temp = _clas
     };
 
     DropdownMenu.prototype._init = function _init() {
+        var _this2 = this;
+
         this.subDropdowns = [];
         this.items = [];
         this.focusIndex = -1;
         this.locked = false;
+
+        this.on('$changed:value', function (c, value) {
+            if (value) {
+                _this2.trigger('show', _this2);
+            } else {
+                _this2.trigger('hide', _this2);
+            }
+        });
     };
 
     DropdownMenu.prototype._mount = function _mount() {
         var parent = this._findParentDropdownMenu();
         if (parent) parent.subDropdowns.push(this);
 
-        // because the DropdownMenu can be change by key
+        // because the DropdownMenu can be changed by key
         // and it can not be found in Dropdown
         // so we handle it here again
         if (!this.dropdown) {
@@ -1720,7 +1745,7 @@ var DropdownMenu = (_dec = _intact2.default.template(), (_class = (_temp = _clas
 
     DropdownMenu.prototype.show = function show() {
         clearTimeout(this.timer);
-        this.set('show', true);
+        this.set('value', true);
         var parent = this._findParentDropdownMenu();
         if (parent) {
             var showedMenu = parent._showedMenu;
@@ -1739,38 +1764,38 @@ var DropdownMenu = (_dec = _intact2.default.template(), (_class = (_temp = _clas
     };
 
     DropdownMenu.prototype.hide = function hide(immediately) {
-        var _this2 = this;
+        var _this3 = this;
 
         if (!immediately) {
             this.timer = setTimeout(function () {
-                _this2.set('show', false);
+                _this3.set('value', false);
             }, 200);
         } else {
-            this.set('show', false);
+            this.set('value', false);
         }
     };
 
     DropdownMenu.prototype.toggle = function toggle() {
-        this.set('show', !this.get('show'));
+        this.set('value', !this.get('value'));
     };
 
     DropdownMenu.prototype.position = function position() {
-        var _this3 = this;
+        var _this4 = this;
 
         // if the dropdown menu is nested, then show the parent first
         // and show the child menu later
         var p = function p(_of, transition) {
-            (0, _position3.default)(_this3.refs.menu.element, (0, _extends3.default)({
+            (0, _position3.default)(_this4.refs.menu.element, (0, _extends3.default)({
                 my: 'center top+8',
                 at: 'center bottom',
                 of: _of,
                 using: function using(feedback) {
                     // let the child menu has the same transition with parent menu
-                    _this3.set('transition', transition || (0, _utils.getTransition)(feedback));
+                    _this4.set('transition', transition || (0, _utils.getTransition)(feedback));
                 }
-            }, _this3.get('position')));
-            _this3.positioned = true;
-            _this3.trigger('positioned');
+            }, _this4.get('position')));
+            _this4.positioned = true;
+            _this4.trigger('positioned');
         };
 
         var _of = this.dropdown.element;
@@ -1795,12 +1820,14 @@ var DropdownMenu = (_dec = _intact2.default.template(), (_class = (_temp = _clas
         this.focusIndex = -1;
         this._addDocumentEvents();
         this.position();
-        this.trigger('show');
     };
 
     DropdownMenu.prototype._addDocumentEvents = function _addDocumentEvents() {
         var parent = this._findParentDropdownMenu();
         if (!parent) {
+            // no matter what the trigger is
+            // we should let the layer hide when click document. #52
+
             // if (this.get('trigger') === 'click') {
             document.addEventListener('click', this._onDocumentClick);
             // }
@@ -1988,7 +2015,7 @@ var DropdownMenu = (_dec = _intact2.default.template(), (_class = (_temp = _clas
 
     return DropdownMenu;
 }(_intact2.default), _class2.template = _menu2.default, _class2.propTypes = {
-    show: Boolean,
+    value: Boolean,
     trigger: ['hover', 'click'],
     position: Object,
     transition: String,
@@ -2049,7 +2076,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
 
     var _self$get = self.get(),
         children = _self$get.children,
-        show = _self$get.show,
+        value = _self$get.value,
         trigger = _self$get.trigger,
         className = _self$get.className,
         transition = _self$get.transition;
@@ -2075,7 +2102,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         }.call($this),
         'children': function () {
             try {
-                return show;
+                return value;
             } catch (e) {
                 _e(e);
             }
@@ -2344,7 +2371,7 @@ exports.Input = Input;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534999656032
+      // 1536661586843
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -2882,7 +2909,7 @@ var Link = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fun
     return Link;
 }(_intact2.default), _class2.history = undefined, _class2.propTypes = {
     href: String,
-    name: String,
+    name: [String, Array],
     isReplace: Boolean
 }, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
 exports.default = Link;
@@ -3658,7 +3685,7 @@ exports.Radio = Radio;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534999658130
+      // 1536661589022
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -4141,18 +4168,7 @@ var Select = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
             this.set('value', value, { async: true });
         } else {
             var values = this.get('value');
-            if (!Array.isArray(values)) {
-                values = [];
-            } else {
-                values = values.slice(0);
-            }
-            var index = values.indexOf(value);
-            if (~index) {
-                // if find, delete it
-                values.splice(index, 1);
-            } else {
-                values.push(value);
-            }
+            values = (0, _utils.toggleArray)(values, value);
             this.set('value', values, { async: true });
             this._focusInput();
         }
@@ -4335,7 +4351,7 @@ exports.OptionGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534999653631
+      // 1536661584844
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -4405,7 +4421,8 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         fluid = _self$get.fluid,
         width = _self$get.width,
         allowUnmatch = _self$get.allowUnmatch,
-        card = _self$get.card;
+        card = _self$get.card,
+        hideIcon = _self$get.hideIcon;
 
     var _activeLabel = self.get('_activeLabel');
 
@@ -4413,7 +4430,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
 
     var classNameObj = (_classNameObj = {
         'k-select': true
-    }, _classNameObj[className] = className, _classNameObj[scope.className] = scope.className, _classNameObj['k-disabled'] = disabled, _classNameObj['k-show'] = _show, _classNameObj['k-clearable'] = clearable, _classNameObj['k-' + size] = size !== 'default', _classNameObj['k-fluid'] = fluid, _classNameObj);
+    }, _classNameObj[className] = className, _classNameObj[scope.className] = scope.className, _classNameObj['k-disabled'] = disabled, _classNameObj['k-show'] = _show, _classNameObj['k-clearable'] = clearable, _classNameObj['k-' + size] = size !== 'default', _classNameObj['k-fluid'] = fluid, _classNameObj['k-with-prefix'] = blocks.prefix, _classNameObj['k-with-suffix'] = !hideIcon, _classNameObj);
 
     var hasValue = value != null && (!multiple && value !== '' || multiple && value.length);
     var isGroup = Array.isArray(self.get('data.0.data'));
@@ -4726,14 +4743,14 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             }
         }.call($this),
         '_context': $this,
-        'ev-$changed:show': function () {
+        'ev-$changed:value': function () {
             try {
                 return self._position;
             } catch (e) {
                 _e(e);
             }
         }.call($this),
-        'ev-$change:show': function () {
+        'ev-$change:value': function () {
             try {
                 return self._onChangeShow;
             } catch (e) {
@@ -4807,7 +4824,20 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                     _e(e);
                 }
             }.call($this)
-        }, [h('input', {
+        }, [function () {
+            try {
+                return blocks.prefix;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this) ? h('div', null, (_blocks['prefix'] = function (parent) {
+            return null;
+        }) && (__blocks['prefix'] = function (parent) {
+            var args = arguments;
+            return blocks['prefix'] ? blocks['prefix'].apply($this, [function () {
+                return _blocks['prefix'].apply($this, args);
+            }].concat(__slice.call(args, 1))) : _blocks['prefix'].apply($this, args);
+        }) && __blocks['prefix'].apply($this, [__noop]), 'k-prefix') : undefined, h('div', null, [h('input', {
             'type': 'hidden',
             'value': function () {
                 try {
@@ -5028,7 +5058,13 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 }.call($this)
             }) : undefined],
             '_context': $this
-        }), h('span', null, [function () {
+        })], 'k-main'), function () {
+            try {
+                return !hideIcon || clearable;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this) ? h('span', null, [function () {
             try {
                 return clearable;
             } catch (e) {
@@ -5048,7 +5084,13 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
-        }.call($this))) : undefined, h('i', null, null, 'k-arrow ion-arrow-down-b')], 'k-suffix')], 'k-wrapper', null, function (i) {
+        }.call($this))) : undefined, function () {
+            try {
+                return !hideIcon;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this) ? h('i', null, null, 'k-arrow ion-arrow-down-b') : undefined], 'k-suffix') : undefined], 'k-wrapper', null, function (i) {
             widgets['wrapper'] = i;
         }), function () {
             try {
@@ -5294,7 +5336,7 @@ exports.Tab = _tab2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534999656164
+      // 1536661587011
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5741,7 +5783,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534999648661
+      // 1536661581963
       var cssReload = require("!../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5987,7 +6029,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1534999649863
+      // 1536661582806
       var cssReload = require("!../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
