@@ -10,6 +10,7 @@ export default class Tree extends Intact {
     static propTypes = {
         data: Array,
         expandedKeys: Array,
+        checkedKeys: Array,
         checkbox: Boolean,
         load: Function,
     };

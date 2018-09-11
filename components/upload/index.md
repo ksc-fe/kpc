@@ -47,5 +47,3 @@ sidebar: doc
 | error | 组件超出最大文件数量限制，超出文件大小限制，或者上传失败都会抛出该事件 | `Error, file, files` |
 | progress | 组件上传过程中会抛出该事件 | `Event, file, files` |
 | success | 组件上传成功时会抛出该事件 | `response, file, files` |
-
-

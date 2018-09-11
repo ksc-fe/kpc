@@ -1,30 +1,30 @@
 @require('./variables.styl')
 
 .k-tree
-    font-size 12px
-    line-height 24px
+    if $tree-font-size != inherit
+        font-size $tree-font-size
+    line-height $tree-line-height 
     .k-label
         > .k-text
+            vertical-align middle
             &:hover
-                color $primary-color
+                color $tree-hover-color 
     .k-leaf
-        padding-left 16px
+        padding-left $tree-leaf-padding-left
         .k-checkbox
-            margin-left 8px
-    .k-text
-        vertical-align middle
+            margin-left $tree-leaf-checkbox-margin-left
     .k-icon
         display inline-block
-        width 24px
+        width $tree-icon-width
         text-align center
         vertical-align middle
-        color #b2b2b2
+        color $tree-icon-color 
         transform rotate(-90deg)
         transition transform $transition
     .k-node
         cursor pointer
         .k-node
-            padding-left 16px
+            padding-left $tree-node-node-padding-left
             overflow hidden
         // expaned
         &.k-expanded
@@ -34,11 +34,7 @@
         &.k-disabled
             .k-label
             .k-icon
-                color $disabled-color
+                color $tree-disabled-color 
     // checkbox
     .k-checkbox
-        margin-right 8px
-
-
-
-
+        margin-right $tree-checkbox-margin-right

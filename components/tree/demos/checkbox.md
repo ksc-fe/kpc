@@ -3,6 +3,12 @@ title: 带复选框
 order: 1
 ---
 
+添加`checkbox`属性即可支持但复选框的树形控件；你也可以通过`checkedKeys`指定哪些节点选中，
+与`expandedKeys`不同的是，你无需指定父节点也选中，组件会自动判断父节点的选中和取消选中状态。
+
+通过`getCheckedData([onlyLeaf])`方法可以获取选中的节点的数据，当`onlyLeaf`为`true`时，仅返回
+选中的叶子节点
+
 ```vdt
 import Tree from 'kpc/components/tree';
 import Button from 'kpc/components/button';
