@@ -124,3 +124,5 @@ export default class Tree extends Intact {
         return data;
     }
 }
+
+export {Tree};
