@@ -1,7 +1,6 @@
 import Intact from 'intact'; import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
-import {toggleArray} from '../utils';
 import Node from './node';
 
 export default class Tree extends Intact {
@@ -26,14 +25,28 @@ export default class Tree extends Intact {
     }
 
     _init() {
+        this.checkedKeys = new Set();
+        this.expandedKeys = new Set();
         this.root = Node.createNode({}, null, this);
-        this.on('$receive:checkedKeys', this._mappingKeys);
+
+        this.on('$receive:checkedKeys', () => {
+            this.checkedKeys = new Set(this.get('checkedKeys'));
+            this._mappingKeys();
+        });
         this.on('$receive:data', this._mappingKeys);
+        this.on('$receive:expandedKeys', () => {
+            this.expandedKeys = new Set(this.get('expandedKeys'));
+        });
     }
 
     _mappingKeys() {
         const needRecheckNodes = [];
-        this.root.children = Node.createNodes(this.get('data'), this.root, this, needRecheckNodes);
+        this.root.children = Node.createNodes(
+            this.get('data'), 
+            this.root,
+            this,
+            needRecheckNodes
+        );
         needRecheckNodes.forEach(node => node.updateUpward());
     }
 
@@ -54,9 +67,6 @@ export default class Tree extends Intact {
         } else {
             this.expand(node.key);
         }
-
-        // this.set('expandedKeys', toggleArray(this.get('expandedKeys'), node.key));
-        // this.trigger('click:node', node);
     }
 
     _toggleCheck(node, e) {
@@ -66,40 +76,34 @@ export default class Tree extends Intact {
         node.updateDownward(!node.checked);
         node.updateUpward();
 
-        this.trigger('change:checked', node);
-        this.update();
+        this.set('checkedKeys', Array.from(this.checkedKeys));
+    }
+
+    _updateCheckedKeys(node) {
+        let checkedKeys = this.checkedKeys;
+        if (node.checked) {
+            checkedKeys.add(node.key); 
+        } else {
+            checkedKeys.delete(node.key);
+        }
     }
 
     expand(key, silent) {
         if (key === this.root.key) return;
 
-        let expandedKeys = this.get('expandedKeys');
-        if (!expandedKeys) {
-            expandedKeys = [key]; 
-        } else {
-            expandedKeys = expandedKeys.slice(0);
-            const index = expandedKeys.indexOf(key);
-            if (!~index) {
-                expandedKeys.push(key);
-            }
-        }
-        this.set('expandedKeys', expandedKeys, {silent});
+        let expandedKeys = this.expandedKeys;
+        expandedKeys.add(key);
+        // babel can not spread Set by `...` syntax in loose mode
+        // use Array.from instead of
+        this.set('expandedKeys', Array.from(expandedKeys), {silent});
     }
 
     shrink(key, silent) {
         if (key === this.root.key) return;
 
-        let expandedKeys = this.get('expandedKeys');
-        if (!expandedKeys) {
-            return;
-        } else {
-            expandedKeys = expandedKeys.slice(0);
-            const index = expandedKeys.indexOf(key);
-            if (~index) {
-                expandedKeys.splice(index, 1);
-            }
-        }
-        this.set('expandedKeys', expandedKeys, {silent});
+        let expandedKeys = this.expandedKeys;
+        expandedKeys.delete(key);
+        this.set('expandedKeys', Array.from(expandedKeys), {silent});
     }
 
     getCheckedData(leafOnly) {

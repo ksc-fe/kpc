@@ -11,6 +11,7 @@ const data = self.get('data');
 
 <div>
     <Button ev-click={{ self._getCheckedData }}>get checked data</Button>
+    <Button ev-click={{ self._getCheckedLeavesData }}>get checked leaves data</Button>
     <br />
     <br />
     <Tree data={{ data }} 
@@ -19,6 +20,11 @@ const data = self.get('data');
         v-model:checkedKeys="checkedKeys"
     />
 </div>
+```
+
+```styl
+.k-btn
+    margin-right 16px
 ```
 
 ```js
@@ -76,6 +82,9 @@ export default class extends Intact {
     _getCheckedData() {
         console.log(this.refs.tree.getCheckedData());
     }
-}
 
+    _getCheckedLeavesData() {
+        console.log(this.refs.tree.getCheckedData(true));
+    }
+}
 ```

@@ -6,8 +6,8 @@ export default class Node {
         // if the node has been set to checked
         // we should set its children to checked
         // and recheck the parent to set checked or indeterminate
-        const checkedKeys = tree.get('checkedKeys');
-        let checked = !!(checkedKeys && checkedKeys.indexOf(key) > -1);
+        const checkedKeys = tree.checkedKeys;
+        let checked = checkedKeys.has(key);
         let needRecheck = false;
         if (parent) {
             if (checked && !parent.checked) {
@@ -51,6 +51,8 @@ export default class Node {
     updateDownward(checked) {
         this.checked = checked;
         this.indeterminate = false;
+
+        this.tree._updateCheckedKeys(this);
         
         const children = this.children;
         if (children) {
@@ -88,6 +90,8 @@ export default class Node {
         parent.checked = !!(checkedCount && checkedCount === count);
         parent.indeterminate = indeterminate;
 
+        this.tree._updateCheckedKeys(parent);
+
         parent.updateUpward();
     }
 
@@ -112,5 +116,3 @@ export default class Node {
         this.tree.update();
     }
 }
-
-

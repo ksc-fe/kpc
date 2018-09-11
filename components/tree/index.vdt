@@ -1,11 +1,12 @@
 import Checkbox from '../checkbox';
 import {expandAnimationCallbacks} from '../utils';
 
-const {expandedKeys, checkbox, load} = self.get();
+const {checkbox, load} = self.get();
+const {expandedKeys} = self;
 
 const TreeNodes = ({data}) => {
     return __u.map(data, value => {
-        const expanded = expandedKeys && expandedKeys.indexOf(value.key) > -1;
+        const expanded = expandedKeys.has(value.key);
 
         return <Animate
             a:transition="c-expand"

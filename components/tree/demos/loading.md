@@ -37,7 +37,7 @@ export default class extends Intact {
                     {label: 'child1', children: []},
                     {label: 'child2'},
                 ]);
-            }, 2000);
+            }, 1000);
         });
     }
 }
