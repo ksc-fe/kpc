@@ -88,6 +88,8 @@ var i18n = {
     '请选择日期': 'Please select date',
     '开始时间 ~ 结束时间': 'Begin time ~ End time',
     '开始日期 ~ 结束日期': 'Begin date ~ End date',
+    '请选择年份': 'Please select year',
+    '请选择月份': 'Please select month',
     '1月': 'Jan',
     '2月': 'Feb',
     '3月': 'Mar',

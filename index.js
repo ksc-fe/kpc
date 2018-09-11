@@ -36,6 +36,7 @@ import {Timepicker} from './components/timepicker';
 import {Tip} from './components/tip';
 import {Tooltip} from './components/tooltip';
 import {Transfer} from './components/transfer';
+import {Tree} from './components/tree';
 import {Upload} from './components/upload';
 
 export {
@@ -85,10 +86,11 @@ export {
     Tip,
     Tooltip,
     Transfer,
+    Tree,
     Upload
 };
 
-export const version = '0.5.5';
+export const version = '0.5.6';
 
 /* generate end */
 

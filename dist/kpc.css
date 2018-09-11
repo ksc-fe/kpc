@@ -685,7 +685,6 @@ label {
 }
 .c-expand-enter,
 .c-expand-leave {
-  height: 0 !important;
   opacity: 0;
 }
 .c-expand-enter-active,
@@ -4597,7 +4596,7 @@ button.k-btn.k-mini > span {
       -ms-transform: rotate(90deg) scale(1);
           transform: rotate(90deg) scale(1);
   border-bottom: 0;
-  left: 0.214285714285714rem;
+  left: 0.285714285714286rem;
 }
 .k-checkbox.k-checked .k-wrapper:before {
   -webkit-transform: rotate(45deg) scale(1);
@@ -6841,6 +6840,9 @@ button.k-btn.k-mini > span {
 .k-table-wrapper.k-border .k-fixed .k-table {
   border: none;
 }
+.k-table-wrapper.k-sticky .k-fixed {
+  overflow: hidden;
+}
 .k-table-dropdown .k-item.k-hover {
   background: #eee;
   color: #595959;
@@ -6951,11 +6953,13 @@ button.k-btn.k-mini > span {
 }
 .k-tooltip-content.k-time-picker .k-calendar-wrapper {
   padding: 1.142857142857143rem;
-  width: 14.285714285714286rem;
 }
 .k-tooltip-content.k-time-picker .k-scroll-select {
   height: 11.428571428571429rem;
   margin: 0;
+}
+.k-tooltip-content.k-time-picker .k-range .k-calendar-wrapper {
+  width: 14.285714285714286rem;
 }
 .k-tooltip-content.k-time-picker .k-range .k-time-picker {
   border: 1px solid #e5e5e5;
@@ -7055,6 +7059,54 @@ button.k-btn.k-mini > span {
   display: block;
   margin: 1.142857142857143rem 2.142857142857143rem;
   font-size: 1.571428571428571rem;
+}
+.k-tree {
+  line-height: 1.857142857142857rem;
+}
+.k-tree .k-label > .k-text {
+  vertical-align: middle;
+}
+.k-tree .k-label > .k-text:hover {
+  color: #0a5eee;
+}
+.k-tree .k-leaf {
+  padding-left: 1.142857142857143rem;
+}
+.k-tree .k-leaf .k-checkbox {
+  margin-left: 0.571428571428571rem;
+}
+.k-tree .k-icon {
+  display: inline-block;
+  width: 1.714285714285714rem;
+  text-align: center;
+  vertical-align: middle;
+  color: #595959;
+  -webkit-transform: rotate(-90deg);
+      -ms-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  -webkit-transition: -webkit-transform 0.25s ease-in-out;
+  transition: -webkit-transform 0.25s ease-in-out;
+  transition: transform 0.25s ease-in-out;
+  transition: transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+}
+.k-tree .k-node {
+  cursor: pointer;
+}
+.k-tree .k-node .k-node {
+  padding-left: 1.142857142857143rem;
+  overflow: hidden;
+}
+.k-tree .k-node.k-expanded > .k-label .k-icon {
+  -webkit-transform: rotate(0);
+      -ms-transform: rotate(0);
+          transform: rotate(0);
+}
+.k-tree .k-node.k-disabled .k-label,
+.k-tree .k-node.k-disabled .k-icon {
+  color: #999;
+}
+.k-tree .k-checkbox {
+  margin-right: 0.571428571428571rem;
 }
 .k-upload {
   font-size: 0.857142857142857rem;
