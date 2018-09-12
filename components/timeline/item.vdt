@@ -1,0 +1,22 @@
+const {className, style, children, type, size} = self.get();
+
+const classNameObj = {
+    'k-item': true,
+    [className]: className,
+    [`k-${type}`]: true,
+    [`k-${size}`]: size !== 'default',
+};
+
+<div class={{ classNameObj }} style={{ style }}>
+    <div class="k-indicator">
+        <div class="k-dot">
+            <b:dot>
+                <div class="k-circle"></div>
+            </b:dot>
+        </div>
+        <div class="k-line"></div>
+    </div>
+    <div class="k-content">
+        {{ children }}
+    </div>
+</div>

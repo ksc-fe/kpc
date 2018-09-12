@@ -1,0 +1,58 @@
+@require('./variables.styl')
+
+.k-timeline
+    if $timeline-font-size != inherit
+        font-size $timeline-font-size
+    > .k-item
+        position relative
+        padding $timeline-item-padding
+        > .k-indicator
+            position absolute
+            left 0
+            top 0
+            height 100%
+            width $timeline-indicator-width
+            text-align center
+            .k-dot
+                position relative
+                z-index 1
+                transform translateY(-50%)
+            .k-circle
+                position relative
+                background $primary-color
+                border-radius 50%
+                left 50%
+            .k-line
+                position absolute
+                height 100%
+                border-left $timeline-line-border
+                top 0
+                left 50%
+        > .k-content
+            position relative
+            top -1ex 
+        &:last-of-type
+            > .k-indicator
+                .k-line
+                    display none
+        // type
+        for type in primary success danger warning
+            &.k-{type}
+                > .k-indicator
+                    .k-circle
+                        background lookup('$timeline-indicator-' + type + '-color')
+                        color @background
+        // size
+        generate(size)
+            > .k-indicator
+                .k-circle
+                    width lookup('$timeline-dot-' + size + '-width')
+                    height @width
+                    // when we use translateX(-50%) the line can not position at center of dot
+                    margin-left -(@width / 2)
+        for size in large small mini default
+            if size != default
+                &.k-{size}
+                    generate(size)
+            else
+                generate(size)
