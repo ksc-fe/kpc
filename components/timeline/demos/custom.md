@@ -9,8 +9,8 @@ order: 2
 import {Timeline, TimelineItem} from 'kpc/components/timeline';
 
 <Timeline>
-    <TimelineItem>
-        <b:dot><i class="ion-trophy" style="color: #36b342"></i></b:dot>
+    <TimelineItem type="success">
+        <b:dot><i class="ion-trophy"></i></b:dot>
         August
     </TimelineItem>
     <TimelineItem>July</TimelineItem>

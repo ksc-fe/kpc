@@ -39,9 +39,9 @@
         for type in primary success danger warning
             &.k-{type}
                 > .k-indicator
+                    color lookup('$timeline-indicator-' + type + '-color')
                     .k-circle
                         background lookup('$timeline-indicator-' + type + '-color')
-                        color @background
         // size
         generate(size)
             > .k-indicator
