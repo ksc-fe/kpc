@@ -2,13 +2,43 @@
 @require('../../styles/themes/default.styl')
 
 .k-row
-    display block
-    clearfix()
+    &:not(.k-flex)
+        display block
+        clearfix()
+    .k-col
+        float left
+
+    // flex layout
+    &.k-flex
+        display flex
+        // justify
+        &.k-justify-start
+            justify-content flex-start
+        &.k-justify-end
+            justify-content flex-end
+        &.k-justify-center
+            justify-content center
+        &.k-justify-between
+            justify-content space-between
+        &.k-justify-around
+            justify-content space-around
+        &.k-justify-evenly
+            justify-content space-evenly
+        // align
+        &.k-align-top
+            align-items flex-start
+        &.k-align-bottom
+            align-items flex-end
+        &.k-align-middle
+            align-items center
+        &.k-align-stretch
+            align-items stretch
+        &.k-align-baseline
+            align-items baseline
 
 for col in (1..24)
     .k-{col}
         width percentage(col / 24)
-        float left
     .k-offset-{col}
         margin-left percentage(col / 24)
 

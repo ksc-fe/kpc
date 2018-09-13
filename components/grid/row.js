@@ -11,7 +11,17 @@ export default class Row extends Intact {
 
     defaults() {
         return {
-            gutter: 0
+            gutter: 0,
+            justify: undefined,
         }
+    }
+
+    _init() {
+        this.useFlex = false;
+        ['justify', 'align'].forEach(item => {
+            this.on(`$receive:${item}`, (c, v) => {
+                this.useFlex = this.get('justify') || this.get('align');
+            });
+        });
     }
 }
