@@ -13,3 +13,5 @@ export default function gutterStyle(gutter, style, prop = 'margin') {
     }
     return style;
 }
+
+export const breakpoints = ['xl', 'lg', 'md', 'sm', 'xs'];

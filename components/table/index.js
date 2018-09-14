@@ -94,9 +94,6 @@ export default class Table extends Intact {
             }
         });
         this._updateDisabledAmount();
-
-        this._move = this._move.bind(this);
-        this._dragEnd = this._dragEnd.bind(this);
     }
 
     _mount() {

@@ -1,27 +1,119 @@
 import Intact from 'intact';
 import template from './row.vdt';
+import mediaQuery from './mediaQuery.json';
+import {isObject} from '../utils';
+import Col from './col';
+import {breakpoints} from './utils';
+
+let enquire;
+if (typeof window !== 'undefined') {
+    window.matchMedia = window.matchMedia || function() {
+        return {
+            matches : true, // let match the largest width always
+            addListener : function() {},
+            removeListener: function() {}
+        };
+    };
+    enquire = require('enquire.js');
+}
+
+const responsiveMap = {
+    xl: `(min-width: 0)`,
+    lg: `(min-width: ${mediaQuery.lgMinWidth})`,
+    md: `(min-width: ${mediaQuery.mdMinWidth})`,
+    sm: `(min-width: ${mediaQuery.smMinWidth})`,
+    xs: `(max-width: ${mediaQuery.xsMaxWidth})`,
+};
 
 export default class Row extends Intact {
     @Intact.template()
     get template() { return template; }
 
     static propTypes = {
-        gutter: [String, Number],
-    }
+        gutter: [String, Number, Object],
+        justify: ['start', 'end', 'center', 'between', 'around', 'evenly'],
+        flex: Boolean,
+    };
 
     defaults() {
         return {
             gutter: 0,
             justify: undefined,
+            flex: false,
+
+            _gutter: undefined,
         }
     }
 
     _init() {
         this.useFlex = false;
-        ['justify', 'align'].forEach(item => {
+        ['justify', 'align', 'flex', 'children'].forEach(item => {
             this.on(`$receive:${item}`, (c, v) => {
-                this.useFlex = this.get('justify') || this.get('align');
+                const {flex, justify, align, children} = this.get();
+                this.useFlex = flex || justify || align;
+
+                // detect the order property of children
+                if (!this.useFlex && children) {
+                    let _children = children;
+                    if (!Array.isArray(children)) {
+                        _children = [children]; 
+                    }
+
+                    for (let i = 0; i < _children.length; i++) {
+                        const vNode = _children[i];
+                        if (vNode && vNode.tag === Col) {
+                            const props = vNode.props;
+                            if (props.order != null) {
+                                this.useFlex = true
+                            } else {
+                                for (let i = 0; i < breakpoints.length; i++) {
+                                    const breakpoint = breakpoints[i];
+                                    if (props[breakpoint] && props[breakpoint].order != null) {
+                                        this.useFlex = true
+                                        break;
+                                    }
+                                }
+                            }
+                            if (this.useFlex) break;
+                        }
+                    }
+                }
             });
         });
+    }
+
+    _create() {
+        for (let key in responsiveMap) {
+            enquire.register(responsiveMap[key], {
+                match: () => {
+                    const {gutter} = this.get();
+                    if (isObject(gutter)) {
+                        this.set('_matches', {...this.get('_matches'), [key]: true}, {async: true});
+                        console.log('match', key, gutter[key]);
+                    }
+                },
+                unmatch: () => {
+                    const {gutter} = this.get();
+                    if (isObject(gutter)) {
+                        this.set('_matches', {...this.get('_matches'), [key]: false}, {async: true});
+                        console.log('unmatch', key, gutter[key]);
+                    }
+                }
+            });
+        }       
+    }
+
+    _getGutter() {
+        const {gutter} = this.get();
+        if (isObject(gutter)) {
+            for (let i = 0; i < breakpoints.length; i++) {
+                const breakpoint = breakpoints[i];
+                if (this.get(`_matches.${breakpoint}`) && gutter[breakpoint] != null) {
+                    return gutter[breakpoint];
+                }
+            }
+            return 0;
+        }
+        return gutter;
     }
 }

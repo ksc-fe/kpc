@@ -1,16 +1,15 @@
 @require('../../styles/mixin.styl')
-@require('../../styles/themes/default.styl')
+@require('./variables.styl')
 
 .k-row
+    position relative
     &:not(.k-flex)
         display block
         clearfix()
-    .k-col
-        float left
-
     // flex layout
     &.k-flex
         display flex
+        flex-wrap wrap
         // justify
         &.k-justify-start
             justify-content flex-start
@@ -36,10 +35,27 @@
         &.k-align-baseline
             align-items baseline
 
-for col in (1..24)
-    .k-{col}
-        width percentage(col / 24)
-    .k-offset-{col}
-        margin-left percentage(col / 24)
+.k-col
+    position relative
+    width 100%
+    float left
+    generate(size)
+        for col in (1..24)
+            &.k{size}-{col}
+                width percentage(col / 24)
+            &.k{size}-offset-{col}
+                margin-left percentage(col / 24)
+            &.k{size}-order-{col}
+                order col
+            &.k{size}-push-{col}
+                left percentage(col / 24)
+            &.k{size}-pull-{col}
+                right percentage(col / 24)
+    generate('')
+    for size in sm md lg xl
+        minWidth = lookup('$' + size + '-min-width')
+        @media (min-width: minWidth)
+            generate('-' + size)
+
 
 @import $theme-dir + '/grid.styl' if exists($theme-dir + '/grid.styl') 

@@ -2,8 +2,8 @@ import gutterStyle from './utils';
 import {isNullOrUndefined} from '../utils';
 
 let {
-    children, span, className,
-    style, gutter, offset
+    children, span, className, order,
+    style, gutter, offset, push, pull
 } = self.get();
 
 const {xs, sm, md, lg, xl} = self;
@@ -18,20 +18,23 @@ const classNameObj = {
     [`k-${span}`]: span,
     [className]: className && !hasGutter,
     [`k-offset-${offset}`]: offset > 0,
+    [`k-pull-${pull}`]: pull,
+    [`k-push-${push}`]: push,
+    [`k-order-${order}`]: order,
 };
 // add responsive class
 ['xs', 'sm', 'md', 'lg', 'xl'].forEach(item => {
     const obj = self[item];
     if (!obj) return;
+    const prefix = item === 'xs' ? 'k-' : `k-${item}-`;
     if (!isNullOrUndefined(obj.span)) {
-        classNameObj[`k-${item}-${obj.span}`] = true;
+        classNameObj[`${prefix}${obj.span}`] = true;
     }
-    if (!isNullOrUndefined(obj.order)) {
-        classNameObj[`k-${item}-order-${obj.order}`] = true;
-    }
-    if (!isNullOrUndefined(obj.offset)) {
-        classNameObj[`k-${item}-offset-${obj.offset}`] = true;
-    }
+    ['order', 'offset', 'pull', 'push'].forEach(prop => {
+        if (!isNullOrUndefined(obj[prop])) {
+            classNameObj[`${prefix}${prop}-${obj[prop]}`] = true;
+        }
+    });
 });
 
 <div class={{ classNameObj }} style={{ style }}>{{

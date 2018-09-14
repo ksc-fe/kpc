@@ -1,6 +1,7 @@
 import Intact from 'intact';
 import template from './col.vdt';
 import {isStringOrNumber} from '../utils';
+import {breakpoints} from './utils';
 
 export default class Col extends Intact {
     @Intact.template()
@@ -11,6 +12,12 @@ export default class Col extends Intact {
         span: [String, Number],
         offset: [String, Number],
         order: [String, Number],
+        pull: [String, Number],
+        push: [String, Number],
+        ...breakpoints.reduce((memo, item) => {
+            memo[item] = [String, Number, Object];
+            return memo;
+        }, {}),
     }
 
     defaults() {
@@ -19,6 +26,8 @@ export default class Col extends Intact {
             offset: 0,
             gutter: 0,
             order: 0,
+            pull: 0,
+            push: 0,
             // responsive
             xs: undefined,
             sm: undefined,
@@ -29,7 +38,7 @@ export default class Col extends Intact {
     }
 
     _init() {
-        ['xs', 'sm', 'md', 'lg', 'xl'].forEach(item => {
+        breakpoints.forEach(item => {
             this.on(`$receive:${item}`, (c, v) => {
                 if (!v) {
                     this[item] = undefined;

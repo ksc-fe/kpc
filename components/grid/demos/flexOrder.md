@@ -1,6 +1,6 @@
 ---
-title: 排序
-order: 2.1
+title: flex排序
+order: 5.1
 ---
 
 ```vdt
