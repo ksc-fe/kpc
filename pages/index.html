@@ -9,8 +9,12 @@
     <link rel="stylesheet" type="text/css" href="/dist/kpc.css" /> 
 </head>
 <body>
-	<div id="app"></div>
+	<div id="app">
+        <div id="vue"></div>
+    </div>
     <script src="/node_modules/intact/dist/intact.js"></script>
+    <script src="/node_modules/vue/dist/vue.js"></script>
+    <script src="/node_modules/intact-vue/dist/intact.vue.js"></script>
     <script src="/dist/kpc.js"></script>
 
 	<script type="text/javascript">
@@ -18,10 +22,22 @@
         var Page = Intact.extend({
             template: '<KButton ev-click={self.hello}>Hello World</KButton>',
             hello: function() {
-                KMessage.success('Welcome to kpc world!');
+                KMessage.success('Welcome to the world of kpc and intact!');
             }
         });
         Intact.mount(Page, document.getElementById('app'));
+    </script>
+    <script type="text/javascript">
+        Vue.use(Kpc);
+        new Vue({
+            el: '#vue',
+            template: '<KButton @click="hello">Hello World</KButton>',
+            methods: {
+                hello: function() {
+                    this.$message.success('Welcome to the world of kpc and vue!');
+                }
+            }
+        });
     </script>
 </body>
 </html>

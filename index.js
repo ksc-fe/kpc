@@ -32,6 +32,7 @@ import {Switch} from './components/switch';
 import {Table, TableColumn} from './components/table';
 import {Tabs, Tab} from './components/tabs';
 import {Tag} from './components/tag';
+import {Timeline, TimelineItem} from './components/timeline';
 import {Timepicker} from './components/timepicker';
 import {Tip} from './components/tip';
 import {Tooltip} from './components/tooltip';
@@ -82,6 +83,8 @@ export {
     TableColumn,
     Tabs,
     Tag,
+    Timeline,
+    TimelineItem,
     Timepicker,
     Tip,
     Tooltip,
@@ -103,6 +106,10 @@ export default function install(Vue) {
             // the key which the first char is uppercase is a component
             if (code >= 65 && code <= 90) {
                 Vue.component(`K${key}`, exports[key]);
+                // support call method like this.$message.success('test'), #88
+                if (key === 'Message') {
+                    Vue.prototype.$message = exports.Message;
+                }
             }
         }
     } else {
