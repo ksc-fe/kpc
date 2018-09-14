@@ -5,6 +5,9 @@ order: 12
 sidebar: doc
 ---
 
+> 如果你在Vue下全局安装KPC，可以通过`this.$message`引用到`Message`组件，所以你可以这样调用它的
+> 方法：`this.$message.success('test')`
+
 # 属性
 
 | 属性 | 说明 | 类型 | 默认值 |
