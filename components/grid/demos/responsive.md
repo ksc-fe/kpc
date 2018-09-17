@@ -3,6 +3,10 @@ title: 响应式布局
 order: 6
 ---
 
+响应式布局参考[bootstrap v4](https://getbootstrap.com/docs/4.0/layout/grid/)，分为5个等级：
+`xs` `sm` `md` `lg` `xl`。你也可以以对象的方式指定多个属性(包括：`span` `offset` `pull` 
+`push` `order`)的响应式，其中`xs="2"`等价于`xs={{ {span: 2} }}`
+
 ```vdt
 import {Row, Col} from 'kpc/components/grid';
 

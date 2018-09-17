@@ -32,6 +32,7 @@ export default class Row extends Intact {
     static propTypes = {
         gutter: [String, Number, Object],
         justify: ['start', 'end', 'center', 'between', 'around', 'evenly'],
+        align: ['top', 'bottom', 'middle', 'stretch', 'baseline'],
         flex: Boolean,
     };
 
@@ -40,6 +41,7 @@ export default class Row extends Intact {
             gutter: 0,
             justify: undefined,
             flex: false,
+            align: undefined,
 
             _gutter: undefined,
         }

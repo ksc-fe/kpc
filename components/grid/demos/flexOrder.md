@@ -3,6 +3,8 @@ title: flex排序
 order: 5.1
 ---
 
+给`Col`添加`order`属性，即可自动启用`flex`布局来定义`Col`的顺序
+
 ```vdt
 import {Row, Col} from 'kpc/components/grid';
 
