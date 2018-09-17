@@ -5,7 +5,7 @@ import {isStringOrNumber} from '../utils';
 
 const {
     width, title, key, group, multiple,
-    sortable, $parent, _show,
+    sortable, $parent, _show, className,
 } = self.get();
 
 const {sort, resizable} = $parent.get();
@@ -13,7 +13,10 @@ const groupText = group && self._getGroupText() || '';
 
 <th width={{ width }} 
     title={{ isStringOrNumber(title) ? title + groupText : undefined }}
-    class={{ {'k-sortable': sortable} }}
+    class={{ {
+        'k-sortable': sortable,
+        [className]: className,
+    } }}
     ev-click={{ self.onClick }}
 >
     <div v-if={{ resizable }} class="k-resize" 

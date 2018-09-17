@@ -122,6 +122,17 @@
         .k-item.k-active
             color $table-group-item-active-color 
             
+// fixed column
+.k-table-fixed-column
+    position relative
+    overflow hidden
+    .k-invisible
+        visibility hidden
+    .k-fixed-left
+        border-top $table-th-border-top
+        position absolute
+        left 0
+        top 0
 
 
 $dir = $theme-dir + '/table.styl';

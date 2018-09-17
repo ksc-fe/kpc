@@ -1,6 +1,6 @@
 ---
 title: 表头吸顶
-order: 8.1 
+order: 8.1
 ---
 
 `stickHeader`：设置表头是否当表格滚动超出规定高度时，将表头固定在页面顶部，类型`Boolean` | `Number`，默认：`false`
