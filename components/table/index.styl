@@ -129,10 +129,20 @@
     .k-invisible
         visibility hidden
     .k-fixed-left
+    .k-fixed-right
         border-top $table-th-border-top
         position absolute
-        left 0
         top 0
+        box-shadow $box-shadow
+        overflow hidden
+        // .k-table
+        //     table-layout auto
+    .k-fixed-left
+        left 0
+    .k-fixed-right
+        right 0
+        .k-table
+            float right
 
 
 $dir = $theme-dir + '/table.styl';

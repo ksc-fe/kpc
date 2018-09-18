@@ -63,6 +63,10 @@ export default class Table extends Intact {
     }
 
     _init() {
+        this.scroll = [];
+        this.header = [];
+        this.headerTable = [];
+
         // keep the event consistent
         this.on('$change:checkedKeys', (c, newValue, oldValue) => {
             this.trigger('$change:checked', c, newValue, oldValue);

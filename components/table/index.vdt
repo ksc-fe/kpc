@@ -21,16 +21,30 @@ let prevItem = checkType === 'checkbox' || checkType === 'radio' ?
 let hasFixedLeft;
 let hasFixedRight;
 
+const isInvisible = (onlyLeft, onlyRight, props) => {
+    return props.fixed !== 'left' && onlyLeft || props.fixed !== 'right' && onlyRight;
+}
+
 const TheadCreator = ({onlyLeft, onlyRight}) => {
     const keys = {};
     return <thead>
         <tr>
-            <th v-if={{ checkType === 'checkbox' }} class="k-th-check">
+            <th v-if={{ checkType === 'checkbox' }}
+                class={{ {
+                    "k-th-check": true,
+                    "k-invisible": onlyRight,
+                } }}
+            >
                 <Checkbox value={{ self.isCheckAll() }}
                     ev-click={{ self._toggleCheckAll }}
                 />
             </th>
-            <th v-else-if={{ checkType === 'radio' }} class="k-th-check"></th>
+            <th v-else-if={{ checkType === 'radio' }}
+                class={{ {
+                    "k-th-check": true,
+                    "k-invisible": onlyRight,
+                } }}
+            ></th>
             {{ __u.map(scheme, (item, key) => {
                 colSpan++;
                 keys[key] = true;
@@ -38,6 +52,10 @@ const TheadCreator = ({onlyLeft, onlyRight}) => {
                 if (!__u.isObject(item) || item.type) {
                     item = {title: item};
                 }
+
+                /* if (isInvisible(onlyLeft, onlyRight, item)) { */
+                    /* return; */
+                /* } */
 
                 // because we use the last resize handle to controll the previous column
                 // so we bind prevItem here
@@ -56,18 +74,22 @@ const TheadCreator = ({onlyLeft, onlyRight}) => {
                     ev-click={{ item.sortable ? self._sort.bind(self, key, item) : undefined }}
                     ev-dragStart={{ dragStart }}
                     v-model={{ `group.${key}` }}
-                    class={{ {
+                    className={{ {
                         [item.className]: item.className,
-                        'k-invisible': item.fixed !== 'left' && onlyLeft || item.fixed !== 'right' && onlyRight
+                        'k-invisible': isInvisible(onlyLeft, onlyRight, item),
                     } }}
                 />
             }) }}
             {{  // for using TableColumn as children
                 __u.map(children ? (Array.isArray(children) ? children : [children]) : children, vNode => {
                     if (vNode.tag === Column) {
-                        colSpan++;
+                        /* if (isInvisible(onlyLeft, onlyRight, vNode.props)) { */
+                            /* return; */
+                        /* } */
 
+                        colSpan++;
                         const props = {...vNode.props, $parent: self};
+                        
                         if (props.key == null) {
                             _e(new Error('key for TableColumn must be specified.'));
                         } else if (/^\d+$/.test(props.key)) {
@@ -88,7 +110,7 @@ const TheadCreator = ({onlyLeft, onlyRight}) => {
                         props['ev-dragStart'] = dragStart;
                         props.className = _className({
                             [props.className]: props.className,
-                            'k-invisible': onlyLeft && props.fixed !== 'left' || onlyRight && props.fixed !== 'right',
+                            'k-invisible': isInvisible(onlyLeft, onlyRight, props),
                         });
                         const blockFn = props._blocks && (props._blocks.default || props._blocks.template);
                         _scheme[props.key] = {
@@ -129,19 +151,27 @@ const TbodyCreator = ({onlyLeft, onlyRight}) => {
                     } }}
                     ev-$destroyed={{ self._onRowDestroyed.bind(self, key) }}
                 >
-                    <td v-if={{ checkType === 'checkbox' }}>
+                    <td v-if={{ checkType === 'checkbox' }}
+                        class={{ {'k-invisible': onlyRight} }}
+                    >
                         <Checkbox v-model="checkedKeys" name="k-table-checkbox"
                             trueValue={{ key }}
                             disabled={{ disabled }}
                         />
                     </td>
-                    <td v-else-if={{ checkType === 'radio' }}>
+                    <td v-else-if={{ checkType === 'radio' }}
+                        class={{ {'k-invisible': onlyRight} }}
+                    >
                         <Radio v-model="checkedKey" name="k-table-radio"
                             trueValue={{ key }}
                             disabled={{ disabled }}
                         />
                     </td>
                     {{ __u.map(__u.extend({}, scheme, _scheme), (item, key) => {
+                        /* if (isInvisible(onlyLeft, onlyRight, item)) { */
+                            /* return; */
+                        /* } */
+
                         let td;
                         if (__u.isObject(item) && item.template) {
                             if (typeof item.template === 'function') {
@@ -165,8 +195,8 @@ const TbodyCreator = ({onlyLeft, onlyRight}) => {
                             td = (i && i === keys.length) ? obj : null;
                         }
                         return <td title={{ isStringOrNumber(td) ? td : undefined }}
-                            class={{ {
-                                'k-invisible': onlyLeft && item.fixed !== 'left' || onlyRight && item.fixed !== 'right',
+                            className={{ {
+                                'k-invisible': isInvisible(onlyLeft, onlyRight, item),
                             } }}
                         >
                             {{ typeof td === 'boolean' ? String(td) : td }}
@@ -210,51 +240,66 @@ const table = <table class="k-table"
     <TbodyCreator />
 </table>
 
-const wrapper = <div class={{ classNameObj }} style={{ style }}>
-    <div v-if={{ fixHeader || _isSticky }} class="k-fixed"
-        style={{ do {
-            const style = {paddingRight: self.get('_padding') + 'px'};
-            if (_isSticky) {
-                const _sticky = self.get('_sticky');
-                __u.extend(style, _sticky);
-            }
-            style;
-        } }}
-        ref={{ dom => self.header = dom }}
-    >
-        <table class="k-table" ref={{ dom => self.headerTable = dom }}>
-            <TheadCreator />
-        </table>
-    </div>
-    {{ fixHeader || _isSticky ? 
-        <div class="k-scroll"
-            style={{ do {
-                let style = {};
-                if (!_isSticky &&
-                    (typeof fixHeader === 'number' || 
-                    typeof fixHeader === 'string')
-                ) {
-                    style = {maxHeight: `${fixHeader}px`};
-                } else if (_isSticky && self.get('_sticky.position')) {
-                    style = {paddingTop: self.get('_headerHeight')};
-                }
-                style;
-            } }}
-            ref={{ dom => self.scroll = dom }}
-        >{{ table }}</div> :
-        table
-    }}
-</div>
+let index = 0;
+const Wrapper = (props) => {
+    const ret = <div class={{ __u.extend({}, classNameObj, {
+        [props.className]: props.className
+    }) }} style={{ style }}>
+        <template v-if={{ fixHeader || _isSticky }} class="k-fixed-scroll">
+            <div class="k-fixed"
+                style={{ do {
+                    const style = {paddingRight: self.get('_padding') + 'px'};
+                    if (_isSticky) {
+                        const _sticky = self.get('_sticky');
+                        __u.extend(style, _sticky);
+                    }
+                    style;
+                } }}
+                ref={{ dom => self.header[index] = dom }}
+            >
+                <table class="k-table" ref={{ dom => self.headerTable[index] = dom }}>
+                    <TheadCreator onlyLeft={{ props.onlyLeft }} onlyRight={{ props.onlyRight }} />
+                </table>
+            </div>
+            <div class="k-scroll"
+                style={{ do {
+                    let style = {};
+                    if (!_isSticky &&
+                        (typeof fixHeader === 'number' || 
+                        typeof fixHeader === 'string')
+                    ) {
+                        style = {maxHeight: `${fixHeader}px`};
+                    } else if (_isSticky && self.get('_sticky.position')) {
+                        style = {paddingTop: self.get('_headerHeight')};
+                    }
+                    style;
+                } }}
+                ref={{ dom => self.scroll[index] = dom }}
+            >{{ props.children }}</div>
+        </template>
+        <template v-else>{{ props.children }}</template>
+    </div>;
+
+    index++;
+
+    return ret;
+};
 
 <template>
     <div v-if={{ hasFixedLeft || hasFixedRight }} class="k-table-fixed-column">
-        {{ wrapper }}
-        <div class="k-fixed-left" v-if={{ hasFixedLeft }}>
+        <Wrapper>{{ table }}</Wrapper>
+        <Wrapper v-if={{ hasFixedLeft }} class="k-fixed-left" onlyLeft>
             <table class="k-table">
                 <TheadCreator onlyLeft />
                 <TbodyCreator onlyLeft />
             </table>
-        </div>
+        </Wrapper>
+        <Wrapper v-if={{ hasFixedRight }} class="k-fixed-right" onlyRight>
+            <table class="k-table">
+                <TheadCreator onlyRight />
+                <TbodyCreator onlyRight />
+            </table>
+        </Wrapper>
     </div>
-    <template v-else>{{ wrapper }}</template>
+    <Wrapper v-else>{{ table }}</Wrapper>
 </template>
