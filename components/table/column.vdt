@@ -4,9 +4,11 @@ import {Radio} from '../radio';
 import {isStringOrNumber} from '../utils';
 
 const {
-    width, title, key, group, multiple,
+    title, key, group, multiple,
     sortable, $parent, _show, className,
 } = self.get();
+
+const width = self.width;
 
 const {sort, resizable} = $parent.get();
 const groupText = group && self._getGroupText() || '';

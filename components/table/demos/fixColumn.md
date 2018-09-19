@@ -49,3 +49,8 @@ const data = [
     </Table>
 </div>
 ```
+
+```styl
+.k-table-fixed-column
+    margin-bottom 20px
+```

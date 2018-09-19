@@ -36,6 +36,12 @@ export default class TableColumn extends Intact {
         }
     }
 
+    _init() {
+        this.on('$receive:width', (c, v) => {
+            this.width = v;
+        });
+    }
+
     onClick(e) {
         this.trigger('click', e);
     }

@@ -37,6 +37,9 @@ export default class Table extends Intact {
             _padding: 0,
             _disabledAmount: 0,
             _isSticky: false,
+            _leftWidth: 0,
+            _rightWidth: 0,
+            _scrollBarWidth: 0,
         }
     }
 
@@ -66,6 +69,9 @@ export default class Table extends Intact {
         this.scroll = [];
         this.header = [];
         this.headerTable = [];
+
+        // save the width of header cell
+        this.headerWidthMap = {};
 
         // keep the event consistent
         this.on('$change:checkedKeys', (c, newValue, oldValue) => {
@@ -101,8 +107,12 @@ export default class Table extends Intact {
     }
 
     _mount() {
+        this.set('_scrollBarWidth', scrollbarWidth());
+
         this._calcHeaderPadding();
         window.addEventListener('resize', this._onWindowResize);
+
+        this._setFixedColumnWidth();
 
         if (this.get('_isSticky')) {
             this._onStickyHeaderMount();
@@ -217,7 +227,7 @@ export default class Table extends Intact {
             const tableHeight = this.table.offsetHeight;
             const containerHeight = this.scroll.offsetHeight;
             const headerHeight = this.header.offsetHeight;
-            this.set('_padding', tableHeight - headerHeight > containerHeight ? scrollbarWidth() : 0);
+            this.set('_padding', tableHeight - headerHeight > containerHeight ? this.get('_scrollBarWidth') : 0);
         }
     }
 
@@ -246,6 +256,22 @@ export default class Table extends Intact {
                 },
                 '_headerHeight': 0,
             });
+        }
+    }
+
+    _setFixedColumnWidth() {
+        if (this.hasFixedLeft) {
+            const width = this.leftColumns.reduce((memo, elem) => {
+                return memo + elem.offsetWidth;
+            }, 0);
+            this.set('_leftWidth', width);
+        } 
+
+        if (this.hasFixedRight) {
+            const width = this.rightColumns.reduce((memo, elem) => {
+                return memo + elem.offsetWidth;
+            }, 0);
+            this.set('_rightWidth', width);
         }
     }
 

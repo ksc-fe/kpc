@@ -9,7 +9,7 @@ const {
     checkType, scheme, checkedKeys, data, rowKey, 
     className, fixHeader, noDataTemplate, disableRow,
     resizable, expandedKeys, type, stickHeader, _isSticky,
-    style, rowClassName, children, sort, group,
+    style, rowClassName, children, sort, group, _scrollBarWidth,
 } = self.get();
 
 let colSpan = checkType === 'checkbox' || checkType === 'radio' ? 1 : 0;
@@ -20,13 +20,19 @@ let prevItem = checkType === 'checkbox' || checkType === 'radio' ?
 
 let hasFixedLeft;
 let hasFixedRight;
+self.leftColumns = [];
+self.rightColumns = [];
 
 const isInvisible = (onlyLeft, onlyRight, props) => {
     return props.fixed !== 'left' && onlyLeft || props.fixed !== 'right' && onlyRight;
 }
 
-const TheadCreator = ({onlyLeft, onlyRight}) => {
+const TheadCreator = ({onlyLeft, onlyRight, collect}) => {
     const keys = {};
+    const refLeftElement = (i) => i && self.leftColumns.push(i);
+    const refLeft = (i) => i && self.leftColumns.push(i.element);
+    const refRight = (i) => i && self.rightColumns.push(i.element);
+    const ref = collect ? onlyLeft ? refLeft : onlyRight ? refRight : undefined : undefined;
     return <thead>
         <tr>
             <th v-if={{ checkType === 'checkbox' }}
@@ -34,6 +40,7 @@ const TheadCreator = ({onlyLeft, onlyRight}) => {
                     "k-th-check": true,
                     "k-invisible": onlyRight,
                 } }}
+                ref={{ collect && onlyLeft ? refLeftElement : undefined }} 
             >
                 <Checkbox value={{ self.isCheckAll() }}
                     ev-click={{ self._toggleCheckAll }}
@@ -44,6 +51,7 @@ const TheadCreator = ({onlyLeft, onlyRight}) => {
                     "k-th-check": true,
                     "k-invisible": onlyRight,
                 } }}
+                ref={{ collect && onlyLeft ? refLeftElement : undefined }} 
             ></th>
             {{ __u.map(scheme, (item, key) => {
                 colSpan++;
@@ -53,12 +61,9 @@ const TheadCreator = ({onlyLeft, onlyRight}) => {
                     item = {title: item};
                 }
 
-                /* if (isInvisible(onlyLeft, onlyRight, item)) { */
-                    /* return; */
-                /* } */
-
                 // because we use the last resize handle to controll the previous column
                 // so we bind prevItem here
+                const _prevItem = prevItem;
                 const dragStart = self._dragStart.bind(self, prevItem);
                 prevItem = item;
 
@@ -68,6 +73,7 @@ const TheadCreator = ({onlyLeft, onlyRight}) => {
                     hasFixedRight = true;
                 }
 
+                const invisible = isInvisible(onlyLeft, onlyRight, item);
                 return <Column {{ ...item }}
                     key={{ key }}
                     $parent={{ self }} 
@@ -76,17 +82,15 @@ const TheadCreator = ({onlyLeft, onlyRight}) => {
                     v-model={{ `group.${key}` }}
                     className={{ {
                         [item.className]: item.className,
-                        'k-invisible': isInvisible(onlyLeft, onlyRight, item),
+                        'k-invisible': invisible, 
                     } }}
+                    ref={{ !invisible ? ref : undefined }}
+                    prevColumn={{ _prevItem }}
                 />
             }) }}
             {{  // for using TableColumn as children
                 __u.map(children ? (Array.isArray(children) ? children : [children]) : children, vNode => {
                     if (vNode.tag === Column) {
-                        /* if (isInvisible(onlyLeft, onlyRight, vNode.props)) { */
-                            /* return; */
-                        /* } */
-
                         colSpan++;
                         const props = {...vNode.props, $parent: self};
                         
@@ -103,15 +107,19 @@ const TheadCreator = ({onlyLeft, onlyRight}) => {
                         props.value = group[props.key];
 
                         const dragStart = self._dragStart.bind(self, prevItem);
+                        props.prevColumn = prevItem;
                         prevItem = props;
 
                         props['ev-$change:value'] = (c, v) => self.set(`group.${props.key}`, v);
                         props['ev-click'] = props.sortable ? self._sort.bind(self, props.key, props) : undefined;
                         props['ev-dragStart'] = dragStart;
+
+                        const invisible = isInvisible(onlyLeft, onlyRight, props);
                         props.className = _className({
                             [props.className]: props.className,
-                            'k-invisible': isInvisible(onlyLeft, onlyRight, props),
+                            'k-invisible': invisible, 
                         });
+
                         const blockFn = props._blocks && (props._blocks.default || props._blocks.template);
                         _scheme[props.key] = {
                             title: props.title,
@@ -124,6 +132,10 @@ const TheadCreator = ({onlyLeft, onlyRight}) => {
                             hasFixedLeft = true;
                         } else if (props.fixed === 'right') {
                             hasFixedRight = true;
+                        }
+
+                        if (!invisible) {
+                            props.ref = ref; 
                         }
 
                         // clone vNode
@@ -168,10 +180,6 @@ const TbodyCreator = ({onlyLeft, onlyRight}) => {
                         />
                     </td>
                     {{ __u.map(__u.extend({}, scheme, _scheme), (item, key) => {
-                        /* if (isInvisible(onlyLeft, onlyRight, item)) { */
-                            /* return; */
-                        /* } */
-
                         let td;
                         if (__u.isObject(item) && item.template) {
                             if (typeof item.template === 'function') {
@@ -240,12 +248,15 @@ const table = <table class="k-table"
     <TbodyCreator />
 </table>
 
+self.hasFixedLeft = hasFixedLeft;
+self.hasFixedRight = hasFixedRight;
+
 let index = 0;
 const Wrapper = (props) => {
     const ret = <div class={{ __u.extend({}, classNameObj, {
         [props.className]: props.className
-    }) }} style={{ style }}>
-        <template v-if={{ fixHeader || _isSticky }} class="k-fixed-scroll">
+    }) }} style={{ props.style }}>
+        <div v-if={{ fixHeader || _isSticky }} class="k-fixed-scroll">
             <div class="k-fixed"
                 style={{ do {
                     const style = {paddingRight: self.get('_padding') + 'px'};
@@ -268,7 +279,7 @@ const Wrapper = (props) => {
                         (typeof fixHeader === 'number' || 
                         typeof fixHeader === 'string')
                     ) {
-                        style = {maxHeight: `${fixHeader}px`};
+                        style = {maxHeight: `${fixHeader - (props.onlyLeft || props.onlyRight ? _scrollBarWidth : 0)}px`};
                     } else if (_isSticky && self.get('_sticky.position')) {
                         style = {paddingTop: self.get('_headerHeight')};
                     }
@@ -276,7 +287,7 @@ const Wrapper = (props) => {
                 } }}
                 ref={{ dom => self.scroll[index] = dom }}
             >{{ props.children }}</div>
-        </template>
+        </div>
         <template v-else>{{ props.children }}</template>
     </div>;
 
@@ -286,20 +297,24 @@ const Wrapper = (props) => {
 };
 
 <template>
-    <div v-if={{ hasFixedLeft || hasFixedRight }} class="k-table-fixed-column">
+    <div v-if={{ hasFixedLeft || hasFixedRight }} class="k-table-fixed-column" style={{ style }}>
         <Wrapper>{{ table }}</Wrapper>
-        <Wrapper v-if={{ hasFixedLeft }} class="k-fixed-left" onlyLeft>
+        <Wrapper v-if={{ hasFixedLeft }} class="k-fixed-left" onlyLeft
+            style={{ {width: self.get('_leftWidth') + 'px'} }}
+        >
             <table class="k-table">
-                <TheadCreator onlyLeft />
+                <TheadCreator onlyLeft collect/>
                 <TbodyCreator onlyLeft />
             </table>
         </Wrapper>
-        <Wrapper v-if={{ hasFixedRight }} class="k-fixed-right" onlyRight>
+        <Wrapper v-if={{ hasFixedRight }} class="k-fixed-right" onlyRight 
+            style={{ {width: self.get('_rightWidth') + 'px'} }}
+        >
             <table class="k-table">
-                <TheadCreator onlyRight />
+                <TheadCreator onlyRight collect />
                 <TbodyCreator onlyRight />
             </table>
         </Wrapper>
     </div>
-    <Wrapper v-else>{{ table }}</Wrapper>
+    <Wrapper v-else style={{ style }}>{{ table }}</Wrapper>
 </template>
