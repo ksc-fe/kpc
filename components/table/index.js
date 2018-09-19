@@ -95,9 +95,9 @@ export default class Table extends Intact {
             this.set('_isSticky', v != null && v !== false);
         });
         this.on('$changed:_sticky', (c, v) => {
-            if (v.position === 'fixed') {
-                this.header.scrollLeft = this.element.scrollLeft;
-            }
+            // if (v.position === 'fixed') {
+                // this.header.scrollLeft = this.element.scrollLeft;
+            // }
         });
         this.on('$changed:_isSticky', (c, v) => {
             if (v) {
@@ -110,12 +110,12 @@ export default class Table extends Intact {
     }
 
     _mount() {
-        this.set('_scrollBarWidth', scrollbarWidth());
+        this.set('_scrollBarWidth', scrollbarWidth(), {silent: true});
 
         this._calcHeaderPadding();
-        window.addEventListener('resize', this._onWindowResize);
+        // window.addEventListener('resize', this._onWindowResize);
 
-        this._setFixedColumnWidth();
+        // this._setFixedColumnWidth();
 
         if (this.get('_isSticky')) {
             this._onStickyHeaderMount();
@@ -129,20 +129,20 @@ export default class Table extends Intact {
     _onStickyHeaderMount() {
         this._setStickyHeaderStyle();
         window.addEventListener('scroll', this._setStickyHeaderStyle);
-        // when dragable we must scroll sticky header when table scrolled
-        const elem = this.element;
-        const header = this.header;
-        this._elementScrollCallback = (e) => {
-            if (this.get('_sticky.position') === 'fixed') {
-                header.scrollLeft = elem.scrollLeft;
-            }
-        };
-        elem.addEventListener('scroll', this._elementScrollCallback);
+        // // when dragable we must scroll sticky header when table scrolled
+        // const elem = this.element;
+        // const header = this.header;
+        // this._elementScrollCallback = (e) => {
+            // if (this.get('_sticky.position') === 'fixed') {
+                // header.scrollLeft = elem.scrollLeft;
+            // }
+        // };
+        // elem.addEventListener('scroll', this._elementScrollCallback);
     }
 
     _onStickyHeaderUnmount() {
         window.removeEventListener('scroll', this._setStickyHeaderStyle);
-        this.element.removeEventListener('scroll', this._elementScrollCallback);
+        // this.element.removeEventListener('scroll', this._elementScrollCallback);
     }
 
     get(key, defaultValue) {
@@ -233,8 +233,7 @@ export default class Table extends Intact {
         if (this.get('fixHeader')) {
             const tableHeight = this.table.offsetHeight;
             const containerHeight = this.scroll.offsetHeight;
-            const headerHeight = this.header.offsetHeight;
-            this.set('_padding', tableHeight - headerHeight > containerHeight ? this.get('_scrollBarWidth') : 0);
+            this.set('_padding', tableHeight > containerHeight ? this.get('_scrollBarWidth') : 0);
         }
     }
 
@@ -245,7 +244,7 @@ export default class Table extends Intact {
         if (stickHeader === true) {
             stickHeader = 0;
         }
-        const top = this.table.getBoundingClientRect().top;
+        const top = this.element.getBoundingClientRect().top;
         if (top <= +stickHeader) {
             const containerWidth = this.element.offsetWidth;
             this.set({
