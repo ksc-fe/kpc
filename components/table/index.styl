@@ -1,13 +1,14 @@
 @require('./variables.styl');
 
 .k-table
-    font-size $table-font-size
-    table-layout fixed
-    width 100%
-    background $table-bg-color
-    border-collapse collapse
-    border-spacing 0
-    color $table-color
+    table
+        font-size $table-font-size
+        table-layout fixed
+        width 100%
+        background $table-bg-color
+        border-collapse collapse
+        border-spacing 0
+        color $table-color
 
     // thead
     thead
@@ -77,9 +78,13 @@
     .k-no-data
         text-align center
 
+    .k-tbody
+        overflow auto
+
 
 .k-table-wrapper
-    overflow auto
+    // overflow auto
+    overflow hidden
     border-top $table-th-border-top
     // fix header
     .k-fixed
@@ -90,8 +95,9 @@
         thead
             border none
     .k-scroll
-        overflow-y auto
-        overflow-x hidden
+        // overflow-y auto
+        // overflow-x hidden
+        overflow auto
         > .k-table
             margin-top $table-fixed-margin-top 
 

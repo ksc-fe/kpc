@@ -66,10 +66,6 @@ export default class Table extends Intact {
     }
 
     _init() {
-        this.scroll = [];
-        this.header = [];
-        this.headerTable = [];
-
         // save the width of header cell
         this.headerWidthMap = {};
 
@@ -103,6 +99,13 @@ export default class Table extends Intact {
                 this.header.scrollLeft = this.element.scrollLeft;
             }
         });
+        this.on('$changed:_isSticky', (c, v) => {
+            if (v) {
+                this._onStickyHeaderMount();
+            } else {
+                this._onStickyHeaderUnmount();
+            }
+        });
         this._updateDisabledAmount();
     }
 
@@ -117,6 +120,10 @@ export default class Table extends Intact {
         if (this.get('_isSticky')) {
             this._onStickyHeaderMount();
         }
+    }
+
+    _update() {
+        this._setFixedColumnWidth();
     }
 
     _onStickyHeaderMount() {
@@ -272,6 +279,12 @@ export default class Table extends Intact {
                 return memo + elem.offsetWidth;
             }, 0);
             this.set('_rightWidth', width);
+        }
+
+        if (this.hasFixedLeft || this.hasFixedRight) {
+            // calculate 
+            const tableWidth = this.table.offsetWidth;
+            this.set('_tableWidth', tableWidth);
         }
     }
 

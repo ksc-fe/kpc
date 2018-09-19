@@ -1,0 +1,62 @@
+const {onlyLeft, onlyRight, checkType, isCheckedAll, scheme} = self.get();
+
+const cols = [];
+const ths = [];
+const keys = {};
+
+let prevItem = 
+    checkType === 'checkbox' || checkType === 'radio' ? 
+        {minWidth: 40} : {};
+let hasFixedLeft;
+let hasFixedRight;
+
+__u.map(scheme, (item, key) => {
+    keys[key] = true;
+
+    if (!__u.isObject(item) || item.type) {
+        item = {title: item};
+    }
+
+    // because we use the last resize handle to controll the previous column
+    // so we bind prevItem here
+    const _prevItem = prevItem;
+    const dragStart = self._dragStart.bind(self, prevItem);
+    prevItem = item;
+
+    if (item.fixed === 'left') {
+        hasFixedLeft = true;
+    } else if (item.fixed === 'right') {
+        hasFixedRight = true;
+    }
+
+    const invisible = isInvisible(onlyLeft, onlyRight, item);
+
+});
+
+<div class="k-thead">
+    <table>
+        <colgroup>
+            
+        </colgroup>
+        <thead>
+            <tr>
+                <th v-if={{ checkType === 'checkbox' }}
+                    class={{ {
+                        "k-th-check": true,
+                        "k-invisible": onlyRight,
+                    } }}
+                >
+                    <Checkbox value={{ isCheckedAll }}
+                        ev-click={{ self._toggleCheckAll }}
+                    />
+                </th>
+                <th v-else-if={{ checkType === 'radio' }}
+                    class={{ {
+                        "k-th-check": true,
+                        "k-invisible": onlyRight,
+                    } }}
+                ></th>
+            </tr>
+        </thead>
+    </table>
+</div>

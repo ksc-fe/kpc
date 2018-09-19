@@ -27,32 +27,34 @@ const isInvisible = (onlyLeft, onlyRight, props) => {
     return props.fixed !== 'left' && onlyLeft || props.fixed !== 'right' && onlyRight;
 }
 
+let cols;
+
 const TheadCreator = ({onlyLeft, onlyRight, collect}) => {
     const keys = {};
     const refLeftElement = (i) => i && self.leftColumns.push(i);
     const refLeft = (i) => i && self.leftColumns.push(i.element);
     const refRight = (i) => i && self.rightColumns.push(i.element);
     const ref = collect ? onlyLeft ? refLeft : onlyRight ? refRight : undefined : undefined;
-    return <thead>
+    cols = [];
+    const thead = <thead>
         <tr>
-            <th v-if={{ checkType === 'checkbox' }}
-                class={{ {
-                    "k-th-check": true,
-                    "k-invisible": onlyRight,
-                } }}
-                ref={{ collect && onlyLeft ? refLeftElement : undefined }} 
-            >
-                <Checkbox value={{ self.isCheckAll() }}
-                    ev-click={{ self._toggleCheckAll }}
-                />
-            </th>
-            <th v-else-if={{ checkType === 'radio' }}
-                class={{ {
-                    "k-th-check": true,
-                    "k-invisible": onlyRight,
-                } }}
-                ref={{ collect && onlyLeft ? refLeftElement : undefined }} 
-            ></th>
+            {{ do {
+                if (checkType === 'checkbox') {
+                    cols.push(<col class="k-th-check" />);
+                    <th class={{ {'k-invisible': onlyRight} }}
+                        ref={{ collect && onlyLeft ? refLeftElement : undefined }} 
+                    >
+                        <Checkbox value={{ self.isCheckAll() }}
+                            ev-click={{ self._toggleCheckAll }}
+                        />
+                    </th>
+                } else if (checkType === 'radio') {
+                    cols.push(<col class="k-th-check" />);
+                    <th class={{ {"k-invisible": onlyRight} }}
+                        ref={{ collect && onlyLeft ? refLeftElement : undefined }} 
+                    ></th>
+                }
+            } }}
             {{ __u.map(scheme, (item, key) => {
                 colSpan++;
                 keys[key] = true;
@@ -72,6 +74,8 @@ const TheadCreator = ({onlyLeft, onlyRight, collect}) => {
                 } else if (item.fixed === 'right') {
                     hasFixedRight = true;
                 }
+
+                cols.push(<col width={{ item.width }} />);
 
                 const invisible = isInvisible(onlyLeft, onlyRight, item);
                 return <Column {{ ...item }}
@@ -138,6 +142,8 @@ const TheadCreator = ({onlyLeft, onlyRight, collect}) => {
                             props.ref = ref; 
                         }
 
+                        cols.push(<col width={{ props.width }} />);
+
                         // clone vNode
                         return h(Column, props);
                     }
@@ -145,10 +151,17 @@ const TheadCreator = ({onlyLeft, onlyRight, collect}) => {
             }}
         </tr>
     </thead>
+
+    return <div class="k-thead">
+        <table>
+            <colgroup>{{ cols }}</colgroup>
+            {{ thead }}
+        </table>
+    </div>
 };
 
 const TbodyCreator = ({onlyLeft, onlyRight}) => {
-    return <tbody>
+    const tbody = <tbody>
         {{ data && data.length ? 
             __u.map(data, (value, index) => {
                 const key = rowKey.call(self, value, index);
@@ -232,6 +245,13 @@ const TbodyCreator = ({onlyLeft, onlyRight}) => {
             </tr>
         }}
     </tbody>
+
+    return <div class="k-tbody">
+        <table>
+            <colgroup>{{ cols }}</colgroup>
+            {{ tbody }}
+        </table>
+    </div>
 };
 
 const classNameObj = {
@@ -241,12 +261,14 @@ const classNameObj = {
     'k-sticky': _isSticky, 
 };
 
-const table = <table class="k-table"
+const table = <div class="k-table"
     ref={{ dom => self.table = dom }}
 >
-    <TheadCreator />
+    <TheadCreator useRef />
     <TbodyCreator />
-</table>
+</div>
+
+return table;
 
 self.hasFixedLeft = hasFixedLeft;
 self.hasFixedRight = hasFixedRight;
@@ -256,7 +278,9 @@ const Wrapper = (props) => {
     const ret = <div class={{ __u.extend({}, classNameObj, {
         [props.className]: props.className
     }) }} style={{ props.style }}>
-        <div v-if={{ fixHeader || _isSticky }} class="k-fixed-scroll">
+        <div v-if={{ fixHeader || _isSticky }} class="k-fixed-scroll"
+            style={{ props.tableStyle }}
+        >
             <div class="k-fixed"
                 style={{ do {
                     const style = {paddingRight: self.get('_padding') + 'px'};
@@ -266,9 +290,9 @@ const Wrapper = (props) => {
                     }
                     style;
                 } }}
-                ref={{ dom => self.header[index] = dom }}
+                ref={{ props.useRef ? dom => self.header = dom : undefined }}
             >
-                <table class="k-table" ref={{ dom => self.headerTable[index] = dom }}>
+                <table class="k-table" ref={{ props.useRef ? dom => self.headerTable = dom : undefined }}>
                     <TheadCreator onlyLeft={{ props.onlyLeft }} onlyRight={{ props.onlyRight }} />
                 </table>
             </div>
@@ -285,7 +309,7 @@ const Wrapper = (props) => {
                     }
                     style;
                 } }}
-                ref={{ dom => self.scroll[index] = dom }}
+                ref={{ props.useRef ? dom => self.scroll = dom : undefined }}
             >{{ props.children }}</div>
         </div>
         <template v-else>{{ props.children }}</template>
@@ -298,23 +322,25 @@ const Wrapper = (props) => {
 
 <template>
     <div v-if={{ hasFixedLeft || hasFixedRight }} class="k-table-fixed-column" style={{ style }}>
-        <Wrapper>{{ table }}</Wrapper>
+        <Wrapper useRef>{{ table }}</Wrapper>
         <Wrapper v-if={{ hasFixedLeft }} class="k-fixed-left" onlyLeft
             style={{ {width: self.get('_leftWidth') + 'px'} }}
+            tableStyle={{ {width: self.get('_tableWidth') + 'px'} }}
         >
             <table class="k-table">
-                <TheadCreator onlyLeft collect/>
+                <TheadCreator onlyLeft/>
                 <TbodyCreator onlyLeft />
             </table>
         </Wrapper>
         <Wrapper v-if={{ hasFixedRight }} class="k-fixed-right" onlyRight 
             style={{ {width: self.get('_rightWidth') + 'px'} }}
+            tableStyle={{ {width: self.get('_tableWidth') + 'px'} }}
         >
             <table class="k-table">
-                <TheadCreator onlyRight collect />
+                <TheadCreator onlyRight />
                 <TbodyCreator onlyRight />
             </table>
         </Wrapper>
     </div>
-    <Wrapper v-else style={{ style }}>{{ table }}</Wrapper>
+    <Wrapper v-else style={{ style }} useRef>{{ table }}</Wrapper>
 </template>
