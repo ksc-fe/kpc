@@ -8079,7 +8079,7 @@ exports.Upload = _upload.Upload;
 
 /* generate start */
 
-var version = exports.version = '0.5.7';
+var version = exports.version = '0.5.8';
 
 /* generate end */
 
