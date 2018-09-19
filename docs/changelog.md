@@ -4,6 +4,12 @@ order: 99
 sidebar: doc
 ---
 
+## v0.5.7
+
+1. `Add` `Grid`改进，支持响应式，以及`pull` `push` `order`等属性 [#87](https://github.com/ksc-fe/kpc/issues/87)
+2. `Add` 新增时间轴组件`Timeline` [#77](https://github.com/ksc-fe/kpc/issues/77)
+3. `Add` `Message`在Vue全局安装的情况下，支持`this.$message.success()`的调用方式 [#88](https://github.com/ksc-fe/kpc/issues/88)
+
 ## v0.5.6
 
 1. `Add` 新增时间选择组件`Timepicker`
