@@ -9152,36 +9152,6 @@ button.k-btn.k-mini > span {
 .k-table-dropdown:not(.k-multiple) .k-item.k-active {
   color: #0091ea;
 }
-.k-table-fixed-column {
-  position: relative;
-  overflow: hidden;
-}
-.k-table-fixed-column .k-invisible {
-  visibility: hidden;
-}
-.k-table-fixed-column .k-fixed-left,
-.k-table-fixed-column .k-fixed-right {
-  border-top: 1px solid #b2b2b2;
-  position: absolute;
-  top: 0;
-  -webkit-box-shadow: 0 0 4px 0 rgba(0,0,0,0.3);
-          box-shadow: 0 0 4px 0 rgba(0,0,0,0.3);
-  overflow: hidden;
-}
-.k-table-fixed-column .k-fixed-left .k-scroll,
-.k-table-fixed-column .k-fixed-right .k-scroll {
-  overflow: hidden;
-}
-.k-table-fixed-column .k-fixed-left {
-  left: 0;
-}
-.k-table-fixed-column .k-fixed-right {
-  right: 0;
-}
-.k-table-fixed-column .k-fixed-right .k-fixed-scroll,
-.k-table-fixed-column .k-fixed-right > .k-table {
-  float: right;
-}
 .k-table thead {
   line-height: 1.15;
 }
