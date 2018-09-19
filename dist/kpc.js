@@ -7515,6 +7515,14 @@ var TableColumn = (_temp = _class = function (_Intact) {
         };
     };
 
+    TableColumn.prototype._init = function _init() {
+        var _this2 = this;
+
+        this.on('$receive:width', function (c, v) {
+            _this2.width = v;
+        });
+    };
+
     TableColumn.prototype.onClick = function onClick(e) {
         this.trigger('click', e);
     };
@@ -22702,12 +22710,22 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
 
             _padding: 0,
             _disabledAmount: 0,
-            _isSticky: false
+            _isSticky: false,
+            _leftWidth: 0,
+            _rightWidth: 0,
+            _scrollBarWidth: 0
         };
     };
 
     Table.prototype._init = function _init() {
         var _this2 = this;
+
+        this.scroll = [];
+        this.header = [];
+        this.headerTable = [];
+
+        // save the width of header cell
+        this.headerWidthMap = {};
 
         // keep the event consistent
         this.on('$change:checkedKeys', function (c, newValue, oldValue) {
@@ -22743,8 +22761,12 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
     };
 
     Table.prototype._mount = function _mount() {
+        this.set('_scrollBarWidth', (0, _position.scrollbarWidth)());
+
         this._calcHeaderPadding();
         window.addEventListener('resize', this._onWindowResize);
+
+        this._setFixedColumnWidth();
 
         if (this.get('_isSticky')) {
             this._onStickyHeaderMount();
@@ -22871,7 +22893,7 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
             var tableHeight = this.table.offsetHeight;
             var containerHeight = this.scroll.offsetHeight;
             var headerHeight = this.header.offsetHeight;
-            this.set('_padding', tableHeight - headerHeight > containerHeight ? (0, _position.scrollbarWidth)() : 0);
+            this.set('_padding', tableHeight - headerHeight > containerHeight ? this.get('_scrollBarWidth') : 0);
         }
     };
 
@@ -22900,6 +22922,22 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
                 },
                 '_headerHeight': 0
             });
+        }
+    };
+
+    Table.prototype._setFixedColumnWidth = function _setFixedColumnWidth() {
+        if (this.hasFixedLeft) {
+            var width = this.leftColumns.reduce(function (memo, elem) {
+                return memo + elem.offsetWidth;
+            }, 0);
+            this.set('_leftWidth', width);
+        }
+
+        if (this.hasFixedRight) {
+            var _width = this.rightColumns.reduce(function (memo, elem) {
+                return memo + elem.offsetWidth;
+            }, 0);
+            this.set('_rightWidth', _width);
         }
     };
 
@@ -23231,15 +23269,39 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         rowClassName = _self$get.rowClassName,
         children = _self$get.children,
         sort = _self$get.sort,
-        group = _self$get.group;
+        group = _self$get.group,
+        _scrollBarWidth = _self$get._scrollBarWidth;
 
     var colSpan = checkType === 'checkbox' || checkType === 'radio' ? 1 : 0;
     var _scheme = {};
 
     var prevItem = checkType === 'checkbox' || checkType === 'radio' ? { minWidth: 40 } : {};
 
-    var theadCreator = function theadCreator() {
+    var hasFixedLeft = void 0;
+    var hasFixedRight = void 0;
+    self.leftColumns = [];
+    self.rightColumns = [];
+
+    var isInvisible = function isInvisible(onlyLeft, onlyRight, props) {
+        return props.fixed !== 'left' && onlyLeft || props.fixed !== 'right' && onlyRight;
+    };
+
+    var TheadCreator = function TheadCreator(_ref) {
+        var onlyLeft = _ref.onlyLeft,
+            onlyRight = _ref.onlyRight,
+            collect = _ref.collect;
+
         var keys = {};
+        var refLeftElement = function refLeftElement(i) {
+            return i && self.leftColumns.push(i);
+        };
+        var refLeft = function refLeft(i) {
+            return i && self.leftColumns.push(i.element);
+        };
+        var refRight = function refRight(i) {
+            return i && self.rightColumns.push(i.element);
+        };
+        var ref = collect ? onlyLeft ? refLeft : onlyRight ? refRight : undefined : undefined;
         return h('thead', null, h('tr', null, [function () {
             try {
                 return checkType === 'checkbox';
@@ -23262,13 +23324,43 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                     _e(e);
                 }
             }.call($this)
-        }), 'k-th-check') : function () {
+        }), _className(function () {
+            try {
+                return {
+                    "k-th-check": true,
+                    "k-invisible": onlyRight
+                };
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)), null, function () {
+            try {
+                return collect && onlyLeft ? refLeftElement : undefined;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)) : function () {
             try {
                 return checkType === 'radio';
             } catch (e) {
                 _e(e);
             }
-        }.call($this) ? h('th', null, null, 'k-th-check') : undefined, function () {
+        }.call($this) ? h('th', null, null, _className(function () {
+            try {
+                return {
+                    "k-th-check": true,
+                    "k-invisible": onlyRight
+                };
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)), null, function () {
+            try {
+                return collect && onlyLeft ? refLeftElement : undefined;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)) : undefined, function () {
             try {
                 return __u.map(scheme, function (item, key) {
                     colSpan++;
@@ -23280,9 +23372,17 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
 
                     // because we use the last resize handle to controll the previous column
                     // so we bind prevItem here
+                    var _prevItem = prevItem;
                     var dragStart = self._dragStart.bind(self, prevItem);
                     prevItem = item;
 
+                    if (item.fixed === 'left') {
+                        hasFixedLeft = true;
+                    } else if (item.fixed === 'right') {
+                        hasFixedRight = true;
+                    }
+
+                    var invisible = isInvisible(onlyLeft, onlyRight, item);
                     return h(_column2.default, (0, _extends3.default)({}, function () {
                         try {
                             return item;
@@ -23300,6 +23400,29 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                         '$parent': function () {
                             try {
                                 return self;
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call($this),
+                        'className': _className(function () {
+                            try {
+                                var _ref2;
+
+                                return _ref2 = {}, _ref2[item.className] = item.className, _ref2['k-invisible'] = invisible, _ref2;
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call($this)),
+                        'ref': function () {
+                            try {
+                                return !invisible ? ref : undefined;
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call($this),
+                        'prevColumn': function () {
+                            try {
+                                return _prevItem;
                             } catch (e) {
                                 _e(e);
                             }
@@ -23344,10 +23467,11 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             try {
                 return __u.map(children ? Array.isArray(children) ? children : [children] : children, function (vNode) {
                     if (vNode.tag === _column2.default) {
-                        colSpan++;
+                        var _className2;
 
+                        colSpan++;
                         var props = (0, _extends3.default)({}, vNode.props, { $parent: self });
-                        vNode.props = props;
+
                         if (props.key == null) {
                             _e(new Error('key for TableColumn must be specified.'));
                         } else if (/^\d+$/.test(props.key)) {
@@ -23361,21 +23485,22 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                         props.value = group[props.key];
 
                         var dragStart = self._dragStart.bind(self, prevItem);
+                        props.prevColumn = prevItem;
                         prevItem = props;
 
-                        // add a flag to detect if the vNode has attached events of bellow
-                        // we should not attach them again, when the same vNode come again
-                        if (!vNode._$) {
-                            props['ev-$change:value'] = function (c, v) {
-                                return self.set('group.' + props.key, v);
-                            };
-                            props['ev-click'] = props.sortable ? self._sort.bind(self, props.key, props) : undefined;
-                            props['ev-dragStart'] = dragStart;
-                            vNode._$ = true;
-                        }
+                        props['ev-$change:value'] = function (c, v) {
+                            return self.set('group.' + props.key, v);
+                        };
+                        props['ev-click'] = props.sortable ? self._sort.bind(self, props.key, props) : undefined;
+                        props['ev-dragStart'] = dragStart;
+
+                        var invisible = isInvisible(onlyLeft, onlyRight, props);
+                        props.className = _className((_className2 = {}, _className2[props.className] = props.className, _className2['k-invisible'] = invisible, _className2));
+
                         var blockFn = props._blocks && (props._blocks.default || props._blocks.template);
                         _scheme[props.key] = {
                             title: props.title,
+                            fixed: props.fixed,
                             template: props.template || blockFn && function () {
                                 for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
                                     args[_key] = arguments[_key];
@@ -23384,7 +23509,19 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                                 return blockFn.call.apply(blockFn, [self, _utils.noop].concat(args));
                             }
                         };
-                        return vNode;
+
+                        if (props.fixed === 'left') {
+                            hasFixedLeft = true;
+                        } else if (props.fixed === 'right') {
+                            hasFixedRight = true;
+                        }
+
+                        if (!invisible) {
+                            props.ref = ref;
+                        }
+
+                        // clone vNode
+                        return h(_column2.default, props);
                     }
                 });
             } catch (e) {
@@ -23393,225 +23530,240 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         }.call($this)]));
     };
 
-    var thead = theadCreator();
+    var TbodyCreator = function TbodyCreator(_ref3) {
+        var onlyLeft = _ref3.onlyLeft,
+            onlyRight = _ref3.onlyRight;
 
-    var tbody = h('tbody', null, function () {
-        try {
-            return data && data.length ? __u.map(data, function (value, index) {
-                var key = rowKey.call(self, value, index);
-                var disabled = disableRow.call(self, value, index);
-                var className = rowClassName.call(self, value, index);
-                var tr = h(_row2.default, {
-                    'key': function () {
-                        try {
-                            return key;
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call($this),
-                    'className': _className(function () {
-                        try {
-                            var _ref;
-
-                            return _ref = {
-                                'k-disabled': disabled
-                            }, _ref[className] = className, _ref['k-checked'] = self.isChecked(key), _ref;
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call($this)),
-                    'children': [function () {
-                        try {
-                            return checkType === 'checkbox';
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call($this) ? h('td', null, h(_checkbox2.default, {
-                        'name': 'k-table-checkbox',
-                        'trueValue': function () {
+        return h('tbody', null, function () {
+            try {
+                return data && data.length ? __u.map(data, function (value, index) {
+                    var key = rowKey.call(self, value, index);
+                    var disabled = disableRow.call(self, value, index);
+                    var className = rowClassName.call(self, value, index);
+                    var tr = h(_row2.default, {
+                        'key': function () {
                             try {
                                 return key;
                             } catch (e) {
                                 _e(e);
                             }
                         }.call($this),
-                        'disabled': function () {
+                        'className': _className(function () {
                             try {
-                                return disabled;
+                                var _ref4;
+
+                                return _ref4 = {
+                                    'k-disabled': disabled
+                                }, _ref4[className] = className, _ref4['k-checked'] = self.isChecked(key), _ref4;
                             } catch (e) {
                                 _e(e);
                             }
-                        }.call($this),
-                        '_context': $this,
-                        'value': _getModel(self, 'checkedKeys'),
-                        'ev-$change:value': function ev$changeValue(__c, __n) {
-                            _setModel(self, 'checkedKeys', __n, $this);
-                        }
-                    })) : function () {
-                        try {
-                            return checkType === 'radio';
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call($this) ? h('td', null, h(_radio2.default, {
-                        'name': 'k-table-radio',
-                        'trueValue': function () {
+                        }.call($this)),
+                        'children': [function () {
                             try {
-                                return key;
+                                return checkType === 'checkbox';
                             } catch (e) {
                                 _e(e);
                             }
-                        }.call($this),
-                        'disabled': function () {
-                            try {
-                                return disabled;
-                            } catch (e) {
-                                _e(e);
-                            }
-                        }.call($this),
-                        '_context': $this,
-                        'value': _getModel(self, 'checkedKey'),
-                        'ev-$change:value': function ev$changeValue(__c, __n) {
-                            _setModel(self, 'checkedKey', __n, $this);
-                        }
-                    })) : undefined, function () {
-                        try {
-                            return __u.map(__u.extend({}, scheme, _scheme), function (item, key) {
-                                var td = void 0;
-                                if (__u.isObject(item) && item.template) {
-                                    if (typeof item.template === 'function') {
-                                        td = item.template.call(self, value, index);
-                                        // for Intact-Vue
-                                        if (_intact.normalize) {
-                                            td = (0, _intact.normalize)(td);
-                                        }
-                                    } else {
-                                        td = item.template;
-                                    }
-                                } else if (value[key] !== undefined) {
-                                    td = value[key];
-                                } else {
-                                    var _obj = value,
-                                        keys = key.split('.'),
-                                        i = 0;
-                                    while (_obj != null && i < keys.length) {
-                                        _obj = _obj[keys[i++]];
-                                    }
-                                    td = i && i === keys.length ? _obj : null;
+                        }.call($this) ? h('td', null, h(_checkbox2.default, {
+                            'name': 'k-table-checkbox',
+                            'trueValue': function () {
+                                try {
+                                    return key;
+                                } catch (e) {
+                                    _e(e);
                                 }
-                                return h('td', {
-                                    'title': function () {
+                            }.call($this),
+                            'disabled': function () {
+                                try {
+                                    return disabled;
+                                } catch (e) {
+                                    _e(e);
+                                }
+                            }.call($this),
+                            '_context': $this,
+                            'value': _getModel(self, 'checkedKeys'),
+                            'ev-$change:value': function ev$changeValue(__c, __n) {
+                                _setModel(self, 'checkedKeys', __n, $this);
+                            }
+                        }), _className(function () {
+                            try {
+                                return { 'k-invisible': onlyRight };
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call($this))) : function () {
+                            try {
+                                return checkType === 'radio';
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call($this) ? h('td', null, h(_radio2.default, {
+                            'name': 'k-table-radio',
+                            'trueValue': function () {
+                                try {
+                                    return key;
+                                } catch (e) {
+                                    _e(e);
+                                }
+                            }.call($this),
+                            'disabled': function () {
+                                try {
+                                    return disabled;
+                                } catch (e) {
+                                    _e(e);
+                                }
+                            }.call($this),
+                            '_context': $this,
+                            'value': _getModel(self, 'checkedKey'),
+                            'ev-$change:value': function ev$changeValue(__c, __n) {
+                                _setModel(self, 'checkedKey', __n, $this);
+                            }
+                        }), _className(function () {
+                            try {
+                                return { 'k-invisible': onlyRight };
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call($this))) : undefined, function () {
+                            try {
+                                return __u.map(__u.extend({}, scheme, _scheme), function (item, key) {
+                                    var td = void 0;
+                                    if (__u.isObject(item) && item.template) {
+                                        if (typeof item.template === 'function') {
+                                            td = item.template.call(self, value, index);
+                                            // for Intact-Vue
+                                            if (_intact.normalize) {
+                                                td = (0, _intact.normalize)(td);
+                                            }
+                                        } else {
+                                            td = item.template;
+                                        }
+                                    } else if (value[key] !== undefined) {
+                                        td = value[key];
+                                    } else {
+                                        var _obj = value,
+                                            keys = key.split('.'),
+                                            i = 0;
+                                        while (_obj != null && i < keys.length) {
+                                            _obj = _obj[keys[i++]];
+                                        }
+                                        td = i && i === keys.length ? _obj : null;
+                                    }
+                                    return h('td', {
+                                        'title': function () {
+                                            try {
+                                                return (0, _utils.isStringOrNumber)(td) ? td : undefined;
+                                            } catch (e) {
+                                                _e(e);
+                                            }
+                                        }.call($this)
+                                    }, function () {
                                         try {
-                                            return typeof td === 'string' || typeof td === 'number' ? td : undefined;
+                                            return typeof td === 'boolean' ? String(td) : td;
                                         } catch (e) {
                                             _e(e);
                                         }
-                                    }.call($this)
-                                }, function () {
-                                    try {
-                                        return typeof td === 'boolean' ? String(td) : td;
-                                    } catch (e) {
-                                        _e(e);
-                                    }
-                                }.call($this));
-                            });
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call($this)],
-                    '_context': $this,
-                    'ev-click': function () {
-                        try {
-                            return self._clickRow.bind(self, value, index, key);
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call($this),
-                    'ev-$destroyed': function () {
-                        try {
-                            return self._onRowDestroyed.bind(self, key);
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call($this)
-                });
-
-                if (blocks.expand && expandedKeys.indexOf(key) > -1) {
-                    return [tr, h('tr', null, h('td', {
-                        'colspan': function () {
+                                    }.call($this), _className(function () {
+                                        try {
+                                            return {
+                                                'k-invisible': isInvisible(onlyLeft, onlyRight, item)
+                                            };
+                                        } catch (e) {
+                                            _e(e);
+                                        }
+                                    }.call($this)));
+                                });
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call($this)],
+                        '_context': $this,
+                        'ev-click': function () {
                             try {
-                                return colSpan;
+                                return self._clickRow.bind(self, value, index, key);
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call($this),
+                        'ev-$destroyed': function () {
+                            try {
+                                return self._onRowDestroyed.bind(self, key);
                             } catch (e) {
                                 _e(e);
                             }
                         }.call($this)
-                    }, (_blocks['expand'] = function (parent) {
-                        return null;
-                    }) && (__blocks['expand'] = function (parent) {
-                        var args = arguments;
-                        return blocks['expand'] ? blocks['expand'].apply($this, [function () {
-                            return _blocks['expand'].apply($this, args);
-                        }].concat(__slice.call(args, 1))) : _blocks['expand'].apply($this, args);
-                    }) && __blocks['expand'].apply($this, [__noop].concat(function () {
+                    });
+
+                    if (blocks.expand && expandedKeys.indexOf(key) > -1) {
+                        return [tr, h('tr', null, h('td', {
+                            'colspan': function () {
+                                try {
+                                    return colSpan;
+                                } catch (e) {
+                                    _e(e);
+                                }
+                            }.call($this)
+                        }, (_blocks['expand'] = function (parent) {
+                            return null;
+                        }) && (__blocks['expand'] = function (parent) {
+                            var args = arguments;
+                            return blocks['expand'] ? blocks['expand'].apply($this, [function () {
+                                return _blocks['expand'].apply($this, args);
+                            }].concat(__slice.call(args, 1))) : _blocks['expand'].apply($this, args);
+                        }) && __blocks['expand'].apply($this, [__noop].concat(function () {
+                            try {
+                                return [value, index];
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call($this)))), 'k-expand', function () {
+                            try {
+                                return key + '.expand';
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call($this))];
+                    } else {
+                        return tr;
+                    }
+                }) : h('tr', null, h('td', {
+                    'colspan': function () {
                         try {
-                            return [value, index];
+                            return colSpan;
                         } catch (e) {
                             _e(e);
                         }
-                    }.call($this)))), 'k-expand', function () {
+                    }.call($this)
+                }, (_blocks['no-data'] = function (parent) {
+                    return function () {
                         try {
-                            return key + '.expand';
+                            return noDataTemplate;
                         } catch (e) {
                             _e(e);
                         }
-                    }.call($this))];
-                } else {
-                    return tr;
-                }
-            }) : h('tr', null, h('td', {
-                'colspan': function () {
-                    try {
-                        return colSpan;
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call($this)
-            }, (_blocks['no-data'] = function (parent) {
-                return function () {
-                    try {
-                        return noDataTemplate;
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call($this);
-            }) && (__blocks['no-data'] = function (parent) {
-                var args = arguments;
-                return blocks['no-data'] ? blocks['no-data'].apply($this, [function () {
-                    return _blocks['no-data'].apply($this, args);
-                }].concat(__slice.call(args, 1))) : _blocks['no-data'].apply($this, args);
-            }) && __blocks['no-data'].apply($this, [__noop]), 'k-no-data'), null, 'table_no_data');
-        } catch (e) {
-            _e(e);
-        }
-    }.call($this));
+                    }.call($this);
+                }) && (__blocks['no-data'] = function (parent) {
+                    var args = arguments;
+                    return blocks['no-data'] ? blocks['no-data'].apply($this, [function () {
+                        return _blocks['no-data'].apply($this, args);
+                    }].concat(__slice.call(args, 1))) : _blocks['no-data'].apply($this, args);
+                }) && __blocks['no-data'].apply($this, [__noop]), 'k-no-data'), null, 'table_no_data');
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this));
+    };
 
     var classNameObj = (_classNameObj = {
         'k-table-wrapper': true
     }, _classNameObj[className] = className, _classNameObj['k-' + type] = type !== 'default', _classNameObj['k-sticky'] = _isSticky, _classNameObj);
 
-    var table = h('table', null, [function () {
-        try {
-            return thead;
-        } catch (e) {
-            _e(e);
-        }
-    }.call($this), '\n    ', function () {
-        try {
-            return tbody;
-        } catch (e) {
-            _e(e);
-        }
-    }.call($this)], 'k-table', null, function () {
+    var table = h('table', null, [h(TheadCreator, {
+        '_context': $this
+    }), h(TbodyCreator, {
+        '_context': $this
+    })], 'k-table', null, function () {
         try {
             return function (dom) {
                 return self.table = dom;
@@ -23621,7 +23773,130 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         }
     }.call($this));
 
-    return h('div', {
+    self.hasFixedLeft = hasFixedLeft;
+    self.hasFixedRight = hasFixedRight;
+
+    var index = 0;
+    var Wrapper = function Wrapper(props) {
+        var ret = h('div', {
+            'style': function () {
+                try {
+                    return props.style;
+                } catch (e) {
+                    _e(e);
+                }
+            }.call($this)
+        }, function () {
+            try {
+                return fixHeader || _isSticky;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this) ? h('div', null, [h('div', {
+            'style': function () {
+                try {
+                    return function () {
+                        var style = { paddingRight: self.get('_padding') + 'px' };
+                        if (_isSticky) {
+                            var _sticky = self.get('_sticky');
+                            __u.extend(style, _sticky);
+                        }
+                        return style;
+                    }();
+                } catch (e) {
+                    _e(e);
+                }
+            }.call($this)
+        }, h('table', null, h(TheadCreator, {
+            'onlyLeft': function () {
+                try {
+                    return props.onlyLeft;
+                } catch (e) {
+                    _e(e);
+                }
+            }.call($this),
+            'onlyRight': function () {
+                try {
+                    return props.onlyRight;
+                } catch (e) {
+                    _e(e);
+                }
+            }.call($this),
+            '_context': $this
+        }), 'k-table', null, function () {
+            try {
+                return function (dom) {
+                    return self.headerTable[index] = dom;
+                };
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)), 'k-fixed', null, function () {
+            try {
+                return function (dom) {
+                    return self.header[index] = dom;
+                };
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)), h('div', {
+            'style': function () {
+                try {
+                    return function () {
+                        var style = {};
+                        if (!_isSticky && (typeof fixHeader === 'number' || typeof fixHeader === 'string')) {
+                            style = { maxHeight: fixHeader - (props.onlyLeft || props.onlyRight ? _scrollBarWidth : 0) + 'px' };
+                        } else if (_isSticky && self.get('_sticky.position')) {
+                            style = { paddingTop: self.get('_headerHeight') };
+                        }
+                        return style;
+                    }();
+                } catch (e) {
+                    _e(e);
+                }
+            }.call($this)
+        }, function () {
+            try {
+                return props.children;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this), 'k-scroll', null, function () {
+            try {
+                return function (dom) {
+                    return self.scroll[index] = dom;
+                };
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this))], 'k-fixed-scroll') : function () {
+            try {
+                return props.children;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this), _className(function () {
+            try {
+                var _u$extend;
+
+                return __u.extend({}, classNameObj, (_u$extend = {}, _u$extend[props.className] = props.className, _u$extend));
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)));
+
+        index++;
+
+        return ret;
+    };
+
+    return function () {
+        try {
+            return hasFixedLeft || hasFixedRight;
+        } catch (e) {
+            _e(e);
+        }
+    }.call($this) ? h('div', {
         'style': function () {
             try {
                 return style;
@@ -23629,92 +23904,130 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 _e(e);
             }
         }.call($this)
-    }, [function () {
-        try {
-            return fixHeader || _isSticky;
-        } catch (e) {
-            _e(e);
-        }
-    }.call($this) ? h('div', {
-        'style': function () {
+    }, [h(Wrapper, {
+        'children': function () {
             try {
-                return function () {
-                    var style = { paddingRight: self.get('_padding') + 'px' };
-                    if (_isSticky) {
-                        var _sticky = self.get('_sticky');
-                        __u.extend(style, _sticky);
-                    }
-                    return style;
-                }();
+                return table;
             } catch (e) {
                 _e(e);
             }
-        }.call($this)
-    }, h('table', null, function () {
+        }.call($this),
+        '_context': $this
+    }), function () {
         try {
-            return theadCreator();
+            return hasFixedLeft;
         } catch (e) {
             _e(e);
         }
-    }.call($this), 'k-table', null, function () {
-        try {
-            return function (dom) {
-                return self.headerTable = dom;
-            };
-        } catch (e) {
-            _e(e);
-        }
-    }.call($this)), 'k-fixed', null, function () {
-        try {
-            return function (dom) {
-                return self.header = dom;
-            };
-        } catch (e) {
-            _e(e);
-        }
-    }.call($this)) : undefined, function () {
-        try {
-            return fixHeader || _isSticky ? h('div', {
-                'style': function () {
-                    try {
-                        return function () {
-                            var style = {};
-                            if (!_isSticky && (typeof fixHeader === 'number' || typeof fixHeader === 'string')) {
-                                style = { maxHeight: fixHeader + 'px' };
-                            } else if (_isSticky && self.get('_sticky.position')) {
-                                style = { paddingTop: self.get('_headerHeight') };
-                            }
-                            return style;
-                        }();
-                    } catch (e) {
-                        _e(e);
-                    }
-                }.call($this)
-            }, function () {
+    }.call($this) ? h(Wrapper, {
+        'className': 'k-fixed-left',
+        'onlyLeft': function () {
+            try {
+                return true;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
+        'style': function () {
+            try {
+                return { width: self.get('_leftWidth') + 'px' };
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
+        'children': h('table', null, [h(TheadCreator, {
+            'onlyLeft': function () {
                 try {
-                    return table;
+                    return true;
                 } catch (e) {
                     _e(e);
                 }
-            }.call($this), 'k-scroll', null, function () {
+            }.call($this),
+            'collect': function () {
                 try {
-                    return function (dom) {
-                        return self.scroll = dom;
-                    };
+                    return true;
                 } catch (e) {
                     _e(e);
                 }
-            }.call($this)) : table;
-        } catch (e) {
-            _e(e);
-        }
-    }.call($this)], _className(function () {
+            }.call($this),
+            '_context': $this
+        }), h(TbodyCreator, {
+            'onlyLeft': function () {
+                try {
+                    return true;
+                } catch (e) {
+                    _e(e);
+                }
+            }.call($this),
+            '_context': $this
+        })], 'k-table'),
+        '_context': $this
+    }) : undefined, function () {
         try {
-            return classNameObj;
+            return hasFixedRight;
         } catch (e) {
             _e(e);
         }
-    }.call($this)));
+    }.call($this) ? h(Wrapper, {
+        'className': 'k-fixed-right',
+        'onlyRight': function () {
+            try {
+                return true;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
+        'style': function () {
+            try {
+                return { width: self.get('_rightWidth') + 'px' };
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
+        'children': h('table', null, [h(TheadCreator, {
+            'onlyRight': function () {
+                try {
+                    return true;
+                } catch (e) {
+                    _e(e);
+                }
+            }.call($this),
+            'collect': function () {
+                try {
+                    return true;
+                } catch (e) {
+                    _e(e);
+                }
+            }.call($this),
+            '_context': $this
+        }), h(TbodyCreator, {
+            'onlyRight': function () {
+                try {
+                    return true;
+                } catch (e) {
+                    _e(e);
+                }
+            }.call($this),
+            '_context': $this
+        })], 'k-table'),
+        '_context': $this
+    }) : undefined], 'k-table-fixed-column') : h(Wrapper, {
+        'style': function () {
+            try {
+                return style;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
+        'children': function () {
+            try {
+                return table;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
+        '_context': $this
+    });
 };
 
 var _checkbox = __webpack_require__(26);
@@ -23898,14 +24211,16 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         parent = ($callee || {})._super;
 
     var _self$get = self.get(),
-        width = _self$get.width,
         title = _self$get.title,
         key = _self$get.key,
         group = _self$get.group,
         multiple = _self$get.multiple,
         sortable = _self$get.sortable,
         $parent = _self$get.$parent,
-        _show = _self$get._show;
+        _show = _self$get._show,
+        className = _self$get.className;
+
+    var width = self.width;
 
     var _$parent$get = $parent.get(),
         sort = _$parent$get.sort,
@@ -24118,7 +24433,11 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         }
     }.call($this)))], _className(function () {
         try {
-            return { 'k-sortable': sortable };
+            var _ref3;
+
+            return _ref3 = {
+                'k-sortable': sortable
+            }, _ref3[className] = className, _ref3;
         } catch (e) {
             _e(e);
         }
@@ -24468,7 +24787,6 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     }, function () {
         try {
             return (0, _utils.mapChildren)(children, function (vNode) {
-                console.log(vNode);
                 return vNode;
             });
         } catch (e) {
