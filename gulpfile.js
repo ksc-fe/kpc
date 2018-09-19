@@ -199,7 +199,7 @@ function buildVdt(destPath) {
 }
 
 function buildFont(destPath) {
-    return gulp.src(['./styles/fonts/*.@(eot|svg|ttf|woff)', './components/**/*.json'], {base: './'})
+    return gulp.src(['./styles/fonts/*.@(eot|svg|ttf|woff)'], {base: './'})
         .pipe(gulp.dest(destPath));
 }
 

@@ -1,6 +1,6 @@
 import Intact from 'intact';
 import template from './row.vdt';
-import mediaQuery from './mediaQuery.json';
+import mediaQuery from './mediaQuery';
 import {isObject} from '../utils';
 import Col from './col';
 import {breakpoints} from './utils';
@@ -91,14 +91,12 @@ export default class Row extends Intact {
                     const {gutter} = this.get();
                     if (isObject(gutter)) {
                         this.set('_matches', {...this.get('_matches'), [key]: true}, {async: true});
-                        console.log('match', key, gutter[key]);
                     }
                 },
                 unmatch: () => {
                     const {gutter} = this.get();
                     if (isObject(gutter)) {
                         this.set('_matches', {...this.get('_matches'), [key]: false}, {async: true});
-                        console.log('unmatch', key, gutter[key]);
                     }
                 }
             });

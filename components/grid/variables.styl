@@ -1,8 +1,10 @@
 @require('../../styles/themes/default.styl')
-json("./mediaQuery.json")
+// json("./mediaQuery.json")
+// because webpack@v1 does not have internal json-loader, use js instead of json
+use('./mediaQueryForStylus.js')
 
 // responsive
-$sm-min-width = smMinWidth
-$md-min-width = mdMinWidth
-$lg-min-width = lgMinWidth
-$xl-min-width = xlMinWidth
+$sm-min-width = smMinWidth()
+$md-min-width = mdMinWidth()
+$lg-min-width = lgMinWidth()
+$xl-min-width = xlMinWidth()

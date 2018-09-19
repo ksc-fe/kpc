@@ -3158,7 +3158,7 @@ exports.Radio = Radio;
 
 
 exports.__esModule = true;
-exports.breakpoints = undefined;
+exports.breakpointsWidth = exports.breakpoints = undefined;
 
 var _extends3 = __webpack_require__(6);
 
@@ -3185,6 +3185,13 @@ function gutterStyle(gutter, style) {
 }
 
 var breakpoints = exports.breakpoints = ['xl', 'lg', 'md', 'sm', 'xs'];
+
+var breakpointsWidth = exports.breakpointsWidth = {
+    "smMinWidth": "576px",
+    "mdMinWidth": "768px",
+    "lgMinWidth": "992px",
+    "xlMinWidth": "1200px"
+};
 
 /***/ }),
 /* 51 */
@@ -16859,7 +16866,6 @@ var Row = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = func
                         var _extends2;
 
                         _this3.set('_matches', (0, _extends5.default)({}, _this3.get('_matches'), (_extends2 = {}, _extends2[key] = true, _extends2)), { async: true });
-                        console.log('match', key, gutter[key]);
                     }
                 },
                 unmatch: function unmatch() {
@@ -16870,7 +16876,6 @@ var Row = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = func
                         var _extends3;
 
                         _this3.set('_matches', (0, _extends5.default)({}, _this3.get('_matches'), (_extends3 = {}, _extends3[key] = false, _extends3)), { async: true });
-                        console.log('unmatch', key, gutter[key]);
                     }
                 }
             });
@@ -17154,9 +17159,17 @@ module.exports = exports['default'];
 
 /***/ }),
 /* 213 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = {"smMinWidth":"576px","mdMinWidth":"768px","lgMinWidth":"992px","xlMinWidth":"1200px"}
+"use strict";
+
+
+module.exports = {
+    "smMinWidth": "576px",
+    "mdMinWidth": "768px",
+    "lgMinWidth": "992px",
+    "xlMinWidth": "1200px"
+};
 
 /***/ }),
 /* 214 */
