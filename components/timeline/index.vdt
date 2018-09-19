@@ -9,7 +9,6 @@ const classNameObj = {
 
 <div class={{ classNameObj }} style={{ style }}>
     {{ mapChildren(children, vNode => {
-        console.log(vNode);
         return vNode;
     }) }}
 </div>
