@@ -16,7 +16,7 @@
     "preview:doc": "gulp watch",
     "build:doc": "NODE_ENV=production gulp build:doc",
     "deploy:doc": "NODE_ENV=production gulp deploy:doc",
-    "prepublishOnly": "npm run build && (git commit -am 'chore: build' || echo 'has not files to commit')",
+    "prepublishOnly": "npm run build && (git commit -am 'chore: build' || echo 'has not files to commit') && git push --tags",
     "release": "npm run release-patch",
     "prelease": "npm version prerelease && npm publish",
     "release-patch": "npm version patch && npm publish",
