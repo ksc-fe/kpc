@@ -1,0 +1,8 @@
+import {Timeline, TimelineItem} from 'kpc/components/timeline';
+
+<Timeline>
+    <TimelineItem>August</TimelineItem>
+    <TimelineItem type="success" size="small">July</TimelineItem>
+    <TimelineItem type="danger" size="large">June</TimelineItem>
+    <TimelineItem type="warning" size="mini">May</TimelineItem>
+</Timeline>

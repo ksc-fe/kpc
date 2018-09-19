@@ -266,6 +266,20 @@
             ]
         },
         {
+            "title": "日期选择",
+            "path": "components/datepicker/index.md",
+            "children": [
+                {
+                    "title": "属性",
+                    "path": "#header-%E5%B1%9E%E6%80%A7",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                    "text": "属性",
+                    "children": []
+                }
+            ]
+        },
+        {
             "title": "时间选择",
             "path": "components/timepicker/index.md",
             "children": [
@@ -280,8 +294,8 @@
             ]
         },
         {
-            "title": "日期选择",
-            "path": "components/datepicker/index.md",
+            "title": "滑块",
+            "path": "components/slider/index.md",
             "children": [
                 {
                     "title": "属性",
@@ -311,20 +325,6 @@
                     "level": 1,
                     "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
                     "text": "扩展点",
-                    "children": []
-                }
-            ]
-        },
-        {
-            "title": "滑块",
-            "path": "components/slider/index.md",
-            "children": [
-                {
-                    "title": "属性",
-                    "path": "#header-%E5%B1%9E%E6%80%A7",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                    "text": "属性",
                     "children": []
                 }
             ]
@@ -716,6 +716,36 @@
             ]
         },
         {
+            "title": "警告提示",
+            "path": "components/tip/index.md",
+            "children": [
+                {
+                    "title": "属性",
+                    "path": "#header-%E5%B1%9E%E6%80%A7",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                    "text": "属性",
+                    "children": []
+                },
+                {
+                    "title": "扩展点",
+                    "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
+                    "level": 1,
+                    "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
+                    "text": "扩展点",
+                    "children": []
+                },
+                {
+                    "title": "事件",
+                    "path": "#header-%E4%BA%8B%E4%BB%B6",
+                    "level": 1,
+                    "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
+                    "text": "事件",
+                    "children": []
+                }
+            ]
+        },
+        {
             "title": "表格",
             "path": "components/table/index.md",
             "children": [
@@ -806,84 +836,6 @@
             ]
         },
         {
-            "title": "警告提示",
-            "path": "components/tip/index.md",
-            "children": [
-                {
-                    "title": "属性",
-                    "path": "#header-%E5%B1%9E%E6%80%A7",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                    "text": "属性",
-                    "children": []
-                },
-                {
-                    "title": "扩展点",
-                    "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
-                    "level": 1,
-                    "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
-                    "text": "扩展点",
-                    "children": []
-                },
-                {
-                    "title": "事件",
-                    "path": "#header-%E4%BA%8B%E4%BB%B6",
-                    "level": 1,
-                    "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
-                    "text": "事件",
-                    "children": []
-                }
-            ]
-        },
-        {
-            "title": "选项卡",
-            "path": "components/tabs/index.md",
-            "children": [
-                {
-                    "title": "属性",
-                    "path": "#header-%E5%B1%9E%E6%80%A7",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                    "text": "属性",
-                    "children": [
-                        {
-                            "title": "Tabs",
-                            "path": "#header-Tabs",
-                            "level": 2,
-                            "content": "<h2 id='header-Tabs'>Tabs</h2>",
-                            "text": "Tabs",
-                            "children": []
-                        },
-                        {
-                            "title": "Tab",
-                            "path": "#header-Tab",
-                            "level": 2,
-                            "content": "<h2 id='header-Tab'>Tab</h2>",
-                            "text": "Tab",
-                            "children": []
-                        }
-                    ]
-                },
-                {
-                    "title": "事件",
-                    "path": "#header-%E4%BA%8B%E4%BB%B6",
-                    "level": 1,
-                    "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
-                    "text": "事件",
-                    "children": [
-                        {
-                            "title": "Tab",
-                            "path": "#header-Tab",
-                            "level": 2,
-                            "content": "<h2 id='header-Tab'>Tab</h2>",
-                            "text": "Tab",
-                            "children": []
-                        }
-                    ]
-                }
-            ]
-        },
-        {
             "title": "折叠面板",
             "path": "components/collapse/index.md",
             "children": [
@@ -949,8 +901,8 @@
             ]
         },
         {
-            "title": "穿梭框",
-            "path": "components/transfer/index.md",
+            "title": "选项卡",
+            "path": "components/tabs/index.md",
             "children": [
                 {
                     "title": "属性",
@@ -958,37 +910,24 @@
                     "level": 1,
                     "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
                     "text": "属性",
-                    "children": []
-                },
-                {
-                    "title": "扩展点",
-                    "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
-                    "level": 1,
-                    "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
-                    "text": "扩展点",
-                    "children": []
-                }
-            ]
-        },
-        {
-            "title": "可编辑文本",
-            "path": "components/editable/index.md",
-            "children": [
-                {
-                    "title": "属性",
-                    "path": "#header-%E5%B1%9E%E6%80%A7",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                    "text": "属性",
-                    "children": []
-                },
-                {
-                    "title": "方法",
-                    "path": "#header-%E6%96%B9%E6%B3%95",
-                    "level": 1,
-                    "content": "<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>",
-                    "text": "方法",
-                    "children": []
+                    "children": [
+                        {
+                            "title": "Tabs",
+                            "path": "#header-Tabs",
+                            "level": 2,
+                            "content": "<h2 id='header-Tabs'>Tabs</h2>",
+                            "text": "Tabs",
+                            "children": []
+                        },
+                        {
+                            "title": "Tab",
+                            "path": "#header-Tab",
+                            "level": 2,
+                            "content": "<h2 id='header-Tab'>Tab</h2>",
+                            "text": "Tab",
+                            "children": []
+                        }
+                    ]
                 },
                 {
                     "title": "事件",
@@ -996,7 +935,16 @@
                     "level": 1,
                     "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
                     "text": "事件",
-                    "children": []
+                    "children": [
+                        {
+                            "title": "Tab",
+                            "path": "#header-Tab",
+                            "level": 2,
+                            "content": "<h2 id='header-Tab'>Tab</h2>",
+                            "text": "Tab",
+                            "children": []
+                        }
+                    ]
                 }
             ]
         },
@@ -1065,6 +1013,58 @@
             ]
         },
         {
+            "title": "穿梭框",
+            "path": "components/transfer/index.md",
+            "children": [
+                {
+                    "title": "属性",
+                    "path": "#header-%E5%B1%9E%E6%80%A7",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                    "text": "属性",
+                    "children": []
+                },
+                {
+                    "title": "扩展点",
+                    "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
+                    "level": 1,
+                    "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
+                    "text": "扩展点",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "title": "可编辑文本",
+            "path": "components/editable/index.md",
+            "children": [
+                {
+                    "title": "属性",
+                    "path": "#header-%E5%B1%9E%E6%80%A7",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                    "text": "属性",
+                    "children": []
+                },
+                {
+                    "title": "方法",
+                    "path": "#header-%E6%96%B9%E6%B3%95",
+                    "level": 1,
+                    "content": "<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>",
+                    "text": "方法",
+                    "children": []
+                },
+                {
+                    "title": "事件",
+                    "path": "#header-%E4%BA%8B%E4%BB%B6",
+                    "level": 1,
+                    "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
+                    "text": "事件",
+                    "children": []
+                }
+            ]
+        },
+        {
             "title": "上传",
             "path": "components/upload/index.md",
             "children": [
@@ -1099,6 +1099,46 @@
                     "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
                     "text": "事件",
                     "children": []
+                }
+            ]
+        },
+        {
+            "title": "时间轴",
+            "path": "components/timeline/index.md",
+            "children": [
+                {
+                    "title": "属性",
+                    "path": "#header-%E5%B1%9E%E6%80%A7",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                    "text": "属性",
+                    "children": [
+                        {
+                            "title": "TimelineItem",
+                            "path": "#header-TimelineItem",
+                            "level": 2,
+                            "content": "<h2 id='header-TimelineItem'>TimelineItem</h2>",
+                            "text": "TimelineItem",
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "title": "扩展点",
+                    "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
+                    "level": 1,
+                    "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
+                    "text": "扩展点",
+                    "children": [
+                        {
+                            "title": "TimelineItem",
+                            "path": "#header-TimelineItem",
+                            "level": 2,
+                            "content": "<h2 id='header-TimelineItem'>TimelineItem</h2>",
+                            "text": "TimelineItem",
+                            "children": []
+                        }
+                    ]
                 }
             ]
         }
@@ -1294,6 +1334,14 @@
             "children": [
                 {
                     "children": [
+                        {
+                            "title": "v0.5.7",
+                            "path": "#header-v0.5.7",
+                            "level": 2,
+                            "content": "<h2 id='header-v0.5.7'>v0.5.7</h2>",
+                            "text": "v0.5.7",
+                            "children": []
+                        },
                         {
                             "title": "v0.5.6",
                             "path": "#header-v0.5.6",

@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>label</code>属性，可以自定义列表渲染逻辑。此时如果你需要启动列表过滤功能<code>filterable</code>，需要通过<code>filter</code>属性，指定自定义过滤函数。</p>\n<p>全选和<code>filterable</code>一起作用时，交互逻辑如下：</p>\n<ol>\n<li>左侧未过滤，全选则选中所有非<code>disabled</code>的选项</li>\n<li>左侧已过滤，全选则选中当前过滤出的非<code>disabled</code>的选项</li>\n<li>左侧先全选，再过滤，过滤掉的选项保持选中状态</li>\n</ol>\n",
-    "index": 79,
+    "index": 76,
     "highlighted": [
         {
             "language": "vdt",

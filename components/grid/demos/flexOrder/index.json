@@ -1,0 +1,23 @@
+{
+    "setting": {
+        "title": "flex排序",
+        "order": 5.1
+    },
+    "catalogs": [],
+    "contents": "<p>给<code>Col</code>添加<code>order</code>属性，即可自动启用<code>flex</code>布局来定义<code>Col</code>的顺序</p>\n",
+    "index": 172,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> {Row, Col} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/grid'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Row</span>&gt;</span> \n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Col</span> <span class=\"hljs-attr\">span</span>=<span class=\"hljs-string\">\"6\"</span> <span class=\"hljs-attr\">order</span>=<span class=\"hljs-string\">\"4\"</span>&gt;</span>1 col-6 order-4<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Col</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Col</span> <span class=\"hljs-attr\">span</span>=<span class=\"hljs-string\">\"6\"</span> <span class=\"hljs-attr\">order</span>=<span class=\"hljs-string\">\"3\"</span>&gt;</span>2 col-6 order-3<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Col</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Col</span> <span class=\"hljs-attr\">span</span>=<span class=\"hljs-string\">\"6\"</span> <span class=\"hljs-attr\">order</span>=<span class=\"hljs-string\">\"2\"</span>&gt;</span>3 col-6 order-2<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Col</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Col</span> <span class=\"hljs-attr\">span</span>=<span class=\"hljs-string\">\"6\"</span> <span class=\"hljs-attr\">order</span>=<span class=\"hljs-string\">\"1\"</span>&gt;</span>4 col-6 order-1<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Col</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Row</span>&gt;</span></span></code></pre>"
+        },
+        {
+            "language": "styl",
+            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-col</span>\n    <span class=\"hljs-attribute\">line-height</span> <span class=\"hljs-number\">40px</span>\n    <span class=\"hljs-attribute\">text-align</span> center\n    <span class=\"hljs-attribute\">color</span> <span class=\"hljs-number\">#fff</span>\n    &amp;:nth-of-type(even)\n        <span class=\"hljs-attribute\">background</span> <span class=\"hljs-number\">#0a5eee</span>\n    &amp;:nth-of-type(odd)\n        <span class=\"hljs-attribute\">background</span> lighten(<span class=\"hljs-number\">#0a5eee</span>, <span class=\"hljs-number\">30%</span>)</code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
+        }
+    ]
+}

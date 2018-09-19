@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>label</code>扩展点，可以自定义节点的内容。该扩展点会传入两个参数：</p>\n<ol>\n<li><code>data</code> 节点的原始数据</li>\n<li><code>node</code> 节点对象（组件内部会将节点数据映射成节点对象，该对象上有一些属性和方法）</li>\n</ol>\n<p><code>node</code>对象具有如下方法用来操作节点：</p>\n<ol>\n<li><code>append(data)</code> 追加子节点，<code>data</code>可以是单个对象或者对象数组</li>\n<li><code>remove()</code> 移除该节点</li>\n</ol>\n<p>组件默认会生成一个<code>root</code>节点对象，你可以通过它往根节点追加子节点</p>\n",
-    "index": 90,
+    "index": 95,
     "highlighted": [
         {
             "language": "vdt",

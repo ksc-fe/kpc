@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>将<code>type</code>属性指定为<code>datetime</code>，即可让日期支持选择时间。通过<code>disabledHours &amp; disabledMinutes &amp; disabledSeconds</code>可以禁用时分秒的选择。</p>\n",
-    "index": 151,
+    "index": 163,
     "highlighted": [
         {
             "language": "vdt",

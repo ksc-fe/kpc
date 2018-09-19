@@ -39,7 +39,7 @@ module.exports =
 /******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
 /******/ 		// "0" is the signal for "already loaded"
 /******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("./chunk/" + {"0":"57ed9a4c8fd4b786ddd6","1":"fadab0ea41c1c958a7bd","2":"cd99777db83a44c3cf94","3":"2e10b8e2cea2edc7c345"}[chunkId] + ".js");
+/******/ 			var chunk = require("./chunk/" + {"0":"4873f9cea9e8e2757c09","1":"eee5013484c181787c79","2":"351757fd913aa53efb58","3":"76c7ac5b338ea703c055"}[chunkId] + ".js");
 /******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				modules[moduleId] = moreModules[moduleId];
@@ -271,7 +271,7 @@ exports.App = App;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1536661581547
+      // 1537338758921
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -467,7 +467,7 @@ exports.Spin = Spin;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1536661582623
+      // 1537338759564
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1315,7 +1315,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1536661584509
+      // 1537338761253
       var cssReload = require("!../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1454,6 +1454,13 @@ module.exports = require("babel-runtime/regenerator");
 /***/ (function(module, exports) {
 
 module.exports = require("chroma-js");
+
+/***/ }),
+
+/***/ "enquire.js":
+/***/ (function(module, exports) {
+
+module.exports = require("enquire.js");
 
 /***/ }),
 
