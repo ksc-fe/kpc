@@ -3184,7 +3184,7 @@ function gutterStyle(gutter, style) {
     return style;
 }
 
-var breakpoints = exports.breakpoints = ['xl', 'lg', 'md', 'sm', 'xs'];
+var breakpoints = exports.breakpoints = ['xxl', 'xl', 'lg', 'md', 'sm', 'xs'];
 
 var breakpointsWidth = exports.breakpointsWidth = {
     "smMinWidth": "576px",
@@ -4888,7 +4888,8 @@ var Col = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = func
             sm: undefined,
             md: undefined,
             lg: undefined,
-            xl: undefined
+            xl: undefined,
+            xxl: undefined
         };
     };
 
@@ -8086,7 +8087,7 @@ exports.Upload = _upload.Upload;
 
 /* generate start */
 
-var version = exports.version = '0.5.8';
+var version = exports.version = '0.5.9';
 
 /* generate end */
 
@@ -15902,7 +15903,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         } catch (e) {
             _e(e);
         }
-    }.call($this) ? h('div', null, [h('div', null, [h(_button2.default, {
+    }.call($this) ? h('div', null, [h('div', null, [h('div', null, [h(_button2.default, {
         'icon': function () {
             try {
                 return true;
@@ -15964,21 +15965,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 _e(e);
             }
         }.call($this)
-    }) : undefined, h('span', {
-        'ev-click': function () {
-            try {
-                return type === 'year' || type === 'month' ? undefined : self.showYearPicker;
-            } catch (e) {
-                _e(e);
-            }
-        }.call($this)
-    }, function () {
-        try {
-            return panel;
-        } catch (e) {
-            _e(e);
-        }
-    }.call($this), 'k-text-wrapper'), h(_button2.default, {
+    }) : undefined], 'k-left-btns'), h('div', null, [h(_button2.default, {
         'icon': function () {
             try {
                 return true;
@@ -16040,7 +16027,21 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 _e(e);
             }
         }.call($this)
-    }) : undefined], 'k-month c-clearfix'), function () {
+    }) : undefined], 'k-right-btns'), h('div', {
+        'ev-click': function () {
+            try {
+                return type === 'year' || type === 'month' ? undefined : self.showYearPicker;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)
+    }, function () {
+        try {
+            return panel;
+        } catch (e) {
+            _e(e);
+        }
+    }.call($this), 'k-text-wrapper')], 'k-month c-clearfix'), function () {
         try {
             return !_isShowYearPicker;
         } catch (e) {
@@ -16783,7 +16784,8 @@ if (typeof window !== 'undefined') {
 }
 
 var responsiveMap = {
-    xl: '(min-width: 0)',
+    xxl: '(min-width: 0)',
+    xl: '(min-width: ' + _mediaQuery2.default.xlMinWidth + ')',
     lg: '(min-width: ' + _mediaQuery2.default.lgMinWidth + ')',
     md: '(min-width: ' + _mediaQuery2.default.mdMinWidth + ')',
     sm: '(min-width: ' + _mediaQuery2.default.smMinWidth + ')',
@@ -17098,7 +17100,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         'k-col': true
     }, _classNameObj['k-' + span] = span, _classNameObj[className] = className && !hasGutter, _classNameObj['k-offset-' + offset] = offset > 0, _classNameObj['k-pull-' + pull] = pull, _classNameObj['k-push-' + push] = push, _classNameObj['k-order-' + order] = order, _classNameObj);
     // add responsive class
-    ['xs', 'sm', 'md', 'lg', 'xl'].forEach(function (item) {
+    _utils.breakpoints.forEach(function (item) {
         var obj = self[item];
         if (!obj) return;
         var prefix = item === 'xs' ? 'k-' : 'k-' + item + '-';
@@ -17163,6 +17165,7 @@ module.exports = exports['default'];
 
 "use strict";
 
+<<<<<<< HEAD
 
 module.exports = {
     "smMinWidth": "576px",
@@ -17170,6 +17173,9 @@ module.exports = {
     "lgMinWidth": "992px",
     "xlMinWidth": "1200px"
 };
+=======
+module.exports = {"smMinWidth":"576px","mdMinWidth":"768px","lgMinWidth":"992px","xlMinWidth":"1200px","xxlMinWidth":"1600px"}
+>>>>>>> responsive
 
 /***/ }),
 /* 214 */

@@ -14,11 +14,4 @@ export default function gutterStyle(gutter, style, prop = 'margin') {
     return style;
 }
 
-export const breakpoints = ['xl', 'lg', 'md', 'sm', 'xs'];
-
-export const breakpointsWidth = {
-    "smMinWidth": "576px",
-    "mdMinWidth": "768px",
-    "lgMinWidth": "992px",
-    "xlMinWidth": "1200px"
-};
+export const breakpoints = ['xxl', 'xl', 'lg', 'md', 'sm', 'xs'];

@@ -49,38 +49,41 @@ const panel = type === 'year' ? map.YYYY : format.map(item => map[item]);
     </Tabs>
     <div v-if={{ !_isSelectTime }} class="k-date-picker">
         <div class="k-month c-clearfix">
-            <Button icon type="none" size="small" class="k-prev"
-                tagName="div" tabindex={{ null }} 
-                ev-click={{ self.prevYear }}
-            >
-                <i class="k-icon ion-ios-arrow-left"></i>
-                <i class="k-icon ion-ios-arrow-left"></i>
-            </Button>
-            <Button icon type="none" size="small" class="k-prev"
-                tagName="div" tabindex={{ null }} 
-                ev-click={{ self.prevMonth }}
-                v-if={{ type !== 'year' }}
-            >
-                <i class="k-icon ion-ios-arrow-left"></i>
-            </Button>
-            <span
-                class="k-text-wrapper"
+            <div class="k-left-btns">
+                <Button icon type="none" size="small" class="k-prev"
+                    tagName="div" tabindex={{ null }} 
+                    ev-click={{ self.prevYear }}
+                >
+                    <i class="k-icon ion-ios-arrow-left"></i>
+                    <i class="k-icon ion-ios-arrow-left"></i>
+                </Button>
+                <Button icon type="none" size="small" class="k-prev"
+                    tagName="div" tabindex={{ null }} 
+                    ev-click={{ self.prevMonth }}
+                    v-if={{ type !== 'year' }}
+                >
+                    <i class="k-icon ion-ios-arrow-left"></i>
+                </Button>
+            </div>
+            <div class="k-right-btns">
+                <Button icon type="none" size="small" class="k-next"
+                    tagName="div" tabindex={{ null }} 
+                    ev-click={{ self.nextYear }}
+                >
+                    <i class="k-icon ion-ios-arrow-right"></i>
+                    <i class="k-icon ion-ios-arrow-right"></i>
+                </Button>
+                <Button icon type="none" size="small" class="k-next"
+                    tagName="div" tabindex={{ null }} 
+                    ev-click={{ self.nextMonth }}
+                    v-if={{ type !== 'year' }}
+                >
+                    <i class="k-icon ion-ios-arrow-right"></i>
+                </Button>
+            </div>
+            <div class="k-text-wrapper"
                 ev-click={{ type === 'year' || type === 'month' ? undefined : self.showYearPicker }}
-            >{{ panel }}</span>
-            <Button icon type="none" size="small" class="k-next"
-                tagName="div" tabindex={{ null }} 
-                ev-click={{ self.nextYear }}
-            >
-                <i class="k-icon ion-ios-arrow-right"></i>
-                <i class="k-icon ion-ios-arrow-right"></i>
-            </Button>
-            <Button icon type="none" size="small" class="k-next"
-                tagName="div" tabindex={{ null }} 
-                ev-click={{ self.nextMonth }}
-                v-if={{ type !== 'year' }}
-            >
-                <i class="k-icon ion-ios-arrow-right"></i>
-            </Button>
+            >{{ panel }}</div>
         </div>
         <div class="k-weekdays" v-if={{ !_isShowYearPicker }}>
             <div class="k-weekday"

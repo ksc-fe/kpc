@@ -30,3 +30,4 @@ sidebar: doc
 | md | 响应式宽度 `≥768px` | `String` &#124; `Number` &#124; `Object` | `undefined` |
 | lg | 响应式宽度 `≥992px` | `String` &#124; `Number` &#124; `Object` | `undefined` |
 | xl | 响应式宽度 `≥1200px` | `String` &#124; `Number` &#124; `Object` | `undefined` |
+| xxl | 响应式宽度 `≥1600px` | `String` &#124; `Number` &#124; `Object` | `undefined` |

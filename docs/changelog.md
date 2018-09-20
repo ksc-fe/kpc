@@ -4,6 +4,12 @@ order: 99
 sidebar: doc
 ---
 
+## v0.5.9
+
+1. `Add` 新增`xxl`响应式宽度`≥1600px`
+2. `Change` 改变全局字体行高`1.5`
+3. `Fix` Firefox下`Datepicker`快速切换年月按钮错位的问题
+
 ## v0.5.7
 
 1. `Add` `Grid`改进，支持响应式，以及`pull` `push` `order`等属性 [#87](https://github.com/ksc-fe/kpc/issues/87)

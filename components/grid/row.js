@@ -18,7 +18,8 @@ if (typeof window !== 'undefined') {
 }
 
 const responsiveMap = {
-    xl: `(min-width: 0)`,
+    xxl: `(min-width: 0)`,
+    xl: `(min-width: ${mediaQuery.xlMinWidth})`,
     lg: `(min-width: ${mediaQuery.lgMinWidth})`,
     md: `(min-width: ${mediaQuery.mdMinWidth})`,
     sm: `(min-width: ${mediaQuery.smMinWidth})`,
