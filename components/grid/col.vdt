@@ -1,4 +1,4 @@
-import gutterStyle from './utils';
+import gutterStyle, {breakpoints} from './utils';
 import {isNullOrUndefined} from '../utils';
 
 let {
@@ -23,7 +23,7 @@ const classNameObj = {
     [`k-order-${order}`]: order,
 };
 // add responsive class
-['xs', 'sm', 'md', 'lg', 'xl'].forEach(item => {
+breakpoints.forEach(item => {
     const obj = self[item];
     if (!obj) return;
     const prefix = item === 'xs' ? 'k-' : `k-${item}-`;

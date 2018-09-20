@@ -52,7 +52,7 @@
             &.k{size}-pull-{col}
                 right percentage(col / 24)
     generate('')
-    for size in sm md lg xl
+    for size in sm md lg xl xxl
         minWidth = lookup('$' + size + '-min-width')
         @media (min-width: minWidth)
             generate('-' + size)

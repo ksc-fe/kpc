@@ -34,6 +34,7 @@ export default class Col extends Intact {
             md: undefined,
             lg: undefined,
             xl: undefined,
+            xxl: undefined,
         };
     }
 
