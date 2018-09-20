@@ -43,7 +43,7 @@
   "author": "ksc-fe",
   "license": "MIT",
   "peerDependencies": {
-    "intact": "^2.3.1"
+    "intact": "^2.3.5"
   },
   "devDependencies": {
     "advanced": "^0.4.7",

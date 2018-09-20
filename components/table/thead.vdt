@@ -1,14 +1,18 @@
 const {onlyLeft, onlyRight, checkType, isCheckedAll, scheme} = self.get();
 
-const cols = [];
-const ths = [];
-const keys = {};
-
 let prevItem = 
     checkType === 'checkbox' || checkType === 'radio' ? 
         {minWidth: 40} : {};
 let hasFixedLeft;
 let hasFixedRight;
+
+const isInvisible = (onlyLeft, onlyRight, props) => {
+    return props.fixed !== 'left' && onlyLeft || props.fixed !== 'right' && onlyRight;
+};
+
+const cols = [];
+const ths = [];
+const keys = {};
 
 __u.map(scheme, (item, key) => {
     keys[key] = true;
@@ -31,6 +35,20 @@ __u.map(scheme, (item, key) => {
 
     const invisible = isInvisible(onlyLeft, onlyRight, item);
 
+    return <Column 
+        style={{ item.style }}
+        key={{ key }}
+        $parent={{ self }} 
+        ev-click={{ item.sortable ? self._sort.bind(self, key, item) : undefined }}
+        ev-dragStart={{ dragStart }}
+        v-model={{ `group.${key}` }}
+        className={{ {
+            [item.className]: item.className,
+            'k-invisible': invisible, 
+        } }}
+        ref={{ !invisible ? ref : undefined }}
+        prevColumn={{ _prevItem }}
+    />
 });
 
 <div class="k-thead">

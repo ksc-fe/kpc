@@ -40,6 +40,8 @@ export default class Table extends Intact {
             _leftWidth: 0,
             _rightWidth: 0,
             _scrollBarWidth: 0,
+            _scrollTop: 0,
+            _hoverIndex: undefined,
         }
     }
 
@@ -68,6 +70,8 @@ export default class Table extends Intact {
     _init() {
         // save the width of header cell
         this.headerWidthMap = {};
+        this.tableWidth = undefined;
+        this.scrollLeft = 0;
 
         // keep the event consistent
         this.on('$change:checkedKeys', (c, newValue, oldValue) => {
@@ -115,7 +119,7 @@ export default class Table extends Intact {
         this._calcHeaderPadding();
         // window.addEventListener('resize', this._onWindowResize);
 
-        // this._setFixedColumnWidth();
+        this._setFixedColumnWidth();
 
         if (this.get('_isSticky')) {
             this._onStickyHeaderMount();
@@ -270,20 +274,20 @@ export default class Table extends Intact {
             const width = this.leftColumns.reduce((memo, elem) => {
                 return memo + elem.offsetWidth;
             }, 0);
-            this.set('_leftWidth', width);
+            this.set('_leftWidth', width, {async: true});
         } 
 
         if (this.hasFixedRight) {
             const width = this.rightColumns.reduce((memo, elem) => {
                 return memo + elem.offsetWidth;
             }, 0);
-            this.set('_rightWidth', width);
+            this.set('_rightWidth', width + this.get('_padding'), {async: true});
         }
 
         if (this.hasFixedLeft || this.hasFixedRight) {
             // calculate 
             const tableWidth = this.table.offsetWidth;
-            this.set('_tableWidth', tableWidth);
+            this.set('_tableWidth', tableWidth, {async: true});
         }
     }
 
@@ -379,18 +383,32 @@ export default class Table extends Intact {
         this.set('sort', sort);
     }
 
-    _dragStart(props, e) {
-        // left key
+    _dragStart(vNode, e) {
+        // left mouse key
         if (e.which !== 1) return;
 
+        console.log(vNode);
         this._resizing = true;
         this._containerWidth = this.element.offsetWidth;
         this._x = e.clientX;
 
-        this._minWidth = props.minWidth || this.get('minColWidth');
+        const prevVNode = vNode.props.prevVNode;
+        const prevProps = prevVNode.props;
+        this._minWidth = prevProps.minWidth || this.get('minColWidth');
+        const prevTh = prevVNode.dom;
+        const currentTh = vNode.dom;
 
-        const currentTh = e.target.parentNode;
-        const prevTh = currentTh.previousElementSibling;
+        this._currentTh = currentTh;
+        this._prevTh = prevTh;
+        this._currentVNode = vNode;
+        this._prevVNode = prevVNode;
+
+        this._isLastTh = !currentTh.nextElementSibling;
+
+        document.addEventListener('mousemove', this._move);
+        document.addEventListener('mouseup', this._dragEnd);
+
+        return console.log(prevTh, currentTh);
 
         this._currentThs = [currentTh];
         this._prevThs = [prevTh];
@@ -430,11 +448,39 @@ export default class Table extends Intact {
             const delX = e.clientX - this._x;
             if (delX === 0) return;
 
-            const prevWidth = this._prevThs[0].offsetWidth + delX;
-            const tableWidth = this._tables[0].offsetWidth + delX;
-            const currentWidth = this._currentThs[0].offsetWidth - delX;
+            const prevWidth = this._prevTh.offsetWidth + delX;
+            const currentWidth = this._currentTh.offsetWidth + delX;
+            const tableWidth = this.table.offsetWidth + delX;
+
+            // const prevWidth = this._prevThs[0].offsetWidth + delX;
+            // const tableWidth = this._tables[0].offsetWidth + delX;
+            // const currentWidth = this._currentThs[0].offsetWidth - delX;
             
             if (prevWidth < this._minWidth && delX < 0) return;
+
+            const currentKey = this._currentVNode.key;
+            const prevKey = this._prevVNode.key;
+
+            // this.headerWidthMap[currentKey] = currentWidth;
+            this.headerWidthMap[prevKey] = prevWidth;
+
+            this._x = e.clientX;
+
+            if (this._containerWidth > tableWidth) {
+                if (this._isLastTh) {
+                    delete this.headerWidthMap[currentKey];
+                } else {
+                    this.headerWidthMap[currentKey] = currentWidth;
+                }
+            } else if (this._containerWidth === tableWidth) {
+                this.tableWidth = '100%';
+            } else {
+                this.tableWidth = tableWidth + 'px';
+            }
+
+            this.update();
+
+            return console.log(currentKey, prevKey);
 
             this._prevThs.forEach(item => {
                 item.style.width = prevWidth + 'px';
@@ -495,6 +541,24 @@ export default class Table extends Intact {
             this._tables.forEach(table => {
                 table.style.width = '100%';
             });
+        }
+    }
+
+    _getHeaderWidth(key) {
+        const width = this.headerWidthMap[key];
+        if (width) {
+            return width + 'px';
+        }
+    }
+
+    _onTBodyScroll(e) {
+        const target = e.target;
+        const oldScrollLeft = this.scrollLeft;
+        const newScrollLeft = this.scrollLeft = target.scrollLeft;
+        if (newScrollLeft !== oldScrollLeft) {
+            this.header.scrollLeft = newScrollLeft;
+        } else {
+            this.set('_scrollTop', target.scrollTop);
         }
     }
 

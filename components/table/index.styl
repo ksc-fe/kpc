@@ -3,7 +3,6 @@
 .k-table
     position relative
     overflow hidden
-    background $table-bg-color
     table
         font-size $table-font-size
         table-layout fixed
@@ -21,6 +20,8 @@
         border-bottom $table-th-border-bottom
         // -webkit-backface-visibility hidden
         z-index 1
+        overflow hidden
+        width 100%
     th
         padding $table-th-padding
         text-align $table-th-text-align 
@@ -64,7 +65,7 @@
     tbody
         tr
             border-bottom $table-tr-border
-            &:hover
+            &.k-hover
                 background $table-tr-hover-bg-color
     td
         padding $table-td-padding
@@ -94,22 +95,25 @@
         top 0
         box-shadow $box-shadow
         overflow hidden
-        .k-scroll
-            overflow hidden
-
+        .k-thead
+            width auto
+        .k-tbody
+            overflow-x hidden
     .k-fixed-left
         left 0
+        .k-tbody
+            margin-right -15px
     .k-fixed-right
         right 0
-        .k-fixed-scroll
-        > .k-table
+        .k-thead
+        .k-tbody
             float right
-
 
 .k-table-wrapper
     // overflow auto
     overflow hidden
     border-top $table-th-border-top
+    background $table-bg-color
     // fix header
     .k-fixed
         position relative

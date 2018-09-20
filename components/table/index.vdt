@@ -10,13 +10,16 @@ const {
     className, fixHeader, noDataTemplate, disableRow,
     resizable, expandedKeys, type, stickHeader, _isSticky,
     style, rowClassName, children, sort, group, _scrollBarWidth,
+    _scrollTop, _hoverIndex,
 } = self.get();
+
+const headerWidthMap = self.headerWidthMap;
 
 let colSpan = checkType === 'checkbox' || checkType === 'radio' ? 1 : 0;
 const _scheme = {};
 
 let prevItem = checkType === 'checkbox' || checkType === 'radio' ? 
-    {minWidth: 40} : {};
+    {minWidth: 40, key: '_$check'} : {};
 
 let hasFixedLeft;
 let hasFixedRight;
@@ -28,31 +31,42 @@ const isInvisible = (onlyLeft, onlyRight, props) => {
 }
 
 let cols;
+let currentVNode;
 
-const TheadCreator = ({onlyLeft, onlyRight, collect, refContainer}) => {
+const TheadCreator = ({onlyLeft, onlyRight, refContainer, style}) => {
     const keys = {};
     const refLeftElement = (i) => i && self.leftColumns.push(i);
     const refLeft = (i) => i && self.leftColumns.push(i.element);
     const refRight = (i) => i && self.rightColumns.push(i.element);
-    const ref = collect ? onlyLeft ? refLeft : onlyRight ? refRight : undefined : undefined;
+    const ref = onlyLeft ? refLeft : onlyRight ? refRight : undefined;
     cols = [];
     const thead = <thead>
         <tr>
             {{ do {
                 if (checkType === 'checkbox') {
-                    cols.push(<col class="k-th-check" />);
-                    <th class={{ {'k-invisible': onlyRight} }}
-                        ref={{ collect && onlyLeft ? refLeftElement : undefined }} 
+                    cols.push(<col class="k-th-check" 
+                        style={{ {width: self._getHeaderWidth('_$checked')} }} 
+                    />);
+                    currentVNode = <th class={{ {'k-invisible': onlyRight} }}
+                        ref={{ onlyLeft ? refLeftElement : undefined }} 
+                        key="_$checked"
+                        minWidth={{ 40 }}
                     >
                         <Checkbox value={{ self.isCheckAll() }}
                             ev-click={{ self._toggleCheckAll }}
                         />
                     </th>
+                    currentVNode;
                 } else if (checkType === 'radio') {
-                    cols.push(<col class="k-th-check" />);
-                    <th class={{ {"k-invisible": onlyRight} }}
-                        ref={{ collect && onlyLeft ? refLeftElement : undefined }} 
+                    cols.push(<col class="k-th-check"
+                        style={{ {width: self._getHeaderWidth('_$checked')} }} 
+                    />);
+                    currentVNode = <th class={{ {"k-invisible": onlyRight} }}
+                        ref={{ onlyLeft ? refLeftElement : undefined }} 
+                        key="_$checked"
+                        minWidth={{ 40 }}
                     ></th>
+                    currentVNode;
                 }
             } }}
             {{ __u.map(scheme, (item, key) => {
@@ -65,9 +79,9 @@ const TheadCreator = ({onlyLeft, onlyRight, collect, refContainer}) => {
 
                 // because we use the last resize handle to controll the previous column
                 // so we bind prevItem here
-                const _prevItem = prevItem;
-                const dragStart = self._dragStart.bind(self, prevItem);
-                prevItem = item;
+                /* const _prevItem = prevItem; */
+                const dragStart = self._dragStart; //.bind(self, prevItem);
+                /* prevItem = item; */
 
                 if (item.fixed === 'left') {
                     hasFixedLeft = true;
@@ -75,10 +89,12 @@ const TheadCreator = ({onlyLeft, onlyRight, collect, refContainer}) => {
                     hasFixedRight = true;
                 }
 
-                cols.push(<col width={{ item.width }} />);
+                cols.push(<col width={{ item.width }}
+                    style={{ {width: self._getHeaderWidth(key)} }} 
+                />);
 
                 const invisible = isInvisible(onlyLeft, onlyRight, item);
-                return <Column {{ ...item }}
+                currentVNode = <Column {{ ...item }}
                     key={{ key }}
                     $parent={{ self }} 
                     ev-click={{ item.sortable ? self._sort.bind(self, key, item) : undefined }}
@@ -89,8 +105,9 @@ const TheadCreator = ({onlyLeft, onlyRight, collect, refContainer}) => {
                         'k-invisible': invisible, 
                     } }}
                     ref={{ !invisible ? ref : undefined }}
-                    prevColumn={{ _prevItem }}
+                    prevVNode={{ currentVNode }}
                 />
+                return currentVNode;
             }) }}
             {{  // for using TableColumn as children
                 __u.map(children ? (Array.isArray(children) ? children : [children]) : children, vNode => {
@@ -110,9 +127,10 @@ const TheadCreator = ({onlyLeft, onlyRight, collect, refContainer}) => {
                         keys[props.key] = true;
                         props.value = group[props.key];
 
-                        const dragStart = self._dragStart.bind(self, prevItem);
-                        props.prevColumn = prevItem;
-                        prevItem = props;
+                        const dragStart = self._dragStart;
+                        /* .bind(self, prevItem); */
+                        /* props.prevColumn = prevItem; */
+                        /* prevItem = props; */
 
                         props['ev-$change:value'] = (c, v) => self.set(`group.${props.key}`, v);
                         props['ev-click'] = props.sortable ? self._sort.bind(self, props.key, props) : undefined;
@@ -141,11 +159,15 @@ const TheadCreator = ({onlyLeft, onlyRight, collect, refContainer}) => {
                         if (!invisible) {
                             props.ref = ref; 
                         }
+                        props.prevVNode = currentVNode;
 
-                        cols.push(<col width={{ props.width }} />);
+                        cols.push(<col width={{ props.width }} 
+                            style={{ {width: self._getHeaderWidth(props.key)} }} 
+                        />);
 
                         // clone vNode
-                        return h(Column, props);
+                        currentVNode = h(Column, props);
+                        return currentVNode;
                     }
                 }) 
             }}
@@ -164,7 +186,7 @@ const TheadCreator = ({onlyLeft, onlyRight, collect, refContainer}) => {
             } }}
             ref={{ refContainer }}
         >
-            <table>
+            <table style={{ style }}>
                 <colgroup>{{ cols }}</colgroup>
                 {{ thead }}
             </table>
@@ -172,7 +194,7 @@ const TheadCreator = ({onlyLeft, onlyRight, collect, refContainer}) => {
     );
 };
 
-const TbodyCreator = ({onlyLeft, onlyRight, refContainer, refTable}) => {
+const TbodyCreator = ({onlyLeft, onlyRight, refContainer, refTable, style}) => {
     const tbody = <tbody>
         {{ data && data.length ? 
             __u.map(data, (value, index) => {
@@ -185,8 +207,11 @@ const TbodyCreator = ({onlyLeft, onlyRight, refContainer, refTable}) => {
                         'k-disabled': disabled,
                         [className]: className,
                         'k-checked': self.isChecked(key), 
+                        'k-hover': _hoverIndex === index, 
                     } }}
                     ev-$destroyed={{ self._onRowDestroyed.bind(self, key) }}
+                    ev-mouseenter={{ () => self.set('_hoverIndex', index) }}
+                    ev-mouseleave={{ () => self.set('_hoverIndex', undefined) }}
                 >
                     <td v-if={{ checkType === 'checkbox' }}
                         class={{ {'k-invisible': onlyRight} }}
@@ -273,8 +298,10 @@ const TbodyCreator = ({onlyLeft, onlyRight, refContainer, refTable}) => {
                 style;
             } }}
             ref={{ refContainer }}
+            ev-scroll={{ self._onTBodyScroll }}
+            scrollTop={{ _scrollTop }}
         >
-            <table ref={{ refTable }}>
+            <table ref={{ refTable }} style={{ style }}>
                 <colgroup>{{ cols }}</colgroup>
                 {{ tbody }}
             </table>
@@ -286,10 +313,12 @@ const table = (
     <div class="k-table-wrapper">
         <TheadCreator 
             refContainer={{ dom => self.header = dom }}
+            style={{ {width: self.tableWidth} }}
         />
         <TbodyCreator 
             refContainer={{ dom => self.scroll = dom }}
             refTable={{ dom => self.table = dom }} 
+            style={{ {width: self.tableWidth} }}
         />
     </div>
 );
@@ -306,13 +335,17 @@ const classNameObj = {
 
 return <div class={{ classNameObj }} style={{ style }}>
     {{ table }}    
-    <div class="k-table-wrapper k-fixed-left" v-if={{ hasFixedLeft }}>
-        <TheadCreator onlyLeft />
-        <TbodyCreator onlyLeft />
+    <div class="k-table-wrapper k-fixed-left" v-if={{ hasFixedLeft }} 
+        style={{ {width: self.get('_leftWidth') + 'px'} }}
+    >
+        <TheadCreator onlyLeft style={{ {width: self.get('_tableWidth') + 'px'} }}/>
+        <TbodyCreator onlyLeft style={{ {width: self.get('_tableWidth') + 'px'} }}/>
     </div>
-    <div class="k-table-Wrapper k-fixed-right" v-if={{ hasFixedRight }}>
-        <TheadCreator onlyRight />
-        <TbodyCreator onlyRight />
+    <div class="k-table-wrapper k-fixed-right" v-if={{ hasFixedRight }}
+        style={{ {width: self.get('_rightWidth') + 'px'} }}
+    >
+        <TheadCreator onlyRight style={{ {width: self.get('_tableWidth') + 'px'} }} />
+        <TbodyCreator onlyRight style={{ {width: self.get('_tableWidth') + 'px'} }} />
     </div>
 </div>;
 

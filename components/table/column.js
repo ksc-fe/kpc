@@ -47,7 +47,7 @@ export default class TableColumn extends Intact {
     }
 
     onDragStart(e) {
-        this.trigger('dragStart', e);
+        this.trigger('dragStart', this.vNode, e);
     }
 
     _isChecked(v) {
