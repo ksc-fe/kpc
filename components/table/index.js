@@ -553,10 +553,15 @@ export default class Table extends Intact {
 
     _onTBodyScroll(e) {
         const target = e.target;
-        const oldScrollLeft = this.scrollLeft;
-        const newScrollLeft = this.scrollLeft = target.scrollLeft;
-        if (newScrollLeft !== oldScrollLeft) {
-            this.header.scrollLeft = newScrollLeft;
+        if (target === this.scroll) {
+            const oldScrollLeft = this.scrollLeft;
+            const newScrollLeft = target.scrollLeft;
+            if (newScrollLeft !== oldScrollLeft) {
+                this.header.scrollLeft = newScrollLeft;
+                this.scrollLeft = newScrollLeft;
+            } else {
+                this.set('_scrollTop', target.scrollTop);
+            }
         } else {
             this.set('_scrollTop', target.scrollTop);
         }
