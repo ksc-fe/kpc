@@ -282,6 +282,8 @@ export default class Table extends Intact {
         if (this.get('rowExpandable')) {
             this._expandShrinkRow(key); 
         }
+
+        this.trigger('click:row', value, index, key, e);
     }
 
     _checkUncheckRow(key, isCheck = false, isToggle = true) {
