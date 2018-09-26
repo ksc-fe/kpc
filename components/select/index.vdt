@@ -204,7 +204,7 @@ const Menu = scope.Menu || (
 );
 
 // if the value is not in options, then set hasValue to false
-if (hasValue && !labelObj.label && !labelObj.labels.length) {
+if (hasValue && labelObj.label == null && !labelObj.labels.length) {
     hasValue = false;
     // if this is a value, but the value does not exist in options
     // we set it to empty, #41
