@@ -8072,7 +8072,7 @@ exports.Upload = _upload.Upload;
 
 /* generate start */
 
-var version = exports.version = '0.5.9';
+var version = exports.version = '0.5.10';
 
 /* generate end */
 
@@ -11981,7 +11981,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     });
 
     // if the value is not in options, then set hasValue to false
-    if (hasValue && !labelObj.label && !labelObj.labels.length) {
+    if (hasValue && labelObj.label == null && !labelObj.labels.length) {
         hasValue = false;
         // if this is a value, but the value does not exist in options
         // we set it to empty, #41
@@ -13289,7 +13289,10 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         'k-checked': self.isChecked()
     }, _classNameObj[className] = className, _classNameObj['k-indeterminate'] = indeterminate, _classNameObj);
 
-    var events = ['ev-click', 'ev-mouseenter', 'ev-mouseleave'].reduce(function (memo, name) {
+    var events = [
+    // do not bind click to label, otherwise it will trigger click event twice
+    /* 'ev-click', */
+    'ev-mouseenter', 'ev-mouseleave'].reduce(function (memo, name) {
         if (rest[name]) {
             memo[name] = rest[name];
             delete rest[name];
@@ -22944,6 +22947,8 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
         if (this.get('rowExpandable')) {
             this._expandShrinkRow(key);
         }
+
+        this.trigger('click:row', value, index, key, e);
     };
 
     Table.prototype._checkUncheckRow = function _checkUncheckRow(key) {
