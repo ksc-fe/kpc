@@ -4459,6 +4459,9 @@ label {
   height: 100%;
   opacity: 0;
   cursor: pointer;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 .k-checkbox .k-text {
   vertical-align: middle;
@@ -8910,6 +8913,7 @@ blockquote:before {
   display: inline-block;
   vertical-align: middle;
   padding-left: 0.714285714285714rem;
+  margin-top: 1px;
   color: #0a5eee;
 }
 .k-message > .k-container > .k-icon:before {
@@ -9710,7 +9714,7 @@ blockquote:before {
 }
 .k-pagination .k-btns .k-btn {
   border-radius: 0.142857142857143rem !important;
-  margin: 0 0.714285714285714rem;
+  margin-right: 0.714285714285714rem;
 }
 .k-pagination .k-btns .k-btn:last-of-type {
   margin: 0 !important;
