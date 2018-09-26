@@ -4,6 +4,11 @@ order: 99
 sidebar: doc
 ---
 
+## v0.5.10
+
+1. `Fix` 修复`Select`将`0`当做空值处理的问题 [#94](https://github.com/ksc-fe/kpc/issues/94)
+2. `Fix` 修复`Transfer`不能取消全选的问题 [#95](https://github.com/ksc-fe/kpc/issues/95)
+
 ## v0.5.9
 
 1. `Add` 新增`xxl`响应式宽度`≥1600px`
