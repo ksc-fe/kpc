@@ -35,12 +35,15 @@ export default class Table extends Intact {
             stickHeader: false,
 
             _padding: 0,
+            _paddingBottom: 0,
             _disabledAmount: 0,
             _isSticky: false,
             _leftWidth: 0,
             _rightWidth: 0,
             _scrollBarWidth: 0,
             _scrollTop: 0,
+            _scrollLeft: 0,
+            _scrollPosition: 'left',
             _hoverIndex: undefined,
         }
     }
@@ -88,6 +91,9 @@ export default class Table extends Intact {
         ['data', 'disableRow'].forEach(item => {
             this.on(`$change:${item}`, this._updateDisabledAmount);
         });
+        ['fixHeader', 'scheme', 'children'].forEach(item => {
+            this.on(`$changed:${item}`, this._setFixedColumnWidth);
+        });
         this.on('$changed:_isSticky', (c, v) => {
             if (v) {
                 this._onStickyHeaderMount();
@@ -117,7 +123,7 @@ export default class Table extends Intact {
         this.set('_scrollBarWidth', scrollbarWidth(), {silent: true});
 
         this._calcHeaderPadding();
-        // window.addEventListener('resize', this._onWindowResize);
+        window.addEventListener('resize', this._onWindowResize);
 
         this._setFixedColumnWidth();
 
@@ -126,27 +132,13 @@ export default class Table extends Intact {
         }
     }
 
-    _update() {
-        this._setFixedColumnWidth();
-    }
-
     _onStickyHeaderMount() {
         this._setStickyHeaderStyle();
         window.addEventListener('scroll', this._setStickyHeaderStyle);
-        // // when dragable we must scroll sticky header when table scrolled
-        // const elem = this.element;
-        // const header = this.header;
-        // this._elementScrollCallback = (e) => {
-            // if (this.get('_sticky.position') === 'fixed') {
-                // header.scrollLeft = elem.scrollLeft;
-            // }
-        // };
-        // elem.addEventListener('scroll', this._elementScrollCallback);
     }
 
     _onStickyHeaderUnmount() {
         window.removeEventListener('scroll', this._setStickyHeaderStyle);
-        // this.element.removeEventListener('scroll', this._elementScrollCallback);
     }
 
     get(key, defaultValue) {
@@ -243,14 +235,13 @@ export default class Table extends Intact {
 
     _setStickyHeaderStyle() {
         let stickHeader = this.get('stickHeader');
-        const tableWidth = this.table.offsetWidth;
         const headerHeight = this.header.offsetHeight;
         if (stickHeader === true) {
             stickHeader = 0;
         }
         const top = this.element.getBoundingClientRect().top;
+        const containerWidth = this.element.offsetWidth;
         if (top <= +stickHeader) {
-            const containerWidth = this.element.offsetWidth;
             this.set({
                 '_sticky': {
                     'width': containerWidth + 'px',
@@ -262,7 +253,7 @@ export default class Table extends Intact {
         } else {
             this.set({
                 '_sticky': {
-                    width: tableWidth + 'px',
+                    'width': containerWidth + 'px',
                 },
                 '_headerHeight': 0,
             });
@@ -270,24 +261,34 @@ export default class Table extends Intact {
     }
 
     _setFixedColumnWidth() {
-        if (this.hasFixedLeft) {
-            const width = this.leftColumns.reduce((memo, elem) => {
-                return memo + elem.offsetWidth;
-            }, 0);
-            this.set('_leftWidth', width, {async: true});
-        } 
-
-        if (this.hasFixedRight) {
-            const width = this.rightColumns.reduce((memo, elem) => {
-                return memo + elem.offsetWidth;
-            }, 0);
-            this.set('_rightWidth', width + this.get('_padding'), {async: true});
-        }
-
         if (this.hasFixedLeft || this.hasFixedRight) {
-            // calculate 
+            const data = {};
             const tableWidth = this.table.offsetWidth;
-            this.set('_tableWidth', tableWidth, {async: true});
+            // update table width firstly
+            this.set('_tableWidth', tableWidth);
+
+            if (this.hasFixedLeft) {
+                const width = this.leftColumns.reduce((memo, elem) => {
+                    return memo + elem.offsetWidth;
+                }, 0);
+                data._leftWidth = width;
+            } 
+
+            if (this.hasFixedRight) {
+                const width = this.rightColumns.reduce((memo, elem) => {
+                    return memo + elem.offsetWidth;
+                }, 0);
+                data._rightWidth = width + this.get('_padding');
+            }
+
+            // calculate the horizontal scroll bar
+            let paddingBottom = 0
+            if (this.element.offsetWidth < tableWidth + this.get('_padding')) {
+                paddingBottom = this.get('_scrollBarWidth');
+            }
+            data._paddingBottom = paddingBottom;
+
+            this.set(data);
         }
     }
 
@@ -389,7 +390,6 @@ export default class Table extends Intact {
         // left mouse key
         if (e.which !== 1) return;
 
-        console.log(vNode);
         this._resizing = true;
         this._containerWidth = this.element.offsetWidth;
         this._x = e.clientX;
@@ -409,36 +409,6 @@ export default class Table extends Intact {
 
         document.addEventListener('mousemove', this._move);
         document.addEventListener('mouseup', this._dragEnd);
-
-        return console.log(prevTh, currentTh);
-
-        this._currentThs = [currentTh];
-        this._prevThs = [prevTh];
-        this._tables = [this.table];
-        this._isLastTh = !currentTh.nextElementSibling;
-
-        const {fixHeader, _isSticky} = this.get();
-        if (fixHeader || _isSticky) {
-            const ths = this.table.children[0].getElementsByTagName('th');
-            const fixThs = currentTh.parentNode.children;
-            const index = slice.call(fixThs).indexOf(currentTh);
-            this._currentThs.push(ths[index]);
-            this._prevThs.push(ths[index - 1]);
-            // this._tables.push(this.header.children[0]);
-            // if fixHeader we should change the width of both header and scroll
-            if (fixHeader) {
-                this._tables = [this.header, this.scroll];
-            } else if (this.get('_sticky.position') === 'fixed') {
-                // if stickHeader set width of the table in header
-                // to make the sticky header don't expand
-                this._tables = [this.headerTable, this.scroll];
-            } else {
-                this._tables = [this.header, this.headerTable, this.scroll];
-            }
-        }
-
-        document.addEventListener('mousemove', this._move);
-        document.addEventListener('mouseup', this._dragEnd);
     }
 
     _move(e) {
@@ -451,30 +421,26 @@ export default class Table extends Intact {
             if (delX === 0) return;
 
             const prevWidth = this._prevTh.offsetWidth + delX;
-            const currentWidth = this._currentTh.offsetWidth + delX;
+            const currentWidth = this._currentTh.offsetWidth - delX;
             const tableWidth = this.table.offsetWidth + delX;
+            const _padding = this.get('_padding');
 
-            // const prevWidth = this._prevThs[0].offsetWidth + delX;
-            // const tableWidth = this._tables[0].offsetWidth + delX;
-            // const currentWidth = this._currentThs[0].offsetWidth - delX;
-            
             if (prevWidth < this._minWidth && delX < 0) return;
 
             const currentKey = this._currentVNode.key;
             const prevKey = this._prevVNode.key;
 
-            // this.headerWidthMap[currentKey] = currentWidth;
             this.headerWidthMap[prevKey] = prevWidth;
 
             this._x = e.clientX;
 
-            if (this._containerWidth > tableWidth) {
+            if (this._containerWidth > tableWidth + _padding) {
                 if (this._isLastTh) {
-                    delete this.headerWidthMap[currentKey];
+                    this.headerWidthMap[currentKey] = 'auto';
                 } else {
                     this.headerWidthMap[currentKey] = currentWidth;
                 }
-            } else if (this._containerWidth === tableWidth) {
+            } else if (this._containerWidth === tableWidth + _padding) {
                 this.tableWidth = '100%';
             } else {
                 this.tableWidth = tableWidth + 'px';
@@ -482,32 +448,8 @@ export default class Table extends Intact {
 
             this.update();
 
-            return console.log(currentKey, prevKey);
-
-            this._prevThs.forEach(item => {
-                item.style.width = prevWidth + 'px';
-            });
-
-            if (this._containerWidth > tableWidth) {
-                this._currentThs.forEach(item => {
-                    if (this._isLastTh) {
-                        item.width = '';
-                        item.style.width = '';
-                    } else {
-                        item.style.width = currentWidth + 'px'; 
-                    }
-                });
-            } else if (this._containerWidth === tableWidth) {
-                this._tables.forEach(item => {
-                    item.style.width = '100%';
-                });
-            } else {
-                this._tables.forEach(item => {
-                    item.style.width = tableWidth + 'px';
-                });
-            }
-
-            this._x = e.clientX;
+            // should update fixed column table's width
+            this._setFixedColumnWidth();
         }
     }
 
@@ -520,37 +462,37 @@ export default class Table extends Intact {
     }
 
     _onWindowResize() {
-        this._resizeTableWhenDragable();
+        // this._resizeTableWhenDragable();
 
         // reset the sticky header's width
         // maybe the top of table has changed too
         if (this.get('_isSticky')) {
             this._setStickyHeaderStyle();
         }
+        this._setFixedColumnWidth();
     }
 
-    _resizeTableWhenDragable() {
-        if (!this._dragged) return;
+    // _resizeTableWhenDragable() {
+        // if (!this._dragged) return;
 
-        this._containerWidth = this.element.offsetWidth;
-        this._tables = [this.table];
-        if (this.get('fixHeader')) {
-            this._tables = [this.header, this.scroll];
-        } 
+        // this._containerWidth = this.element.offsetWidth;
+        // this._tables = [this.table];
+        // if (this.get('fixHeader')) {
+            // this._tables = [this.header, this.scroll];
+        // } 
 
-        const tableWidth = this._tables[0].offsetWidth;
-        if (this._containerWidth > tableWidth) {
-            this._tables.forEach(table => {
-                table.style.width = '100%';
-            });
-        }
-    }
+        // const tableWidth = this._tables[0].offsetWidth;
+        // if (this._containerWidth > tableWidth) {
+            // this._tables.forEach(table => {
+                // table.style.width = '100%';
+            // });
+        // }
+    // }
 
     _getHeaderWidth(key) {
         const width = this.headerWidthMap[key];
-        if (width) {
-            return width + 'px';
-        }
+        if (width === 'auto') return width;
+        if (width) return width + 'px';
     }
 
     _onTBodyScroll(e) {
@@ -559,8 +501,16 @@ export default class Table extends Intact {
             const oldScrollLeft = this.scrollLeft;
             const newScrollLeft = target.scrollLeft;
             if (newScrollLeft !== oldScrollLeft) {
-                this.header.scrollLeft = newScrollLeft;
+                // this.header.scrollLeft = newScrollLeft;
                 this.scrollLeft = newScrollLeft;
+                const maxScroll = target.scrollWidth - target.offsetWidth; 
+                this.set({
+                    '_scrollLeft': newScrollLeft,
+                    '_scrollPosition': newScrollLeft === 0 ? 
+                        'left' : 
+                        newScrollLeft >= maxScroll ? 
+                            'right' : 'middle',
+                });
             } else {
                 this.set('_scrollTop', target.scrollTop);
             }

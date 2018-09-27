@@ -3,10 +3,8 @@ title: 列固定
 order: 8.2
 ---
 
-`fixHeader`：设置表头固定，类型`Boolean` | `Number`，默认：`false`
-
-1. 如果取值为`Boolean`，`false`表示不固定表头，`true`表示固定高度，但需要自己定义表格高度
-2. 如果取值为`Number`，则表示，当表格超出该高度时即展示滚动条，并固定表头
+给`TableColumn`或者`scheme`添加`fixed`属性，可以将列固定，其中`left`固定在左侧，`right`固定在右侧；
+固定的列依然支持`resizable`表头拖动，`stickHeader`表头吸顶，以及`fixHeader`表头固定
 
 ```vdt
 import {Table, TableColumn} from 'kpc/components/table';
@@ -23,7 +21,7 @@ const data = [
 });
 
 <div>
-    <Table data={{ data }}>
+    <Table data={{ data }} resizable stickHeader="50">
         <TableColumn fixed="left" key="name" title="Name" width="200" />
         <TableColumn key="column1" title="Column1" width="300" />
         <TableColumn key="column2" title="Column2" width="300" />
@@ -35,7 +33,7 @@ const data = [
             </b:template>
         </TableColumn>
     </Table>
-    <Table data={{ data }} fixHeader="100">
+    <Table data={{ data }} fixHeader="100" resizable>
         <TableColumn fixed="left" key="name" title="Name" width="200" />
         <TableColumn key="column1" title="Column1" width="300" />
         <TableColumn key="column2" title="Column2" width="300" />
@@ -51,6 +49,6 @@ const data = [
 ```
 
 ```styl
-.k-table-fixed-column
+.k-table
     margin-bottom 20px
 ```

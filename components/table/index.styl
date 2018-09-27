@@ -22,6 +22,8 @@
         z-index 1
         overflow hidden
         width 100%
+    .k-thead-wrapper
+        display table
     th
         padding $table-th-padding
         text-align $table-th-text-align 
@@ -76,7 +78,8 @@
         width $table-check-width
         // FixMe: force checkbox vertical algin
         .k-checkbox
-            vertical-align 3px
+            position relative
+            top -1px
 
     // no data
     .k-no-data
@@ -93,8 +96,8 @@
         border-top $table-th-border-top
         position absolute
         top 0
-        box-shadow $box-shadow
         overflow hidden
+        z-index 1
         .k-thead
             width auto
         .k-tbody
@@ -105,47 +108,31 @@
             margin-right -15px
     .k-fixed-right
         right 0
-        .k-thead
+        .k-thead-wrapper
         .k-tbody
             float right
+    &.k-scroll-left .k-fixed-right
+    &.k-scroll-middle .k-fixed-right
+        box-shadow $box-shadow
+    &.k-scroll-right .k-fixed-left
+    &.k-scroll-middle .k-fixed-left
+        box-shadow $box-shadow
+
+    // type: border
+    &.k-border
+        border-left $table-border-left
+        border-right $table-border-right
+
+    // sticky
+    &.k-sticky
+        .k-head
+            z-index $max-z-index
 
 .k-table-wrapper
     // overflow auto
     overflow hidden
     border-top $table-th-border-top
     background $table-bg-color
-    // fix header
-    .k-fixed
-        position relative
-        z-index 1
-        border-bottom $table-th-border-bottom
-        background $table-thead-bg-color
-        thead
-            border none
-    .k-scroll
-        // overflow-y auto
-        // overflow-x hidden
-        overflow auto
-        > .k-table
-            margin-top $table-fixed-margin-top 
-
-    // type: border
-    &.k-border
-        .k-fixed
-        thead th
-            background $table-border-thead-bg-color
-        .k-fixed
-        .k-table
-            border-left $table-border-left
-            border-right $table-border-right
-        .k-fixed
-            .k-table
-                border none
-
-    // sticky header
-    &.k-sticky
-        .k-fixed
-            overflow hidden
 
 // group
 .k-table-dropdown
@@ -155,31 +142,6 @@
     &:not(.k-multiple)
         .k-item.k-active
             color $table-group-item-active-color 
-            
-// fixed column
-.k-table-fixed-column
-    position relative
-    overflow hidden
-    .k-invisible
-        visibility hidden
-    .k-fixed-left
-    .k-fixed-right
-        border-top $table-th-border-top
-        position absolute
-        top 0
-        box-shadow $box-shadow
-        overflow hidden
-        .k-scroll
-            overflow hidden
-
-    .k-fixed-left
-        left 0
-    .k-fixed-right
-        right 0
-        .k-fixed-scroll
-        > .k-table
-            float right
-
 
 $dir = $theme-dir + '/table.styl';
 @import $dir if exists($dir) 
