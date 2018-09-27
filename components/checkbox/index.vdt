@@ -13,7 +13,9 @@ const classNameObj = {
 };
 
 const events = [
-    'ev-click', 'ev-mouseenter', 'ev-mouseleave'
+    // do not bind click to label, otherwise it will trigger click event twice
+    /* 'ev-click', */
+    'ev-mouseenter', 'ev-mouseleave'
 ].reduce((memo, name) => {
     if (rest[name]) {
         memo[name] = rest[name];

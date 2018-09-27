@@ -4649,6 +4649,9 @@ button.k-btn.k-mini > span {
   height: 100%;
   opacity: 0;
   cursor: pointer;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 .k-checkbox .k-text {
   vertical-align: middle;
@@ -8454,13 +8457,14 @@ button.k-btn.k-mini > span {
   display: inline-block;
   vertical-align: middle;
   padding-left: 0.714285714285714rem;
+  margin-top: 1px;
 }
 .k-message > .k-container > .k-icon:before {
   font-size: 16px;
 }
 .k-message > .k-container > .k-content {
   display: inline-block;
-  padding: 9px 33px 10px 8px;
+  padding: 7px 33px 7px 8px;
   vertical-align: middle;
   word-break: break-all;
 }
@@ -8491,9 +8495,6 @@ button.k-btn.k-mini > span {
   position: absolute;
   right: 0;
   top: 0;
-  height: 33px;
-  width: 33px;
-  line-height: 31px;
 }
 .k-message.k-danger > .k-container {
   color: #f43;
@@ -8518,7 +8519,7 @@ button.k-btn.k-mini > span {
   vertical-align: middle;
 }
 .k-pagination .k-btns .k-btn {
-  margin: 0 6px;
+  margin-right: 6px;
 }
 .k-pagination .k-btns .k-btn:last-of-type {
   margin: 0 !important;
