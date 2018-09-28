@@ -43,11 +43,19 @@ module.exports = function(isDev) {
 
         ctx.hook.add('md.renderer', (renderer, file, codes) => {
             renderer.table = (header, body) => {
-                return `<div class="k-table-wrapper k-border">
-                    <table class="k-table">
-                        <thead>${header}</thead>
-                        <tbody>${body}</tbody>
-                    </table>
+                return `<div class="k-table k-border">
+                    <div class="k-table-wrapper">
+                        <div class="k-thead">
+                            <table>
+                                <thead>${header}</thead>
+                            </table>
+                        </div>
+                        <div class="k-tbody">
+                            <table>
+                                <tbody>${body}</tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>`
             };
             const codeRenderer = renderer.code;
