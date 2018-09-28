@@ -340,7 +340,7 @@ const classNameObj = {
     [`k-scroll-${_scrollPosition}`]: _paddingBottom,
 };
 
-return <div class={{ classNameObj }} style={{ style }}>
+<div class={{ classNameObj }} style={{ style }}>
     {{ table }}    
     <div class="k-table-wrapper k-fixed-left" v-if={{ hasFixedLeft }} 
         style={{ {width: self.get('_leftWidth') + 'px'} }}
@@ -354,76 +354,4 @@ return <div class={{ classNameObj }} style={{ style }}>
         <TheadCreator onlyRight style={{ {width: self.get('_tableWidth') + 'px'} }} />
         <TbodyCreator onlyRight style={{ {width: self.get('_tableWidth') + 'px'} }} />
     </div>
-</div>;
-
-let index = 0;
-const Wrapper = (props) => {
-    const ret = <div class={{ __u.extend({}, classNameObj, {
-        [props.className]: props.className
-    }) }} style={{ props.style }}>
-        <div v-if={{ fixHeader || _isSticky }} class="k-fixed-scroll"
-            style={{ props.tableStyle }}
-        >
-            <div class="k-fixed"
-                style={{ do {
-                    const style = {paddingRight: self.get('_padding') + 'px'};
-                    if (_isSticky) {
-                        const _sticky = self.get('_sticky');
-                        __u.extend(style, _sticky);
-                    }
-                    style;
-                } }}
-                ref={{ props.useRef ? dom => self.header = dom : undefined }}
-            >
-                <table class="k-table" ref={{ props.useRef ? dom => self.headerTable = dom : undefined }}>
-                    <TheadCreator onlyLeft={{ props.onlyLeft }} onlyRight={{ props.onlyRight }} />
-                </table>
-            </div>
-            <div class="k-scroll"
-                style={{ do {
-                    let style = {};
-                    if (!_isSticky &&
-                        (typeof fixHeader === 'number' || 
-                        typeof fixHeader === 'string')
-                    ) {
-                        style = {maxHeight: `${fixHeader - (props.onlyLeft || props.onlyRight ? _scrollBarWidth : 0)}px`};
-                    } else if (_isSticky && self.get('_sticky.position')) {
-                        style = {paddingTop: self.get('_headerHeight')};
-                    }
-                    style;
-                } }}
-                ref={{ props.useRef ? dom => self.scroll = dom : undefined }}
-            >{{ props.children }}</div>
-        </div>
-        <template v-else>{{ props.children }}</template>
-    </div>;
-
-    index++;
-
-    return ret;
-};
-
-<template>
-    <div v-if={{ hasFixedLeft || hasFixedRight }} class="k-table-fixed-column" style={{ style }}>
-        <Wrapper useRef>{{ table }}</Wrapper>
-        <Wrapper v-if={{ hasFixedLeft }} class="k-fixed-left" onlyLeft
-            style={{ {width: self.get('_leftWidth') + 'px'} }}
-            tableStyle={{ {width: self.get('_tableWidth') + 'px'} }}
-        >
-            <table class="k-table">
-                <TheadCreator onlyLeft/>
-                <TbodyCreator onlyLeft />
-            </table>
-        </Wrapper>
-        <Wrapper v-if={{ hasFixedRight }} class="k-fixed-right" onlyRight 
-            style={{ {width: self.get('_rightWidth') + 'px'} }}
-            tableStyle={{ {width: self.get('_tableWidth') + 'px'} }}
-        >
-            <table class="k-table">
-                <TheadCreator onlyRight />
-                <TbodyCreator onlyRight />
-            </table>
-        </Wrapper>
-    </div>
-    <Wrapper v-else style={{ style }} useRef>{{ table }}</Wrapper>
-</template>
+</div>
