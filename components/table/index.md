@@ -46,6 +46,7 @@ sidebar: doc
 | group | 指定分组数组，每一项格式为`{value: '选中后的值', label: '展示的文案'}` | `Array<Object>` | `undefined` |
 | multiple | 分组是否支持多选 | `Boolean` | `false` |
 | minWidth | 指定当前列拖动时的最小宽度，优先级高于`Table`的`minColWidth` | `Number` | `40` |
+| fix | 是否将列固定，`"left"`固定在左侧；`"right"`固定在右侧 | `"left"` &#124; `"right"` | `undefined` |
 
 # 扩展点
 
