@@ -4,6 +4,14 @@ order: 99
 sidebar: doc
 ---
 
+## v0.5.11
+
+> 要使用`Table`新特性，需要更新`Intact`至`v2.3.5`及以上
+
+1. `Add` `Table`支持列固定 [#86](https://github.com/ksc-fe/kpc/issues/86)
+2. `Add` `Table`支持横向滚动条吸底 [#96](https://github.com/ksc-fe/kpc/issues/96)
+3. `Fix` 修复`Table`固定表头横向滚动的问题 [#89](https://github.com/ksc-fe/kpc/issues/89)
+
 ## v0.5.10
 
 1. `Fix` 修复`Select`将`0`当做空值处理的问题 [#94](https://github.com/ksc-fe/kpc/issues/94)
