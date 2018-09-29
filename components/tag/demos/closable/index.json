@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>给组件添加<code>closable</code>属性，可以关闭标签，关闭后会触发<code>close</code>事件</p>\n<blockquote>\n<p>如果仅仅指定了<code>closable</code>属性，那么组件的开启和关闭是组件内部自己维护的状态，一旦组件被重新创建，那么又会回到默认开启状态，所以如果你需要维持组件的状态，需要自己维护<code>closed</code>属性，或者通过<code>v-if</code>来控制组件</p>\n</blockquote>\n",
-    "index": 67,
+    "index": 68,
     "highlighted": [
         {
             "language": "vdt",

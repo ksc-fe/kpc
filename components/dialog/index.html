@@ -18,20 +18,26 @@
 <blockquote>
 <p>可以通过<code>parent()</code>引用到组件定义的默认内容</p>
 </blockquote>
-</div></div><div class="example-code"><div class="k-tabs" style=""><a class="k-tab">index.vdt</a><a class="k-tab">index.styl</a><a class="k-tab">index.js</a><div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-114" id="114"><div class="example-opera"><div><button class="k-btn k-primary" tabindex="0" type="button"><span>Show Dialog</span></button><div class="k-dialog-wrapper"></div></div></div><div class="example-desc"><div class="title">事件回调</div><div class="desc"><p>弹窗点击“确认”和“取消”时，分别会派发出<code>ok</code>和<code>cancel</code>事件，通过它们可以执行相应的回调逻辑。此时弹窗会自动立即关闭，如果需要控制更多细节，可以使用<code>ok</code>和<code>cancel</code>属性，详见异步关闭。</p>
-</div></div><div class="example-code"><div class="k-tabs" style=""><a class="k-tab">index.vdt</a><a class="k-tab">index.js</a><div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-133" id="133"><div class="example-opera"><button class="k-btn k-primary" tabindex="0" type="button"><span>Show Dialog</span></button></div><div class="example-desc"><div class="title">继承弹窗</div><div class="desc"><p>在实际应用中，弹窗的逻辑一般都很复杂，通过继承，我们可以控制弹窗的各个细节，例如：点击确定时进行表单验证，发送请求，延迟关闭等等。将这些业务逻辑封装在单独的模块中，是推荐的做法。</p>
-</div></div><div class="example-code"><div class="k-tabs" style=""><a class="k-tab">dialog.vdt</a><a class="k-tab">dialog.js</a><a class="k-tab">index.vdt</a><a class="k-tab">index.js</a><div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-169" id="169"><div class="example-opera"><button class="k-btn k-primary" tabindex="0" type="button"><span>Show Dialog Asynchronously</span></button></div><div class="example-desc"><div class="title">异步打开</div><div class="desc"><p>当弹窗很复杂时，我们可以通过继承<code>Dialog</code>的方式，将所有业务逻辑封装成一个新弹窗组件。经常地，我们需要在弹窗打开时获取数据，一种方式是，弹窗同步打开，然后使用loading动画来过渡数据加载过程，另一种方式，我们还可以在弹窗数据加载完成后再打开弹窗。这种方式只需要在继承的弹窗的<code>_init</code>生命周期函数中返回<code>Promise</code>对象即可。另外我们还可以通过<code>open</code>, <code>close</code>来处理打开关闭后的逻辑。</p>
-</div></div><div class="example-code"><div class="k-tabs" style=""><a class="k-tab">dialog.vdt</a><a class="k-tab">dialog.js</a><a class="k-tab">index.vdt</a><a class="k-tab">index.js</a><div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-180" id="180"><div class="example-opera"><div><button class="k-btn k-primary" tabindex="0" type="button"><span>Close Dialog Asynchronously</span></button><div class="k-dialog-wrapper"></div></div></div><div class="example-desc"><div class="title">异步关闭</div><div class="desc"><p><code>Dialog</code>默认点击确定按钮会立即关闭弹窗并触发<code>ok</code>事件，我们可以给<code>ok</code>属性（并非<code>ok</code>事件）指定一个函数来去掉默认函数行为，此时你可以自己控制弹窗的关闭情况。<code>cancel</code>属性同理。</p>
-</div></div><div class="example-code"><div class="k-tabs" style=""><a class="k-tab">index.vdt</a><a class="k-tab">index.js</a><div class="k-active-bar" style=""></div></div><div class="code"></div></div></div></div><div class="api"><div><h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1><div class="k-table-wrapper k-border">
-                    <table class="k-table">
-                        <thead><tr>
+</div></div><div class="example-code"><div class="k-tabs" style=""><a class="k-tab">index.vdt</a><a class="k-tab">index.styl</a><a class="k-tab">index.js</a><div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-112" id="112"><div class="example-opera"><div><button class="k-btn k-primary" tabindex="0" type="button"><span>Show Dialog</span></button><div class="k-dialog-wrapper"></div></div></div><div class="example-desc"><div class="title">事件回调</div><div class="desc"><p>弹窗点击“确认”和“取消”时，分别会派发出<code>ok</code>和<code>cancel</code>事件，通过它们可以执行相应的回调逻辑。此时弹窗会自动立即关闭，如果需要控制更多细节，可以使用<code>ok</code>和<code>cancel</code>属性，详见异步关闭。</p>
+</div></div><div class="example-code"><div class="k-tabs" style=""><a class="k-tab">index.vdt</a><a class="k-tab">index.js</a><div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-125" id="125"><div class="example-opera"><button class="k-btn k-primary" tabindex="0" type="button"><span>Show Dialog</span></button></div><div class="example-desc"><div class="title">继承弹窗</div><div class="desc"><p>在实际应用中，弹窗的逻辑一般都很复杂，通过继承，我们可以控制弹窗的各个细节，例如：点击确定时进行表单验证，发送请求，延迟关闭等等。将这些业务逻辑封装在单独的模块中，是推荐的做法。</p>
+</div></div><div class="example-code"><div class="k-tabs" style=""><a class="k-tab">dialog.vdt</a><a class="k-tab">dialog.js</a><a class="k-tab">index.vdt</a><a class="k-tab">index.js</a><div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-167" id="167"><div class="example-opera"><button class="k-btn k-primary" tabindex="0" type="button"><span>Show Dialog Asynchronously</span></button></div><div class="example-desc"><div class="title">异步打开</div><div class="desc"><p>当弹窗很复杂时，我们可以通过继承<code>Dialog</code>的方式，将所有业务逻辑封装成一个新弹窗组件。经常地，我们需要在弹窗打开时获取数据，一种方式是，弹窗同步打开，然后使用loading动画来过渡数据加载过程，另一种方式，我们还可以在弹窗数据加载完成后再打开弹窗。这种方式只需要在继承的弹窗的<code>_init</code>生命周期函数中返回<code>Promise</code>对象即可。另外我们还可以通过<code>open</code>, <code>close</code>来处理打开关闭后的逻辑。</p>
+</div></div><div class="example-code"><div class="k-tabs" style=""><a class="k-tab">dialog.vdt</a><a class="k-tab">dialog.js</a><a class="k-tab">index.vdt</a><a class="k-tab">index.js</a><div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-177" id="177"><div class="example-opera"><div><button class="k-btn k-primary" tabindex="0" type="button"><span>Close Dialog Asynchronously</span></button><div class="k-dialog-wrapper"></div></div></div><div class="example-desc"><div class="title">异步关闭</div><div class="desc"><p><code>Dialog</code>默认点击确定按钮会立即关闭弹窗并触发<code>ok</code>事件，我们可以给<code>ok</code>属性（并非<code>ok</code>事件）指定一个函数来去掉默认函数行为，此时你可以自己控制弹窗的关闭情况。<code>cancel</code>属性同理。</p>
+</div></div><div class="example-code"><div class="k-tabs" style=""><a class="k-tab">index.vdt</a><a class="k-tab">index.js</a><div class="k-active-bar" style=""></div></div><div class="code"></div></div></div></div><div class="api"><div><h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1><div class="k-table k-border">
+                    <div class="k-table-wrapper">
+                        <div class="k-thead">
+                            <table>
+                                <thead><tr>
 <th>属性</th>
 <th>说明</th>
 <th>类型</th>
 <th>默认值</th>
 </tr>
 </thead>
-                        <tbody><tr>
+                            </table>
+                        </div>
+                        <div class="k-tbody">
+                            <table>
+                                <tbody><tr>
 <td>title</td>
 <td>弹窗标题</td>
 <td><code>String</code></td>
@@ -86,15 +92,23 @@
 <td><code>undefined</code></td>
 </tr>
 </tbody>
-                    </table>
-                </div><h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1><div class="k-table-wrapper k-border">
-                    <table class="k-table">
-                        <thead><tr>
+                            </table>
+                        </div>
+                    </div>
+                </div><h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1><div class="k-table k-border">
+                    <div class="k-table-wrapper">
+                        <div class="k-thead">
+                            <table>
+                                <thead><tr>
 <th>名称</th>
 <th>说明</th>
 </tr>
 </thead>
-                        <tbody><tr>
+                            </table>
+                        </div>
+                        <div class="k-tbody">
+                            <table>
+                                <tbody><tr>
 <td>header</td>
 <td>扩展弹窗头部</td>
 </tr>
@@ -111,17 +125,25 @@
 <td>扩展弹窗整个底部，上述<code>footer</code>是它下面一个子扩展点</td>
 </tr>
 </tbody>
-                    </table>
-                </div><h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1><div class="k-table-wrapper k-border">
-                    <table class="k-table">
-                        <thead><tr>
+                            </table>
+                        </div>
+                    </div>
+                </div><h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1><div class="k-table k-border">
+                    <div class="k-table-wrapper">
+                        <div class="k-thead">
+                            <table>
+                                <thead><tr>
 <th>方法名</th>
 <th>说明</th>
 <th>参数</th>
 <th>返回值</th>
 </tr>
 </thead>
-                        <tbody><tr>
+                            </table>
+                        </div>
+                        <div class="k-tbody">
+                            <table>
+                                <tbody><tr>
 <td>show</td>
 <td>弹出弹窗</td>
 <td>-</td>
@@ -170,16 +192,24 @@
 <td><code>undefined</code></td>
 </tr>
 </tbody>
-                    </table>
-                </div><h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1><div class="k-table-wrapper k-border">
-                    <table class="k-table">
-                        <thead><tr>
+                            </table>
+                        </div>
+                    </div>
+                </div><h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1><div class="k-table k-border">
+                    <div class="k-table-wrapper">
+                        <div class="k-thead">
+                            <table>
+                                <thead><tr>
 <th>事件名</th>
 <th>说明</th>
 <th>参数</th>
 </tr>
 </thead>
-                        <tbody><tr>
+                            </table>
+                        </div>
+                        <div class="k-tbody">
+                            <table>
+                                <tbody><tr>
 <td>cancel</td>
 <td>点击取消按钮时触发</td>
 <td>-</td>
@@ -200,7 +230,9 @@
 <td>-</td>
 </tr>
 </tbody>
-                    </table>
+                            </table>
+                        </div>
+                    </div>
                 </div></div></div></div></article></div></div></div></div>
     <script src="/kpc/static/client.js" type="text/javascript"></script>
 </body>

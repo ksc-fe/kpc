@@ -14,15 +14,21 @@
                     上修正该文档
                 </div></div><div class="contents"><div class="api"><div><p>kpc同时兼容intact和vue框架，我们只需要引入vue兼容层<a href="https://github.com/Javey/intact-vue">intact-vue</a>即可。</p>
 <h1 id='header-%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E'>语法说明</h1><p>intact-vue从底层vNode上做了intact到vue的兼容，文档中针对intact的例子，我们只需要做以下写法上的转化即可</p>
-<div class="k-table-wrapper k-border">
-                    <table class="k-table">
-                        <thead><tr>
+<div class="k-table k-border">
+                    <div class="k-table-wrapper">
+                        <div class="k-thead">
+                            <table>
+                                <thead><tr>
 <th>类别</th>
 <th>intact写法</th>
 <th>vue写法</th>
 </tr>
 </thead>
-                        <tbody><tr>
+                            </table>
+                        </div>
+                        <div class="k-tbody">
+                            <table>
+                                <tbody><tr>
 <td>事件</td>
 <td><code>ev-click</code></td>
 <td><code>@click</code></td>
@@ -53,7 +59,9 @@
 <td><code>&lt;Transfer&gt;&lt;div slot=&quot;label&quot; slot-scope=&quot;data&quot;&gt;{{ data.name }}&lt;/div&gt;&lt;/Transfer&gt;</code></td>
 </tr>
 </tbody>
-                    </table>
+                            </table>
+                        </div>
+                    </div>
                 </div><p>另外当需要在js中使用<code>h()</code>方法创建vNode时，需要使用<code>Intact.normalize()</code>方法将vNode包起来</p>
 <pre><code class="hljs vue"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">Button</span>&gt;</span></span><span class="hljs-template-variable">{{ <span class="hljs-builtin-name">template</span> }}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>

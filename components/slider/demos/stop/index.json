@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>给<code>Slider</code>指定<code>isShowStop</code>属性，可以展示间隔点，在间隔点不密集时使用。</p>\n",
-    "index": 152,
+    "index": 144,
     "highlighted": [
         {
             "language": "vdt",

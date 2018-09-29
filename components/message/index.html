@@ -13,21 +13,27 @@
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/components/message/index.md">github</a>
                     上修正该文档
                 </div></div><div class="contents"><div><h1>示例</h1><div class="example index-5" id="5"><div class="example-opera"><div class="k-btns" style=""><button class="k-btn" tabindex="0" type="button"><span>info</span></button><button class="k-btn" tabindex="0" type="button"><span>error</span></button><button class="k-btn" tabindex="0" type="button"><span>warning</span></button><button class="k-btn" tabindex="0" type="button"><span>success</span></button></div></div><div class="example-desc"><div class="title">基础用法</div><div class="desc"><p>使用<code>Message</code>提供的静态方法，展示提示。包括：<code>info</code>, <code>error</code>, <code>warning</code>, <code>success</code>。提示默认会在5s后自动关闭</p>
-</div></div><div class="example-code"><div class="k-tabs" style=""><a class="k-tab">index.vdt</a><a class="k-tab">index.js</a><div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-75" id="75"><div class="example-opera"><div class="k-btns" style=""><button class="k-btn" tabindex="0" type="button"><span>close after 10s</span></button><button class="k-btn" tabindex="0" type="button"><span>stick message</span></button></div></div><div class="example-desc"><div class="title">自定义时长</div><div class="desc"><p>提示默认会在5s后关闭，我们可以指定<code>duration</code>来自定义时长（单位ms）。当指定为<code>0</code>时，提示不会自动关闭。</p>
-</div></div><div class="example-code"><div class="k-tabs" style=""><a class="k-tab">index.vdt</a><a class="k-tab">index.js</a><div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-87" id="87"><div class="example-opera"><div><button class="k-btn" tabindex="0" type="button"><span>custom message</span></button><!--message--></div></div><div class="example-desc"><div class="title">自定义展示内容</div><div class="desc"><p>当需要自定义提示的内容时，我们可以将<code>Message</code>当做组件定义在模板中，而非调用它的静态方法。此时我们需要给<code>Message</code>指定唯一的<code>key</code>。</p>
+</div></div><div class="example-code"><div class="k-tabs" style=""><a class="k-tab">index.vdt</a><a class="k-tab">index.js</a><div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-76" id="76"><div class="example-opera"><div class="k-btns" style=""><button class="k-btn" tabindex="0" type="button"><span>close after 10s</span></button><button class="k-btn" tabindex="0" type="button"><span>stick message</span></button></div></div><div class="example-desc"><div class="title">自定义时长</div><div class="desc"><p>提示默认会在5s后关闭，我们可以指定<code>duration</code>来自定义时长（单位ms）。当指定为<code>0</code>时，提示不会自动关闭。</p>
+</div></div><div class="example-code"><div class="k-tabs" style=""><a class="k-tab">index.vdt</a><a class="k-tab">index.js</a><div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-91" id="91"><div class="example-opera"><div><button class="k-btn" tabindex="0" type="button"><span>custom message</span></button><!--message--></div></div><div class="example-desc"><div class="title">自定义展示内容</div><div class="desc"><p>当需要自定义提示的内容时，我们可以将<code>Message</code>当做组件定义在模板中，而非调用它的静态方法。此时我们需要给<code>Message</code>指定唯一的<code>key</code>。</p>
 </div></div><div class="example-code"><div class="k-tabs" style=""><a class="k-tab">index.vdt</a><a class="k-tab">index.js</a><div class="k-active-bar" style=""></div></div><div class="code"></div></div></div></div><div class="api"><div><blockquote>
 <p>如果你在Vue下全局安装KPC，可以通过<code>this.$message</code>引用到<code>Message</code>组件，所以你可以这样调用它的方法：<code>this.$message.success(&#39;test&#39;)</code></p>
 </blockquote>
-<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1><div class="k-table-wrapper k-border">
-                    <table class="k-table">
-                        <thead><tr>
+<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1><div class="k-table k-border">
+                    <div class="k-table-wrapper">
+                        <div class="k-thead">
+                            <table>
+                                <thead><tr>
 <th>属性</th>
 <th>说明</th>
 <th>类型</th>
 <th>默认值</th>
 </tr>
 </thead>
-                        <tbody><tr>
+                            </table>
+                        </div>
+                        <div class="k-tbody">
+                            <table>
+                                <tbody><tr>
 <td>content</td>
 <td>提示内容</td>
 <td><code>String</code> &#124; <code>VNode</code></td>
@@ -70,17 +76,25 @@
 <td>false</td>
 </tr>
 </tbody>
-                    </table>
-                </div><h1 id='header-%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95'>静态方法</h1><div class="k-table-wrapper k-border">
-                    <table class="k-table">
-                        <thead><tr>
+                            </table>
+                        </div>
+                    </div>
+                </div><h1 id='header-%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95'>静态方法</h1><div class="k-table k-border">
+                    <div class="k-table-wrapper">
+                        <div class="k-thead">
+                            <table>
+                                <thead><tr>
 <th>方法名</th>
 <th>说明</th>
 <th>参数</th>
 <th>返回值</th>
 </tr>
 </thead>
-                        <tbody><tr>
+                            </table>
+                        </div>
+                        <div class="k-tbody">
+                            <table>
+                                <tbody><tr>
 <td>info</td>
 <td>普通提示</td>
 <td><code>content, duration</code> &#124; <code>config</code></td>
@@ -105,18 +119,26 @@
 <td>-</td>
 </tr>
 </tbody>
-                    </table>
+                            </table>
+                        </div>
+                    </div>
                 </div><p>其中<code>content</code>和<code>duration</code>参数说明如下：</p>
-<div class="k-table-wrapper k-border">
-                    <table class="k-table">
-                        <thead><tr>
+<div class="k-table k-border">
+                    <div class="k-table-wrapper">
+                        <div class="k-thead">
+                            <table>
+                                <thead><tr>
 <th>参数名</th>
 <th>说明</th>
 <th>类型</th>
 <th>默认值</th>
 </tr>
 </thead>
-                        <tbody><tr>
+                            </table>
+                        </div>
+                        <div class="k-tbody">
+                            <table>
+                                <tbody><tr>
 <td>content</td>
 <td>提示的内容</td>
 <td><code>String</code> &#124; <code>VNode</code></td>
@@ -129,18 +151,26 @@
 <td><code>5000</code></td>
 </tr>
 </tbody>
-                    </table>
+                            </table>
+                        </div>
+                    </div>
                 </div><p>上述静态方法的另一种重载方式是，传入<code>Object</code>作为参数，此时<code>config</code>可以配置如下：</p>
-<div class="k-table-wrapper k-border">
-                    <table class="k-table">
-                        <thead><tr>
+<div class="k-table k-border">
+                    <div class="k-table-wrapper">
+                        <div class="k-thead">
+                            <table>
+                                <thead><tr>
 <th>属性名</th>
 <th>说明</th>
 <th>类型</th>
 <th>默认值</th>
 </tr>
 </thead>
-                        <tbody><tr>
+                            </table>
+                        </div>
+                        <div class="k-tbody">
+                            <table>
+                                <tbody><tr>
 <td>content</td>
 <td>同上</td>
 <td>同上</td>
@@ -165,7 +195,9 @@
 <td>同上</td>
 </tr>
 </tbody>
-                    </table>
+                            </table>
+                        </div>
+                    </div>
                 </div></div></div></div></article></div></div></div></div>
     <script src="/kpc/static/client.js" type="text/javascript"></script>
 </body>

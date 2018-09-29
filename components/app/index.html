@@ -24,16 +24,22 @@
 </blockquote>
 </div></div><div class="example-code"><div class="k-tabs" style=""><a class="k-tab">pageA.vdt</a><a class="k-tab">pageA.js</a><a class="k-tab">pageB.vdt</a><a class="k-tab">pageB.js</a><a class="k-tab">index.vdt</a><a class="k-tab">index.js</a><div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-64" id="64"><div class="example-opera"><div><button class="k-btn" style="margin-right: 10px;" tabindex="0" type="button"><span>Render in server</span></button><div class="k-btns" style=""><button class="k-btn" tabindex="0" type="button"><span>PageA</span></button><button class="k-btn" tabindex="0" type="button"><span>PageB</span></button></div><div></div></div></div><div class="example-desc"><div class="title">服务器端渲染</div><div class="desc"><p><code>App</code>组件还可以管理服务器端渲染，服务器端渲染时，调用<code>render(Page, [data])</code>方法，来将组件渲染成字符串，参数与<code>load</code>方法一样。然后前端进行加载时，需要在实例化<code>App</code>时传入<code>ssr: true</code>来标明当前页面为服务器端渲染，首次加载时进行混合<code>hydrate</code></p>
 <p>本例中，点击<code>Render in server</code>来模拟<code>PageA</code>服务器端渲染结果，插入<code>container</code>下面，然后点击<code>PageA</code>来混合结果，可以看到混合时，页面并不会发生任何改变</p>
-</div></div><div class="example-code"><div class="k-tabs" style=""><a class="k-tab">pageA.vdt</a><a class="k-tab">pageA.js</a><a class="k-tab">pageB.vdt</a><a class="k-tab">pageB.js</a><a class="k-tab">index.vdt</a><a class="k-tab">index.js</a><div class="k-active-bar" style=""></div></div><div class="code"></div></div></div></div><div class="api"><div><h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1><div class="k-table-wrapper k-border">
-                    <table class="k-table">
-                        <thead><tr>
+</div></div><div class="example-code"><div class="k-tabs" style=""><a class="k-tab">pageA.vdt</a><a class="k-tab">pageA.js</a><a class="k-tab">pageB.vdt</a><a class="k-tab">pageB.js</a><a class="k-tab">index.vdt</a><a class="k-tab">index.js</a><div class="k-active-bar" style=""></div></div><div class="code"></div></div></div></div><div class="api"><div><h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1><div class="k-table k-border">
+                    <div class="k-table-wrapper">
+                        <div class="k-thead">
+                            <table>
+                                <thead><tr>
 <th>属性</th>
 <th>说明</th>
 <th>类型</th>
 <th>默认值</th>
 </tr>
 </thead>
-                        <tbody><tr>
+                            </table>
+                        </div>
+                        <div class="k-tbody">
+                            <table>
+                                <tbody><tr>
 <td>view</td>
 <td>当前要展示的Intact组件实例</td>
 <td><code>Intact</code></td>
@@ -58,30 +64,46 @@
 <td><code>false</code></td>
 </tr>
 </tbody>
-                    </table>
-                </div><h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1><div class="k-table-wrapper k-border">
-                    <table class="k-table">
-                        <thead><tr>
+                            </table>
+                        </div>
+                    </div>
+                </div><h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1><div class="k-table k-border">
+                    <div class="k-table-wrapper">
+                        <div class="k-thead">
+                            <table>
+                                <thead><tr>
 <th>名称</th>
 <th>说明</th>
 </tr>
 </thead>
-                        <tbody><tr>
+                            </table>
+                        </div>
+                        <div class="k-tbody">
+                            <table>
+                                <tbody><tr>
 <td>loading</td>
 <td>自定义页面加载动画，可以通过继承<code>App</code>组件扩展</td>
 </tr>
 </tbody>
-                    </table>
-                </div><h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1><div class="k-table-wrapper k-border">
-                    <table class="k-table">
-                        <thead><tr>
+                            </table>
+                        </div>
+                    </div>
+                </div><h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1><div class="k-table k-border">
+                    <div class="k-table-wrapper">
+                        <div class="k-thead">
+                            <table>
+                                <thead><tr>
 <th>方法名</th>
 <th>说明</th>
 <th>参数</th>
 <th>返回值</th>
 </tr>
 </thead>
-                        <tbody><tr>
+                            </table>
+                        </div>
+                        <div class="k-tbody">
+                            <table>
+                                <tbody><tr>
 <td>showLoading</td>
 <td>展示loading动画</td>
 <td>-</td>
@@ -106,7 +128,9 @@
 <td><code>Promise[String]</code></td>
 </tr>
 </tbody>
-                    </table>
+                            </table>
+                        </div>
+                    </div>
                 </div></div></div></div></article></div></div></div></div>
     <script src="/kpc/static/client.js" type="text/javascript"></script>
 </body>

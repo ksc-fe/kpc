@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>给<code>Col</code>添加<code>offset</code>属性可以使列相对本来的位置向右偏移相应的列数</p>\n",
-    "index": 93,
+    "index": 90,
     "highlighted": [
         {
             "language": "vdt",
