@@ -247,13 +247,14 @@ export default class Table extends Intact {
 
     _setStickyHeaderStyle() {
         let stickHeader = this.get('stickHeader');
-        const headerHeight = this.header.offsetHeight;
         if (stickHeader === true) {
             stickHeader = 0;
         }
-        const top = this.element.getBoundingClientRect().top;
-        const containerWidth = this.element.offsetWidth;
-        if (top <= +stickHeader) {
+
+        const {top, bottom} = this.element.getBoundingClientRect();
+        if (top <= +stickHeader && bottom > +stickHeader) {
+            const containerWidth = this.element.offsetWidth;
+            const headerHeight = this.header.offsetHeight;
             this.set({
                 '_sticky': {
                     'width': containerWidth + 'px',
@@ -264,9 +265,7 @@ export default class Table extends Intact {
             });
         } else {
             this.set({
-                '_sticky': {
-                    'width': containerWidth + 'px',
-                },
+                '_sticky': undefined, 
                 '_headerHeight': 0,
             });
         }
@@ -277,27 +276,26 @@ export default class Table extends Intact {
         if (stickScrollbar === true) {
             stickScrollbar = 0;
         }
-        const bottom = this.element.getBoundingClientRect().bottom;
+        const {top, bottom} = this.element.getBoundingClientRect();
         const viewportHeight = document.documentElement.clientHeight; 
-        const containerWidth = this.element.offsetWidth;
-        if (bottom >= viewportHeight - stickScrollbar) {
+        const p = viewportHeight - stickScrollbar;
+        if (bottom >= p && top < p) {
             // we must set the scrollLeft when it has sticked
             // because it is hidden before
             this.refs.scrollbar.scrollLeft = this.get('_scrollLeft');
+            const containerWidth = this.element.offsetWidth;
             this.set({
                 '_stickyScrollbarStyle': {
                     'width': containerWidth + 'px',
                     'position': 'fixed',
                     'bottom': `${stickScrollbar}px`,
                 },
-                // '_headerHeight': `${headerHeight}px`,
             });
         } else {
             this.set({
                 '_stickyScrollbarStyle': {
                     'display': 'none',
                 },
-                // '_headerHeight': 0,
             });
         }
     }
