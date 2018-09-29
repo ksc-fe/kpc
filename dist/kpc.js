@@ -3158,7 +3158,7 @@ exports.Radio = Radio;
 
 
 exports.__esModule = true;
-exports.breakpointsWidth = exports.breakpoints = undefined;
+exports.breakpoints = undefined;
 
 var _extends3 = __webpack_require__(6);
 
@@ -3185,13 +3185,6 @@ function gutterStyle(gutter, style) {
 }
 
 var breakpoints = exports.breakpoints = ['xxl', 'xl', 'lg', 'md', 'sm', 'xs'];
-
-var breakpointsWidth = exports.breakpointsWidth = {
-    "smMinWidth": "576px",
-    "mdMinWidth": "768px",
-    "lgMinWidth": "992px",
-    "xlMinWidth": "1200px"
-};
 
 /***/ }),
 /* 51 */
@@ -7536,7 +7529,7 @@ var TableColumn = (_temp = _class = function (_Intact) {
     };
 
     TableColumn.prototype.onDragStart = function onDragStart(e) {
-        this.trigger('dragStart', e);
+        this.trigger('dragStart', this.vNode, e);
     };
 
     TableColumn.prototype._isChecked = function _isChecked(v) {
@@ -8087,7 +8080,7 @@ exports.Upload = _upload.Upload;
 
 /* generate start */
 
-var version = exports.version = '0.5.10';
+var version = exports.version = '0.5.11';
 
 /* generate end */
 
@@ -17168,17 +17161,14 @@ module.exports = exports['default'];
 
 "use strict";
 
-<<<<<<< HEAD
 
 module.exports = {
     "smMinWidth": "576px",
     "mdMinWidth": "768px",
     "lgMinWidth": "992px",
-    "xlMinWidth": "1200px"
+    "xlMinWidth": "1200px",
+    "xxlMinWidth": "1600px"
 };
-=======
-module.exports = {"smMinWidth":"576px","mdMinWidth":"768px","lgMinWidth":"992px","xlMinWidth":"1200px","xxlMinWidth":"1600px"}
->>>>>>> responsive
 
 /***/ }),
 /* 214 */
@@ -22729,25 +22719,29 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
             fixHeader: false,
             minColWidth: 40,
             stickHeader: false,
+            stickScrollbar: false,
 
             _padding: 0,
+            _paddingBottom: 0,
             _disabledAmount: 0,
             _isSticky: false,
             _leftWidth: 0,
             _rightWidth: 0,
-            _scrollBarWidth: 0
+            _scrollBarWidth: 0,
+            _scrollTop: 0,
+            _scrollLeft: 0,
+            _scrollPosition: 'left',
+            _hoverIndex: undefined
         };
     };
 
     Table.prototype._init = function _init() {
         var _this2 = this;
 
-        this.scroll = [];
-        this.header = [];
-        this.headerTable = [];
-
         // save the width of header cell
         this.headerWidthMap = {};
+        this.tableWidth = undefined;
+        this.scrollLeft = 0;
 
         // keep the event consistent
         this.on('$change:checkedKeys', function (c, newValue, oldValue) {
@@ -22764,6 +22758,9 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
         ['data', 'disableRow'].forEach(function (item) {
             _this2.on('$change:' + item, _this2._updateDisabledAmount);
         });
+        ['fixHeader', 'scheme', 'children'].forEach(function (item) {
+            _this2.on('$changed:' + item, _this2._setFixedColumnWidth);
+        });
         this.on('$changed:_isSticky', function (c, v) {
             if (v) {
                 _this2._onStickyHeaderMount();
@@ -22774,16 +22771,21 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
         this.on('$receive:stickHeader', function (c, v) {
             _this2.set('_isSticky', v != null && v !== false);
         });
-        this.on('$changed:_sticky', function (c, v) {
-            if (v.position === 'fixed') {
-                _this2.header.scrollLeft = _this2.element.scrollLeft;
+        this.on('$changed:_isStickyScrollbar', function (c, v) {
+            if (v) {
+                _this2._onStickyScrollbarMount();
+            } else {
+                _this2._onStickyScrollbarUnmount();
             }
+        });
+        this.on('$receive:stickScrollbar', function (c, v) {
+            _this2.set('_isStickyScrollbar', v != null && v !== false);
         });
         this._updateDisabledAmount();
     };
 
     Table.prototype._mount = function _mount() {
-        this.set('_scrollBarWidth', (0, _position.scrollbarWidth)());
+        this.set('_scrollBarWidth', (0, _position.scrollbarWidth)(), { silent: true });
 
         this._calcHeaderPadding();
         window.addEventListener('resize', this._onWindowResize);
@@ -22793,27 +22795,28 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
         if (this.get('_isSticky')) {
             this._onStickyHeaderMount();
         }
+
+        if (this.get('_isStickyScrollbar')) {
+            this._onStickyScrollbarMount();
+        }
     };
 
     Table.prototype._onStickyHeaderMount = function _onStickyHeaderMount() {
-        var _this3 = this;
-
         this._setStickyHeaderStyle();
         window.addEventListener('scroll', this._setStickyHeaderStyle);
-        // when dragable we must scroll sticky header when table scrolled
-        var elem = this.element;
-        var header = this.header;
-        this._elementScrollCallback = function (e) {
-            if (_this3.get('_sticky.position') === 'fixed') {
-                header.scrollLeft = elem.scrollLeft;
-            }
-        };
-        elem.addEventListener('scroll', this._elementScrollCallback);
     };
 
     Table.prototype._onStickyHeaderUnmount = function _onStickyHeaderUnmount() {
         window.removeEventListener('scroll', this._setStickyHeaderStyle);
-        this.element.removeEventListener('scroll', this._elementScrollCallback);
+    };
+
+    Table.prototype._onStickyScrollbarMount = function _onStickyScrollbarMount() {
+        this._setStickScrollbarStyle();
+        window.addEventListener('scroll', this._setStickScrollbarStyle);
+    };
+
+    Table.prototype._onStickyScrollbarUnmount = function _onStickyScrollbarUnmount() {
+        window.removeEventListener('scroll', this._setStickScrollbarStyle);
     };
 
     Table.prototype.get = function get(key, defaultValue) {
@@ -22846,14 +22849,14 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
     };
 
     Table.prototype.checkAll = function checkAll() {
-        var _this4 = this;
+        var _this3 = this;
 
         var rowKey = this.get('rowKey');
         var disableRow = this.get('disableRow');
         var checkedKeys = [];
         this.get('data').forEach(function (value, index) {
-            if (!disableRow.call(_this4, value, index)) {
-                checkedKeys.push(rowKey.call(_this4, value, index));
+            if (!disableRow.call(_this3, value, index)) {
+                checkedKeys.push(rowKey.call(_this3, value, index));
             }
         });
         this.set('checkedKeys', checkedKeys);
@@ -22886,7 +22889,7 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
 
 
     Table.prototype.getCheckedData = function getCheckedData() {
-        var _this5 = this;
+        var _this4 = this;
 
         var rowKey = this.get('rowKey');
         var checkType = this.get('checkType');
@@ -22897,13 +22900,13 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
                 checkedKeysMap[item] = true;
             });
             return this.get('data').filter(function (value, index) {
-                var key = rowKey.call(_this5, value, index);
+                var key = rowKey.call(_this4, value, index);
                 return checkedKeysMap[key];
             });
         } else if (checkType === 'radio') {
             var checkedKey = this.get('checkedKey');
             return this.get('data').filter(function (value, index) {
-                return rowKey.call(_this5, value, index) === checkedKey;
+                return rowKey.call(_this4, value, index) === checkedKey;
             });
         } else {
             return [];
@@ -22914,21 +22917,23 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
         if (this.get('fixHeader')) {
             var tableHeight = this.table.offsetHeight;
             var containerHeight = this.scroll.offsetHeight;
-            var headerHeight = this.header.offsetHeight;
-            this.set('_padding', tableHeight - headerHeight > containerHeight ? this.get('_scrollBarWidth') : 0);
+            this.set('_padding', tableHeight > containerHeight ? this.get('_scrollBarWidth') : 0);
         }
     };
 
     Table.prototype._setStickyHeaderStyle = function _setStickyHeaderStyle() {
         var stickHeader = this.get('stickHeader');
-        var tableWidth = this.table.offsetWidth;
-        var headerHeight = this.header.offsetHeight;
         if (stickHeader === true) {
             stickHeader = 0;
         }
-        var top = this.table.getBoundingClientRect().top;
-        if (top <= +stickHeader) {
+
+        var _element$getBoundingC = this.element.getBoundingClientRect(),
+            top = _element$getBoundingC.top,
+            bottom = _element$getBoundingC.bottom;
+
+        if (top <= +stickHeader && bottom > +stickHeader) {
             var containerWidth = this.element.offsetWidth;
+            var headerHeight = this.header.offsetHeight;
             this.set({
                 '_sticky': {
                     'width': containerWidth + 'px',
@@ -22939,39 +22944,96 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
             });
         } else {
             this.set({
-                '_sticky': {
-                    width: tableWidth + 'px'
-                },
+                '_sticky': undefined,
                 '_headerHeight': 0
             });
         }
     };
 
-    Table.prototype._setFixedColumnWidth = function _setFixedColumnWidth() {
-        if (this.hasFixedLeft) {
-            var width = this.leftColumns.reduce(function (memo, elem) {
-                return memo + elem.offsetWidth;
-            }, 0);
-            this.set('_leftWidth', width);
+    Table.prototype._setStickScrollbarStyle = function _setStickScrollbarStyle() {
+        var stickScrollbar = this.get('stickScrollbar');
+        if (stickScrollbar === true) {
+            stickScrollbar = 0;
         }
 
-        if (this.hasFixedRight) {
-            var _width = this.rightColumns.reduce(function (memo, elem) {
-                return memo + elem.offsetWidth;
-            }, 0);
-            this.set('_rightWidth', _width);
+        var _element$getBoundingC2 = this.element.getBoundingClientRect(),
+            top = _element$getBoundingC2.top,
+            bottom = _element$getBoundingC2.bottom;
+
+        var viewportHeight = document.documentElement.clientHeight;
+        var p = viewportHeight - stickScrollbar;
+        if (bottom >= p && top < p) {
+            // we must set the scrollLeft when it has sticked
+            // because it is hidden before
+            this.refs.scrollbar.scrollLeft = this.get('_scrollLeft');
+            var containerWidth = this.element.offsetWidth;
+            this.set({
+                '_stickyScrollbarStyle': {
+                    'width': containerWidth + 'px',
+                    'position': 'fixed',
+                    'bottom': stickScrollbar + 'px'
+                }
+            });
+        } else {
+            this.set({
+                '_stickyScrollbarStyle': {
+                    'display': 'none'
+                }
+            });
+        }
+    };
+
+    Table.prototype._onScrollbarScroll = function _onScrollbarScroll(e) {
+        var target = e.target;
+        this.set('_scrollLeft', target.scrollLeft);
+    };
+
+    Table.prototype._setFixedColumnWidth = function _setFixedColumnWidth() {
+        var hasFixed = this.hasFixedLeft || this.hasFixedRight;
+
+        // when stick scrollbar, we also update the _tableWidth
+        if (hasFixed || this.get('_isStickyScrollbar')) {
+            var data = {};
+            var tableWidth = this.table.offsetWidth;
+            // update table width firstly
+            this.set('_tableWidth', tableWidth);
+
+            if (hasFixed) {
+                if (this.hasFixedLeft) {
+                    var width = this.leftColumns.reduce(function (memo, elem) {
+                        return memo + elem.offsetWidth;
+                    }, 0);
+                    data._leftWidth = width;
+                }
+
+                if (this.hasFixedRight) {
+                    var _width = this.rightColumns.reduce(function (memo, elem) {
+                        return memo + elem.offsetWidth;
+                    }, 0);
+                    data._rightWidth = _width + this.get('_padding');
+                }
+
+                // calculate the horizontal scroll bar
+                var paddingBottom = 0;
+                if (this.element.offsetWidth < tableWidth + this.get('_padding')) {
+                    paddingBottom = this.get('_scrollBarWidth');
+                }
+                data._paddingBottom = paddingBottom;
+
+                this.set(data);
+            }
         }
     };
 
     Table.prototype._updateDisabledAmount = function _updateDisabledAmount() {
-        var _this6 = this;
+        var _this5 = this;
 
         var disabledAmount = 0;
         var data = this.get('data');
         var disableRow = this.get('disableRow');
 
         data.forEach(function (item, index) {
-            if (disableRow.call(_this6, item, index)) {
+            if (disableRow.call(_this5, item, index)) {
                 disabledAmount++;
             }
         });
@@ -23065,54 +23127,32 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
         this.set('sort', sort);
     };
 
-    Table.prototype._dragStart = function _dragStart(props, e) {
-        // left key
+    Table.prototype._dragStart = function _dragStart(vNode, e) {
+        // left mouse key
         if (e.which !== 1) return;
 
         this._resizing = true;
         this._containerWidth = this.element.offsetWidth;
         this._x = e.clientX;
 
-        this._minWidth = props.minWidth || this.get('minColWidth');
+        var prevVNode = vNode.props.prevVNode;
+        var prevProps = prevVNode.props;
+        this._minWidth = prevProps.minWidth || this.get('minColWidth');
+        var prevTh = prevVNode.dom;
+        var currentTh = vNode.dom;
 
-        var currentTh = e.target.parentNode;
-        var prevTh = currentTh.previousElementSibling;
+        this._currentTh = currentTh;
+        this._prevTh = prevTh;
+        this._currentVNode = vNode;
+        this._prevVNode = prevVNode;
 
-        this._currentThs = [currentTh];
-        this._prevThs = [prevTh];
-        this._tables = [this.table];
         this._isLastTh = !currentTh.nextElementSibling;
-
-        var _get2 = this.get(),
-            fixHeader = _get2.fixHeader,
-            _isSticky = _get2._isSticky;
-
-        if (fixHeader || _isSticky) {
-            var ths = this.table.children[0].getElementsByTagName('th');
-            var fixThs = currentTh.parentNode.children;
-            var index = slice.call(fixThs).indexOf(currentTh);
-            this._currentThs.push(ths[index]);
-            this._prevThs.push(ths[index - 1]);
-            // this._tables.push(this.header.children[0]);
-            // if fixHeader we should change the width of both header and scroll
-            if (fixHeader) {
-                this._tables = [this.header, this.scroll];
-            } else if (this.get('_sticky.position') === 'fixed') {
-                // if stickHeader set width of the table in header
-                // to make the sticky header don't expand
-                this._tables = [this.headerTable, this.scroll];
-            } else {
-                this._tables = [this.header, this.headerTable, this.scroll];
-            }
-        }
 
         document.addEventListener('mousemove', this._move);
         document.addEventListener('mouseup', this._dragEnd);
     };
 
     Table.prototype._move = function _move(e) {
-        var _this7 = this;
-
         e.preventDefault();
 
         this._dragged = true;
@@ -23121,36 +23161,36 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
             var delX = e.clientX - this._x;
             if (delX === 0) return;
 
-            var prevWidth = this._prevThs[0].offsetWidth + delX;
-            var tableWidth = this._tables[0].offsetWidth + delX;
-            var currentWidth = this._currentThs[0].offsetWidth - delX;
+            var prevWidth = this._prevTh.offsetWidth + delX;
+            var currentWidth = this._currentTh.offsetWidth - delX;
+            var tableWidth = this.table.offsetWidth + delX;
+            var _padding = this.get('_padding');
 
             if (prevWidth < this._minWidth && delX < 0) return;
 
-            this._prevThs.forEach(function (item) {
-                item.style.width = prevWidth + 'px';
-            });
+            var currentKey = this._currentVNode.key;
+            var prevKey = this._prevVNode.key;
 
-            if (this._containerWidth > tableWidth) {
-                this._currentThs.forEach(function (item) {
-                    if (_this7._isLastTh) {
-                        item.width = '';
-                        item.style.width = '';
-                    } else {
-                        item.style.width = currentWidth + 'px';
-                    }
-                });
-            } else if (this._containerWidth === tableWidth) {
-                this._tables.forEach(function (item) {
-                    item.style.width = '100%';
-                });
-            } else {
-                this._tables.forEach(function (item) {
-                    item.style.width = tableWidth + 'px';
-                });
-            }
+            this.headerWidthMap[prevKey] = prevWidth;
 
             this._x = e.clientX;
+
+            if (this._containerWidth > tableWidth + _padding) {
+                if (this._isLastTh) {
+                    this.headerWidthMap[currentKey] = 'auto';
+                } else {
+                    this.headerWidthMap[currentKey] = currentWidth;
+                }
+            } else if (this._containerWidth === tableWidth + _padding) {
+                this.tableWidth = '100%';
+            } else {
+                this.tableWidth = tableWidth + 'px';
+            }
+
+            this.update();
+
+            // should update fixed column table's width
+            this._setFixedColumnWidth();
         }
     };
 
@@ -23163,29 +23203,57 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
     };
 
     Table.prototype._onWindowResize = function _onWindowResize() {
-        this._resizeTableWhenDragable();
+        // this._resizeTableWhenDragable();
 
         // reset the sticky header's width
         // maybe the top of table has changed too
         if (this.get('_isSticky')) {
             this._setStickyHeaderStyle();
         }
+        this._setFixedColumnWidth();
     };
 
-    Table.prototype._resizeTableWhenDragable = function _resizeTableWhenDragable() {
-        if (!this._dragged) return;
+    // _resizeTableWhenDragable() {
+    // if (!this._dragged) return;
 
-        this._containerWidth = this.element.offsetWidth;
-        this._tables = [this.table];
-        if (this.get('fixHeader')) {
-            this._tables = [this.header, this.scroll];
-        }
+    // this._containerWidth = this.element.offsetWidth;
+    // this._tables = [this.table];
+    // if (this.get('fixHeader')) {
+    // this._tables = [this.header, this.scroll];
+    // } 
 
-        var tableWidth = this._tables[0].offsetWidth;
-        if (this._containerWidth > tableWidth) {
-            this._tables.forEach(function (table) {
-                table.style.width = '100%';
-            });
+    // const tableWidth = this._tables[0].offsetWidth;
+    // if (this._containerWidth > tableWidth) {
+    // this._tables.forEach(table => {
+    // table.style.width = '100%';
+    // });
+    // }
+    // }
+
+    Table.prototype._getHeaderWidth = function _getHeaderWidth(key) {
+        var width = this.headerWidthMap[key];
+        if (width === 'auto') return width;
+        if (width) return width + 'px';
+    };
+
+    Table.prototype._onTBodyScroll = function _onTBodyScroll(e) {
+        var target = e.target;
+        if (target === this.scroll) {
+            var oldScrollLeft = this.scrollLeft;
+            var newScrollLeft = target.scrollLeft;
+            if (newScrollLeft !== oldScrollLeft) {
+                // this.header.scrollLeft = newScrollLeft;
+                this.scrollLeft = newScrollLeft;
+                var maxScroll = target.scrollWidth - target.offsetWidth;
+                this.set({
+                    '_scrollLeft': newScrollLeft,
+                    '_scrollPosition': newScrollLeft === 0 ? 'left' : newScrollLeft >= maxScroll ? 'right' : 'middle'
+                });
+            } else {
+                this.set('_scrollTop', target.scrollTop);
+            }
+        } else {
+            this.set('_scrollTop', target.scrollTop);
         }
     };
 
@@ -23195,6 +23263,9 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
         window.removeEventListener('scroll', this._setStickyHeaderStyle);
         if (this.get('_isSticky')) {
             this._onStickyHeaderUnmount();
+        }
+        if (this.get('_isStickyScrollbar')) {
+            this._onStickyScrollbarUnmount();
         }
     };
 
@@ -23287,19 +23358,24 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         resizable = _self$get.resizable,
         expandedKeys = _self$get.expandedKeys,
         type = _self$get.type,
-        stickHeader = _self$get.stickHeader,
         _isSticky = _self$get._isSticky,
         style = _self$get.style,
         rowClassName = _self$get.rowClassName,
         children = _self$get.children,
         sort = _self$get.sort,
         group = _self$get.group,
-        _scrollBarWidth = _self$get._scrollBarWidth;
+        _scrollBarWidth = _self$get._scrollBarWidth,
+        _scrollLeft = _self$get._scrollLeft,
+        _scrollTop = _self$get._scrollTop,
+        _hoverIndex = _self$get._hoverIndex,
+        _scrollPosition = _self$get._scrollPosition,
+        _paddingBottom = _self$get._paddingBottom,
+        _isStickyScrollbar = _self$get._isStickyScrollbar;
 
     var colSpan = checkType === 'checkbox' || checkType === 'radio' ? 1 : 0;
     var _scheme = {};
 
-    var prevItem = checkType === 'checkbox' || checkType === 'radio' ? { minWidth: 40 } : {};
+    var prevItem = checkType === 'checkbox' || checkType === 'radio' ? { minWidth: 40, key: '_$check' } : {};
 
     var hasFixedLeft = void 0;
     var hasFixedRight = void 0;
@@ -23310,10 +23386,14 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         return props.fixed !== 'left' && onlyLeft || props.fixed !== 'right' && onlyRight;
     };
 
+    var cols = void 0;
+    var currentVNode = void 0;
+
     var TheadCreator = function TheadCreator(_ref) {
         var onlyLeft = _ref.onlyLeft,
             onlyRight = _ref.onlyRight,
-            collect = _ref.collect;
+            refContainer = _ref.refContainer,
+            style = _ref.style;
 
         var keys = {};
         var refLeftElement = function refLeftElement(i) {
@@ -23325,66 +23405,87 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         var refRight = function refRight(i) {
             return i && self.rightColumns.push(i.element);
         };
-        var ref = collect ? onlyLeft ? refLeft : onlyRight ? refRight : undefined : undefined;
-        return h('thead', null, h('tr', null, [function () {
+        var ref = onlyLeft ? refLeft : onlyRight ? refRight : undefined;
+        cols = [];
+        var thead = h('thead', null, h('tr', null, [function () {
             try {
-                return checkType === 'checkbox';
+                return checkType === 'checkbox' ? (cols.push(h('col', {
+                    'style': function () {
+                        try {
+                            return { width: self._getHeaderWidth('_$checked') };
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call($this)
+                }, null, 'k-th-check')), currentVNode = h('th', {
+                    'minWidth': function () {
+                        try {
+                            return 40;
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call($this)
+                }, h(_checkbox2.default, {
+                    'value': function () {
+                        try {
+                            return self.isCheckAll();
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call($this),
+                    '_context': $this,
+                    'ev-click': function () {
+                        try {
+                            return self._toggleCheckAll;
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call($this)
+                }), _className(function () {
+                    try {
+                        return { 'k-invisible': onlyRight };
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call($this)), '_$checked', function () {
+                    try {
+                        return onlyLeft ? refLeftElement : undefined;
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call($this)), currentVNode) : checkType === 'radio' ? (cols.push(h('col', {
+                    'style': function () {
+                        try {
+                            return { width: self._getHeaderWidth('_$checked') };
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call($this)
+                }, null, 'k-th-check')), currentVNode = h('th', {
+                    'minWidth': function () {
+                        try {
+                            return 40;
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call($this)
+                }, null, _className(function () {
+                    try {
+                        return { "k-invisible": onlyRight };
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call($this)), '_$checked', function () {
+                    try {
+                        return onlyLeft ? refLeftElement : undefined;
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call($this)), currentVNode) : void 0;
             } catch (e) {
                 _e(e);
             }
-        }.call($this) ? h('th', null, h(_checkbox2.default, {
-            'value': function () {
-                try {
-                    return self.isCheckAll();
-                } catch (e) {
-                    _e(e);
-                }
-            }.call($this),
-            '_context': $this,
-            'ev-click': function () {
-                try {
-                    return self._toggleCheckAll;
-                } catch (e) {
-                    _e(e);
-                }
-            }.call($this)
-        }), _className(function () {
-            try {
-                return {
-                    "k-th-check": true,
-                    "k-invisible": onlyRight
-                };
-            } catch (e) {
-                _e(e);
-            }
-        }.call($this)), null, function () {
-            try {
-                return collect && onlyLeft ? refLeftElement : undefined;
-            } catch (e) {
-                _e(e);
-            }
-        }.call($this)) : function () {
-            try {
-                return checkType === 'radio';
-            } catch (e) {
-                _e(e);
-            }
-        }.call($this) ? h('th', null, null, _className(function () {
-            try {
-                return {
-                    "k-th-check": true,
-                    "k-invisible": onlyRight
-                };
-            } catch (e) {
-                _e(e);
-            }
-        }.call($this)), null, function () {
-            try {
-                return collect && onlyLeft ? refLeftElement : undefined;
-            } catch (e) {
-                _e(e);
-            }
-        }.call($this)) : undefined, function () {
+        }.call($this), '\n            ', function () {
             try {
                 return __u.map(scheme, function (item, key) {
                     colSpan++;
@@ -23396,9 +23497,9 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
 
                     // because we use the last resize handle to controll the previous column
                     // so we bind prevItem here
-                    var _prevItem = prevItem;
-                    var dragStart = self._dragStart.bind(self, prevItem);
-                    prevItem = item;
+                    /* const _prevItem = prevItem; */
+                    var dragStart = self._dragStart; //.bind(self, prevItem);
+                    /* prevItem = item; */
 
                     if (item.fixed === 'left') {
                         hasFixedLeft = true;
@@ -23406,8 +23507,25 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                         hasFixedRight = true;
                     }
 
+                    cols.push(h('col', {
+                        'width': function () {
+                            try {
+                                return item.width;
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call($this),
+                        'style': function () {
+                            try {
+                                return { width: self._getHeaderWidth(key) };
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call($this)
+                    }));
+
                     var invisible = isInvisible(onlyLeft, onlyRight, item);
-                    return h(_column2.default, (0, _extends3.default)({}, function () {
+                    currentVNode = h(_column2.default, (0, _extends3.default)({}, function () {
                         try {
                             return item;
                         } catch (e) {
@@ -23444,9 +23562,9 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                                 _e(e);
                             }
                         }.call($this),
-                        'prevColumn': function () {
+                        'prevVNode': function () {
                             try {
-                                return _prevItem;
+                                return currentVNode;
                             } catch (e) {
                                 _e(e);
                             }
@@ -23483,6 +23601,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                             }.call($this), __n, $this);
                         }
                     }));
+                    return currentVNode;
                 });
             } catch (e) {
                 _e(e);
@@ -23508,9 +23627,10 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                         keys[props.key] = true;
                         props.value = group[props.key];
 
-                        var dragStart = self._dragStart.bind(self, prevItem);
-                        props.prevColumn = prevItem;
-                        prevItem = props;
+                        var dragStart = self._dragStart;
+                        /* .bind(self, prevItem); */
+                        /* props.prevColumn = prevItem; */
+                        /* prevItem = props; */
 
                         props['ev-$change:value'] = function (c, v) {
                             return self.set('group.' + props.key, v);
@@ -23543,22 +23663,104 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                         if (!invisible) {
                             props.ref = ref;
                         }
+                        props.prevVNode = currentVNode;
+
+                        cols.push(h('col', {
+                            'width': function () {
+                                try {
+                                    return props.width;
+                                } catch (e) {
+                                    _e(e);
+                                }
+                            }.call($this),
+                            'style': function () {
+                                try {
+                                    return { width: self._getHeaderWidth(props.key) };
+                                } catch (e) {
+                                    _e(e);
+                                }
+                            }.call($this)
+                        }));
 
                         // clone vNode
-                        return h(_column2.default, props);
+                        currentVNode = h(_column2.default, props);
+                        return currentVNode;
                     }
                 });
             } catch (e) {
                 _e(e);
             }
         }.call($this)]));
+
+        return h('div', {
+            'style': function () {
+                try {
+                    return function () {
+                        var style = self.get('_sticky');
+                        if (onlyLeft) {
+                            return (0, _extends3.default)({}, style, { width: self.get('_leftWidth') + 'px' });
+                        } else if (onlyRight) {
+                            return (0, _extends3.default)({}, style, { width: self.get('_rightWidth') + 'px' });
+                        } else {
+                            return style;
+                        }
+                    }();
+                } catch (e) {
+                    _e(e);
+                }
+            }.call($this),
+            'scrollLeft': function () {
+                try {
+                    return !onlyLeft && !onlyRight ? _scrollLeft : 0;
+                } catch (e) {
+                    _e(e);
+                }
+            }.call($this)
+        }, h('div', {
+            'style': function () {
+                try {
+                    return { paddingRight: self.get('_padding') + 'px' };
+                } catch (e) {
+                    _e(e);
+                }
+            }.call($this)
+        }, h('table', {
+            'style': function () {
+                try {
+                    return style;
+                } catch (e) {
+                    _e(e);
+                }
+            }.call($this)
+        }, [h('colgroup', null, function () {
+            try {
+                return cols;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)), function () {
+            try {
+                return thead;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)]), 'k-thead-wrapper'), 'k-thead', null, function () {
+            try {
+                return refContainer;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this));
     };
 
     var TbodyCreator = function TbodyCreator(_ref3) {
         var onlyLeft = _ref3.onlyLeft,
-            onlyRight = _ref3.onlyRight;
+            onlyRight = _ref3.onlyRight,
+            refContainer = _ref3.refContainer,
+            refTable = _ref3.refTable,
+            style = _ref3.style;
 
-        return h('tbody', null, function () {
+        var tbody = h('tbody', null, function () {
             try {
                 return data && data.length ? __u.map(data, function (value, index) {
                     var key = rowKey.call(self, value, index);
@@ -23578,7 +23780,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
 
                                 return _ref4 = {
                                     'k-disabled': disabled
-                                }, _ref4[className] = className, _ref4['k-checked'] = self.isChecked(key), _ref4;
+                                }, _ref4[className] = className, _ref4['k-checked'] = self.isChecked(key), _ref4['k-hover'] = _hoverIndex === index, _ref4;
                             } catch (e) {
                                 _e(e);
                             }
@@ -23612,7 +23814,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                             }
                         }), _className(function () {
                             try {
-                                return { 'k-invisible': onlyRight };
+                                return { "k-th-check": true, 'k-invisible': onlyRight };
                             } catch (e) {
                                 _e(e);
                             }
@@ -23645,7 +23847,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                             }
                         }), _className(function () {
                             try {
-                                return { 'k-invisible': onlyRight };
+                                return { "k-th-check": true, 'k-invisible': onlyRight };
                             } catch (e) {
                                 _e(e);
                             }
@@ -23716,6 +23918,24 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                             } catch (e) {
                                 _e(e);
                             }
+                        }.call($this),
+                        'ev-mouseenter': function () {
+                            try {
+                                return function () {
+                                    return self.set('_hoverIndex', index);
+                                };
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call($this),
+                        'ev-mouseleave': function () {
+                            try {
+                                return function () {
+                                    return self.set('_hoverIndex', undefined);
+                                };
+                            } catch (e) {
+                                _e(e);
+                            }
                         }.call($this)
                     });
 
@@ -23777,99 +23997,14 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 _e(e);
             }
         }.call($this));
-    };
 
-    var classNameObj = (_classNameObj = {
-        'k-table-wrapper': true
-    }, _classNameObj[className] = className, _classNameObj['k-' + type] = type !== 'default', _classNameObj['k-sticky'] = _isSticky, _classNameObj);
-
-    var table = h('table', null, [h(TheadCreator, {
-        '_context': $this
-    }), h(TbodyCreator, {
-        '_context': $this
-    })], 'k-table', null, function () {
-        try {
-            return function (dom) {
-                return self.table = dom;
-            };
-        } catch (e) {
-            _e(e);
-        }
-    }.call($this));
-
-    self.hasFixedLeft = hasFixedLeft;
-    self.hasFixedRight = hasFixedRight;
-
-    var index = 0;
-    var Wrapper = function Wrapper(props) {
-        var ret = h('div', {
-            'style': function () {
-                try {
-                    return props.style;
-                } catch (e) {
-                    _e(e);
-                }
-            }.call($this)
-        }, function () {
-            try {
-                return fixHeader || _isSticky;
-            } catch (e) {
-                _e(e);
-            }
-        }.call($this) ? h('div', null, [h('div', {
-            'style': function () {
-                try {
-                    return function () {
-                        var style = { paddingRight: self.get('_padding') + 'px' };
-                        if (_isSticky) {
-                            var _sticky = self.get('_sticky');
-                            __u.extend(style, _sticky);
-                        }
-                        return style;
-                    }();
-                } catch (e) {
-                    _e(e);
-                }
-            }.call($this)
-        }, h('table', null, h(TheadCreator, {
-            'onlyLeft': function () {
-                try {
-                    return props.onlyLeft;
-                } catch (e) {
-                    _e(e);
-                }
-            }.call($this),
-            'onlyRight': function () {
-                try {
-                    return props.onlyRight;
-                } catch (e) {
-                    _e(e);
-                }
-            }.call($this),
-            '_context': $this
-        }), 'k-table', null, function () {
-            try {
-                return function (dom) {
-                    return self.headerTable[index] = dom;
-                };
-            } catch (e) {
-                _e(e);
-            }
-        }.call($this)), 'k-fixed', null, function () {
-            try {
-                return function (dom) {
-                    return self.header[index] = dom;
-                };
-            } catch (e) {
-                _e(e);
-            }
-        }.call($this)), h('div', {
+        return h('div', {
             'style': function () {
                 try {
                     return function () {
                         var style = {};
                         if (!_isSticky && (typeof fixHeader === 'number' || typeof fixHeader === 'string')) {
-                            style = { maxHeight: fixHeader - (props.onlyLeft || props.onlyRight ? _scrollBarWidth : 0) + 'px' };
+                            style = { maxHeight: fixHeader - (onlyLeft || onlyRight ? _paddingBottom : 0) + 'px' };
                         } else if (_isSticky && self.get('_sticky.position')) {
                             style = { paddingTop: self.get('_headerHeight') };
                         }
@@ -23878,49 +24013,118 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 } catch (e) {
                     _e(e);
                 }
+            }.call($this),
+            'scrollTop': function () {
+                try {
+                    return _scrollTop;
+                } catch (e) {
+                    _e(e);
+                }
+            }.call($this),
+            'scrollLeft': function () {
+                try {
+                    return !onlyLeft && !onlyRight ? _scrollLeft : undefined;
+                } catch (e) {
+                    _e(e);
+                }
+            }.call($this),
+            'ev-scroll': function () {
+                try {
+                    return self._onTBodyScroll;
+                } catch (e) {
+                    _e(e);
+                }
             }.call($this)
-        }, function () {
+        }, h('table', {
+            'style': function () {
+                try {
+                    return style;
+                } catch (e) {
+                    _e(e);
+                }
+            }.call($this)
+        }, [h('colgroup', null, function () {
             try {
-                return props.children;
+                return cols;
             } catch (e) {
                 _e(e);
             }
-        }.call($this), 'k-scroll', null, function () {
+        }.call($this)), function () {
+            try {
+                return tbody;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)], null, null, function () {
+            try {
+                return refTable;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)), 'k-tbody', null, function () {
+            try {
+                return refContainer;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this));
+    };
+
+    var table = h('div', null, [h(TheadCreator, {
+        'refContainer': function () {
             try {
                 return function (dom) {
-                    return self.scroll[index] = dom;
+                    return self.header = dom;
                 };
             } catch (e) {
                 _e(e);
             }
-        }.call($this))], 'k-fixed-scroll') : function () {
+        }.call($this),
+        'style': function () {
             try {
-                return props.children;
+                return { width: self.tableWidth };
             } catch (e) {
                 _e(e);
             }
-        }.call($this), _className(function () {
+        }.call($this),
+        '_context': $this
+    }), h(TbodyCreator, {
+        'refContainer': function () {
             try {
-                var _u$extend;
-
-                return __u.extend({}, classNameObj, (_u$extend = {}, _u$extend[props.className] = props.className, _u$extend));
+                return function (dom) {
+                    return self.scroll = dom;
+                };
             } catch (e) {
                 _e(e);
             }
-        }.call($this)));
+        }.call($this),
+        'refTable': function () {
+            try {
+                return function (dom) {
+                    return self.table = dom;
+                };
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
+        'style': function () {
+            try {
+                return { width: self.tableWidth };
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
+        '_context': $this
+    })], 'k-table-wrapper');
 
-        index++;
+    self.hasFixedLeft = hasFixedLeft;
+    self.hasFixedRight = hasFixedRight;
 
-        return ret;
-    };
+    var classNameObj = (_classNameObj = {
+        'k-table': true
+    }, _classNameObj[className] = className, _classNameObj['k-' + type] = type !== 'default', _classNameObj['k-sticky'] = _isSticky, _classNameObj['k-scroll-' + _scrollPosition] = _paddingBottom, _classNameObj['k-sticky-scrollbar'] = _isStickyScrollbar, _classNameObj);
 
-    return function () {
-        try {
-            return hasFixedLeft || hasFixedRight;
-        } catch (e) {
-            _e(e);
-        }
-    }.call($this) ? h('div', {
+    return h('div', {
         'style': function () {
             try {
                 return style;
@@ -23928,23 +24132,27 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 _e(e);
             }
         }.call($this)
-    }, [h(Wrapper, {
-        'children': function () {
-            try {
-                return table;
-            } catch (e) {
-                _e(e);
-            }
-        }.call($this),
-        '_context': $this
-    }), function () {
+    }, [function () {
+        try {
+            return table;
+        } catch (e) {
+            _e(e);
+        }
+    }.call($this), function () {
         try {
             return hasFixedLeft;
         } catch (e) {
             _e(e);
         }
-    }.call($this) ? h(Wrapper, {
-        'className': 'k-fixed-left',
+    }.call($this) ? h('div', {
+        'style': function () {
+            try {
+                return { width: self.get('_leftWidth') + 'px' };
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)
+    }, [h(TheadCreator, {
         'onlyLeft': function () {
             try {
                 return true;
@@ -23954,46 +24162,43 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         }.call($this),
         'style': function () {
             try {
-                return { width: self.get('_leftWidth') + 'px' };
+                return { width: self.get('_tableWidth') + 'px' };
             } catch (e) {
                 _e(e);
             }
         }.call($this),
-        'children': h('table', null, [h(TheadCreator, {
-            'onlyLeft': function () {
-                try {
-                    return true;
-                } catch (e) {
-                    _e(e);
-                }
-            }.call($this),
-            'collect': function () {
-                try {
-                    return true;
-                } catch (e) {
-                    _e(e);
-                }
-            }.call($this),
-            '_context': $this
-        }), h(TbodyCreator, {
-            'onlyLeft': function () {
-                try {
-                    return true;
-                } catch (e) {
-                    _e(e);
-                }
-            }.call($this),
-            '_context': $this
-        })], 'k-table'),
         '_context': $this
-    }) : undefined, function () {
+    }), h(TbodyCreator, {
+        'onlyLeft': function () {
+            try {
+                return true;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
+        'style': function () {
+            try {
+                return { width: self.get('_tableWidth') + 'px' };
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
+        '_context': $this
+    })], 'k-table-wrapper k-fixed-left') : undefined, function () {
         try {
             return hasFixedRight;
         } catch (e) {
             _e(e);
         }
-    }.call($this) ? h(Wrapper, {
-        'className': 'k-fixed-right',
+    }.call($this) ? h('div', {
+        'style': function () {
+            try {
+                return { width: self.get('_rightWidth') + 'px' };
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)
+    }, [h(TheadCreator, {
         'onlyRight': function () {
             try {
                 return true;
@@ -24003,55 +24208,67 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         }.call($this),
         'style': function () {
             try {
-                return { width: self.get('_rightWidth') + 'px' };
+                return { width: self.get('_tableWidth') + 'px' };
             } catch (e) {
                 _e(e);
             }
         }.call($this),
-        'children': h('table', null, [h(TheadCreator, {
-            'onlyRight': function () {
-                try {
-                    return true;
-                } catch (e) {
-                    _e(e);
-                }
-            }.call($this),
-            'collect': function () {
-                try {
-                    return true;
-                } catch (e) {
-                    _e(e);
-                }
-            }.call($this),
-            '_context': $this
-        }), h(TbodyCreator, {
-            'onlyRight': function () {
-                try {
-                    return true;
-                } catch (e) {
-                    _e(e);
-                }
-            }.call($this),
-            '_context': $this
-        })], 'k-table'),
         '_context': $this
-    }) : undefined], 'k-table-fixed-column') : h(Wrapper, {
+    }), h(TbodyCreator, {
+        'onlyRight': function () {
+            try {
+                return true;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
         'style': function () {
             try {
-                return style;
-            } catch (e) {
-                _e(e);
-            }
-        }.call($this),
-        'children': function () {
-            try {
-                return table;
+                return { width: self.get('_tableWidth') + 'px' };
             } catch (e) {
                 _e(e);
             }
         }.call($this),
         '_context': $this
-    });
+    })], 'k-table-wrapper k-fixed-right') : undefined, h('div', {
+        'style': function () {
+            try {
+                return self.get('_stickyScrollbarStyle');
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
+        'scrollLeft': function () {
+            try {
+                return _scrollLeft;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
+        'ev-scroll': function () {
+            try {
+                return self._onScrollbarScroll;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)
+    }, h('div', {
+        'style': function () {
+            try {
+                return { width: self.get('_tableWidth') + 'px' };
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)
+    }, null, 'k-inner'), 'k-scrollbar', null, function (i) {
+        widgets['scrollbar'] = i;
+    })], _className(function () {
+        try {
+            return classNameObj;
+        } catch (e) {
+            _e(e);
+        }
+    }.call($this)));
 };
 
 var _checkbox = __webpack_require__(26);
@@ -24253,13 +24470,6 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     var groupText = group && self._getGroupText() || '';
 
     return h('th', {
-        'width': function () {
-            try {
-                return width;
-            } catch (e) {
-                _e(e);
-            }
-        }.call($this),
         'title': function () {
             try {
                 return (0, _utils.isStringOrNumber)(title) ? title + groupText : undefined;

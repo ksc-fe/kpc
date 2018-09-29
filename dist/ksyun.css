@@ -498,7 +498,7 @@ html {
   font-size: 14px;
 }
 body {
-  font-family: 'Microsoft YaHei';
+  font-family: 'Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,\5FAE\8F6F\96C5\9ED1,Arial,sans-serif';
   margin: 0;
   padding: 0;
   color: #4c4c4c;
@@ -508,7 +508,7 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Microsoft YaHei';
+  font-family: 'Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,\5FAE\8F6F\96C5\9ED1,Arial,sans-serif';
   margin: 0;
   font-weight: bold;
   padding: 0;
@@ -9442,25 +9442,34 @@ button.k-btn.k-mini > span {
   color: #ccc;
 }
 .k-table {
+  position: relative;
+  overflow: hidden;
+}
+.k-table table {
   font-size: 0.857142857142857rem;
   table-layout: fixed;
   width: 100%;
-  background: #fff;
   border-collapse: collapse;
   border-spacing: 0;
   color: #4c4c4c;
 }
-.k-table thead {
+.k-table .k-thead {
   font-size: 12px;
   color: #4c4c4c;
+  background: #f1f1f5;
   border-bottom: 1px solid #ccc;
+  z-index: 1;
+  overflow: hidden;
+  width: 100%;
+}
+.k-table .k-thead-wrapper {
+  display: table;
 }
 .k-table th {
   padding: 0 5px 0 12px;
   text-align: left;
   font-weight: bold;
   position: relative;
-  background: #f1f1f5;
 }
 .k-table .k-th {
   display: -webkit-box;
@@ -9505,7 +9514,7 @@ button.k-btn.k-mini > span {
 .k-table tbody tr {
   border-bottom: 1px solid #ccc;
 }
-.k-table tbody tr:hover {
+.k-table tbody tr.k-hover {
   background: #f1f1f5;
 }
 .k-table td {
@@ -9516,45 +9525,78 @@ button.k-btn.k-mini > span {
   width: 40px;
 }
 .k-table .k-th-check .k-checkbox {
-  vertical-align: 3px;
+  position: relative;
+  top: -1px;
 }
 .k-table .k-no-data {
   text-align: center;
 }
-.k-table-wrapper {
+.k-table .k-tbody {
   overflow: auto;
+}
+.k-table .k-invisible {
+  visibility: hidden;
+}
+.k-table .k-fixed-left,
+.k-table .k-fixed-right {
   border-top: 1px solid #ccc;
-}
-.k-table-wrapper .k-fixed {
-  position: relative;
+  position: absolute;
+  top: 0;
+  overflow: hidden;
   z-index: 1;
-  border-bottom: 1px solid #ccc;
-  background: #f1f1f5;
 }
-.k-table-wrapper .k-fixed thead {
-  border: none;
+.k-table .k-fixed-left .k-thead,
+.k-table .k-fixed-right .k-thead {
+  width: auto;
 }
-.k-table-wrapper .k-scroll {
-  overflow-y: auto;
+.k-table .k-fixed-left .k-tbody,
+.k-table .k-fixed-right .k-tbody {
   overflow-x: hidden;
 }
-.k-table-wrapper .k-scroll > .k-table {
-  margin-top: -31px;
+.k-table .k-fixed-left {
+  left: 0;
 }
-.k-table-wrapper.k-border .k-fixed,
-.k-table-wrapper.k-border thead th {
-  background: #f1f1f5;
+.k-table .k-fixed-left .k-tbody {
+  margin-right: -15px;
 }
-.k-table-wrapper.k-border .k-fixed,
-.k-table-wrapper.k-border .k-table {
+.k-table .k-fixed-right {
+  right: 0;
+}
+.k-table .k-fixed-right .k-thead-wrapper,
+.k-table .k-fixed-right .k-tbody {
+  float: right;
+}
+.k-table.k-scroll-left .k-fixed-right,
+.k-table.k-scroll-middle .k-fixed-right {
+  -webkit-box-shadow: 0 0 4px 0 rgba(0,0,0,0.3);
+          box-shadow: 0 0 4px 0 rgba(0,0,0,0.3);
+}
+.k-table.k-scroll-right .k-fixed-left,
+.k-table.k-scroll-middle .k-fixed-left {
+  -webkit-box-shadow: 0 0 4px 0 rgba(0,0,0,0.3);
+          box-shadow: 0 0 4px 0 rgba(0,0,0,0.3);
+}
+.k-table.k-border {
   border-left: 1px solid #ccc;
   border-right: 1px solid #ccc;
 }
-.k-table-wrapper.k-border .k-fixed .k-table {
-  border: none;
+.k-table.k-sticky {
+  z-index: 2;
 }
-.k-table-wrapper.k-sticky .k-fixed {
+.k-table.k-sticky-scrollbar .k-scrollbar {
+  position: fixed;
+  overflow-x: auto;
+  overflow-y: hidden;
+  bottom: 0;
+  z-index: 9999;
+}
+.k-table.k-sticky-scrollbar .k-scrollbar > .k-inner {
+  height: 1px;
+}
+.k-table-wrapper {
   overflow: hidden;
+  border-top: 1px solid #ccc;
+  background: #fff;
 }
 .k-table-dropdown .k-item.k-hover {
   background: #f1f1f5;
@@ -9562,36 +9604,6 @@ button.k-btn.k-mini > span {
 }
 .k-table-dropdown:not(.k-multiple) .k-item.k-active {
   color: #0091ea;
-}
-.k-table-fixed-column {
-  position: relative;
-  overflow: hidden;
-}
-.k-table-fixed-column .k-invisible {
-  visibility: hidden;
-}
-.k-table-fixed-column .k-fixed-left,
-.k-table-fixed-column .k-fixed-right {
-  border-top: 1px solid #b2b2b2;
-  position: absolute;
-  top: 0;
-  -webkit-box-shadow: 0 0 4px 0 rgba(0,0,0,0.3);
-          box-shadow: 0 0 4px 0 rgba(0,0,0,0.3);
-  overflow: hidden;
-}
-.k-table-fixed-column .k-fixed-left .k-scroll,
-.k-table-fixed-column .k-fixed-right .k-scroll {
-  overflow: hidden;
-}
-.k-table-fixed-column .k-fixed-left {
-  left: 0;
-}
-.k-table-fixed-column .k-fixed-right {
-  right: 0;
-}
-.k-table-fixed-column .k-fixed-right .k-fixed-scroll,
-.k-table-fixed-column .k-fixed-right > .k-table {
-  float: right;
 }
 .k-table thead {
   line-height: 1.15;
