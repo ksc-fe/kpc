@@ -17,6 +17,7 @@ sidebar: doc
 | noDataTemplate | 当没有数据的时候展示的内容 | `String` &#124; `vNode` | `"/(ㄒoㄒ)/~~ 没有找到亲要的数据哦~"` |
 | fixHeader | 表头固定，给定需要固定高度的具体数值，当超出改值时，展示滚动条 | `Boolean` &#124; `Number` &#124; `String` | `false` |
 | stickHeader | 表头吸顶，给定需要吸顶的高度，表格滚动超出该高度时，将表头固定在顶部 | `Boolean` &#124; `Number` &#124; `String` | `false` |
+| stickScrollbar | 当出现横向滚动条时，设置是否当表格底部没有滚动到视窗中时，将横向滚动条固定在页面底部；取值为`Number`类型时，用来指定距离视窗底部的距离 | `Boolean` &#124; `Number` &#124; `String` | `false` |
 | rowKey | 设置行的key | `Function` | function(value, index) {  return `index`; } |
 | checkedKeys | 通过`key`数组来指定哪些行被选中（针对多选） | `Array` | `[]` |
 | checkedKey | 通过`key`指定哪行被选中（针对单选） | `String` | `undefined` |

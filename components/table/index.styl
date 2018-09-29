@@ -127,6 +127,17 @@
     &.k-sticky
         z-index 2
 
+    // sticky scrollbar
+    &.k-sticky-scrollbar
+        .k-scrollbar
+            position fixed 
+            overflow-x auto
+            overflow-y hidden
+            bottom 0
+            z-index $max-z-index
+            > .k-inner
+                height 1px
+
 .k-table-wrapper
     // overflow auto
     overflow hidden
