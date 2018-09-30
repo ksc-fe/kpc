@@ -65,4 +65,5 @@
             .k-input
                 width lookup('$spinner-' + size + '-input-width')
 
-@import $theme-dir + '/spinner.styl' if exists($theme-dir + '/spinner.styl') 
+
+require($theme-dir + '/spinner.styl')

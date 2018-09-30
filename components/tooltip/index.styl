@@ -75,5 +75,5 @@ arrow-short = $tooltip-arrow-width - 2px
         .k-btn:last-of-type
             margin-left $tooltip-confirm-buttons-gutter
 
-$dir = $theme-dir + '/tooltip.styl';
-@import $dir if exists($dir) 
+
+require($theme-dir + '/tooltip.styl')

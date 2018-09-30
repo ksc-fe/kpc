@@ -76,4 +76,5 @@
         &.k-{size}
             width lookup('$dialog-' + size + '-width')
 
-@import $theme-dir + '/dialog.styl' if exists($theme-dir + '/dialog.styl') 
+
+require($theme-dir + '/dialog.styl')

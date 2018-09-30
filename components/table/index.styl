@@ -153,5 +153,5 @@
         .k-item.k-active
             color $table-group-item-active-color 
 
-$dir = $theme-dir + '/table.styl';
-@import $dir if exists($dir) 
+
+require($theme-dir + '/table.styl')

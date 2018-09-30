@@ -142,5 +142,5 @@ sizes = large small mini
                 line-height s('calc(%s - 2px)', @height)
                 padding lookup('$tabs-' + size + '-padding')
 
-$dir = $theme-dir + '/tabs.styl';
-@import $dir if exists($dir) 
+
+require($theme-dir + '/tabs.styl')

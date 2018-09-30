@@ -96,5 +96,5 @@
         .k-wrapper
             background $switch-disabled-bg-color
 
-$dir = $theme-dir + '/switch.styl';
-@import $dir if exists($dir) 
+
+require($theme-dir + '/switch.styl')

@@ -53,4 +53,5 @@
         &.k-{type} > .k-container > .k-icon
             color lookup('$message-' + type + '-color')
 
-@import $theme-dir + '/message.styl' if exists($theme-dir + '/message.styl') 
+
+require($theme-dir + '/message.styl')

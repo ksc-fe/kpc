@@ -76,4 +76,4 @@
             &:before
                 border-color $checkbox-disabled-inner-color 
         
-@import $theme-dir + '/checkbox.styl' if exists($theme-dir + '/checkbox.styl') 
+require($theme-dir + '/checkbox.styl')

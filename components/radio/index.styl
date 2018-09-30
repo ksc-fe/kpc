@@ -62,4 +62,5 @@
             &:before
                 background $radio-disabled-inner-color
 
-@import $theme-dir + '/radio.styl' if exists($theme-dir + '/radio.styl') 
+
+require($theme-dir + '/radio.styl')

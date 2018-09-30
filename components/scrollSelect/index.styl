@@ -47,4 +47,5 @@
         border-bottom $scroll-select-border 
         pointer-events none
 
-@import $theme-dir + '/scrollSelect.styl' if exists($theme-dir + '/scrollSelect.styl') 
+
+require($theme-dir + '/scrollSelect.styl')

@@ -190,4 +190,5 @@
         &:before
             font-size $select-multiple-checkmark-font-size
 
-@import $theme-dir + '/select.styl' if exists($theme-dir + '/select.styl') 
+
+require($theme-dir + '/select.styl')
