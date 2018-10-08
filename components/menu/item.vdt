@@ -1,0 +1,40 @@
+import Menu from './menu';
+import {mapChildren, expandAnimationCallbacks} from '../utils';
+
+const {children, className, style, key, disabled, _root} = self.get();
+
+let subMenuVNode;
+const titleVNodes = mapChildren(children, vNode => {
+    if (vNode.tag === Menu) {
+        // clone it
+        subMenuVNode = h(Menu, {
+            ...vNode.props, 
+            _isSubMenu: true,
+            _root,
+        });
+    } else {
+        return vNode;
+    }
+});
+
+const isExpanded = subMenuVNode && _root.isExpanded(key);
+const classNameObj = {
+    'k-menu-item': true,
+    [className]: className,
+    'k-expanded': isExpanded, 
+    'k-active': _root.isSelected(key),
+    'k-disabled': disabled,
+};
+
+<div class={{ classNameObj }} style={{ style }}>
+    <div class="k-title" ev-click={{ self._onClick.bind(self, subMenuVNode) }}>
+        {{ titleVNodes }}
+        <i class="k-arrow ion-ios-arrow-down" v-if={{ subMenuVNode }}></i>
+    </div>
+    <Animate v-if={{ isExpanded }}
+        a:move={{ false }}
+        {{ ...expandAnimationCallbacks }}
+    >
+        {{ subMenuVNode }}
+    </Animate>
+</div>

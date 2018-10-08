@@ -9,7 +9,6 @@ const TreeNodes = ({data}) => {
         const expanded = expandedKeys.has(value.key);
 
         return <Animate
-            a:transition="c-expand"
             a:move={{ false }}
             {{ ...expandAnimationCallbacks }}
             class={{ {
@@ -36,7 +35,6 @@ const TreeNodes = ({data}) => {
                 </b:label>
             </div>
             <Animate 
-                a:transition="c-expand"
                 a:move={{ false }}
                 {{ ...expandAnimationCallbacks }}
                 v-if={{ expanded }}

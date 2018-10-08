@@ -1,0 +1,56 @@
+@require('./variables.styl')
+
+.k-menu
+    width $menu-width
+    font-size 12px
+    .k-menu
+        width auto
+        .k-menu-item
+            > .k-title
+                background #000c17
+                padding-left 38px
+
+.k-menu-item
+    > .k-title
+        padding 0 16px
+        background $menu-item-bg-color
+        cursor pointer
+        height $menu-item-height
+        line-height @height
+        color #b2b2b2
+        &:hover
+            color #fff
+        .k-arrow
+            float right
+            height $menu-item-height
+            transition transform $transition
+        .k-icon
+            display inline-block
+            vertical-align -0.125em
+            min-width 14px
+            text-align center
+            margin-right 8px
+
+    // expanded
+    &.k-expanded
+        > .k-title 
+            color #fff
+            .k-arrow
+                transform rotate(180deg)
+    .c-expand-enter
+    .c-expand-leave
+        opacity 1
+
+    // active
+    &.k-active
+        > .k-title
+            color #fff
+            background $primary-color !important
+
+    // disabled
+    &.k-disabled
+        > .k-title
+            color $text-color
+            cursor not-allowed
+
+require($theme-dir + '/menu.styl')

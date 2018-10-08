@@ -94,7 +94,6 @@ const CloseBtn = (props) => (
         <Animate v-for={{ files }} 
             class={{ {"k-file": true, 'k-error': value.status === 'error'} }}
             key={{ value.uid }}
-            a:transition="c-expand"
             {{ ...expandAnimationCallbacks }}
         >
             <div class="k-wrapper">
@@ -108,7 +107,6 @@ const CloseBtn = (props) => (
                     </div>
                 </div>
                 <Animate key="progress" 
-                    a:transition="c-expand" 
                     v-if={{ value.status === 'ready' || value.status === 'uploading' }}
                     {{ ...expandAnimationCallbacks }}
                 >

@@ -188,6 +188,7 @@ export function mapChildren(children, callback) {
 }
 
 export const expandAnimationCallbacks = {
+    'a:transition': 'c-expand',
     'ev-a:leaveStart': (el) => el.style.height = el.clientHeight + 'px',
     'ev-a:leave': (el) => el.style.height = 0,
     'ev-a:enterStart': (el) => {

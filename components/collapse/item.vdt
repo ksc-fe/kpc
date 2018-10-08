@@ -20,7 +20,6 @@ const classNameObj = {
     </div>
     <Animate class="k-content"
         v-if={{ active }}
-        a:transition="c-expand"
         ev-$mounted={{ self._onShow }}
         ev-$destroyed={{ self._onHide }}
         {{ ...expandAnimationCallbacks }}

@@ -13,7 +13,7 @@ import Editable from 'kpc/components/editable';
 <div>
     <Editable v-model="value" validate={{ value => /\d+/.test(value) }}
         ref="__test1"
-        ev-$changed:value={{ (c, a, b) => console.log(a, b) }}
+        ev-change={{ (c, a, b) => console.log(a, b) }}
     >{{ self.get('value') }}</Editable>
     <br />
     <Editable v-model="value" validate={{ /\d+/ }}
