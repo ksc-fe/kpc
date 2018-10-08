@@ -12,7 +12,7 @@ const classNameObj = {
     <div class="k-canvas">
         <b:canvas>
             <svg viewBox="0 0 120 120">
-                <circle cx="60" cy="60" class="k-circle"></circle>
+                <circle cx="60" cy="60" class="k-circle" r="57"></circle>
             </svg>
         </b:canvas>
     </div>
