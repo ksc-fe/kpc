@@ -20,5 +20,9 @@ if (trigger === 'hover') {
         a:delayDestroy={{ false }}
         ev-$destroyed={{ self._removeDocumentEvents }}
         ev-$mounted={{ self._onShow }}
-    >{{ children }}</Animate>
+    >
+        <template>
+            <b:children>{{ children }}</b:children>
+        </template>
+    </Animate>
 </MoveWrapper>

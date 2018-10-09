@@ -1,13 +1,15 @@
-const {size, center} = self.get();
+const {size, center, style, className} = self.get();
 
 const classNameObj = {
     'k-spin': true,
     [`k-${size}`]: size !== 'default',
     'k-center': center,
+    [className]: className,
 };
 
 <Animate class={{ classNameObj }}
     a:transition="c-fade"
+    style={{ style }}
 >
     <div class="k-canvas">
         <b:canvas>

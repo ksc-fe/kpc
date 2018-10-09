@@ -1,18 +1,35 @@
 import Item from './item';
 import {mapChildren} from '../utils';
 
-const {children, className, style, _isSubMenu, _root} = self.get();
+const {
+    children, className, style, collapse,
+    theme, _isSubMenu, _root
+} = self.get();
 
 const classNameObj = {
     'k-menu': true,
     [className]: className,
+    [`k-${theme}`]: !_root,
+    'k-collapsed': collapse,
 };
 
-<div class={{ classNameObj }} style={{ style }}>
-    {{ mapChildren(children, vNode => {
-        if (vNode.tag === Item) {
-            return h(Item, {...vNode.props, _root: _root || self});
-        }
-        return vNode;
-    }) }}
-</div>
+const _children = mapChildren(children, vNode => {
+    if (vNode.tag === Item) {
+        return h(Item, {
+            ...vNode.props, 
+            _root: _root || self,
+            _isFirstFloorChildren: !_root,
+        });
+    }
+    return vNode;
+});
+
+<template>
+    <div v-if={{ !self._isDropdownMenu() }}
+        class={{ classNameObj }}
+        style={{ style }}
+    >{{ _children }}</div>
+    <t:parent v-else>
+        <b:children>{{ _children }}</b:children>
+    </t:parent>
+</template>

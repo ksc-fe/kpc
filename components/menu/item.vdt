@@ -1,9 +1,15 @@
 import Menu from './menu';
-import {mapChildren, expandAnimationCallbacks} from '../utils';
+import {mapChildren, expandAnimationCallbacks, isStringOrNumberNotEmpty} from '../utils';
+import Dropdown from '../dropdown/dropdown';
+import {Tooltip} from '../tooltip';
 
-const {children, className, style, key, disabled, _root} = self.get();
+const {
+    children, key, className, style,
+    disabled, _root, _isFirstFloorChildren
+} = self.get();
 
 let subMenuVNode;
+let tooltipContents = [];
 const titleVNodes = mapChildren(children, vNode => {
     if (vNode.tag === Menu) {
         // clone it
@@ -12,6 +18,9 @@ const titleVNodes = mapChildren(children, vNode => {
             _isSubMenu: true,
             _root,
         });
+    } else if (vNode.type === 1 || isStringOrNumberNotEmpty(vNode)) {
+        tooltipContents.push(vNode);
+        return <span>{{ vNode }}</span>;
     } else {
         return vNode;
     }
@@ -20,21 +29,44 @@ const titleVNodes = mapChildren(children, vNode => {
 const isExpanded = subMenuVNode && _root.isExpanded(key);
 const classNameObj = {
     'k-menu-item': true,
-    [className]: className,
     'k-expanded': isExpanded, 
     'k-active': _root.isSelected(key),
     'k-disabled': disabled,
+    [className]: className,
 };
 
-<div class={{ classNameObj }} style={{ style }}>
+const title = (
     <div class="k-title" ev-click={{ self._onClick.bind(self, subMenuVNode) }}>
         {{ titleVNodes }}
         <i class="k-arrow ion-ios-arrow-down" v-if={{ subMenuVNode }}></i>
     </div>
-    <Animate v-if={{ isExpanded }}
-        a:move={{ false }}
-        {{ ...expandAnimationCallbacks }}
+);
+
+<div class={{ classNameObj }} style={{ style }}
+    ev-mouseenter={{ self._onMouseEnter }}
+    ev-mouseleave={{ self._onMouseLeave }}
+>
+    <template v-if={{ !_root.get('collapse') }}>
+        {{ title }}
+        <Animate v-if={{ isExpanded }}
+            a:move={{ false }}
+            {{ ...expandAnimationCallbacks }}
+            key="submenu"
+        >
+            {{ subMenuVNode }}
+        </Animate>
+    </template>
+    <template v-else-if={{ !subMenuVNode }}>
+        <Tooltip v-if={{ _isFirstFloorChildren }} position="right">
+            {{ title }}
+            <b:content>{{ tooltipContents }}</b:content>
+        </Tooltip>
+        <template v-else>{{ title }}</template>
+    </template>
+    <Dropdown v-else position={{ {my: 'left top', at: 'right+5 top'} }} 
+        class={{ {"k-menu": true, [`k-${_root.get('theme')}`]: true} }}
     >
-        {{ subMenuVNode }}
-    </Animate>
+        <template>{{ title }}</template>
+        <template>{{ subMenuVNode }}</template>
+    </Dropdown>
 </div>

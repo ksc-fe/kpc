@@ -3,12 +3,43 @@
 .k-menu
     width $menu-width
     font-size 12px
+    transition width $transition
     .k-menu
         width auto
         .k-menu-item
             > .k-title
                 background #000c17
                 padding-left 38px
+        .k-menu
+            .k-menu-item
+                > .k-title
+                    padding-left 60px
+
+    // light theme
+    &.k-light
+        .k-menu-item
+            > .k-title
+                background #fff
+                color $text-color
+                &:hover
+                    color $primary-color
+            // disabled
+            &.k-disabled
+                > .k-title
+                    color $disabled-color !important
+        .k-menu
+            .k-menu-item
+                > .k-title
+                    background $bg-color
+    // collapse
+    &.k-collapsed
+        width 46px
+        .k-menu-item
+            > .k-title
+                span
+                .k-arrow
+                    display none
+
 
 .k-menu-item
     > .k-title
@@ -18,12 +49,16 @@
         height $menu-item-height
         line-height @height
         color #b2b2b2
+        white-space nowrap
+        position relative
+        overflow hidden
         &:hover
             color #fff
         .k-arrow
             float right
             height $menu-item-height
             transition transform $transition
+            margin-left 8px
         .k-icon
             display inline-block
             vertical-align -0.125em
@@ -44,13 +79,22 @@
     // active
     &.k-active
         > .k-title
-            color #fff
+            color #fff !important
             background $primary-color !important
 
     // disabled
     &.k-disabled
         > .k-title
-            color $text-color
+            color $text-color !important
             cursor not-allowed
+
+// dropdown menu
+.k-dropdown-menu.k-menu
+    width auto
+    min-width 150px
+    .k-menu-item
+        > .k-title
+            .k-arrow
+                transform rotate(-90deg)
 
 require($theme-dir + '/menu.styl')

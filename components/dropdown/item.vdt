@@ -2,7 +2,7 @@
 import {Checkbox} from '../checkbox';
 import {Radio} from '../radio';
 
-const {children, disabled, className, _isFocus} = self.get();
+const {children, disabled, className, _isFocus, style} = self.get();
 
 const classNameObj = {
     'k-item': true,
@@ -16,4 +16,5 @@ const classNameObj = {
     ev-click={{ self._onClick }}
     ev-mouseenter={{ self._onMouseEnter }}
     ev-mouseleave={{ self._onMouseLeave }}
+    style={{ style }}
 >{{ children }}</div>

@@ -28,7 +28,7 @@ const data = [
         <TableColumn key="column3" title="Column3" width="300" />
         <TableColumn key="column4" title="Column4" width="300" />
         <TableColumn fixed="right" key="action" title="Action" width="200">
-            <b:template args="data">
+            <b:template params="data">
                 <a>action</a>
             </b:template>
         </TableColumn>
@@ -40,7 +40,7 @@ const data = [
         <TableColumn key="column3" title="Column3" width="300" />
         <TableColumn key="column4" title="Column4" width="300" />
         <TableColumn fixed="right" key="action" title="Action" width="200">
-            <b:template args="data">
+            <b:template params="data">
                 <a>action</a>
             </b:template>
         </TableColumn>

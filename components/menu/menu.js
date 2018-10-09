@@ -2,21 +2,40 @@ import Intact from 'intact';
 import template from './menu.vdt';
 import './index.styl';
 import '../../styles/kpc.styl';
+import DropdownMenu from '../dropdown/menu';
 
-export default class Menu extends Intact {
+export default class Menu extends DropdownMenu {
     @Intact.template()
     static template = template;
 
+    static propTypes = {
+        expandedKeys: Array,
+        selectedKey: String,
+        theme: ['light', 'dark'],
+        collapse: Boolean,
+    };
+
     defaults() {
         return {
+            ...super.defaults(),
             expandedKeys: [],
             selectedKey: '',
+            theme: 'dark',
+            collapse: false,
+
+            _root: undefined,
         };
     }
 
+    _mount() {
+        if (this._isDropdownMenu()) {
+            super._mount();
+        }
+    }
+
     isExpanded(key) {
-        const expandedKeys = this.get('expandedKeys');
-        return expandedKeys.indexOf(key) > -1;
+        const {expandedKeys, collapse} = this.get();
+        return !collapse && expandedKeys.indexOf(key) > -1;
     }
 
     expand(key) {
@@ -46,5 +65,10 @@ export default class Menu extends Intact {
 
     isSelected(key) {
         return this.get('selectedKey') === key;
+    }
+
+    _isDropdownMenu() {
+        const _root = this.get('_root');
+        return _root && _root.get('collapse');
     }
 }

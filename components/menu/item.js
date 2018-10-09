@@ -1,7 +1,8 @@
 import Intact from 'intact';
 import template from './item.vdt';
+import DropdownItem from '../dropdown/item';
 
-export default class MenuItem extends Intact {
+export default class MenuItem extends DropdownItem {
     @Intact.template()
     static template = template;
 
@@ -15,10 +16,11 @@ export default class MenuItem extends Intact {
 
     defaults() {
         return {
+            ...super.defaults(),
             key: undefined,
-            disabled: false,
 
             _root: undefined,
+            _isFirstFloorChildren: false,
         };
     }
 
@@ -33,5 +35,18 @@ export default class MenuItem extends Intact {
         }
 
         this.trigger('click', e);
+    }
+
+    focus() {
+        if (this._isDropdownItem()) {
+            super.focus();
+        } else {
+            this.set('_isFocus', true);
+        }
+    }
+
+    _isDropdownItem() {
+        const {_root, _isFirstFloorChildren} = this.get();
+        return !_isFirstFloorChildren && _root.get('collapse');
     }
 }

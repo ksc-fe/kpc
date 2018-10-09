@@ -34,7 +34,9 @@ export default class DropdownItem extends Intact {
 
     _mount() {
         const parent = this.parent = this._findAncestorDropdownMenu(true);
-        parent.items.push(this);
+        if (parent) {
+            parent.items.push(this);
+        }
     }
 
     _onClick(e) {
@@ -122,7 +124,9 @@ export default class DropdownItem extends Intact {
     }
 
     _destroy() {
-        const items = this.parent.items;
-        items.splice(items.indexOf(this), 1);
+        if (this.parent) {
+            const items = this.parent.items;
+            items.splice(items.indexOf(this), 1);
+        }
     }
 }
