@@ -18,7 +18,7 @@ import {Menu, MenuItem} from 'kpc/components/menu';
             <MenuItem key="3-4">sub menu 4</MenuItem>
         </Menu>
     </MenuItem>
-    <MenuItem key="4"><i class="k-icon ion-gear-b"></i>menu 4</MenuItem>
+    <MenuItem key="4" to="/"><i class="k-icon ion-gear-b"></i>menu 4</MenuItem>
 </Menu>
 ```
 

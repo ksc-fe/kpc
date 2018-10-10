@@ -13,13 +13,15 @@ export default class MenuItem extends DropdownItem {
         key: {
             type: String,
             required: true,
-        }
+        },
+        to: String,
     };
 
     defaults() {
         return {
             ...super.defaults(),
             key: undefined,
+            to: undefined,
 
             _root: undefined,
             _isFirstFloorChildren: false,
@@ -79,6 +81,10 @@ export default class MenuItem extends DropdownItem {
 
         if (!hasSubMenu) {
             this.trigger('select', this, e);
+            const to = this.get('to');
+            if (to) {
+                location.href = to;
+            }
         }
     }
 
