@@ -20,6 +20,7 @@ export default class Menu extends DropdownMenu {
         collapse: Boolean,
         type: ['vertical', 'horizontal'],
         size: ['large', 'default', 'small'],
+        accordion: Boolean,
     };
 
     defaults() {
@@ -31,6 +32,7 @@ export default class Menu extends DropdownMenu {
             collapse: false,
             type: 'vertical',
             size: 'default',
+            accordion: false,
 
             _root: undefined,
             _isFirstFloorChildren: false,
@@ -74,8 +76,10 @@ export default class Menu extends DropdownMenu {
     toggleExpand(key) {
         if (this.isExpanded(key)) {
             this.shrink(key);
-        } else {
+        } else if (!this.get('accordion')) {
             this.expand(key);
+        } else {
+            this.set('expandedKeys', [key]);
         }
     }
 
