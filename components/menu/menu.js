@@ -34,6 +34,8 @@ export default class Menu extends DropdownMenu {
 
             _root: undefined,
             _isFirstFloorChildren: false,
+            _highlightedKeys: [],
+            _parent: undefined,
         };
     }
 
@@ -83,6 +85,10 @@ export default class Menu extends DropdownMenu {
 
     isSelected(key) {
         return this.get('selectedKey') === key;
+    }
+
+    isHighlighted(key) {
+        return this.get('_highlightedKeys').indexOf(key) > -1;
     }
 
     _isDropdownMenu() {

@@ -69,7 +69,7 @@ export function findParentComponent(Component, instance, isUntil) {
     while (parent) {
         const tag = parent.tag;
         if (tag && (tag === Component || tag.prototype instanceof Component)) {
-            ret = parent.children;        
+            ret = parent.children;
             if (isUntil) break;
         }
         parent = parent.parentVNode;

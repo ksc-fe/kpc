@@ -1,4 +1,5 @@
-import Intact from 'intact'; import template from './index.vdt';
+import Intact from 'intact'; 
+import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
 import Node from './node';

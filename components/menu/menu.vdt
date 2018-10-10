@@ -3,7 +3,7 @@ import {mapChildren} from '../utils';
 
 const {
     children, className, style, collapse,
-    theme, type, size, _isSubMenu, _root
+    theme, type, size, _isSubMenu, _root, _parent,
 } = self.get();
 
 const classNameObj = {
@@ -21,6 +21,7 @@ const _children = mapChildren(children, vNode => {
             ...vNode.props, 
             _root: _root || self,
             _isFirstFloorChildren: !_root,
+            _parentItem: _parent,
         });
     }
     return vNode;

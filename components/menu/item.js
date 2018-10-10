@@ -24,6 +24,7 @@ export default class MenuItem extends DropdownItem {
             _root: undefined,
             _isFirstFloorChildren: false,
             _show: false,
+            _parentItem: undefined,
         };
     }
 
@@ -47,6 +48,21 @@ export default class MenuItem extends DropdownItem {
                 ancestor.hide(true);
             }
         });
+        const _root = this.get('_root');
+        this._updateStatus(_root, _root.get('selectedKey'));
+        _root.on('$change:selectedKey', this._updateStatus);
+    }
+
+    _updateStatus(c, v) {
+        if (v === this.get('key')) {
+            const items = [];
+            let parentItem = this.get('_parentItem');
+            while (parentItem) {
+                items.push(parentItem);
+                parentItem = parentItem.get('_parentItem');
+            }
+            c.set('_highlightedKeys', items.map(item => item.get('key')));
+        }
     }
 
     _onClick(hasSubMenu, e) {
@@ -81,5 +97,10 @@ export default class MenuItem extends DropdownItem {
 
     _onDropdownShowChange(c, v) {
         this.set('_show', v);
+    }
+
+    _destroy() {
+        this.get('_root').off('$change:selectedKey', this._updateStatus);
+        super._destroy();
     }
 }

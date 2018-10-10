@@ -24,6 +24,9 @@
                 color $menu-light-item-color 
                 &:hover
                     color $menu-light-item-hover-color 
+            &.k-highlighted
+                > .k-title
+                    color $menu-light-item-hover-color
             // disabled
             &.k-disabled
                 > .k-title
@@ -104,7 +107,7 @@
             min-width $menu-item-icon-min-width
             text-align center
             margin-right $menu-item-icon-margin-right
-
+    
     // expanded
     &.k-expanded
     &.k-show
@@ -112,6 +115,12 @@
             color $menu-item-hover-color
             .k-arrow
                 transform rotate(180deg)
+
+    // highlighted
+    &.k-highlighted
+        > .k-title 
+            color $menu-item-hover-color
+
     .c-expand-enter
     .c-expand-leave
         opacity 1

@@ -6,7 +6,7 @@ import {Tooltip} from '../tooltip';
 const {
     children, key, className, style,
     disabled, _root, _isFirstFloorChildren,
-    _isFocus, _show,
+    _isFocus, _show, _active, _highlighted
 } = self.get();
 
 let subMenuVNode;
@@ -20,6 +20,7 @@ const titleVNodes = mapChildren(children, vNode => {
             _root,
             _isFirstFloorChildren,
             'ev-$change:value': self._onDropdownShowChange,
+            _parent: self,
         });
     } else if (vNode.type === 1 || isStringOrNumberNotEmpty(vNode)) {
         tooltipContents.push(vNode);
@@ -38,6 +39,7 @@ const classNameObj = {
     [className]: className,
     'k-hover': _isFocus,
     'k-show': _show,
+    'k-highlighted': _root.isHighlighted(key),
 };
 
 const title = (
