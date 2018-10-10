@@ -3,6 +3,8 @@ title: 手风琴
 order: 1.1
 ---
 
+添加`accordion`属性，可以使菜单每次只能展开一项
+
 ```vdt
 import {Menu, MenuItem} from 'kpc/components/menu';
 

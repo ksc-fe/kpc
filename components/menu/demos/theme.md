@@ -1,7 +1,9 @@
 ---
 title: 切换主题
-order: 0
+order: 1
 ---
+
+通过`theme`属性可以指定主题：`dark` `light`，默认`dark`
 
 ```vdt
 import {Menu, MenuItem} from 'kpc/components/menu';

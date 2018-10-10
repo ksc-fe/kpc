@@ -3,6 +3,8 @@ title: 水平菜单
 order: 3
 ---
 
+通过`type`属性，可以定义菜单垂直或者水平排列：`vertical` `horizontal`，默认`vertical`
+
 ```vdt
 import {Menu, MenuItem} from 'kpc/components/menu';
 import {Switch} from 'kpc/components/switch';

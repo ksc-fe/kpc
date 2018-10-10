@@ -3,6 +3,8 @@ title: 尺寸
 order: 4
 ---
 
+通过`size`属性，可以定义菜单的尺寸：`large` `default` `small`
+
 ```vdt
 import {Menu, MenuItem} from 'kpc/components/menu';
 import Switch from 'kpc/components/switch';

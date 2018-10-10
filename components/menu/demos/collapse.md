@@ -3,6 +3,8 @@ title: 展开收起
 order: 2
 ---
 
+添加`collapse`属性，可以使菜单呈现折叠状态
+
 ```vdt
 import {Menu, MenuItem} from 'kpc/components/menu';
 import Switch from 'kpc/components/switch';
