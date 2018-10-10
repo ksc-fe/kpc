@@ -3,14 +3,16 @@ import {mapChildren} from '../utils';
 
 const {
     children, className, style, collapse,
-    theme, _isSubMenu, _root
+    theme, type, size, _isSubMenu, _root
 } = self.get();
 
 const classNameObj = {
     'k-menu': true,
     [className]: className,
-    [`k-${theme}`]: !_root,
+    [`k-${theme}`]: !_root && theme,
+    [`k-${size}`]: !_root && size && size !== 'default',
     'k-collapsed': collapse,
+    [`k-${type}`]: type,
 };
 
 const _children = mapChildren(children, vNode => {

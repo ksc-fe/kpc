@@ -5,6 +5,8 @@ order: 2
 
 通过`leftChecked`属性，我们可以控制左侧已选项，`rightChecked`同理
 
+> `leftChecked`数组为`data`中每一项的同一引用
+
 ```vdt
 import Transfer from 'kpc/components/transfer';
 

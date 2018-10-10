@@ -8,11 +8,18 @@ export default class Menu extends DropdownMenu {
     @Intact.template()
     static template = template;
 
+    static showAsDropdown = (_root) => {
+        return _root.get('collapse') || _root.get('type') === 'horizontal';
+    };
+
     static propTypes = {
+        ...DropdownMenu.propTypes,
         expandedKeys: Array,
         selectedKey: String,
         theme: ['light', 'dark'],
         collapse: Boolean,
+        type: ['vertical', 'horizontal'],
+        size: ['large', 'default', 'small'],
     };
 
     defaults() {
@@ -22,8 +29,11 @@ export default class Menu extends DropdownMenu {
             selectedKey: '',
             theme: 'dark',
             collapse: false,
+            type: 'vertical',
+            size: 'default',
 
             _root: undefined,
+            _isFirstFloorChildren: false,
         };
     }
 
@@ -33,9 +43,17 @@ export default class Menu extends DropdownMenu {
         }
     }
 
+    _findParentDropdownMenu() {
+        if (this.get('_isFirstFloorChildren')) {
+            return false;
+        } else {
+            return super._findParentDropdownMenu();
+        }
+    }
+
     isExpanded(key) {
-        const {expandedKeys, collapse} = this.get();
-        return !collapse && expandedKeys.indexOf(key) > -1;
+        const {expandedKeys} = this.get();
+        return !Menu.showAsDropdown(this) && expandedKeys.indexOf(key) > -1;
     }
 
     expand(key) {
@@ -69,6 +87,6 @@ export default class Menu extends DropdownMenu {
 
     _isDropdownMenu() {
         const _root = this.get('_root');
-        return _root && _root.get('collapse');
+        return _root && Menu.showAsDropdown(_root);
     }
 }

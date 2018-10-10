@@ -1,20 +1,14 @@
 ---
-title: 展开收起
-order: 2
+title: 水平菜单
+order: 3
 ---
 
 ```vdt
 import {Menu, MenuItem} from 'kpc/components/menu';
-import Switch from 'kpc/components/switch';
+import {Switch} from 'kpc/components/switch';
 
 <div>
-    <Switch on="收起" off="展开" v-model="isCollapse" width="60" style="margin-right: 16px;" />
-    <Switch on="light" off="dark" v-model="theme" width="60" trueValue="light" falseValue="dark"/>
-    <br /><br />
-    <Menu v-model:expandedKeys="expandedKeys" 
-        collapse={{ self.get('isCollapse') }}
-        theme={{ self.get('theme') }}
-    >
+    <Menu theme={{ self.get('theme') }} type="horizontal">
         <MenuItem key="1"><i class="k-icon ion-flag"></i>menu 1</MenuItem>
         <MenuItem key="2" disabled><i class="k-icon ion-star"></i>menu 2</MenuItem>
         <MenuItem key="3">
@@ -34,18 +28,7 @@ import Switch from 'kpc/components/switch';
         </MenuItem>
         <MenuItem key="4"><i class="k-icon ion-gear-b"></i>menu 4</MenuItem>
     </Menu>
+    <br /><br />
+    <Switch on="light" off="dark" v-model="theme" width="60" trueValue="light" falseValue="dark"/>
 </div>
-```
-
-```js
-export default class extends Intact {
-    @Intact.template()
-    static template = template;
-
-    defaults() {
-        return {
-            expandedKeys: ['3']
-        };
-    }
-}
 ```
