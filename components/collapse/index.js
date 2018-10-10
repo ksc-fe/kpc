@@ -28,7 +28,7 @@ export default class Collapse extends Intact {
         const {value, accordion} = this.get();
         let _value;
         if (accordion) {
-            _value = [v];
+            _value = this._isActive(v) ? [] : [v];
         } else {
             _value = toggleArray(value, v);
         }
