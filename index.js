@@ -16,6 +16,7 @@ import {Editable} from './components/editable';
 import {Form, FormItem} from './components/form';
 import {Input} from './components/input';
 import {Link} from './components/link';
+import {Menu, MenuItem} from './components/menu';
 import {Message} from './components/message';
 import {MoveWrapper} from './components/moveWrapper';
 import {Pagination} from './components/pagination';
@@ -62,6 +63,8 @@ export {
     FormItem,
     Input,
     Link,
+    Menu,
+    MenuItem,
     Message,
     MoveWrapper,
     Option,
@@ -93,7 +96,7 @@ export {
     Upload
 };
 
-export const version = '0.5.11';
+export const version = '0.5.12';
 
 /* generate end */
 

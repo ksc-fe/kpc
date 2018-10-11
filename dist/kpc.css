@@ -597,10 +597,10 @@ label {
   -webkit-transform-origin: center top 0;
       -ms-transform-origin: center top 0;
           transform-origin: center top 0;
-  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out !important;
+  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out !important;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out !important;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out !important;
 }
 .c-slideup-enter,
 .c-slideup-leave,
@@ -619,10 +619,10 @@ label {
   -webkit-transform-origin: center bottom 0;
       -ms-transform-origin: center bottom 0;
           transform-origin: center bottom 0;
-  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out !important;
+  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out !important;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out !important;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out !important;
 }
 .c-slideleft-enter,
 .c-slideleft-leave,
@@ -641,10 +641,10 @@ label {
   -webkit-transform-origin: right center 0;
       -ms-transform-origin: right center 0;
           transform-origin: right center 0;
-  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out !important;
+  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out !important;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out !important;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out !important;
 }
 .c-slideright-enter,
 .c-slideright-leave,
@@ -663,10 +663,10 @@ label {
   -webkit-transform-origin: left center 0;
       -ms-transform-origin: left center 0;
           transform-origin: left center 0;
-  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out !important;
+  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out !important;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out !important;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out !important;
 }
 .c-fade-enter,
 .c-fade-leave {
@@ -686,6 +686,7 @@ label {
 .c-expand-enter,
 .c-expand-leave {
   opacity: 0;
+  overflow: hidden;
 }
 .c-expand-enter-active,
 .c-expand-leave-active {
@@ -8192,6 +8193,166 @@ button.k-btn.k-mini > span {
   display: table-cell;
   padding: 0 0.714285714285714rem;
 }
+.k-menu {
+  width: 14.285714285714286rem;
+  -webkit-transition: width 0.25s ease-in-out;
+  transition: width 0.25s ease-in-out;
+  background: #000;
+}
+.k-menu .k-menu {
+  width: auto;
+  background: #1e1e20;
+}
+.k-menu .k-menu .k-menu-item > .k-title {
+  padding-left: 3rem;
+}
+.k-menu .k-menu .k-menu .k-menu-item > .k-title {
+  padding-left: 4.571428571428571rem;
+}
+.k-menu.k-light {
+  background: #fff;
+}
+.k-menu.k-light .k-menu-item > .k-title {
+  color: #595959;
+}
+.k-menu.k-light .k-menu-item > .k-title:hover {
+  color: #0a5eee;
+}
+.k-menu.k-light .k-menu-item.k-highlighted > .k-title {
+  color: #0a5eee;
+}
+.k-menu.k-light .k-menu-item.k-disabled > .k-title {
+  color: #999 !important;
+}
+.k-menu.k-light .k-menu {
+  background: #eee;
+}
+.k-menu.k-collapsed {
+  width: 3.857142857142857rem;
+}
+.k-menu.k-collapsed .k-menu-item > .k-title span,
+.k-menu.k-collapsed .k-menu-item > .k-title .k-arrow {
+  display: none;
+}
+.k-menu.k-collapsed .k-menu-item > .k-title .k-icon {
+  margin: 0;
+}
+.k-menu.k-large {
+  width: 17.857142857142858rem;
+}
+.k-menu.k-large .k-menu-item > .k-title {
+  height: 2.857142857142857rem;
+  line-height: 2.857142857142857rem;
+  padding: 0 1.785714285714286rem;
+}
+.k-menu.k-large .k-menu-item > .k-title .k-arrow {
+  height: 2.857142857142857rem;
+}
+.k-menu.k-large.k-collapsed {
+  width: 4.571428571428571rem;
+}
+.k-menu.k-large .k-menu .k-menu-item > .k-title {
+  padding-left: 3.357142857142857rem;
+}
+.k-menu.k-large .k-menu .k-menu .k-menu-item > .k-title {
+  padding-left: 4.928571428571429rem;
+}
+.k-menu.k-small {
+  width: 11.428571428571429rem;
+  font-size: 0.857142857142857rem;
+}
+.k-menu.k-small .k-menu-item > .k-title {
+  height: 2.142857142857143rem;
+  line-height: 2.142857142857143rem;
+  padding: 0 1.071428571428571rem;
+}
+.k-menu.k-small .k-menu-item > .k-title .k-arrow {
+  height: 2.142857142857143rem;
+}
+.k-menu.k-small.k-collapsed {
+  width: 3.142857142857143rem;
+}
+.k-menu.k-small .k-menu .k-menu-item > .k-title {
+  padding-left: 2.642857142857142rem;
+}
+.k-menu.k-small .k-menu .k-menu .k-menu-item > .k-title {
+  padding-left: 4.214285714285714rem;
+}
+.k-menu.k-horizontal {
+  width: auto;
+}
+.k-menu.k-horizontal > .k-menu-item {
+  display: inline-block;
+  vertical-align: middle;
+}
+.k-menu.k-horizontal.k-collapsed {
+  width: auto;
+}
+.k-menu-item > .k-title {
+  padding: 0 1.428571428571429rem;
+  cursor: pointer;
+  height: 2.571428571428572rem;
+  line-height: 2.571428571428572rem;
+  color: #b2b2b2;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+.k-menu-item > .k-title:hover {
+  color: #fff;
+}
+.k-menu-item > .k-title .k-arrow {
+  float: right;
+  height: 2.571428571428572rem;
+  -webkit-transition: -webkit-transform 0.25s ease-in-out;
+  transition: -webkit-transform 0.25s ease-in-out;
+  transition: transform 0.25s ease-in-out;
+  transition: transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  margin-left: 0.571428571428571rem;
+}
+.k-menu-item > .k-title .k-icon {
+  display: inline-block;
+  vertical-align: top;
+  min-width: 1rem;
+  text-align: center;
+  margin-right: 0.571428571428571rem;
+}
+.k-menu-item.k-expanded > .k-title,
+.k-menu-item.k-show > .k-title {
+  color: #fff;
+}
+.k-menu-item.k-expanded > .k-title .k-arrow,
+.k-menu-item.k-show > .k-title .k-arrow {
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+.k-menu-item.k-highlighted > .k-title {
+  color: #fff;
+}
+.k-menu-item .c-expand-enter,
+.k-menu-item .c-expand-leave {
+  opacity: 1;
+}
+.k-menu-item.k-active > .k-title {
+  color: #fff !important;
+  background: #0a5eee;
+}
+.k-menu-item.k-disabled > .k-title {
+  color: #595959 !important;
+  cursor: not-allowed;
+}
+.k-dropdown-menu.k-menu {
+  width: auto;
+  min-width: 10.714285714285714rem;
+}
+.k-dropdown-menu.k-menu .k-menu-item > .k-title .k-arrow {
+  -webkit-transform: rotate(-90deg);
+      -ms-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+}
 .k-messages {
   position: fixed;
   top: 0.714285714285714rem;
@@ -9212,7 +9373,8 @@ button.k-btn.k-mini > span {
   right: 0;
 }
 .k-table .k-fixed-right .k-thead-wrapper,
-.k-table .k-fixed-right .k-tbody {
+.k-table .k-fixed-right .k-tbody,
+.k-table .k-fixed-right .k-tbody table {
   float: right;
 }
 .k-table.k-scroll-left .k-fixed-right,
@@ -9256,7 +9418,7 @@ button.k-btn.k-mini > span {
 }
 .k-tag {
   display: inline-block;
-  padding: 0.642857142857143rem 1.428571428571429rem;
+  padding: 0.5rem 1.428571428571429rem;
   border: 1px solid #cad0dd;
   border-radius: 0.142857142857143rem;
   position: relative;
@@ -9336,21 +9498,21 @@ button.k-btn.k-mini > span {
 }
 .k-tag.k-large {
   font-size: 1.142857142857143rem;
-  padding: 0.714285714285714rem 1.785714285714286rem;
+  padding: 0.5rem 1.785714285714286rem;
 }
 .k-tag.k-large.k-closable {
   padding-right: 2.571428571428572rem;
 }
 .k-tag.k-small {
   font-size: 0.857142857142857rem;
-  padding: 0.571428571428571rem 1.071428571428571rem;
+  padding: 0.357142857142857rem 1.071428571428571rem;
 }
 .k-tag.k-small.k-closable {
   padding-right: 1.857142857142857rem;
 }
 .k-tag.k-mini {
   font-size: 0.857142857142857rem;
-  padding: 0.428571428571429rem 0.714285714285714rem;
+  padding: 0.214285714285714rem 0.714285714285714rem;
 }
 .k-tag.k-mini.k-closable {
   padding-right: 1.571428571428571rem;
@@ -9389,7 +9551,7 @@ button.k-btn.k-mini > span {
 }
 .k-timeline > .k-item > .k-content {
   position: relative;
-  top: -1ex;
+  top: calc(-1.5em / 2);
 }
 .k-timeline > .k-item:last-of-type > .k-indicator .k-line {
   display: none;
