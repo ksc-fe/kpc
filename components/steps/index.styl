@@ -105,8 +105,9 @@
                 vertical-align middle
                 margin-top -2px
         .k-step
-            padding-left calcBorderWidth()
             white-space nowrap
+        .k-step:not(:first-of-type)
+            padding-left calcBorderWidth()
         .k-wrapper
             overflow hidden
     
