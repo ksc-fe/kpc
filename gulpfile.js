@@ -246,7 +246,11 @@ gulp.task('index', () => {
             codes.push('', `export {\n    ${components.join(',\n    ')}\n};`);
             codes.push('', `export const version = '${packageJson.version}';`);
             const path = './index.js';
-            const contents = fs.readFileSync(path, 'utf-8');
+            let contents = fs.readFileSync(path, 'utf-8');
+
+            // update version in copyright
+            contents = contents.replace(/\* kpc v.*/, `* kpc v${packageJson.version}`);
+
             const startComment = '/* generate start */';
             const startIndex = contents.indexOf(startComment) + startComment.length;
             const endIndex = contents.indexOf('/* generate end */');

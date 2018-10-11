@@ -1,3 +1,13 @@
+/*!
+ * kpc v0.5.12
+ *
+ * Copyright (c) Kingsoft Cloud
+ * Released under the MIT License
+ * 
+ * Documentation available at
+ * https://ksc-fe.github.io/kpc/
+ */
+
 import {_$, localize} from './components/utils';
 
 /* generate start */
