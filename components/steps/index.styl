@@ -78,9 +78,9 @@
     // default
     &.k-default
         background $steps-bg-color
+        calcBorderWidth()
+            return $steps-height / 2 + $steps-gutter 
         .k-tail
-            calcBorderWidth()
-                return $steps-height / 2 + $steps-gutter 
             top 0
             right -(calcBorderWidth())
             width calcBorderWidth() 
@@ -104,6 +104,11 @@
             .k-inner
                 vertical-align middle
                 margin-top -2px
+        .k-step
+            padding-left calcBorderWidth()
+            white-space nowrap
+        .k-wrapper
+            overflow hidden
     
     // line type
     &.k-line
