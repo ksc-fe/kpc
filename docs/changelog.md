@@ -4,6 +4,14 @@ order: 99
 sidebar: doc
 ---
 
+## v0.5.12
+
+1. `Add` 新增`Menu`菜单组件 [#90](https://github.com/ksc-fe/kpc/issues/90)
+2. `Fix` 修复Fixfox下，`Spin`不能展示的问题 [#97](https://github.com/ksc-fe/kpc/issues/97)
+3. `Fix` 修复Fixfox下，`Table`在固定右侧列并出现纵向滚动条的情况下，左侧单元格宽度不正确导致出现空白间隙的问题 [#98](https://github.com/ksc-fe/kpc/issues/98)
+4. `Fix` 修复`Timeline`文字与图标没对齐的问题
+5. `Fix` 修复`Collapse`手风琴模式下，无法全部收起的问题 [#99](https://github.com/ksc-fe/kpc/issues/99)
+
 ## v0.5.11
 
 > 要使用`Table`新特性，需要更新`Intact`至`v2.3.5`及以上
