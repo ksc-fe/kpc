@@ -1360,6 +1360,23 @@
                     "content": "<h1 id='header-%E9%80%9A%E8%BF%87webpack%E5%BC%95%E5%85%A5'>通过webpack引入</h1>",
                     "text": "通过webpack引入",
                     "children": []
+                },
+                {
+                    "title": "<code>_$(key, [data])</code>函数",
+                    "path": "#header-_%24(key%2C%20%5Bdata%5D)%E5%87%BD%E6%95%B0",
+                    "level": 1,
+                    "content": "<h1 id='header-_%24(key%2C%20%5Bdata%5D)%E5%87%BD%E6%95%B0'><code>_$(key, [data])</code>函数</h1>",
+                    "text": "<code>_$(key, [data])</code>函数",
+                    "children": [
+                        {
+                            "title": "参数说明",
+                            "path": "#header-%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E",
+                            "level": 2,
+                            "content": "<h2 id='header-%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E'>参数说明</h2>",
+                            "text": "参数说明",
+                            "children": []
+                        }
+                    ]
                 }
             ]
         },
