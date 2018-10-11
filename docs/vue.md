@@ -17,7 +17,7 @@ intact-vue从底层vNode上做了intact到vue的兼容，文档中针对intact�
 | 事件回调传参 | `ev-click={{ self.onClick.bind(self, data) }}` | `@click="onClick(data)"` |
 | 属性 | `name={{ self.get('name') }}` | `:name="name"` |
 | block | `<b:header>header</b:header>` | `<template slot="header">header</template>` |
-| block parent() | `<b:header>{{ parent() }}header</b:header>` | 不支持 |
+| block parent() | `<b:header>{{ parent() }}header</b:header>` | vue不支持`parent`引用父组件中定义的模板，你需要直接拷贝父组件定义的模板 |
 | 带参数的block | `<Transfer><b:label params="data"><div>{{ data.name }}</div></b:label></Transfer>` | `<Transfer><div slot="label" slot-scope="data">{{ data.name }}</div></Transfer>` |
 
 另外当需要在js中使用`h()`方法创建vNode时，需要使用`Intact.normalize()`方法将vNode包起来
