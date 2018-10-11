@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>Pagination</code>的基本用法，通过<code>total</code>指定数据总条数，<code>limit</code>指定每页数据条数，<code>limits</code>数组定义可供选择的条数。可以通过<code>change</code>事件来监听组件<code>current</code>和<code>limit</code>的变化，组件会将<code>current</code>和<code>limit</code>以对象的方式传给事件回调函数。</p>\n",
-    "index": 25,
+    "index": 27,
     "highlighted": [
         {
             "language": "vdt",

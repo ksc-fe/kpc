@@ -39,7 +39,7 @@ module.exports =
 /******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
 /******/ 		// "0" is the signal for "already loaded"
 /******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("./chunk/" + {"0":"ebcf5d4c9bc729568418","1":"936b5c4e51127de3efe0","2":"febc13f40043d41b3064","3":"3fe9ed784972f00fdf68"}[chunkId] + ".js");
+/******/ 			var chunk = require("./chunk/" + {"0":"6a5cea51581fd9d7b627","1":"ff13de1803732705a24a","2":"416a3e20753fc20c484b","3":"1f99f3920ec18e8988ae"}[chunkId] + ".js");
 /******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				modules[moduleId] = moreModules[moduleId];
@@ -271,7 +271,7 @@ exports.App = App;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1538213642099
+      // 1539227671983
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -467,7 +467,7 @@ exports.Spin = Spin;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1538213643088
+      // 1539227673195
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -517,11 +517,13 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
 
     var _self$get = self.get(),
         size = _self$get.size,
-        center = _self$get.center;
+        center = _self$get.center,
+        style = _self$get.style,
+        className = _self$get.className;
 
     var classNameObj = (_classNameObj = {
         'k-spin': true
-    }, _classNameObj['k-' + size] = size !== 'default', _classNameObj['k-center'] = center, _classNameObj);
+    }, _classNameObj['k-' + size] = size !== 'default', _classNameObj['k-center'] = center, _classNameObj[className] = className, _classNameObj);
 
     return h(Animate, {
         'className': _className(function () {
@@ -532,12 +534,20 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             }
         }.call($this)),
         'a:transition': 'c-fade',
+        'style': function () {
+            try {
+                return style;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
         'children': h('div', null, (_blocks['canvas'] = function (parent) {
             return h('svg', {
                 'viewBox': '0 0 120 120'
             }, h('circle', {
                 'cx': '60',
-                'cy': '60'
+                'cy': '60',
+                'r': '57'
             }, null, 'k-circle'));
         }) && (__blocks['canvas'] = function (parent) {
             var args = arguments;
@@ -673,7 +683,8 @@ function findParentComponent(Component, instance, isUntil) {
     var ret = void 0;
     var parent = instance.parentVNode;
     while (parent) {
-        if (parent.tag === Component) {
+        var tag = parent.tag;
+        if (tag && (tag === Component || tag.prototype instanceof Component)) {
             ret = parent.children;
             if (isUntil) break;
         }
@@ -795,6 +806,7 @@ function mapChildren(children, callback) {
 }
 
 var expandAnimationCallbacks = exports.expandAnimationCallbacks = {
+    'a:transition': 'c-expand',
     'ev-a:leaveStart': function evALeaveStart(el) {
         return el.style.height = el.clientHeight + 'px';
     },
@@ -1315,7 +1327,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1538213645285
+      // 1539227674905
       var cssReload = require("!../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);

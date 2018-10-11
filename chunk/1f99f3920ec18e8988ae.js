@@ -433,7 +433,7 @@ exports.ButtonGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1538213643801
+      // 1539227674104
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -773,7 +773,7 @@ exports.Checkbox = Checkbox;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1538213646276
+      // 1539227675989
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1287,7 +1287,7 @@ exports.DropdownItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1538213648676
+      // 1539227678003
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1403,7 +1403,9 @@ var DropdownItem = (_dec = _intact2.default.template(), (_class = (_temp = _clas
 
     DropdownItem.prototype._mount = function _mount() {
         var parent = this.parent = this._findAncestorDropdownMenu(true);
-        parent.items.push(this);
+        if (parent) {
+            parent.items.push(this);
+        }
     };
 
     DropdownItem.prototype._onClick = function _onClick(e) {
@@ -1491,8 +1493,10 @@ var DropdownItem = (_dec = _intact2.default.template(), (_class = (_temp = _clas
     };
 
     DropdownItem.prototype._destroy = function _destroy() {
-        var items = this.parent.items;
-        items.splice(items.indexOf(this), 1);
+        if (this.parent) {
+            var items = this.parent.items;
+            items.splice(items.indexOf(this), 1);
+        }
     };
 
     return DropdownItem;
@@ -1557,7 +1561,8 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         children = _self$get.children,
         disabled = _self$get.disabled,
         className = _self$get.className,
-        _isFocus = _self$get._isFocus;
+        _isFocus = _self$get._isFocus,
+        style = _self$get.style;
 
     var classNameObj = (_classNameObj = {
         'k-item': true,
@@ -1565,6 +1570,13 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     }, _classNameObj[className] = className, _classNameObj['k-hover'] = _isFocus, _classNameObj['k-no-padding'] = children && (children.tag === _checkbox.Checkbox || children.tag === _radio.Radio), _classNameObj);
 
     return h('div', {
+        'style': function () {
+            try {
+                return style;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
         'ev-click': function () {
             try {
                 return self._onClick;
@@ -2150,13 +2162,20 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                     _e(e);
                 }
             }.call($this),
-            'children': function () {
-                try {
-                    return children;
-                } catch (e) {
-                    _e(e);
-                }
-            }.call($this),
+            'children': (_blocks['children'] = function (parent) {
+                return function () {
+                    try {
+                        return children;
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call($this);
+            }) && (__blocks['children'] = function (parent) {
+                var args = arguments;
+                return blocks['children'] ? blocks['children'].apply($this, [function () {
+                    return _blocks['children'].apply($this, args);
+                }].concat(__slice.call(args, 1))) : _blocks['children'].apply($this, args);
+            }) && __blocks['children'].apply($this, [__noop]),
             '_context': $this,
             'ev-$destroyed': function () {
                 try {
@@ -2374,7 +2393,7 @@ exports.Input = Input;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1538213648538
+      // 1539227677772
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -3688,7 +3707,7 @@ exports.Radio = Radio;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1538213651726
+      // 1539227681816
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -4354,7 +4373,7 @@ exports.OptionGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1538213645950
+      // 1539227675714
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5339,7 +5358,7 @@ exports.Tab = _tab2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1538213648370
+      // 1539227677818
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5786,7 +5805,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1538213642456
+      // 1539227672753
       var cssReload = require("!../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -6032,7 +6051,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1538213643171
+      // 1539227673355
       var cssReload = require("!../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>菜单</title>
+    <link rel="stylesheet" href="/kpc/theme-kpc.css" />
+</head>
+<body>
+    
+    
+    <div id="page"><div class="k-app"><div class="main-wrapper document-page fixed-aside"><div class="header-wrapper"><header><a class="logo" href="/">KPC</a><div class="right"><nav><a class="" href="/kpc/docs/design/language/">设计语言</a><a class="active" href="/kpc/docs/getting-started/">教程</a><a class="" href="/kpc/docs/blogs/design/">Blog</a><div class="border"></div></nav><span class="label">切换主题：</span><div class="k-select k-small k-with-suffix k-has-value" style="width:100px;" tabindex="0"><div class="k-wrapper" tabindex="-1" _hasSaved><div class="k-main"><input type="hidden" value="kpc" /><span class="k-value c-ellipsis">default</span></div><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div></div></header></div><div class="content-wrapper"><aside><div class="aside-wrapper"><div class="catalog-section"><ul><li><a href="/kpc/docs/getting-started/">快速开始</a></li><li><a href="/kpc/docs/theme/">定制主题</a></li><li><a href="/kpc/docs/vue/">Vue中使用</a></li><li><a href="/kpc/docs/i18n/">国际化</a></li><li><a href="/kpc/docs/icon/">字体icon</a></li><li><a href="/kpc/docs/changelog/"><div class="k-badge" style="">更新日志</div></a></li></ul></div><div class="catalog-section"><h5>组件</h5><ul><li><a href="/kpc/components/app/">App<span>应用管理</span></a></li><li><a href="/kpc/components/badge/">Badge<span>徽标</span></a></li><li><a href="/kpc/components/breadcrumb/">Breadcrumb<span>面包屑</span></a></li><li><a href="/kpc/components/button/">Button<span>按钮</span></a></li><li><a href="/kpc/components/cascader/">Cascader<span>级联选择</span></a></li><li><a href="/kpc/components/checkbox/">Checkbox<span>复选框</span></a></li><li><a href="/kpc/components/collapse/">Collapse<span>折叠面板</span></a></li><li><a href="/kpc/components/datepicker/">Datepicker<span>日期选择</span></a></li><li><a href="/kpc/components/dialog/">Dialog<span>弹窗</span></a></li><li><a href="/kpc/components/dropdown/">Dropdown<span>下拉菜单</span></a></li><li><a href="/kpc/components/editable/">Editable<span>可编辑文本</span></a></li><li><a href="/kpc/components/form/">Form<span>表单</span></a></li><li><a href="/kpc/components/grid/">Grid<span>栅格</span></a></li><li><a href="/kpc/components/input/">Input<span>输入框</span></a></li><li class="active"><a href="/kpc/components/menu/">Menu<span>菜单</span></a></li><li><a href="/kpc/components/message/">Message<span>全局提示</span></a></li><li><a href="/kpc/components/pagination/">Pagination<span>分页</span></a></li><li><a href="/kpc/components/progress/">Progress<span>进度条</span></a></li><li><a href="/kpc/components/radio/">Radio<span>单选框</span></a></li><li><a href="/kpc/components/select/">Select<span>选择框</span></a></li><li><a href="/kpc/components/slider/">Slider<span>滑块</span></a></li><li><a href="/kpc/components/spin/">Spin<span>加载中</span></a></li><li><a href="/kpc/components/spinner/">Spinner<span>数字输入框</span></a></li><li><a href="/kpc/components/steps/">Steps<span>步骤条</span></a></li><li><a href="/kpc/components/switch/">Switch<span>开关</span></a></li><li><a href="/kpc/components/table/">Table<span>表格</span></a></li><li><a href="/kpc/components/tabs/">Tabs<span>选项卡</span></a></li><li><a href="/kpc/components/tag/">Tag<span>标签</span></a></li><li><a href="/kpc/components/timeline/">Timeline<span>时间轴</span></a></li><li><a href="/kpc/components/timepicker/">Timepicker<span>时间选择</span></a></li><li><a href="/kpc/components/tip/">Tip<span>警告提示</span></a></li><li><a href="/kpc/components/tooltip/">Tooltip<span>提示弹层</span></a></li><li><a href="/kpc/components/transfer/">Transfer<span>穿梭框</span></a></li><li><a href="/kpc/components/tree/">Tree<span>树形控件</span></a></li><li><a href="/kpc/components/upload/">Upload<span>上传</span></a></li></ul></div><div class="aside-border transition"></div></div></aside><article><div class="article-head"><div class="title">菜单</div><div class="edit-link">
+                    如果你发现文档有问题，请帮忙在
+                    <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/components/menu/index.md">github</a>
+                    上修正该文档
+                </div></div><div class="contents"><div><h1>示例</h1><div class="example index-5" id="5"><div class="example-opera"><div class="k-menu k-dark k-vertical" style=""><div class="k-menu-item" style=""><div class="k-title"><i class="k-icon ion-flag"></i><span>menu 1</span></div></div><div class="k-menu-item k-disabled" style=""><div class="k-title"><i class="k-icon ion-star"></i><span>menu 2</span></div></div><div class="k-menu-item k-expanded" style=""><div class="k-title"><i class="k-icon ion-heart"></i><span>menu 3
+        </span><i class="k-arrow ion-ios-arrow-down"></i></div><div><div class="k-menu k-vertical" style=""><div class="k-menu-item k-active" style=""><div class="k-title"><span>sub menu 1</span></div></div><div class="k-menu-item" style=""><div class="k-title"><span>sub menu 2</span></div></div><div class="k-menu-item k-disabled" style=""><div class="k-title"><span>sub menu 3</span></div></div><div class="k-menu-item" style=""><div class="k-title"><span>sub menu 4</span></div></div></div></div></div><div class="k-menu-item" style=""><div class="k-title"><i class="k-icon ion-gear-b"></i><span>menu 4</span></div></div></div></div><div class="example-desc"><div class="title">基础用法</div><div class="desc"><p><code>Menu</code>定义菜单，<code>MenuItem</code>定义菜单项，将<code>Menu</code>嵌套在<code>MenuItem</code>下，可以定义子菜单；<code>expandedKeys</code>定义菜单展开项，<code>selectedKey</code>定义菜单选中项。我们必须给<code>MenuItem</code>指定一个全局唯一的<code>key</code>用来标识每一个菜单项；通过<code>to</code>属性，可以定义超链接菜单，另外也可以绑定<code>MenuItem</code>的<code>select</code>事件来定义菜单项被选中的行为</p>
+</div></div><div class="example-code"><div class="k-tabs" style=""><a class="k-tab">index.vdt</a><a class="k-tab">index.js</a><div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-79" id="79"><div class="example-opera"><div class="k-menu k-light k-vertical" style=""><div class="k-menu-item" style=""><div class="k-title"><i class="k-icon ion-flag"></i><span>menu 1</span></div></div><div class="k-menu-item k-disabled" style=""><div class="k-title"><i class="k-icon ion-star"></i><span>menu 2</span></div></div><div class="k-menu-item k-expanded" style=""><div class="k-title"><i class="k-icon ion-heart"></i><span>menu 3
+        </span><i class="k-arrow ion-ios-arrow-down"></i></div><div><div class="k-menu k-vertical" style=""><div class="k-menu-item" style=""><div class="k-title"><span>sub menu 1</span></div></div><div class="k-menu-item" style=""><div class="k-title"><span>sub menu 2</span></div></div><div class="k-menu-item k-disabled" style=""><div class="k-title"><span>sub menu 3</span></div></div><div class="k-menu-item" style=""><div class="k-title"><span>sub menu 4</span></div></div></div></div></div><div class="k-menu-item" style=""><div class="k-title"><i class="k-icon ion-gear-b"></i><span>menu 4</span></div></div></div></div><div class="example-desc"><div class="title">切换主题</div><div class="desc"><p>通过<code>theme</code>属性可以指定主题：<code>dark</code> <code>light</code>，默认<code>dark</code></p>
+</div></div><div class="example-code"><div class="k-tabs" style=""><a class="k-tab">index.vdt</a><a class="k-tab">index.js</a><div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-84" id="84"><div class="example-opera"><div class="k-menu k-dark k-vertical" style=""><div class="k-menu-item" style=""><div class="k-title"><i class="k-icon ion-flag"></i><span>menu 1
+        </span><i class="k-arrow ion-ios-arrow-down"></i></div></div><div class="k-menu-item k-disabled" style=""><div class="k-title"><i class="k-icon ion-star"></i><span>menu 2</span></div></div><div class="k-menu-item k-expanded" style=""><div class="k-title"><i class="k-icon ion-heart"></i><span>menu 3
+        </span><i class="k-arrow ion-ios-arrow-down"></i></div><div><div class="k-menu k-vertical" style=""><div class="k-menu-item" style=""><div class="k-title"><span>sub menu 1</span></div></div><div class="k-menu-item" style=""><div class="k-title"><span>sub menu 2</span></div></div><div class="k-menu-item k-disabled" style=""><div class="k-title"><span>sub menu 3</span></div></div><div class="k-menu-item" style=""><div class="k-title"><span>sub menu 4</span></div></div></div></div></div><div class="k-menu-item" style=""><div class="k-title"><i class="k-icon ion-gear-b"></i><span>menu 4
+        </span><i class="k-arrow ion-ios-arrow-down"></i></div></div></div></div><div class="example-desc"><div class="title">手风琴</div><div class="desc"><p>添加<code>accordion</code>属性，可以使菜单每次只能展开一项</p>
+</div></div><div class="example-code"><div class="k-tabs" style=""><a class="k-tab">index.vdt</a><a class="k-tab">index.js</a><div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-111" id="111"><div class="example-opera"><div><div class="k-switch k-default" style="margin-right: 16px;width: 60px" tabindex="0"><input type="checkbox" value tabindex="-1" /><div class="k-off" style="width:60px;">展开</div><div class="k-bar" style=""><div class="k-on" style="width:60px;">收起</div><div class="k-wrapper"><div class="k-handle"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div></div></div></div><div class="k-switch k-default" style="width:60px;" tabindex="0"><input type="checkbox" value="light" tabindex="-1" /><div class="k-off" style="width:60px;">dark</div><div class="k-bar" style=""><div class="k-on" style="width:60px;">light</div><div class="k-wrapper"><div class="k-handle"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div></div></div></div><br /><br /><div class="k-menu k-vertical" style=""><div class="k-menu-item" style=""><div class="k-title"><i class="k-icon ion-flag"></i><span>menu 1</span></div></div><div class="k-menu-item k-disabled" style=""><div class="k-title"><i class="k-icon ion-star"></i><span>menu 2</span></div></div><div class="k-menu-item k-expanded" style=""><div class="k-title"><i class="k-icon ion-heart"></i><span>menu 3
+            </span><i class="k-arrow ion-ios-arrow-down"></i></div><div><div class="k-menu k-vertical" style=""><div class="k-menu-item" style=""><div class="k-title"><span>sub menu 1</span></div></div><div class="k-menu-item" style=""><div class="k-title"><span>sub menu 2</span></div></div><div class="k-menu-item k-disabled" style=""><div class="k-title"><span>sub menu 3</span></div></div><div class="k-menu-item" style=""><div class="k-title"><span>
+                    sub menu 4
+                    </span><i class="k-arrow ion-ios-arrow-down"></i></div></div></div></div></div><div class="k-menu-item" style=""><div class="k-title"><i class="k-icon ion-gear-b"></i><span>menu 4</span></div></div></div></div></div><div class="example-desc"><div class="title">展开收起</div><div class="desc"><p>添加<code>collapse</code>属性，可以使菜单呈现折叠状态</p>
+</div></div><div class="example-code"><div class="k-tabs" style=""><a class="k-tab">index.vdt</a><a class="k-tab">index.js</a><div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-147" id="147"><div class="example-opera"><div><div class="k-menu k-horizontal" style=""><div class="k-menu-item" style=""><div class="k-title"><i class="k-icon ion-flag"></i><span>menu 1</span></div></div><div class="k-menu-item k-disabled" style=""><div class="k-title"><i class="k-icon ion-star"></i><span>menu 2</span></div></div><div class="k-menu-item" style=""><div class="k-title" _hasSaved><i class="k-icon ion-heart"></i><span>menu 3
+            </span><i class="k-arrow ion-ios-arrow-down"></i></div><!--MoveWrapper--></div><div class="k-menu-item" style=""><div class="k-title"><i class="k-icon ion-gear-b"></i><span>menu 4</span></div></div></div><br /><br /><div class="k-switch k-default" style="width:60px;" tabindex="0"><input type="checkbox" value="light" tabindex="-1" /><div class="k-off" style="width:60px;">dark</div><div class="k-bar" style=""><div class="k-on" style="width:60px;">light</div><div class="k-wrapper"><div class="k-handle"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div></div></div></div></div></div><div class="example-desc"><div class="title">水平菜单</div><div class="desc"><p>通过<code>type</code>属性，可以定义菜单垂直或者水平排列：<code>vertical</code> <code>horizontal</code>，默认<code>vertical</code></p>
+</div></div><div class="example-code"><div class="k-tabs" style=""><a class="k-tab">index.vdt</a><a class="k-tab">index.js</a><div class="k-active-bar" style=""></div></div><div class="code"></div></div></div><div class="example index-149" id="149"><div class="example-opera"><div><div class="k-switch k-default" style="width:60px;" tabindex="0"><input type="checkbox" value tabindex="-1" /><div class="k-off" style="width:60px;">展开</div><div class="k-bar" style=""><div class="k-on" style="width:60px;">收起</div><div class="k-wrapper"><div class="k-handle"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div></div></div></div><div class="k-switch k-default" style="width:60px;" tabindex="0"><input type="checkbox" value="light" tabindex="-1" /><div class="k-off" style="width:60px;">dark</div><div class="k-bar" style=""><div class="k-on" style="width:60px;">light</div><div class="k-wrapper"><div class="k-handle"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div></div></div></div><div class="k-switch k-default" style="width:100px;" tabindex="0"><input type="checkbox" value="horizontal" tabindex="-1" /><div class="k-off" style="width:100px;">vertical</div><div class="k-bar" style=""><div class="k-on" style="width:100px;">horizontal</div><div class="k-wrapper"><div class="k-handle"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div></div></div></div><div class="k-btns" style=""><button class="k-btn k-active" tabindex="0" type="button"><span>large</span><input type="radio" checked tabindex="-1" /></button><button class="k-btn" tabindex="0" type="button"><span>default</span><input type="radio" tabindex="-1" /></button><button class="k-btn" tabindex="0" type="button"><span>small</span><input type="radio" tabindex="-1" /></button></div><br /><br /><div class="k-menu k-large" style=""><div class="k-menu-item" style=""><div class="k-title"><i class="k-icon ion-flag"></i><span>menu 1</span></div></div><div class="k-menu-item k-disabled" style=""><div class="k-title"><i class="k-icon ion-star"></i><span>menu 2</span></div></div><div class="k-menu-item k-expanded" style=""><div class="k-title"><i class="k-icon ion-heart"></i><span>menu 3
+            </span><i class="k-arrow ion-ios-arrow-down"></i></div><div><div class="k-menu k-vertical" style=""><div class="k-menu-item" style=""><div class="k-title"><span>sub menu 1</span></div></div><div class="k-menu-item" style=""><div class="k-title"><span>sub menu 2</span></div></div><div class="k-menu-item k-disabled" style=""><div class="k-title"><span>sub menu 3</span></div></div><div class="k-menu-item" style=""><div class="k-title"><span>
+                    sub menu 4
+                    </span><i class="k-arrow ion-ios-arrow-down"></i></div></div></div></div></div><div class="k-menu-item" style=""><div class="k-title"><i class="k-icon ion-gear-b"></i><span>menu 4</span></div></div></div></div></div><div class="example-desc"><div class="title">尺寸</div><div class="desc"><p>通过<code>size</code>属性，可以定义菜单的尺寸：<code>large</code> <code>default</code> <code>small</code></p>
+</div></div><div class="example-code"><div class="k-tabs" style=""><a class="k-tab">index.vdt</a><a class="k-tab">index.styl</a><a class="k-tab">index.js</a><div class="k-active-bar" style=""></div></div><div class="code"></div></div></div></div><div class="api"><div><h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1><h2 id='header-Menu'>Menu</h2><div class="k-table k-border">
+                    <div class="k-table-wrapper">
+                        <div class="k-thead">
+                            <table>
+                                <thead><tr>
+<th>属性</th>
+<th>说明</th>
+<th>类型</th>
+<th>默认值</th>
+</tr>
+</thead>
+                            </table>
+                        </div>
+                        <div class="k-tbody">
+                            <table>
+                                <tbody><tr>
+<td>expandedKeys</td>
+<td>定义菜单展开项</td>
+<td><code>Array</code></td>
+<td><code>[]</code></td>
+</tr>
+<tr>
+<td>selectedKey</td>
+<td>定义菜单选中项</td>
+<td><code>String</code></td>
+<td><code>&quot;&quot;</code></td>
+</tr>
+<tr>
+<td>theme</td>
+<td>定义菜单主题</td>
+<td><code>&quot;light&quot;</code> &#124; <code>&quot;dark&quot;</code></td>
+<td><code>&quot;dark&quot;</code></td>
+</tr>
+<tr>
+<td>collapse</td>
+<td>菜单是否折叠</td>
+<td><code>Boolean</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>type</td>
+<td>定义菜单排列方式：垂直，水平</td>
+<td><code>&quot;vertical&quot;</code> &#124; <code>&quot;horizontal&quot;</code></td>
+<td><code>&quot;vertical&quot;</code></td>
+</tr>
+<tr>
+<td>size</td>
+<td>定义菜单尺寸</td>
+<td><code>&quot;large&quot;</code> &#124; <code>&quot;default&quot;</code> &#124; <code>&quot;small&quot;</code></td>
+<td><code>&quot;default&quot;</code></td>
+</tr>
+<tr>
+<td>accordion</td>
+<td>是否每次只能展开一项</td>
+<td><code>Boolean</code></td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div><h2 id='header-MenuItem'>MenuItem</h2><div class="k-table k-border">
+                    <div class="k-table-wrapper">
+                        <div class="k-thead">
+                            <table>
+                                <thead><tr>
+<th>属性</th>
+<th>说明</th>
+<th>类型</th>
+<th>默认值</th>
+</tr>
+</thead>
+                            </table>
+                        </div>
+                        <div class="k-tbody">
+                            <table>
+                                <tbody><tr>
+<td>key</td>
+<td>定义全局唯一的<code>key</code>，用于标识每一项</td>
+<td><code>String</code></td>
+<td><code>undefined</code></td>
+</tr>
+<tr>
+<td>to</td>
+<td>定义超链接菜单项，点击直接跳转</td>
+<td><code>String</code></td>
+<td><code>undefined</code></td>
+</tr>
+</tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div><h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1><h2 id='header-MenuItem'>MenuItem</h2><div class="k-table k-border">
+                    <div class="k-table-wrapper">
+                        <div class="k-thead">
+                            <table>
+                                <thead><tr>
+<th>事件名</th>
+<th>说明</th>
+<th>参数</th>
+</tr>
+</thead>
+                            </table>
+                        </div>
+                        <div class="k-tbody">
+                            <table>
+                                <tbody><tr>
+<td>click</td>
+<td>点击菜单项触发，不管该菜单项是否包含子菜单</td>
+<td><code>Event</code></td>
+</tr>
+<tr>
+<td>select</td>
+<td>选中没有子菜单的菜单项触发</td>
+<td><code>MenuItem, Event</code></td>
+</tr>
+</tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div></div></div></div></article></div></div></div></div>
+    <script src="/kpc/static/client.js" type="text/javascript"></script>
+</body>
+</html>

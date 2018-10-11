@@ -1,0 +1,8 @@
+import Transfer from 'kpc/components/transfer';
+
+<div>
+    <Transfer data={{ self.get('data') }} 
+        v-model:leftChecked='checked'
+    />
+    <p>You checked left side: {{ JSON.stringify(self.get('checked')) }}</p>
+</div>

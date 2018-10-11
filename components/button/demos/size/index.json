@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>size</code>属性可以指定按钮的尺寸：<code>large</code>, <code>default</code>,<code>small</code>, <code>mini</code>。</p>\n",
-    "index": 141,
+    "index": 150,
     "highlighted": [
         {
             "language": "vdt",

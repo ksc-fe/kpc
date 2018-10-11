@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>pull</code>和<code>push</code>可以改变列的顺序</p>\n<ol>\n<li><code>pull</code> 定义列距离右边界的栅格数</li>\n<li><code>push</code> 定义列距离左边界的栅格数</li>\n</ol>\n<blockquote>\n<p>通过<code>pull</code>和<code>push</code>排序可以有比较好的浏览器兼容性，当然如果你无需支持IE9及以下的浏览器，可以使用flex布局的order进行排序</p>\n</blockquote>\n",
-    "index": 116,
+    "index": 122,
     "highlighted": [
         {
             "language": "vdt",

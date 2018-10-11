@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>Button</code>默认渲染成<code>button</code>元素，通过<code>tagName</code>，我们可以渲染成任意元素或组件。此时，我们可以通过<code>tagProps</code>属性，给指定的<code>tagName</code>传递与<code>Button</code>属性名相冲突的属性。</p>\n<blockquote>\n<p>当给<code>Button</code>指定<code>href</code>属性时，则它会强制渲染成<code>a</code>标签</p>\n</blockquote>\n",
-    "index": 162,
+    "index": 172,
     "highlighted": [
         {
             "language": "vdt",

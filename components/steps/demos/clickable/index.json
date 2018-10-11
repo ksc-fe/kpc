@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>添加<code>clickable</code>属性，即可实现点击【已完成】的步骤快速切换到相应步骤的功能</p>\n",
-    "index": 42,
+    "index": 43,
     "highlighted": [
         {
             "language": "vdt",
