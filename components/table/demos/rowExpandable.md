@@ -23,6 +23,7 @@ var data = [
     <Table 
         data={{ data }} 
         checkType="none"
+        ref="__test1"
     >
         <b:expand params="data, index">
             <div>Email: {{ data.email }}</div>
@@ -35,6 +36,7 @@ var data = [
         checkType="none"
         rowExpandable={{ false }}
         expandedKeys={{ self.get('expandedKeys') }}
+        ref="__test2"
     >
         <b:expand params="data, index">
             <div>Email: {{ data.email }}</div>

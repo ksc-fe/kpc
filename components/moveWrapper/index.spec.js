@@ -1,4 +1,4 @@
-import {Dropdown, DropdownMenu, DropdownItem} from '../dropdown';
+import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
 import Intact from 'intact';
 import {mount} from 'test/utils';
 

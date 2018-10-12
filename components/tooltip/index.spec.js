@@ -2,14 +2,17 @@ import BasicDemo from '~/components/tooltip/demos/basic';
 import PositionDemo from '~/components/tooltip/demos/position'; 
 import TriggerDemo from '~/components/tooltip/demos/trigger';
 import ContentDemo from '~/components/tooltip/demos/content';
+import ConfirmDemo from '~/components/tooltip/demos/confirm';
 import {mount, dispatchEvent, getElement} from 'test/utils';
 
 describe('Tooltip', () => {
     let instance;
 
-    afterEach(() => {
+    afterEach((done) => {
         instance.destroy();
         document.body.removeChild(instance.element);
+
+        setTimeout(done, 500);
     });
 
     it('should show and hide content correctly', (done) => {
@@ -105,5 +108,39 @@ describe('Tooltip', () => {
         const content = getElement('.k-tooltip-content');
         // ignore the arrow, because it may change className to adapt to the direction
         expect(content.children[1].outerHTML).to.matchSnapshot();
+    });
+
+    it('should handle confirm tooltip corectly', (done) => {
+        instance = mount(ConfirmDemo);
+
+        const cancelCb = sinon.spy();
+        const okCb = sinon.spy();
+
+        instance.refs.__test.on('cancel', cancelCb);
+        instance.refs.__test.on('ok', okCb);
+
+        dispatchEvent(instance.element.children[0], 'click');
+        let content = getElement('.k-tooltip-content');
+        expect(content.outerHTML).to.matchSnapshot();
+
+        content.querySelector('.k-btn').click();
+        setTimeout(() => {
+            expect(content.parentNode).eql(null);
+
+            dispatchEvent(instance.element.children[0], 'click');
+            content = getElement('.k-tooltip-content');
+            const [, btn] = content.querySelectorAll('.k-btn');
+            btn.click();
+
+            setTimeout(() => {
+                expect(content.parentNode).eql(null);
+                expect(cancelCb.callCount).eql(1);
+                expect(okCb.callCount).eql(1);
+
+                done();
+            }, 500)
+        }, 500);
+
+
     });
 });

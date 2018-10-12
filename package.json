@@ -15,6 +15,7 @@
     "dev:doc:default": "THEME=default gulp watch",
     "preview:doc": "gulp watch",
     "build:doc": "NODE_ENV=production gulp build:doc",
+    "watch:doc": "NODE_ENV=production gulp watch:doc",
     "deploy:doc": "NODE_ENV=production gulp deploy:doc",
     "prepublishOnly": "npm run build && (git commit -am 'chore: build' || echo 'has not files to commit') && git push --tags",
     "release": "npm run release-patch",

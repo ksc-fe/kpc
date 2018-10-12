@@ -1,5 +1,5 @@
 import Intact from 'intact';
-import Button from './index';
+import Button from 'kpc/components/button';
 import {dispatchEvent, mount} from 'test/utils';
 import GroupDemo from '~/components/button/demos/group';
 

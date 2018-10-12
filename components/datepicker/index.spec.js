@@ -12,7 +12,7 @@ describe('Datepicker', () => {
         document.body.removeChild(instance.element);
 
         // wait for content has been removed
-        setTimeout(done, 300);
+        setTimeout(done, 500);
     });
 
     it('should select date', () => {
@@ -84,9 +84,9 @@ describe('Datepicker', () => {
        
         dispatchEvent(content.querySelector('.k-day'), 'click');
         setTimeout(() => {
-            dispatchEvent(content.querySelector('.k-item'), 'click');
+            dispatchEvent(content.querySelector('.k-scroll-item'), 'click');
 
-            expect(instance.get('datetime1')).be.string;
+            expect(instance.get('datetime1').split(' ')[1]).eql('15:00:00');
 
             done();
         });

@@ -1,5 +1,5 @@
 import Intact from 'intact';
-import Dialog from './';
+import Dialog from 'kpc/components/dialog';
 import {getElement, render, mount, dispatchEvent} from 'test/utils';
 import BasicDemo from '~/components/dialog/demos/basic'; 
 import AsyncCloseDemo from '~/components/dialog/demos/asyncClose';

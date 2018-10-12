@@ -14,8 +14,8 @@ const data2 = [{a: '单选1'}, {a: '单选2'}];
 const data3 = [{a: '不可选1'}, {a: '不可选2'}];
 
 <div>
-    <Table scheme={{ scheme }} data={{ data1 }} />
-    <Table scheme={{ scheme }} data={{ data2 }} checkType="radio" />
+    <Table scheme={{ scheme }} data={{ data1 }} ref="__checkbox" />
+    <Table scheme={{ scheme }} data={{ data2 }} checkType="radio" ref="__radio" />
     <Table scheme={{ scheme }} data={{ data3 }} checkType="none" />
 </div>
 ```

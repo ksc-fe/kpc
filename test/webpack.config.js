@@ -19,8 +19,8 @@ module.exports = merge.smartStrategy({
                 }
             },
             {
-                test: /\.vdt$/,
-                include: path.resolve(__dirname, '../components'),
+                test: /^((?!site).)*\.vdt$/,
+                // include: path.resolve(__dirname, '../components'),
                 enforce: 'post',
                 use: [
                     {
@@ -35,7 +35,11 @@ module.exports = merge.smartStrategy({
     },
     resolve: {
         alias: {
-            '~': path.resolve(__dirname, '../site/dist'),
+            '~': path.resolve(__dirname, '../site/.dist'),
+            // '~': path.resolve(__dirname, '../site/dist'),
+            // 'kpc': path.resolve(__dirname, '../@stylus'),
         }
     },
 });
+
+// console.log(require('util').inspect(module.exports, {showHidden: true, depth: null}));

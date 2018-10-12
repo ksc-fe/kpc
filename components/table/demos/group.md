@@ -37,19 +37,21 @@ const scheme = {
         data={{ self.get('data') }} 
         group={{ self.get('group') }}
         ev-$change:group={{ self._onChangeGroup }}
+        ref="__test1"
     />
-    <Table data={{ self.get('data') }} 
-        group={{ self.get('group') }}
-        ev-$change:group={{ self._onChangeGroup }}
+    <Table data={{ self.get('multipleData') }} 
+        group={{ self.get('multipleGroup') }}
+        ev-$change:group={{ self._onChangeMultipleGroup }}
+        ref="__test2"
     >
         <TableColumn title='名称' key='name' />
         <TableColumn title='状态' key='status' 
             template={{ (data) => data.status === 'active' ? '运行中' : '已关闭' }}
             group={{ [ 
-                {label: '全部', value: ''},
                 {label: '运行中', value: 'active'},
                 {label: '已关闭', value: 'stopped'},
             ] }}
+            multiple
         />
     </Table>
 </div>
@@ -76,7 +78,9 @@ export default class extends Intact {
     defaults() {
         return {
             data: oData, 
-            group: {status: ''}
+            group: {status: ''},
+            multipleData: oData,
+            multipleGroup: {status: []},
         }
     }
 
@@ -95,6 +99,23 @@ export default class extends Intact {
         });
 
         this.set({data, group});
+    }
+
+    _onChangeMultipleGroup(c, group) {
+        console.log(group);
+        const data = oData.filter(item => {
+            let matched = true;
+            for (let key in group) {
+                const value = group[key];
+                if (value.length && value.indexOf(item[key]) === -1) {
+                    matched = false;
+                    break;
+                }
+            }
+            return matched;
+        });
+
+        this.set({multipleData: data, group});
     }
 }
 ```

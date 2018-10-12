@@ -1,7 +1,7 @@
 import BasicDemo from '~/components/message/demos/basic';
 import CustomDemo from '~/components/message/demos/custom';
 import {mount, dispatchEvent, getElement} from 'test/utils';
-import Message from 'components/message';
+import Message from 'kpc/components/message';
 
 describe('Message', () => {
     let instance;

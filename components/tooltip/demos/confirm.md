@@ -17,6 +17,7 @@ import Button from 'kpc/components/button';
         trigger="click"
         ev-ok={{ () => Message.success('Clicked ok!') }}
         ev-cancel={{ () => Message.info('Clicked cancel!') }}
+        ref="__test"
     >
         <Button>删除</Button>
     </Tooltip>
