@@ -121,7 +121,7 @@ describe('Tooltip', () => {
 
         dispatchEvent(instance.element.children[0], 'click');
         let content = getElement('.k-tooltip-content');
-        expect(content.outerHTML).to.matchSnapshot();
+        expect(content.innerHTML).to.matchSnapshot();
 
         content.querySelector('.k-btn').click();
         setTimeout(() => {
@@ -140,7 +140,5 @@ describe('Tooltip', () => {
                 done();
             }, 500)
         }, 500);
-
-
     });
 });

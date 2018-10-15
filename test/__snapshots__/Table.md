@@ -121,8 +121,12 @@
 #### `resize`
 
 ```
-"<div class=\"k-table\"><div class=\"k-table-wrapper\"><div class=\"k-thead\"><div class=\"k-thead-wrapper\" style=\"padding-right: 0px;\"><table style=\"width: 786px;\"><colgroup><col class=\"k-th-check\" style=\"width: 31px;\"><col><col></colgroup><thead><tr><th minwidth=\"40\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
+"<colgroup><col class=\"k-th-check\" style=\"width: 31px;\"><col><col></colgroup><thead><tr><th minwidth=\"40\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
             <th title=\"表头1\"><div class=\"k-resize\"></div><div class=\"k-th\"><div class=\"c-ellipsis\">表头1</div></div></th><th title=\"表头2\"><div class=\"k-resize\"></div><div class=\"k-th\"><div class=\"c-ellipsis\">表头2</div></div></th>
-            </tr></thead></table></div></div><div class=\"k-tbody\"><table style=\"width: 786px;\"><colgroup><col class=\"k-th-check\" style=\"width: 31px;\"><col><col></colgroup><tbody><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td><td title=\"第一行\">第一行</td><td title=\"哈哈2\">哈哈2</td></tr><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td><td title=\"第二行\">第二行</td><td title=\"哈哈2\">哈哈2</td></tr></tbody></table></div></div><div class=\"k-scrollbar\"><div class=\"k-inner\"></div></div></div>"
+            </tr></thead>"
+```
+
+```
+"<colgroup><col class=\"k-th-check\" style=\"width: 31px;\"><col><col></colgroup><tbody><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td><td title=\"第一行\">第一行</td><td title=\"哈哈2\">哈哈2</td></tr><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td><td title=\"第二行\">第二行</td><td title=\"哈哈2\">哈哈2</td></tr></tbody>"
 ```
 

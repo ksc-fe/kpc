@@ -146,9 +146,9 @@ describe('Table', () => {
                     expect(table.element.querySelector('.k-fixed-right .k-tbody').scrollTop).to.eql(10);
 
                     done();
-                });
-            });
-        });
+                }, 100);
+            }, 100);
+        }, 100);
     });
 
     it('resize', () => {
@@ -159,6 +159,9 @@ describe('Table', () => {
         dispatchEvent(resize, 'mousedown', {which: 1, clientX: 0});
         dispatchEvent(document, 'mousemove', {clientX: 1});
         dispatchEvent(document, 'mouseup');
-        expect(table.element.outerHTML).to.matchSnapshot();
+        // ignore width property in table 
+        const [head, body] = table.element.querySelectorAll('table');
+        expect(head.innerHTML).to.matchSnapshot();
+        expect(body.innerHTML).to.matchSnapshot();
     });
 });
