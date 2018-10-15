@@ -9240,6 +9240,15 @@ button.k-btn.k-mini > span {
   vertical-align: middle;
   margin-top: -2px;
 }
+.k-steps.k-default .k-step {
+  white-space: nowrap;
+}
+.k-steps.k-default .k-step:not(:first-of-type) {
+  padding-left: 1.857142857142857rem;
+}
+.k-steps.k-default .k-wrapper {
+  overflow: hidden;
+}
 .k-steps.k-line {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -9684,7 +9693,7 @@ button.k-btn.k-mini > span {
 }
 .k-table td {
   padding: 0.785714285714286rem 0.357142857142857rem 0.785714285714286rem 0.857142857142857rem;
-  word-break: break-word;
+  word-wrap: break-word;
 }
 .k-table .k-th-check {
   width: 40px;

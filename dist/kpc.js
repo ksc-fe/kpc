@@ -8698,8 +8698,17 @@ exports.Tip = _tip.Tip;
 exports.Tooltip = _tooltip.Tooltip;
 exports.Transfer = _transfer.Transfer;
 exports.Tree = _tree.Tree;
-exports.Upload = _upload.Upload;
-var version = exports.version = '0.5.12';
+exports.Upload = _upload.Upload; /*!
+                                  * kpc v0.5.13
+                                  *
+                                  * Copyright (c) Kingsoft Cloud
+                                  * Released under the MIT License
+                                  * 
+                                  * Documentation available at
+                                  * https://ksc-fe.github.io/kpc/
+                                  */
+
+var version = exports.version = '0.5.13';
 
 /* generate end */
 
@@ -15911,7 +15920,7 @@ var TooltipContent = (_dec = _intact2.default.template(), (_class = (_temp = _cl
                     var top = target.top - element.top + target.height / 2;
                     arrow.setAttribute('style', 'top: ' + top + 'px');
                 } else {
-                    arrow.setAttribute('display', 'none');
+                    arrow.setAttribute('style', 'display: none');
                 }
             }
         }, pos));
@@ -22866,6 +22875,8 @@ var _objectWithoutProperties2 = __webpack_require__(13);
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
 exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _classNameObj;
+
     _Vdt || (_Vdt = Vdt);
     obj || (obj = {});
     blocks || (blocks = {});
@@ -22902,19 +22913,21 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         index = _self$get.index,
         width = _self$get.width,
         error = _self$get.error,
-        rest = (0, _objectWithoutProperties3.default)(_self$get, ['children', 'selected', 'done', 'title', 'index', 'width', 'error']);
+        className = _self$get.className,
+        style = _self$get.style,
+        rest = (0, _objectWithoutProperties3.default)(_self$get, ['children', 'selected', 'done', 'title', 'index', 'width', 'error', 'className', 'style']);
 
-    var classNameObj = {
+    var classNameObj = (_classNameObj = {
         'k-step': true,
         'k-active': selected,
         'k-done': done,
         'k-error': error
-    };
+    }, _classNameObj[className] = className, _classNameObj);
 
     return h('div', (0, _extends3.default)({
         'style': function () {
             try {
-                return { width: width };
+                return (0, _utils.addStyle)(style, { width: width });
             } catch (e) {
                 _e(e);
             }
@@ -22963,6 +22976,8 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         }
     }.call($this)));
 };
+
+var _utils = __webpack_require__(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
