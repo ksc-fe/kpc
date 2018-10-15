@@ -3,6 +3,7 @@ import CheckTypeDemo from '~/components/table/demos/checkType';
 import ExpandDemo from '~/components/table/demos/rowExpandable';
 import SortDemo from '~/components/table/demos/sort';
 import GroupDemo from '~/components/table/demos/group';
+import FixColumnDemo from '~/components/table/demos/fixColumn';
 import {mount, unmount, dispatchEvent, getElement} from 'test/utils';
 
 describe('Table', () => {
@@ -118,5 +119,46 @@ describe('Table', () => {
         expect(__test2.element.outerHTML).to.matchSnapshot();
         item2.click();
         expect(__test2.element.outerHTML).to.matchSnapshot();
+    });
+
+    it('fix columns', (done) => {
+        instance = mount(FixColumnDemo);
+
+        const table = instance.refs.__test;
+        
+        instance.element.style.width = "1000px";
+        table._onWindowResize();
+
+        // should add k-scroll-middle classname
+        table.scroll.scrollLeft = 100;
+        setTimeout(() => {
+            expect(table.element.outerHTML).to.matchSnapshot();
+
+            // should add k-scroll-right classname
+            table.scroll.scrollLeft = 1000;
+            setTimeout(() => {
+                expect(table.element.outerHTML).to.matchSnapshot();
+
+                // scroll vertically
+                table.scroll.scrollTop = 10;
+                setTimeout(() => {
+                    expect(table.element.querySelector('.k-fixed-left .k-tbody').scrollTop).to.eql(10);
+                    expect(table.element.querySelector('.k-fixed-right .k-tbody').scrollTop).to.eql(10);
+
+                    done();
+                });
+            });
+        });
+    });
+
+    it('resize', () => {
+        instance = mount(BasicDemo); 
+
+        const table = instance.refs.__test;
+        const resize = table.element.querySelector('.k-resize');
+        dispatchEvent(resize, 'mousedown', {which: 1, clientX: 0});
+        dispatchEvent(document, 'mousemove', {clientX: 1});
+        dispatchEvent(document, 'mouseup');
+        expect(table.element.outerHTML).to.matchSnapshot();
     });
 });

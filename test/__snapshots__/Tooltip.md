@@ -15,7 +15,7 @@
 #### `should handle confirm tooltip corectly`
 
 ```
-"<div class=\"k-dropdown-menu k-tooltip-content c-fade-enter\" style=\"left: 0px; top: 536px;\"><i class=\"k-arrow k-bottom k-left\" display=\"none\"></i>确定删除？<div class=\"k-buttons\"><button class=\"k-btn k-small\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-small\" tabindex=\"0\" type=\"button\"><span>确认</span></button></div></div>"
+"<div class=\"k-dropdown-menu k-tooltip-content c-fade-enter\" style=\"left: 0px; top: 76px;\"><i class=\"k-arrow k-bottom k-left\" display=\"none\"></i>确定删除？<div class=\"k-buttons\"><button class=\"k-btn k-small\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-small\" tabindex=\"0\" type=\"button\"><span>确认</span></button></div></div>"
 ```
 
 #### `should position correctly`
