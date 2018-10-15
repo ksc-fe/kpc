@@ -106,7 +106,7 @@ export default class TooltipContent extends DropdownMenu {
                     const top = target.top - element.top + target.height / 2;
                     arrow.setAttribute('style', `top: ${top}px`);
                 } else {
-                    arrow.setAttribute('display', 'none');
+                    arrow.setAttribute('style', 'display: none');
                 }
             },
             ...pos
