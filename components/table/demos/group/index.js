@@ -16,7 +16,9 @@ export default class extends Intact {
     defaults() {
         return {
             data: oData, 
-            group: {status: ''}
+            group: {status: ''},
+            multipleData: oData,
+            multipleGroup: {status: []},
         }
     }
 
@@ -35,5 +37,22 @@ export default class extends Intact {
         });
 
         this.set({data, group});
+    }
+
+    _onChangeMultipleGroup(c, group) {
+        console.log(group);
+        const data = oData.filter(item => {
+            let matched = true;
+            for (let key in group) {
+                const value = group[key];
+                if (value.length && value.indexOf(item[key]) === -1) {
+                    matched = false;
+                    break;
+                }
+            }
+            return matched;
+        });
+
+        this.set({multipleData: data, group});
     }
 }
