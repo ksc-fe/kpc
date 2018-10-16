@@ -13,7 +13,7 @@ const labelObj = {
 };
 
 const Options = (props) => {
-    const data = props.data;
+    const data = props.data || [];
     const level = props.level;
     const ret = [];
 
