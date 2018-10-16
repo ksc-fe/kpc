@@ -113,6 +113,7 @@ export default class Node {
     remove() {
         const siblings = this.parent.children;
         siblings.splice(siblings.indexOf(this), 1);
+        this.updateUpward();
         this.tree.update();
     }
 }
