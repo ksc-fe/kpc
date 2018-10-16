@@ -287,7 +287,11 @@ export default class Calendar extends Intact {
         let isSet = true;
         if (!_focusDate) {
             _focusDate = this.getShowDate();
-            if (!value) isSet = false;
+            if (!value || Array.isArray(value)) {
+                isSet = false;
+            } else if (!Array.isArray(value)) {
+                _focusDate = new Date(value); 
+            }
         } else {
             if (_showDate) {
                 const _y1 = _focusDate.getFullYear();
