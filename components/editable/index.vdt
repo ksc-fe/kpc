@@ -19,7 +19,7 @@ const classNameObj = {
         v-if={{ !disabled && !editing }}
         ev-click={{ self._edit }}
     ></i>
-    <div class="c-ellipsis" v-if={{ value || editing }}>
+    <div class="c-ellipsis">
         {{ !editing ? children :
             <Input size="small" defaultValue={{ value }} 
                 ev-blur={{ self._onBlur }}
