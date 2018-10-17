@@ -3,3 +3,5 @@ node_js:
     - 10
 addons:
     chrome: stable
+before_sciprt:
+    - npm run build:doc 
