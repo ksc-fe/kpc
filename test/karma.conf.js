@@ -42,7 +42,7 @@ module.exports = function (config) {
         },
         autoWatch: true,
         coverageIstanbulReporter: {
-            reports: [ 'html', 'text-summary' ],
+            reports: [ 'html', 'lcovonly', 'text-summary' ],
             dir: path.join(__dirname, 'coverage'),
             fixWebpackSourcePaths: true
         },
