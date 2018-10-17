@@ -4,6 +4,8 @@
 [![Codecov](https://codecov.io/gh/ksc-fe/kpc/branch/master/graphs/badge.svg)](https://codecov.io/gh/ksc-fe/kpc/branch/master)
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/ksc-fe/kpc.svg)](http://isitmaintained.com/project/ksc-fe/kpc "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/ksc-fe/kpc.svg)](http://isitmaintained.com/project/ksc-fe/kpc "Percentage of issues still open")
+[![npm](https://img.shields.io/npm/dt/kpc.svg)](https://www.npmjs.com/package/kpc)
+[![npm](https://img.shields.io/npm/v/kpc.svg)](https://www.npmjs.com/package/kpc)
 
 </div>
 
