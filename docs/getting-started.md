@@ -57,22 +57,27 @@ npm install intact kpc -S
 
 ### CDN
 
-通过[unpkg.com/kpc/dist/](https://unpkg.com/kpc/dist/)可以直接引入最新版kpc，建议使用锁定版本地址，
-例如：[unpkg.com/kpc@0.5.13/dist/](https://unpkg.com/kpc@0.5.13/dist/)
+通过[cdn.jsdelivr.net/npm/kpc/dist/](https://cdn.jsdelivr.net/npm/kpc/dist/)可以直接引入最新版kpc，建议使用锁定版本地址，
+例如：[cdn.jsdelivr.net/npm/kpc@0.5.13/dist/](https://cdn.jsdelivr.net/npm/kpc@0.5.13/dist/)
 
 ```html
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <title>kpc-demo</title>
-    <link rel="stylesheet" type="text/css" href="//unpkg.com/kpc/dist/kpc.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/kpc/dist/kpc.css" />
+    <!-- 将上述kpc.css替换成ksyun.css，可以使用ksyun主题 -->
+    <!-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/kpc/dist/ksyun.css" /> -->
 </head>
 <body>
     <div id="app"></div>
 
-    <script type="text/javascript" src="//unpkg.com/intact/dist/intact.min.js"></script>
-    <script type="text/javascript" src="//unpkg.com/kpc/dist/kpc.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/intact/dist/intact.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/kpc/dist/kpc.js"></script>
     <script type="text/javascript">
         Kpc.install();
         var Page = Intact.extend({
