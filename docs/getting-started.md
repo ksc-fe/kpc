@@ -58,7 +58,7 @@ npm install intact kpc -S
 ### CDN
 
 通过[cdn.jsdelivr.net/npm/kpc/dist/](https://cdn.jsdelivr.net/npm/kpc/dist/)可以直接引入最新版kpc，建议使用锁定版本地址，
-例如：[cdn.jsdelivr.net/npm/kpc@0.5.13/dist/](https://cdn.jsdelivr.net/npm/kpc@0.5.13/dist/)
+例如：[cdn.jsdelivr.net/npm/kpc@0.5.14/dist/](https://cdn.jsdelivr.net/npm/kpc@0.5.14/dist/)
 
 ```html
 <!DOCTYPE html>
