@@ -4,4 +4,4 @@ node_js:
 addons:
     chrome: stable
 before_script:
-    - npm run build:doc 
+    - npx gulp doc

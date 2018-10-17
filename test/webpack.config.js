@@ -35,7 +35,7 @@ module.exports = merge.smartStrategy({
     },
     resolve: {
         alias: {
-            '~': path.resolve(__dirname, process.env.CI ? '../site/dist' : '../site/.dist'),
+            '~': path.resolve(__dirname, '../site/.dist'),
             // '~': path.resolve(__dirname, '../site/dist'),
             // 'kpc': path.resolve(__dirname, '../@stylus'),
         }

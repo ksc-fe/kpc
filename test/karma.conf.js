@@ -5,13 +5,13 @@ console.log(
     '\x1b[33m%s\x1b[0m', 
     `If the documents of components has not been built
 please run:
-	npm run build:doc
+	npx gulp doc
 `
 );
 
 module.exports = function (config) {
     config.set({
-        browsers: process.env.UPDATE ? ['ChromeHeadless'] : undefined,
+        browsers: process.env.UPDATE || process.env.CI ? ['ChromeHeadless'] : undefined,
         frameworks: ['mocha', 'sinon-chai', 'snapshot', 'mocha-snapshot'],
         reporters: ['mocha', 'coverage-istanbul'],
         files: [
