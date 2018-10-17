@@ -8704,7 +8704,7 @@ exports.Tooltip = _tooltip.Tooltip;
 exports.Transfer = _transfer.Transfer;
 exports.Tree = _tree.Tree;
 exports.Upload = _upload.Upload; /*!
-                                  * kpc v0.5.13
+                                  * kpc v0.5.14
                                   *
                                   * Copyright (c) Kingsoft Cloud
                                   * Released under the MIT License
@@ -8713,7 +8713,7 @@ exports.Upload = _upload.Upload; /*!
                                   * https://ksc-fe.github.io/kpc/
                                   */
 
-var version = exports.version = '0.5.13';
+var version = exports.version = '0.5.14';
 
 /* generate end */
 
