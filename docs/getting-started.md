@@ -77,7 +77,7 @@ npm install intact kpc -S
     <div id="app"></div>
 
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/intact/dist/intact.min.js"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/kpc/dist/kpc.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/kpc/dist/kpc.min.js"></script>
     <script type="text/javascript">
         Kpc.install();
         var Page = Intact.extend({
