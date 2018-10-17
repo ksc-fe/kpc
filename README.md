@@ -1,3 +1,7 @@
+<div align="center">
+[![Build Status](https://travis-ci.org/ksc-fe/kpc.svg?branch=master)](https://travis-ci.org/ksc-fe/kpc)
+</div>
+
 # KPC
 
 同时支持 [Intact][1] 和 [Vue][2] 的高质量前端组件库
