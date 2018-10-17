@@ -41,6 +41,12 @@ npm run dev
 
 # 手动引入
 
+## 安装
+
+```js
+npm install intact kpc -S
+```
+
 ## 单文件构建版
 
 如果你的项目没有使用webpack来构建，可以引入单文件构建版。将`kpc.css`和`kpc.js`在html文件中引入。
@@ -49,19 +55,24 @@ npm run dev
 另外你也可以调用`Kpc.install()`方法将组件放到全局空间下，此时为了避免命名冲突，
 所有组件名前加上`K`作为前缀，例如`KButton` `KTable`等
 
+### CDN
+
+通过[unpkg.com/kpc/dist/](https://unpkg.com/kpc/dist/)可以直接引入最新版kpc，建议使用锁定版本地址，
+例如：[unpkg.com/kpc@0.5.13/dist/](https://unpkg.com/kpc@0.5.13/dist/)
+
 ```html
 <!doctype html>
 <html>
 <head>
     <meta charset="utf-8" />
     <title>kpc-demo</title>
-    <link rel="stylesheet" type="text/css" href="node_modules/kpc/dist/kpc.css" />
+    <link rel="stylesheet" type="text/css" href="//unpkg.com/kpc/dist/kpc.css" />
 </head>
 <body>
     <div id="app"></div>
 
-    <script type="text/javascript" src="node_modules/intact/dist/intact.js"></script>
-    <script type="text/javascript" src="node_modules/kpc/dist/kpc.js"></script>
+    <script type="text/javascript" src="//unpkg.com/intact/dist/intact.min.js"></script>
+    <script type="text/javascript" src="//unpkg.com/kpc/dist/kpc.js"></script>
     <script type="text/javascript">
         Kpc.install();
         var Page = Intact.extend({
@@ -75,8 +86,6 @@ npm run dev
 </body>
 </html>
 ```
-
-> kpc样式需要加载字体文件，默认字体文件放在目录`./fonts`下，你可能需要根据实际情况修改该路径
 
 ## 多文件css构建版
 
