@@ -73,6 +73,7 @@
     "gulp-postcss": "^7.0.1",
     "gulp-stylus": "^2.7.0",
     "gulp-tap": "^1.0.1",
+    "gulp-uglify": "^3.0.1",
     "gulp-vdt": "^0.2.0",
     "highlight.js": "^9.12.0",
     "history": "^4.7.2",

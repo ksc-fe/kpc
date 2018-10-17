@@ -18,6 +18,7 @@ const rimraf = require('rimraf');
 const fs = require('fs');
 const packageJson = require('./package.json');
 const childProcess = require('child_process');
+const uglifyjs = require('gulp-uglify');
 
 const pages = {
     '/': 'index',
@@ -264,20 +265,24 @@ gulp.task('clean@single', (done) => {
     rimraf('./dist', done);
 });
 
-gulp.task('build:js@single', (done) => {
-    webpack(webpackBuildConfig(), (err, stats) => {
-        console.log(stats.toString({
-            colors: true    // 在控制台展示颜色
-        }));
-        done();
+gulp.task('build:js@single', () => {
+    const p1 = new Promise(resolve => {
+        webpack(webpackBuildConfig(), (err, stats) => {
+            console.log(stats.toString({
+                colors: true    // 在控制台展示颜色
+            }));
+            resolve();
+        });
     });
-    // build ksyun theme
-    webpack(webpackBuildConfig('ksyun'), (err, stats) => {
-        console.log(stats.toString({
-            colors: true    // 在控制台展示颜色
-        }));
-        done();
+    const p2 = new Promise(resolve => {
+        webpack(webpackBuildConfig('ksyun'), (err, stats) => {
+            console.log(stats.toString({
+                colors: true    // 在控制台展示颜色
+            }));
+            resolve();
+        });
     });
+    return Promise.all([p1, p2]);
 });
 
 gulp.task('build:i18n@single', () => {
@@ -317,12 +322,22 @@ gulp.task('build:i18n@single', () => {
         }));
 });
 
+gulp.task('uglify@single', () => {
+    return gulp.src('./dist/**/*.js')
+        .pipe(tap((file) => {
+            file.path = file.path.replace('.js', '.min.js');
+        }))
+        .pipe(uglifyjs())
+        .pipe(gulp.dest('./dist'));
+});
+
 gulp.task('build@single', gulp.series(
     'clean@single',
-    gulp.parallel('build:js@single', 'build:i18n@single')
+    gulp.parallel('build:js@single', 'build:i18n@single'),
+    'uglify@single'
 ));
 
-const destPath = './@css'
+const destPath = './@css';
 
 gulp.task('clean@css', (done) => {
     rimraf(destPath, done);

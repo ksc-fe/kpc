@@ -4471,7 +4471,11 @@ var Calendar = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
         var isSet = true;
         if (!_focusDate) {
             _focusDate = this.getShowDate();
-            if (!value) isSet = false;
+            if (!value || Array.isArray(value)) {
+                isSet = false;
+            } else if (!Array.isArray(value)) {
+                _focusDate = new Date(value);
+            }
         } else {
             if (_showDate) {
                 var _y1 = _focusDate.getFullYear();
@@ -6625,10 +6629,11 @@ var Datepicker = (_dec = _intact2.default.template(), (_class = (_temp = _class2
         var _refs = this.refs,
             begin = _refs.begin,
             end = _refs.end;
+        // if cancel all selected value of range, the length of v is 0
 
-
-        if (v) {
-            if (v.length === 2) {
+        var length = v.length;
+        if (v && length) {
+            if (length === 2) {
                 // select the first begin/end date
                 value = v.slice(0);
             } else {
@@ -6660,7 +6665,7 @@ var Datepicker = (_dec = _intact2.default.template(), (_class = (_temp = _class2
             value.sort();
         }
 
-        this.set('_value', value, { async: true });
+        this.set('_value', value);
     };
 
     Datepicker.prototype._highlightRangeDays = function _highlightRangeDays(date, isOut) {
@@ -14390,7 +14395,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     };
 
     var Options = function Options(props) {
-        var data = props.data;
+        var data = props.data || [];
         var level = props.level;
         var ret = [];
 
@@ -18601,13 +18606,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 _e(e);
             }
         }.call($this)
-    }, null, 'ion-edit k-edit') : undefined, function () {
-        try {
-            return value || editing;
-        } catch (e) {
-            _e(e);
-        }
-    }.call($this) ? h('div', null, function () {
+    }, null, 'ion-edit k-edit') : undefined, h('div', null, function () {
         try {
             return !editing ? children : h(_input2.default, {
                 'size': 'small',
@@ -18640,7 +18639,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         } catch (e) {
             _e(e);
         }
-    }.call($this), 'c-ellipsis') : undefined], _className(function () {
+    }.call($this), 'c-ellipsis')], _className(function () {
         try {
             return classNameObj;
         } catch (e) {
@@ -28692,6 +28691,7 @@ var Node = (_temp = _class = function () {
     Node.prototype.remove = function remove() {
         var siblings = this.parent.children;
         siblings.splice(siblings.indexOf(this), 1);
+        this.updateUpward();
         this.tree.update();
     };
 
