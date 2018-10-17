@@ -16,23 +16,16 @@ const nav = [
         title: 'Blog',
         href: '/docs/blogs/design/',
         index: 'blog',
-    },
-    /* { */
-        /* title: 'API', */
-        /* href: 'api' */
-    /* }, */
-    // {
-        // title: '示例',
-        // href: 'examples'
-    // }
+    }
 ];
 
 <div class={{ {'main-wrapper': true, [scope.className]: scope.className} }}>
     <div class="header-wrapper">
         <header>
             <b:header>
-                <Link class="logo" href="/">KPC</Link>
-                <div class="right">
+                <Link class="logo" href="/"></Link>
+                <Link class="king" href="/">King</Link>
+                <div class="right" v-if={{ scope.pageIndex !== 'index' }}>
                     <nav>
                         <Link v-for={{ nav }} 
                             class={{ {

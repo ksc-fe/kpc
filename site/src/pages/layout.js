@@ -40,7 +40,7 @@ export default class extends Intact {
 
     _mount() {
         this.border = this.element.querySelector('.border');
-        this._updateBorder();
+        // this._updateBorder();
     }
 
     _updateBorder() {

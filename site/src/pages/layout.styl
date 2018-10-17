@@ -57,7 +57,7 @@ blockquote
 .header-wrapper
     height headerHeight
     line-height headerHeight 
-    box-shadow 0 2px 5px rgba(0, 0, 0, .08)
+    //box-shadow 0 2px 5px rgba(0, 0, 0, .08)
     background #fff
     position fixed
     width 100%
@@ -68,9 +68,18 @@ blockquote
         margin 0 auto
         transition width $transition
     .logo
+        display inline-block
+        margin-left 32px
+        margin-top 24px
+        width 45px
+        height 39px
         font-size 24px
         color #333
-        margin-left 20px
+        background-image url("../imgs/logo.jpg")
+        background-size 45px 39px
+    .king
+        font-size 30px
+        position absolute
     .right
         float right
     nav
