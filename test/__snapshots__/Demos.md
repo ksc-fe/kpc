@@ -647,6 +647,24 @@
         指定选中时的取值为对象：</span></label></div>"
 ```
 
+#### `ScrollSelect basic`
+
+```
+"<div class=\"k-scroll-select\"><div class=\"k-wrapper\" style=\"transform: translateY(0px); margin-top: 0px;\"><div class=\"k-scroll-item\">4月</div><div class=\"k-scroll-item\">5月</div><div class=\"k-scroll-item\">6月</div><div class=\"k-scroll-item\">7月</div><div class=\"k-scroll-item\">8月</div><div class=\"k-scroll-item\">9月</div><div class=\"k-scroll-item\">10月</div><div class=\"k-scroll-item\">11月</div><div class=\"k-scroll-item\">12月</div><div class=\"k-scroll-item\">1月</div><div class=\"k-scroll-item\">2月</div><div class=\"k-scroll-item\">3月</div><div class=\"k-scroll-item\">4月</div><div class=\"k-scroll-item\">5月</div><div class=\"k-scroll-item\">6月</div><div class=\"k-scroll-item\">7月</div><div class=\"k-scroll-item\">8月</div><div class=\"k-scroll-item\">9月</div><div class=\"k-scroll-item\">10月</div></div><div class=\"k-border\"></div></div>"
+```
+
+#### `ScrollSelect disable`
+
+```
+"<div class=\"k-scroll-select\"><div class=\"k-wrapper\" style=\"transform: translateY(0px); margin-top: 0px;\"><div class=\"k-scroll-item\">2019年</div><div class=\"k-scroll-item k-disabled\">2020年</div><div class=\"k-scroll-item\">2021年</div><div class=\"k-scroll-item\">2022年</div><div class=\"k-scroll-item\">2013年</div><div class=\"k-scroll-item\">2014年</div><div class=\"k-scroll-item\">2015年</div><div class=\"k-scroll-item k-disabled\">2016年</div><div class=\"k-scroll-item\">2017年</div><div class=\"k-scroll-item k-active\">2018年</div><div class=\"k-scroll-item\">2019年</div><div class=\"k-scroll-item k-disabled\">2020年</div><div class=\"k-scroll-item\">2021年</div><div class=\"k-scroll-item\">2022年</div><div class=\"k-scroll-item\">2013年</div><div class=\"k-scroll-item\">2014年</div><div class=\"k-scroll-item\">2015年</div><div class=\"k-scroll-item k-disabled\">2016年</div><div class=\"k-scroll-item\">2017年</div></div><div class=\"k-border\"></div></div>"
+```
+
+#### `ScrollSelect infinite`
+
+```
+"<div class=\"k-scroll-select\"><div class=\"k-wrapper\" style=\"transform: translateY(0px); margin-top: 0px;\"><div class=\"k-scroll-item\">2019年</div><div class=\"k-scroll-item\">2020年</div><div class=\"k-scroll-item\">2021年</div><div class=\"k-scroll-item\">2022年</div><div class=\"k-scroll-item\">2013年</div><div class=\"k-scroll-item\">2014年</div><div class=\"k-scroll-item\">2015年</div><div class=\"k-scroll-item\">2016年</div><div class=\"k-scroll-item\">2017年</div><div class=\"k-scroll-item k-active\">2018年</div><div class=\"k-scroll-item\">2019年</div><div class=\"k-scroll-item\">2020年</div><div class=\"k-scroll-item\">2021年</div><div class=\"k-scroll-item\">2022年</div><div class=\"k-scroll-item\">2013年</div><div class=\"k-scroll-item\">2014年</div><div class=\"k-scroll-item\">2015年</div><div class=\"k-scroll-item\">2016年</div><div class=\"k-scroll-item\">2017年</div></div><div class=\"k-border\"></div></div>"
+```
+
 #### `Select allowUnmatch`
 
 ```
