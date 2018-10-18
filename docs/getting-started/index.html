@@ -38,20 +38,28 @@
 </ol>
 <pre><code class="hljs shell">npm <span class="hljs-keyword">run</span><span class="bash"> dev</span>
 </code></pre>
-<h1 id='header-%E6%89%8B%E5%8A%A8%E5%BC%95%E5%85%A5'>手动引入</h1><h2 id='header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88'>单文件构建版</h2><p>如果你的项目没有使用webpack来构建，可以引入单文件构建版。将<code>kpc.css</code>和<code>kpc.js</code>在html文件中引入。此时所有组件都在<code>Kpc</code>命名空间下，例如<code>Kpc.Button</code> <code>Kpc.Table</code>等。</p>
+<h1 id='header-%E6%89%8B%E5%8A%A8%E5%BC%95%E5%85%A5'>手动引入</h1><h2 id='header-%E5%AE%89%E8%A3%85'>安装</h2><pre><code class="hljs js">npm <span class="hljs-keyword">install</span> intact kpc -S
+</code></pre>
+<h2 id='header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88'>单文件构建版</h2><p>如果你的项目没有使用webpack来构建，可以引入单文件构建版。将<code>kpc.css</code>和<code>kpc.js</code>在html文件中引入。此时所有组件都在<code>Kpc</code>命名空间下，例如<code>Kpc.Button</code> <code>Kpc.Table</code>等。</p>
 <p>另外你也可以调用<code>Kpc.install()</code>方法将组件放到全局空间下，此时为了避免命名冲突，所有组件名前加上<code>K</code>作为前缀，例如<code>KButton</code> <code>KTable</code>等</p>
-<pre><code class="hljs html"><span class="hljs-meta">&lt;!doctype html&gt;</span>
+<h3 id='header-CDN'>CDN</h3><p>通过<a href="https://cdn.jsdelivr.net/npm/kpc/dist/">cdn.jsdelivr.net/npm/kpc/dist/</a>可以直接引入最新版kpc，建议使用锁定版本地址，例如：<a href="https://cdn.jsdelivr.net/npm/kpc@0.5.14/dist/">cdn.jsdelivr.net/npm/kpc@0.5.14/dist/</a></p>
+<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span> /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>kpc-demo<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"node_modules/kpc/dist/kpc.css"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"X-UA-Compatible"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"IE=edge, chrome=1"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"Cache-Control"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"no-siteapp"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"//cdn.jsdelivr.net/npm/kpc/dist/kpc.css"</span> /&gt;</span>
+    <span class="hljs-comment">&lt;!-- 将上述kpc.css替换成ksyun.css，可以使用ksyun主题 --&gt;</span>
+    <span class="hljs-comment">&lt;!-- &lt;link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/kpc/dist/ksyun.css" /&gt; --&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"node_modules/intact/dist/intact.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"node_modules/kpc/dist/kpc.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"//cdn.jsdelivr.net/npm/intact/dist/intact.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"//cdn.jsdelivr.net/npm/kpc/dist/kpc.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="javascript">
         Kpc.install();
         <span class="hljs-keyword">var</span> Page = Intact.extend({
@@ -65,9 +73,6 @@
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
 </code></pre>
-<blockquote>
-<p>kpc样式需要加载字体文件，默认字体文件放在目录<code>./fonts</code>下，你可能需要根据实际情况修改该路径</p>
-</blockquote>
 <h2 id='header-%E5%A4%9A%E6%96%87%E4%BB%B6css%E6%9E%84%E5%BB%BA%E7%89%88'>多文件css构建版</h2><p>当项目使用webpack构建时，可以使用kpc的多文件css构建版，此时可以做到按需加载，而非单文件全量引入。多文件构建版样式css和字体，需要通过<code>css-loader &amp; style-loader</code>和<code>file-loader</code>来引入</p>
 <blockquote>
 <p>此版本放在<code>@css</code>文件夹下，该文件名的意思是：所有的样式<code>stylus</code>文件都被编译成了<code>css</code>文件，并非只是放置css文件的目录。ES6语法的<code>js</code>和<code>vdt</code>文件也都被编译成了ES5语法的<code>js</code>文件，所以你无需<code>babel-loader</code>和<code>vdt-loader</code>来处理它们，仅仅只需<code>css-loader</code>和<code>style-loader</code>处理<code>css</code>文件即可。另外<code>file-loader</code>处理字体还是需要的。</p>

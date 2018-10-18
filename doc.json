@@ -1212,12 +1212,29 @@
                     "text": "手动引入",
                     "children": [
                         {
+                            "title": "安装",
+                            "path": "#header-%E5%AE%89%E8%A3%85",
+                            "level": 2,
+                            "content": "<h2 id='header-%E5%AE%89%E8%A3%85'>安装</h2>",
+                            "text": "安装",
+                            "children": []
+                        },
+                        {
                             "title": "单文件构建版",
                             "path": "#header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88",
                             "level": 2,
                             "content": "<h2 id='header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88'>单文件构建版</h2>",
                             "text": "单文件构建版",
-                            "children": []
+                            "children": [
+                                {
+                                    "title": "CDN",
+                                    "path": "#header-CDN",
+                                    "level": 3,
+                                    "content": "<h3 id='header-CDN'>CDN</h3>",
+                                    "text": "CDN",
+                                    "children": []
+                                }
+                            ]
                         },
                         {
                             "title": "多文件css构建版",
