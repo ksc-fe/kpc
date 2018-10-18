@@ -39,7 +39,8 @@
     "@stylus",
     "styles",
     "dist",
-    "i18n"
+    "i18n",
+    "index.js"
   ],
   "author": "ksc-fe",
   "license": "MIT",
