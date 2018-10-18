@@ -121,5 +121,9 @@
   },
   "dependencies": {
     "enquire.js": "^2.1.6"
-  }
+  },
+  "sideEffects": [
+      "*.css",
+      "*.styl"
+  ]
 }

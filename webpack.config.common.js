@@ -103,6 +103,7 @@ module.exports = {
             'vue$': 'vue/dist/vue.js',
             // for running in vue
             'intact$': 'intact-vue',
+            'kpc$': path.resolve(__dirname, 'index.js'),
             'kpc': path.resolve(__dirname),
         },
         extensions: ['.mjs', '.js', '.vdt', '.json'],
