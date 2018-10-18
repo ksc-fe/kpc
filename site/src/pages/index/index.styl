@@ -44,7 +44,7 @@ $page-width = 1080px
                     top 19%
                     width 601px
                     height 561px
-                    background-image url("../../imgs/page2.jpg")
+                    background-image url("../../imgs/page2.png")
                     background-size 601px 561px
                 .right
                     float right
@@ -141,14 +141,16 @@ $page-width = 1080px
         margin-top 5%
         position absolute
         //right 6%
-        background-image url("../../imgs/page1.jpg")
+        background-image url("../../imgs/page1.png")
         background-size 630px 600px
 
 .second-page-left
+    width 601px
+    height 561px
     .left
         width 601px
         height 561px
-        background-image url("../../imgs/page2.jpg")
+        background-image url("../../imgs/page2.png")
         background-size 601px 561px
 .second-page-right
     float right
@@ -160,3 +162,17 @@ $page-width = 1080px
             h2
                 margin 10px
             flex 1
+
+.index-dot
+    width 20px
+    position fixed
+    right 20px
+    top 50%
+    li
+        width 12px
+        height 12px
+        border-radius 12px
+        background-color #EEEEEE
+        margin-bottom 14px
+    .dot-active
+        background-color #B2B2B2 !important

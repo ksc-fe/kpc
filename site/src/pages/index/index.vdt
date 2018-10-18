@@ -5,7 +5,11 @@ import {Row, Col} from 'kpc/components/grid';
 <t:parent className="index-page" pageIndex="index">
     <b:content>
         <div class="pages">
-            <div class="first-page" v-if={{ true }}>
+            <ul class="index-dot">
+                <li class={{ self.get('current') === "one" ? "dot-active" : "" }}></li>
+                <li class={{ self.get('current') === "two" ? "dot-active" : "" }}></li>
+            </ul>
+            <div class="first-page" v-if={{ self.get('current') === "one" }}>
                 <Row>
                     <Col class="first-page-left"
                         xs={{ {span: 20, offset: 2} }}
@@ -34,7 +38,7 @@ import {Row, Col} from 'kpc/components/grid';
                 </Row>
             </div>
 
-            <div class="second-page" v-if={{ false }}>
+            <div class="second-page" v-if={{ self.get('current') === "two" }}>
                 <Row>
                     <Col class="second-page-left"
                         xs={{ {span: 20, offset: 4} }}

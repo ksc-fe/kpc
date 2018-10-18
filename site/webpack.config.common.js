@@ -26,7 +26,7 @@ module.exports = function(theme) {
         module: {
             rules: [
                 {
-                    test: /\.(woff2?|eot|ttf|otf|svg|jpg)(\?.*)?$/,
+                    test: /\.(woff2?|eot|ttf|otf|svg|jpg|png)(\?.*)?$/,
                     use: [
                         {
                             loader: 'file-loader',
