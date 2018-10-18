@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+    - 10
+before_install:
+    - npm install -g codecov
+addons:
+    chrome: stable
+before_script:
+    - npx gulp doc
+script:
+    - npm run test
+    - codecov

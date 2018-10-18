@@ -30,3 +30,47 @@
 "<div class=\"k-item\">item 1</div><div class=\"k-item\">item 2</div><div class=\"k-item\">item 3</div>"
 ```
 
+#### `should save original events`
+
+```
+"<div class=\"k-item\">test</div>"
+```
+
+#### `should move to dropdown menu`
+
+```
+"<div class=\"k-item\">item 1</div><div class=\"k-item\">item 2</div><div class=\"k-item\">item 3</div>"
+```
+
+#### `nested dropdown`
+
+```
+"<div class=\"k-item\"><span>click</span><i class=\"ion-ios-arrow-right\"></i></div><!--placeholder--><div class=\"k-item\">item 1</div>"
+```
+
+```
+"<div class=\"k-item\"><span>hover</span><i class=\"ion-ios-arrow-right\"></i></div><!--placeholder--><div class=\"k-item\">item 1</div>"
+```
+
+#### `operate by keyboard`
+
+```
+"<div class=\"k-item k-hover\">item 1</div><div class=\"k-item\">item 2</div><div class=\"k-item\">item 3</div><div class=\"k-item\"><span>hover</span><i class=\"ion-ios-arrow-right\"></i></div><!--placeholder--><div class=\"k-item\"><span>click</span><i class=\"ion-ios-arrow-right\"></i></div><!--placeholder--><div class=\"k-item\">item 3</div>"
+```
+
+```
+"<div class=\"k-item\">item 1</div><div class=\"k-item\">item 2</div><div class=\"k-item\">item 3</div><div class=\"k-item\"><span>hover</span><i class=\"ion-ios-arrow-right\"></i></div><!--placeholder--><div class=\"k-item\"><span>click</span><i class=\"ion-ios-arrow-right\"></i></div><!--placeholder--><div class=\"k-item k-hover\">item 3</div>"
+```
+
+```
+"<div class=\"k-item k-hover\"><span>click</span><i class=\"ion-ios-arrow-right\"></i></div><!--placeholder--><div class=\"k-item\">item 1</div>"
+```
+
+```
+"<div class=\"k-item k-hover\">item 1</div><div class=\"k-item\">item 2</div>"
+```
+
+```
+"<div class=\"k-item\"><span>click</span><i class=\"ion-ios-arrow-right\"></i></div><!--placeholder--><div class=\"k-item k-hover\">item 1</div>"
+```
+

@@ -1,6 +1,8 @@
 import BasicDemo from '~/components/editable/demos/basic';
 import ValidateDemo from '~/components/editable/demos/validate';
 import {mount, unmount, dispatchEvent} from 'test/utils';
+import Editable from 'kpc/components/editable';
+import Intact from 'intact';
 
 describe('Editable', () => {
     let instance;
@@ -70,5 +72,31 @@ describe('Editable', () => {
         input.value = '';
         input.blur();
         expect(instance.element.innerHTML).to.matchSnapshot();
+    });
+
+    it('handle correctly even if the value is undefined', () => {
+        class Demo extends Intact {
+            @Intact.template()
+            static template = `<Editable>{{ self.get('value') }}</Editable>`;
+
+            defaults() {
+                return {value: 'test'};
+            }
+
+            _init() {
+                this.Editable = Editable;
+            }
+        }
+        instance = mount(Demo);
+
+        expect(instance.element.outerHTML).to.matchSnapshot();
+        instance.element.querySelector('.k-edit').click();
+        let input = instance.element.querySelector("input");
+        input.value = 'aa';
+        input.blur();
+        expect(instance.element.outerHTML).to.matchSnapshot();
+        instance.element.querySelector('.k-edit').click();
+        input = instance.element.querySelector("input");
+        expect(input.value).to.eql('aa');
     });
 });

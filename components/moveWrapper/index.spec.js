@@ -1,9 +1,13 @@
 import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
 import Intact from 'intact';
-import {mount} from 'test/utils';
+import {mount, unmount} from 'test/utils';
 
 describe('MoveWrapper', () => {
     describe('Position', () => {
+        let instance;
+
+        afterEach(() => unmount(instance));
+
         class Component extends Intact {
             @Intact.template()
             static template = `
@@ -30,43 +34,42 @@ describe('MoveWrapper', () => {
         }
 
         it('flip left', () => {
-            const instance = mount(Component);
+            instance = mount(Component);
         });
 
         it('flip top', () => {
-            const instance = mount(Component);
+            instance = mount(Component);
             instance.set({
                 position: {my: 'left top', at: 'left bottom'}
             });
         });
 
         it('fit left', () => {
-            const instance = mount(Component);
+            instance = mount(Component);
             instance.set({
                 position: {my: 'right top', at: 'left top', collision: 'fit'}
             });
         });
 
         it('fit top', () => {
-            const instance = mount(Component);
+            instance = mount(Component);
             instance.set({
                 position: {my: 'left top', at: 'left bottom', collision: 'fit'}
             });
         });
 
         it('flipfit left', () => {
-            const instance = mount(Component);
+            instance = mount(Component);
             instance.set({
                 position: {my: 'right top', at: 'left top', collision: 'flipfit'}
             });
         });
 
         it('filpfit top', () => {
-            const instance = mount(Component);
+            instance = mount(Component);
             instance.set({
                 position: {my: 'left top', at: 'left bottom', collision: 'flipfit'}
             });
         });
-
     });
 });

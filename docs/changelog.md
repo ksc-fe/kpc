@@ -4,6 +4,12 @@ order: 99
 sidebar: doc
 ---
 
+## v0.5.13
+
+1. `Fix` 修复`Steps`在宽度不够的情况下，索引不展示；以及在`vue`下`Step`宽度不等分的问题 [#100](https://github.com/ksc-fe/kpc/issues/100)
+2. `Fix` 修复`Table`在Firefox下，`word-break: break-all`不支持的问题
+3. `Fix` 修复`Tooltip`在应该隐藏箭头的情况下，没有隐藏的问题 [#101](https://github.com/ksc-fe/kpc/issues/101)
+
 ## v0.5.12
 
 1. `Add` 新增`Menu`菜单组件 [#90](https://github.com/ksc-fe/kpc/issues/90)

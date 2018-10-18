@@ -160,9 +160,10 @@ export default class Datepicker extends Intact {
         if (isEqual(v, value)) return;
 
         const {begin, end} = this.refs;
-
-        if (v) {
-            if (v.length === 2) {
+        // if cancel all selected value of range, the length of v is 0
+        const length = v.length;
+        if (v && length) {
+            if (length === 2) {
                 // select the first begin/end date
                 value = v.slice(0);
             } else {
@@ -194,7 +195,7 @@ export default class Datepicker extends Intact {
             value.sort();
         }
 
-        this.set('_value', value, {async: true});
+        this.set('_value', value);
     }
 
     _highlightRangeDays(date, isOut) {

@@ -4471,7 +4471,11 @@ var Calendar = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
         var isSet = true;
         if (!_focusDate) {
             _focusDate = this.getShowDate();
-            if (!value) isSet = false;
+            if (!value || Array.isArray(value)) {
+                isSet = false;
+            } else if (!Array.isArray(value)) {
+                _focusDate = new Date(value);
+            }
         } else {
             if (_showDate) {
                 var _y1 = _focusDate.getFullYear();
@@ -6625,10 +6629,11 @@ var Datepicker = (_dec = _intact2.default.template(), (_class = (_temp = _class2
         var _refs = this.refs,
             begin = _refs.begin,
             end = _refs.end;
+        // if cancel all selected value of range, the length of v is 0
 
-
-        if (v) {
-            if (v.length === 2) {
+        var length = v.length;
+        if (v && length) {
+            if (length === 2) {
                 // select the first begin/end date
                 value = v.slice(0);
             } else {
@@ -6660,7 +6665,7 @@ var Datepicker = (_dec = _intact2.default.template(), (_class = (_temp = _class2
             value.sort();
         }
 
-        this.set('_value', value, { async: true });
+        this.set('_value', value);
     };
 
     Datepicker.prototype._highlightRangeDays = function _highlightRangeDays(date, isOut) {
@@ -8698,8 +8703,17 @@ exports.Tip = _tip.Tip;
 exports.Tooltip = _tooltip.Tooltip;
 exports.Transfer = _transfer.Transfer;
 exports.Tree = _tree.Tree;
-exports.Upload = _upload.Upload;
-var version = exports.version = '0.5.12';
+exports.Upload = _upload.Upload; /*!
+                                  * kpc v0.5.14
+                                  *
+                                  * Copyright (c) Kingsoft Cloud
+                                  * Released under the MIT License
+                                  * 
+                                  * Documentation available at
+                                  * https://ksc-fe.github.io/kpc/
+                                  */
+
+var version = exports.version = '0.5.14';
 
 /* generate end */
 
@@ -14381,7 +14395,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     };
 
     var Options = function Options(props) {
-        var data = props.data;
+        var data = props.data || [];
         var level = props.level;
         var ret = [];
 
@@ -15911,7 +15925,7 @@ var TooltipContent = (_dec = _intact2.default.template(), (_class = (_temp = _cl
                     var top = target.top - element.top + target.height / 2;
                     arrow.setAttribute('style', 'top: ' + top + 'px');
                 } else {
-                    arrow.setAttribute('display', 'none');
+                    arrow.setAttribute('style', 'display: none');
                 }
             }
         }, pos));
@@ -18592,13 +18606,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 _e(e);
             }
         }.call($this)
-    }, null, 'ion-edit k-edit') : undefined, function () {
-        try {
-            return value || editing;
-        } catch (e) {
-            _e(e);
-        }
-    }.call($this) ? h('div', null, function () {
+    }, null, 'ion-edit k-edit') : undefined, h('div', null, function () {
         try {
             return !editing ? children : h(_input2.default, {
                 'size': 'small',
@@ -18631,7 +18639,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         } catch (e) {
             _e(e);
         }
-    }.call($this), 'c-ellipsis') : undefined], _className(function () {
+    }.call($this), 'c-ellipsis')], _className(function () {
         try {
             return classNameObj;
         } catch (e) {
@@ -22866,6 +22874,8 @@ var _objectWithoutProperties2 = __webpack_require__(13);
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
 exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _classNameObj;
+
     _Vdt || (_Vdt = Vdt);
     obj || (obj = {});
     blocks || (blocks = {});
@@ -22902,19 +22912,21 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         index = _self$get.index,
         width = _self$get.width,
         error = _self$get.error,
-        rest = (0, _objectWithoutProperties3.default)(_self$get, ['children', 'selected', 'done', 'title', 'index', 'width', 'error']);
+        className = _self$get.className,
+        style = _self$get.style,
+        rest = (0, _objectWithoutProperties3.default)(_self$get, ['children', 'selected', 'done', 'title', 'index', 'width', 'error', 'className', 'style']);
 
-    var classNameObj = {
+    var classNameObj = (_classNameObj = {
         'k-step': true,
         'k-active': selected,
         'k-done': done,
         'k-error': error
-    };
+    }, _classNameObj[className] = className, _classNameObj);
 
     return h('div', (0, _extends3.default)({
         'style': function () {
             try {
-                return { width: width };
+                return (0, _utils.addStyle)(style, { width: width });
             } catch (e) {
                 _e(e);
             }
@@ -22963,6 +22975,8 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         }
     }.call($this)));
 };
+
+var _utils = __webpack_require__(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28677,6 +28691,7 @@ var Node = (_temp = _class = function () {
     Node.prototype.remove = function remove() {
         var siblings = this.parent.children;
         siblings.splice(siblings.indexOf(this), 1);
+        this.updateUpward();
         this.tree.update();
     };
 
