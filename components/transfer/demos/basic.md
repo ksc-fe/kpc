@@ -14,7 +14,7 @@ order: 0
 import Transfer from 'kpc/components/transfer';
 
 <div>
-    <Transfer data={{ self.get('data') }} v-model="value" />
+    <Transfer data={{ self.get('data') }} v-model="value" ref="__test" />
     <p>You selected: {{ JSON.stringify(self.get('value')) }}</p>
 </div>
 ```

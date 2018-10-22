@@ -49,6 +49,33 @@ export default class Transfer extends Intact {
             }
         };
         this.on('$receive:value', (c, v) => fixValue(v));
+        this.on('$receive:data', (c, v) => {
+            if (!v || !v.length) {
+                this.set({
+                    leftChecked: [],
+                    rightChecked: [],
+                    value: []
+                });
+            } else {
+                const {leftChecked, rightChecked, value} = this.get();
+                const fix = (data) => {
+                    const ret = [];
+                    if (data) {
+                        for (let i = 0; i < data.length; i++) {
+                            if (v.indexOf(data[i]) > -1) {
+                                ret.push(data[i]);
+                            }
+                        }
+                    }
+                    return ret;
+                };
+                this.set({
+                    leftChecked: fix(leftChecked),
+                    rightChecked: fix(rightChecked),
+                    value: fix(value)
+                });
+            }
+        });
     }
 
     _mount() {
