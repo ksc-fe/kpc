@@ -60,7 +60,6 @@ if (width || height) {
     <input type="checkbox" name={{ name }} 
         disabled={{ disabled }}
         v-model="value" 
-        value={{ trueValue }}
         v-model-true={{ trueValue }}
         v-model-false={{ falseValue }}
         ref="input"

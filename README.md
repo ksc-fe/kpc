@@ -1,6 +1,6 @@
 <div align="center">
 
-[![LOGO](/site/src/imgs/logo.png "LOGO")](https://ksc-fe.github.io/kpc/)
+[![LOGO](/site/src/imgs/logo.png)](https://ksc-fe.github.io/kpc/)
 
 [![Build Status](https://travis-ci.org/ksc-fe/kpc.svg?branch=master)](https://travis-ci.org/ksc-fe/kpc)
 [![Codecov](https://codecov.io/gh/ksc-fe/kpc/branch/master/graphs/badge.svg)](https://codecov.io/gh/ksc-fe/kpc/branch/master)
