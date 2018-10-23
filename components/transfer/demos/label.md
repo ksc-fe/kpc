@@ -20,6 +20,7 @@ import Transfer from 'kpc/components/transfer';
     filter={{ self.filter }}
     filterable
     keyName="name"
+    ref="__test"
 >
     <b:label params="data, index, type">
         <div>
