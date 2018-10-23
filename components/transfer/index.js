@@ -78,23 +78,6 @@ export default class Transfer extends Intact {
         });
     }
 
-    _mount() {
-        document.addEventListener('keydown', this._onKeydown);
-        document.addEventListener('keyup', this._onKeyup);
-    }
-
-    _onKeydown(e) {
-        if (e.keyCode === 16) {
-            this.shiftKey = true;
-        }
-    }
-
-    _onKeyup(e) {
-        if (e.keyCode === 16) {
-            this.shiftKey = false;
-        }
-    }
-
     _add() {
         const value = this.get('value').concat(this.get('leftChecked'));
         this.set({
@@ -116,63 +99,60 @@ export default class Transfer extends Intact {
     }
 
     _onCheckboxChange(type, index, e) {
-        const keywords = this.get(`${type}Keywords`);
-        const data = type === 'left' ? this.get('data') : this.get('value');
-        const filter = this.get('filter');
-
-        if (this.startIndex === undefined || !this.shiftKey) {
+        if (this.startIndex === undefined || !e.shiftKey) {
             this.startIndex = index;
+            this.endIndex = undefined;
             this.checked = e.target.checked;
-        } else if (this.shiftKey) {
-            let values = data;
-            if (this.get('filterable') && keywords) {
-                values = data.filter(item => filter(item, keywords));
-            }
-            if (index > this.startIndex) {
-                values = values.slice(this.startIndex, index + 1);
-            } else if (index < this.startIndex) {
-                values = values.slice(index, this.startIndex + 1);
-            }
-            values = values.filter(item => !item.disabled);
-            const checkedValues = this.get(`${type}Checked`);
-            const _values = [];
-
-            if (this.checked) {
-                checkedValues.forEach(item => {
-                    if (!~values.indexOf(item)) {
-                        _values.push(item);
-                    }
-                });
-                this.set(`${type}Checked`, values.concat(_values));
-            } else {
-                checkedValues.forEach(item => {
-                    if (!~values.indexOf(item)) {
-                        _values.push(item);
-                    }
-                });
-                this.set(`${type}Checked`, _values);
-            }
-        }
-    }
-
-    _onClickLabel(e) {
-        if (e.shiftKey && e.target.tagName !== 'INPUT') {
+        } else if (e.shiftKey) {
             e.preventDefault();
-            e.target.click();
+
+            const values = this._getShowedData(type);
+            const checkedValues = this.get(`${type}Checked`).slice(0);
+            const lastEndIndex = this.endIndex;
+            this.endIndex = index;
+            const update = (data, isCheck) => {
+                data.forEach(item => {
+                    if (!item.disabled) {
+                        const index = checkedValues.indexOf(item);
+                        if (isCheck) {
+                            if (!~index) {
+                                checkedValues.push(item);
+                            }
+                        } else {
+                            if (~index) {
+                                checkedValues.splice(index, 1);
+                            }
+                        }
+                    }
+                });
+            };
+
+            if (lastEndIndex !== undefined) {
+                // if exists lastEndIndex, we reset the last result
+                // and set it again
+                update(
+                    values.slice(
+                        Math.min(index, lastEndIndex),
+                        Math.max(index, lastEndIndex) + 1
+                    ),
+                    !this.checked
+                ); 
+            }
+            update(
+                values.slice(
+                    Math.min(index, this.startIndex),
+                    Math.max(index, this.startIndex) + 1
+                ), 
+                this.checked
+            );
+
+            this.set(`${type}Checked`, checkedValues);
         }
     }
 
     _isCheckAll(model) {
         const checked = this.get(`${model}Checked`);
-        let data = this.get('value');
-
-        if (model === 'left') {
-            data = this.get('data').filter(item => {
-                return !~data.indexOf(item) && !item.disabled;
-            });
-        } else {
-            data = data.filter(item => !item.disabled);
-        }
+        const data = this._getEnabledData(model);
 
         return data.length && checked.length >= data.length;
     }
@@ -186,13 +166,21 @@ export default class Transfer extends Intact {
     }
 
     _selectAll(model) {
+        this.set(`${model}Checked`, this._getEnabledData(model));
+    }
+
+    _getEnabledData(model) {
+        return this._getShowedData(model).filter(item => {
+            return !item.disabled;
+        });
+    }
+
+    _getShowedData(model) {
         let data = this.get('value');
         if (model === 'left') {
             data = this.get('data').filter(item => {
-                return !~data.indexOf(item) && !item.disabled;
+                return !~data.indexOf(item)
             });
-        } else {
-            data = data.filter(item => !item.disabled);
         }
 
         let keywords = this.get(`${model}Keywords`);
@@ -201,12 +189,7 @@ export default class Transfer extends Intact {
             data = data.filter(item => filter(item, keywords));
         }
 
-        this.set(`${model}Checked`, data);
-    }
-
-    _destroy() {
-        document.removeEventListener('keydown', this._onKeydown);
-        document.removeEventListener('keyup', this._onKeyup);
+        return data;
     }
 }
 

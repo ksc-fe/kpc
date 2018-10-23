@@ -45,7 +45,6 @@ const Panel = props => {
                 class={{ {"k-item": true, "k-disabled": value.disabled} }}
                 key={{ value[keyName] || value.label || value }}
                 a:transition="c-fade"
-                ev-click={{ self._onClickLabel }}
             >
                 <Checkbox v-model={{ `${props.model}Checked` }} name={{ props.model }}
                     trueValue={{ value }}
