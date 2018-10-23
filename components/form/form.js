@@ -53,6 +53,7 @@ export default class Form extends Intact {
 
     getItem(model) {
         const items = this.get('items');
+        /* istanbul ignore if */
         if (model === undefined) return items;
         return items.find(item => item.get('model') === model);
     }
