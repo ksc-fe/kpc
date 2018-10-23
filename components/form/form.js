@@ -51,11 +51,11 @@ export default class Form extends Intact {
         items.forEach(item => item.reset());
     }
 
-    // getItem(model) {
-        // const items = this.get('items');
-        // if (model === undefined) return items;
-        // return items.find(item => item.get('model') === model);
-    // }
+    getItem(model) {
+        const items = this.get('items');
+        if (model === undefined) return items;
+        return items.find(item => item.get('model') === model);
+    }
 
     // optional(item) {
         // const value = item.get('value');

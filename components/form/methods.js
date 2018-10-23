@@ -2,6 +2,7 @@ import {_$} from '../utils';
 
 function decimalPlaces(num) {
     var match = ("" + num).match(/(?:\.(\d+))?$/);
+    /* istanbul ignore if */
     if (!match) {
         return 0;
     }

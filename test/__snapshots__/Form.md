@@ -59,3 +59,17 @@ Object {
 "<div class=\"k-form-item k-valid\"><label class=\"k-label\">用户名</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><div class=\"k-error\">用户名 a 已被占用</div></div></div>"
 ```
 
+#### `methods`
+
+```
+"<div class=\"k-form-item k-invalid\"><label class=\"k-label\"></label><div class=\"k-content\"><div class=\"k-error c-fade-enter\">两次输入不一致</div></div></div><div class=\"k-form-item k-valid\"><label class=\"k-label\"></label><div class=\"k-content\"></div></div>"
+```
+
+```
+"<div class=\"k-form-item k-valid\"><label class=\"k-label\"></label><div class=\"k-content\"><div class=\"k-error\">两次输入不一致</div></div></div><div class=\"k-form-item k-valid\"><label class=\"k-label\"></label><div class=\"k-content\"></div></div>"
+```
+
+```
+"<div class=\"k-form-item k-invalid\"><label class=\"k-label\"></label><div class=\"k-content\"><div class=\"k-error c-fade-enter\">两次输入不一致</div></div></div><div class=\"k-form-item k-invalid\"><label class=\"k-label\"></label><div class=\"k-content\"><div class=\"k-error c-fade-enter\">两次输入不一致</div></div></div>"
+```
+
