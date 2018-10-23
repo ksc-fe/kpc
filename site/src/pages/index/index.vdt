@@ -6,8 +6,8 @@ import {Row, Col} from 'kpc/components/grid';
     <b:content>
         <div class="pages">
             <ul class="index-dot">
-                <li class={{ self.get('current') === "one" ? "dot-active" : "" }}></li>
-                <li class={{ self.get('current') === "two" ? "dot-active" : "" }}></li>
+                <li ev-click={{ self._page1 }} class={{ self.get('current') === "one" ? "dot-active" : "" }}></li>
+                <li ev-click={{ self._page2 }} class={{ self.get('current') === "two" ? "dot-active" : "" }}></li>
             </ul>
             <div class="first-page" v-if={{ self.get('current') === "one" }}>
                 <Row>
@@ -42,7 +42,7 @@ import {Row, Col} from 'kpc/components/grid';
                 <Row>
                     <Col class="second-page-left"
                         xs={{ {span: 20, offset: 4} }}
-                        xl={{ {span: 12, offset: 0} }}
+                        xl={{ {span: 12, offset: 2} }}
                     >
                         <div class="left"></div>
                     </Col>

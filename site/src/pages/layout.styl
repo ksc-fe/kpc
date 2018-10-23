@@ -54,9 +54,11 @@ blockquote
     // padding-top headerHeight + 15px 
     padding-top headerHeight
 
+.header-shadow
+    box-shadow 0 2px 5px rgba(0, 0, 0, .08)
 .header-wrapper
-    height headerHeight
-    line-height headerHeight 
+    height 87px
+    line-height 87px
     //box-shadow 0 2px 5px rgba(0, 0, 0, .08)
     background #fff
     position fixed
@@ -64,33 +66,51 @@ blockquote
     top 0
     z-index 999
     header
-        width 100% 
+        width 100%
+        height 87px
+        //border 1px solid red
         margin 0 auto
         transition width $transition
-    .logo
-        display inline-block
-        margin-left 32px
-        margin-top 24px
-        width 45px
-        height 39px
-        font-size 24px
-        color #333
-        background-image url("../imgs/logo.png")
-        background-size 45px 39px
-    .king
-        font-size 30px
-        position absolute
-    .right
-        float right
-    nav
-        position relative
-        display inline-block
-        a
+        .king-logo
             display inline-block
-            padding 0 20px
-            color #333
-            &.active
-                color linkColor
+            line-height 87px
+            .logo
+                display inline-block
+                margin-left 32px
+                margin-top 24px
+                width 45px
+                height 39px
+                font-size 24px
+                color #333
+                background-image url("../imgs/logo.png")
+                background-size 45px 39px
+            .king
+                font-size 30px
+                position absolute
+        .right
+            float right
+            line-height 87px
+        nav
+            position relative
+            display inline-block
+            span
+                padding 0 10px
+                margin 0 5px
+                cursor pointer
+                &.active
+                    color linkColor
+                    border-bottom 2px solid linkColor
+            a
+                display inline-block
+                padding 0 20px
+                color #333
+                &.active
+                    color linkColor
+                    border-bottom 2px solid linkColor
+        .line
+            display inline
+            margin 0 10px
+            border-right 1px solid #CCCCCC
     .k-select
         margin-right 20px
     .label
@@ -107,4 +127,3 @@ blockquote
     color red 
 .yellow 
     color yellow 
-

@@ -10,7 +10,7 @@ $aside-width = 200px
         margin-bottom 0
         .aside-wrapper
             position fixed
-            top headerHeight 
+            //top headerHeight
             background #fff
             height "calc(100% - %s)" % headerHeight
             overflow auto
@@ -20,7 +20,7 @@ $aside-width = 200px
         width 100%
         display flex
         background #fff
-        margin 0 auto
+        margin 36px auto
         border-radius 5px
         box-shadow 0 1px 1px rgba(0, 0, 0, .08)
         min-height calc(100vh - 15px)
@@ -29,7 +29,7 @@ $aside-width = 200px
             border-right 1px solid #eee
         .aside-wrapper
             position relative
-            padding-bottom 20px
+            padding-bottom 70px
             .catalog-section
                 margin-top 25px
             h5
@@ -54,7 +54,9 @@ $aside-width = 200px
                     font-size 12px
             .active 
                 & > a, & span
-                    color linkColor !important
+                    color #ffffff !important
+                    background-color #0091ea
+                    //color linkColor !important
                     // border-right 2px solid linkColor
                         
             .sub-catalogs
@@ -142,7 +144,8 @@ $aside-width = 200px
     .table-of-contents
         position fixed
         right 0
-        top 70px
+        //top 70px
+        padding-top 15px
         width 150px
         font-size 12px
         li
@@ -156,7 +159,7 @@ $aside-width = 200px
     .content-wrapper
         .aside-wrapper
             position fixed
-            top headerHeight 
+            //top headerHeight
             background #fff
             height "calc(100% - %s)" % headerHeight
             overflow auto
@@ -164,3 +167,28 @@ $aside-width = 200px
             width $aside-width - 1px
         article
             padding 10px 150px 10px 20px
+
+.aside-border-nav
+    height 100%
+    position absolute
+    border-left 1px solid #B2B2B2
+
+.aside-dot
+    height 8px !important
+    width 8px
+    border 1px solid #0091ea
+    border-radius 8px
+    left -3px
+    position absolute
+    background-color #0091ea // #CCCCCC
+
+.c-ellipsis-dot:before
+    content ''
+    position absolute
+    width 8px
+    height 8px
+    border-radius 8px
+    margin-top 5px
+    border 1px solid #CCCCCC
+    left -3px
+    background-color #CCCCCC

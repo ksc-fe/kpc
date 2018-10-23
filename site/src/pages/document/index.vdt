@@ -5,6 +5,7 @@ import Badge from 'components/badge';
 const Article = self.get('Article');
 
 let currentNav = {};
+let demos = self.get('demos') || [];
 
 function Catalog(props) {
     return <div class="catalog-section">
@@ -88,13 +89,14 @@ if (sidebar) {
             </div>
             <Article ref="article" />
         </article>
-        <div class="table-of-contents" v-if={{ self.get('demos') }}
+        <div class="table-of-contents" v-if={{ demos }}
             ref="tableContents"
         >
+            <div v-if={{ demos.length > 0 }} class="aside-border-nav"></div>
             <ul>
-                <li v-for={{ self.get('demos') }}
+                <li v-for={{ demos }}
                     class={{ {
-                        "c-ellipsis": true, 
+                        "c-ellipsis-dot": true,
                         'active': self.get('activeExample') == value.data.index
                     } }}
                     ev-click={{ self._scrollToView.bind(self, value) }}
@@ -102,7 +104,8 @@ if (sidebar) {
                     {{ value.data.setting.title }}
                 </li>
             </ul>
-            <div class="aside-border transition" style={{ self.get('borderStyle') }}></div>
+            <div v-if={{ false }} class="aside-border transition" style={{ self.get('borderStyle') }}></div>
+            <div class="aside-dot transition" style={{ self.get('borderStyle') || 'display:none' }}></div>
         </div>
     </b:content>
 </t:parent>

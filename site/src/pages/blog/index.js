@@ -11,6 +11,19 @@ export default class extends Document {
     @Intact.template()
     static template = template;
 
+    defaults() {
+        return {
+            ...super.defaults(),
+            borderStyle: {
+                width: '12px',
+                height: '12px',
+                'border-radius': '12px',
+                left: '-6px',
+                top: '5px'
+            }
+        }
+    }
+
     _mount() {
         super._mount();
 
@@ -24,7 +37,7 @@ export default class extends Document {
     scrollTo(id) {
         const header = document.getElementById(id);
         if (header) {
-            const top = header.getBoundingClientRect().top + window.pageYOffset - 50;
+            const top = header.getBoundingClientRect().top + window.pageYOffset - 50; // todo
 
             window.scrollTo(0, top);
         }
@@ -61,11 +74,21 @@ export default class extends Document {
         active = active[active.length - 1];
         if (active) {
             this.set('borderStyle', {
-                height: active.offsetHeight + 'px',
-                top: active.offsetTop + 'px',
+                // height: active.offsetHeight + 'px',
+                height: active.getAttribute('key') == '2' ? '12px' : '8px',
+                width: active.getAttribute('key') == '2' ? '12px' : '8px',
+                'border-radius': active.getAttribute('key') == '2' ? '12px' : '8px',
+                left: active.getAttribute('key') == '2' ? '-6px' : '-4px',
+                top: active.offsetTop + 5 + 'px',
             });
         } else {
-            this.set('borderStyle', undefined);
+            this.set('borderStyle', {
+                width: '12px',
+                height: '12px',
+                'border-radius': '12px',
+                left: '-6px',
+                top: '5px'
+            });
         }
     }
 }
