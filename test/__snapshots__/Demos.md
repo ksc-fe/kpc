@@ -377,13 +377,19 @@
 #### `Form custom`
 
 ```
-"<form class=\"k-form\" novalidate=\"\"><div class=\"k-form-item\"><label class=\"k-label\">描述</label><div class=\"k-content\"><div class=\"k-form-item\"><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div><div class=\"k-append\"><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>删除</span></button></div></div><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>添加</span></button></div></div></form>"
+"<form class=\"k-form\" novalidate=\"\"><div class=\"k-form-item\"><label class=\"k-label\">描述</label><div class=\"k-content\"><div class=\"k-form-item\"><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div><div class=\"k-append\"><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>删除</span></button></div></div><div class=\"k-form-item\"><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div><div class=\"k-append\"><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>删除</span></button></div></div><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>添加</span></button></div></div></form>"
 ```
 
 #### `Form label`
 
 ```
 "<form class=\"k-form\" novalidate=\"\"><div class=\"k-form-item\"><label class=\"k-label\"><i style=\"color: red\">*</i> 姓名</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div><div class=\"k-form-item\"><label class=\"k-label\"><i class=\"ion-person\"></i> 姓名</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div></form>"
+```
+
+#### `Form remote`
+
+```
+"<form class=\"k-form\" novalidate=\"\"><div class=\"k-form-item\"><label class=\"k-label\">用户名</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div></form>"
 ```
 
 #### `Form variable`

@@ -27,16 +27,16 @@ export default class Form extends Intact {
         }
     }
 
-    getRules() {
-        const rules = this.get('rules');
-        const items = this.get('items');
+    // getRules() {
+        // const rules = this.get('rules');
+        // const items = this.get('items');
 
-        items.forEach(item => {
-            rules[item.get('model')] = item.get('rules');
-        });
+        // items.forEach(item => {
+            // rules[item.get('model')] = item.get('rules');
+        // });
 
-        return rules;
-    }
+        // return rules;
+    // }
 
     validate() {
         const items = this.get('items');
@@ -51,16 +51,16 @@ export default class Form extends Intact {
         items.forEach(item => item.reset());
     }
 
-    getItem(model) {
-        const items = this.get('items');
-        if (model === undefined) return items;
-        return items.find(item => item.get('model') === model);
-    }
+    // getItem(model) {
+        // const items = this.get('items');
+        // if (model === undefined) return items;
+        // return items.find(item => item.get('model') === model);
+    // }
 
-    optional(item) {
-        const value = item.get('value');
-        return !Form.methods.required.call(this, value, item);
-    }
+    // optional(item) {
+        // const value = item.get('value');
+        // return !Form.methods.required.call(this, value, item);
+    // }
 
     getFirstInvalidFormItem() {
         return this.get('items').find(item => {

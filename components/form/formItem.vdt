@@ -11,15 +11,6 @@ const classNameObj = {
     [className]: className,
 };
 
-// vdt does not support return `v-if & v-else` element in root,
-// like: 
-//     '<div v-if={{ true }}>true</div>'
-//     '<label v-else>false</label>'
-// so wrap it.
-// const Wrapper = (props) => {
-//     return h(props._tagName, props, props.children); 
-// }
-
 <div class={{ classNameObj }} style={{ style }}
     ev-change={{ self._dirty }}
     ev-focusout={{ self._dirty }}

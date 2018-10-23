@@ -12,7 +12,7 @@ import {Form, FormItem} from 'kpc/components/form';
 import {Input} from 'kpc/components/input';
 import {Row, Col} from 'kpc/components/grid';
 
-<Form>
+<Form ref="form">
     <FormItem label="姓名">
         <Row gutter="16">
             <Col span="12">

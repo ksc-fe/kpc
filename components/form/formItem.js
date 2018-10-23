@@ -51,6 +51,7 @@ export default class FormItem extends Intact {
         while (form && form.tag !== Form) {
             form = form.parentVNode;
         }
+        /* istanbul ignore if */
         if (!form) {
             throw new Error('FormItem must be used as the descendant of Form');
         }
@@ -118,6 +119,7 @@ export default class FormItem extends Intact {
                     fn = rule;
                 } else {
                     fn = Form.methods[key];
+                    /* istanbul ignore if */
                     if (!fn) {
                         console.warn(`Can not find validate method: ${key}`);
                         continue;
@@ -191,6 +193,7 @@ export default class FormItem extends Intact {
 
     _dirty() {
         if (!this.get('model')) return;
+        /* istanbul ignore if */
         if (this.get('isDirty')) return;
 
         // for select, the focusout event triggers before select
@@ -198,11 +201,6 @@ export default class FormItem extends Intact {
         setTimeout(() => {
             this.validate()
         }, 100);
-        // if (this.$nextTick) {
-            // this.$nextTick(this.validate);
-        // } else {
-            // this.validate();
-        // }
     }
 
     _cancel() {
