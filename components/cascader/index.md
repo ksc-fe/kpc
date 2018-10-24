@@ -25,3 +25,9 @@ sidebar: doc
 | width | 指定宽度 | `Number` | `undefined` | 
 | placeholder | 占位文案 | `String` | `"请选择"` |
 
+# 扩展点
+
+| 名称 | 说明 | 参数 |
+| --- | --- | --- |
+| format | 扩展选择后展示的内容，等同于`format`属性，优先级比`format`属性高 | `values`: `Array` 当前所有已选值 |
+
