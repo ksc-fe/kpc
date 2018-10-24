@@ -105,18 +105,27 @@ export default class DropdownMenu extends Intact {
         // if the dropdown menu is nested, then show the parent first
         // and show the child menu later
         const p = (_of, transition) => {
+            let using;
             position(this.refs.menu.element, {
                 my: 'center top+8', 
                 at: 'center bottom', 
                 of: _of,
                 using: (feedback) => {
-                    // let the child menu has the same transition with parent menu
-                    this.set('transition', transition || getTransition(feedback));
+                    using = () => {
+                        // let the child menu has the same transition with parent menu
+                        this.set('transition', transition || getTransition(feedback));
+                        using = null;
+                    } 
+                    // if it is the first menu, getTransition immediately
+                    if (!transition) {
+                        using();
+                    }
                 },
                 ...this.get('position')
             });
             this.positioned = true;
-            this.trigger('positioned')
+            this.trigger('positioned', transition);
+            using && using();
         }
 
         let _of = this.dropdown.element;
@@ -127,8 +136,8 @@ export default class DropdownMenu extends Intact {
                 if (parent.positioned) {
                     p(_of);
                 } else {
-                    parent.one('positioned', () => {
-                        p(_of, parent.get('transition'));
+                    parent.one('positioned', (transition) => {
+                        p(_of, transition || parent.get('transition'));
                     });
                 }
             }
