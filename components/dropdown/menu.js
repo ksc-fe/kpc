@@ -246,7 +246,8 @@ export default class DropdownMenu extends Intact {
     focusItemByIndex(index, direction = 'down') {
         const items = this.items;
         const max = items.length - 1;
-        const oldIndex = this.focusIndex;
+
+        this.unFocusLastItem();
 
         function fixIndex(index) {
             if (index > max) {
@@ -270,11 +271,17 @@ export default class DropdownMenu extends Intact {
 
         this.focusIndex = index;
 
+        items[index].focus();
+    }
+
+    unFocusLastItem() {
+        const oldIndex = this.focusIndex;
+        const items = this.items;
+
         if (oldIndex > -1 && items[oldIndex]) {
             items[oldIndex].unFocus();
+            this.focusIndex = -1;
         }
-
-        items[index].focus();
     }
 
     _selectItem(e) {

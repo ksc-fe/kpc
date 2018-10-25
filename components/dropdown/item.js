@@ -60,6 +60,7 @@ export default class DropdownItem extends Intact {
 
     _onMouseLeave(e) {
         this.trigger('mouseleave', e);
+        this.parent.unFocusLastItem();
         // if (this.get('disabled')) return;
     }
 
