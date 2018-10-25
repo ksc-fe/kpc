@@ -44,7 +44,6 @@ describe('Select', () => {
         instance = mount(ClearableDemo);
 
         instance.set({day: 'Monday', days: ['Monday', 'Tuesday']});
-        expect(instance.element.outerHTML).to.matchSnapshot();
         const [clear1, clear2] = instance.element.querySelectorAll('.k-clear');
         clear1.click();
         clear2.click();
@@ -93,7 +92,7 @@ describe('Select', () => {
 
         input3.value = 'm';
         dispatchEvent(input3, 'input');
-        expect(getElement('.k-select-dropdown')).to.matchSnapshot();
+        expect(getElement('.k-select-dropdown').innerHTML).to.matchSnapshot();
         input3.value = '三';
         dispatchEvent(input3, 'input');
         dispatchEvent(document, 'keydown', {keyCode: 13});

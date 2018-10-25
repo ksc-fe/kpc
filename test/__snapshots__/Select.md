@@ -53,18 +53,7 @@
 ```
 
 ```
-<div
-  class="k-dropdown-menu k-select-dropdown c-slidedown-enter"
-  style="left: 400px; top: 59.5px; width: 200px;"
->
-  <!--  -->
-  <!--  -->
-  <!--  -->
-  <!--  -->
-  <!--  -->
-  <!--  -->
-  <!--  -->
-</div>
+"<!----><!----><!----><!----><!----><!----><!---->"
 ```
 
 #### `group`
