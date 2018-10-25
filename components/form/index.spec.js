@@ -68,8 +68,8 @@ describe('Form', () => {
                 expect(instance.element.innerHTML).to.matchSnapshot();
 
                 done();
-            }, 200)
-        }, 200);
+            }, 500)
+        }, 500);
     });
 
     it('validate when rules have changed', (done) => {
