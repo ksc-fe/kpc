@@ -49,7 +49,7 @@
 ```
 
 ```
-"<div><div class=\"k-select k-with-suffix k-has-value\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\" value=\"Monday\"><div class=\"k-input k-fluid\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请选择\"></div></div></div><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div><div class=\"k-select k-show k-with-suffix k-has-value\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\" value=\"Tuesday\"><span class=\"k-values\"><span class=\"k-select-tag c-fade-enter\"><span class=\"k-text\">星期二</span><i class=\"k-icon ion-ios-close-empty\"></i></span><div class=\"k-input k-auto-width\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"\" style=\"width: 15px;\"><div class=\"k-fake\">二</div></div></div></span></div><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div><div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><div class=\"k-input k-fluid\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请选择\"></div></div></div><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div></div>"
+"<!----><!----><!----><!----><!----><!----><!---->"
 ```
 
 ```
