@@ -112,8 +112,8 @@ export default class Select extends Intact {
     }
 
     /**
-     * @brief let the blur method called after select
-     * if we selected the option, then the keywords has been set to undefind
+     * @brief let the blur method be called after select
+     * if we have selected the option, then the keywords have been set to undefined
      * in this case, we do nothing, otherwise we reset it
      */
     _onBlur() {

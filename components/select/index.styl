@@ -1,4 +1,5 @@
 @require('./variables.styl');
+@require('../../styles/mixin.styl');
 
 .k-select
     display inline-block
@@ -89,6 +90,7 @@
     // multiple
     .k-values
         display inline-block
+        line-height 1
     .k-select-tag
         padding $select-multiple-tag-padding 
         background $select-multiple-tag-bg-color
@@ -137,6 +139,7 @@
                     height s('calc(%s - 2px)', lookup('$select-' + size + '-height'))
             .k-values
                 margin-top lookup('$select-' + size + '-multiple-values-margin')
+                margin-right -(getRight(lookup('$select-' + size + '-multiple-tag-margin')))
                 .k-input
                     margin-top -(lookup('$select-' + size + '-multiple-values-margin')) 
             .k-select-tag
