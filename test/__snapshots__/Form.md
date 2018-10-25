@@ -62,14 +62,14 @@ Object {
 #### `methods`
 
 ```
-"<div class=\"k-form-item k-invalid\"><label class=\"k-label\"></label><div class=\"k-content\"><div class=\"k-error c-fade-enter\">两次输入不一致</div></div></div><div class=\"k-form-item k-valid\"><label class=\"k-label\"></label><div class=\"k-content\"></div></div>"
+"<div class=\"k-form-item k-invalid\"><label class=\"k-label\"></label><div class=\"k-content\"><div class=\"k-error\">两次输入不一致</div></div></div><div class=\"k-form-item k-valid\"><label class=\"k-label\"></label><div class=\"k-content\"></div></div>"
 ```
 
 ```
-"<div class=\"k-form-item k-valid\"><label class=\"k-label\"></label><div class=\"k-content\"><div class=\"k-error\">两次输入不一致</div></div></div><div class=\"k-form-item k-valid\"><label class=\"k-label\"></label><div class=\"k-content\"></div></div>"
+"<div class=\"k-form-item k-valid\"><label class=\"k-label\"></label><div class=\"k-content\"></div></div><div class=\"k-form-item k-valid\"><label class=\"k-label\"></label><div class=\"k-content\"></div></div>"
 ```
 
 ```
-"<div class=\"k-form-item k-invalid\"><label class=\"k-label\"></label><div class=\"k-content\"><div class=\"k-error c-fade-enter\">两次输入不一致</div></div></div><div class=\"k-form-item k-invalid\"><label class=\"k-label\"></label><div class=\"k-content\"><div class=\"k-error c-fade-enter\">两次输入不一致</div></div></div>"
+"<div class=\"k-form-item k-invalid\"><label class=\"k-label\"></label><div class=\"k-content\"><div class=\"k-error\">两次输入不一致</div></div></div><div class=\"k-form-item k-invalid\"><label class=\"k-label\"></label><div class=\"k-content\"><div class=\"k-error\">两次输入不一致</div></div></div>"
 ```
 

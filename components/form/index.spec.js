@@ -89,7 +89,8 @@ describe('Form', () => {
         });
     });
 
-    it('validate asynchronously', (done) => {
+    it('validate asynchronously', function(done) {
+        this.enableTimeouts(false);
         instance = mount(RemoteDemo);
 
         const form = instance.refs.form;
@@ -126,7 +127,8 @@ describe('Form', () => {
         });
     });
 
-    it('methods', async () => {
+    it('methods', async function() {
+        this.enableTimeouts(false);
         class Demo extends Intact {
             @Intact.template()
             static template = `
@@ -308,7 +310,7 @@ describe('Form', () => {
                 setTimeout(() => {
                     expect(el.innerHTML).to.matchSnapshot();
                     resolve();
-                });
+                }, 400);
             });
         };
         instance.set('value', 1);
