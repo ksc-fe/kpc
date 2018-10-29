@@ -30,8 +30,8 @@ export default class Timepicker extends Datepicker {
         // proxy _value to value
         this.on('$change:_value', (c, v) => {
             if (this.get('range')) {
-                // if only select one date for range, set with undefined
-                if (v && v.length === 1) {
+                // if only select one date for range, set to undefined
+                if (Array.isArray(v) && v.length === 1) {
                     v = undefined;
                 }
             }
@@ -43,9 +43,9 @@ export default class Timepicker extends Datepicker {
             this.set('value', v);
         });
 
-        // give the time string a date, let it can be converted to Date
+        // add date to the time string, let it can be converted to Date
         this.on('$receive:value', (c, v) => {
-            if (v && v.length) {
+            if (Array.isArray(v) && v.length) {
                 v = v.map(item => PREFIX + item);
             } else if (v) {
                 v = PREFIX + v;

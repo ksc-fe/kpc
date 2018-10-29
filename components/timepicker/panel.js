@@ -48,17 +48,19 @@ export default class TimePanel extends Calendar {
     }
 
     changeTimeByStep(c, v) {
+        // the function is only called in range step,
+        // so detecting multiple is unnecessary
         this.isSelectTime = true;
 
-        const {value, _now, multiple} = this.get();
-        const originalValue = multiple ? (value && value[this._index]) : value;
+        const {value, _now} = this.get();
+        const originalValue = value && value[this._index];
 
         let valueDate = new Date(originalValue || _now);
         valueDate = getDateString(valueDate, 'date') + ' ' + v[0];
 
-        if (!multiple) {
-            this.set('value', valueDate);
-        } else {
+        // if (!multiple) {
+            // this.set('value', valueDate);
+        // } else {
             let _value;
             if (value) {
                 _value = value.slice(0);
@@ -68,7 +70,7 @@ export default class TimePanel extends Calendar {
             }
 
             this.set('value', _value);
-        }
+        // }
 
         this.isSelectTime = false;
     }
