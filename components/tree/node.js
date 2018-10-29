@@ -106,7 +106,7 @@ export default class Node {
             children.push(node);
         });
 
-        this.tree.expand(this.key, true);
+        this.tree.expand(this.key, false);
         this.tree.update();
     }
 

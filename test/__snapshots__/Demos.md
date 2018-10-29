@@ -318,6 +318,14 @@
 "<div><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>More &gt;</span></button><!--placeholder--></div>"
 ```
 
+#### `Dropdown contextmenu`
+
+```
+"<div><div class=\"contextmenu-area\">
+        right click this area to show context menu
+    </div><!--placeholder--></div>"
+```
+
 #### `Dropdown disabled`
 
 ```
@@ -1252,6 +1260,12 @@
 
 ```
 "<div><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>get checked data</span></button><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>get checked leaves data</span></button><br><br><div class=\"k-tree\"><div class=\"k-node\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label><span class=\"k-text\">First floor-1</span></div></div><div class=\"k-node\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><label class=\"k-checkbox k-indeterminate\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label><span class=\"k-text\">First floor-2</span></div></div></div></div>"
+```
+
+#### `Tree contextmenu`
+
+```
+"<div><div class=\"k-tree\"><div class=\"k-node\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">First floor-1</span></div></div><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">First floor-2</span></div><div><div class=\"k-node\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Second floor-2.1</span></div></div><div class=\"k-node k-disabled\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Second floor-2.2</span></div></div></div></div></div><!--placeholder--></div>"
 ```
 
 #### `Tree custom`

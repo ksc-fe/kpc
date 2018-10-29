@@ -177,6 +177,7 @@ module.exports = function(isDev) {
                         await ctx.fsWrite(!item.file ? file.relative : file.dirname + '/' + item.file, content);
                     });
                 } else {
+                    console.log(file, file.md.setting);
                     file.extname = '.js';
                     if (!file.md.setting) return;
 

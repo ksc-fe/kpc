@@ -2,6 +2,7 @@ import Intact from 'intact';
 import template from './menu.vdt';
 import position from '../moveWrapper/position';
 import {findParentComponent, getTransition} from '../utils';
+import Dropdown from './dropdown';
 
 export default class DropdownMenu extends Intact {
     @Intact.template()
@@ -12,7 +13,7 @@ export default class DropdownMenu extends Intact {
         trigger: ['hover', 'click'],
         position: Object,
         transition: String,
-        of: ['self', 'parent'],
+        of: ['self', 'parent', Object/* Event */],
     }
 
     defaults() {
@@ -38,7 +39,11 @@ export default class DropdownMenu extends Intact {
                 this.trigger('hide', this);
             }
         });
-
+        this.on('$changed:of', () => {
+            if (this.get('value')) {
+                this.position();
+            }
+        });
     }
 
     _mount() {
@@ -52,9 +57,11 @@ export default class DropdownMenu extends Intact {
             // the previous sibling is Dropdown
             const siblings = this.parentVNode.children;
             const index = siblings.indexOf(this.vNode);
-            const dropdown = siblings[index - 1].children;
-            this.dropdown = dropdown;
-            dropdown.menu = this.vNode;
+            const dropdown = siblings[index - 1];
+            if (dropdown.tag === Dropdown) {
+                this.dropdown = dropdown.children;
+                dropdown.menu = this.vNode;
+            }
         }
 
         // if (this.get('show')) {
@@ -128,8 +135,8 @@ export default class DropdownMenu extends Intact {
             using && using();
         }
 
-        let _of = this.dropdown.element;
-        if (this.get('of') === 'parent') {
+        let _of = this.get('of');
+        if (_of  === 'parent') {
             const parent = this._findParentDropdownMenu();
             if (parent) {
                 _of = parent.refs.menu.element;
@@ -141,10 +148,12 @@ export default class DropdownMenu extends Intact {
                     });
                 }
             }
+        } else if (_of === 'self') {
+            _of = this.dropdown.element;
+            p(_of);
         } else {
             p(_of);
         }
-
     }
 
     _onShow() {

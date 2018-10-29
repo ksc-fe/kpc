@@ -3,11 +3,15 @@ import Intact from 'intact';
 import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
 import BasicDemo from '~/components/dropdown/demos/basic';
 import NestedDemo from '~/components/dropdown/demos/nested';
+import ContextMenuDemo from '~/components/dropdown/demos/contextmenu';
 
 describe('Dropdown', () => {
     let instance;
 
-    afterEach(() => unmount(instance));
+    afterEach((done) => {
+        unmount(instance);
+        setTimeout(done, 400);
+    });
 
     it('demos test', () => {
         const req = require.context('~/components/dropdown/demos', true, /^((?!async).)*index\.js$/i);
@@ -137,5 +141,16 @@ describe('Dropdown', () => {
                 done();
             }, 500);
         }, 500);
+    });
+
+    it('context menu', () => {
+        instance = mount(ContextMenuDemo);
+
+        const area = instance.element.querySelector('.contextmenu-area');
+        dispatchEvent(area, 'contextmenu', {pageX: 10, pageY: 10});
+        const dropdown = getElement('.k-dropdown-menu');
+        expect(dropdown.outerHTML).to.matchSnapshot();
+        dispatchEvent(area, 'contextmenu', {pageX: 11, pageY: 11});
+        expect(dropdown.outerHTML).to.matchSnapshot();
     });
 });
