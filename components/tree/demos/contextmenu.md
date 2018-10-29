@@ -1,7 +1,9 @@
 ---
-title: 右击菜单
-order: 0
+title: 右键菜单
+order: 4
 ---
+
+绑定`rightclick:node`并利用`DropdownMenu`可以实现右键菜单来操作节点增删
 
 ```vdt
 import Tree from 'kpc/components/tree';
