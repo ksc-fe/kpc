@@ -78,3 +78,13 @@
 "<div class=\"k-item\"><span>click</span><i class=\"ion-ios-arrow-right\"></i></div><!--placeholder--><div class=\"k-item k-hover\">item 1</div>"
 ```
 
+#### `context menu`
+
+```
+"<div class=\"k-dropdown-menu c-slidedown-enter\" style=\"left: 11px; top: 10px;\"><div class=\"k-item\">Option 1</div><div class=\"k-item\">Option 2</div><div class=\"k-item\">Option 3</div></div>"
+```
+
+```
+"<div class=\"k-dropdown-menu c-slidedown-enter\" style=\"left: 12px; top: 11px;\"><div class=\"k-item\">Option 1</div><div class=\"k-item\">Option 2</div><div class=\"k-item\">Option 3</div></div>"
+```
+
