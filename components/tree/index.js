@@ -90,22 +90,22 @@ export default class Tree extends Intact {
         }
     }
 
-    expand(key, silent) {
+    expand(key, update = true) {
         if (key === this.root.key) return;
 
         let expandedKeys = this.expandedKeys;
         expandedKeys.add(key);
         // babel can not spread Set by `...` syntax in loose mode
         // use Array.from instead of
-        this.set('expandedKeys', Array.from(expandedKeys), {silent});
+        this.set('expandedKeys', Array.from(expandedKeys), {update});
     }
 
-    shrink(key, silent) {
+    shrink(key, update = true) {
         if (key === this.root.key) return;
 
         let expandedKeys = this.expandedKeys;
         expandedKeys.delete(key);
-        this.set('expandedKeys', Array.from(expandedKeys), {silent});
+        this.set('expandedKeys', Array.from(expandedKeys), {update});
     }
 
     getCheckedData(leafOnly) {
@@ -123,6 +123,14 @@ export default class Tree extends Intact {
         }
         loop(this.root.children);
         return data;
+    }
+
+    _onClick(node, e) {
+        this.trigger('click:node', node, e);
+    }
+
+    _onRightClick(node, e) {
+        this.trigger('rightclick:node', node, e);
     }
 }
 

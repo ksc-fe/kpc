@@ -31,7 +31,10 @@ const TreeNodes = ({data}) => {
                     indeterminate={{ value.indeterminate }}
                 />
                 <b:label args={{ [value.data, value] }}>
-                    <span class="k-text">{{ value.data.label }}</span>
+                    <span class="k-text" 
+                        ev-click={{ self._onClick.bind(self, value) }}
+                        ev-contextmenu={{ self._onRightClick.bind(self, value) }}
+                    >{{ value.data.label }}</span>
                 </b:label>
             </div>
             <Animate 
