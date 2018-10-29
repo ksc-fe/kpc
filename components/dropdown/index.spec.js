@@ -149,8 +149,8 @@ describe('Dropdown', () => {
         const area = instance.element.querySelector('.contextmenu-area');
         dispatchEvent(area, 'contextmenu', {pageX: 10, pageY: 10});
         const dropdown = getElement('.k-dropdown-menu');
-        expect(dropdown.outerHTML).to.matchSnapshot();
+        expect(dropdown.style.left).to.eql('11px');
         dispatchEvent(area, 'contextmenu', {pageX: 11, pageY: 11});
-        expect(dropdown.outerHTML).to.matchSnapshot();
+        expect(dropdown.style.left).to.eql('12px');
     });
 });
