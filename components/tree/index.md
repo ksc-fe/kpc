@@ -58,3 +58,10 @@ sidebar: doc
 | getCheckedData | 获取选中的节点数据 | `onlyLeaf` 是否只返回叶子节点 | `Array` |
 | expand | 展开节点 | `key` 要展开的节点的key | `undefined` |
 | shrink | 收起节点 | `key` 要收起的节点的key | `undefined` |
+
+# 事件
+
+| 事件名 | 说明 | 参数 |
+| --- | --- | --- |
+| click:node | 点击节点触发 | `Node, Event` |
+| rightclick:node | 右键点击节点触发 | `Node, Event` |
