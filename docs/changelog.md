@@ -4,6 +4,27 @@ order: 99
 sidebar: doc
 ---
 
+## v0.5.15
+
+1. `Fix` `Button`样式声明中`success`类型变量丢失的问题
+2. `Fix` `Transfer`当`data`数据变更时，不能更新全选状态的问题 [#109](https://github.com/ksc-fe/kpc/issues/109)
+3. `Fix` `Cascader`当级联菜单碰撞反转，3级以下菜单存在错误的问题 [#111](https://github.com/ksc-fe/kpc/issues/111)
+4. `Fix` `App`加载动画会被挡住的问题 [#120](https://github.com/ksc-fe/kpc/issues/120)
+5. `Fix` `Timepicker`传入初始时间字符串会当做数组处理的问题
+6. `Add` `Tree`新增左击(`click:node`)和右击(`rightclick:node`)节点事件 [#117](https://github.com/ksc-fe/kpc/issues/117)
+7. `Add` `Dropdown`支持右键菜单 [#118](https://github.com/ksc-fe/kpc/issues/118)
+8. `Add` `Transfer`优化`shift`多选逻辑
+9. `Add` `package.json`中添加`sideEffects`字段，以便支持webpack `tree-shaking` 
+
+## v0.5.14
+
+1. `Fix` `Tree`删除节点没有更新选中状态 [#102](https://github.com/ksc-fe/kpc/issues/102)
+2. `Fix` `Cascader`支持`data`属性一开始就传入`undefined`，以便数据完全动态加载 [#103](https://github.com/ksc-fe/kpc/issues/103)
+3. `Fix` `Grid`响应式取值不能重置为`0` [#104](https://github.com/ksc-fe/kpc/issues/104)
+4. `Fix` `Datepicker`范围选择成功后，再次取消已选值，重新选择会出现`null` [#105](https://github.com/ksc-fe/kpc/issues/105)
+5. `Fix` `Editable`没有传入`value`，不能展示子元素的问题 [#106](https://github.com/ksc-fe/kpc/issues/106)
+6. `Fix` `package.json` `browser`字段指向错误的问题
+
 ## v0.5.13
 
 1. `Fix` 修复`Steps`在宽度不够的情况下，索引不展示；以及在`vue`下`Step`宽度不等分的问题 [#100](https://github.com/ksc-fe/kpc/issues/100)
