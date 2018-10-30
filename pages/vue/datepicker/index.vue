@@ -1,7 +1,7 @@
 <template>
     <Form class="datepicker-page">
         <FormItem label="basic">
-            <Datepicker v-model="basicValue" />
+            <Datepicker v-model="basicValue" style="width: 100px"/>
             <template slot="append">{{ basicValue }}</template>
         </FormItem>
         <FormItem label="clearable">

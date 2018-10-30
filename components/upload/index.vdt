@@ -77,7 +77,9 @@ const CloseBtn = (props) => (
             >
                 <Progress percent={{ value.percent }} size="mini" />
             </Animate>
-            <div class="k-overlap k-icons" v-else ev-click={{ self._showImage.bind(self, value) }}>
+            <div class="k-overlap k-icons" v-else 
+                ev-click={{ self._showImage.bind(self, value) }}
+            >
                 <i class="k-zoom ion-ios-eye-outline"></i>
             </div>
             <CloseBtn value={{ value }} index={{ key }} icon="ion-ios-close" />
@@ -101,9 +103,15 @@ const CloseBtn = (props) => (
                     <i class="k-file-icon ion-document"></i>
                     {{ value.name }}
                     <div class="k-icons">
-                        <CloseBtn value={{ value }} index={{ key }} icon="ion-ios-close-empty" />
-                        <i class="k-status-icon ion-ios-checkmark-outline" v-if={{ value.status === 'done' }}></i>
-                        <i class="k-status-icon ion-ios-close-outline" v-if={{ value.status === 'error' }}></i>
+                        <CloseBtn value={{ value }} index={{ key }} 
+                            icon="ion-ios-close-empty" 
+                        />
+                        <i class="k-status-icon ion-ios-checkmark-outline" 
+                            v-if={{ value.status === 'done' }}
+                        ></i>
+                        <i class="k-status-icon ion-ios-close-outline"
+                            v-if={{ value.status === 'error' }}
+                        ></i>
                     </div>
                 </div>
                 <Animate key="progress" 
@@ -116,7 +124,10 @@ const CloseBtn = (props) => (
         </Animate>
     </div>
 
-    <Dialog title={{ _$("查看图片") }} key="dialog" v-model="_showImage" class="k-upload-dialog">
+    <Dialog title={{ _$("查看图片") }} key="dialog" 
+        v-model="_showImage"
+        class="k-upload-dialog"
+    >
         <a href={{ self.get('_showedFile.url') }} target="_blank">
             <img src={{ self.get('_showedFile.url') }} />
         </a>

@@ -85,6 +85,7 @@ export default class Upload extends Intact {
     }
 
     _selectFile() {
+        /* istanbul ignore if */
         if (!this.get('disabled')) {
             const input = this.refs.input;
             input.value = '';
@@ -200,20 +201,20 @@ export default class Upload extends Intact {
     _onProgress(e, file) {
         file.status = 'uploading';
         file.percent = e.percent;
-        this.trigger('progress', e, file, this.get('files'))
         this.update();
+        this.trigger('progress', e, file, this.get('files'))
     }
 
     _onError(e, file) {
         file.status = 'error';
-        this.trigger('error', e, file, this.get('files'))
         this.update();
+        this.trigger('error', e, file, this.get('files'))
     }
 
     _onSuccess(res, file) {
         file.status = 'done';
-        this.trigger('success', res, file, this.get('files'))
         this.update();
+        this.trigger('success', res, file, this.get('files'))
     }
 
     async _removeFile(file, index, e) {
