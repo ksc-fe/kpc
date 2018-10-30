@@ -601,7 +601,7 @@ if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 /***/ (function(module, exports, __webpack_require__) {
 
 var store = __webpack_require__(59)('wks');
-var uid = __webpack_require__(44);
+var uid = __webpack_require__(45);
 var Symbol = __webpack_require__(11).Symbol;
 var USE_SYMBOL = typeof Symbol == 'function';
 
@@ -1196,11 +1196,11 @@ var _intact = __webpack_require__(0);
 
 var _intact2 = _interopRequireDefault(_intact);
 
-var _dropdown = __webpack_require__(47);
+var _dropdown = __webpack_require__(39);
 
 var _dropdown2 = _interopRequireDefault(_dropdown);
 
-var _menu = __webpack_require__(39);
+var _menu = __webpack_require__(40);
 
 var _menu2 = _interopRequireDefault(_menu);
 
@@ -1599,7 +1599,7 @@ var ctx = __webpack_require__(18);
 var call = __webpack_require__(90);
 var isArrayIter = __webpack_require__(91);
 var anObject = __webpack_require__(19);
-var toLength = __webpack_require__(43);
+var toLength = __webpack_require__(44);
 var getIterFn = __webpack_require__(92);
 var BREAK = {};
 var RETURN = {};
@@ -1624,6 +1624,204 @@ exports.RETURN = RETURN;
 
 /***/ }),
 /* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.default = undefined;
+
+var _getOwnPropertyDescriptor = __webpack_require__(4);
+
+var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
+
+var _extends2 = __webpack_require__(6);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__(13);
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _possibleConstructorReturn2 = __webpack_require__(2);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _dec, _desc, _value, _class, _class2, _temp;
+
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _utils = __webpack_require__(5);
+
+var _menu = __webpack_require__(40);
+
+var _menu2 = _interopRequireDefault(_menu);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
+
+    return desc;
+}
+
+var h = _intact2.default.Vdt.miss.h;
+
+var Dropdown = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
+    (0, _inherits3.default)(Dropdown, _Intact);
+
+    function Dropdown() {
+        (0, _classCallCheck3.default)(this, Dropdown);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+    }
+
+    Dropdown.template = function template(data) {
+        return data.get('children');
+    };
+
+    Dropdown.prototype.defaults = function defaults() {
+        return {
+            trigger: 'hover',
+            disabled: false
+        };
+    };
+
+    Dropdown.prototype._init = function _init() {
+        var _this2 = this;
+
+        this.on('$receive:children', function () {
+            _this2._saveOriginalEvents();
+        }, { keep: true });
+    };
+
+    Dropdown.prototype._saveOriginalEvents = function _saveOriginalEvents() {
+        var _get = this.get(),
+            children = _get.children,
+            trigger = _get.trigger,
+            className = _get.className,
+            rest = (0, _objectWithoutProperties3.default)(_get, ['children', 'trigger', 'className']);
+
+        if (Array.isArray(children)) {
+            children = children[0];
+        }
+        if ((0, _utils.isTextVNode)(children)) {
+            children = h('span', rest, children, className);
+        }
+
+        // save the original event
+        var originProps = (0, _extends3.default)({}, children.props);
+        var hasSaved = false;
+        if (!originProps._hasSaved) {
+            if (originProps.vueVNode) {
+                // for vue element
+                var data = originProps.vueVNode.data;
+                var on = data && data.on || {};
+                originProps._evClick = on.click;
+                originProps._evMouseEnter = on.mouseenter;
+                originProps._evMouseLeave = on.mouseleave;
+            } else {
+                originProps._evClick = originProps['ev-click'];
+                originProps._evMouseEnter = originProps['ev-mouseenter'];
+                originProps._evMouseLeave = originProps['ev-mouseleave'];
+            }
+            hasSaved = true;
+        }
+        var props = {};
+        // if (trigger === 'click') {
+        props['ev-click'] = this.show.bind(this, originProps._evClick);
+        // } else {
+        if (trigger === 'hover') {
+            props['ev-mouseenter'] = this.show.bind(this, originProps._evMouseEnter);
+            props['ev-mouseleave'] = this.hide.bind(this, originProps._evMouseLeave);
+        }
+        if (hasSaved) {
+            props._hasSaved = true;
+        }
+        children.props = (0, _extends3.default)({}, originProps, props);
+        this.set('children', children, { silent: true });
+    };
+
+    Dropdown.prototype._mount = function _mount() {
+        // the next sibling is DropdownMenu
+        // we can not get the menu by call get('menu') directly,
+        // because the vNode may be cloned
+        // 
+        // we only handle it when mount 
+        // so you can not change the DropdownMenu by key
+        // ohterwise it can not be found 
+        var siblings = this.parentVNode.children;
+        var index = siblings.indexOf(this.vNode);
+        var menu = siblings[index + 1];
+        menu.children.dropdown = this;
+        this.menu = menu;
+    };
+
+    Dropdown.prototype.show = function show(fn, e, isFocus) {
+        if (typeof fn === 'function') fn(e);
+
+        if (this.get('disabled')) return;
+
+        var menu = this.menu.children;
+        menu.show();
+
+        if (isFocus) {
+            menu.focusItemByIndex(0);
+        }
+    };
+
+    Dropdown.prototype.hide = function hide(fn, e, immediately) {
+        if (typeof fn === 'function') fn(e);
+
+        if (this.get('disabled')) return;
+
+        var menu = this.menu.children;
+        menu.hide(immediately);
+    };
+
+    return Dropdown;
+}(_intact2.default), _class2.propTypes = {
+    trigger: ['hover', 'click'],
+    disabled: Boolean
+}, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _class)), _class));
+exports.default = Dropdown;
+module.exports = exports['default'];
+
+/***/ }),
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1667,6 +1865,10 @@ var _position2 = __webpack_require__(49);
 var _position3 = _interopRequireDefault(_position2);
 
 var _utils = __webpack_require__(5);
+
+var _dropdown = __webpack_require__(39);
+
+var _dropdown2 = _interopRequireDefault(_dropdown);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1732,6 +1934,11 @@ var DropdownMenu = (_dec = _intact2.default.template(), (_class = (_temp = _clas
                 _this2.trigger('hide', _this2);
             }
         });
+        this.on('$changed:of', function () {
+            if (_this2.get('value')) {
+                _this2.position();
+            }
+        });
     };
 
     DropdownMenu.prototype._mount = function _mount() {
@@ -1745,9 +1952,11 @@ var DropdownMenu = (_dec = _intact2.default.template(), (_class = (_temp = _clas
             // the previous sibling is Dropdown
             var siblings = this.parentVNode.children;
             var index = siblings.indexOf(this.vNode);
-            var dropdown = siblings[index - 1].children;
-            this.dropdown = dropdown;
-            dropdown.menu = this.vNode;
+            var dropdown = siblings[index - 1];
+            if (dropdown.tag === _dropdown2.default) {
+                this.dropdown = dropdown.children;
+                dropdown.menu = this.vNode;
+            }
         }
 
         // if (this.get('show')) {
@@ -1802,32 +2011,44 @@ var DropdownMenu = (_dec = _intact2.default.template(), (_class = (_temp = _clas
         // if the dropdown menu is nested, then show the parent first
         // and show the child menu later
         var p = function p(_of, transition) {
+            var _using2 = void 0;
             (0, _position3.default)(_this4.refs.menu.element, (0, _extends3.default)({
                 my: 'center top+8',
                 at: 'center bottom',
                 of: _of,
                 using: function using(feedback) {
-                    // let the child menu has the same transition with parent menu
-                    _this4.set('transition', transition || (0, _utils.getTransition)(feedback));
+                    _using2 = function _using() {
+                        // let the child menu has the same transition with parent menu
+                        _this4.set('transition', transition || (0, _utils.getTransition)(feedback));
+                        _using2 = null;
+                    };
+                    // if it is the first menu, getTransition immediately
+                    if (!transition) {
+                        _using2();
+                    }
                 }
             }, _this4.get('position')));
             _this4.positioned = true;
-            _this4.trigger('positioned');
+            _this4.trigger('positioned', transition);
+            _using2 && _using2();
         };
 
-        var _of = this.dropdown.element;
-        if (this.get('of') === 'parent') {
+        var _of = this.get('of');
+        if (_of === 'parent') {
             var parent = this._findParentDropdownMenu();
             if (parent) {
                 _of = parent.refs.menu.element;
                 if (parent.positioned) {
                     p(_of);
                 } else {
-                    parent.one('positioned', function () {
-                        p(_of, parent.get('transition'));
+                    parent.one('positioned', function (transition) {
+                        p(_of, transition || parent.get('transition'));
                     });
                 }
             }
+        } else if (_of === 'self') {
+            _of = this.dropdown.element;
+            p(_of);
         } else {
             p(_of);
         }
@@ -1934,7 +2155,8 @@ var DropdownMenu = (_dec = _intact2.default.template(), (_class = (_temp = _clas
 
         var items = this.items;
         var max = items.length - 1;
-        var oldIndex = this.focusIndex;
+
+        this.unFocusLastItem();
 
         function fixIndex(index) {
             if (index > max) {
@@ -1958,11 +2180,17 @@ var DropdownMenu = (_dec = _intact2.default.template(), (_class = (_temp = _clas
 
         this.focusIndex = index;
 
+        items[index].focus();
+    };
+
+    DropdownMenu.prototype.unFocusLastItem = function unFocusLastItem() {
+        var oldIndex = this.focusIndex;
+        var items = this.items;
+
         if (oldIndex > -1 && items[oldIndex]) {
             items[oldIndex].unFocus();
+            this.focusIndex = -1;
         }
-
-        items[index].focus();
     };
 
     DropdownMenu.prototype._selectItem = function _selectItem(e) {
@@ -2036,7 +2264,7 @@ var DropdownMenu = (_dec = _intact2.default.template(), (_class = (_temp = _clas
     trigger: ['hover', 'click'],
     position: Object,
     transition: String,
-    of: ['self', 'parent']
+    of: ['self', 'parent', Object /* Event */]
 }, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
     enumerable: true,
     configurable: true,
@@ -2049,7 +2277,7 @@ exports.default = DropdownMenu;
 module.exports = exports['default'];
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2073,14 +2301,14 @@ __webpack_require__(54)(String, 'String', function (iterated) {
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports) {
 
 module.exports = true;
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
@@ -2127,7 +2355,7 @@ module.exports = Object.create || function create(O, Properties) {
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.15 ToLength
@@ -2139,7 +2367,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports) {
 
 var id = 0;
@@ -2150,14 +2378,14 @@ module.exports = function (key) {
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports) {
 
 exports.f = {}.propertyIsEnumerable;
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2323,8 +2551,8 @@ var Select = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
     };
 
     /**
-     * @brief let the blur method called after select
-     * if we selected the option, then the keywords has been set to undefind
+     * @brief let the blur method be called after select
+     * if we have selected the option, then the keywords have been set to undefined
      * in this case, we do nothing, otherwise we reset it
      */
 
@@ -2470,204 +2698,6 @@ exports.default = Select;
 exports.Select = Select;
 exports.Option = _option2.default;
 exports.OptionGroup = _group2.default;
-
-/***/ }),
-/* 47 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.default = undefined;
-
-var _getOwnPropertyDescriptor = __webpack_require__(4);
-
-var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
-
-var _extends2 = __webpack_require__(6);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(13);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _classCallCheck2 = __webpack_require__(1);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _possibleConstructorReturn2 = __webpack_require__(2);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(3);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _dec, _desc, _value, _class, _class2, _temp;
-
-var _intact = __webpack_require__(0);
-
-var _intact2 = _interopRequireDefault(_intact);
-
-var _utils = __webpack_require__(5);
-
-var _menu = __webpack_require__(39);
-
-var _menu2 = _interopRequireDefault(_menu);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-    var desc = {};
-    Object['ke' + 'ys'](descriptor).forEach(function (key) {
-        desc[key] = descriptor[key];
-    });
-    desc.enumerable = !!desc.enumerable;
-    desc.configurable = !!desc.configurable;
-
-    if ('value' in desc || desc.initializer) {
-        desc.writable = true;
-    }
-
-    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-        return decorator(target, property, desc) || desc;
-    }, desc);
-
-    if (context && desc.initializer !== void 0) {
-        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-        desc.initializer = undefined;
-    }
-
-    if (desc.initializer === void 0) {
-        Object['define' + 'Property'](target, property, desc);
-        desc = null;
-    }
-
-    return desc;
-}
-
-var h = _intact2.default.Vdt.miss.h;
-
-var Dropdown = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
-    (0, _inherits3.default)(Dropdown, _Intact);
-
-    function Dropdown() {
-        (0, _classCallCheck3.default)(this, Dropdown);
-        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
-    }
-
-    Dropdown.template = function template(data) {
-        return data.get('children');
-    };
-
-    Dropdown.prototype.defaults = function defaults() {
-        return {
-            trigger: 'hover',
-            disabled: false
-        };
-    };
-
-    Dropdown.prototype._init = function _init() {
-        var _this2 = this;
-
-        this.on('$receive:children', function () {
-            _this2._saveOriginalEvents();
-        }, { keep: true });
-    };
-
-    Dropdown.prototype._saveOriginalEvents = function _saveOriginalEvents() {
-        var _get = this.get(),
-            children = _get.children,
-            trigger = _get.trigger,
-            className = _get.className,
-            rest = (0, _objectWithoutProperties3.default)(_get, ['children', 'trigger', 'className']);
-
-        if (Array.isArray(children)) {
-            children = children[0];
-        }
-        if ((0, _utils.isTextVNode)(children)) {
-            children = h('span', rest, children, className);
-        }
-
-        // save the original event
-        var originProps = (0, _extends3.default)({}, children.props);
-        var hasSaved = false;
-        if (!originProps._hasSaved) {
-            if (originProps.vueVNode) {
-                // for vue element
-                var data = originProps.vueVNode.data;
-                var on = data && data.on || {};
-                originProps._evClick = on.click;
-                originProps._evMouseEnter = on.mouseenter;
-                originProps._evMouseLeave = on.mouseleave;
-            } else {
-                originProps._evClick = originProps['ev-click'];
-                originProps._evMouseEnter = originProps['ev-mouseenter'];
-                originProps._evMouseLeave = originProps['ev-mouseleave'];
-            }
-            hasSaved = true;
-        }
-        var props = {};
-        // if (trigger === 'click') {
-        props['ev-click'] = this.show.bind(this, originProps._evClick);
-        // } else {
-        if (trigger === 'hover') {
-            props['ev-mouseenter'] = this.show.bind(this, originProps._evMouseEnter);
-            props['ev-mouseleave'] = this.hide.bind(this, originProps._evMouseLeave);
-        }
-        if (hasSaved) {
-            props._hasSaved = true;
-        }
-        children.props = (0, _extends3.default)({}, originProps, props);
-        this.set('children', children, { silent: true });
-    };
-
-    Dropdown.prototype._mount = function _mount() {
-        // the next sibling is DropdownMenu
-        // we can not get the menu by call get('menu') directly,
-        // because the vNode may be cloned
-        // 
-        // we only handle it when mount 
-        // so you can not change the DropdownMenu by key
-        // ohterwise it can not be found 
-        var siblings = this.parentVNode.children;
-        var index = siblings.indexOf(this.vNode);
-        var menu = siblings[index + 1];
-        menu.children.dropdown = this;
-        this.menu = menu;
-    };
-
-    Dropdown.prototype.show = function show(fn, e, isFocus) {
-        if (typeof fn === 'function') fn(e);
-
-        if (this.get('disabled')) return;
-
-        var menu = this.menu.children;
-        menu.show();
-
-        if (isFocus) {
-            menu.focusItemByIndex(0);
-        }
-    };
-
-    Dropdown.prototype.hide = function hide(fn, e, immediately) {
-        if (typeof fn === 'function') fn(e);
-
-        if (this.get('disabled')) return;
-
-        var menu = this.menu.children;
-        menu.hide(immediately);
-    };
-
-    return Dropdown;
-}(_intact2.default), _class2.propTypes = {
-    trigger: ['hover', 'click'],
-    disabled: Boolean
-}, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _class)), _class));
-exports.default = Dropdown;
-module.exports = exports['default'];
 
 /***/ }),
 /* 48 */
@@ -3415,7 +3445,7 @@ module.exports = function (it) {
 
 "use strict";
 
-var LIBRARY = __webpack_require__(41);
+var LIBRARY = __webpack_require__(42);
 var $export = __webpack_require__(10);
 var redefine = __webpack_require__(83);
 var hide = __webpack_require__(20);
@@ -3533,7 +3563,7 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var shared = __webpack_require__(59)('keys');
-var uid = __webpack_require__(44);
+var uid = __webpack_require__(45);
 module.exports = function (key) {
   return shared[key] || (shared[key] = uid(key));
 };
@@ -3597,7 +3627,7 @@ exports.f = __webpack_require__(12);
 /* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var META = __webpack_require__(44)('meta');
+var META = __webpack_require__(45)('meta');
 var isObject = __webpack_require__(15);
 var has = __webpack_require__(23);
 var setDesc = __webpack_require__(14).f;
@@ -3658,7 +3688,7 @@ var meta = module.exports = {
 
 var global = __webpack_require__(11);
 var core = __webpack_require__(9);
-var LIBRARY = __webpack_require__(41);
+var LIBRARY = __webpack_require__(42);
 var wksExt = __webpack_require__(62);
 var defineProperty = __webpack_require__(14).f;
 module.exports = function (name) {
@@ -3678,7 +3708,7 @@ exports.f = Object.getOwnPropertySymbols;
 /* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var pIE = __webpack_require__(45);
+var pIE = __webpack_require__(46);
 var createDesc = __webpack_require__(31);
 var toIObject = __webpack_require__(24);
 var toPrimitive = __webpack_require__(56);
@@ -5092,7 +5122,7 @@ __webpack_require__(240);
 
 __webpack_require__(7);
 
-var _menu3 = __webpack_require__(39);
+var _menu3 = __webpack_require__(40);
 
 var _menu4 = _interopRequireDefault(_menu3);
 
@@ -5836,11 +5866,11 @@ var _item = __webpack_require__(186);
 
 var _item2 = _interopRequireDefault(_item);
 
-var _dropdown = __webpack_require__(47);
+var _dropdown = __webpack_require__(39);
 
 var _dropdown2 = _interopRequireDefault(_dropdown);
 
-var _menu = __webpack_require__(39);
+var _menu = __webpack_require__(40);
 
 var _menu2 = _interopRequireDefault(_menu);
 
@@ -5934,6 +5964,7 @@ var DropdownItem = (_dec = _intact2.default.template(), (_class = (_temp = _clas
 
     DropdownItem.prototype._onMouseLeave = function _onMouseLeave(e) {
         this.trigger('mouseleave', e);
+        this.parent.unFocusLastItem();
         // if (this.get('disabled')) return;
     };
 
@@ -7390,16 +7421,16 @@ var Form = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fun
         };
     };
 
-    Form.prototype.getRules = function getRules() {
-        var rules = this.get('rules');
-        var items = this.get('items');
+    // getRules() {
+    // const rules = this.get('rules');
+    // const items = this.get('items');
 
-        items.forEach(function (item) {
-            rules[item.get('model')] = item.get('rules');
-        });
+    // items.forEach(item => {
+    // rules[item.get('model')] = item.get('rules');
+    // });
 
-        return rules;
-    };
+    // return rules;
+    // }
 
     Form.prototype.validate = function validate() {
         var items = this.get('items');
@@ -7422,16 +7453,17 @@ var Form = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fun
 
     Form.prototype.getItem = function getItem(model) {
         var items = this.get('items');
+        /* istanbul ignore if */
         if (model === undefined) return items;
         return items.find(function (item) {
             return item.get('model') === model;
         });
     };
 
-    Form.prototype.optional = function optional(item) {
-        var value = item.get('value');
-        return !Form.methods.required.call(this, value, item);
-    };
+    // optional(item) {
+    // const value = item.get('value');
+    // return !Form.methods.required.call(this, value, item);
+    // }
 
     Form.prototype.getFirstInvalidFormItem = function getFirstInvalidFormItem() {
         return this.get('items').find(function (item) {
@@ -7514,7 +7546,7 @@ var _item3 = __webpack_require__(102);
 
 var _item4 = _interopRequireDefault(_item3);
 
-var _dropdown = __webpack_require__(47);
+var _dropdown = __webpack_require__(39);
 
 var _dropdown2 = _interopRequireDefault(_dropdown);
 
@@ -8486,31 +8518,32 @@ var TimePanel = (_dec = _intact2.default.template(), (_class = (_temp = _class2 
     };
 
     TimePanel.prototype.changeTimeByStep = function changeTimeByStep(c, v) {
+        // the function is only called in range step,
+        // so detecting multiple is unnecessary
         this.isSelectTime = true;
 
         var _get2 = this.get(),
             value = _get2.value,
-            _now = _get2._now,
-            multiple = _get2.multiple;
+            _now = _get2._now;
 
-        var originalValue = multiple ? value && value[this._index] : value;
+        var originalValue = value && value[this._index];
 
         var valueDate = new Date(originalValue || _now);
         valueDate = (0, _utils.getDateString)(valueDate, 'date') + ' ' + v[0];
 
-        if (!multiple) {
-            this.set('value', valueDate);
+        // if (!multiple) {
+        // this.set('value', valueDate);
+        // } else {
+        var _value = void 0;
+        if (value) {
+            _value = value.slice(0);
+            _value[this._index] = valueDate;
         } else {
-            var _value = void 0;
-            if (value) {
-                _value = value.slice(0);
-                _value[this._index] = valueDate;
-            } else {
-                _value = [valueDate];
-            }
-
-            this.set('value', _value);
+            _value = [valueDate];
         }
+
+        this.set('value', _value);
+        // }
 
         this.isSelectTime = false;
     };
@@ -8618,7 +8651,7 @@ var _grid = __webpack_require__(78);
 
 var _scrollSelect = __webpack_require__(77);
 
-var _select = __webpack_require__(46);
+var _select = __webpack_require__(47);
 
 var _slider = __webpack_require__(250);
 
@@ -8704,7 +8737,7 @@ exports.Tooltip = _tooltip.Tooltip;
 exports.Transfer = _transfer.Transfer;
 exports.Tree = _tree.Tree;
 exports.Upload = _upload.Upload; /*!
-                                  * kpc v0.5.14
+                                  * kpc v0.5.15
                                   *
                                   * Copyright (c) Kingsoft Cloud
                                   * Released under the MIT License
@@ -8713,7 +8746,7 @@ exports.Upload = _upload.Upload; /*!
                                   * https://ksc-fe.github.io/kpc/
                                   */
 
-var version = exports.version = '0.5.14';
+var version = exports.version = '0.5.15';
 
 /* generate end */
 
@@ -8758,7 +8791,7 @@ module.exports = { "default": __webpack_require__(124), __esModule: true };
 /* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(40);
+__webpack_require__(41);
 __webpack_require__(61);
 module.exports = __webpack_require__(62).f('iterator');
 
@@ -8792,7 +8825,7 @@ module.exports = function (TO_STRING) {
 
 "use strict";
 
-var create = __webpack_require__(42);
+var create = __webpack_require__(43);
 var descriptor = __webpack_require__(31);
 var setToStringTag = __webpack_require__(35);
 var IteratorPrototype = {};
@@ -8832,7 +8865,7 @@ module.exports = __webpack_require__(17) ? Object.defineProperties : function de
 // false -> Array#indexOf
 // true  -> Array#includes
 var toIObject = __webpack_require__(24);
-var toLength = __webpack_require__(43);
+var toLength = __webpack_require__(44);
 var toAbsoluteIndex = __webpack_require__(129);
 module.exports = function (IS_INCLUDES) {
   return function ($this, el, fromIndex) {
@@ -8967,7 +9000,7 @@ var META = __webpack_require__(63).KEY;
 var $fails = __webpack_require__(22);
 var shared = __webpack_require__(59);
 var setToStringTag = __webpack_require__(35);
-var uid = __webpack_require__(44);
+var uid = __webpack_require__(45);
 var wks = __webpack_require__(12);
 var wksExt = __webpack_require__(62);
 var wksDefine = __webpack_require__(64);
@@ -8978,7 +9011,7 @@ var isObject = __webpack_require__(15);
 var toIObject = __webpack_require__(24);
 var toPrimitive = __webpack_require__(56);
 var createDesc = __webpack_require__(31);
-var _create = __webpack_require__(42);
+var _create = __webpack_require__(43);
 var gOPNExt = __webpack_require__(137);
 var $GOPD = __webpack_require__(66);
 var $DP = __webpack_require__(14);
@@ -9106,10 +9139,10 @@ if (!USE_NATIVE) {
   $GOPD.f = $getOwnPropertyDescriptor;
   $DP.f = $defineProperty;
   __webpack_require__(88).f = gOPNExt.f = $getOwnPropertyNames;
-  __webpack_require__(45).f = $propertyIsEnumerable;
+  __webpack_require__(46).f = $propertyIsEnumerable;
   __webpack_require__(65).f = $getOwnPropertySymbols;
 
-  if (DESCRIPTORS && !__webpack_require__(41)) {
+  if (DESCRIPTORS && !__webpack_require__(42)) {
     redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
   }
 
@@ -9199,7 +9232,7 @@ setToStringTag(global.JSON, 'JSON', true);
 // all enumerable object keys, includes symbols
 var getKeys = __webpack_require__(33);
 var gOPS = __webpack_require__(65);
-var pIE = __webpack_require__(45);
+var pIE = __webpack_require__(46);
 module.exports = function (it) {
   var result = getKeys(it);
   var getSymbols = gOPS.f;
@@ -9279,7 +9312,7 @@ $export($export.S + $export.F, 'Object', { assign: __webpack_require__(142) });
 // 19.1.2.1 Object.assign(target, source, ...)
 var getKeys = __webpack_require__(33);
 var gOPS = __webpack_require__(65);
-var pIE = __webpack_require__(45);
+var pIE = __webpack_require__(46);
 var toObject = __webpack_require__(36);
 var IObject = __webpack_require__(57);
 var $assign = Object.assign;
@@ -9542,7 +9575,7 @@ __webpack_require__(89)('getOwnPropertyDescriptor', function () {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(67);
-__webpack_require__(40);
+__webpack_require__(41);
 __webpack_require__(61);
 __webpack_require__(150);
 __webpack_require__(153);
@@ -9556,7 +9589,7 @@ module.exports = __webpack_require__(9).Promise;
 
 "use strict";
 
-var LIBRARY = __webpack_require__(41);
+var LIBRARY = __webpack_require__(42);
 var global = __webpack_require__(11);
 var ctx = __webpack_require__(18);
 var classof = __webpack_require__(68);
@@ -10079,7 +10112,7 @@ module.exports = function create(P, D) {
 
 var $export = __webpack_require__(10);
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-$export($export.S, 'Object', { create: __webpack_require__(42) });
+$export($export.S, 'Object', { create: __webpack_require__(43) });
 
 
 /***/ }),
@@ -11225,7 +11258,7 @@ var _intact = __webpack_require__(0);
 
 var _intact2 = _interopRequireDefault(_intact);
 
-var _select = __webpack_require__(46);
+var _select = __webpack_require__(47);
 
 var _select2 = _interopRequireDefault(_select);
 
@@ -14664,7 +14697,28 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         });
     }
 
-    labelObj.label = format.call(this, labelObj.values);
+    labelObj.label = blocks.format ? (_blocks['format'] = function (parent) {
+        return function () {
+            try {
+                return labelObj.values.map(function (value) {
+                    return value.label;
+                }).join(' / ');
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this);
+    }) && (__blocks['format'] = function (parent) {
+        var args = arguments;
+        return blocks['format'] ? blocks['format'].apply($this, [function () {
+            return _blocks['format'].apply($this, args);
+        }].concat(__slice.call(args, 1))) : _blocks['format'].apply($this, args);
+    }) && __blocks['format'].apply($this, [__noop].concat(function () {
+        try {
+            return [labelObj.values];
+        } catch (e) {
+            _e(e);
+        }
+    }.call($this))) : format.call(this, labelObj.values);
 
     return function () {
         var _obj = {
@@ -15719,7 +15773,7 @@ var _inherits2 = __webpack_require__(3);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
-var _dropdown = __webpack_require__(47);
+var _dropdown = __webpack_require__(39);
 
 var _dropdown2 = _interopRequireDefault(_dropdown);
 
@@ -15775,7 +15829,7 @@ var _intact = __webpack_require__(0);
 
 var _intact2 = _interopRequireDefault(_intact);
 
-var _menu = __webpack_require__(39);
+var _menu = __webpack_require__(40);
 
 var _menu2 = _interopRequireDefault(_menu);
 
@@ -18794,6 +18848,7 @@ var _utils = __webpack_require__(5);
 
 function decimalPlaces(num) {
     var match = ("" + num).match(/(?:\.(\d+))?$/);
+    /* istanbul ignore if */
     if (!match) {
         return 0;
     }
@@ -19125,6 +19180,7 @@ var FormItem = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
         while (form && form.tag !== _form2.default) {
             form = form.parentVNode;
         }
+        /* istanbul ignore if */
         if (!form) {
             throw new Error('FormItem must be used as the descendant of Form');
         }
@@ -19194,6 +19250,7 @@ var FormItem = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
                     fn = rule;
                 } else {
                     fn = _form2.default.methods[key];
+                    /* istanbul ignore if */
                     if (!fn) {
                         console.warn('Can not find validate method: ' + key);
                         continue;
@@ -19269,6 +19326,7 @@ var FormItem = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
         var _this3 = this;
 
         if (!this.get('model')) return;
+        /* istanbul ignore if */
         if (this.get('isDirty')) return;
 
         // for select, the focusout event triggers before select
@@ -19276,11 +19334,6 @@ var FormItem = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
         setTimeout(function () {
             _this3.validate();
         }, 100);
-        // if (this.$nextTick) {
-        // this.$nextTick(this.validate);
-        // } else {
-        // this.validate();
-        // }
     };
 
     FormItem.prototype._cancel = function _cancel() {
@@ -19376,15 +19429,6 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         'k-invalid': isDirty && isValid === false,
         'k-valid': isDirty && isValid === true
     }, _classNameObj[className] = className, _classNameObj);
-
-    // vdt does not support return `v-if & v-else` element in root,
-    // like: 
-    //     '<div v-if={{ true }}>true</div>'
-    //     '<label v-else>false</label>'
-    // so wrap it.
-    // const Wrapper = (props) => {
-    //     return h(props._tagName, props, props.children); 
-    // }
 
     return h('div', {
         'style': function () {
@@ -21262,7 +21306,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     }.call($this)));
 };
 
-var _select = __webpack_require__(46);
+var _select = __webpack_require__(47);
 
 var _select2 = _interopRequireDefault(_select);
 
@@ -23088,11 +23132,6 @@ var Switch = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
         };
     };
 
-    Switch.prototype._init = function _init() {
-        this._move = this._move.bind(this);
-        this._dragEnd = this._dragEnd.bind(this);
-    };
-
     Switch.prototype._dragStart = function _dragStart(e) {
         if (this.get('disabled') || e.which !== 1) return;
 
@@ -23114,8 +23153,6 @@ var Switch = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
     };
 
     Switch.prototype._dragEnd = function _dragEnd(e) {
-        this.set('_dragging', false);
-
         this.element.blur();
         var bar = this.refs.bar;
 
@@ -23124,6 +23161,7 @@ var Switch = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
             bar.style.width = '';
             this._toggle();
         } else {
+            // cancel this operation if the distance less than half of width
             var percent = (bar.clientWidth - this._height / 2) / this._maxWidth;
 
             if (!this.isChecked()) {
@@ -23140,6 +23178,8 @@ var Switch = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
                 bar.style.width = '';
             }
         }
+
+        this.set('_dragging', false);
 
         document.removeEventListener('mousemove', this._move);
         document.removeEventListener('mouseup', this._dragEnd);
@@ -23161,7 +23201,6 @@ var Switch = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
     };
 
     Switch.prototype._onKeypress = function _onKeypress(e) {
-
         if (e.keyCode === 13) {
             this._toggle(e, true);
         }
@@ -23348,35 +23387,28 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 _e(e);
             }
         }.call($this),
-        'value': function () {
+        'tabindex': '-1',
+        'checked': _getModel(self, 'value') === function () {
             try {
                 return trueValue;
             } catch (e) {
                 _e(e);
             }
         }.call($this),
-        'tabindex': '-1',
-        'checked': _detectCheckboxChecked(self, 'value', function () {
-            try {
-                return trueValue;
-            } catch (e) {
-                _e(e);
-            }
-        }.call($this)),
         'ev-change': function evChange(__e) {
-            _setCheckboxModel(self, 'value', function () {
+            _setModel(self, 'value', __e.target.checked ? function () {
                 try {
                     return trueValue;
                 } catch (e) {
                     _e(e);
                 }
-            }.call($this), function () {
+            }.call($this) : function () {
                 try {
                     return falseValue;
                 } catch (e) {
                     _e(e);
                 }
-            }.call($this), __e, $this);
+            }.call($this), $this);
         }
     }, null, null, null, function (i) {
         widgets['input'] = i;
@@ -26221,8 +26253,8 @@ var Timepicker = (_dec = _intact2.default.template(), (_class = (_temp = _class2
         // proxy _value to value
         this.on('$change:_value', function (c, v) {
             if (_this2.get('range')) {
-                // if only select one date for range, set with undefined
-                if (v && v.length === 1) {
+                // if only select one date for range, set to undefined
+                if (Array.isArray(v) && v.length === 1) {
                     v = undefined;
                 }
             }
@@ -26236,9 +26268,9 @@ var Timepicker = (_dec = _intact2.default.template(), (_class = (_temp = _class2
             _this2.set('value', v);
         });
 
-        // give the time string a date, let it can be converted to Date
+        // add date to the time string, let it can be converted to Date
         this.on('$receive:value', function (c, v) {
-            if (v && v.length) {
+            if (Array.isArray(v) && v.length) {
                 v = v.map(function (item) {
                     return _panel.PREFIX + item;
                 });
@@ -26538,7 +26570,7 @@ var _panel2 = _interopRequireDefault(_panel);
 
 var _utils = __webpack_require__(5);
 
-var _select = __webpack_require__(46);
+var _select = __webpack_require__(47);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26923,9 +26955,9 @@ var _intact = __webpack_require__(0);
 
 var _intact2 = _interopRequireDefault(_intact);
 
-var _index = __webpack_require__(285);
+var _index2 = __webpack_require__(285);
 
-var _index2 = _interopRequireDefault(_index);
+var _index3 = _interopRequireDefault(_index2);
 
 __webpack_require__(7);
 
@@ -27004,23 +27036,37 @@ var Transfer = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
         this.on('$receive:value', function (c, v) {
             return fixValue(v);
         });
-    };
+        this.on('$receive:data', function (c, v) {
+            if (!v || !v.length) {
+                _this2.set({
+                    leftChecked: [],
+                    rightChecked: [],
+                    value: []
+                });
+            } else {
+                var _get = _this2.get(),
+                    leftChecked = _get.leftChecked,
+                    rightChecked = _get.rightChecked,
+                    value = _get.value;
 
-    Transfer.prototype._mount = function _mount() {
-        document.addEventListener('keydown', this._onKeydown);
-        document.addEventListener('keyup', this._onKeyup);
-    };
-
-    Transfer.prototype._onKeydown = function _onKeydown(e) {
-        if (e.keyCode === 16) {
-            this.shiftKey = true;
-        }
-    };
-
-    Transfer.prototype._onKeyup = function _onKeyup(e) {
-        if (e.keyCode === 16) {
-            this.shiftKey = false;
-        }
+                var fix = function fix(data) {
+                    var ret = [];
+                    if (data) {
+                        for (var i = 0; i < data.length; i++) {
+                            if (v.indexOf(data[i]) > -1) {
+                                ret.push(data[i]);
+                            }
+                        }
+                    }
+                    return ret;
+                };
+                _this2.set({
+                    leftChecked: fix(leftChecked),
+                    rightChecked: fix(rightChecked),
+                    value: fix(value)
+                });
+            }
+        });
     };
 
     Transfer.prototype._add = function _add() {
@@ -27044,69 +27090,48 @@ var Transfer = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
     };
 
     Transfer.prototype._onCheckboxChange = function _onCheckboxChange(type, index, e) {
-        var keywords = this.get(type + 'Keywords');
-        var data = type === 'left' ? this.get('data') : this.get('value');
-        var filter = this.get('filter');
-
-        if (this.startIndex === undefined || !this.shiftKey) {
+        if (this.startIndex === undefined || !e.shiftKey) {
             this.startIndex = index;
+            this.endIndex = undefined;
             this.checked = e.target.checked;
-        } else if (this.shiftKey) {
-            var values = data;
-            if (this.get('filterable') && keywords) {
-                values = data.filter(function (item) {
-                    return filter(item, keywords);
-                });
-            }
-            if (index > this.startIndex) {
-                values = values.slice(this.startIndex, index + 1);
-            } else if (index < this.startIndex) {
-                values = values.slice(index, this.startIndex + 1);
-            }
-            values = values.filter(function (item) {
-                return !item.disabled;
-            });
-            var checkedValues = this.get(type + 'Checked');
-            var _values = [];
-
-            if (this.checked) {
-                checkedValues.forEach(function (item) {
-                    if (!~values.indexOf(item)) {
-                        _values.push(item);
-                    }
-                });
-                this.set(type + 'Checked', values.concat(_values));
-            } else {
-                checkedValues.forEach(function (item) {
-                    if (!~values.indexOf(item)) {
-                        _values.push(item);
-                    }
-                });
-                this.set(type + 'Checked', _values);
-            }
-        }
-    };
-
-    Transfer.prototype._onClickLabel = function _onClickLabel(e) {
-        if (e.shiftKey && e.target.tagName !== 'INPUT') {
+        } else if (e.shiftKey) {
             e.preventDefault();
-            e.target.click();
+
+            var values = this._getShowedData(type);
+            var checkedValues = this.get(type + 'Checked').slice(0);
+            var lastEndIndex = this.endIndex;
+            this.endIndex = index;
+            var update = function update(data, isCheck) {
+                data.forEach(function (item) {
+                    if (!item.disabled) {
+                        var _index = checkedValues.indexOf(item);
+                        if (isCheck) {
+                            if (!~_index) {
+                                checkedValues.push(item);
+                            }
+                        } else {
+                            if (~_index) {
+                                checkedValues.splice(_index, 1);
+                            }
+                        }
+                    }
+                });
+            };
+
+            if (lastEndIndex !== undefined) {
+                // if exists lastEndIndex, we reset the last result
+                // and set it again
+                update(values.slice(Math.min(index, lastEndIndex), Math.max(index, lastEndIndex) + 1), !this.checked);
+            }
+            update(values.slice(Math.min(index, this.startIndex), Math.max(index, this.startIndex) + 1), this.checked);
+
+            this.set(type + 'Checked', checkedValues);
         }
     };
 
     Transfer.prototype._isCheckAll = function _isCheckAll(model) {
         var checked = this.get(model + 'Checked');
-        var data = this.get('value');
-
-        if (model === 'left') {
-            data = this.get('data').filter(function (item) {
-                return !~data.indexOf(item) && !item.disabled;
-            });
-        } else {
-            data = data.filter(function (item) {
-                return !item.disabled;
-            });
-        }
+        var data = this._getEnabledData(model);
 
         return data.length && checked.length >= data.length;
     };
@@ -27120,14 +27145,20 @@ var Transfer = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
     };
 
     Transfer.prototype._selectAll = function _selectAll(model) {
+        this.set(model + 'Checked', this._getEnabledData(model));
+    };
+
+    Transfer.prototype._getEnabledData = function _getEnabledData(model) {
+        return this._getShowedData(model).filter(function (item) {
+            return !item.disabled;
+        });
+    };
+
+    Transfer.prototype._getShowedData = function _getShowedData(model) {
         var data = this.get('value');
         if (model === 'left') {
             data = this.get('data').filter(function (item) {
-                return !~data.indexOf(item) && !item.disabled;
-            });
-        } else {
-            data = data.filter(function (item) {
-                return !item.disabled;
+                return !~data.indexOf(item);
             });
         }
 
@@ -27139,16 +27170,11 @@ var Transfer = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
             });
         }
 
-        this.set(model + 'Checked', data);
-    };
-
-    Transfer.prototype._destroy = function _destroy() {
-        document.removeEventListener('keydown', this._onKeydown);
-        document.removeEventListener('keyup', this._onKeyup);
+        return data;
     };
 
     return Transfer;
-}(_intact2.default), _class2.template = _index2.default, _class2.propTypes = {
+}(_intact2.default), _class2.template = _index3.default, _class2.propTypes = {
     data: Array,
     value: Array,
     leftChecked: Array,
@@ -27415,14 +27441,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                             }.call($this), __n, $this);
                         }
                     }),
-                    '_context': $this,
-                    'ev-click': function () {
-                        try {
-                            return self._onClickLabel;
-                        } catch (e) {
-                            _e(e);
-                        }
-                    }.call($this)
+                    '_context': $this
                 });
             }, $this),
             '_context': $this
@@ -27784,22 +27803,26 @@ var Tree = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fun
         }
     };
 
-    Tree.prototype.expand = function expand(key, silent) {
+    Tree.prototype.expand = function expand(key) {
+        var update = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
         if (key === this.root.key) return;
 
         var expandedKeys = this.expandedKeys;
         expandedKeys.add(key);
         // babel can not spread Set by `...` syntax in loose mode
         // use Array.from instead of
-        this.set('expandedKeys', (0, _from2.default)(expandedKeys), { silent: silent });
+        this.set('expandedKeys', (0, _from2.default)(expandedKeys), { update: update });
     };
 
-    Tree.prototype.shrink = function shrink(key, silent) {
+    Tree.prototype.shrink = function shrink(key) {
+        var update = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
         if (key === this.root.key) return;
 
         var expandedKeys = this.expandedKeys;
         expandedKeys.delete(key);
-        this.set('expandedKeys', (0, _from2.default)(expandedKeys), { silent: silent });
+        this.set('expandedKeys', (0, _from2.default)(expandedKeys), { update: update });
     };
 
     Tree.prototype.getCheckedData = function getCheckedData(leafOnly) {
@@ -27817,6 +27840,14 @@ var Tree = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fun
         };
         loop(this.root.children);
         return data;
+    };
+
+    Tree.prototype._onClick = function _onClick(node, e) {
+        this.trigger('click:node', node, e);
+    };
+
+    Tree.prototype._onRightClick = function _onRightClick(node, e) {
+        this.trigger('rightclick:node', node, e);
     };
 
     return Tree;
@@ -27841,7 +27872,7 @@ exports.Tree = Tree;
 /* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(40);
+__webpack_require__(41);
 __webpack_require__(289);
 module.exports = __webpack_require__(9).Array.from;
 
@@ -27857,7 +27888,7 @@ var $export = __webpack_require__(10);
 var toObject = __webpack_require__(36);
 var call = __webpack_require__(90);
 var isArrayIter = __webpack_require__(91);
-var toLength = __webpack_require__(43);
+var toLength = __webpack_require__(44);
 var createProperty = __webpack_require__(290);
 var getIterFn = __webpack_require__(92);
 
@@ -27916,7 +27947,7 @@ module.exports = { "default": __webpack_require__(292), __esModule: true };
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(67);
-__webpack_require__(40);
+__webpack_require__(41);
 __webpack_require__(61);
 __webpack_require__(293);
 __webpack_require__(299);
@@ -27953,7 +27984,7 @@ module.exports = __webpack_require__(295)(SET, function (get) {
 "use strict";
 
 var dP = __webpack_require__(14).f;
-var create = __webpack_require__(42);
+var create = __webpack_require__(43);
 var redefineAll = __webpack_require__(71);
 var ctx = __webpack_require__(18);
 var anInstance = __webpack_require__(69);
@@ -28177,7 +28208,7 @@ module.exports = function (NAME, wrapper, methods, common, IS_MAP, IS_WEAK) {
 var ctx = __webpack_require__(18);
 var IObject = __webpack_require__(57);
 var toObject = __webpack_require__(36);
-var toLength = __webpack_require__(43);
+var toLength = __webpack_require__(44);
 var asc = __webpack_require__(297);
 module.exports = function (TYPE, $create) {
   var IS_MAP = TYPE == 1;
@@ -28500,7 +28531,22 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                         }
                     }.call($this)
                 }) : undefined, (_blocks['label'] = function (parent) {
-                    return h('span', null, function () {
+                    return h('span', {
+                        'ev-click': function () {
+                            try {
+                                return self._onClick.bind(self, value);
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call($this),
+                        'ev-contextmenu': function () {
+                            try {
+                                return self._onRightClick.bind(self, value);
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call($this)
+                    }, function () {
                         try {
                             return value.data.label;
                         } catch (e) {
@@ -28684,7 +28730,7 @@ var Node = (_temp = _class = function () {
             children.push(node);
         });
 
-        this.tree.expand(this.key, true);
+        this.tree.expand(this.key, false);
         this.tree.update();
     };
 
