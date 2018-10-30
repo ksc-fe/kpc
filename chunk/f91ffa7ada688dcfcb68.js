@@ -433,7 +433,7 @@ exports.ButtonGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1539830635660
+      // 1540882721069
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -773,7 +773,7 @@ exports.Checkbox = Checkbox;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1539830638688
+      // 1540882723093
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1287,7 +1287,7 @@ exports.DropdownItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1539830642857
+      // 1540882723447
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1429,6 +1429,7 @@ var DropdownItem = (_dec = _intact2.default.template(), (_class = (_temp = _clas
 
     DropdownItem.prototype._onMouseLeave = function _onMouseLeave(e) {
         this.trigger('mouseleave', e);
+        this.parent.unFocusLastItem();
         // if (this.get('disabled')) return;
     };
 
@@ -1666,6 +1667,10 @@ var _position3 = _interopRequireDefault(_position2);
 
 var _utils = __webpack_require__("./components/utils.js");
 
+var _dropdown = __webpack_require__("./components/dropdown/dropdown.js");
+
+var _dropdown2 = _interopRequireDefault(_dropdown);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
@@ -1730,6 +1735,11 @@ var DropdownMenu = (_dec = _intact2.default.template(), (_class = (_temp = _clas
                 _this2.trigger('hide', _this2);
             }
         });
+        this.on('$changed:of', function () {
+            if (_this2.get('value')) {
+                _this2.position();
+            }
+        });
     };
 
     DropdownMenu.prototype._mount = function _mount() {
@@ -1743,9 +1753,11 @@ var DropdownMenu = (_dec = _intact2.default.template(), (_class = (_temp = _clas
             // the previous sibling is Dropdown
             var siblings = this.parentVNode.children;
             var index = siblings.indexOf(this.vNode);
-            var dropdown = siblings[index - 1].children;
-            this.dropdown = dropdown;
-            dropdown.menu = this.vNode;
+            var dropdown = siblings[index - 1];
+            if (dropdown.tag === _dropdown2.default) {
+                this.dropdown = dropdown.children;
+                dropdown.menu = this.vNode;
+            }
         }
 
         // if (this.get('show')) {
@@ -1800,32 +1812,44 @@ var DropdownMenu = (_dec = _intact2.default.template(), (_class = (_temp = _clas
         // if the dropdown menu is nested, then show the parent first
         // and show the child menu later
         var p = function p(_of, transition) {
+            var _using2 = void 0;
             (0, _position3.default)(_this4.refs.menu.element, (0, _extends3.default)({
                 my: 'center top+8',
                 at: 'center bottom',
                 of: _of,
                 using: function using(feedback) {
-                    // let the child menu has the same transition with parent menu
-                    _this4.set('transition', transition || (0, _utils.getTransition)(feedback));
+                    _using2 = function _using() {
+                        // let the child menu has the same transition with parent menu
+                        _this4.set('transition', transition || (0, _utils.getTransition)(feedback));
+                        _using2 = null;
+                    };
+                    // if it is the first menu, getTransition immediately
+                    if (!transition) {
+                        _using2();
+                    }
                 }
             }, _this4.get('position')));
             _this4.positioned = true;
-            _this4.trigger('positioned');
+            _this4.trigger('positioned', transition);
+            _using2 && _using2();
         };
 
-        var _of = this.dropdown.element;
-        if (this.get('of') === 'parent') {
+        var _of = this.get('of');
+        if (_of === 'parent') {
             var parent = this._findParentDropdownMenu();
             if (parent) {
                 _of = parent.refs.menu.element;
                 if (parent.positioned) {
                     p(_of);
                 } else {
-                    parent.one('positioned', function () {
-                        p(_of, parent.get('transition'));
+                    parent.one('positioned', function (transition) {
+                        p(_of, transition || parent.get('transition'));
                     });
                 }
             }
+        } else if (_of === 'self') {
+            _of = this.dropdown.element;
+            p(_of);
         } else {
             p(_of);
         }
@@ -1932,7 +1956,8 @@ var DropdownMenu = (_dec = _intact2.default.template(), (_class = (_temp = _clas
 
         var items = this.items;
         var max = items.length - 1;
-        var oldIndex = this.focusIndex;
+
+        this.unFocusLastItem();
 
         function fixIndex(index) {
             if (index > max) {
@@ -1956,11 +1981,17 @@ var DropdownMenu = (_dec = _intact2.default.template(), (_class = (_temp = _clas
 
         this.focusIndex = index;
 
+        items[index].focus();
+    };
+
+    DropdownMenu.prototype.unFocusLastItem = function unFocusLastItem() {
+        var oldIndex = this.focusIndex;
+        var items = this.items;
+
         if (oldIndex > -1 && items[oldIndex]) {
             items[oldIndex].unFocus();
+            this.focusIndex = -1;
         }
-
-        items[index].focus();
     };
 
     DropdownMenu.prototype._selectItem = function _selectItem(e) {
@@ -2034,7 +2065,7 @@ var DropdownMenu = (_dec = _intact2.default.template(), (_class = (_temp = _clas
     trigger: ['hover', 'click'],
     position: Object,
     transition: String,
-    of: ['self', 'parent']
+    of: ['self', 'parent', Object /* Event */]
 }, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
     enumerable: true,
     configurable: true,
@@ -2393,7 +2424,7 @@ exports.Input = Input;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1539830642014
+      // 1540882725140
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -3707,7 +3738,7 @@ exports.Radio = Radio;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1539830647208
+      // 1540882727332
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -4218,8 +4249,8 @@ var Select = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
     };
 
     /**
-     * @brief let the blur method called after select
-     * if we selected the option, then the keywords has been set to undefind
+     * @brief let the blur method be called after select
+     * if we have selected the option, then the keywords have been set to undefined
      * in this case, we do nothing, otherwise we reset it
      */
 
@@ -4373,7 +4404,7 @@ exports.OptionGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1539830640309
+      // 1540882722786
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5358,7 +5389,7 @@ exports.Tab = _tab2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1539830641861
+      // 1540882725426
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5805,7 +5836,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1539830633199
+      // 1540882720044
       var cssReload = require("!../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -6051,7 +6082,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1539830634633
+      // 1540882720363
       var cssReload = require("!../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);

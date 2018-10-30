@@ -1,0 +1,23 @@
+{
+    "setting": {
+        "title": "右键菜单",
+        "order": 7
+    },
+    "catalogs": [],
+    "contents": "<p>将<code>DropdownMenu</code>作为顶层元素，而不是<code>Dropdown</code>的子元素，然后指定<code>of</code>属性为事件对象，即可以实现跟随鼠标位置的弹出菜单</p>\n<blockquote>\n<p>这里将<code>position</code>属性指定为<code>left+1</code>是为了避免弹出菜单立即被选中第一项</p>\n</blockquote>\n",
+    "index": 199,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> {DropdownMenu, DropdownItem} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/dropdown'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"contextmenu-area\"</span> <span class=\"hljs-attr\">ev-contextmenu</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">self._showMenu</span> }}&gt;</span>\n        right click this area to show context menu\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">DropdownMenu</span> <span class=\"hljs-attr\">v-model</span>=<span class=\"hljs-string\">\"show\"</span> \n        <span class=\"hljs-attr\">of</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">self.get</span>('<span class=\"hljs-attr\">event</span>') }}\n        <span class=\"hljs-attr\">position</span>=<span class=\"hljs-string\">{{</span> {<span class=\"hljs-attr\">my:</span> '<span class=\"hljs-attr\">left</span>+<span class=\"hljs-attr\">1</span> <span class=\"hljs-attr\">top</span>', <span class=\"hljs-attr\">at:</span> '<span class=\"hljs-attr\">right</span> <span class=\"hljs-attr\">bottom</span>'} }}\n    &gt;</span>\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">DropdownItem</span>&gt;</span>Option 1<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">DropdownItem</span>&gt;</span>\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">DropdownItem</span>&gt;</span>Option 2<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">DropdownItem</span>&gt;</span>\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">DropdownItem</span>&gt;</span>Option 3<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">DropdownItem</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">DropdownMenu</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span></code></pre>"
+        },
+        {
+            "language": "styl",
+            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.contextmenu-area</span>\n    <span class=\"hljs-attribute\">height</span> <span class=\"hljs-number\">100px</span>\n    <span class=\"hljs-attribute\">background</span> <span class=\"hljs-number\">#f0f0f0</span>\n    <span class=\"hljs-attribute\">text-align</span> center\n    <span class=\"hljs-attribute\">line-height</span> <span class=\"hljs-number\">100px</span></code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n\n    defaults() {\n        <span class=\"hljs-keyword\">return</span> { \n            <span class=\"hljs-attr\">show</span>: <span class=\"hljs-literal\">false</span>,\n            <span class=\"hljs-attr\">event</span>: <span class=\"hljs-literal\">undefined</span>,\n        };\n    }\n\n    _showMenu(event) {\n        event.preventDefault();\n        <span class=\"hljs-keyword\">this</span>.set({\n            <span class=\"hljs-attr\">show</span>: <span class=\"hljs-literal\">true</span>,\n            <span class=\"hljs-attr\">event</span>: event,\n        });\n    }\n}</code></pre>"
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "setting": {
+        "title": "基本用法",
+        "order": 0
+    },
+    "catalogs": [],
+    "contents": "<p>通过<code>data</code>属性给组件指定可选项，通过<code>v-model</code>双向绑定<code>value</code>值。<code>data</code>为数组，每一项结构为：</p>\n<ol>\n<li><code>label</code>要展示的文案</li>\n<li><code>value</code> 该项的取值</li>\n</ol>\n<p><code>ScrollSelect</code>可以无限循坏滚动，所以数据项的长度不应过短，否则会出现重复的项；支持拖拽、点击、滚动进行选择</p>\n",
+    "index": 37,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> ScrollSelect <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/scrollSelect'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">ScrollSelect</span>\n    <span class=\"hljs-attr\">data</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">self.get</span>('<span class=\"hljs-attr\">data</span>') }}\n    <span class=\"hljs-attr\">v-model</span>=<span class=\"hljs-string\">\"value\"</span>\n/&gt;</span></span></code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n\n    defaults() {\n        <span class=\"hljs-keyword\">return</span> {\n            <span class=\"hljs-attr\">data</span>: <span class=\"hljs-built_in\">Array</span>.apply(<span class=\"hljs-literal\">null</span>, {<span class=\"hljs-attr\">length</span>: <span class=\"hljs-number\">12</span>})\n                .map(<span class=\"hljs-function\">(<span class=\"hljs-params\">v, i</span>) =&gt;</span> ({<span class=\"hljs-attr\">label</span>: i + <span class=\"hljs-number\">1</span> + <span class=\"hljs-string\">'月'</span>, <span class=\"hljs-attr\">value</span>: i}))\n        };\n    }\n}</code></pre>"
+        }
+    ]
+}

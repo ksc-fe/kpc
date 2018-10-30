@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>使用<code>v-model</code>建立需要编辑的文本的双向数据绑定；使用<code>disabled</code>可以禁用文本编辑</p>\n",
-    "index": 37,
+    "index": 38,
     "highlighted": [
         {
             "language": "vdt",

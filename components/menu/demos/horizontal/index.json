@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>type</code>属性，可以定义菜单垂直或者水平排列：<code>vertical</code> <code>horizontal</code>，默认<code>vertical</code></p>\n",
-    "index": 147,
+    "index": 151,
     "highlighted": [
         {
             "language": "vdt",

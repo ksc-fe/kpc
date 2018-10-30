@@ -17,7 +17,7 @@ export default class extends Intact {
 
     defaults() {
         return {
-            descriptions: ['']
+            descriptions: ['', '']
         }
     }
 

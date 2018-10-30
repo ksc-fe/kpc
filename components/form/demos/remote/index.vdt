@@ -1,0 +1,10 @@
+import {Form, FormItem} from 'kpc/components/form';
+import {Input} from 'kpc/components/input';
+
+<Form ref="form">
+    <FormItem label="用户名" model="userName"
+        rules={{ {required: true, userName: self.validateUserName} }}
+    >
+        <Input v-model="userName" />
+    </FormItem>
+</Form>
