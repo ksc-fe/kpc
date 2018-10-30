@@ -22,10 +22,10 @@ function getDataTransfer(names, options = {}) {
 describe('Upload', () => {
     let instance;
 
-    // afterEach((done) => {
-        // unmount(instance);
-        // setTimeout(done, 400);
-    // });
+    afterEach((done) => {
+        unmount(instance);
+        setTimeout(done, 400);
+    });
 
     it('basic', function(done) {
         this.enableTimeouts(false);
@@ -88,15 +88,15 @@ describe('Upload', () => {
 
         const upload = instance.vdt.vNode.children;
         upload.one('success', () => {
-            expect(instance.element.innerHTML.replace(/blob:[^"]*/, '')).to.matchSnapshot();
+            expect(instance.element.innerHTML.replace(/blob:[^"]*/g, '')).to.matchSnapshot();
 
             const view = instance.element.querySelector('.k-overlap');
             view.click();
             const dialog = getElement('.k-dialog');
-            expect(dialog.innerHTML.replace(/blob:[^"]*/, '')).to.matchSnapshot();
+            expect(dialog.innerHTML.replace(/blob:[^"]*/g, '')).to.matchSnapshot();
 
             upload.one('error', () => {
-                expect(instance.element.innerHTML.replace(/blob:[^"]*/, '')).to.matchSnapshot();
+                expect(instance.element.innerHTML.replace(/blob:[^"]*/g, '')).to.matchSnapshot();
 
                 done();
             });
@@ -105,7 +105,7 @@ describe('Upload', () => {
         });
         const input = instance.element.querySelector('input');
         input.files = getDataTransfer(['a']).files;
-        expect(instance.element.innerHTML.replace(/blob:[^"]*/, '')).to.matchSnapshot();
+        expect(instance.element.innerHTML.replace(/blob:[^"]*/g, '')).to.matchSnapshot();
     });
 
     it('manually', function(done) {
