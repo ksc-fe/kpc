@@ -11,7 +11,7 @@ order: 2
 import Timepicker from 'kpc/components/timepicker';
 
 <div>
-    <Timepicker v-model="time" step="00:30:00"/>
+    <Timepicker class="time" v-model="time" step="00:30:00"/>
     You selected: {{ JSON.stringify(self.get('time')) }}
     <br /><br />
     <Timepicker v-model="timeArray" multiple clearable
