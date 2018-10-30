@@ -33,7 +33,7 @@
 ```
 
 ```
-"<input class=\"c-hidden\" type=\"file\" multiple=\"\"><div class=\"k-handle\"><div class=\"k-area\"><i class=\"k-icon ion-upload\"></i><div>将文件拖到此处，或点击上传</div></div></div><div class=\"k-files\"><div class=\"k-file\" style=\"\"><div class=\"k-wrapper\"><div class=\"k-name c-ellipsis\"><i class=\"k-file-icon ion-document\"></i>a.png<div class=\"k-icons\"><button class=\"k-btn k-none k-btn-icon k-mini k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button><i class=\"k-status-icon ion-ios-checkmark-outline\"></i></div></div><div style=\"height: 16px;\"><div class=\"k-progress k-bar k-success k-mini\"><div class=\"k-container\"><div class=\"k-content\"><div class=\"k-bg\" style=\"width: 100%;\"></div></div></div><div class=\"k-text\"><span><i class=\"k-icon ion-ios-checkmark-outline\"></i></span></div></div></div></div></div></div><!--placeholder-->"
+"<input class=\"c-hidden\" type=\"file\" multiple=\"\"><div class=\"k-handle\"><div class=\"k-area\"><i class=\"k-icon ion-upload\"></i><div>将文件拖到此处，或点击上传</div></div></div><div class=\"k-files\"><div class=\"k-file\" style=\"\"><div class=\"k-wrapper\"><div class=\"k-name c-ellipsis\"><i class=\"k-file-icon ion-document\"></i>a.png<div class=\"k-icons\"><button class=\"k-btn k-none k-btn-icon k-mini k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button><i class=\"k-status-icon ion-ios-checkmark-outline\"></i></div></div></div></div></div><!--placeholder-->"
 ```
 
 #### `gallery`
@@ -43,7 +43,7 @@
 ```
 
 ```
-"<input class=\"c-hidden\" type=\"file\" accept=\".jpg, .png\" multiple=\"\"><div class=\"k-pictures\"><div class=\"k-picture k-picture-card\"><img src=\"\"><div class=\"k-overlap k-icons\"><i class=\"k-zoom ion-ios-eye-outline\"></i></div><div class=\"k-overlap\" style=\"position: absolute;\"><div class=\"k-progress k-bar k-success k-mini\"><div class=\"k-container\"><div class=\"k-content\"><div class=\"k-bg\" style=\"width: 100%;\"></div></div></div><div class=\"k-text\"><span><i class=\"k-icon ion-ios-checkmark-outline\"></i></span></div></div></div><button class=\"k-btn k-none k-btn-icon k-mini k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close\"></i></button></div><div class=\"c-middle\" style=\"\"><div class=\"k-handle\"><i class=\"k-picture-card k-add ion-ios-plus-empty\"></i></div></div></div><!--placeholder-->"
+"<input class=\"c-hidden\" type=\"file\" accept=\".jpg, .png\" multiple=\"\"><div class=\"k-pictures\"><div class=\"k-picture k-picture-card\"><img src=\"\"><div class=\"k-overlap k-icons\"><i class=\"k-zoom ion-ios-eye-outline\"></i></div><button class=\"k-btn k-none k-btn-icon k-mini k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close\"></i></button></div><div class=\"c-middle\" style=\"\"><div class=\"k-handle\"><i class=\"k-picture-card k-add ion-ios-plus-empty\"></i></div></div></div><!--placeholder-->"
 ```
 
 ```
@@ -51,7 +51,7 @@
 ```
 
 ```
-"<input class=\"c-hidden\" type=\"file\" accept=\".jpg, .png\" multiple=\"\"><div class=\"k-pictures\"><div class=\"k-picture k-picture-card\"><img src=\"\"><div class=\"k-overlap k-icons\"><i class=\"k-zoom ion-ios-eye-outline\"></i></div><div class=\"k-overlap\" style=\"position: absolute;\"><div class=\"k-progress k-bar k-success k-mini\"><div class=\"k-container\"><div class=\"k-content\"><div class=\"k-bg\" style=\"width: 100%;\"></div></div></div><div class=\"k-text\"><span><i class=\"k-icon ion-ios-checkmark-outline\"></i></span></div></div></div><button class=\"k-btn k-none k-btn-icon k-mini k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close\"></i></button></div><div class=\"c-middle\" style=\"\"><div class=\"k-handle\"><i class=\"k-picture-card k-add ion-ios-plus-empty\"></i></div></div></div><!--placeholder-->"
+"<input class=\"c-hidden\" type=\"file\" accept=\".jpg, .png\" multiple=\"\"><div class=\"k-pictures\"><div class=\"k-picture k-picture-card\"><img src=\"\"><div class=\"k-overlap k-icons\"><i class=\"k-zoom ion-ios-eye-outline\"></i></div><button class=\"k-btn k-none k-btn-icon k-mini k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close\"></i></button></div><div class=\"c-middle\" style=\"\"><div class=\"k-handle\"><i class=\"k-picture-card k-add ion-ios-plus-empty\"></i></div></div></div><!--placeholder-->"
 ```
 
 #### `manually`
@@ -61,7 +61,7 @@
 ```
 
 ```
-"<input class=\"c-hidden\" type=\"file\" multiple=\"\"><div class=\"k-handle\"><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>选择文件</span></button></div><div class=\"k-tip\"><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>开始上传</span></button></div><div class=\"k-files\"><div class=\"k-file\" style=\"\"><div class=\"k-wrapper\"><div class=\"k-name c-ellipsis\"><i class=\"k-file-icon ion-document\"></i>a.png<div class=\"k-icons\"><button class=\"k-btn k-none k-btn-icon k-mini k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button><i class=\"k-status-icon ion-ios-checkmark-outline\"></i></div></div><div class=\"c-expand-leave-active\" style=\"height: 16px;\"><div class=\"k-progress k-bar k-success k-mini\"><div class=\"k-container\"><div class=\"k-content\"><div class=\"k-bg\" style=\"width: 100%;\"></div></div></div><div class=\"k-text\"><span><i class=\"k-icon ion-ios-checkmark-outline\"></i></span></div></div></div></div></div></div><!--placeholder-->"
+"<input class=\"c-hidden\" type=\"file\" multiple=\"\"><div class=\"k-handle\"><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>选择文件</span></button></div><div class=\"k-tip\"><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>开始上传</span></button></div><div class=\"k-files\"><div class=\"k-file\" style=\"\"><div class=\"k-wrapper\"><div class=\"k-name c-ellipsis\"><i class=\"k-file-icon ion-document\"></i>a.png<div class=\"k-icons\"><button class=\"k-btn k-none k-btn-icon k-mini k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button><i class=\"k-status-icon ion-ios-checkmark-outline\"></i></div></div></div></div></div><!--placeholder-->"
 ```
 
 #### `should trigger error event when exceed the maxSize`

@@ -67,9 +67,11 @@ describe('Upload', () => {
 
         const upload = instance.vdt.vNode.children;
         upload.on('success', () => {
-            expect(instance.element.innerHTML).to.matchSnapshot();
+            setTimeout(() => {
+                expect(instance.element.innerHTML).to.matchSnapshot();
 
-            done();
+                done();
+            }, 500);
         });
         const handle = instance.element.querySelector('.k-handle');
         dispatchEvent(handle, 'dragenter');
@@ -88,20 +90,21 @@ describe('Upload', () => {
 
         const upload = instance.vdt.vNode.children;
         upload.one('success', () => {
-            expect(instance.element.innerHTML.replace(/blob:[^"]*/g, '')).to.matchSnapshot();
-
-            const view = instance.element.querySelector('.k-overlap');
-            view.click();
-            const dialog = getElement('.k-dialog');
-            expect(dialog.innerHTML.replace(/blob:[^"]*/g, '')).to.matchSnapshot();
-
-            upload.one('error', () => {
+            setTimeout(() => {
                 expect(instance.element.innerHTML.replace(/blob:[^"]*/g, '')).to.matchSnapshot();
 
-                done();
-            });
-            input.files = getDataTransfer(['b', 'c', 'd']).files;
+                const view = instance.element.querySelector('.k-overlap');
+                view.click();
+                const dialog = getElement('.k-dialog');
+                expect(dialog.innerHTML.replace(/blob:[^"]*/g, '')).to.matchSnapshot();
 
+                upload.one('error', () => {
+                    expect(instance.element.innerHTML.replace(/blob:[^"]*/g, '')).to.matchSnapshot();
+
+                    done();
+                });
+                input.files = getDataTransfer(['b', 'c', 'd']).files;
+            }, 500);
         });
         const input = instance.element.querySelector('input');
         input.files = getDataTransfer(['a']).files;
@@ -114,8 +117,10 @@ describe('Upload', () => {
 
         const upload = instance.vdt.vNode.children;
         upload.one('success', () => {
-            expect(instance.element.innerHTML).to.matchSnapshot();
-            done();
+            setTimeout(() => {
+                expect(instance.element.innerHTML).to.matchSnapshot();
+                done();
+            }, 500);
         });
 
         const input = instance.element.querySelector('input');
