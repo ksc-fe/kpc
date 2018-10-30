@@ -36,13 +36,15 @@
             top $upload-file-icons-top
             right $upload-file-icons-right 
         .k-status-icon
+            display inline-block
             color $upload-file-status-icon-color
             margin-left $upload-file-status-icon-margin-left 
-            float right
+            // float right
             width $upload-file-status-icon-width
             height @width
             line-height @height 
             text-align center
+            vertical-align middle
         &.k-error
             color $upload-file-error-color
             .k-status-icon
