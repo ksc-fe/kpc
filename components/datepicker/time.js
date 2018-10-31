@@ -12,7 +12,7 @@ export default class DatepickerTime extends Intact {
         max: [String, Date],
         date: {
             required: true,
-            type: [String, Date]
+            type: String
         }
     };
 
@@ -54,6 +54,8 @@ export default class DatepickerTime extends Intact {
     }
 
     _isDisabled(value) {
+        if (!value.every((item) => item)) return true;
+
         const {min, max, date} = this.get();
 
         value = new Date(`${date} ${value.join(':')}`);

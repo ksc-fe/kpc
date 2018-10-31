@@ -182,15 +182,9 @@ const panel = type === 'year' ? map.YYYY : format.map(item => map[item]);
     <div v-else class="k-time-picker" key="time">
         <b:time-head>
             <div class="k-month c-clearfix">
-                <!--<Button type="none" size="small" class="k-prev"
-                    ev-click={{ self.cancel.bind(self) }}
-                >取消</Button>-->
                 <span class="k-text-wrapper"
                     ev-click={{ self.cancel }}
                 >{{ panel }}</span>
-                <!--<Button type="none" size="small" class="k-next"
-                    ev-click={{ self.confirm.bind(self) }}
-                >确认</Button>-->
             </div>
         </b:time-head>
         <b:time-body>
@@ -200,11 +194,19 @@ const panel = type === 'year' ? map.YYYY : format.map(item => map[item]);
                     minutes.map(v => strPad(v, 2)),
                     seconds.map(v => strPad(v, 2)),
                 ] }}
-                value={{ [
-                    strPad(valueDate.getHours(), 2),
-                    strPad(valueDate.getMinutes(), 2),
-                    strPad(valueDate.getSeconds(), 2),
-                ] }}
+                value={{ values[self._index] ||
+                    // if exists _id, it indicate that this is a range time selection of Timepicker
+                    // we don't let Time to trigger $change:value in initial
+                    // otherwise the start time will be disabled due to the end time is 00:00:00
+                    // #119
+                    self.get('_id') ? 
+                        [
+                            strPad(valueDate.getHours(), 2),
+                            strPad(valueDate.getMinutes(), 2),
+                            strPad(valueDate.getSeconds(), 2),
+                        ] : 
+                        ['', '', '']
+                }}
                 ev-$change:value={{ self.onChangeTime }}
                 min={{ self._getMinDate() }}
                 max={{ self._getMaxDate() }}

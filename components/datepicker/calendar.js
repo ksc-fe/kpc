@@ -230,15 +230,15 @@ export default class Calendar extends Intact {
         return getDateString(date, this.get('type'));
     }
 
-    confirm() {
-        this.refs.calendar.hide();
-    }
+    // confirm() {
+        // this.refs.calendar.hide();
+    // }
 
-    cancel(e) {
-        e._rawEvent._dropdown = true;
-        this.set('_isSelectTime', false, {async: true});
-        this.showYearPicker();
-    }
+    // cancel(e) {
+        // e._rawEvent._dropdown = true;
+        // this.set('_isSelectTime', false, {async: true});
+        // this.showYearPicker();
+    // }
 
     focusAndSelect(e) {
         // this.element.focus();

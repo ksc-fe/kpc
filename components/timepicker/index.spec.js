@@ -19,7 +19,7 @@ describe('Timepicker', () => {
         picker1.click();
         let dropdown = getElement('.k-dropdown-menu.k-time-picker');
         expect(dropdown.innerHTML).to.matchSnapshot();
-        const next = dropdown.querySelector('.k-active').nextElementSibling;
+        const next = dropdown.querySelector('.k-scroll-item:nth-child(11)');
         next.click();
         expect(dropdown.innerHTML).to.matchSnapshot();
         expect(instance.get('time')).to.be.undefined;
@@ -34,11 +34,11 @@ describe('Timepicker', () => {
         const [, picker2] = instance.element.querySelectorAll('.k-input');
         picker2.click();
         dropdown = getElement('.k-dropdown-menu.k-time-picker');
-        dropdown.querySelector('.k-active').nextElementSibling.click();
+        dropdown.querySelector('.k-scroll-item:nth-child(11)').click();
         picker2.click();
         picker2.click();
         dropdown = getElement('.k-dropdown-menu.k-time-picker');
-        dropdown.querySelector('.k-active').nextElementSibling.nextElementSibling.click();
+        dropdown.querySelector('.k-scroll-item:nth-child(12)').click();
         expect(instance.get('timeArray')).to.eql(['01:00:00', '02:00:00']);
         instance.set('timeArray', ['03:03:03', '03:03:04']);
         expect(dropdown.innerHTML).to.matchSnapshot();

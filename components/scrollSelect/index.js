@@ -105,7 +105,7 @@ export default class ScrollSelect extends Intact {
 
         if (!~index) {
             index = 0;
-            this.set('_value', data[0].value, {silent: true});
+            this.set('_value', data[0].value);
         }
 
         const length = data.length;
