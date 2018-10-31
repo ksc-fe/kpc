@@ -71,6 +71,9 @@ export default class ScrollSelect extends Intact {
     }
 
     _select(item, index) {
+        // if _dragged, do not trigger click event, #123
+        if (this._dragged) return;
+
         const {count, _translate, _marginTop} = this.get();
         const half = Math.floor(count / 2);
         const itemHeight = this.refs.item.offsetHeight;
@@ -118,6 +121,7 @@ export default class ScrollSelect extends Intact {
         if (e.which !== 1) return;
 
         this.set('_dragging', true);
+        this._dragged = false;
         this._y = e.clientY;
         this._initY = e.clientY;
         this._itemHeight = this.refs.item.offsetHeight;
@@ -129,6 +133,7 @@ export default class ScrollSelect extends Intact {
     _move(e) {
         if (this.get('_dragging')) {
             const deltaY = e.clientY - this._y;
+            this._dragged = !!deltaY;
             this._y = e.clientY;
             const {_translate} = this.get();
 
