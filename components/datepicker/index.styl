@@ -4,6 +4,9 @@
 .k-datepicker
     display inline-block
     outline none
+    width $datepicker-width
+    .k-input
+        width 100%
     .k-inner
         cursor pointer
     &:focus
@@ -12,8 +15,7 @@
             border $input-focus-border
     // range
     &.k-range
-        .k-input
-            width $datepicker-range-width 
+        width $datepicker-range-width 
 
 .k-datepicker-content
     color $datepicker-color
