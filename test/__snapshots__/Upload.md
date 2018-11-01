@@ -7,7 +7,7 @@
 ```
 
 ```
-"<input class=\"c-hidden\" type=\"file\" multiple=\"\"><div class=\"k-handle\"><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>点击上传</span></button></div><div class=\"k-tip\">只能上传JPG/PNG格式文件，且不超过500kb</div><div class=\"k-files\"><div class=\"k-file\" style=\"\"><div class=\"k-wrapper\"><div class=\"k-name c-ellipsis\"><i class=\"k-file-icon ion-document\"></i>a.png<div class=\"k-icons\"><button class=\"k-btn k-none k-btn-icon k-mini k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button><i class=\"k-status-icon ion-ios-checkmark-outline\"></i></div></div><div style=\"height: 16px;\"><div class=\"k-progress k-bar k-success k-mini\"><div class=\"k-container\"><div class=\"k-content\"><div class=\"k-bg\" style=\"width: 100%;\"></div></div></div><div class=\"k-text\"><span><i class=\"k-icon ion-ios-checkmark-outline\"></i></span></div></div></div></div></div></div><!--placeholder-->"
+"<input class=\"c-hidden\" type=\"file\" multiple=\"\"><div class=\"k-handle\"><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>点击上传</span></button></div><div class=\"k-tip\">只能上传JPG/PNG格式文件，且不超过500kb</div><div class=\"k-files\"><div class=\"k-file\" style=\"\"><div class=\"k-wrapper\"><div class=\"k-name c-ellipsis\"><i class=\"k-file-icon ion-document\"></i>a.png<div class=\"k-icons\"><button class=\"k-btn k-none k-btn-icon k-mini k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button><i class=\"k-status-icon ion-ios-checkmark-outline\"></i></div></div></div></div></div><!--placeholder-->"
 ```
 
 ```

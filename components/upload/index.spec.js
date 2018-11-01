@@ -33,28 +33,30 @@ describe('Upload', () => {
 
         const upload = instance.vdt.vNode.children;
         upload.on('success', () => {
-            expect(instance.element.innerHTML).to.matchSnapshot();
-
-            // beforeRemove
-            const remove = instance.element.querySelector('.k-close');
-            remove.click();
-            let dialog = getElement('.k-dialog');
-            const [cancel] = dialog.querySelectorAll('.k-footer .k-btn');
-            cancel.click();
             setTimeout(() => {
                 expect(instance.element.innerHTML).to.matchSnapshot();
 
+                // beforeRemove
+                const remove = instance.element.querySelector('.k-close');
                 remove.click();
-                dialog = getElement('.k-dialog');
-                const [, ok] = dialog.querySelectorAll('.k-footer .k-btn');
-                ok.click();
+                let dialog = getElement('.k-dialog');
+                const [cancel] = dialog.querySelectorAll('.k-footer .k-btn');
+                cancel.click();
                 setTimeout(() => {
                     expect(instance.element.innerHTML).to.matchSnapshot();
 
-                    done();
-                }, 500);
-            }, 500);
+                    remove.click();
+                    dialog = getElement('.k-dialog');
+                    const [, ok] = dialog.querySelectorAll('.k-footer .k-btn');
+                    ok.click();
+                    setTimeout(() => {
+                        expect(instance.element.innerHTML).to.matchSnapshot();
 
+                        done();
+                    }, 500);
+                }, 500);
+
+            }, 500);
         });
         const input = instance.element.querySelector('input');
         input.files = getDataTransfer(['a']).files;
