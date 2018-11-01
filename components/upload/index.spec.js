@@ -162,8 +162,10 @@ describe('Upload', () => {
                 this.Upload = Upload;
             }
             _onError(e) {
-                expect(instance.element.innerHTML).to.matchSnapshot();
-                done();
+                setTimeout(() => {
+                    expect(instance.element.innerHTML).to.matchSnapshot();
+                    done();
+                }, 500);
             }
         }
         instance = mount(Demo);
