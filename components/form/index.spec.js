@@ -228,6 +228,10 @@ describe('Form', () => {
         expect(await form.validate()).to.be.true;
         instance.set('value', ['a', 'a', 'a']);
         expect(await form.validate()).to.be.true;
+        instance.set('value', 1);
+        expect(await form.validate()).to.be.false;
+        instance.set('value', 11);
+        expect(await form.validate()).to.be.true;
 
         // maxLength
         instance.set({rules: {maxLength: 2}, value: ''});
@@ -243,6 +247,10 @@ describe('Form', () => {
         expect(await form.validate()).to.be.true;
         instance.set('value', ['a', 'a', 'a']);
         expect(await form.validate()).to.be.false;
+        instance.set('value', 1);
+        expect(await form.validate()).to.be.true;
+        instance.set('value', 111);
+        expect(await form.validate()).to.be.false;
 
         // rangeLength
         instance.set({rules: {rangeLength: [1, '2']}, value: ''});
@@ -257,6 +265,12 @@ describe('Form', () => {
         instance.set('value', ['a', 'a']);
         expect(await form.validate()).to.be.true;
         instance.set('value', ['a', 'a', 'a']);
+        expect(await form.validate()).to.be.false;
+        instance.set('value', 1);
+        expect(await form.validate()).to.be.true;
+        instance.set('value', 11);
+        expect(await form.validate()).to.be.true;
+        instance.set('value', 111);
         expect(await form.validate()).to.be.false;
 
         // min

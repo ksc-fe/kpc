@@ -214,3 +214,7 @@ export function toggleArray(arr, value) {
         return arr;
     }
 }
+
+export function isNumber(n) {
+    return typeof n === 'number';
+}
