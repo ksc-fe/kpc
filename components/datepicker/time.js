@@ -13,7 +13,8 @@ export default class DatepickerTime extends Intact {
         date: {
             required: true,
             type: String
-        }
+        },
+        disabledItems: Array,
     };
 
     defaults() {
@@ -23,6 +24,7 @@ export default class DatepickerTime extends Intact {
             min: undefined,
             max: undefined,
             date: undefined,
+            disabledItems: [],
 
             _value: undefined,
         };

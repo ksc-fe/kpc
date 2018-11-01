@@ -163,6 +163,24 @@ describe('Datepicker', () => {
             done();
         });
     });
+
+    it('should disable some time pickers', (done) => {
+        instance = mount(DatetimeDemo);
+
+        dispatchEvent(instance.element.children[1].children[0], 'click');
+        let content = document.querySelectorAll('.k-datepicker-content');
+        content = content[content.length - 1];
+       
+        dispatchEvent(content.querySelector('.k-day'), 'click');
+        setTimeout(() => {
+            dispatchEvent(content.querySelector('.k-col:nth-child(2) .k-scroll-item'), 'click');
+
+            expect(instance.get('datetime2').split(' ')[1]).eql('00:00:00');
+            expect(content.querySelector('.k-scroll-select-group').innerHTML).to.matchSnapshot();
+
+            done();
+        });
+    });
     
     it('range', () => {
         instance = mount(RangeDemo);

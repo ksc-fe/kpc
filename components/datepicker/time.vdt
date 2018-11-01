@@ -1,7 +1,7 @@
 import {Row, Col} from '../grid';
 import ScrollSelect from '../scrollSelect';
 
-const {data, _value, value} = self.get();
+const {data, _value, value, disabledItems} = self.get();
 
 const span = data.length ? 24 / data.length : 0;
 const append = <b:append />
@@ -9,10 +9,11 @@ const append = <b:append />
 <Row class="k-scroll-select-group">
     <Col span={{ span }} v-for={{ data }} v-for-value="item">
         <ScrollSelect
-            data={{ item }}    
+            data={{ item }} 
             value={{ value && value[key] }}
             ev-$change:_value={{ self._onChangeValue.bind(self, key) }}
             disable={{ self._disable.bind(self, key) }}
+            disabled={{ disabledItems[key] }}
         >
             <b:append v-if={{ key !== data.length - 1 }}>{{ append }}</b:append>
         </ScrollSelect>

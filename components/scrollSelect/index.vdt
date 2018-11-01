@@ -23,7 +23,7 @@ const classNameObj = {
             class={{ {
                 "k-scroll-item": true,
                 "k-active": item.value === value,
-                "k-disabled": disable && disable.call(self, item.value), 
+                "k-disabled": disabled || disable && disable.call(self, item.value), 
             } }}
             v-for={{ _list }}
             v-for-value="item"

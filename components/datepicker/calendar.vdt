@@ -207,6 +207,7 @@ const panel = type === 'year' ? map.YYYY : format.map(item => map[item]);
                         ] : 
                         ['', '', '']
                 }}
+                disabledItems={{ [disabledHours, disabledMinutes, disabledMinutes] }}
                 ev-$change:value={{ self.onChangeTime }}
                 min={{ self._getMinDate() }}
                 max={{ self._getMaxDate() }}
