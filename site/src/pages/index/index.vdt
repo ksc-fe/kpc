@@ -11,7 +11,7 @@ import {Row, Col} from 'kpc/components/grid';
             </ul>
                 <Row class="test">
                     <Col class="first-page-left"
-                        xs={{ {span: 20, offset: 2} }}
+                        xs={{ {span: 24, offset: 0} }}
                         xl={{ {span: 12, offset: 0} }}
                     >
                         <h1>KPC</h1>
@@ -29,7 +29,7 @@ import {Row, Col} from 'kpc/components/grid';
                         </div>
                     </Col>
                     <Col class="first-page-right"
-                        xs={{ {span: 20, offset: 4} }}
+                        xs={{ {span: 24, offset: 0} }}
                         xl={{ {span: 12, offset: 0} }}
                     >
                         <div class="right"></div>
@@ -38,14 +38,14 @@ import {Row, Col} from 'kpc/components/grid';
 
                 <Row class="test">
                     <Col class="second-page-left"
-                        xs={{ {span: 20, offset: 4} }}
-                        xl={{ {span: 12, offset: 3} }}
+                        xs={{ {span: 24, offset: 0, order: 2} }}
+                        xl={{ {span: 9, offset: 3, order: 1} }}
                     >
                         <div class="left"></div>
                     </Col>
                     <Col class="second-page-right"
-                        xs={{ {span: 20, offset: 2} }}
-                        xl={{ {span: 12, offset: 1} }}
+                        xs={{ {span: 20, offset: 4, order: 1} }}
+                        xl={{ {span: 10, offset: 2, order: 2} }}
                     >
                         <div class="info">
                             <div class="feature">
@@ -72,10 +72,6 @@ import {Row, Col} from 'kpc/components/grid';
                         </div>
                     </Col>
                 </Row>
-
-
-
-
         </div>
     </b:content>
 </t:parent>
