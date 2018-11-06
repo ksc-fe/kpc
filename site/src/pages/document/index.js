@@ -59,7 +59,7 @@ export default class extends Layout {
         if (active) {
             this.set('borderStyle', {
                 height: active.offsetHeight + 'px',
-                top: active.offsetTop + 'px',
+                top: active.offsetTop + 8 + 'px', // fix top +8px
             });
         } else {
             this.set('borderStyle', undefined);

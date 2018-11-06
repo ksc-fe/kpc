@@ -4,12 +4,16 @@
     .content-wrapper
         box-shadow none
         flex-direction row-reverse
-        width 1080px
+        //width 1080px
         aside
-            width 250px
+            position absolute
+            left 20px
+            width 15% //250px
             border none
             background #eee
         article
+            margin-left 22%
+            background-color #f1f1f5
             box-shadow 0 1px 1px rgba(0, 0, 0, 0.08)
         .aside-wrapper
             margin 30px
@@ -22,3 +26,64 @@
                 height s("calc(100% - 125px)")
         .aside-border
             height 30px
+
+.aside-nav
+    width 200px
+    //border 1px solid red
+    position fixed
+    float left
+    left 30px
+    display inline-block
+    .aside-nav-line
+        height 100%
+        border-right 1px solid #B2B2B2
+        position absolute
+    ul
+        padding-left 20px
+
+.aside-nav-dot-2:before
+    content ''
+    position absolute
+    width 12px
+    height 12px
+    border-radius 12px
+    margin-top 5px
+    border 1px solid #CCCCCC
+    left -6.5px
+    background-color #CCCCCC
+
+.aside-nav-dot-3:before
+    content ''
+    position absolute
+    width 8px
+    height 8px
+    border-radius 8px
+    margin-top 5px
+    border 1px solid #CCCCCC
+    left -4.5px
+    background-color #CCCCCC
+
+dot-active-2
+    //color red
+    color #ffffff !important
+    background-color #0091ea
+
+.aside-nav-ul
+    li
+        height 40px
+        padding-left 20px
+        padding-bottom 10px
+        .active
+            color #0091ea
+        a
+            color #4C4C4C
+
+.aside-active-dot
+    //width 12px
+    //height 12px !important
+    //border-radius 12px
+    background-color #0091ea
+    position absolute
+    //left -5px
+.aside-nav-sub-li
+    padding-left 20px

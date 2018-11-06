@@ -200,6 +200,7 @@ exports.localize = localize;
 exports.getTransition = getTransition;
 exports.mapChildren = mapChildren;
 exports.toggleArray = toggleArray;
+exports.isNumber = isNumber;
 
 var _intact = __webpack_require__(0);
 
@@ -438,6 +439,10 @@ function toggleArray(arr, value) {
         }
         return arr;
     }
+}
+
+function isNumber(n) {
+    return typeof n === 'number';
 }
 
 /***/ }),
@@ -4437,15 +4442,15 @@ var Calendar = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
         return (0, _utils2.getDateString)(date, this.get('type'));
     };
 
-    Calendar.prototype.confirm = function confirm() {
-        this.refs.calendar.hide();
-    };
+    // confirm() {
+    // this.refs.calendar.hide();
+    // }
 
-    Calendar.prototype.cancel = function cancel(e) {
-        e._rawEvent._dropdown = true;
-        this.set('_isSelectTime', false, { async: true });
-        this.showYearPicker();
-    };
+    // cancel(e) {
+    // e._rawEvent._dropdown = true;
+    // this.set('_isSelectTime', false, {async: true});
+    // this.showYearPicker();
+    // }
 
     Calendar.prototype.focusAndSelect = function focusAndSelect(e) {
         // this.element.focus();
@@ -4757,6 +4762,9 @@ var ScrollSelect = (_dec = _intact2.default.template(), (_class = (_temp = _clas
     };
 
     ScrollSelect.prototype._select = function _select(item, index) {
+        // if _dragged, do not trigger click event, #123
+        if (this._dragged) return;
+
         var _get = this.get(),
             count = _get.count,
             _translate = _get._translate,
@@ -4795,7 +4803,7 @@ var ScrollSelect = (_dec = _intact2.default.template(), (_class = (_temp = _clas
 
         if (!~index) {
             index = 0;
-            this.set('_value', data[0].value, { silent: true });
+            this.set('_value', data[0].value);
         }
 
         var length = data.length;
@@ -4811,6 +4819,7 @@ var ScrollSelect = (_dec = _intact2.default.template(), (_class = (_temp = _clas
         if (e.which !== 1) return;
 
         this.set('_dragging', true);
+        this._dragged = false;
         this._y = e.clientY;
         this._initY = e.clientY;
         this._itemHeight = this.refs.item.offsetHeight;
@@ -4822,6 +4831,7 @@ var ScrollSelect = (_dec = _intact2.default.template(), (_class = (_temp = _clas
     ScrollSelect.prototype._move = function _move(e) {
         if (this.get('_dragging')) {
             var deltaY = e.clientY - this._y;
+            this._dragged = !!deltaY;
             this._y = e.clientY;
 
             var _get3 = this.get(),
@@ -6896,6 +6906,7 @@ var DatepickerTime = (_dec = _intact2.default.template(), (_class = (_temp = _cl
             min: undefined,
             max: undefined,
             date: undefined,
+            disabledItems: [],
 
             _value: undefined
         };
@@ -6929,6 +6940,10 @@ var DatepickerTime = (_dec = _intact2.default.template(), (_class = (_temp = _cl
     };
 
     DatepickerTime.prototype._isDisabled = function _isDisabled(value) {
+        if (!value.every(function (item) {
+            return item;
+        })) return true;
+
         var _get = this.get(),
             min = _get.min,
             max = _get.max,
@@ -6967,8 +6982,9 @@ var DatepickerTime = (_dec = _intact2.default.template(), (_class = (_temp = _cl
     max: [String, Date],
     date: {
         required: true,
-        type: [String, Date]
-    }
+        type: String
+    },
+    disabledItems: Array
 }, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
     enumerable: true,
     configurable: true,
@@ -16753,7 +16769,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         }.call($this),
         '_context': $this
     }) : undefined], 'k-date-picker') : h('div', null, [(_blocks['time-head'] = function (parent) {
-        return h('div', null, [hc('<Button type=\"none\" size=\"small\" class=\"k-prev\"\n                    ev-click={{ self.cancel.bind(self) }}\n                >取消</Button>'), h('span', {
+        return h('div', null, h('span', {
             'ev-click': function () {
                 try {
                     return self.cancel;
@@ -16767,7 +16783,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
-        }.call($this), 'k-text-wrapper'), hc('<Button type=\"none\" size=\"small\" class=\"k-next\"\n                    ev-click={{ self.confirm.bind(self) }}\n                >确认</Button>')], 'k-month c-clearfix');
+        }.call($this), 'k-text-wrapper'), 'k-month c-clearfix');
     }) && (__blocks['time-head'] = function (parent) {
         var args = arguments;
         return blocks['time-head'] ? blocks['time-head'].apply($this, [function () {
@@ -16790,7 +16806,19 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             }.call($this),
             'value': function () {
                 try {
-                    return [(0, _utils.strPad)(valueDate.getHours(), 2), (0, _utils.strPad)(valueDate.getMinutes(), 2), (0, _utils.strPad)(valueDate.getSeconds(), 2)];
+                    return values[self._index] ||
+                    // if exists _id, it indicate that this is a range time selection of Timepicker
+                    // we don't let Time to trigger $change:value in initial
+                    // otherwise the start time will be disabled due to the end time is 00:00:00
+                    // #119
+                    self.get('_id') ? [(0, _utils.strPad)(valueDate.getHours(), 2), (0, _utils.strPad)(valueDate.getMinutes(), 2), (0, _utils.strPad)(valueDate.getSeconds(), 2)] : ['', '', ''];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call($this),
+            'disabledItems': function () {
+                try {
+                    return [disabledHours, disabledMinutes, disabledMinutes];
                 } catch (e) {
                     _e(e);
                 }
@@ -16982,7 +17010,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 return {
                     "k-scroll-item": true,
                     "k-active": item.value === value,
-                    "k-disabled": disable && disable.call(self, item.value)
+                    "k-disabled": disabled || disable && disable.call(self, item.value)
                 };
             } catch (e) {
                 _e(e);
@@ -17075,7 +17103,8 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     var _self$get = self.get(),
         data = _self$get.data,
         _value = _self$get._value,
-        value = _self$get.value;
+        value = _self$get.value,
+        disabledItems = _self$get.disabledItems;
 
     var span = data.length ? 24 / data.length : 0;
     var append = (_blocks['append'] = function (parent) {
@@ -17122,6 +17151,13 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                     'disable': function () {
                         try {
                             return self._disable.bind(self, key);
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call($this),
+                    'disabled': function () {
+                        try {
+                            return disabledItems[key];
                         } catch (e) {
                             _e(e);
                         }
@@ -18885,12 +18921,15 @@ var methods = exports.methods = {
         );
     },
     minLength: function minLength(value, item, param) {
+        if ((0, _utils.isNumber)(value)) value = String(value);
         return value.length >= Number(param);
     },
     maxLength: function maxLength(value, item, param) {
+        if ((0, _utils.isNumber)(value)) value = String(value);
         return value.length <= Number(param);
     },
     rangeLength: function rangeLength(value, item, param) {
+        if ((0, _utils.isNumber)(value)) value = String(value);
         var length = value.length;
         return length >= Number(param[0]) && length <= Number(param[1]);
     },
@@ -26384,7 +26423,9 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         size = _self$get.size,
         clearable = _self$get.clearable,
         placeholder = _self$get.placeholder,
-        disabled = _self$get.disabled;
+        disabled = _self$get.disabled,
+        className = _self$get.className,
+        style = _self$get.style;
 
     var _placeholder = range ? (0, _utils._$)('开始时间 ~ 结束时间') : (0, _utils._$)('请选择时间');
 
@@ -26515,6 +26556,20 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         'size': function () {
             try {
                 return size;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
+        'className': _className(function () {
+            try {
+                return className;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)),
+        'style': function () {
+            try {
+                return style;
             } catch (e) {
                 _e(e);
             }
@@ -28941,6 +28996,7 @@ var Upload = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
     };
 
     Upload.prototype._selectFile = function _selectFile() {
+        /* istanbul ignore if */
         if (!this.get('disabled')) {
             var input = this.refs.input;
             input.value = '';
@@ -29100,20 +29156,20 @@ var Upload = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
     Upload.prototype._onProgress = function _onProgress(e, file) {
         file.status = 'uploading';
         file.percent = e.percent;
-        this.trigger('progress', e, file, this.get('files'));
         this.update();
+        this.trigger('progress', e, file, this.get('files'));
     };
 
     Upload.prototype._onError = function _onError(e, file) {
         file.status = 'error';
-        this.trigger('error', e, file, this.get('files'));
         this.update();
+        this.trigger('error', e, file, this.get('files'));
     };
 
     Upload.prototype._onSuccess = function _onSuccess(res, file) {
         file.status = 'done';
-        this.trigger('success', res, file, this.get('files'));
         this.update();
+        this.trigger('success', res, file, this.get('files'));
     };
 
     Upload.prototype._removeFile = function () {

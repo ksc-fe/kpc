@@ -29,6 +29,7 @@ export default class extends Intact {
     defaults() {
         return {
             theme: theme,
+            version: 'v1.1.1'
         };
     }
 
@@ -40,7 +41,7 @@ export default class extends Intact {
 
     _mount() {
         this.border = this.element.querySelector('.border');
-        this._updateBorder();
+        // this._updateBorder();
     }
 
     _updateBorder() {

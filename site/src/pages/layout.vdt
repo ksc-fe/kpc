@@ -3,38 +3,33 @@ import {Select, Option} from 'kpc/components/select';
 
 const nav = [
     {
-        title: '设计语言',
-        href: '/docs/design/language/',
-        index: 'design',
-    },
-    {
-        title: '教程',
-        href: '/docs/getting-started/',
-        index: 'document',
-    },
-    {
-        title: 'Blog',
+        title: '指南',
         href: '/docs/blogs/design/',
-        index: 'blog',
+        index: 'blog'
     },
-    /* { */
-        /* title: 'API', */
-        /* href: 'api' */
-    /* }, */
-    // {
-        // title: '示例',
-        // href: 'examples'
-    // }
+    {
+        title: '设计',
+        href: '/docs/design/language/',
+        index: 'design'
+    },
+    {
+        title: '组件',
+        href: '/docs/getting-started/',
+        index: 'document'
+    }
 ];
 
 <div class={{ {'main-wrapper': true, [scope.className]: scope.className} }}>
-    <div class="header-wrapper">
+    <div class="header-wrapper" class={{ {'header-wrapper': true, 'header-shadow': scope.pageIndex !== 'index'} }}>
         <header>
             <b:header>
-                <Link class="logo" href="/">KPC</Link>
+                <div class="king-logo">
+                    <Link class="logo" href="/"></Link>
+                    <Link class="king" href="/">King</Link>
+                </div>
                 <div class="right">
                     <nav>
-                        <Link v-for={{ nav }} 
+                        <Link v-for={{ nav }}
                             class={{ {
                                 active: value.index === scope.navIndex
                             } }}
@@ -42,9 +37,12 @@ const nav = [
                         >{{ value.title }}</Link>
                         <div class="border"></div>
                     </nav>
-                    <span class="label">切换主题：</span>
+                    <div class="line"></div>
+                    <Select v-model="version" width="100" size="small">
+                        <Option value="v1.1.1">v1.1.1</Option>
+                    </Select>
                     <Select v-model="theme" width="100" size="small">
-                        <Option value="kpc">default</Option>
+                        <Option value="kpc">默认主题</Option>
                         <Option value="ksyun">ksyun</Option>
                     </Select>
                 </div>

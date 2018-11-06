@@ -2,7 +2,52 @@ const Article = self.get('Article');
 
 <t:parent navIndex="blog" class="document-page blog-page">
     <b:content>
-        <aside>
+            <div class="aside-nav" ref="aside">
+                <div class="aside-nav-line"></div>
+                <ul class="aside-nav-ul">
+                    <li>
+                        <a class="aside-nav-dot-2" ev-click={{ self.scrollTo.bind(self, '__top') }}>{{ Article.data.setting.title }}</a>
+                    </li>
+
+                    <li v-for={{ Article.data.catalogs }}>
+                        <a
+                            attributes={{ {'key': value.level} }}
+                            class={{
+                                {
+                                    'aside-nav-dot-2': value.level == 2,
+                                    'aside-nav-sub-li': value.level == 3,
+                                    'aside-nav-dot-3': value.level == 3,
+                                    'active': self.get(`active${value.level}`) === value.id
+                                }
+                            }}
+                            ev-click={{ self.scrollTo.bind(self, value.id) }}>{{ value.text }}</a>
+                    </li>
+
+
+
+
+
+                    <li v-if={{ false }}>
+
+                        <ul class="sub-catalogs">
+                            <li v-for={{ Article.data.catalogs.filter(item => item.level <= 3) }}
+                                class={{ {
+                                    'sub-catalogs': value.level > 2,
+                                    'active': self.get(`active${value.level}`) === value.id,
+                                } }}
+                            >
+                                <a ev-click={{ self.scrollTo.bind(self, value.id) }}
+                                >{{ value.text }}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="aside-active-dot transition" style={{ self.get('borderStyle') }}></div>
+            </div>
+
+
+
+        <aside v-if={{ false }}>
             <div class="aside-wrapper" ref="aside">
                 <ul>
                     <li>

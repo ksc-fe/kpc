@@ -7,15 +7,57 @@ $page-width = 1080px
         height 80px
         line-height 80px
         header
-            width $page-width
+            width 100% // $page-width
     .content-wrapper
-        width $page-width
-        margin 0 auto
+        width 100% // $page-width
+        margin 36px auto
         min-height 100%
         background #fff
         padding-top 80px 
         box-sizing border-box
         text-align center
+        .pages
+            .first-page
+                .left
+                    float left
+                    position absolute
+                    left 17%
+                    top 40%
+                    h1
+                        font-size 5em
+                        font-weight 600
+                        font-family Arial
+                    p
+                        font-size 2em
+                        font-weight 300
+                        color #46484a
+                    .button
+                        padding 0 2em
+                        margin 0 10px
+                        height 3em
+                        line-height 3em
+            .second-page
+                .left
+                    float left
+                    position absolute
+                    left 8%
+                    //top 19%
+                    width 601px
+                    height 561px
+                    background-image url("../../imgs/page2.png")
+                    background-size 601px 561px
+                .right
+                    float right
+                    position absolute
+                    right 30%
+                    top 25%
+                    .feature
+                        h2
+                            font-size 30px
+                            margin 10px
+                        flex 1
+                        div
+                            font-size 18px
     .home-header
         padding 50px 0
         h1
@@ -35,10 +77,7 @@ $page-width = 1080px
             margin 0 auto
             display flex
             margin-top 50px
-        .feature
-            h2
-                margin 10px
-            flex 1
+
     .home-components
         // background #09d
         background #f8f8f8
@@ -83,4 +122,66 @@ $page-width = 1080px
         // background red 
         // h3
             // color #1f2021
+.first-page-left
+    padding-top 10%
+    h1
+        font-size 5em
+        font-weight 600
+        font-family Arial
+    p
+        font-size 2em
+        font-weight 300
+        color #46484a
+    .button
+        padding 0 2em
+        margin 0 10px
+        height 3em
+        line-height 3em
+.first-page-right
+    .right
+        width 630px
+        height 600px
+        margin-top 2%
+        position absolute
+        //right 6%
+        background-image url("../../imgs/page1.png")
+        background-size 630px 600px
 
+.second-page-left
+    width 601px
+    height 561px
+    .left
+        width 601px
+        height 561px
+        background-image url("../../imgs/page2.png")
+        background-size 601px 561px
+.second-page-right
+    float right
+    .info
+        padding 16% 0
+        width 70%
+        margin-left 6%
+        .feature
+            h2
+                margin 10px
+            flex 1
+
+.index-dot
+    width 20px
+    position fixed
+    right 20px
+    top 50%
+    z-index 999
+    li
+        cursor pointer
+        width 12px
+        height 12px
+        border-radius 12px
+        background-color #EEEEEE
+        margin-bottom 14px
+    .dot-active
+        background-color #B2B2B2 !important
+
+
+.test
+    height 800px
