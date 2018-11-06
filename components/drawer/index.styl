@@ -1,0 +1,65 @@
+@require('./variables.styl')
+.k-drawer
+    .k-dialog
+        background transparent
+        box-shadow none
+        position fixed
+        &.animate-enter-active
+        &.animate-leave-active
+            transition opacity $transition
+            overflow hidden
+            .k-drawer-content
+                transition transform $transition
+        &.animate-enter
+        &.animate-leave
+            transform none
+        .k-drawer-content
+            background #fff
+            height 100%
+            display flex
+            flex-direction column
+            >.k-body
+                flex 1
+    &.k-left
+        .k-dialog
+            height 100%
+            left 0
+            .k-drawer-content
+                transform translateX(0)
+            &.animate-enter
+            &.animate-leave
+                .k-drawer-content
+                    transform translateX(-100%)
+    &.k-right
+        .k-dialog
+            height 100%
+            right 0
+            .k-drawer-content
+                transform translateX(0)
+            &.animate-enter
+            &.animate-leave
+                .k-drawer-content
+                    transform translateX(100%)
+    &.k-top
+        .k-dialog
+            width 100%
+            top 0
+            .k-drawer-content
+                transform translateY(0)
+            &.animate-enter
+            &.animate-leave
+                .k-drawer-content
+                    transform translateY(-100%)
+    &.k-bottom
+        .k-dialog
+            width 100%
+            bottom 0 
+            .k-drawer-content
+                transform translateY(0)
+            &.animate-enter
+            &.animate-leave
+                .k-drawer-content
+                    transform translateY(100%)
+
+
+require($theme-dir + '/drawer.styl')
