@@ -1,5 +1,5 @@
 require("source-map-support").install();
-exports.ids = [2];
+exports.ids = [1,2];
 exports.modules = {
 
 /***/ "./components/badge/index.js":
@@ -111,7 +111,7 @@ exports.Badge = Badge;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882721271
+      // 1541509136495
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -324,7 +324,7 @@ exports.BreadcrumbItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882723244
+      // 1541509139273
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1057,7 +1057,7 @@ exports.ButtonGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882721069
+      // 1541509136862
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1564,7 +1564,7 @@ exports.Cascader = Cascader;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882722926
+      // 1541509138883
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -2075,7 +2075,7 @@ exports.Checkbox = Checkbox;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882723093
+      // 1541509138996
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -2404,7 +2404,7 @@ exports.CollapseItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882723013
+      // 1541509138925
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -3077,15 +3077,15 @@ var Calendar = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
         return (0, _utils2.getDateString)(date, this.get('type'));
     };
 
-    Calendar.prototype.confirm = function confirm() {
-        this.refs.calendar.hide();
-    };
+    // confirm() {
+    // this.refs.calendar.hide();
+    // }
 
-    Calendar.prototype.cancel = function cancel(e) {
-        e._rawEvent._dropdown = true;
-        this.set('_isSelectTime', false, { async: true });
-        this.showYearPicker();
-    };
+    // cancel(e) {
+    // e._rawEvent._dropdown = true;
+    // this.set('_isSelectTime', false, {async: true});
+    // this.showYearPicker();
+    // }
 
     Calendar.prototype.focusAndSelect = function focusAndSelect(e) {
         // this.element.focus();
@@ -3773,7 +3773,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         }.call($this),
         '_context': $this
     }) : undefined], 'k-date-picker') : h('div', null, [(_blocks['time-head'] = function (parent) {
-        return h('div', null, [hc('<Button type=\"none\" size=\"small\" class=\"k-prev\"\n                    ev-click={{ self.cancel.bind(self) }}\n                >取消</Button>'), h('span', {
+        return h('div', null, h('span', {
             'ev-click': function () {
                 try {
                     return self.cancel;
@@ -3787,7 +3787,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
-        }.call($this), 'k-text-wrapper'), hc('<Button type=\"none\" size=\"small\" class=\"k-next\"\n                    ev-click={{ self.confirm.bind(self) }}\n                >确认</Button>')], 'k-month c-clearfix');
+        }.call($this), 'k-text-wrapper'), 'k-month c-clearfix');
     }) && (__blocks['time-head'] = function (parent) {
         var args = arguments;
         return blocks['time-head'] ? blocks['time-head'].apply($this, [function () {
@@ -3810,7 +3810,19 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             }.call($this),
             'value': function () {
                 try {
-                    return [(0, _utils.strPad)(valueDate.getHours(), 2), (0, _utils.strPad)(valueDate.getMinutes(), 2), (0, _utils.strPad)(valueDate.getSeconds(), 2)];
+                    return values[self._index] ||
+                    // if exists _id, it indicate that this is a range time selection of Timepicker
+                    // we don't let Time to trigger $change:value in initial
+                    // otherwise the start time will be disabled due to the end time is 00:00:00
+                    // #119
+                    self.get('_id') ? [(0, _utils.strPad)(valueDate.getHours(), 2), (0, _utils.strPad)(valueDate.getMinutes(), 2), (0, _utils.strPad)(valueDate.getSeconds(), 2)] : ['', '', ''];
+                } catch (e) {
+                    _e(e);
+                }
+            }.call($this),
+            'disabledItems': function () {
+                try {
+                    return [disabledHours, disabledMinutes, disabledMinutes];
                 } catch (e) {
                     _e(e);
                 }
@@ -4299,7 +4311,7 @@ exports.Datepicker = Datepicker;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882723212
+      // 1541509139104
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5164,6 +5176,7 @@ var DatepickerTime = (_dec = _intact2.default.template(), (_class = (_temp = _cl
             min: undefined,
             max: undefined,
             date: undefined,
+            disabledItems: [],
 
             _value: undefined
         };
@@ -5197,6 +5210,10 @@ var DatepickerTime = (_dec = _intact2.default.template(), (_class = (_temp = _cl
     };
 
     DatepickerTime.prototype._isDisabled = function _isDisabled(value) {
+        if (!value.every(function (item) {
+            return item;
+        })) return true;
+
         var _get = this.get(),
             min = _get.min,
             max = _get.max,
@@ -5235,8 +5252,9 @@ var DatepickerTime = (_dec = _intact2.default.template(), (_class = (_temp = _cl
     max: [String, Date],
     date: {
         required: true,
-        type: [String, Date]
-    }
+        type: String
+    },
+    disabledItems: Array
 }, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
     enumerable: true,
     configurable: true,
@@ -5290,7 +5308,8 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     var _self$get = self.get(),
         data = _self$get.data,
         _value = _self$get._value,
-        value = _self$get.value;
+        value = _self$get.value,
+        disabledItems = _self$get.disabledItems;
 
     var span = data.length ? 24 / data.length : 0;
     var append = (_blocks['append'] = function (parent) {
@@ -5337,6 +5356,13 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                     'disable': function () {
                         try {
                             return self._disable.bind(self, key);
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call($this),
+                    'disabled': function () {
+                        try {
+                            return disabledItems[key];
                         } catch (e) {
                             _e(e);
                         }
@@ -5788,7 +5814,7 @@ exports.Dialog = Dialog;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882722639
+      // 1541509138274
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -6377,7 +6403,7 @@ exports.DropdownItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882723447
+      // 1541509139584
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -7526,7 +7552,7 @@ exports.Editable = Editable;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882729171
+      // 1541509145430
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -8509,7 +8535,7 @@ exports.FormItem = _formItemWrapper2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882727410
+      // 1541509144003
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -8568,12 +8594,15 @@ var methods = exports.methods = {
         );
     },
     minLength: function minLength(value, item, param) {
+        if ((0, _utils.isNumber)(value)) value = String(value);
         return value.length >= Number(param);
     },
     maxLength: function maxLength(value, item, param) {
+        if ((0, _utils.isNumber)(value)) value = String(value);
         return value.length <= Number(param);
     },
     rangeLength: function rangeLength(value, item, param) {
+        if ((0, _utils.isNumber)(value)) value = String(value);
         var length = value.length;
         return length >= Number(param[0]) && length <= Number(param[1]);
     },
@@ -8997,7 +9026,7 @@ exports.Col = _col2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882728147
+      // 1541509138712
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -9597,7 +9626,7 @@ exports.Input = Input;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882725140
+      // 1541509141564
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -10252,7 +10281,7 @@ exports.MenuItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882729162
+      // 1541509145418
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -11410,7 +11439,7 @@ exports.Message = Message;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882722600
+      // 1541509138242
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -12416,7 +12445,7 @@ exports.Pagination = Pagination;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882728999
+      // 1541509145132
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -12935,7 +12964,7 @@ exports.Progress = Progress;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882726774
+      // 1541509143061
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -13322,7 +13351,7 @@ exports.Radio = Radio;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882727332
+      // 1541509143568
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -13628,6 +13657,9 @@ var ScrollSelect = (_dec = _intact2.default.template(), (_class = (_temp = _clas
     };
 
     ScrollSelect.prototype._select = function _select(item, index) {
+        // if _dragged, do not trigger click event, #123
+        if (this._dragged) return;
+
         var _get = this.get(),
             count = _get.count,
             _translate = _get._translate,
@@ -13666,7 +13698,7 @@ var ScrollSelect = (_dec = _intact2.default.template(), (_class = (_temp = _clas
 
         if (!~index) {
             index = 0;
-            this.set('_value', data[0].value, { silent: true });
+            this.set('_value', data[0].value);
         }
 
         var length = data.length;
@@ -13682,6 +13714,7 @@ var ScrollSelect = (_dec = _intact2.default.template(), (_class = (_temp = _clas
         if (e.which !== 1) return;
 
         this.set('_dragging', true);
+        this._dragged = false;
         this._y = e.clientY;
         this._initY = e.clientY;
         this._itemHeight = this.refs.item.offsetHeight;
@@ -13693,6 +13726,7 @@ var ScrollSelect = (_dec = _intact2.default.template(), (_class = (_temp = _clas
     ScrollSelect.prototype._move = function _move(e) {
         if (this.get('_dragging')) {
             var deltaY = e.clientY - this._y;
+            this._dragged = !!deltaY;
             this._y = e.clientY;
 
             var _get3 = this.get(),
@@ -13785,7 +13819,7 @@ exports.ScrollSelect = ScrollSelect;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882727227
+      // 1541509143656
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -13897,7 +13931,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 return {
                     "k-scroll-item": true,
                     "k-active": item.value === value,
-                    "k-disabled": disable && disable.call(self, item.value)
+                    "k-disabled": disabled || disable && disable.call(self, item.value)
                 };
             } catch (e) {
                 _e(e);
@@ -14447,7 +14481,7 @@ exports.OptionGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882722786
+      // 1541509138782
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -15672,7 +15706,7 @@ exports.Slider = Slider;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882725310
+      // 1541509141819
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -16309,7 +16343,7 @@ exports.Spinner = Spinner;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882727834
+      // 1541509144270
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -16623,7 +16657,7 @@ exports.Step = _step2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882728292
+      // 1541509144451
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -17189,7 +17223,7 @@ exports.Switch = Switch;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882727883
+      // 1541509144231
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -18624,7 +18658,7 @@ exports.TableColumn = _column2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882719573
+      // 1541509134256
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -19904,7 +19938,7 @@ exports.Tab = _tab2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882725426
+      // 1541509141664
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -20369,7 +20403,7 @@ exports.Tag = Tag;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882725656
+      // 1541509142588
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -20646,7 +20680,7 @@ exports.TimelineItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882725611
+      // 1541509142186
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -21117,7 +21151,7 @@ exports.Timepicker = Timepicker;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882725793
+      // 1541509142483
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -21170,7 +21204,9 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         size = _self$get.size,
         clearable = _self$get.clearable,
         placeholder = _self$get.placeholder,
-        disabled = _self$get.disabled;
+        disabled = _self$get.disabled,
+        className = _self$get.className,
+        style = _self$get.style;
 
     var _placeholder = range ? (0, _utils._$)('开始时间 ~ 结束时间') : (0, _utils._$)('请选择时间');
 
@@ -21301,6 +21337,20 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         'size': function () {
             try {
                 return size;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
+        'className': _className(function () {
+            try {
+                return className;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)),
+        'style': function () {
+            try {
+                return style;
             } catch (e) {
                 _e(e);
             }
@@ -21818,7 +21868,7 @@ exports.Tip = Tip;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882725362
+      // 1541509142082
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -22258,7 +22308,7 @@ exports.Tooltip = _Wrapper;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882726374
+      // 1541509142986
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -22802,7 +22852,7 @@ exports.Transfer = Transfer;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882723909
+      // 1541509141258
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -23483,7 +23533,7 @@ exports.Tree = Tree;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882723503
+      // 1541509139897
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -24132,6 +24182,7 @@ var Upload = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
     };
 
     Upload.prototype._selectFile = function _selectFile() {
+        /* istanbul ignore if */
         if (!this.get('disabled')) {
             var input = this.refs.input;
             input.value = '';
@@ -24291,20 +24342,20 @@ var Upload = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
     Upload.prototype._onProgress = function _onProgress(e, file) {
         file.status = 'uploading';
         file.percent = e.percent;
-        this.trigger('progress', e, file, this.get('files'));
         this.update();
+        this.trigger('progress', e, file, this.get('files'));
     };
 
     Upload.prototype._onError = function _onError(e, file) {
         file.status = 'error';
-        this.trigger('error', e, file, this.get('files'));
         this.update();
+        this.trigger('error', e, file, this.get('files'));
     };
 
     Upload.prototype._onSuccess = function _onSuccess(res, file) {
         file.status = 'done';
-        this.trigger('success', res, file, this.get('files'));
         this.update();
+        this.trigger('success', res, file, this.get('files'));
     };
 
     Upload.prototype._removeFile = function () {
@@ -24398,7 +24449,7 @@ exports.Upload = Upload;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882723746
+      // 1541509140275
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -26615,7 +26666,7 @@ module.exports = {"setting":{"title":"独立使用","order":3},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882721720
+      // 1541509137376
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -26819,7 +26870,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882721731
+      // 1541509137354
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -27002,7 +27053,7 @@ module.exports = {"setting":{"title":"禁用状态","order":2},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882721742
+      // 1541509137365
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -27246,7 +27297,7 @@ module.exports = {"setting":{"title":"展示文字","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882721752
+      // 1541509137805
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -27717,7 +27768,7 @@ module.exports = {"setting":{"title":"指定分隔符","order":1},"catalogs":[],
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882721790
+      // 1541509137794
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -27999,7 +28050,7 @@ module.exports = {"setting":{"title":"按钮类型","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882721762
+      // 1541509137388
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -28397,7 +28448,7 @@ module.exports = {"setting":{"title":"按钮组","order":1},"catalogs":[],"conte
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882721772
+      // 1541509137399
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -28681,7 +28732,7 @@ module.exports = {"setting":{"title":"图标按钮","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882721828
+      // 1541509137414
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -28897,7 +28948,7 @@ module.exports = {"setting":{"title":"加载状态按钮","order":2},"catalogs":
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882721875
+      // 1541509137431
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -29187,7 +29238,7 @@ module.exports = {"setting":{"title":"按钮尺寸","order":4},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882721780
+      // 1541509137442
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -29443,7 +29494,7 @@ module.exports = {"setting":{"title":"指定按钮tagName","order":5},"catalogs"
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882721904
+      // 1541509137453
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -30456,7 +30507,7 @@ module.exports = {"setting":{"title":"禁用状态","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882721839
+      // 1541509137463
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -31136,7 +31187,7 @@ module.exports = {"setting":{"title":"尺寸","order":4},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882721854
+      // 1541509137489
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -31632,7 +31683,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882721945
+      // 1541509137500
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -31843,7 +31894,7 @@ module.exports = {"setting":{"title":"Checkbox组","order":1},"catalogs":[],"con
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882721885
+      // 1541509137511
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -32068,7 +32119,7 @@ module.exports = {"setting":{"title":"半选中状态","order":2},"catalogs":[],
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882721865
+      // 1541509137521
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -32311,7 +32362,7 @@ module.exports = {"setting":{"title":"指定选中和非选中的取值","order"
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882721894
+      // 1541509137540
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -32817,7 +32868,7 @@ module.exports = {"setting":{"title":"箭头位置","order":3},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882722062
+      // 1541509137551
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -33393,7 +33444,7 @@ module.exports = {"setting":{"title":"自定义标题","order":2},"catalogs":[],
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882721956
+      // 1541509137568
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -33692,7 +33743,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882722002
+      // 1541509137706
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -34048,7 +34099,7 @@ module.exports = {"setting":{"title":"选择日期和时间","order":5},"catalog
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882722012
+      // 1541509137722
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -35033,7 +35084,7 @@ module.exports = {"setting":{"title":"快捷方式","order":0.1},"catalogs":[],"
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882729113
+      // 1541509145366
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -35233,7 +35284,7 @@ module.exports = {"setting":{"title":"选择年或月","order":5.1},"catalogs":[
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882729105
+      // 1541509145356
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -36361,7 +36412,7 @@ module.exports = {"setting":{"title":"自定义头部和底部","order":1},"cata
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882729095
+      // 1541509145345
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -37941,7 +37992,7 @@ module.exports = {"setting":{"title":"右键菜单","order":7},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882729080
+      // 1541509145333
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -38145,7 +38196,7 @@ module.exports = {"setting":{"title":"禁用菜单（项）","order":3},"catalog
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882729071
+      // 1541509145321
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -38369,7 +38420,7 @@ module.exports = {"setting":{"title":"嵌套菜单","order":4},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882729063
+      // 1541509145311
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -38648,7 +38699,7 @@ module.exports = {"setting":{"title":"菜单位置","order":2},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882729054
+      // 1541509145299
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -39121,7 +39172,7 @@ module.exports = {"setting":{"title":"触发方式","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882729046
+      // 1541509145289
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -39434,7 +39485,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882729036
+      // 1541509145278
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -40051,7 +40102,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882729027
+      // 1541509145261
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -40589,7 +40640,7 @@ module.exports = {"setting":{"title":"自定义验证规则","order":1},"catalog
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882729016
+      // 1541509145250
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -41583,7 +41634,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882728946
+      // 1541509145236
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -41779,7 +41830,7 @@ module.exports = {"setting":{"title":"flex对齐","order":5},"catalogs":[],"cont
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882728935
+      // 1541509145223
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -42067,7 +42118,7 @@ module.exports = {"setting":{"title":"flex布局","order":4},"catalogs":[],"cont
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882728922
+      // 1541509145210
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -42353,7 +42404,7 @@ module.exports = {"setting":{"title":"flex排序","order":5.1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882728896
+      // 1541509145188
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -42542,7 +42593,7 @@ module.exports = {"setting":{"title":"间距","order":1},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882728883
+      // 1541509145104
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -42746,7 +42797,7 @@ module.exports = {"setting":{"title":"偏移","order":2},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882728910
+      // 1541509145176
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -42941,7 +42992,7 @@ module.exports = {"setting":{"title":"排序","order":2.1},"catalogs":[],"conten
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882728872
+      // 1541509145091
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -43120,7 +43171,7 @@ module.exports = {"setting":{"title":"响应式布局","order":6},"catalogs":[],
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882728799
+      // 1541509145117
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -43629,7 +43680,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882728773
+      // 1541509145009
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -43825,7 +43876,7 @@ module.exports = {"setting":{"title":"追加内容","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882728764
+      // 1541509144998
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -44150,7 +44201,7 @@ module.exports = {"setting":{"title":"可清除","order":4},"catalogs":[],"conte
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882728746
+      // 1541509145021
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -44573,7 +44624,7 @@ module.exports = {"setting":{"title":"尺寸","order":2},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882728732
+      // 1541509144972
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -46093,7 +46144,7 @@ module.exports = {"setting":{"title":"尺寸","order":4},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882728710
+      // 1541509144937
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -47420,7 +47471,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882728694
+      // 1541509144920
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -47650,7 +47701,7 @@ module.exports = {"setting":{"title":"改变翻页按钮数量","order":2},"cata
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882728684
+      // 1541509144906
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -48201,7 +48252,7 @@ module.exports = {"setting":{"title":"无边框样式","order":1.1},"catalogs":[
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882728676
+      // 1541509144892
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -48438,7 +48489,7 @@ module.exports = {"setting":{"title":"指定尺寸","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882728667
+      // 1541509144882
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -48747,7 +48798,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882728656
+      // 1541509144868
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -48939,7 +48990,7 @@ module.exports = {"setting":{"title":"自定义百分比内容","order":4},"cata
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882728646
+      // 1541509144845
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -49335,7 +49386,7 @@ module.exports = {"setting":{"title":"在进度条上展示百分比","order":1.
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882728625
+      // 1541509144831
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -49575,7 +49626,7 @@ module.exports = {"setting":{"title":"尺寸","order":2},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882728598
+      // 1541509144819
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -49756,7 +49807,7 @@ module.exports = {"setting":{"title":"状态","order":1},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882728614
+      // 1541509144855
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -50038,7 +50089,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882728549
+      // 1541509144799
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -50242,7 +50293,7 @@ module.exports = {"setting":{"title":"Radio组","order":1},"catalogs":[],"conten
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882728527
+      // 1541509144787
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -50453,7 +50504,7 @@ module.exports = {"setting":{"title":"指定选中的值","order":2},"catalogs":
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882728534
+      // 1541509144774
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -52509,7 +52560,7 @@ module.exports = {"setting":{"title":"可筛选","order":4},"catalogs":[],"conte
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882727773
+      // 1541509144680
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -52817,7 +52868,7 @@ module.exports = {"setting":{"title":"分组","order":6},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882727752
+      // 1541509144667
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -53523,7 +53574,7 @@ module.exports = {"setting":{"title":"尺寸","order":7},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882727719
+      // 1541509144201
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -54788,7 +54839,7 @@ module.exports = {"setting":{"title":"设置步长","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882727506
+      // 1541509143729
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -55328,7 +55379,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882727385
+      // 1541509143692
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -55613,7 +55664,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882727312
+      // 1541509143595
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -55798,7 +55849,7 @@ module.exports = {"setting":{"title":"尺寸","order":2},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882727340
+      // 1541509143532
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -55979,7 +56030,7 @@ module.exports = {"setting":{"title":"最大/小值及步长","order":1},"catalo
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882727303
+      // 1541509143493
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -56203,7 +56254,7 @@ module.exports = {"setting":{"title":"竖直排列按钮","order":3},"catalogs":
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882727293
+      // 1541509143479
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -56581,7 +56632,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882727156
+      // 1541509143440
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -56821,7 +56872,7 @@ module.exports = {"setting":{"title":"快速点击切换","order":0.1},"catalogs
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882727133
+      // 1541509143451
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -57234,7 +57285,7 @@ module.exports = {"setting":{"title":"时间轴样式","order":2},"catalogs":[],
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882727105
+      // 1541509143422
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -57492,7 +57543,7 @@ module.exports = {"setting":{"title":"简洁样式","order":3},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882727276
+      // 1541509143410
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -57835,7 +57886,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882727014
+      // 1541509143348
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -58016,7 +58067,7 @@ module.exports = {"setting":{"title":"定义文案","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882726975
+      // 1541509143358
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -58214,7 +58265,7 @@ module.exports = {"setting":{"title":"开关尺寸","order":3},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882726948
+      // 1541509143324
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -58581,7 +58632,7 @@ module.exports = {"setting":{"title":"长/宽","order":2},"catalogs":[],"content
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882726983
+      // 1541509143305
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -58873,7 +58924,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882726140
+      // 1541509143239
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -59093,7 +59144,7 @@ module.exports = {"setting":{"title":"选择框的类型","order":2},"catalogs":
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882726131
+      // 1541509143229
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -59328,7 +59379,7 @@ module.exports = {"setting":{"title":"行选中","order":3},"catalogs":[],"conte
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882726087
+      // 1541509143207
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -59610,7 +59661,7 @@ module.exports = {"setting":{"title":"禁用行可选","order":7},"catalogs":[],
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882726182
+      // 1541509143220
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -59808,7 +59859,7 @@ module.exports = {"setting":{"title":"列固定","order":8.3},"catalogs":[],"con
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882726077
+      // 1541509143183
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -60108,7 +60159,7 @@ module.exports = {"setting":{"title":"表头固定","order":8},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882726057
+      // 1541509143173
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -60360,7 +60411,7 @@ module.exports = {"setting":{"title":"分组","order":11},"catalogs":[],"content
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882726101
+      // 1541509143159
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -60633,7 +60684,7 @@ module.exports = {"setting":{"title":"自定义无内容时的展示信息","ord
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882726067
+      // 1541509143091
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -61151,7 +61202,7 @@ module.exports = {"setting":{"title":"整行选中","order":4},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882726167
+      // 1541509142797
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -61365,7 +61416,7 @@ module.exports = {"setting":{"title":"行样式","order":5},"catalogs":[],"conte
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882726046
+      // 1541509142704
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -61580,7 +61631,7 @@ module.exports = {"setting":{"title":"行展开","order":6},"catalogs":[],"conte
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882726034
+      // 1541509142669
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -61867,7 +61918,7 @@ module.exports = {"setting":{"title":"定义表格结构","order":1},"catalogs":
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882725829
+      // 1541509142617
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -62129,7 +62180,7 @@ module.exports = {"setting":{"title":"排序","order":10},"catalogs":[],"content
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882725816
+      // 1541509142694
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -62823,7 +62874,7 @@ module.exports = {"setting":{"title":"自定义title内容","order":1.1},"catalo
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882725266
+      // 1541509142603
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -63352,7 +63403,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882725040
+      // 1541509142259
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -63555,7 +63606,7 @@ module.exports = {"setting":{"title":"卡片样式","order":5},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882725004
+      // 1541509142241
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -63787,7 +63838,7 @@ module.exports = {"setting":{"title":"data传值形式","order":1},"catalogs":[]
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882725020
+      // 1541509141924
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -63987,7 +64038,7 @@ module.exports = {"setting":{"title":"禁用某一项","order":2},"catalogs":[],
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882724986
+      // 1541509141521
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -64191,7 +64242,7 @@ module.exports = {"setting":{"title":"组件尺寸","order":3},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882724962
+      // 1541509141510
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -64414,7 +64465,7 @@ module.exports = {"setting":{"title":"垂直展示","order":6},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882724763
+      // 1541509141499
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -64784,7 +64835,7 @@ module.exports = {"setting":{"title":"基础使用","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882724519
+      // 1541509141447
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -64988,7 +65039,7 @@ module.exports = {"setting":{"title":"关闭按钮","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882724676
+      // 1541509141471
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -65213,7 +65264,7 @@ module.exports = {"setting":{"title":"组件尺寸","order":2},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882724482
+      // 1541509141458
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -66543,7 +66594,7 @@ exports.default = _default;
 /***/ "./site/dist/components/timepicker/demos/step/index.json":
 /***/ (function(module, exports) {
 
-module.exports = {"setting":{"title":"固定时间点","order":2},"catalogs":[],"contents":"<p>当指定了<code>step</code>属性时，组件将展示成<code>Select</code>样式，只能选择固定的几个时间点。通过<code>min</code>和<code>max</code>限定选择时间范围（默认：00:00:00 ~ 23:59:59），<code>step</code>指定步长，它们值类型都为时间字符串，指定时可以省略秒，但是组件会添加秒（00）</p>\n","index":108,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Timepicker <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/timepicker'</span>;\n\n&lt;div&gt;\n    &lt;Timepicker v-model=\"time\" step=\"00:30:00\"/&gt;\n    You selected: {{ JSON.stringify(self.get('time')) }}\n    &lt;br /&gt;&lt;br /&gt;\n    &lt;Timepicker v-model=\"timeArray\" multiple clearable\n        step=\"00:30:00\" \n        min=\"09:00:00\"\n        max=\"18:00\"\n    /&gt;\n    You selected: {{ JSON.stringify(self.get('timeArray')) }}\n&lt;/div&gt;</code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"}]}
+module.exports = {"setting":{"title":"固定时间点","order":2},"catalogs":[],"contents":"<p>当指定了<code>step</code>属性时，组件将展示成<code>Select</code>样式，只能选择固定的几个时间点。通过<code>min</code>和<code>max</code>限定选择时间范围（默认：00:00:00 ~ 23:59:59），<code>step</code>指定步长，它们值类型都为时间字符串，指定时可以省略秒，但是组件会添加秒（00）</p>\n","index":108,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Timepicker <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/timepicker'</span>;\n\n&lt;div&gt;\n    &lt;Timepicker class=\"time\" v-model=\"time\" step=\"00:30:00\"/&gt;\n    You selected: {{ JSON.stringify(self.get('time')) }}\n    &lt;br /&gt;&lt;br /&gt;\n    &lt;Timepicker v-model=\"timeArray\" multiple clearable\n        step=\"00:30:00\" \n        min=\"09:00:00\"\n        max=\"18:00\"\n    /&gt;\n    You selected: {{ JSON.stringify(self.get('timeArray')) }}\n&lt;/div&gt;</code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"}]}
 
 /***/ }),
 
@@ -66589,6 +66640,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         parent = ($callee || {})._super;
 
     return h('div', null, [h(_timepicker2.default, {
+        'className': 'time',
         'step': '00:30:00',
         '_context': $this,
         'value': _getModel(self, 'time'),
@@ -67036,7 +67088,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882724393
+      // 1541509140987
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -67230,7 +67282,7 @@ module.exports = {"setting":{"title":"关闭按钮","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882724362
+      // 1541509140970
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -67460,7 +67512,7 @@ module.exports = {"setting":{"title":"展示标题","order":2},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882724334
+      // 1541509140960
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -69015,7 +69067,7 @@ module.exports = {"setting":{"title":"自定义渲染列表","order":1},"catalog
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882722545
+      // 1541509139686
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -69765,7 +69817,7 @@ module.exports = {"setting":{"title":"带复选框","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882722345
+      // 1541509138027
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -70304,7 +70356,7 @@ module.exports = {"setting":{"title":"自定义节点内容","order":2},"catalog
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882722334
+      // 1541509138039
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -70902,7 +70954,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882722521
+      // 1541509138170
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -71122,7 +71174,7 @@ module.exports = {"setting":{"title":"拖拽上传","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882722421
+      // 1541509138143
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -71310,7 +71362,7 @@ module.exports = {"setting":{"title":"定义初始化列表","order":3},"catalog
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882722401
+      // 1541509137976
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -71693,7 +71745,7 @@ module.exports = {"setting":{"title":"手动上传","order":4},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882722264
+      // 1541509137997
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -71870,7 +71922,7 @@ module.exports = exports['default'];
 /***/ "./site/dist/components/upload/index.json":
 /***/ (function(module, exports) {
 
-module.exports = {"setting":{"title":"上传","category":"组件","order":100,"sidebar":"doc"},"catalogs":[],"contents":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1><div class=\"k-table k-border\">\n                    <div class=\"k-table-wrapper\">\n                        <div class=\"k-thead\">\n                            <table>\n                                <thead><tr>\n<th>属性</th>\n<th>说明</th>\n<th>类型</th>\n<th>默认值</th>\n</tr>\n</thead>\n                            </table>\n                        </div>\n                        <div class=\"k-tbody\">\n                            <table>\n                                <tbody><tr>\n<td>accept</td>\n<td><code>input</code>的<a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-accept\">accept</a>属性，支持的文件的类型</td>\n<td><code>String</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>multiple</td>\n<td><code>input</code>的<code>multiple</code>属性，是否支持多选</td>\n<td><code>Boolean</code></td>\n<td><code>false</code></td>\n</tr>\n<tr>\n<td>type</td>\n<td>组件风格</td>\n<td><code>&quot;select&quot;</code> &#124; <code>&quot;drag&quot;</code> &#124; <code>&quot;gallery&quot;</code></td>\n<td><code>&quot;select&quot;</code></td>\n</tr>\n<tr>\n<td>autoUpload</td>\n<td>是否选择文件后即自动上传</td>\n<td><code>Boolean</code></td>\n<td><code>true</code></td>\n</tr>\n<tr>\n<td>disabled</td>\n<td>是否禁用上传</td>\n<td><code>Boolean</code></td>\n<td><code>false</code></td>\n</tr>\n<tr>\n<td>action</td>\n<td>上传地址</td>\n<td><code>String</code></td>\n<td><code>&quot;&quot;</code></td>\n</tr>\n<tr>\n<td>name</td>\n<td>上传文件名，当只允许上传一个文件时，可以通过该属性来指定文件名，组件默认会使用原始文件名代替</td>\n<td><code>String</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>headers</td>\n<td>指定上传的请求头</td>\n<td><code>Object</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>data</td>\n<td>指定上传附加的请求数据</td>\n<td><code>Object</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>withCredentials</td>\n<td>指定跨域请求是是否允许传送cookie</td>\n<td><code>Boolean</code></td>\n<td><code>false</code></td>\n</tr>\n<tr>\n<td>limit</td>\n<td>最大上传文件数量限制，默认无限制</td>\n<td><code>Number</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>maxSize</td>\n<td>最大上传文件大小限制(kb)，默认无限制</td>\n<td><code>Number</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>defaultFiles</td>\n<td>指定初始化上传列表，见示例</td>\n<td><code>Array&lt;Object&gt;</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>beforeUpload</td>\n<td>指定文件在开始上传之前的处理逻辑，如果该函数返回<code>false</code>，则取消上传，你也可以使用异步函数或返回<code>Promise</code>对象；组件会将当前文件(file)和文件列表(files)传给该函数</td>\n<td><code>Function</code></td>\n<td><code>() =&gt; true</code></td>\n</tr>\n<tr>\n<td>beforeRemove</td>\n<td>指定文件在删除之前的处理逻辑，如果该函数返回<code>false</code>，则取消删除，你也可以使用异步函数或返回<code>Promise</code>对象；组件会将当前文件(file)和文件列表(files)传给该函数</td>\n<td><code>Function</code></td>\n<td><code>() =&gt; true</code></td>\n</tr>\n<tr>\n<td>files</td>\n<td>所有已上传和待上传的文件列表</td>\n<td><code>Array</code></td>\n<td><code>[]</code></td>\n</tr>\n</tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div><h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1><div class=\"k-table k-border\">\n                    <div class=\"k-table-wrapper\">\n                        <div class=\"k-thead\">\n                            <table>\n                                <thead><tr>\n<th>名称</th>\n<th>说明</th>\n</tr>\n</thead>\n                            </table>\n                        </div>\n                        <div class=\"k-tbody\">\n                            <table>\n                                <tbody><tr>\n<td>content</td>\n<td>组件展示的内容，当没有子元素时，默认会根据<code>type</code>展示不同的内容</td>\n</tr>\n<tr>\n<td>tip</td>\n<td>组件展示的提示信息</td>\n</tr>\n</tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div><h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1><div class=\"k-table k-border\">\n                    <div class=\"k-table-wrapper\">\n                        <div class=\"k-thead\">\n                            <table>\n                                <thead><tr>\n<th>方法名</th>\n<th>说明</th>\n<th>参数</th>\n<th>返回值</th>\n</tr>\n</thead>\n                            </table>\n                        </div>\n                        <div class=\"k-tbody\">\n                            <table>\n                                <tbody><tr>\n<td>submit</td>\n<td>手动上传时，调用该方法开始上传</td>\n<td>-</td>\n<td><code>undefined</code></td>\n</tr>\n</tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div><h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1><div class=\"k-table k-border\">\n                    <div class=\"k-table-wrapper\">\n                        <div class=\"k-thead\">\n                            <table>\n                                <thead><tr>\n<th>事件名</th>\n<th>说明</th>\n<th>参数</th>\n</tr>\n</thead>\n                            </table>\n                        </div>\n                        <div class=\"k-tbody\">\n                            <table>\n                                <tbody><tr>\n<td>error</td>\n<td>组件超出最大文件数量限制，超出文件大小限制，或者上传失败都会抛出该事件</td>\n<td><code>Error, file, files</code></td>\n</tr>\n<tr>\n<td>progress</td>\n<td>组件上传过程中会抛出该事件</td>\n<td><code>Event, file, files</code></td>\n</tr>\n<tr>\n<td>success</td>\n<td>组件上传成功时会抛出该事件</td>\n<td><code>response, file, files</code></td>\n</tr>\n</tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>","index":234}
+module.exports = {"setting":{"title":"上传","category":"组件","order":100,"sidebar":"doc"},"catalogs":[],"contents":"<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1><div class=\"k-table k-border\">\n                    <div class=\"k-table-wrapper\">\n                        <div class=\"k-thead\">\n                            <table>\n                                <thead><tr>\n<th>属性</th>\n<th>说明</th>\n<th>类型</th>\n<th>默认值</th>\n</tr>\n</thead>\n                            </table>\n                        </div>\n                        <div class=\"k-tbody\">\n                            <table>\n                                <tbody><tr>\n<td>accept</td>\n<td><code>input</code>的<a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-accept\">accept</a>属性，支持的文件的类型</td>\n<td><code>String</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>multiple</td>\n<td><code>input</code>的<code>multiple</code>属性，是否支持多选</td>\n<td><code>Boolean</code></td>\n<td><code>false</code></td>\n</tr>\n<tr>\n<td>type</td>\n<td>组件风格</td>\n<td><code>&quot;select&quot;</code> &#124; <code>&quot;drag&quot;</code> &#124; <code>&quot;gallery&quot;</code></td>\n<td><code>&quot;select&quot;</code></td>\n</tr>\n<tr>\n<td>autoUpload</td>\n<td>是否选择文件后即自动上传</td>\n<td><code>Boolean</code></td>\n<td><code>true</code></td>\n</tr>\n<tr>\n<td>disabled</td>\n<td>是否禁用上传</td>\n<td><code>Boolean</code></td>\n<td><code>false</code></td>\n</tr>\n<tr>\n<td>action</td>\n<td>上传地址</td>\n<td><code>String</code></td>\n<td><code>&quot;&quot;</code></td>\n</tr>\n<tr>\n<td>name</td>\n<td>上传文件名，当只允许上传一个文件时，可以通过该属性来指定文件名，组件默认会使用原始文件名代替</td>\n<td><code>String</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>headers</td>\n<td>指定上传的请求头</td>\n<td><code>Object</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>data</td>\n<td>指定上传附加的请求数据</td>\n<td><code>Object</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>withCredentials</td>\n<td>指定跨域请求是是否允许传送cookie</td>\n<td><code>Boolean</code></td>\n<td><code>false</code></td>\n</tr>\n<tr>\n<td>limit</td>\n<td>最大上传文件数量限制，默认无限制</td>\n<td><code>Number</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>maxSize</td>\n<td>最大上传文件大小限制(kb)，默认无限制</td>\n<td><code>Number</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>defaultFiles</td>\n<td>指定初始化上传列表，见示例</td>\n<td><code>Array&lt;Object&gt;</code></td>\n<td><code>undefined</code></td>\n</tr>\n<tr>\n<td>beforeUpload</td>\n<td>指定文件在开始上传之前的处理逻辑，如果该函数返回<code>false</code>，则取消上传，你也可以使用异步函数或返回<code>Promise</code>对象；组件会将当前文件(file)和文件列表(files)传给该函数</td>\n<td><code>Function</code></td>\n<td><code>() =&gt; true</code></td>\n</tr>\n<tr>\n<td>beforeRemove</td>\n<td>指定文件在删除之前的处理逻辑，如果该函数返回<code>false</code>，则取消删除，你也可以使用异步函数或返回<code>Promise</code>对象；组件会将当前文件(file)和文件列表(files)传给该函数</td>\n<td><code>Function</code></td>\n<td><code>() =&gt; true</code></td>\n</tr>\n<tr>\n<td>files</td>\n<td>所有已上传和待上传的文件列表</td>\n<td><code>Array</code></td>\n<td><code>[]</code></td>\n</tr>\n</tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div><h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1><div class=\"k-table k-border\">\n                    <div class=\"k-table-wrapper\">\n                        <div class=\"k-thead\">\n                            <table>\n                                <thead><tr>\n<th>名称</th>\n<th>说明</th>\n</tr>\n</thead>\n                            </table>\n                        </div>\n                        <div class=\"k-tbody\">\n                            <table>\n                                <tbody><tr>\n<td>content</td>\n<td>组件展示的内容，当没有子元素时，默认会根据<code>type</code>展示不同的内容</td>\n</tr>\n<tr>\n<td>tip</td>\n<td>组件展示的提示信息</td>\n</tr>\n</tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div><h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1><div class=\"k-table k-border\">\n                    <div class=\"k-table-wrapper\">\n                        <div class=\"k-thead\">\n                            <table>\n                                <thead><tr>\n<th>方法名</th>\n<th>说明</th>\n<th>参数</th>\n<th>返回值</th>\n</tr>\n</thead>\n                            </table>\n                        </div>\n                        <div class=\"k-tbody\">\n                            <table>\n                                <tbody><tr>\n<td>submit</td>\n<td>手动上传时，调用该方法开始上传</td>\n<td>-</td>\n<td><code>undefined</code></td>\n</tr>\n</tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div><h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1><div class=\"k-table k-border\">\n                    <div class=\"k-table-wrapper\">\n                        <div class=\"k-thead\">\n                            <table>\n                                <thead><tr>\n<th>事件名</th>\n<th>说明</th>\n<th>参数</th>\n</tr>\n</thead>\n                            </table>\n                        </div>\n                        <div class=\"k-tbody\">\n                            <table>\n                                <tbody><tr>\n<td>error</td>\n<td>文件超出最大文件数量限制，超出文件大小限制，或者上传失败都会抛出该事件</td>\n<td><code>Error, file, files</code></td>\n</tr>\n<tr>\n<td>progress</td>\n<td>文件上传过程中会抛出该事件</td>\n<td><code>Event, file, files</code></td>\n</tr>\n<tr>\n<td>success</td>\n<td>文件上传成功时会抛出该事件</td>\n<td><code>response, file, files</code></td>\n</tr>\n</tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>","index":234}
 
 /***/ }),
 
@@ -73136,7 +73188,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882723277
+      // 1541509139316
       var cssReload = require("!../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -73235,6 +73287,311 @@ var _input = __webpack_require__("./components/input/index.js");
 var _input2 = _interopRequireDefault(_input);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./site/src/pages/blog/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(Intact) {
+
+exports.__esModule = true;
+exports.default = undefined;
+
+var _getOwnPropertyDescriptor = __webpack_require__("babel-runtime/core-js/object/get-own-property-descriptor");
+
+var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
+
+var _classCallCheck2 = __webpack_require__("babel-runtime/helpers/classCallCheck");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _possibleConstructorReturn2 = __webpack_require__("babel-runtime/helpers/possibleConstructorReturn");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__("babel-runtime/helpers/inherits");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _dec, _desc, _value, _class, _init, _class2, _temp;
+
+var _document = __webpack_require__("./site/src/pages/document/index.js");
+
+var _document2 = _interopRequireDefault(_document);
+
+var _index = __webpack_require__("./site/src/pages/blog/index.vdt");
+
+var _index2 = _interopRequireDefault(_index);
+
+__webpack_require__("./site/src/pages/blog/index.styl");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
+
+    return desc;
+}
+
+var mermaid = void 0;
+if (process.browser) {
+    mermaid = __webpack_require__("mermaid");
+}
+
+var _default = (_dec = Intact.template(), (_class = (_temp = _class2 = function (_Document) {
+    (0, _inherits3.default)(_default, _Document);
+
+    function _default() {
+        (0, _classCallCheck3.default)(this, _default);
+        return (0, _possibleConstructorReturn3.default)(this, _Document.apply(this, arguments));
+    }
+
+    _default.prototype._mount = function _mount() {
+        _Document.prototype._mount.call(this);
+
+        this.headerHeight = this.refs.header.clientHeight;
+
+        this.h1s = this.element.querySelectorAll('h1');
+        this.h2s = this.element.querySelectorAll('h2');
+        this.h3s = this.element.querySelectorAll('h3');
+
+        mermaid.init(undefined, '.mermaid');
+    };
+
+    _default.prototype.scrollTo = function scrollTo(id) {
+        var header = document.getElementById(id);
+        if (header) {
+            var top = header.getBoundingClientRect().top + window.pageYOffset - this.headerHeight;
+
+            window.scrollTo(0, top);
+        }
+    };
+
+    _default.prototype._onScroll = function _onScroll() {
+        var _this2 = this;
+
+        var scrollTop = window.pageYOffset;
+        if (scrollTop > 15) {
+            this.refs.wrapper.classList.add('fixed');
+        } else {
+            this.refs.wrapper.classList.remove('fixed');
+        }
+
+        var findActive = function findActive(hs) {
+            var minTop = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+            for (var i = hs.length - 1; i >= 0; i--) {
+                var h = hs[i];
+                var top = h.getBoundingClientRect().top + window.pageYOffset;
+
+                if (top > minTop && top - _this2.headerHeight <= scrollTop) {
+                    return { header: h.id, top: top };
+                }
+            }
+            return { header: '', top: 0 };
+        };
+
+        var active2 = findActive(this.h2s, 0);
+        var active3 = findActive(this.h3s, active2.top);
+        this.set({
+            'active2': active2.header,
+            'active3': active3.header
+        });
+
+        var active = this.refs.aside.querySelectorAll('.active');
+        active = active[active.length - 1];
+        if (active) {
+            this.set('borderStyle', {
+                height: active.offsetHeight + 'px',
+                top: active.offsetTop + 'px'
+            });
+        } else {
+            this.set('borderStyle', undefined);
+        }
+    };
+
+    return _default;
+}(_document2.default), _class2.template = _index2.default, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    initializer: function initializer() {
+        return _init;
+    }
+}), _class)), _class));
+
+exports.default = _default;
+module.exports = exports['default'];
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("intact")))
+
+/***/ }),
+
+/***/ "./site/src/pages/blog/index.styl":
+/***/ (function(module, exports, __webpack_require__) {
+
+// removed by extract-text-webpack-plugin
+    if(false) {
+      // 1541509134563
+      var cssReload = require("!../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
+      module.hot.dispose(cssReload);
+      module.hot.accept(undefined, cssReload);
+    }
+  
+
+/***/ }),
+
+/***/ "./site/src/pages/blog/index.vdt":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __slice = __u.slice,
+        __noop = __u.noop,
+        __m = __u.map,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var Article = self.get('Article');
+
+    return function () {
+        var _obj = {
+            'navIndex': 'blog',
+            'className': 'document-page blog-page'
+        };
+        return parent.call($this, _obj, _Vdt, function (blocks) {
+            var _blocks = {},
+                __blocks = extend({}, blocks);
+            return (_blocks['content'] = function (parent) {
+                return [h('aside', null, h('div', null, [h('ul', null, h('li', null, [h('a', {
+                    'ev-click': function () {
+                        try {
+                            return self.scrollTo.bind(self, '__top');
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call($this)
+                }, function () {
+                    try {
+                        return Article.data.setting.title;
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call($this)), h('ul', null, __m(function () {
+                    try {
+                        return Article.data.catalogs.filter(function (item) {
+                            return item.level <= 3;
+                        });
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call($this), function (value, key) {
+                    return h('li', null, h('a', {
+                        'ev-click': function () {
+                            try {
+                                return self.scrollTo.bind(self, value.id);
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call($this)
+                    }, function () {
+                        try {
+                            return value.text;
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call($this)), _className(function () {
+                        try {
+                            return {
+                                'sub-catalogs': value.level > 2,
+                                'active': self.get('active' + value.level) === value.id
+                            };
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call($this)));
+                }, $this), 'sub-catalogs')])), h('div', {
+                    'style': function () {
+                        try {
+                            return self.get('borderStyle');
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call($this)
+                }, null, 'aside-border transition')], 'aside-wrapper', null, function (i) {
+                    widgets['aside'] = i;
+                })), h('article', null, [h('h1', {
+                    'id': '__top'
+                }, function () {
+                    try {
+                        return Article.data.setting.title;
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call($this)), h(Article, {
+                    '_context': $this
+                })])];
+            }) && (__blocks['content'] = function (parent) {
+                var args = arguments;
+                return blocks['content'] ? blocks['content'].apply($this, [function () {
+                    return _blocks['content'].apply($this, args);
+                }].concat(__slice.call(args, 1))) : _blocks['content'].apply($this, args);
+            }), __blocks;
+        }.call($this, blocks), parent);
+    }.call($this);
+};
 
 module.exports = exports['default'];
 
@@ -73410,7 +73767,7 @@ var _default = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
         if (active) {
             this.set('borderStyle', {
                 height: active.offsetHeight + 'px',
-                top: active.offsetTop + 'px'
+                top: active.offsetTop + 8 + 'px' // fix top +8px
             });
         } else {
             this.set('borderStyle', undefined);
@@ -73465,7 +73822,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882720090
+      // 1541509134623
       var cssReload = require("!../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -73518,6 +73875,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     var Article = self.get('Article');
 
     var currentNav = {};
+    var demos = self.get('demos') || [];
 
     function Catalog(props) {
         return h('div', null, [function () {
@@ -73689,13 +74047,19 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                     '_context': $this
                 })]), function () {
                     try {
-                        return self.get('demos');
+                        return demos;
                     } catch (e) {
                         _e(e);
                     }
-                }.call($this) ? h('div', null, [h('ul', null, __m(function () {
+                }.call($this) ? h('div', null, [function () {
                     try {
-                        return self.get('demos');
+                        return demos.length > 0;
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call($this) ? h('div', null, null, 'aside-border-nav') : undefined, h('ul', null, __m(function () {
+                    try {
+                        return demos;
                     } catch (e) {
                         _e(e);
                     }
@@ -73717,14 +74081,20 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                     }.call($this), _className(function () {
                         try {
                             return {
-                                "c-ellipsis": true,
+                                "c-ellipsis-dot": true,
                                 'active': self.get('activeExample') == value.data.index
                             };
                         } catch (e) {
                             _e(e);
                         }
                     }.call($this)));
-                }, $this)), h('div', {
+                }, $this)), function () {
+                    try {
+                        return false;
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call($this) ? h('div', {
                     'style': function () {
                         try {
                             return self.get('borderStyle');
@@ -73732,7 +74102,15 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                             _e(e);
                         }
                     }.call($this)
-                }, null, 'aside-border transition')], 'table-of-contents', null, function (i) {
+                }, null, 'aside-border transition') : undefined, h('div', {
+                    'style': function () {
+                        try {
+                            return self.get('borderStyle') || 'display:none';
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call($this)
+                }, null, 'aside-dot transition')], 'table-of-contents', null, function (i) {
                     widgets['tableContents'] = i;
                 }) : undefined];
             }) && (__blocks['content'] = function (parent) {
@@ -73861,7 +74239,8 @@ var _default = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
 
     _default.prototype.defaults = function defaults() {
         return {
-            theme: theme
+            theme: theme,
+            version: 'v1.1.1'
         };
     };
 
@@ -73909,7 +74288,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882720363
+      // 1541509135547
       var cssReload = require("!../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -73956,11 +74335,11 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         parent = ($callee || {})._super;
 
     var nav = [{
-        title: '设计语言',
+        title: 'King Design',
         href: '/docs/design/language/',
         index: 'design'
     }, {
-        title: '教程',
+        title: '组件',
         href: '/docs/getting-started/',
         index: 'document'
     }, {
@@ -73970,12 +74349,16 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     }];
 
     return h('div', null, [h('div', null, h('header', null, (_blocks['header'] = function (parent) {
-        return [h(_link2.default, {
+        return [h('div', null, [h(_link2.default, {
             'className': 'logo',
+            'href': '/',
+            '_context': $this
+        }), h(_link2.default, {
+            'className': 'king',
             'href': '/',
             'children': 'KPC',
             '_context': $this
-        }), h('div', null, [h('nav', null, [__m(function () {
+        })], 'king-logo'), h('div', null, [h('nav', null, [__m(function () {
             try {
                 return nav;
             } catch (e) {
@@ -74008,12 +74391,25 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 }.call($this),
                 '_context': $this
             });
-        }, $this), h('div', null, null, 'border')]), h('span', null, '切换主题：', 'label'), h(_select.Select, {
+        }, $this), h('div', null, null, 'border')]), h('div', null, null, 'line'), h(_select.Select, {
+            'width': '100',
+            'size': 'small',
+            'children': h(_select.Option, {
+                'value': 'v1.1.1',
+                'children': 'v1.1.1',
+                '_context': $this
+            }),
+            '_context': $this,
+            'value': _getModel(self, 'version'),
+            'ev-$change:value': function ev$changeValue(__c, __n) {
+                _setModel(self, 'version', __n, $this);
+            }
+        }), h(_select.Select, {
             'width': '100',
             'size': 'small',
             'children': [h(_select.Option, {
                 'value': 'kpc',
-                'children': 'default',
+                'children': '默认主题',
                 '_context': $this
             }), h(_select.Option, {
                 'value': 'ksyun',
@@ -74031,7 +74427,18 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         return blocks['header'] ? blocks['header'].apply($this, [function () {
             return _blocks['header'].apply($this, args);
         }].concat(__slice.call(args, 1))) : _blocks['header'].apply($this, args);
-    }) && __blocks['header'].apply($this, [__noop])), 'header-wrapper'), h('div', null, (_blocks['content'] = function (parent) {
+    }) && __blocks['header'].apply($this, [__noop])), _className(function () {
+        try {
+            return {
+                'header-wrapper': true,
+                'header-shadow': scope.pageIndex !== 'index'
+            };
+        } catch (e) {
+            _e(e);
+        }
+    }.call($this)), null, function (i) {
+        widgets['header'] = i;
+    }), h('div', null, (_blocks['content'] = function (parent) {
         return null;
     }) && (__blocks['content'] = function (parent) {
         var args = arguments;

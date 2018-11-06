@@ -433,7 +433,7 @@ exports.ButtonGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882721069
+      // 1541509136862
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -773,7 +773,7 @@ exports.Checkbox = Checkbox;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882723093
+      // 1541509138996
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1287,7 +1287,7 @@ exports.DropdownItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882723447
+      // 1541509139584
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -2237,6 +2237,724 @@ module.exports = exports['default'];
 
 /***/ }),
 
+/***/ "./components/grid/col.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.default = undefined;
+
+var _getOwnPropertyDescriptor = __webpack_require__("babel-runtime/core-js/object/get-own-property-descriptor");
+
+var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
+
+var _extends2 = __webpack_require__("babel-runtime/helpers/extends");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _classCallCheck2 = __webpack_require__("babel-runtime/helpers/classCallCheck");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__("babel-runtime/helpers/createClass");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__("babel-runtime/helpers/possibleConstructorReturn");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__("babel-runtime/helpers/inherits");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _dec, _desc, _value, _class, _class2, _temp;
+
+var _intact = __webpack_require__("intact");
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _col = __webpack_require__("./components/grid/col.vdt");
+
+var _col2 = _interopRequireDefault(_col);
+
+var _utils = __webpack_require__("./components/utils.js");
+
+var _utils2 = __webpack_require__("./components/grid/utils.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
+
+    return desc;
+}
+
+var Col = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
+    (0, _inherits3.default)(Col, _Intact);
+
+    function Col() {
+        (0, _classCallCheck3.default)(this, Col);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+    }
+
+    Col.prototype.defaults = function defaults() {
+        return {
+            span: undefined,
+            offset: 0,
+            gutter: 0,
+            order: 0,
+            pull: 0,
+            push: 0,
+            // responsive
+            xs: undefined,
+            sm: undefined,
+            md: undefined,
+            lg: undefined,
+            xl: undefined,
+            xxl: undefined
+        };
+    };
+
+    Col.prototype._init = function _init() {
+        var _this2 = this;
+
+        _utils2.breakpoints.forEach(function (item) {
+            _this2.on('$receive:' + item, function (c, v) {
+                if (!v) {
+                    _this2[item] = undefined;
+                } else if ((0, _utils.isStringOrNumber)(v)) {
+                    _this2[item] = {
+                        span: +v
+                    };
+                } else {
+                    _this2[item] = v;
+                }
+            });
+        });
+    };
+
+    (0, _createClass3.default)(Col, [{
+        key: 'template',
+        get: function get() {
+            return _col2.default;
+        }
+    }]);
+    return Col;
+}(_intact2.default), _class2.propTypes = (0, _extends3.default)({
+    gutter: [String, Number],
+    span: [String, Number],
+    offset: [String, Number],
+    order: [String, Number],
+    pull: [String, Number],
+    push: [String, Number]
+}, _utils2.breakpoints.reduce(function (memo, item) {
+    memo[item] = [String, Number, Object];
+    return memo;
+}, {})), _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
+exports.default = Col;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./components/grid/col.vdt":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _classNameObj;
+
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __slice = __u.slice,
+        __noop = __u.noop,
+        __m = __u.map,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var _self$get = self.get(),
+        children = _self$get.children,
+        span = _self$get.span,
+        className = _self$get.className,
+        order = _self$get.order,
+        style = _self$get.style,
+        gutter = _self$get.gutter,
+        offset = _self$get.offset,
+        push = _self$get.push,
+        pull = _self$get.pull;
+
+    var xs = self.xs,
+        sm = self.sm,
+        md = self.md,
+        lg = self.lg,
+        xl = self.xl;
+
+
+    var hasGutter = gutter > 0;
+    if (hasGutter) {
+        style = (0, _utils2.default)(gutter, style, 'padding');
+    }
+
+    var classNameObj = (_classNameObj = {
+        'k-col': true
+    }, _classNameObj['k-' + span] = span, _classNameObj[className] = className && !hasGutter, _classNameObj['k-offset-' + offset] = offset > 0, _classNameObj['k-pull-' + pull] = pull, _classNameObj['k-push-' + push] = push, _classNameObj['k-order-' + order] = order, _classNameObj);
+    // add responsive class
+    _utils.breakpoints.forEach(function (item) {
+        var obj = self[item];
+        if (!obj) return;
+        var prefix = item === 'xs' ? 'k-' : 'k-' + item + '-';
+        if (!(0, _utils3.isNullOrUndefined)(obj.span)) {
+            classNameObj['' + prefix + obj.span] = true;
+        }
+        ['order', 'offset', 'pull', 'push'].forEach(function (prop) {
+            if (!(0, _utils3.isNullOrUndefined)(obj[prop])) {
+                classNameObj['' + prefix + prop + '-' + obj[prop]] = true;
+            }
+        });
+    });
+
+    return h('div', {
+        'style': function () {
+            try {
+                return style;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)
+    }, function () {
+        try {
+            return hasGutter ? h('div', null, function () {
+                try {
+                    return children;
+                } catch (e) {
+                    _e(e);
+                }
+            }.call($this), _className(function () {
+                try {
+                    return className;
+                } catch (e) {
+                    _e(e);
+                }
+            }.call($this))) : children;
+        } catch (e) {
+            _e(e);
+        }
+    }.call($this), _className(function () {
+        try {
+            return classNameObj;
+        } catch (e) {
+            _e(e);
+        }
+    }.call($this)));
+};
+
+var _utils = __webpack_require__("./components/grid/utils.js");
+
+var _utils2 = _interopRequireDefault(_utils);
+
+var _utils3 = __webpack_require__("./components/utils.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./components/grid/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.Col = exports.Row = undefined;
+
+var _row = __webpack_require__("./components/grid/row.js");
+
+var _row2 = _interopRequireDefault(_row);
+
+var _col = __webpack_require__("./components/grid/col.js");
+
+var _col2 = _interopRequireDefault(_col);
+
+__webpack_require__("./styles/kpc.styl");
+
+__webpack_require__("./components/grid/index.styl");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.Row = _row2.default;
+exports.Col = _col2.default;
+
+/***/ }),
+
+/***/ "./components/grid/index.styl":
+/***/ (function(module, exports, __webpack_require__) {
+
+// removed by extract-text-webpack-plugin
+    if(false) {
+      // 1541509138712
+      var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
+      module.hot.dispose(cssReload);
+      module.hot.accept(undefined, cssReload);
+    }
+  
+
+/***/ }),
+
+/***/ "./components/grid/mediaQuery.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = {
+    "smMinWidth": "576px",
+    "mdMinWidth": "768px",
+    "lgMinWidth": "992px",
+    "xlMinWidth": "1200px",
+    "xxlMinWidth": "1600px"
+};
+
+/***/ }),
+
+/***/ "./components/grid/row.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.default = undefined;
+
+var _getOwnPropertyDescriptor = __webpack_require__("babel-runtime/core-js/object/get-own-property-descriptor");
+
+var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
+
+var _extends4 = __webpack_require__("babel-runtime/helpers/extends");
+
+var _extends5 = _interopRequireDefault(_extends4);
+
+var _classCallCheck2 = __webpack_require__("babel-runtime/helpers/classCallCheck");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__("babel-runtime/helpers/createClass");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__("babel-runtime/helpers/possibleConstructorReturn");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__("babel-runtime/helpers/inherits");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _dec, _desc, _value, _class, _class2, _temp;
+
+var _intact = __webpack_require__("intact");
+
+var _intact2 = _interopRequireDefault(_intact);
+
+var _row = __webpack_require__("./components/grid/row.vdt");
+
+var _row2 = _interopRequireDefault(_row);
+
+var _mediaQuery = __webpack_require__("./components/grid/mediaQuery.js");
+
+var _mediaQuery2 = _interopRequireDefault(_mediaQuery);
+
+var _utils = __webpack_require__("./components/utils.js");
+
+var _col = __webpack_require__("./components/grid/col.js");
+
+var _col2 = _interopRequireDefault(_col);
+
+var _utils2 = __webpack_require__("./components/grid/utils.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
+
+    return desc;
+}
+
+var enquire = void 0;
+if (typeof window !== 'undefined') {
+    window.matchMedia = window.matchMedia || function () {
+        return {
+            matches: true, // let match the largest width always
+            addListener: function addListener() {},
+            removeListener: function removeListener() {}
+        };
+    };
+    enquire = __webpack_require__("enquire.js");
+}
+
+var responsiveMap = {
+    xxl: '(min-width: 0)',
+    xl: '(min-width: ' + _mediaQuery2.default.xlMinWidth + ')',
+    lg: '(min-width: ' + _mediaQuery2.default.lgMinWidth + ')',
+    md: '(min-width: ' + _mediaQuery2.default.mdMinWidth + ')',
+    sm: '(min-width: ' + _mediaQuery2.default.smMinWidth + ')',
+    xs: '(max-width: ' + _mediaQuery2.default.xsMaxWidth + ')'
+};
+
+var Row = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Intact) {
+    (0, _inherits3.default)(Row, _Intact);
+
+    function Row() {
+        (0, _classCallCheck3.default)(this, Row);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+    }
+
+    Row.prototype.defaults = function defaults() {
+        return {
+            gutter: 0,
+            justify: undefined,
+            flex: false,
+            align: undefined,
+
+            _gutter: undefined
+        };
+    };
+
+    Row.prototype._init = function _init() {
+        var _this2 = this;
+
+        this.useFlex = false;
+        ['justify', 'align', 'flex', 'children'].forEach(function (item) {
+            _this2.on('$receive:' + item, function (c, v) {
+                var _get = _this2.get(),
+                    flex = _get.flex,
+                    justify = _get.justify,
+                    align = _get.align,
+                    children = _get.children;
+
+                _this2.useFlex = flex || justify || align;
+
+                // detect the order property of children
+                if (!_this2.useFlex && children) {
+                    var _children = children;
+                    if (!Array.isArray(children)) {
+                        _children = [children];
+                    }
+
+                    for (var i = 0; i < _children.length; i++) {
+                        var vNode = _children[i];
+                        if (vNode && vNode.tag === _col2.default) {
+                            var props = vNode.props;
+                            if (props.order != null) {
+                                _this2.useFlex = true;
+                            } else {
+                                for (var _i = 0; _i < _utils2.breakpoints.length; _i++) {
+                                    var breakpoint = _utils2.breakpoints[_i];
+                                    if (props[breakpoint] && props[breakpoint].order != null) {
+                                        _this2.useFlex = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (_this2.useFlex) break;
+                        }
+                    }
+                }
+            });
+        });
+    };
+
+    Row.prototype._create = function _create() {
+        var _this3 = this;
+
+        var _loop = function _loop(key) {
+            enquire.register(responsiveMap[key], {
+                match: function match() {
+                    var _get2 = _this3.get(),
+                        gutter = _get2.gutter;
+
+                    if ((0, _utils.isObject)(gutter)) {
+                        var _extends2;
+
+                        _this3.set('_matches', (0, _extends5.default)({}, _this3.get('_matches'), (_extends2 = {}, _extends2[key] = true, _extends2)), { async: true });
+                    }
+                },
+                unmatch: function unmatch() {
+                    var _get3 = _this3.get(),
+                        gutter = _get3.gutter;
+
+                    if ((0, _utils.isObject)(gutter)) {
+                        var _extends3;
+
+                        _this3.set('_matches', (0, _extends5.default)({}, _this3.get('_matches'), (_extends3 = {}, _extends3[key] = false, _extends3)), { async: true });
+                    }
+                }
+            });
+        };
+
+        for (var key in responsiveMap) {
+            _loop(key);
+        }
+    };
+
+    Row.prototype._getGutter = function _getGutter() {
+        var _get4 = this.get(),
+            gutter = _get4.gutter;
+
+        if ((0, _utils.isObject)(gutter)) {
+            for (var i = 0; i < _utils2.breakpoints.length; i++) {
+                var breakpoint = _utils2.breakpoints[i];
+                if (this.get('_matches.' + breakpoint) && gutter[breakpoint] != null) {
+                    return gutter[breakpoint];
+                }
+            }
+            return 0;
+        }
+        return gutter;
+    };
+
+    (0, _createClass3.default)(Row, [{
+        key: 'template',
+        get: function get() {
+            return _row2.default;
+        }
+    }]);
+    return Row;
+}(_intact2.default), _class2.propTypes = {
+    gutter: [String, Number, Object],
+    justify: ['start', 'end', 'center', 'between', 'around', 'evenly'],
+    align: ['top', 'bottom', 'middle', 'stretch', 'baseline'],
+    flex: Boolean
+}, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
+exports.default = Row;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./components/grid/row.vdt":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _extends2 = __webpack_require__("babel-runtime/helpers/extends");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    var _classNameObj;
+
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __slice = __u.slice,
+        __noop = __u.noop,
+        __m = __u.map,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var _self$get = self.get(),
+        children = _self$get.children,
+        className = _self$get.className,
+        style = _self$get.style,
+        justify = _self$get.justify,
+        align = _self$get.align;
+
+    var useFlex = self.useFlex;
+
+    var gutter = self._getGutter();
+    var hasGutter = gutter > 0;
+    if (hasGutter) {
+        style = (0, _utils3.default)(gutter, style);
+    }
+
+    var classNameObj = (_classNameObj = {
+        'k-row': true
+    }, _classNameObj[className] = className, _classNameObj['k-gutter'] = hasGutter, _classNameObj['k-flex'] = useFlex, _classNameObj['k-justify-' + justify] = justify, _classNameObj['k-align-' + align] = align, _classNameObj);
+
+    /* if (Array.isArray(children)) { */
+    /* // order the children by order property like flex's order */
+    /* children.sort((a, b) => { */
+    /* return (a && a.props && a.props.order || 0) -  */
+    /* (b && b.props && b.props.order || 0); */
+    /* }); */
+    /* } */
+
+    return h('div', {
+        'style': function () {
+            try {
+                return style;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)
+    }, function () {
+        try {
+            return (0, _utils.mapChildren)(children, function (vNode) {
+                if (vNode && vNode.tag === _col2.default) {
+                    vNode.props = (0, _extends3.default)({}, vNode.props, { gutter: gutter });
+                }
+                return vNode;
+            });
+        } catch (e) {
+            _e(e);
+        }
+    }.call($this), _className(function () {
+        try {
+            return classNameObj;
+        } catch (e) {
+            _e(e);
+        }
+    }.call($this)));
+};
+
+var _col = __webpack_require__("./components/grid/col.js");
+
+var _col2 = _interopRequireDefault(_col);
+
+var _utils = __webpack_require__("./components/utils.js");
+
+var _utils2 = __webpack_require__("./components/grid/utils.js");
+
+var _utils3 = _interopRequireDefault(_utils2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./components/grid/utils.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.breakpoints = undefined;
+
+var _extends3 = __webpack_require__("babel-runtime/helpers/extends");
+
+var _extends4 = _interopRequireDefault(_extends3);
+
+exports.default = gutterStyle;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function gutterStyle(gutter, style) {
+    var prop = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'margin';
+
+    var margin = gutter / 2;
+    var sign = prop === 'margin' ? '-' : '';
+    if (!style) style = '';
+    if (typeof style === 'string') {
+        style = '' + style + (!style || /;\s*$/.test(style) ? '' : ';') + prop + '-left: ' + sign + margin + 'px; ' + prop + '-right: ' + sign + margin + 'px;';
+    } else {
+        var _extends2;
+
+        style = (0, _extends4.default)((_extends2 = {}, _extends2[prop + 'Left'] = '' + sign + margin + 'px', _extends2[prop + 'Right'] = '' + sign + margin + 'px', _extends2), style);
+    }
+    return style;
+}
+
+var breakpoints = exports.breakpoints = ['xxl', 'xl', 'lg', 'md', 'sm', 'xs'];
+
+/***/ }),
+
 /***/ "./components/input/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2424,7 +3142,7 @@ exports.Input = Input;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882725140
+      // 1541509141564
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -3738,7 +4456,7 @@ exports.Radio = Radio;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882727332
+      // 1541509143568
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -4404,7 +5122,7 @@ exports.OptionGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882722786
+      // 1541509138782
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5389,7 +6107,7 @@ exports.Tab = _tab2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882725426
+      // 1541509141664
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5749,6 +6467,10 @@ var _getOwnPropertyDescriptor = __webpack_require__("babel-runtime/core-js/objec
 
 var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
 
+var _extends2 = __webpack_require__("babel-runtime/helpers/extends");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
 var _classCallCheck2 = __webpack_require__("babel-runtime/helpers/classCallCheck");
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
@@ -5816,6 +6538,86 @@ var _default = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
         return (0, _possibleConstructorReturn3.default)(this, _Layout.apply(this, arguments));
     }
 
+    _default.prototype.defaults = function defaults() {
+        return (0, _extends3.default)({}, _Layout.prototype.defaults.call(this), {
+            current: 'one'
+        });
+    };
+
+    _default.prototype._page1 = function _page1() {
+        this.set('current', 'one');
+    };
+
+    _default.prototype._page2 = function _page2() {
+        this.set('current', 'two');
+    };
+
+    _default.prototype._mountAA = function _mountAA() {
+        var self = this;
+        var X = void 0,
+            Y = void 0,
+            startX = void 0,
+            startY = void 0,
+            moveEndX = void 0,
+            moveEndY = void 0;
+        window.onmousewheel = function (e) {
+            var data = e.wheelDelta || 0;
+            console.log(data);
+            if (data > 0) {
+                self.set('current', 'one');
+            } else if (data < 0) {
+                self.set('current', 'two');
+            }
+            // debugger
+        };
+        window.ontouchstart = function (e) {
+            e.preventDefault();
+            startX = e.changedTouches[0].pageX;
+            startY = e.changedTouches[0].pageY;
+        };
+        window.ontouchmove = function (e) {
+            e.preventDefault();
+            moveEndX = e.changedTouches[0].pageX;
+            moveEndY = e.changedTouches[0].pageY;
+
+            X = moveEndX - startX;
+            Y = moveEndY - startY;
+
+            if (Math.abs(X) > Math.abs(Y) && X > 0) {
+                console.log("left 2 right");
+            } else if (Math.abs(X) > Math.abs(Y) && X < 0) {
+                console.log("right 2 left");
+            } else if (Math.abs(Y) > Math.abs(X) && Y > 0) {
+                self.set('current', 'one');
+                console.log("top 2 bottom");
+            } else if (Math.abs(Y) > Math.abs(X) && Y < 0) {
+                self.set('current', 'two');
+                console.log("bottom 2 top");
+            } else {
+                console.log("just touch");
+            }
+        };
+
+        // var one = document.querySelector('.pages');
+        var one = document.getElementById('page');
+
+        function addEvent(elem, type, showAll) {
+            type = type.split(' ');
+
+            type.forEach(function (item) {
+                elem.addEventListener(item, function (ev) {
+                    console.log(item, showAll ? ev : ev.type);
+                });
+            });
+        }
+
+        addEvent(one, 'tap click touchstart touchmove touchend touchcancel swipe swipeLeft swipeRight swipeUp swipeDown longTap singleTap doubleTap mousewheel', true);
+    };
+
+    _default.prototype._destroy = function _destroy() {
+        window.onmousewheel = null;
+    };
+
     return _default;
 }(_layout2.default), _class2.template = _index2.default, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
     enumerable: true,
@@ -5836,7 +6638,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882720044
+      // 1541509138117
       var cssReload = require("!../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5884,40 +6686,155 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
 
     return function () {
         var _obj = {
-            'className': 'index-page'
+            'className': 'index-page',
+            'pageIndex': 'index'
         };
         return parent.call($this, _obj, _Vdt, function (blocks) {
             var _blocks = {},
                 __blocks = extend({}, blocks);
             return (_blocks['content'] = function (parent) {
-                return h('article', null, [hc(' <img src=\"images/logo.png\" /> '), h('h1', null, 'KPC'), h('p', null, '支持多框架的前端高质量组件库'), h('div', null, [h(_button.Button, {
-                    'tagName': function () {
+                return h('div', null, [function () {
+                    try {
+                        return false;
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call($this) ? h('ul', null, [h('li', {
+                    'ev-click': function () {
                         try {
-                            return _link.Link;
+                            return self._page1;
                         } catch (e) {
                             _e(e);
                         }
-                    }.call($this),
-                    'type': 'primary',
-                    'tagProps': function () {
+                    }.call($this)
+                }, null, _className(function () {
+                    try {
+                        return self.get('current') === "one" ? "dot-active" : "";
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call($this))), h('li', {
+                    'ev-click': function () {
                         try {
-                            return {
-                                href: "/kpc" + '/docs/getting-started/'
-                            };
+                            return self._page2;
                         } catch (e) {
                             _e(e);
                         }
-                    }.call($this),
-                    'className': 'button',
-                    'children': '开始',
+                    }.call($this)
+                }, null, _className(function () {
+                    try {
+                        return self.get('current') === "two" ? "dot-active" : "";
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call($this)))], 'index-dot') : undefined, h(_grid.Row, {
+                    'className': 'test',
+                    'children': [h(_grid.Col, {
+                        'className': 'first-page-left',
+                        'xs': function () {
+                            try {
+                                return { span: 24, offset: 0 };
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call($this),
+                        'xl': function () {
+                            try {
+                                return { span: 12, offset: 0 };
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call($this),
+                        'children': [h('h1', null, 'KPC'), h('p', null, '支持多框架的前端高质量组件库'), h('div', null, [h(_button.Button, {
+                            'tagName': function () {
+                                try {
+                                    return _link.Link;
+                                } catch (e) {
+                                    _e(e);
+                                }
+                            }.call($this),
+                            'type': 'primary',
+                            'tagProps': function () {
+                                try {
+                                    return {
+                                        href: "/kpc" + '/docs/getting-started/'
+                                    };
+                                } catch (e) {
+                                    _e(e);
+                                }
+                            }.call($this),
+                            'className': 'button',
+                            'children': '开始使用',
+                            '_context': $this
+                        }), h(_button.Button, {
+                            'href': 'https://github.com/ksc-fe/kpc',
+                            'className': 'button',
+                            'target': '_blank',
+                            'children': 'GitHub',
+                            '_context': $this
+                        })], 'actions')],
+                        '_context': $this
+                    }), h(_grid.Col, {
+                        'className': 'first-page-right',
+                        'xs': function () {
+                            try {
+                                return { span: 24, offset: 0 };
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call($this),
+                        'xl': function () {
+                            try {
+                                return { span: 12, offset: 0 };
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call($this),
+                        'children': h('div', null, null, 'right'),
+                        '_context': $this
+                    })],
                     '_context': $this
-                }), h(_button.Button, {
-                    'href': 'https://github.com/ksc-fe/kpc',
-                    'className': 'button',
-                    'target': '_blank',
-                    'children': 'GitHub',
+                }), h(_grid.Row, {
+                    'className': 'test',
+                    'children': [h(_grid.Col, {
+                        'className': 'second-page-left',
+                        'xs': function () {
+                            try {
+                                return { span: 24, offset: 0, order: 2 };
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call($this),
+                        'xl': function () {
+                            try {
+                                return { span: 9, offset: 3, order: 1 };
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call($this),
+                        'children': h('div', null, null, 'left'),
+                        '_context': $this
+                    }), h(_grid.Col, {
+                        'className': 'second-page-right',
+                        'xs': function () {
+                            try {
+                                return { span: 20, offset: 4, order: 1 };
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call($this),
+                        'xl': function () {
+                            try {
+                                return { span: 10, offset: 2, order: 2 };
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call($this),
+                        'children': h('div', null, [h('div', null, [h('h2', null, '支持多框架'), h('div', null, '\n                                    同时支持Intact和Vue框架\n                                ')], 'feature'), h('div', null, [h('h2', null, '忠于原生，增强原生'), h('div', null, '\n                                    在保持浏览器原生特性的基础上，增强交互能力\n                                ')], 'feature'), h('div', null, [h('h2', null, '便捷开发'), h('div', null, '\n                                    支持按需加载，主题定制，国际化等特性\n                                '), h('div', null, '\n                                    并且提供了配套的脚手架方便快速初始化项目\n                                ')], 'feature')], 'info'),
+                        '_context': $this
+                    })],
                     '_context': $this
-                })], 'actions'), h('div', null, [h('div', null, [h('h2', null, '支持多框架', 'blue'), h('div', null, '\n                        同时支持Intact和Vue框架\n					')], 'feature'), h('div', null, [h('h2', null, '忠于原生，增强原生', 'yellow'), h('div', null, '\n                        在保持浏览器原生特性的基础上，增强交互能力\n					')], 'feature'), h('div', null, [h('h2', null, '便捷开发', 'red'), h('div', null, '\n                        支持按需加载，主题定制，国际化等特性。并且提供了配套的脚手架方便快速初始化项目\n					')], 'feature')], 'features')], 'home-header');
+                })], 'pages');
             }) && (__blocks['content'] = function (parent) {
                 var args = arguments;
                 return blocks['content'] ? blocks['content'].apply($this, [function () {
@@ -5931,6 +6848,8 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
 var _button = __webpack_require__("./components/button/index.js");
 
 var _link = __webpack_require__("./components/link/index.js");
+
+var _grid = __webpack_require__("./components/grid/index.js");
 
 module.exports = exports['default'];
 
@@ -6034,7 +6953,8 @@ var _default = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
 
     _default.prototype.defaults = function defaults() {
         return {
-            theme: theme
+            theme: theme,
+            version: 'v1.1.1'
         };
     };
 
@@ -6082,7 +7002,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1540882720363
+      // 1541509135547
       var cssReload = require("!../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -6129,11 +7049,11 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         parent = ($callee || {})._super;
 
     var nav = [{
-        title: '设计语言',
+        title: 'King Design',
         href: '/docs/design/language/',
         index: 'design'
     }, {
-        title: '教程',
+        title: '组件',
         href: '/docs/getting-started/',
         index: 'document'
     }, {
@@ -6143,12 +7063,16 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     }];
 
     return h('div', null, [h('div', null, h('header', null, (_blocks['header'] = function (parent) {
-        return [h(_link2.default, {
+        return [h('div', null, [h(_link2.default, {
             'className': 'logo',
+            'href': '/',
+            '_context': $this
+        }), h(_link2.default, {
+            'className': 'king',
             'href': '/',
             'children': 'KPC',
             '_context': $this
-        }), h('div', null, [h('nav', null, [__m(function () {
+        })], 'king-logo'), h('div', null, [h('nav', null, [__m(function () {
             try {
                 return nav;
             } catch (e) {
@@ -6181,12 +7105,25 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 }.call($this),
                 '_context': $this
             });
-        }, $this), h('div', null, null, 'border')]), h('span', null, '切换主题：', 'label'), h(_select.Select, {
+        }, $this), h('div', null, null, 'border')]), h('div', null, null, 'line'), h(_select.Select, {
+            'width': '100',
+            'size': 'small',
+            'children': h(_select.Option, {
+                'value': 'v1.1.1',
+                'children': 'v1.1.1',
+                '_context': $this
+            }),
+            '_context': $this,
+            'value': _getModel(self, 'version'),
+            'ev-$change:value': function ev$changeValue(__c, __n) {
+                _setModel(self, 'version', __n, $this);
+            }
+        }), h(_select.Select, {
             'width': '100',
             'size': 'small',
             'children': [h(_select.Option, {
                 'value': 'kpc',
-                'children': 'default',
+                'children': '默认主题',
                 '_context': $this
             }), h(_select.Option, {
                 'value': 'ksyun',
@@ -6204,7 +7141,18 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         return blocks['header'] ? blocks['header'].apply($this, [function () {
             return _blocks['header'].apply($this, args);
         }].concat(__slice.call(args, 1))) : _blocks['header'].apply($this, args);
-    }) && __blocks['header'].apply($this, [__noop])), 'header-wrapper'), h('div', null, (_blocks['content'] = function (parent) {
+    }) && __blocks['header'].apply($this, [__noop])), _className(function () {
+        try {
+            return {
+                'header-wrapper': true,
+                'header-shadow': scope.pageIndex !== 'index'
+            };
+        } catch (e) {
+            _e(e);
+        }
+    }.call($this)), null, function (i) {
+        widgets['header'] = i;
+    }), h('div', null, (_blocks['content'] = function (parent) {
         return null;
     }) && (__blocks['content'] = function (parent) {
         var args = arguments;
