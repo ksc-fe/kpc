@@ -3,12 +3,7 @@ import {Select, Option} from 'kpc/components/select';
 
 const nav = [
     {
-        title: '指南',
-        href: '/docs/blogs/design/',
-        index: 'blog'
-    },
-    {
-        title: '设计',
+        title: 'King Design',
         href: '/docs/design/language/',
         index: 'design'
     },
@@ -16,16 +11,24 @@ const nav = [
         title: '组件',
         href: '/docs/getting-started/',
         index: 'document'
-    }
+    },
+    {
+        title: 'Blog',
+        href: '/docs/blogs/design/',
+        index: 'blog'
+    },
 ];
 
 <div class={{ {'main-wrapper': true, [scope.className]: scope.className} }}>
-    <div class="header-wrapper" class={{ {'header-wrapper': true, 'header-shadow': scope.pageIndex !== 'index'} }}>
+    <div class="header-wrapper" class={{ {
+        'header-wrapper': true, 
+        'header-shadow': scope.pageIndex !== 'index'
+    } }} ref="header">
         <header>
             <b:header>
                 <div class="king-logo">
                     <Link class="logo" href="/"></Link>
-                    <Link class="king" href="/">King</Link>
+                    <Link class="king" href="/">KPC</Link>
                 </div>
                 <div class="right">
                     <nav>

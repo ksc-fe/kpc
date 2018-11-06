@@ -51,7 +51,7 @@ module.exports = {
                         loader: 'css-loader', 
                         options: {
                             url: true,
-                            minimize: true,
+                            minimize: isProduction,
                             // sourceMap: !isProduction,
                         }
                     },
@@ -73,7 +73,7 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/,
+                test: /\.(woff2?|eot|ttf|otf|svg)$/,
                 use: [
                     {
                         loader: 'file-loader',

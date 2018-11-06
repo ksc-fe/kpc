@@ -11,21 +11,10 @@ export default class extends Document {
     @Intact.template()
     static template = template;
 
-    defaults() {
-        return {
-            ...super.defaults(),
-            borderStyle: {
-                width: '12px',
-                height: '12px',
-                'border-radius': '12px',
-                left: '-6px',
-                top: '5px'
-            }
-        }
-    }
-
     _mount() {
         super._mount();
+
+        this.headerHeight = this.refs.header.clientHeight;
 
         this.h1s = this.element.querySelectorAll('h1');
         this.h2s = this.element.querySelectorAll('h2');
@@ -37,7 +26,7 @@ export default class extends Document {
     scrollTo(id) {
         const header = document.getElementById(id);
         if (header) {
-            const top = header.getBoundingClientRect().top + window.pageYOffset - 50; // todo
+            const top = header.getBoundingClientRect().top + window.pageYOffset - this.headerHeight;
 
             window.scrollTo(0, top);
         }
@@ -51,12 +40,12 @@ export default class extends Document {
             this.refs.wrapper.classList.remove('fixed');
         }
         
-        function findActive(hs, minTop = 0) {
+        const findActive = (hs, minTop = 0) => {
             for (let i = hs.length - 1; i >= 0; i--) {
                 const h = hs[i];
                 const top = h.getBoundingClientRect().top + window.pageYOffset;
 
-                if (top > minTop && top - 80 <= scrollTop) {
+                if (top > minTop && top - this.headerHeight <= scrollTop) {
                     return {header: h.id, top: top};
                 }
             }
@@ -74,21 +63,11 @@ export default class extends Document {
         active = active[active.length - 1];
         if (active) {
             this.set('borderStyle', {
-                // height: active.offsetHeight + 'px',
-                height: active.getAttribute('key') == '2' ? '12px' : '8px',
-                width: active.getAttribute('key') == '2' ? '12px' : '8px',
-                'border-radius': active.getAttribute('key') == '2' ? '12px' : '8px',
-                left: active.getAttribute('key') == '2' ? '-6px' : '-4px',
-                top: active.offsetTop + 5 + 'px',
+                height: active.offsetHeight + 'px',
+                top: active.offsetTop + 'px',
             });
         } else {
-            this.set('borderStyle', {
-                width: '12px',
-                height: '12px',
-                'border-radius': '12px',
-                left: '-6px',
-                top: '5px'
-            });
+            this.set('borderStyle', undefined);
         }
     }
 }

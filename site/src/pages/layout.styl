@@ -1,6 +1,8 @@
 @import '../styles/variables';
 @import '../styles/highlight.styl';
 
+$headerHeight = headerHeight
+
 html
 body
     margin 0
@@ -52,13 +54,13 @@ blockquote
     min-height 100vh
 .main-wrapper
     // padding-top headerHeight + 15px 
-    padding-top headerHeight
+    padding-top $headerHeight
 
 .header-shadow
     box-shadow 0 2px 5px rgba(0, 0, 0, .08)
 .header-wrapper
-    height 87px
-    line-height 87px
+    height $headerHeight 
+    line-height @height 
     //box-shadow 0 2px 5px rgba(0, 0, 0, .08)
     background #fff
     position fixed
@@ -89,7 +91,6 @@ blockquote
                 position absolute
         .right
             float right
-            line-height 87px
         nav
             position relative
             display inline-block
@@ -111,8 +112,10 @@ blockquote
             display inline
             margin 0 10px
             border-right 1px solid #CCCCCC
+            vertical-align middle
     .k-select
         margin-right 20px
+        line-height 1
     .label
         font-size 12px
     .border

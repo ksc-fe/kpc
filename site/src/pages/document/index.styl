@@ -20,7 +20,7 @@ $aside-width = 200px
         width 100%
         display flex
         background #fff
-        margin 36px auto
+        margin 0 auto
         border-radius 5px
         box-shadow 0 1px 1px rgba(0, 0, 0, .08)
         min-height calc(100vh - 15px)
@@ -42,8 +42,8 @@ $aside-width = 200px
                 padding 0
             a
                 display block
-                height 30px
-                line-height 30px
+                height 40px
+                line-height 40px
                 padding-left 25px
                 color #333
                 &:hover
@@ -113,9 +113,10 @@ $aside-width = 200px
                 width 50%
 
     .example
-        border 1px solid #eee
+        border 1px solid #ccc
         padding 0 20px 20px 20px
         margin-bottom 20px
+        background #fff
     .example-opera
         padding 30px 0
     .example-desc
@@ -149,7 +150,7 @@ $aside-width = 200px
         width 150px
         font-size 12px
         li
-            padding 3px 10px
+            padding 3px 10px 3px 15px
             cursor pointer
             &:hover
             &.active
@@ -161,13 +162,13 @@ $aside-width = 200px
             position fixed
             //top headerHeight
             background #fff
-            height "calc(100% - %s)" % headerHeight
+            height "calc(100% - %s)" % 40px
             overflow auto
             box-sizing border-box
             width $aside-width - 1px
         article
             background-color #f1f1f5
-            padding 24px 400px 10px 40px
+            padding 24px 200px 10px 40px
 
 .aside-border-nav
     height 100%
