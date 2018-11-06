@@ -4,7 +4,7 @@
   "description": "A component library written in intact for intact and vue",
   "browser": "@css/index.js",
   "main": "dist/kpc.js",
-  "module": "@stylus/index.js",
+  "module": "index.js",
   "scripts": {
     "test": "karma start test/karma.conf.js",
     "snapshot": "UPDATE=1 npm run test",
