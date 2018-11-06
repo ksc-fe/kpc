@@ -15,6 +15,7 @@ const Article = self.get('Article');
                             class={{
                                 {
                                     'aside-nav-dot-2': value.level == 2,
+                                    'aside-nav-sub-li': value.level == 3,
                                     'aside-nav-dot-3': value.level == 3,
                                     'active': self.get(`active${value.level}`) === value.id
                                 }

@@ -27,7 +27,7 @@ const nav = [
                     <Link class="logo" href="/"></Link>
                     <Link class="king" href="/">King</Link>
                 </div>
-                <div class="right" v-if={{ scope.pageIndex !== 'index' }}>
+                <div class="right">
                     <nav>
                         <Link v-for={{ nav }}
                             class={{ {

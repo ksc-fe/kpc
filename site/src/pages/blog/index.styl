@@ -4,14 +4,16 @@
     .content-wrapper
         box-shadow none
         flex-direction row-reverse
-        width 1080px
+        //width 1080px
         aside
             position absolute
             left 20px
-            width 250px
+            width 15% //250px
             border none
             background #eee
         article
+            margin-left 22%
+            background-color #f1f1f5
             box-shadow 0 1px 1px rgba(0, 0, 0, 0.08)
         .aside-wrapper
             margin 30px
@@ -68,8 +70,13 @@ dot-active-2
 
 .aside-nav-ul
     li
+        height 40px
         padding-left 20px
         padding-bottom 10px
+        .active
+            color #0091ea
+        a
+            color #4C4C4C
 
 .aside-active-dot
     //width 12px
@@ -78,3 +85,5 @@ dot-active-2
     background-color #0091ea
     position absolute
     //left -5px
+.aside-nav-sub-li
+    padding-left 20px

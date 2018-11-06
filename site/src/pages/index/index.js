@@ -9,6 +9,7 @@ export default class extends Layout {
 
     defaults() {
         return {
+            ...super.defaults(),
             current: 'one'
         }
     }
@@ -19,11 +20,12 @@ export default class extends Layout {
         this.set('current', 'two');
     }
 
-    _mount() {
+    _mountAA() {
         const self = this;
         let X, Y, startX, startY, moveEndX, moveEndY;
         window.onmousewheel = function (e) {
             let data = e.wheelDelta || 0;
+            console.log(data)
             if (data > 0) {
                 self.set('current', 'one');
             } else if (data < 0) {

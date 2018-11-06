@@ -5,12 +5,11 @@ import {Row, Col} from 'kpc/components/grid';
 <t:parent className="index-page" pageIndex="index">
     <b:content>
         <div class="pages">
-            <ul class="index-dot">
+            <ul class="index-dot" v-if={{ false }}>
                 <li ev-click={{ self._page1 }} class={{ self.get('current') === "one" ? "dot-active" : "" }}></li>
                 <li ev-click={{ self._page2 }} class={{ self.get('current') === "two" ? "dot-active" : "" }}></li>
             </ul>
-            <div class="first-page" v-if={{ self.get('current') === "one" }}>
-                <Row>
+                <Row class="test">
                     <Col class="first-page-left"
                         xs={{ {span: 20, offset: 2} }}
                         xl={{ {span: 12, offset: 0} }}
@@ -36,10 +35,8 @@ import {Row, Col} from 'kpc/components/grid';
                         <div class="right"></div>
                     </Col>
                 </Row>
-            </div>
 
-            <div class="second-page" v-if={{ self.get('current') === "two" }}>
-                <Row>
+                <Row class="test">
                     <Col class="second-page-left"
                         xs={{ {span: 20, offset: 4} }}
                         xl={{ {span: 12, offset: 2} }}
@@ -75,38 +72,9 @@ import {Row, Col} from 'kpc/components/grid';
                         </div>
                     </Col>
                 </Row>
-            </div>
 
 
 
-
-
-            <div class="second-page" v-if={{ false }}>
-                <div class="left"></div>
-                <div class="right">
-                    <div class="feature">
-                        <h2 class="blue">支持多框架</h2>
-                        <div>
-                            同时支持Intact和Vue框架
-                        </div>
-                    </div>
-                    <div class="feature">
-                        <h2 class="yellow">忠于原生，增强原生</h2>
-                        <div>
-                            在保持浏览器原生特性的基础上，增强交互能力
-                        </div>
-                    </div>
-                    <div class="feature">
-                        <h2 class="red">便捷开发</h2>
-                        <div>
-                            支持按需加载，主题定制，国际化等特性
-                        </div>
-                        <div>
-                            并且提供了配套的脚手架方便快速初始化项目
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         </div>
     </b:content>
