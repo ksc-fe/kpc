@@ -455,3 +455,19 @@ function exec(command) {
         cmd.stderr.pipe(process.stderr);
     });
 }
+
+gulp.task('code', () => {
+    const codes = [];
+    return gulp.src([
+        './components/**/@(index|variables).@(styl|vdt|js)',
+        './styles/**/*.styl'
+    ])
+        .pipe(tap((file) => {
+            codes.push(`// @file ${path.relative(file._cwd, file.path)}`);
+            codes.push(file.contents.toString('utf-8'));
+        }))
+        .on('end', () => {
+            const path = './dist/code.js';
+            fs.writeFileSync(path,  codes.join('\n'));
+        });
+})

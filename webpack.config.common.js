@@ -65,6 +65,7 @@ module.exports = {
                         loader: 'stylus-loader', 
                         options: {
                             'include css': true,
+                            'resolve url': true,
                             sourceMap: false,
                             // 'import': path.resolve(__dirname, 'styles/themes/ksyun/index.styl'),
                         }
