@@ -1,0 +1,10 @@
+<t:parent class={{ {'k-drawer': true, [`k-${self.get('placement')}`]: true} }} >
+    <b:overlay>
+        <Animate class="k-overlay" v-if={{ self.get('overlay') ? self.get('value') : false }} key="overlay"></Animate>
+    </b:overlay>
+    <b:content>
+        <div class='k-drawer-content'>
+            {{ parent() }}
+        </div>
+    </b:content>
+</t:parent>
