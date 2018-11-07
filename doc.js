@@ -240,7 +240,7 @@ module.exports = function(isDev) {
                     await ctx.fsEach(async function(file) {
                         if (!/demos/.test(file.path)) {
                             file.extname = '.html';
-                            const pathname = path.relative(ctx.data.output, file.path).replace('index.html', '');
+                            const pathname = path.relative(ctx.data.output, file.path).replace('index.html', '').replace('\\', '/');
                             const data = await render(`/${pathname}`);
                             await ctx.fsWrite(
                                 file.relative, 
