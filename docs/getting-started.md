@@ -235,6 +235,7 @@ module.export = {
                         loader: 'stylus-loader', 
                         options: {
                             'include css': true,
+                            'resolve url': true, // @since v0.6.0
                             sourceMap: false,
                             // 使用import引入主题文件，详见定制主题
                             // 'import': path.resolve(__dirname, 'styles/themes/ksyun/index.styl'),
