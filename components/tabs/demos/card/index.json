@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>改变<code>type</code>属性，可以呈现不同的样式，可选取值为：<code>default</code> <code>card</code> <code>border-card</code> <code>no-border-card</code>。其中<code>no-border-card</code>适用于具有背景色的场景</p>\n",
-    "index": 176,
+    "index": 186,
     "highlighted": [
         {
             "language": "vdt",

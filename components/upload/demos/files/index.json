@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>你可以通过<code>defaultFiles</code>定义初始化上传列表，该属性取值为数组，数组每一项结构如下：</p>\n<ol>\n<li><code>name</code> 文件名</li>\n<li><code>url</code> 文件对应的url地址</li>\n</ol>\n",
-    "index": 150,
+    "index": 133,
     "highlighted": [
         {
             "language": "vdt",

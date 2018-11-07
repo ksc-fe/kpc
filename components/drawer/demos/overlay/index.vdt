@@ -1,0 +1,11 @@
+import Drawer from 'kpc/components/drawer';
+import {Button, ButtonGroup} from 'kpc/components/button';
+
+<div>
+    <Button ev-click={{ self.set.bind(self, 'noOverlay', true) }}
+        type="primary"
+    >Show Drawer With No Overlay</Button>
+    <Drawer v-model="noOverlay" title="Drawer Title" ref="__demoOne" overlay={{ false }} closeabled={{ false }}>
+        Drawer With No Overlay
+    </Drawer>
+</div>

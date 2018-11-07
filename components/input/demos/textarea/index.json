@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>指定<code>type</code>为<code>textarea</code>渲染成文本框，同时可以用<code>rows</code>来指定展示的行数</p>\n",
-    "index": 141,
+    "index": 142,
     "highlighted": [
         {
             "language": "vdt",

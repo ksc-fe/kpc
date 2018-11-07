@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>disableRow</code>：禁用某一行可选状态，类型：<code>Function</code>，默认：<code>function(data, index) { return false }</code>，该函数如果返回<code>true</code>，则表示禁用该行可选</p>\n<blockquote>\n<p>禁用的数据默认会在每一行的元素上有<code>k-disabled</code>样式</p>\n</blockquote>\n",
-    "index": 202,
+    "index": 201,
     "highlighted": [
         {
             "language": "vdt",

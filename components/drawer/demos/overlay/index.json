@@ -1,0 +1,19 @@
+{
+    "setting": {
+        "title": "遮罩层",
+        "order": 0.2
+    },
+    "catalogs": [],
+    "contents": "<p>添加<code>overlay</code>属性，false则不展示遮罩层，true展示遮罩层。默认为true。另外添加<code>closeabled</code>属性，false点非抽屉区不可自动关闭抽屉（点击抽屉内关闭按钮才可以关闭），true点非抽屉区可以自动关闭。默认为true</p>\n",
+    "index": 49,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Drawer <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/drawer'</span>;\n<span class=\"hljs-keyword\">import</span> {Button, ButtonGroup} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/button'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span> <span class=\"hljs-attr\">ev-click</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">self.set.bind</span>(<span class=\"hljs-attr\">self</span>, '<span class=\"hljs-attr\">noOverlay</span>', <span class=\"hljs-attr\">true</span>) }}\n        <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"primary\"</span>\n    &gt;</span>Show Drawer With No Overlay<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Drawer</span> <span class=\"hljs-attr\">v-model</span>=<span class=\"hljs-string\">\"noOverlay\"</span> <span class=\"hljs-attr\">title</span>=<span class=\"hljs-string\">\"Drawer Title\"</span> <span class=\"hljs-attr\">ref</span>=<span class=\"hljs-string\">\"__demoOne\"</span> <span class=\"hljs-attr\">overlay</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">false</span> }} <span class=\"hljs-attr\">closeabled</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">false</span> }}&gt;</span>\n        Drawer With No Overlay\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Drawer</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span></code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n\n\n}</code></pre>"
+        }
+    ]
+}
