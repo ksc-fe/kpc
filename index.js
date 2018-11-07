@@ -1,5 +1,5 @@
 /*!
- * kpc v0.5.15
+ * kpc v0.6.0
  *
  * Copyright (c) Kingsoft Cloud
  * Released under the MIT License
@@ -21,6 +21,7 @@ import {Checkbox} from './components/checkbox';
 import {Collapse, CollapseItem} from './components/collapse';
 import {Datepicker} from './components/datepicker';
 import {Dialog} from './components/dialog';
+import {Drawer} from './components/drawer';
 import {Dropdown, DropdownMenu, DropdownItem} from './components/dropdown';
 import {Editable} from './components/editable';
 import {Form, FormItem} from './components/form';
@@ -65,6 +66,7 @@ export {
     CollapseItem,
     Datepicker,
     Dialog,
+    Drawer,
     Dropdown,
     DropdownItem,
     DropdownMenu,
@@ -106,7 +108,7 @@ export {
     Upload
 };
 
-export const version = '0.5.15';
+export const version = '0.6.0';
 
 /* generate end */
 
