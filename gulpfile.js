@@ -358,16 +358,16 @@ gulp.task('build:vdt', () => {
     return buildVdt(destPath);
 });
 
-gulp.task('build:stylus', () => {
-    return gulp.src(['./components/**/*.styl'], {base: './'})
-        .pipe(stylus({'include css': true}))
-        .pipe(postcss())
-        .pipe(gulp.dest(destPath));
-});
+// gulp.task('build:stylus', () => {
+    // return gulp.src(['./components/**/*.styl'], {base: './'})
+        // .pipe(stylus({'include css': true, 'resolve url': true}))
+        // .pipe(postcss())
+        // .pipe(gulp.dest(destPath));
+// });
 
 gulp.task('build:style', () => {
-    return gulp.src('./styles/kpc.styl', {base: './'})
-        .pipe(stylus({'include css': true}))
+    return gulp.src(['./styles/kpc.styl', './components/**/*.styl'], {base: './'})
+        .pipe(stylus({'include css': true, define: {url: require('stylus').resolver()}}))
         .pipe(postcss())
         .pipe(gulp.dest(destPath));
 });
@@ -383,7 +383,7 @@ gulp.task('build:i18n', () => {
 gulp.task('build@css', gulp.series(
     'clean@css', 
     gulp.parallel(
-        'build:js', 'build:vdt', 'build:stylus', 
+        'build:js', 'build:vdt',
         'build:style', 'build:font', 'build:i18n'
     )
 ));

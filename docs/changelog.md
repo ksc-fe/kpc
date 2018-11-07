@@ -7,13 +7,26 @@ sidebar: doc
 ## v0.6.0
 
 1. `Add` 新增`Drawer`抽屉组件 [#112](https://github.com/ksc-fe/kpc/issues/112)
-2. `Fix` 修复`Datepicker`disableSeconds等参数禁用无效[#124](https://github.com/ksc-fe/kpc/issues/124)
-3. `Fix` 修复`App`loading动画没有在最上层[#120](https://github.com/ksc-fe/kpc/issues/120)
-4. `Fix` 修复package.json module字段指向问题[#130](https://github.com/ksc-fe/kpc/issues/130)
-5. `Fix` change font path[#131](https://github.com/ksc-fe/kpc/issues/131)
-6. `Fix` convert Number to String to validate length[#125](https://github.com/ksc-fe/kpc/issues/125)
-7. `Fix` 修复`Datepicker`can not set width with style[#122](https://github.com/ksc-fe/kpc/issues/122)
-8. `Fix` 修复`Timepicker`step状态下class和style不能自定义[#121](https://github.com/ksc-fe/kpc/issues/121)
+5. `Change` 调整字体加载路径，兼容parcel [#131](https://github.com/ksc-fe/kpc/issues/131)
+
+    webpack.config.js配置文件需要更改如下所示：
+    ```js
+    {
+        loader: 'stylus-loader', 
+        options: {
+            'include css': true,
+            'resolve url': true,
+            sourceMap: false,
+            // 'import': path.resolve(__dirname, 'styles/themes/ksyun/index.styl'),
+        }
+    }
+    ```
+4. `Change` 调整package.json `module`字段指向 [#130](https://github.com/ksc-fe/kpc/issues/130)
+2. `Fix` 修复`Datepicker`disableSeconds等参数禁用无效 [#124](https://github.com/ksc-fe/kpc/issues/124)
+3. `Fix` 修复`App`loading动画没有在最上层的问题 [#120](https://github.com/ksc-fe/kpc/issues/120)
+6. `Fix` convert Number to String to validate length [#125](https://github.com/ksc-fe/kpc/issues/125)
+7. `Fix` 修复`Datepicker`can not set width with style [#122](https://github.com/ksc-fe/kpc/issues/122)
+8. `Fix` 修复`Timepicker`step状态下class和style不能自定义 [#121](https://github.com/ksc-fe/kpc/issues/121)
 
 
 ## v0.5.15

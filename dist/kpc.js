@@ -21746,7 +21746,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         } catch (e) {
             _e(e);
         }
-    }.call($this), ' %\n\n                '], 'k-inner-text') : undefined, 'k-bg'), 'k-content'), 'k-container') : undefined, function () {
+    }.call($this), ' %\n                '], 'k-inner-text') : undefined, 'k-bg'), 'k-content'), 'k-container') : undefined, function () {
         try {
             return type === 'circle';
         } catch (e) {
@@ -24724,7 +24724,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
-        }.call($this), '\n\n            ', function () {
+        }.call($this), '\n            ', function () {
             try {
                 return __u.map(scheme, function (item, key) {
                     colSpan++;
@@ -24845,7 +24845,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
-        }.call($this), '\n\n            ', function () {
+        }.call($this), '\n            ', function () {
             try {
                 return __u.map(children ? Array.isArray(children) ? children : [children] : children, function (vNode) {
                     if (vNode.tag === _column2.default) {
@@ -27604,7 +27604,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             } catch (e) {
                 _e(e);
             }
-        }.call($this), ' /\n\n                ', function () {
+        }.call($this), ' /\n                ', function () {
             try {
                 return data.length;
             } catch (e) {
