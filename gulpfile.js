@@ -168,7 +168,7 @@ gulp.task('push:doc', () => {
     return exec(`cd ./site/dist && 
         git add -A;
         TIME=\`date +"%Y-%m-%d %H:%M:%S"\`;
-        git commit -am "build: \${TIME}";
+        git commit -m "build: \${TIME}";
         git push origin gh-pages`
     );
 });
