@@ -7,7 +7,7 @@
 ```
 
 ```
-"<div class=\"k-slider-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 4%; left: 76%;\"></div><div class=\"k-handle\" tabindex=\"0\" style=\"left: 76%;\"></div><div class=\"k-handle k-active\" tabindex=\"0\" style=\"left: 80%;\"></div></div><div class=\"k-box\"><span>0</span><span>100</span></div></div>"
+"<div class=\"k-slider-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 4%; left: 76%;\"></div><div class=\"k-handle\" tabindex=\"0\" style=\"left: 76%;\"></div><div class=\"k-handle\" tabindex=\"0\" style=\"left: 80%;\"></div></div><div class=\"k-box\"><span>0</span><span>100</span></div></div>"
 ```
 
 ```
