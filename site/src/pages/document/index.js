@@ -20,7 +20,7 @@ export default class extends Layout {
     async _init() {
         super._init();
 
-        let path = this.get('path').replace('index.html', '');
+        let path = this.get('path').replace('index.html', '').replace('\\', '/');
         path = path.slice(0, -1).replace(process.URL_PREFIX, '');
 
         this.path = path;
