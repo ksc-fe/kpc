@@ -444,7 +444,7 @@ gulp.task('build', gulp.series(
 
 function exec(command) {
     return new Promise(function(resolve, reject) {
-        var cmd = childProcess.exec(command, {maxBuffer: 50000 * 1024}, function(err, stdout) {
+        var cmd = childProcess.exec(`sh -c '${command}'`, {maxBuffer: 50000 * 1024}, function(err, stdout) {
             if (err) {
                 reject(err);
             } else {
