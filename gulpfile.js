@@ -215,7 +215,7 @@ gulp.task('index', () => {
     const components = [];
     return gulp.src('./components/*/index.js')
         .pipe(tap((file) => {
-            const paths = file.path.split('/');
+            const paths = file.path.split(/[\/\\]/);
             const contents = file.contents.toString('utf-8').split('\n');
             let i = contents.length - 1;
             let lastLine;
