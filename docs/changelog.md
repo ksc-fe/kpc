@@ -5,6 +5,7 @@ sidebar: doc
 ---
 
 ## v0.6.0
+
 1. `Add` 新增`Drawer`抽屉组件 [#112](https://github.com/ksc-fe/kpc/issues/112)
 2. `Fix` 修复`Datepicker`disableSeconds等参数禁用无效[#124](https://github.com/ksc-fe/kpc/issues/124)
 3. `Fix` 修复`App`loading动画没有在最上层[#120](https://github.com/ksc-fe/kpc/issues/120)
