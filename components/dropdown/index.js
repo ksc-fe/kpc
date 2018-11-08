@@ -2,8 +2,6 @@ import Intact from 'intact';
 import Dropdown from './dropdown';
 import DropdownMenu from './menu';
 import DropdownItem from './item';
-import '../../styles/kpc.styl';
-import './index.styl';
 
 const h = Intact.Vdt.miss.h;
 

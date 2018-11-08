@@ -1,6 +1,8 @@
 import Intact from 'intact';
 import {isTextVNode, findParentComponent} from '../utils';
 import DropdownMenu from './menu';
+import '../../styles/kpc.styl';
+import './index.styl';
 
 const h = Intact.Vdt.miss.h;
 
