@@ -8,7 +8,7 @@ sidebar: doc
 
 1. `Fix` 修复`v0.6.0`引入的`@css`编译版字体文件丢失的问题
 2. `Fix` 修复当`Dialog`的`footer`只存在一个`Button`时，样式展示问题 [#132](https://github.com/ksc-fe/kpc/issues/132)
-3. `Fix` 修复`Tooltip`没有加载`Dropdown`样式的问题，这个问题当只使用`Tooltip`组件不适用`Dropdown`组件时复现 [#133](https://github.com/ksc-fe/kpc/issues/133)
+3. `Fix` 修复`Tooltip`没有加载`Dropdown`样式的问题，这个问题当只使用`Tooltip`而不使用`Dropdown`组件时复现 [#133](https://github.com/ksc-fe/kpc/issues/133)
 
 ## v0.6.0
 
