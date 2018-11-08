@@ -40,7 +40,7 @@ const {size} = self.get();
                     </div>
                     <div class="k-body"><b:body>{{ self.get('children') }}</b:body></div>
                     <b:footer-wrapper>
-                        <div class="k-footer">
+                        <div class="k-footer c-clearfix">
                             <b:footer>
                                 <Button ev-click={{ self.cancel }}>{{ self.get('cancelText') }}</Button>
                                 <Button type="primary" ev-click={{ self.ok }} 
