@@ -1213,10 +1213,6 @@ var _item = __webpack_require__(103);
 
 var _item2 = _interopRequireDefault(_item);
 
-__webpack_require__(7);
-
-__webpack_require__(191);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var h = _intact2.default.Vdt.miss.h;
@@ -1318,13 +1314,13 @@ var _intact = __webpack_require__(0);
 
 var _intact2 = _interopRequireDefault(_intact);
 
-var _index = __webpack_require__(187);
+var _index = __webpack_require__(188);
 
 var _index2 = _interopRequireDefault(_index);
 
 __webpack_require__(7);
 
-__webpack_require__(188);
+__webpack_require__(189);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1672,6 +1668,10 @@ var _utils = __webpack_require__(5);
 var _menu = __webpack_require__(40);
 
 var _menu2 = _interopRequireDefault(_menu);
+
+__webpack_require__(7);
+
+__webpack_require__(186);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3329,13 +3329,13 @@ var _intact = __webpack_require__(0);
 
 var _intact2 = _interopRequireDefault(_intact);
 
-var _index = __webpack_require__(189);
+var _index = __webpack_require__(190);
 
 var _index2 = _interopRequireDefault(_index);
 
 __webpack_require__(7);
 
-__webpack_require__(190);
+__webpack_require__(191);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6171,7 +6171,7 @@ var _intact = __webpack_require__(0);
 
 var _intact2 = _interopRequireDefault(_intact);
 
-var _item = __webpack_require__(186);
+var _item = __webpack_require__(187);
 
 var _item2 = _interopRequireDefault(_item);
 
@@ -8702,7 +8702,7 @@ var _tree = __webpack_require__(290);
 var _upload = __webpack_require__(312);
 
 /*!
- * kpc v0.6.0
+ * kpc v0.6.1
  *
  * Copyright (c) Kingsoft Cloud
  * Released under the MIT License
@@ -8767,7 +8767,7 @@ exports.Upload = _upload.Upload;
 
 /* generate start */
 
-var version = exports.version = '0.6.0';
+var version = exports.version = '0.6.1';
 
 /* generate end */
 
@@ -13625,6 +13625,12 @@ module.exports = exports['default'];
 
 /***/ }),
 /* 186 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13728,7 +13734,7 @@ var _radio = __webpack_require__(50);
 module.exports = exports['default'];
 
 /***/ }),
-/* 187 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13908,13 +13914,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 module.exports = exports['default'];
 
 /***/ }),
-/* 188 */
+/* 189 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 189 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14066,12 +14072,6 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = exports['default'];
-
-/***/ }),
-/* 190 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ }),
 /* 191 */
@@ -18371,7 +18371,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                         return blocks['footer'] ? blocks['footer'].apply($this, [function () {
                             return _blocks['footer'].apply($this, args);
                         }].concat(__slice.call(args, 1))) : _blocks['footer'].apply($this, args);
-                    }) && __blocks['footer'].apply($this, [__noop]), 'k-footer');
+                    }) && __blocks['footer'].apply($this, [__noop]), 'k-footer c-clearfix');
                 }) && (__blocks['footer-wrapper'] = function (parent) {
                     var args = arguments;
                     return blocks['footer-wrapper'] ? blocks['footer-wrapper'].apply($this, [function () {
