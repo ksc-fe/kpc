@@ -23,7 +23,7 @@ sidebar: doc
             'include css': true,
             'resolve url': true,
             sourceMap: false,
-            // 'import': path.resolve(__dirname, 'styles/themes/ksyun/index.styl'),
+            // 'import': '~kpc/styles/themes/ksyun/index.styl',
         }
     }
     ```

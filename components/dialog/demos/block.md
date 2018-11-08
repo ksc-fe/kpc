@@ -8,6 +8,8 @@ order: 1
 
 > 可以通过`parent()`引用到组件定义的默认内容
 
+> vue会忽略所有空`slot`，所以如果要重置`footer-wrapper`可以传一个空`div`代替
+
 ```vdt
 import Button from 'kpc/components/button';
 import Dialog from 'kpc/components/dialog';
