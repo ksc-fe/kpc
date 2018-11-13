@@ -3,7 +3,7 @@ import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
 import Calendar from './calendar';
-import {getNowDate, isLT, isGT, getDateString} from './utils';
+import {getNowDate, isLT, isGT, getDateString, dispatchEvent} from './utils';
 import {getTransition} from '../utils';
 import * as shortcuts from './shortcuts';
 
@@ -252,13 +252,7 @@ export default class Datepicker extends Intact {
     }
 
     _onHide() {
-        const input = this.refs.input;
-        input.focus();
-        setTimeout(() => {
-            if (!this.destroyed) {
-                input.blur();
-            }
-        });
+        dispatchEvent(this.refs.input.refs.input, 'focusout');
     }
 
     _setValue(value) {
