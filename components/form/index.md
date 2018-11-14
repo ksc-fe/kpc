@@ -7,6 +7,12 @@ sidebar: doc
 
 # 属性
 
+## Form
+
+| 属性 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| labelWidth | 定义所有子孙`FormItem`组件的`label`宽度 | `String` &#124; `Number` | `undefined` |
+
 ## FormItem
 
 | 属性 | 说明 | 类型 | 默认值 |

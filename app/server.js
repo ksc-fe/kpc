@@ -15,6 +15,7 @@ function createRouterMiddleware(router, App) {
                     style: collectInitial()
                 });
             }).catch(e => {
+                console.log(e.stack);
                 res.render('index');
             });
         }).catch(e => {

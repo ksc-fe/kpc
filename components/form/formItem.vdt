@@ -11,11 +11,23 @@ const classNameObj = {
     [className]: className,
 };
 
+const labelWidth = self.form.get('labelWidth');
+let labelStyle;
+if (labelWidth != null) {
+    if (/^\d+$/.test(labelWidth)) {
+        labelStyle = {width: labelWidth + 'px'};
+    } else {
+        labelStyle = {width: labelWidth};
+    }
+}
+
 <div class={{ classNameObj }} style={{ style }}
     ev-change={{ self._dirty }}
     ev-focusout={{ self._dirty }}
 >
-    <label for={{ htmlFor }} class="k-label" v-if={{ !hideLabel }}>
+    <label for={{ htmlFor }} class="k-label" v-if={{ !hideLabel }}
+        style={{ labelStyle }}
+    >
         <b:label>{{ label }}</b:label>
     </label>
     <div class="k-content">

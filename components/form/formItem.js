@@ -44,9 +44,7 @@ export default class FormItem extends Intact {
         this.on('$change:rules', this.validateIfDirty);
     }
 
-    _mount() {
-        if (!this.get('model')) return;
-
+    _beforeCreate() {
         let form = this.parentVNode;
         while (form && form.tag !== Form) {
             form = form.parentVNode;
@@ -56,8 +54,10 @@ export default class FormItem extends Intact {
             throw new Error('FormItem must be used as the descendant of Form');
         }
         this.form = form = form.children;
-        const items = form.get('items');
-        items.push(this);
+        if (this.get('model')) {
+            const items = form.get('items');
+            items.push(this);
+        }
     }
 
     getRules() {

@@ -11,19 +11,20 @@ export default class Form extends Intact {
 
     static addMethod = addMethod;
 
-
     @Intact.template()
-    get template() { return template; }
+    static template = template;
 
     static propTypes = {
         items: Array,
         rules: Object,
+        labelWidth: [String, Number],
     };
 
     defaults() {
         return {
             items: [],
             rules: {},
+            labelWidth: undefined,
         }
     }
 

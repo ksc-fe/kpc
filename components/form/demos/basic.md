@@ -44,7 +44,7 @@ import {Switch} from 'kpc/components/switch';
 import {Slider} from 'kpc/components/slider';
 import {Datepicker} from 'kpc/components/datepicker';
 
-<Form ev-submit={{ self.submit }} ref="form">
+<Form ev-submit={{ self.submit }} ref="form" labelWidth="200">
     <FormItem label="Input" model="model.input" rules={{ {required: true} }}>
         <Input v-model="model.input" />
     </FormItem>
@@ -116,9 +116,6 @@ import {Datepicker} from 'kpc/components/datepicker';
 ```
 
 ```styl
-.k-form-item
-    > .k-label
-        width 150px
 .k-slider
 .k-select
     width 300px
