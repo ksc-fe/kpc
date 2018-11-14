@@ -1,7 +1,7 @@
 import Checkbox from '../checkbox';
 import {expandAnimationCallbacks} from '../utils';
 
-const {checkbox, load} = self.get();
+const {checkbox, load, className, style} = self.get();
 const {expandedKeys} = self;
 
 const TreeNodes = ({data}) => {
@@ -48,6 +48,6 @@ const TreeNodes = ({data}) => {
     });
 };
 
-<div class="k-tree">
+<div class={{ {"k-tree": true, [className]: className} }} style={{ style }}>
     <TreeNodes data={{ self.root.children }} />
 </div>

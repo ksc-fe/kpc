@@ -13,7 +13,7 @@ export default class DropdownMenu extends Intact {
         trigger: ['hover', 'click'],
         position: Object,
         transition: String,
-        of: ['self', 'parent', Object/* Event */],
+        of: ['self', 'parent', Object/* Event */, Event],
     }
 
     defaults() {
