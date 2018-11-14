@@ -71,7 +71,7 @@
     "file-loader": "^1.1.11",
     "gulp": "^4.0.0",
     "gulp-babel": "^7.0.1",
-    "gulp-connect": "^5.5.0",
+    "gulp-connect": "^5.6.1",
     "gulp-postcss": "^7.0.1",
     "gulp-stylus": "^2.7.0",
     "gulp-tap": "^1.0.1",
