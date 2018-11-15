@@ -4,6 +4,19 @@ order: 99
 sidebar: doc
 ---
 
+## v0.7.0
+
+> `@since v0.7.0`版本需要<code>intact@2.4.1</code><code>intact-vue@0.3.9</code>支持
+
+1. `Add` `Table`支持`loading`状态 [#128](https://github.com/ksc-fe/kpc/issues/128)
+2. `Add` `Spin`支持遮罩层动画`overlay` [#139](https://github.com/ksc-fe/kpc/issues/139)
+3. `Add` `Form`新增`labelWidth`属性，用于定义所有`FormItem`的`label`宽度 [#127](https://github.com/ksc-fe/kpc/issues/127)
+4. `Fix` 修复`Tree` `class`和`style`属性丢失的问题 [#136](https://github.com/ksc-fe/kpc/issues/136) 
+5. `Fix` 修复`Dropdown`的`of`属性在Vue下传入事件对象会报属性类型不匹配的问题
+6. `Fix` 修复`Timepicker`隐藏弹层会`focus`输入框导致页面滚动的问题 [#126](https://github.com/ksc-fe/kpc/issues/126)
+7. `Fix` 修复`Drawer`在Vue下，点击触发按钮弹出弹层，弹层又会立即消失的问题 [#140](https://github.com/ksc-fe/kpc/issues/140)
+8. `Fix` 修复`Drawer`默认主题动画不协调的问题 [#134](https://github.com/ksc-fe/kpc/issues/134)
+
 ## v0.6.1
 
 1. `Fix` 修复`v0.6.0`引入的`@css`编译版字体文件丢失的问题
