@@ -4,12 +4,13 @@ import ExpandDemo from '~/components/table/demos/rowExpandable';
 import SortDemo from '~/components/table/demos/sort';
 import GroupDemo from '~/components/table/demos/group';
 import FixColumnDemo from '~/components/table/demos/fixColumn';
+import LoadingDemo from '~/components/table/demos/loading';
 import {mount, unmount, dispatchEvent, getElement} from 'test/utils';
 
 describe('Table', () => {
     let instance;
 
-    afterEach(() => unmount(instance));
+    // afterEach(() => unmount(instance));
 
     it('check & uncheck', () => {
         instance = mount(BasicDemo);
@@ -163,5 +164,14 @@ describe('Table', () => {
         const [head, body] = table.element.querySelectorAll('table');
         expect(head.innerHTML).to.matchSnapshot();
         expect(body.innerHTML).to.matchSnapshot();
+    });
+
+    it('loading', () => {
+        instance = mount(LoadingDemo); 
+
+        instance.set('loading', true);
+        expect(instance.element.innerHTML).to.matchSnapshot();
+        instance.set('loading', false);
+        expect(instance.element.innerHTML).to.matchSnapshot();
     });
 });
