@@ -40,12 +40,12 @@ export default class Drawer extends Dialog {
 
     _addDocumentEvents() {
         if(!this.get('closeabled')) return;
-        const parent = findParentComponent(Drawer, this, true);
-        if(!parent) {
-            document.addEventListener('click', this._onDocumentClick);
-        } else {
-            parent.locked = true;
-        }
+        // const parent = findParentComponent(Drawer, this, true);
+        // if(!parent) {
+            this.timer = setTimeout(() => {
+                document.addEventListener('click', this._onDocumentClick);
+            }, 0)
+        // }
     }
 
     _onDocumentClick(e) {
@@ -56,12 +56,10 @@ export default class Drawer extends Dialog {
     }
     
     _removeDocumentEvents() {
-        const parent = findParentComponent(Drawer, this, true);
-        if(!parent)  {
+        // const parent = findParentComponent(Drawer, this, true);
+        // if(!parent)  {
             document.removeEventListener('click', this._onDocumentClick);
-        } else {
-            parent.locked = true;
-        }
+        // }
     }
 
     _center() {}
@@ -75,6 +73,7 @@ export default class Drawer extends Dialog {
 
     _destroy() {
         super._destroy();
+        clearTimeout(this.timer)
         this._removeDocumentEvents();
     }
 
