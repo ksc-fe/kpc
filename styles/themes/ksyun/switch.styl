@@ -19,6 +19,9 @@
         .k-off
             color $disabled-color
     // the 'on' text will shows a little, when it has border-radius
-    .k-bar
-    .k-wrapper
-        border-radius 0 !important
+    // set border-radius to 0 the border is weird when the switch has moved 
+    &:not(.k-checked)
+        .k-bar
+        .k-wrapper
+            border-top-right-radius 0
+            border-bottom-right-radius 0

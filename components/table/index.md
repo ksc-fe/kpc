@@ -31,6 +31,7 @@ sidebar: doc
 | sort | 排序，详见示例说明 | `Object` | `{}` |
 | group | 分组，详见示例说明 | `Object` | `{}` |
 | minColWidth | 指定所有列拖动时的最小宽度 | `Number` | `40` |
+| loading | 是否展示加载状态 | `Boolean` | `false` |
 
 ## TableColumn
 

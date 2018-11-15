@@ -4,6 +4,7 @@ import Row from './row';
 import {normalize} from 'intact';
 import Column from './column';
 import {noop, isStringOrNumber} from '../utils';
+import Spin from '../spin';
 
 const {
     checkType, scheme, checkedKeys, data, rowKey, 
@@ -11,7 +12,7 @@ const {
     resizable, expandedKeys, type, _isSticky,
     style, rowClassName, children, sort, group, _scrollBarWidth,
     _scrollLeft, _scrollTop, _hoverIndex, _scrollPosition, 
-    _paddingBottom, _isStickyScrollbar
+    _paddingBottom, _isStickyScrollbar, loading
 } = self.get();
 
 let colSpan = checkType === 'checkbox' || checkType === 'radio' ? 1 : 0;
@@ -360,9 +361,11 @@ const classNameObj = {
         ev-scroll={{ self._onScrollbarScroll }}
         scrollLeft={{ _scrollLeft }}
         ref="scrollbar"
+        v-if={{ _isStickyScrollbar }}
     >
         <div style={{ {width: self.get('_tableWidth') + 'px'} }}
             class="k-inner"
         ></div>
     </div>
+    <Spin overlay size="small" v-if={{ loading }} />
 </div>
