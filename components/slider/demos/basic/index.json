@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>用<code>min</code>和<code>max</code>指定取值范围，<code>v-model</code>进行双向数据绑定。动态改变组件的取值范围，组件会修正<code>value</code>值不让它超出该范围</p>\n",
-    "index": 37,
+    "index": 26,
     "highlighted": [
         {
             "language": "vdt",

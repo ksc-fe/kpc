@@ -39,7 +39,7 @@ module.exports =
 /******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
 /******/ 		// "0" is the signal for "already loaded"
 /******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("./chunk/" + {"0":"450934bb331b326d500b","1":"fe60cec65b1a86d8d41d","2":"097da0bc631eb66952e0","3":"0229050cdc146cd7562d"}[chunkId] + ".js");
+/******/ 			var chunk = require("./chunk/" + {"0":"5f8afddfbb75969d6650","1":"f7f319e1c3244f50dfd8","2":"744d921f3a0b236637e5","3":"4915e8d9a0ae07a00f76"}[chunkId] + ".js");
 /******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				modules[moduleId] = moreModules[moduleId];
@@ -271,7 +271,7 @@ exports.App = App;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1541647364322
+      // 1542276169783
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -441,14 +441,16 @@ var Spin = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fun
     Spin.prototype.defaults = function defaults() {
         return {
             size: 'default',
-            center: false
+            center: false,
+            overlay: false
         };
     };
 
     return Spin;
 }(_intact2.default), _class2.template = _index2.default, _class2.propTypes = {
     size: ['large', 'default', 'small', 'mini'],
-    center: Boolean
+    center: Boolean,
+    overlay: Boolean
 }, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
     enumerable: true,
     configurable: true,
@@ -467,7 +469,7 @@ exports.Spin = Spin;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1541647365603
+      // 1542276170562
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -519,11 +521,27 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         size = _self$get.size,
         center = _self$get.center,
         style = _self$get.style,
-        className = _self$get.className;
+        className = _self$get.className,
+        overlay = _self$get.overlay;
 
     var classNameObj = (_classNameObj = {
         'k-spin': true
-    }, _classNameObj['k-' + size] = size !== 'default', _classNameObj['k-center'] = center, _classNameObj[className] = className, _classNameObj);
+    }, _classNameObj['k-' + size] = size !== 'default', _classNameObj['k-center'] = !overlay && center, _classNameObj[className] = className, _classNameObj['k-overlay'] = overlay, _classNameObj);
+
+    var canvas = h('div', null, (_blocks['canvas'] = function (parent) {
+        return h('svg', {
+            'viewBox': '0 0 120 120'
+        }, h('circle', {
+            'cx': '60',
+            'cy': '60',
+            'r': '57'
+        }, null, 'k-circle'));
+    }) && (__blocks['canvas'] = function (parent) {
+        var args = arguments;
+        return blocks['canvas'] ? blocks['canvas'].apply($this, [function () {
+            return _blocks['canvas'].apply($this, args);
+        }].concat(__slice.call(args, 1))) : _blocks['canvas'].apply($this, args);
+    }) && __blocks['canvas'].apply($this, [__noop]), 'k-canvas');
 
     return h(Animate, {
         'className': _className(function () {
@@ -541,20 +559,25 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 _e(e);
             }
         }.call($this),
-        'children': h('div', null, (_blocks['canvas'] = function (parent) {
-            return h('svg', {
-                'viewBox': '0 0 120 120'
-            }, h('circle', {
-                'cx': '60',
-                'cy': '60',
-                'r': '57'
-            }, null, 'k-circle'));
-        }) && (__blocks['canvas'] = function (parent) {
-            var args = arguments;
-            return blocks['canvas'] ? blocks['canvas'].apply($this, [function () {
-                return _blocks['canvas'].apply($this, args);
-            }].concat(__slice.call(args, 1))) : _blocks['canvas'].apply($this, args);
-        }) && __blocks['canvas'].apply($this, [__noop]), 'k-canvas'),
+        'children': function () {
+            try {
+                return overlay;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this) ? h('div', null, function () {
+            try {
+                return canvas;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this), 'k-wrapper') : function () {
+            try {
+                return canvas;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
         '_context': $this
     });
 };
@@ -1332,7 +1355,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1541647367568
+      // 1542276173482
       var cssReload = require("!../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);

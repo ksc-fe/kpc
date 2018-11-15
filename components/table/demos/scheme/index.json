@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>定义表格结构有两种形式：</p>\n<ol>\n<li>通过<code>TableColumn</code>组件定义 </li>\n<li>通过<code>scheme</code>属性定义</li>\n</ol>\n<p><code>TableColumn</code>详细说明，见下文属性说明，<code>scheme</code>属性值的结构与之相对应</p>\n<blockquote>\n<p>对于简单的表格，默认会使用<code>key</code>去取<code>data</code>中的数据，例如本例中，<code>key</code>为<code>a</code>的列，默认会取<code>data</code>中对应<code>key</code>为<code>a</code>的数据进行展示，<code>key</code>支持路径取值，例如：<code>a.b.0</code>。当然我们也可以通过<code>template</code>属性指定复杂内容</p>\n</blockquote>\n<blockquote>\n<p>为了保证列顺序正确，<code>key</code>不要以数字开头</p>\n</blockquote>\n<blockquote>\n<p><code>@since v0.5.6</code> 也可以通过<code>template</code>block定义单元格内容</p>\n</blockquote>\n",
-    "index": 77,
+    "index": 62,
     "highlighted": [
         {
             "language": "vdt",

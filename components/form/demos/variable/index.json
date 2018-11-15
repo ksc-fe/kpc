@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>规则<code>rules</code>的值是响应式的，这意味着我们可以实时改变验证规则。</p>\n<p>例如本例中，用户可以不输入姓名，但如果输入了“姓”，就必须输入“名”，反之亦然。</p>\n",
-    "index": 145,
+    "index": 138,
     "highlighted": [
         {
             "language": "vdt",

@@ -1,0 +1,23 @@
+{
+    "setting": {
+        "title": "展示遮罩层",
+        "order": 1
+    },
+    "catalogs": [],
+    "contents": "<p>添加<code>overlay</code>属性，即可展示带遮罩层的加载动画，此时包含<code>Spin</code>的容器必须是定位元素，动画元素默认会居中展示，所以<code>center</code>属性在该情况下无效</p>\n",
+    "index": 50,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Spin <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/spin'</span>;\n<span class=\"hljs-keyword\">import</span> {Table, TableColumn} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n\n<span class=\"hljs-keyword\">const</span> data = [\n    {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'第一行'</span>, <span class=\"hljs-attr\">b</span>: <span class=\"hljs-string\">'哈哈2'</span>}, \n    {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'第二行'</span>, <span class=\"hljs-attr\">b</span>: <span class=\"hljs-string\">'哈哈2'</span>},\n    {<span class=\"hljs-attr\">a</span>: <span class=\"hljs-string\">'第三行'</span>, <span class=\"hljs-attr\">b</span>: <span class=\"hljs-string\">'哈哈3'</span>},\n];\n\n&lt;div class=\"wrapper\"&gt;\n    &lt;Table data={{ data }}&gt;\n        &lt;TableColumn key=\"a\" title=\"表头1\" /&gt;\n        &lt;TableColumn key=\"b\" title=\"表头2\" /&gt;\n    &lt;/Table&gt;\n    &lt;Spin overlay /&gt;\n&lt;/div&gt;</code></pre>"
+        },
+        {
+            "language": "styl",
+            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.wrapper</span>\n    <span class=\"hljs-attribute\">position</span> relative</code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
+        }
+    ]
+}

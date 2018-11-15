@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>type</code>属性可以改变轴点的颜色，可选值<code>primary</code> <code>success</code> <code>danger</code> <code>warning</code>，默认<code>primary</code>；</p>\n<p><code>size</code>属性可以改变轴点的大小，可选值<code>default</code> <code>large</code> <code>small</code> <code>mini</code>，默认<code>default</code></p>\n",
-    "index": 61,
+    "index": 82,
     "highlighted": [
         {
             "language": "vdt",

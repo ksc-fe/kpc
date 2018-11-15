@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>text</code>属性，展示文案。如果<code>text</code>为<code>Number</code>类型，还可以指定<code>max</code>来规定最大展示数字，超过该数字，后面添加加号<code>+</code></p>\n",
-    "index": 4,
+    "index": 6,
     "highlighted": [
         {
             "language": "vdt",

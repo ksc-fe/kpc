@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>sort</code>属性来指定当前表格的排序方式。它的数据格式如下：</p>\n<p><code>{ key: &#39;当前排序的列的key&#39;, type: &#39;当前排序方式（desc: 降序，asc: 升序）&#39; }</code></p>\n<p>当该列可排序时，只需要在定义表格结构的<code>scheme</code>或者<code>TableColumn</code>中加入<code>sortable</code>并且取值为<code>true</code>即可</p>\n<p>当排序方式改变时，可以监听默认事件<code>$change:sort</code>来执行自定义排序逻辑</p>\n",
-    "index": 215,
+    "index": 217,
     "highlighted": [
         {
             "language": "vdt",

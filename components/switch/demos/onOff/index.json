@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>定义开关开启/关闭时文案，可以通过以下两种方式来定义：</p>\n<ol>\n<li>通过属性<code>on</code> <code>off</code>来定义，可以传入字符串或者<code>vNode</code>对象</li>\n<li>通过扩展点<code>on</code> <code>off</code>来定义</li>\n</ol>\n",
-    "index": 82,
+    "index": 57,
     "highlighted": [
         {
             "language": "vdt",
