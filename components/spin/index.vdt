@@ -1,16 +1,14 @@
-const {size, center, style, className} = self.get();
+const {size, center, style, className, overlay} = self.get();
 
 const classNameObj = {
     'k-spin': true,
     [`k-${size}`]: size !== 'default',
-    'k-center': center,
+    'k-center': !overlay && center,
     [className]: className,
+    'k-overlay': overlay,
 };
 
-<Animate class={{ classNameObj }}
-    a:transition="c-fade"
-    style={{ style }}
->
+const canvas = (
     <div class="k-canvas">
         <b:canvas>
             <svg viewBox="0 0 120 120">
@@ -18,4 +16,12 @@ const classNameObj = {
             </svg>
         </b:canvas>
     </div>
+);
+
+<Animate class={{ classNameObj }}
+    a:transition="c-fade"
+    style={{ style }}
+>
+    <div class="k-wrapper" v-if={{ overlay }}>{{ canvas }}</div>
+    <template v-else>{{ canvas }}</template>
 </Animate>

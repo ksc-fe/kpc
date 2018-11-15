@@ -11,6 +11,7 @@ sidebar: doc
 | --- | --- | --- | --- |
 | size | 组件尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
 | center | 是否居中展示，需要父元素为定位元素 | `Boolean` | `false` |
+| overlay | 是否展示带遮罩层的加载动画，需要父元素为定位元素 | `Boolean` | `false` |
 
 # 扩展点
 
