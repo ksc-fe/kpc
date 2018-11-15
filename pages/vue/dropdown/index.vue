@@ -1,5 +1,13 @@
 <template>
     <div class="dropdown-page">
+        <div class="contextmenu-area" @contextmenu="showMenu"></div>
+        <DropdownMenu v-model="show"
+            :of="event"
+            :position="{my: 'left+1 top', at: 'right bottom'}"
+        >
+            <DropdownItem>Option 1</DropdownItem>
+            <DropdownItem>Option 2</DropdownItem>
+        </DropdownMenu>
         <Dropdown>
             <Button>hover</Button>
             <DropdownMenu>
@@ -92,6 +100,14 @@
     </div>
 </template>
 
+<style lang="stylus">
+.contextmenu-area
+    height 100px
+    background #f0f0f0
+    text-align center
+    line-height 100px
+</style>
+
 <script>
 import Dropdown, {DropdownMenu, DropdownItem} from 'components/dropdown';
 import Button, {ButtonGroup} from 'components/button';
@@ -104,9 +120,21 @@ export default {
         Tooltip,
     },
 
+    data() {
+        return {
+            event: null,
+            show: false,
+        }
+    },
+
     methods: {
         log(msg) {
             console.log(msg);
+        },
+        showMenu(e) {
+            e.preventDefault();
+            this.show = true;
+            this.event = e;
         }
     }
 }

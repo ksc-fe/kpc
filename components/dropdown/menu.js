@@ -55,11 +55,18 @@ export default class DropdownMenu extends Intact {
         // and it can not be found in Dropdown
         // so we handle it here again
         if (!this.dropdown) {
+            // for contextmenu usage
+            // 1. the parentVNode is undefined in vue
+            if (!this.parentVNode) return;
+
+            // 2. the children of parentVNode does not contain Dropdown
+
             // the previous sibling is Dropdown
             const siblings = this.parentVNode.children;
+            if (!Array.isArray(siblings)) return;
             const index = siblings.indexOf(this.vNode);
             const dropdown = siblings[index - 1];
-            if (dropdown.tag === Dropdown) {
+            if (dropdown && dropdown.tag === Dropdown) {
                 this.dropdown = dropdown.children;
                 dropdown.menu = this.vNode;
             }
