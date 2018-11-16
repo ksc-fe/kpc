@@ -10,7 +10,7 @@ import {mount, unmount, dispatchEvent, getElement} from 'test/utils';
 describe('Table', () => {
     let instance;
 
-    // afterEach(() => unmount(instance));
+    afterEach(() => unmount(instance));
 
     it('check & uncheck', () => {
         instance = mount(BasicDemo);
