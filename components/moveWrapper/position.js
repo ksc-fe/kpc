@@ -325,8 +325,11 @@ export default function position(elem, options) {
     if (computedStyle.position === 'static') {
         style.position = 'relative';
     }
-    style.left = position.left + 'px';
-    style.top = position.top + 'px';
+    const curOffset = getDimensions(elem).offset;
+    const curCSSTop = computedStyle.top;
+    const curCSSLeft = computedStyle.left;
+    style.left = (position.left - curOffset.left) + (parseFloat(curCSSLeft) || 0) + 'px';
+    style.top = (position.top - curOffset.top) + (parseFloat(curCSSTop) || 0) + 'px';
 }
 
 const rules = {

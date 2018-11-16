@@ -1,13 +1,74 @@
 import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
+import MoveWrapper from 'kpc/components/moveWrapper';
 import Intact from 'intact';
-import {mount, unmount} from 'test/utils';
+import {mount, unmount, getElement} from 'test/utils';
+import {Dialog} from 'kpc/components/dialog';
 
 describe('MoveWrapper', () => {
+    let instance;
+
+    afterEach((done) => {
+        unmount(instance);
+        setTimeout(done, 400);
+    });
+
+    describe('MoveWrapper', () => {
+        it('custom container', () => {
+            class Component extends Intact {
+                @Intact.template({delimiters: ['{', '}']})
+                static template = `
+                    <MoveWrapper container={(placeholder) => placeholder.parentNode}>
+                        <div>test</div>
+                    </MoveWrapper>
+                `;
+
+                _init() {
+                    this.MoveWrapper = MoveWrapper;
+                }
+            }
+
+            class Demo extends Intact {
+                @Intact.template()
+                static template = `<div><Component /></div>`;
+                _init() {
+                    this.Component = Component;
+                }
+            }
+
+            instance = mount(Demo);
+            expect(instance.element.innerHTML).to.matchSnapshot();
+        });
+
+        it('should append to dialog default', () => {
+            class Component extends Intact {
+                @Intact.template({delimiters: ['{', '}']})
+                static template = `
+                    <MoveWrapper>
+                        <div>test</div>
+                    </MoveWrapper>
+                `;
+
+                _init() {
+                    this.MoveWrapper = MoveWrapper;
+                }
+            }
+
+            class Demo extends Intact {
+                @Intact.template()
+                static template = `<div><Dialog value={{ true }}><Component /></Dialog></div>`;
+                _init() {
+                    this.Component = Component;
+                    this.Dialog = Dialog;
+                }
+            }
+
+            instance = mount(Demo);
+            console.log(getElement('.k-dialog').innerHTML);
+            expect(getElement('.k-dialog').innerHTML).to.matchSnapshot();
+        });
+    });
+
     describe('Position', () => {
-        let instance;
-
-        afterEach(() => unmount(instance));
-
         class Component extends Intact {
             @Intact.template()
             static template = `

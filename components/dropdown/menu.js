@@ -15,6 +15,7 @@ export default class DropdownMenu extends Intact {
         transition: String,
         // Event is undefined in NodeJs
         of: ['self', 'parent', Object/* Intact Event */, typeof Event === 'undefined' ? undefined : Event],
+        container: [String, Function],
     }
 
     defaults() {
@@ -24,6 +25,7 @@ export default class DropdownMenu extends Intact {
             position: {},
             transition: 'c-slidedown',
             of: 'self', // self | parent
+            container: undefined,
         };
     }
 

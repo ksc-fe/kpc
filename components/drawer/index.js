@@ -13,7 +13,7 @@ export default class Drawer extends Dialog {
         ...Dialog.propTypes,
         placement: String,
         overlay: Boolean,
-        closeabled: Boolean
+        closable: Boolean
     }
         
     defaults() {
@@ -22,7 +22,7 @@ export default class Drawer extends Dialog {
             _appear: false,
             placement: 'right',
             overlay: true,
-            closeabled: true
+            closable: true
         }
     }
 
@@ -39,12 +39,12 @@ export default class Drawer extends Dialog {
     }
 
     _addDocumentEvents() {
-        if(!this.get('closeabled')) return;
+        if(!this.get('closable')) return;
         // const parent = findParentComponent(Drawer, this, true);
         // if(!parent) {
             this.timer = setTimeout(() => {
                 document.addEventListener('click', this._onDocumentClick);
-            }, 0)
+            });
         // }
     }
 

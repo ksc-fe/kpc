@@ -35,6 +35,7 @@ export default class Table extends Intact {
             stickHeader: false,
             stickScrollbar: false,
             loading: false,
+            container: undefined,
 
             _padding: 0,
             _paddingBottom: 0,
@@ -71,6 +72,7 @@ export default class Table extends Intact {
         minColWidth: Number,
         stickHeader: [Boolean, String, Number],
         loading: Boolean,
+        container: [Function, String],
     }
 
     _init() {

@@ -1,6 +1,6 @@
 import MoveWrapper from '../moveWrapper';
 
-const {children, value, trigger, className, transition} = self.get();
+const {children, value, trigger, className, transition, container} = self.get();
 
 const events = {};
 // no matter what the trigger is, we should show menu when enter it.
@@ -10,7 +10,7 @@ if (trigger === 'hover') {
     events['ev-mouseleave'] = self.hide.bind(self, false);
 }
 
-<MoveWrapper ref="wrapper" _parent={{ self }}>
+<MoveWrapper ref="wrapper" _parent={{ self }} container={{ container }}>
     <Animate v-if={{ value }}
         class={{ {"k-dropdown-menu": true, [className]: className} }}
         a:transition={{ transition }}

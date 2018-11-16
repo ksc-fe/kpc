@@ -23,6 +23,7 @@ sidebar: doc
 | fluid | 是否宽度100% | `Boolean` | `false` |
 | width | 指定宽度，组件自动添加单位`px` | `Number` &#124; `String` | `undefined` | 
 | allowUnmatch | 组件的`value`不在可选项中时，是否强制置空，该值为`true`时，不置空；当与`filterable`一起使用，支持输入不匹配项 | `Boolean` | `false` |
+| container | 指定弹出菜单追加的位置，默认：`Dialog`类型的组件会追加到`Dialog`中，其他会追加到`body`中。你可以传入函数返回一个DOM用来作为插入的容器，或者传入字符串用来给`querySelector`进行查询 | `Function` &#124; `String` | `undefined` |
 
 ## Option
 

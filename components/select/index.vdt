@@ -9,7 +9,8 @@ const {
     className, clearable, data, value, multiple,
     disabled, filterable, keywords, _show,
     placeholder, size, style, name, children,
-    fluid, width, allowUnmatch, card, hideIcon
+    fluid, width, allowUnmatch, card, hideIcon,
+    container,
 } = self.get();
 
 let _activeLabel = self.get('_activeLabel');
@@ -222,6 +223,7 @@ if (hasValue && labelObj.label == null && !labelObj.labels.length) {
         trigger="click"
         disabled={{ disabled }}
         ref="dropdown"
+        container={{ container }}
     >
         <div class="k-wrapper" ev-click={{ self._focusInput }} tabindex="-1" ref="wrapper">
             <div class="k-prefix" v-if={{ blocks.prefix }}>

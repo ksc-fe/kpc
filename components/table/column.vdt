@@ -10,7 +10,7 @@ const {
 
 const width = self.width;
 
-const {sort, resizable} = $parent.get();
+const {sort, resizable, container} = $parent.get();
 const groupText = group && self._getGroupText() || '';
 
 <th title={{ isStringOrNumber(title) ? title + groupText : undefined }}
@@ -29,7 +29,7 @@ const groupText = group && self._getGroupText() || '';
             <b:title>{{ title }}</b:title>
         </div>
         <div class="k-group" v-if={{ group }}>
-            <Dropdown>
+            <Dropdown container={{ container }}>
                 <i class="k-arrow ion-ios-arrow-down"></i>
                 <DropdownMenu class={{ {'k-table-dropdown': true, 'k-multiple': multiple} }}
                     ev-$change:value={{ self._onChangeShow }}

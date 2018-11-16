@@ -22,6 +22,7 @@ export default class Datepicker extends Intact {
         range: Boolean,
         transition: String,
         shortcuts: Array,
+        container: [Function, String],
     };
 
     defaults() {
@@ -35,6 +36,7 @@ export default class Datepicker extends Intact {
             range: false,
             transition: 'c-slidedown',
             shortcuts: undefined, 
+            container: undefined,
 
             _value: undefined, // for range
             _rangeEndDate: undefined,

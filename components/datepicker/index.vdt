@@ -6,7 +6,7 @@ import Calendar from './calendar';
 const {
     value, clearable, className, style, _isShow,
     name, disabled, placeholder, size, transition,
-    _value, range, type, ref, key, shortcuts,
+    _value, range, type, ref, key, shortcuts, container,
     ...rest,
 } = self.get();
 
@@ -127,6 +127,7 @@ const prefix = <b:prefix><i class="ion-ios-calendar-outline"></i></b:prefix>
         ev-show={{ self._onShow }}
         ev-hide={{ self._onHide }}
         ev-$changed:value={{ self._onChangeShow }}
+        container={{ container }}
     >
         <Input
             placeholder={{ _placeholder }}

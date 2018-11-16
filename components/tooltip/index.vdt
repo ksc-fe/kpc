@@ -3,7 +3,8 @@ import Button from '../button';
 
 const {
     children, value, trigger, showArrow, confirm,
-    canHover, className, _feedback, transition
+    canHover, className, _feedback, transition,
+    container,
 } = self.get();
 
 const events = {};
@@ -19,7 +20,7 @@ const classNameObj = {
     [className]: className,
 };
 
-<MoveWrapper>
+<MoveWrapper container={{ container }}>
     <Animate v-if={{ value }}
         class={{ classNameObj }}
         a:transition={{ transition }}

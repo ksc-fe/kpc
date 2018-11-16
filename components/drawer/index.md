@@ -11,7 +11,7 @@ sidebar: doc
 | --- | --- | --- | --- |
 | placement | 自定义位置 | `"top"` &#124; `"bottom"` &#124;`"left"` &#124;`"right"`|`"right"`|
 | overlay | 是否展示遮罩层 | `Boolean` | `"true"` |
-| closeabled | 点击非抽屉部分是否可以关闭抽屉 | `Boolean` | `"true"` |
+| closable | 点击非抽屉部分是否可以关闭抽屉 | `Boolean` | `"true"` |
 | title | 弹窗标题 | `String` | `"提示"` |
 | value | 弹窗是否展示出来 | `Boolean` | `false` |
 | size | 弹窗尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |

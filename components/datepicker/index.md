@@ -24,3 +24,4 @@ sidebar: doc
 | disabledSeconds | 禁用秒钟选择 | `Boolean` | `false` |
 | shortcuts | 指定快捷方式 | `Array<Object>` | `undefined` |
 | range | 是否选择日期范围 | `Boolean` | `false` |
+| container | 指定弹出选择层追加的位置，默认：`Dialog`类型的组件会追加到`Dialog`中，其他会追加到`body`中。你可以传入函数返回一个DOM用来作为插入的容器，或者传入字符串用来给`querySelector`进行查询 | `Function` &#124; `String` | `undefined` |

@@ -24,6 +24,7 @@ export default class Select extends Intact {
         width: [Number, String],
         allowUnmatch: Boolean,
         card: Boolean,
+        container: [Function, String],
     };
 
     defaults() {
@@ -60,6 +61,7 @@ export default class Select extends Intact {
             width: undefined,
             allowUnmatch: false,
             card: false, // 卡片式分组
+            container: undefined,
 
             _show: false,
             _activeLabel: undefined,
