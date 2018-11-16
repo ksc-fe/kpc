@@ -80,7 +80,7 @@
     "highlight.js": "^9.12.0",
     "history": "^4.7.2",
     "intact": "^2.4.1",
-    "intact-vue": "^0.3.8",
+    "intact-vue": "^0.3.9",
     "istanbul-instrumenter-loader": "^3.0.0",
     "karma": "^3.0.0",
     "karma-chrome-launcher": "^2.2.0",

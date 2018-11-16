@@ -7,12 +7,13 @@ import {mount, unmount, dispatchEvent, getElement} from 'test/utils';
 describe('Drawer', () => {
     let instance;
 
-    afterEach((done) => {
-        unmount(instance);
-        setTimeout(done, 400);
-    });
+    // afterEach((done) => {
+    //     unmount(instance);
+    //     setTimeout(done, 400);
+    // });
 
-    it('should show drawer correctly', (done) => {
+    it('should show drawer correctly', function(done) {
+        this.enableTimeouts(false);
         instance = mount(BasicDemo);
 
         const trigger = instance.element.querySelector('.k-btn');
@@ -21,12 +22,15 @@ describe('Drawer', () => {
         const drawer = getElement('.k-dialog');
         expect(drawer.innerHTML).to.matchSnapshot();
         
-        //hide
-        dispatchEvent(document, 'click');
+        
         setTimeout(() => {
-            expect(getElement('.k-drawer .k-dialog')).to.be.undefined;
-            done();
-        }, 500);
+            //hide
+            dispatchEvent(document, 'click');
+            setTimeout(() => {
+                expect(getElement('.k-drawer .k-dialog')).to.be.undefined;
+                done();
+            }, 300)
+        }, 300);
     });
 
     it('should show drawer from different placement correctly', function(done) {
@@ -37,38 +41,41 @@ describe('Drawer', () => {
         dispatchEvent(top, 'click');
         let className1 = getElement('.k-drawer').className;
         expect(className1).to.include('k-top');
-
-        dispatchEvent(document, 'click');
-        setTimeout(() => {
-            expect(getElement('.k-drawer .k-dialog')).to.be.undefined;
-            
-            dispatchEvent(bottom, 'click');
-            let className2 = getElement('.k-drawer').className;
-            expect(className2).to.include('k-bottom');
-
+        setTimeout(() =>{
             dispatchEvent(document, 'click');
-
             setTimeout(() => {
                 expect(getElement('.k-drawer .k-dialog')).to.be.undefined;
-
-                dispatchEvent(left, 'click');
-                let className3 = getElement('.k-drawer').className;
-                expect(className3).to.include('k-left');
-                dispatchEvent(document, 'click');
-                setTimeout(() => {
-                    expect(getElement('.k-drawer .k-dialog')).to.be.undefined;
-
-                    dispatchEvent(right, 'click');
-                    let className4 = getElement('.k-drawer').className;
-                    expect(className4).to.include('k-right');
+                dispatchEvent(bottom, 'click');
+                let className2 = getElement('.k-drawer').className;
+                expect(className2).to.include('k-bottom');
+                setTimeout(()=> {
                     dispatchEvent(document, 'click');
                     setTimeout(() => {
                         expect(getElement('.k-drawer .k-dialog')).to.be.undefined;
-                        done();
+                        dispatchEvent(left, 'click');
+                        let className3 = getElement('.k-drawer').className;
+                        expect(className3).to.include('k-left');
+                        setTimeout(() => {
+                            dispatchEvent(document, 'click');
+                            setTimeout(() => {
+                                expect(getElement('.k-drawer .k-dialog')).to.be.undefined;
+                                dispatchEvent(right, 'click');
+                                let className4 = getElement('.k-drawer').className;
+                                expect(className4).to.include('k-right');
+                                setTimeout(() => {
+                                    dispatchEvent(document, 'click');
+                                    setTimeout(() => {
+                                        expect(getElement('.k-drawer .k-dialog')).to.be.undefined;
+                                        done();
+                                    }, 500)
+                                }, 200)
+                            }, 500)
+                        }, 200)
                     }, 500)
-                }, 500)
+                }, 200);
             }, 500)
-        }, 500);
+        }, 200)
+        
     });
 
     it('should show no overlay', (done) => {
@@ -78,18 +85,20 @@ describe('Drawer', () => {
         trigger.click();
         const overlay = getElement('.k-overlay');
         expect(overlay).to.be.undefined;
-
-        dispatchEvent(document, 'click');
-        setTimeout(() => {
-            const dialog = getElement('.k-dialog');
-            expect(dialog.innerHTML).to.matchSnapshot();
-
-            const btn = getElement('.k-footer .k-primary');
-            btn.click();
+        setTimeout(() =>{
+            dispatchEvent(document, 'click');
             setTimeout(() => {
-                expect(getElement('.k-drawer .k-dialog')).to.be.undefined;
-                done();
+                const dialog = getElement('.k-dialog');
+                expect(dialog.innerHTML).to.matchSnapshot();
+    
+                const btn = getElement('.k-footer .k-primary');
+                btn.click();
+                setTimeout(() => {
+                    expect(getElement('.k-drawer .k-dialog')).to.be.undefined;
+                    done();
+                }, 400)
             }, 400)
-        }, 400)
+        }, 200)
+        
     })
 })
