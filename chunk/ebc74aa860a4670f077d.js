@@ -433,7 +433,7 @@ exports.ButtonGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542276172053
+      // 1542611728118
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -773,7 +773,7 @@ exports.Checkbox = Checkbox;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542276173926
+      // 1542611730698
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1287,7 +1287,7 @@ exports.DropdownItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542276175676
+      // 1542611734025
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1716,7 +1716,8 @@ var DropdownMenu = (_dec = _intact2.default.template(), (_class = (_temp = _clas
             trigger: 'hover',
             position: {},
             transition: 'c-slidedown',
-            of: 'self' // self | parent
+            of: 'self', // self | parent
+            container: undefined
         };
     };
 
@@ -1750,11 +1751,18 @@ var DropdownMenu = (_dec = _intact2.default.template(), (_class = (_temp = _clas
         // and it can not be found in Dropdown
         // so we handle it here again
         if (!this.dropdown) {
+            // for contextmenu usage
+            // 1. the parentVNode is undefined in vue
+            if (!this.parentVNode) return;
+
+            // 2. the children of parentVNode does not contain Dropdown
+
             // the previous sibling is Dropdown
             var siblings = this.parentVNode.children;
+            if (!Array.isArray(siblings)) return;
             var index = siblings.indexOf(this.vNode);
             var dropdown = siblings[index - 1];
-            if (dropdown.tag === _dropdown2.default) {
+            if (dropdown && dropdown.tag === _dropdown2.default) {
                 this.dropdown = dropdown.children;
                 dropdown.menu = this.vNode;
             }
@@ -2066,7 +2074,8 @@ var DropdownMenu = (_dec = _intact2.default.template(), (_class = (_temp = _clas
     position: Object,
     transition: String,
     // Event is undefined in NodeJs
-    of: ['self', 'parent', Object /* Intact Event */, typeof Event === 'undefined' ? undefined : Event]
+    of: ['self', 'parent', Object /* Intact Event */, typeof Event === 'undefined' ? undefined : Event],
+    container: [String, Function]
 }, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
     enumerable: true,
     configurable: true,
@@ -2126,7 +2135,8 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         value = _self$get.value,
         trigger = _self$get.trigger,
         className = _self$get.className,
-        transition = _self$get.transition;
+        transition = _self$get.transition,
+        container = _self$get.container;
 
     var events = {};
     // no matter what the trigger is, we should show menu when enter it.
@@ -2143,6 +2153,13 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         '_parent': function () {
             try {
                 return self;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
+        'container': function () {
+            try {
+                return container;
             } catch (e) {
                 _e(e);
             }
@@ -2543,7 +2560,7 @@ exports.Col = _col2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542276173392
+      // 1542611730181
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -3143,7 +3160,7 @@ exports.Input = Input;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542276175923
+      // 1542611733313
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -3880,17 +3897,31 @@ var MoveWrapper = (_temp = _class = function (_Intact) {
     MoveWrapper.prototype._mount = function _mount(lastVNode, nextVNode) {
         var container = this.get('container');
         if (container) {
-            this.container = document.querySelector(container);
+            if (typeof container === 'string') {
+                this.container = document.querySelector(container);
+            } else {
+                this.container = container(this.placeholder);
+            }
         }
         if (!this.container) {
-            this.container = document.body;
+            // find the closest dialog if exists
+            var dom = this.placeholder;
+            var found = void 0;
+            while ((dom = dom.parentNode) && dom.nodeType === 1) {
+                if (dom.className && dom.className.split(' ').indexOf('k-dialog') > -1) {
+                    found = dom;
+                    break;
+                }
+            }
+            this.container = found || document.body;
         }
         this.container.appendChild(this.element);
     };
 
     return MoveWrapper;
 }(_intact2.default), _class.propTypes = {
-    autoDestroy: Boolean
+    autoDestroy: Boolean,
+    container: [Function, String]
 }, _temp);
 exports.default = MoveWrapper;
 exports.MoveWrapper = MoveWrapper;
@@ -4219,8 +4250,11 @@ function position(elem, options) {
     if (computedStyle.position === 'static') {
         style.position = 'relative';
     }
-    style.left = position.left + 'px';
-    style.top = position.top + 'px';
+    var curOffset = getDimensions(elem).offset;
+    var curCSSTop = computedStyle.top;
+    var curCSSLeft = computedStyle.left;
+    style.left = position.left - curOffset.left + (parseFloat(curCSSLeft) || 0) + 'px';
+    style.top = position.top - curOffset.top + (parseFloat(curCSSTop) || 0) + 'px';
 }
 
 var rules = {
@@ -4457,7 +4491,7 @@ exports.Radio = Radio;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542276177569
+      // 1542611736087
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -4914,6 +4948,7 @@ var Select = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
             width: undefined,
             allowUnmatch: false,
             card: false, // 卡片式分组
+            container: undefined,
 
             _show: false,
             _activeLabel: undefined
@@ -5102,7 +5137,8 @@ var Select = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
     fluid: Boolean,
     width: [Number, String],
     allowUnmatch: Boolean,
-    card: Boolean
+    card: Boolean,
+    container: [Function, String]
 }, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
     enumerable: true,
     configurable: true,
@@ -5123,7 +5159,7 @@ exports.OptionGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542276173603
+      // 1542611730411
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5194,7 +5230,8 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         width = _self$get.width,
         allowUnmatch = _self$get.allowUnmatch,
         card = _self$get.card,
-        hideIcon = _self$get.hideIcon;
+        hideIcon = _self$get.hideIcon,
+        container = _self$get.container;
 
     var _activeLabel = self.get('_activeLabel');
 
@@ -5587,6 +5624,13 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         'ref': function ref(i) {
             widgets['dropdown'] = i;
         },
+        'container': function () {
+            try {
+                return container;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
         'children': [h('div', {
             'tabindex': '-1',
             'ev-click': function () {
@@ -6108,7 +6152,7 @@ exports.Tab = _tab2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542276175964
+      // 1542611733204
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -6639,7 +6683,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542276173726
+      // 1542611727544
       var cssReload = require("!../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -7003,7 +7047,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542276170654
+      // 1542611726248
       var cssReload = require("!../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);

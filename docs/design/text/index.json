@@ -1,0 +1,10 @@
+{
+    "setting": {
+        "title": "文案",
+        "order": 6,
+        "sidebar": "design"
+    },
+    "catalogs": [],
+    "contents": "<h2 id='header-%E8%AF%AD%E8%A8%80'>语言</h2><p>在界面设计中，文案作为与用户沟通的媒介也应作为设计的一部分，受到足够重视。在文案设计时应注意一下几点：</p>\n<p><strong>• 用户视角</strong></p>\n<p><strong>• 动宾短语</strong></p>\n<p><strong>• 简单直接，大白话</strong></p>\n<p><strong>• 切中要害，可感知</strong></p>\n<h2 id='header-%E7%94%A8%E6%88%B7%E8%A7%86%E8%A7%92'>用户视角</h2><p>文案作为界面要素，其存在目的是帮助用户完成特定的操作行为。文案的设计应将用户为主体，以用户关注点为设计依据。</p>\n<h2 id='header-CTA(call%20to%20action)%E6%93%8D%E4%BD%9C%E5%91%BD%E5%90%8D'>CTA(call to action)操作命名</h2><p>针对引导用户操作，触发相应业务逻辑的操作，命名时采用“动宾短语”。即，动词+名词的格式，以表达支配影响与被支配被影响的关系。</p>\n<p><img src=\"/imgs/design/anniumingming.png\" alt=\"anniumingming\"></p>\n<h2 id='header-%E7%AE%80%E5%8D%95%E7%9B%B4%E6%8E%A5%EF%BC%8C%E5%A4%A7%E7%99%BD%E8%AF%9D'>简单直接，大白话</h2><p>使用简单，通俗，用户容易理解的表达方式。降低用户认知成本。</p>\n<h2 id='header-%E5%88%87%E4%B8%AD%E8%A6%81%E5%AE%B3%EF%BC%8C%E5%8F%AF%E6%84%9F%E7%9F%A5'>切中要害，可感知</h2><p>针对提示说明性文案，应将操作结果、目标、影响详细告知用户，使用户能够获取清晰的判断。</p>\n",
+    "index": 201
+}

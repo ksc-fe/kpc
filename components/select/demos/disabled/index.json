@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>给<code>Select</code>添加<code>disabled</code>禁用整个选择框选择；给<code>Option</code>添加<code>disabled</code>禁用该项选择</p>\n",
-    "index": 66,
+    "index": 67,
     "highlighted": [
         {
             "language": "vdt",

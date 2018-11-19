@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>将<code>Col</code>嵌套在<code>Row</code>中，然后用<code>span</code>属性定义所占的宽度，宽度为百分比，每一份是<code>1/24</code></p>\n",
-    "index": 36,
+    "index": 34,
     "highlighted": [
         {
             "language": "vdt",
