@@ -154,7 +154,7 @@ describe('Upload', () => {
             @Intact.template()
             static template = `
                 <Upload
-                    action="//jsonplaceholder.typicode.com/posts/"
+                    action="//no.typicode.com/posts/"
                     ev-error={{ self._onError }}
                 />
             `;
@@ -165,12 +165,12 @@ describe('Upload', () => {
                 setTimeout(() => {
                     expect(instance.element.innerHTML).to.matchSnapshot();
                     done();
-                }, 500);
+                }, 600);
             }
         }
         instance = mount(Demo);
         const input = instance.element.querySelector('input');
-        input.files = getDataTransfer(['a'.repeat(1024 * 512)], {name: 'a'}).files;
+        input.files = getDataTransfer(['a'], {name: 'a'}).files;
     });
 
     it('should abort request when remove file in progress', function(done) {
