@@ -1943,7 +1943,8 @@ var DropdownMenu = (_dec = _intact2.default.template(), (_class = (_temp = _clas
             trigger: 'hover',
             position: {},
             transition: 'c-slidedown',
-            of: 'self' // self | parent
+            of: 'self', // self | parent
+            container: undefined
         };
     };
 
@@ -1977,11 +1978,18 @@ var DropdownMenu = (_dec = _intact2.default.template(), (_class = (_temp = _clas
         // and it can not be found in Dropdown
         // so we handle it here again
         if (!this.dropdown) {
+            // for contextmenu usage
+            // 1. the parentVNode is undefined in vue
+            if (!this.parentVNode) return;
+
+            // 2. the children of parentVNode does not contain Dropdown
+
             // the previous sibling is Dropdown
             var siblings = this.parentVNode.children;
+            if (!Array.isArray(siblings)) return;
             var index = siblings.indexOf(this.vNode);
             var dropdown = siblings[index - 1];
-            if (dropdown.tag === _dropdown2.default) {
+            if (dropdown && dropdown.tag === _dropdown2.default) {
                 this.dropdown = dropdown.children;
                 dropdown.menu = this.vNode;
             }
@@ -2292,7 +2300,9 @@ var DropdownMenu = (_dec = _intact2.default.template(), (_class = (_temp = _clas
     trigger: ['hover', 'click'],
     position: Object,
     transition: String,
-    of: ['self', 'parent', Object /* Event */, Event]
+    // Event is undefined in NodeJs
+    of: ['self', 'parent', Object /* Intact Event */, typeof Event === 'undefined' ? undefined : Event],
+    container: [String, Function]
 }, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
     enumerable: true,
     configurable: true,
@@ -2525,6 +2535,7 @@ var Select = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
             width: undefined,
             allowUnmatch: false,
             card: false, // 卡片式分组
+            container: undefined,
 
             _show: false,
             _activeLabel: undefined
@@ -2713,7 +2724,8 @@ var Select = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
     fluid: Boolean,
     width: [Number, String],
     allowUnmatch: Boolean,
-    card: Boolean
+    card: Boolean,
+    container: [Function, String]
 }, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
     enumerable: true,
     configurable: true,
@@ -2840,17 +2852,31 @@ var MoveWrapper = (_temp = _class = function (_Intact) {
     MoveWrapper.prototype._mount = function _mount(lastVNode, nextVNode) {
         var container = this.get('container');
         if (container) {
-            this.container = document.querySelector(container);
+            if (typeof container === 'string') {
+                this.container = document.querySelector(container);
+            } else {
+                this.container = container(this.placeholder);
+            }
         }
         if (!this.container) {
-            this.container = document.body;
+            // find the closest dialog if exists
+            var dom = this.placeholder;
+            var found = void 0;
+            while ((dom = dom.parentNode) && dom.nodeType === 1) {
+                if (dom.className && dom.className.split(' ').indexOf('k-dialog') > -1) {
+                    found = dom;
+                    break;
+                }
+            }
+            this.container = found || document.body;
         }
         this.container.appendChild(this.element);
     };
 
     return MoveWrapper;
 }(_intact2.default), _class.propTypes = {
-    autoDestroy: Boolean
+    autoDestroy: Boolean,
+    container: [Function, String]
 }, _temp);
 exports.default = MoveWrapper;
 exports.MoveWrapper = MoveWrapper;
@@ -3178,8 +3204,11 @@ function position(elem, options) {
     if (computedStyle.position === 'static') {
         style.position = 'relative';
     }
-    style.left = position.left + 'px';
-    style.top = position.top + 'px';
+    var curOffset = getDimensions(elem).offset;
+    var curCSSTop = computedStyle.top;
+    var curCSSLeft = computedStyle.left;
+    style.left = position.left - curOffset.left + (parseFloat(curCSSLeft) || 0) + 'px';
+    style.top = position.top - curOffset.top + (parseFloat(curCSSTop) || 0) + 'px';
 }
 
 var rules = {
@@ -6864,6 +6893,7 @@ var Datepicker = (_dec = _intact2.default.template(), (_class = (_temp = _class2
             range: false,
             transition: 'c-slidedown',
             shortcuts: undefined,
+            container: undefined,
 
             _value: undefined, // for range
             _rangeEndDate: undefined,
@@ -7124,7 +7154,8 @@ var Datepicker = (_dec = _intact2.default.template(), (_class = (_temp = _class2
     type: ['date', 'datetime', 'year', 'month'],
     range: Boolean,
     transition: String,
-    shortcuts: Array
+    shortcuts: Array,
+    container: [Function, String]
 }, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
     enumerable: true,
     configurable: true,
@@ -8718,7 +8749,7 @@ var _tree = __webpack_require__(290);
 var _upload = __webpack_require__(312);
 
 /*!
- * kpc v0.7.0
+ * kpc v0.7.1-0
  *
  * Copyright (c) Kingsoft Cloud
  * Released under the MIT License
@@ -8783,7 +8814,7 @@ exports.Upload = _upload.Upload;
 
 /* generate start */
 
-var version = exports.version = '0.7.0';
+var version = exports.version = '0.7.1-0';
 
 /* generate end */
 
@@ -12385,7 +12416,8 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         width = _self$get.width,
         allowUnmatch = _self$get.allowUnmatch,
         card = _self$get.card,
-        hideIcon = _self$get.hideIcon;
+        hideIcon = _self$get.hideIcon,
+        container = _self$get.container;
 
     var _activeLabel = self.get('_activeLabel');
 
@@ -12778,6 +12810,13 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         'ref': function ref(i) {
             widgets['dropdown'] = i;
         },
+        'container': function () {
+            try {
+                return container;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
         'children': [h('div', {
             'tabindex': '-1',
             'ev-click': function () {
@@ -13550,7 +13589,8 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         value = _self$get.value,
         trigger = _self$get.trigger,
         className = _self$get.className,
-        transition = _self$get.transition;
+        transition = _self$get.transition,
+        container = _self$get.container;
 
     var events = {};
     // no matter what the trigger is, we should show menu when enter it.
@@ -13567,6 +13607,13 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         '_parent': function () {
             try {
                 return self;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
+        'container': function () {
+            try {
+                return container;
             } catch (e) {
                 _e(e);
             }
@@ -15264,7 +15311,8 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         ref = _self$get.ref,
         key = _self$get.key,
         shortcuts = _self$get.shortcuts,
-        rest = (0, _objectWithoutProperties3.default)(_self$get, ['value', 'clearable', 'className', 'style', '_isShow', 'name', 'disabled', 'placeholder', 'size', 'transition', '_value', 'range', 'type', 'ref', 'key', 'shortcuts']);
+        container = _self$get.container,
+        rest = (0, _objectWithoutProperties3.default)(_self$get, ['value', 'clearable', 'className', 'style', '_isShow', 'name', 'disabled', 'placeholder', 'size', 'transition', '_value', 'range', 'type', 'ref', 'key', 'shortcuts', 'container']);
 
     // pass the rest props to Calendar, except events
 
@@ -15650,6 +15698,13 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         'disabled': function () {
             try {
                 return disabled;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
+        'container': function () {
+            try {
+                return container;
             } catch (e) {
                 _e(e);
             }
@@ -16129,7 +16184,8 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         canHover = _self$get.canHover,
         className = _self$get.className,
         _feedback = _self$get._feedback,
-        transition = _self$get.transition;
+        transition = _self$get.transition,
+        container = _self$get.container;
 
     var events = {};
     if ((canHover || confirm) && trigger === 'hover') {
@@ -16144,6 +16200,13 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     }, _classNameObj[className] = className, _classNameObj);
 
     return h(_moveWrapper2.default, {
+        'container': function () {
+            try {
+                return container;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
         'children': function () {
             try {
                 return value;
@@ -18564,7 +18627,7 @@ var Drawer = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
             _appear: false,
             placement: 'right',
             overlay: true,
-            closeabled: true
+            closable: true
         });
     };
 
@@ -18585,12 +18648,12 @@ var Drawer = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
     Drawer.prototype._addDocumentEvents = function _addDocumentEvents() {
         var _this3 = this;
 
-        if (!this.get('closeabled')) return;
+        if (!this.get('closable')) return;
         // const parent = findParentComponent(Drawer, this, true);
         // if(!parent) {
         this.timer = setTimeout(function () {
             document.addEventListener('click', _this3._onDocumentClick);
-        }, 0);
+        });
         // }
     };
 
@@ -18627,7 +18690,7 @@ var Drawer = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
 }(_dialog2.default), _class2.template = _index2.default, _class2.propTypes = (0, _extends3.default)({}, _dialog2.default.propTypes, {
     placement: String,
     overlay: Boolean,
-    closeabled: Boolean
+    closable: Boolean
 }), _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
     enumerable: true,
     configurable: true,
@@ -24015,6 +24078,7 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
             stickHeader: false,
             stickScrollbar: false,
             loading: false,
+            container: undefined,
 
             _padding: 0,
             _paddingBottom: 0,
@@ -24591,7 +24655,8 @@ var Table = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fu
     fixHeader: [Boolean, String, Number],
     minColWidth: Number,
     stickHeader: [Boolean, String, Number],
-    loading: Boolean
+    loading: Boolean,
+    container: [Function, String]
 }, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
 exports.default = Table;
 exports.Table = Table;
@@ -25788,7 +25853,8 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
 
     var _$parent$get = $parent.get(),
         sort = _$parent$get.sort,
-        resizable = _$parent$get.resizable;
+        resizable = _$parent$get.resizable,
+        container = _$parent$get.container;
 
     var groupText = group && self._getGroupText() || '';
 
@@ -25854,6 +25920,13 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             _e(e);
         }
     }.call($this) ? h('div', null, [h(_dropdown.Dropdown, {
+        'container': function () {
+            try {
+                return container;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
         'children': [h('i', null, null, 'k-arrow ion-ios-arrow-down'), h(_dropdown.DropdownMenu, {
             'className': _className(function () {
                 try {
@@ -26790,7 +26863,8 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         placeholder = _self$get.placeholder,
         disabled = _self$get.disabled,
         className = _self$get.className,
-        style = _self$get.style;
+        style = _self$get.style,
+        container = _self$get.container;
 
     var _placeholder = range ? (0, _utils._$)('开始时间 ~ 结束时间') : (0, _utils._$)('请选择时间');
 
@@ -26935,6 +27009,13 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         'style': function () {
             try {
                 return style;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
+        'container': function () {
+            try {
+                return container;
             } catch (e) {
                 _e(e);
             }
