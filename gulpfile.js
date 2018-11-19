@@ -173,7 +173,12 @@ gulp.task('push:doc', () => {
     );
 });
 
-gulp.task('build:doc', gulp.series('clean:doc', 'build:doc:server', 'build:doc:client', 'build:themes:css'));
+gulp.task('copy:imgs', () => {
+    return gulp.src('./site/src/imgs/design/*')
+        .pipe(gulp.dest('./site/dist/imgs/design'));
+});
+
+gulp.task('build:doc', gulp.series('clean:doc', 'build:doc:server', 'build:doc:client', 'build:themes:css', 'copy:imgs'));
 gulp.task('deploy:doc', gulp.series('build:doc', 'push:doc'));
 gulp.task('watch:doc', gulp.series('doc:production', gulp.parallel('webpack', () => {
     gulp.watch('./@(components|docs)/**/*.md', {ignored: /node_modules/}, gulp.parallel('doc:production'));

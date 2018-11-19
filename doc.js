@@ -78,6 +78,16 @@ module.exports = function(isDev) {
             renderer.paragraph = function(text) {
                 return '<p>' + text.replace(/\n/g, '') + '</p>\n';
             };
+
+            // replace the url of path, add kpc for online built
+            const imageRenderer = renderer.image;
+            renderer.image = function(href, title, text) {
+                if (!isDev) {
+                    href = href.replace(/^\/imgs\//, '/kpc/imgs/');
+                }
+                const result = imageRenderer.call(this, href, title, text); 
+                return result;
+            }
         });
 
         ctx.hook.add('dist.before', async function(files) {
