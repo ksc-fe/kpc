@@ -61,6 +61,7 @@ export default class Upload extends Intact {
         this._counter = 0;
 
         const {files, defaultFiles} = this.get();
+        let _files = (files || []).slice(0);
         if (defaultFiles) {
             defaultFiles.forEach(file => {
                 const obj = {
@@ -71,8 +72,9 @@ export default class Upload extends Intact {
                     raw: file,
                     url: file.url,
                 };
-                files.push(obj);
+                _files.push(obj);
             });
+            this.set('files', _files);
         }
     }
 
