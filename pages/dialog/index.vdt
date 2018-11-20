@@ -1,6 +1,7 @@
 import Dialog from 'components/dialog';
 import Button from 'components/button';
 import {Table, TableColumn} from 'components/table';
+import {Select, Option} from 'components/select';
 
 <div class="wrapper">
     <div v-if={{ self.get('test') }}>test</div>
@@ -18,6 +19,10 @@ import {Table, TableColumn} from 'components/table';
         </b:header>
         
         small dialog content
+        <Select>
+            <Option value="1">Option 1</Option>
+            <Option value="2">Option 2</Option>
+        </Select>
 
         <b:footer>
                

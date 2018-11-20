@@ -11,6 +11,12 @@
             <span class="k-title" slot="header">Custom Title</span>
             
             <span ref="bb">small dialog content</span>
+            <div>
+                <Select>
+                    <Option value="1">Option 1</Option>
+                    <Option value="2">Option 2</Option>
+                </Select>
+            </div>
 
             <template slot="footer">
                 <span ref="dd">__dd</span>
@@ -25,11 +31,12 @@
 <script>
 import Dialog from 'components/dialog';
 import Button from 'components/button';
+import {Select, Option} from 'components/select';
 import Intact from 'intact';
 
 export default {
     components: {
-        Dialog, Button
+        Dialog, Button, Select, Option
     },
 
     data() {

@@ -10,12 +10,18 @@ order: 0
 ```vdt
 import Drawer from 'kpc/components/drawer';
 import {Button, ButtonGroup} from 'kpc/components/button';
+import {Select, Option} from 'kpc/components/select';
 
 <div>
     <Button ev-click={{ self.set.bind(self, 'showDrawer', true) }}
         type="primary"
     >Show Drawer</Button>
     <Drawer v-model="showDrawer" title="Drawer Title" ref="__demoOne">
+        <Select>
+            <Option value="1">Option 1</Option>
+            <Option value="2">Option 2</Option>
+        </Select>
+
         Drawer Body 
     </Drawer>
 </div>
