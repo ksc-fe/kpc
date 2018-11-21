@@ -7,5 +7,5 @@
     },
     "catalogs": [],
     "contents": "<h2 id='header-%E9%9D%A2%E5%8C%85%E5%B1%91%E5%AF%BC%E8%88%AA'>面包屑导航</h2><p>标识当前页面层级位置。面包屑导航层级结构必须与网站页面层级结构一致，每一个层级都可以进行跳转操作，并有相关页面。控制台面包屑导航最多4级。</p>\n<p><img src=\"/kpc/imgs/design/mianbaoxie.png\" alt=\"mianbaoxie\"></p>\n<p><strong>并不是任何产品和任何页面都需要使用面包屑导航：</strong></p>\n<p>什么时候用：网站结构是严格的线性结构或者是预先分好组（类）的层级结构。比如官网结构就是层级结构，包含了按类别分好组的大量产品页面。</p>\n<p>什么时候别用：网站结构是单层或者不是分好组（类）的层级结构。</p>\n<h2 id='header-%E9%A1%B5%E7%AD%BE'>页签</h2><h4 id='header-%E6%A0%87%E7%AD%BE%E9%A1%B5'>标签页</h4><p>用于页面中整页信息的分类。标签页做多3级，更多层级建议使用更多操作</p>\n<p><img src=\"/kpc/imgs/design/biaoqianye.png\" alt=\"biaoqianye\"></p>\n<h4 id='header-%E9%80%89%E9%A1%B9%E5%8D%A1'>选项卡</h4><p>用于局部模块的分类</p>\n<p><img src=\"/kpc/imgs/design/xuanxiangka.png\" alt=\"xuanxiangka\"></p>\n<h4 id='header-%E5%AF%BC%E8%88%AA%E6%8C%89%E9%92%AE'>导航按钮</h4><p>用于模块内内容的切换。</p>\n<p><img src=\"/kpc/imgs/design/daohanganniu.png\" alt=\"daohanganniu\"></p>\n",
-    "index": 99
+    "index": 123
 }

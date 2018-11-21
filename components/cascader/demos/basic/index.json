@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>data</code>给组件传入数据，<code>v-model</code>进行数据双向绑定，绑定的结果是选中的每一项组成的数组。其中<code>data</code>的数据格式如示例所示：</p>\n<ol>\n<li><code>value</code>选中后的值</li>\n<li><code>label</code>展示的文案</li>\n<li><code>children</code>如果存在子选项，需要递归地指定该属性</li>\n<li><code>disabled</code>禁用该项</li>\n</ol>\n",
-    "index": 13,
+    "index": 19,
     "highlighted": [
         {
             "language": "vdt",

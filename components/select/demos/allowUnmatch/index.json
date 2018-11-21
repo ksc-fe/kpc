@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>同时指定<code>filterable</code>和<code>allowUnmatch</code>支持筛选到不存在的条目时，可以返回输入的值，而不是清空输入</p>\n<blockquote>\n<p>目前只支持单选</p>\n</blockquote>\n",
-    "index": 217,
+    "index": 220,
     "highlighted": [
         {
             "language": "vdt",
