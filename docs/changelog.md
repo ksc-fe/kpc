@@ -4,6 +4,17 @@ order: 99
 sidebar: doc
 ---
 
+## v0.7.1
+
+1. `Add` `Dropdown`及所有包含弹出菜单元素的组件支持`container`属性，以便自定义弹出菜单插入的位置 [#138](https://github.com/ksc-fe/kpc/issues/138)
+2. `Add` `Dialog`和`Drawer`弹层中的`Dropdown`，默认append到`k-dialog`元素下 [#138](https://github.com/ksc-fe/kpc/issues/138)
+    > vue需要升级`intact-vue`到`v0.4.0`才能完美支持该功能，否则会出现部分情况下依然append到`body`的情况
+3. `Add` `Menu`支持`dot`属性，以便往菜单项前面添加圆点 [#143](https://github.com/ksc-fe/kpc/issues/143)
+4. `Add` `Menu`支持`block`扩展点，以便自定义菜单头部 [#143](https://github.com/ksc-fe/kpc/issues/143)
+5. `Change` `Menu`菜单样式调整 [#135](https://github.com/ksc-fe/kpc/issues/135)
+6. `Fix` 修复`Dropdown`右键菜单模式在Vue下报错的问题，该bug不会影响功能 [#141](https://github.com/ksc-fe/kpc/issues/141)
+7. `Fix` 修复将`Event`作为属性类型检测，但是在NodeJs下不存在该构造函数导致的报错问题
+
 ## v0.7.0
 
 > `@since v0.7.0`版本需要<code>intact@2.4.1</code><code>intact-vue@0.3.9</code>支持
