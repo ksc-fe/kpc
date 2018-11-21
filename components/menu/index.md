@@ -18,6 +18,7 @@ sidebar: doc
 | type | 定义菜单排列方式：垂直，水平 | `"vertical"` &#124; `"horizontal"` | `"vertical"` |
 | size | 定义菜单尺寸 | `"large"` &#124; `"default"` &#124; `"small"` | `"default"` |
 | accordion | 是否每次只能展开一项 | `Boolean` | `false` |
+| dot | 是否给菜单项前面添加圆点 | `Boolean` | `false` |
 
 ## MenuItem
 
@@ -25,6 +26,15 @@ sidebar: doc
 | --- | --- | --- | --- |
 | key | 定义全局唯一的`key`，用于标识每一项 | `String` | `undefined` |
 | to | 定义超链接菜单项，点击直接跳转 | `String` | `undefined` |
+| dot | 是否给当前菜单项前面添加圆点 | `Boolean` | `false` |
+
+# 扩展点
+
+## Menu
+
+| 名称 | 说明 |
+| --- | --- |
+| header | 扩展菜单头部 |
 
 # 事件
 
