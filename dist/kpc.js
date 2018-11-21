@@ -5638,6 +5638,7 @@ var Menu = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fun
             type: 'vertical',
             size: 'default',
             accordion: false,
+            dot: false,
 
             _root: undefined,
             _isFirstFloorChildren: false,
@@ -5717,7 +5718,8 @@ var Menu = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fun
     collapse: Boolean,
     type: ['vertical', 'horizontal'],
     size: ['large', 'default', 'small'],
-    accordion: Boolean
+    accordion: Boolean,
+    dot: Boolean
 }), _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
     enumerable: true,
     configurable: true,
@@ -7660,6 +7662,7 @@ var MenuItem = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
         return (0, _extends3.default)({}, _DropdownItem.prototype.defaults.call(this), {
             key: undefined,
             to: undefined,
+            dot: false,
 
             _root: undefined,
             _isFirstFloorChildren: false,
@@ -7761,7 +7764,8 @@ var MenuItem = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
         type: String,
         required: true
     },
-    to: String
+    to: String,
+    dot: Boolean
 }), _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
     enumerable: true,
     configurable: true,
@@ -8749,7 +8753,7 @@ var _tree = __webpack_require__(290);
 var _upload = __webpack_require__(312);
 
 /*!
- * kpc v0.7.1-0
+ * kpc v0.7.1
  *
  * Copyright (c) Kingsoft Cloud
  * Released under the MIT License
@@ -8814,7 +8818,7 @@ exports.Upload = _upload.Upload;
 
 /* generate start */
 
-var version = exports.version = '0.7.1-0';
+var version = exports.version = '0.7.1';
 
 /* generate end */
 
@@ -20270,6 +20274,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         className = _self$get.className,
         style = _self$get.style,
         collapse = _self$get.collapse,
+        dot = _self$get.dot,
         theme = _self$get.theme,
         type = _self$get.type,
         size = _self$get.size,
@@ -20283,7 +20288,9 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
 
     var _children = (0, _utils.mapChildren)(children, function (vNode) {
         if (vNode.tag === _item2.default) {
-            return h(_item2.default, (0, _extends3.default)({}, vNode.props, {
+            return h(_item2.default, (0, _extends3.default)({
+                dot: dot
+            }, vNode.props, {
                 _root: _root || self,
                 _isFirstFloorChildren: !_root,
                 _parentItem: _parent
@@ -20291,6 +20298,39 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         }
         return vNode;
     });
+
+    var header = function () {
+        try {
+            return blocks.header;
+        } catch (e) {
+            _e(e);
+        }
+    }.call($this) ? h('div', null, function () {
+        try {
+            return (0, _utils.mapChildren)((_blocks['header'] = function (parent) {
+                return null;
+            }) && (__blocks['header'] = function (parent) {
+                var args = arguments;
+                return blocks['header'] ? blocks['header'].apply($this, [function () {
+                    return _blocks['header'].apply($this, args);
+                }].concat(__slice.call(args, 1))) : _blocks['header'].apply($this, args);
+            }) && __blocks['header'].apply($this, [__noop]), function (vNode) {
+                if (vNode.type === 1 || (0, _utils.isStringOrNumberNotEmpty)(vNode)) {
+                    return h('span', null, function () {
+                        try {
+                            return vNode;
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call($this));
+                } else {
+                    return vNode;
+                }
+            });
+        } catch (e) {
+            _e(e);
+        }
+    }.call($this), 'k-header') : undefined;
 
     return function () {
         try {
@@ -20306,13 +20346,19 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 _e(e);
             }
         }.call($this)
-    }, function () {
+    }, [function () {
+        try {
+            return header;
+        } catch (e) {
+            _e(e);
+        }
+    }.call($this), function () {
         try {
             return _children;
         } catch (e) {
             _e(e);
         }
-    }.call($this), _className(function () {
+    }.call($this)], _className(function () {
         try {
             return classNameObj;
         } catch (e) {
@@ -20324,13 +20370,19 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             var _blocks = {},
                 __blocks = extend({}, blocks);
             return (_blocks['children'] = function (parent) {
-                return function () {
+                return [function () {
+                    try {
+                        return header;
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call($this), function () {
                     try {
                         return _children;
                     } catch (e) {
                         _e(e);
                     }
-                }.call($this);
+                }.call($this)];
             }) && (__blocks['children'] = function (parent) {
                 var args = arguments;
                 return blocks['children'] ? blocks['children'].apply($this, [function () {
@@ -20400,6 +20452,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         key = _self$get.key,
         className = _self$get.className,
         style = _self$get.style,
+        dot = _self$get.dot,
         disabled = _self$get.disabled,
         _root = _self$get._root,
         _isFirstFloorChildren = _self$get._isFirstFloorChildren,
@@ -20451,6 +20504,12 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             }
         }.call($this)
     }, [function () {
+        try {
+            return dot;
+        } catch (e) {
+            _e(e);
+        }
+    }.call($this) ? h('i', null, null, 'k-icon k-dot ion-record') : undefined, function () {
         try {
             return titleVNodes;
         } catch (e) {
@@ -29434,6 +29493,7 @@ var Upload = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
             files = _get.files,
             defaultFiles = _get.defaultFiles;
 
+        var _files = (files || []).slice(0);
         if (defaultFiles) {
             defaultFiles.forEach(function (file) {
                 var obj = {
@@ -29444,8 +29504,9 @@ var Upload = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
                     raw: file,
                     url: file.url
                 };
-                files.push(obj);
+                _files.push(obj);
             });
+            this.set('files', _files);
         }
     };
 
