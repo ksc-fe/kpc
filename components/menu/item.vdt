@@ -4,7 +4,7 @@ import Dropdown from '../dropdown';
 import {Tooltip} from '../tooltip';
 
 const {
-    children, key, className, style,
+    children, key, className, style, dot,
     disabled, _root, _isFirstFloorChildren,
     _isFocus, _show, _active, _highlighted
 } = self.get();
@@ -44,6 +44,7 @@ const classNameObj = {
 
 const title = (
     <div class="k-title" ev-click={{ self._onClick.bind(self, subMenuVNode) }}>
+        <i class="k-icon k-dot ion-record" v-if={{ dot }}></i>
         {{ titleVNodes }}
         <i class="k-arrow ion-ios-arrow-down" v-if={{ subMenuVNode }}></i>
         {{ /* 

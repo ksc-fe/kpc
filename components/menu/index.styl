@@ -5,6 +5,7 @@
     width $menu-width
     transition width $transition
     background $menu-bg-color
+    font-size $menu-font-size
     .k-menu
         width auto
         background $menu-sub-bg-color 
@@ -15,10 +16,30 @@
             .k-menu-item
                 > .k-title
                     padding-left getLeft($menu-item-padding) + ($menu-item-icon-min-width + $menu-item-icon-margin-right) * 2
+    // header
+    .k-header
+        height $menu-header-height
+        line-height @height
+        font-size $menu-header-font-size
+        font-weight bold
+        padding $menu-header-padding
+        border-bottom $menu-header-border-bottom 
+        position relative
+        color $menu-item-color
+        overflow hidden
+        .k-icon
+            position absolute
+            width $menu-header-icon-width
+            left $menu-header-icon-left
+            text-align center
+            line-height $menu-header-height
 
     // light theme
     &.k-light
         background $menu-light-bg-color
+        .k-header
+            color $menu-light-item-color 
+            border-bottom $menu-light-header-border-bottom
         .k-menu-item
             > .k-title
                 color $menu-light-item-color 
@@ -37,6 +58,7 @@
     // collapse
     &.k-collapsed
         width getLeft($menu-item-padding) * 2 + $menu-item-icon-min-width
+        overflow hidden
         .k-menu-item
             > .k-title
                 span
@@ -44,6 +66,9 @@
                     display none
                 .k-icon
                     margin 0
+        .k-header 
+            :not(.k-icon)
+                display none
 
     // size
     generate(size)
@@ -76,11 +101,24 @@
     // horizontal
     &.k-horizontal
         width auto
+        .k-header
+            display inline-block
+            vertical-align middle
+            border-bottom none
+            border-right $menu-header-border-bottom
+            height $menu-item-height
+            line-height $menu-item-height
+            .k-icon
+                line-height $menu-item-height
         > .k-menu-item
             display inline-block
             vertical-align middle
         &.k-collapsed
             width auto
+        // light
+        &.k-light
+            .k-header
+                border-right $menu-light-header-border-bottom
 
 
 .k-menu-item
@@ -136,6 +174,15 @@
         > .k-title
             color $menu-item-disabled-color !important
             cursor not-allowed
+
+    // dot
+    .k-dot
+        display inline-block
+        vertical-align top
+        &:before
+            font-size $menu-item-dot-font-size
+            vertical-align top
+            transform scale(.8)
 
 // dropdown menu
 .k-dropdown-menu.k-menu

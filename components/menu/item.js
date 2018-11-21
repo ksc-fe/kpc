@@ -15,6 +15,7 @@ export default class MenuItem extends DropdownItem {
             required: true,
         },
         to: String,
+        dot: Boolean,
     };
 
     defaults() {
@@ -22,6 +23,7 @@ export default class MenuItem extends DropdownItem {
             ...super.defaults(),
             key: undefined,
             to: undefined,
+            dot: false,
 
             _root: undefined,
             _isFirstFloorChildren: false,

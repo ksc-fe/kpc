@@ -21,6 +21,7 @@ export default class Menu extends DropdownMenu {
         type: ['vertical', 'horizontal'],
         size: ['large', 'default', 'small'],
         accordion: Boolean,
+        dot: Boolean,
     };
 
     defaults() {
@@ -33,6 +34,7 @@ export default class Menu extends DropdownMenu {
             type: 'vertical',
             size: 'default',
             accordion: false,
+            dot: false,
 
             _root: undefined,
             _isFirstFloorChildren: false,

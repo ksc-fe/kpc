@@ -26,8 +26,9 @@ import {ButtonGroup, Button} from 'kpc/components/button';
         size={{ self.get('size') }}
         type={{ self.get('type') }}
     >
+        <b:header><i class="k-icon ion-star"></i>Header</b:header>
         <MenuItem key="1"><i class="k-icon ion-flag"></i>menu 1</MenuItem>
-        <MenuItem key="2" disabled><i class="k-icon ion-star"></i>menu 2</MenuItem>
+        <MenuItem key="2" disabled dot>menu 2</MenuItem>
         <MenuItem key="3">
             <i class="k-icon ion-heart"></i>menu 3
             <Menu>

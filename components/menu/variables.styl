@@ -1,15 +1,27 @@
 @require('../../styles/themes/default.styl')
 
 $menu-width := unit(200 / 14, rem)
+$menu-font-size := unit(14 / 14, rem)
 $menu-bg-color := #262626
 $menu-item-height := unit(40 / 14, rem)
-$menu-item-padding := 0 unit($default-padding / 14, rem)
+$menu-item-padding := 0 unit(21 / 14, rem)
 $menu-item-color := #b2b2b2
 $menu-item-hover-color := #fff
 $menu-item-disabled-color := $text-color
-$menu-item-icon-margin-right := unit(8 / 14, rem)
+$menu-item-icon-margin-right := unit(11 / 14, rem)
 $menu-item-icon-min-width := unit(14 / 14, rem)
 $menu-item-arrow-margin-left := unit(8 / 14, rem)
+
+// dot
+$menu-item-dot-font-size := unit(8 / 14, rem)
+
+// header
+$menu-header-height := unit(50 / 14, rem)
+$menu-header-font-size := unit(14 / 14, rem)
+$menu-header-padding := 0 unit(21 / 14, rem) 0 unit(46 / 14, rem)
+$menu-header-border-bottom := 1px solid #1b1b1d
+$menu-header-icon-width := unit(36 / 14, rem)
+$menu-header-icon-left := unit(10 / 14, rem)
 
 // sub-menu
 $menu-sub-bg-color := #000
@@ -20,6 +32,7 @@ $menu-light-item-color := $text-color
 $menu-light-item-hover-color := $primary-color
 $menu-light-item-disabled-color := $disabled-color
 $menu-light-sub-bg-color := #d5d5d9
+$menu-light-header-border-bottom := 1px solid #d5d5d9
 
 // dropdown
 $menu-dropdown-min-width := unit(150 / 14, rem)
