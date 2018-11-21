@@ -88,6 +88,8 @@
             &.k-collapsed
                 width getLeft($padding) * 2 + $menu-item-icon-min-width 
             .k-menu
+                if lookup('$menu-' + size + '-font-size')
+                    font-size lookup('$menu-' + size + '-font-size')
                 .k-menu-item
                     > .k-title
                         padding-left getLeft($padding) + $menu-item-icon-min-width + $menu-item-icon-margin-right
