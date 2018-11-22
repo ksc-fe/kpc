@@ -1,5 +1,5 @@
 require("source-map-support").install();
-exports.ids = [2];
+exports.ids = [1,2];
 exports.modules = {
 
 /***/ "./components/badge/index.js":
@@ -111,7 +111,7 @@ exports.Badge = Badge;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781086708
+      // 1542891369397
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -324,7 +324,7 @@ exports.BreadcrumbItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781088810
+      // 1542891371173
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1057,7 +1057,7 @@ exports.ButtonGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781087356
+      // 1542891369292
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1564,7 +1564,7 @@ exports.Cascader = Cascader;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781088534
+      // 1542891370979
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -2075,7 +2075,7 @@ exports.Checkbox = Checkbox;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781088711
+      // 1542891370961
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -2404,7 +2404,7 @@ exports.CollapseItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781088563
+      // 1542891371037
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -4305,7 +4305,7 @@ exports.Datepicker = Datepicker;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781088680
+      // 1542891371118
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5839,7 +5839,7 @@ exports.Dialog = Dialog;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781089721
+      // 1542891371884
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -6291,7 +6291,7 @@ exports.Drawer = Drawer;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094847
+      // 1542891377019
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -6715,7 +6715,7 @@ exports.DropdownItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781091262
+      // 1542891373810
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -7882,7 +7882,7 @@ exports.Editable = Editable;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094820
+      // 1542891376920
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -8881,7 +8881,7 @@ exports.FormItem = _formItemWrapper2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781092989
+      // 1542891375245
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -9372,7 +9372,7 @@ exports.Col = _col2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781088367
+      // 1542891370817
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -9972,7 +9972,7 @@ exports.Input = Input;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781090562
+      // 1542891373173
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -10627,7 +10627,7 @@ exports.MenuItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094808
+      // 1542891376998
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -11844,7 +11844,7 @@ exports.Message = Message;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781089466
+      // 1542891372055
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -12867,7 +12867,7 @@ exports.Pagination = Pagination;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094426
+      // 1542891376653
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -13386,7 +13386,7 @@ exports.Progress = Progress;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781091960
+      // 1542891374404
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -13773,7 +13773,7 @@ exports.Radio = Radio;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781093841
+      // 1542891376029
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -14241,7 +14241,7 @@ exports.ScrollSelect = ScrollSelect;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781092364
+      // 1542891374953
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -14905,7 +14905,7 @@ exports.OptionGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781088428
+      // 1542891370507
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -16138,7 +16138,7 @@ exports.Slider = Slider;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781090685
+      // 1542891373584
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -16775,7 +16775,7 @@ exports.Spinner = Spinner;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781093271
+      // 1542891376008
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -17089,7 +17089,7 @@ exports.Step = _step2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781093519
+      // 1542891375941
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -17655,7 +17655,7 @@ exports.Switch = Switch;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781093093
+      // 1542891375360
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -19102,7 +19102,7 @@ exports.TableColumn = _column2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781084677
+      // 1542891366075
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -20409,7 +20409,7 @@ exports.Tab = _tab2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781090361
+      // 1542891372894
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -20874,7 +20874,7 @@ exports.Tag = Tag;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781091232
+      // 1542891373766
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -21151,7 +21151,7 @@ exports.TimelineItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781090966
+      // 1542891373653
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -21622,7 +21622,7 @@ exports.Timepicker = Timepicker;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781091045
+      // 1542891374373
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -22347,7 +22347,7 @@ exports.Tip = Tip;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781090767
+      // 1542891373605
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -22787,7 +22787,7 @@ exports.Tooltip = _Wrapper;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781091149
+      // 1542891374338
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -23339,7 +23339,7 @@ exports.Transfer = Transfer;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781090491
+      // 1542891373198
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -24020,7 +24020,7 @@ exports.Tree = Tree;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781090456
+      // 1542891373099
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -24956,7 +24956,7 @@ exports.Upload = Upload;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781089556
+      // 1542891372106
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -27207,7 +27207,7 @@ module.exports = {"setting":{"title":"独立使用","order":3},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781087370
+      // 1542891369677
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -27411,7 +27411,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781087382
+      // 1542891369703
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -27594,7 +27594,7 @@ module.exports = {"setting":{"title":"禁用状态","order":2},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781087529
+      // 1542891369691
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -27838,7 +27838,7 @@ module.exports = {"setting":{"title":"展示文字","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781087392
+      // 1542891369668
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -28309,7 +28309,7 @@ module.exports = {"setting":{"title":"指定分隔符","order":1},"catalogs":[],
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781087684
+      // 1542891369714
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -28591,7 +28591,7 @@ module.exports = {"setting":{"title":"按钮类型","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781087401
+      // 1542891369737
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -28989,7 +28989,7 @@ module.exports = {"setting":{"title":"按钮组","order":1},"catalogs":[],"conte
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781087418
+      // 1542891369724
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -29273,7 +29273,7 @@ module.exports = {"setting":{"title":"图标按钮","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781087437
+      // 1542891369757
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -29489,7 +29489,7 @@ module.exports = {"setting":{"title":"加载状态按钮","order":2},"catalogs":
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781087598
+      // 1542891369748
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -29779,7 +29779,7 @@ module.exports = {"setting":{"title":"按钮尺寸","order":4},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781087456
+      // 1542891369766
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -30035,7 +30035,7 @@ module.exports = {"setting":{"title":"指定按钮tagName","order":5},"catalogs"
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781087446
+      // 1542891369901
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -31048,7 +31048,7 @@ module.exports = {"setting":{"title":"禁用状态","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781087465
+      // 1542891369776
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -31728,7 +31728,7 @@ module.exports = {"setting":{"title":"尺寸","order":4},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781087477
+      // 1542891369785
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -32224,7 +32224,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781087493
+      // 1542891369795
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -32435,7 +32435,7 @@ module.exports = {"setting":{"title":"Checkbox组","order":1},"catalogs":[],"con
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781087502
+      // 1542891369804
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -32660,7 +32660,7 @@ module.exports = {"setting":{"title":"半选中状态","order":2},"catalogs":[],
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781087511
+      // 1542891369814
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -32903,7 +32903,7 @@ module.exports = {"setting":{"title":"指定选中和非选中的取值","order"
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781087519
+      // 1542891369825
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -33409,7 +33409,7 @@ module.exports = {"setting":{"title":"箭头位置","order":3},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781087633
+      // 1542891369834
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -33985,7 +33985,7 @@ module.exports = {"setting":{"title":"自定义标题","order":2},"catalogs":[],
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781087538
+      // 1542891369856
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -34284,7 +34284,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781087624
+      // 1542891369890
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -34640,7 +34640,7 @@ module.exports = {"setting":{"title":"选择日期和时间","order":5},"catalog
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781087615
+      // 1542891369912
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -35625,7 +35625,7 @@ module.exports = {"setting":{"title":"快捷方式","order":0.1},"catalogs":[],"
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094750
+      // 1542891376907
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -35825,7 +35825,7 @@ module.exports = {"setting":{"title":"选择年或月","order":5.1},"catalogs":[
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094742
+      // 1542891376895
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -36953,7 +36953,7 @@ module.exports = {"setting":{"title":"自定义头部和底部","order":1},"cata
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094732
+      // 1542891376882
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -39242,7 +39242,7 @@ module.exports = {"setting":{"title":"右键菜单","order":7},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094719
+      // 1542891376862
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -39446,7 +39446,7 @@ module.exports = {"setting":{"title":"禁用菜单（项）","order":3},"catalog
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094705
+      // 1542891376853
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -39670,7 +39670,7 @@ module.exports = {"setting":{"title":"嵌套菜单","order":4},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094696
+      // 1542891376809
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -39949,7 +39949,7 @@ module.exports = {"setting":{"title":"菜单位置","order":2},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094685
+      // 1542891376800
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -40422,7 +40422,7 @@ module.exports = {"setting":{"title":"触发方式","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094674
+      // 1542891376790
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -40735,7 +40735,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094626
+      // 1542891376777
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -41352,7 +41352,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094615
+      // 1542891376697
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -41891,7 +41891,7 @@ module.exports = {"setting":{"title":"自定义验证规则","order":1},"catalog
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094604
+      // 1542891376688
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -42885,7 +42885,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094555
+      // 1542891376640
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -43081,7 +43081,7 @@ module.exports = {"setting":{"title":"flex对齐","order":5},"catalogs":[],"cont
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094512
+      // 1542891376629
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -43369,7 +43369,7 @@ module.exports = {"setting":{"title":"flex布局","order":4},"catalogs":[],"cont
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094498
+      // 1542891376617
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -43655,7 +43655,7 @@ module.exports = {"setting":{"title":"flex排序","order":5.1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094529
+      // 1542891376589
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -43844,7 +43844,7 @@ module.exports = {"setting":{"title":"间距","order":1},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094541
+      // 1542891376553
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -44048,7 +44048,7 @@ module.exports = {"setting":{"title":"偏移","order":2},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094454
+      // 1542891376566
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -44243,7 +44243,7 @@ module.exports = {"setting":{"title":"排序","order":2.1},"catalogs":[],"conten
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094588
+      // 1542891376542
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -44422,7 +44422,7 @@ module.exports = {"setting":{"title":"响应式布局","order":6},"catalogs":[],
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094438
+      // 1542891376577
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -44931,7 +44931,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094350
+      // 1542891376502
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -45127,7 +45127,7 @@ module.exports = {"setting":{"title":"追加内容","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094337
+      // 1542891376513
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -45452,7 +45452,7 @@ module.exports = {"setting":{"title":"可清除","order":4},"catalogs":[],"conte
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094322
+      // 1542891376488
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -45875,7 +45875,7 @@ module.exports = {"setting":{"title":"尺寸","order":2},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094297
+      // 1542891376478
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -47652,7 +47652,7 @@ module.exports = {"setting":{"title":"尺寸","order":4},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094252
+      // 1542891376453
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -48998,7 +48998,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094233
+      // 1542891376431
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -49228,7 +49228,7 @@ module.exports = {"setting":{"title":"改变翻页按钮数量","order":2},"cata
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094216
+      // 1542891376419
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -49779,7 +49779,7 @@ module.exports = {"setting":{"title":"无边框样式","order":1.1},"catalogs":[
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094204
+      // 1542891376408
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -50016,7 +50016,7 @@ module.exports = {"setting":{"title":"指定尺寸","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094193
+      // 1542891376398
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -50325,7 +50325,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094163
+      // 1542891376384
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -50517,7 +50517,7 @@ module.exports = {"setting":{"title":"自定义百分比内容","order":4},"cata
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094134
+      // 1542891376356
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -50913,7 +50913,7 @@ module.exports = {"setting":{"title":"在进度条上展示百分比","order":1.
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094113
+      // 1542891376298
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -51153,7 +51153,7 @@ module.exports = {"setting":{"title":"尺寸","order":2},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094100
+      // 1542891376289
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -51334,7 +51334,7 @@ module.exports = {"setting":{"title":"状态","order":1},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094090
+      // 1542891376336
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -51616,7 +51616,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094071
+      // 1542891376277
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -51820,7 +51820,7 @@ module.exports = {"setting":{"title":"Radio组","order":1},"catalogs":[],"conten
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094145
+      // 1542891376264
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -52031,7 +52031,7 @@ module.exports = {"setting":{"title":"指定选中的值","order":2},"catalogs":
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781094061
+      // 1542891376256
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -54087,7 +54087,7 @@ module.exports = {"setting":{"title":"可筛选","order":4},"catalogs":[],"conte
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781093950
+      // 1542891376187
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -54395,7 +54395,7 @@ module.exports = {"setting":{"title":"分组","order":6},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781093926
+      // 1542891376153
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -55101,7 +55101,7 @@ module.exports = {"setting":{"title":"尺寸","order":7},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781093873
+      // 1542891376118
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -56366,7 +56366,7 @@ module.exports = {"setting":{"title":"设置步长","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781093856
+      // 1542891376062
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -56907,7 +56907,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781093663
+      // 1542891375431
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -57094,7 +57094,7 @@ module.exports = {"setting":{"title":"展示遮罩层","order":1},"catalogs":[],
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781093410
+      // 1542891375422
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -57393,7 +57393,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781092777
+      // 1542891375126
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -57578,7 +57578,7 @@ module.exports = {"setting":{"title":"尺寸","order":2},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781093015
+      // 1542891375138
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -57759,7 +57759,7 @@ module.exports = {"setting":{"title":"最大/小值及步长","order":1},"catalo
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781092711
+      // 1542891375112
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -57983,7 +57983,7 @@ module.exports = {"setting":{"title":"竖直排列按钮","order":3},"catalogs":
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781092700
+      // 1542891375094
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -58361,7 +58361,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781092443
+      // 1542891375005
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -58601,7 +58601,7 @@ module.exports = {"setting":{"title":"快速点击切换","order":0.1},"catalogs
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781092453
+      // 1542891374995
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -59014,7 +59014,7 @@ module.exports = {"setting":{"title":"时间轴样式","order":2},"catalogs":[],
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781092410
+      // 1542891374842
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -59272,7 +59272,7 @@ module.exports = {"setting":{"title":"简洁样式","order":3},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781092398
+      // 1542891374834
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -59615,7 +59615,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781092317
+      // 1542891374781
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -59796,7 +59796,7 @@ module.exports = {"setting":{"title":"定义文案","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781092327
+      // 1542891374769
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -59994,7 +59994,7 @@ module.exports = {"setting":{"title":"开关尺寸","order":3},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781092300
+      // 1542891374753
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -60361,7 +60361,7 @@ module.exports = {"setting":{"title":"长/宽","order":2},"catalogs":[],"content
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781092375
+      // 1542891374798
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -60654,7 +60654,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781092124
+      // 1542891374561
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -60874,7 +60874,7 @@ module.exports = {"setting":{"title":"选择框的类型","order":2},"catalogs":
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781092086
+      // 1542891374545
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -61109,7 +61109,7 @@ module.exports = {"setting":{"title":"行选中","order":3},"catalogs":[],"conte
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781092095
+      // 1542891374482
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -61391,7 +61391,7 @@ module.exports = {"setting":{"title":"禁用行可选","order":7},"catalogs":[],
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781092077
+      // 1542891374472
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -61589,7 +61589,7 @@ module.exports = {"setting":{"title":"列固定","order":8.3},"catalogs":[],"con
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781092069
+      // 1542891374450
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -61889,7 +61889,7 @@ module.exports = {"setting":{"title":"表头固定","order":8},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781092045
+      // 1542891374418
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -62141,7 +62141,7 @@ module.exports = {"setting":{"title":"分组","order":11},"catalogs":[],"content
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781092058
+      // 1542891374362
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -62414,7 +62414,7 @@ module.exports = {"setting":{"title":"加载状态","order":13},"catalogs":[],"c
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781092034
+      // 1542891374157
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -62619,7 +62619,7 @@ module.exports = {"setting":{"title":"自定义无内容时的展示信息","ord
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781091882
+      // 1542891374168
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -63137,7 +63137,7 @@ module.exports = {"setting":{"title":"整行选中","order":4},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781091589
+      // 1542891374278
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -63351,7 +63351,7 @@ module.exports = {"setting":{"title":"行样式","order":5},"catalogs":[],"conte
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781091483
+      // 1542891374139
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -63566,7 +63566,7 @@ module.exports = {"setting":{"title":"行展开","order":6},"catalogs":[],"conte
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781091389
+      // 1542891373949
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -63853,7 +63853,7 @@ module.exports = {"setting":{"title":"定义表格结构","order":1},"catalogs":
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781091368
+      // 1542891373915
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -64115,7 +64115,7 @@ module.exports = {"setting":{"title":"排序","order":10},"catalogs":[],"content
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781091357
+      // 1542891373904
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -64809,7 +64809,7 @@ module.exports = {"setting":{"title":"自定义title内容","order":1.1},"catalo
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781091244
+      // 1542891374009
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -65338,7 +65338,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781090981
+      // 1542891373511
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -65541,7 +65541,7 @@ module.exports = {"setting":{"title":"卡片样式","order":5},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781090778
+      // 1542891373482
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -65773,7 +65773,7 @@ module.exports = {"setting":{"title":"data传值形式","order":1},"catalogs":[]
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781090744
+      // 1542891373316
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -65973,7 +65973,7 @@ module.exports = {"setting":{"title":"禁用某一项","order":2},"catalogs":[],
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781090520
+      // 1542891373113
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -66177,7 +66177,7 @@ module.exports = {"setting":{"title":"组件尺寸","order":3},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781090503
+      // 1542891373134
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -66400,7 +66400,7 @@ module.exports = {"setting":{"title":"垂直展示","order":6},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781090474
+      // 1542891373257
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -66770,7 +66770,7 @@ module.exports = {"setting":{"title":"基础使用","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781090270
+      // 1542891372973
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -66974,7 +66974,7 @@ module.exports = {"setting":{"title":"关闭按钮","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781090259
+      // 1542891372854
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -67199,7 +67199,7 @@ module.exports = {"setting":{"title":"组件尺寸","order":2},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781090249
+      // 1542891372744
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -69023,7 +69023,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781089903
+      // 1542891372664
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -69217,7 +69217,7 @@ module.exports = {"setting":{"title":"关闭按钮","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781089894
+      // 1542891372614
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -69447,7 +69447,7 @@ module.exports = {"setting":{"title":"展示标题","order":2},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781089886
+      // 1542891372600
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -71002,7 +71002,7 @@ module.exports = {"setting":{"title":"自定义渲染列表","order":1},"catalog
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781089502
+      // 1542891371986
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -71752,7 +71752,7 @@ module.exports = {"setting":{"title":"带复选框","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781089480
+      // 1542891371751
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -72291,7 +72291,7 @@ module.exports = {"setting":{"title":"自定义节点内容","order":2},"catalog
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781089513
+      // 1542891371833
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -72889,7 +72889,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781089240
+      // 1542891371473
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -73109,7 +73109,7 @@ module.exports = {"setting":{"title":"拖拽上传","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781089283
+      // 1542891371585
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -73297,7 +73297,7 @@ module.exports = {"setting":{"title":"定义初始化列表","order":3},"catalog
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781089293
+      // 1542891371372
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -73680,7 +73680,7 @@ module.exports = {"setting":{"title":"手动上传","order":4},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781088006
+      // 1542891370365
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -74066,7 +74066,7 @@ module.exports = exports['default'];
 /***/ "./site/dist/docs/changelog/index.json":
 /***/ (function(module, exports) {
 
-module.exports = {"setting":{"title":"更新日志","order":99,"sidebar":"doc"},"catalogs":[],"contents":"<h2 id='header-v0.7.1'>v0.7.1</h2><ol>\n<li><code>Add</code> <code>Dropdown</code>及所有包含弹出菜单元素的组件支持<code>container</code>属性，以便自定义弹出菜单插入的位置 <a href=\"https://github.com/ksc-fe/kpc/issues/138\">#138</a></li>\n<li><code>Add</code> <code>Dialog</code>和<code>Drawer</code>弹层中的<code>Dropdown</code>，默认append到<code>k-dialog</code>元素下 <a href=\"https://github.com/ksc-fe/kpc/issues/138\">#138</a><blockquote>\n<p>vue需要升级<code>intact-vue</code>到<code>v0.4.0</code>才能完美支持该功能，否则会出现部分情况下依然append到<code>body</code>的情况</p>\n</blockquote>\n</li>\n<li><code>Add</code> <code>Menu</code>支持<code>dot</code>属性，以便往菜单项前面添加圆点 <a href=\"https://github.com/ksc-fe/kpc/issues/143\">#143</a></li>\n<li><code>Add</code> <code>Menu</code>支持<code>block</code>扩展点，以便自定义菜单头部 <a href=\"https://github.com/ksc-fe/kpc/issues/143\">#143</a></li>\n<li><code>Change</code> <code>Menu</code>菜单样式调整 <a href=\"https://github.com/ksc-fe/kpc/issues/135\">#135</a></li>\n<li><code>Fix</code> 修复<code>Dropdown</code>右键菜单模式在Vue下报错的问题，该bug不会影响功能 <a href=\"https://github.com/ksc-fe/kpc/issues/141\">#141</a></li>\n<li><code>Fix</code> 修复将<code>Event</code>作为属性类型检测，但是在NodeJs下不存在该构造函数导致的报错问题</li>\n</ol>\n<h2 id='header-v0.7.0'>v0.7.0</h2><blockquote>\n<p><code>@since v0.7.0</code>版本需要<code><a href=\"mailto:intact@2.4.1\">intact@2.4.1</a></code><code><a href=\"mailto:intact-vue@0.3.9\">intact-vue@0.3.9</a></code>支持</p>\n</blockquote>\n<ol>\n<li><code>Add</code> <code>Table</code>支持<code>loading</code>状态 <a href=\"https://github.com/ksc-fe/kpc/issues/128\">#128</a></li>\n<li><code>Add</code> <code>Spin</code>支持遮罩层动画<code>overlay</code> <a href=\"https://github.com/ksc-fe/kpc/issues/139\">#139</a></li>\n<li><code>Add</code> <code>Form</code>新增<code>labelWidth</code>属性，用于定义所有<code>FormItem</code>的<code>label</code>宽度 <a href=\"https://github.com/ksc-fe/kpc/issues/127\">#127</a></li>\n<li><code>Fix</code> 修复<code>Tree</code> <code>class</code>和<code>style</code>属性丢失的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/136\">#136</a> </li>\n<li><code>Fix</code> 修复<code>Dropdown</code>的<code>of</code>属性在Vue下传入事件对象会报属性类型不匹配的问题</li>\n<li><code>Fix</code> 修复<code>Timepicker</code>隐藏弹层会<code>focus</code>输入框导致页面滚动的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/126\">#126</a></li>\n<li><code>Fix</code> 修复<code>Drawer</code>在Vue下，点击触发按钮弹出弹层，弹层又会立即消失的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/140\">#140</a></li>\n<li><code>Fix</code> 修复<code>Drawer</code>默认主题动画不协调的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/134\">#134</a></li>\n</ol>\n<h2 id='header-v0.6.1'>v0.6.1</h2><ol>\n<li><code>Fix</code> 修复<code>v0.6.0</code>引入的<code>@css</code>编译版字体文件丢失的问题</li>\n<li><code>Fix</code> 修复当<code>Dialog</code>的<code>footer</code>只存在一个<code>Button</code>时，样式展示问题 <a href=\"https://github.com/ksc-fe/kpc/issues/132\">#132</a></li>\n<li><code>Fix</code> 修复<code>Tooltip</code>没有加载<code>Dropdown</code>样式的问题，这个问题当只使用<code>Tooltip</code>而不使用<code>Dropdown</code>组件时复现 <a href=\"https://github.com/ksc-fe/kpc/issues/133\">#133</a></li>\n</ol>\n<h2 id='header-v0.6.0'>v0.6.0</h2><ol>\n<li><code>Add</code> 新增<code>Drawer</code>抽屉组件 <a href=\"https://github.com/ksc-fe/kpc/issues/112\">#112</a></li>\n<li><p><code>Change</code> 调整字体加载路径，兼容parcel <a href=\"https://github.com/ksc-fe/kpc/issues/131\">#131</a></p>\n<p> webpack.config.js配置文件需要更改如下所示：</p>\n<pre><code class=\"hljs js\"> {\n     <span class=\"hljs-attribute\">loader</span>: <span class=\"hljs-string\">'stylus-loader'</span>, \n     options: {\n         <span class=\"hljs-string\">'include css'</span>: true,\n         <span class=\"hljs-string\">'resolve url'</span>: true,\n         sourceMap: false,\n         // <span class=\"hljs-string\">'import'</span>: <span class=\"hljs-string\">'~kpc/styles/themes/ksyun/index.styl'</span>,\n     }\n }\n</code></pre>\n</li>\n<li><code>Change</code> 调整package.json <code>module</code>字段指向 <a href=\"https://github.com/ksc-fe/kpc/issues/130\">#130</a></li>\n<li><code>Fix</code> 修复<code>Datepicker</code>disableSeconds等参数禁用无效 <a href=\"https://github.com/ksc-fe/kpc/issues/124\">#124</a></li>\n<li><code>Fix</code> 修复<code>App</code>loading动画没有在最上层的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/120\">#120</a></li>\n<li><code>Fix</code> convert Number to String to validate length <a href=\"https://github.com/ksc-fe/kpc/issues/125\">#125</a></li>\n<li><code>Fix</code> 修复<code>Datepicker</code>can not set width with style <a href=\"https://github.com/ksc-fe/kpc/issues/122\">#122</a></li>\n<li><code>Fix</code> 修复<code>Timepicker</code>step状态下class和style不能自定义 <a href=\"https://github.com/ksc-fe/kpc/issues/121\">#121</a></li>\n</ol>\n<h2 id='header-v0.5.15'>v0.5.15</h2><ol>\n<li><code>Fix</code> <code>Button</code>样式声明中<code>success</code>类型变量丢失的问题</li>\n<li><code>Fix</code> <code>Transfer</code>当<code>data</code>数据变更时，不能更新全选状态的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/109\">#109</a></li>\n<li><code>Fix</code> <code>Cascader</code>当级联菜单碰撞反转，3级以下菜单存在错误的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/111\">#111</a></li>\n<li><code>Fix</code> <code>App</code>加载动画会被挡住的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/120\">#120</a></li>\n<li><code>Fix</code> <code>Timepicker</code>传入初始时间字符串会当做数组处理的问题</li>\n<li><code>Add</code> <code>Tree</code>新增左击(<code>click:node</code>)和右击(<code>rightclick:node</code>)节点事件 <a href=\"https://github.com/ksc-fe/kpc/issues/117\">#117</a></li>\n<li><code>Add</code> <code>Dropdown</code>支持右键菜单 <a href=\"https://github.com/ksc-fe/kpc/issues/118\">#118</a></li>\n<li><code>Add</code> <code>Transfer</code>优化<code>shift</code>多选逻辑</li>\n<li><code>Add</code> <code>package.json</code>中添加<code>sideEffects</code>字段，以便支持webpack <code>tree-shaking</code> </li>\n</ol>\n<h2 id='header-v0.5.14'>v0.5.14</h2><ol>\n<li><code>Fix</code> <code>Tree</code>删除节点没有更新选中状态 <a href=\"https://github.com/ksc-fe/kpc/issues/102\">#102</a></li>\n<li><code>Fix</code> <code>Cascader</code>支持<code>data</code>属性一开始就传入<code>undefined</code>，以便数据完全动态加载 <a href=\"https://github.com/ksc-fe/kpc/issues/103\">#103</a></li>\n<li><code>Fix</code> <code>Grid</code>响应式取值不能重置为<code>0</code> <a href=\"https://github.com/ksc-fe/kpc/issues/104\">#104</a></li>\n<li><code>Fix</code> <code>Datepicker</code>范围选择成功后，再次取消已选值，重新选择会出现<code>null</code> <a href=\"https://github.com/ksc-fe/kpc/issues/105\">#105</a></li>\n<li><code>Fix</code> <code>Editable</code>没有传入<code>value</code>，不能展示子元素的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/106\">#106</a></li>\n<li><code>Fix</code> <code>package.json</code> <code>browser</code>字段指向错误的问题</li>\n</ol>\n<h2 id='header-v0.5.13'>v0.5.13</h2><ol>\n<li><code>Fix</code> 修复<code>Steps</code>在宽度不够的情况下，索引不展示；以及在<code>vue</code>下<code>Step</code>宽度不等分的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/100\">#100</a></li>\n<li><code>Fix</code> 修复<code>Table</code>在Firefox下，<code>word-break: break-all</code>不支持的问题</li>\n<li><code>Fix</code> 修复<code>Tooltip</code>在应该隐藏箭头的情况下，没有隐藏的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/101\">#101</a></li>\n</ol>\n<h2 id='header-v0.5.12'>v0.5.12</h2><ol>\n<li><code>Add</code> 新增<code>Menu</code>菜单组件 <a href=\"https://github.com/ksc-fe/kpc/issues/90\">#90</a></li>\n<li><code>Fix</code> 修复Fixfox下，<code>Spin</code>不能展示的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/97\">#97</a></li>\n<li><code>Fix</code> 修复Fixfox下，<code>Table</code>在固定右侧列并出现纵向滚动条的情况下，左侧单元格宽度不正确导致出现空白间隙的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/98\">#98</a></li>\n<li><code>Fix</code> 修复<code>Timeline</code>文字与图标没对齐的问题</li>\n<li><code>Fix</code> 修复<code>Collapse</code>手风琴模式下，无法全部收起的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/99\">#99</a></li>\n</ol>\n<h2 id='header-v0.5.11'>v0.5.11</h2><blockquote>\n<p>要使用<code>Table</code>新特性，需要更新<code>Intact</code>至<code>v2.3.5</code>及以上</p>\n</blockquote>\n<ol>\n<li><code>Add</code> <code>Table</code>支持列固定 <a href=\"https://github.com/ksc-fe/kpc/issues/86\">#86</a></li>\n<li><code>Add</code> <code>Table</code>支持横向滚动条吸底 <a href=\"https://github.com/ksc-fe/kpc/issues/96\">#96</a></li>\n<li><code>Fix</code> 修复<code>Table</code>固定表头横向滚动的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/89\">#89</a></li>\n</ol>\n<h2 id='header-v0.5.10'>v0.5.10</h2><ol>\n<li><code>Fix</code> 修复<code>Select</code>将<code>0</code>当做空值处理的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/94\">#94</a></li>\n<li><code>Fix</code> 修复<code>Transfer</code>不能取消全选的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/95\">#95</a></li>\n</ol>\n<h2 id='header-v0.5.9'>v0.5.9</h2><ol>\n<li><code>Add</code> 新增<code>xxl</code>响应式宽度<code>≥1600px</code></li>\n<li><code>Change</code> 改变全局字体行高<code>1.5</code></li>\n<li><code>Fix</code> Firefox下<code>Datepicker</code>快速切换年月按钮错位的问题</li>\n</ol>\n<h2 id='header-v0.5.7'>v0.5.7</h2><ol>\n<li><code>Add</code> <code>Grid</code>改进，支持响应式，以及<code>pull</code> <code>push</code> <code>order</code>等属性 <a href=\"https://github.com/ksc-fe/kpc/issues/87\">#87</a></li>\n<li><code>Add</code> 新增时间轴组件<code>Timeline</code> <a href=\"https://github.com/ksc-fe/kpc/issues/77\">#77</a></li>\n<li><code>Add</code> <code>Message</code>在Vue全局安装的情况下，支持<code>this.$message.success()</code>的调用方式 <a href=\"https://github.com/ksc-fe/kpc/issues/88\">#88</a></li>\n</ol>\n<h2 id='header-v0.5.6'>v0.5.6</h2><ol>\n<li><code>Add</code> 新增时间选择组件<code>Timepicker</code></li>\n<li><code>Add</code> 新增树形控件<code>Tree</code></li>\n<li><code>Add</code> <code>Datepicker</code>支持只选择年/月 <a href=\"https://github.com/ksc-fe/kpc/issues/84\">#84</a></li>\n<li><code>Add</code> <code>Datepicker</code>可选择范围，支持控制到秒的精度 <a href=\"https://github.com/ksc-fe/kpc/issues/81\">#81</a></li>\n<li><code>Add</code> <code>Table</code>组件支持表头吸顶功能 <a href=\"https://github.com/ksc-fe/kpc/issues/85\">#85</a></li>\n<li><code>Change</code> <code>Datepicker</code>交互变更，支持快速切换时间选择</li>\n<li><code>Change</code> <code>Checkbox</code>将<code>click</code> <code>mouseenter</code> <code>mouseleave</code>事件绑定在最外层元素上，而不是<code>input</code>上</li>\n<li><code>Fix</code> 修复<code>Cascader</code>无法获取完整取值的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/78\">#78</a></li>\n<li><code>Fix</code> 修复<code>Table</code> <code>expand</code>属性不兼容<a href=\"mailto:intact-vue@v0.3\">intact-vue@v0.3</a>的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/82\">#82</a></li>\n<li><code>Fix</code> 修复<code>Button</code> <code>showLoading</code>后<code>hideLoading</code>，在某些情况下子元素渲染出错的问题</li>\n</ol>\n<h2 id='header-v0.5.4'>v0.5.4</h2><ol>\n<li><code>Add</code> 新增<code>Spin</code>加载动画组件 <a href=\"https://github.com/ksc-fe/kpc/issues/74\">#74</a></li>\n<li><code>Add</code> <code>Form</code>新增<code>getFirstInvalidFormItem</code>方法，用于获取第一个出错的<code>FormItem</code> <a href=\"https://github.com/ksc-fe/kpc/issues/73\">#73</a></li>\n<li><code>Fix</code> <code>Datepicker</code>月份切换问题 <a href=\"https://github.com/ksc-fe/kpc/issues/62\">#62</a></li>\n<li><code>Fix</code> 修复<code>FormItem</code>错误信息某些情况下的样式问题 <a href=\"https://github.com/ksc-fe/kpc/issues/75\">#75</a> </li>\n<li><code>Refactor</code> 改变内置动画className命名，避免冲突 <a href=\"https://github.com/ksc-fe/kpc/issues/76\">#76</a></li>\n</ol>\n<h2 id='header-v0.5.3'>v0.5.3</h2><ol>\n<li><code>Add</code> <code>Tag</code>组件支持<code>size</code>属性 <a href=\"https://github.com/ksc-fe/kpc/issues/68\">#68</a></li>\n<li><code>Add</code> 新增<code>Tip</code>组件，用于展示警告提示信息 <a href=\"https://github.com/ksc-fe/kpc/issues/69\">#69</a></li>\n<li><code>Add</code> <code>Tabs</code>新增一种无边框的卡片样式，适用于具有背景的场景 <a href=\"https://github.com/ksc-fe/kpc/issues/70\">#70</a></li>\n<li><code>Add</code> <code>Steps</code>新增一种简洁样式<code>simple</code> <a href=\"https://github.com/ksc-fe/kpc/issues/71\">#71</a></li>\n<li><code>Add</code> <code>Steps</code>支持<code>clickable</code>属性，用于快速切换已完成的步骤 <a href=\"https://github.com/ksc-fe/kpc/issues/72\">#72</a></li>\n<li><code>Change</code> 部分组件样式调整 <a href=\"https://github.com/ksc-fe/kpc/issues/67\">#67</a></li>\n</ol>\n<h2 id='header-v0.5.0'>v0.5.0</h2><p><code>0.5.0</code>版本需要<code><a href=\"mailto:vdt@1.3.0\">vdt@1.3.0</a></code><code><a href=\"mailto:intact@2.3.0\">intact@2.3.0</a></code><code><a href=\"mailto:intact-vue@0.3.0\">intact-vue@0.3.0</a></code>支持</p>\n<ol>\n<li><code>Add</code> 支持组件属性类型检查</li>\n<li><code>Add</code> 支持带参数的<code>block</code></li>\n<li><code>Add</code> 支持通过<code>v-model</code>绑定任意属性值</li>\n<li><code>Add</code> 支持同一事件绑定多次回调函数</li>\n<li><code>Refactor</code> <code>App</code>组件重构，减少依赖 <a href=\"https://github.com/ksc-fe/kpc/issues/65\">#65</a></li>\n<li><code>Fix</code> 在<code>Vue</code>下<code>Vue.use(Kpc)</code>全量使用的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/63\">#63</a> <a href=\"https://github.com/ksc-fe/kpc/issues/64\">#64</a></li>\n</ol>\n<h2 id='header-v0.4.0'>v0.4.0</h2><ol>\n<li><code>Add</code> 新增级联选择组件<code>Cascader</code></li>\n<li><code>Add</code> 新增标签组件<code>Tag</code></li>\n<li><code>Add</code> 新增徽标组件<code>Badge</code></li>\n<li><code>Add</code> 新增折叠面板组件<code>Collapse</code></li>\n<li><code>Add</code> <code>Pagination</code>支持无边框样式，<a href=\"https://github.com/ksc-fe/kpc/issues/33\">#33</a></li>\n<li><code>Add</code> 嵌套<code>Dropdown</code>支持子菜单相对父菜单定位</li>\n<li><code>Change</code> 更新ksyun主题<code>Message</code>样式</li>\n<li><code>Change</code> 优化<code>Dropdown</code>键盘操作</li>\n<li><code>Change</code> 更新ksyun主题<code>Progress</code>样式</li>\n<li><code>Fix</code> 修复<code>Datepicker</code>在点击年份等区域导致input失焦，然后<code>FormItem</code>立即验证的问题，<a href=\"https://github.com/ksc-fe/kpc/issues/46\">#46</a></li>\n<li><code>Fix</code> 修复<code>Tooltip</code> <code>hover</code>触发方式下，有时不能消失的问题，<a href=\"https://github.com/ksc-fe/kpc/issues/52\">#52</a></li>\n<li><code>Fix</code> 修复<code>Pagination</code>当传入的<code>limit</code>不是可选项时，页码错误的问题， <a href=\"https://github.com/ksc-fe/kpc/issues/48\">#48</a></li>\n<li><code>Fix</code> 修复<code>Select</code>键盘选中某项然后搜索导致该项不存在，此时按回车会报错的问题，<a href=\"https://github.com/ksc-fe/kpc/issues/50\">#50</a></li>\n</ol>\n<h2 id='header-v0.3.12'>v0.3.12</h2><ol>\n<li><code>Add</code> <code>TableColumn</code>支持<code>title</code>扩展点，<a href=\"https://github.com/ksc-fe/kpc/issues/19\">#19</a></li>\n<li><code>Add</code> <code>Transfer</code>支持全选和清空操作，<a href=\"https://github.com/ksc-fe/kpc/issues/18\">#18</a></li>\n<li><code>Fix</code> 修复<code>Editable</code>在invalid的状态下，父组件更新也会触发<code>$changed:value</code>事件的问题，<a href=\"https://github.com/ksc-fe/kpc/issues/51\">#51</a></li>\n<li><code>Fix</code> 修复<code>FormItem</code>在<code>model</code>不存在时，依然会验证导致报错的问题，<a href=\"https://github.com/ksc-fe/kpc/issues/47\">#47</a></li>\n<li><code>Fix</code> 修复<code>value</code>不存在options中时的问题，<a href=\"https://github.com/ksc-fe/kpc/issues/41\">#41</a> <a href=\"https://github.com/ksc-fe/kpc/issues/40\">#40</a></li>\n<li><code>Fix</code> <code>FormItem</code>延迟100ms去验证，来规避某些弹出型组件在失焦瞬间，可能闪现<code>required</code>错误信息的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/4\">#4</a></li>\n<li><code>Fix</code> 修复<code>Dropdown</code>在vue下，子元素事件丢失的问题</li>\n<li><code>Fix</code> 修复<code>Tooltip</code>箭头位置问题，<a href=\"https://github.com/ksc-fe/kpc/issues/17\">#17</a></li>\n</ol>\n<h2 id='header-v0.2.0'>v0.2.0</h2><ol>\n<li><code>Add</code> 表单元素(<code>Select</code> <code>Datepicker</code>等)支持键盘操作 <a href=\"https://github.com/ksc-fe/kpc/issues/7\">#7</a></li>\n<li><code>Add</code> <code>FormItem</code>支持强制验证 <a href=\"https://github.com/ksc-fe/kpc/issues/6\">#6</a></li>\n<li><code>Add</code> <code>Select</code>支持输入不存在的条目，此时它将作为最终值 <a href=\"https://github.com/ksc-fe/kpc/issues/5\">#5</a></li>\n<li><code>Fix</code> 修复<code>Table</code>在MacOS下<code>Checkbox</code>选不中的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/8\">#8</a></li>\n<li><code>Fix</code> 修复<code>Slider</code>中的<code>Input</code>不能输入中间过程值的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/9\">#9</a></li>\n<li><code>Fix</code> 修复<code>Form</code>表单验证<code>Select</code>选择时，闪现<code>required</code>错误信息的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/4\">#4</a></li>\n</ol>\n<h2 id='header-v0.1.0'>v0.1.0</h2><ol>\n<li><code>Add</code> Datepicker支持日期范围选择, <a href=\"https://github.com/ksc-fe/kpc/issues/1\">#1</a></li>\n<li><code>Add</code> Datepicker选择日期和时间时，支持多选</li>\n<li><code>Add</code> 弹出菜单支持边界碰撞反转弹出弹出方向，<a href=\"https://github.com/ksc-fe/kpc/issues/2\">#2</a></li>\n<li><code>Fix</code> Vue中Tab不能切换的问题，<a href=\"https://github.com/ksc-fe/kpc/issues/3\">#3</a></li>\n<li><code>Fix</code> Slider在设置了步长后，拖动会闪动的问题</li>\n</ol>\n","index":250}
+module.exports = {"setting":{"title":"更新日志","order":99,"sidebar":"doc"},"catalogs":[],"contents":"<h2 id='header-v0.7.1'>v0.7.1</h2><ol>\n<li><code>Add</code> <code>Dropdown</code>及所有包含弹出菜单元素的组件支持<code>container</code>属性，以便自定义弹出菜单插入的位置 <a href=\"https://github.com/ksc-fe/kpc/issues/138\">#138</a></li>\n<li><code>Add</code> <code>Dialog</code>和<code>Drawer</code>弹层中的<code>Dropdown</code>，默认append到<code>k-dialog</code>元素下 <a href=\"https://github.com/ksc-fe/kpc/issues/138\">#138</a><blockquote>\n<p>vue需要升级<code>intact-vue</code>到<code>v0.4.0</code>才能完美支持该功能，否则会出现部分情况下依然append到<code>body</code>的情况</p>\n</blockquote>\n</li>\n<li><code>Add</code> <code>Menu</code>支持<code>dot</code>属性，以便往菜单项前面添加圆点 <a href=\"https://github.com/ksc-fe/kpc/issues/143\">#143</a></li>\n<li><code>Add</code> <code>Menu</code>支持<code>block</code>扩展点，以便自定义菜单头部 <a href=\"https://github.com/ksc-fe/kpc/issues/143\">#143</a></li>\n<li><code>Change</code> <code>Menu</code>菜单样式调整 <a href=\"https://github.com/ksc-fe/kpc/issues/135\">#135</a></li>\n<li><code>Fix</code> 修复<code>Dropdown</code>右键菜单模式在Vue下报错的问题，该bug不会影响功能 <a href=\"https://github.com/ksc-fe/kpc/issues/141\">#141</a></li>\n<li><code>Fix</code> 修复将<code>Event</code>作为属性类型检测，但是在NodeJs下不存在该构造函数导致的报错问题</li>\n</ol>\n<h2 id='header-v0.7.0'>v0.7.0</h2><blockquote>\n<p><code>@since v0.7.0</code>版本需要<code><a href=\"mailto:intact@2.4.1\">intact@2.4.1</a></code><code><a href=\"mailto:intact-vue@0.3.9\">intact-vue@0.3.9</a></code>支持</p>\n</blockquote>\n<ol>\n<li><code>Add</code> <code>Table</code>支持<code>loading</code>状态 <a href=\"https://github.com/ksc-fe/kpc/issues/128\">#128</a></li>\n<li><code>Add</code> <code>Spin</code>支持遮罩层动画<code>overlay</code> <a href=\"https://github.com/ksc-fe/kpc/issues/139\">#139</a></li>\n<li><code>Add</code> <code>Form</code>新增<code>labelWidth</code>属性，用于定义所有<code>FormItem</code>的<code>label</code>宽度 <a href=\"https://github.com/ksc-fe/kpc/issues/127\">#127</a></li>\n<li><code>Fix</code> 修复<code>Tree</code> <code>class</code>和<code>style</code>属性丢失的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/136\">#136</a> </li>\n<li><code>Fix</code> 修复<code>Dropdown</code>的<code>of</code>属性在Vue下传入事件对象会报属性类型不匹配的问题</li>\n<li><code>Fix</code> 修复<code>Timepicker</code>隐藏弹层会<code>focus</code>输入框导致页面滚动的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/126\">#126</a></li>\n<li><code>Fix</code> 修复<code>Drawer</code>在Vue下，点击触发按钮弹出弹层，弹层又会立即消失的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/140\">#140</a></li>\n<li><code>Fix</code> 修复<code>Drawer</code>默认主题动画不协调的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/134\">#134</a></li>\n</ol>\n<h2 id='header-v0.6.1'>v0.6.1</h2><ol>\n<li><code>Fix</code> 修复<code>v0.6.0</code>引入的<code>@css</code>编译版字体文件丢失的问题</li>\n<li><code>Fix</code> 修复当<code>Dialog</code>的<code>footer</code>只存在一个<code>Button</code>时，样式展示问题 <a href=\"https://github.com/ksc-fe/kpc/issues/132\">#132</a></li>\n<li><code>Fix</code> 修复<code>Tooltip</code>没有加载<code>Dropdown</code>样式的问题，这个问题当只使用<code>Tooltip</code>而不使用<code>Dropdown</code>组件时复现 <a href=\"https://github.com/ksc-fe/kpc/issues/133\">#133</a></li>\n</ol>\n<h2 id='header-v0.6.0'>v0.6.0</h2><ol>\n<li><code>Add</code> 新增<code>Drawer</code>抽屉组件 <a href=\"https://github.com/ksc-fe/kpc/issues/112\">#112</a></li>\n<li><p><code>Change</code> 调整字体加载路径，兼容parcel <a href=\"https://github.com/ksc-fe/kpc/issues/131\">#131</a></p>\n<p> webpack.config.js配置文件需要更改如下所示：</p>\n<pre><code class=\"hljs js\"> {\n     <span class=\"hljs-symbol\">test:</span> /\\.styl<span class=\"hljs-variable\">$/</span>,\n     <span class=\"hljs-symbol\">loader:</span> <span class=\"hljs-string\">'stylus-loader'</span>, \n     <span class=\"hljs-symbol\">options:</span> {\n         <span class=\"hljs-string\">'include css'</span>: <span class=\"hljs-keyword\">true</span>,\n         <span class=\"hljs-string\">'resolve url'</span>: <span class=\"hljs-keyword\">true</span>,\n         <span class=\"hljs-symbol\">sourceMap:</span> <span class=\"hljs-keyword\">false</span>,\n         <span class=\"hljs-regexp\">//</span> <span class=\"hljs-string\">'import'</span>: <span class=\"hljs-string\">'~kpc/styles/themes/ksyun/index.styl'</span>,\n     }\n }\n</code></pre>\n</li>\n<li><code>Change</code> 调整package.json <code>module</code>字段指向 <a href=\"https://github.com/ksc-fe/kpc/issues/130\">#130</a></li>\n<li><code>Fix</code> 修复<code>Datepicker</code>disableSeconds等参数禁用无效 <a href=\"https://github.com/ksc-fe/kpc/issues/124\">#124</a></li>\n<li><code>Fix</code> 修复<code>App</code>loading动画没有在最上层的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/120\">#120</a></li>\n<li><code>Fix</code> convert Number to String to validate length <a href=\"https://github.com/ksc-fe/kpc/issues/125\">#125</a></li>\n<li><code>Fix</code> 修复<code>Datepicker</code>can not set width with style <a href=\"https://github.com/ksc-fe/kpc/issues/122\">#122</a></li>\n<li><code>Fix</code> 修复<code>Timepicker</code>step状态下class和style不能自定义 <a href=\"https://github.com/ksc-fe/kpc/issues/121\">#121</a></li>\n</ol>\n<h2 id='header-v0.5.15'>v0.5.15</h2><ol>\n<li><code>Fix</code> <code>Button</code>样式声明中<code>success</code>类型变量丢失的问题</li>\n<li><code>Fix</code> <code>Transfer</code>当<code>data</code>数据变更时，不能更新全选状态的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/109\">#109</a></li>\n<li><code>Fix</code> <code>Cascader</code>当级联菜单碰撞反转，3级以下菜单存在错误的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/111\">#111</a></li>\n<li><code>Fix</code> <code>App</code>加载动画会被挡住的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/120\">#120</a></li>\n<li><code>Fix</code> <code>Timepicker</code>传入初始时间字符串会当做数组处理的问题</li>\n<li><code>Add</code> <code>Tree</code>新增左击(<code>click:node</code>)和右击(<code>rightclick:node</code>)节点事件 <a href=\"https://github.com/ksc-fe/kpc/issues/117\">#117</a></li>\n<li><code>Add</code> <code>Dropdown</code>支持右键菜单 <a href=\"https://github.com/ksc-fe/kpc/issues/118\">#118</a></li>\n<li><code>Add</code> <code>Transfer</code>优化<code>shift</code>多选逻辑</li>\n<li><code>Add</code> <code>package.json</code>中添加<code>sideEffects</code>字段，以便支持webpack <code>tree-shaking</code> </li>\n</ol>\n<h2 id='header-v0.5.14'>v0.5.14</h2><ol>\n<li><code>Fix</code> <code>Tree</code>删除节点没有更新选中状态 <a href=\"https://github.com/ksc-fe/kpc/issues/102\">#102</a></li>\n<li><code>Fix</code> <code>Cascader</code>支持<code>data</code>属性一开始就传入<code>undefined</code>，以便数据完全动态加载 <a href=\"https://github.com/ksc-fe/kpc/issues/103\">#103</a></li>\n<li><code>Fix</code> <code>Grid</code>响应式取值不能重置为<code>0</code> <a href=\"https://github.com/ksc-fe/kpc/issues/104\">#104</a></li>\n<li><code>Fix</code> <code>Datepicker</code>范围选择成功后，再次取消已选值，重新选择会出现<code>null</code> <a href=\"https://github.com/ksc-fe/kpc/issues/105\">#105</a></li>\n<li><code>Fix</code> <code>Editable</code>没有传入<code>value</code>，不能展示子元素的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/106\">#106</a></li>\n<li><code>Fix</code> <code>package.json</code> <code>browser</code>字段指向错误的问题</li>\n</ol>\n<h2 id='header-v0.5.13'>v0.5.13</h2><ol>\n<li><code>Fix</code> 修复<code>Steps</code>在宽度不够的情况下，索引不展示；以及在<code>vue</code>下<code>Step</code>宽度不等分的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/100\">#100</a></li>\n<li><code>Fix</code> 修复<code>Table</code>在Firefox下，<code>word-break: break-all</code>不支持的问题</li>\n<li><code>Fix</code> 修复<code>Tooltip</code>在应该隐藏箭头的情况下，没有隐藏的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/101\">#101</a></li>\n</ol>\n<h2 id='header-v0.5.12'>v0.5.12</h2><ol>\n<li><code>Add</code> 新增<code>Menu</code>菜单组件 <a href=\"https://github.com/ksc-fe/kpc/issues/90\">#90</a></li>\n<li><code>Fix</code> 修复Fixfox下，<code>Spin</code>不能展示的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/97\">#97</a></li>\n<li><code>Fix</code> 修复Fixfox下，<code>Table</code>在固定右侧列并出现纵向滚动条的情况下，左侧单元格宽度不正确导致出现空白间隙的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/98\">#98</a></li>\n<li><code>Fix</code> 修复<code>Timeline</code>文字与图标没对齐的问题</li>\n<li><code>Fix</code> 修复<code>Collapse</code>手风琴模式下，无法全部收起的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/99\">#99</a></li>\n</ol>\n<h2 id='header-v0.5.11'>v0.5.11</h2><blockquote>\n<p>要使用<code>Table</code>新特性，需要更新<code>Intact</code>至<code>v2.3.5</code>及以上</p>\n</blockquote>\n<ol>\n<li><code>Add</code> <code>Table</code>支持列固定 <a href=\"https://github.com/ksc-fe/kpc/issues/86\">#86</a></li>\n<li><code>Add</code> <code>Table</code>支持横向滚动条吸底 <a href=\"https://github.com/ksc-fe/kpc/issues/96\">#96</a></li>\n<li><code>Fix</code> 修复<code>Table</code>固定表头横向滚动的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/89\">#89</a></li>\n</ol>\n<h2 id='header-v0.5.10'>v0.5.10</h2><ol>\n<li><code>Fix</code> 修复<code>Select</code>将<code>0</code>当做空值处理的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/94\">#94</a></li>\n<li><code>Fix</code> 修复<code>Transfer</code>不能取消全选的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/95\">#95</a></li>\n</ol>\n<h2 id='header-v0.5.9'>v0.5.9</h2><ol>\n<li><code>Add</code> 新增<code>xxl</code>响应式宽度<code>≥1600px</code></li>\n<li><code>Change</code> 改变全局字体行高<code>1.5</code></li>\n<li><code>Fix</code> Firefox下<code>Datepicker</code>快速切换年月按钮错位的问题</li>\n</ol>\n<h2 id='header-v0.5.7'>v0.5.7</h2><ol>\n<li><code>Add</code> <code>Grid</code>改进，支持响应式，以及<code>pull</code> <code>push</code> <code>order</code>等属性 <a href=\"https://github.com/ksc-fe/kpc/issues/87\">#87</a></li>\n<li><code>Add</code> 新增时间轴组件<code>Timeline</code> <a href=\"https://github.com/ksc-fe/kpc/issues/77\">#77</a></li>\n<li><code>Add</code> <code>Message</code>在Vue全局安装的情况下，支持<code>this.$message.success()</code>的调用方式 <a href=\"https://github.com/ksc-fe/kpc/issues/88\">#88</a></li>\n</ol>\n<h2 id='header-v0.5.6'>v0.5.6</h2><ol>\n<li><code>Add</code> 新增时间选择组件<code>Timepicker</code></li>\n<li><code>Add</code> 新增树形控件<code>Tree</code></li>\n<li><code>Add</code> <code>Datepicker</code>支持只选择年/月 <a href=\"https://github.com/ksc-fe/kpc/issues/84\">#84</a></li>\n<li><code>Add</code> <code>Datepicker</code>可选择范围，支持控制到秒的精度 <a href=\"https://github.com/ksc-fe/kpc/issues/81\">#81</a></li>\n<li><code>Add</code> <code>Table</code>组件支持表头吸顶功能 <a href=\"https://github.com/ksc-fe/kpc/issues/85\">#85</a></li>\n<li><code>Change</code> <code>Datepicker</code>交互变更，支持快速切换时间选择</li>\n<li><code>Change</code> <code>Checkbox</code>将<code>click</code> <code>mouseenter</code> <code>mouseleave</code>事件绑定在最外层元素上，而不是<code>input</code>上</li>\n<li><code>Fix</code> 修复<code>Cascader</code>无法获取完整取值的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/78\">#78</a></li>\n<li><code>Fix</code> 修复<code>Table</code> <code>expand</code>属性不兼容<a href=\"mailto:intact-vue@v0.3\">intact-vue@v0.3</a>的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/82\">#82</a></li>\n<li><code>Fix</code> 修复<code>Button</code> <code>showLoading</code>后<code>hideLoading</code>，在某些情况下子元素渲染出错的问题</li>\n</ol>\n<h2 id='header-v0.5.4'>v0.5.4</h2><ol>\n<li><code>Add</code> 新增<code>Spin</code>加载动画组件 <a href=\"https://github.com/ksc-fe/kpc/issues/74\">#74</a></li>\n<li><code>Add</code> <code>Form</code>新增<code>getFirstInvalidFormItem</code>方法，用于获取第一个出错的<code>FormItem</code> <a href=\"https://github.com/ksc-fe/kpc/issues/73\">#73</a></li>\n<li><code>Fix</code> <code>Datepicker</code>月份切换问题 <a href=\"https://github.com/ksc-fe/kpc/issues/62\">#62</a></li>\n<li><code>Fix</code> 修复<code>FormItem</code>错误信息某些情况下的样式问题 <a href=\"https://github.com/ksc-fe/kpc/issues/75\">#75</a> </li>\n<li><code>Refactor</code> 改变内置动画className命名，避免冲突 <a href=\"https://github.com/ksc-fe/kpc/issues/76\">#76</a></li>\n</ol>\n<h2 id='header-v0.5.3'>v0.5.3</h2><ol>\n<li><code>Add</code> <code>Tag</code>组件支持<code>size</code>属性 <a href=\"https://github.com/ksc-fe/kpc/issues/68\">#68</a></li>\n<li><code>Add</code> 新增<code>Tip</code>组件，用于展示警告提示信息 <a href=\"https://github.com/ksc-fe/kpc/issues/69\">#69</a></li>\n<li><code>Add</code> <code>Tabs</code>新增一种无边框的卡片样式，适用于具有背景的场景 <a href=\"https://github.com/ksc-fe/kpc/issues/70\">#70</a></li>\n<li><code>Add</code> <code>Steps</code>新增一种简洁样式<code>simple</code> <a href=\"https://github.com/ksc-fe/kpc/issues/71\">#71</a></li>\n<li><code>Add</code> <code>Steps</code>支持<code>clickable</code>属性，用于快速切换已完成的步骤 <a href=\"https://github.com/ksc-fe/kpc/issues/72\">#72</a></li>\n<li><code>Change</code> 部分组件样式调整 <a href=\"https://github.com/ksc-fe/kpc/issues/67\">#67</a></li>\n</ol>\n<h2 id='header-v0.5.0'>v0.5.0</h2><p><code>0.5.0</code>版本需要<code><a href=\"mailto:vdt@1.3.0\">vdt@1.3.0</a></code><code><a href=\"mailto:intact@2.3.0\">intact@2.3.0</a></code><code><a href=\"mailto:intact-vue@0.3.0\">intact-vue@0.3.0</a></code>支持</p>\n<ol>\n<li><code>Add</code> 支持组件属性类型检查</li>\n<li><code>Add</code> 支持带参数的<code>block</code></li>\n<li><code>Add</code> 支持通过<code>v-model</code>绑定任意属性值</li>\n<li><code>Add</code> 支持同一事件绑定多次回调函数</li>\n<li><code>Refactor</code> <code>App</code>组件重构，减少依赖 <a href=\"https://github.com/ksc-fe/kpc/issues/65\">#65</a></li>\n<li><code>Fix</code> 在<code>Vue</code>下<code>Vue.use(Kpc)</code>全量使用的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/63\">#63</a> <a href=\"https://github.com/ksc-fe/kpc/issues/64\">#64</a></li>\n</ol>\n<h2 id='header-v0.4.0'>v0.4.0</h2><ol>\n<li><code>Add</code> 新增级联选择组件<code>Cascader</code></li>\n<li><code>Add</code> 新增标签组件<code>Tag</code></li>\n<li><code>Add</code> 新增徽标组件<code>Badge</code></li>\n<li><code>Add</code> 新增折叠面板组件<code>Collapse</code></li>\n<li><code>Add</code> <code>Pagination</code>支持无边框样式，<a href=\"https://github.com/ksc-fe/kpc/issues/33\">#33</a></li>\n<li><code>Add</code> 嵌套<code>Dropdown</code>支持子菜单相对父菜单定位</li>\n<li><code>Change</code> 更新ksyun主题<code>Message</code>样式</li>\n<li><code>Change</code> 优化<code>Dropdown</code>键盘操作</li>\n<li><code>Change</code> 更新ksyun主题<code>Progress</code>样式</li>\n<li><code>Fix</code> 修复<code>Datepicker</code>在点击年份等区域导致input失焦，然后<code>FormItem</code>立即验证的问题，<a href=\"https://github.com/ksc-fe/kpc/issues/46\">#46</a></li>\n<li><code>Fix</code> 修复<code>Tooltip</code> <code>hover</code>触发方式下，有时不能消失的问题，<a href=\"https://github.com/ksc-fe/kpc/issues/52\">#52</a></li>\n<li><code>Fix</code> 修复<code>Pagination</code>当传入的<code>limit</code>不是可选项时，页码错误的问题， <a href=\"https://github.com/ksc-fe/kpc/issues/48\">#48</a></li>\n<li><code>Fix</code> 修复<code>Select</code>键盘选中某项然后搜索导致该项不存在，此时按回车会报错的问题，<a href=\"https://github.com/ksc-fe/kpc/issues/50\">#50</a></li>\n</ol>\n<h2 id='header-v0.3.12'>v0.3.12</h2><ol>\n<li><code>Add</code> <code>TableColumn</code>支持<code>title</code>扩展点，<a href=\"https://github.com/ksc-fe/kpc/issues/19\">#19</a></li>\n<li><code>Add</code> <code>Transfer</code>支持全选和清空操作，<a href=\"https://github.com/ksc-fe/kpc/issues/18\">#18</a></li>\n<li><code>Fix</code> 修复<code>Editable</code>在invalid的状态下，父组件更新也会触发<code>$changed:value</code>事件的问题，<a href=\"https://github.com/ksc-fe/kpc/issues/51\">#51</a></li>\n<li><code>Fix</code> 修复<code>FormItem</code>在<code>model</code>不存在时，依然会验证导致报错的问题，<a href=\"https://github.com/ksc-fe/kpc/issues/47\">#47</a></li>\n<li><code>Fix</code> 修复<code>value</code>不存在options中时的问题，<a href=\"https://github.com/ksc-fe/kpc/issues/41\">#41</a> <a href=\"https://github.com/ksc-fe/kpc/issues/40\">#40</a></li>\n<li><code>Fix</code> <code>FormItem</code>延迟100ms去验证，来规避某些弹出型组件在失焦瞬间，可能闪现<code>required</code>错误信息的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/4\">#4</a></li>\n<li><code>Fix</code> 修复<code>Dropdown</code>在vue下，子元素事件丢失的问题</li>\n<li><code>Fix</code> 修复<code>Tooltip</code>箭头位置问题，<a href=\"https://github.com/ksc-fe/kpc/issues/17\">#17</a></li>\n</ol>\n<h2 id='header-v0.2.0'>v0.2.0</h2><ol>\n<li><code>Add</code> 表单元素(<code>Select</code> <code>Datepicker</code>等)支持键盘操作 <a href=\"https://github.com/ksc-fe/kpc/issues/7\">#7</a></li>\n<li><code>Add</code> <code>FormItem</code>支持强制验证 <a href=\"https://github.com/ksc-fe/kpc/issues/6\">#6</a></li>\n<li><code>Add</code> <code>Select</code>支持输入不存在的条目，此时它将作为最终值 <a href=\"https://github.com/ksc-fe/kpc/issues/5\">#5</a></li>\n<li><code>Fix</code> 修复<code>Table</code>在MacOS下<code>Checkbox</code>选不中的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/8\">#8</a></li>\n<li><code>Fix</code> 修复<code>Slider</code>中的<code>Input</code>不能输入中间过程值的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/9\">#9</a></li>\n<li><code>Fix</code> 修复<code>Form</code>表单验证<code>Select</code>选择时，闪现<code>required</code>错误信息的问题 <a href=\"https://github.com/ksc-fe/kpc/issues/4\">#4</a></li>\n</ol>\n<h2 id='header-v0.1.0'>v0.1.0</h2><ol>\n<li><code>Add</code> Datepicker支持日期范围选择, <a href=\"https://github.com/ksc-fe/kpc/issues/1\">#1</a></li>\n<li><code>Add</code> Datepicker选择日期和时间时，支持多选</li>\n<li><code>Add</code> 弹出菜单支持边界碰撞反转弹出弹出方向，<a href=\"https://github.com/ksc-fe/kpc/issues/2\">#2</a></li>\n<li><code>Fix</code> Vue中Tab不能切换的问题，<a href=\"https://github.com/ksc-fe/kpc/issues/3\">#3</a></li>\n<li><code>Fix</code> Slider在设置了步长后，拖动会闪动的问题</li>\n</ol>\n","index":250}
 
 /***/ }),
 
@@ -75963,7 +75963,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781088930
+      // 1542891371327
       var cssReload = require("!../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -76062,6 +76062,311 @@ var _input = __webpack_require__("./components/input/index.js");
 var _input2 = _interopRequireDefault(_input);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./site/src/pages/blog/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(Intact) {
+
+exports.__esModule = true;
+exports.default = undefined;
+
+var _getOwnPropertyDescriptor = __webpack_require__("babel-runtime/core-js/object/get-own-property-descriptor");
+
+var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
+
+var _classCallCheck2 = __webpack_require__("babel-runtime/helpers/classCallCheck");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _possibleConstructorReturn2 = __webpack_require__("babel-runtime/helpers/possibleConstructorReturn");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__("babel-runtime/helpers/inherits");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _dec, _desc, _value, _class, _init, _class2, _temp;
+
+var _document = __webpack_require__("./site/src/pages/document/index.js");
+
+var _document2 = _interopRequireDefault(_document);
+
+var _index = __webpack_require__("./site/src/pages/blog/index.vdt");
+
+var _index2 = _interopRequireDefault(_index);
+
+__webpack_require__("./site/src/pages/blog/index.styl");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
+
+    return desc;
+}
+
+var mermaid = void 0;
+if (process.browser) {
+    mermaid = __webpack_require__("mermaid");
+}
+
+var _default = (_dec = Intact.template(), (_class = (_temp = _class2 = function (_Document) {
+    (0, _inherits3.default)(_default, _Document);
+
+    function _default() {
+        (0, _classCallCheck3.default)(this, _default);
+        return (0, _possibleConstructorReturn3.default)(this, _Document.apply(this, arguments));
+    }
+
+    _default.prototype._mount = function _mount() {
+        _Document.prototype._mount.call(this);
+
+        this.headerHeight = this.refs.header.clientHeight;
+
+        this.h1s = this.element.querySelectorAll('h1');
+        this.h2s = this.element.querySelectorAll('h2');
+        this.h3s = this.element.querySelectorAll('h3');
+
+        mermaid.init(undefined, '.mermaid');
+    };
+
+    _default.prototype.scrollTo = function scrollTo(id) {
+        var header = document.getElementById(id);
+        if (header) {
+            var top = header.getBoundingClientRect().top + window.pageYOffset - this.headerHeight;
+
+            window.scrollTo(0, top);
+        }
+    };
+
+    _default.prototype._onScroll = function _onScroll() {
+        var _this2 = this;
+
+        var scrollTop = window.pageYOffset;
+        if (scrollTop > 15) {
+            this.refs.wrapper.classList.add('fixed');
+        } else {
+            this.refs.wrapper.classList.remove('fixed');
+        }
+
+        var findActive = function findActive(hs) {
+            var minTop = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+            for (var i = hs.length - 1; i >= 0; i--) {
+                var h = hs[i];
+                var top = h.getBoundingClientRect().top + window.pageYOffset;
+
+                if (top > minTop && top - _this2.headerHeight <= scrollTop) {
+                    return { header: h.id, top: top };
+                }
+            }
+            return { header: '', top: 0 };
+        };
+
+        var active2 = findActive(this.h2s, 0);
+        var active3 = findActive(this.h3s, active2.top);
+        this.set({
+            'active2': active2.header,
+            'active3': active3.header
+        });
+
+        var active = this.refs.aside.querySelectorAll('.active');
+        active = active[active.length - 1];
+        if (active) {
+            this.set('borderStyle', {
+                height: active.offsetHeight + 'px',
+                top: active.offsetTop + 'px'
+            });
+        } else {
+            this.set('borderStyle', undefined);
+        }
+    };
+
+    return _default;
+}(_document2.default), _class2.template = _index2.default, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    initializer: function initializer() {
+        return _init;
+    }
+}), _class)), _class));
+
+exports.default = _default;
+module.exports = exports['default'];
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("intact")))
+
+/***/ }),
+
+/***/ "./site/src/pages/blog/index.styl":
+/***/ (function(module, exports, __webpack_require__) {
+
+// removed by extract-text-webpack-plugin
+    if(false) {
+      // 1542891366566
+      var cssReload = require("!../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
+      module.hot.dispose(cssReload);
+      module.hot.accept(undefined, cssReload);
+    }
+  
+
+/***/ }),
+
+/***/ "./site/src/pages/blog/index.vdt":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+exports.default = function (obj, _Vdt, blocks, $callee) {
+    _Vdt || (_Vdt = Vdt);
+    obj || (obj = {});
+    blocks || (blocks = {});
+    var h = _Vdt.miss.h,
+        hc = _Vdt.miss.hc,
+        hu = _Vdt.miss.hu,
+        widgets = this && this.widgets || {},
+        _blocks = {},
+        __blocks = {},
+        __u = _Vdt.utils,
+        extend = __u.extend,
+        _e = __u.error,
+        _className = __u.className,
+        __slice = __u.slice,
+        __noop = __u.noop,
+        __m = __u.map,
+        __o = __u.Options,
+        _getModel = __o.getModel,
+        _setModel = __o.setModel,
+        _setCheckboxModel = __u.setCheckboxModel,
+        _detectCheckboxChecked = __u.detectCheckboxChecked,
+        _setSelectModel = __u.setSelectModel,
+        self = this.data,
+        $this = this,
+        scope = obj,
+        Animate = self && self.Animate,
+        parent = ($callee || {})._super;
+
+    var Article = self.get('Article');
+
+    return function () {
+        var _obj = {
+            'navIndex': 'blog',
+            'className': 'document-page blog-page'
+        };
+        return parent.call($this, _obj, _Vdt, function (blocks) {
+            var _blocks = {},
+                __blocks = extend({}, blocks);
+            return (_blocks['content'] = function (parent) {
+                return [h('aside', null, h('div', null, [h('ul', null, h('li', null, [h('a', {
+                    'ev-click': function () {
+                        try {
+                            return self.scrollTo.bind(self, '__top');
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call($this)
+                }, function () {
+                    try {
+                        return Article.data.setting.title;
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call($this)), h('ul', null, __m(function () {
+                    try {
+                        return Article.data.catalogs.filter(function (item) {
+                            return item.level <= 3;
+                        });
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call($this), function (value, key) {
+                    return h('li', null, h('a', {
+                        'ev-click': function () {
+                            try {
+                                return self.scrollTo.bind(self, value.id);
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call($this)
+                    }, function () {
+                        try {
+                            return value.text;
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call($this)), _className(function () {
+                        try {
+                            return {
+                                'sub-catalogs': value.level > 2,
+                                'active': self.get('active' + value.level) === value.id
+                            };
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call($this)));
+                }, $this), 'sub-catalogs')])), h('div', {
+                    'style': function () {
+                        try {
+                            return self.get('borderStyle');
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call($this)
+                }, null, 'aside-border transition')], 'aside-wrapper', null, function (i) {
+                    widgets['aside'] = i;
+                })), h('article', null, [h('h1', {
+                    'id': '__top'
+                }, function () {
+                    try {
+                        return Article.data.setting.title;
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call($this)), h(Article, {
+                    '_context': $this
+                })])];
+            }) && (__blocks['content'] = function (parent) {
+                var args = arguments;
+                return blocks['content'] ? blocks['content'].apply($this, [function () {
+                    return _blocks['content'].apply($this, args);
+                }].concat(__slice.call(args, 1))) : _blocks['content'].apply($this, args);
+            }), __blocks;
+        }.call($this, blocks), parent);
+    }.call($this);
+};
 
 module.exports = exports['default'];
 
@@ -76208,10 +76513,10 @@ var _default = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
     }();
 
     _default.prototype._create = function _create() {
-        this.set('hasRead', localStorage.getItem("0.7.1"));
+        this.set('hasRead', localStorage.getItem("0.7.2"));
         if (this.path === '/docs/changelog') {
             this.set('hasRead', true);
-            localStorage.setItem("0.7.1", 1);
+            localStorage.setItem("0.7.2", 1);
         }
         this.examples = this.element.querySelectorAll('.example');
     };
@@ -76292,7 +76597,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781085108
+      // 1542891366546
       var cssReload = require("!../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -76758,7 +77063,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1542781085879
+      // 1542891367633
       var cssReload = require("!../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);

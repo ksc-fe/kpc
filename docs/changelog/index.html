@@ -48,12 +48,13 @@
 <li><p><code>Change</code> 调整字体加载路径，兼容parcel <a href="https://github.com/ksc-fe/kpc/issues/131">#131</a></p>
 <p> webpack.config.js配置文件需要更改如下所示：</p>
 <pre><code class="hljs js"> {
-     <span class="hljs-attribute">loader</span>: <span class="hljs-string">'stylus-loader'</span>, 
-     options: {
-         <span class="hljs-string">'include css'</span>: true,
-         <span class="hljs-string">'resolve url'</span>: true,
-         sourceMap: false,
-         // <span class="hljs-string">'import'</span>: <span class="hljs-string">'~kpc/styles/themes/ksyun/index.styl'</span>,
+     <span class="hljs-symbol">test:</span> /\.styl<span class="hljs-variable">$/</span>,
+     <span class="hljs-symbol">loader:</span> <span class="hljs-string">'stylus-loader'</span>, 
+     <span class="hljs-symbol">options:</span> {
+         <span class="hljs-string">'include css'</span>: <span class="hljs-keyword">true</span>,
+         <span class="hljs-string">'resolve url'</span>: <span class="hljs-keyword">true</span>,
+         <span class="hljs-symbol">sourceMap:</span> <span class="hljs-keyword">false</span>,
+         <span class="hljs-regexp">//</span> <span class="hljs-string">'import'</span>: <span class="hljs-string">'~kpc/styles/themes/ksyun/index.styl'</span>,
      }
  }
 </code></pre>
