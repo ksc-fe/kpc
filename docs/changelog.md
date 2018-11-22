@@ -42,6 +42,7 @@ sidebar: doc
     webpack.config.js配置文件需要更改如下所示：
     ```js
     {
+        test: /\.styl$/,
         loader: 'stylus-loader', 
         options: {
             'include css': true,
