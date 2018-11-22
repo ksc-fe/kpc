@@ -1,7 +1,7 @@
 <div align="center">
 
 <a href="https://ksc-fe.github.io/kpc/" rel="nofollow">
-    <img src="/site/src/imgs/logo.png" alt="LOGO" style="width: 150px;">
+    <img src="/site/src/imgs/logo.png" alt="LOGO" width="150">
 </a>
 
 [![Build Status](https://travis-ci.org/ksc-fe/kpc.svg?branch=master)](https://travis-ci.org/ksc-fe/kpc)
