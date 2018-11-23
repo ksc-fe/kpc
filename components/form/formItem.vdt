@@ -11,7 +11,7 @@ const classNameObj = {
     [className]: className,
 };
 
-const labelWidth = self.form.get('labelWidth');
+const labelWidth = self.form && self.form.get('labelWidth');
 let labelStyle;
 if (labelWidth != null) {
     if (/^\d+$/.test(labelWidth)) {

@@ -2,6 +2,8 @@ import Intact from 'intact';
 import template from './formItem.vdt';
 import Form from './form';
 
+const warn = Intact.utils.warn;
+
 export default class FormItem extends Intact {
     @Intact.template()
     get template() { return template; }
@@ -51,7 +53,8 @@ export default class FormItem extends Intact {
         }
         /* istanbul ignore if */
         if (!form) {
-            throw new Error('FormItem must be used as the descendant of Form');
+            // return warn('FormItem must be used as the descendant of Form');
+            return;
         }
         this.form = form = form.children;
         if (this.get('model')) {
@@ -94,7 +97,7 @@ export default class FormItem extends Intact {
     }
 
     validate() {
-        if (!this.get('model')) return;
+        if (!this.get('model') || !this.form) return;
         
         this._cancel();
 
@@ -211,7 +214,7 @@ export default class FormItem extends Intact {
     }
 
     _destroy() {
-        if (!this.get('model')) return;
+        if (!this.get('model') || !this.form) return;
         const items = this.form.get('items');
         items.splice(items.indexOf(this), 1);
         // this.reset();
