@@ -14,6 +14,7 @@ export default class extends Layout {
         return {
             ...super.defaults(),
             hasRead: true,
+            expanded: false,
         };
     }
 

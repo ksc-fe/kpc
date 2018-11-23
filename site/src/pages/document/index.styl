@@ -27,6 +27,8 @@ $aside-width = 200px
         aside
             width $aside-width
             border-right 1px solid #eee
+            .k-btn
+                display none
         .aside-wrapper
             position relative
             padding-bottom 70px
@@ -194,3 +196,29 @@ $aside-width = 200px
     border 1px solid #CCCCCC
     left -3px
     background-color #CCCCCC
+
+@media (max-width: 768px) 
+    .document-page
+        .table-of-contents
+            display none
+        .content-wrapper
+            aside
+                position fixed
+                z-index $max-z-index
+                height 100%
+                transform translateX(-201px)
+                transition transform $transition
+                &.expanded
+                    transform translateX(0)
+                    box-shadow 0 4px 4px 0 rgba(0,0,0,0.3)
+                .k-btn
+                    display block
+                    position absolute
+                    top 100px
+                    right -32px
+                    border none
+                    box-shadow 2px 0 4px 0 rgba(0,0,0,0.3)
+            article
+                padding 20px
+        .aside-wrapper
+            transition left $transition

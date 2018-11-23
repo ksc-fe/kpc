@@ -70,11 +70,16 @@ if (sidebar) {
 
 <t:parent navIndex="document" class="document-page fixed-aside" {{ ...scope }}>
     <b:content>
-        <aside>
+        <aside class={{ {expanded: self.get('expanded')} }}>
             <div class="aside-wrapper">
                 <Catalog key={{ value.key }} value={{ value.value }} v-for={{ _sidebar }} />
                 <div class="aside-border transition"></div>
             </div>
+            <Button icon
+                ev-click={{ self.set.bind(self, 'expanded', !self.get('expanded')) }}
+            >
+                <i class="k-icon ion-android-menu"></i>
+            </Button>
         </aside>
         <article>
             <div class="article-head">
