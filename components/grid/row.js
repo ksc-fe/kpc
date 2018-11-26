@@ -8,14 +8,7 @@ import matchMedia from './mediaMatch';
 
 let enquire;
 if (typeof window !== 'undefined') {
-    window.matchMedia = window.matchMedia || matchMedia();
-        // require(function() {
-            // return {
-                // matches : true, // let match the largest width always
-                // addListener : function() {},
-                // removeListener: function() {}
-            // };
-        // };
+    window.matchMedia = matchMedia();
     enquire = require('enquire.js');
 }
 

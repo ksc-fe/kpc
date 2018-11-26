@@ -121,7 +121,8 @@
     "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {
-    "enquire.js": "^2.1.6"
+    "enquire.js": "^2.1.6",
+    "resize-observer-polyfill": "^1.5.0"
   },
   "sideEffects": [
     "*.css",
