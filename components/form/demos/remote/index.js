@@ -1,6 +1,7 @@
 export {default as data} from './index.json';
 import Intact from 'intact';
 import template from './index.vdt';
+import './index.styl'; 
 
 import Form from 'kpc/components/form';
 
