@@ -12,7 +12,15 @@ order: 0
 import {Menu, MenuItem} from 'kpc/components/menu';
 
 <Menu v-model:expandedKeys="expandedKeys" v-model:selectedKey="selectedKey">
-    <MenuItem key="1" ev-select={{ self.onSelect }}><i class="k-icon ion-flag"></i>menu 1</MenuItem>
+    <MenuItem key="1" ev-select={{ self.onSelect }}>
+        <i class="k-icon ion-flag"></i>menu 1
+        <Menu>
+            <MenuItem key="1-1">sub menu 1</MenuItem>
+            <MenuItem key="1-2">sub menu 2</MenuItem>
+            <MenuItem key="1-3" disabled>sub menu 3</MenuItem>
+            <MenuItem key="1-4">sub menu 4</MenuItem>
+        </Menu>
+    </MenuItem>
     <MenuItem key="2" disabled><i class="k-icon ion-star"></i>menu 2</MenuItem>
     <MenuItem key="3">
         <i class="k-icon ion-heart"></i>menu 3

@@ -18,10 +18,18 @@ export default class VShow extends Intact {
         }, data.get('children'), 'k-show-height');
     }
 
+    _init() {
+        this.on('$receive:show', (c, v) => {
+            if (c.isRender === false) return;
+            if (!v) {
+                this.set({'display': 'none', 'height': 0});
+            } else {
+                this.set({display: undefined, height: undefined});
+            }
+        });
+    }
+
     _mount() {
-        if (!this.get('show')) {
-            this.set({'display': 'none', 'height': 0});
-        }
         const raf = window.requestAnimationFrame ? 
             window.requestAnimationFrame.bind(window) : setTimeout;
         this.nextFrame = (fn) => {
