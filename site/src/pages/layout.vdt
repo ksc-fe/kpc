@@ -3,7 +3,7 @@ import {Select, Option} from 'kpc/components/select';
 
 const nav = [
     {
-        title: 'King Design',
+        title: '设计',
         href: '/docs/design/language/',
         index: 'design'
     },

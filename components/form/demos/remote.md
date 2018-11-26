@@ -18,6 +18,16 @@ import {Input} from 'kpc/components/input';
 </Form>
 ```
 
+```styl
+@media (max-width: 768px)
+    .k-form-item
+        width 100%
+        .k-input
+            width 100%
+        .k-label
+            width auto
+```
+
 ```js
 import Form from 'kpc/components/form';
 

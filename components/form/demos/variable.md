@@ -35,3 +35,11 @@ import {Row, Col} from 'kpc/components/grid';
     </FormItem>
 </Form>
 ```
+
+```styl
+@media (max-width: 768px)
+    .k-form-item
+        width 100%
+        .k-input
+            width 100%
+```

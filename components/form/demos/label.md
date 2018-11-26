@@ -20,3 +20,11 @@ import {Input} from 'kpc/components/input';
     </FormItem>
 </Form>
 ```
+
+```styl
+@media (max-width: 768px) 
+    .k-form-item
+        width 100%
+        .k-input
+            width 100%
+```
