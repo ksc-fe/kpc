@@ -7,10 +7,10 @@ import {mount, unmount, dispatchEvent, getElement} from 'test/utils';
 describe('Drawer', () => {
     let instance;
 
-    // afterEach((done) => {
-    //     unmount(instance);
-    //     setTimeout(done, 400);
-    // });
+    afterEach((done) => {
+        unmount(instance);
+        setTimeout(done, 400);
+    });
 
     it('should show drawer correctly', function(done) {
         this.enableTimeouts(false);
