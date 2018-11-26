@@ -57,7 +57,7 @@ import {Button} from 'kpc/components/button';
     .k-form-item
         margin-bottom 20px
 
-@media (max-width: 768px) 
+@media (max-width: 768px)
     .k-form-item
         width 100%
         .k-input

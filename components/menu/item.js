@@ -65,7 +65,16 @@ export default class MenuItem extends DropdownItem {
                 items.push(parentItem);
                 parentItem = parentItem.get('_parentItem');
             }
-            c.set('_highlightedKeys', items.map(item => item.get('key')));
+            const expandedKeys = new Set(c.get('expandedKeys'));
+            const _highlightedKeys = items.map(item => {
+                const key = item.get('key');
+                expandedKeys.add(key);
+                return key;
+            });
+            c.set({
+                _highlightedKeys,
+                expandedKeys: Array.from(expandedKeys)
+            });
         }
     }
 

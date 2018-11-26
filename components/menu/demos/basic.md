@@ -34,7 +34,7 @@ export default class extends Intact {
 
     defaults() {
         return {
-            expandedKeys: ['3'],
+            expandedKeys: [],
             selectedKey: '3-1',
         };
     }

@@ -2,6 +2,7 @@ import Menu from './menu';
 import {mapChildren, expandAnimationCallbacks, isStringOrNumberNotEmpty} from '../utils';
 import Dropdown from '../dropdown';
 import {Tooltip} from '../tooltip';
+import VShow from './vShow';
 
 const {
     children, key, className, style, dot,
@@ -65,13 +66,16 @@ const title = (
 >
     <template v-if={{ !Menu.showAsDropdown(_root) }}>
         {{ title }}
-        <Animate v-if={{ isExpanded }}
+        <VShow show={{ isExpanded }} v-if={{ subMenuVNode }}>
+            {{ subMenuVNode }}
+        </VShow>
+        {{ /*Animate v-if={{ isExpanded }}
             a:move={{ false }}
             {{ ...expandAnimationCallbacks }}
             key="submenu"
         >
             {{ subMenuVNode }}
-        </Animate>
+        </Animate>*/ }}
     </template>
     <template v-else-if={{ !subMenuVNode }}>
         <Tooltip v-if={{ _isFirstFloorChildren && _root.get('type') !== 'horizontal' }}
