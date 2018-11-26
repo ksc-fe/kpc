@@ -13,9 +13,14 @@ import {Button, ButtonGroup} from 'kpc/components/button';
 <div>
     <Button ev-click={{ self.set.bind(self, 'noOverlay', true) }}
         type="primary"
-    >Show Drawer With No Overlay</Button>
-    <Drawer v-model="noOverlay" title="Drawer Title" ref="__demoOne" overlay={{ false }} closable={{ false }}>
-        Drawer With No Overlay
+    >Show Drawer Without Overlay</Button>
+    <Drawer v-model="noOverlay" 
+        title="Drawer Title"
+        ref="__demoOne"
+        overlay={{ false }}
+        closable={{ false }}
+    >
+        Drawer Without Overlay
     </Drawer>
 </div>
 ```
@@ -24,7 +29,5 @@ import {Button, ButtonGroup} from 'kpc/components/button';
 export default class extends Intact {
     @Intact.template()
     static template = template;
-
-    
 }
 ```

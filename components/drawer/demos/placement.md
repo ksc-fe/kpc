@@ -11,10 +11,17 @@ import {Button, ButtonGroup} from 'kpc/components/button';
 
 <div>
     <ButtonGroup>
-        <Button v-for={{ self.get('showList') }} ev-click={{ self.showDrawer.bind(self, value.key) }}>{{ value.value }}</Button>
+        <Button v-for={{ self.get('showList') }} 
+            ev-click={{ self.showDrawer.bind(self, value.key) }}
+        >{{ value.value }}</Button>
     </ButtonGroup>
 
-    <Drawer v-model='show' title='Drawer Title' ref='__demoTwo' placement={{ self.get('showPosition') }} size='small'>
+    <Drawer v-model='show'
+        title='Drawer Title' 
+        ref='__demoTwo' 
+        placement={{ self.get('showPosition') }} 
+        size='small'
+    >
         Drawer Body
     </Drawer>
 </div>
@@ -52,5 +59,4 @@ export default class extends Intact {
         });
     }
 }
-
 ```
