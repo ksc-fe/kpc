@@ -4,7 +4,7 @@
         "order": 0
     },
     "catalogs": [],
-    "contents": "<p><code>Drawer组件</code>继承了<code>Dialog组件</code>的属性、扩展点、方法和事件（拖拽功能除外）。基本用法和<code>Dialog</code>相同。</p>\n<!-- 继承了Dialog弹窗，通过`v-model`建立绑定，当该绑定的值为`true`时，展示抽屉组件。 -->\n",
+    "contents": "<p><code>Drawer</code>组件继承了<code>Dialog</code>组件的属性、扩展点、方法和事件（拖拽功能除外）。基本用法和<code>Dialog</code>相同。</p>\n<!-- 继承了Dialog弹窗，通过`v-model`建立绑定，当该绑定的值为`true`时，展示抽屉组件。 -->\n",
     "index": 43,
     "highlighted": [
         {
@@ -13,7 +13,7 @@
         },
         {
             "language": "js",
-            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n\n\n}\n</code></pre>"
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
         }
     ]
 }
