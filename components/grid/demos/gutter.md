@@ -7,6 +7,7 @@ order: 1
 定义，如：`{lg: 16, md: 4}`
 
 > IE9不支持matchMedia，如果要使`gutter`在IE9下支持响应式，需要引入[matchMedia polyfill](https://github.com/paulirish/matchMedia.js)
+> `@since v0.7.4` 已经包含了matchMedia polyfill无需再次引入
 
 ```vdt
 import {Row, Col} from 'kpc/components/grid';

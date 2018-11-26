@@ -4,16 +4,18 @@ import mediaQuery from './mediaQuery';
 import {isObject} from '../utils';
 import Col from './col';
 import {breakpoints} from './utils';
+import matchMedia from './mediaMatch';
 
 let enquire;
 if (typeof window !== 'undefined') {
-    window.matchMedia = window.matchMedia || function() {
-        return {
-            matches : true, // let match the largest width always
-            addListener : function() {},
-            removeListener: function() {}
-        };
-    };
+    window.matchMedia = window.matchMedia || matchMedia();
+        // require(function() {
+            // return {
+                // matches : true, // let match the largest width always
+                // addListener : function() {},
+                // removeListener: function() {}
+            // };
+        // };
     enquire = require('enquire.js');
 }
 
