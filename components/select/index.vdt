@@ -10,7 +10,7 @@ const {
     disabled, filterable, keywords, _show,
     placeholder, size, style, name, children,
     fluid, width, allowUnmatch, card, hideIcon,
-    container,
+    container, noBorder
 } = self.get();
 
 let _activeLabel = self.get('_activeLabel');
@@ -30,6 +30,7 @@ const classNameObj = {
     'k-fluid': fluid,
     'k-with-prefix': blocks.prefix,
     'k-with-suffix': !hideIcon,
+    'k-no-border': noBorder,
 };
 
 let hasValue = value != null && (!multiple && value !== '' || multiple && value.length);

@@ -108,6 +108,12 @@
 
             &:hover
                 color $select-multiple-tag-delete-icon-hover-color
+    // noBorder
+    &.k-no-border
+        width auto
+        > .k-wrapper
+            border none
+
     // size
     generate(size)
         font-size lookup('$select-' + size + '-font-size')
