@@ -25,7 +25,7 @@ export default class Select extends Intact {
         allowUnmatch: Boolean,
         card: Boolean,
         container: [Function, String],
-        noBorder: Boolean,
+        inline: Boolean,
     };
 
     defaults() {
@@ -63,7 +63,7 @@ export default class Select extends Intact {
             allowUnmatch: false,
             card: false, // 卡片式分组
             container: undefined,
-            noBorder: false,
+            inline: false,
 
             _show: false,
             _activeLabel: undefined,

@@ -105,14 +105,17 @@
             margin-left $select-multiple-tag-delete-icon-margin-left 
             &:before
                 font-size $select-multiple-tag-delete-icon-font-size 
-
             &:hover
                 color $select-multiple-tag-delete-icon-hover-color
-    // noBorder
-    &.k-no-border
+    // inline
+    &.k-inline
         width auto
         > .k-wrapper
             border none
+            min-height 0
+        .k-placeholder
+        .k-value
+            line-height inherit
 
     // size
     generate(size)
