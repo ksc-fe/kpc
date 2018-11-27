@@ -1,77 +1,67 @@
 import {Button} from 'kpc/components/button';
 import {Link} from 'kpc/components/link';
 import {Row, Col} from 'kpc/components/grid';
+import image1 from '../../imgs/page1.png';
+import image2 from '../../imgs/page2.png';
 
 <t:parent className="index-page" pageIndex="index">
+    <b:header>
+        {{ parent() }}
+        <div class="circle-bg right"></div>
+    </b:header>
     <b:content>
         <div class="pages">
-            <ul class="index-dot" v-if={{ false }}>
-                <li ev-click={{ self._page1 }} class={{ self.get('current') === "one" ? "dot-active" : "" }}></li>
-                <li ev-click={{ self._page2 }} class={{ self.get('current') === "two" ? "dot-active" : "" }}></li>
-            </ul>
-                <Row class="test">
-                    <Col class="first-page-left"
-                        xs={{ {span: 24, offset: 0} }}
-                        xl={{ {span: 12, offset: 0} }}
-                    >
-                        <h1>KPC</h1>
-                        <p>支持多框架的前端高质量组件库</p>
-                        <div class="actions">
-                            <Button tagName={{ Link }} type="primary"
-                                tagProps={{ {
-                                    href: `${process.URL_PREFIX}/docs/getting-started/`
-                                } }}
-                                class="button"
-                            >开始使用</Button>
-                            <Button href="https://github.com/ksc-fe/kpc" class="button"
-                                target="_blank"
-                            >GitHub</Button>
-                        </div>
-                    </Col>
-                    <Col class="first-page-right"
-                        xs={{ {span: 24, offset: 0} }}
-                        xl={{ {span: 12, offset: 0} }}
-                    >
-                        <div class="right"></div>
-                    </Col>
-                </Row>
-
-                <Row class="test">
-                    <Col class="second-page-left"
-                        xs={{ {span: 24, offset: 0, order: 2} }}
-                        xl={{ {span: 9, offset: 3, order: 1} }}
-                    >
-                        <div class="left"></div>
-                    </Col>
-                    <Col class="second-page-right"
-                        xs={{ {span: 20, offset: 4, order: 1} }}
-                        xl={{ {span: 10, offset: 2, order: 2} }}
-                    >
-                        <div class="info">
-                            <div class="feature">
-                                <h2>支持多框架</h2>
-                                <div>
-                                    同时支持Intact和Vue框架
-                                </div>
-                            </div>
-                            <div class="feature">
-                                <h2>忠于原生，增强原生</h2>
-                                <div>
-                                    在保持浏览器原生特性的基础上，增强交互能力
-                                </div>
-                            </div>
-                            <div class="feature">
-                                <h2>便捷开发</h2>
-                                <div>
-                                    支持按需加载，主题定制，国际化等特性
-                                </div>
-                                <div>
-                                    并且提供了配套的脚手架方便快速初始化项目
-                                </div>
+            <Row class="first-page" align="stretch" justify="center">
+                <Col class="first-page-left" lg="11">
+                    <h1>KPC</h1>
+                    <p>支持多框架的前端高质量组件库</p>
+                    <div class="actions">
+                        <Button tagName={{ Link }} type="primary"
+                            tagProps={{ {
+                                href: `${process.URL_PREFIX}/docs/getting-started/`
+                            } }}
+                            class="button"
+                        >开始使用</Button>
+                        <Button href="https://github.com/ksc-fe/kpc" class="button"
+                            target="_blank"
+                        >GitHub</Button>
+                    </div>
+                </Col>
+                <Col class="first-page-right" lg="11">
+                    <img src={{ image1 }} />
+                </Col>
+            </Row>
+            <Row align="stretch" justify="center">
+                <Col class="second-page-left" lg="11">
+                    <img src={{ image2 }} />
+                </Col>
+                <Col class="second-page-right" lg="11">
+                    <div class="info">
+                        <div class="feature">
+                            <h2>支持多框架</h2>
+                            <div>
+                                同时支持Intact和Vue框架
                             </div>
                         </div>
-                    </Col>
-                </Row>
+                        <div class="feature">
+                            <h2>忠于原生，增强原生</h2>
+                            <div>
+                                在保持浏览器原生特性的基础上，增强交互能力
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <h2>便捷开发</h2>
+                            <div>
+                                支持按需加载，主题定制，国际化等特性
+                            </div>
+                            <div>
+                                并且提供了配套的脚手架方便快速初始化项目
+                            </div>
+                        </div>
+                    </div>
+                </Col>
+            </Row>
         </div>
+        <div class="circle-bg left"></div>
     </b:content>
 </t:parent>
