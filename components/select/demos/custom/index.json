@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>Option</code>的子元素可以是任意dom结构，而非仅仅只是字符串。此时如果需要支持<code>filterable</code>，我们应该指定<code>label</code>，以便组件知道筛选的内容，当然你也可以通过<code>filter</code>指定过滤函数。</p>\n",
-    "index": 185,
+    "index": 195,
     "highlighted": [
         {
             "language": "vdt",

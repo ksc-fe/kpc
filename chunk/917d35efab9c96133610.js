@@ -433,7 +433,7 @@ exports.ButtonGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543303277847
+      // 1543304333830
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -773,7 +773,7 @@ exports.Checkbox = Checkbox;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543303278688
+      // 1543304334789
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1287,7 +1287,7 @@ exports.DropdownItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543303281384
+      // 1543304337630
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -2560,7 +2560,7 @@ exports.Col = _col2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543303277037
+      // 1543304333365
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -3505,7 +3505,7 @@ exports.Input = Input;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543303280554
+      // 1543304336981
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -4836,7 +4836,7 @@ exports.Radio = Radio;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543303284501
+      // 1543304339499
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5294,6 +5294,7 @@ var Select = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
             allowUnmatch: false,
             card: false, // 卡片式分组
             container: undefined,
+            noBorder: false,
 
             _show: false,
             _activeLabel: undefined
@@ -5483,7 +5484,8 @@ var Select = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = f
     width: [Number, String],
     allowUnmatch: Boolean,
     card: Boolean,
-    container: [Function, String]
+    container: [Function, String],
+    noBorder: Boolean
 }, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
     enumerable: true,
     configurable: true,
@@ -5504,7 +5506,7 @@ exports.OptionGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543303278432
+      // 1543304334468
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5576,7 +5578,8 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         allowUnmatch = _self$get.allowUnmatch,
         card = _self$get.card,
         hideIcon = _self$get.hideIcon,
-        container = _self$get.container;
+        container = _self$get.container,
+        noBorder = _self$get.noBorder;
 
     var _activeLabel = self.get('_activeLabel');
 
@@ -5584,7 +5587,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
 
     var classNameObj = (_classNameObj = {
         'k-select': true
-    }, _classNameObj[className] = className, _classNameObj[scope.className] = scope.className, _classNameObj['k-disabled'] = disabled, _classNameObj['k-show'] = _show, _classNameObj['k-clearable'] = clearable, _classNameObj['k-' + size] = size !== 'default', _classNameObj['k-fluid'] = fluid, _classNameObj['k-with-prefix'] = blocks.prefix, _classNameObj['k-with-suffix'] = !hideIcon, _classNameObj);
+    }, _classNameObj[className] = className, _classNameObj[scope.className] = scope.className, _classNameObj['k-disabled'] = disabled, _classNameObj['k-show'] = _show, _classNameObj['k-clearable'] = clearable, _classNameObj['k-' + size] = size !== 'default', _classNameObj['k-fluid'] = fluid, _classNameObj['k-with-prefix'] = blocks.prefix, _classNameObj['k-with-suffix'] = !hideIcon, _classNameObj['k-no-border'] = noBorder, _classNameObj);
 
     var hasValue = value != null && (!multiple && value !== '' || multiple && value.length);
     var isGroup = Array.isArray(self.get('data.0.data'));
@@ -6497,7 +6500,7 @@ exports.Tab = _tab2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543303280456
+      // 1543304336561
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -7042,7 +7045,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543303276068
+      // 1543304332098
       var cssReload = require("!../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -7362,7 +7365,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543303276071
+      // 1543304332102
       var cssReload = require("!../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -7472,8 +7475,13 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 _e(e);
             }
         }.call($this), h(_select.Select, {
-            'width': '100',
-            'size': 'small',
+            'noBorder': function () {
+                try {
+                    return true;
+                } catch (e) {
+                    _e(e);
+                }
+            }.call($this),
             'children': [h(_select.Option, {
                 'value': 'kpc',
                 'children': '默认主题',

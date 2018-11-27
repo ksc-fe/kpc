@@ -219,8 +219,8 @@
             ]
         },
         {
-            "title": "单选框",
-            "path": "components/radio/index.md",
+            "title": "滚动选择框",
+            "path": "components/scrollSelect/index.md",
             "children": [
                 {
                     "title": "属性",
@@ -233,8 +233,8 @@
             ]
         },
         {
-            "title": "滚动选择框",
-            "path": "components/scrollSelect/index.md",
+            "title": "单选框",
+            "path": "components/radio/index.md",
             "children": [
                 {
                     "title": "属性",
@@ -381,20 +381,6 @@
             ]
         },
         {
-            "title": "滑块",
-            "path": "components/slider/index.md",
-            "children": [
-                {
-                    "title": "属性",
-                    "path": "#header-%E5%B1%9E%E6%80%A7",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                    "text": "属性",
-                    "children": []
-                }
-            ]
-        },
-        {
             "title": "加载中",
             "path": "components/spin/index.md",
             "children": [
@@ -412,6 +398,20 @@
                     "level": 1,
                     "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
                     "text": "扩展点",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "title": "滑块",
+            "path": "components/slider/index.md",
+            "children": [
+                {
+                    "title": "属性",
+                    "path": "#header-%E5%B1%9E%E6%80%A7",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                    "text": "属性",
                     "children": []
                 }
             ]
@@ -698,6 +698,36 @@
             ]
         },
         {
+            "title": "开关",
+            "path": "components/switch/index.md",
+            "children": [
+                {
+                    "title": "属性",
+                    "path": "#header-%E5%B1%9E%E6%80%A7",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                    "text": "属性",
+                    "children": []
+                },
+                {
+                    "title": "扩展点",
+                    "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
+                    "level": 1,
+                    "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
+                    "text": "扩展点",
+                    "children": []
+                },
+                {
+                    "title": "方法",
+                    "path": "#header-%E6%96%B9%E6%B3%95",
+                    "level": 1,
+                    "content": "<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>",
+                    "text": "方法",
+                    "children": []
+                }
+            ]
+        },
+        {
             "title": "面包屑",
             "path": "components/breadcrumb/index.md",
             "children": [
@@ -725,36 +755,6 @@
                             "children": []
                         }
                     ]
-                }
-            ]
-        },
-        {
-            "title": "开关",
-            "path": "components/switch/index.md",
-            "children": [
-                {
-                    "title": "属性",
-                    "path": "#header-%E5%B1%9E%E6%80%A7",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                    "text": "属性",
-                    "children": []
-                },
-                {
-                    "title": "扩展点",
-                    "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
-                    "level": 1,
-                    "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
-                    "text": "扩展点",
-                    "children": []
-                },
-                {
-                    "title": "方法",
-                    "path": "#header-%E6%96%B9%E6%B3%95",
-                    "level": 1,
-                    "content": "<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>",
-                    "text": "方法",
-                    "children": []
                 }
             ]
         },
@@ -1082,28 +1082,6 @@
             ]
         },
         {
-            "title": "穿梭框",
-            "path": "components/transfer/index.md",
-            "children": [
-                {
-                    "title": "属性",
-                    "path": "#header-%E5%B1%9E%E6%80%A7",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                    "text": "属性",
-                    "children": []
-                },
-                {
-                    "title": "扩展点",
-                    "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
-                    "level": 1,
-                    "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
-                    "text": "扩展点",
-                    "children": []
-                }
-            ]
-        },
-        {
             "title": "可编辑文本",
             "path": "components/editable/index.md",
             "children": [
@@ -1198,8 +1176,8 @@
             ]
         },
         {
-            "title": "时间轴",
-            "path": "components/timeline/index.md",
+            "title": "穿梭框",
+            "path": "components/transfer/index.md",
             "children": [
                 {
                     "title": "属性",
@@ -1207,16 +1185,7 @@
                     "level": 1,
                     "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
                     "text": "属性",
-                    "children": [
-                        {
-                            "title": "TimelineItem",
-                            "path": "#header-TimelineItem",
-                            "level": 2,
-                            "content": "<h2 id='header-TimelineItem'>TimelineItem</h2>",
-                            "text": "TimelineItem",
-                            "children": []
-                        }
-                    ]
+                    "children": []
                 },
                 {
                     "title": "扩展点",
@@ -1224,16 +1193,7 @@
                     "level": 1,
                     "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
                     "text": "扩展点",
-                    "children": [
-                        {
-                            "title": "TimelineItem",
-                            "path": "#header-TimelineItem",
-                            "level": 2,
-                            "content": "<h2 id='header-TimelineItem'>TimelineItem</h2>",
-                            "text": "TimelineItem",
-                            "children": []
-                        }
-                    ]
+                    "children": []
                 }
             ]
         },
@@ -1272,6 +1232,46 @@
                     "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
                     "text": "事件",
                     "children": []
+                }
+            ]
+        },
+        {
+            "title": "时间轴",
+            "path": "components/timeline/index.md",
+            "children": [
+                {
+                    "title": "属性",
+                    "path": "#header-%E5%B1%9E%E6%80%A7",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                    "text": "属性",
+                    "children": [
+                        {
+                            "title": "TimelineItem",
+                            "path": "#header-TimelineItem",
+                            "level": 2,
+                            "content": "<h2 id='header-TimelineItem'>TimelineItem</h2>",
+                            "text": "TimelineItem",
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "title": "扩展点",
+                    "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
+                    "level": 1,
+                    "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
+                    "text": "扩展点",
+                    "children": [
+                        {
+                            "title": "TimelineItem",
+                            "path": "#header-TimelineItem",
+                            "level": 2,
+                            "content": "<h2 id='header-TimelineItem'>TimelineItem</h2>",
+                            "text": "TimelineItem",
+                            "children": []
+                        }
+                    ]
                 }
             ]
         }
@@ -1350,52 +1350,6 @@
             ]
         },
         {
-            "title": "Vue中使用",
-            "path": "docs/vue.md",
-            "children": [
-                {
-                    "title": "语法说明",
-                    "path": "#header-%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E",
-                    "level": 1,
-                    "content": "<h1 id='header-%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E'>语法说明</h1>",
-                    "text": "语法说明",
-                    "children": []
-                },
-                {
-                    "title": "安装依赖",
-                    "path": "#header-%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96'>安装依赖</h1>",
-                    "text": "安装依赖",
-                    "children": []
-                },
-                {
-                    "title": "配置<code>webpack.config.js</code>",
-                    "path": "#header-%E9%85%8D%E7%BD%AEwebpack.config.js",
-                    "level": 1,
-                    "content": "<h1 id='header-%E9%85%8D%E7%BD%AEwebpack.config.js'>配置<code>webpack.config.js</code></h1>",
-                    "text": "配置<code>webpack.config.js</code>",
-                    "children": []
-                },
-                {
-                    "title": "全量引入",
-                    "path": "#header-%E5%85%A8%E9%87%8F%E5%BC%95%E5%85%A5",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%85%A8%E9%87%8F%E5%BC%95%E5%85%A5'>全量引入</h1>",
-                    "text": "全量引入",
-                    "children": []
-                },
-                {
-                    "title": "按需引入",
-                    "path": "#header-%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5",
-                    "level": 1,
-                    "content": "<h1 id='header-%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5'>按需引入</h1>",
-                    "text": "按需引入",
-                    "children": []
-                }
-            ]
-        },
-        {
             "title": "定制主题",
             "path": "docs/theme.md",
             "children": [
@@ -1447,6 +1401,52 @@
                     "level": 1,
                     "content": "<h1 id='header-%E5%8F%91%E5%B8%83%E4%B8%BB%E9%A2%98'>发布主题</h1>",
                     "text": "发布主题",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "title": "Vue中使用",
+            "path": "docs/vue.md",
+            "children": [
+                {
+                    "title": "语法说明",
+                    "path": "#header-%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E",
+                    "level": 1,
+                    "content": "<h1 id='header-%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E'>语法说明</h1>",
+                    "text": "语法说明",
+                    "children": []
+                },
+                {
+                    "title": "安装依赖",
+                    "path": "#header-%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96'>安装依赖</h1>",
+                    "text": "安装依赖",
+                    "children": []
+                },
+                {
+                    "title": "配置<code>webpack.config.js</code>",
+                    "path": "#header-%E9%85%8D%E7%BD%AEwebpack.config.js",
+                    "level": 1,
+                    "content": "<h1 id='header-%E9%85%8D%E7%BD%AEwebpack.config.js'>配置<code>webpack.config.js</code></h1>",
+                    "text": "配置<code>webpack.config.js</code>",
+                    "children": []
+                },
+                {
+                    "title": "全量引入",
+                    "path": "#header-%E5%85%A8%E9%87%8F%E5%BC%95%E5%85%A5",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%85%A8%E9%87%8F%E5%BC%95%E5%85%A5'>全量引入</h1>",
+                    "text": "全量引入",
+                    "children": []
+                },
+                {
+                    "title": "按需引入",
+                    "path": "#header-%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5",
+                    "level": 1,
+                    "content": "<h1 id='header-%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5'>按需引入</h1>",
+                    "text": "按需引入",
                     "children": []
                 }
             ]

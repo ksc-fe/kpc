@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>expand</code>block指定行展开后的模板内容。是否支持点击该行任何区域都展开内容，是由<code>rowExpandable</code>控制的，默认情况下它为<code>true</code>。你也可以将它设为<code>false</code>，来自定义展开逻辑。例如：点击某个<code>icon</code>后展开改行，而点击其它元素无效。自定义展开逻辑，需要调用<code>shrinkRow(key)</code>和<code>expandRow(key)</code>方法来实现收起和展开，或者修改<code>expandedKeys</code>属性值，来指定哪些<code>key</code>对应的行展开。</p>\n<ul>\n<li><code>rowExpandable</code>：是否点击整行即展开，类型<code>Boolean</code>，默认<code>true</code></li>\n<li><code>expandedKeys</code>：指定哪些<code>key</code>对应行展开，类型<code>Array</code>，默认<code>[]</code></li>\n</ul>\n",
-    "index": 206,
+    "index": 202,
     "highlighted": [
         {
             "language": "vdt",

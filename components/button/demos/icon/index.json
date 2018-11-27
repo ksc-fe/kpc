@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>给<code>Button</code>添加<code>icon</code>属性，可以展示图标按钮。图标按钮仅仅是使按钮的宽高相等，此时你可以将任意图标元素作为它的子元素。<code>circle</code>属性可以展示圆形图标。如果你不需要宽高相等的图标按钮，而仅仅是带图标的文字按钮，去掉<code>icon</code>属性即可。</p>\n<blockquote>\n<p>请给图标元素添加<code>k-icon</code>类名，用于定位图标元素，以便按钮变为<code>loading</code>状态时能够将它替换为loading图标</p>\n</blockquote>\n",
-    "index": 61,
+    "index": 62,
     "highlighted": [
         {
             "language": "vdt",
