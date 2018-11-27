@@ -15,6 +15,7 @@ export default class Tabs extends Intact {
             vertical: false,
             size: 'default',
             type: 'default',
+            closable: false,
 
             _activeBarStyle: undefined,
         };
@@ -25,6 +26,7 @@ export default class Tabs extends Intact {
         vertical: Boolean,
         size: ['large', 'default', 'small', 'mini'],
         type: ['default', 'card', 'border-card', 'no-border-card'],
+        closable: Boolean,
     }
 
     _changeTab(item) {
