@@ -1,15 +1,15 @@
 {
     "setting": {
-        "title": "无边框模式",
+        "title": "内联模式",
         "order": 9
     },
     "catalogs": [],
-    "contents": "<p>给<code>Select</code>添加<code>noBorder</code>属性，可以展示无边框模式，该模式下组件的宽度由当前选择的文案长度撑开</p>\n",
+    "contents": "<p>给<code>Select</code>添加<code>inline</code>属性，可以展示内联模式，该模式下，组件没有边框，宽度和高度如同内联元素一样由内容撑开</p>\n",
     "index": 226,
     "highlighted": [
         {
             "language": "vdt",
-            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> {Select, Option} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/select'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Select</span> <span class=\"hljs-attr\">noBorder</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Option</span> <span class=\"hljs-attr\">value</span>=<span class=\"hljs-string\">\"default\"</span>&gt;</span>默认主题<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Option</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Option</span> <span class=\"hljs-attr\">value</span>=<span class=\"hljs-string\">\"ksyun\"</span>&gt;</span>金山云主题<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Option</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Select</span>&gt;</span></span></code></pre>"
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> {Select, Option} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/select'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Select</span> <span class=\"hljs-attr\">inline</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Option</span> <span class=\"hljs-attr\">value</span>=<span class=\"hljs-string\">\"default\"</span>&gt;</span>默认主题<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Option</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Option</span> <span class=\"hljs-attr\">value</span>=<span class=\"hljs-string\">\"ksyun\"</span>&gt;</span>金山云主题<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Option</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Select</span>&gt;</span></span></code></pre>"
         },
         {
             "language": "js",
