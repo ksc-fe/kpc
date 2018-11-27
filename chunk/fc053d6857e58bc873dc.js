@@ -1,5 +1,5 @@
 require("source-map-support").install();
-exports.ids = [0,2];
+exports.ids = [1,2];
 exports.modules = {
 
 /***/ "./components/badge/index.js":
@@ -111,7 +111,7 @@ exports.Badge = Badge;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202777202
+      // 1543303276618
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -324,7 +324,7 @@ exports.BreadcrumbItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202779446
+      // 1543303278560
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1057,7 +1057,7 @@ exports.ButtonGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202778172
+      // 1543303277847
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1564,7 +1564,7 @@ exports.Cascader = Cascader;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202779106
+      // 1543303278543
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -2075,7 +2075,7 @@ exports.Checkbox = Checkbox;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202779280
+      // 1543303278688
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -2404,7 +2404,7 @@ exports.CollapseItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202779140
+      // 1543303278621
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -4305,7 +4305,7 @@ exports.Datepicker = Datepicker;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202779315
+      // 1543303278772
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5839,7 +5839,7 @@ exports.Dialog = Dialog;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202780090
+      // 1543303279676
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -6291,7 +6291,7 @@ exports.Drawer = Drawer;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202786191
+      // 1543303285901
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -6715,7 +6715,7 @@ exports.DropdownItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202782319
+      // 1543303281384
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -7882,7 +7882,7 @@ exports.Editable = Editable;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202786166
+      // 1543303285807
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -8884,7 +8884,7 @@ exports.FormItem = _formItemWrapper2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202783785
+      // 1543303283620
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -9375,12 +9375,359 @@ exports.Col = _col2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202778695
+      // 1543303277037
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
     }
   
+
+/***/ }),
+
+/***/ "./components/grid/mediaMatch.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+exports.default = function () {
+    'use strict';
+
+    /* istanbul ignore else */
+
+    if (window.matchMedia) {
+        return window.matchMedia;
+    } else {
+        // Internal globals
+        var win = window,
+            _doc = win.document,
+            _viewport = _doc.documentElement,
+            _queries = [],
+            _queryID = 0,
+            _type = '',
+            _features = {},
+
+        // only screen
+        // only screen and
+        // not screen
+        // not screen and
+        // screen
+        // screen and
+        _typeExpr = /\s*(only|not)?\s*(screen|print|[a-z\-]+)\s*(and)?\s*/i,
+
+        // (-vendor-min-width: 300px)
+        // (min-width: 300px)
+        // (width: 300px)
+        // (width)
+        // (orientation: portrait|landscape)
+        _mediaExpr = /^\s*\(\s*(-[a-z]+-)?(min-|max-)?([a-z\-]+)\s*(:?\s*([0-9]+(\.[0-9]+)?|portrait|landscape)(px|em|dppx|dpcm|rem|%|in|cm|mm|ex|pt|pc|\/([0-9]+(\.[0-9]+)?))?)?\s*\)\s*$/,
+            _timer = 0,
+
+
+        // Helper methods
+
+        /*
+            _matches
+         */
+        _matches = function _matches(media) {
+            // screen and (min-width: 400px), screen and (max-width: 500px)
+            var mql = media.indexOf(',') !== -1 && media.split(',') || [media],
+                mqIndex = mql.length - 1,
+                mqLength = mqIndex,
+                mq = null,
+
+
+            // not screen, screen
+            negateType = null,
+                negateTypeFound = '',
+                negateTypeIndex = 0,
+                negate = false,
+                type = '',
+
+
+            // (min-width: 400px), (min-width)
+            exprListStr = '',
+                exprList = null,
+                exprIndex = 0,
+                exprLength = 0,
+                expr = null,
+                prefix = '',
+                length = '',
+                unit = '',
+                value = '',
+                feature = '',
+                match = false;
+
+            if (media === '') {
+                return true;
+            }
+
+            do {
+                mq = mql[mqLength - mqIndex];
+                negate = false;
+                negateType = mq.match(_typeExpr);
+
+                if (negateType) {
+                    negateTypeFound = negateType[0];
+                    negateTypeIndex = negateType.index;
+                }
+
+                if (!negateType || mq.substring(0, negateTypeIndex).indexOf('(') === -1 && (negateTypeIndex || !negateType[3] && negateTypeFound !== negateType.input)) {
+                    match = false;
+                    continue;
+                }
+
+                exprListStr = mq;
+
+                negate = negateType[1] === 'not';
+
+                if (!negateTypeIndex) {
+                    type = negateType[2];
+                    exprListStr = mq.substring(negateTypeFound.length);
+                }
+
+                // Test media type
+                // Test type against this device or if 'all' or empty ''
+                match = type === _type || type === 'all' || type === '';
+
+                exprList = exprListStr.indexOf(' and ') !== -1 && exprListStr.split(' and ') || [exprListStr];
+                exprIndex = exprList.length - 1;
+                exprLength = exprIndex;
+
+                if (match && exprIndex >= 0 && exprListStr !== '') {
+                    do {
+                        expr = exprList[exprIndex].match(_mediaExpr);
+
+                        if (!expr || !_features[expr[3]]) {
+                            match = false;
+                            break;
+                        }
+
+                        prefix = expr[2];
+                        length = expr[5];
+                        value = length;
+                        unit = expr[7];
+                        feature = _features[expr[3]];
+
+                        // Convert unit types
+                        if (unit) {
+                            if (unit === 'px') {
+                                // If unit is px
+                                value = Number(length);
+                            } else if (unit === 'em' || unit === 'rem') {
+                                // Convert relative length unit to pixels
+                                // Assumed base font size is 16px
+                                value = 16 * length;
+                            } else if (expr[8]) {
+                                // Convert aspect ratio to decimal
+                                value = (length / expr[8]).toFixed(2);
+                            } else if (unit === 'dppx') {
+                                // Convert resolution dppx unit to pixels
+                                value = length * 96;
+                            } else if (unit === 'dpcm') {
+                                // Convert resolution dpcm unit to pixels
+                                value = length * 0.3937;
+                            } else {
+                                // default
+                                value = Number(length);
+                            }
+                        }
+
+                        // Test for prefix min or max
+                        // Test value against feature
+                        if (prefix === 'min-' && value) {
+                            match = feature >= value;
+                        } else if (prefix === 'max-' && value) {
+                            match = feature <= value;
+                        } else if (value) {
+                            match = feature === value;
+                        } else {
+                            match = !!feature;
+                        }
+
+                        // If 'match' is false, break loop
+                        // Continue main loop through query list
+                        if (!match) {
+                            break;
+                        }
+                    } while (exprIndex--);
+                }
+
+                // If match is true, break loop
+                // Once matched, no need to check other queries
+                if (match) {
+                    break;
+                }
+            } while (mqIndex--);
+
+            return negate ? !match : match;
+        },
+
+
+        /*
+            _setFeature
+         */
+        _setFeature = function _setFeature() {
+            // Sets properties of '_features' that change on resize and/or orientation.
+            var w = win.innerWidth || _viewport.clientWidth,
+                h = win.innerHeight || _viewport.clientHeight,
+                dw = win.screen.width,
+                dh = win.screen.height,
+                c = win.screen.colorDepth,
+                x = win.devicePixelRatio;
+
+            _features.width = w;
+            _features.height = h;
+            _features['aspect-ratio'] = (w / h).toFixed(2);
+            _features['device-width'] = dw;
+            _features['device-height'] = dh;
+            _features['device-aspect-ratio'] = (dw / dh).toFixed(2);
+            _features.color = c;
+            _features['color-index'] = Math.pow(2, c);
+            _features.orientation = h >= w ? 'portrait' : 'landscape';
+            _features.resolution = x && x * 96 || win.screen.deviceXDPI || 96;
+            _features['device-pixel-ratio'] = x || 1;
+        },
+
+
+        /*
+            _watch
+         */
+        _watch = function _watch() {
+            clearTimeout(_timer);
+
+            _timer = setTimeout(function () {
+                var query = null,
+                    qIndex = _queryID - 1,
+                    qLength = qIndex,
+                    match = false;
+
+                if (qIndex >= 0) {
+                    _setFeature();
+
+                    do {
+                        query = _queries[qLength - qIndex];
+
+                        if (query) {
+                            match = _matches(query.mql.media);
+
+                            if (match && !query.mql.matches || !match && query.mql.matches) {
+                                query.mql.matches = match;
+
+                                if (query.listeners) {
+                                    for (var i = 0, il = query.listeners.length; i < il; i++) {
+                                        if (query.listeners[i]) {
+                                            query.listeners[i].call(win, query.mql);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } while (qIndex--);
+                }
+            }, 10);
+        },
+
+
+        /*
+            _init
+         */
+        _init = function _init() {
+            var head = _doc.getElementsByTagName('head')[0],
+                style = _doc.createElement('style'),
+                info = null,
+                typeList = ['screen', 'print', 'speech', 'projection', 'handheld', 'tv', 'braille', 'embossed', 'tty'],
+                typeIndex = 0,
+                typeLength = typeList.length,
+                cssText = '#mediamatchjs { position: relative; z-index: 0; }',
+                eventPrefix = '',
+                addEvent = win.addEventListener || (eventPrefix = 'on') && win.attachEvent;
+
+            style.type = 'text/css';
+            style.id = 'mediamatchjs';
+
+            head.appendChild(style);
+
+            // Must be placed after style is inserted into the DOM for IE
+            info = win.getComputedStyle && win.getComputedStyle(style) || style.currentStyle;
+
+            // Create media blocks to test for media type
+            for (; typeIndex < typeLength; typeIndex++) {
+                cssText += '@media ' + typeList[typeIndex] + ' { #mediamatchjs { position: relative; z-index: ' + typeIndex + ' } }';
+            }
+
+            // Add rules to style element
+            if (style.styleSheet) {
+                style.styleSheet.cssText = cssText;
+            } else {
+                style.textContent = cssText;
+            }
+
+            // Get media type
+            _type = typeList[info.zIndex * 1 || 0];
+
+            head.removeChild(style);
+
+            _setFeature();
+
+            // Set up listeners
+            addEvent(eventPrefix + 'resize', _watch, false);
+            addEvent(eventPrefix + 'orientationchange', _watch, false);
+        };
+
+        _init();
+
+        /*
+            A list of parsed media queries, ex. screen and (max-width: 400px), screen and (max-width: 800px)
+        */
+        return function (media) {
+            var id = _queryID,
+                mql = {
+                matches: false,
+                media: media,
+                addListener: function addListener(listener) {
+                    _queries[id].listeners || (_queries[id].listeners = []);
+                    listener && _queries[id].listeners.push(listener);
+                },
+                removeListener: function removeListener(listener) {
+                    var query = _queries[id],
+                        i = 0,
+                        il = 0;
+
+                    if (!query) {
+                        return;
+                    }
+
+                    il = query.listeners.length;
+
+                    for (; i < il; i++) {
+                        if (query.listeners[i] === listener) {
+                            query.listeners.splice(i, 1);
+                        }
+                    }
+                }
+            };
+
+            if (media === '') {
+                mql.matches = true;
+                return mql;
+            }
+
+            mql.matches = _matches(media);
+
+            _queryID = _queries.push({
+                mql: mql,
+                listeners: null
+            });
+
+            return mql;
+        };
+    }
+};
+
+module.exports = exports['default']; /*! MediaMatch v.2.0.3 - Testing css media queries in Javascript. Authors & copyright (c) 2013: WebLinc, David Knight. */
 
 /***/ }),
 
@@ -9455,6 +9802,10 @@ var _col2 = _interopRequireDefault(_col);
 
 var _utils2 = __webpack_require__("./components/grid/utils.js");
 
+var _mediaMatch = __webpack_require__("./components/grid/mediaMatch.js");
+
+var _mediaMatch2 = _interopRequireDefault(_mediaMatch);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
@@ -9488,13 +9839,7 @@ function _applyDecoratedDescriptor(target, property, decorators, descriptor, con
 
 var enquire = void 0;
 if (typeof window !== 'undefined') {
-    window.matchMedia = window.matchMedia || function () {
-        return {
-            matches: true, // let match the largest width always
-            addListener: function addListener() {},
-            removeListener: function removeListener() {}
-        };
-    };
+    window.matchMedia = (0, _mediaMatch2.default)();
     enquire = __webpack_require__("enquire.js");
 }
 
@@ -9975,7 +10320,7 @@ exports.Input = Input;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202781371
+      // 1543303280554
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -10630,7 +10975,7 @@ exports.MenuItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202786157
+      // 1543303285878
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -10651,6 +10996,14 @@ exports.default = undefined;
 var _getOwnPropertyDescriptor = __webpack_require__("babel-runtime/core-js/object/get-own-property-descriptor");
 
 var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
+
+var _from = __webpack_require__("babel-runtime/core-js/array/from");
+
+var _from2 = _interopRequireDefault(_from);
+
+var _set = __webpack_require__("babel-runtime/core-js/set");
+
+var _set2 = _interopRequireDefault(_set);
 
 var _extends2 = __webpack_require__("babel-runtime/helpers/extends");
 
@@ -10777,9 +11130,16 @@ var MenuItem = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
                 items.push(parentItem);
                 parentItem = parentItem.get('_parentItem');
             }
-            c.set('_highlightedKeys', items.map(function (item) {
-                return item.get('key');
-            }));
+            var expandedKeys = new _set2.default(c.get('expandedKeys'));
+            var _highlightedKeys = items.map(function (item) {
+                var key = item.get('key');
+                expandedKeys.add(key);
+                return key;
+            });
+            c.set({
+                _highlightedKeys: _highlightedKeys,
+                expandedKeys: (0, _from2.default)(expandedKeys)
+            });
         }
     };
 
@@ -11011,26 +11371,18 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         }
     }.call($this), function () {
         try {
-            return isExpanded;
+            return subMenuVNode;
         } catch (e) {
             _e(e);
         }
-    }.call($this) ? h(Animate, (0, _extends3.default)({
-        'a:move': function () {
+    }.call($this) ? h(_vShow2.default, {
+        'show': function () {
             try {
-                return false;
+                return isExpanded;
             } catch (e) {
                 _e(e);
             }
-        }.call($this)
-    }, function () {
-        try {
-            return _utils.expandAnimationCallbacks;
-        } catch (e) {
-            _e(e);
-        }
-    }.call($this), {
-        'key': 'submenu',
+        }.call($this),
         'children': function () {
             try {
                 return subMenuVNode;
@@ -11039,7 +11391,13 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
             }
         }.call($this),
         '_context': $this
-    })) : undefined] : function () {
+    }) : undefined, function () {
+        try {
+            return null;
+        } catch (e) {
+            _e(e);
+        }
+    }.call($this)] : function () {
         try {
             return !subMenuVNode;
         } catch (e) {
@@ -11136,6 +11494,10 @@ var _dropdown = __webpack_require__("./components/dropdown/index.js");
 var _dropdown2 = _interopRequireDefault(_dropdown);
 
 var _tooltip = __webpack_require__("./components/tooltip/index.js");
+
+var _vShow = __webpack_require__("./components/menu/vShow.js");
+
+var _vShow2 = _interopRequireDefault(_vShow);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -11512,6 +11874,140 @@ module.exports = exports['default'];
 
 /***/ }),
 
+/***/ "./components/menu/vShow.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(Intact) {
+
+exports.__esModule = true;
+exports.default = undefined;
+
+var _classCallCheck2 = __webpack_require__("babel-runtime/helpers/classCallCheck");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _possibleConstructorReturn2 = __webpack_require__("babel-runtime/helpers/possibleConstructorReturn");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__("babel-runtime/helpers/inherits");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var transitionend = {
+    transition: 'transitionend',
+    WebkitTransition: 'webkitTransitionEnd',
+    MozTransition: 'transitionend',
+    OTransition: 'oTransitionEnd otransitionend',
+    msTransition: 'MSTransitionEnd'
+};
+
+var VShow = function (_Intact) {
+    (0, _inherits3.default)(VShow, _Intact);
+
+    function VShow() {
+        (0, _classCallCheck3.default)(this, VShow);
+        return (0, _possibleConstructorReturn3.default)(this, _Intact.apply(this, arguments));
+    }
+
+    VShow.prototype.template = function template(data, vdt) {
+        var h = vdt.miss.h;
+
+        var _data$get = data.get(),
+            height = _data$get.height,
+            display = _data$get.display;
+
+        return h('div', {
+            style: {
+                height: height,
+                display: display
+            }
+        }, data.get('children'), 'k-show-height');
+    };
+
+    VShow.prototype._init = function _init() {
+        var _this2 = this;
+
+        this.on('$receive:show', function (c, v) {
+            if (c.isRender === false) return;
+            if (!v) {
+                _this2.set({ 'display': 'none', 'height': 0 });
+            } else {
+                _this2.set({ display: undefined, height: undefined });
+            }
+        });
+    };
+
+    VShow.prototype._mount = function _mount() {
+        var _this3 = this;
+
+        var raf = window.requestAnimationFrame ? window.requestAnimationFrame.bind(window) : setTimeout;
+        this.nextFrame = function (fn) {
+            raf(fn);
+        };
+
+        var element = this.element;
+        this.transitionendName = '';
+        for (var name in transitionend) {
+            if (element.style[name]) {
+                this.transitionendName = name;
+                break;
+            }
+        }
+
+        element.addEventListener(this.transitionendName, this.transitionend);
+
+        this.on('$changed:show', function (c, v) {
+            if (_this3.isRender) return;
+            if (v) _this3.show();else _this3.hide();
+        });
+    };
+
+    VShow.prototype.show = function show() {
+        var _this4 = this;
+
+        this.set({ 'display': 'block', 'height': 0 });
+        this.nextFrame(function () {
+            _this4.set({
+                'height': _this4.element.firstChild.clientHeight + 'px'
+            });
+        });
+    };
+
+    VShow.prototype.hide = function hide() {
+        var _this5 = this;
+
+        this.set('height', this.element.firstChild.clientHeight + 'px');
+        this.nextFrame(function () {
+            _this5.set('height', 0);
+        });
+    };
+
+    VShow.prototype.transitionend = function transitionend(e) {
+        if (e.target !== this.element) return;
+        if (this.get('show')) {
+            this.set('height', undefined);
+        } else {
+            this.set({ 'display': 'none' });
+        }
+    };
+
+    VShow.prototype._destroy = function _destroy() {
+        this.element.removeEventListener(this.transitionendName, this.transitionend);
+    };
+
+    return VShow;
+}(Intact);
+
+exports.default = VShow;
+module.exports = exports['default'];
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("intact")))
+
+/***/ }),
+
 /***/ "./components/message/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11847,7 +12343,7 @@ exports.Message = Message;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202780031
+      // 1543303279592
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -12870,7 +13366,7 @@ exports.Pagination = Pagination;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785805
+      // 1543303285359
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -13389,7 +13885,7 @@ exports.Progress = Progress;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202783033
+      // 1543303283348
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -13776,7 +14272,7 @@ exports.Radio = Radio;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785051
+      // 1543303284501
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -14244,7 +14740,7 @@ exports.ScrollSelect = ScrollSelect;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202783389
+      // 1543303283115
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -14908,7 +15404,7 @@ exports.OptionGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202779001
+      // 1543303278432
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -16141,7 +16637,7 @@ exports.Slider = Slider;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202781807
+      // 1543303280974
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -16778,7 +17274,7 @@ exports.Spinner = Spinner;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202784617
+      // 1543303284448
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -17092,7 +17588,7 @@ exports.Step = _step2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202784833
+      // 1543303284207
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -17658,7 +18154,7 @@ exports.Switch = Switch;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202783916
+      // 1543303283668
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -19105,7 +19601,7 @@ exports.TableColumn = _column2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202775334
+      // 1543303274512
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -20412,7 +20908,7 @@ exports.Tab = _tab2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202781125
+      // 1543303280456
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -20877,7 +21373,7 @@ exports.Tag = Tag;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202782176
+      // 1543303281550
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -21154,7 +21650,7 @@ exports.TimelineItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202782020
+      // 1543303281081
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -21625,7 +22121,7 @@ exports.Timepicker = Timepicker;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202782195
+      // 1543303280921
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -22350,7 +22846,7 @@ exports.Tip = Tip;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202781826
+      // 1543303280995
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -22790,7 +23286,7 @@ exports.Tooltip = _Wrapper;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202782735
+      // 1543303282094
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -23342,7 +23838,7 @@ exports.Transfer = Transfer;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202781241
+      // 1543303280490
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -24023,7 +24519,7 @@ exports.Tree = Tree;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202781405
+      // 1543303280571
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -24959,7 +25455,7 @@ exports.Upload = Upload;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202780285
+      // 1543303280343
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -27210,7 +27706,7 @@ module.exports = {"setting":{"title":"独立使用","order":3},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202777615
+      // 1543303277441
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -27414,7 +27910,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202777628
+      // 1543303277410
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -27597,7 +28093,7 @@ module.exports = {"setting":{"title":"禁用状态","order":2},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202777637
+      // 1543303277963
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -27841,7 +28337,7 @@ module.exports = {"setting":{"title":"展示文字","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202777652
+      // 1543303277985
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -28312,7 +28808,7 @@ module.exports = {"setting":{"title":"指定分隔符","order":1},"catalogs":[],
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202777674
+      // 1543303277431
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -28594,7 +29090,7 @@ module.exports = {"setting":{"title":"按钮类型","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202777663
+      // 1543303277420
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -28992,7 +29488,7 @@ module.exports = {"setting":{"title":"按钮组","order":1},"catalogs":[],"conte
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202777816
+      // 1543303277453
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -29276,7 +29772,7 @@ module.exports = {"setting":{"title":"图标按钮","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202777684
+      // 1543303277474
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -29492,7 +29988,7 @@ module.exports = {"setting":{"title":"加载状态按钮","order":2},"catalogs":
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202777694
+      // 1543303277496
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -29782,7 +30278,7 @@ module.exports = {"setting":{"title":"按钮尺寸","order":4},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202777716
+      // 1543303277462
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -30038,7 +30534,7 @@ module.exports = {"setting":{"title":"指定按钮tagName","order":5},"catalogs"
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202777706
+      // 1543303277486
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -31051,7 +31547,7 @@ module.exports = {"setting":{"title":"禁用状态","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202777730
+      // 1543303277516
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -31731,7 +32227,7 @@ module.exports = {"setting":{"title":"尺寸","order":4},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202777740
+      // 1543303277507
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -32227,7 +32723,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202777765
+      // 1543303277525
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -32438,7 +32934,7 @@ module.exports = {"setting":{"title":"Checkbox组","order":1},"catalogs":[],"con
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202777750
+      // 1543303277537
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -32663,7 +33159,7 @@ module.exports = {"setting":{"title":"半选中状态","order":2},"catalogs":[],
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202777774
+      // 1543303277551
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -32906,7 +33402,7 @@ module.exports = {"setting":{"title":"指定选中和非选中的取值","order"
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202777785
+      // 1543303277561
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -33412,7 +33908,7 @@ module.exports = {"setting":{"title":"箭头位置","order":3},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202777795
+      // 1543303277588
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -33988,7 +34484,7 @@ module.exports = {"setting":{"title":"自定义标题","order":2},"catalogs":[],
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202777804
+      // 1543303277601
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -34287,7 +34783,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202777840
+      // 1543303277906
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -34643,7 +35139,7 @@ module.exports = {"setting":{"title":"选择日期和时间","order":5},"catalog
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202777850
+      // 1543303277915
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -35628,7 +36124,7 @@ module.exports = {"setting":{"title":"快捷方式","order":0.1},"catalogs":[],"
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202786093
+      // 1543303285798
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -35828,7 +36324,7 @@ module.exports = {"setting":{"title":"选择年或月","order":5.1},"catalogs":[
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202786083
+      // 1543303285787
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -36956,7 +37452,7 @@ module.exports = {"setting":{"title":"自定义头部和底部","order":1},"cata
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202786070
+      // 1543303285725
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -39245,7 +39741,7 @@ module.exports = {"setting":{"title":"右键菜单","order":7},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202786044
+      // 1543303285698
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -39449,7 +39945,7 @@ module.exports = {"setting":{"title":"禁用菜单（项）","order":3},"catalog
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202786055
+      // 1543303285709
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -39673,7 +40169,7 @@ module.exports = {"setting":{"title":"嵌套菜单","order":4},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202786032
+      // 1543303285646
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -39952,7 +40448,7 @@ module.exports = {"setting":{"title":"菜单位置","order":2},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202786021
+      // 1543303285632
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -40425,7 +40921,7 @@ module.exports = {"setting":{"title":"触发方式","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202786011
+      // 1543303285621
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -40738,7 +41234,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202786000
+      // 1543303285610
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -41355,7 +41851,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785945
+      // 1543303285534
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -41885,7 +42381,7 @@ exports.default = _default;
 /***/ "./site/dist/components/form/demos/custom/index.json":
 /***/ (function(module, exports) {
 
-module.exports = {"setting":{"title":"自定义验证规则","order":1},"catalogs":[],"contents":"<p>当内置的验证规则不能满足需求时，我们还可以自定义验证规则。有如下两种方式添加规则：</p>\n<ol>\n<li>通过<code>Form.addMethod()</code>静态方法添加全局验证规则，由于是全局的，我们可以在任意地方的\n<code>FormItem</code>中使用该规则。使用方法见API说明</li>\n<li>通过<code>FormItem</code>的<code>rules</code>属性，定义局部规则，该规则只对该<code>FormItem</code>有效</li>\n</ol>\n<p>本例中，我们添加一条全局规则<code>letter</code>用来验证只能输入字母，同时添加一条局部规则<code>unique</code>来验证所有输入必须不同</p>\n<blockquote>\n<p>验证方法中<code>param</code>，即为使用该规则时传入的参数，例如本例中的<code>letter: true</code>，<code>true</code>会作为<code>param</code>参数传给验证方法。当然我们还可以指定任意值，只要不是<code>false</code>就行，因为<code>false</code>代表不验证</p>\n</blockquote>\n","index":74,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> {Form, FormItem} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/form'</span>;\n<span class=\"hljs-keyword\">import</span> {Input} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/input'</span>;\n<span class=\"hljs-keyword\">import</span> {Button} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/button'</span>;\n\n&lt;Form&gt;\n    &lt;FormItem label=\"描述\"&gt;\n        &lt;FormItem v-for={{ self.get('descriptions') }}\n            model={{ `descriptions.${key}` }}\n            hideLabel\n            rules={{ {\n                required: true, \n                // 自定义全局规则\n                letter: true,\n                // 自定义局部规则，所有描述必须不重复\n                unique(value) {\n                    let count = 0;\n                    self.get('descriptions').find(item =&gt; {\n                        if (item === value) count++;\n                        return count &gt; 1;\n                    });\n\n                    // 直接返回错误文案，或者也可以单独定义messages为{unique: '不能相同'}\n                    return count === 1 || '不能相同';\n                }\n            } }}\n        &gt;\n            &lt;Input v-model={{ `descriptions.${key}` }} /&gt;    \n            &lt;b:append&gt;\n                &lt;Button ev-click={{ self.delete.bind(self, key) }}&gt;删除&lt;/Button&gt;\n            &lt;/b:append&gt;\n        &lt;/FormItem&gt;\n        &lt;Button ev-click={{ self.add }}&gt;添加&lt;/Button&gt;\n    &lt;/FormItem&gt;\n&lt;/Form&gt;</code></pre>"},{"language":"styl","content":"<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-form-item</span>\n    <span class=\"hljs-selector-class\">.k-form-item</span>\n        <span class=\"hljs-attribute\">margin-bottom</span> <span class=\"hljs-number\">20px</span>\n\n@media (<span class=\"hljs-attribute\">max-width</span>: <span class=\"hljs-number\">768px</span>) \n    <span class=\"hljs-selector-class\">.k-form-item</span>\n        <span class=\"hljs-attribute\">width</span> <span class=\"hljs-number\">100%</span>\n        <span class=\"hljs-selector-class\">.k-input</span>\n            <span class=\"hljs-attribute\">width</span> <span class=\"hljs-number\">100%</span>\n        <span class=\"hljs-selector-class\">.k-label</span>\n            <span class=\"hljs-attribute\">width</span> auto</code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">import</span> {Form} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/form'</span>;\n\n<span class=\"hljs-comment\">// 添加全局规则</span>\nForm.addMethod(<span class=\"hljs-string\">'letter'</span>, (value, item, param) =&gt; {\n    <span class=\"hljs-built_in\">console</span>.log(<span class=\"hljs-string\">'arguments'</span>, value, item, param);\n    <span class=\"hljs-keyword\">return</span> <span class=\"hljs-regexp\">/^[a-z|A-Z]+$/</span>.test(value);\n}, <span class=\"hljs-string\">'只能输入字母'</span>);\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n\n    defaults() {\n        <span class=\"hljs-keyword\">return</span> {\n            <span class=\"hljs-attr\">descriptions</span>: [<span class=\"hljs-string\">''</span>, <span class=\"hljs-string\">''</span>]\n        }\n    }\n\n    add() {\n        <span class=\"hljs-keyword\">this</span>.set(<span class=\"hljs-string\">'descriptions'</span>, <span class=\"hljs-keyword\">this</span>.get(<span class=\"hljs-string\">'descriptions'</span>).concat(<span class=\"hljs-string\">''</span>));\n    }\n\n    <span class=\"hljs-keyword\">delete</span>(index) {\n        <span class=\"hljs-keyword\">const</span> descriptions = <span class=\"hljs-keyword\">this</span>.get(<span class=\"hljs-string\">'descriptions'</span>).slice(<span class=\"hljs-number\">0</span>);\n        descriptions.splice(index, <span class=\"hljs-number\">1</span>);\n        <span class=\"hljs-keyword\">this</span>.set(<span class=\"hljs-string\">'descriptions'</span>, descriptions);\n    }\n}</code></pre>"}]}
+module.exports = {"setting":{"title":"自定义验证规则","order":1},"catalogs":[],"contents":"<p>当内置的验证规则不能满足需求时，我们还可以自定义验证规则。有如下两种方式添加规则：</p>\n<ol>\n<li>通过<code>Form.addMethod()</code>静态方法添加全局验证规则，由于是全局的，我们可以在任意地方的\n<code>FormItem</code>中使用该规则。使用方法见API说明</li>\n<li>通过<code>FormItem</code>的<code>rules</code>属性，定义局部规则，该规则只对该<code>FormItem</code>有效</li>\n</ol>\n<p>本例中，我们添加一条全局规则<code>letter</code>用来验证只能输入字母，同时添加一条局部规则<code>unique</code>来验证所有输入必须不同</p>\n<blockquote>\n<p>验证方法中<code>param</code>，即为使用该规则时传入的参数，例如本例中的<code>letter: true</code>，<code>true</code>会作为<code>param</code>参数传给验证方法。当然我们还可以指定任意值，只要不是<code>false</code>就行，因为<code>false</code>代表不验证</p>\n</blockquote>\n","index":74,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> {Form, FormItem} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/form'</span>;\n<span class=\"hljs-keyword\">import</span> {Input} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/input'</span>;\n<span class=\"hljs-keyword\">import</span> {Button} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/button'</span>;\n\n&lt;Form&gt;\n    &lt;FormItem label=\"描述\"&gt;\n        &lt;FormItem v-for={{ self.get('descriptions') }}\n            model={{ `descriptions.${key}` }}\n            hideLabel\n            rules={{ {\n                required: true, \n                // 自定义全局规则\n                letter: true,\n                // 自定义局部规则，所有描述必须不重复\n                unique(value) {\n                    let count = 0;\n                    self.get('descriptions').find(item =&gt; {\n                        if (item === value) count++;\n                        return count &gt; 1;\n                    });\n\n                    // 直接返回错误文案，或者也可以单独定义messages为{unique: '不能相同'}\n                    return count === 1 || '不能相同';\n                }\n            } }}\n        &gt;\n            &lt;Input v-model={{ `descriptions.${key}` }} /&gt;    \n            &lt;b:append&gt;\n                &lt;Button ev-click={{ self.delete.bind(self, key) }}&gt;删除&lt;/Button&gt;\n            &lt;/b:append&gt;\n        &lt;/FormItem&gt;\n        &lt;Button ev-click={{ self.add }}&gt;添加&lt;/Button&gt;\n    &lt;/FormItem&gt;\n&lt;/Form&gt;</code></pre>"},{"language":"styl","content":"<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-form-item</span>\n    <span class=\"hljs-selector-class\">.k-form-item</span>\n        <span class=\"hljs-attribute\">margin-bottom</span> <span class=\"hljs-number\">20px</span>\n\n@media (<span class=\"hljs-attribute\">max-width</span>: <span class=\"hljs-number\">768px</span>)\n    <span class=\"hljs-selector-class\">.k-form-item</span>\n        <span class=\"hljs-attribute\">width</span> <span class=\"hljs-number\">100%</span>\n        <span class=\"hljs-selector-class\">.k-input</span>\n            <span class=\"hljs-attribute\">width</span> <span class=\"hljs-number\">100%</span>\n        <span class=\"hljs-selector-class\">.k-label</span>\n            <span class=\"hljs-attribute\">width</span> auto</code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">import</span> {Form} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/form'</span>;\n\n<span class=\"hljs-comment\">// 添加全局规则</span>\nForm.addMethod(<span class=\"hljs-string\">'letter'</span>, (value, item, param) =&gt; {\n    <span class=\"hljs-built_in\">console</span>.log(<span class=\"hljs-string\">'arguments'</span>, value, item, param);\n    <span class=\"hljs-keyword\">return</span> <span class=\"hljs-regexp\">/^[a-z|A-Z]+$/</span>.test(value);\n}, <span class=\"hljs-string\">'只能输入字母'</span>);\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n\n    defaults() {\n        <span class=\"hljs-keyword\">return</span> {\n            <span class=\"hljs-attr\">descriptions</span>: [<span class=\"hljs-string\">''</span>, <span class=\"hljs-string\">''</span>]\n        }\n    }\n\n    add() {\n        <span class=\"hljs-keyword\">this</span>.set(<span class=\"hljs-string\">'descriptions'</span>, <span class=\"hljs-keyword\">this</span>.get(<span class=\"hljs-string\">'descriptions'</span>).concat(<span class=\"hljs-string\">''</span>));\n    }\n\n    <span class=\"hljs-keyword\">delete</span>(index) {\n        <span class=\"hljs-keyword\">const</span> descriptions = <span class=\"hljs-keyword\">this</span>.get(<span class=\"hljs-string\">'descriptions'</span>).slice(<span class=\"hljs-number\">0</span>);\n        descriptions.splice(index, <span class=\"hljs-number\">1</span>);\n        <span class=\"hljs-keyword\">this</span>.set(<span class=\"hljs-string\">'descriptions'</span>, descriptions);\n    }\n}</code></pre>"}]}
 
 /***/ }),
 
@@ -41894,7 +42390,7 @@ module.exports = {"setting":{"title":"自定义验证规则","order":1},"catalog
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785956
+      // 1543303285505
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -42168,7 +42664,7 @@ module.exports = {"setting":{"title":"自定义label","order":3},"catalogs":[],"
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785929
+      // 1543303285494
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -42396,7 +42892,7 @@ module.exports = {"setting":{"title":"异步验证","order":4},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785919
+      // 1543303285521
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -42588,7 +43084,7 @@ module.exports = {"setting":{"title":"可变规则","order":3},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785909
+      // 1543303285483
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -42936,7 +43432,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785870
+      // 1543303285322
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -43132,7 +43628,7 @@ module.exports = {"setting":{"title":"flex对齐","order":5},"catalogs":[],"cont
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785852
+      // 1543303285342
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -43420,7 +43916,7 @@ module.exports = {"setting":{"title":"flex布局","order":4},"catalogs":[],"cont
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785839
+      // 1543303285292
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -43706,7 +44202,7 @@ module.exports = {"setting":{"title":"flex排序","order":5.1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785824
+      // 1543303285280
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -43886,7 +44382,7 @@ exports.default = _default;
 /***/ "./site/dist/components/grid/demos/gutter/index.json":
 /***/ (function(module, exports) {
 
-module.exports = {"setting":{"title":"间距","order":1},"catalogs":[],"contents":"<p>给<code>Row</code>添加<code>gutter</code>，可以定义<code>Col</code>之间的间距，单位为<code>px</code>；如果要支持响应式，可以以对象的方式定义，如：<code>{lg: 16, md: 4}</code></p>\n<blockquote>\n<p>IE9不支持matchMedia，如果要使<code>gutter</code>在IE9下支持响应式，需要引入<a href=\"https://github.com/paulirish/matchMedia.js\">matchMedia polyfill</a></p>\n</blockquote>\n","index":83,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> {Row, Col} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/grid'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Row</span> <span class=\"hljs-attr\">gutter</span>=<span class=\"hljs-string\">\"16\"</span>&gt;</span> \n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Col</span> <span class=\"hljs-attr\">span</span>=<span class=\"hljs-string\">\"12\"</span>&gt;</span><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>col-12<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Col</span>&gt;</span>\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Col</span> <span class=\"hljs-attr\">span</span>=<span class=\"hljs-string\">\"12\"</span>&gt;</span><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>col-12<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Col</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Row</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Row</span> <span class=\"hljs-attr\">gutter</span>=<span class=\"hljs-string\">{{</span> {<span class=\"hljs-attr\">lg:</span> <span class=\"hljs-attr\">16</span>, <span class=\"hljs-attr\">md:</span> <span class=\"hljs-attr\">4</span>} }}&gt;</span>\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Col</span> <span class=\"hljs-attr\">span</span>=<span class=\"hljs-string\">\"4\"</span>&gt;</span><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>col-4<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Col</span>&gt;</span>\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Col</span> <span class=\"hljs-attr\">span</span>=<span class=\"hljs-string\">\"6\"</span>&gt;</span><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>col-6<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Col</span>&gt;</span>\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Col</span> <span class=\"hljs-attr\">span</span>=<span class=\"hljs-string\">\"8\"</span>&gt;</span><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>col-8<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Col</span>&gt;</span>\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Col</span> <span class=\"hljs-attr\">span</span>=<span class=\"hljs-string\">\"6\"</span>&gt;</span><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>col-6<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Col</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Row</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span></code></pre>"},{"language":"styl","content":"<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-col</span>\n    <span class=\"hljs-attribute\">line-height</span> <span class=\"hljs-number\">40px</span>\n    <span class=\"hljs-attribute\">text-align</span> center\n    <span class=\"hljs-attribute\">color</span> <span class=\"hljs-number\">#fff</span>\n    &amp;:nth-of-type(even)\n        <span class=\"hljs-selector-tag\">div</span>\n            <span class=\"hljs-attribute\">background</span> <span class=\"hljs-number\">#0a5eee</span>\n    &amp;:nth-of-type(odd)\n        <span class=\"hljs-selector-tag\">div</span>\n            <span class=\"hljs-attribute\">background</span> lighten(<span class=\"hljs-number\">#0a5eee</span>, <span class=\"hljs-number\">30%</span>)\n<span class=\"hljs-selector-class\">.k-row</span>\n    <span class=\"hljs-attribute\">margin-bottom</span> <span class=\"hljs-number\">20px</span></code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"}]}
+module.exports = {"setting":{"title":"间距","order":1},"catalogs":[],"contents":"<p>给<code>Row</code>添加<code>gutter</code>，可以定义<code>Col</code>之间的间距，单位为<code>px</code>；如果要支持响应式，可以以对象的方式定义，如：<code>{lg: 16, md: 4}</code></p>\n<blockquote>\n<p>IE9不支持matchMedia，如果要使<code>gutter</code>在IE9下支持响应式，需要引入<a href=\"https://github.com/paulirish/matchMedia.js\">matchMedia polyfill</a><code>@since v0.7.4</code> 已经包含了matchMedia polyfill无需再次引入</p>\n</blockquote>\n","index":83,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> {Row, Col} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/grid'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Row</span> <span class=\"hljs-attr\">gutter</span>=<span class=\"hljs-string\">\"16\"</span>&gt;</span> \n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Col</span> <span class=\"hljs-attr\">span</span>=<span class=\"hljs-string\">\"12\"</span>&gt;</span><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>col-12<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Col</span>&gt;</span>\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Col</span> <span class=\"hljs-attr\">span</span>=<span class=\"hljs-string\">\"12\"</span>&gt;</span><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>col-12<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Col</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Row</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Row</span> <span class=\"hljs-attr\">gutter</span>=<span class=\"hljs-string\">{{</span> {<span class=\"hljs-attr\">lg:</span> <span class=\"hljs-attr\">16</span>, <span class=\"hljs-attr\">md:</span> <span class=\"hljs-attr\">4</span>} }}&gt;</span>\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Col</span> <span class=\"hljs-attr\">span</span>=<span class=\"hljs-string\">\"4\"</span>&gt;</span><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>col-4<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Col</span>&gt;</span>\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Col</span> <span class=\"hljs-attr\">span</span>=<span class=\"hljs-string\">\"6\"</span>&gt;</span><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>col-6<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Col</span>&gt;</span>\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Col</span> <span class=\"hljs-attr\">span</span>=<span class=\"hljs-string\">\"8\"</span>&gt;</span><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>col-8<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Col</span>&gt;</span>\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Col</span> <span class=\"hljs-attr\">span</span>=<span class=\"hljs-string\">\"6\"</span>&gt;</span><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>col-6<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Col</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Row</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span></code></pre>"},{"language":"styl","content":"<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-col</span>\n    <span class=\"hljs-attribute\">line-height</span> <span class=\"hljs-number\">40px</span>\n    <span class=\"hljs-attribute\">text-align</span> center\n    <span class=\"hljs-attribute\">color</span> <span class=\"hljs-number\">#fff</span>\n    &amp;:nth-of-type(even)\n        <span class=\"hljs-selector-tag\">div</span>\n            <span class=\"hljs-attribute\">background</span> <span class=\"hljs-number\">#0a5eee</span>\n    &amp;:nth-of-type(odd)\n        <span class=\"hljs-selector-tag\">div</span>\n            <span class=\"hljs-attribute\">background</span> lighten(<span class=\"hljs-number\">#0a5eee</span>, <span class=\"hljs-number\">30%</span>)\n<span class=\"hljs-selector-class\">.k-row</span>\n    <span class=\"hljs-attribute\">margin-bottom</span> <span class=\"hljs-number\">20px</span></code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"}]}
 
 /***/ }),
 
@@ -43895,7 +44391,7 @@ module.exports = {"setting":{"title":"间距","order":1},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785790
+      // 1543303285265
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -44099,7 +44595,7 @@ module.exports = {"setting":{"title":"偏移","order":2},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785764
+      // 1543303285254
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -44294,7 +44790,7 @@ module.exports = {"setting":{"title":"排序","order":2.1},"catalogs":[],"conten
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785776
+      // 1543303285241
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -44473,7 +44969,7 @@ module.exports = {"setting":{"title":"响应式布局","order":6},"catalogs":[],
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785895
+      // 1543303285231
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -44982,7 +45478,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785656
+      // 1543303285210
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -45178,7 +45674,7 @@ module.exports = {"setting":{"title":"追加内容","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785645
+      // 1543303285197
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -45503,7 +45999,7 @@ module.exports = {"setting":{"title":"可清除","order":4},"catalogs":[],"conte
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785633
+      // 1543303285187
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -45926,7 +46422,7 @@ module.exports = {"setting":{"title":"尺寸","order":2},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785601
+      // 1543303285176
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -46687,7 +47183,7 @@ var _default = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
 
     _default.prototype.defaults = function defaults() {
         return {
-            expandedKeys: ['3'],
+            expandedKeys: [],
             selectedKey: '3-1'
         };
     };
@@ -46713,7 +47209,7 @@ exports.default = _default;
 /***/ "./site/dist/components/menu/demos/basic/index.json":
 /***/ (function(module, exports) {
 
-module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"contents":"<p><code>Menu</code>定义菜单，<code>MenuItem</code>定义菜单项，将<code>Menu</code>嵌套在<code>MenuItem</code>下，可以定义子菜单；<code>expandedKeys</code>定义菜单展开项，<code>selectedKey</code>定义菜单选中项。我们必须给<code>MenuItem</code>指定一个全局唯一的<code>key</code>用来标识每一个菜单项；通过<code>to</code>属性，可以定义超链接菜单，另外也可以绑定<code>MenuItem</code>的<code>select</code>事件来定义菜单项被选中的行为</p>\n","index":34,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> {Menu, MenuItem} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/menu'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Menu</span> <span class=\"hljs-attr\">v-model:expandedKeys</span>=<span class=\"hljs-string\">\"expandedKeys\"</span> <span class=\"hljs-attr\">v-model:selectedKey</span>=<span class=\"hljs-string\">\"selectedKey\"</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">MenuItem</span> <span class=\"hljs-attr\">key</span>=<span class=\"hljs-string\">\"1\"</span> <span class=\"hljs-attr\">ev-select</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">self.onSelect</span> }}&gt;</span><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">i</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"k-icon ion-flag\"</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">i</span>&gt;</span>menu 1<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">MenuItem</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">MenuItem</span> <span class=\"hljs-attr\">key</span>=<span class=\"hljs-string\">\"2\"</span> <span class=\"hljs-attr\">disabled</span>&gt;</span><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">i</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"k-icon ion-star\"</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">i</span>&gt;</span>menu 2<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">MenuItem</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">MenuItem</span> <span class=\"hljs-attr\">key</span>=<span class=\"hljs-string\">\"3\"</span>&gt;</span>\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">i</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"k-icon ion-heart\"</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">i</span>&gt;</span>menu 3\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Menu</span>&gt;</span>\n            <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">MenuItem</span> <span class=\"hljs-attr\">key</span>=<span class=\"hljs-string\">\"3-1\"</span>&gt;</span>sub menu 1<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">MenuItem</span>&gt;</span>\n            <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">MenuItem</span> <span class=\"hljs-attr\">key</span>=<span class=\"hljs-string\">\"3-2\"</span>&gt;</span>sub menu 2<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">MenuItem</span>&gt;</span>\n            <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">MenuItem</span> <span class=\"hljs-attr\">key</span>=<span class=\"hljs-string\">\"3-3\"</span> <span class=\"hljs-attr\">disabled</span>&gt;</span>sub menu 3<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">MenuItem</span>&gt;</span>\n            <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">MenuItem</span> <span class=\"hljs-attr\">key</span>=<span class=\"hljs-string\">\"3-4\"</span>&gt;</span>sub menu 4<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">MenuItem</span>&gt;</span>\n        <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Menu</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">MenuItem</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">MenuItem</span> <span class=\"hljs-attr\">key</span>=<span class=\"hljs-string\">\"4\"</span> <span class=\"hljs-attr\">to</span>=<span class=\"hljs-string\">\"/\"</span>&gt;</span><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">i</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"k-icon ion-gear-b\"</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">i</span>&gt;</span>menu 4<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">MenuItem</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Menu</span>&gt;</span></span></code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n\n    defaults() {\n        <span class=\"hljs-keyword\">return</span> {\n            <span class=\"hljs-attr\">expandedKeys</span>: [<span class=\"hljs-string\">'3'</span>],\n            <span class=\"hljs-attr\">selectedKey</span>: <span class=\"hljs-string\">'3-1'</span>,\n        };\n    }\n\n    onSelect(item) {\n        <span class=\"hljs-built_in\">console</span>.log(<span class=\"hljs-string\">'key'</span>, item.get(<span class=\"hljs-string\">'key'</span>));\n    }\n}</code></pre>"}]}
+module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"contents":"<p><code>Menu</code>定义菜单，<code>MenuItem</code>定义菜单项，将<code>Menu</code>嵌套在<code>MenuItem</code>下，可以定义子菜单；<code>expandedKeys</code>定义菜单展开项，<code>selectedKey</code>定义菜单选中项。我们必须给<code>MenuItem</code>指定一个全局唯一的<code>key</code>用来标识每一个菜单项；通过<code>to</code>属性，可以定义超链接菜单，另外也可以绑定<code>MenuItem</code>的<code>select</code>事件来定义菜单项被选中的行为</p>\n","index":34,"highlighted":[{"language":"vdt","content":"<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> {Menu, MenuItem} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/menu'</span>;\n\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Menu</span> <span class=\"hljs-attr\">v-model:expandedKeys</span>=<span class=\"hljs-string\">\"expandedKeys\"</span> <span class=\"hljs-attr\">v-model:selectedKey</span>=<span class=\"hljs-string\">\"selectedKey\"</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">MenuItem</span> <span class=\"hljs-attr\">key</span>=<span class=\"hljs-string\">\"1\"</span> <span class=\"hljs-attr\">ev-select</span>=<span class=\"hljs-string\">{{</span> <span class=\"hljs-attr\">self.onSelect</span> }}&gt;</span>\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">i</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"k-icon ion-flag\"</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">i</span>&gt;</span>menu 1\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Menu</span>&gt;</span>\n            <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">MenuItem</span> <span class=\"hljs-attr\">key</span>=<span class=\"hljs-string\">\"1-1\"</span>&gt;</span>sub menu 1<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">MenuItem</span>&gt;</span>\n            <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">MenuItem</span> <span class=\"hljs-attr\">key</span>=<span class=\"hljs-string\">\"1-2\"</span>&gt;</span>sub menu 2<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">MenuItem</span>&gt;</span>\n            <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">MenuItem</span> <span class=\"hljs-attr\">key</span>=<span class=\"hljs-string\">\"1-3\"</span> <span class=\"hljs-attr\">disabled</span>&gt;</span>sub menu 3<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">MenuItem</span>&gt;</span>\n            <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">MenuItem</span> <span class=\"hljs-attr\">key</span>=<span class=\"hljs-string\">\"1-4\"</span>&gt;</span>sub menu 4<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">MenuItem</span>&gt;</span>\n        <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Menu</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">MenuItem</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">MenuItem</span> <span class=\"hljs-attr\">key</span>=<span class=\"hljs-string\">\"2\"</span> <span class=\"hljs-attr\">disabled</span>&gt;</span><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">i</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"k-icon ion-star\"</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">i</span>&gt;</span>menu 2<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">MenuItem</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">MenuItem</span> <span class=\"hljs-attr\">key</span>=<span class=\"hljs-string\">\"3\"</span>&gt;</span>\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">i</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"k-icon ion-heart\"</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">i</span>&gt;</span>menu 3\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Menu</span>&gt;</span>\n            <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">MenuItem</span> <span class=\"hljs-attr\">key</span>=<span class=\"hljs-string\">\"3-1\"</span>&gt;</span>sub menu 1<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">MenuItem</span>&gt;</span>\n            <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">MenuItem</span> <span class=\"hljs-attr\">key</span>=<span class=\"hljs-string\">\"3-2\"</span>&gt;</span>sub menu 2<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">MenuItem</span>&gt;</span>\n            <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">MenuItem</span> <span class=\"hljs-attr\">key</span>=<span class=\"hljs-string\">\"3-3\"</span> <span class=\"hljs-attr\">disabled</span>&gt;</span>sub menu 3<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">MenuItem</span>&gt;</span>\n            <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">MenuItem</span> <span class=\"hljs-attr\">key</span>=<span class=\"hljs-string\">\"3-4\"</span>&gt;</span>sub menu 4<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">MenuItem</span>&gt;</span>\n        <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Menu</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">MenuItem</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">MenuItem</span> <span class=\"hljs-attr\">key</span>=<span class=\"hljs-string\">\"4\"</span> <span class=\"hljs-attr\">to</span>=<span class=\"hljs-string\">\"/\"</span>&gt;</span><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">i</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"k-icon ion-gear-b\"</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">i</span>&gt;</span>menu 4<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">MenuItem</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Menu</span>&gt;</span></span></code></pre>"},{"language":"js","content":"<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n\n    defaults() {\n        <span class=\"hljs-keyword\">return</span> {\n            <span class=\"hljs-attr\">expandedKeys</span>: [],\n            <span class=\"hljs-attr\">selectedKey</span>: <span class=\"hljs-string\">'3-1'</span>,\n        };\n    }\n\n    onSelect(item) {\n        <span class=\"hljs-built_in\">console</span>.log(<span class=\"hljs-string\">'key'</span>, item.get(<span class=\"hljs-string\">'key'</span>));\n    }\n}</code></pre>"}]}
 
 /***/ }),
 
@@ -46757,7 +47253,33 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
     return h(_menu.Menu, {
         'children': [h(_menu.MenuItem, {
             'key': '1',
-            'children': [h('i', null, null, 'k-icon ion-flag'), 'menu 1'],
+            'children': [h('i', null, null, 'k-icon ion-flag'), 'menu 1\n        ', h(_menu.Menu, {
+                'children': [h(_menu.MenuItem, {
+                    'key': '1-1',
+                    'children': 'sub menu 1',
+                    '_context': $this
+                }), h(_menu.MenuItem, {
+                    'key': '1-2',
+                    'children': 'sub menu 2',
+                    '_context': $this
+                }), h(_menu.MenuItem, {
+                    'key': '1-3',
+                    'disabled': function () {
+                        try {
+                            return true;
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call($this),
+                    'children': 'sub menu 3',
+                    '_context': $this
+                }), h(_menu.MenuItem, {
+                    'key': '1-4',
+                    'children': 'sub menu 4',
+                    '_context': $this
+                })],
+                '_context': $this
+            })],
             '_context': $this,
             'ev-select': function () {
                 try {
@@ -47703,7 +48225,7 @@ module.exports = {"setting":{"title":"尺寸","order":4},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785557
+      // 1543303285142
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -49049,7 +49571,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785539
+      // 1543303285010
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -49279,7 +49801,7 @@ module.exports = {"setting":{"title":"改变翻页按钮数量","order":2},"cata
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785527
+      // 1543303284999
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -49830,7 +50352,7 @@ module.exports = {"setting":{"title":"无边框样式","order":1.1},"catalogs":[
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785499
+      // 1543303284985
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -50067,7 +50589,7 @@ module.exports = {"setting":{"title":"指定尺寸","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785514
+      // 1543303284974
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -50376,7 +50898,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785478
+      // 1543303284926
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -50568,7 +51090,7 @@ module.exports = {"setting":{"title":"自定义百分比内容","order":4},"cata
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785454
+      // 1543303284916
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -50964,7 +51486,7 @@ module.exports = {"setting":{"title":"在进度条上展示百分比","order":1.
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785445
+      // 1543303284853
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -51204,7 +51726,7 @@ module.exports = {"setting":{"title":"尺寸","order":2},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785436
+      // 1543303284838
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -51385,7 +51907,7 @@ module.exports = {"setting":{"title":"状态","order":1},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785427
+      // 1543303284821
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -51667,7 +52189,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785380
+      // 1543303284793
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -51871,7 +52393,7 @@ module.exports = {"setting":{"title":"Radio组","order":1},"catalogs":[],"conten
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785392
+      // 1543303284782
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -52082,7 +52604,7 @@ module.exports = {"setting":{"title":"指定选中的值","order":2},"catalogs":
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785413
+      // 1543303284771
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -54138,7 +54660,7 @@ module.exports = {"setting":{"title":"可筛选","order":4},"catalogs":[],"conte
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785257
+      // 1543303284681
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -54446,7 +54968,7 @@ module.exports = {"setting":{"title":"分组","order":6},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785236
+      // 1543303284705
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -55152,7 +55674,7 @@ module.exports = {"setting":{"title":"尺寸","order":7},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785173
+      // 1543303284631
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -56417,7 +56939,7 @@ module.exports = {"setting":{"title":"设置步长","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202785185
+      // 1543303284566
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -56958,7 +57480,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202784903
+      // 1543303284553
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -57145,7 +57667,7 @@ module.exports = {"setting":{"title":"展示遮罩层","order":1},"catalogs":[],
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202784098
+      // 1543303284541
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -57444,7 +57966,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202783656
+      // 1543303283737
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -57629,7 +58151,7 @@ module.exports = {"setting":{"title":"尺寸","order":2},"catalogs":[],"contents
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202783644
+      // 1543303283382
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -57810,7 +58332,7 @@ module.exports = {"setting":{"title":"最大/小值及步长","order":1},"catalo
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202783593
+      // 1543303283287
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -58034,7 +58556,7 @@ module.exports = {"setting":{"title":"竖直排列按钮","order":3},"catalogs":
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202783580
+      // 1543303283309
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -58412,7 +58934,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202783539
+      // 1543303283096
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -58652,7 +59174,7 @@ module.exports = {"setting":{"title":"快速点击切换","order":0.1},"catalogs
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202783514
+      // 1543303282954
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -59065,7 +59587,7 @@ module.exports = {"setting":{"title":"时间轴样式","order":2},"catalogs":[],
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202783421
+      // 1543303282786
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -59323,7 +59845,7 @@ module.exports = {"setting":{"title":"简洁样式","order":3},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202783409
+      // 1543303282776
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -59666,7 +60188,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202783276
+      // 1543303282638
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -59847,7 +60369,7 @@ module.exports = {"setting":{"title":"定义文案","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202783286
+      // 1543303282649
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -60045,7 +60567,7 @@ module.exports = {"setting":{"title":"开关尺寸","order":3},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202783266
+      // 1543303282625
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -60412,7 +60934,7 @@ module.exports = {"setting":{"title":"长/宽","order":2},"catalogs":[],"content
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202783257
+      // 1543303282593
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -60705,7 +61227,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202783211
+      // 1543303282442
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -60925,7 +61447,7 @@ module.exports = {"setting":{"title":"选择框的类型","order":2},"catalogs":
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202783161
+      // 1543303282425
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -61160,7 +61682,7 @@ module.exports = {"setting":{"title":"行选中","order":3},"catalogs":[],"conte
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202783067
+      // 1543303282392
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -61442,7 +61964,7 @@ module.exports = {"setting":{"title":"禁用行可选","order":7},"catalogs":[],
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202783053
+      // 1543303282406
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -61640,7 +62162,7 @@ module.exports = {"setting":{"title":"列固定","order":8.3},"catalogs":[],"con
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202783333
+      // 1543303282290
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -61940,7 +62462,7 @@ module.exports = {"setting":{"title":"表头固定","order":8},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202782965
+      // 1543303282177
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -62192,7 +62714,7 @@ module.exports = {"setting":{"title":"分组","order":11},"catalogs":[],"content
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202782751
+      // 1543303282052
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -62465,7 +62987,7 @@ module.exports = {"setting":{"title":"加载状态","order":13},"catalogs":[],"c
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202782918
+      // 1543303282001
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -62670,7 +63192,7 @@ module.exports = {"setting":{"title":"自定义无内容时的展示信息","ord
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202782690
+      // 1543303281945
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -63188,7 +63710,7 @@ module.exports = {"setting":{"title":"整行选中","order":4},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202782571
+      // 1543303282040
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -63402,7 +63924,7 @@ module.exports = {"setting":{"title":"行样式","order":5},"catalogs":[],"conte
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202782472
+      // 1543303281836
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -63617,7 +64139,7 @@ module.exports = {"setting":{"title":"行展开","order":6},"catalogs":[],"conte
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202782463
+      // 1543303281717
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -63904,7 +64426,7 @@ module.exports = {"setting":{"title":"定义表格结构","order":1},"catalogs":
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202782451
+      // 1543303281728
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -64166,7 +64688,7 @@ module.exports = {"setting":{"title":"排序","order":10},"catalogs":[],"content
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202782441
+      // 1543303281666
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -64860,7 +65382,7 @@ module.exports = {"setting":{"title":"自定义title内容","order":1.1},"catalo
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202782428
+      // 1543303281695
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -65389,7 +65911,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202782031
+      // 1543303281465
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -65592,7 +66114,7 @@ module.exports = {"setting":{"title":"卡片样式","order":5},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202781926
+      // 1543303281175
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -65824,7 +66346,7 @@ module.exports = {"setting":{"title":"data传值形式","order":1},"catalogs":[]
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202781756
+      // 1543303281006
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -66024,7 +66546,7 @@ module.exports = {"setting":{"title":"禁用某一项","order":2},"catalogs":[],
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202781695
+      // 1543303280470
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -66228,7 +66750,7 @@ module.exports = {"setting":{"title":"组件尺寸","order":3},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202781443
+      // 1543303280517
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -66451,7 +66973,7 @@ module.exports = {"setting":{"title":"垂直展示","order":6},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202781423
+      // 1543303280502
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -66821,7 +67343,7 @@ module.exports = {"setting":{"title":"基础使用","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202781215
+      // 1543303280419
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -67025,7 +67547,7 @@ module.exports = {"setting":{"title":"关闭按钮","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202780987
+      // 1543303280363
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -67250,7 +67772,7 @@ module.exports = {"setting":{"title":"组件尺寸","order":2},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202781003
+      // 1543303280284
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -69074,7 +69596,7 @@ module.exports = {"setting":{"title":"基础用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202780878
+      // 1543303280077
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -69268,7 +69790,7 @@ module.exports = {"setting":{"title":"关闭按钮","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202780852
+      // 1543303280058
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -69498,7 +70020,7 @@ module.exports = {"setting":{"title":"展示标题","order":2},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202780587
+      // 1543303280067
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -71053,7 +71575,7 @@ module.exports = {"setting":{"title":"自定义渲染列表","order":1},"catalog
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202780143
+      // 1543303279685
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -71803,7 +72325,7 @@ module.exports = {"setting":{"title":"带复选框","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202780068
+      // 1543303279506
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -72342,7 +72864,7 @@ module.exports = {"setting":{"title":"自定义节点内容","order":2},"catalog
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202780049
+      // 1543303279518
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -72940,7 +73462,7 @@ module.exports = {"setting":{"title":"基本用法","order":0},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202779757
+      // 1543303279330
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -73160,7 +73682,7 @@ module.exports = {"setting":{"title":"拖拽上传","order":1},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202779835
+      // 1543303279349
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -73348,7 +73870,7 @@ module.exports = {"setting":{"title":"定义初始化列表","order":3},"catalog
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202779848
+      // 1543303279150
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -73731,7 +74253,7 @@ module.exports = {"setting":{"title":"手动上传","order":4},"catalogs":[],"co
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202778881
+      // 1543303279104
       var cssReload = require("!../../../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -76014,7 +76536,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202779467
+      // 1543303278946
       var cssReload = require("!../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -76118,11 +76640,11 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "./site/src/pages/design/index.js":
+/***/ "./site/src/pages/blog/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(Intact) {
 
 exports.__esModule = true;
 exports.default = undefined;
@@ -76145,19 +76667,15 @@ var _inherits3 = _interopRequireDefault(_inherits2);
 
 var _dec, _desc, _value, _class, _init, _class2, _temp;
 
-var _intact = __webpack_require__("intact");
-
-var _intact2 = _interopRequireDefault(_intact);
-
 var _document = __webpack_require__("./site/src/pages/document/index.js");
 
 var _document2 = _interopRequireDefault(_document);
 
-var _index = __webpack_require__("./site/src/pages/design/index.vdt");
+var _index = __webpack_require__("./site/src/pages/blog/index.vdt");
 
 var _index2 = _interopRequireDefault(_index);
 
-__webpack_require__("./site/src/pages/design/index.styl");
+__webpack_require__("./site/src/pages/blog/index.styl");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -76190,15 +76708,82 @@ function _applyDecoratedDescriptor(target, property, decorators, descriptor, con
     return desc;
 }
 
-// import mixin from '!raw-loader!styles/mixin.styl';
+var mermaid = void 0;
+if (process.browser) {
+    mermaid = __webpack_require__("mermaid");
+}
 
-var _default = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = function (_Document) {
+var _default = (_dec = Intact.template(), (_class = (_temp = _class2 = function (_Document) {
     (0, _inherits3.default)(_default, _Document);
 
     function _default() {
         (0, _classCallCheck3.default)(this, _default);
         return (0, _possibleConstructorReturn3.default)(this, _Document.apply(this, arguments));
     }
+
+    _default.prototype._mount = function _mount() {
+        _Document.prototype._mount.call(this);
+
+        this.headerHeight = this.refs.header.clientHeight;
+
+        this.h1s = this.element.querySelectorAll('h1');
+        this.h2s = this.element.querySelectorAll('h2');
+        this.h3s = this.element.querySelectorAll('h3');
+
+        mermaid.init(undefined, '.mermaid');
+    };
+
+    _default.prototype.scrollTo = function scrollTo(id) {
+        var header = document.getElementById(id);
+        if (header) {
+            var top = header.getBoundingClientRect().top + window.pageYOffset - this.headerHeight;
+
+            window.scrollTo(0, top);
+        }
+    };
+
+    _default.prototype._onScroll = function _onScroll() {
+        var _this2 = this;
+
+        var scrollTop = window.pageYOffset;
+        if (scrollTop > 15) {
+            this.refs.wrapper.classList.add('fixed');
+        } else {
+            this.refs.wrapper.classList.remove('fixed');
+        }
+
+        var findActive = function findActive(hs) {
+            var minTop = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+            for (var i = hs.length - 1; i >= 0; i--) {
+                var h = hs[i];
+                var top = h.getBoundingClientRect().top + window.pageYOffset;
+
+                if (top > minTop && top - _this2.headerHeight <= scrollTop) {
+                    return { header: h.id, top: top };
+                }
+            }
+            return { header: '', top: 0 };
+        };
+
+        var active2 = findActive(this.h2s, 0);
+        var active3 = findActive(this.h3s, active2.top);
+        this.set({
+            'active2': active2.header,
+            'active3': active3.header
+        });
+
+        var active = this.refs.aside.querySelectorAll('.active');
+        active = active[active.length - 1];
+        if (active) {
+            this.set('borderStyle', {
+                height: active.offsetHeight + 'px',
+                top: active.offsetTop + 'px'
+            });
+        } else {
+            this.set('borderStyle', undefined);
+        }
+    };
 
     return _default;
 }(_document2.default), _class2.template = _index2.default, _temp), (_applyDecoratedDescriptor(_class, 'template', [_dec], (_init = (0, _getOwnPropertyDescriptor2.default)(_class, 'template'), _init = _init ? _init.value : undefined, {
@@ -76212,15 +76797,16 @@ var _default = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
 
 exports.default = _default;
 module.exports = exports['default'];
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("intact")))
 
 /***/ }),
 
-/***/ "./site/src/pages/design/index.styl":
+/***/ "./site/src/pages/blog/index.styl":
 /***/ (function(module, exports, __webpack_require__) {
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202775336
+      // 1543303275600
       var cssReload = require("!../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -76229,7 +76815,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "./site/src/pages/design/index.vdt":
+/***/ "./site/src/pages/blog/index.vdt":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -76266,12 +76852,92 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         Animate = self && self.Animate,
         parent = ($callee || {})._super;
 
+    var Article = self.get('Article');
+
     return function () {
         var _obj = {
-            'navIndex': 'design',
-            'className': 'document-page design-page fixed-aside'
+            'navIndex': 'blog',
+            'className': 'document-page blog-page'
         };
-        return parent.call($this, _obj, _Vdt, blocks, parent);
+        return parent.call($this, _obj, _Vdt, function (blocks) {
+            var _blocks = {},
+                __blocks = extend({}, blocks);
+            return (_blocks['content'] = function (parent) {
+                return [h('aside', null, h('div', null, [h('ul', null, h('li', null, [h('a', {
+                    'ev-click': function () {
+                        try {
+                            return self.scrollTo.bind(self, '__top');
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call($this)
+                }, function () {
+                    try {
+                        return Article.data.setting.title;
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call($this)), h('ul', null, __m(function () {
+                    try {
+                        return Article.data.catalogs.filter(function (item) {
+                            return item.level <= 3;
+                        });
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call($this), function (value, key) {
+                    return h('li', null, h('a', {
+                        'ev-click': function () {
+                            try {
+                                return self.scrollTo.bind(self, value.id);
+                            } catch (e) {
+                                _e(e);
+                            }
+                        }.call($this)
+                    }, function () {
+                        try {
+                            return value.text;
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call($this)), _className(function () {
+                        try {
+                            return {
+                                'sub-catalogs': value.level > 2,
+                                'active': self.get('active' + value.level) === value.id
+                            };
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call($this)));
+                }, $this), 'sub-catalogs')])), h('div', {
+                    'style': function () {
+                        try {
+                            return self.get('borderStyle');
+                        } catch (e) {
+                            _e(e);
+                        }
+                    }.call($this)
+                }, null, 'aside-border transition')], 'aside-wrapper', null, function (i) {
+                    widgets['aside'] = i;
+                })), h('article', null, [h('h1', {
+                    'id': '__top'
+                }, function () {
+                    try {
+                        return Article.data.setting.title;
+                    } catch (e) {
+                        _e(e);
+                    }
+                }.call($this)), h(Article, {
+                    '_context': $this
+                })])];
+            }) && (__blocks['content'] = function (parent) {
+                var args = arguments;
+                return blocks['content'] ? blocks['content'].apply($this, [function () {
+                    return _blocks['content'].apply($this, args);
+                }].concat(__slice.call(args, 1))) : _blocks['content'].apply($this, args);
+            }), __blocks;
+        }.call($this, blocks), parent);
     }.call($this);
 };
 
@@ -76505,7 +77171,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202775640
+      // 1543303275667
       var cssReload = require("!../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -76994,7 +77660,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543202776421
+      // 1543303276071
       var cssReload = require("!../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
