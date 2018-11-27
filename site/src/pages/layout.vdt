@@ -44,7 +44,7 @@ const nav = [
                     {{ /*<Select v-model="version" width="100" size="small">
                         <Option value="v1.1.1">v1.1.1</Option>
                     </Select> */ }}
-                    <Select v-model="theme" noBorder>
+                    <Select v-model="theme" inline>
                         <Option value="kpc">默认主题</Option>
                         <Option value="ksyun">ksyun</Option>
                     </Select>
