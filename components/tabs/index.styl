@@ -16,13 +16,25 @@ sizes = large small mini
         color $tabs-color 
         position relative
         vertical-align middle
-        &:hover
-        &.k-active
-            color $tabs-active-color 
         // disabled
         &.k-disabled
             color $disabled-color
             cursor not-allowed
+        // close
+        .k-close
+            position absolute
+            top -1px
+            right 0
+            padding 0 5px
+            opacity 0
+            transition opacity $transition
+            .k-icon
+                font-size 20px
+        &:hover
+        &.k-active
+            color $tabs-active-color 
+            .k-close
+                opacity 1
 
     // active-bar
     .k-active-bar
@@ -141,6 +153,12 @@ sizes = large small mini
                 height lookup('$tabs-' + size + '-height')
                 line-height s('calc(%s - 2px)', @height)
                 padding lookup('$tabs-' + size + '-padding')
+                .k-close
+                    if (lookup('$tabs-' + size + '-close-padding') != null)
+                        padding lookup('$tabs-' + size + '-close-padding')
+                    if (lookup('$tabs-' + size + '-close-font-size') != null)
+                        .k-icon
+                            font-size lookup('$tabs-' + size + '-close-font-size')
 
 
 require($theme-dir + '/tabs.styl')

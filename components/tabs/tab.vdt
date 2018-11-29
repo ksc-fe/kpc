@@ -1,4 +1,6 @@
-const {value, children, _value, className, size, disabled} = self.get();
+import Button from '../button';
+
+const {value, children, _value, className, disabled, _parent} = self.get();
 
 <a 
     class={{ {
@@ -8,4 +10,13 @@ const {value, children, _value, className, size, disabled} = self.get();
         'k-disabled': disabled,
     } }}
     ev-click={{ self._changeTab }}
->{{ self.get('children') }}</a>
+>
+    {{ self.get('children') }}
+    <Button type="none"
+        disabled={{ disabled }} 
+        size={{ _parent.get('size') }}
+        class="k-close"
+    >
+        <i class="k-icon ion-ios-close-empty" />
+    </Button>
+</a>

@@ -16,7 +16,6 @@ export default class Tabs extends Intact {
             size: 'default',
             type: 'default',
             closable: false,
-
             _activeBarStyle: undefined,
         };
     }
