@@ -759,7 +759,7 @@
 #### `Select noBorder`
 
 ```
-"<div class=\"k-select k-with-suffix k-no-border\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div>"
+"<div class=\"k-select k-with-suffix k-inline\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div>"
 ```
 
 #### `Select remote`
@@ -1110,37 +1110,43 @@
 #### `Tabs basic`
 
 ```
-"<div><div class=\"k-tabs\"><a class=\"k-tab\">入站规则</a><a class=\"k-tab k-active\">出站规则</a><a class=\"k-tab\">关联云主机</a><div class=\"k-active-bar\" style=\"left: 0px; width: 0px;\"></div></div><div class=\"content\"><div>出站规则</div></div></div>"
+"<div><div class=\"k-tabs\"><div class=\"k-scroll c-clearfix\"><div class=\"k-wrapper\" style=\"transform: translateX(0px);\"><a class=\"k-tab\">入站规则</a><a class=\"k-tab k-active\">出站规则</a><a class=\"k-tab\">关联云主机</a><div class=\"k-active-bar\" style=\"left: 0px; width: 0px;\"></div></div></div></div><div class=\"content\"><div>出站规则</div></div></div>"
 ```
 
 #### `Tabs card`
 
 ```
-"<div><div class=\"k-tabs k-card\"><a class=\"k-tab k-active\">入站规则</a><a class=\"k-tab\">出站规则</a><a class=\"k-tab\">关联云主机</a></div><div class=\"k-tabs k-border-card\"><a class=\"k-tab k-active\">入站规则</a><a class=\"k-tab\">出站规则</a><a class=\"k-tab\">关联云主机</a></div><div class=\"k-tabs k-card k-no-border-card\"><a class=\"k-tab k-active\">入站规则</a><a class=\"k-tab\">出站规则</a><a class=\"k-tab\">关联云主机</a></div></div>"
+"<div><div class=\"k-tabs k-card\"><div class=\"k-scroll c-clearfix\"><div class=\"k-wrapper\" style=\"transform: translateX(0px);\"><a class=\"k-tab k-active\">入站规则</a><a class=\"k-tab\">出站规则</a><a class=\"k-tab\">关联云主机</a></div></div></div><div class=\"k-tabs k-border-card\"><div class=\"k-scroll c-clearfix\"><div class=\"k-wrapper\" style=\"transform: translateX(0px);\"><a class=\"k-tab k-active\">入站规则</a><a class=\"k-tab\">出站规则</a><a class=\"k-tab\">关联云主机</a></div></div></div><div class=\"k-tabs k-card k-no-border-card\"><div class=\"k-scroll c-clearfix\"><div class=\"k-wrapper\" style=\"transform: translateX(0px);\"><a class=\"k-tab k-active\">入站规则</a><a class=\"k-tab\">出站规则</a><a class=\"k-tab\">关联云主机</a></div></div></div></div>"
+```
+
+#### `Tabs closable`
+
+```
+"<div><div class=\"k-btns\"><button class=\"k-btn k-active\" tabindex=\"0\" type=\"button\"><span>large</span><input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>default</span><input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>small</span><input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>mini</span><input type=\"radio\" tabindex=\"-1\"></button></div><br><br><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>新增Tab</span></button><div class=\"k-tabs k-large\"><div class=\"k-scroll c-clearfix\"><div class=\"k-wrapper\" style=\"transform: translateX(0px);\"><a class=\"k-tab k-active\">Tab 1<button class=\"k-btn k-none k-btn-icon k-mini k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></a><a class=\"k-tab\">Tab 2<button class=\"k-btn k-none k-btn-icon k-mini k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></a><a class=\"k-tab\">Tab 3<button class=\"k-btn k-none k-btn-icon k-mini k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></a><div class=\"k-active-bar\" style=\"left: 0px; width: 0px;\"></div></div></div></div><div class=\"k-tabs k-large k-card\"><div class=\"k-scroll c-clearfix\"><div class=\"k-wrapper\" style=\"transform: translateX(0px);\"><a class=\"k-tab k-active\">Tab 1<button class=\"k-btn k-none k-btn-icon k-mini k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></a><a class=\"k-tab\">Tab 2<button class=\"k-btn k-none k-btn-icon k-mini k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></a><a class=\"k-tab\">Tab 3<button class=\"k-btn k-none k-btn-icon k-mini k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></a></div></div></div><div class=\"k-tabs k-large k-border-card\"><div class=\"k-scroll c-clearfix\"><div class=\"k-wrapper\" style=\"transform: translateX(0px);\"><a class=\"k-tab k-active\">Tab 1<button class=\"k-btn k-none k-btn-icon k-mini k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></a><a class=\"k-tab\">Tab 2<button class=\"k-btn k-none k-btn-icon k-mini k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></a><a class=\"k-tab\">Tab 3<button class=\"k-btn k-none k-btn-icon k-mini k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></a></div></div></div><div class=\"k-tabs k-large k-card k-no-border-card\"><div class=\"k-scroll c-clearfix\"><div class=\"k-wrapper\" style=\"transform: translateX(0px);\"><a class=\"k-tab k-active\">Tab 1<button class=\"k-btn k-none k-btn-icon k-mini k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></a><a class=\"k-tab\">Tab 2<button class=\"k-btn k-none k-btn-icon k-mini k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></a><a class=\"k-tab\">Tab 3<button class=\"k-btn k-none k-btn-icon k-mini k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></a></div></div></div></div>"
 ```
 
 #### `Tabs data`
 
 ```
-"<div><div class=\"k-tabs\"><a class=\"k-tab\">入站规则</a><a class=\"k-tab k-active\">出站规则</a><a class=\"k-tab\">关联云主机</a><div class=\"k-active-bar\" style=\"left: 0px; width: 0px;\"></div></div><div class=\"content\"><div>出站规则</div></div></div>"
+"<div><div class=\"k-tabs\"><div class=\"k-scroll c-clearfix\"><div class=\"k-wrapper\" style=\"transform: translateX(0px);\"><a class=\"k-tab\">入站规则</a><a class=\"k-tab k-active\">出站规则</a><a class=\"k-tab\">关联云主机</a><div class=\"k-active-bar\" style=\"left: 0px; width: 0px;\"></div></div></div></div><div class=\"content\"><div>出站规则</div></div></div>"
 ```
 
 #### `Tabs disabled`
 
 ```
-"<div><div class=\"k-tabs\"><a class=\"k-tab\">入站规则</a><a class=\"k-tab k-disabled\">出站规则</a><a class=\"k-tab\">关联云主机</a><div class=\"k-active-bar\"></div></div><div class=\"content\"><div>关联云主机</div></div></div>"
+"<div><div class=\"k-tabs\"><div class=\"k-scroll c-clearfix\"><div class=\"k-wrapper\" style=\"transform: translateX(0px);\"><a class=\"k-tab\">入站规则</a><a class=\"k-tab k-disabled\">出站规则</a><a class=\"k-tab\">关联云主机</a><div class=\"k-active-bar\"></div></div></div></div><div class=\"content\"><div>关联云主机</div></div></div>"
 ```
 
 #### `Tabs size`
 
 ```
-"<div><div class=\"k-tabs k-large\"><a class=\"k-tab k-active\">large1</a><a class=\"k-tab\">large2</a><div class=\"k-active-bar\" style=\"left: 0px; width: 0px;\"></div></div><div class=\"k-tabs\"><a class=\"k-tab k-active\">default1</a><a class=\"k-tab\">defalut2</a><div class=\"k-active-bar\" style=\"left: 0px; width: 0px;\"></div></div><div class=\"k-tabs k-small\"><a class=\"k-tab k-active\">small1</a><a class=\"k-tab\">small2</a><div class=\"k-active-bar\" style=\"left: 0px; width: 0px;\"></div></div><div class=\"k-tabs k-mini\"><a class=\"k-tab k-active\">mini1</a><a class=\"k-tab\">mini2</a><div class=\"k-active-bar\" style=\"left: 0px; width: 0px;\"></div></div></div>"
+"<div><div class=\"k-tabs k-large\"><div class=\"k-scroll c-clearfix\"><div class=\"k-wrapper\" style=\"transform: translateX(0px);\"><a class=\"k-tab k-active\">large1</a><a class=\"k-tab\">large2</a><div class=\"k-active-bar\" style=\"left: 0px; width: 0px;\"></div></div></div></div><div class=\"k-tabs\"><div class=\"k-scroll c-clearfix\"><div class=\"k-wrapper\" style=\"transform: translateX(0px);\"><a class=\"k-tab k-active\">default1</a><a class=\"k-tab\">defalut2</a><div class=\"k-active-bar\" style=\"left: 0px; width: 0px;\"></div></div></div></div><div class=\"k-tabs k-small\"><div class=\"k-scroll c-clearfix\"><div class=\"k-wrapper\" style=\"transform: translateX(0px);\"><a class=\"k-tab k-active\">small1</a><a class=\"k-tab\">small2</a><div class=\"k-active-bar\" style=\"left: 0px; width: 0px;\"></div></div></div></div><div class=\"k-tabs k-mini\"><div class=\"k-scroll c-clearfix\"><div class=\"k-wrapper\" style=\"transform: translateX(0px);\"><a class=\"k-tab k-active\">mini1</a><a class=\"k-tab\">mini2</a><div class=\"k-active-bar\" style=\"left: 0px; width: 0px;\"></div></div></div></div></div>"
 ```
 
 #### `Tabs vertical`
 
 ```
-"<div><div class=\"k-tabs k-vertical\"><a class=\"k-tab k-active\">入站规则</a><a class=\"k-tab\">出站规则</a><a class=\"k-tab\">关联云主机</a><div class=\"k-active-bar\" style=\"top: 0px; height: 0px;\"></div></div><div class=\"k-tabs k-vertical k-card\"><a class=\"k-tab k-active\">入站规则</a><a class=\"k-tab\">出站规则</a><a class=\"k-tab\">关联云主机</a></div><div class=\"k-tabs k-vertical k-border-card\"><a class=\"k-tab k-active\">入站规则</a><a class=\"k-tab\">出站规则</a><a class=\"k-tab\">关联云主机</a></div><div class=\"k-tabs k-vertical k-card k-no-border-card\"><a class=\"k-tab k-active\">入站规则</a><a class=\"k-tab\">出站规则</a><a class=\"k-tab\">关联云主机</a></div></div>"
+"<div><div class=\"k-tabs k-vertical\"><div class=\"k-scroll c-clearfix\"><div class=\"k-wrapper\" style=\"transform: translateX(0px);\"><a class=\"k-tab k-active\">入站规则</a><a class=\"k-tab\">出站规则</a><a class=\"k-tab\">关联云主机</a><div class=\"k-active-bar\" style=\"top: 0px; height: 0px;\"></div></div></div></div><div class=\"k-tabs k-vertical k-card\"><div class=\"k-scroll c-clearfix\"><div class=\"k-wrapper\" style=\"transform: translateX(0px);\"><a class=\"k-tab k-active\">入站规则</a><a class=\"k-tab\">出站规则</a><a class=\"k-tab\">关联云主机</a></div></div></div><div class=\"k-tabs k-vertical k-border-card\"><div class=\"k-scroll c-clearfix\"><div class=\"k-wrapper\" style=\"transform: translateX(0px);\"><a class=\"k-tab k-active\">入站规则</a><a class=\"k-tab\">出站规则</a><a class=\"k-tab\">关联云主机</a></div></div></div><div class=\"k-tabs k-vertical k-card k-no-border-card\"><div class=\"k-scroll c-clearfix\"><div class=\"k-wrapper\" style=\"transform: translateX(0px);\"><a class=\"k-tab k-active\">入站规则</a><a class=\"k-tab\">出站规则</a><a class=\"k-tab\">关联云主机</a></div></div></div></div>"
 ```
 
 #### `Tag basic`
