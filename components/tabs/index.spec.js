@@ -4,9 +4,9 @@ import {mount, unmount, dispatchEvent} from 'test/utils';
 describe('Tabs', () => {
     let instance;
 
-    // afterEach(() => {
-        // unmount(instance);
-    // });
+    afterEach(() => {
+        unmount(instance);
+    });
 
     it('closable', function(done) {
         this.enableTimeouts(false);
