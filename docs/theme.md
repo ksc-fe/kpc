@@ -20,7 +20,8 @@ const path = require('path');
 {
     loader: 'stylus-loader',
     options: {
-        'incluce css': true,
+        'include css': true,
+        'resolve url': true,
         // 引入自定义主题文件mytheme/index.styl
         import: path.resolve(__dirname, 'styles/mytheme/index.styl')
     }
