@@ -24,10 +24,10 @@ export default class Tab extends Intact {
         }
     }
 
-    _isActive() {
-        const value = this.get('value');
-        return value !== undefined && value === this.get('_value');
-    }
+    // _isActive() {
+        // const value = this.get('value');
+        // return value !== undefined && value === this.get('_value');
+    // }
 
     _changeTab(e) {
         if (this.get('disabled')) {
