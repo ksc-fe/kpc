@@ -1,6 +1,9 @@
 import Button from '../button';
 
-const {value, children, _value, className, disabled, _parent} = self.get();
+const {
+    value, children, _value, className,
+    disabled, _parent, closable,
+} = self.get();
 
 <a 
     class={{ {
@@ -13,9 +16,12 @@ const {value, children, _value, className, disabled, _parent} = self.get();
 >
     {{ self.get('children') }}
     <Button type="none"
+        icon
         disabled={{ disabled }} 
-        size={{ _parent.get('size') }}
+        size="mini"
         class="k-close"
+        v-if={{ closable == null ? _parent.get('closable') : closable }}
+        ev-click={{ self._remove }}
     >
         <i class="k-icon ion-ios-close-empty" />
     </Button>

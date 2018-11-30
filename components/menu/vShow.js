@@ -1,3 +1,5 @@
+import {nextFrame} from '../utils';
+
 const transitionend = {
     transition: 'transitionend',
     WebkitTransition: 'webkitTransitionEnd',
@@ -30,12 +32,6 @@ export default class VShow extends Intact {
     }
 
     _mount() {
-        const raf = window.requestAnimationFrame ? 
-            window.requestAnimationFrame.bind(window) : setTimeout;
-        this.nextFrame = (fn) => {
-            raf(fn);
-        };
-
         const element = this.element;
         this.transitionendName = '';
         for (let name in transitionend) {
@@ -56,7 +52,7 @@ export default class VShow extends Intact {
 
     show() {
         this.set({'display': 'block', 'height': 0});
-        this.nextFrame(() => {
+        nextFrame(() => {
             this.set({
                 'height': this.element.firstChild.clientHeight + 'px',
             });
@@ -65,7 +61,7 @@ export default class VShow extends Intact {
 
     hide() {
         this.set('height', this.element.firstChild.clientHeight + 'px');
-        this.nextFrame(() => {
+        nextFrame(() => {
             this.set('height', 0);
         });
     }

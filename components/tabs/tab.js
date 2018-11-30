@@ -8,6 +8,7 @@ export default class Tab extends Intact {
     static propTypes = {
         disabled: Boolean,
         to: String,
+        closable: Boolean,
     };
 
     defaults() {
@@ -15,6 +16,7 @@ export default class Tab extends Intact {
             value: undefined,
             to: undefined,
             disabled: false,
+            closable: undefined,
 
             // passed by parent
             _value: undefined,
@@ -34,5 +36,11 @@ export default class Tab extends Intact {
             this.get('_parent')._changeTab(this.get());
             this.trigger('click', e);
         }
+    }
+
+    _remove(e) {
+        e.stopPropagation();
+        const {_parent} = this.get();
+        _parent._remove(this);
     }
 }

@@ -74,7 +74,7 @@ export default class extends Layout {
             const h = hs[i];
             const top = h.getBoundingClientRect().top + scrollTop;
 
-            if (top > minTop && top - 50 <= scrollTop) {
+            if (top > minTop && top - 88 <= scrollTop) {
                 return {header: h.id, top: top, elem: h};
             }
         }
@@ -86,7 +86,7 @@ export default class extends Layout {
         const index = demo.data.index;
         const dom = this.element.querySelector(`.index-${index}`);
         const top = dom.getBoundingClientRect().top + window.pageYOffset;
-        window.scrollTo(0, top - 50);
+        window.scrollTo(0, top - 87);
     }
 
     _destroy() {

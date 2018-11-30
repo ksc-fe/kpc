@@ -218,3 +218,13 @@ export function toggleArray(arr, value) {
 export function isNumber(n) {
     return typeof n === 'number';
 }
+
+let raf;
+if (typeof window !== 'undefined') {
+    raf = window.requestAnimationFrame ? 
+        window.requestAnimationFrame.bind(window) : setTimeout;
+}
+export function nextFrame(fn) {
+    raf(fn);
+}
+

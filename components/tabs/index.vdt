@@ -1,8 +1,11 @@
 import Tab from './tab';
+import Button from '../button';
 
 const {
     className, data, value, children,
-    style, vertical, size, type, _activeBarStyle
+    style, vertical, size, type,
+    _activeBarStyle, _scroll, _left,
+    _prev, _next
 } = self.get();
 
 const classNameObj = {
@@ -12,24 +15,47 @@ const classNameObj = {
     'k-vertical': vertical,
     'k-card': type === 'no-border-card',
     [`k-${type}`]: type !== 'default',
+    [`k-is-scroll`]: _scroll
 };
 
 <div class={{ classNameObj }} style={{ style }}>
-    <a v-for={{ data }}
-        class={{ {
-            'k-tab': true, 
-            'k-active': item.value === value,
-        } }}
-        v-for-value="item"
-        ev-click={{ self._changeTab.bind(self, item) }}
-    >{{ item.text }}</a>
-    {{ __u.map(children ? (Array.isArray(children) ? children : [children]) : children, vNode => {
-        if (vNode.tag === Tab) {
-            vNode.props = {...vNode.props, _value: value, _parent: self};
-        }
-        return vNode;
-    }) }}
-    <div class="k-active-bar" v-if={{ type === 'default' }}
-        style={{ _activeBarStyle }}
-    ></div>
+    <Button class="k-prev" type="none" icon
+        v-if={{ _scroll }}
+        key="prev" 
+        size={{ size }}
+        disabled={{ !_prev }}
+        ev-click={{ self._prev }}
+    >
+        <i class="ion-ios-arrow-left"></i>
+    </Button>
+    <div class="k-scroll c-clearfix" ref="scroll">
+        <div class="k-wrapper" ref="wrapper" style={{ {transform: `translateX(${_left}px)`} }}>
+            <a v-for={{ data }}
+                class={{ {
+                    'k-tab': true, 
+                    'k-active': item.value === value,
+                } }}
+                v-for-value="item"
+                ev-click={{ self._changeTab.bind(self, item) }}
+            >{{ item.text }}</a>
+            {{ __u.map(children ? (Array.isArray(children) ? children : [children]) : children, vNode => {
+                if (vNode.tag === Tab) {
+                    vNode.props = {...vNode.props, _value: value, _parent: self};
+                }
+                return vNode;
+            }) }}
+            <div class="k-active-bar" v-if={{ type === 'default' }}
+                style={{ _activeBarStyle }}
+            ></div>
+        </div>
+    </div>
+    <Button class="k-next" type="none" icon
+        v-if={{ _scroll }}
+        key="next" 
+        size={{ size }}
+        disabled={{ !_next }}
+        ev-click={{ self._next }}
+    >
+        <i class="ion-ios-arrow-right"></i>
+    </Button>
 </div>
