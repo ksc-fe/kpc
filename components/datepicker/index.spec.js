@@ -55,7 +55,7 @@ describe('Datepicker', () => {
         col2.querySelector('.k-active ~ div').click();
         const [_year, _month] = instance.get('month').split('-');
         expect(_year - 1).eql(year);
-        expect(_month - 1).eql(month + 1);
+        expect(_month - 1).eql((month + 1) % 12);
     });
 
     it('should change year and month', () => {

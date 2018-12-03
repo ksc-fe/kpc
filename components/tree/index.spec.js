@@ -2,6 +2,7 @@ import BasicDemo from '~/components/tree/demos/basic';
 import CheckboxDemo from '~/components/tree/demos/checkbox';
 import LoadingDemo from '~/components/tree/demos/loading';
 import CustomDemo from '~/components/tree/demos/custom';
+import FilterableDemo from '~/components/tree/demos/filterable';
 import {mount, unmount} from 'test/utils';
 
 describe('Tree', () => {
@@ -105,5 +106,21 @@ describe('Tree', () => {
         checkbox1.click();
         checkbox1.parentNode.querySelector('.k-btn:nth-child(2)').click();
         expect(element.outerHTML).to.matchSnapshot();
+    });
+
+    it('filterable', (done) => {
+        instance = mount(FilterableDemo);
+
+        instance.set('keywords', 'F');
+        setTimeout(() => {
+            expect(instance.element.outerHTML).to.matchSnapshot();
+
+            instance.set('keywords', '2.1.1');
+            setTimeout(() => {
+                expect(instance.element.outerHTML).to.matchSnapshot();
+
+                done();
+            }, 500)
+        }, 500);
     });
 });
