@@ -433,7 +433,7 @@ exports.ButtonGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543305755154
+      // 1543822296124
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -773,7 +773,7 @@ exports.Checkbox = Checkbox;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543305756718
+      // 1543822297580
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1287,7 +1287,7 @@ exports.DropdownItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543305759413
+      // 1543822301503
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -2560,7 +2560,7 @@ exports.Col = _col2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543305755589
+      // 1543822295611
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -3505,7 +3505,7 @@ exports.Input = Input;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543305758623
+      // 1543822299804
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -4836,7 +4836,7 @@ exports.Radio = Radio;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543305761294
+      // 1543822303250
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5506,7 +5506,7 @@ exports.OptionGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543305756493
+      // 1543822297238
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -6391,6 +6391,12 @@ __webpack_require__("./styles/kpc.styl");
 
 __webpack_require__("./components/tabs/index.styl");
 
+var _resizeObserverPolyfill = __webpack_require__("resize-observer-polyfill");
+
+var _resizeObserverPolyfill2 = _interopRequireDefault(_resizeObserverPolyfill);
+
+var _utils = __webpack_require__("./components/utils.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
@@ -6437,8 +6443,13 @@ var Tabs = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fun
             vertical: false,
             size: 'default',
             type: 'default',
+            closable: false,
 
-            _activeBarStyle: undefined
+            _activeBarStyle: undefined,
+            _scroll: false,
+            _left: 0,
+            _prev: false,
+            _next: false
         };
     };
 
@@ -6453,8 +6464,73 @@ var Tabs = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fun
     };
 
     Tabs.prototype._mount = function _mount() {
-        this.on('$changed:value', this._setActiveBarStyle);
+        var _this2 = this;
+
         this._setActiveBarStyle();
+        this._refreshScroll();
+
+        this.on('$changed:value', function () {
+            // we scroll active tab to view next frame
+            // because the _scroll property updates after it 
+            (0, _utils.nextFrame)(function () {
+                if (_this2.destroyed) return;
+                _this2._scrollActiveToView();
+            });
+        });
+
+        // resize
+        var ro = this.ro = new _resizeObserverPolyfill2.default(function () {
+            _this2._refreshScroll();
+        });
+        ro.observe(this.element);
+    };
+
+    Tabs.prototype._refreshScroll = function _refreshScroll() {
+        var _get = this.get(),
+            vertical = _get.vertical;
+
+        if (vertical) return;
+
+        var _refs = this.refs,
+            scroll = _refs.scroll,
+            wrapper = _refs.wrapper;
+
+        var scrollWidth = scroll.offsetWidth;
+        var wrapperWidth = wrapper.offsetWidth;
+        this.set('_scroll', scrollWidth < wrapperWidth);
+        this._setTransition();
+    };
+
+    Tabs.prototype._setTransition = function _setTransition() {
+        var _left = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.get('_left');
+
+        var _get2 = this.get(),
+            vertical = _get2.vertical;
+
+        if (vertical) return;
+
+        var _refs2 = this.refs,
+            scroll = _refs2.scroll,
+            wrapper = _refs2.wrapper;
+
+        var scrollWidth = scroll.offsetWidth;
+        var wrapperWidth = wrapper.offsetWidth;
+
+        var _prev = true;
+        var _next = true;
+        if (_left >= 0) {
+            _left = 0;
+            _prev = false;
+        } else if (_left <= scrollWidth - wrapperWidth) {
+            _left = scrollWidth - wrapperWidth;
+            _next = false;
+        }
+        this.set({ _left: _left, _prev: _prev, _next: _next });
+    };
+
+    Tabs.prototype._update = function _update(lastVNode, nextVNode) {
+        this._setActiveBarStyle();
+        this._refreshScroll();
     };
 
     Tabs.prototype._setActiveBarStyle = function _setActiveBarStyle() {
@@ -6476,6 +6552,61 @@ var Tabs = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fun
         }
     };
 
+    Tabs.prototype._scrollActiveToView = function _scrollActiveToView() {
+        var _get3 = this.get(),
+            vertical = _get3.vertical;
+
+        if (vertical) return;
+
+        var activeTab = this.element.querySelector('.k-tab.k-active');
+        if (activeTab) {
+            var _get4 = this.get(),
+                _left = _get4._left;
+
+            var _refs3 = this.refs,
+                scroll = _refs3.scroll,
+                wrapper = _refs3.wrapper;
+            // don't use getBoundingClientRect, it has transform and will return digital number
+
+            var activeRect = { left: activeTab.offsetLeft, width: activeTab.offsetWidth };
+            var scrollRect = { width: scroll.offsetWidth };
+            var wrapperRect = { left: wrapper.offsetLeft, width: wrapper.offsetWidth };
+            var x = activeRect.left - wrapperRect.left;
+            if (_left + x <= 0) {
+                _left = -x;
+            } else if (x + activeRect.width + _left > scrollRect.width) {
+                _left = -x - activeRect.width + scrollRect.width;
+            }
+            this.set({ _left: _left });
+        } else {
+            this.set('_left', 0);
+        }
+    };
+
+    Tabs.prototype._remove = function _remove(tab) {
+        this.trigger('remove', tab.get('value'));
+    };
+
+    Tabs.prototype._prev = function _prev() {
+        var _get5 = this.get(),
+            _left = _get5._left;
+
+        var scrollWidth = this.refs.scroll.offsetWidth;
+        this._setTransition(_left + scrollWidth);
+    };
+
+    Tabs.prototype._next = function _next() {
+        var _get6 = this.get(),
+            _left = _get6._left;
+
+        var scrollWidth = this.refs.scroll.offsetWidth;
+        this._setTransition(_left - scrollWidth);
+    };
+
+    Tabs.prototype._destroy = function _destroy() {
+        this.ro.disconnect();
+    };
+
     (0, _createClass3.default)(Tabs, [{
         key: 'template',
         get: function get() {
@@ -6487,7 +6618,8 @@ var Tabs = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = fun
     data: Array,
     vertical: Boolean,
     size: ['large', 'default', 'small', 'mini'],
-    type: ['default', 'card', 'border-card', 'no-border-card']
+    type: ['default', 'card', 'border-card', 'no-border-card'],
+    closable: Boolean
 }, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
 exports.default = Tabs;
 exports.Tabs = Tabs;
@@ -6500,7 +6632,7 @@ exports.Tab = _tab2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543305758429
+      // 1543822299978
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -6561,16 +6693,68 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         vertical = _self$get.vertical,
         size = _self$get.size,
         type = _self$get.type,
-        _activeBarStyle = _self$get._activeBarStyle;
+        _activeBarStyle = _self$get._activeBarStyle,
+        _scroll = _self$get._scroll,
+        _left = _self$get._left,
+        _prev = _self$get._prev,
+        _next = _self$get._next;
 
     var classNameObj = (_classNameObj = {
         'k-tabs': true
-    }, _classNameObj[className] = className, _classNameObj['k-' + size] = size !== 'default', _classNameObj['k-vertical'] = vertical, _classNameObj['k-card'] = type === 'no-border-card', _classNameObj['k-' + type] = type !== 'default', _classNameObj);
+    }, _classNameObj[className] = className, _classNameObj['k-' + size] = size !== 'default', _classNameObj['k-vertical'] = vertical, _classNameObj['k-card'] = type === 'no-border-card', _classNameObj['k-' + type] = type !== 'default', _classNameObj['k-is-scroll'] = _scroll, _classNameObj);
 
     return h('div', {
         'style': function () {
             try {
                 return style;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)
+    }, [function () {
+        try {
+            return _scroll;
+        } catch (e) {
+            _e(e);
+        }
+    }.call($this) ? h(_button2.default, {
+        'className': 'k-prev',
+        'type': 'none',
+        'icon': function () {
+            try {
+                return true;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
+        'key': 'prev',
+        'size': function () {
+            try {
+                return size;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
+        'disabled': function () {
+            try {
+                return !_prev;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
+        'children': h('i', null, null, 'ion-ios-arrow-left'),
+        '_context': $this,
+        'ev-click': function () {
+            try {
+                return self._prev;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)
+    }) : undefined, h('div', null, h('div', {
+        'style': function () {
+            try {
+                return { transform: 'translateX(' + _left + 'px)' };
             } catch (e) {
                 _e(e);
             }
@@ -6631,7 +6815,51 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 _e(e);
             }
         }.call($this)
-    }, null, 'k-active-bar') : undefined], _className(function () {
+    }, null, 'k-active-bar') : undefined], 'k-wrapper', null, function (i) {
+        widgets['wrapper'] = i;
+    }), 'k-scroll c-clearfix', null, function (i) {
+        widgets['scroll'] = i;
+    }), function () {
+        try {
+            return _scroll;
+        } catch (e) {
+            _e(e);
+        }
+    }.call($this) ? h(_button2.default, {
+        'className': 'k-next',
+        'type': 'none',
+        'icon': function () {
+            try {
+                return true;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
+        'key': 'next',
+        'size': function () {
+            try {
+                return size;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
+        'disabled': function () {
+            try {
+                return !_next;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
+        'children': h('i', null, null, 'ion-ios-arrow-right'),
+        '_context': $this,
+        'ev-click': function () {
+            try {
+                return self._next;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)
+    }) : undefined], _className(function () {
         try {
             return classNameObj;
         } catch (e) {
@@ -6643,6 +6871,10 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
 var _tab = __webpack_require__("./components/tabs/tab.js");
 
 var _tab2 = _interopRequireDefault(_tab);
+
+var _button = __webpack_require__("./components/button/index.js");
+
+var _button2 = _interopRequireDefault(_button);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6733,6 +6965,7 @@ var Tab = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = func
             value: undefined,
             to: undefined,
             disabled: false,
+            closable: undefined,
 
             // passed by parent
             _value: undefined,
@@ -6740,10 +6973,10 @@ var Tab = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = func
         };
     };
 
-    Tab.prototype._isActive = function _isActive() {
-        var value = this.get('value');
-        return value !== undefined && value === this.get('_value');
-    };
+    // _isActive() {
+    // const value = this.get('value');
+    // return value !== undefined && value === this.get('_value');
+    // }
 
     Tab.prototype._changeTab = function _changeTab(e) {
         if (this.get('disabled')) {
@@ -6752,6 +6985,15 @@ var Tab = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = func
             this.get('_parent')._changeTab(this.get());
             this.trigger('click', e);
         }
+    };
+
+    Tab.prototype._remove = function _remove(e) {
+        e.stopPropagation();
+
+        var _get = this.get(),
+            _parent = _get._parent;
+
+        _parent._remove(this);
     };
 
     (0, _createClass3.default)(Tab, [{
@@ -6763,7 +7005,8 @@ var Tab = (_dec = _intact2.default.template(), (_class = (_temp = _class2 = func
     return Tab;
 }(_intact2.default), _class2.propTypes = {
     disabled: Boolean,
-    to: String
+    to: String,
+    closable: Boolean
 }, _temp), (_applyDecoratedDescriptor(_class.prototype, 'template', [_dec], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'template'), _class.prototype)), _class));
 exports.default = Tab;
 module.exports = exports['default'];
@@ -6812,8 +7055,9 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         children = _self$get.children,
         _value = _self$get._value,
         className = _self$get.className,
-        size = _self$get.size,
-        disabled = _self$get.disabled;
+        disabled = _self$get.disabled,
+        _parent = _self$get._parent,
+        closable = _self$get.closable;
 
     return h('a', {
         'ev-click': function () {
@@ -6823,13 +7067,46 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 _e(e);
             }
         }.call($this)
-    }, function () {
+    }, [function () {
         try {
             return self.get('children');
         } catch (e) {
             _e(e);
         }
-    }.call($this), _className(function () {
+    }.call($this), function () {
+        try {
+            return closable == null ? _parent.get('closable') : closable;
+        } catch (e) {
+            _e(e);
+        }
+    }.call($this) ? h(_button2.default, {
+        'type': 'none',
+        'icon': function () {
+            try {
+                return true;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
+        'disabled': function () {
+            try {
+                return disabled;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this),
+        'size': 'mini',
+        'className': 'k-close',
+        'children': h('i', null, null, 'k-icon ion-ios-close-empty'),
+        '_context': $this,
+        'ev-click': function () {
+            try {
+                return self._remove;
+            } catch (e) {
+                _e(e);
+            }
+        }.call($this)
+    }) : undefined], _className(function () {
         try {
             var _ref;
 
@@ -6842,6 +7119,12 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
         }
     }.call($this)));
 };
+
+var _button = __webpack_require__("./components/button/index.js");
+
+var _button2 = _interopRequireDefault(_button);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = exports['default'];
 
@@ -7045,7 +7328,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543305754195
+      // 1543822294428
       var cssReload = require("!../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -7365,7 +7648,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543305754177
+      // 1543822294516
       var cssReload = require("!../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);

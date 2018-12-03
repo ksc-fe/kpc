@@ -29,7 +29,7 @@ localize(i18n);
 <span class="hljs-keyword">import</span> i18n <span class="hljs-keyword">from</span> <span class="hljs-string">'kpc/i18n/en-US'</span>;
 
 const dict = {
-    <span class="hljs-string">'测试'</span>: test
+    <span class="hljs-string">'测试'</span>: <span class="hljs-string">'test'</span>
 };
 
 <span class="hljs-comment">// 将kpc提供的字典和自定义自定合并传给localize</span>
@@ -51,8 +51,8 @@ localize({...dict, ...i18n});
 };
 localize(dict);
 
-_$(<span class="hljs-string">'最多选择{n}项'</span>, {<span class="hljs-attr">n</span>: <span class="hljs-number">1</span>}); <span class="hljs-comment">// return: Please select no more than 1 item.</span>
-_$(<span class="hljs-string">'最多选择{n}项'</span>, {<span class="hljs-attr">n</span>: <span class="hljs-number">2</span>}); <span class="hljs-comment">// return: Please select no more than 2 items.</span>
+_$(<span class="hljs-string">'最多选择{n}项'</span>, {<span class="hljs-attr">n</span>: <span class="hljs-number">1</span>}); <span class="hljs-comment">// output: Please select no more than 1 item.</span>
+_$(<span class="hljs-string">'最多选择{n}项'</span>, {<span class="hljs-attr">n</span>: <span class="hljs-number">2</span>}); <span class="hljs-comment">// output: Please select no more than 2 items.</span>
 </code></pre>
 <p>可以看到通过<code>{n}</code>语法，可以实现变量替换，其中<code>{s:n}</code>的含义为：当<code>n</code>大于<code>1</code>时，输出<code>s</code>。对于单复数需要变化后缀的情况可以这样做：例如<code>lea{f|ves:n}</code> <code>wom{an|en:n}</code></p>
 </div></div></div></article><div class="table-of-contents"><ul></ul><div class="aside-dot transition" style="display:none"></div></div></div></div></div></div>

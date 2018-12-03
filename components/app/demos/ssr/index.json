@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>App</code>组件还可以管理服务器端渲染，服务器端渲染时，调用<code>render(Page, [data])</code>方法，来将组件渲染成字符串，参数与<code>load</code>方法一样。然后前端进行加载时，需要在实例化<code>App</code>时传入<code>ssr: true</code>来标明当前页面为服务器端渲染，首次加载时进行混合<code>hydrate</code></p>\n<p>本例中，点击<code>Render in server</code>来模拟<code>PageA</code>服务器端渲染结果，插入<code>container</code>下面，然后点击<code>PageA</code>来混合结果，可以看到混合时，页面并不会发生任何改变</p>\n",
-    "index": 75,
+    "index": 72,
     "highlighted": [
         {
             "language": "vdt",

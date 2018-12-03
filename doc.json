@@ -353,8 +353,8 @@
             ]
         },
         {
-            "title": "时间选择",
-            "path": "components/timepicker/index.md",
+            "title": "日期选择",
+            "path": "components/datepicker/index.md",
             "children": [
                 {
                     "title": "属性",
@@ -367,8 +367,8 @@
             ]
         },
         {
-            "title": "日期选择",
-            "path": "components/datepicker/index.md",
+            "title": "时间选择",
+            "path": "components/timepicker/index.md",
             "children": [
                 {
                     "title": "属性",
@@ -698,36 +698,6 @@
             ]
         },
         {
-            "title": "开关",
-            "path": "components/switch/index.md",
-            "children": [
-                {
-                    "title": "属性",
-                    "path": "#header-%E5%B1%9E%E6%80%A7",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                    "text": "属性",
-                    "children": []
-                },
-                {
-                    "title": "扩展点",
-                    "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
-                    "level": 1,
-                    "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
-                    "text": "扩展点",
-                    "children": []
-                },
-                {
-                    "title": "方法",
-                    "path": "#header-%E6%96%B9%E6%B3%95",
-                    "level": 1,
-                    "content": "<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>",
-                    "text": "方法",
-                    "children": []
-                }
-            ]
-        },
-        {
             "title": "面包屑",
             "path": "components/breadcrumb/index.md",
             "children": [
@@ -755,6 +725,36 @@
                             "children": []
                         }
                     ]
+                }
+            ]
+        },
+        {
+            "title": "开关",
+            "path": "components/switch/index.md",
+            "children": [
+                {
+                    "title": "属性",
+                    "path": "#header-%E5%B1%9E%E6%80%A7",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                    "text": "属性",
+                    "children": []
+                },
+                {
+                    "title": "扩展点",
+                    "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
+                    "level": 1,
+                    "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
+                    "text": "扩展点",
+                    "children": []
+                },
+                {
+                    "title": "方法",
+                    "path": "#header-%E6%96%B9%E6%B3%95",
+                    "level": 1,
+                    "content": "<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>",
+                    "text": "方法",
+                    "children": []
                 }
             ]
         },
@@ -969,54 +969,6 @@
             ]
         },
         {
-            "title": "选项卡",
-            "path": "components/tabs/index.md",
-            "children": [
-                {
-                    "title": "属性",
-                    "path": "#header-%E5%B1%9E%E6%80%A7",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                    "text": "属性",
-                    "children": [
-                        {
-                            "title": "Tabs",
-                            "path": "#header-Tabs",
-                            "level": 2,
-                            "content": "<h2 id='header-Tabs'>Tabs</h2>",
-                            "text": "Tabs",
-                            "children": []
-                        },
-                        {
-                            "title": "Tab",
-                            "path": "#header-Tab",
-                            "level": 2,
-                            "content": "<h2 id='header-Tab'>Tab</h2>",
-                            "text": "Tab",
-                            "children": []
-                        }
-                    ]
-                },
-                {
-                    "title": "事件",
-                    "path": "#header-%E4%BA%8B%E4%BB%B6",
-                    "level": 1,
-                    "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
-                    "text": "事件",
-                    "children": [
-                        {
-                            "title": "Tab",
-                            "path": "#header-Tab",
-                            "level": 2,
-                            "content": "<h2 id='header-Tab'>Tab</h2>",
-                            "text": "Tab",
-                            "children": []
-                        }
-                    ]
-                }
-            ]
-        },
-        {
             "title": "折叠面板",
             "path": "components/collapse/index.md",
             "children": [
@@ -1075,6 +1027,54 @@
                             "level": 2,
                             "content": "<h2 id='header-CollapseItem'>CollapseItem</h2>",
                             "text": "CollapseItem",
+                            "children": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "选项卡",
+            "path": "components/tabs/index.md",
+            "children": [
+                {
+                    "title": "属性",
+                    "path": "#header-%E5%B1%9E%E6%80%A7",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                    "text": "属性",
+                    "children": [
+                        {
+                            "title": "Tabs",
+                            "path": "#header-Tabs",
+                            "level": 2,
+                            "content": "<h2 id='header-Tabs'>Tabs</h2>",
+                            "text": "Tabs",
+                            "children": []
+                        },
+                        {
+                            "title": "Tab",
+                            "path": "#header-Tab",
+                            "level": 2,
+                            "content": "<h2 id='header-Tab'>Tab</h2>",
+                            "text": "Tab",
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "title": "事件",
+                    "path": "#header-%E4%BA%8B%E4%BB%B6",
+                    "level": 1,
+                    "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
+                    "text": "事件",
+                    "children": [
+                        {
+                            "title": "Tab",
+                            "path": "#header-Tab",
+                            "level": 2,
+                            "content": "<h2 id='header-Tab'>Tab</h2>",
+                            "text": "Tab",
                             "children": []
                         }
                     ]
@@ -1501,6 +1501,14 @@
             "children": [
                 {
                     "children": [
+                        {
+                            "title": "v0.7.4",
+                            "path": "#header-v0.7.4",
+                            "level": 2,
+                            "content": "<h2 id='header-v0.7.4'>v0.7.4</h2>",
+                            "text": "v0.7.4",
+                            "children": []
+                        },
                         {
                             "title": "v0.7.1",
                             "path": "#header-v0.7.1",

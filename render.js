@@ -39,7 +39,7 @@ module.exports =
 /******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
 /******/ 		// "0" is the signal for "already loaded"
 /******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("./chunk/" + {"0":"615a4b97d96890a2c898","1":"a3634af9ceacf28d2bd4","2":"5fbf93ec3db14cdb3d34","3":"96c47f7e2b0e1ee2477c"}[chunkId] + ".js");
+/******/ 			var chunk = require("./chunk/" + {"0":"c3f6d78f65fe92ea8d0a","1":"eb6dd88800aacc61f7bc","2":"ec6da792338285b03db0","3":"ab7d0313a64dbe1b822d"}[chunkId] + ".js");
 /******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				modules[moduleId] = moreModules[moduleId];
@@ -271,7 +271,7 @@ exports.App = App;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543305752662
+      // 1543822291411
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -469,7 +469,7 @@ exports.Spin = Spin;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543305754048
+      // 1543822292792
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -624,6 +624,7 @@ exports.getTransition = getTransition;
 exports.mapChildren = mapChildren;
 exports.toggleArray = toggleArray;
 exports.isNumber = isNumber;
+exports.nextFrame = nextFrame;
 
 var _intact = __webpack_require__("intact");
 
@@ -866,6 +867,14 @@ function toggleArray(arr, value) {
 
 function isNumber(n) {
     return typeof n === 'number';
+}
+
+var raf = void 0;
+if (typeof window !== 'undefined') {
+    raf = window.requestAnimationFrame ? window.requestAnimationFrame.bind(window) : setTimeout;
+}
+function nextFrame(fn) {
+    raf(fn);
 }
 
 /***/ }),
@@ -1355,7 +1364,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1543305755772
+      // 1543822294714
       var cssReload = require("!../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1529,6 +1538,13 @@ module.exports = require("node-style-loader/collect");
 /***/ (function(module, exports) {
 
 module.exports = require("path-to-regexp");
+
+/***/ }),
+
+/***/ "resize-observer-polyfill":
+/***/ (function(module, exports) {
+
+module.exports = require("resize-observer-polyfill");
 
 /***/ })
 
