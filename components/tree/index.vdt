@@ -6,6 +6,8 @@ const {expandedKeys} = self;
 
 const TreeNodes = ({data}) => {
     return __u.map(data, value => {
+        if (!value.filter) return;
+
         const expanded = expandedKeys.has(value.key);
 
         return <Animate

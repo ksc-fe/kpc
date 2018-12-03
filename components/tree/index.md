@@ -14,6 +14,7 @@ sidebar: doc
 | checkedKeys | 通过`key`指定选中的数据节点 | `Array` | `undefined` |
 | checkbox | 是否展示复选框 | `Boolean` | `false` |
 | load | 指定异步加载节点数据的函数，该函数通过`Promise`返回数组来添加子节点数据 | `Function` | `undefined` |
+| filter | 指定节点过滤函数，返回`true`则展示，否则过滤掉 | `Function` | `undefined` |
 
 ## 实例属性
 

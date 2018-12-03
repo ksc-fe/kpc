@@ -5,7 +5,7 @@ export default class Node {
         const key = data.key == null ? uniqueId++ : data.key;
         // if the node has been set to checked
         // we should set its children to checked
-        // and recheck the parent to set checked or indeterminate
+        // and recheck the parent to set to checked or indeterminate
         const checkedKeys = tree.checkedKeys;
         let checked = checkedKeys.has(key);
         let needRecheck = false;
@@ -19,6 +19,16 @@ export default class Node {
         }
 
         const node = new Node(data, checked, parent, key, tree);
+
+        const {filter} = tree.get();
+        if (parent && filter) {
+            if (filter.call(tree, data, node)) {
+                node.filter = true;
+                node.updateFilterUpward();
+            } else {
+                node.filter = false;
+            }
+        }
 
         if (data.children) {
             node.children = Node.createNodes(data.children, node, tree, needRecheckNodes);
@@ -46,6 +56,7 @@ export default class Node {
         this.children = undefined;
         this.tree = tree;
         this.loaded = undefined;
+        this.filter = true;
     }
 
     updateDownward(checked) {
@@ -93,6 +104,14 @@ export default class Node {
         this.tree._updateCheckedKeys(parent);
 
         parent.updateUpward();
+    }
+
+    updateFilterUpward() {
+        const parent = this.parent;
+        if (!parent || parent === this.tree.root || parent.filter) return;
+
+        parent.filter = true;
+        parent.updateFilterUpward();
     }
 
     append(data) {

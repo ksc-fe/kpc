@@ -14,6 +14,7 @@ export default class Tree extends Intact {
         checkedKeys: Array,
         checkbox: Boolean,
         load: Function,
+        filter: Function,
     };
 
     defaults() {
@@ -23,6 +24,7 @@ export default class Tree extends Intact {
             checkbox: false,
             checkedKeys: undefined,
             load: undefined,
+            filter: undefined,
         }
     }
 
@@ -39,6 +41,7 @@ export default class Tree extends Intact {
         this.on('$receive:expandedKeys', () => {
             this.expandedKeys = new Set(this.get('expandedKeys'));
         });
+        this.on('$receive:filter', this._mappingKeys);
     }
 
     _mappingKeys() {
@@ -131,6 +134,23 @@ export default class Tree extends Intact {
 
     _onRightClick(node, e) {
         this.trigger('rightclick:node', node, e);
+    }
+
+    _beforeUpdate(lastVNode, nextVNode) {
+        // if there is filter method, we should re-mapping the data
+        // to check the filter status
+        if (!this.get('filter')) return;
+        if (!lastVNode || !nextVNode) return;
+        const lastProps = lastVNode.props;
+        const nextProps = nextVNode.props;
+        // these props will re-mapping in $receive callback
+        if (
+            // lastProps.data !== nextProps.data ||
+            // lastProps.checkedKeys !== nextProps.checkedKeys ||
+            lastProps.filter !== nextProps.filter
+        ) return;
+
+        this._mappingKeys();
     }
 }
 
