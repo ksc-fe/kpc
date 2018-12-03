@@ -4,6 +4,8 @@
     <img src="/site/src/imgs/logo.png" alt="LOGO" width="150">
 </a>
 
+<p></p>
+
 [![Build Status](https://travis-ci.org/ksc-fe/kpc.svg?branch=master)](https://travis-ci.org/ksc-fe/kpc)
 [![Codecov](https://codecov.io/gh/ksc-fe/kpc/branch/master/graphs/badge.svg)](https://codecov.io/gh/ksc-fe/kpc/branch/master)
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/ksc-fe/kpc.svg)](http://isitmaintained.com/project/ksc-fe/kpc "Average time to resolve an issue")
@@ -22,9 +24,7 @@
 * 完全可自定义的主题系统
 * 360°全方位定位系统
 * 声明式表单验证
-* 完善的文档和单元测试
-
-[文档](https://ksc-fe.github.io/kpc/)
+* 完善的文档和单元测试 [文档](https://ksc-fe.github.io/kpc/)
 
 ## 安装
 
