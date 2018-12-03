@@ -4,6 +4,15 @@ order: 99
 sidebar: doc
 ---
 
+## v0.7.4
+
+1. `Add` `FormItem`支持单独使用，不用一定要嵌入`Form`组件下，以便可以复用它的样式 [#145](https://github.com/ksc-fe/kpc/issues/145)
+2. `Add` `Menu`渲染时自动展开已选择的菜单项 [#144](https://github.com/ksc-fe/kpc/issues/144)
+3. `Add` `Select`支持无边框的内联样式 [#146](https://github.com/ksc-fe/kpc/issues/146)
+4. `Add` `Tabs`标签页支持关闭功能
+5. `Add` `Tabs`当标签页过多时自动展示翻页按钮 [#142](https://github.com/ksc-fe/kpc/issues/142)
+6. `Add` `Tree`支持节点过滤功能 [#137](https://github.com/ksc-fe/kpc/issues/137)
+
 ## v0.7.1
 
 1. `Add` `Dropdown`及所有包含弹出菜单元素的组件支持`container`属性，以便自定义弹出菜单插入的位置 [#138](https://github.com/ksc-fe/kpc/issues/138)
