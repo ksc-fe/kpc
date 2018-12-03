@@ -1,3 +1,4 @@
+import Intact from 'intact';
 import {nextFrame} from '../utils';
 
 const transitionend = {
