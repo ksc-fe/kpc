@@ -18,11 +18,11 @@
 
 ## 特性
 
-*. 支持多框架 [Intact][1] / [Vue][2] / [React][3]
-*. 完全可自定义的主题系统
-*. 360°全方位定位系统
-*. 声明式表单验证
-*. 完善的文档和单元测试
+* 支持多框架 [Intact][1] / [Vue][2] / [React][3]
+* 完全可自定义的主题系统
+* 360°全方位定位系统
+* 声明式表单验证
+* 完善的文档和单元测试
 
 [文档](https://ksc-fe.github.io/kpc/)
 
@@ -44,11 +44,11 @@ import {Button} from 'kpc';
 
 ## 链接
 
-*. [官方文档](https://ksc-fe.github.io/kpc/)
-*. [Intact MVVM框架](2)
-*. [Vdt 模板引擎](http://javey.github.io/vdt.js/)
-*. [Intact-Vue 兼容层](https://github.com/Javey/intact-vue)
-*. [Intact-React 兼容层](https://github.com/ksc-fe/intact-react)
+* [官方文档](https://ksc-fe.github.io/kpc/)
+* [Intact MVVM框架](2)
+* [Vdt 模板引擎](http://javey.github.io/vdt.js/)
+* [Intact-Vue 兼容层](https://github.com/Javey/intact-vue)
+* [Intact-React 兼容层](https://github.com/ksc-fe/intact-react)
 
 ## 开发
 
