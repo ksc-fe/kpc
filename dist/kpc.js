@@ -8928,7 +8928,7 @@ var _tree = __webpack_require__(311);
 var _upload = __webpack_require__(315);
 
 /*!
- * kpc v0.7.4
+ * kpc v0.7.5
  *
  * Copyright (c) Kingsoft Cloud
  * Released under the MIT License
@@ -8993,7 +8993,7 @@ exports.Upload = _upload.Upload;
 
 /* generate start */
 
-var version = exports.version = '0.7.4';
+var version = exports.version = '0.7.5';
 
 /* generate end */
 
@@ -22927,6 +22927,10 @@ var _inherits2 = __webpack_require__(3);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
+var _intact = __webpack_require__(0);
+
+var _intact2 = _interopRequireDefault(_intact);
+
 var _utils = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -23029,7 +23033,7 @@ var VShow = function (_Intact) {
     };
 
     return VShow;
-}(Intact);
+}(_intact2.default);
 
 exports.default = VShow;
 module.exports = exports['default'];
