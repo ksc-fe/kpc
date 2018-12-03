@@ -28,7 +28,7 @@ sizes = large small mini
             position relative
             top -2px
             .k-icon
-                font-size 20px
+                font-size $tabs-close-font-size
         &:hover
         &.k-active
             color $tabs-active-color 
@@ -164,13 +164,13 @@ sizes = large small mini
         .k-next
             position absolute
             top 0
-            width 20px
+            width $tabs-navigator-width
         .k-prev
             left 0
         .k-next
             right 0
         &.k-is-scroll
-            padding 0 20px
+            padding 0 $tabs-navigator-width
 
     // size
     for size in sizes 
