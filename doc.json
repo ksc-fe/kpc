@@ -2,6 +2,9 @@
     "组件": [
         {
             "title": "应用管理",
+            "order": -1,
+            "category": "组件",
+            "sidebar": "doc",
             "path": "components/app/index.md",
             "children": [
                 {
@@ -32,6 +35,9 @@
         },
         {
             "title": "按钮",
+            "category": "组件",
+            "order": 0,
+            "sidebar": "doc",
             "path": "components/button/index.md",
             "children": [
                 {
@@ -80,6 +86,9 @@
         },
         {
             "title": "徽标",
+            "order": 0.1,
+            "category": "组件",
+            "sidebar": "doc",
             "path": "components/badge/index.md",
             "children": [
                 {
@@ -94,6 +103,9 @@
         },
         {
             "title": "栅格",
+            "category": "组件",
+            "order": 1,
+            "sidebar": "doc",
             "path": "components/grid/index.md",
             "children": [
                 {
@@ -125,6 +137,9 @@
         },
         {
             "title": "菜单",
+            "category": "组件",
+            "order": 2,
+            "sidebar": "doc",
             "path": "components/menu/index.md",
             "children": [
                 {
@@ -190,6 +205,9 @@
         },
         {
             "title": "输入框",
+            "category": "组件",
+            "order": 2,
+            "sidebar": "doc",
             "path": "components/input/index.md",
             "children": [
                 {
@@ -220,6 +238,9 @@
         },
         {
             "title": "滚动选择框",
+            "category": "组件",
+            "order": 3,
+            "sidebar": "doc",
             "path": "components/scrollSelect/index.md",
             "children": [
                 {
@@ -234,6 +255,9 @@
         },
         {
             "title": "单选框",
+            "category": "组件",
+            "order": 3,
+            "sidebar": "doc",
             "path": "components/radio/index.md",
             "children": [
                 {
@@ -248,6 +272,9 @@
         },
         {
             "title": "复选框",
+            "category": "组件",
+            "order": 4,
+            "sidebar": "doc",
             "path": "components/checkbox/index.md",
             "children": [
                 {
@@ -262,6 +289,9 @@
         },
         {
             "title": "选择框",
+            "category": "组件",
+            "order": 5,
+            "sidebar": "doc",
             "path": "components/select/index.md",
             "children": [
                 {
@@ -318,6 +348,9 @@
         },
         {
             "title": "级联选择",
+            "category": "组件",
+            "order": 5.1,
+            "sidebar": "doc",
             "path": "components/cascader/index.md",
             "children": [
                 {
@@ -340,6 +373,9 @@
         },
         {
             "title": "数字输入框",
+            "category": "组件",
+            "order": 6,
+            "sidebar": "doc",
             "path": "components/spinner/index.md",
             "children": [
                 {
@@ -354,6 +390,9 @@
         },
         {
             "title": "日期选择",
+            "category": "组件",
+            "order": 7,
+            "sidebar": "doc",
             "path": "components/datepicker/index.md",
             "children": [
                 {
@@ -368,6 +407,9 @@
         },
         {
             "title": "时间选择",
+            "category": "组件",
+            "order": 7,
+            "sidebar": "doc",
             "path": "components/timepicker/index.md",
             "children": [
                 {
@@ -382,6 +424,9 @@
         },
         {
             "title": "加载中",
+            "category": "组件",
+            "order": 8,
+            "sidebar": "doc",
             "path": "components/spin/index.md",
             "children": [
                 {
@@ -404,6 +449,9 @@
         },
         {
             "title": "滑块",
+            "category": "组件",
+            "order": 8,
+            "sidebar": "doc",
             "path": "components/slider/index.md",
             "children": [
                 {
@@ -418,6 +466,9 @@
         },
         {
             "title": "表单",
+            "category": "组件",
+            "order": 9,
+            "sidebar": "doc",
             "path": "components/form/index.md",
             "children": [
                 {
@@ -517,6 +568,9 @@
         },
         {
             "title": "弹窗",
+            "category": "组件",
+            "order": 10,
+            "sidebar": "doc",
             "path": "components/dialog/index.md",
             "children": [
                 {
@@ -555,6 +609,9 @@
         },
         {
             "title": "下拉菜单",
+            "category": "组件",
+            "order": 11,
+            "sidebar": "doc",
             "path": "components/dropdown/index.md",
             "children": [
                 {
@@ -610,6 +667,9 @@
         },
         {
             "title": "全局提示",
+            "category": "组件",
+            "order": 12,
+            "sidebar": "doc",
             "path": "components/message/index.md",
             "children": [
                 {
@@ -632,6 +692,9 @@
         },
         {
             "title": "提示弹层",
+            "category": "组件",
+            "order": 13,
+            "sidebar": "doc",
             "path": "components/tooltip/index.md",
             "children": [
                 {
@@ -654,6 +717,9 @@
         },
         {
             "title": "进度条",
+            "category": "组件",
+            "order": 14,
+            "sidebar": "doc",
             "path": "components/progress/index.md",
             "children": [
                 {
@@ -668,6 +734,9 @@
         },
         {
             "title": "步骤条",
+            "category": "组件",
+            "order": 15,
+            "sidebar": "doc",
             "path": "components/steps/index.md",
             "children": [
                 {
@@ -699,6 +768,9 @@
         },
         {
             "title": "面包屑",
+            "category": "组件",
+            "order": 16,
+            "sidebar": "doc",
             "path": "components/breadcrumb/index.md",
             "children": [
                 {
@@ -730,6 +802,9 @@
         },
         {
             "title": "开关",
+            "category": "组件",
+            "order": 16,
+            "sidebar": "doc",
             "path": "components/switch/index.md",
             "children": [
                 {
@@ -760,6 +835,9 @@
         },
         {
             "title": "分页",
+            "category": "组件",
+            "order": 17,
+            "sidebar": "doc",
             "path": "components/pagination/index.md",
             "children": [
                 {
@@ -790,6 +868,9 @@
         },
         {
             "title": "抽屉",
+            "category": "组件",
+            "order": 30,
+            "sidebar": "doc",
             "path": "components/drawer/index.md",
             "children": [
                 {
@@ -828,6 +909,9 @@
         },
         {
             "title": "标签",
+            "category": "组件",
+            "order": 88,
+            "sidebar": "doc",
             "path": "components/tag/index.md",
             "children": [
                 {
@@ -850,6 +934,9 @@
         },
         {
             "title": "表格",
+            "category": "组件",
+            "order": 89,
+            "sidebar": "doc",
             "path": "components/table/index.md",
             "children": [
                 {
@@ -940,6 +1027,9 @@
         },
         {
             "title": "警告提示",
+            "category": "组件",
+            "order": 89,
+            "sidebar": "doc",
             "path": "components/tip/index.md",
             "children": [
                 {
@@ -970,6 +1060,9 @@
         },
         {
             "title": "折叠面板",
+            "order": 90,
+            "category": "组件",
+            "sidebar": "doc",
             "path": "components/collapse/index.md",
             "children": [
                 {
@@ -1035,6 +1128,9 @@
         },
         {
             "title": "选项卡",
+            "category": "组件",
+            "order": 90,
+            "sidebar": "doc",
             "path": "components/tabs/index.md",
             "children": [
                 {
@@ -1083,6 +1179,9 @@
         },
         {
             "title": "可编辑文本",
+            "category": "组件",
+            "order": 99,
+            "sidebar": "doc",
             "path": "components/editable/index.md",
             "children": [
                 {
@@ -1105,6 +1204,9 @@
         },
         {
             "title": "树形控件",
+            "category": "组件",
+            "order": 99,
+            "sidebar": "doc",
             "path": "components/tree/index.md",
             "children": [
                 {
@@ -1177,6 +1279,9 @@
         },
         {
             "title": "穿梭框",
+            "category": "组件",
+            "order": 99,
+            "sidebar": "doc",
             "path": "components/transfer/index.md",
             "children": [
                 {
@@ -1199,6 +1304,9 @@
         },
         {
             "title": "上传",
+            "category": "组件",
+            "order": 100,
+            "sidebar": "doc",
             "path": "components/upload/index.md",
             "children": [
                 {
@@ -1237,6 +1345,9 @@
         },
         {
             "title": "时间轴",
+            "category": "组件",
+            "order": 100,
+            "sidebar": "doc",
             "path": "components/timeline/index.md",
             "children": [
                 {
@@ -1279,6 +1390,8 @@
     "undefined": [
         {
             "title": "快速开始",
+            "order": 0,
+            "sidebar": "doc",
             "path": "docs/getting-started.md",
             "children": [
                 {
@@ -1351,6 +1464,8 @@
         },
         {
             "title": "定制主题",
+            "order": 1,
+            "sidebar": "doc",
             "path": "docs/theme.md",
             "children": [
                 {
@@ -1407,6 +1522,8 @@
         },
         {
             "title": "Vue中使用",
+            "order": 1,
+            "sidebar": "doc",
             "path": "docs/vue.md",
             "children": [
                 {
@@ -1453,6 +1570,8 @@
         },
         {
             "title": "国际化",
+            "order": 2,
+            "sidebar": "doc",
             "path": "docs/i18n.md",
             "children": [
                 {
@@ -1492,11 +1611,15 @@
         },
         {
             "title": "字体icon",
+            "order": 3,
+            "sidebar": "doc",
             "path": "docs/icon.md",
             "children": []
         },
         {
             "title": "更新日志",
+            "order": 99,
+            "sidebar": "doc",
             "path": "docs/changelog.md",
             "children": [
                 {

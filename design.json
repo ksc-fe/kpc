@@ -2,6 +2,8 @@
     "undefined": [
         {
             "title": "设计语言",
+            "order": 0,
+            "sidebar": "design",
             "path": "docs/design/language.md",
             "children": [
                 {
@@ -36,6 +38,9 @@
         },
         {
             "title": "8-Point Grid System",
+            "order": 0.1,
+            "sidebar": "design",
+            "disabled": true,
             "path": "docs/design/8point.md",
             "children": [
                 {
@@ -54,48 +59,18 @@
         },
         {
             "title": "颜色",
+            "order": 1,
+            "sidebar": "design",
             "path": "docs/design/color.md",
             "children": [
                 {
                     "children": [
-                        {
-                            "title": "功能色",
-                            "path": "#header-%E5%8A%9F%E8%83%BD%E8%89%B2",
-                            "level": 2,
-                            "content": "<h2 id='header-%E5%8A%9F%E8%83%BD%E8%89%B2'>功能色</h2>",
-                            "text": "功能色",
-                            "children": []
-                        },
-                        {
-                            "title": "中性色",
-                            "path": "#header-%E4%B8%AD%E6%80%A7%E8%89%B2",
-                            "level": 2,
-                            "content": "<h2 id='header-%E4%B8%AD%E6%80%A7%E8%89%B2'>中性色</h2>",
-                            "text": "中性色",
-                            "children": []
-                        },
                         {
                             "title": "品牌色",
                             "path": "#header-%E5%93%81%E7%89%8C%E8%89%B2",
                             "level": 2,
                             "content": "<h2 id='header-%E5%93%81%E7%89%8C%E8%89%B2'>品牌色</h2>",
                             "text": "品牌色",
-                            "children": []
-                        },
-                        {
-                            "title": "色板生成器",
-                            "path": "#header-%E8%89%B2%E6%9D%BF%E7%94%9F%E6%88%90%E5%99%A8",
-                            "level": 2,
-                            "content": "<h2 id='header-%E8%89%B2%E6%9D%BF%E7%94%9F%E6%88%90%E5%99%A8'>色板生成器</h2>",
-                            "text": "色板生成器",
-                            "children": []
-                        },
-                        {
-                            "title": "UI调色板",
-                            "path": "#header-UI%E8%B0%83%E8%89%B2%E6%9D%BF",
-                            "level": 2,
-                            "content": "<h2 id='header-UI%E8%B0%83%E8%89%B2%E6%9D%BF'>UI调色板</h2>",
-                            "text": "UI调色板",
                             "children": []
                         }
                     ]
@@ -104,6 +79,9 @@
         },
         {
             "title": "间距",
+            "order": 2,
+            "sidebar": "design",
+            "disabled": true,
             "path": "docs/design/gutter.md",
             "children": [
                 {
@@ -138,6 +116,9 @@
         },
         {
             "title": "字体",
+            "order": 2,
+            "sidebar": "design",
+            "disabled": true,
             "path": "docs/design/font.md",
             "children": [
                 {
@@ -180,6 +161,9 @@
         },
         {
             "title": "格式",
+            "order": 3,
+            "sidebar": "design",
+            "disabled": true,
             "path": "docs/design/format.md",
             "children": [
                 {
@@ -214,6 +198,9 @@
         },
         {
             "title": "层级关系",
+            "order": 4,
+            "sidebar": "design",
+            "disabled": true,
             "path": "docs/design/hierarchy.md",
             "children": [
                 {
@@ -232,6 +219,9 @@
         },
         {
             "title": "文案",
+            "order": 6,
+            "sidebar": "design",
+            "disabled": true,
             "path": "docs/design/text.md",
             "children": [
                 {
@@ -284,6 +274,10 @@
     "组件": [
         {
             "title": "按钮",
+            "order": 0,
+            "category": "组件",
+            "sidebar": "design",
+            "disabled": true,
             "path": "docs/design/button.md",
             "children": [
                 {
@@ -326,6 +320,10 @@
         },
         {
             "title": "导航",
+            "order": 2,
+            "category": "组件",
+            "sidebar": "design",
+            "disabled": true,
             "path": "docs/design/navigator.md",
             "children": [
                 {
@@ -381,6 +379,10 @@
         },
         {
             "title": "对话框",
+            "order": 2,
+            "category": "组件",
+            "sidebar": "design",
+            "disabled": true,
             "path": "docs/design/dialog.md",
             "children": [
                 {
@@ -427,6 +429,10 @@
         },
         {
             "title": "提示",
+            "order": 3,
+            "category": "组件",
+            "sidebar": "design",
+            "disabled": true,
             "path": "docs/design/tip.md",
             "children": [
                 {
