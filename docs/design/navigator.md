@@ -3,6 +3,7 @@ title: 导航
 order: 2
 category: 组件
 sidebar: design
+disabled: true
 ---
 
 ## 面包屑导航

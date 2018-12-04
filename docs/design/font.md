@@ -2,6 +2,7 @@
 title: 字体
 order: 2
 sidebar: design
+disabled: true
 ---
 
 ## 字体家族

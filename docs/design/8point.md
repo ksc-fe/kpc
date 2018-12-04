@@ -2,6 +2,7 @@
 title: 8-Point Grid System
 order: 0.1
 sidebar: design
+disabled: true
 ---
 
 ## 8像素规则

@@ -3,6 +3,7 @@ title: 提示
 order: 3
 category: 组件
 sidebar: design
+disabled: true
 ---
 
 ### 警告提示

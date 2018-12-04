@@ -3,6 +3,7 @@ title: 对话框
 order: 2
 category: 组件
 sidebar: design
+disabled: true
 ---
 
 ### 无标题对话框

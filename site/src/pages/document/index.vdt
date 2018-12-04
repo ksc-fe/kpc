@@ -8,10 +8,12 @@ let currentNav = {};
 let demos = self.get('demos') || [];
 
 function Catalog(props) {
-    return <div class="catalog-section">
-        <h5 v-if={{ props.key !== undefined }}>{{ props.key }}</h5>
-        <ul>
-            <li v-for={{ props.value }} class={{ {
+    let isEmpty = true;
+
+    const lis = __u.map(props.value, (value) => {
+        if (!value.disabled) isEmpty = false;
+        return <li
+            class={{ {
                 active: (() => {
                     const path = self.path.slice(1);
                     if (value.path.includes(path + '/') ||
@@ -21,27 +23,33 @@ function Catalog(props) {
                         return true;
                     }
                 })()
-            } }}>
-                <Link href={{ `${process.URL_PREFIX}/${value.path.replace('.md', '/').replace('index/', '')}` }}>
-                    {{ do {
-                        const matches = value.path.match(/components\/([^\/]+)/);
-                        if (matches) {
-                            const name = matches[1];
-                            [
-                                name[0].toUpperCase() + name.substring(1),
-                                <span>{{ value.title }}</span>
-                            ];
+            } }}
+            v-if={{ !value.disabled }}
+        >
+            <Link href={{ `${process.URL_PREFIX}/${value.path.replace('.md', '/').replace('index/', '')}` }}>
+                {{ do {
+                    const matches = value.path.match(/components\/([^\/]+)/);
+                    if (matches) {
+                        const name = matches[1];
+                        [
+                            name[0].toUpperCase() + name.substring(1),
+                            <span>{{ value.title }}</span>
+                        ];
+                    } else {
+                        if (value.title === '更新日志') {
+                            <Badge disabled={{ !!self.get('hasRead') }}>{{ value.title }}</Badge>
                         } else {
-                            if (value.title === '更新日志') {
-                                <Badge disabled={{ !!self.get('hasRead') }}>{{ value.title }}</Badge>
-                            } else {
-                                value.title;
-                            }
+                            value.title;
                         }
-                    } }}
-                </Link>
-            </li>
-        </ul>
+                    }
+                } }}
+            </Link>
+        </li>
+    });
+    if (isEmpty) return;
+    return <div class="catalog-section">
+        <h5 v-if={{ props.key !== undefined }}>{{ props.key }}</h5>
+        <ul>{{ lis }}</ul>
     </div>
 }
 

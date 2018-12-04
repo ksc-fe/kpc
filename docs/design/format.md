@@ -2,6 +2,7 @@
 title: 格式
 order: 3
 sidebar: design
+disabled: true
 ---
 
 ## 费用金额

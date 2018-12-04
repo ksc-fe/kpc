@@ -2,6 +2,7 @@
 title: 层级关系
 order: 4
 sidebar: design
+disabled: true
 ---
 
 ## 层级阴影

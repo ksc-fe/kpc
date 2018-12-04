@@ -3,6 +3,7 @@ title: 按钮
 order: 0
 category: 组件
 sidebar: design
+disabled: true
 ---
 
 ## 应用规则

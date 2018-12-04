@@ -2,6 +2,7 @@
 title: 文案
 order: 6
 sidebar: design
+disabled: true
 ---
 
 ## 语言
