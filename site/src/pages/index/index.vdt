@@ -13,19 +13,21 @@ import image2 from '../../imgs/page2.png';
         <div class="pages">
             <Row class="first-page" align="stretch" justify="center">
                 <Col class="first-page-left" lg="11">
-                    <h1>KPC</h1>
-                    <h2>King design Public Components</h2>
-                    <p>支持多框架的前端高质量组件库</p>
-                    <div class="actions">
-                        <Button tagName={{ Link }} type="primary"
-                            tagProps={{ {
-                                href: `${process.URL_PREFIX}/docs/getting-started/`
-                            } }}
-                            class="button"
-                        >开始使用</Button>
-                        <Button href="https://github.com/ksc-fe/kpc" class="button"
-                            target="_blank"
-                        >GitHub</Button>
+                    <div class="wrapper">
+                        <h1>KPC</h1>
+                        <h2>King design Public Components</h2>
+                        <p>支持多框架的前端高质量组件库</p>
+                        <div class="actions">
+                            <Button tagName={{ Link }} type="primary"
+                                tagProps={{ {
+                                    href: `${process.URL_PREFIX}/docs/getting-started/`
+                                } }}
+                                class="button"
+                            >开始使用</Button>
+                            <Button href="https://github.com/ksc-fe/kpc" class="button"
+                                target="_blank"
+                            >GitHub</Button>
+                        </div>
                     </div>
                 </Col>
                 <Col class="first-page-right" lg="11">

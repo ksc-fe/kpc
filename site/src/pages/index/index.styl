@@ -11,7 +11,8 @@ circle-width = 270px
         position absolute
         top 0
         width 100% // $page-width
-        background #fff
+        background url('../../imgs/bg.png')
+        background-size 20px 20px
         box-sizing border-box
         text-align center
     .pages
@@ -37,9 +38,11 @@ circle-width = 270px
             margin 10px 0 20px 0
         .button
             padding 0 2em
-            margin 0 10px
+            margin-right 20px
             height 3em
             line-height 3em
+        .wrapper
+            text-align left
     .second-page-right
         .info
             text-align left
@@ -66,6 +69,11 @@ circle-width = 270px
     .index-page
         .content-wrapper
             position relative
+        .first-page
+            .wrapper
+                text-align center
+            .button
+                margin 0 10px
         .second-page-right
             .info
                 text-align center
