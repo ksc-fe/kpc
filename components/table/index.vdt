@@ -147,7 +147,7 @@ const TheadCreator = ({onlyLeft, onlyRight, refContainer, style}) => {
                             title: props.title,
                             fixed: props.fixed,
                             template: props.template || 
-                                blockFn && ((...args) => blockFn.call(self, noop, ...args))
+                                blockFn && ((...args) => blockFn.call(this, noop, ...args))
                         };
 
                         if (props.fixed === 'left') {
