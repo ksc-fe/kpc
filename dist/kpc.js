@@ -27371,6 +27371,8 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                 _e(e);
             }
         }.call($this), '\n            ', function () {
+            var _this = this;
+
             try {
                 return __u.map(children ? Array.isArray(children) ? children : [children] : children, function (vNode) {
                     if (vNode.tag === _column2.default) {
@@ -27414,7 +27416,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                                     args[_key] = arguments[_key];
                                 }
 
-                                return blockFn.call.apply(blockFn, [self, _utils.noop].concat(args));
+                                return blockFn.call.apply(blockFn, [_this, _utils.noop].concat(args));
                             }
                         };
 
