@@ -1,5 +1,6 @@
 import Intact from 'intact';
 import {nextFrame} from '../utils';
+import './vShow.styl';
 
 const transitionend = {
     transition: 'transitionend',
@@ -12,13 +13,22 @@ const transitionend = {
 export default class VShow extends Intact {
     template(data, vdt) {
         const h = vdt.miss.h;
-        const {height, display} = data.get();
-        return h('div', {
-            style: {
-                height: height,
-                display: display,
-            },
-        }, data.get('children'), 'k-show-height');
+        const _c = vdt.utils.className;
+        const {height, display, className} = data.get();
+        return h(
+            'div',
+            {
+                style: {
+                    height: height,
+                    display: display,
+                },
+            }, 
+            data.get('children'), 
+            _c({
+                'k-show-height': true,
+                [className]: className
+            })
+        );
     }
 
     _init() {
@@ -58,6 +68,7 @@ export default class VShow extends Intact {
                 'height': this.element.firstChild.clientHeight + 'px',
             });
         });
+        this.trigger('show');
     }
 
     hide() {
@@ -65,6 +76,7 @@ export default class VShow extends Intact {
         nextFrame(() => {
             this.set('height', 0);
         });
+        this.trigger('hide');
     }
 
     transitionend(e) {
