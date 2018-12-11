@@ -4,6 +4,11 @@ order: 99
 sidebar: doc
 ---
 
+## v0.7.6
+
+1. `Add` `Collapse`使用`display: none`代替删除折叠起来的元素 [#149](https://github.com/ksc-fe/kpc/issues/149)
+2. `Fix` `Datepicker` `disabledSeconds`无效的问题 [#148](https://github.com/ksc-fe/kpc/issues/148)
+
 ## v0.7.4
 
 1. `Add` `FormItem`支持单独使用，不用一定要嵌入`Form`组件下，以便可以复用它的样式 [#145](https://github.com/ksc-fe/kpc/issues/145)
