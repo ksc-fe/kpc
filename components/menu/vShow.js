@@ -46,8 +46,8 @@ export default class VShow extends Intact {
         const element = this.element;
         this.transitionendName = '';
         for (let name in transitionend) {
-            if (element.style[name]) {
-                this.transitionendName = name;
+            if (name in element.style) {
+                this.transitionendName = transitionend[name];
                 break;
             }
         }
