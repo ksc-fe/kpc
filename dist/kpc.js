@@ -7034,8 +7034,8 @@ var VShow = function (_Intact) {
         var element = this.element;
         this.transitionendName = '';
         for (var name in transitionend) {
-            if (element.style[name]) {
-                this.transitionendName = name;
+            if (name in element.style) {
+                this.transitionendName = transitionend[name];
                 break;
             }
         }
@@ -9071,7 +9071,7 @@ var _tree = __webpack_require__(312);
 var _upload = __webpack_require__(316);
 
 /*!
- * kpc v0.7.6
+ * kpc v0.7.7
  *
  * Copyright (c) Kingsoft Cloud
  * Released under the MIT License
@@ -9136,7 +9136,7 @@ exports.Upload = _upload.Upload;
 
 /* generate start */
 
-var version = exports.version = '0.7.6';
+var version = exports.version = '0.7.7';
 
 /* generate end */
 
