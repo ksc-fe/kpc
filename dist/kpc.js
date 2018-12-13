@@ -1782,7 +1782,7 @@ var Dropdown = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
         // save the original event
         var originProps = (0, _extends3.default)({}, children.props);
         var hasSaved = false;
-        if (!originProps._hasSaved) {
+        if (!originProps._evHasSaved) {
             if (originProps.vueVNode) {
                 // for vue element
                 var data = originProps.vueVNode.data;
@@ -1790,6 +1790,12 @@ var Dropdown = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
                 originProps._evClick = on.click;
                 originProps._evMouseEnter = on.mouseenter;
                 originProps._evMouseLeave = on.mouseleave;
+            } else if (originProps.reactVNode) {
+                // for react element
+                var _props = originProps.reactVNode.props;
+                originProps._evClick = _props.onClick;
+                originProps._evMouseEnter = _props.onMouseEnter;
+                originProps._evMouseLeave = _props.onMouseLeave;
             } else {
                 originProps._evClick = originProps['ev-click'];
                 originProps._evMouseEnter = originProps['ev-mouseenter'];
@@ -1806,7 +1812,7 @@ var Dropdown = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
             props['ev-mouseleave'] = this.hide.bind(this, originProps._evMouseLeave);
         }
         if (hasSaved) {
-            props._hasSaved = true;
+            props._evHasSaved = true;
         }
         children.props = (0, _extends3.default)({}, originProps, props);
         this.set('children', children, { silent: true });

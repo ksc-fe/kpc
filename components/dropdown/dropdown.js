@@ -42,7 +42,7 @@ export default class Dropdown extends Intact {
         // save the original event
         const originProps = {...children.props};
         let hasSaved = false;
-        if (!originProps._hasSaved) {
+        if (!originProps._evHasSaved) {
             if (originProps.vueVNode) {
                 // for vue element
                 const data = originProps.vueVNode.data;
@@ -50,6 +50,12 @@ export default class Dropdown extends Intact {
                 originProps._evClick = on.click;
                 originProps._evMouseEnter = on.mouseenter;
                 originProps._evMouseLeave = on.mouseleave;
+            } else if (originProps.reactVNode) {
+                // for react element
+                const props = originProps.reactVNode.props;
+                originProps._evClick = props.onClick;
+                originProps._evMouseEnter = props.onMouseEnter;
+                originProps._evMouseLeave = props.onMouseLeave;
             } else {
                 originProps._evClick = originProps['ev-click'];
                 originProps._evMouseEnter = originProps['ev-mouseenter'];
@@ -66,7 +72,7 @@ export default class Dropdown extends Intact {
             props['ev-mouseleave'] = this.hide.bind(this, originProps._evMouseLeave);
         }
         if (hasSaved) {
-            props._hasSaved = true;
+            props._evHasSaved = true;
         }
         children.props = {...originProps, ...props};
         this.set('children', children, {silent: true});
