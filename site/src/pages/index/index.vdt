@@ -43,7 +43,7 @@ import image2 from '../../imgs/page2.png';
                         <div class="feature">
                             <h2>支持多框架</h2>
                             <div>
-                                同时支持Intact和Vue框架
+                                同时支持Intact/Vue/React框架
                             </div>
                         </div>
                         <div class="feature">

@@ -9,11 +9,13 @@ sidebar: doc
 在学习使用kpc之前，假设你已经掌握了以下知识：
 
 1. [webpack][1] + [babel][2]
-2. [vue][3]（如果将kpc用于vue项目）或者[intact][4]（如果将kpc用于intact项目）
+2. [Vue][3]（如果将kpc用于Vue项目）或者[intact][4]（如果将kpc用于Intact项目）或者[React][7]（如果将kpc用于React项目）
 
 # 使用脚手架
 
 使用[Yeoman][5]以及generator-kscpm，可以快速初始化kpc项目
+
+> 目前仅支持初始化Intact和Vue项目，React项目正在添加中
 
 1. 安装yo和generator-kscpm
 
@@ -266,3 +268,4 @@ module.export = {
 [4]: http://javey.github.io/intact/
 [5]: http://yeoman.io/
 [6]: ../theme/
+[7]: https://reactjs.org/

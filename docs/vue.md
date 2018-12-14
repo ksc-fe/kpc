@@ -4,12 +4,12 @@ order: 1
 sidebar: doc
 ---
 
-kpc同时兼容intact和vue框架，我们只需要引入vue兼容层[intact-vue][1]即可。
+使kpc运行在Vue框架中，我们只需要引入Vue兼容层[intact-vue][1]即可
 
 # 语法说明
 
 intact-vue从底层vNode上做了intact到vue的兼容，文档中针对intact的例子，
-我们只需要做以下写法上的转化即可
+我们只需要做以下写法上的转换即可
 
 | 类别 | intact写法 | vue写法 |
 | --- | --- | --- |
@@ -88,7 +88,6 @@ export default {
 
 ```shell
 npm install intact intact-vue kpc --save
-
 ```
 
 # 配置`webpack.config.js`
