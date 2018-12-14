@@ -21,24 +21,60 @@ intact-vue从底层vNode上做了intact到vue的兼容，文档中针对intact�
 | 带参数的block | `<Transfer><b:label params="data"><div>{{ data.name }}</div></b:label></Transfer>` | `<Transfer><div slot="label" slot-scope="data">{{ data.name }}</div></Transfer>` |
 | 双向绑定任意属性 `@since intact-vue@0.3.7` | `v-model:name="name"` | `:name.sync="name"` |
 
-另外当需要在js中使用`h()`方法创建vNode时，需要使用`Intact.normalize()`方法将vNode包起来
+## 不支持的特性
+
+1. 不支持事件的.native修饰符
+    ```vue
+    <Button @click.native="click">default</Button>
+    ```
+2. 多余的属性不会被自动添加到组件渲染的DOM上，而是被直接忽略
+3. 不支持scoped style，因为KPC组件渲染不会添加data-v-id
+    ```vue
+    <style scoped> .k-btn { color: red;  } </style>
+    ```
+4. 不支持 [Multiple values](https://vuejs.org/v2/guide/class-and-style.html#Multiple-Values) style
+    ```vue
+    <Button v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></Button>
+    ```
+5. 不要在KPC组件上直接做动画，如果要动画，可以包一层div
+    ```vue
+    <transition name="fade">
+        <Button v-if="show">default</Button>
+    </transition>
+    ```
+    可以包一层div
+    ```vue
+    <transition name="fade">
+        <div v-if="show">
+            <Button>default</Button>
+        </div>
+    </transition>
+    ```
+
+另外当需要在js中使用`h()`方法创建vNode，然后作为属性传给kpc组件时，需要使用`Intact.normalize()`
+方法将vNode包起来
+
+> 如果是作为子元素`children`，则没有必要`normalize`，因为兼容层默认会normalize子元素
 
 ```vue
 <template>
-    <Button>{{ template }}</Button>
+    <Badge :text="text">{{ children }}</Badge>
 </template>
 <script>
 import Intact from 'intact';
-import Button from 'kpc/components/Button';
+import Badge from 'kpc/components/badge';
 
 export default {
     components: {
-        Button
+        Badge
     },
     data() {
         const h = this.$createElement;
         return {
-            template: Intact.normalize(h('div', null, 'test'))
+            // 作为属性，需要normalize
+            text: Intact.normalize(h('div', null, 'test')),
+            // 作为子元素，没有必要normalize
+            children: h('div', null, 'test')
         }
     }
 }
