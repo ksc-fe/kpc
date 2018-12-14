@@ -9077,7 +9077,7 @@ var _tree = __webpack_require__(312);
 var _upload = __webpack_require__(316);
 
 /*!
- * kpc v0.7.7
+ * kpc v0.7.8
  *
  * Copyright (c) Kingsoft Cloud
  * Released under the MIT License
@@ -9142,7 +9142,7 @@ exports.Upload = _upload.Upload;
 
 /* generate start */
 
-var version = exports.version = '0.7.7';
+var version = exports.version = '0.7.8';
 
 /* generate end */
 

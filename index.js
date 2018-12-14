@@ -1,5 +1,5 @@
 /*!
- * kpc v0.7.7
+ * kpc v0.7.8
  *
  * Copyright (c) Kingsoft Cloud
  * Released under the MIT License
@@ -108,7 +108,7 @@ export {
     Upload
 };
 
-export const version = '0.7.7';
+export const version = '0.7.8';
 
 /* generate end */
 
