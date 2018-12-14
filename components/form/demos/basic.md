@@ -33,6 +33,9 @@ order: 0
 > 验证的字段名必须是当前上下文对象上的直接属性名，在循环中我们必须通过索引来拼接取值路径字符串，
 > 例如：`"users.0.phone"`
 
+> React下，需要往子组件注入当前上下文`_context`，因为`FormItem`需要从当前上下文获取待验证的值，
+> 详见下面`index.jsx`示例文件
+
 ```vdt
 import {Form, FormItem} from 'kpc/components/form';
 import {Input} from 'kpc/components/input';
@@ -167,6 +170,60 @@ export default class extends Intact {
     reset() {
         this.refs.form.reset();
         console.log(this.get('model'));
+    }
+}
+```
+
+```jsx
+import React from 'react';
+import {Form, FormItem} from 'kpc/components/form';
+import {Input} from 'kpc/components/input';
+import Message from 'kpc/components/message';
+
+export default class extends React.Component {
+    // *********
+    // 注入_context上下文
+    static childContextTypes = {
+        _context: () => {}
+    }
+
+    getChildContext() {
+        return {
+            _context: this
+        }
+    }
+    // *********
+
+    constructor(props) {
+        super(props);
+        this.state = {model: {}};
+
+        this.submit = this.submit.bind(this);
+        this.onChangeInput = this.onChangeInput.bind(this);
+    }
+
+    submit() {
+        Message.success('验证通过，开始提交');
+        console.log(this.state.model);
+    }
+    
+    onChangeInput(c, v) {
+        this.setState({
+            model: {
+                ...this.state.model,
+                input: v
+            }
+        });
+    }
+
+    render() {
+        return (
+            <Form onSubmit={this.submit} ref={i => this.form = i} labelWidth="200">
+                <FormItem label="Input" model="model.input" rules={{required: true}}>
+                    <Input value={this.state.model.input} on$change-value={this.onChangeInput} />
+                </FormItem>
+            </Form>
+        );
     }
 }
 ```
