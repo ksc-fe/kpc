@@ -28,24 +28,94 @@
 
 ## 安装
 
+### 在Intact下
+
 ```shell
-npm install kpc --save
+npm install intact kpc --save
+```
+
+### 在Vue下
+
+```shell
+npm install kpc intact intact-vue --save
+```
+
+webpack配置
+
+```js
+module.exports = {
+    ...
+    resolve: {
+        alias: {
+            'intact$': 'intact-vue',
+        }
+    }
+}
+```
+
+### 在React下
+
+```shell
+npm install kpc intact intact-react --save
+```
+
+webpack配置
+
+```js
+module.exports = {
+    ...
+    resolve: {
+        alias: {
+            'intact$': 'intact-react',
+        }
+    }
+}
 ```
 
 ## 使用
 
+### 在Intact下
+
 ```js
-import {Button} from 'kpc/components/button';
-// or
 import {Button} from 'kpc';
 
 <Button>Hello</Button>
 ```
 
+### 在Vue下
+
+```js
+<template>
+    <Button>Hello</Button>
+</template>
+<script>
+import {Button} from 'kpc';
+
+export default {
+    components: {
+        Button
+    }
+}
+</script>
+```
+
+### 在React下
+
+```jsx
+import React from 'react';
+import {Button} from 'kpc';
+
+class App extends React.Component {
+    render() {
+        return <Button>Hello</Button>
+    }
+}
+```
+
 ## 链接
 
 * [官方文档](https://ksc-fe.github.io/kpc/)
-* [Intact MVVM框架](2)
+* [Intact MVVM框架][1]
 * [Vdt 模板引擎](http://javey.github.io/vdt.js/)
 * [Intact-Vue 兼容层](https://github.com/Javey/intact-vue)
 * [Intact-React 兼容层](https://github.com/ksc-fe/intact-react)
