@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>给<code>Table</code>添加<code>loading</code>属性，即可展示加载状态</p>\n",
-    "index": 238,
+    "index": 239,
     "highlighted": [
         {
             "language": "vdt",

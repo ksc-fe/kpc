@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>给组件添加<code>confirm</code>属性，可以展示确认提示弹层。点击“确认”和“取消”按钮分别会触发<code>ok</code>和<code>cancel</code>事件。你还可以通过<code>okText</code>和<code>cancelText</code>属性指定按钮文案</p>\n",
-    "index": 174,
+    "index": 180,
     "highlighted": [
         {
             "language": "vdt",

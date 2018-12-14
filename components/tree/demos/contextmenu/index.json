@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>绑定<code>rightclick:node</code>并利用<code>DropdownMenu</code>可以实现右键菜单来操作节点增删</p>\n",
-    "index": 181,
+    "index": 184,
     "highlighted": [
         {
             "language": "vdt",

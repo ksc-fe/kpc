@@ -237,11 +237,11 @@
             ]
         },
         {
-            "title": "滚动选择框",
+            "title": "单选框",
             "category": "组件",
             "order": 3,
             "sidebar": "doc",
-            "path": "components/scrollSelect/index.md",
+            "path": "components/radio/index.md",
             "children": [
                 {
                     "title": "属性",
@@ -254,11 +254,11 @@
             ]
         },
         {
-            "title": "单选框",
+            "title": "滚动选择框",
             "category": "组件",
             "order": 3,
             "sidebar": "doc",
-            "path": "components/radio/index.md",
+            "path": "components/scrollSelect/index.md",
             "children": [
                 {
                     "title": "属性",
@@ -389,11 +389,11 @@
             ]
         },
         {
-            "title": "日期选择",
+            "title": "时间选择",
             "category": "组件",
             "order": 7,
             "sidebar": "doc",
-            "path": "components/datepicker/index.md",
+            "path": "components/timepicker/index.md",
             "children": [
                 {
                     "title": "属性",
@@ -406,11 +406,11 @@
             ]
         },
         {
-            "title": "时间选择",
+            "title": "日期选择",
             "category": "组件",
             "order": 7,
             "sidebar": "doc",
-            "path": "components/timepicker/index.md",
+            "path": "components/datepicker/index.md",
             "children": [
                 {
                     "title": "属性",
@@ -767,6 +767,39 @@
             ]
         },
         {
+            "title": "开关",
+            "category": "组件",
+            "order": 16,
+            "sidebar": "doc",
+            "path": "components/switch/index.md",
+            "children": [
+                {
+                    "title": "属性",
+                    "path": "#header-%E5%B1%9E%E6%80%A7",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                    "text": "属性",
+                    "children": []
+                },
+                {
+                    "title": "扩展点",
+                    "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
+                    "level": 1,
+                    "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
+                    "text": "扩展点",
+                    "children": []
+                },
+                {
+                    "title": "方法",
+                    "path": "#header-%E6%96%B9%E6%B3%95",
+                    "level": 1,
+                    "content": "<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>",
+                    "text": "方法",
+                    "children": []
+                }
+            ]
+        },
+        {
             "title": "面包屑",
             "category": "组件",
             "order": 16,
@@ -797,39 +830,6 @@
                             "children": []
                         }
                     ]
-                }
-            ]
-        },
-        {
-            "title": "开关",
-            "category": "组件",
-            "order": 16,
-            "sidebar": "doc",
-            "path": "components/switch/index.md",
-            "children": [
-                {
-                    "title": "属性",
-                    "path": "#header-%E5%B1%9E%E6%80%A7",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                    "text": "属性",
-                    "children": []
-                },
-                {
-                    "title": "扩展点",
-                    "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
-                    "level": 1,
-                    "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
-                    "text": "扩展点",
-                    "children": []
-                },
-                {
-                    "title": "方法",
-                    "path": "#header-%E6%96%B9%E6%B3%95",
-                    "level": 1,
-                    "content": "<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>",
-                    "text": "方法",
-                    "children": []
                 }
             ]
         },
@@ -1303,47 +1303,6 @@
             ]
         },
         {
-            "title": "上传",
-            "category": "组件",
-            "order": 100,
-            "sidebar": "doc",
-            "path": "components/upload/index.md",
-            "children": [
-                {
-                    "title": "属性",
-                    "path": "#header-%E5%B1%9E%E6%80%A7",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                    "text": "属性",
-                    "children": []
-                },
-                {
-                    "title": "扩展点",
-                    "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
-                    "level": 1,
-                    "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
-                    "text": "扩展点",
-                    "children": []
-                },
-                {
-                    "title": "方法",
-                    "path": "#header-%E6%96%B9%E6%B3%95",
-                    "level": 1,
-                    "content": "<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>",
-                    "text": "方法",
-                    "children": []
-                },
-                {
-                    "title": "事件",
-                    "path": "#header-%E4%BA%8B%E4%BB%B6",
-                    "level": 1,
-                    "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
-                    "text": "事件",
-                    "children": []
-                }
-            ]
-        },
-        {
             "title": "时间轴",
             "category": "组件",
             "order": 100,
@@ -1383,6 +1342,47 @@
                             "children": []
                         }
                     ]
+                }
+            ]
+        },
+        {
+            "title": "上传",
+            "category": "组件",
+            "order": 100,
+            "sidebar": "doc",
+            "path": "components/upload/index.md",
+            "children": [
+                {
+                    "title": "属性",
+                    "path": "#header-%E5%B1%9E%E6%80%A7",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                    "text": "属性",
+                    "children": []
+                },
+                {
+                    "title": "扩展点",
+                    "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
+                    "level": 1,
+                    "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
+                    "text": "扩展点",
+                    "children": []
+                },
+                {
+                    "title": "方法",
+                    "path": "#header-%E6%96%B9%E6%B3%95",
+                    "level": 1,
+                    "content": "<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>",
+                    "text": "方法",
+                    "children": []
+                },
+                {
+                    "title": "事件",
+                    "path": "#header-%E4%BA%8B%E4%BB%B6",
+                    "level": 1,
+                    "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
+                    "text": "事件",
+                    "children": []
                 }
             ]
         }
@@ -1532,7 +1532,16 @@
                     "level": 1,
                     "content": "<h1 id='header-%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E'>语法说明</h1>",
                     "text": "语法说明",
-                    "children": []
+                    "children": [
+                        {
+                            "title": "不支持的特性",
+                            "path": "#header-%E4%B8%8D%E6%94%AF%E6%8C%81%E7%9A%84%E7%89%B9%E6%80%A7",
+                            "level": 2,
+                            "content": "<h2 id='header-%E4%B8%8D%E6%94%AF%E6%8C%81%E7%9A%84%E7%89%B9%E6%80%A7'>不支持的特性</h2>",
+                            "text": "不支持的特性",
+                            "children": []
+                        }
+                    ]
                 },
                 {
                     "title": "安装依赖",
@@ -1564,6 +1573,46 @@
                     "level": 1,
                     "content": "<h1 id='header-%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5'>按需引入</h1>",
                     "text": "按需引入",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "title": "React中使用",
+            "order": 1.1,
+            "sidebar": "doc",
+            "path": "docs/react.md",
+            "children": [
+                {
+                    "title": "语法说明",
+                    "path": "#header-%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E",
+                    "level": 1,
+                    "content": "<h1 id='header-%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E'>语法说明</h1>",
+                    "text": "语法说明",
+                    "children": []
+                },
+                {
+                    "title": "安装依赖",
+                    "path": "#header-%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96'>安装依赖</h1>",
+                    "text": "安装依赖",
+                    "children": []
+                },
+                {
+                    "title": "配置<code>webpack.config.js</code>",
+                    "path": "#header-%E9%85%8D%E7%BD%AEwebpack.config.js",
+                    "level": 1,
+                    "content": "<h1 id='header-%E9%85%8D%E7%BD%AEwebpack.config.js'>配置<code>webpack.config.js</code></h1>",
+                    "text": "配置<code>webpack.config.js</code>",
+                    "children": []
+                },
+                {
+                    "title": "使用",
+                    "path": "#header-%E4%BD%BF%E7%94%A8",
+                    "level": 1,
+                    "content": "<h1 id='header-%E4%BD%BF%E7%94%A8'>使用</h1>",
+                    "text": "使用",
                     "children": []
                 }
             ]

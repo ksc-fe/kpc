@@ -433,7 +433,7 @@ exports.ButtonGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1544517041705
+      // 1544764707839
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -773,7 +773,7 @@ exports.Checkbox = Checkbox;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1544517043288
+      // 1544764708756
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1089,7 +1089,7 @@ var Dropdown = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
         // save the original event
         var originProps = (0, _extends3.default)({}, children.props);
         var hasSaved = false;
-        if (!originProps._hasSaved) {
+        if (!originProps._evHasSaved) {
             if (originProps.vueVNode) {
                 // for vue element
                 var data = originProps.vueVNode.data;
@@ -1097,6 +1097,12 @@ var Dropdown = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
                 originProps._evClick = on.click;
                 originProps._evMouseEnter = on.mouseenter;
                 originProps._evMouseLeave = on.mouseleave;
+            } else if (originProps.reactVNode) {
+                // for react element
+                var _props = originProps.reactVNode.props;
+                originProps._evClick = _props.onClick;
+                originProps._evMouseEnter = _props.onMouseEnter;
+                originProps._evMouseLeave = _props.onMouseLeave;
             } else {
                 originProps._evClick = originProps['ev-click'];
                 originProps._evMouseEnter = originProps['ev-mouseenter'];
@@ -1113,7 +1119,7 @@ var Dropdown = (_dec = _intact2.default.template(), (_class = (_temp = _class2 =
             props['ev-mouseleave'] = this.hide.bind(this, originProps._evMouseLeave);
         }
         if (hasSaved) {
-            props._hasSaved = true;
+            props._evHasSaved = true;
         }
         children.props = (0, _extends3.default)({}, originProps, props);
         this.set('children', children, { silent: true });
@@ -1287,7 +1293,7 @@ exports.DropdownItem = _item2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1544517046243
+      // 1544764711490
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -2560,7 +2566,7 @@ exports.Col = _col2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1544517041255
+      // 1544764706841
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -3505,7 +3511,7 @@ exports.Input = Input;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1544517045197
+      // 1544764710450
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -4836,7 +4842,7 @@ exports.Radio = Radio;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1544517048538
+      // 1544764713790
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5506,7 +5512,7 @@ exports.OptionGroup = _group2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1544517042674
+      // 1544764708428
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -6632,7 +6638,7 @@ exports.Tab = _tab2.default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1544517045419
+      // 1544764710504
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -7328,7 +7334,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1544517041407
+      // 1544764706114
       var cssReload = require("!../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -7466,7 +7472,7 @@ exports.default = function (obj, _Vdt, blocks, $callee) {
                     }), h(_grid.Col, {
                         'className': 'second-page-right',
                         'lg': '11',
-                        'children': h('div', null, [h('div', null, [h('h2', null, '支持多框架'), h('div', null, '\n                                同时支持Intact和Vue框架\n                            ')], 'feature'), h('div', null, [h('h2', null, '忠于原生，增强原生'), h('div', null, '\n                                在保持浏览器原生特性的基础上，增强交互能力\n                            ')], 'feature'), h('div', null, [h('h2', null, '便捷开发'), h('div', null, '\n                                支持按需加载，主题定制，国际化等特性\n                            '), h('div', null, '\n                                并且提供了配套的脚手架方便快速初始化项目\n                            ')], 'feature')], 'info'),
+                        'children': h('div', null, [h('div', null, [h('h2', null, '支持多框架'), h('div', null, '\n                                同时支持Intact/Vue/React框架\n                            ')], 'feature'), h('div', null, [h('h2', null, '忠于原生，增强原生'), h('div', null, '\n                                在保持浏览器原生特性的基础上，增强交互能力\n                            ')], 'feature'), h('div', null, [h('h2', null, '便捷开发'), h('div', null, '\n                                支持按需加载，主题定制，国际化等特性\n                            '), h('div', null, '\n                                并且提供了配套的脚手架方便快速初始化项目\n                            ')], 'feature')], 'info'),
                         '_context': $this
                     })],
                     '_context': $this
@@ -7648,7 +7654,7 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1544517040618
+      // 1544764705823
       var cssReload = require("!../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
