@@ -90,7 +90,7 @@ module.exports = {
                     {
                         loader: 'vue-loader',
                         options: {
-                            preserveWhitespace: false,
+                            // preserveWhitespace: true,
                         }
                     }
                 ]
