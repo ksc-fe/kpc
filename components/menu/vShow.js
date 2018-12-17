@@ -63,19 +63,31 @@ export default class VShow extends Intact {
 
     show() {
         this.set({'display': 'block', 'height': 0});
-        nextFrame(() => {
-            this.set({
-                'height': this.element.firstChild.clientHeight + 'px',
+        const height = this.element.firstChild.clientHeight;
+        if (!height) {
+            // if the height is 0, call end immediately
+            this.transitionend({target: this.element});
+        } else {
+            nextFrame(() => {
+                this.set({
+                    'height': height + 'px',
+                });
             });
-        });
+        }
         this.trigger('show');
     }
 
     hide() {
-        this.set('height', this.element.firstChild.clientHeight + 'px');
-        nextFrame(() => {
-            this.set('height', 0);
-        });
+        const height = this.element.firstChild.clientHeight;
+        if (!height) {
+            this.set('height', height + 'px');
+            // if the height is 0, call end immediately
+            this.transitionend({target: this.element});
+        } else {
+            nextFrame(() => {
+                this.set('height', 0);
+            });
+        }
         this.trigger('hide');
     }
 
