@@ -58,6 +58,21 @@ module.exports = {
     ...
     resolve: {
         alias: {
+            'kpc': 'kpc/@css',
+        }
+    }
+}
+```
+
+
+webpack配置
+
+```js
+module.exports = {
+    ...
+    resolve: {
+        alias: {
+            'kpc': 'kpc/@css',
             'intact$': 'intact-vue',
         }
     }
@@ -77,6 +92,7 @@ module.exports = {
     ...
     resolve: {
         alias: {
+            'kpc': 'kpc/@css',
             'intact$': 'intact-react',
         }
     }
