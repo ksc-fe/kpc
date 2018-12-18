@@ -21,6 +21,15 @@ import {Tabs, Tab} from 'kpc/components/tabs';
                             value={{ value.file ? value.file : `index.${value.language}` }}
                         >
                             {{ value.file ? value.file : `index.${value.language}` }}
+                            {{ do { 
+                                if (!value.file) {
+                                    if (value.language === 'vue') {
+                                        '(Vue)'
+                                    } else if (value.language === 'jsx') {
+                                        '(React)'
+                                    }
+                                }
+                            } }}
                         </Tab>
                     </Tabs>
                     <div class="code" innerHTML={{ (Demo.data.highlighted.find(item => {

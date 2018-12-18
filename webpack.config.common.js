@@ -14,7 +14,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.m?js$/,
+                test: /\.m?jsx?$/,
                 exclude: [/node_modules(?!([\/\\]universal\-router)|([\/\\]graphlibrary))/],
                 use: [
                     {
@@ -90,7 +90,7 @@ module.exports = {
                     {
                         loader: 'vue-loader',
                         options: {
-                            // preserveWhitespace: true,
+                            preserveWhitespace: false,
                         }
                     }
                 ]

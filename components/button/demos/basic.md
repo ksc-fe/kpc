@@ -44,3 +44,23 @@ export default {
 }
 </script>
 ```
+
+```jsx
+import React from 'react';
+import Button from 'kpc/components/button';
+import './index.styl';
+
+export default class extends React.Component {
+    render() {
+        return (
+            <div>
+                <Button>default</Button>
+                <Button type="primary">primay</Button>
+                <Button type="warning">warning</Button>
+                <Button type="danger">danger</Button>
+                <Button type="none">none</Button>
+            </div>
+        )
+    }
+}
+```
