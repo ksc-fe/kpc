@@ -6,6 +6,7 @@ const webpackConfigClient = require('./site/webpack.config.client');
 const webpack = require('webpack');
 const highlight = require('highlight.js');
 const babel = require('babel-core');
+const intact2vue = require('./intact2vue');
 
 const languageMap = function(key) {
     const map = {
@@ -28,7 +29,8 @@ module.exports = function(isDev) {
         path.resolve(__dirname, `./site/dist`);
 
     const doc = new KDoc(
-        './@(docs|components)/**/*.md',
+        // './@(docs|components)/**/*.md',
+        './@(docs|components)/button/**/*.md',
         root
     );
 
@@ -99,9 +101,14 @@ module.exports = function(isDev) {
                 }
                 file.md.index = index;
 
+                const codes = file.md.codes;
                 let hasJs = false;
                 let hasStylus = false;
-                file.md.codes.forEach(item => {
+                let hasVue = false;
+                let hasReact = false;
+                let vueScript;
+                let vueScriptIndex;
+                codes.forEach((item, index) => {
                     if (item.example) {
                         item.content = [
                             item.content,
@@ -119,9 +126,18 @@ module.exports = function(isDev) {
                         ].join('\n');
                     }
                     if (item.language === 'styl') hasStylus = true;
+                    if (item.language === 'vue') hasVue = true;
+                    if (item.language === 'jsx') hasReact = true;
+                    if (item.language === 'vue-script') {
+                        vueScript = item.content;
+                        vueScriptIndex = index;
+                    }
                 });
+                if (vueScript) {
+                    codes.splice(vueScriptIndex, 1);
+                }
                 if (!hasJs) {
-                    file.md.codes.splice(hasStylus ? 2 : 1, 0, {
+                    codes.splice(hasStylus ? 2 : 1, 0, {
                         language: 'js',
                         content: [
                             `import Intact from 'intact';`,
@@ -140,7 +156,34 @@ module.exports = function(isDev) {
                 });
 
                 if (/demos/.test(file.path)) {
-                    data.highlighted = file.md.codes.map(item => {
+                    // ignore App component
+                    if (!/\/app\//.test(file.path)) {
+                        const vdt = codes[0].content;
+                        const js = hasJs ? codes[hasStylus ? 2 : 1].content : null;
+
+                        if (!hasVue) {
+                            const code = {
+                                language: 'vue',
+                                content: intact2vue(vdt, js, vueScript)
+                            };
+                            if (!hasReact) {
+                                codes.push(code);
+                            } else {
+                                codes.splice(codes.length - 1, 0, code);
+                            }
+                        }
+
+                        if (!hasReact) {
+                            codes.push({
+                                language: 'jsx',
+                                content: [
+                                    `import React from 'react';`,
+                                ].join('\n')
+                            });
+                        }
+                    }
+
+                    data.highlighted = codes.map(item => {
                         return {
                             language: item.language,
                             content: `<pre><code class="hljs ${languageMap(item.language)}">` +
