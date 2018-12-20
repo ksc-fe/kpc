@@ -5,7 +5,6 @@ const webpackConfig = require('./site/webpack.config.render');
 const webpackConfigClient = require('./site/webpack.config.client');
 const webpack = require('webpack');
 const highlight = require('highlight.js');
-const babel = require('babel-core');
 const intact2vue = require('./intact2vue');
 
 const languageMap = function(key) {
@@ -29,8 +28,8 @@ module.exports = function(isDev) {
         path.resolve(__dirname, `./site/dist`);
 
     const doc = new KDoc(
-        // './@(docs|components)/**/*.md',
-        './@(docs|components)/button/**/*.md',
+        './@(docs|components)/**/*.md',
+        // './@(docs|components)/button/**/*.md',
         root
     );
 
@@ -161,26 +160,26 @@ module.exports = function(isDev) {
                         const vdt = codes[0].content;
                         const js = hasJs ? codes[hasStylus ? 2 : 1].content : null;
 
-                        if (!hasVue) {
-                            const code = {
-                                language: 'vue',
-                                content: intact2vue(vdt, js, vueScript)
-                            };
-                            if (!hasReact) {
-                                codes.push(code);
-                            } else {
-                                codes.splice(codes.length - 1, 0, code);
-                            }
-                        }
+                        // if (!hasVue) {
+                        //     const code = {
+                        //         language: 'vue',
+                        //         content: intact2vue(vdt, js, vueScript)
+                        //     };
+                        //     if (!hasReact) {
+                        //         codes.push(code);
+                        //     } else {
+                        //         codes.splice(codes.length - 1, 0, code);
+                        //     }
+                        // }
 
-                        if (!hasReact) {
-                            codes.push({
-                                language: 'jsx',
-                                content: [
-                                    `import React from 'react';`,
-                                ].join('\n')
-                            });
-                        }
+                        // if (!hasReact) {
+                        //     codes.push({
+                        //         language: 'jsx',
+                        //         content: [
+                        //             `import React from 'react';`,
+                        //         ].join('\n')
+                        //     });
+                        // }
                     }
 
                     data.highlighted = codes.map(item => {
@@ -230,7 +229,6 @@ module.exports = function(isDev) {
                         await ctx.fsWrite(!item.file ? file.relative : file.dirname + '/' + item.file, content);
                     });
                 } else {
-                    console.log(file, file.md.setting);
                     file.extname = '.js';
                     if (!file.md.setting) return;
 

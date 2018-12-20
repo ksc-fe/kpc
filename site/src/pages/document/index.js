@@ -26,7 +26,7 @@ export default class extends Layout {
 
         this.path = path;
 
-        const Article = await req(`.${path}/index.js`);
+        const Article = (await req(`.${path}/index.js`)).default;
         this.set({Article});
     }
 

@@ -3,7 +3,7 @@ import Button from '../button';
 const {
     className, children, type,
     disabled, closable, closed, size,
-    ...rest,
+    ...rest
 } = self.get();
 
 if (closed) return;

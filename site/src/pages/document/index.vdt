@@ -16,8 +16,8 @@ function Catalog(props) {
             class={{ {
                 active: (() => {
                     const path = self.path.slice(1);
-                    if (value.path.includes(path + '/') ||
-                        value.path.includes(path + '.md')
+                    if (value.path.indexOf(path + '/') > -1 ||
+                        value.path.indexOf(path + '.md') > -1
                     ) {
                         currentNav = value;
                         return true;

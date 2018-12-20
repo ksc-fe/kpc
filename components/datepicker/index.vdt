@@ -7,7 +7,7 @@ const {
     value, clearable, className, style, _isShow,
     name, disabled, placeholder, size, transition,
     _value, range, type, ref, key, shortcuts, container,
-    ...rest,
+    ...rest
 } = self.get();
 
 // pass the rest props to Calendar, except events

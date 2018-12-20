@@ -1,3 +1,4 @@
+import 'core-js/es6/promise';
 import './main';
 import router from './router';
 import createHistory from 'history/createBrowserHistory';
