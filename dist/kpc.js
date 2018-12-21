@@ -25486,7 +25486,7 @@ function (_Intact) {
     } catch (e) {
       _e(e);
     }
-  }.call($this), ' %\n                '], 'k-inner-text') : undefined, 'k-bg'), 'k-content'), 'k-container') : undefined, function () {
+  }.call($this), ' %\n\n                '], 'k-inner-text') : undefined, 'k-bg'), 'k-content'), 'k-container') : undefined, function () {
     try {
       return type === 'circle';
     } catch (e) {
@@ -28377,7 +28377,7 @@ function (_Intact) {
       } catch (e) {
         _e(e);
       }
-    }.call($this), '\n            ', function () {
+    }.call($this), '\n\n            ', function () {
       try {
         return __u.map(scheme, function (item, key) {
           colSpan++;
@@ -28503,7 +28503,7 @@ function (_Intact) {
       } catch (e) {
         _e(e);
       }
-    }.call($this), '\n            ', function () {
+    }.call($this), '\n\n            ', function () {
       var _this = this;
 
       try {
@@ -31186,7 +31186,7 @@ module.exports = function (KEY) {
       } catch (e) {
         _e(e);
       }
-    }.call($this), ' /\n                ', function () {
+    }.call($this), ' /\n\n                ', function () {
       try {
         return data.length;
       } catch (e) {

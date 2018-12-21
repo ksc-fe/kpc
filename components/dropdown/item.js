@@ -42,6 +42,10 @@ export default class DropdownItem extends Intact {
     _onClick(e) {
         if (this.get('disabled')) return;
 
+        // in IE, if the event has not call stopImmediatePropagation,
+        // the document click will also be called after it has been removed
+        e.stopPropagation();
+
         this.trigger('click', e);
 
         // is not a sub dropdown trigger
