@@ -106,7 +106,7 @@ module.exports = {
             'intact$': 'intact-vue',
             'kpc$': path.resolve(__dirname, 'index.js'),
             'kpc': path.resolve(__dirname),
-            '@babel/runtime-corejs2/helpers/inheritsLoose': path.resolve(__dirname, 'a.js'),
+            '@babel/runtime-corejs2/helpers/inheritsLoose': path.resolve(__dirname, 'inheritsLoose.js'),
         },
         extensions: ['.mjs', '.js', '.vdt', '.json'],
     },
