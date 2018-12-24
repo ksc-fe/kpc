@@ -75,6 +75,9 @@ sizes = large small mini
         font-size inherit
         vertical-align middle
         line-height s('calc(%s - 2px)', $btn-height)
+        // for IE10 and above
+        /_:-ms-lang(x), &
+            line-height $btn-height
         // line-height $btn-height
         &:before
             font-size inherit
