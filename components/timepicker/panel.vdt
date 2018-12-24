@@ -1,11 +1,11 @@
 import Time from '../datepicker/time';
-import {getTimeString, getDateString} from '../datepicker/utils';
+import {getTimeString, getDateString, createDate} from '../datepicker/utils';
 import {_$} from '../utils';
 
 const {_id, _options, multiple, value, _now} = self.get();
 
 const values = multiple ? value || [] : [value];
-const valueDate = new Date(values[self._index] || _now);
+const valueDate = createDate(values[self._index] || _now);
 
 <t:parent>
     <b:time-head />

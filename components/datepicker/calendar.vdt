@@ -3,7 +3,7 @@ import ScrollSelect from '../scrollSelect';
 import Time from './time';
 import {Row, Col} from '../grid';
 import {range, strPad, _$} from '../utils';
-import {isEqual, isLT, isGT, getDateString, getTimeString} from './utils';
+import {isEqual, isLT, isGT, getDateString, getTimeString, createDate} from './utils';
 import {Tabs, Tab} from '../tabs';
 
 const {
@@ -17,8 +17,9 @@ const {
 
 const values = multiple ? value || [] : [value];
 
-const valueDate = new Date(values[self._index] || _now);
-const showDate = new Date(_showDate || valueDate);
+const valueDate = createDate(values[self._index] || _now);
+if (Number.isNaN(valueDate.getTime())) debugger;
+const showDate = createDate(_showDate || valueDate);
 
 let yearMonthFormat = _$('yearMonthFormat');
 if (yearMonthFormat === 'yearMonthFormat') {
@@ -95,7 +96,7 @@ const panel = type === 'year' ? map.YYYY : format.map(item => map[item]);
         >
             {{ function() {
                 const ret = [];
-                const start = new Date(showDate);
+                const start = createDate(showDate);
                 const month = start.getMonth();
                 start.setDate(1);
                 start.setHours(0);
@@ -104,8 +105,8 @@ const panel = type === 'year' ? map.YYYY : format.map(item => map[item]);
                 const startWeekday = start.getDay(); 
                 start.setDate(1 - startWeekday);
 
-                const _maxDate = maxDate && new Date(maxDate);
-                const _minDate = minDate && new Date(minDate);
+                const _maxDate = maxDate && createDate(maxDate);
+                const _minDate = minDate && createDate(minDate);
 
                 for (let i = 0; i < 42; i++) {
                     const _date = start.getDate();
@@ -115,7 +116,7 @@ const panel = type === 'year' ? map.YYYY : format.map(item => map[item]);
                         disabledDate.call(self, getDateString(start, type));
                     const isOut = _month !== month;
                     const classNames = dayClassNames ? 
-                        dayClassNames.call(self, new Date(start), isOut) : 
+                        dayClassNames.call(self, createDate(start), isOut) : 
                         null;
                     ret.push(
                         <div 
@@ -123,15 +124,15 @@ const panel = type === 'year' ? map.YYYY : format.map(item => map[item]);
                                 "k-day": true,
                                 "k-out": isOut,
                                 "k-active": !isOut && values.find(value => {
-                                    return isEqual(new Date(value), start);
+                                    return isEqual(createDate(value), start);
                                 }),
                                 "k-today": isEqual(_now, start),
                                 "k-disabled": disabled, 
                                 "k-hover": isEqual(start, _focusDate),
                                 ...classNames
                             } }}
-                            ev-click={{ !disabled && self.select.bind(self, new Date(start)) }}
-                            ev-mouseenter={{ self._onMouseEnter.bind(self, new Date(start), isOut) }}
+                            ev-click={{ !disabled && self.select.bind(self, createDate(start)) }}
+                            ev-mouseenter={{ self._onMouseEnter.bind(self, createDate(start), isOut) }}
                         >{{ _date }}</div>
                     );
                     start.setDate(start.getDate() + 1);

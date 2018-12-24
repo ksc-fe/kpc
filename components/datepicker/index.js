@@ -3,7 +3,7 @@ import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
 import Calendar from './calendar';
-import {getNowDate, isLT, isGT, getDateString, dispatchEvent} from './utils';
+import {getNowDate, isLT, isGT, getDateString, dispatchEvent, createDate} from './utils';
 import {getTransition} from '../utils';
 import * as shortcuts from './shortcuts';
 
@@ -91,7 +91,7 @@ export default class Datepicker extends Intact {
             const endShowDate = end.getShowDate();
             endShowDate.setDate(1);
             if (v >= endShowDate) {
-                const endShowDate = new Date(v);
+                const endShowDate = createDate(v);
                 endShowDate.setMonth(endShowDate.getMonth() + 1);
                 end.setShowDate(endShowDate);
             }
@@ -99,7 +99,7 @@ export default class Datepicker extends Intact {
             const beginShowDate = begin.getShowDate();
             v.setDate(1);
             if (v <= beginShowDate) {
-                const beginShowDate = new Date(v);
+                const beginShowDate = createDate(v);
                 beginShowDate.setMonth(beginShowDate.getMonth() - 1);
                 begin.setShowDate(beginShowDate);
             }
@@ -108,7 +108,7 @@ export default class Datepicker extends Intact {
 
     _setBeginShowDate(c) {
         const [start] = this.get('_value') || [];
-        const date = start ? new Date(start) : getNowDate();
+        const date = start ? createDate(start) : getNowDate();
         c.set('_showDate', date, {silent: true})
     }
 
@@ -118,8 +118,8 @@ export default class Datepicker extends Intact {
         let date;
         // if in the same month, show next month
         if (start && end) {
-            start = new Date(start);
-            end = new Date(end);
+            start = createDate(start);
+            end = createDate(end);
             if (start.getFullYear() === end.getFullYear() &&
                 start.getMonth() === end.getMonth()
             ) {
@@ -139,12 +139,12 @@ export default class Datepicker extends Intact {
         const _rangeEndDate = this.get('_rangeEndDate');
 
         if (start) {
-            const _start = new Date(start);
+            const _start = createDate(start);
             if (end) {
                 return {
                     'k-in-range': !isOut && 
                         isGT(date, _start) && 
-                        isLT(date, new Date(end))
+                        isLT(date, createDate(end))
                 };
             } else if (_rangeEndDate) {
                 return {

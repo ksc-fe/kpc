@@ -203,8 +203,13 @@ export default class DropdownMenu extends Intact {
     }
 
     _onDocumentClick(e) {
+        // in IE, if the event has not call stopImmediatePropagation,
+        // the document click will also be called after it has been removed
+        const _menu = this.refs.menu;
+        if (!_menu) return;
+
         const target = e.target;
-        const menu = this.refs.menu.element;
+        const menu = _menu.element;
 
         // is a dropdown menu
         if (menu === target || menu.contains(target)) return;

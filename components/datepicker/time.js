@@ -1,5 +1,6 @@
 import Intact from 'intact';
 import template from './time.vdt';
+import {createDate} from './utils';
 
 export default class DatepickerTime extends Intact {
     @Intact.template()
@@ -60,14 +61,14 @@ export default class DatepickerTime extends Intact {
 
         const {min, max, date} = this.get();
 
-        value = new Date(`${date} ${value.join(':')}`);
+        value = createDate(`${date} ${value.join(':')}`);
 
         if (min && max) {
-            return value < new Date(min) || value > new Date(max);
+            return value < createDate(min) || value > createDate(max);
         } else if (min) {
-            return value < new Date(min);
+            return value < createDate(min);
         } else if (max) {
-            return value > new Date(max);
+            return value > createDate(max);
         }
     }
 

@@ -1,6 +1,6 @@
 import Intact from 'intact'; import template from './calendar.vdt';
 import {strPad, range, toggleArray} from '../utils';
-import {getNowDate, getDateString, getTimeString, isEqual} from './utils';
+import {getNowDate, getDateString, getTimeString, isEqual, createDate} from './utils';
 
 export default class Calendar extends Intact {
     @Intact.template()
@@ -64,7 +64,7 @@ export default class Calendar extends Intact {
 
         this.on('$receive:value', (c, v) => {
             const type = this.get('type');
-            const now = new Date();
+            const now = createDate();
             if (type === 'year') {
                 v && now.setFullYear(+v);
                 this.set('_showDate', now);
@@ -182,7 +182,7 @@ export default class Calendar extends Intact {
     getShowDate() {
         const {_showDate, value, _now, multiple} = this.get();
         const values = multiple ? value || [] : [value];
-        const showDate = new Date(_showDate || values[this._index] || _now);
+        const showDate = createDate(_showDate || values[this._index] || _now);
         // set showDate's date to 1, for the days of month is not equal
         // it will lead to change month incorrectly, #62
         showDate.setDate(1)
@@ -203,7 +203,7 @@ export default class Calendar extends Intact {
         const {value, _now, multiple} = this.get();
         const originalValue = multiple ? (value && value[this._index]) : value;
 
-        let valueDate = new Date(originalValue || _now);
+        let valueDate = createDate(originalValue || _now);
         valueDate.setHours(+v[0]);
         valueDate.setMinutes(+v[1]);
         valueDate.setSeconds(+v[2]);
@@ -290,7 +290,7 @@ export default class Calendar extends Intact {
             if (!value || Array.isArray(value)) {
                 isSet = false;
             } else if (!Array.isArray(value)) {
-                _focusDate = new Date(value); 
+                _focusDate = createDate(value); 
             }
         } else {
             if (_showDate) {
@@ -299,7 +299,7 @@ export default class Calendar extends Intact {
                 const _y2 = _showDate.getFullYear();
                 const _m2 = _showDate.getMonth();
                 if (_y1 !== _y2 || _m1 !== _m2) {
-                    _focusDate = new Date(_showDate);
+                    _focusDate = createDate(_showDate);
                     _focusDate.setDate(1);
                     isSet = false;
                 }
@@ -320,7 +320,7 @@ export default class Calendar extends Intact {
         const {_focusDate, _isSelectTime} = this.get();
         if (_focusDate && !_isSelectTime) {
             this.trigger('enter:select', this);
-            this.select(new Date(_focusDate));
+            this.select(createDate(_focusDate));
         }
     }
 
@@ -334,10 +334,10 @@ export default class Calendar extends Intact {
         if (_id === '1') {
             let date;
             if (value && value[0]) {
-                date = new Date(value[0]);
+                date = createDate(value[0]);
             }
             if (date && minDate) {
-                const _minDate = new Date(minDate);
+                const _minDate = createDate(minDate);
                 return date > _minDate ? date : _minDate;
             } else {
                 return date || minDate;
@@ -353,10 +353,10 @@ export default class Calendar extends Intact {
         if (_id === '0') {
             let date;
             if (value && value[1]) {
-                date = new Date(value[1]);
+                date = createDate(value[1]);
             }
             if (date && maxDate) {
-                const _maxDate = new Date(maxDate);
+                const _maxDate = createDate(maxDate);
                 return date > _maxDate ? _maxDate : date;
             } else {
                 return date || maxDate;

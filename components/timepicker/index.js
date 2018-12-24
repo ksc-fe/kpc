@@ -3,7 +3,7 @@ import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
 import {range, strPad} from '../utils';
-import {getTimeString} from '../datepicker/utils';
+import {getTimeString, createDate} from '../datepicker/utils';
 import {PREFIX} from './panel';
 
 export default class Timepicker extends Datepicker {
@@ -36,9 +36,9 @@ export default class Timepicker extends Datepicker {
                 }
             }
             if (Array.isArray(v)) {
-                v = v.map(item => getTimeString(new Date(item)));
+                v = v.map(item => getTimeString(createDate(item)));
             } else if (v) {
-                v = getTimeString(new Date(v));
+                v = getTimeString(createDate(v));
             }
             this.set('value', v);
         });
