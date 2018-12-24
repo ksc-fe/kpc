@@ -11,7 +11,7 @@ c = round(2 * 3.14 * r)
         height @width 
         animation c-rotate 2s linear infinite
     .k-circle
-        stroke-dasharray: 1, c;
+        stroke-dasharray: round(c * 0.75), c;
         stroke-dashoffset: 0;
         fill none
         stroke-width width 
