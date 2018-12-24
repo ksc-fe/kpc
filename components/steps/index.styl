@@ -66,6 +66,7 @@
     &.k-default
         text-align center
         height $steps-height 
+        overflow hidden
         line-height @height
         .k-head
         .k-main
@@ -116,6 +117,7 @@
         display flex
         .k-step
             flex 1
+            width auto !important
         .k-head
         .k-main
             float left
@@ -136,7 +138,7 @@
             height 1px
             background $steps-line-tail-bg-color 
         .k-step:last-of-type
-            flex 0
+            flex 0 0 auto
             .k-wrapper
                 display flex
             .k-title
