@@ -3,7 +3,7 @@ import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
 import Column from './column';
-import {_$} from '../utils';
+import {_$, throttle, browser} from '../utils';
 import {scrollbarWidth} from '../moveWrapper/position';
 
 const slice = Array.prototype.slice;
@@ -81,6 +81,11 @@ export default class Table extends Intact {
         this.tableWidth = undefined;
         this.scrollLeft = 0;
 
+        if (browser.isIE) {
+            this._setStickyHeaderStyle = throttle(this._setStickyHeaderStyle, 100);
+            this._setStickScrollbarStyle = throttle(this._setStickScrollbarStyle, 100);
+        }
+        
         // keep the event consistent
         this.on('$change:checkedKeys', (c, newValue, oldValue) => {
             this.trigger('$change:checked', c, newValue, oldValue);

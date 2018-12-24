@@ -60,6 +60,8 @@ const scheme = {
 ```styl
 .no-data-template
     display: flex
+    .k-table
+        flex 1
     .k-table-wrapper
         margin-left: 10px
 ```

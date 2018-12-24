@@ -28,7 +28,7 @@ init(router);
 
 if (module.hot) {
     module.hot.accept('./router', () => {
-        const router = require('./router');
+        const router = require('./router').default;
         init(router);
     });
 }

@@ -16,7 +16,7 @@ const data = [
     {name: 'Lisa', sex: 'female'}
 ];
 
-<Table data={{ data }} stickHeader="50" resizable>
+<Table data={{ data }} stickHeader="87" resizable>
     <TableColumn title="姓名" key="name">
         <b:template params="data">
             {{ data.name }}

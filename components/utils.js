@@ -1,4 +1,5 @@
 import Intact from 'intact';
+import { functionTypeAnnotation } from 'babel-types';
 
 const utils = Intact.utils;
 const {get, isNullOrUndefined, isObject, isFunction, noop} = utils;
@@ -228,3 +229,43 @@ export function nextFrame(fn) {
     raf(fn);
 }
 
+export function throttle(fn, delay) {
+    let timer;
+    return function() {
+        const args = arguments;
+        const context = this;
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            fn.apply(context, args);
+        }, delay);
+    };
+}
+
+export const browser = {};
+if (typeof navigator !== 'undefined') {
+    const ua = navigator.userAgent.toLowerCase();
+    const index = ua.indexOf('msie ');
+    if (~index) {
+        browser.isIE = true;
+        const version = parseInt(ua.substring(index + 5, ua.indexOf('.', index)), 10);
+        browser.version = version;
+        browser.isIE8 = version === 8;
+    } else if (navigator.appName === 'Netscape') {
+        browser.isIE = true;
+        // in IE 11 the navigator.appVersion says 'trident'
+        // in Edge the navigator.appVersion does not say trident
+        if(navigator.appVersion.indexOf('Trident') === -1) {
+            browser.version = 12;
+        } else {
+            browser.version = 11;
+        }
+    } else if (~ua.indexOf('edge')) {
+        browser.isEdge = true;
+    } else if (~ua.indexOf('safari')) {
+        if (~ua.indexOf('chrome')) {
+            browser.isChrome = true;
+        } else {
+            browser.isSafari = true;
+        }
+    }
+}
