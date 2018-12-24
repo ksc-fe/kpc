@@ -70,7 +70,7 @@ export default class DropdownMenu extends Intact {
             const dropdown = siblings[index - 1];
             if (dropdown && dropdown.tag === Dropdown) {
                 this.dropdown = dropdown.children;
-                dropdown.menu = this.vNode;
+                this.dropdown.menu = this.vNode;
             }
         }
 
