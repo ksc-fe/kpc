@@ -13,7 +13,7 @@
         },
         {
             "language": "styl",
-            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.no-data-template</span>\n    <span class=\"hljs-attribute\">display</span>: flex\n    <span class=\"hljs-selector-class\">.k-table-wrapper</span>\n        <span class=\"hljs-attribute\">margin-left</span>: <span class=\"hljs-number\">10px</span>\n<span class=\"hljs-selector-class\">.icon</span>\n    <span class=\"hljs-attribute\">vertical-align</span> middle\n    <span class=\"hljs-attribute\">margin-right</span> <span class=\"hljs-number\">10px</span>\n    <span class=\"hljs-attribute\">cursor</span> pointer</code></pre>"
+            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.no-data-template</span>\n    <span class=\"hljs-attribute\">display</span>: flex\n    <span class=\"hljs-selector-class\">.k-table</span>\n        <span class=\"hljs-attribute\">flex</span> <span class=\"hljs-number\">1</span>\n    <span class=\"hljs-selector-class\">.k-table-wrapper</span>\n        <span class=\"hljs-attribute\">margin-left</span>: <span class=\"hljs-number\">10px</span>\n<span class=\"hljs-selector-class\">.icon</span>\n    <span class=\"hljs-attribute\">vertical-align</span> middle\n    <span class=\"hljs-attribute\">margin-right</span> <span class=\"hljs-number\">10px</span>\n    <span class=\"hljs-attribute\">cursor</span> pointer</code></pre>"
         },
         {
             "language": "js",

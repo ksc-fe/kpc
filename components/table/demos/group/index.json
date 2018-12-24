@@ -13,7 +13,7 @@
         },
         {
             "language": "styl",
-            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.no-data-template</span>\n    <span class=\"hljs-attribute\">display</span>: flex\n    <span class=\"hljs-selector-class\">.k-table-wrapper</span>\n        <span class=\"hljs-attribute\">margin-left</span>: <span class=\"hljs-number\">10px</span></code></pre>"
+            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.no-data-template</span>\n    <span class=\"hljs-attribute\">display</span>: flex\n    <span class=\"hljs-selector-class\">.k-table</span>\n        <span class=\"hljs-attribute\">flex</span> <span class=\"hljs-number\">1</span>\n    <span class=\"hljs-selector-class\">.k-table-wrapper</span>\n        <span class=\"hljs-attribute\">margin-left</span>: <span class=\"hljs-number\">10px</span></code></pre>"
         },
         {
             "language": "js",

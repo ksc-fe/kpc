@@ -9,7 +9,8 @@ export default class extends Intact {
 
     defaults() {
         return {
-            city: 'beijing'
+            city: 'beijing',
+            cities: [],
         };
     }
 }
