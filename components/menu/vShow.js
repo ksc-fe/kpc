@@ -79,8 +79,8 @@ export default class VShow extends Intact {
 
     hide() {
         const height = this.element.firstChild.clientHeight;
+        this.set('height', height + 'px');
         if (!height) {
-            this.set('height', height + 'px');
             // if the height is 0, call end immediately
             this.transitionend({target: this.element});
         } else {
