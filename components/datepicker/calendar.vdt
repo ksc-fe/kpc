@@ -18,7 +18,6 @@ const {
 const values = multiple ? value || [] : [value];
 
 const valueDate = createDate(values[self._index] || _now);
-if (Number.isNaN(valueDate.getTime())) debugger;
 const showDate = createDate(_showDate || valueDate);
 
 let yearMonthFormat = _$('yearMonthFormat');

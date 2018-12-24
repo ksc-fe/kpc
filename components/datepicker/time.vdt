@@ -9,7 +9,7 @@ const append = <b:append />
 <Row class="k-scroll-select-group">
     <Col span={{ span }} v-for={{ data }} v-for-value="item">
         <ScrollSelect
-            data={{ item }} 
+            data={{ item }}
             value={{ value && value[key] }}
             ev-$change:_value={{ self._onChangeValue.bind(self, key) }}
             disable={{ self._disable.bind(self, key) }}

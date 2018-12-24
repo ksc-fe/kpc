@@ -103,5 +103,6 @@ export function createDate(date) {
         }
         return new Date(...args);
     }
+    if (!date) return new Date();
     return new Date(date);
 }
