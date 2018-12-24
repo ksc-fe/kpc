@@ -93,7 +93,7 @@ const panel = type === 'year' ? map.YYYY : format.map(item => map[item]);
         <div class="k-calendar" v-if={{ !_isShowYearPicker }}
             ev-mouseleave={{ self._onMouseLeaveDays }}
         >
-            {{ do {
+            {{ function() {
                 const ret = [];
                 const start = new Date(showDate);
                 const month = start.getMonth();
@@ -140,8 +140,9 @@ const panel = type === 'year' ? map.YYYY : format.map(item => map[item]);
                 for (let i = 0; i < 6; i++) {
                     result.push(<div>{{ ret.slice(7 * i, 7 * (i + 1)) }}</div>)
                 }
-                result;
-            } }}
+
+                return result;
+            }() }}
         </div>
         <Row v-if={{ _isShowYearPicker }} class="k-year-picker">
             {{ do {
