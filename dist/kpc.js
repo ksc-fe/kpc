@@ -13856,7 +13856,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "_$", function() { return __WEBPACK_IMPORTED_MODULE_0__components_utils__["_$"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "localize", function() { return __WEBPACK_IMPORTED_MODULE_0__components_utils__["localize"]; });
 /*!
- * kpc v0.7.8
+ * kpc v0.7.9
  *
  * Copyright (c) Kingsoft Cloud
  * Released under the MIT License
@@ -13907,7 +13907,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-var version = '0.7.8';
+var version = '0.7.9';
 /* generate end */
 
 function install(Vue) {
