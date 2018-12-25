@@ -31,8 +31,7 @@ describe('React Demos', () => {
         const paths = item.split('/');
         const name = paths[1];
         const type = paths[3];
-        const Demo = reactReq(item);
-
+        const Demo = reactReq(item).default;
 
         it(`${name[0].toUpperCase()}${name.substring(1)} ${type}`, () => {
             demo = mount(wrap(Demo));
