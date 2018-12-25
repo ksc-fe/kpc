@@ -10,7 +10,7 @@ sidebar: doc
 
 文档中针对intact的例子，我们只需要做以下写法上的转换即可
 
-| 类别 | intact写法 | vue写法 | 说明 |
+| 类别 | intact写法 | react写法 | 说明 |
 | --- | --- | --- | --- |
 | 事件 | `ev-click` | `onClick` | 保留React事件命名风格，`on` + 事件名首字母大写 |
 | 默认事件 | `ev-$change:value` | `on$change-value` | React属性名不支持冒号(:)，改为连字符(-)即可 |

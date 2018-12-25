@@ -4,6 +4,15 @@ order: 99
 sidebar: doc
 ---
 
+## v0.7.9
+
+1. `Refactor` 升级babel@7进行构建，自动引入实例方法polyfill，提高兼容性 [#157](https://github.com/ksc-fe/kpc/issues/157)
+2. `Add` 新增React开始文档
+3. `Add` Tree在过滤时，默认展开匹配的节点 [#156](https://github.com/ksc-fe/kpc/issues/156)
+4. `Fix` 修复Collapse默认主题下没有折叠展开动画的问题 [#153](https://github.com/ksc-fe/kpc/issues/153)
+4. `Fix` 修复Collapse在没有内容导致高度为0时，动画不执行结束回调的问题 [#150](https://github.com/ksc-fe/kpc/issues/150) [#162](https://github.com/ksc-fe/kpc/issues/162)
+6. `Fix` 修复IE下多处兼容性问题，目前支持IE10及以上 [#155](https://github.com/ksc-fe/kpc/issues/155)
+
 ## v0.7.6
 
 1. `Add` `Collapse`使用`display: none`代替删除折叠起来的元素 [#149](https://github.com/ksc-fe/kpc/issues/149)
