@@ -1674,6 +1674,14 @@
                 {
                     "children": [
                         {
+                            "title": "v0.7.9",
+                            "path": "#header-v0.7.9",
+                            "level": 2,
+                            "content": "<h2 id='header-v0.7.9'>v0.7.9</h2>",
+                            "text": "v0.7.9",
+                            "children": []
+                        },
+                        {
                             "title": "v0.7.6",
                             "path": "#header-v0.7.6",
                             "level": 2,
