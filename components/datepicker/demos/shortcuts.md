@@ -42,3 +42,12 @@ import Datepicker from 'kpc/components/datepicker';
 .k-datepicker
     margin-right 20px
 ```
+
+```vue-data
+data() {
+    return {
+        date: null,
+        Datepicker,
+    };
+},
+```

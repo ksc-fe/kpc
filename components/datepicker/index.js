@@ -23,6 +23,10 @@ export default class Datepicker extends Intact {
         transition: String,
         shortcuts: Array,
         container: [Function, String],
+        disabledHours: Boolean,
+        disabledMinutes: Boolean,
+        disabledSeconds: Boolean,
+        multiple: Boolean, 
     };
 
     defaults() {
@@ -37,6 +41,10 @@ export default class Datepicker extends Intact {
             transition: 'c-slidedown',
             shortcuts: undefined, 
             container: undefined,
+            disabledHours: false,
+            disabledMinutes: false,
+            disabledSeconds: false,
+            multiple: false,
 
             _value: undefined, // for range
             _rangeEndDate: undefined,

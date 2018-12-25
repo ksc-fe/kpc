@@ -84,3 +84,7 @@ export default class extends Intact {
     }
 }
 ```
+
+```vue-ignore
+Vue不支持继承的用法，请使用Dialog组件用法
+```

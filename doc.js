@@ -28,8 +28,8 @@ module.exports = function(isDev) {
         path.resolve(__dirname, `./site/dist`);
 
     const doc = new KDoc(
-        './@(docs|components)/**/*.md',
-        // './@(docs|components)/button/**/*.md',
+        // './@(docs|components)/**/*.md',
+        './@(docs|components)/dialog/**/*.md',
         root
     );
 
@@ -100,20 +100,24 @@ module.exports = function(isDev) {
                 }
                 file.md.index = index;
 
-                const codes = file.md.codes;
                 let hasJs = false;
                 let hasStylus = false;
                 let hasVue = false;
                 let hasReact = false;
+
+                // for vue
                 let vueScript;
-                let vueScriptIndex;
-                codes.forEach((item, index) => {
+                let vueTemplate;
+                let vueData;
+                let vueMethods;
+
+                const codes = file.md.codes = file.md.codes.filter((item, index) => {
                     if (item.example) {
                         item.content = [
                             item.content,
                             `export const example = true;`,
                         ].join('\n');
-                        return;
+                        return true;
                     };
                     if (item.language === 'js' && !item.file) {
                         hasJs = true;
@@ -129,12 +133,27 @@ module.exports = function(isDev) {
                     if (item.language === 'jsx') hasReact = true;
                     if (item.language === 'vue-script') {
                         vueScript = item.content;
-                        vueScriptIndex = index;
+                        return false;
                     }
+                    if (item.language === 'vue-template') {
+                        vueTemplate = item.content;
+                        return false;
+                    }
+                    if (item.language === 'vue-data') {
+                        vueData = item.content;
+                        return false;
+                    }
+                    if (item.language === 'vue-methods') {
+                        vueMethods = item.content;
+                        return false;
+                    }
+                    if (item.language === 'vue-ignore') {
+                        item.language = 'vue';
+                        hasVue = true;
+                    }
+                    return true;
                 });
-                if (vueScript) {
-                    codes.splice(vueScriptIndex, 1);
-                }
+
                 if (!hasJs) {
                     codes.splice(hasStylus ? 2 : 1, 0, {
                         language: 'js',
@@ -160,26 +179,26 @@ module.exports = function(isDev) {
                         const vdt = codes[0].content;
                         const js = hasJs ? codes[hasStylus ? 2 : 1].content : null;
 
-                        // if (!hasVue) {
-                        //     const code = {
-                        //         language: 'vue',
-                        //         content: intact2vue(vdt, js, vueScript)
-                        //     };
-                        //     if (!hasReact) {
-                        //         codes.push(code);
-                        //     } else {
-                        //         codes.splice(codes.length - 1, 0, code);
-                        //     }
-                        // }
+                        if (!hasVue) {
+                            const code = {
+                                language: 'vue',
+                                content: intact2vue(vdt, js, vueScript, vueTemplate, vueMethods, vueData)
+                            };
+                            if (!hasReact) {
+                                codes.push(code);
+                            } else {
+                                codes.splice(codes.length - 1, 0, code);
+                            }
+                        }
 
-                        // if (!hasReact) {
-                        //     codes.push({
-                        //         language: 'jsx',
-                        //         content: [
-                        //             `import React from 'react';`,
-                        //         ].join('\n')
-                        //     });
-                        // }
+                        if (!hasReact) {
+                            codes.push({
+                                language: 'jsx',
+                                content: [
+                                    `import React from 'react';`,
+                                ].join('\n')
+                            });
+                        }
                     }
 
                     data.highlighted = codes.map(item => {

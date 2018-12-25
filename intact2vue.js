@@ -1,12 +1,12 @@
 const Intact = require('intact');
 const Vdt = Intact.Vdt;
 
-module.exports = function(vdt, js, vueScript) {
+module.exports = function(vdt, js, vueScript, vueTemplate, vueMethods, vueData) {
     // console.log(vdt, js, vueScript);
-    const obj = parse(vdt, js, vueScript);
+    const obj = parse(vdt, js, vueScript, vueTemplate, vueMethods, vueData);
     const result = [
         `<template>`,
-        obj.body,
+        obj.template,
         `</template>`,
         `<script>`,
         obj.head,
@@ -20,26 +20,30 @@ module.exports = function(vdt, js, vueScript) {
 }
 
 const importRegExp = /import \{?(.*?)\}? from .*/g
-function parse(vdt, js, vueScript) {
+function parse(vdt, js, vueScript, vueTemplate, vueMethods, vueData) {
     const components = [];
     let properties = {};
-    let methods = [];
+    let methods = {};
     let head = '';
-    let body = vdt.replace(importRegExp, (match, name) => {
+    let template = vdt.replace(importRegExp, (match, name) => {
         components.push(name);
         head += match + '\n';
         return '';
     });
-    body = parseProperty(body, properties);
-    body = parseVModel(body, properties);
-    body = parseInterpolation(body, properties, methods);
-    body = parseBlock(body);
+    if (vueTemplate) {
+        template = vueTemplate;
+    } else {
+        template = parseProperty(template, properties, methods);
+        template = parseVModel(template, properties);
+        template = parseInterpolation(template, properties, methods);
+        template = parseBlock(template);
+    }
 
-    let scripts = [
+    let scripts = indent([
         `components: {`,
         `    ${components.join(', ')}`,
         `},`,
-    ];
+    ]);
 
     let methodsObj = {};
     if (js) {
@@ -48,38 +52,54 @@ function parse(vdt, js, vueScript) {
             properties = {...properties, ...defaults};
         }
         methodsObj = methods;
+        js.replace(importRegExp, (match, name) => {
+            head += match + '\n'
+        });
     }
-    if (vueScript) {
-        const methods = getMethods(vueScript);
+    if (vueMethods) {
+        const methods = getMethods(vueMethods);
         Object.assign(methodsObj, methods);
     }
-    methods = [...methods, ...(Object.values(methodsObj).map(value => {
-        return value.map((item, i) => i ? `    ${item}` : item).join('\n');
-    }))];
-    if (Object.keys(properties).length) {
+    methods = [...Object.values(methods), ...Object.values(methodsObj)];
+    if (Object.keys(properties).length && !vueData) {
         scripts = [
             ...scripts,
-            `data() {`,
-            `    return ${JSON.stringify(properties, null, 4)
-                .split('\n')
-                .map((item, i) => i ? `        ${item}` : item)
-                .join('\n')}`,
-            `},`
+            ...indent([
+                `data() {`,
+                ...indent(`return ${JSON.stringify(properties, null, 4)}`),
+                `},`
+            ]),
+        ];
+    }
+    if (vueData) {
+        scripts = [
+            ...scripts,
+            ...indent(vueData),
         ];
     }
     if (methods.length) {
         scripts = [
             ...scripts,
-            `methods: {`,
-            methods.join(',\n'),
-            `}`
+            ...indent([
+                `methods: {`,
+                    ...indent(methods.join('\n')),
+                `},`
+            ])
         ]; 
+    }
+
+    if (vueScript) {
+        scripts = [
+            ...scripts,
+            ...indent(vueScript),
+        ];
     }
 
     return {
         head, 
-        body: body.trim().split('\n').map(item => `    ${item}`).join('\n'),
-        js: scripts.map(item => `    ${item}`).join('\n'),
+        template: template.trim().split('\n').map(item => `    ${item}`).join('\n'),
+        // js: scripts.map(item => `    ${item}`).join('\n'),
+        js: scripts.join('\n'),
     };
 }
 
@@ -90,9 +110,9 @@ function parseJS(js) {
     }; 
 }
 
-const delimitersRegExp = /\b([^\s]*?)=\{\{\s+(.*?)\s+}}/g;
+const delimitersRegExp = /\b([^\s]*?)=\{\{\s+([\s\S]*?)\s+}}/g;
 const getRegExp = /self\.get\(['"](.+)['"]\)/;
-function parseProperty(template, properties) {
+function parseProperty(template, properties, methods) {
     return template.replace(delimitersRegExp, (match, name, value) => {
         const matches = value.match(getRegExp);
         if (matches) {
@@ -104,6 +124,9 @@ function parseProperty(template, properties) {
             const matches = value.match(/self\.(\w+)(\.bind\(self, (.+)\))?/);
             if (matches) {
                 if (matches[2]) {
+                    if (matches[1] === 'set') {
+                        methods.set = `set(key, value) { this[key] = value },`;
+                    }
                     value = `${matches[1]}(${matches[3]})`;
                 } else {
                     value = matches[1];
@@ -113,6 +136,8 @@ function parseProperty(template, properties) {
             value = `(value, key) in ${value}`;
         } else if (name === 'v-if') {
             // do nothing
+        } else if (name === 'v-model') {
+            value = `$data[${value}]`;
         } else {
             name = `:${name}`;
             if (value.substring(0, 5) === 'self.') {
@@ -123,7 +148,7 @@ function parseProperty(template, properties) {
     });
 }
 
-const interpolationRegExp = /\{\{\s+(.+)\s+\}\}/g
+const interpolationRegExp = /\{\{\s+([\s\S]*?)\s+\}\}/g
 function parseInterpolation(template, properties, methods) {
     return template.replace(interpolationRegExp, (match, value) => {
         value = value.replace(new RegExp(getRegExp, 'g'), (match, value) => {
@@ -131,7 +156,7 @@ function parseInterpolation(template, properties, methods) {
             return value;
         });
         value = value.replace(/JSON.stringify/, match => {
-            methods.push(`    stringify(data) { return JSON.stringify(data); }`);
+            methods.stringify = `stringify(data) { return JSON.stringify(data); },`;
             return 'stringify';
         });
         return `{{ ${value} }}`;
@@ -139,7 +164,7 @@ function parseInterpolation(template, properties, methods) {
 }
 
 function parseVModel(template, properties) {
-    return template.replace(/v\-model(:(.+))?=['"](.+)["']/, (match, nouse, name, value) => {
+    return template.replace(/v\-model(:(.+))?=['"]([^"']+)["']/g, (match, nouse, name, value) => {
         properties[value] = null;
         if (!nouse) {
             return match;
@@ -162,6 +187,7 @@ function getDefaults(js) {
     const matches = js.match(defaultsRegExp);
     if (matches) {
         let data;
+        console.log(matches[1]);
         eval(`data = ${matches[1]}`);
         return data; 
     }
@@ -174,7 +200,7 @@ function getMethods(js) {
     const lines = js.split('\n');
     let spaces = '';
     lines.forEach((code, index) => {
-        const matches = code.match(/^(\s*)(\w+)\(.*?\) {$/);
+        const matches = code.match(/^(\s*)((?:async )?\w+)\(.*?\) {$/);
         if (matches) {
             start = index;
             name = matches[2];
@@ -182,11 +208,38 @@ function getMethods(js) {
         } else if (code === `${spaces}}`) {
             if (name === 'defaults') return;
             let codes = lines.slice(start, index + 1);
-            if (!spaces) {
-                codes = codes.map(item => `    ${item}`);
+            if (spaces) {
+                codes = dedent(codes);
             }
-            methods[name] = codes; 
+            methods[name] = codes.join('\n').replace(
+                /this\.set\((['"])?([\d\w]+)["']?,\s*([^\)]+)\)/g,
+                (nouse, quote, name, value) => {
+                    if (quote) {
+                        return `this.${name} = ${value}`;
+                    } else {
+                        return `this[${name}] = ${value}`;
+                    }
+                }
+            ).replace(/this\.refs/g, 'this.$refs') + ','; 
         }
     });
     return methods;
+}
+
+function indent(scripts, number = 1) {
+    if (typeof scripts === 'string') {
+        scripts = scripts.split('\n');
+    }
+    return scripts.map(item => {
+        return '    '.repeat(number) + item;
+    });
+}
+
+function dedent(scripts, number = 1) {
+    if (typeof scripts === 'string') {
+        scripts = scripts.split('\n');
+    }
+    return scripts.map(item => {
+        return item.substring(4 * number);
+    });
 }
