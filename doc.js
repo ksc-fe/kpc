@@ -29,7 +29,7 @@ module.exports = function(isDev) {
 
     const doc = new KDoc(
         // './@(docs|components)/**/*.md',
-        './@(docs|components)/dialog/**/*.md',
+        './@(docs|components)/dropdown/**/*.md',
         root
     );
 
@@ -149,6 +149,7 @@ module.exports = function(isDev) {
                     }
                     if (item.language === 'vue-ignore') {
                         item.language = 'vue';
+                        item.ignored = true;
                         hasVue = true;
                     }
                     return true;
@@ -232,6 +233,7 @@ module.exports = function(isDev) {
             await ctx.fsEach(async function(file) {
                 if (/demos/.test(file.path)) {
                     await file.md.codes.forEach(async item => {
+                        if (item.ignore) return;
                         file.extname = '.' + item.language;
                         let content = item.content;
                         if (item.language === 'js' && !item.file) {

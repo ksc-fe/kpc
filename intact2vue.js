@@ -182,7 +182,7 @@ function parseBlock(template) {
     return template.replace(/<\/b:[\w\-]+>/g, '</template>');
 }
 
-const defaultsRegExp = /\n\s{4}defaults\(\) \{\n\s+return ([^;]+);?\n\s{4}\}/;
+const defaultsRegExp = /\n\s{4}defaults\(\) \{\n\s+return ([^;]*?);?\n\s{4}\}/;
 function getDefaults(js) {
     const matches = js.match(defaultsRegExp);
     if (matches) {

@@ -45,6 +45,8 @@ function Wrapper(props, inVue) {
         });
 }
 
+Wrapper.propTypes = Dropdown.propTypes;
+
 // Vue only support return one element from functional component,
 // so we wrap them. This will lead to damage the dom struction,
 // because we must wrap them with a div
