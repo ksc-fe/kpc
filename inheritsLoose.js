@@ -4,7 +4,9 @@ var _defaults = require("@babel/runtime-corejs2/helpers/defaults");
 function _inheritsLoose(subClass, superClass) {
   subClass.prototype = _Object$create(superClass.prototype);
   subClass.prototype.constructor = subClass;
-  _defaults(subClass, superClass);
+  if (!Object.setPrototypeOf && !{}.__proto__) {
+      _defaults(subClass, superClass);
+  }
   subClass.__proto__ = superClass;
 }
 

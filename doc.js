@@ -286,7 +286,7 @@ module.exports = function(isDev) {
                         colors: true 
                     }));
                     delete require.cache[require.resolve('./site/dist/render')];
-                    const render = require('./site/dist/render');
+                    const render = require('./site/dist/render').default;
 
                     await ctx.fsEach(async function(file) {
                         if (!/demos/.test(file.path)) {

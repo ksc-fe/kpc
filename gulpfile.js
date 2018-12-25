@@ -354,6 +354,8 @@ gulp.task('build:js', () => {
         .pipe(tap(function(file) {
             let contents = file.contents.toString('utf-8');
             contents = contents.replace(/\.styl(['"])/g, '.css$1');
+            // replace inheritsLoose for IE compatibilty
+            contents = contents.replace('@babel/runtime-corejs2/helpers/inheritsLoose', '../../inheritsLoose');
             file.contents = Buffer.from(contents);
         }))
         .pipe(gulp.dest(destPath));
@@ -407,6 +409,12 @@ gulp.task('clean@stylus', (done) => {
 gulp.task('build:js@stylus', () => {
     return gulp.src(['./components/**/*.js', '!./components/**/*.spec.js', './index.js'], {base: './'})
         .pipe(babel())
+        .pipe(tap(function(file) {
+            let contents = file.contents.toString('utf-8');
+            // replace inheritsLoose for IE compatibilty
+            contents = contents.replace('@babel/runtime-corejs2/helpers/inheritsLoose', '../../../inheritsLoose');
+            file.contents = Buffer.from(contents);
+        }))
         .pipe(gulp.dest(destPathStylus));
 });
 
