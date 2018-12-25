@@ -111,6 +111,8 @@ export default class Node {
         if (!parent || parent === this.tree.root || parent.filter) return;
 
         parent.filter = true;
+        // auto expand parent
+        this.tree.expandedKeys.add(parent.key);
         parent.updateFilterUpward();
     }
 

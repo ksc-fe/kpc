@@ -147,7 +147,8 @@ export default class Tree extends Intact {
         if (
             // lastProps.data !== nextProps.data ||
             // lastProps.checkedKeys !== nextProps.checkedKeys ||
-            lastProps.filter !== nextProps.filter
+            lastProps.filter !== nextProps.filter ||
+            lastProps.expandedKeys !== nextProps.expandedKeys
         ) return;
 
         this._mappingKeys();
