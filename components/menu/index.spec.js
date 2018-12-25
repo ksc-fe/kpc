@@ -6,15 +6,19 @@ describe('Menu', () => {
 
     afterEach(() => unmount(instance));
 
-    it('expand and shrink sub menu', () => {
+    it('expand and shrink sub menu', (done) => {
         instance = mount(CollapseDemo);
 
         const title = instance.element.querySelector('.k-expanded .k-title');
         title.click();
-        expect(instance.element.outerHTML).to.matchSnapshot();
-
-        title.click();
-        expect(instance.element.outerHTML).to.matchSnapshot();
+        setTimeout(() => {
+            expect(instance.element.outerHTML).to.matchSnapshot();
+            title.click();
+            setTimeout(() => {
+                expect(instance.element.outerHTML).to.matchSnapshot();
+                done();
+            }, 300);
+        }, 300);
     });
 
     it('select', () => {

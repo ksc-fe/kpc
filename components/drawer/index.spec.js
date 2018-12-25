@@ -29,8 +29,8 @@ describe('Drawer', () => {
             setTimeout(() => {
                 expect(getElement('.k-drawer .k-dialog')).to.be.undefined;
                 done();
-            }, 300)
-        }, 300);
+            }, 400)
+        }, 400);
     });
 
     it('should show drawer from different placement correctly', function(done) {

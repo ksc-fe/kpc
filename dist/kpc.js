@@ -92,11 +92,13 @@ var _Object$create = __webpack_require__(185);
 
 var _defaults = __webpack_require__(409);
 
+var isSupportProto = __WEBPACK_IMPORTED_MODULE_0__babel_runtime_corejs2_core_js_object_set_prototype_of___default.a || {}.__proto__;
+
 function _inheritsLoose(subClass, superClass) {
   subClass.prototype = _Object$create(superClass.prototype);
   subClass.prototype.constructor = subClass;
 
-  if (!__WEBPACK_IMPORTED_MODULE_0__babel_runtime_corejs2_core_js_object_set_prototype_of___default.a && !{}.__proto__) {
+  if (!isSupportProto) {
     _defaults(subClass, superClass);
   }
 
@@ -40643,7 +40645,7 @@ function (_Intact) {
 
     if ( // lastProps.data !== nextProps.data ||
     // lastProps.checkedKeys !== nextProps.checkedKeys ||
-    lastProps.filter !== nextProps.filter) return;
+    lastProps.filter !== nextProps.filter || lastProps.expandedKeys !== nextProps.expandedKeys) return;
 
     this._mappingKeys();
   };
@@ -41014,7 +41016,9 @@ function () {
   _proto.updateFilterUpward = function updateFilterUpward() {
     var parent = this.parent;
     if (!parent || parent === this.tree.root || parent.filter) return;
-    parent.filter = true;
+    parent.filter = true; // auto expand parent
+
+    this.tree.expandedKeys.add(parent.key);
     parent.updateFilterUpward();
   };
 
