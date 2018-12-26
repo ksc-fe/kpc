@@ -1,12 +1,12 @@
 const Intact = require('intact');
 const Vdt = Intact.Vdt;
 
-module.exports = function(vdt, js, vueScript) {
+module.exports = function(vdt, js, vueScript, vueTemplate, vueMethods, vueData) {
     // console.log(vdt, js, vueScript);
-    const obj = parse(vdt, js, vueScript);
+    const obj = parse(vdt, js, vueScript, vueTemplate, vueMethods, vueData);
     const result = [
         `<template>`,
-        obj.body,
+        obj.template,
         `</template>`,
         `<script>`,
         obj.head,
@@ -20,90 +20,119 @@ module.exports = function(vdt, js, vueScript) {
 }
 
 const importRegExp = /import \{?(.*?)\}? from .*/g
-function parse(vdt, js, vueScript) {
+function parse(vdt, js, vueScript, vueTemplate, vueMethods, vueData) {
     const components = [];
     let properties = {};
-    let methods = [];
+    let methods = {};
     let head = '';
-    let body = vdt.replace(importRegExp, (match, name) => {
-        components.push(name);
-        head += match + '\n';
+    let template = vdt.replace(importRegExp, (match, name) => {
+        name = name.split(', ').map(item => item === 'Switch' ? 'KSwitch' : item);
+        components.push(...name);
+        head += match.replace('Switch', 'Switch as KSwitch') + '\n';
         return '';
-    });
-    body = parseProperty(body, properties);
-    body = parseVModel(body, properties);
-    body = parseInterpolation(body, properties, methods);
-    body = parseBlock(body);
+    }).replace(/<(\/)?Switch/g, '<$1KSwitch');
+    if (vueTemplate) {
+        template = vueTemplate;
+    } else {
+        const matchElement = /\n<\w+/.exec(template);
+        if (matchElement) {
+            template = template.substring(matchElement.index);
+        }
 
-    let scripts = [
+        template = parseProperty(template, properties, methods);
+        template = parseVModel(template, properties);
+        template = parseInterpolation(template, properties, methods);
+        template = parseBlock(template);
+    }
+
+    let scripts = indent([
         `components: {`,
         `    ${components.join(', ')}`,
         `},`,
-    ];
+    ]);
 
     let methodsObj = {};
     if (js) {
-        const {defaults, methods} = parseJS(js);
+        const {defaults, methods} = parseJS(js, vueData);
         if (defaults) {
             properties = {...properties, ...defaults};
         }
         methodsObj = methods;
+        js.replace(importRegExp, (match, name) => {
+            if (components.indexOf(name) > -1) return;
+            if (name === 'Intact' || name === 'template') return;
+            head += match + '\n'
+        });
     }
-    if (vueScript) {
-        const methods = getMethods(vueScript);
+    if (vueMethods) {
+        const methods = getMethods(vueMethods);
         Object.assign(methodsObj, methods);
     }
-    methods = [...methods, ...(Object.values(methodsObj).map(value => {
-        return value.map((item, i) => i ? `    ${item}` : item).join('\n');
-    }))];
-    if (Object.keys(properties).length) {
+    methods = [...Object.values(methods), ...Object.values(methodsObj)];
+    if (Object.keys(properties).length && !vueData) {
         scripts = [
             ...scripts,
-            `data() {`,
-            `    return ${JSON.stringify(properties, null, 4)
-                .split('\n')
-                .map((item, i) => i ? `        ${item}` : item)
-                .join('\n')}`,
-            `},`
+            ...indent([
+                `data() {`,
+                ...indent(`return ${JSON.stringify(properties, null, 4)}`),
+                `},`
+            ]),
+        ];
+    }
+    if (vueData) {
+        scripts = [
+            ...scripts,
+            ...indent(vueData),
         ];
     }
     if (methods.length) {
         scripts = [
             ...scripts,
-            `methods: {`,
-            methods.join(',\n'),
-            `}`
+            ...indent([
+                `methods: {`,
+                    ...indent(methods.join('\n')),
+                `},`
+            ])
         ]; 
+    }
+
+    if (vueScript) {
+        scripts = [
+            ...scripts,
+            ...indent(vueScript),
+        ];
     }
 
     return {
         head, 
-        body: body.trim().split('\n').map(item => `    ${item}`).join('\n'),
-        js: scripts.map(item => `    ${item}`).join('\n'),
+        template: template.trim().split('\n').map(item => `    ${item}`).join('\n'),
+        js: scripts.join('\n'),
     };
 }
 
-function parseJS(js) {
+function parseJS(js, vueData) {
     return {
-        defaults: getDefaults(js),
+        defaults: vueData ? {} : getDefaults(js),
         methods: getMethods(js),
     }; 
 }
 
-const delimitersRegExp = /\b([^\s]*?)=\{\{\s+(.*?)\s+}}/g;
-const getRegExp = /self\.get\(['"](.+)['"]\)/;
-function parseProperty(template, properties) {
+const delimitersRegExp = /\b([^\s]*?)=\{\{\s+([\s\S]*?)\s+}}/g;
+const getRegExp = /self\.get\(['"](.*?)['"]\)/g;
+function parseProperty(template, properties, methods) {
     return template.replace(delimitersRegExp, (match, name, value) => {
-        const matches = value.match(getRegExp);
-        if (matches) {
-            value = matches[1];
-            properties[value] = null;
-        }
+        value = value.replace(getRegExp, (nouse, name) => {
+            properties[name] = null;
+            return name;
+        });
         if (name.substring(0, 3) === 'ev-') {
             name = `@${name.substring(3)}`;
-            const matches = value.match(/self\.(\w+)(\.bind\(self, (.+)\))?/);
+            const matches = value.match(/self\.(\w+)(\.bind\(self, (.*?)\))?/);
             if (matches) {
                 if (matches[2]) {
+                    if (matches[1] === 'set') {
+                        methods.set = `set(key, value) { this[key] = value },`;
+                    }
                     value = `${matches[1]}(${matches[3]})`;
                 } else {
                     value = matches[1];
@@ -111,19 +140,25 @@ function parseProperty(template, properties) {
             }
         } else if (name === 'v-for') {
             value = `(value, key) in ${value}`;
-        } else if (name === 'v-if') {
+        } else if (name === 'v-if' || name === 'v-else-if') {
             // do nothing
+        } else if (name === 'v-model') {
+            // v-model={{ `show${value}` }}
+            if (!/[\.\[]/.test(value)) value = `$data[${value}]`;
+            // v-model={{ `show[${key}]` }}
+            else value = value.replace(/[\`\$\{\}]/g, '');
         } else {
             name = `:${name}`;
             if (value.substring(0, 5) === 'self.') {
                 value = value.substring(5);
             }
         }
+        value = value.replace(/self\./, '');
         return `${name}="${value}"`;
     });
 }
 
-const interpolationRegExp = /\{\{\s+(.+)\s+\}\}/g
+const interpolationRegExp = /\{\{\s+([\s\S]*?)\s+\}\}/g
 function parseInterpolation(template, properties, methods) {
     return template.replace(interpolationRegExp, (match, value) => {
         value = value.replace(new RegExp(getRegExp, 'g'), (match, value) => {
@@ -131,7 +166,7 @@ function parseInterpolation(template, properties, methods) {
             return value;
         });
         value = value.replace(/JSON.stringify/, match => {
-            methods.push(`    stringify(data) { return JSON.stringify(data); }`);
+            methods.stringify = `stringify(data) { return JSON.stringify(data); },`;
             return 'stringify';
         });
         return `{{ ${value} }}`;
@@ -139,7 +174,8 @@ function parseInterpolation(template, properties, methods) {
 }
 
 function parseVModel(template, properties) {
-    return template.replace(/v\-model(:(.+))?=['"](.+)["']/, (match, nouse, name, value) => {
+    return template.replace(/v\-model(:(.*?))?=['"]([^"']+)["']/g, (match, nouse, name, value) => {
+        if (/\$data/.test(value)) return match;
         properties[value] = null;
         if (!nouse) {
             return match;
@@ -157,11 +193,12 @@ function parseBlock(template) {
     return template.replace(/<\/b:[\w\-]+>/g, '</template>');
 }
 
-const defaultsRegExp = /\n\s{4}defaults\(\) \{\n\s+return ([^;]+);?\n\s{4}\}/;
+const defaultsRegExp = /\n\s{4}defaults\(\) \{\n\s+return ([^;]*?);?\n\s{4}\}/;
 function getDefaults(js) {
     const matches = js.match(defaultsRegExp);
     if (matches) {
         let data;
+        // console.log('defaults()', matches[1]);
         eval(`data = ${matches[1]}`);
         return data; 
     }
@@ -174,19 +211,60 @@ function getMethods(js) {
     const lines = js.split('\n');
     let spaces = '';
     lines.forEach((code, index) => {
-        const matches = code.match(/^(\s*)(\w+)\(.*?\) {$/);
+        const matches = code.match(/^(\s*)((?:async )?\w+)\(.*?\) {$/);
         if (matches) {
             start = index;
             name = matches[2];
             spaces = matches[1];
         } else if (code === `${spaces}}`) {
-            if (name === 'defaults') return;
+            if (name === 'defaults' || name === '_init') return;
             let codes = lines.slice(start, index + 1);
-            if (!spaces) {
-                codes = codes.map(item => `    ${item}`);
+            if (spaces) {
+                codes = dedent(codes);
             }
-            methods[name] = codes; 
+            methods[name] = codes.join('\n')
+                .replace(/this\.refs/g, 'this.$refs')
+                .replace(
+                    /this\.get\((['"])?([\d\w]+)["']?\)/g,
+                    (nouse, quote, name) => {
+                        if (quote) {
+                            return `this.${name}`;
+                        } else {
+                            return `this[${name}]`;
+                        }
+                    }
+                ) 
+                .replace(
+                    /this\.set\((['"])?([\d\w]+)["']?,\s*(.*?)\)/g,
+                    (nouse, quote, name, value, semiconlon) => {
+                        let ret;
+                        if (quote) {
+                            ret = `this.${name} = ${value}`;
+                        } else {
+                            ret = `this[${name}] = ${value}`;
+                        }
+                        return ret;
+                    }
+                ) + ',';
         }
     });
     return methods;
+}
+
+function indent(scripts, number = 1) {
+    if (typeof scripts === 'string') {
+        scripts = scripts.split('\n');
+    }
+    return scripts.map(item => {
+        return '    '.repeat(number) + item;
+    });
+}
+
+function dedent(scripts, number = 1) {
+    if (typeof scripts === 'string') {
+        scripts = scripts.split('\n');
+    }
+    return scripts.map(item => {
+        return item.substring(4 * number);
+    });
 }

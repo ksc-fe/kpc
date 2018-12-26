@@ -37,3 +37,31 @@ export function getElement(query) {
     const elements = document.querySelectorAll(query);
     return elements[elements.length - 1];
 }
+
+export function testDemos(req, test) {
+    const groups = {};
+    req.keys().forEach(item => {
+        const paths = item.split('/');
+        const name = paths[1];
+        const type = paths[3];
+        const Demo = req(item).default;
+
+        if (!groups[name]) {
+            groups[name] = [];
+        }
+        groups[name].push({
+            title: `${name[0].toUpperCase()}${name.substring(1)} ${type}`,
+            Demo: Demo,
+        });
+    });
+    Object.keys(groups).forEach(key => {
+        const value = groups[key];
+        describe(key, () => {
+            value.forEach(value => {
+                it(value.title, () => {
+                    test(value.Demo);
+                });
+            });
+        });
+    });
+}

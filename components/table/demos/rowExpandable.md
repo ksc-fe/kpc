@@ -14,25 +14,19 @@ order: 6
 ```vdt
 import {Table, TableColumn} from 'kpc/components/table';
 
-var data = [
-    {name: 'Javey', email: 'jiawei23716@sina.com'}, 
-    {name: 'Jiawei', email: 'zoujiawei@gmail.com'}
-];
-
 <div class='no-data-template'>
     <Table 
-        data={{ data }} 
+        data={{ self.get('data') }} 
         checkType="none"
         ref="__test1"
     >
-        <b:expand params="data, index">
-            <div>Email: {{ data.email }}</div>
+        <b:expand params="data, index"> <div>Email: {{ data.email }}</div>
         </b:expand>
         <TableColumn title="点击整行展开内容" key="name" />
     </Table>
 
 	<Table 
-        data={{ data }} 
+        data={{ self.get('data') }} 
         checkType="none"
         rowExpandable={{ false }}
         expandedKeys={{ self.get('expandedKeys') }}
@@ -41,21 +35,21 @@ var data = [
         <b:expand params="data, index">
             <div>Email: {{ data.email }}</div>
         </b:expand>
-        <TableColumn title="点击+，展开内容" key="name" 
-            template={{ (data, index) => {
-                return <div>
+        <TableColumn title="点击+，展开内容" key="name"> 
+            <b:template params="data, index">
+                <div>
                     <i 
                         class={{ {
-                            "icon": true,
-                            "ion-ios-plus-outline": self.get('expandedKeys').indexOf(index) < 0,
-                            "ion-ios-minus-outline": self.get('expandedKeys').indexOf(index) > -1,
+                            'icon': true,
+                            'ion-ios-plus-outline': self.get('expandedKeys').indexOf(index) < 0,
+                            'ion-ios-minus-outline': self.get('expandedKeys').indexOf(index) > -1,
                         } }}
                         ev-click={{ self.toggleExpand.bind(self, data, index) }}
                     ></i>
                     {{ data.name }}
                 </div>
-            } }}
-        />
+            </b:template>
+        </TableColumn>
     </Table>
 </div>
 ```
@@ -80,7 +74,11 @@ export default class extends Intact {
 
     defaults() {
         return {
-            expandedKeys: []
+            expandedKeys: [],
+            data: [
+                {name: 'Javey', email: 'jiawei23716@sina.com'}, 
+                {name: 'Jiawei', email: 'zoujiawei@gmail.com'}
+            ],
         };
     }
 

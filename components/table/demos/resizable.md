@@ -9,7 +9,7 @@ order: 12
 import Table from 'kpc/components/table';
 import {Form, FormItem} from 'kpc/components/form';
 
-var data = [{a: 'A', b: 'B', c: 'C'}, {a: 'A', b: 'B', c: 'C'}];
+const {data} = self.get();
 
 <div class='no-data-template'>
     <Table 
@@ -59,4 +59,17 @@ var data = [{a: 'A', b: 'B', c: 'C'}, {a: 'A', b: 'B', c: 'C'}];
         </FormItem>
     </Form>
 </div>
+```
+
+```js
+export default class extends Intact {
+    @Intact.template()
+    static template = template;
+
+    defaults() {
+        return {
+            data: [{a: 'A', b: 'B', c: 'C'}, {a: 'A', b: 'B', c: 'C'}]
+        }
+    }
+}
 ```

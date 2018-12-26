@@ -47,12 +47,6 @@ export default class extends Intact {
 }
 ```
 
-```vue-script
-onClick(name) {
-    this[name] = true;
-}
-```
-
 ```jsx
 import React from 'react';
 import Button from 'kpc/components/button';

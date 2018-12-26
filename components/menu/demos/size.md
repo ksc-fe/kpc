@@ -7,7 +7,7 @@ order: 4
 
 ```vdt
 import {Menu, MenuItem} from 'kpc/components/menu';
-import Switch from 'kpc/components/switch';
+import {Switch} from 'kpc/components/switch';
 import {ButtonGroup, Button} from 'kpc/components/button';
 
 <div>

@@ -42,7 +42,7 @@ export default class extends Intact {
     defaults() {
         return { 
             show: false,
-            event: undefined,
+            event: null,
         };
     }
 
@@ -53,5 +53,13 @@ export default class extends Intact {
             event: event,
         });
     }
+}
+```
+
+```vue-methods
+_showMenu(event) {
+    event.preventDefault();
+    this.show = true;
+    this.event = event;
 }
 ```

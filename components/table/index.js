@@ -61,7 +61,7 @@ export default class Table extends Intact {
         checkedKey: [String, Number],
         rowCheckable: Boolean,
         rowExpandable: Boolean,
-        noDataTemplate: [String, Intact.VNode],
+        noDataTemplate: [String, Intact.VNode, Object],
         disableRow: Function,
         sort: Object,
         group: Object,
@@ -527,6 +527,9 @@ export default class Table extends Intact {
         // maybe the top of table has changed too
         if (this.get('_isSticky')) {
             this._setStickyHeaderStyle();
+        }
+        if (this.get('_isStickyScrollbar')) {
+            this._setStickScrollbarStyle();
         }
         this._setFixedColumnWidth();
     }

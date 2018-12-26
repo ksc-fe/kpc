@@ -11,15 +11,14 @@ order: 4
 ```vdt
 import Table from 'kpc/components/table';
 
-const scheme1 = {a: '不整行选中', b: 'B'};
-const scheme2 = {a: '整行选中', b: 'B'};
-const data1 = [{a: 'A', b: 'B'}, {a: 'A', b: '点我不会选中整行'}];
-const data2 = [{a: 'A', b: '任何位置都可以哦～'}, {a: 'A', b: '点我会选中整行'}];
-
-
 <div class='no-data-template'>
-    <Table scheme={{ scheme1 }} data={{ data1 }} rowCheckable={{ false }}/>
-    <Table scheme={{ scheme2 }} data={{ data2 }} />
+    <Table scheme={{ {a: '点击整行不选中', b: 'B'} }}
+        data={{ [{a: 'A', b: 'B'}, {a: 'A', b: '点我不会选中整行'}] }}
+        rowCheckable={{ false }}
+    />
+    <Table scheme={{ {a: '点击整行选中', b: 'B'} }} 
+        data={{ [{a: 'A', b: '任何位置都可以哦～'}, {a: 'A', b: '点我会选中整行'}] }}
+    />
 </div>
 ```
 

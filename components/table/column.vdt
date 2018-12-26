@@ -2,8 +2,9 @@ import {Dropdown, DropdownMenu, DropdownItem} from '../dropdown';
 import {Checkbox} from '../checkbox';
 import {Radio} from '../radio';
 import {isStringOrNumber} from '../utils';
+import {normalize} from 'intact';
 
-const {
+let {
     title, key, group, multiple,
     sortable, $parent, _show, className,
 } = self.get();
@@ -12,6 +13,8 @@ const width = self.width;
 
 const {sort, resizable, container} = $parent.get();
 const groupText = group && self._getGroupText() || '';
+
+title = normalize ? normalize(title) : title;
 
 <th title={{ isStringOrNumber(title) ? title + groupText : undefined }}
     class={{ {

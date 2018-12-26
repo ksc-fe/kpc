@@ -85,3 +85,30 @@ export default class extends Intact {
     }
 }
 ```
+
+```vue-methods
+_remove(value) {
+    const index = this.tabs.findIndex(item => item.value === value);
+    this.tabs.splice(index, 1);
+
+    // 如果删除当前tab，则切换至下一个
+    if (value === this.tab) {
+        this.tab = (this.tabs[index] || this.tabs[index - 1]).value
+    }
+}
+
+_add() {
+    const id = ++this.id;
+    this.tabs.push({
+        value: id,
+        label: `Tab ${id}`,
+    });
+    this.tab = id;
+}
+```
+
+```vue-script
+beforeCreate() {
+    this.id = 3;
+}
+```

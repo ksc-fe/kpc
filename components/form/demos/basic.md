@@ -174,6 +174,16 @@ export default class extends Intact {
 }
 ```
 
+```vue-data
+data() {
+    return {
+        model: {
+            checkbox: [],
+        }
+    }
+},
+```
+
 ```jsx
 import React from 'react';
 import {Form, FormItem} from 'kpc/components/form';

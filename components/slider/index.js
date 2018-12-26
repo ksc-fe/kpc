@@ -21,6 +21,7 @@ export default class Slider extends Intact {
             step: 1,
             isShowStop: false,
             marks: undefined,
+            disabled: false,
 
             _sliderValue: 0,
             _inputValue:0,
@@ -41,6 +42,7 @@ export default class Slider extends Intact {
         step: Number,
         isShowStop: Boolean,
         marks: Object,
+        disabled: Boolean,
     }
 
     _init() {

@@ -35,3 +35,20 @@ const data = [
     </TableColumn>
 </Table>
 ```
+
+```vue-data
+data() {
+    return {
+        data: [
+            {name: 'John'},
+            {name: 'Tom'},
+            {name: 'Javey'},
+        ].map(item => {
+            for (let i = 0; i < 4; i++) {
+                item[`column${i + 1}`] = 'test';
+            }
+            return item;
+        })
+    }
+},
+```

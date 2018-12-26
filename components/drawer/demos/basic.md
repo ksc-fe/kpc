@@ -26,10 +26,3 @@ import {Select, Option} from 'kpc/components/select';
     </Drawer>
 </div>
 ```
-
-```js
-export default class extends Intact {
-    @Intact.template()
-    static template = template;
-}
-```

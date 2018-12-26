@@ -23,7 +23,7 @@ import {Button} from 'kpc/components/button';
 <Form>
     <FormItem label="描述">
         <FormItem v-for={{ self.get('descriptions') }}
-            model={{ `descriptions.${key}` }}
+            model={{ `descriptions[${key}]` }}
             hideLabel
             rules={{ {
                 required: true, 
@@ -42,9 +42,9 @@ import {Button} from 'kpc/components/button';
                 }
             } }}
         >
-            <Input v-model={{ `descriptions.${key}` }} />    
+            <Input v-model={{ `descriptions[${key}]` }} />    
             <b:append>
-                <Button ev-click={{ self.delete.bind(self, key) }}>删除</Button>
+                <Button ev-click={{ self.remove.bind(self, key) }}>删除</Button>
             </b:append>
         </FormItem>
         <Button ev-click={{ self.add }}>添加</Button>
@@ -89,10 +89,19 @@ export default class extends Intact {
         this.set('descriptions', this.get('descriptions').concat(''));
     }
 
-    delete(index) {
+    remove(index) {
         const descriptions = this.get('descriptions').slice(0);
         descriptions.splice(index, 1);
         this.set('descriptions', descriptions);
     }
+}
+```
+
+```vue-methods
+add() {
+    this.descriptions.push('');
+}
+remove(index) {
+    this.descriptions.splice(index, 1);
 }
 ```

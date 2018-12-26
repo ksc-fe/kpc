@@ -24,10 +24,3 @@ import {Button, ButtonGroup} from 'kpc/components/button';
     </Drawer>
 </div>
 ```
-
-```js
-export default class extends Intact {
-    @Intact.template()
-    static template = template;
-}
-```

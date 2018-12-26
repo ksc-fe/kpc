@@ -11,12 +11,10 @@ order: 8.1
 ```vdt
 import {Table, TableColumn} from 'kpc/components/table';
 
-const data = [
+<Table data={{ [
     {name: 'Javey', sex: 'male'},
     {name: 'Lisa', sex: 'female'}
-];
-
-<Table data={{ data }} stickHeader="87" resizable>
+] }} stickHeader="87" resizable>
     <TableColumn title="姓名" key="name">
         <b:template params="data">
             {{ data.name }}

@@ -10,31 +10,27 @@ order: 3
 ```vdt
 import Table from 'kpc/components/table';
 
-const data1 = [{a: '赋默认值选中'}, {a: '不选中'}];
-const data2 = [{text: '选中', id: 'yes'}, {text: '不选中', id: 'no'}];
-const data3 = [{a: '赋默认值选中'}, {a: '不选中'}, {a: '赋默认值选中，可设置多个'}];
-
 <div>
     <div class='no-data-template'>
         <Table scheme={{ {a: 'radio不指定rowKey'} }}
-            data={{ data1 }}
+            data={{ self.get('data1') }}
             checkedKey={{ 0 }}
             checkType='radio'
         />
         <Table scheme={{ {text: 'radio指定为item的id'} }} 
-            data={{ data2 }} 
+            data={{ self.get('data2') }} 
             checkType='radio' 
             rowKey={{ self.setRowKey }}  
-            checkedKey={{ 'yes' }}
+            checkedKey="yes"
         />
     </div>
     <div class='no-data-template'>
         <Table scheme={{ {a: 'checkbox不指定rowKey'} }} 
-            data={{ data3 }} 
+            data={{ self.get('data3') }} 
             checkedKeys={{ [0, 2] }}
         />
         <Table scheme={{ {text: 'checkbox指定为item的id'} }} 
-            data={{ data2 }} 
+            data={{ self.get('data2') }} 
             rowKey={{ self.setRowKey }} 
             checkedKeys={{ ['yes'] }}
         />
@@ -55,6 +51,14 @@ const data3 = [{a: '赋默认值选中'}, {a: '不选中'}, {a: '赋默认值选
 export default class extends Intact {
     @Intact.template()
     static template = template;
+
+    defaults() {
+        return {
+            data1: [{a: '赋默认值选中'}, {a: '不选中'}],
+            data2: [{text: '选中', id: 'yes'}, {text: '不选中', id: 'no'}],
+            data3: [{a: '赋默认值选中'}, {a: '不选中'}, {a: '赋默认值选中，可设置多个'}],
+        }
+    }
 
     setRowKey(value, index) {
         return value.id;

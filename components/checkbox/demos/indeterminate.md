@@ -31,8 +31,6 @@ const length = self.get('languages').length;
 ```
 
 ```js
-const options = ['Javascript', 'C++', 'PHP'];
-
 export default class extends Intact {
     @Intact.template()
     static template = template;
@@ -41,16 +39,40 @@ export default class extends Intact {
         return {
             // 必须初始化为数组
             languages: [],
-            options,
+            options: ['Javascript', 'C++', 'PHP'],
         };
     }
 
     _toggleSelectAll(c, checked) {
         if (checked) {
-            this.set('languages', options.slice(0));
+            this.set('languages', ['Javascript', 'C++', 'PHP']);
         } else {
             this.set('languages', []);
         }
     }
 }
+```
+
+```vue-template
+<div>
+    <Checkbox :indeterminate="length > 0 && length < 3"
+        :value="length === 3"
+        @$change:value="_toggleSelectAll"
+    >全选</Checkbox>
+    <hr />
+    <Checkbox v-for="(value, key) in options"
+        name="languages" 
+        :trueValue="value"
+        v-model="languages"
+    >{{ value }}</Checkbox>
+    Your selected: {{ languages }}
+</div>
+```
+
+```vue-script
+computed: {
+    length() {
+        return this.languages.length;
+    }
+},
 ```

@@ -60,3 +60,10 @@ export default class extends Intact {
     }
 }
 ```
+
+```vue-methods
+showDrawer(value) {
+    this.showPosition = value;
+    this.show = true;
+}
+```
