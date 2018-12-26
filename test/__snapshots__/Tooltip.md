@@ -18,21 +18,3 @@
 "<div class=\"k-buttons\"><button class=\"k-btn k-small\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-small\" tabindex=\"0\" type=\"button\"><span>确认</span></button></div>"
 ```
 
-#### `should position correctly`
-
-```
-"<i class=\"k-arrow k-middle k-left\"></i>left"
-```
-
-```
-"<i class=\"k-arrow k-middle k-left\"></i>right"
-```
-
-```
-"<i class=\"k-arrow k-bottom k-center\"></i>top"
-```
-
-```
-"<i class=\"k-arrow k-top k-center\"></i>bottom"
-```
-

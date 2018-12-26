@@ -57,6 +57,7 @@ module.exports = function (config) {
         },
         snapshot: {
             update: process.env.UPDATE === '1',
+            prune: process.env.UPDATE === '3',
         },
         logLevel: config.LOG_INFO,
         singleRun: true,
