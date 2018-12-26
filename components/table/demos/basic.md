@@ -25,3 +25,12 @@ const data = [{a: '第一行', b: '哈哈2'}, {a: '第二行', b: '哈哈2'}];
 .k-table-wrapper
     margin-bottom 20px
 ```
+
+```vue-data
+data() {
+    return {
+        scheme: {a: '表头1', b: '表头2'},
+        data: [{a: '第一行', b: '哈哈2'}, {a: '第二行', b: '哈哈2'}],
+    }
+},
+```

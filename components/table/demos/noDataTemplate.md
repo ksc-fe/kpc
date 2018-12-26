@@ -31,9 +31,12 @@ const tip = <div>这里没有数据(自定义版本)</div>;
         margin-left: 10px
 ```
 
-
-
-
-
-
-
+```vue-data
+data() {
+    return {
+        scheme: {a: '表头1', b: '表头2'},
+        data: [],
+        tip: <div>这里没有数据(自定义版本)</div>,
+    }
+},
+```

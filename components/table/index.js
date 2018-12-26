@@ -61,7 +61,7 @@ export default class Table extends Intact {
         checkedKey: [String, Number],
         rowCheckable: Boolean,
         rowExpandable: Boolean,
-        noDataTemplate: [String, Intact.VNode],
+        noDataTemplate: [String, Intact.VNode, Object],
         disableRow: Function,
         sort: Object,
         group: Object,

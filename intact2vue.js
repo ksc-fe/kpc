@@ -30,10 +30,15 @@ function parse(vdt, js, vueScript, vueTemplate, vueMethods, vueData) {
         components.push(...name);
         head += match.replace('Switch', 'Switch as KSwitch') + '\n';
         return '';
-    }).replace(/<Switch/g, '<KSwitch');
+    }).replace(/<(\/)?Switch/g, '<$1KSwitch');
     if (vueTemplate) {
         template = vueTemplate;
     } else {
+        const matchElement = /\n<\w+/.exec(template);
+        if (matchElement) {
+            template = template.substring(matchElement.index);
+        }
+
         template = parseProperty(template, properties, methods);
         template = parseVModel(template, properties);
         template = parseInterpolation(template, properties, methods);
@@ -135,7 +140,7 @@ function parseProperty(template, properties, methods) {
             }
         } else if (name === 'v-for') {
             value = `(value, key) in ${value}`;
-        } else if (name === 'v-if') {
+        } else if (name === 'v-if' || name === 'v-else-if') {
             // do nothing
         } else if (name === 'v-model') {
             // v-model={{ `show${value}` }}
@@ -193,7 +198,7 @@ function getDefaults(js) {
     const matches = js.match(defaultsRegExp);
     if (matches) {
         let data;
-        console.log(matches[1]);
+        console.log('defaults()', matches[1]);
         eval(`data = ${matches[1]}`);
         return data; 
     }
@@ -218,16 +223,6 @@ function getMethods(js) {
                 codes = dedent(codes);
             }
             methods[name] = codes.join('\n')
-                .replace(
-                    /this\.set\((['"])?([\d\w]+)["']?,\s*([^\)]+)\)/g,
-                    (nouse, quote, name, value) => {
-                        if (quote) {
-                            return `this.${name} = ${value}`;
-                        } else {
-                            return `this[${name}] = ${value}`;
-                        }
-                    }
-                )
                 .replace(/this\.refs/g, 'this.$refs')
                 .replace(
                     /this\.get\((['"])?([\d\w]+)["']?\)/g,
@@ -238,7 +233,19 @@ function getMethods(js) {
                             return `this[${name}]`;
                         }
                     }
-                ) + ','; 
+                ) 
+                .replace(
+                    /this\.set\((['"])?([\d\w]+)["']?,\s*(.*?)\)/g,
+                    (nouse, quote, name, value, semiconlon) => {
+                        let ret;
+                        if (quote) {
+                            ret = `this.${name} = ${value}`;
+                        } else {
+                            ret = `this[${name}] = ${value}`;
+                        }
+                        return ret;
+                    }
+                ) + ',';
         }
     });
     return methods;

@@ -24,6 +24,7 @@ module.exports = function(api) {
             "@babel/plugin-proposal-class-properties",
             "@babel/plugin-syntax-dynamic-import",
             "@babel/plugin-proposal-do-expressions",
+            "transform-vue-jsx",
             // "@babel/plugin-transform-proto-to-assign"
         ]
     }

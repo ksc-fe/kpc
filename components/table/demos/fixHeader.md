@@ -11,12 +11,15 @@ order: 8
 ```vdt
 import Table from 'kpc/components/table';
 
-const data1 = [{a: '表头固定，但内容没有超出最高高度'}];
-const data2 = [{a: '表头固定啦'}, {a: '下拉'}, {a: 'yeah!'}];
-
 <div class="wrapper">
-    <Table scheme={{ {a: '100px'} }} data={{ data1 }} fixHeader="100" />
-    <Table scheme={{ {a: '100px' } }} data={{ data2 }} fixHeader="100" />
+    <Table scheme={{ {a: '100px'} }} 
+        data={{ [{a: '表头固定，但内容没有超出最高高度'}] }}
+        fixHeader="100"
+    />
+    <Table scheme={{ {a: '100px' } }} 
+        data={{ [{a: '表头固定啦'}, {a: '下拉'}, {a: 'yeah!'}] }}
+        fixHeader="100" 
+    />
 </div>
 ```
 

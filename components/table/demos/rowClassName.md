@@ -9,11 +9,8 @@ order: 5
 ```vdt
 import Table from 'kpc/components/table';
 
-const scheme = {a: '偶数行背景变换'};
-const data = [{a: '1'}, {a: '2'}, {a: '3'}, {a: '4'}, {a: '5'}]
-
-
-<Table scheme={{ scheme }} data={{ data }} 
+<Table scheme={{ {a: '偶数行背景变换'} }} 
+    data={{ [{a: '1'}, {a: '2'}, {a: '3'}, {a: '4'}, {a: '5'}] }} 
     rowClassName={{ (value, index) => index % 2 === 0 ? 'even' : 'odd' }}
 />
 ```

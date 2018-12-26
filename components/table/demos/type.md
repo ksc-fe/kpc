@@ -8,8 +8,5 @@ order: 11
 ```vdt
 import Table from 'kpc/components/table';
 
-const scheme = {a: '类型'};
-const data = [{a: 'border类型'}];
-
-<Table scheme={{ scheme }} data={{ data }} type="border" />
+<Table scheme={{ {a: '类型'} }} data={{ [{a: 'border类型'}] }} type="border" />
 ```
