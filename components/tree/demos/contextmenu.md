@@ -9,51 +9,51 @@ order: 4
 import Tree from 'kpc/components/tree';
 import {DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
 
-const data = [
-    {
-        label: 'First floor-1',
-        children: [
+<div>
+    <Tree 
+        data={{ [
             {
-                label: 'Second floor-1.1',
+                label: 'First floor-1',
                 children: [
                     {
-                        label: 'Third floor-1.1.1'
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        label: 'First floor-2',
-        key: '2',
-        children: [
-            {
-                label: 'Second floor-2.1',
-                children: [
-                    {
-                        label: 'Third floor-2.1.1',
-                        key: '2-1' 
-                    },
-                    {
-                        label: 'Third floor-2.1.2'
+                        label: 'Second floor-1.1',
+                        children: [
+                            {
+                                label: 'Third floor-1.1.1'
+                            }
+                        ]
                     }
                 ]
             },
             {
-                label: 'Second floor-2.2',
-                disabled: true,
+                label: 'First floor-2',
+                key: '2',
                 children: [
                     {
-                        label: 'Third floor-2.2.1'
+                        label: 'Second floor-2.1',
+                        children: [
+                            {
+                                label: 'Third floor-2.1.1',
+                                key: '2-1' 
+                            },
+                            {
+                                label: 'Third floor-2.1.2'
+                            }
+                        ]
+                    },
+                    {
+                        label: 'Second floor-2.2',
+                        disabled: true,
+                        children: [
+                            {
+                                label: 'Third floor-2.2.1'
+                            }
+                        ]
                     }
                 ]
             }
-        ]
-    }
-];
-
-<div>
-    <Tree data={{ data }} v-model:expandedKeys="expandedKeys"
+        ] }}
+        v-model:expandedKeys="expandedKeys"
         ev-rightclick:node={{ self._showMenu }}
     />
     <DropdownMenu v-model="show"
@@ -75,8 +75,8 @@ export default class extends Intact {
         return {
             expandedKeys: ['2', '2-1'],
             show: false,
-            event: undefined,
-            node: undefined,
+            event: null,
+            node: null,
         };
     }
 
@@ -98,5 +98,14 @@ export default class extends Intact {
     _removeNode() {
         this.get('node').remove();
     }
+}
+```
+
+```vue-methods
+_showMenu(node, e) {
+    e.preventDefault();
+    this.show = true;
+    this.event = e;
+    this.node = node;
 }
 ```

@@ -28,8 +28,8 @@ module.exports = function(isDev) {
         path.resolve(__dirname, `./site/dist`);
 
     const doc = new KDoc(
-        // './@(docs|components)/**/*.md',
-        './@(docs|components)/tabs/**/*.md',
+        './@(docs|components)/**/*.md',
+        // './@(docs|components)/upload/**/*.md',
         root
     );
 
@@ -233,7 +233,7 @@ module.exports = function(isDev) {
             await ctx.fsEach(async function(file) {
                 if (/demos/.test(file.path)) {
                     await file.md.codes.forEach(async item => {
-                        if (item.ignore) return;
+                        if (item.ignored) return;
                         file.extname = '.' + item.language;
                         let content = item.content;
                         if (item.language === 'js' && !item.file) {

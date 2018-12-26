@@ -53,13 +53,14 @@ function parse(vdt, js, vueScript, vueTemplate, vueMethods, vueData) {
 
     let methodsObj = {};
     if (js) {
-        const {defaults, methods} = parseJS(js);
+        const {defaults, methods} = parseJS(js, vueData);
         if (defaults) {
             properties = {...properties, ...defaults};
         }
         methodsObj = methods;
         js.replace(importRegExp, (match, name) => {
             if (components.indexOf(name) > -1) return;
+            if (name === 'Intact' || name === 'template') return;
             head += match + '\n'
         });
     }
@@ -109,9 +110,9 @@ function parse(vdt, js, vueScript, vueTemplate, vueMethods, vueData) {
     };
 }
 
-function parseJS(js) {
+function parseJS(js, vueData) {
     return {
-        defaults: getDefaults(js),
+        defaults: vueData ? {} : getDefaults(js),
         methods: getMethods(js),
     }; 
 }
@@ -120,7 +121,6 @@ const delimitersRegExp = /\b([^\s]*?)=\{\{\s+([\s\S]*?)\s+}}/g;
 const getRegExp = /self\.get\(['"](.*?)['"]\)/g;
 function parseProperty(template, properties, methods) {
     return template.replace(delimitersRegExp, (match, name, value) => {
-        console.log(value);
         value = value.replace(getRegExp, (nouse, name) => {
             properties[name] = null;
             return name;
@@ -198,7 +198,7 @@ function getDefaults(js) {
     const matches = js.match(defaultsRegExp);
     if (matches) {
         let data;
-        console.log('defaults()', matches[1]);
+        // console.log('defaults()', matches[1]);
         eval(`data = ${matches[1]}`);
         return data; 
     }

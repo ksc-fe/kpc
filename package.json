@@ -6,7 +6,8 @@
   "main": "dist/kpc.js",
   "module": "index.js",
   "scripts": {
-    "test": "karma start test/karma.conf.js; karma start test/karma.react.conf.js",
+    "test": "karma start test/karma.conf.js",
+    "test:react": "karma start test/karma.react.conf.js",
     "snapshot": "cross-env UPDATE=1 npm run test",
     "cover": "cross-env UPDATE=2 npm run test",
     "start": "node server.js",

@@ -5,14 +5,14 @@ const req = require.context('~/components/', true, /demos\/.*index\.js$/);
 const vueReq = require.context('~/components/', true, /demos\/.*index\.vue$/);
 
 describe('Demos', () => {
+    let demo;
+
+    afterEach(() => {
+        demo.destroy();
+        document.body.removeChild(demo.element);
+    });
+
     describe('Intact', () => {
-        let demo;
-
-        afterEach(() => {
-            demo.destroy();
-            document.body.removeChild(demo.element);
-        });
-
         testDemos(req, (Demo) => {
             demo = mount(Demo);
             expect(demo.element.outerHTML).to.matchSnapshot();
@@ -20,8 +20,6 @@ describe('Demos', () => {
     });
 
     describe('Vue', () => {
-        let demo;
-
         function wrap(Demo) {
             return class extends Intact {
                 @Intact.template()
@@ -43,6 +41,7 @@ describe('Demos', () => {
 
         testDemos(vueReq, (Demo) => {
             demo = mount(wrap(Demo));
+            expect(demo.element.outerHTML).to.matchSnapshot();
         });
     });
 });

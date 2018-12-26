@@ -8,18 +8,34 @@ order: 4
 
 ```vdt
 import Tooltip from 'kpc/components/tooltip';
-import Message from 'kpc/components/message';
 import Button from 'kpc/components/button';
 
 <div>
     <Tooltip content="确定删除？"
         confirm
         trigger="click"
-        ev-ok={{ () => Message.success('Clicked ok!') }}
-        ev-cancel={{ () => Message.info('Clicked cancel!') }}
+        ev-ok={{ self.ok  }}
+        ev-cancel={{ self.cancel }}
         ref="__test"
     >
         <Button>删除</Button>
     </Tooltip>
 </div>
+```
+
+```js
+import Message from 'kpc/components/message';
+
+export default class extends Intact {
+    @Intact.template()
+    static template = template;
+
+    ok() {
+        Message.success('Clicked ok!');
+    }
+
+    cancel() {
+        Message.info('Clicked cancel!');
+    }
+}
 ```
