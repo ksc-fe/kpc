@@ -13,7 +13,7 @@ module.exports = function(api) {
                     ]
                 },
                 "useBuiltIns": "usage",
-                "modules": process.env.BUILD ? false : "cjs",
+                // "modules": process.env.BUILD ? false : "cjs",
                 // "debug": true
             }], 
             "@babel/preset-react"
