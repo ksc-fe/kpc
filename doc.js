@@ -197,6 +197,7 @@ module.exports = function(isDev) {
                                 language: 'jsx',
                                 content: [
                                     `import React from 'react';`,
+                                    `// 敬请期待...`,
                                 ].join('\n')
                             });
                         }

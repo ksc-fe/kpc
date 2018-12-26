@@ -41,5 +41,6 @@ module.exports = merge.smartStrategy({
         }
     },
 });
+delete module.exports.entry;
 
 // console.log(require('util').inspect(module.exports, {showHidden: true, depth: null}));
