@@ -26,10 +26,11 @@ function parse(vdt, js, vueScript, vueTemplate, vueMethods, vueData) {
     let methods = {};
     let head = '';
     let template = vdt.replace(importRegExp, (match, name) => {
-        components.push(name);
-        head += match + '\n';
+        name = name.split(', ').map(item => item === 'Switch' ? 'KSwitch' : item);
+        components.push(...name);
+        head += match.replace('Switch', 'Switch as KSwitch') + '\n';
         return '';
-    });
+    }).replace(/<Switch/g, '<KSwitch');
     if (vueTemplate) {
         template = vueTemplate;
     } else {
@@ -53,6 +54,7 @@ function parse(vdt, js, vueScript, vueTemplate, vueMethods, vueData) {
         }
         methodsObj = methods;
         js.replace(importRegExp, (match, name) => {
+            if (components.indexOf(name) > -1) return;
             head += match + '\n'
         });
     }
@@ -98,7 +100,6 @@ function parse(vdt, js, vueScript, vueTemplate, vueMethods, vueData) {
     return {
         head, 
         template: template.trim().split('\n').map(item => `    ${item}`).join('\n'),
-        // js: scripts.map(item => `    ${item}`).join('\n'),
         js: scripts.join('\n'),
     };
 }
@@ -111,17 +112,17 @@ function parseJS(js) {
 }
 
 const delimitersRegExp = /\b([^\s]*?)=\{\{\s+([\s\S]*?)\s+}}/g;
-const getRegExp = /self\.get\(['"](.+)['"]\)/;
+const getRegExp = /self\.get\(['"](.*?)['"]\)/g;
 function parseProperty(template, properties, methods) {
     return template.replace(delimitersRegExp, (match, name, value) => {
-        const matches = value.match(getRegExp);
-        if (matches) {
-            value = matches[1];
-            properties[value] = null;
-        }
+        console.log(value);
+        value = value.replace(getRegExp, (nouse, name) => {
+            properties[name] = null;
+            return name;
+        });
         if (name.substring(0, 3) === 'ev-') {
             name = `@${name.substring(3)}`;
-            const matches = value.match(/self\.(\w+)(\.bind\(self, (.+)\))?/);
+            const matches = value.match(/self\.(\w+)(\.bind\(self, (.*?)\))?/);
             if (matches) {
                 if (matches[2]) {
                     if (matches[1] === 'set') {
@@ -137,13 +138,17 @@ function parseProperty(template, properties, methods) {
         } else if (name === 'v-if') {
             // do nothing
         } else if (name === 'v-model') {
-            value = `$data[${value}]`;
+            // v-model={{ `show${value}` }}
+            if (!/[\.\[]/.test(value)) value = `$data[${value}]`;
+            // v-model={{ `show[${key}]` }}
+            else value = value.replace(/[\`\$\{\}]/g, '');
         } else {
             name = `:${name}`;
             if (value.substring(0, 5) === 'self.') {
                 value = value.substring(5);
             }
         }
+        value = value.replace(/self\./, '');
         return `${name}="${value}"`;
     });
 }
@@ -164,7 +169,8 @@ function parseInterpolation(template, properties, methods) {
 }
 
 function parseVModel(template, properties) {
-    return template.replace(/v\-model(:(.+))?=['"]([^"']+)["']/g, (match, nouse, name, value) => {
+    return template.replace(/v\-model(:(.*?))?=['"]([^"']+)["']/g, (match, nouse, name, value) => {
+        if (/\$data/.test(value)) return match;
         properties[value] = null;
         if (!nouse) {
             return match;
@@ -206,21 +212,33 @@ function getMethods(js) {
             name = matches[2];
             spaces = matches[1];
         } else if (code === `${spaces}}`) {
-            if (name === 'defaults') return;
+            if (name === 'defaults' || name === '_init') return;
             let codes = lines.slice(start, index + 1);
             if (spaces) {
                 codes = dedent(codes);
             }
-            methods[name] = codes.join('\n').replace(
-                /this\.set\((['"])?([\d\w]+)["']?,\s*([^\)]+)\)/g,
-                (nouse, quote, name, value) => {
-                    if (quote) {
-                        return `this.${name} = ${value}`;
-                    } else {
-                        return `this[${name}] = ${value}`;
+            methods[name] = codes.join('\n')
+                .replace(
+                    /this\.set\((['"])?([\d\w]+)["']?,\s*([^\)]+)\)/g,
+                    (nouse, quote, name, value) => {
+                        if (quote) {
+                            return `this.${name} = ${value}`;
+                        } else {
+                            return `this[${name}] = ${value}`;
+                        }
                     }
-                }
-            ).replace(/this\.refs/g, 'this.$refs') + ','; 
+                )
+                .replace(/this\.refs/g, 'this.$refs')
+                .replace(
+                    /this\.get\((['"])?([\d\w]+)["']?\)/g,
+                    (nouse, quote, name) => {
+                        if (quote) {
+                            return `this.${name}`;
+                        } else {
+                            return `this[${name}]`;
+                        }
+                    }
+                ) + ','; 
         }
     });
     return methods;

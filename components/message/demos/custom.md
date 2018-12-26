@@ -12,7 +12,7 @@ import {Button} from 'kpc/components/button';
 import {Progress} from 'kpc/components/progress';
 
 <div>
-    <Button ev-click={{ () => self.set('show', true) }}>custom message</Button>
+    <Button ev-click={{ self.set.bind(self, 'show', true) }}>custom message</Button>
     <Message v-model="show" key="message" 
         duration={{ 0 }} 
         type={{ self.get('percent') >= 100 ? 'success' : 'info' }}
@@ -41,5 +41,11 @@ export default class extends Intact {
     add() {
         this.set('percent', this.get('percent') + 5);
     }
+}
+```
+
+```vue-methods
+add() {
+    this.percent += 5;
 }
 ```

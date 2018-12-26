@@ -13,7 +13,7 @@ import Editable from 'kpc/components/editable';
 <div>
     <Editable v-model="value" validate={{ value => /\d+/.test(value) }}
         ref="__test1"
-        ev-change={{ (c, a, b) => console.log(a, b) }}
+        ev-change={{ self._onChange }}
     >{{ self.get('value') }}</Editable>
     <br />
     <Editable v-model="value" validate={{ /\d+/ }}
@@ -40,6 +40,10 @@ export default class extends Intact {
 
     _showErrorTip(c, value) {
         Message.error('Please enter digits.');
+    }
+
+    _onChange(c, newValue, oldValue) {
+        console.log(newValue, oldValue);
     }
 } 
 ```

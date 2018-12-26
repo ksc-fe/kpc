@@ -7,7 +7,7 @@ order: 2
 
 ```vdt
 import {Menu, MenuItem} from 'kpc/components/menu';
-import Switch from 'kpc/components/switch';
+import {Switch} from 'kpc/components/switch';
 
 <div>
     <Switch on="收起" off="展开" v-model="isCollapse" width="60" style="margin-right: 16px;" />

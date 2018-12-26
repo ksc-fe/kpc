@@ -38,3 +38,10 @@ export default class extends Intact {
     }
 }
 ```
+
+```vue-methods
+_changeRange() {
+    this.max = Math.floor(Math.random() * 100);
+    this.min = Math.floor(Math.random() * this.max);
+}
+```

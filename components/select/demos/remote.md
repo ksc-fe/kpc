@@ -46,3 +46,9 @@ export default class extends Intact {
     }
 }
 ```
+
+```vue-script
+beforeCreate() {
+    this.lastFetchId = 0;
+},
+```

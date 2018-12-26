@@ -29,7 +29,7 @@ module.exports = function(isDev) {
 
     const doc = new KDoc(
         // './@(docs|components)/**/*.md',
-        './@(docs|components)/dropdown/**/*.md',
+        './@(docs|components)/slider/**/*.md',
         root
     );
 
