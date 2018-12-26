@@ -528,6 +528,9 @@ export default class Table extends Intact {
         if (this.get('_isSticky')) {
             this._setStickyHeaderStyle();
         }
+        if (this.get('_isStickyScrollbar')) {
+            this._setStickScrollbarStyle();
+        }
         this._setFixedColumnWidth();
     }
 
