@@ -15,4 +15,8 @@ export default class extends Intact {
     _showErrorTip(c, value) {
         Message.error('Please enter digits.');
     }
+
+    _onChange(c, newValue, oldValue) {
+        console.log(newValue, oldValue);
+    }
 } 

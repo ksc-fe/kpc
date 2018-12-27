@@ -1,0 +1,17 @@
+<template>
+    <Row> 
+        <Col span="6" order="4">1 col-6 order-4</Col>
+        <Col span="6" order="3">2 col-6 order-3</Col>
+        <Col span="6" order="2">3 col-6 order-2</Col>
+        <Col span="6" order="1">4 col-6 order-1</Col>
+    </Row>
+</template>
+<script>
+import {Row, Col} from 'kpc/components/grid';
+
+export default {
+    components: {
+        Row, Col
+    },
+}
+</script>

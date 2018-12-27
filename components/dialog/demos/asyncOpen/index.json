@@ -24,6 +24,14 @@
         {
             "language": "js",
             "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">import</span> Dialog <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./dialog'</span>;\n<span class=\"hljs-keyword\">import</span> Message <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/message'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n\n    showDialog(e) {\n        <span class=\"hljs-comment\">// button show loading</span>\n        e.component.showLoading();\n\n        <span class=\"hljs-keyword\">const</span> dialog = <span class=\"hljs-keyword\">new</span> Dialog();\n\n        dialog.show();\n        dialog.on(<span class=\"hljs-string\">'ok'</span>, (data) =&gt; {\n            Message.info(<span class=\"hljs-string\">`You clicked ok.`</span>);\n        });\n\n        <span class=\"hljs-comment\">// button hide loading</span>\n        dialog.on(<span class=\"hljs-string\">'open'</span>, () =&gt; e.component.hideLoading());\n\n        <span class=\"hljs-comment\">// for unit test</span>\n        <span class=\"hljs-keyword\">this</span>.dialog = dialog;\n    }\n}</code></pre>"
+        },
+        {
+            "language": "vue",
+            "content": "<pre><code class=\"hljs html\">Vue不支持继承的用法，请使用Dialog组件用法</code></pre>"
+        },
+        {
+            "language": "jsx",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>;\n<span class=\"hljs-comment\">// 敬请期待...</span></code></pre>"
         }
     ]
 }

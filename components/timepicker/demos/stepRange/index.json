@@ -14,6 +14,14 @@
         {
             "language": "js",
             "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
+        },
+        {
+            "language": "vue",
+            "content": "<pre><code class=\"hljs html\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">template</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Timepicker</span> <span class=\"hljs-attr\">v-model</span>=<span class=\"hljs-string\">\"time\"</span> <span class=\"hljs-attr\">step</span>=<span class=\"hljs-string\">\"00:30:00\"</span> <span class=\"hljs-attr\">range</span> <span class=\"hljs-attr\">clearable</span> /&gt;</span>\n        You selected: {{ stringify(time) }}\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">template</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">script</span>&gt;</span><span class=\"javascript\">\n<span class=\"hljs-keyword\">import</span> Timepicker <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/timepicker'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> {\n    <span class=\"hljs-attr\">components</span>: {\n        Timepicker\n    },\n    data() {\n        <span class=\"hljs-keyword\">return</span> {\n            <span class=\"hljs-string\">\"time\"</span>: <span class=\"hljs-literal\">null</span>\n        }\n    },\n    <span class=\"hljs-attr\">methods</span>: {\n        stringify(data) { <span class=\"hljs-keyword\">return</span> <span class=\"hljs-built_in\">JSON</span>.stringify(data); },\n    },\n}\n</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">script</span>&gt;</span></code></pre>"
+        },
+        {
+            "language": "jsx",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>;\n<span class=\"hljs-comment\">// 敬请期待...</span></code></pre>"
         }
     ]
 }

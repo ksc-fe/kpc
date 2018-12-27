@@ -1,0 +1,33 @@
+<template>
+    <div>
+        <Tabs type="card" v-model="tab">
+            <Tab value="rulein">入站规则</Tab>
+            <Tab value="ruleout">出站规则</Tab>
+            <Tab value="relatedVM">关联云主机</Tab>
+        </Tabs>
+        <Tabs type="border-card" v-model="tab">
+            <Tab value="rulein">入站规则</Tab>
+            <Tab value="ruleout">出站规则</Tab>
+            <Tab value="relatedVM">关联云主机</Tab>
+        </Tabs>
+        <Tabs type="no-border-card" v-model="tab">
+            <Tab value="rulein">入站规则</Tab>
+            <Tab value="ruleout">出站规则</Tab>
+            <Tab value="relatedVM">关联云主机</Tab>
+        </Tabs>
+    </div>
+</template>
+<script>
+import {Tabs, Tab} from 'kpc/components/tabs';
+
+export default {
+    components: {
+        Tabs, Tab
+    },
+    data() {
+        return {
+            "tab": "rulein"
+        }
+    },
+}
+</script>

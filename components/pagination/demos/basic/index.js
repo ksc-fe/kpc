@@ -6,4 +6,8 @@ import './index.styl';
 export default class extends Intact {
     @Intact.template()
     static template = template;
+
+    _onChange(v) {
+        console.log(v);
+    }
 }

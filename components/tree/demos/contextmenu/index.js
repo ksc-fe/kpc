@@ -10,8 +10,8 @@ export default class extends Intact {
         return {
             expandedKeys: ['2', '2-1'],
             show: false,
-            event: undefined,
-            node: undefined,
+            event: null,
+            node: null,
         };
     }
 

@@ -10,7 +10,7 @@ export default class extends Intact {
     defaults() {
         return { 
             show: false,
-            event: undefined,
+            event: null,
         };
     }
 

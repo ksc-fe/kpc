@@ -3,28 +3,34 @@ import Intact from 'intact';
 import template from './index.vdt';
 import './index.styl'; 
 
-const oData = [
-    {name: '主机1', status: 'active'},
-    {name: '主机2', status: 'stopped'},
-    {name: '主机3', status: 'active'},
-];
-
 export default class extends Intact {
     @Intact.template()
     static template = template;
 
     defaults() {
         return {
-            data: oData, 
+            data: [], 
             group: {status: ''},
-            multipleData: oData,
+            multipleData: [],
             multipleGroup: {status: []},
         }
     }
 
+    _init() {
+        this.oData = [
+            {name: '主机1', status: 'active'},
+            {name: '主机2', status: 'stopped'},
+            {name: '主机3', status: 'active'},
+        ];
+        this.set({
+            data: this.oData,
+            multipleData: this.oData,
+        });
+    }
+
     _onChangeGroup(c, group) {
         console.log(group);
-        const data = oData.filter(item => {
+        const data = this.oData.filter(item => {
             let matched = true;
             for (let key in group) {
                 const value = group[key];
@@ -36,12 +42,12 @@ export default class extends Intact {
             return matched;
         });
 
-        this.set({data, group});
+        this.set('data', data);
     }
 
     _onChangeMultipleGroup(c, group) {
         console.log(group);
-        const data = oData.filter(item => {
+        const data = this.oData.filter(item => {
             let matched = true;
             for (let key in group) {
                 const value = group[key];
@@ -53,6 +59,6 @@ export default class extends Intact {
             return matched;
         });
 
-        this.set({multipleData: data, group});
+        this.set('multipleData', data);
     }
 }

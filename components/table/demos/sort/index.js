@@ -10,6 +10,16 @@ export default class extends Intact {
     defaults() {
         return {
             data: [{name: 'aa', age: 1}, {name: 'cc', age: 5}, {name: 'bb', age: 9}],
+            scheme: {
+                name: {
+                    title: '姓名',
+                    sortable: true
+                },
+                age: {
+                    title: '年龄',
+                    sortable: true
+                }
+            },
             sort: {}
         }
     }

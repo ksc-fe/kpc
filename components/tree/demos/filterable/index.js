@@ -13,7 +13,7 @@ export default class extends Intact {
     }
 
     _filter(data) {
-        const {keywords} = this.get();
+        const keywords = this.get('keywords');
         if (!keywords) return true;
         return data.label.includes(keywords);
     }

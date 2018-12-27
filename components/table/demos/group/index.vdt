@@ -1,11 +1,11 @@
-import Table, {TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc/components/table';
 
 const scheme = {
     name: '名称',
     status: {
         title: '状态',
         template(data) {
-            return data.status === 'active' ? '运行中' : '已关闭';
+            return <span>{{ data.status === 'active' ? '运行中' : '已关闭' }}</span>
         },
         group: [
             {label: '全部', value: ''},
@@ -15,27 +15,29 @@ const scheme = {
     }
 };
 
-
 <div class='no-data-template'>
     <Table scheme={{ scheme }} 
         data={{ self.get('data') }} 
-        group={{ self.get('group') }}
+        v-model:group="group"
         ev-$change:group={{ self._onChangeGroup }}
         ref="__test1"
     />
     <Table data={{ self.get('multipleData') }} 
-        group={{ self.get('multipleGroup') }}
+        v-model:group="multipleGroup"
         ev-$change:group={{ self._onChangeMultipleGroup }}
         ref="__test2"
     >
         <TableColumn title='名称' key='name' />
         <TableColumn title='状态' key='status' 
-            template={{ (data) => data.status === 'active' ? '运行中' : '已关闭' }}
             group={{ [ 
                 {label: '运行中', value: 'active'},
                 {label: '已关闭', value: 'stopped'},
             ] }}
             multiple
-        />
+        >
+            <b:template params="data">
+                <span>{{ data.status === 'active' ? '运行中' : '已关闭' }}</span>
+            </b:template>
+        </TableColumn>
     </Table>
 </div>

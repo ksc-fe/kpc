@@ -9,7 +9,11 @@ export default class extends Intact {
 
     defaults() {
         return {
-            expandedKeys: []
+            expandedKeys: [],
+            data: [
+                {name: 'Javey', email: 'jiawei23716@sina.com'}, 
+                {name: 'Jiawei', email: 'zoujiawei@gmail.com'}
+            ],
         };
     }
 

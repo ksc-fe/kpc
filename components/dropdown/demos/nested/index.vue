@@ -1,0 +1,63 @@
+<template>
+    <div>
+        <Dropdown trigger="click">
+            <Button type="primary">
+                click <i class="k-icon ion-arrow-down-b"></i>
+            </Button>
+            <DropdownMenu>
+                <DropdownItem>item 1</DropdownItem>
+                <DropdownItem>item 2</DropdownItem>
+                <DropdownItem>item 3</DropdownItem>
+                <Dropdown :position="{my: 'left top', at: 'right top'}">
+                    <DropdownItem>
+                        <span>hover</span>
+                        <i class="ion-ios-arrow-right"></i>
+                    </DropdownItem>
+                    <DropdownMenu>
+                        <Dropdown :position="{my: 'left top', at: 'right top'}">
+                            <DropdownItem>
+                                <span>hover</span>
+                                <i class="ion-ios-arrow-right"></i>
+                            </DropdownItem>
+                            <DropdownMenu>
+                                <DropdownItem>item 1</DropdownItem>
+                                <DropdownItem>item 2</DropdownItem>
+                            </DropdownMenu>
+                        </Dropdown>
+                        <DropdownItem>item 1</DropdownItem>
+                    </DropdownMenu>
+                </Dropdown>
+                <Dropdown trigger="click" :position="{my: 'left top', at: 'right top'}">
+                    <DropdownItem>
+                        <span>click</span>
+                        <i class="ion-ios-arrow-right"></i>
+                    </DropdownItem>
+                    <DropdownMenu>
+                        <Dropdown trigger="click" :position="{my: 'left top', at: 'right top'}">
+                            <DropdownItem>
+                                <span>click</span>
+                                <i class="ion-ios-arrow-right"></i>
+                            </DropdownItem>
+                            <DropdownMenu>
+                                <DropdownItem>item 1</DropdownItem>
+                                <DropdownItem>item 2</DropdownItem>
+                            </DropdownMenu>
+                        </Dropdown>
+                        <DropdownItem>item 1</DropdownItem>
+                    </DropdownMenu>
+                </Dropdown>
+                <DropdownItem>item 3</DropdownItem>
+            </DropdownMenu>
+        </Dropdown>
+    </div>
+</template>
+<script>
+import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
+import Button from 'kpc/components/button';
+
+export default {
+    components: {
+        Dropdown, DropdownMenu, DropdownItem, Button
+    },
+}
+</script>
