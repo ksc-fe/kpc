@@ -35,7 +35,6 @@ export default class extends Intact {
     }
 
     _loadData(node) {
-        console.log(node);
         return new Promise(resolve => {
             setTimeout(() => {
                 resolve([

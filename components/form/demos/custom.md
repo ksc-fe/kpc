@@ -71,7 +71,6 @@ import {Form} from 'kpc/components/form';
 
 // 添加全局规则
 Form.addMethod('letter', (value, item, param) => {
-    console.log('arguments', value, item, param);
     return /^[a-z|A-Z]+$/.test(value);
 }, '只能输入字母');
 

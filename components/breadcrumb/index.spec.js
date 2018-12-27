@@ -1,12 +1,11 @@
 import Demo from '~/components/breadcrumb/demos/basic';
-import {mount, dispatchEvent} from '../../test/utils';
+import {mount, dispatchEvent, unmount} from '../../test/utils';
 
 describe('Breadcrumb', () => {
     let instance;
 
     afterEach(() => {
-        instance.destroy();
-        document.body.removeChild(instance.element);
+        unmount(instance);
     });
 
     it('should go to the url set by to', () => {

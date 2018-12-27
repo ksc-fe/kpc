@@ -1,15 +1,12 @@
 import BasicDemo from '~/components/pagination/demos/basic';
 import GotoDemo from '~/components/pagination/demos/goto';
-import {mount, dispatchEvent} from 'test/utils';
+import {mount, unmount, dispatchEvent} from 'test/utils';
 
 describe('Pagination', () => {
     let instance;
 
     afterEach(() => {
-        if (!instance) return;
-
-        instance.destroy();
-        document.body.removeChild(instance.element);
+        unmount(instance);
         instance = null;
     });
 

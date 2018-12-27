@@ -4,14 +4,13 @@ import MultipleDemo from '~/components/datepicker/demos/multiple';
 import DatetimeDemo from '~/components/datepicker/demos/datetime';
 import YearMonthDemo from '~/components/datepicker/demos/yearMonth';
 import RangeDemo from '~/components/datepicker/demos/range';
-import {mount, dispatchEvent, getElement} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement} from 'test/utils';
 
 describe('Datepicker', () => {
     let instance;
 
     afterEach(() => {
-        instance.destroy();
-        document.body.removeChild(instance.element);
+        unmount(instance);
         const content = getElement('.k-datepicker-content')
         if (content) {
             content.parentNode.removeChild(content);

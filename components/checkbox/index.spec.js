@@ -1,14 +1,13 @@
 import GroupDemo from '~/components/checkbox/demos/group';
 import ValueDemo from '~/components/checkbox/demos/value';
 import BasicDemo from '~/components/checkbox/demos/basic';
-import {mount, dispatchEvent, getElement} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement} from 'test/utils';
 
 describe('Checkbox', () => {
     let instance;
 
     afterEach(() => {
-        instance.destroy();
-        document.body.removeChild(instance.element);
+        unmount(instance);
     });
 
     it('should get value correctly of group checkboxes', () => {

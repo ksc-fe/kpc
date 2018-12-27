@@ -21,8 +21,7 @@ describe('Dropdown', () => {
 
             dispatchEvent(i.element.firstChild, 'click');
             expect(getElement('.k-dropdown-menu').innerHTML).to.matchSnapshot();
-            i.destroy();
-            document.body.removeChild(i.element);
+            unmount(i);
         });
     });
 

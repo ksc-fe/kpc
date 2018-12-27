@@ -1,12 +1,11 @@
 import BasicDemo from '~/components/input/demos/basic';
-import {mount, dispatchEvent} from 'test/utils';
+import {mount, unmount, dispatchEvent} from 'test/utils';
 
 describe('Input', () => {
     let instance;
 
     afterEach(() => {
-        instance.destroy();
-        document.body.removeChild(instance.element);
+        unmount(instance);
     });
 
     it('basic test', () => {

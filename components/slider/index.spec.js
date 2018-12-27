@@ -1,14 +1,13 @@
 import BasicDemo from '~/components/slider/demos/basic';
 import RangeDemo from '~/components/slider/demos/range';
 import DisabledDemo from '~/components/slider/demos/disabled';
-import {mount, dispatchEvent} from 'test/utils';
+import {mount, unmount, dispatchEvent} from 'test/utils';
 
 describe('Slider', () => {
     let instance;
 
     afterEach(() => {
-        instance.destroy();
-        document.body.removeChild(instance.element);
+        unmount(instance);
     });
 
     it('basic test', () => {
@@ -47,7 +46,7 @@ describe('Slider', () => {
     it('range test', () => {
         instance = mount(RangeDemo);
 
-        const windowWidth = document.documentElement.clientWidth;
+        const windowWidth = 800; //document.documentElement.clientWidth;
         const [first, second] = instance.element.querySelectorAll('.k-handle');
 
         // drag

@@ -8,13 +8,19 @@ export function render(Component, props) {
 }
 
 export function mount(Component) {
-    return Intact.mount(Component, document.body);
+    const container = document.createElement('div');
+    container.style = "width: 800px; height: 600px; overflow: auto";
+    document.body.appendChild(container);
+    const instance = Intact.mount(Component, container);
+    // scroll to the view
+    window.scrollTo(0, document.scrollingElement.scrollHeight - 600);
+    return instance;
 }
 
 export function unmount(instance) {
     if (instance && !instance.destroyed) {
         instance.destroy();
-        document.body.removeChild(instance.element);
+        document.body.removeChild(instance.element.parentElement);
     }
 }
 
@@ -58,8 +64,8 @@ export function testDemos(req, test) {
         const value = groups[key];
         describe(key, () => {
             value.forEach(value => {
-                it(value.title, () => {
-                    test(value.Demo);
+                it(value.title, (done) => {
+                    test(value.Demo, done);
                 });
             });
         });

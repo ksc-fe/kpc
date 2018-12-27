@@ -1,6 +1,6 @@
 import Intact from 'intact';
 import Dialog from 'kpc/components/dialog';
-import {getElement, render, mount, dispatchEvent} from 'test/utils';
+import {getElement, render, mount, unmount, dispatchEvent} from 'test/utils';
 import BasicDemo from '~/components/dialog/demos/basic'; 
 import AsyncCloseDemo from '~/components/dialog/demos/asyncClose';
 import AsyncOpenDemo from '~/components/dialog/demos/asyncOpen';
@@ -14,8 +14,7 @@ describe('Dialog', () => {
         component = null;
 
         if (instance) {
-            instance.destroy();
-            document.body.removeChild(instance.element);
+            unmount(instance);
             instance = null;
         }
     });
@@ -128,7 +127,7 @@ describe('Dialog', () => {
         expect(instance.get('show')).be.false;
     });
 
-    it('should remove when parent destoried for using as component', function(done) {
+    it('should remove when parent destoryed for using as component', function(done) {
         this.enableTimeouts(false);
 
         let wrapper;
@@ -139,7 +138,7 @@ describe('Dialog', () => {
             _leaveEnd.call(this);
             expect(wrapper.parentNode).be.null;
 
-            document.body.removeChild(i.element);
+            document.body.removeChild(i.element.parentElement);
             Dialog.prototype._leaveEnd = _leaveEnd;
             done();
         };
@@ -179,8 +178,7 @@ describe('Dialog', () => {
 
             dispatchEvent(i.element.firstChild, 'click');
             expect(getElement('.k-dialog').innerHTML).to.matchSnapshot();
-            i.destroy();
-            document.body.removeChild(i.element);
+            unmount(i);
         });
     });
 

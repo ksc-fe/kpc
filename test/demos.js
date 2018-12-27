@@ -1,4 +1,4 @@
-import {render, mount, testDemos} from './utils';
+import {render, mount, testDemos, unmount} from './utils';
 import Vue from 'vue';
 
 const req = require.context('~/components/', true, /demos\/.*index\.js$/);
@@ -8,14 +8,17 @@ describe('Demos', () => {
     let demo;
 
     afterEach(() => {
-        demo.destroy();
-        document.body.removeChild(demo.element);
+        unmount(demo);
     });
 
     describe('Intact', () => {
-        testDemos(req, (Demo) => {
+        testDemos(req, (Demo, done) => {
             demo = mount(Demo);
-            expect(demo.element.outerHTML).to.matchSnapshot();
+            setTimeout(() => {
+                expect(demo.element.outerHTML).to.matchSnapshot();
+
+                done();
+            });
         });
     });
 
@@ -39,9 +42,13 @@ describe('Demos', () => {
             }
         }
 
-        testDemos(vueReq, (Demo) => {
+        testDemos(vueReq, (Demo, done) => {
             demo = mount(wrap(Demo));
-            expect(demo.element.outerHTML).to.matchSnapshot();
+            setTimeout(() => {
+                expect(demo.element.outerHTML).to.matchSnapshot();
+
+                done();
+            });
         });
     });
 });

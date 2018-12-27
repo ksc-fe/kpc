@@ -3,15 +3,13 @@ import PositionDemo from '~/components/tooltip/demos/position';
 import TriggerDemo from '~/components/tooltip/demos/trigger';
 import ContentDemo from '~/components/tooltip/demos/content';
 import ConfirmDemo from '~/components/tooltip/demos/confirm';
-import {mount, dispatchEvent, getElement} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement} from 'test/utils';
 
 describe('Tooltip', () => {
     let instance;
 
     afterEach((done) => {
-        instance.destroy();
-        document.body.removeChild(instance.element);
-
+        unmount(instance);
         setTimeout(done, 500);
     });
 

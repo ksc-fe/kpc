@@ -1,16 +1,13 @@
 import BasicDemo from '~/components/message/demos/basic';
 import CustomDemo from '~/components/message/demos/custom';
-import {mount, dispatchEvent, getElement} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement} from 'test/utils';
 import Message from 'kpc/components/message';
 
 describe('Message', () => {
     let instance;
 
     afterEach(() => {
-        if (!instance) return;
-
-        instance.destroy();
-        document.body.removeChild(instance.element);
+        unmount(instance);
         instance = null;
     });
 
@@ -71,7 +68,6 @@ describe('Message', () => {
         expect(instance.get('percent')).be.eql(15);
         expect(message.outerHTML).to.matchSnapshot();
 
-        instance.destroy();
-        document.body.removeChild(instance.element);
+        unmount(instance);
     });
 });
