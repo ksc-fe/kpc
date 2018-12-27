@@ -91,6 +91,7 @@ const TheadCreator = ({onlyLeft, onlyRight, refContainer, style}) => {
 
                 cols.push(<col width={{ item.width }}
                     style={{ {width: self._getHeaderWidth(key)} }} 
+                    class={{ {[item.className]: item.className} }}
                 />);
 
                 const invisible = isInvisible(onlyLeft, onlyRight, item);
@@ -137,8 +138,9 @@ const TheadCreator = ({onlyLeft, onlyRight, refContainer, style}) => {
                         props['ev-dragStart'] = dragStart;
 
                         const invisible = isInvisible(onlyLeft, onlyRight, props);
+                        const className = props.className;
                         props.className = _className({
-                            [props.className]: props.className,
+                            [className]: className,
                             'k-invisible': invisible, 
                         });
 
@@ -163,6 +165,7 @@ const TheadCreator = ({onlyLeft, onlyRight, refContainer, style}) => {
 
                         cols.push(<col width={{ props.width }} 
                             style={{ {width: self._getHeaderWidth(props.key)} }} 
+                            class={{ {[className]: className} }}
                         />);
 
                         // clone vNode
