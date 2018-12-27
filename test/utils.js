@@ -9,11 +9,11 @@ export function render(Component, props) {
 
 export function mount(Component) {
     const container = document.createElement('div');
-    container.style = "width: 800px; height: 600px; overflow: auto";
+    container.style = "width: 800px; height: 1080px; overflow: auto";
     document.body.appendChild(container);
     const instance = Intact.mount(Component, container);
     // scroll to the view
-    window.scrollTo(0, document.scrollingElement.scrollHeight - 600);
+    window.scrollTo(0, document.scrollingElement.scrollHeight - 1080);
     return instance;
 }
 

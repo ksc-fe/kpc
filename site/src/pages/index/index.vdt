@@ -31,12 +31,12 @@ import image2 from '../../imgs/page2.png';
                     </div>
                 </Col>
                 <Col class="first-page-right" lg="11">
-                    <img src={{ image1 }} />
+                    <figure><img src={{ image1 }} /></figure>
                 </Col>
             </Row>
             <Row align="stretch" justify="center">
                 <Col class="second-page-left" lg="11">
-                    <img src={{ image2 }} />
+                    <figure><img src={{ image2 }} /></figure>
                 </Col>
                 <Col class="second-page-right" lg="11">
                     <div class="info">
