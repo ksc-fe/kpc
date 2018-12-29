@@ -147,7 +147,7 @@ class App extends React.Component {
 
 ## 即时反馈
 
-欢迎加入QQ群第一时间反馈问题 QQ群：529739732 
+欢迎加入QQ群反馈问题和获得即使帮助，QQ群：529739732 
 [![KPC官方交流群](https://pub.idqqimg.com/wpa/images/group.png)](https://shang.qq.com/wpa/qunwpa?idkey=a9ef1aa7e7befbd3eaa61a3f2c3f7ab17436dbd317f6d02c9a643e0049e52cad)
 
 ![QQ](/site/src/imgs/qqqun.png)
