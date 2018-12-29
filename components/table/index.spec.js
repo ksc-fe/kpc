@@ -176,14 +176,15 @@ describe('Table', () => {
         expect(instance.element.innerHTML).to.matchSnapshot();
     });
 
-    it('export', async () => {
+    it('export', async function() {
+        this.enableTimeouts(false);
         instance = mount(ExportDemo);
 
         const content = await instance.refs.table.exportTable(); 
-        expect(content).to.matchSnapshot();
+        expect(content.replace(/\r\n|\r/g, '\n')).to.matchSnapshot();
         const content1 = await instance.refs.table.exportTable([
             {a: '1', b: 2, c: 3}
         ]);
-        expect(content1).to.matchSnapshot();
-    })
+        expect(content1.replace(/\r\n|\r/g, '\n')).to.matchSnapshot();
+    });
 });
