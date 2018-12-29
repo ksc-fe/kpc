@@ -1,5 +1,5 @@
 import Intact from 'intact';
-import {isTextVNode, findParentComponent} from '../utils';
+import {isTextChildren, findParentComponent} from '../utils';
 import DropdownMenu from './menu';
 import '../../styles/kpc.styl';
 import './index.styl';
@@ -35,7 +35,7 @@ export default class Dropdown extends Intact {
         if (Array.isArray(children)) {
             children = children[0];
         } 
-        if (isTextVNode(children)) {
+        if (isTextChildren(children)) {
             children = h('span', rest, children, className);
         }
 

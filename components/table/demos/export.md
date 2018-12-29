@@ -1,6 +1,6 @@
 ---
 title: 导出表格
-order: 0
+order: 14 
 ---
 
 调用`Table`的`exportTable([data, [filename]])`方法，可以导出当前表格内容成`csv`格式。导出的文本
@@ -33,7 +33,7 @@ import {Button} from 'kpc/components/button';
             </b:template>
         </TableColumn>
         <TableColumn title="操作" key="op" ignore>
-            <b:template>
+            <b:template params="data">
                 <a>删除</a> 
             </b:template>
         </TableColumn>

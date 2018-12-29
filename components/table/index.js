@@ -293,9 +293,9 @@ export default class Table extends Intact {
         instance.header.querySelectorAll('tr').forEach(push);
         // ignore nested table
         each(instance.table.children[1].children, push);
-        console.log(collection.join('\r\n'));
+        const content = collection.join('\r\n');
         download(
-            '\uFEFF' + collection.join('\r\n'),
+            '\uFEFF' + content,
             filename + '.csv', 
             'text/comma-separated-values;charset=utf-8'
         );
@@ -303,6 +303,8 @@ export default class Table extends Intact {
         if (data) {
             instance.destroy();
         }
+
+        return content;
     }
 
     _escapeCSV(str) {

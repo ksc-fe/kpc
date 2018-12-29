@@ -40,8 +40,12 @@ export function isStringOrNumber(o) {
     return type === 'string' || type === 'number';
 }
 
+export function isTextChildren(o) {
+    return isStringOrNumber(o) || isTextVNode(o);
+}
+
 export function isTextVNode(o) {
-    return isStringOrNumber(o) || (o && o.type === Types.Text);
+    return o && o.type === Types.Text;
 }
 
 export function isStringOrNumberNotEmpty(o) {
@@ -53,17 +57,15 @@ export function getTextByChildren(children) {
     let ret = '';
     if (Array.isArray(children)) {
         children.forEach(vNode => {
-            if (isTextVNode(vNode)) {
-                ret += vNode.children;
-            }
+            ret += getTextByChildren(vNode);
         });
     } else if (isStringOrNumber(children)) {
         ret += children;
-    } else if (children && children.type === Types.Text) {
+    } else if (isTextVNode(children)) {
         ret += children.children;
     }
 
-    return ret;
+    return ret.trim();
 }
 
 

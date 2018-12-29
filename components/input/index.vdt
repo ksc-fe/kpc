@@ -1,4 +1,4 @@
-import {addStyle, isTextVNode} from '../utils';
+import {addStyle, isTextChildren} from '../utils';
 
 const {
     type, name, value, placeholder, tabindex,
@@ -47,7 +47,7 @@ const wrapperEvents = [
             const children = blocks.prepend.call(this, () => {});
             <div class={{ {
                 "k-prepend": true, 
-                "k-padding": isTextVNode(children)
+                "k-padding": isTextChildren(children)
             } }}>{{ children }}</div>
         }
     } }}
@@ -104,7 +104,7 @@ const wrapperEvents = [
             const children = blocks.append.call(this, () => {});
             <div class={{ {
                 "k-append": true, 
-                "k-padding": isTextVNode(children)
+                "k-padding": isTextChildren(children)
             } }}>{{ children }}</div>
         }
     } }}

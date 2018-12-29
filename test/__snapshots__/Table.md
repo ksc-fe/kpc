@@ -146,3 +146,16 @@
     切换loading状态: <div class=\"k-switch k-default\" tabindex=\"0\"><input type=\"checkbox\" tabindex=\"-1\"><div class=\"k-bar\"><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div>"
 ```
 
+#### `export`
+
+```
+"\"定义该列单元格内容\",\"普通文本\",\"自定义导出文本\"
+\"第一行\",\"哈哈1\",\"自定义导出文本:自定义1\"
+\"第二行\",\"哈哈2\",\"自定义导出文本:自定义2\""
+```
+
+```
+"\"定义该列单元格内容\",\"普通文本\",\"自定义导出文本\"
+\"1\",\"2\",\"自定义导出文本:3\""
+```
+

@@ -5,6 +5,7 @@ import SortDemo from '~/components/table/demos/sort';
 import GroupDemo from '~/components/table/demos/group';
 import FixColumnDemo from '~/components/table/demos/fixColumn';
 import LoadingDemo from '~/components/table/demos/loading';
+import ExportDemo from '~/components/table/demos/export';
 import {mount, unmount, dispatchEvent, getElement} from 'test/utils';
 
 describe('Table', () => {
@@ -174,4 +175,15 @@ describe('Table', () => {
         instance.set('loading', false);
         expect(instance.element.innerHTML).to.matchSnapshot();
     });
+
+    it('export', async () => {
+        instance = mount(ExportDemo);
+
+        const content = await instance.refs.table.exportTable(); 
+        expect(content).to.matchSnapshot();
+        const content1 = await instance.refs.table.exportTable([
+            {a: '1', b: 2, c: 3}
+        ]);
+        expect(content1).to.matchSnapshot();
+    })
 });

@@ -1029,6 +1029,14 @@
             </tr></thead></table></div></div><div class=\"k-tbody\"><table><colgroup><col class=\"k-th-check\"><col></colgroup><tbody><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td><td title=\"1\">1</td></tr><tr class=\"k-disabled\"><td class=\"k-th-check\"><label class=\"k-checkbox k-disabled\"><span class=\"k-wrapper\"><input type=\"checkbox\" disabled=\"\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td><td title=\"2\">2</td></tr><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"2\"></span></label></td><td title=\"3\">3</td></tr><tr class=\"k-disabled\"><td class=\"k-th-check\"><label class=\"k-checkbox k-disabled\"><span class=\"k-wrapper\"><input type=\"checkbox\" disabled=\"\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"3\"></span></label></td><td title=\"4\">4</td></tr><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"4\"></span></label></td><td title=\"5\">5</td></tr></tbody></table></div></div></div>"
 ```
 
+####     `Table export`
+
+```
+"<div><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>导出表格</span></button><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>导出自定义数据</span></button><div class=\"k-table\"><div class=\"k-table-wrapper\"><div class=\"k-thead\"><div class=\"k-thead-wrapper\" style=\"padding-right: 0px;\"><table><colgroup><col class=\"k-th-check\"><col><col><col><col></colgroup><thead><tr><th minwidth=\"40\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
+            
+            <th title=\"定义该列单元格内容\"><div class=\"k-th\"><div class=\"c-ellipsis\">定义该列单元格内容</div></div></th><th title=\"普通文本\"><div class=\"k-th\"><div class=\"c-ellipsis\">普通文本</div></div></th><th title=\"自定义导出文本\"><div class=\"k-th\"><div class=\"c-ellipsis\">自定义导出文本</div></div></th><th title=\"操作\" data-ignore=\"\"><div class=\"k-th\"><div class=\"c-ellipsis\">操作</div></div></th></tr></thead></table></div></div><div class=\"k-tbody\"><table><colgroup><col class=\"k-th-check\"><col><col><col><col></colgroup><tbody><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td><td><a>第一行</a></td><td title=\"哈哈1\">哈哈1</td><td><div data-text=\"自定义导出文本:自定义1\">自定义1</div></td><td data-ignore=\"\"><a>删除</a></td></tr><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td><td><a>第二行</a></td><td title=\"哈哈2\">哈哈2</td><td><div data-text=\"自定义导出文本:自定义2\">自定义2</div></td><td data-ignore=\"\"><a>删除</a></td></tr></tbody></table></div></div></div></div>"
+```
+
 ####     `Table fixColumn`
 
 ```
@@ -2485,6 +2493,18 @@
             </tr></thead></table></div></div><div class=\"k-tbody\"><table><colgroup><col class=\"k-th-check\"><col></colgroup><tbody><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td><td title=\"1\">1</td></tr><tr class=\"k-disabled\"><td class=\"k-th-check\"><label class=\"k-checkbox k-disabled\"><span class=\"k-wrapper\"><input type=\"checkbox\" disabled=\"\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td><td title=\"2\">2</td></tr><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"2\"></span></label></td><td title=\"3\">3</td></tr><tr class=\"k-disabled\"><td class=\"k-th-check\"><label class=\"k-checkbox k-disabled\"><span class=\"k-wrapper\"><input type=\"checkbox\" disabled=\"\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"3\"></span></label></td><td title=\"4\">4</td></tr><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"4\"></span></label></td><td title=\"5\">5</td></tr></tbody></table></div></div></div></div>"
 ```
 
+####     `Table export`
+
+```
+"<div><div><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>导出表格</span></button><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>导出自定义数据</span></button><div class=\"k-table\"><div class=\"k-table-wrapper\"><div class=\"k-thead\"><div class=\"k-thead-wrapper\" style=\"padding-right: 0px;\"><table><colgroup><col class=\"k-th-check\"><col><col><col><col></colgroup><thead><tr><th minwidth=\"40\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
+            
+            <th title=\"定义该列单元格内容\"><div class=\"k-th\"><div class=\"c-ellipsis\">定义该列单元格内容</div></div></th><th title=\"普通文本\"><div class=\"k-th\"><div class=\"c-ellipsis\">普通文本</div></div></th><th title=\"自定义导出文本\"><div class=\"k-th\"><div class=\"c-ellipsis\">自定义导出文本</div></div></th><th title=\"操作\" data-ignore=\"\"><div class=\"k-th\"><div class=\"c-ellipsis\">操作</div></div></th></tr></thead></table></div></div><div class=\"k-tbody\"><table><colgroup><col class=\"k-th-check\"><col><col><col><col></colgroup><tbody><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td><td><a>第一行</a></td><td title=\"哈哈1\">哈哈1</td><td><div data-text=\"自定义导出文本:自定义1\">
+                    自定义1
+                </div></td><td data-ignore=\"\"><a>删除</a></td></tr><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td><td><a>第二行</a></td><td title=\"哈哈2\">哈哈2</td><td><div data-text=\"自定义导出文本:自定义2\">
+                    自定义2
+                </div></td><td data-ignore=\"\"><a>删除</a></td></tr></tbody></table></div></div></div></div></div>"
+```
+
 ####     `Table fixColumn`
 
 ```
@@ -2611,13 +2631,13 @@
 ```
 "<div><div class=\"k-table k-sticky\"><div class=\"k-table-wrapper\"><div class=\"k-thead\" style=\"width: 800px; position: fixed; top: 87px;\"><div class=\"k-thead-wrapper\" style=\"padding-right: 0px;\"><table><colgroup><col class=\"k-th-check\"><col><col></colgroup><thead><tr><th minwidth=\"40\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
             
-            <th title=\"姓名\"><div class=\"k-resize\"></div><div class=\"k-th\"><div class=\"c-ellipsis\">姓名</div></div></th><th title=\"性别\"><div class=\"k-resize\"></div><div class=\"k-th\"><div class=\"c-ellipsis\">性别</div></div></th></tr></thead></table></div></div><div class=\"k-tbody\" style=\"padding-top: 41px;\"><table><colgroup><col class=\"k-th-check\"><col><col></colgroup><tbody><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td><td>
+            <th title=\"姓名\"><div class=\"k-resize\"></div><div class=\"k-th\"><div class=\"c-ellipsis\">姓名</div></div></th><th title=\"性别\"><div class=\"k-resize\"></div><div class=\"k-th\"><div class=\"c-ellipsis\">性别</div></div></th></tr></thead></table></div></div><div class=\"k-tbody\" style=\"padding-top: 41px;\"><table><colgroup><col class=\"k-th-check\"><col><col></colgroup><tbody><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td><td title=\"Javey\">
             Javey
-        </td><td>
+        </td><td title=\"male\">
             male
-        </td></tr><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td><td>
+        </td></tr><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td><td title=\"Lisa\">
             Lisa
-        </td><td>
+        </td><td title=\"female\">
             female
         </td></tr></tbody></table></div></div></div></div>"
 ```
