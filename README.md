@@ -46,7 +46,7 @@ React/Vue/Angular。如果不同框架维护一套自己的组件库，一方面
 
 ## 安装
 
-### 在Intact下
+### Intact
 
 ```shell
 npm install intact kpc --save
@@ -65,7 +65,7 @@ module.exports = {
 }
 ```
 
-### 在Vue下
+### Vue
 
 ```shell
 npm install kpc intact intact-vue --save
@@ -85,7 +85,7 @@ module.exports = {
 }
 ```
 
-### 在React下
+### React
 
 ```shell
 npm install kpc intact intact-react --save
@@ -107,7 +107,7 @@ module.exports = {
 
 ## 使用
 
-### 在Intact下
+### Intact
 
 ```js
 import {Button} from 'kpc';
@@ -115,7 +115,7 @@ import {Button} from 'kpc';
 <Button>Hello</Button>
 ```
 
-### 在Vue下
+### Vue
 
 ```js
 <template>
@@ -132,7 +132,7 @@ export default {
 </script>
 ```
 
-### 在React下
+### React
 
 ```jsx
 import React from 'react';
@@ -144,6 +144,14 @@ class App extends React.Component {
     }
 }
 ```
+
+## 即时反馈
+
+欢迎加入QQ群第一时间反馈问题 QQ群：529739732 
+<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=a9ef1aa7e7befbd3eaa61a3f2c3f7ab17436dbd317f6d02c9a643e0049e52cad"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="kpc官方交流群" title="kpc官方交流群"></a>
+
+![QQ](/site/src/imgs/qqqun.png)
+
 
 ## 链接
 
@@ -157,15 +165,15 @@ class App extends React.Component {
 
 #### 1. 使用兼容层来兼容不同的框架，是否有性能损失？
 
-性能损失非常小，因为兼容层并不会出来太多的东西，仅仅只是完成不同框架执行上下文的切换，唯一带来的损失
+性能损失非常小，因为兼容层并不会处理太多的东西，仅仅只是完成不同框架执行上下文的切换，唯一带来的损失
 可能是框架需要引入兼容层和Intact底层库所带来的打包文件的增大，但只是增大了大概80KB(没有开启gzip)的体积，
 相比目前前端项目动辄几M的打包文件，增大的并不多
 
 #### 2. 兼容层能实现100%的兼容吗？
 
 如上所述，兼容层仅仅完成上下文的切换，本质上还是谁的元素谁去渲染，所以理论上能实现100%的兼容，
-但目前考虑到实际使用情况并没有实现100%兼容，有些注意事项已在文档中说明，如果有需求后面我们会
-逐步完善来达到100%兼容性
+但目前考虑到项目中对各个特性的实际使用情况，并没有实现100%兼容，有些注意事项已在文档中说明，
+如果对某个特性有需求，后面我们会逐步完善来达到100%兼容性
 
 ## 开发
 
