@@ -5,7 +5,7 @@ import {isStringOrNumber} from '../utils';
 import {normalize} from 'intact';
 
 let {
-    title, key, group, multiple,
+    title, key, group, multiple, ignore,
     sortable, $parent, _show, className,
 } = self.get();
 
@@ -14,14 +14,16 @@ const width = self.width;
 const {sort, resizable, container} = $parent.get();
 const groupText = group && self._getGroupText() || '';
 
+const thTitle = isStringOrNumber(title) ? title + groupText : undefined;
 title = normalize ? normalize(title) : title;
 
-<th title={{ isStringOrNumber(title) ? title + groupText : undefined }}
+<th title={{ thTitle }}
     class={{ {
         'k-sortable': sortable,
         [className]: className,
     } }}
     ev-click={{ self.onClick }}
+    data-ignore={{ ignore ? '' : undefined }}
 >
     <div v-if={{ resizable }} class="k-resize" 
         ev-mousedown={{ self.onDragStart }}

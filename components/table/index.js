@@ -7,6 +7,7 @@ import {_$, throttle, browser} from '../utils';
 import {scrollbarWidth} from '../moveWrapper/position';
 
 const slice = Array.prototype.slice;
+const each = Intact.utils.each;
 
 export default class Table extends Intact {
     @Intact.template()
@@ -244,6 +245,68 @@ export default class Table extends Intact {
         } else {
             return [];
         }
+    }
+
+    async exportTable(data, filename = 'table') {
+        let instance = this;
+        if (data) {
+            instance = new Table({...this.get(), data});
+            instance.init();
+        }
+
+        const download = await import('downloadjs');
+        const collection = [];
+        const ignoreCheck = instance.get('checkType') !== 'none';
+        const push = (item) => {
+            // ignore non-element node
+            if (item.nodeType !== 1) return;
+            // ignore expand row
+            if (item.className === 'k-expand') return;
+
+            const row = [];
+            const children = item.children;
+            const length = children.length;
+            for (let i = 0; i < length; i++) {
+                // ignore check column
+                if (ignoreCheck && i === 0) continue;
+                const child = children[i];
+                // ignore the ignored column
+                if (child.dataset.ignore !== undefined) continue;
+
+                let text;
+                // find the firstChild's dataset.text as text
+                let firstChild = child.firstChild;
+                while (firstChild) {
+                    if (firstChild.nodeType === 1) break;
+                    firstChild = firstChild.nextSibling;
+                }
+                if (firstChild) {
+                    text = child.firstChild.dataset.text;
+                }
+                if (!text) {
+                    text = child.textContent.trim();
+                }
+                row.push(this._escapeCSV(text));
+            }
+            collection.push(row.join(','));
+        };
+        instance.header.querySelectorAll('tr').forEach(push);
+        // ignore nested table
+        each(instance.table.children[1].children, push);
+        console.log(collection.join('\r\n'));
+        download(
+            '\uFEFF' + collection.join('\r\n'),
+            filename + '.csv', 
+            'text/comma-separated-values;charset=utf-8'
+        );
+
+        if (data) {
+            instance.destroy();
+        }
+    }
+
+    _escapeCSV(str) {
+        return '"' + String(str).replace(/"/g, '""') + '"';
     }
 
     _calcHeaderPadding() {

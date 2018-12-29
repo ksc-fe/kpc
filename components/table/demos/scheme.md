@@ -36,7 +36,7 @@ const scheme = {
 
 <div>
     <Table scheme={{ scheme }} data={{ data }} />
-    <Table data={{data}}>
+    <Table data={{ data }}>
         <TableColumn 
             title='定义该列单元格内容'
             template={{ function(item) {
