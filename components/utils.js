@@ -3,6 +3,7 @@ import { functionTypeAnnotation } from 'babel-types';
 
 const utils = Intact.utils;
 const {get, isNullOrUndefined, isObject, isFunction, noop} = utils;
+const Types = Intact.Vdt.miss.Types;
 
 export {get, isNullOrUndefined, isObject, isFunction, noop};
 
@@ -40,7 +41,7 @@ export function isStringOrNumber(o) {
 }
 
 export function isTextVNode(o) {
-    return isStringOrNumber(o) || o.type === 1;
+    return isStringOrNumber(o) || (o && o.type === Types.Text);
 }
 
 export function isStringOrNumberNotEmpty(o) {
@@ -58,6 +59,8 @@ export function getTextByChildren(children) {
         });
     } else if (isStringOrNumber(children)) {
         ret += children;
+    } else if (children && children.type === Types.Text) {
+        ret += children.children;
     }
 
     return ret;
