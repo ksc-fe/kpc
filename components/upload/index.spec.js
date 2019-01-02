@@ -22,10 +22,10 @@ function getDataTransfer(names, options = {}) {
 describe('Upload', () => {
     let instance;
 
-    afterEach((done) => {
-        unmount(instance);
-        setTimeout(done, 400);
-    });
+    // afterEach((done) => {
+        // unmount(instance);
+        // setTimeout(done, 400);
+    // });
 
     it('basic', function(done) {
         this.enableTimeouts(false);
@@ -163,6 +163,7 @@ describe('Upload', () => {
             }
             _onError(e) {
                 setTimeout(() => {
+                    console.log(instance.element.innerHTML);
                     expect(instance.element.innerHTML).to.matchSnapshot();
                     done();
                 }, 500);
