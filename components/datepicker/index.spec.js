@@ -103,9 +103,9 @@ describe('Datepicker', () => {
         const curMonth = curDate1.getMonth();
         expect(curMonth).be.eql(month);
         if (curMonth === 0) {
-            expect(curDate1.getFullYear()).be.eql(year);
-        } else {
             expect(curDate1.getFullYear() + 1).be.eql(year);
+        } else {
+            expect(curDate1.getFullYear()).be.eql(year);
         }
     });
 
