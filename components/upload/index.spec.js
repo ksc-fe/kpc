@@ -22,10 +22,10 @@ function getDataTransfer(names, options = {}) {
 describe('Upload', () => {
     let instance;
 
-    // afterEach((done) => {
-        // unmount(instance);
-        // setTimeout(done, 400);
-    // });
+    afterEach((done) => {
+        unmount(instance);
+        setTimeout(done, 400);
+    });
 
     it('basic', function(done) {
         this.enableTimeouts(false);
@@ -163,8 +163,8 @@ describe('Upload', () => {
             }
             _onError(e) {
                 setTimeout(() => {
-                    console.log(instance.element.innerHTML);
-                    expect(instance.element.innerHTML).to.matchSnapshot();
+                    // FIXME: the innerHTML has string: `height: 44px` when we run test in travis-ci
+                    expect(instance.element.innerHTML.replace(/height: \d+px/, '')).to.matchSnapshot();
                     done();
                 }, 500);
             }
