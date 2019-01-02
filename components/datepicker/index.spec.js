@@ -100,8 +100,13 @@ describe('Datepicker', () => {
         // select the middle date
         dispatchEvent(content.querySelectorAll('.k-day')[17], 'click');
         const curDate1 = new Date(instance.get('date'));
-        expect(curDate1.getFullYear()).be.eql(year);
-        expect(curDate1.getMonth()).be.eql(month);
+        const curMonth = curDate1.getMonth();
+        expect(curMonth).be.eql(month);
+        if (curMonth === 0) {
+            expect(curDate1.getFullYear()).be.eql(year);
+        } else {
+            expect(curDate1.getFullYear() + 1).be.eql(year);
+        }
     });
 
     it('should clear value', () => {
