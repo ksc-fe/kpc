@@ -1,5 +1,8 @@
 <template>
-    <Breadcrumb separator="<b class='separator'>=></b>">
+    <Breadcrumb>
+        <template slot="separator">
+            <b class="separator">=></b>
+        </template>
         <BreadcrumbItem to="/">
             <i class="ion-home" /> item 1
         </BreadcrumbItem>

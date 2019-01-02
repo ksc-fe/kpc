@@ -1,6 +1,9 @@
 import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
 
-<Breadcrumb separator="<b class='separator'>=></b>">
+<Breadcrumb>
+    <b:separator>
+        <b class="separator">=></b>
+    </b:separator>
     <BreadcrumbItem to="/">
         <i class="ion-home" /> item 1
     </BreadcrumbItem>

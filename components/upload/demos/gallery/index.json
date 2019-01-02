@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>指定<code>type</code>为<code>gallery</code>可以展示照片墙风格的上传组件；我们还可以通过<code>limit</code>限制最大上传数量，当超过该数量时，组件会抛出<code>error</code>事件；通过<code>accept</code>可以指定上传的文件类型：<a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-accept\">accept</a></p>\n",
-    "index": 118,
+    "index": 113,
     "highlighted": [
         {
             "language": "vdt",

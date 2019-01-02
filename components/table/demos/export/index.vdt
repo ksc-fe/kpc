@@ -1,0 +1,27 @@
+import {Table, TableColumn} from 'kpc/components/table';
+import {Button} from 'kpc/components/button';
+
+<div>
+    <Button type="primary" ev-click={{ self._export }}>导出表格</Button>
+    <Button type="primary" ev-click={{ self._exportData }}>导出自定义数据</Button>
+    <Table data={{ self.get('data') }} ref="table">
+        <TableColumn title="定义该列单元格内容" key="a">
+            <b:template params="data">
+                <a>{{ data.a }}</a>
+            </b:template>
+        </TableColumn>
+        <TableColumn title="普通文本" key="b" />
+        <TableColumn title="自定义导出文本" key="c">
+            <b:template params="data">
+                <div data-text={{ '自定义导出文本:' + data.c }}>
+                    {{ data.c }}
+                </div>
+            </b:template>
+        </TableColumn>
+        <TableColumn title="操作" key="op" ignore>
+            <b:template params="data">
+                <a>删除</a> 
+            </b:template>
+        </TableColumn>
+    </Table>
+</div>

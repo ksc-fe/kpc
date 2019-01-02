@@ -39,7 +39,7 @@ module.exports =
 /******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
 /******/ 		// "0" is the signal for "already loaded"
 /******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("./chunk/" + {"0":"b3fcff762c108bf99718","1":"c944fd41e4468e19cb4c","2":"40ef8f22ff3ce5bcc736","3":"b21ab8e06b73cb758362"}[chunkId] + ".js");
+/******/ 			var chunk = require("./chunk/" + {"0":"b2bc60805f40e50c7c80","1":"dd3460a7eda346a72ea8","2":"9f0d3a3bc6e831df5136","3":"f902d9eb661a38df82d2"}[chunkId] + ".js");
 /******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				modules[moduleId] = moreModules[moduleId];
@@ -80,7 +80,7 @@ module.exports =
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/kpc/";
+/******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// uncatched error handler for webpack runtime
 /******/ 	__webpack_require__.oe = function(err) {
@@ -246,7 +246,7 @@ function (_Intact) {
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1545896851523
+      // 1546398140697
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -398,7 +398,7 @@ function (_Intact) {
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1545896852884
+      // 1546398142609
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -521,6 +521,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (immutable) */ __webpack_exports__["kebabCase"] = kebabCase;
 /* harmony export (immutable) */ __webpack_exports__["proxyEvent"] = proxyEvent;
 /* harmony export (immutable) */ __webpack_exports__["isStringOrNumber"] = isStringOrNumber;
+/* harmony export (immutable) */ __webpack_exports__["isTextChildren"] = isTextChildren;
 /* harmony export (immutable) */ __webpack_exports__["isTextVNode"] = isTextVNode;
 /* harmony export (immutable) */ __webpack_exports__["isStringOrNumberNotEmpty"] = isStringOrNumberNotEmpty;
 /* harmony export (immutable) */ __webpack_exports__["getTextByChildren"] = getTextByChildren;
@@ -577,6 +578,7 @@ var get = utils.get,
     isObject = utils.isObject,
     isFunction = utils.isFunction,
     noop = utils.noop;
+var Types = __WEBPACK_IMPORTED_MODULE_9_intact___default.a.Vdt.miss.Types;
 
 function addStyle(style, extra) {
   if (!style) return extra;
@@ -613,8 +615,11 @@ function isStringOrNumber(o) {
   var type = typeof o;
   return type === 'string' || type === 'number';
 }
+function isTextChildren(o) {
+  return isStringOrNumber(o) || isTextVNode(o);
+}
 function isTextVNode(o) {
-  return isStringOrNumber(o) || o.type === 1;
+  return o && o.type === Types.Text;
 }
 function isStringOrNumberNotEmpty(o) {
   var type = typeof o;
@@ -625,15 +630,15 @@ function getTextByChildren(children) {
 
   if (__WEBPACK_IMPORTED_MODULE_5__babel_runtime_corejs2_core_js_array_is_array___default()(children)) {
     children.forEach(function (vNode) {
-      if (isTextVNode(vNode)) {
-        ret += vNode.children;
-      }
+      ret += getTextByChildren(vNode);
     });
   } else if (isStringOrNumber(children)) {
     ret += children;
+  } else if (isTextVNode(children)) {
+    ret += children.children;
   }
 
-  return ret;
+  return ret.trim();
 }
 function findParentComponent(Component, instance, isUntil) {
   var ret;
@@ -1372,7 +1377,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1545896854944
+      // 1546398143140
       var cssReload = require("!../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1665,6 +1670,13 @@ module.exports = require("core-js/modules/es7.array.includes");
 /***/ (function(module, exports) {
 
 module.exports = require("core-js/modules/web.dom.iterable");
+
+/***/ }),
+
+/***/ "downloadjs":
+/***/ (function(module, exports) {
+
+module.exports = require("downloadjs");
 
 /***/ }),
 
