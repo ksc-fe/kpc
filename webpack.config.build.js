@@ -46,6 +46,10 @@ module.exports = function(theme) {
     });
 
     config.plugins = [
+        // disable code splitting 
+        new webpack.optimize.LimitChunkCountPlugin({
+            maxChunks: 1,
+        }),
         new webpack.DefinePlugin({
             'process.browser': true
         }),
