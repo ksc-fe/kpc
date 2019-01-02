@@ -254,7 +254,11 @@ export default class Table extends Intact {
             instance.init();
         }
 
-        const download = await import('downloadjs');
+        let download = await import('downloadjs');
+        // in webpack 4, we need to access the default property to get the value of module.exports
+        if (download.default) {
+            download = download.default;
+        }
         const collection = [];
         const ignoreCheck = instance.get('checkType') !== 'none';
         const push = (item) => {
