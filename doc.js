@@ -81,14 +81,14 @@ module.exports = function(isDev) {
             };
 
             // replace the url of path, add kpc for online built
-            const imageRenderer = renderer.image;
-            renderer.image = function(href, title, text) {
-                if (!isDev) {
-                    href = href.replace(/^\/imgs\//, '/kpc/imgs/');
-                }
-                const result = imageRenderer.call(this, href, title, text); 
-                return result;
-            }
+            // const imageRenderer = renderer.image;
+            // renderer.image = function(href, title, text) {
+                // if (!isDev) {
+                    // href = href.replace(/^\/imgs\//, '/kpc/imgs/');
+                // }
+                // const result = imageRenderer.call(this, href, title, text); 
+                // return result;
+            // }
         });
 
         ctx.hook.add('dist.before', async function(files) {
