@@ -47,9 +47,6 @@
   ],
   "author": "ksc-fe",
   "license": "MIT",
-  "peerDependencies": {
-    "intact": "^2.4.6"
-  },
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/plugin-proposal-class-properties": "^7.2.1",
@@ -90,9 +87,6 @@
     "gulp-vdt": "^0.2.0",
     "highlight.js": "^9.12.0",
     "history": "^4.7.2",
-    "intact": "^2.4.6",
-    "intact-react": "^1.1.4",
-    "intact-vue": "^0.4.5",
     "istanbul-instrumenter-loader": "^3.0.0",
     "karma": "^3.0.0",
     "karma-chrome-launcher": "^2.2.0",
@@ -135,6 +129,9 @@
     "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {
+    "intact": "^2.4.7",
+    "intact-react": "^1.1.4",
+    "intact-vue": "^0.4.6",
     "@babel/runtime-corejs2": "^7.2.0",
     "downloadjs": "^1.4.7",
     "enquire.js": "^2.1.6",

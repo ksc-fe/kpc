@@ -64,7 +64,7 @@ app.listen(port, () => {
 
 if (module.hot) {
     module.hot.accept(['./router'], () => {
-        const router = require('./router');
+        const router = require('./router').default;
         // const App = require('components/app').default;
         routerMiddleware = createRouterMiddleware(router, App);
     });

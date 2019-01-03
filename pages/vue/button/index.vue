@@ -1,8 +1,10 @@
 <template>
     <div>
         <Button @click="click" :class="city">default</Button>
+        <Button><ka><span>b</span></ka></Button>
         <k-button>test</k-button>
         <test class="test">test</test>
+        <ka><span>a</span></ka>
     </div>
 </template>
 
@@ -16,6 +18,7 @@
 import Button from 'components/button';
 import ButtonGroup from 'components/button/group';
 import Vue from 'vue';
+import A from './a.vue';
 
 Vue.component('test', {
     functional: true,
@@ -39,6 +42,7 @@ export default {
     components: {
         Button,
         ButtonGroup,
+        ka: A,
     },
 
     methods: {
