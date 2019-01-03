@@ -28,7 +28,7 @@ intact-vue从底层vNode上做了intact到vue的兼容，文档中针对intact�
     <Button @click.native="click">default</Button>
     ```
 2. 多余的属性不会被自动添加到组件渲染的DOM上，而是被直接忽略
-3. 不支持scoped style，因为KPC组件渲染不会添加data-v-id
+3. ~~不支持scoped style，因为KPC组件渲染不会添加data-v-id~~ `@since v0.8.0 支持`
     ```vue
     <style scoped> .k-btn { color: red;  } </style>
     ```
