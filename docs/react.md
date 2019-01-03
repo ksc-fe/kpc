@@ -45,12 +45,6 @@ class App extends React.Component {
 > `Table`组件的`scheme`属性中`template`字段返回的vNode无需`normalize`，因为组件内部做了兼容，
 > 不过多次调用`normalize`也没有问题。
 
-# 安装依赖
-
-```shell
-npm install intact intact-react kpc --save
-```
-
 # 配置`webpack.config.js`
 
 和在intact中使用的配置类似，只需要设置`alias`让`intact`库指向`intact-react`兼容层

@@ -46,7 +46,7 @@ npm run dev
 ## 安装
 
 ```js
-npm install intact kpc -S
+npm install kpc -S
 ```
 
 ## 单文件构建版
@@ -108,7 +108,7 @@ npm install intact kpc -S
 1. 安装依赖
 
 ```shell
-npm install intact kpc --save
+npm install kpc --save
 
 npm install css-loader style-loader file-loader --save-dev
 ```

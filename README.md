@@ -46,13 +46,13 @@ React/Vue/Angular。如果不同框架维护一套自己的组件库，一方面
 
 ## 安装
 
-### Intact
-
 ```shell
-npm install intact kpc --save
+npm install kpc --save
 ```
 
-webpack配置
+## webpack配置
+
+### Intact
 
 ```js
 module.exports = {
@@ -67,12 +67,6 @@ module.exports = {
 
 ### Vue
 
-```shell
-npm install kpc intact intact-vue --save
-```
-
-webpack配置
-
 ```js
 module.exports = {
     ...
@@ -86,12 +80,6 @@ module.exports = {
 ```
 
 ### React
-
-```shell
-npm install kpc intact intact-react --save
-```
-
-webpack配置
 
 ```js
 module.exports = {
