@@ -163,9 +163,8 @@ describe('Upload', () => {
             }
             _onError(e) {
                 setTimeout(() => {
-                    // FIXME: the innerHTML has string: `height: 44px` when we run test in travis-ci
-                    console.log(instance.element.innerHTML, instance.element.innerHTML.replace(/height: \d+px/, ''));
-                    expect(instance.element.innerHTML.replace(/height: \d+px/, '')).to.matchSnapshot();
+                    // FIXME: the innerHTML has string: `height: 44px;` when we run test in travis-ci
+                    expect(instance.element.innerHTML.replace(/height: \d+px;/, '')).to.matchSnapshot();
                     done();
                 }, 500);
             }
