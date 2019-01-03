@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Kpc from '../../';
+import Kpc from '../../index.js';
 
 Vue.use(Kpc);
 global.Vue = Vue;

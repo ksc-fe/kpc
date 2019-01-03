@@ -108,6 +108,62 @@ export {
     Upload
 };
 
+const components = {
+    App,
+    Badge,
+    Breadcrumb,
+    BreadcrumbItem,
+    Button,
+    ButtonGroup,
+    Cascader,
+    Checkbox,
+    Col,
+    Collapse,
+    CollapseItem,
+    Datepicker,
+    Dialog,
+    Drawer,
+    Dropdown,
+    DropdownItem,
+    DropdownMenu,
+    Editable,
+    Form,
+    FormItem,
+    Input,
+    Link,
+    Menu,
+    MenuItem,
+    Message,
+    MoveWrapper,
+    Option,
+    OptionGroup,
+    Pagination,
+    Progress,
+    Radio,
+    Row,
+    ScrollSelect,
+    Select,
+    Slider,
+    Spin,
+    Spinner,
+    Step,
+    Steps,
+    Switch,
+    Tab,
+    Table,
+    TableColumn,
+    Tabs,
+    Tag,
+    Timeline,
+    TimelineItem,
+    Timepicker,
+    Tip,
+    Tooltip,
+    Transfer,
+    Tree,
+    Upload
+};
+
 export const version = '0.7.10';
 
 /* generate end */
@@ -116,26 +172,19 @@ export default function install(Vue) {
     if (install.installed) return;
 
     if (Vue) {
-        for (let key in exports) {
-            const code = key.charCodeAt(0);
-            // the key which the first char is uppercase is a component
-            if (code >= 65 && code <= 90) {
-                Vue.component(`K${key}`, exports[key]);
-                // support call method like this.$message.success('test'), #88
-                if (key === 'Message') {
-                    Vue.prototype.$message = exports.Message;
-                }
+        for (let key in components) {
+            Vue.component(`K${key}`, components[key]);
+            // support call method like this.$message.success('test'), #88
+            if (key === 'Message') {
+                Vue.prototype.$message = components.Message;
             }
         }
     } else {
-        for (let key in exports) {
-            const code = key.charCodeAt(0);
-            // the key which the first char is uppercase is a component
-            if (code >= 65 && code <= 90) {
-                global[`K${key}`] = exports[key];
-            }
+        for (let key in components) {
+            global[`K${key}`] = components[key];
         }
     }
+    install.installed = true;
 }
 
 export {_$, localize, install};

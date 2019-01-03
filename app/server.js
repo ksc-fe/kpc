@@ -9,7 +9,7 @@ function createRouterMiddleware(router, App) {
     return function(req, res, next) {
         router.resolve({pathname: req.path}).then(({Page, data}) => {
             const $app = new App();
-            return $app.render(Page, data).then((content) => {
+            return $app.render(Page.default, data).then((content) => {
                 res.render('index', {
                     content,
                     style: collectInitial()

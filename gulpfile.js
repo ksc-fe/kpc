@@ -255,6 +255,7 @@ gulp.task('index', () => {
             components.sort((a, b) => a > b ? 1 : -1);
 
             codes.push('', `export {\n    ${components.join(',\n    ')}\n};`);
+            codes.push('', `const components = {\n    ${components.join(',\n    ')}\n};`);
             codes.push('', `export const version = '${packageJson.version}';`);
             const path = './index.js';
             let contents = fs.readFileSync(path, 'utf-8');

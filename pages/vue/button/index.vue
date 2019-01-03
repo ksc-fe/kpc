@@ -6,6 +6,12 @@
     </div>
 </template>
 
+<style scoped>
+.test {
+    color: red;
+}
+</style>
+
 <script>
 import Button from 'components/button';
 import ButtonGroup from 'components/button/group';

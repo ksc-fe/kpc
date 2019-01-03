@@ -16,7 +16,7 @@ function init(router) {
 
     unlisten = history.listen(async ({pathname}, action) => {
         const {Page, data} = await router.resolve({pathname});
-        $app.load(Page, data, serverStyleCleanup);
+        $app.load(Page.default, data, serverStyleCleanup);
     });
     history.replace(location);
 }
@@ -25,6 +25,6 @@ init(router);
 if (module.hot) {
     module.hot.accept('./router', () => {
         const router = require('./router');
-        init(router);
+        init(router.default);
     });
 }
