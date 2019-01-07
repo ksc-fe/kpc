@@ -20,7 +20,6 @@ sidebar: doc
 | noBorder | 是否展示无边框样式，默认有边框 | `Boolean` | `false` |
 | simple | 是否展示简洁样式 | `Boolean` | `Boolean` |
 
-
 # 方法
 
 | 方法名 | 说明 | 参数 | 返回值 |
