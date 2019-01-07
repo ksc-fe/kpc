@@ -174,8 +174,8 @@ gulp.task('push:doc', () => {
 });
 
 gulp.task('copy:imgs', () => {
-    return gulp.src('./site/src/imgs/design/*')
-        .pipe(gulp.dest('./site/dist/imgs/design'));
+    return gulp.src(['./site/src/imgs/design/*', './site/src/imgs/favicon.ico'], {base: './site/src'})
+        .pipe(gulp.dest('./site/dist/'));
 });
 
 gulp.task('copy:cname', () => {
