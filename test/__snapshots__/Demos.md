@@ -84,7 +84,7 @@
 ####     `Button icon`
 
 ```
-"<div><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\"><i class=\"ion-ios-search\"></i></button><button class=\"k-btn k-btn-icon k-circle\" tabindex=\"0\" type=\"button\"><i class=\"ion-ios-search\"></i></button><button class=\"k-btn k-primary k-icon-left\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i><span>搜索</span></button><button class=\"k-btn k-primary k-circle k-icon-left\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i><span>搜索</span></button></div>"
+"<div><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i></button><button class=\"k-btn k-btn-icon k-circle\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i></button><button class=\"k-btn k-primary k-icon-left\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search k-small\"></i><span>搜索</span></button><button class=\"k-btn k-primary k-circle k-icon-left\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search k-small\"></i><span>搜索</span></button></div>"
 ```
 
 ####     `Button loading`
@@ -96,7 +96,7 @@
 ####     `Button size`
 
 ```
-"<div><button class=\"k-btn k-large\" tabindex=\"0\" type=\"button\"><span>large</span></button><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>default</span></button><button class=\"k-btn k-small\" tabindex=\"0\" type=\"button\"><span>small</span></button><button class=\"k-btn k-mini\" tabindex=\"0\" type=\"button\"><span>mini</span></button><br><br><button class=\"k-btn k-btn-icon k-large k-circle\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i></button><button class=\"k-btn k-btn-icon k-circle\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i></button><button class=\"k-btn k-btn-icon k-small k-circle\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i></button><button class=\"k-btn k-btn-icon k-mini k-circle\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i></button></div>"
+"<div><button class=\"k-btn k-large\" tabindex=\"0\" type=\"button\"><span>large</span></button><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>default</span></button><button class=\"k-btn k-small\" tabindex=\"0\" type=\"button\"><span>small</span></button><button class=\"k-btn k-mini\" tabindex=\"0\" type=\"button\"><span>mini</span></button><br><br><button class=\"k-btn k-btn-icon k-large k-circle\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search k-large\"></i></button><button class=\"k-btn k-btn-icon k-circle\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i></button><button class=\"k-btn k-btn-icon k-small k-circle\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search k-small\"></i></button><button class=\"k-btn k-btn-icon k-mini k-circle\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search k-mini\"></i></button></div>"
 ```
 
 ####     `Button tagName`
@@ -245,7 +245,7 @@
 ####     `Datepicker clearable`
 
 ```
-"<div class=\"k-datepicker\" tabindex=\"0\"><div class=\"k-input k-with-prefix k-clearable\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-calendar-outline\"></i></div><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择日期\" tabindex=\"-1\"><div class=\"k-suffix\"><i class=\"k-clear k-icon ion-ios-close\"></i> </div></div></div><!--placeholder--></div>"
+"<div class=\"k-datepicker\" tabindex=\"0\"><div class=\"k-input k-with-prefix k-clearable\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-calendar-outline\"></i></div><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择日期\" tabindex=\"-1\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> </div></div></div><!--placeholder--></div>"
 ```
 
 ####     `Datepicker datetime`
@@ -293,7 +293,7 @@
 ####     `Datepicker yearMonth`
 
 ```
-"<div><div class=\"k-datepicker\" tabindex=\"0\"><div class=\"k-input k-with-prefix\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-calendar-outline\"></i></div><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择年份\" tabindex=\"-1\"></div></div><!--placeholder--></div><div class=\"k-datepicker\" tabindex=\"0\"><div class=\"k-input k-with-prefix k-clearable\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-calendar-outline\"></i></div><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择月份\" tabindex=\"-1\"><div class=\"k-suffix\"><i class=\"k-clear k-icon ion-ios-close\"></i> </div></div></div><!--placeholder--></div></div>"
+"<div><div class=\"k-datepicker\" tabindex=\"0\"><div class=\"k-input k-with-prefix\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-calendar-outline\"></i></div><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择年份\" tabindex=\"-1\"></div></div><!--placeholder--></div><div class=\"k-datepicker\" tabindex=\"0\"><div class=\"k-input k-with-prefix k-clearable\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-calendar-outline\"></i></div><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择月份\" tabindex=\"-1\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> </div></div></div><!--placeholder--></div></div>"
 ```
 
 ##   `dialog`
@@ -366,7 +366,7 @@
 
 ```
 "<div><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            hover </span><i class=\"k-icon ion-arrow-down-b\"></i></button><!--placeholder--></div>"
+            hover </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--></div>"
 ```
 
 ####     `Dropdown checkbox`
@@ -387,24 +387,24 @@
 
 ```
 "<div><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            disabled </span><i class=\"k-icon ion-arrow-down-b\"></i></button><!--placeholder--><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            disabled item</span><i class=\"k-icon ion-arrow-down-b\"></i></button><!--placeholder--></div>"
+            disabled </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
+            disabled item</span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--></div>"
 ```
 
 ####     `Dropdown nested`
 
 ```
 "<div><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            click </span><i class=\"k-icon ion-arrow-down-b\"></i></button><!--placeholder--></div>"
+            click </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--></div>"
 ```
 
 ####     `Dropdown position`
 
 ```
 "<div><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            left </span><i class=\"k-icon ion-arrow-down-b\"></i></button><!--placeholder--><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            right </span><i class=\"k-icon ion-arrow-down-b\"></i></button><!--placeholder--><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            top center </span><i class=\"k-icon ion-arrow-down-b\"></i></button><!--placeholder--></div>"
+            left </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
+            right </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
+            top center </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--></div>"
 ```
 
 ####     `Dropdown tooltip`
@@ -417,8 +417,8 @@
 
 ```
 "<div><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            hover </span><i class=\"k-icon ion-arrow-down-b\"></i></button><!--placeholder--><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            click </span><i class=\"k-icon ion-arrow-down-b\"></i></button><!--placeholder--></div>"
+            hover </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
+            click </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--></div>"
 ```
 
 ##   `editable`
@@ -517,6 +517,20 @@
 "<div><h5>指定每一个断点Col所占的栅格数</h5><div class=\"k-row\"><div class=\"k-col k-xxl-11 k-xl-10 k-lg-8 k-md-6 k-sm-4 k-2\">col</div><div class=\"k-col k-xxl-2 k-xl-4 k-lg-8 k-md-12 k-sm-16 k-20\">col</div><div class=\"k-col k-xxl-11 k-xl-10 k-lg-8 k-md-6 k-sm-4 k-2\">col</div></div><h5>指定一个断点，当宽度小于该断点时，Col将以100%宽度纵向排列</h5><div class=\"k-row\"><div class=\"k-col k-md-16\">col-md-18</div><div class=\"k-col k-md-8\">col-md-8</div></div><h5>同时指定多个属性</h5><div class=\"k-row k-flex\"><div class=\"k-col k-lg-8 k-lg-order-2 k-lg-offset-8 k-md-4 k-md-order-1 k-md-offset-4\">1 col</div><div class=\"k-col k-lg-4 k-lg-order-1 k-lg-offset-4 k-md-8 k-md-order-2 k-md-offset-8\">2 col</div></div></div>"
 ```
 
+##   `icon`
+
+####     `Icon basic`
+
+```
+"<div><i class=\"k-icon ion-happy-outline\" style=\"font-size: 36px;\"></i><i class=\"k-icon ion-happy-outline k-large\"></i><i class=\"k-icon ion-happy-outline\"></i><i class=\"k-icon ion-happy-outline k-small\"></i><i class=\"k-icon ion-happy-outline k-mini\"></i></div>"
+```
+
+####     `Icon color`
+
+```
+"<div><i class=\"k-icon ion-happy-outline k-large\"></i><i class=\"k-icon ion-happy-outline k-large k-color-primary\"></i><i class=\"k-icon ion-happy-outline k-large k-color-warning\"></i><i class=\"k-icon ion-happy-outline k-large k-color-danger\"></i><i class=\"k-icon ion-happy-outline k-large k-color-success\"></i><i class=\"k-icon ion-happy-outline k-large\" style=\"color: red;\"></i><i class=\"k-icon ion-happy-outline k-large\" style=\"color: rgb(0, 0, 234);\"></i><i class=\"k-icon ion-happy-outline k-large\" style=\"color: rgb(183, 18, 193);\"></i></div>"
+```
+
 ##   `input`
 
 ####     `Input autowidth`
@@ -540,7 +554,7 @@
 ####     `Input clearable`
 
 ```
-"<div><div class=\"k-input k-clearable\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"><div class=\"k-suffix\"><i class=\"k-clear k-icon ion-ios-close\"></i> </div></div></div><br><div class=\"k-input k-with-suffix k-clearable\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"><div class=\"k-suffix\"><i class=\"k-clear k-icon ion-ios-close\"></i> <i class=\"ion-ios-search\"></i></div></div></div></div>"
+"<div><div class=\"k-input k-clearable\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> </div></div></div><br><div class=\"k-input k-with-suffix k-clearable\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> <i class=\"ion-ios-search\"></i></div></div></div></div>"
 ```
 
 ####     `Input select`
@@ -552,7 +566,7 @@
 ####     `Input size`
 
 ```
-"<div><div class=\"k-input k-large\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><br><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><br><div class=\"k-input k-small\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><div class=\"k-input k-small k-group\"><div class=\"k-prepend k-padding\">http://</div><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"></div><div class=\"k-append k-padding\">.com</div></div><div class=\"k-input k-small k-group k-with-prefix k-with-suffix\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-earth\"></i></div><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"><div class=\"k-suffix\"> <i class=\"ion-ios-search\"></i></div></div><div class=\"k-append\"><button class=\"k-btn k-primary k-btn-icon k-small\" tabindex=\"0\" type=\"button\"><i class=\"ion-ios-search\"></i></button></div></div><div class=\"k-input k-small k-group k-clearable\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"><div class=\"k-suffix\"><i class=\"k-clear k-icon ion-ios-close\"></i> </div></div><div class=\"k-append\"><button class=\"k-btn k-primary k-small\" tabindex=\"0\" type=\"button\"><span>Search</span></button></div></div><div class=\"k-input k-mini\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div>"
+"<div><div class=\"k-input k-large\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><br><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><br><div class=\"k-input k-small\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><div class=\"k-input k-small k-group\"><div class=\"k-prepend k-padding\">http://</div><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"></div><div class=\"k-append k-padding\">.com</div></div><div class=\"k-input k-small k-group k-with-prefix k-with-suffix\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-earth\"></i></div><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"><div class=\"k-suffix\"> <i class=\"ion-ios-search\"></i></div></div><div class=\"k-append\"><button class=\"k-btn k-primary k-btn-icon k-small\" tabindex=\"0\" type=\"button\"><i class=\"ion-ios-search\"></i></button></div></div><div class=\"k-input k-small k-group k-clearable\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> </div></div><div class=\"k-append\"><button class=\"k-btn k-primary k-small\" tabindex=\"0\" type=\"button\"><span>Search</span></button></div></div><div class=\"k-input k-mini\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div>"
 ```
 
 ####     `Input textarea`
@@ -567,7 +581,8 @@
 
 ```
 "<div class=\"k-menu k-dark k-vertical\"><div class=\"k-menu-item\"><div class=\"k-title\"><i class=\"k-icon ion-flag\"></i><span>menu 1
-        </span><i class=\"k-arrow ion-ios-arrow-down\"></i></div><div class=\"k-show-height\" style=\"height: 0px; display: none;\"><div class=\"k-menu k-vertical\"><div class=\"k-menu-item\"><div class=\"k-title\"><span>sub menu 1</span></div></div><div class=\"k-menu-item\"><div class=\"k-title\"><span>sub menu 2</span></div></div></div></div></div><div class=\"k-menu-item k-disabled\"><div class=\"k-title\"><i class=\"k-icon ion-star\"></i><span>menu 2</span></div></div><div class=\"k-menu-item k-expanded\"><div class=\"k-title\"><i class=\"k-icon ion-heart\"></i><span>menu 3
+        </span><i class=\"k-arrow ion-ios-arrow-down\"></i></div><div class=\"k-show-height\" style=\"height: 0px; display: none;\"><div class=\"k-menu k-vertical\"><div class=\"k-menu-item\"><div class=\"k-title\"><span>sub menu 1</span></div></div><div class=\"k-menu-item\"><div class=\"k-title\"><span>sub menu 2</span></div></div></div></div></div><div class=\"k-menu-item k-disabled\"><div class=\"k-title\"><i class=\"k-icon ion-star\"></i><span>menu 2
+    </span></div></div><div class=\"k-menu-item k-expanded\"><div class=\"k-title\"><i class=\"k-icon ion-heart\"></i><span>menu 3
         </span><i class=\"k-arrow ion-ios-arrow-down\"></i></div><div class=\"k-show-height\"><div class=\"k-menu k-vertical\"><div class=\"k-menu-item\"><div class=\"k-title\"><span>sub menu 1</span></div></div><div class=\"k-menu-item\"><div class=\"k-title\"><span>sub menu 2</span></div></div><div class=\"k-menu-item k-disabled\"><div class=\"k-title\"><span>sub menu 3</span></div></div><div class=\"k-menu-item\"><div class=\"k-title\"><span>sub menu 4</span></div></div></div></div></div><div class=\"k-menu-item\"><div class=\"k-title\"><i class=\"k-icon ion-gear-b\"></i><span>menu 4
         </span><i class=\"k-arrow ion-ios-arrow-down\"></i></div><div class=\"k-show-height\" style=\"height: 0px; display: none;\"><div class=\"k-menu k-vertical\"><div class=\"k-menu-item\"><div class=\"k-title\"><span>sub menu 1</span></div></div><div class=\"k-menu-item\"><div class=\"k-title\"><span>sub menu 2</span></div></div></div></div></div></div>"
 ```
@@ -1287,7 +1302,7 @@
 ####     `Timepicker range`
 
 ```
-"<div><div class=\"k-datepicker k-range k-time-picker\" tabindex=\"0\"><div class=\"k-input k-with-prefix k-clearable\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-clock-outline\"></i></div><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"开始时间 ~ 结束时间\" tabindex=\"-1\"><div class=\"k-suffix\"><i class=\"k-clear k-icon ion-ios-close\"></i> </div></div></div><!--placeholder--></div>
+"<div><div class=\"k-datepicker k-range k-time-picker\" tabindex=\"0\"><div class=\"k-input k-with-prefix k-clearable\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-clock-outline\"></i></div><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"开始时间 ~ 结束时间\" tabindex=\"-1\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> </div></div></div><!--placeholder--></div>
     You selected: </div>"
 ```
 
@@ -1302,7 +1317,7 @@
 ####     `Timepicker stepRange`
 
 ```
-"<div><div class=\"k-datepicker k-range k-time-picker\" tabindex=\"0\"><div class=\"k-input k-with-prefix k-clearable\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-clock-outline\"></i></div><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"开始时间 ~ 结束时间\" tabindex=\"-1\"><div class=\"k-suffix\"><i class=\"k-clear k-icon ion-ios-close\"></i> </div></div></div><!--placeholder--></div>
+"<div><div class=\"k-datepicker k-range k-time-picker\" tabindex=\"0\"><div class=\"k-input k-with-prefix k-clearable\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-clock-outline\"></i></div><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"开始时间 ~ 结束时间\" tabindex=\"-1\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> </div></div></div><!--placeholder--></div>
     You selected: </div>"
 ```
 
@@ -1388,8 +1403,8 @@
 
 ```
 "<div class=\"k-transfer\"><div class=\"k-panel\"><div class=\"k-title\"><div class=\"k-count\">0 /
-                5</div><label class=\"k-checkbox c-ellipsis\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span><span class=\"k-text\">请选择</span></label></div><div class=\"k-input k-small k-with-prefix k-clearable\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-search\"></i></div><input class=\"k-inner\" type=\"text\" placeholder=\"请输入\"><div class=\"k-suffix\"><i class=\"k-clear k-icon ion-ios-close\"></i> </div></div></div><div class=\"k-list\"><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名0</div><p>前端服务器0 | 192.168.1.0</p></div></span></label></div><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名1</div><p>前端服务器1 | 192.168.1.1</p></div></span></label></div><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名2</div><p>前端服务器2 | 192.168.1.2</p></div></span></label></div><div class=\"k-item k-disabled\"><label class=\"k-checkbox k-disabled\"><span class=\"k-wrapper\"><input type=\"checkbox\" disabled=\"\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名3</div><p>前端服务器3 | 192.168.1.3</p></div></span></label></div><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名4</div><p>前端服务器4 | 192.168.1.4</p></div></span></label></div></div></div><div class=\"k-arrows\"><button class=\"k-btn k-primary k-btn-icon k-large k-circle k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"k-icon ion-ios-arrow-left\"></i></button><button class=\"k-btn k-primary k-btn-icon k-large k-circle k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"k-icon ion-ios-arrow-right\"></i></button></div><div class=\"k-panel\"><div class=\"k-title\"><div class=\"k-count\">0 /
-                0</div><label class=\"k-checkbox c-ellipsis\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span><span class=\"k-text\">已选择</span></label></div><div class=\"k-input k-small k-with-prefix k-clearable\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-search\"></i></div><input class=\"k-inner\" type=\"text\" placeholder=\"请输入\"><div class=\"k-suffix\"><i class=\"k-clear k-icon ion-ios-close\"></i> </div></div></div><div class=\"k-list\"></div></div></div>"
+                5</div><label class=\"k-checkbox c-ellipsis\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span><span class=\"k-text\">请选择</span></label></div><div class=\"k-input k-small k-with-prefix k-clearable\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-search\"></i></div><input class=\"k-inner\" type=\"text\" placeholder=\"请输入\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> </div></div></div><div class=\"k-list\"><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名0</div><p>前端服务器0 | 192.168.1.0</p></div></span></label></div><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名1</div><p>前端服务器1 | 192.168.1.1</p></div></span></label></div><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名2</div><p>前端服务器2 | 192.168.1.2</p></div></span></label></div><div class=\"k-item k-disabled\"><label class=\"k-checkbox k-disabled\"><span class=\"k-wrapper\"><input type=\"checkbox\" disabled=\"\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名3</div><p>前端服务器3 | 192.168.1.3</p></div></span></label></div><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名4</div><p>前端服务器4 | 192.168.1.4</p></div></span></label></div></div></div><div class=\"k-arrows\"><button class=\"k-btn k-primary k-btn-icon k-large k-circle k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"k-icon ion-ios-arrow-left\"></i></button><button class=\"k-btn k-primary k-btn-icon k-large k-circle k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"k-icon ion-ios-arrow-right\"></i></button></div><div class=\"k-panel\"><div class=\"k-title\"><div class=\"k-count\">0 /
+                0</div><label class=\"k-checkbox c-ellipsis\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span><span class=\"k-text\">已选择</span></label></div><div class=\"k-input k-small k-with-prefix k-clearable\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-search\"></i></div><input class=\"k-inner\" type=\"text\" placeholder=\"请输入\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> </div></div></div><div class=\"k-list\"></div></div></div>"
 ```
 
 ####     `Transfer leftChecked`
@@ -1540,7 +1555,7 @@
 ####     `Button icon`
 
 ```
-"<div><div><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\"><i class=\"ion-ios-search\"></i></button><button class=\"k-btn k-btn-icon k-circle\" tabindex=\"0\" type=\"button\"><i class=\"ion-ios-search\"></i></button><button class=\"k-btn k-primary k-icon-left\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i><span>搜索</span></button><button class=\"k-btn k-primary k-circle k-icon-left\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i><span>搜索</span></button></div></div>"
+"<div><div><button class=\"k-btn k-btn-icon\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i></button><button class=\"k-btn k-btn-icon k-circle\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i></button><button class=\"k-btn k-primary k-icon-left\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search k-small\"></i><span>搜索</span></button><button class=\"k-btn k-primary k-circle k-icon-left\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search k-small\"></i><span>搜索</span></button></div></div>"
 ```
 
 ####     `Button loading`
@@ -1552,7 +1567,7 @@
 ####     `Button size`
 
 ```
-"<div><div><button class=\"k-btn k-large\" tabindex=\"0\" type=\"button\"><span>large</span></button><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>default</span></button><button class=\"k-btn k-small\" tabindex=\"0\" type=\"button\"><span>small</span></button><button class=\"k-btn k-mini\" tabindex=\"0\" type=\"button\"><span>mini</span></button><br><br><button class=\"k-btn k-btn-icon k-large k-circle\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i></button><button class=\"k-btn k-btn-icon k-circle\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i></button><button class=\"k-btn k-btn-icon k-small k-circle\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i></button><button class=\"k-btn k-btn-icon k-mini k-circle\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i></button></div></div>"
+"<div><div><button class=\"k-btn k-large\" tabindex=\"0\" type=\"button\"><span>large</span></button><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>default</span></button><button class=\"k-btn k-small\" tabindex=\"0\" type=\"button\"><span>small</span></button><button class=\"k-btn k-mini\" tabindex=\"0\" type=\"button\"><span>mini</span></button><br><br><button class=\"k-btn k-btn-icon k-large k-circle\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search k-large\"></i></button><button class=\"k-btn k-btn-icon k-circle\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i></button><button class=\"k-btn k-btn-icon k-small k-circle\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search k-small\"></i></button><button class=\"k-btn k-btn-icon k-mini k-circle\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search k-mini\"></i></button></div></div>"
 ```
 
 ####     `Button tagName`
@@ -1707,7 +1722,7 @@
 ####     `Datepicker clearable`
 
 ```
-"<div><div class=\"k-datepicker\" tabindex=\"0\"><div class=\"k-input k-with-prefix k-clearable\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-calendar-outline\"></i></div><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择日期\" tabindex=\"-1\"><div class=\"k-suffix\"><i class=\"k-clear k-icon ion-ios-close\"></i> </div></div></div><!--placeholder--></div></div>"
+"<div><div class=\"k-datepicker\" tabindex=\"0\"><div class=\"k-input k-with-prefix k-clearable\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-calendar-outline\"></i></div><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择日期\" tabindex=\"-1\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> </div></div></div><!--placeholder--></div></div>"
 ```
 
 ####     `Datepicker datetime`
@@ -1759,7 +1774,7 @@
 ####     `Datepicker yearMonth`
 
 ```
-"<div><div><div class=\"k-datepicker\" tabindex=\"0\"><div class=\"k-input k-with-prefix\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-calendar-outline\"></i></div><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择年份\" tabindex=\"-1\"></div></div><!--placeholder--></div><div class=\"k-datepicker\" tabindex=\"0\"><div class=\"k-input k-with-prefix k-clearable\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-calendar-outline\"></i></div><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择月份\" tabindex=\"-1\"><div class=\"k-suffix\"><i class=\"k-clear k-icon ion-ios-close\"></i> </div></div></div><!--placeholder--></div></div></div>"
+"<div><div><div class=\"k-datepicker\" tabindex=\"0\"><div class=\"k-input k-with-prefix\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-calendar-outline\"></i></div><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择年份\" tabindex=\"-1\"></div></div><!--placeholder--></div><div class=\"k-datepicker\" tabindex=\"0\"><div class=\"k-input k-with-prefix k-clearable\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-calendar-outline\"></i></div><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择月份\" tabindex=\"-1\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> </div></div></div><!--placeholder--></div></div></div>"
 ```
 
 ##   `dialog`
@@ -1820,7 +1835,7 @@
 
 ```
 "<div><div><div class=\"k-dropdown\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            hover </span><i class=\"k-icon ion-arrow-down-b\"></i></button><!--placeholder--></div></div></div>"
+            hover </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--></div></div></div>"
 ```
 
 ####     `Dropdown checkbox`
@@ -1841,24 +1856,24 @@
 
 ```
 "<div><div><div class=\"k-dropdown\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            disabled </span><i class=\"k-icon ion-arrow-down-b\"></i></button><!--placeholder--></div><div class=\"k-dropdown\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            disabled item</span><i class=\"k-icon ion-arrow-down-b\"></i></button><!--placeholder--></div></div></div>"
+            disabled </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--></div><div class=\"k-dropdown\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
+            disabled item</span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--></div></div></div>"
 ```
 
 ####     `Dropdown nested`
 
 ```
 "<div><div><div class=\"k-dropdown\" trigger=\"click\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            click </span><i class=\"k-icon ion-arrow-down-b\"></i></button><!--placeholder--></div></div></div>"
+            click </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--></div></div></div>"
 ```
 
 ####     `Dropdown position`
 
 ```
 "<div><div><div class=\"k-dropdown\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            left </span><i class=\"k-icon ion-arrow-down-b\"></i></button><!--placeholder--></div><div class=\"k-dropdown\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            right </span><i class=\"k-icon ion-arrow-down-b\"></i></button><!--placeholder--></div><div class=\"k-dropdown\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            top center </span><i class=\"k-icon ion-arrow-down-b\"></i></button><!--placeholder--></div></div></div>"
+            left </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--></div><div class=\"k-dropdown\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
+            right </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--></div><div class=\"k-dropdown\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
+            top center </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--></div></div></div>"
 ```
 
 ####     `Dropdown tooltip`
@@ -1871,8 +1886,8 @@
 
 ```
 "<div><div><div class=\"k-dropdown\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            hover </span><i class=\"k-icon ion-arrow-down-b\"></i></button><!--placeholder--></div><div class=\"k-dropdown\" trigger=\"click\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            click </span><i class=\"k-icon ion-arrow-down-b\"></i></button><!--placeholder--></div></div></div>"
+            hover </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--></div><div class=\"k-dropdown\" trigger=\"click\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
+            click </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--></div></div></div>"
 ```
 
 ##   `editable`
@@ -1971,6 +1986,20 @@
 "<div><div><h5>指定每一个断点Col所占的栅格数</h5><div class=\"k-row\"><div class=\"k-col k-xxl-11 k-xl-10 k-lg-8 k-md-6 k-sm-4 k-2\">col</div><div class=\"k-col k-xxl-2 k-xl-4 k-lg-8 k-md-12 k-sm-16 k-20\">col</div><div class=\"k-col k-xxl-11 k-xl-10 k-lg-8 k-md-6 k-sm-4 k-2\">col</div></div><h5>指定一个断点，当宽度小于该断点时，Col将以100%宽度纵向排列</h5><div class=\"k-row\"><div class=\"k-col k-md-16\">col-md-18</div><div class=\"k-col k-md-8\">col-md-8</div></div><h5>同时指定多个属性</h5><div class=\"k-row k-flex\"><div class=\"k-col k-lg-8 k-lg-order-2 k-lg-offset-8 k-md-4 k-md-order-1 k-md-offset-4\">1 col</div><div class=\"k-col k-lg-4 k-lg-order-1 k-lg-offset-4 k-md-8 k-md-order-2 k-md-offset-8\">2 col</div></div></div></div>"
 ```
 
+##   `icon`
+
+####     `Icon basic`
+
+```
+"<div><div><i class=\"k-icon ion-happy-outline\" style=\"font-size: 36px;\"></i><i class=\"k-icon ion-happy-outline k-large\"></i><i class=\"k-icon ion-happy-outline\"></i><i class=\"k-icon ion-happy-outline k-small\"></i><i class=\"k-icon ion-happy-outline k-mini\"></i></div></div>"
+```
+
+####     `Icon color`
+
+```
+"<div><div><i class=\"k-icon ion-happy-outline k-large\"></i><i class=\"k-icon ion-happy-outline k-large k-color-primary\"></i><i class=\"k-icon ion-happy-outline k-large k-color-warning\"></i><i class=\"k-icon ion-happy-outline k-large k-color-danger\"></i><i class=\"k-icon ion-happy-outline k-large k-color-success\"></i><i class=\"k-icon ion-happy-outline k-large\" style=\"color: red;\"></i><i class=\"k-icon ion-happy-outline k-large\" style=\"color: rgb(0, 0, 234);\"></i><i class=\"k-icon ion-happy-outline k-large\" style=\"color: rgb(183, 18, 193);\"></i></div></div>"
+```
+
 ##   `input`
 
 ####     `Input autowidth`
@@ -1995,7 +2024,7 @@
 ####     `Input clearable`
 
 ```
-"<div><div><div class=\"k-input k-clearable\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"><div class=\"k-suffix\"><i class=\"k-clear k-icon ion-ios-close\"></i> </div></div></div><br><div class=\"k-input k-with-suffix k-clearable\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"><div class=\"k-suffix\"><i class=\"k-clear k-icon ion-ios-close\"></i> <i class=\"ion-ios-search\"></i></div></div></div></div></div>"
+"<div><div><div class=\"k-input k-clearable\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> </div></div></div><br><div class=\"k-input k-with-suffix k-clearable\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> <i class=\"ion-ios-search\"></i></div></div></div></div></div>"
 ```
 
 ####     `Input select`
@@ -2007,7 +2036,7 @@
 ####     `Input size`
 
 ```
-"<div><div><div class=\"k-input k-large\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><br><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><br><div class=\"k-input k-small\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><div class=\"k-input k-small k-group\"><div class=\"k-prepend\">http://</div><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"></div><div class=\"k-append\">.com</div></div><div class=\"k-input k-small k-group k-with-prefix k-with-suffix\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-earth\"></i></div><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"><div class=\"k-suffix\"> <i class=\"ion-ios-search\"></i></div></div><div class=\"k-append\"><button class=\"k-btn k-primary k-btn-icon k-small\" tabindex=\"0\" type=\"button\"><i class=\"ion-ios-search\"></i></button></div></div><div class=\"k-input k-small k-group k-clearable\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"><div class=\"k-suffix\"><i class=\"k-clear k-icon ion-ios-close\"></i> </div></div><div class=\"k-append\"><button class=\"k-btn k-primary k-small\" tabindex=\"0\" type=\"button\"><span>Search</span></button></div></div><div class=\"k-input k-mini\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div>"
+"<div><div><div class=\"k-input k-large\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><br><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><br><div class=\"k-input k-small\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><div class=\"k-input k-small k-group\"><div class=\"k-prepend\">http://</div><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"></div><div class=\"k-append\">.com</div></div><div class=\"k-input k-small k-group k-with-prefix k-with-suffix\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-earth\"></i></div><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"><div class=\"k-suffix\"> <i class=\"ion-ios-search\"></i></div></div><div class=\"k-append\"><button class=\"k-btn k-primary k-btn-icon k-small\" tabindex=\"0\" type=\"button\"><i class=\"ion-ios-search\"></i></button></div></div><div class=\"k-input k-small k-group k-clearable\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> </div></div><div class=\"k-append\"><button class=\"k-btn k-primary k-small\" tabindex=\"0\" type=\"button\"><span>Search</span></button></div></div><div class=\"k-input k-mini\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div>"
 ```
 
 ####     `Input textarea`
@@ -2022,7 +2051,8 @@
 
 ```
 "<div><div class=\"k-menu k-dark k-vertical\"><div class=\"k-menu-item\"><div class=\"k-title\"><i class=\"k-icon ion-flag\"></i><span>menu 1
-        </span><i class=\"k-arrow ion-ios-arrow-down\"></i></div><div class=\"k-show-height\" style=\"height: 0px; display: none;\"><div class=\"k-menu k-vertical\"><div class=\"k-menu-item\"><div class=\"k-title\"><span>sub menu 1</span></div></div><div class=\"k-menu-item\"><div class=\"k-title\"><span>sub menu 2</span></div></div></div></div></div><div class=\"k-menu-item k-disabled\"><div class=\"k-title\"><i class=\"k-icon ion-star\"></i><span>menu 2</span></div></div><div class=\"k-menu-item k-expanded\"><div class=\"k-title\"><i class=\"k-icon ion-heart\"></i><span>menu 3
+        </span><i class=\"k-arrow ion-ios-arrow-down\"></i></div><div class=\"k-show-height\" style=\"height: 0px; display: none;\"><div class=\"k-menu k-vertical\"><div class=\"k-menu-item\"><div class=\"k-title\"><span>sub menu 1</span></div></div><div class=\"k-menu-item\"><div class=\"k-title\"><span>sub menu 2</span></div></div></div></div></div><div class=\"k-menu-item k-disabled\"><div class=\"k-title\"><i class=\"k-icon ion-star\"></i><span>menu 2
+    </span></div></div><div class=\"k-menu-item k-expanded\"><div class=\"k-title\"><i class=\"k-icon ion-heart\"></i><span>menu 3
         </span><i class=\"k-arrow ion-ios-arrow-down\"></i></div><div class=\"k-show-height\"><div class=\"k-menu k-vertical\"><div class=\"k-menu-item\"><div class=\"k-title\"><span>sub menu 1</span></div></div><div class=\"k-menu-item\"><div class=\"k-title\"><span>sub menu 2</span></div></div><div class=\"k-menu-item k-disabled\"><div class=\"k-title\"><span>sub menu 3</span></div></div><div class=\"k-menu-item\"><div class=\"k-title\"><span>sub menu 4</span></div></div></div></div></div><div class=\"k-menu-item\"><div class=\"k-title\"><i class=\"k-icon ion-gear-b\"></i><span>menu 4
         </span><i class=\"k-arrow ion-ios-arrow-down\"></i></div><div class=\"k-show-height\" style=\"height: 0px; display: none;\"><div class=\"k-menu k-vertical\"><div class=\"k-menu-item\"><div class=\"k-title\"><span>sub menu 1</span></div></div><div class=\"k-menu-item\"><div class=\"k-title\"><span>sub menu 2</span></div></div></div></div></div></div></div>"
 ```
@@ -2769,7 +2799,7 @@
 ####     `Timepicker range`
 
 ```
-"<div><div><div class=\"k-datepicker k-range k-time-picker\" tabindex=\"0\"><div class=\"k-input k-with-prefix k-clearable\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-clock-outline\"></i></div><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"开始时间 ~ 结束时间\" tabindex=\"-1\"><div class=\"k-suffix\"><i class=\"k-clear k-icon ion-ios-close\"></i> </div></div></div><!--placeholder--></div>
+"<div><div><div class=\"k-datepicker k-range k-time-picker\" tabindex=\"0\"><div class=\"k-input k-with-prefix k-clearable\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-clock-outline\"></i></div><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"开始时间 ~ 结束时间\" tabindex=\"-1\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> </div></div></div><!--placeholder--></div>
     You selected: null
 </div></div>"
 ```
@@ -2787,7 +2817,7 @@
 ####     `Timepicker stepRange`
 
 ```
-"<div><div><div class=\"k-datepicker k-range k-time-picker\" tabindex=\"0\"><div class=\"k-input k-with-prefix k-clearable\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-clock-outline\"></i></div><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"开始时间 ~ 结束时间\" tabindex=\"-1\"><div class=\"k-suffix\"><i class=\"k-clear k-icon ion-ios-close\"></i> </div></div></div><!--placeholder--></div>
+"<div><div><div class=\"k-datepicker k-range k-time-picker\" tabindex=\"0\"><div class=\"k-input k-with-prefix k-clearable\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-clock-outline\"></i></div><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"开始时间 ~ 结束时间\" tabindex=\"-1\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> </div></div></div><!--placeholder--></div>
     You selected: null
 </div></div>"
 ```
@@ -2874,8 +2904,8 @@
 
 ```
 "<div><div class=\"k-transfer\"><div class=\"k-panel\"><div class=\"k-title\"><div class=\"k-count\">0 /
-                5</div><label class=\"k-checkbox c-ellipsis\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span><span class=\"k-text\">请选择</span></label></div><div class=\"k-input k-small k-with-prefix k-clearable\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-search\"></i></div><input class=\"k-inner\" type=\"text\" placeholder=\"请输入\"><div class=\"k-suffix\"><i class=\"k-clear k-icon ion-ios-close\"></i> </div></div></div><div class=\"k-list\"><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名0</div><p>前端服务器0 | 192.168.1.0</p></div></span></label></div><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名1</div><p>前端服务器1 | 192.168.1.1</p></div></span></label></div><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名2</div><p>前端服务器2 | 192.168.1.2</p></div></span></label></div><div class=\"k-item k-disabled\"><label class=\"k-checkbox k-disabled\"><span class=\"k-wrapper\"><input type=\"checkbox\" disabled=\"\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名3</div><p>前端服务器3 | 192.168.1.3</p></div></span></label></div><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名4</div><p>前端服务器4 | 192.168.1.4</p></div></span></label></div></div></div><div class=\"k-arrows\"><button class=\"k-btn k-primary k-btn-icon k-large k-circle k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"k-icon ion-ios-arrow-left\"></i></button><button class=\"k-btn k-primary k-btn-icon k-large k-circle k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"k-icon ion-ios-arrow-right\"></i></button></div><div class=\"k-panel\"><div class=\"k-title\"><div class=\"k-count\">0 /
-                0</div><label class=\"k-checkbox c-ellipsis\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span><span class=\"k-text\">已选择</span></label></div><div class=\"k-input k-small k-with-prefix k-clearable\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-search\"></i></div><input class=\"k-inner\" type=\"text\" placeholder=\"请输入\"><div class=\"k-suffix\"><i class=\"k-clear k-icon ion-ios-close\"></i> </div></div></div><div class=\"k-list\"></div></div></div></div>"
+                5</div><label class=\"k-checkbox c-ellipsis\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span><span class=\"k-text\">请选择</span></label></div><div class=\"k-input k-small k-with-prefix k-clearable\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-search\"></i></div><input class=\"k-inner\" type=\"text\" placeholder=\"请输入\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> </div></div></div><div class=\"k-list\"><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名0</div><p>前端服务器0 | 192.168.1.0</p></div></span></label></div><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名1</div><p>前端服务器1 | 192.168.1.1</p></div></span></label></div><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名2</div><p>前端服务器2 | 192.168.1.2</p></div></span></label></div><div class=\"k-item k-disabled\"><label class=\"k-checkbox k-disabled\"><span class=\"k-wrapper\"><input type=\"checkbox\" disabled=\"\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名3</div><p>前端服务器3 | 192.168.1.3</p></div></span></label></div><div class=\"k-item\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"left\" value=\"[object Object]\"></span><span class=\"k-text\"><div><div>主机名4</div><p>前端服务器4 | 192.168.1.4</p></div></span></label></div></div></div><div class=\"k-arrows\"><button class=\"k-btn k-primary k-btn-icon k-large k-circle k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"k-icon ion-ios-arrow-left\"></i></button><button class=\"k-btn k-primary k-btn-icon k-large k-circle k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"k-icon ion-ios-arrow-right\"></i></button></div><div class=\"k-panel\"><div class=\"k-title\"><div class=\"k-count\">0 /
+                0</div><label class=\"k-checkbox c-ellipsis\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span><span class=\"k-text\">已选择</span></label></div><div class=\"k-input k-small k-with-prefix k-clearable\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-search\"></i></div><input class=\"k-inner\" type=\"text\" placeholder=\"请输入\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> </div></div></div><div class=\"k-list\"></div></div></div></div>"
 ```
 
 ####     `Transfer leftChecked`
