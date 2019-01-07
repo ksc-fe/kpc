@@ -45,6 +45,8 @@ export default class Input extends Intact {
             width: undefined,
             tabindex: undefined,
             autocomplete: undefined,
+
+            _width: 1,
         }
     }
 
@@ -61,7 +63,7 @@ export default class Input extends Intact {
     _adjustWidth() {
         if (this.get('autoWidth')) {
             const width = this.refs.fake.offsetWidth || 1;
-            this.refs.input.style.width = `${width + 1}px`;
+            this.set('_width', width);
         }
     }
 
@@ -90,12 +92,6 @@ export default class Input extends Intact {
 
     _proxyEvent(name, e) {
         this.trigger(name, e);
-    }
-
-    _destroy() {
-        if (this.get('autoWidth')) {
-            this.input.style.width = '';
-        }
     }
 }
 

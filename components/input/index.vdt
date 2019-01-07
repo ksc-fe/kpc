@@ -4,7 +4,7 @@ import {addStyle, isTextChildren} from '../utils';
 const {
     type, name, value, placeholder, tabindex,
     readonly, clearable, disabled, size, 
-    rows, spellcheck, defaultValue, style,
+    rows, spellcheck, defaultValue, style, _width,
     className, autoWidth, fluid, width, autocomplete,
 } = self.get();
 
@@ -70,6 +70,7 @@ const wrapperEvents = [
             tabindex={{ tabindex }}
             autocomplete={{ autocomplete }}
             {{ ...events }}
+            style={{ autoWidth ? {width: _width + 'px'} : undefined }}
         />
         <textarea v-else 
             class="k-inner k-textarea"
