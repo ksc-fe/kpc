@@ -18,6 +18,7 @@ sidebar: doc
 | limit | 页面条数 | `Number` | `10` |
 | limits | 页面条数 | `Array<Number>` | `[10, 20, 50]` |
 | noBorder | 是否展示无边框样式，默认有边框 | `Boolean` | `false` |
+| simple | 是否展示简洁样式 | `Boolean` | `Boolean` |
 
 
 # 方法
