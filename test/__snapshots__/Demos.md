@@ -1461,6 +1461,12 @@
 "<div class=\"k-upload\"><input class=\"c-hidden\" type=\"file\" multiple=\"\"><div class=\"k-handle\"><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>点击上传</span></button></div><div class=\"k-tip\">只能上传JPG/PNG格式文件，且不超过500kb</div><div class=\"k-files\"></div><!--placeholder--></div>"
 ```
 
+####     `Upload directory`
+
+```
+"<div class=\"k-upload\"><input class=\"c-hidden\" type=\"file\" directory=\"\" webkitdirectory=\"\"><div class=\"k-handle\"><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>点击上传</span></button></div><div class=\"k-files\"></div><!--placeholder--></div>"
+```
+
 ####     `Upload drag`
 
 ```
@@ -2960,6 +2966,12 @@
 
 ```
 "<div><div class=\"k-upload\"><input class=\"c-hidden\" type=\"file\" multiple=\"\"><div class=\"k-handle\"><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>点击上传</span></button></div><div class=\"k-tip\">只能上传JPG/PNG格式文件，且不超过500kb</div><div class=\"k-files\"></div><!--placeholder--></div></div>"
+```
+
+####     `Upload directory`
+
+```
+"<div><div class=\"k-upload\"><input class=\"c-hidden\" type=\"file\" directory=\"\" webkitdirectory=\"\"><div class=\"k-handle\"><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>点击上传</span></button></div><div class=\"k-files\"></div><!--placeholder--></div></div>"
 ```
 
 ####     `Upload drag`
