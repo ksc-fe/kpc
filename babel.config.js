@@ -14,6 +14,7 @@ module.exports = function(api) {
                 },
                 "useBuiltIns": "usage",
                 // "modules": process.env.BUILD ? false : "cjs",
+                "modules": "cjs",
                 // "debug": true
             }], 
             "@babel/preset-react"
