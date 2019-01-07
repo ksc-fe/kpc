@@ -7,7 +7,8 @@ import Icon from '../icon';
 const {
     total, current, limit, limits, 
     className, showTotal, showGoto,
-    counts, size, noBorder, ...rest
+    counts, size, noBorder, simple,
+    ...rest
 } = self.get();
 
 if (!total) return <!-- pagination -->
@@ -17,10 +18,11 @@ const classNameObj = {
     [className]: className,
     [`k-${size}`]: size !== 'default',
     ['k-no-border']: noBorder,
+    ['k-simple']: simple,
 };
 
 let type = 'default';
-if (noBorder) {
+if (noBorder || simple) {
     type = 'none';
 }
 
@@ -50,41 +52,52 @@ const paginationDot = function(callback) {
                 let prevPage = current - 1;
                 let nextPage = current + 1;
 
-                if (totalPages > counts) {
-                    if (current <= minCount) {
-                        const max = counts - 2;
-                        for (let i = 1; i <= max; i++) {
-                            items.push(paginationButton(i));
-                        }
-                        items.push(paginationDot(self.fastNext));
-                        items.push(paginationButton(totalPages));
-                    } else if (current > minCount && current <= maxCount) {
-                        items.push(paginationButton(1));
-                        items.push(paginationDot(self.fastPrev));
+                if (!simple) {
+                    if (totalPages > counts) {
+                        if (current <= minCount) {
+                            const max = counts - 2;
+                            for (let i = 1; i <= max; i++) {
+                                items.push(paginationButton(i));
+                            }
+                            items.push(paginationDot(self.fastNext));
+                            items.push(paginationButton(totalPages));
+                        } else if (current > minCount && current <= maxCount) {
+                            items.push(paginationButton(1));
+                            items.push(paginationDot(self.fastPrev));
 
-                        const midCount = counts - 4;
-                        const mid = Math.floor(midCount / 2);
-                        const min = current - mid;
-                        const max = midCount % 2 === 1 ? current + mid : current + mid - 1;
-                        for (let i = min; i <= max; i++) {
-                            items.push(paginationButton(i));
-                        }
+                            const midCount = counts - 4;
+                            const mid = Math.floor(midCount / 2);
+                            const min = current - mid;
+                            const max = midCount % 2 === 1 ? current + mid : current + mid - 1;
+                            for (let i = min; i <= max; i++) {
+                                items.push(paginationButton(i));
+                            }
 
-                        items.push(paginationDot(self.fastNext));
-                        items.push(paginationButton(totalPages));
+                            items.push(paginationDot(self.fastNext));
+                            items.push(paginationButton(totalPages));
+                        } else {
+                            items.push(paginationButton(1));
+                            items.push(paginationDot(self.fastPrev));
+
+                            const min = totalPages - counts + 3;
+                            for (let i = min; i <= totalPages; i++) {
+                                items.push(paginationButton(i));
+                            }
+                        }
                     } else {
-                        items.push(paginationButton(1));
-                        items.push(paginationDot(self.fastPrev));
-
-                        const min = totalPages - counts + 3;
-                        for (let i = min; i <= totalPages; i++) {
+                        for (let i = 1; i <= totalPages; i++) {
                             items.push(paginationButton(i));
                         }
                     }
                 } else {
-                    for (let i = 1; i <= totalPages; i++) {
-                        items.push(paginationButton(i));
-                    }
+                    items = [
+                        <Input size={{ size === 'mini' || size === 'small' ? 'mini' : 'small' }}
+                            autoWidth
+                            value={{ current }}
+                            ev-change={{ self._goto }}
+                        />,
+                        <span class="k-text"> / {{ totalPages }}</span>,
+                    ];
                 }
 
                 items;
@@ -96,20 +109,22 @@ const paginationDot = function(callback) {
         ><Icon class="ion-ios-arrow-right" /></Button>
     </ButtonGroup>
 
-    <div class="k-limits">
-        <Select v-model="limit" allowUnmatch
-            data={{ limits.map(item => {
-                return {'value': item, 'label': _$('{n} 条 / 页', {n: item})};
-            }) }}
-            size={{ size }}
-        />
-    </div>
+    <template v-if={{ !simple }}>
+        <div class="k-limits">
+            <Select v-model="limit" allowUnmatch
+                data={{ limits.map(item => {
+                    return {'value': item, 'label': _$('{n} 条 / 页', {n: item})};
+                }) }}
+                size={{ size }}
+            />
+        </div>
 
-    <div class="k-goto" v-if={{ showGoto }}>
-        {{ _$('跳至') }}<Input size={{ size }} value={{ current }}
-            ev-change={{ self._goto }}
-        />{{ _$('页') }}
-    </div>
+        <div class="k-goto" v-if={{ showGoto }}>
+            {{ _$('跳至') }}<Input size={{ size }} value={{ current }}
+                ev-change={{ self._goto }}
+            />{{ _$('页') }}
+        </div>
 
-    <div v-if={{ showTotal }} class="k-total">{{ _$('共 {n} 条', {n: total}) }}</div>
+        <div v-if={{ showTotal }} class="k-total">{{ _$('共 {n} 条', {n: total}) }}</div>
+    </template>
 </div>
