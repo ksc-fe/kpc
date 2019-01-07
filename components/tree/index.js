@@ -15,6 +15,8 @@ export default class Tree extends Intact {
         checkbox: Boolean,
         load: Function,
         filter: Function,
+        selectedKeys: Array,
+        multiple: Boolean,
     };
 
     defaults() {
@@ -25,12 +27,15 @@ export default class Tree extends Intact {
             checkedKeys: undefined,
             load: undefined,
             filter: undefined,
+            selectedKeys: undefined,
+            multiple: false,
         }
     }
 
     _init() {
         this.checkedKeys = new Set();
         this.expandedKeys = new Set();
+        this.selectedKeys = new Set();
         this.root = Node.createNode({}, null, this);
 
         this.on('$receive:checkedKeys', () => {
@@ -42,6 +47,9 @@ export default class Tree extends Intact {
             this.expandedKeys = new Set(this.get('expandedKeys'));
         });
         this.on('$receive:filter', this._mappingKeys);
+        this.on('$receive:selectedKeys', () => {
+            this.selectedKeys = new Set(this.get('selectedKeys'));
+        });
     }
 
     _mappingKeys() {
@@ -82,6 +90,20 @@ export default class Tree extends Intact {
         node.updateUpward();
 
         this.set('checkedKeys', Array.from(this.checkedKeys));
+    }
+
+    toggleSelect(key) {
+        const selectedKeys = this.selectedKeys;
+        const multiple = this.get('multiple');
+        if (selectedKeys.has(key)) {
+            selectedKeys.delete(key);
+        } else {
+            if (!multiple) {
+                selectedKeys.clear();
+            }
+            selectedKeys.add(key);
+        }
+        this.set('selectedKeys', Array.from(selectedKeys));
     }
 
     _updateCheckedKeys(node) {
@@ -128,7 +150,32 @@ export default class Tree extends Intact {
         return data;
     }
 
+    getSelectedData() {
+        const data = [];
+        const selectedKeys = this.selectedKeys;
+        const size = selectedKeys.size;
+        if (!size) return data;
+
+        let count = 0;
+        const loop = (children) => {
+             for (let i = 0; i < children.length; i++) {
+                const node = children[i];
+                if (selectedKeys.has(node.key)) {
+                    data.push(node.data);
+                    count++;
+                }
+                if (count === size) return;
+                if (node.children) {
+                    loop(node.children);
+                }
+            }
+        }
+        loop(this.root.children);
+        return data;
+    }
+
     _onClick(node, e) {
+        this.toggleSelect(node.key);
         this.trigger('click:node', node, e);
     }
 

@@ -7,8 +7,8 @@
     .k-label
         > .k-text
             vertical-align middle
-            &:hover
-                color $tree-hover-color 
+            transition background $transition
+            padding $tree-text-padding 
     .k-leaf
         padding-left $tree-leaf-padding-left
         .k-checkbox
@@ -23,6 +23,10 @@
         transition transform $transition
     .k-node
         cursor pointer
+        &:not(.k-disabled)
+            > .k-label
+                .k-text:hover
+                    color $tree-hover-color 
         .k-node
             padding-left $tree-node-node-padding-left
             overflow hidden
@@ -32,9 +36,15 @@
                 transform rotate(0)
         // disabled
         &.k-disabled
+            cursor not-allowed
             .k-label
             .k-icon
                 color $tree-disabled-color 
+        // selected
+        &.k-selected
+            > .k-label .k-text
+                background $tree-selected-text-bg-color
+                border-radius $tree-selected-text-border-radius
     // checkbox
     .k-checkbox
         margin-right $tree-checkbox-margin-right

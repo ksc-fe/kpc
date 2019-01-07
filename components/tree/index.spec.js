@@ -3,6 +3,7 @@ import CheckboxDemo from '~/components/tree/demos/checkbox';
 import LoadingDemo from '~/components/tree/demos/loading';
 import CustomDemo from '~/components/tree/demos/custom';
 import FilterableDemo from '~/components/tree/demos/filterable';
+import SelectDemo from '~/components/tree/demos/select';
 import {mount, unmount} from 'test/utils';
 
 describe('Tree', () => {
@@ -122,5 +123,17 @@ describe('Tree', () => {
                 done();
             }, 500)
         }, 500);
+    });
+
+    it('select', () => {
+        instance = mount(SelectDemo);
+
+        expect(instance.refs.tree.getSelectedData().length).to.eql(1);
+        const [, , text1, text2] = instance.element.querySelectorAll('.k-text');
+        text1.click();
+        expect(instance.refs.tree.getSelectedData().length).to.eql(2);
+        text1.click();
+        text2.click();
+        expect(instance.refs.tree.getSelectedData().length).to.eql(0);
     });
 });

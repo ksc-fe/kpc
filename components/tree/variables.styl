@@ -1,14 +1,20 @@
 @require('../../styles/themes/default.styl')
+@require('../../styles/mixin.styl')
 
 $tree-font-size := inherit
 $tree-line-height := unit(26 / 14, rem)
 $tree-hover-color := $primary-color
 $tree-disabled-color := $disabled-color
 
+$tree-text-padding := unit(3 / 14, rem)
 $tree-node-node-padding-left := unit(16 / 14, rem)
-$tree-icon-width := unit(24 / 14, rem)
+$tree-icon-width := unit(21 / 14, rem)
 $tree-icon-color := $text-color
 $tree-checkbox-margin-right := unit(8 / 14, rem)
 
 $tree-leaf-padding-left := $tree-node-node-padding-left
 $tree-leaf-checkbox-margin-left := $tree-checkbox-margin-right 
+
+// selected
+$tree-selected-text-border-radius := $border-radius
+$tree-selected-text-bg-color := palette($primary-color, -3)

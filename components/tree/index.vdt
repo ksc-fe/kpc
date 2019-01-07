@@ -2,13 +2,14 @@ import Checkbox from '../checkbox';
 import {expandAnimationCallbacks} from '../utils';
 
 const {checkbox, load, className, style} = self.get();
-const {expandedKeys} = self;
+const {expandedKeys, selectedKeys} = self;
 
 const TreeNodes = ({data}) => {
     return __u.map(data, value => {
         if (!value.filter) return;
 
         const expanded = expandedKeys.has(value.key);
+        const selected = selectedKeys.has(value.key);
 
         return <Animate
             a:move={{ false }}
@@ -17,6 +18,7 @@ const TreeNodes = ({data}) => {
                 "k-node": true,
                 "k-expanded": expanded, 
                 "k-disabled": value.data.disabled,
+                "k-selected": selected,
             } }}
             key={{ value.key }}
         >

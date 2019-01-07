@@ -11,7 +11,9 @@ sidebar: doc
 | --- | --- | --- | --- |
 | data | 要渲染的数据 | `Object` | `undefined` |
 | expandedKeys | 通过`key`指定展开的数据节点 | `Array` | `undefined` |
-| checkedKeys | 通过`key`指定选中的数据节点 | `Array` | `undefined` |
+| checkedKeys | 通过`key`指定勾选的数据节点 | `Array` | `undefined` |
+| selectedKeys | 通过`key`指定选中的数据节点 | `Array` | `undefined` |
+| multiple | `selectedKeys`是否支持多选 | `Boolean` | `false` |
 | checkbox | 是否展示复选框 | `Boolean` | `false` |
 | load | 指定异步加载节点数据的函数，该函数通过`Promise`返回数组来添加子节点数据 | `Function` | `undefined` |
 | filter | 指定节点过滤函数，返回`true`则展示，否则过滤掉 | `Function` | `undefined` |
@@ -56,9 +58,11 @@ sidebar: doc
 
 | 方法名 | 说明 | 参数 | 返回值 |
 | --- | --- | --- | --- |
-| getCheckedData | 获取选中的节点数据 | `onlyLeaf` 是否只返回叶子节点 | `Array` |
+| getCheckedData | 获取勾选的节点数据 | `onlyLeaf` 是否只返回叶子节点 | `Array` |
+| getSelectedData | 获取选中的节点数据 | - | `Array` |
 | expand | 展开节点 | `key` 要展开的节点的key | `undefined` |
 | shrink | 收起节点 | `key` 要收起的节点的key | `undefined` |
+| toggleSelect | 选中或取消选中节点 | `key` 节点的key | `undefined` |
 
 # 事件
 
