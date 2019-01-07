@@ -1,0 +1,24 @@
+import {addStyle} from '../utils';
+
+const {className, style, size, color, ref, key, ...rest} = self.get();
+
+const classNameObj = {
+    "k-icon": true,
+    [className]: className,
+};
+const _style = {};
+if (/^\d+$/.test(size)) {
+    _style.fontSize = size + 'px'; 
+} else if (size !== 'default') {
+    classNameObj[`k-${size}`] = true;
+}
+if (self.colors.indexOf(color) > -1) {
+    classNameObj[`k-color-${color}`] = color !== 'default';
+} else {
+    _style.color = color;
+}
+
+<i class={{ classNameObj }}
+    style={{ addStyle(style, _style) }}
+    {{ ...rest }}
+></i>

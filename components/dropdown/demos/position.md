@@ -8,11 +8,12 @@ order: 2
 ```vdt
 import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
 import Button from 'kpc/components/button';
+import Icon from 'kpc/components/icon';
 
 <div>
     <Dropdown position={{ {my: 'left top', at: 'left bottom+5'} }}>
         <Button type="primary">
-            left <i class="k-icon ion-arrow-down-b"></i>
+            left <Icon class="ion-arrow-down-b" size="small" />
         </Button>
         <DropdownMenu>
             <DropdownItem>item 1</DropdownItem>
@@ -23,7 +24,7 @@ import Button from 'kpc/components/button';
 
     <Dropdown position={{ {my: 'right top', at: 'right bottom+5'} }}>
         <Button type="primary">
-            right <i class="k-icon ion-arrow-down-b"></i>
+            right <Icon class="ion-arrow-down-b" size="small" />
         </Button>
         <DropdownMenu>
             <DropdownItem>item 1</DropdownItem>
@@ -34,7 +35,7 @@ import Button from 'kpc/components/button';
 
     <Dropdown position={{ {my: 'center bottom-5', at: 'center top'} }}>
         <Button type="primary">
-            top center <i class="k-icon ion-arrow-down-b"></i>
+            top center <Icon class="ion-arrow-down-b" size="small" />
         </Button>
         <DropdownMenu>
             <DropdownItem>item 1</DropdownItem>

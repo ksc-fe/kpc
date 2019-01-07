@@ -8,11 +8,12 @@ order: 3
 ```vdt
 import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
 import Button from 'kpc/components/button';
+import Icon from 'kpc/components/icon';
 
 <div>
     <Dropdown disabled>
         <Button type="primary">
-            disabled <i class="k-icon ion-arrow-down-b"></i>
+            disabled <Icon class="ion-arrow-down-b" size="small" />
         </Button>
         <DropdownMenu>
             <DropdownItem>item 1</DropdownItem>
@@ -23,7 +24,7 @@ import Button from 'kpc/components/button';
 
     <Dropdown>
         <Button type="primary">
-            disabled item<i class="k-icon ion-arrow-down-b"></i>
+            disabled item<Icon class="ion-arrow-down-b" size="small" />
         </Button>
         <DropdownMenu>
             <DropdownItem>item 1</DropdownItem>

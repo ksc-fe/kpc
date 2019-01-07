@@ -9,11 +9,12 @@ order: 4
 ```vdt
 import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
 import Button from 'kpc/components/button';
+import Icon from 'kpc/components/icon';
 
 <div>
     <Dropdown trigger="click">
         <Button type="primary">
-            click <i class="k-icon ion-arrow-down-b"></i>
+            click <Icon class="ion-arrow-down-b" size="small" />
         </Button>
         <DropdownMenu>
             <DropdownItem>item 1</DropdownItem>

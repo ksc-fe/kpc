@@ -7,6 +7,7 @@ order: 4
 
 ```vdt
 import Button from 'kpc/components/button';
+import Icon from 'kpc/components/icon';
 
 <div>
     <Button size="large">large</Button>
@@ -14,10 +15,10 @@ import Button from 'kpc/components/button';
     <Button size="small">small</Button>
     <Button size="mini">mini</Button>
     <br /><br />
-    <Button icon circle size="large"><i class="k-icon ion-ios-search"></i></Button>
-    <Button icon circle><i class="k-icon ion-ios-search"></i></Button>
-    <Button icon circle size="small"><i class="k-icon ion-ios-search"></i></Button>
-    <Button icon circle size="mini"><i class="k-icon ion-ios-search"></i></Button>
+    <Button icon circle size="large"><Icon class="ion-ios-search" size="large" /></Button>
+    <Button icon circle><Icon class="ion-ios-search" /></Button>
+    <Button icon circle size="small"><Icon class="ion-ios-search" size="small" /></Button>
+    <Button icon circle size="mini"><Icon class="ion-ios-search" size="mini" /></Button>
 </div>
 ```
 

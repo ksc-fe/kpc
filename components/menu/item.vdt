@@ -3,6 +3,7 @@ import {mapChildren, expandAnimationCallbacks, isStringOrNumberNotEmpty} from '.
 import Dropdown from '../dropdown';
 import {Tooltip} from '../tooltip';
 import VShow from './vShow';
+import Icon from '../icon';
 
 const {
     children, key, className, style, dot,
@@ -45,7 +46,7 @@ const classNameObj = {
 
 const title = (
     <div class="k-title" ev-click={{ self._onClick.bind(self, subMenuVNode) }}>
-        <i class="k-icon k-dot ion-record" v-if={{ dot }}></i>
+        <Icon class="k-dot ion-record" v-if={{ dot }} />
         {{ titleVNodes }}
         <i class="k-arrow ion-ios-arrow-down" v-if={{ subMenuVNode }}></i>
         {{ /* 

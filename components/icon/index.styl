@@ -1,0 +1,13 @@
+@require('./variables.styl')
+
+.k-icon
+    font-size $icon-font-size
+    &:before
+        font-size inherit
+    for size in large small mini
+        &.k-{size}
+            font-size lookup('$icon-' + size + '-font-size')
+
+    for color in primary warning danger success
+        &.k-color-{color}
+            color lookup('$' + color + '-color')

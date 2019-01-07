@@ -1,3 +1,5 @@
+import Icon from '../icon';
+
 const {
     type, className, percent, status, size,
     isOuterText, isInnerText, ref, key, strokeWidth,
@@ -65,10 +67,10 @@ const classNameObj = {
     <div class="k-text" v-else-if={{ isOuterText }}>
         <span v-if={{ status !== 'success' && status !== 'error' }}>{{ percent }}%</span>
         <span v-else-if={{ status === 'success' }}>
-            <i class="k-icon ion-ios-checkmark-outline"></i>
+            <Icon class="ion-ios-checkmark-outline" />
         </span>
         <span v-else-if={{ status === 'error' }}>
-            <i class="k-icon ion-ios-close-outline"></i>
+            <Icon class="ion-ios-close-outline" />
         </span>
     </div>
 </div>

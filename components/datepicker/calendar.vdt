@@ -5,6 +5,7 @@ import {Row, Col} from '../grid';
 import {range, strPad, _$} from '../utils';
 import {isEqual, isLT, isGT, getDateString, getTimeString, createDate} from './utils';
 import {Tabs, Tab} from '../tabs';
+import Icon from '../icon';
 
 const {
     value, maxDate, minDate, dayClassNames,
@@ -54,15 +55,15 @@ const panel = type === 'year' ? map.YYYY : format.map(item => map[item]);
                     tagName="div" tabindex={{ null }} 
                     ev-click={{ self.prevYear }}
                 >
-                    <i class="k-icon ion-ios-arrow-left"></i>
-                    <i class="k-icon ion-ios-arrow-left"></i>
+                    <Icon class="ion-ios-arrow-left" size="small" />
+                    <Icon class="ion-ios-arrow-left" size="small" />
                 </Button>
                 <Button icon type="none" size="small" class="k-prev"
                     tagName="div" tabindex={{ null }} 
                     ev-click={{ self.prevMonth }}
                     v-if={{ type !== 'year' }}
                 >
-                    <i class="k-icon ion-ios-arrow-left"></i>
+                    <Icon class="ion-ios-arrow-left" size="small" />
                 </Button>
             </div>
             <div class="k-right-btns">
@@ -70,15 +71,15 @@ const panel = type === 'year' ? map.YYYY : format.map(item => map[item]);
                     tagName="div" tabindex={{ null }} 
                     ev-click={{ self.nextYear }}
                 >
-                    <i class="k-icon ion-ios-arrow-right"></i>
-                    <i class="k-icon ion-ios-arrow-right"></i>
+                    <Icon class="ion-ios-arrow-right" size="small" />
+                    <Icon class="ion-ios-arrow-right" size="small" />
                 </Button>
                 <Button icon type="none" size="small" class="k-next"
                     tagName="div" tabindex={{ null }} 
                     ev-click={{ self.nextMonth }}
                     v-if={{ type !== 'year' }}
                 >
-                    <i class="k-icon ion-ios-arrow-right"></i>
+                    <Icon class="ion-ios-arrow-right" size="small" />
                 </Button>
             </div>
             <div class="k-text-wrapper"

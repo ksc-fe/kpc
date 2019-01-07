@@ -1,4 +1,5 @@
 import {isStringOrNumberNotEmpty} from '../utils';
+import Icon from '../icon';
 
 let {
     type, className, size, icon, circle, ref, key, tabindex,
@@ -53,11 +54,11 @@ if (!icon && Array.isArray(children)) {
             }
             // whether the icon is on the left side or right
             if (index === 0) {
-                if (child.className && child.className.indexOf('icon') > -1) {
+                if (child.tag === Icon || child.className && child.className.indexOf('icon') > -1) {
                     classNameObj['k-icon-left'] = true;
                 }
             } else if (index === children.length - 1) {
-                if (child.className && child.className.indexOf('icon') > -1) {
+                if (child.tag === Icon || child.className && child.className.indexOf('icon') > -1) {
                     classNameObj['k-icon-right'] = true;
                 }
             }
@@ -68,6 +69,19 @@ if (!icon && Array.isArray(children)) {
     children = <span>{{ children }}</span>
 }
 
+/* const loadingSizeMap = { */
+    /* 'large': 'default', */
+    /* 'default': 'small', */
+    /* 'small': 'mini', */
+    /* 'mini': 'mini' */
+/* }; */
+const loadingIcon = (
+    <Icon class="ion-load-c icon-loading" 
+        size={{ size /*loadingSizeMap[size]*/ }}
+        key="k-loading"
+    />
+);
+
 <Button class={{ classNameObj }} {{ ...rest }} {{ ...tagProps }}
     ev-click={{ self._onClick }}
     tabindex={{ disabled || loading ? "-1" : tabindex }}
@@ -75,8 +89,8 @@ if (!icon && Array.isArray(children)) {
 >
     {{ loading ? 
         classNameObj['k-icon-right'] ?
-            [children, <i class="k-icon ion-load-c icon-loading" key="k-loading"></i>] :
-            [<i class="k-icon ion-load-c icon-loading" key="k-loading"></i>, children] :
+            [children, loadingIcon] :
+            [loadingIcon, children] :
         children 
     }}
     <input type={{ _checkType }} v-if={{ _checkType !== 'none' }}

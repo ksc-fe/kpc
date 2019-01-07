@@ -7,17 +7,15 @@ order: 1
 此时你可以将任意图标元素作为它的子元素。`circle`属性可以展示圆形图标。如果
 你不需要宽高相等的图标按钮，而仅仅是带图标的文字按钮，去掉`icon`属性即可。
 
-> 请给图标元素添加`k-icon`类名，用于定位图标元素，以便按钮变为`loading`状态
-> 时能够将它替换为loading图标
-
 ```vdt
 import Button from 'kpc/components/button';
+import Icon from 'kpc/components/icon';
 
 <div>
-    <Button icon><i class="ion-ios-search"></i></Button>
-    <Button icon circle><i class="ion-ios-search"></i></Button>
-    <Button type="primary"><i class="k-icon ion-ios-search"></i>搜索</Button>
-    <Button circle type='primary'><i class="k-icon ion-ios-search"></i>搜索</Button>
+    <Button icon><Icon class="ion-ios-search" /></Button>
+    <Button icon circle><Icon class="ion-ios-search" /></Button>
+    <Button type="primary"><Icon class="ion-ios-search" size="small" />搜索</Button>
+    <Button circle type='primary'><Icon class="ion-ios-search" size="small" />搜索</Button>
 </div>
 ```
 

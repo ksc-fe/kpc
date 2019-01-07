@@ -4,6 +4,7 @@ import {isStringOrNumber, getTextByChildren, addStyle, _$} from '../utils';
 import Option from './option';
 import OptionGroup from './group';
 import {Tabs, Tab} from '../tabs';
+import Icon from '../icon';
 
 const {
     className, clearable, data, value, multiple,
@@ -254,9 +255,9 @@ if (hasValue && labelObj.label == null && !labelObj.labels.length) {
                         a:transition="c-fade"
                     >
                         <span class="k-text">{{ item }}</span>
-                        <i class="k-icon ion-ios-close-empty"
+                        <Icon class="ion-ios-close-empty"
                             ev-click={{ self._delete.bind(self, value[index]) }}
-                        ></i>
+                        />
                     </Animate>
                     <Input v-if={{ filterable }}
                         value={{ keywords }}

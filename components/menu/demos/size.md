@@ -9,6 +9,7 @@ order: 4
 import {Menu, MenuItem} from 'kpc/components/menu';
 import {Switch} from 'kpc/components/switch';
 import {ButtonGroup, Button} from 'kpc/components/button';
+import Icon from 'kpc/components/icon';
 
 <div>
     <Switch on="收起" off="展开" v-model="isCollapse" width="60" />
@@ -26,11 +27,11 @@ import {ButtonGroup, Button} from 'kpc/components/button';
         size={{ self.get('size') }}
         type={{ self.get('type') }}
     >
-        <b:header><i class="k-icon ion-star"></i>Header</b:header>
-        <MenuItem key="1"><i class="k-icon ion-flag"></i>menu 1</MenuItem>
+        <b:header><Icon class="ion-star" />Header</b:header>
+        <MenuItem key="1"><Icon class="ion-flag" />menu 1</MenuItem>
         <MenuItem key="2" disabled dot>menu 2</MenuItem>
         <MenuItem key="3">
-            <i class="k-icon ion-heart"></i>menu 3
+            <Icon class="ion-heart" />menu 3
             <Menu>
                 <MenuItem key="3-1">sub menu 1</MenuItem>
                 <MenuItem key="3-2">sub menu 2</MenuItem>
@@ -44,7 +45,7 @@ import {ButtonGroup, Button} from 'kpc/components/button';
                 </MenuItem>
             </Menu>
         </MenuItem>
-        <MenuItem key="4"><i class="k-icon ion-gear-b"></i>menu 4</MenuItem>
+        <MenuItem key="4"><Icon class="ion-gear-b" />menu 4</MenuItem>
     </Menu>
 </div>
 ```

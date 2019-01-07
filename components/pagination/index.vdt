@@ -2,6 +2,7 @@ import Select from '../select';
 import Input from '../input';
 import {ButtonGroup, Button} from '../button';
 import {_$} from '../utils';
+import Icon from '../icon';
 
 const {
     total, current, limit, limits, 
@@ -41,7 +42,7 @@ const paginationDot = function(callback) {
             disabled={{ current <= 1 }}
             ev-click={{ self.prev }}
             type={{ type }}
-        ><i class="k-icon ion-ios-arrow-left"></i></Button>{{ 
+        ><Icon class="ion-ios-arrow-left" /></Button>{{ 
             do {
                 let items = [];
                 let minCount = Math.ceil(counts / 2);
@@ -92,7 +93,7 @@ const paginationDot = function(callback) {
             disabled={{ current >= totalPages }}
             ev-click={{ self.next }}
             type={{ type }}
-        ><i class="k-icon ion-ios-arrow-right"></i></Button>
+        ><Icon class="ion-ios-arrow-right" /></Button>
     </ButtonGroup>
 
     <div class="k-limits">

@@ -1,3 +1,4 @@
+import Icon from '../icon';
 import {addStyle, isTextChildren} from '../utils';
 
 const {
@@ -86,13 +87,13 @@ const wrapperEvents = [
             {{ ...events }}
         ></textarea>
         <div class="k-suffix" v-if={{ blocks.suffix || clearable }}>
-            <i v-if={{ clearable }}
+            <Icon v-if={{ clearable }}
                 class={{ {
-                    "k-clear k-icon ion-ios-close": true, 
+                    "k-clear ion-ios-close": true, 
                     "k-show": value,
                 } }}
                 ev-click={{ self.clear }}
-            ></i>{{ ' ' }}
+            />{{ ' ' }}
             <b:suffix />
         </div>
         <div v-if={{ autoWidth }} class="k-fake"

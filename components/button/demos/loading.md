@@ -5,8 +5,12 @@ order: 2
 
 添加`loading`属性，可以将按钮设为加载状态，此时按钮不可点。
 
+> 请给图标元素添加`k-icon`类名，或者使用`Icon`组件，用于定位图标元素，
+> 以便按钮变为`loading`状态时能够将它替换为loading图标
+
 ```vdt
 import Button from 'kpc/components/button';
+import Icon from 'kpc/components/icon';
 
 <div>
     <Button type="primary" loading>确认</Button>
@@ -19,15 +23,15 @@ import Button from 'kpc/components/button';
     <Button type="primary" 
         loading={{ self.get('loading2') }}
         ev-click={{ self.onClick.bind(self, 'loading2') }}
-    ><i class="k-icon ion-ios-search"></i>点击加载</Button>
+    ><Icon class="ion-ios-search" />点击加载</Button>
     <Button icon circle
         loading={{ self.get('loading3') }}
         ev-click={{ self.onClick.bind(self, 'loading3') }}
-    ><i class="k-icon ion-ios-search"></i></Button>
+    ><Icon class="ion-ios-search" /></Button>
     <Button type="primary" 
         loading={{ self.get('loading4') }}
         ev-click={{ self.onClick.bind(self, 'loading4') }}
-    >图标在右侧<i class="k-icon ion-ios-search"></i></Button>
+    >图标在右侧<Icon class="ion-ios-search" /></Button>
 </div>
 ```
 
