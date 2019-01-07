@@ -25,6 +25,7 @@ sidebar: doc
 | beforeUpload | 指定文件在开始上传之前的处理逻辑，如果该函数返回`false`，则取消上传，你也可以使用异步函数或返回`Promise`对象；组件会将当前文件(file)和文件列表(files)传给该函数 | `Function` | `() => true` |
 | beforeRemove | 指定文件在删除之前的处理逻辑，如果该函数返回`false`，则取消删除，你也可以使用异步函数或返回`Promise`对象；组件会将当前文件(file)和文件列表(files)传给该函数 | `Function` | `() => true` |
 | files | 所有已上传和待上传的文件列表 | `Array` | `[]` |
+| directory | 是否支持上传文件夹 [caniuse](https://caniuse.com/#feat=input-file-directory) | `Boolean` | `false` |
 
 # 扩展点
 

@@ -5,7 +5,7 @@ import {expandAnimationCallbacks, _$} from '../utils';
 
 const {
     className, style, accept, multiple, limit,
-    files, children, type, _dragOver,
+    files, children, type, _dragOver, directory
 } = self.get();
 
 const classNameObj = {
@@ -59,6 +59,8 @@ const CloseBtn = (props) => (
         ref="input" 
         ev-change={{ self._onInputChange}}
         multiple={{ multiple }}
+        directory={{ directory ? '' : undefined }}
+        webkitdirectory={{ directory ? '' : undefined }}
     />
 
     <Animate class="k-pictures" key="pictures" a:disabled v-if={{ type === 'gallery' }}>

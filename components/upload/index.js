@@ -29,6 +29,7 @@ export default class Upload extends Intact {
             limit: undefined,
             maxSize: undefined,
             defaultFiles: undefined,
+            directory: false,
 
             beforeUpload: () => true,
             beforeRemove: () => true,
@@ -55,6 +56,7 @@ export default class Upload extends Intact {
         defaultFiles: Array,
         beforeUpload: Function,
         beforeRemove: Function,
+        directory: Boolean,
     }
 
     _init() {
