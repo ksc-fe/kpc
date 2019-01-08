@@ -133,7 +133,7 @@
     "downloadjs": "^1.4.7",
     "enquire.js": "^2.1.6",
     "intact": "^2.4.7",
-    "intact-react": "^1.1.4",
+    "intact-react": "^1.1.8",
     "intact-vue": "^0.4.8",
     "resize-observer-polyfill": "^1.5.0"
   },

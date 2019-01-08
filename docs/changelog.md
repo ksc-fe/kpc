@@ -4,6 +4,28 @@ order: 99
 sidebar: doc
 ---
 
+## v0.8.0
+
+##### Core
+1. `Add` `TableColumn`支持`className`属性，用于给当前列所有单元格添加`class`来控制列样式 [#164](https://github.com/ksc-fe/kpc/issues/164)
+3. `Add` `Table`支持导出表格内容成`csv`格式并下载，而且支持自定义表格数据进行全量导出 [#171](https://github.com/ksc-fe/kpc/issues/171)
+5. `Add` 新增`Icon`组件，统一字体图标使用方式 [#169](https://github.com/ksc-fe/kpc/issues/169)
+6. `Add` `Upload`支持上传文件夹 [caniuse](https://caniuse.com/#feat=input-file-directory) [#168](https://github.com/ksc-fe/kpc/issues/168)
+7. `Add` `Tree`支持选中节点功能，通过`selectedKeys`控制，默认选中会高亮 [#167](https://github.com/ksc-fe/kpc/issues/167)
+9. `Add` `Pagination`支持简洁样式 [#177](https://github.com/ksc-fe/kpc/issues/177)
+4. `Fix` 修复babel@7不支持commonjs和es6 module混用，导致组件库入口文件`index.js`调用全量安装方法报错的问题 [#172](https://github.com/ksc-fe/kpc/issues/172)
+8. `Fix` 修复`Input`在自动宽度`autoWidth`情况下，去除`autoWidth`不能还原`Input`宽度的问题 [#178](https://github.com/ksc-fe/kpc/issues/178)
+10. `Fix` 修复`Select`内联模式`inline`情况下，存在背景色的问题 [#179](https://github.com/ksc-fe/kpc/issues/179)
+2. `Change` `Breadcrumb`废弃掉`separator`属性，改用`separator`扩展点代替，分隔符定制更灵活 [#165](https://github.com/ksc-fe/kpc/issues/165)
+11. `Change` 将`peerDependencies`依赖改为直接依赖`dependencies`，方便版本更新管理 [#174](https://github.com/ksc-fe/kpc/issues/174)
+
+##### React
+1. `Fix` `Select`修复不能展示已选`Option`文案的问题 [#170](https://github.com/ksc-fe/kpc/issues/170)
+
+##### Vue
+1. `Fix` `FormItem`在某些情况下不能进行表单验证的问题
+
+
 ## v0.7.9
 
 1. `Refactor` 升级babel@7进行构建，自动引入实例方法polyfill，提高兼容性 [#157](https://github.com/ksc-fe/kpc/issues/157)
