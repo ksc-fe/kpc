@@ -361,7 +361,7 @@ exports.Button = exports.default = Button;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546919608902
+      // 1546923182537
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -720,7 +720,7 @@ exports.Checkbox = exports.default = Checkbox;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546919610200
+      // 1546923183837
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1180,7 +1180,7 @@ exports.default = _default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546919613206
+      // 1546923186704
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -2352,7 +2352,7 @@ __webpack_require__("./components/grid/index.styl");
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546919608274
+      // 1546923181856
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -3091,6 +3091,8 @@ var _intact = _interopRequireDefault(__webpack_require__("intact"));
 
 var _index = _interopRequireDefault(__webpack_require__("./components/icon/index.vdt"));
 
+__webpack_require__("./styles/kpc.styl");
+
 __webpack_require__("./components/icon/index.styl");
 
 var _dec, _class, _init, _class2, _temp;
@@ -3136,7 +3138,7 @@ exports.Icon = exports.default = Icon;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546919610228
+      // 1546923184092
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -3391,7 +3393,7 @@ exports.Input = exports.default = Input;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546919612129
+      // 1546923185743
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -4690,7 +4692,7 @@ exports.Radio = exports.default = Radio;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546919615532
+      // 1546923189066
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5301,7 +5303,7 @@ exports.Select = exports.default = Select;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546919609997
+      // 1546923183665
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -6386,7 +6388,7 @@ exports.Tabs = exports.default = Tabs;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546919612195
+      // 1546923185805
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -6995,7 +6997,7 @@ exports.default = _class;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546919608466
+      // 1546923182060
       var cssReload = require("!../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -7276,7 +7278,7 @@ exports.default = _class;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546919608283
+      // 1546923181456
       var cssReload = require("!../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
