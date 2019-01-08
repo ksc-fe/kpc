@@ -11,6 +11,16 @@ const transitionend = {
 };
 
 export default class VShow extends Intact {
+    static propTypes = {
+        show: Boolean,
+    };
+
+    defaults() {
+        return {
+            show: false,
+        }
+    }
+
     template(data, vdt) {
         const h = vdt.miss.h;
         const _c = vdt.utils.className;
