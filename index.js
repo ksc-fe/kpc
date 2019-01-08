@@ -1,5 +1,5 @@
 /*!
- * kpc v0.7.10
+ * kpc v0.8.0
  *
  * Copyright (c) Kingsoft Cloud
  * Released under the MIT License
@@ -25,6 +25,7 @@ import {Drawer} from './components/drawer';
 import {Dropdown, DropdownMenu, DropdownItem} from './components/dropdown';
 import {Editable} from './components/editable';
 import {Form, FormItem} from './components/form';
+import {Icon} from './components/icon';
 import {Input} from './components/input';
 import {Link} from './components/link';
 import {Menu, MenuItem} from './components/menu';
@@ -73,6 +74,7 @@ export {
     Editable,
     Form,
     FormItem,
+    Icon,
     Input,
     Link,
     Menu,
@@ -129,6 +131,7 @@ const components = {
     Editable,
     Form,
     FormItem,
+    Icon,
     Input,
     Link,
     Menu,
@@ -164,7 +167,7 @@ const components = {
     Upload
 };
 
-export const version = '0.7.10';
+export const version = '0.8.0';
 
 /* generate end */
 
