@@ -361,7 +361,7 @@ exports.Button = exports.default = Button;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546947945834
+      // 1546948619350
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -720,7 +720,7 @@ exports.Checkbox = exports.default = Checkbox;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546947947694
+      // 1546948620701
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1180,7 +1180,7 @@ exports.default = _default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546947950284
+      // 1546948623807
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -2352,7 +2352,7 @@ __webpack_require__("./components/grid/index.styl");
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546947945199
+      // 1546948619907
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -3138,7 +3138,7 @@ exports.Icon = exports.default = Icon;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546947947760
+      // 1546948620724
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -3393,7 +3393,7 @@ exports.Input = exports.default = Input;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546947949362
+      // 1546948622699
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -4692,7 +4692,7 @@ exports.Radio = exports.default = Radio;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546947952480
+      // 1546948626002
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5303,7 +5303,7 @@ exports.Select = exports.default = Select;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546947946929
+      // 1546948620425
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -6388,7 +6388,7 @@ exports.Tabs = exports.default = Tabs;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546947949493
+      // 1546948622785
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -6868,10 +6868,6 @@ exports.default = void 0;
 
 var _getOwnPropertyDescriptor = _interopRequireDefault(__webpack_require__("@babel/runtime-corejs2/core-js/object/get-own-property-descriptor"));
 
-__webpack_require__("core-js/modules/web.dom.iterable");
-
-__webpack_require__("core-js/modules/es6.regexp.split");
-
 var _assign = _interopRequireDefault(__webpack_require__("@babel/runtime-corejs2/core-js/object/assign"));
 
 var _inheritsLoose2 = _interopRequireDefault(__webpack_require__("@babel/runtime-corejs2/helpers/inheritsLoose"));
@@ -6907,75 +6903,8 @@ function (_Layout) {
     });
   };
 
-  _proto._page1 = function _page1() {
-    this.set('current', 'one');
-  };
-
-  _proto._page2 = function _page2() {
-    this.set('current', 'two');
-  };
-
-  _proto._mountAA = function _mountAA() {
-    var self = this;
-    var X, Y, startX, startY, moveEndX, moveEndY;
-
-    window.onmousewheel = function (e) {
-      var data = e.wheelDelta || 0;
-      console.log(data);
-
-      if (data > 0) {
-        self.set('current', 'one');
-      } else if (data < 0) {
-        self.set('current', 'two');
-      } // debugger
-
-    };
-
-    window.ontouchstart = function (e) {
-      e.preventDefault();
-      startX = e.changedTouches[0].pageX;
-      startY = e.changedTouches[0].pageY;
-    };
-
-    window.ontouchmove = function (e) {
-      e.preventDefault();
-      moveEndX = e.changedTouches[0].pageX;
-      moveEndY = e.changedTouches[0].pageY;
-      X = moveEndX - startX;
-      Y = moveEndY - startY;
-
-      if (Math.abs(X) > Math.abs(Y) && X > 0) {
-        console.log("left 2 right");
-      } else if (Math.abs(X) > Math.abs(Y) && X < 0) {
-        console.log("right 2 left");
-      } else if (Math.abs(Y) > Math.abs(X) && Y > 0) {
-        self.set('current', 'one');
-        console.log("top 2 bottom");
-      } else if (Math.abs(Y) > Math.abs(X) && Y < 0) {
-        self.set('current', 'two');
-        console.log("bottom 2 top");
-      } else {
-        console.log("just touch");
-      }
-    }; // var one = document.querySelector('.pages');
-
-
-    var one = document.getElementById('page');
-
-    function addEvent(elem, type, showAll) {
-      type = type.split(' ');
-      type.forEach(function (item) {
-        elem.addEventListener(item, function (ev) {
-          console.log(item, showAll ? ev : ev.type);
-        });
-      });
-    }
-
-    addEvent(one, 'tap click touchstart touchmove touchend touchcancel swipe swipeLeft swipeRight swipeUp swipeDown longTap singleTap doubleTap mousewheel', true);
-  };
-
-  _proto._destroy = function _destroy() {
-    window.onmousewheel = null;
+  _proto._mount = function _mount() {
+    window.scrollTo(0, 0);
   };
 
   return _class2;
@@ -6997,7 +6926,7 @@ exports.default = _class;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546947945276
+      // 1546948619390
       var cssReload = require("!../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -7278,7 +7207,7 @@ exports.default = _class;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546947944783
+      // 1546948618386
       var cssReload = require("!../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
