@@ -361,7 +361,7 @@ exports.Button = exports.default = Button;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546930823203
+      // 1546947945834
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -720,7 +720,7 @@ exports.Checkbox = exports.default = Checkbox;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546930826380
+      // 1546947947694
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1180,7 +1180,7 @@ exports.default = _default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546930829670
+      // 1546947950284
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -2352,7 +2352,7 @@ __webpack_require__("./components/grid/index.styl");
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546930822523
+      // 1546947945199
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -3138,7 +3138,7 @@ exports.Icon = exports.default = Icon;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546930826425
+      // 1546947947760
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -3393,7 +3393,7 @@ exports.Input = exports.default = Input;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546930828693
+      // 1546947949362
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -4692,7 +4692,7 @@ exports.Radio = exports.default = Radio;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546930831774
+      // 1546947952480
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -5303,7 +5303,7 @@ exports.Select = exports.default = Select;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546930826003
+      // 1546947946929
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -6388,7 +6388,7 @@ exports.Tabs = exports.default = Tabs;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546930828913
+      // 1546947949493
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -6997,7 +6997,7 @@ exports.default = _class;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546930822721
+      // 1546947945276
       var cssReload = require("!../../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -7085,7 +7085,7 @@ function _default(obj, _Vdt, blocks, $callee) {
           'children': [h(_grid.Col, {
             'className': 'first-page-left',
             'lg': '11',
-            'children': h('div', null, [h('h1', null, 'KPC'), h('h2', null, 'King design Public Components'), h('p', null, '支持多框架的前端高质量组件库'), h('div', null, [h(_button.Button, {
+            'children': h('div', null, [h('h1', null, 'KPC'), h('h2', null, [h('span', null, 'K'), 'ing design ', h('span', null, 'P'), 'ublic ', h('span', null, 'C'), 'omponents']), h('p', null, '支持多框架的前端高质量组件库'), h('div', null, [h(_button.Button, {
               'tagName': function () {
                 try {
                   return _link.Link;
@@ -7278,7 +7278,7 @@ exports.default = _class;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1546930822538
+      // 1546947944783
       var cssReload = require("!../../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
