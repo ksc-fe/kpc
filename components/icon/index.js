@@ -21,3 +21,5 @@ export default class Icon extends Intact {
         };
     }
 }
+
+export {Icon};
