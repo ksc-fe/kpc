@@ -15,7 +15,7 @@ import image2 from '../../imgs/page2.png';
                 <Col class="first-page-left" lg="11">
                     <div class="wrapper">
                         <h1>KPC</h1>
-                        <h2>King design Public Components</h2>
+                        <h2><span>K</span>ing design <span>P</span>ublic <span>C</span>omponents</h2>
                         <p>支持多框架的前端高质量组件库</p>
                         <div class="actions">
                             <Button tagName={{ Link }} type="primary"
