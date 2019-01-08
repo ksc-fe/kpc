@@ -10,23 +10,24 @@
         <Button type="primary" 
             :loading="loading2"
             @click="onClick('loading2')"
-        ><i class="k-icon ion-ios-search"></i>点击加载</Button>
+        ><Icon class="ion-ios-search" />点击加载</Button>
         <Button icon circle
             :loading="loading3"
             @click="onClick('loading3')"
-        ><i class="k-icon ion-ios-search"></i></Button>
+        ><Icon class="ion-ios-search" /></Button>
         <Button type="primary" 
             :loading="loading4"
             @click="onClick('loading4')"
-        >图标在右侧<i class="k-icon ion-ios-search"></i></Button>
+        >图标在右侧<Icon class="ion-ios-search" /></Button>
     </div>
 </template>
 <script>
 import Button from 'kpc/components/button';
+import Icon from 'kpc/components/icon';
 
 export default {
     components: {
-        Button
+        Button, Icon
     },
     data() {
         return {

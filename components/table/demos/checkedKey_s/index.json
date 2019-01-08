@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>checkedKey</code>（radio类型）或者<code>checkedKeys</code>（checkbox类型）来控制哪些列被选中，默认他们的取值为行的索引或索引数组。但我们也可以通过<code>rowKey</code>函数为每一行指定唯一的<code>key</code>，此时他们的取值为<code>key</code>值或<code>key</code>值的数组</p>\n",
-    "index": 163,
+    "index": 158,
     "highlighted": [
         {
             "language": "vdt",

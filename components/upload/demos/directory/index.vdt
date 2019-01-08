@@ -1,0 +1,7 @@
+import Upload from 'kpc/components/upload';
+import Button from 'kpc/components/button';
+
+<Upload 
+    directory
+    action="//jsonplaceholder.typicode.com/posts/"
+/>

@@ -2,7 +2,7 @@
     <div>
         <Dropdown>
             <Button type="primary">
-                hover <i class="k-icon ion-arrow-down-b"></i>
+                hover <Icon class="ion-arrow-down-b" size="small" />
             </Button>
             <DropdownMenu>
                 <DropdownItem>item 1</DropdownItem>
@@ -13,7 +13,7 @@
     
         <Dropdown trigger="click">
             <Button type="primary">
-                click <i class="k-icon ion-arrow-down-b"></i>
+                click <Icon class="ion-arrow-down-b" size="small" />
             </Button>
             <DropdownMenu>
                 <DropdownItem>item 1</DropdownItem>
@@ -26,10 +26,11 @@
 <script>
 import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
 import Button from 'kpc/components/button';
+import Icon from 'kpc/components/icon';
 
 export default {
     components: {
-        Dropdown, DropdownMenu, DropdownItem, Button
+        Dropdown, DropdownMenu, DropdownItem, Button, Icon
     },
 }
 </script>

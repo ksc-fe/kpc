@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>leftChecked</code>属性，我们可以控制左侧已选项，<code>rightChecked</code>同理</p>\n<blockquote>\n<p><code>leftChecked</code>数组为<code>data</code>中每一项的同一引用</p>\n</blockquote>\n",
-    "index": 119,
+    "index": 139,
     "highlighted": [
         {
             "language": "vdt",

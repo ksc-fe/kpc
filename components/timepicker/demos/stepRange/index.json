@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>添加<code>range</code>属性，同时指定<code>step</code>可以展示固定时间点范围选择</p>\n",
-    "index": 141,
+    "index": 157,
     "highlighted": [
         {
             "language": "vdt",

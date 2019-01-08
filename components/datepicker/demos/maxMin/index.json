@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>maxDate</code>和<code>minDate</code>可以给组件指定最大和最小选择日期。</p>\n",
-    "index": 129,
+    "index": 113,
     "highlighted": [
         {
             "language": "vdt",
