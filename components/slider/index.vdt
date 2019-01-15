@@ -84,7 +84,7 @@ const sliderWidth = max - min;
             >
                 <div v-if={{ isInnerText }}>{{ value[1] }}</div>
             </div>
-            {{ do {
+            {{ (() => {
                 if (isShowStop) {
                     const counts = Math.floor((max - min) / step);
                     const ret = [];
@@ -93,9 +93,9 @@ const sliderWidth = max - min;
                             style={{ {left: (i / counts * 100) + '%'} }}
                         ></i>)
                     }
-                    ret;
+                    return ret;
                 }
-            } }} 
+            })() }} 
         </div>
         <div class="k-box" v-if={{ isShowEnd && !marks }}>
             <span>{{ min + unit }} </span>
