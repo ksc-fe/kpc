@@ -251,7 +251,7 @@ export default class Table extends Intact {
         let instance = this;
         if (data) {
             instance = new Table({...this.get(), data});
-            instance.init();
+            instance.init(null, this.vNode);
         }
 
         let download = await import('downloadjs');
