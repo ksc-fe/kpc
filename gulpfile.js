@@ -1,6 +1,6 @@
 const gulp = require('gulp'); 
 const through = require('through2');
-const doc = require('./doc');
+const doc = require('./scripts/doc');
 const webpack = require('webpack');
 const webpackConfig = require('./site/webpack.config.client');
 const webpackBuildConfig = require('./webpack.config.build');

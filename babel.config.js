@@ -1,7 +1,7 @@
 module.exports = function(api) {
     api.cache(true);
 
-    return {
+    const config = {
         "presets": [
             ["@babel/preset-env", {
                 "loose": true, 
@@ -25,8 +25,13 @@ module.exports = function(api) {
             "@babel/plugin-proposal-class-properties",
             "@babel/plugin-syntax-dynamic-import",
             "@babel/plugin-proposal-do-expressions",
-            "transform-vue-jsx",
             // "@babel/plugin-transform-proto-to-assign"
         ]
+    };
+
+    if (!process.env.REACT) {
+        config.plugins.push('transform-vue-jsx');
     }
+
+    return config;
 }

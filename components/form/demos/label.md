@@ -28,3 +28,16 @@ import {Input} from 'kpc/components/input';
         .k-input
             width 100%
 ```
+
+```react-methods
+// 注入_context上下文
+static childContextTypes = {
+    _context: () => {}
+}
+
+getChildContext() {
+    return {
+        _context: this
+    }
+}
+```

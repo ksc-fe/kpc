@@ -7,8 +7,9 @@
   "module": "index.js",
   "scripts": {
     "test": "karma start test/karma.conf.js",
-    "test:react": "karma start test/karma.react.conf.js",
-    "snapshot": "cross-env UPDATE=1 npm run test",
+    "test:react": "cross-env REACT=1 karma start test/karma.react.conf.js",
+    "snapshot": "cross-env UPDATE=1 npm run test; npm run snapshot:react",
+    "snapshot:react": "cross-env UPDATE=1 npm run test:react",
     "snapshot:prune": "cross-env UPDATE=3 npm run test",
     "cover": "cross-env UPDATE=2 npm run test",
     "start": "node server.js",
@@ -132,9 +133,9 @@
     "@babel/runtime-corejs2": "^7.2.0",
     "downloadjs": "^1.4.7",
     "enquire.js": "^2.1.6",
-    "intact": "^2.4.7",
-    "intact-react": "^1.1.8",
-    "intact-vue": "^0.4.8",
+    "intact": "^2.4.8",
+    "intact-react": "^1.1.11",
+    "intact-vue": "^0.4.9",
     "resize-observer-polyfill": "^1.5.0"
   },
   "sideEffects": [

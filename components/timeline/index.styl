@@ -3,6 +3,7 @@
 .k-timeline
     if $timeline-font-size != inherit
         font-size $timeline-font-size
+    padding-top s('calc(%s / 2)', unit($line-height, em))
     > .k-item
         position relative
         padding $timeline-item-padding

@@ -15,12 +15,12 @@ import {Tooltip} from 'kpc/components/tooltip';
 const scheme = {
     a: {
         title: (
-            <div>
+            <template>
                 <span title="自定义表头内容" class="c-middle title">自定义表头内容</span>
                 <Tooltip content="tooltip content">
                     <i class="ion-ios-help-outline c-middle"></i>
                 </Tooltip>
-            </div>
+            </template>
         ), 
         group: [{label: 'test', value: ''}],
         sortable: true,

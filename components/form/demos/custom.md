@@ -30,7 +30,7 @@ import {Button} from 'kpc/components/button';
                 // 自定义全局规则
                 letter: true,
                 // 自定义局部规则，所有描述必须不重复
-                unique(value) {
+                unique: (value) => {
                     let count = 0;
                     self.get('descriptions').find(item => {
                         if (item === value) count++;
@@ -96,11 +96,35 @@ export default class extends Intact {
 }
 ```
 
+```js-head
+// 添加全局规则
+Form.addMethod('letter', (value, item, param) => {
+    return /^[a-z|A-Z]+$/.test(value);
+}, '只能输入字母');
+```
+
 ```vue-methods
 add() {
     this.descriptions.push('');
 }
 remove(index) {
     this.descriptions.splice(index, 1);
+}
+```
+
+```react-methods
+// 注入_context上下文
+static childContextTypes = {
+    _context: () => {}
+}
+
+getChildContext() {
+    return {
+        _context: this
+    }
+}
+
+add() {
+    this.setState({descriptions: this.state.descriptions.concat('')});
 }
 ```

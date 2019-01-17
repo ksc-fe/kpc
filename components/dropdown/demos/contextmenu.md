@@ -8,6 +8,9 @@ order: 7
 
 > 这里将`position`属性指定为`left+1`是为了避免弹出菜单立即被选中第一项
 
+> `React`下事件对象会复用，我们不能在异步函数中调用事件对象的属性和方法，如果需要保留事件
+> 对象，需要调用`event.persist()`方法 https://reactjs.org/docs/events.html#event-pooling
+
 ```vdt
 import {DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
 
@@ -61,5 +64,17 @@ _showMenu(event) {
     event.preventDefault();
     this.show = true;
     this.event = event;
+}
+```
+
+```react-methods
+_showMenu(event) {
+    // https://reactjs.org/docs/events.html#event-pooling
+    event.persist();
+    event.preventDefault();
+    this.set({
+        show: true,
+        event: event,
+    });
 }
 ```

@@ -11,7 +11,12 @@ order: 1.1
 import {Menu, MenuItem} from 'kpc/components/menu';
 import Icon from 'kpc/components/icon';
 
-<Menu v-model:expandedKeys="expandedKeys" v-model:selectedKey="selectedKey" dot theme="light">
+<Menu 
+    v-model:expandedKeys="expandedKeys"
+    v-model:selectedKey="selectedKey"
+    dot 
+    theme="light"
+>
     <b:header><Icon class="ion-star" />Header</b:header>
     <MenuItem key="1" ev-select={{ self.onSelect }}>menu 1</MenuItem>
     <MenuItem key="2" disabled>menu 2</MenuItem>

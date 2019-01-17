@@ -5,7 +5,7 @@ export default class TableColumn extends Intact {
     get template() { return template; }
 
     static propTypes = {
-        title: [String, Intact.VNode, Object /* for vue vnode*/],
+        title: [String, Intact.VNode, Array, Object /* for vue vnode*/],
         template: Function,
         key: {
             type: String,

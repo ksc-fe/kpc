@@ -11,10 +11,7 @@ import Icon from 'kpc/components/icon';
 
 <div>
     <Icon 
-        v-for={{ [
-            'default', 'primary', 'warning', 'danger', 'success',
-            'red', '#0000ea', 'rgb(183, 18, 193)'
-        ] }}
+        v-for={{ ['default', 'primary', 'warning', 'danger', 'success', 'red', '#0000ea', 'rgb(183, 18, 193)'] }}
         class="ion-happy-outline" 
         size="large"
         color={{ value }}

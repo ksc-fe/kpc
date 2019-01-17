@@ -52,3 +52,12 @@ beforeCreate() {
     this.lastFetchId = 0;
 },
 ```
+
+```react-methods
+constructor(props) {
+    super(props);
+    this.state = {users: []};
+    this.search = this.search.bind(this);
+    this.lastFetchId = 0;
+}
+```

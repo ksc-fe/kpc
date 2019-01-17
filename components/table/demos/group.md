@@ -165,3 +165,26 @@ created() {
     this.multipleData = this.oData;
 },
 ```
+
+```react-methods
+constructor(props) {
+    super(props);
+    this.oData = [
+        {name: '主机1', status: 'active'},
+        {name: '主机2', status: 'stopped'},
+        {name: '主机3', status: 'active'},
+    ];
+    this.state = {
+        "data": this.oData,
+        "group": {
+            "status": ""
+        },
+        "multipleData": this.oData,
+        "multipleGroup": {
+            "status": []
+        }
+    };
+    this._onChangeGroup = this._onChangeGroup.bind(this);
+    this._onChangeMultipleGroup = this._onChangeMultipleGroup.bind(this);
+}
+```

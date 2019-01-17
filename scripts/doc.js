@@ -1,11 +1,12 @@
 const KDoc = require('kdoc');
 const path = require('path');
 const Vdt = require('vdt');
-const webpackConfig = require('./site/webpack.config.render');
-const webpackConfigClient = require('./site/webpack.config.client');
+const webpackConfig = require('../site/webpack.config.render');
+const webpackConfigClient = require('../site/webpack.config.client');
 const webpack = require('webpack');
 const highlight = require('highlight.js');
 const intact2vue = require('./intact2vue');
+const intact2react = require('./intact2react');
 
 const languageMap = function(key) {
     const map = {
@@ -15,7 +16,7 @@ const languageMap = function(key) {
     return map[key] || key;
 };
 
-module.exports = function(isDev) {
+module.exports = function(isDev = true) {
     const hasWrittenSidebar = {};
 
     let _resolve;
@@ -24,12 +25,12 @@ module.exports = function(isDev) {
     });
     promise.resolve = (...args) => _resolve(...args);
     const root = isDev ? 
-        path.resolve(__dirname, './site/.dist') : 
-        path.resolve(__dirname, `./site/dist`);
+        path.resolve(__dirname, '../site/.dist') : 
+        path.resolve(__dirname, `../site/dist`);
 
     const doc = new KDoc(
         './@(docs|components)/**/*.md',
-        // './@(docs|components)/upload/**/*.md',
+        // './@(docs|components)/menu/**/*.md',
         root
     );
 
@@ -111,6 +112,11 @@ module.exports = function(isDev) {
                 let vueData;
                 let vueMethods;
 
+                // for react
+                let reactMethods;
+
+                let jsHead;
+
                 const codes = file.md.codes = file.md.codes.filter((item, index) => {
                     if (item.example) {
                         item.content = [
@@ -147,10 +153,23 @@ module.exports = function(isDev) {
                         vueMethods = item.content;
                         return false;
                     }
+                    if (item.language === 'react-methods') {
+                        reactMethods = item.content;
+                        return false;
+                    }
+                    if (item.language === 'js-head') {
+                        jsHead = item.content;
+                        return false;
+                    }
                     if (item.language === 'vue-ignore') {
                         item.language = 'vue';
                         item.ignored = true;
                         hasVue = true;
+                    }
+                    if (item.language === 'react-ignore') {
+                        item.language = 'jsx';
+                        item.ignored = true;
+                        hasReact = true;
                     }
                     return true;
                 });
@@ -183,7 +202,7 @@ module.exports = function(isDev) {
                         if (!hasVue) {
                             const code = {
                                 language: 'vue',
-                                content: intact2vue(vdt, js, vueScript, vueTemplate, vueMethods, vueData)
+                                content: intact2vue(vdt, js, vueScript, vueTemplate, vueMethods, vueData, jsHead)
                             };
                             if (!hasReact) {
                                 codes.push(code);
@@ -195,10 +214,7 @@ module.exports = function(isDev) {
                         if (!hasReact) {
                             codes.push({
                                 language: 'jsx',
-                                content: [
-                                    `import React from 'react';`,
-                                    `// 敬请期待...`,
-                                ].join('\n')
+                                content: intact2react(vdt, js, reactMethods, jsHead), 
                             });
                         }
                     }
@@ -295,7 +311,7 @@ module.exports = function(isDev) {
                         file.extname = '.html';
                         await ctx.fsWrite(
                             file.relative,
-                            Vdt.renderFile(path.resolve(__dirname, './site/src/index.vdt'))
+                            Vdt.renderFile(path.resolve(__dirname, '../site/src/index.vdt'))
                         );
                     }
                 });
@@ -307,8 +323,8 @@ module.exports = function(isDev) {
                     console.log(stats.toString({
                         colors: true 
                     }));
-                    delete require.cache[require.resolve('./site/dist/render')];
-                    const render = require('./site/dist/render').default;
+                    delete require.cache[require.resolve('../site/dist/render')];
+                    const render = require('../site/dist/render').default;
 
                     await ctx.fsEach(async function(file) {
                         if (!/demos/.test(file.path)) {
@@ -317,7 +333,7 @@ module.exports = function(isDev) {
                             const data = await render(`/${pathname}`);
                             await ctx.fsWrite(
                                 file.relative, 
-                                Vdt.renderFile(path.resolve(__dirname, './site/src/index.vdt'), {
+                                Vdt.renderFile(path.resolve(__dirname, '../site/src/index.vdt'), {
                                     title: file.md.setting.title,
                                     content: data.content,
                                     style: data.style,

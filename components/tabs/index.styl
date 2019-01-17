@@ -17,10 +17,6 @@ sizes = large small mini
         color $tabs-color 
         position relative
         vertical-align middle
-        // disabled
-        &.k-disabled
-            color $disabled-color
-            cursor not-allowed
         // close
         .k-close
             margin-right unit(-($mini-height / 2 / 14), rem)
@@ -32,6 +28,10 @@ sizes = large small mini
         &:hover
         &.k-active
             color $tabs-active-color 
+        // disabled
+        &.k-disabled
+            color $disabled-color
+            cursor not-allowed
             
     // active-bar
     .k-active-bar

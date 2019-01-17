@@ -86,6 +86,11 @@ export default class extends Intact {
 }
 ```
 
+```js-head
+let id = 3;
+```
+
+
 ```vue-methods
 _remove(value) {
     const index = this.tabs.findIndex(item => item.value === value);
@@ -98,17 +103,11 @@ _remove(value) {
 }
 
 _add() {
-    const id = ++this.id;
+    id++;
     this.tabs.push({
         value: id,
         label: `Tab ${id}`,
     });
     this.tab = id;
-}
-```
-
-```vue-script
-beforeCreate() {
-    this.id = 3;
 }
 ```

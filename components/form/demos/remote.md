@@ -49,3 +49,16 @@ export default class extends Intact {
     }
 }
 ```
+
+```react-methods
+// 注入_context上下文
+static childContextTypes = {
+    _context: () => {}
+}
+
+getChildContext() {
+    return {
+        _context: this
+    }
+}
+```

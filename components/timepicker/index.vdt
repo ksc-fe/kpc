@@ -41,7 +41,10 @@ const _placeholder = range ?
         clearable={{ clearable }}
         disabled={{ disabled }}
         size={{ size }}
-        class={{ className }}
+        class={{ {
+            'k-datepicker': true,
+            [className]: className
+        } }}
         style={{ style }}
         container={{ container }}
     >

@@ -162,7 +162,7 @@ export default class Message extends Intact {
     }
 
     destroy(vNode) {
-        if (this._isVue && !vNode) {
+        if ((this._isVue || this._isReact) && !vNode) {
             messages.delete(this);
         } else if (vNode.parentVNode.tag === MessageAnimate && !this.get('_isInstance')) {
             return;

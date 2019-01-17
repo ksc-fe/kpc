@@ -20,7 +20,8 @@ import {Table, TableColumn} from 'kpc/components/table';
         checkType="none"
         ref="__test1"
     >
-        <b:expand params="data, index"> <div>Email: {{ data.email }}</div>
+        <b:expand params="data, index">
+            <div>Email: {{ data.email }}</div>
         </b:expand>
         <TableColumn title="点击整行展开内容" key="name" />
     </Table>
@@ -35,7 +36,7 @@ import {Table, TableColumn} from 'kpc/components/table';
         <b:expand params="data, index">
             <div>Email: {{ data.email }}</div>
         </b:expand>
-        <TableColumn title="点击+，展开内容" key="name"> 
+        <TableColumn title="点击+，展开内容" key="name">
             <b:template params="data, index">
                 <div>
                     <i 

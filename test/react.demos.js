@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {mount} from './utils';
+import {mount, unmount, testDemos} from './utils';
 import {matchSnapshot} from 'chai-karma-snapshot';
 
 chai.use(matchSnapshot);
@@ -9,6 +9,10 @@ const reactReq = require.context('~/components/', true, /demos\/.*index\.jsx$/);
 
 describe('React Demos', () => {
     let demo;
+
+    afterEach(() => {
+        unmount(demo);
+    });
 
     function wrap(Demo) {
         return class extends Intact {
@@ -27,16 +31,11 @@ describe('React Demos', () => {
             }
         }
     }
-    reactReq.keys().forEach(item => {
-        const paths = item.split('/');
-        const name = paths[1];
-        const type = paths[3];
-        const Demo = reactReq(item).default;
-
-        it(`${name[0].toUpperCase()}${name.substring(1)} ${type}`, () => {
-            demo = mount(wrap(Demo));
-            console.log(demo.element.innerHTML);
+    testDemos(reactReq, (Demo, done) => {
+        demo = mount(wrap(Demo));
+        setTimeout(() => {
             expect(demo.element.innerHTML).to.matchSnapshot();
+            done();
         });
     });
 });

@@ -1,7 +1,8 @@
 const Intact = require('intact');
 const Vdt = Intact.Vdt;
+const {indent, dedent, getDefaults} = require('./utils');
 
-module.exports = function(vdt, js, vueScript, vueTemplate, vueMethods, vueData) {
+module.exports = function(vdt, js, vueScript, vueTemplate, vueMethods, vueData, jsHead) {
     // console.log(vdt, js, vueScript);
     const obj = parse(vdt, js, vueScript, vueTemplate, vueMethods, vueData);
     const result = [
@@ -9,7 +10,7 @@ module.exports = function(vdt, js, vueScript, vueTemplate, vueMethods, vueData) 
         obj.template,
         `</template>`,
         `<script>`,
-        obj.head,
+        obj.head + (jsHead ? '\n' + jsHead + '\n' : ''),
         `export default {`,
         obj.js,
         `}`,
@@ -193,17 +194,6 @@ function parseBlock(template) {
     return template.replace(/<\/b:[\w\-]+>/g, '</template>');
 }
 
-const defaultsRegExp = /\n\s{4}defaults\(\) \{\n\s+return ([^;]*?);?\n\s{4}\}/;
-function getDefaults(js) {
-    const matches = js.match(defaultsRegExp);
-    if (matches) {
-        let data;
-        // console.log('defaults()', matches[1]);
-        eval(`data = ${matches[1]}`);
-        return data; 
-    }
-}
-
 function getMethods(js) {
     const methods = {};
     let start = 0;
@@ -249,22 +239,4 @@ function getMethods(js) {
         }
     });
     return methods;
-}
-
-function indent(scripts, number = 1) {
-    if (typeof scripts === 'string') {
-        scripts = scripts.split('\n');
-    }
-    return scripts.map(item => {
-        return '    '.repeat(number) + item;
-    });
-}
-
-function dedent(scripts, number = 1) {
-    if (typeof scripts === 'string') {
-        scripts = scripts.split('\n');
-    }
-    return scripts.map(item => {
-        return item.substring(4 * number);
-    });
 }
