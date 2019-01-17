@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {mount, unmount, testDemos} from './utils';
 import {matchSnapshot} from 'chai-karma-snapshot';
+import '../styles/kpc.styl';
+import './test.styl';
 
 chai.use(matchSnapshot);
 
@@ -11,7 +13,7 @@ describe('React Demos', () => {
     let demo;
 
     afterEach(() => {
-        unmount(demo);
+        // unmount(demo);
     });
 
     function wrap(Demo) {

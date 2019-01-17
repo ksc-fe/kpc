@@ -2,7 +2,13 @@ var webpackConfig = require('./webpack.react.config');
 
 module.exports = function (config) {
     config.set({
-        browsers: process.env.UPDATE || process.env.CI ? ['ChromeHeadless'] : undefined,
+        browsers: process.env.UPDATE || process.env.CI ? ['MyChromeHeadless'] : undefined,
+        customLaunchers: {
+            'MyChromeHeadless': {
+                base: 'ChromeHeadless',
+                flags: ['--window-size=1920,1080'],
+            }
+        },
         frameworks: ['mocha', 'sinon-chai', 'snapshot', 'mocha-snapshot'],
         reporters: ['mocha'],
         files: [
