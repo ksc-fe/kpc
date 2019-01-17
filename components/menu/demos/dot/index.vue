@@ -1,5 +1,10 @@
 <template>
-    <Menu :expandedKeys.sync="expandedKeys" :selectedKey.sync="selectedKey" dot theme="light">
+    <Menu 
+        :expandedKeys.sync="expandedKeys"
+        :selectedKey.sync="selectedKey"
+        dot 
+        theme="light"
+    >
         <template slot="header"><Icon class="ion-star" />Header</template>
         <MenuItem key="1" @select="onSelect">menu 1</MenuItem>
         <MenuItem key="2" disabled>menu 2</MenuItem>

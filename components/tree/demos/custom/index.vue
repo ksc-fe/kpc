@@ -12,6 +12,8 @@
                     <Button icon size="small" @click="_append(node)">+</Button>
                     <Button icon size="small" @click="_remove(node)">-</Button>
                 </ButtonGroup>
+                <div v-else-if="a">test</div>
+                <div v-else>aaa</div>
             </template>
         </Tree>
     </div>

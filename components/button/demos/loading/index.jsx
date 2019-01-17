@@ -1,16 +1,18 @@
 import React from 'react';
 import Button from 'kpc/components/button';
+import Icon from 'kpc/components/icon';
 
 export default class extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
+        this.onClick = this.onClick.bind(this);
     }
 
     onClick(name) {
         this.setState({[name]: true});
     }
-
+    
     render() {
         return (
             <div>
@@ -24,15 +26,15 @@ export default class extends React.Component {
                 <Button type="primary" 
                     loading={this.state.loading2}
                     onClick={this.onClick.bind(this, 'loading2')}
-                ><i className="k-icon ion-ios-search"></i>点击加载</Button>
+                ><Icon className="ion-ios-search" />点击加载</Button>
                 <Button icon circle
                     loading={this.state.loading3}
                     onClick={this.onClick.bind(this, 'loading3')}
-                ><i className="k-icon ion-ios-search"></i></Button>
+                ><Icon className="ion-ios-search" /></Button>
                 <Button type="primary" 
                     loading={this.state.loading4}
                     onClick={this.onClick.bind(this, 'loading4')}
-                >图标在右侧<i className="k-icon ion-ios-search"></i></Button>
+                >图标在右侧<Icon className="ion-ios-search" /></Button>
             </div>
         )
     }

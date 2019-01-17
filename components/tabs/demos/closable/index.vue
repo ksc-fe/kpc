@@ -26,6 +26,8 @@
 import {Tabs, Tab} from 'kpc/components/tabs';
 import {Button, ButtonGroup} from 'kpc/components/button';
 
+let id = 3;
+
 export default {
     components: {
         Tabs, Tab, Button, ButtonGroup
@@ -61,7 +63,7 @@ export default {
             }
         },
         _add() {
-            const id = ++this.id;
+            id++;
             this.tabs.push({
                 value: id,
                 label: `Tab ${id}`,
@@ -69,8 +71,5 @@ export default {
             this.tab = id;
         },
     },
-    beforeCreate() {
-        this.id = 3;
-    }
 }
 </script>

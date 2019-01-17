@@ -25,7 +25,7 @@
         },
         {
             "language": "jsx",
-            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>;\n<span class=\"hljs-comment\">// 敬请期待...</span></code></pre>"
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>;\n<span class=\"hljs-keyword\">import</span> Spinner <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/spinner'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">React</span>.<span class=\"hljs-title\">Component</span> </span>{\n    <span class=\"hljs-keyword\">constructor</span>(props) {\n        <span class=\"hljs-keyword\">super</span>(props);\n        <span class=\"hljs-keyword\">this</span>.state = {};\n    }\n\n    render() {\n        <span class=\"hljs-keyword\">return</span> (\n            &lt;div&gt;\n                &lt;Spinner value={this.state.value1} on$change-value={(c, value1) =&gt; this.setState({value1})} max={10} min={0} step={1.2} /&gt;\n                &lt;Spinner value={this.state.value2} on$change-value={(c, value2) =&gt; this.setState({value2})} max={10} min={-10} step={0.1} /&gt;\n            &lt;/div&gt;\n        )\n    }\n}</code></pre>"
         }
     ]
 }

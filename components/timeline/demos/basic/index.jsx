@@ -1,2 +1,18 @@
 import React from 'react';
-// 敬请期待...
+import {Timeline, TimelineItem} from 'kpc/components/timeline';
+
+export default class extends React.Component {
+    render() {
+        return (
+            <Timeline>
+                <TimelineItem>
+                    August
+                    <p>some descriptions</p>
+                </TimelineItem>
+                <TimelineItem>July</TimelineItem>
+                <TimelineItem>June</TimelineItem>
+                <TimelineItem>May</TimelineItem>
+            </Timeline>
+        )
+    }
+}

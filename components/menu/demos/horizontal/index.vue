@@ -21,7 +21,14 @@
             <MenuItem key="4"><Icon class="ion-gear-b" />menu 4</MenuItem>
         </Menu>
         <br /><br />
-        <KSwitch on="light" off="dark" v-model="theme" width="60" trueValue="light" falseValue="dark"/>
+        <KSwitch 
+            on="light"
+            off="dark"
+            v-model="theme"
+            width="60"
+            trueValue="light"
+            falseValue="dark"
+        />
     </div>
 </template>
 <script>

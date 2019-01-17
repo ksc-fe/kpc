@@ -5,7 +5,7 @@ const scheme = {
     a: {
         title: '定义该列单元格内容',
         template: function(item) {
-           return <a>{{item.a}}</a>
+           return <a>{{ item.a }}</a>
         }
     },
     b: 'key形式',
@@ -19,7 +19,7 @@ const scheme = {
         <TableColumn 
             title='定义该列单元格内容'
             template={{ function(item) {
-                return <a>{{item.a}}</a>
+                return <a>{{ item.a }}</a>
             } }} 
             key='a'
         />

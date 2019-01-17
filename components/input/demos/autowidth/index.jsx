@@ -1,2 +1,10 @@
 import React from 'react';
-// 敬请期待...
+import Input from 'kpc/components/input';
+
+export default class extends React.Component {
+    render() {
+        return (
+            <Input placeholder="auto width" autoWidth />
+        )
+    }
+}

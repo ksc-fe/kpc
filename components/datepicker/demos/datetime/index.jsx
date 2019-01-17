@@ -1,2 +1,23 @@
 import React from 'react';
-// 敬请期待...
+import Datepicker from 'kpc/components/datepicker';
+
+export default class extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+
+    render() {
+        return (
+            <div>
+                <Datepicker type="datetime" value={this.state.datetime1} on$change-value={(c, datetime1) => this.setState({datetime1})} />
+                <Datepicker type="datetime" value={this.state.datetime2}
+                    on$change-value={(c, datetime2) => this.setState({datetime2})} 
+                    placeholder="时间精确到小时"
+                    disabledMinutes
+                    disabledSeconds
+                />
+            </div>
+        )
+    }
+}

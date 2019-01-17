@@ -5,7 +5,8 @@
             checkType="none"
             ref="__test1"
         >
-            <template slot="expand" slot-scope="data, index"> <div>Email: {{ data.email }}</div>
+            <template slot="expand" slot-scope="data, index">
+                <div>Email: {{ data.email }}</div>
             </template>
             <TableColumn title="点击整行展开内容" key="name" />
         </Table>
@@ -20,7 +21,7 @@
             <template slot="expand" slot-scope="data, index">
                 <div>Email: {{ data.email }}</div>
             </template>
-            <TableColumn title="点击+，展开内容" key="name"> 
+            <TableColumn title="点击+，展开内容" key="name">
                 <template slot="template" slot-scope="data, index">
                     <div>
                         <i 

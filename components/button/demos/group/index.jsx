@@ -4,7 +4,10 @@ import {Button, ButtonGroup} from 'kpc/components/button';
 export default class extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {city: 'beijing'}
+        this.state = {
+            "city": "beijing",
+            "cities": []
+        };
     }
 
     render() {
@@ -37,22 +40,16 @@ export default class extends React.Component {
                 </ButtonGroup>
                 <br /><br />
                 <p>radio按钮组</p>
-                <ButtonGroup checkType="radio"
-                    value={this.state.city}
-                    on$change-value={(c, city) => this.setState({city})}
-                >
+                <ButtonGroup checkType="radio" value={this.state.city} on$change-value={(c, city) => this.setState({city})}>
                     <Button value="beijing">北京</Button>
-                    <Button value="shanghai">上海</Button>
+                    <Button value="shanghai" ref={i => this.__radioShanghai = i}>上海</Button>
                     <Button value="guangzhou">广州</Button>
                     <Button value="shenzhen">深圳</Button>
                 </ButtonGroup>
                 <p>checkbox按钮组</p>
-                <ButtonGroup checkType="checkbox"
-                    value={this.state.cities}
-                    on$change-value={(c, cities) => this.setState({cities})}
-                >
+                <ButtonGroup checkType="checkbox" value={this.state.cities} on$change-value={(c, cities) => this.setState({cities})}>
                     <Button value="beijing" size="small">北京</Button>
-                    <Button value="shanghai" size="small">上海</Button>
+                    <Button value="shanghai" size="small" ref={i => this.__checkboxShanghai = i}>上海</Button>
                     <Button value="guangzhou" size="small">广州</Button>
                     <Button value="shenzhen" size="small">深圳</Button>
                 </ButtonGroup>

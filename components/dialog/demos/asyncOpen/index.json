@@ -31,7 +31,7 @@
         },
         {
             "language": "jsx",
-            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>;\n<span class=\"hljs-comment\">// 敬请期待...</span></code></pre>"
+            "content": "<pre><code class=\"hljs jsx\">React不支持继承用法，请使用Dialog组件用法</code></pre>"
         }
     ]
 }

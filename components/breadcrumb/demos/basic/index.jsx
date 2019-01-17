@@ -1,2 +1,14 @@
 import React from 'react';
-// 敬请期待...
+import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
+
+export default class extends React.Component {
+    render() {
+        return (
+            <Breadcrumb>
+                <BreadcrumbItem to="#/">item 1</BreadcrumbItem>
+                <BreadcrumbItem to="/components/breadcrumb/">item 2</BreadcrumbItem>
+                <BreadcrumbItem>item 3</BreadcrumbItem>
+            </Breadcrumb>
+        )
+    }
+}

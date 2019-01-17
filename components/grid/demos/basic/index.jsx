@@ -1,2 +1,21 @@
 import React from 'react';
-// 敬请期待...
+import {Row, Col} from 'kpc/components/grid';
+
+export default class extends React.Component {
+    render() {
+        return (
+            <div>
+                <Row> 
+                    <Col span="12">col-12</Col>
+                    <Col span="12">col-12</Col>
+                </Row>
+                <Row>
+                    <Col span="4">col-4</Col>
+                    <Col span="6">col-6</Col>
+                    <Col span="8">col-8</Col>
+                    <Col span="6">col-6</Col>
+                </Row>
+            </div>
+        )
+    }
+}

@@ -1,10 +1,12 @@
 <template>
     <div>
         <div style="margin-bottom: 20px">
-            <KSwitch v-model="value1" /> {{ stringify(value1) }}
+            <KSwitch v-model="value1" />
+            {{ stringify(value1) }}
         </div>
         <div>
-            <KSwitch v-model="value2" :trueValue="1" falseValue="1" /> {{ stringify(value2) }}
+            <KSwitch v-model="value2" :trueValue="1" falseValue="1" />
+            {{ stringify(value2) }}
         </div>
     </div>
 </template>

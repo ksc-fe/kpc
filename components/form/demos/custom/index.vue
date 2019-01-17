@@ -9,7 +9,7 @@
                     // 自定义全局规则
                     letter: true,
                     // 自定义局部规则，所有描述必须不重复
-                    unique(value) {
+                    unique: (value) => {
                         let count = 0;
                         descriptions.find(item => {
                             if (item === value) count++;
@@ -34,6 +34,11 @@
 import {Form, FormItem} from 'kpc/components/form';
 import {Input} from 'kpc/components/input';
 import {Button} from 'kpc/components/button';
+
+// 添加全局规则
+Form.addMethod('letter', (value, item, param) => {
+    return /^[a-z|A-Z]+$/.test(value);
+}, '只能输入字母');
 
 export default {
     components: {
