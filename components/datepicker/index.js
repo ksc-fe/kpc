@@ -171,14 +171,14 @@ export default class Datepicker extends Intact {
 
         const {begin, end} = this.refs;
         // if cancel all selected value of range, the length of v is 0
-        const length = v.length;
-        if (v && length) {
+        if (v && v.length) {
+            const length = v.length;
             if (length === 2) {
                 // select the first begin/end date
                 value = v.slice(0);
             } else {
                 // select or re-select
-                const last = v[v.length - 1];
+                const last = v[length - 1];
                 value = [last];
             }
         } else {
