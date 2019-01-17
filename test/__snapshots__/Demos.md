@@ -891,7 +891,7 @@
 ####     `Slider stop`
 
 ```
-"<div><div class=\"k-slider k-show-end\"><div class=\"k-slider-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 45%;\"></div><div class=\"k-handle\" tabindex=\"0\" style=\"left: 45%;\"></div></div><div class=\"k-box\"><span>0</span><span>100</span></div></div></div><div class=\"k-slider k-show-end\"><div class=\"k-slider-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 30%; left: 30%;\"></div><div class=\"k-handle\" tabindex=\"0\" style=\"left: 30%;\"></div><div class=\"k-handle\" tabindex=\"0\" style=\"left: 60%;\"></div></div><div class=\"k-box\"><span>0</span><span>1</span></div></div></div></div>"
+"<div><div class=\"k-slider k-show-end\"><div class=\"k-slider-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 45%;\"></div><div class=\"k-handle\" tabindex=\"0\" style=\"left: 45%;\"></div><i class=\"k-point\" style=\"left: 5%;\"></i><i class=\"k-point\" style=\"left: 10%;\"></i><i class=\"k-point\" style=\"left: 15%;\"></i><i class=\"k-point\" style=\"left: 20%;\"></i><i class=\"k-point\" style=\"left: 25%;\"></i><i class=\"k-point\" style=\"left: 30%;\"></i><i class=\"k-point\" style=\"left: 35%;\"></i><i class=\"k-point\" style=\"left: 40%;\"></i><i class=\"k-point\" style=\"left: 45%;\"></i><i class=\"k-point\" style=\"left: 50%;\"></i><i class=\"k-point\" style=\"left: 55%;\"></i><i class=\"k-point\" style=\"left: 60%;\"></i><i class=\"k-point\" style=\"left: 65%;\"></i><i class=\"k-point\" style=\"left: 70%;\"></i><i class=\"k-point\" style=\"left: 75%;\"></i><i class=\"k-point\" style=\"left: 80%;\"></i><i class=\"k-point\" style=\"left: 85%;\"></i><i class=\"k-point\" style=\"left: 90%;\"></i><i class=\"k-point\" style=\"left: 95%;\"></i></div><div class=\"k-box\"><span>0</span><span>100</span></div></div></div><div class=\"k-slider k-show-end\"><div class=\"k-slider-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 30%; left: 30%;\"></div><div class=\"k-handle\" tabindex=\"0\" style=\"left: 30%;\"></div><div class=\"k-handle\" tabindex=\"0\" style=\"left: 60%;\"></div><i class=\"k-point\" style=\"left: 10%;\"></i><i class=\"k-point\" style=\"left: 20%;\"></i><i class=\"k-point\" style=\"left: 30%;\"></i><i class=\"k-point\" style=\"left: 40%;\"></i><i class=\"k-point\" style=\"left: 50%;\"></i><i class=\"k-point\" style=\"left: 60%;\"></i><i class=\"k-point\" style=\"left: 70%;\"></i><i class=\"k-point\" style=\"left: 80%;\"></i><i class=\"k-point\" style=\"left: 90%;\"></i></div><div class=\"k-box\"><span>0</span><span>1</span></div></div></div></div>"
 ```
 
 ##   `spin`
@@ -1195,7 +1195,7 @@
 
 ```
 "<div><div class=\"k-table\"><div class=\"k-table-wrapper\"><div class=\"k-thead\"><div class=\"k-thead-wrapper\" style=\"padding-right: 0px;\"><table><colgroup><col class=\"k-th-check\"><col><col></colgroup><thead><tr><th minwidth=\"40\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
-            <th class=\"k-sortable\"><div class=\"k-th\"><div class=\"k-group\"><i class=\"k-arrow ion-ios-arrow-down\"></i><!--placeholder--><div class=\"c-ellipsis\"><div><span class=\"c-middle title\" title=\"自定义表头内容\">自定义表头内容</span><i class=\"ion-ios-help-outline c-middle\"></i><!--placeholder--></div></div></div><div class=\"k-sort\"><i class=\"k-icon icon-sortable\"></i></div></div></th><th title=\"表头2\"><div class=\"k-th\"><div class=\"c-ellipsis\">表头2</div></div></th>
+            <th class=\"k-sortable\"><div class=\"k-th\"><div class=\"k-group\"><i class=\"k-arrow ion-ios-arrow-down\"></i><!--placeholder--><div class=\"c-ellipsis\"><span class=\"c-middle title\" title=\"自定义表头内容\">自定义表头内容</span><i class=\"ion-ios-help-outline c-middle\"></i><!--placeholder--></div></div><div class=\"k-sort\"><i class=\"k-icon icon-sortable\"></i></div></div></th><th title=\"表头2\"><div class=\"k-th\"><div class=\"c-ellipsis\">表头2</div></div></th>
             </tr></thead></table></div></div><div class=\"k-tbody\"><table><colgroup><col class=\"k-th-check\"><col><col></colgroup><tbody><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td><td title=\"第一行\">第一行</td><td title=\"哈哈2\">哈哈2</td></tr><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td><td title=\"第二行\">第二行</td><td title=\"哈哈2\">哈哈2</td></tr></tbody></table></div></div></div><div class=\"k-table\"><div class=\"k-table-wrapper\"><div class=\"k-thead\"><div class=\"k-thead-wrapper\" style=\"padding-right: 0px;\"><table><colgroup><col class=\"k-th-check\"><col><col></colgroup><thead><tr><th minwidth=\"40\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
             
             <th class=\"k-sortable\"><div class=\"k-th\"><div class=\"k-group\"><i class=\"k-arrow ion-ios-arrow-down\"></i><!--placeholder--><div class=\"c-ellipsis\"><span class=\"c-middle title\" title=\"自定义表头内容\">自定义表头内容</span><i class=\"ion-ios-help-outline c-middle\"></i><!--placeholder--></div></div><div class=\"k-sort\"><i class=\"k-icon icon-sortable\"></i></div></div></th><th title=\"表头2\"><div class=\"k-th\"><div class=\"c-ellipsis\">表头2</div></div></th></tr></thead></table></div></div><div class=\"k-tbody\"><table><colgroup><col class=\"k-th-check\"><col><col></colgroup><tbody><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td><td title=\"第一行\">第一行</td><td title=\"哈哈2\">哈哈2</td></tr><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td><td title=\"第二行\">第二行</td><td title=\"哈哈2\">哈哈2</td></tr></tbody></table></div></div></div></div>"
@@ -1302,7 +1302,9 @@
 ####     `Timepicker basic`
 
 ```
-"<div><div class=\"k-datepicker k-time-picker\" tabindex=\"0\"><div class=\"k-input k-with-prefix\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-clock-outline\"></i></div><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择时间\" tabindex=\"-1\"></div></div><!--placeholder--></div> You selected: <br><br><div class=\"k-datepicker k-time-picker\" tabindex=\"0\"><div class=\"k-input k-with-prefix\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-clock-outline\"></i></div><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择时间\" tabindex=\"-1\"></div></div><!--placeholder--></div> You selected: </div>"
+"<div><div class=\"k-datepicker k-time-picker\" tabindex=\"0\"><div class=\"k-input k-with-prefix\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-clock-outline\"></i></div><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择时间\" tabindex=\"-1\"></div></div><!--placeholder--></div>
+    You selected: <br><br><div class=\"k-datepicker k-time-picker\" tabindex=\"0\"><div class=\"k-input k-with-prefix\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-clock-outline\"></i></div><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择时间\" tabindex=\"-1\"></div></div><!--placeholder--></div>
+    You selected: </div>"
 ```
 
 ####     `Timepicker range`
@@ -1315,8 +1317,8 @@
 ####     `Timepicker step`
 
 ```
-"<div><div class=\"k-select time k-with-prefix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-prefix\"><i class=\"ion-ios-clock-outline\"></i></div><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择时间</span></div></div><!--placeholder--></div>
-    You selected: <br><br><div class=\"k-select k-clearable k-with-prefix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-prefix\"><i class=\"ion-ios-clock-outline\"></i></div><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择时间</span></div><span class=\"k-suffix\"><i class=\"k-clear ion-ios-close\"></i></span></div><!--placeholder--></div>
+"<div><div class=\"k-select k-datepicker time k-with-prefix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-prefix\"><i class=\"ion-ios-clock-outline\"></i></div><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择时间</span></div></div><!--placeholder--></div>
+    You selected: <br><br><div class=\"k-select k-datepicker k-clearable k-with-prefix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-prefix\"><i class=\"ion-ios-clock-outline\"></i></div><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择时间</span></div><span class=\"k-suffix\"><i class=\"k-clear ion-ios-close\"></i></span></div><!--placeholder--></div>
     You selected: </div>"
 ```
 
@@ -2386,7 +2388,7 @@
 ####     `Slider stop`
 
 ```
-"<div><div><div class=\"k-slider k-show-end\"><div class=\"k-slider-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 45%;\"></div><div class=\"k-handle\" tabindex=\"0\" style=\"left: 45%;\"></div></div><div class=\"k-box\"><span>0</span><span>100</span></div></div></div><div class=\"k-slider k-show-end\"><div class=\"k-slider-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 30%; left: 30%;\"></div><div class=\"k-handle\" tabindex=\"0\" style=\"left: 30%;\"></div><div class=\"k-handle\" tabindex=\"0\" style=\"left: 60%;\"></div></div><div class=\"k-box\"><span>0</span><span>1</span></div></div></div></div></div>"
+"<div><div><div class=\"k-slider k-show-end\"><div class=\"k-slider-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 45%;\"></div><div class=\"k-handle\" tabindex=\"0\" style=\"left: 45%;\"></div><i class=\"k-point\" style=\"left: 5%;\"></i><i class=\"k-point\" style=\"left: 10%;\"></i><i class=\"k-point\" style=\"left: 15%;\"></i><i class=\"k-point\" style=\"left: 20%;\"></i><i class=\"k-point\" style=\"left: 25%;\"></i><i class=\"k-point\" style=\"left: 30%;\"></i><i class=\"k-point\" style=\"left: 35%;\"></i><i class=\"k-point\" style=\"left: 40%;\"></i><i class=\"k-point\" style=\"left: 45%;\"></i><i class=\"k-point\" style=\"left: 50%;\"></i><i class=\"k-point\" style=\"left: 55%;\"></i><i class=\"k-point\" style=\"left: 60%;\"></i><i class=\"k-point\" style=\"left: 65%;\"></i><i class=\"k-point\" style=\"left: 70%;\"></i><i class=\"k-point\" style=\"left: 75%;\"></i><i class=\"k-point\" style=\"left: 80%;\"></i><i class=\"k-point\" style=\"left: 85%;\"></i><i class=\"k-point\" style=\"left: 90%;\"></i><i class=\"k-point\" style=\"left: 95%;\"></i></div><div class=\"k-box\"><span>0</span><span>100</span></div></div></div><div class=\"k-slider k-show-end\"><div class=\"k-slider-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 30%; left: 30%;\"></div><div class=\"k-handle\" tabindex=\"0\" style=\"left: 30%;\"></div><div class=\"k-handle\" tabindex=\"0\" style=\"left: 60%;\"></div><i class=\"k-point\" style=\"left: 10%;\"></i><i class=\"k-point\" style=\"left: 20%;\"></i><i class=\"k-point\" style=\"left: 30%;\"></i><i class=\"k-point\" style=\"left: 40%;\"></i><i class=\"k-point\" style=\"left: 50%;\"></i><i class=\"k-point\" style=\"left: 60%;\"></i><i class=\"k-point\" style=\"left: 70%;\"></i><i class=\"k-point\" style=\"left: 80%;\"></i><i class=\"k-point\" style=\"left: 90%;\"></i></div><div class=\"k-box\"><span>0</span><span>1</span></div></div></div></div></div>"
 ```
 
 ##   `spin`
@@ -2490,8 +2492,10 @@
 ####     `Switch value`
 
 ```
-"<div><div><div style=\"margin-bottom: 20px;\"><div class=\"k-switch k-default\" tabindex=\"0\"><input type=\"checkbox\" tabindex=\"-1\"><div class=\"k-bar\"><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div> null
-    </div><div><div class=\"k-switch k-default\" tabindex=\"0\"><input type=\"checkbox\" tabindex=\"-1\"><div class=\"k-bar\"><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div> null
+"<div><div><div style=\"margin-bottom: 20px;\"><div class=\"k-switch k-default\" tabindex=\"0\"><input type=\"checkbox\" tabindex=\"-1\"><div class=\"k-bar\"><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div>
+        null
+    </div><div><div class=\"k-switch k-default\" tabindex=\"0\"><input type=\"checkbox\" tabindex=\"-1\"><div class=\"k-bar\"><div class=\"k-wrapper\"><div class=\"k-handle\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></div></div></div></div>
+        null
     </div></div></div>"
 ```
 
@@ -2815,8 +2819,10 @@
 ####     `Timepicker basic`
 
 ```
-"<div><div><div class=\"k-datepicker k-time-picker\" tabindex=\"0\"><div class=\"k-input k-with-prefix\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-clock-outline\"></i></div><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择时间\" tabindex=\"-1\"></div></div><!--placeholder--></div> You selected: 
-    <br><br><div class=\"k-datepicker k-time-picker\" tabindex=\"0\"><div class=\"k-input k-with-prefix\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-clock-outline\"></i></div><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择时间\" tabindex=\"-1\"></div></div><!--placeholder--></div> You selected: null
+"<div><div><div class=\"k-datepicker k-time-picker\" tabindex=\"0\"><div class=\"k-input k-with-prefix\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-clock-outline\"></i></div><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择时间\" tabindex=\"-1\"></div></div><!--placeholder--></div>
+    You selected: 
+    <br><br><div class=\"k-datepicker k-time-picker\" tabindex=\"0\"><div class=\"k-input k-with-prefix\"><div class=\"k-wrapper\"><div class=\"k-prefix\"><i class=\"ion-ios-clock-outline\"></i></div><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择时间\" tabindex=\"-1\"></div></div><!--placeholder--></div>
+    You selected: null
 </div></div>"
 ```
 
@@ -2831,9 +2837,9 @@
 ####     `Timepicker step`
 
 ```
-"<div><div><div class=\"k-select time k-with-prefix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-prefix\"><i class=\"ion-ios-clock-outline\"></i></div><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择时间</span></div></div><!--placeholder--></div>
+"<div><div><div class=\"k-select k-datepicker time k-with-prefix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-prefix\"><i class=\"ion-ios-clock-outline\"></i></div><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择时间</span></div></div><!--placeholder--></div>
     You selected: null
-    <br><br><div class=\"k-select k-clearable k-with-prefix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-prefix\"><i class=\"ion-ios-clock-outline\"></i></div><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择时间</span></div><span class=\"k-suffix\"><i class=\"k-clear ion-ios-close\"></i></span></div><!--placeholder--></div>
+    <br><br><div class=\"k-select k-datepicker k-clearable k-with-prefix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-prefix\"><i class=\"ion-ios-clock-outline\"></i></div><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择时间</span></div><span class=\"k-suffix\"><i class=\"k-clear ion-ios-close\"></i></span></div><!--placeholder--></div>
     You selected: null
 </div></div>"
 ```
