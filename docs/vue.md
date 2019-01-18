@@ -84,19 +84,153 @@ export default {
 > `Table`组件的`scheme`属性中`template`字段返回的vNode无需`normalize`，因为组件内部做了兼容，
 > 不过多次调用`normalize`也没有问题。
 
-# 配置`webpack.config.js`
+# Vue CLI 3 
 
-和在intact中使用的配置类似，只需要设置`alias`让`intact`库指向`intact-vue`兼容层
+推荐使用`@vue/cli@3.3.0`及以上的版本进行项目初始化
+
+## 安装并初始化
+
+```shell
+npm install -g @vue/cli
+vue create hello-world
+cd hello-word
+npm install kpc -S
+```
+
+## 新增配置文件`vue.config.js`
+
+在项目根目录下创建`vue.config.js`文件，内容如下：
 
 ```js
 module.exports = {
-    ...
-    resolve: {
-        alias: {
-            'intact$': 'intact-vue',
+    configureWebpack: {
+        resolve: {
+            alias: {
+                'kpc': 'kpc/@css',
+                'intact$': 'intact-vue',
+            }
+        },
+    }
+}
+```
+
+然后就可以引入kpc组件使用了
+
+## 引入主题文件
+
+如果你需要引入主题文件，需要安装`stylus`和`stylus-loader`
+
+### 安装
+
+```shell
+npm install stylus stylus-loader -D
+```
+
+### 修改`vue.config.js`
+
+kpc需要指向`kpc/@stylus`，下面以内置的主题`ksyun`为例
+
+```js
+module.exports = {
+    configureWebpack: {
+        resolve: {
+            alias: {
+                'kpc': 'kpc/@stylus',
+                'intact$': 'intact-vue',
+            }
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.styl$/,
+                    use: [
+                        {
+                            loader: 'stylus-loader',
+                            options: {
+                                'include css': true,
+                                'resolve url': true,
+                                'import': '~kpc/styles/themes/ksyun/index.styl'
+                            }
+                        }
+                    ]
+                }
+            ]
         }
     }
 }
+```
+
+> `@vue/cli@3.0`版本如果报找不到`babel-types`的错误，可以安装`babel-types`重启项目即可
+
+# Vue CLI 2
+
+## 安装并初始化
+
+```shell
+npm install -g vue-cli
+vue init webpack hello-world
+cd hello-world
+npm install kpc -S
+```
+
+## 修改`build/webpack.base.conf.js`
+
+添加`alias`配置
+
+```diff
+--- a/build/webpack.base.conf.js
++++ b/build/webpack.base.conf.js
+@@ -27,6 +27,8 @@ module.exports = {
+     alias: {
+       'vue$': 'vue/dist/vue.esm.js',
+       '@': resolve('src'),
++      'kpc': 'kpc/@css',
++      'intact$': 'intact-vue',
+     }
+   },
+```
+
+## 引入主题文件
+
+如果你需要引入主题文件，需要安装`stylus` `stylus-loader`
+
+```shell
+npm install stylus stylus-loader -D
+```
+
+修改`build/webpack.base.conf.js`
+
+```diff
+--- a/build/webpack.base.conf.js
++++ b/build/webpack.base.conf.js
+@@ -27,7 +27,7 @@ module.exports = {
+     alias: {
+       'vue$': 'vue/dist/vue.esm.js',
+       '@': resolve('src'),
+-      'kpc': 'kpc/@css',
++      'kpc': 'kpc/@stylus',
+       'intact$': 'intact-vue',
+     }
+   },
+```
+
+修改`build/utils.js`
+
+```diff
+--- a/build/utils.js
++++ b/build/utils.js
+@@ -62,7 +62,11 @@ exports.cssLoaders = function (options) {
+     sass: generateLoaders('sass', { indentedSyntax: true }),
+     scss: generateLoaders('sass'),
+     stylus: generateLoaders('stylus'),
+-    styl: generateLoaders('stylus')
++    styl: generateLoaders('stylus', {
++      'include css': true,
++      'resolve url': true,
++      'import': '~kpc/styles/themes/ksyun/index.styl',
++    })
+   }
+ }
 ```
 
 # 全量引入
