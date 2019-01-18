@@ -45,19 +45,104 @@ class App extends React.Component {
 > `Table`组件的`scheme`属性中`template`字段返回的vNode无需`normalize`，因为组件内部做了兼容，
 > 不过多次调用`normalize`也没有问题。
 
-# 配置`webpack.config.js`
+# Create React App
 
-和在intact中使用的配置类似，只需要设置`alias`让`intact`库指向`intact-react`兼容层
+> 示例版本为`create-react-app@2.1.3`，不同版本可能存在些许差异
 
-```js
-module.exports = {
-    ...
-    resolve: {
-        alias: {
-            'intact$': 'intact-react',
-        }
-    }
-}
+## 安装和初始化
+
+```shell
+npx create-react-app hello-world
+cd hello-world
+npm install kpc -S
+```
+
+## 修改配置
+
+修改配置之前，我们需要弹出项目的配置文件
+
+```shell
+npm run eject
+```
+
+然后修改配置文件`config/webpack.config.js`
+
+```diff
+--- a/config/webpack.config.js
++++ b/config/webpack.config.js
+@@ -265,6 +265,8 @@ module.exports = function(webpackEnv) {
+         // Support React Native Web
+         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
+         'react-native': 'react-native-web',
++        'kpc': 'kpc/@css',
++        'intact$': 'intact-react',
+       },
+       plugins: [
+         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
+```
+
+## 修改主题
+
+如果要修改主题，需要安装`stylus`和`stylus-loader`
+
+```shell
+npm install stylus stylus-loader -D
+```
+
+然后修改配置文件`config/webpack.config.js`，让kpc指向`kpc/@stylus`目录，并且加入`stylus-loader`
+
+```diff
+--- a/config/webpack.config.js
++++ b/config/webpack.config.js
+@@ -102,13 +102,15 @@ module.exports = function(webpackEnv) {
+         },
+       },
+     ].filter(Boolean);
+-    if (preProcessor) {
++    if (typeof preProcessor === 'string') {
+       loaders.push({
+         loader: require.resolve(preProcessor),
+         options: {
+           sourceMap: isEnvProduction && shouldUseSourceMap,
+         },
+       });
++    } else if (typeof preProcessor === 'object') {
++      loaders.push(preProcessor);
+     }
+     return loaders;
+   };
+@@ -265,7 +267,7 @@ module.exports = function(webpackEnv) {
+         // Support React Native Web
+         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
+         'react-native': 'react-native-web',
+-        'kpc': 'kpc/@css',
++        'kpc': 'kpc/@stylus',
+         'intact$': 'intact-react',
+       },
+       plugins: [
+@@ -448,6 +450,22 @@ module.exports = function(webpackEnv) {
+                 'sass-loader'
+               ),
+             },
++            {
++              test: /\.styl$/,
++              use: getStyleLoaders(
++                {
++                  importLoaders: 2,
++                },
++                {
++                  loader: 'stylus-loader',
++                  options: {
++                    'include css': true,
++                    'resolve url': true,
++                    'import': '~kpc/styles/themes/ksyun/index.styl',
++                  },
++                }
++              ),
++            },
+             // "file" loader makes sure those assets get served by WebpackDevServer.
+             // When you `import` an asset, you get its (virtual) filename.
+             // In production, they would get copied to the `build` folder.
 ```
 
 # 使用
