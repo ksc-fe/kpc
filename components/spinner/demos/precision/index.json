@@ -1,0 +1,31 @@
+{
+    "setting": {
+        "title": "精度",
+        "order": 1.1
+    },
+    "catalogs": [],
+    "contents": "",
+    "index": 101,
+    "highlighted": [
+        {
+            "language": "vdt",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> Spinner <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/spinner'</span>;\n\n&lt;div&gt;\n    &lt;Spinner v-model=\"value1\"\n        max={{ 10 }}\n        min={{ 0 }}\n        precision={{ 0 }}\n    /&gt;\n    &lt;Spinner v-model=\"value2\"\n        max={{ 10 }}\n        min={{ -10 }} \n        step={{ 0.1 }}\n        precision={{ 1 }}\n    /&gt;\n&lt;/div&gt;</code></pre>"
+        },
+        {
+            "language": "styl",
+            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-spinner</span>\n    <span class=\"hljs-attribute\">margin-right</span> <span class=\"hljs-number\">20px</span></code></pre>"
+        },
+        {
+            "language": "js",
+            "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
+        },
+        {
+            "language": "vue",
+            "content": "<pre><code class=\"hljs html\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">template</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Spinner</span> <span class=\"hljs-attr\">v-model</span>=<span class=\"hljs-string\">\"value1\"</span>\n            <span class=\"hljs-attr\">:max</span>=<span class=\"hljs-string\">\"10\"</span>\n            <span class=\"hljs-attr\">:min</span>=<span class=\"hljs-string\">\"0\"</span>\n            <span class=\"hljs-attr\">:precision</span>=<span class=\"hljs-string\">\"0\"</span>\n        /&gt;</span>\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Spinner</span> <span class=\"hljs-attr\">v-model</span>=<span class=\"hljs-string\">\"value2\"</span>\n            <span class=\"hljs-attr\">:max</span>=<span class=\"hljs-string\">\"10\"</span>\n            <span class=\"hljs-attr\">:min</span>=<span class=\"hljs-string\">\"-10\"</span> \n            <span class=\"hljs-attr\">:step</span>=<span class=\"hljs-string\">\"0.1\"</span>\n            <span class=\"hljs-attr\">:precision</span>=<span class=\"hljs-string\">\"1\"</span>\n        /&gt;</span>\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">template</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">script</span>&gt;</span><span class=\"javascript\">\n<span class=\"hljs-keyword\">import</span> Spinner <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/spinner'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> {\n    <span class=\"hljs-attr\">components</span>: {\n        Spinner\n    },\n    data() {\n        <span class=\"hljs-keyword\">return</span> {\n            <span class=\"hljs-string\">\"value1\"</span>: <span class=\"hljs-literal\">null</span>,\n            <span class=\"hljs-string\">\"value2\"</span>: <span class=\"hljs-literal\">null</span>\n        }\n    },\n}\n</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">script</span>&gt;</span></code></pre>"
+        },
+        {
+            "language": "jsx",
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>;\n<span class=\"hljs-keyword\">import</span> Spinner <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/spinner'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">React</span>.<span class=\"hljs-title\">Component</span> </span>{\n    <span class=\"hljs-keyword\">constructor</span>(props) {\n        <span class=\"hljs-keyword\">super</span>(props);\n        <span class=\"hljs-keyword\">this</span>.state = {};\n    }\n\n    render() {\n        <span class=\"hljs-keyword\">return</span> (\n            &lt;div&gt;\n                &lt;Spinner value={this.state.value1}\n                    on$change-value={(c, value1) =&gt; this.setState({value1})}\n                    max={10}\n                    min={0}\n                    precision={0}\n                /&gt;\n                &lt;Spinner value={this.state.value2}\n                    on$change-value={(c, value2) =&gt; this.setState({value2})}\n                    max={10}\n                    min={-10} \n                    step={0.1}\n                    precision={1}\n                /&gt;\n            &lt;/div&gt;\n        )\n    }\n}</code></pre>"
+        }
+    ]
+}

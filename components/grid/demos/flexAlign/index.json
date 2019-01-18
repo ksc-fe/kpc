@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>给<code>Row</code>添加<code>align</code>属性，即可自动启用<code>flex</code>布局来定义<code>Col</code>垂直方向的排列方式，它的可选值为：<code>top</code> <code>bottom</code> <code>middle</code> <code>stretch</code> <code>baseline</code></p>\n",
-    "index": 194,
+    "index": 193,
     "highlighted": [
         {
             "language": "vdt",

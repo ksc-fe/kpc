@@ -254,11 +254,11 @@
             ]
         },
         {
-            "title": "滚动选择框",
+            "title": "单选框",
             "category": "组件",
             "order": 3,
             "sidebar": "doc",
-            "path": "components/scrollSelect/index.md",
+            "path": "components/radio/index.md",
             "children": [
                 {
                     "title": "属性",
@@ -271,11 +271,11 @@
             ]
         },
         {
-            "title": "单选框",
+            "title": "滚动选择框",
             "category": "组件",
             "order": 3,
             "sidebar": "doc",
-            "path": "components/radio/index.md",
+            "path": "components/scrollSelect/index.md",
             "children": [
                 {
                     "title": "属性",
@@ -406,23 +406,6 @@
             ]
         },
         {
-            "title": "时间选择",
-            "category": "组件",
-            "order": 7,
-            "sidebar": "doc",
-            "path": "components/timepicker/index.md",
-            "children": [
-                {
-                    "title": "属性",
-                    "path": "#header-%E5%B1%9E%E6%80%A7",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                    "text": "属性",
-                    "children": []
-                }
-            ]
-        },
-        {
             "title": "日期选择",
             "category": "组件",
             "order": 7,
@@ -440,11 +423,11 @@
             ]
         },
         {
-            "title": "滑块",
+            "title": "时间选择",
             "category": "组件",
-            "order": 8,
+            "order": 7,
             "sidebar": "doc",
-            "path": "components/slider/index.md",
+            "path": "components/timepicker/index.md",
             "children": [
                 {
                     "title": "属性",
@@ -477,6 +460,23 @@
                     "level": 1,
                     "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
                     "text": "扩展点",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "title": "滑块",
+            "category": "组件",
+            "order": 8,
+            "sidebar": "doc",
+            "path": "components/slider/index.md",
+            "children": [
+                {
+                    "title": "属性",
+                    "path": "#header-%E5%B1%9E%E6%80%A7",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                    "text": "属性",
                     "children": []
                 }
             ]
@@ -1220,6 +1220,31 @@
             ]
         },
         {
+            "title": "穿梭框",
+            "category": "组件",
+            "order": 99,
+            "sidebar": "doc",
+            "path": "components/transfer/index.md",
+            "children": [
+                {
+                    "title": "属性",
+                    "path": "#header-%E5%B1%9E%E6%80%A7",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                    "text": "属性",
+                    "children": []
+                },
+                {
+                    "title": "扩展点",
+                    "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
+                    "level": 1,
+                    "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
+                    "text": "扩展点",
+                    "children": []
+                }
+            ]
+        },
+        {
             "title": "可编辑文本",
             "category": "组件",
             "order": 99,
@@ -1315,31 +1340,6 @@
                     "level": 1,
                     "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
                     "text": "事件",
-                    "children": []
-                }
-            ]
-        },
-        {
-            "title": "穿梭框",
-            "category": "组件",
-            "order": 99,
-            "sidebar": "doc",
-            "path": "components/transfer/index.md",
-            "children": [
-                {
-                    "title": "属性",
-                    "path": "#header-%E5%B1%9E%E6%80%A7",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                    "text": "属性",
-                    "children": []
-                },
-                {
-                    "title": "扩展点",
-                    "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
-                    "level": 1,
-                    "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
-                    "text": "扩展点",
                     "children": []
                 }
             ]
@@ -1586,12 +1586,87 @@
                     ]
                 },
                 {
-                    "title": "配置<code>webpack.config.js</code>",
-                    "path": "#header-%E9%85%8D%E7%BD%AEwebpack.config.js",
+                    "title": "Vue CLI 3",
+                    "path": "#header-Vue%20CLI%203",
                     "level": 1,
-                    "content": "<h1 id='header-%E9%85%8D%E7%BD%AEwebpack.config.js'>配置<code>webpack.config.js</code></h1>",
-                    "text": "配置<code>webpack.config.js</code>",
-                    "children": []
+                    "content": "<h1 id='header-Vue%20CLI%203'>Vue CLI 3</h1>",
+                    "text": "Vue CLI 3",
+                    "children": [
+                        {
+                            "title": "安装并初始化",
+                            "path": "#header-%E5%AE%89%E8%A3%85%E5%B9%B6%E5%88%9D%E5%A7%8B%E5%8C%96",
+                            "level": 2,
+                            "content": "<h2 id='header-%E5%AE%89%E8%A3%85%E5%B9%B6%E5%88%9D%E5%A7%8B%E5%8C%96'>安装并初始化</h2>",
+                            "text": "安装并初始化",
+                            "children": []
+                        },
+                        {
+                            "title": "新增配置文件<code>vue.config.js</code>",
+                            "path": "#header-%E6%96%B0%E5%A2%9E%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6vue.config.js",
+                            "level": 2,
+                            "content": "<h2 id='header-%E6%96%B0%E5%A2%9E%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6vue.config.js'>新增配置文件<code>vue.config.js</code></h2>",
+                            "text": "新增配置文件<code>vue.config.js</code>",
+                            "children": []
+                        },
+                        {
+                            "title": "引入主题文件",
+                            "path": "#header-%E5%BC%95%E5%85%A5%E4%B8%BB%E9%A2%98%E6%96%87%E4%BB%B6",
+                            "level": 2,
+                            "content": "<h2 id='header-%E5%BC%95%E5%85%A5%E4%B8%BB%E9%A2%98%E6%96%87%E4%BB%B6'>引入主题文件</h2>",
+                            "text": "引入主题文件",
+                            "children": [
+                                {
+                                    "title": "安装",
+                                    "path": "#header-%E5%AE%89%E8%A3%85",
+                                    "level": 3,
+                                    "content": "<h3 id='header-%E5%AE%89%E8%A3%85'>安装</h3>",
+                                    "text": "安装",
+                                    "children": []
+                                },
+                                {
+                                    "title": "修改<code>vue.config.js</code>",
+                                    "path": "#header-%E4%BF%AE%E6%94%B9vue.config.js",
+                                    "level": 3,
+                                    "content": "<h3 id='header-%E4%BF%AE%E6%94%B9vue.config.js'>修改<code>vue.config.js</code></h3>",
+                                    "text": "修改<code>vue.config.js</code>",
+                                    "children": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Vue CLI 2",
+                    "path": "#header-Vue%20CLI%202",
+                    "level": 1,
+                    "content": "<h1 id='header-Vue%20CLI%202'>Vue CLI 2</h1>",
+                    "text": "Vue CLI 2",
+                    "children": [
+                        {
+                            "title": "安装并初始化",
+                            "path": "#header-%E5%AE%89%E8%A3%85%E5%B9%B6%E5%88%9D%E5%A7%8B%E5%8C%96",
+                            "level": 2,
+                            "content": "<h2 id='header-%E5%AE%89%E8%A3%85%E5%B9%B6%E5%88%9D%E5%A7%8B%E5%8C%96'>安装并初始化</h2>",
+                            "text": "安装并初始化",
+                            "children": []
+                        },
+                        {
+                            "title": "修改<code>build/webpack.base.conf.js</code>",
+                            "path": "#header-%E4%BF%AE%E6%94%B9build%2Fwebpack.base.conf.js",
+                            "level": 2,
+                            "content": "<h2 id='header-%E4%BF%AE%E6%94%B9build%2Fwebpack.base.conf.js'>修改<code>build/webpack.base.conf.js</code></h2>",
+                            "text": "修改<code>build/webpack.base.conf.js</code>",
+                            "children": []
+                        },
+                        {
+                            "title": "引入主题文件",
+                            "path": "#header-%E5%BC%95%E5%85%A5%E4%B8%BB%E9%A2%98%E6%96%87%E4%BB%B6",
+                            "level": 2,
+                            "content": "<h2 id='header-%E5%BC%95%E5%85%A5%E4%B8%BB%E9%A2%98%E6%96%87%E4%BB%B6'>引入主题文件</h2>",
+                            "text": "引入主题文件",
+                            "children": []
+                        }
+                    ]
                 },
                 {
                     "title": "全量引入",
@@ -1626,12 +1701,37 @@
                     "children": []
                 },
                 {
-                    "title": "配置<code>webpack.config.js</code>",
-                    "path": "#header-%E9%85%8D%E7%BD%AEwebpack.config.js",
+                    "title": "Create React App",
+                    "path": "#header-Create%20React%20App",
                     "level": 1,
-                    "content": "<h1 id='header-%E9%85%8D%E7%BD%AEwebpack.config.js'>配置<code>webpack.config.js</code></h1>",
-                    "text": "配置<code>webpack.config.js</code>",
-                    "children": []
+                    "content": "<h1 id='header-Create%20React%20App'>Create React App</h1>",
+                    "text": "Create React App",
+                    "children": [
+                        {
+                            "title": "安装和初始化",
+                            "path": "#header-%E5%AE%89%E8%A3%85%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96",
+                            "level": 2,
+                            "content": "<h2 id='header-%E5%AE%89%E8%A3%85%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96'>安装和初始化</h2>",
+                            "text": "安装和初始化",
+                            "children": []
+                        },
+                        {
+                            "title": "修改配置",
+                            "path": "#header-%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE",
+                            "level": 2,
+                            "content": "<h2 id='header-%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE'>修改配置</h2>",
+                            "text": "修改配置",
+                            "children": []
+                        },
+                        {
+                            "title": "修改主题",
+                            "path": "#header-%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98",
+                            "level": 2,
+                            "content": "<h2 id='header-%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98'>修改主题</h2>",
+                            "text": "修改主题",
+                            "children": []
+                        }
+                    ]
                 },
                 {
                     "title": "使用",

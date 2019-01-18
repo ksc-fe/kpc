@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>Switch</code>默认选中的值为<code>true</code>，非选中的值为<code>false</code>，通过<code>trueValue</code>和<code>falseValue</code>属性，我们可以指定选中和非选中的值。</p>\n",
-    "index": 204,
+    "index": 199,
     "highlighted": [
         {
             "language": "vdt",
