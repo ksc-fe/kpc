@@ -107,22 +107,25 @@
                 font-size $select-multiple-tag-delete-icon-font-size 
             &:hover
                 color $select-multiple-tag-delete-icon-hover-color
-    // inline
-    &.k-inline
-        width auto
-        > .k-wrapper
-            border none
-            min-height 0
-            background transparent
-        .k-placeholder
-        .k-value
-            line-height inherit
-
     // size
     generate(size)
         font-size lookup('$select-' + size + '-font-size')
         > .k-wrapper
             min-height lookup('$select-' + size + '-height')
+        .k-input
+        .k-placeholder
+        .k-value
+            line-height s('calc(%s - 2px)', lookup('$select-' + size + '-height'))
+        .k-input
+            .k-inner
+                height s('calc(%s - 2px)', lookup('$select-' + size + '-height'))
+        .k-values
+            margin-top lookup('$select-' + size + '-multiple-values-margin')
+            margin-right -(getRight(lookup('$select-' + size + '-multiple-tag-margin')))
+            .k-input
+                margin-top -(lookup('$select-' + size + '-multiple-values-margin')) 
+        .k-select-tag
+            margin lookup('$select-' + size + '-multiple-tag-margin')
         if lookup('$select-' + size + '-padding-left-right')
             .k-main
                 padding 0 lookup('$select-' + size + '-padding-left-right')
@@ -140,20 +143,6 @@
             &.k-with-suffix.k-clearable
                 .k-main
                     padding-right lookup('$select-' + size + '-clearable-suffix-padding-right')
-            .k-input
-            .k-placeholder
-            .k-value
-                line-height s('calc(%s - 2px)', lookup('$select-' + size + '-height'))
-            .k-input
-                .k-inner
-                    height s('calc(%s - 2px)', lookup('$select-' + size + '-height'))
-            .k-values
-                margin-top lookup('$select-' + size + '-multiple-values-margin')
-                margin-right -(getRight(lookup('$select-' + size + '-multiple-tag-margin')))
-                .k-input
-                    margin-top -(lookup('$select-' + size + '-multiple-values-margin')) 
-            .k-select-tag
-                margin lookup('$select-' + size + '-multiple-tag-margin')
         if lookup('$select-' + size + '-padding-left')
             &.k-clearable
                 > .k-wrapper
@@ -164,7 +153,18 @@
                 generate(size)
         else
             generate(size)
-       
+
+    // inline
+    &.k-inline
+        width auto
+        > .k-wrapper
+            border none
+            min-height 0
+            background transparent
+        .k-placeholder
+        .k-value
+            line-height inherit
+
 .k-select-dropdown
     min-width auto
     max-height $select-dropdown-max-height
