@@ -34,8 +34,6 @@ const data = self.get('data');
                 <Button icon size="small" ev-click={{ self._append.bind(self, node) }}>+</Button>
                 <Button icon size="small" ev-click={{ self._remove.bind(self, node) }}>-</Button>
             </ButtonGroup>
-            <div v-else-if={{ a }}>test</div>
-            <div v-else>aaa</div>
         </b:label>
     </Tree>
 </div>

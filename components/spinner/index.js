@@ -17,6 +17,7 @@ export default class Spinner extends Intact {
             step: 1,
             size: 'default',
             vertical: false,
+            precision: undefined,
 
             _value: 0,
         };
@@ -30,48 +31,49 @@ export default class Spinner extends Intact {
         step: Number,
         size: ['large', 'default', 'small', 'mini'],
         vertical: Boolean,
+        precision: Number,
     }
 
     _init() {
-        this.on('$receive:value', this._fixValue);
-        this.on('$change:_value', (c, val) => {
-            const {max, min} = this.get();
-            // if the _value is valid, then set it to value
-            if (numberReg.test(val)) {
-                val = Number(val);
-                if (val <= max && val >= min) {
-                    this.set('value', val);
-                }
-            }
+        ['max', 'min', 'precision'].forEach(item => {
+            this.on(`$receive:${item}`, () => this._fixValue());
+        })
+        this.on('$receive:value', (c, v) => {
+            this._fixValue(v);
         });
     }
 
-    _fixValue() {
-        let value = this.get('value');
-        if (value == null) {
-            const min = this.get('min');
-            if (min === Number.NEGATIVE_INFINITY) {
-                value = 0;
-            } else {
-                value = min;
-            }
+    _fixValue(value = this.get('value'), fallbackValue = 0) {
+        const {precision, max, min} = this.get();
+        const originValue = this.get('value');
+        if (value == null || !numberReg.test(value)) {
+            value = fallbackValue;
         }
-        this.set({
-            '_value': value,
-            'value': value,
-        });
+        value = Number(value);
+        if (value >= max) {
+            value = max;
+        } else if (value < min) {
+            value = min;
+        }
+
+        let _value = value;
+        if (precision != null) {
+            _value = value.toFixed(precision);
+        }
+
+        this.set({_value, value});
     }
 
     _increase(e) {
         const {_value, step} = this.get();
 
-        this.set('_value', Number((_value + step).toFixed(10)));
+        this._fixValue(Number((+_value + step).toFixed(10)));
     }
 
     _decrease(e) {
         const {_value, step} = this.get();
 
-        this.set('_value', Number((_value - step).toFixed(10)));
+        this._fixValue(Number((+_value - step).toFixed(10)));
     }
 
     _disableDecrease() {
@@ -87,21 +89,7 @@ export default class Spinner extends Intact {
     }
 
     _changeValue(e) {
-        let val = e.target.value.trim();
-
-        const {disabled, max, min, value} = this.get();
-
-        if (!numberReg.test(val) || disabled) {
-            this.set('_value', value);
-        } else {
-            val = Number(val);
-            if (val >= max) {
-                val = max;
-            } else if (val < min) {
-                val = min;
-            }
-            this.set('_value', val);
-        }
+        this._fixValue(e.target.value.trim(), this.get('value'));
     }
 }
 
