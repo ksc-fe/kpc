@@ -97,7 +97,7 @@ export function createDate(date) {
     if (typeof date === 'string') {
         const [dateString, timeString] = date.split(' ');
         const args = dateString.split('-');
-        args[1] = args[1] -1;
+        args[1] = args[1] - 1;
         if (timeString) {
             args.push.apply(args, timeString.split(':'));
         }

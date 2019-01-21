@@ -4,12 +4,13 @@
     position relative
     overflow hidden
     table
-        font-size $table-font-size
         table-layout fixed
         width 100%
         border-collapse collapse
         border-spacing 0
         color $table-color
+    .k-tbody
+        font-size $table-font-size
 
     // thead
     .k-thead
@@ -37,8 +38,28 @@
         cursor pointer
     .k-sort
         margin-left $table-sort-margin-left
+        position relative
         .k-icon
-            font-size $table-sort-icon-font-size 
+            display block
+            height $table-sort-icon-height
+            position absolute
+            top 50%
+            margin-top -(unit(@height / 2, rem))
+            &:before
+            &:after
+                content ''
+                border $table-sort-icon-width solid transparent
+                border-color $table-sort-active-color transparent
+                position absolute
+            &:before
+                top 0
+                border-top-width 0
+            &:after
+                bottom 0
+                border-bottom-width 0
+        .icon-asc:after
+        .icon-desc:before
+            border-color $table-sort-non-active-color transparent
 
     // group
     .k-group
@@ -49,6 +70,7 @@
             transition transform $transition
             float right
             margin-left $table-group-margin-left 
+            line-height unit($table-thead-font-size * $line-height, rem)
     .k-group-show
         .k-group
             .k-arrow
