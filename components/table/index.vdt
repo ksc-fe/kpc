@@ -344,7 +344,7 @@ const classNameObj = {
     [className]: className,
     [`k-${type}`]: type !== 'default',
     'k-sticky': _isSticky, 
-    [`k-scroll-${_scrollPosition}`]: _paddingBottom,
+    [`k-scroll-${_scrollPosition}`]: hasFixedLeft || hasFixedRight,
     'k-sticky-scrollbar': _isStickyScrollbar,
 };
 
