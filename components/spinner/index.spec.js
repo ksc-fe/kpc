@@ -5,10 +5,10 @@ import {mount, unmount, dispatchEvent} from 'test/utils';
 describe('Spinner', () => {
     let instance;
 
-    // afterEach(() => {
-        // unmount(instance);
-        // instance = null
-    // });
+    afterEach(() => {
+        unmount(instance);
+        instance = null
+    });
 
     it('step/max/min test', () => {
         instance = mount(StepDemo);
