@@ -32,6 +32,10 @@ export default class ScrollSelect extends Intact {
     }
 
     _init() {
+        // maybe the receive event of data or count is triggered before value
+        // fix #186
+        this.set('_value', this.get('value'), {silent: true});
+
         this.on('$receive:value', (c, v) => {
             this.set('_value', v);
         });
