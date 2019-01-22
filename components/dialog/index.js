@@ -40,10 +40,9 @@ export default class Dialog extends Intact {
     _init() {
         this.on('$changed:value', (c, isShow) => {
             if (isShow) {
-                this.trigger('open');
-                this._center();
+                this._onOpen();
             } else {
-                this.trigger('close');
+                this._onClose();
             }
         }); 
     }
@@ -59,9 +58,20 @@ export default class Dialog extends Intact {
         // for debug
         window.__dialog = this;
 
-        this._center();
+        if (this.get('value')) {
+            this._onOpen();
+        }
+    }
 
+    _onOpen() {
+        this.trigger('open');
+        this._center();
         document.addEventListener('keydown', this._escClose);
+    }
+
+    _onClose() {
+        this.trigger('close');
+        document.removeEventListener('keydown', this._escClose);
     }
 
     showLoading() {
@@ -202,7 +212,6 @@ export default class Dialog extends Intact {
     }
 
     _destroy(...args) {
-        document.removeEventListener('keydown', this._escClose);
         if (this.get('value')) {
             this.close();
         } else {

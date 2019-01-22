@@ -19,33 +19,28 @@ export default class Drawer extends Dialog {
     defaults() {
         return {
             ...super.defaults(),
-            _appear: false,
             placement: 'right',
             overlay: true,
             closable: true
         }
     }
 
-    _init() {
-        this.on('$changed:value', (c, isShow) => {
-            if (isShow) {
-                this.trigger('open');
-                this._addDocumentEvents();
-                this._center();
-            } else {
-                this.trigger('close');
-            }
-        });
+    _onOpen() {
+        super._onOpen();
+        this._addDocumentEvents();
+    }
+
+    _onClose() {
+        super._onClose();
+        clearTimeout(this.timer)
+        this._removeDocumentEvents();
     }
 
     _addDocumentEvents() {
         if(!this.get('closable')) return;
-        // const parent = findParentComponent(Drawer, this, true);
-        // if(!parent) {
-            this.timer = setTimeout(() => {
-                document.addEventListener('click', this._onDocumentClick);
-            });
-        // }
+        this.timer = setTimeout(() => {
+            document.addEventListener('click', this._onDocumentClick);
+        });
     }
 
     _onDocumentClick(e) {
@@ -56,27 +51,12 @@ export default class Drawer extends Dialog {
     }
     
     _removeDocumentEvents() {
-        // const parent = findParentComponent(Drawer, this, true);
-        // if(!parent)  {
-            document.removeEventListener('click', this._onDocumentClick);
-        // }
+        document.removeEventListener('click', this._onDocumentClick);
     }
 
     _center() {}
 
     _dragStart(e) {}
-   
-    close() {
-        super.close();
-        this._removeDocumentEvents();
-    }
-
-    _destroy() {
-        super._destroy();
-        clearTimeout(this.timer)
-        this._removeDocumentEvents();
-    }
-
 }
 
 export {Drawer};
