@@ -40,6 +40,7 @@ export default class Table extends Intact {
 
             _padding: 0,
             _paddingBottom: 0,
+            _isShowLeftRightMiddle: false,
             _disabledAmount: 0,
             _isSticky: false,
             _leftWidth: 0,
@@ -409,11 +410,14 @@ export default class Table extends Intact {
                 }
 
                 // calculate the horizontal scroll bar
-                let paddingBottom = 0
+                let paddingBottom = 0;
+                let isShowLeftRightMiddle = false;
                 if (this.element.offsetWidth < tableWidth + this.get('_padding')) {
                     paddingBottom = this.get('_scrollBarWidth');
+                    isShowLeftRightMiddle = true;
                 }
                 data._paddingBottom = paddingBottom;
+                data._isShowLeftRightMiddle = isShowLeftRightMiddle;
 
                 this.set(data);
             }

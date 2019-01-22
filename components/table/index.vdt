@@ -12,7 +12,7 @@ const {
     resizable, expandedKeys, type, _isSticky,
     style, rowClassName, children, sort, group, _scrollBarWidth,
     _scrollLeft, _scrollTop, _hoverIndex, _scrollPosition, 
-    _paddingBottom, _isStickyScrollbar, loading
+    _paddingBottom, _isStickyScrollbar, loading, _isShowLeftRightMiddle
 } = self.get();
 
 let colSpan = checkType === 'checkbox' || checkType === 'radio' ? 1 : 0;
@@ -344,7 +344,7 @@ const classNameObj = {
     [className]: className,
     [`k-${type}`]: type !== 'default',
     'k-sticky': _isSticky, 
-    [`k-scroll-${_scrollPosition}`]: hasFixedLeft || hasFixedRight,
+    [`k-scroll-${_scrollPosition}`]: _isShowLeftRightMiddle,
     'k-sticky-scrollbar': _isStickyScrollbar,
 };
 
