@@ -4,6 +4,39 @@ order: 99
 sidebar: doc
 ---
 
+## v0.8.1
+
+##### Core
+1. `Add` `Spinner`支持`precision`属性，用于控制数值精度 [#195](https://github.com/ksc-fe/kpc/issues/195)
+1. `Fix` 修复`Collapse`折叠一项，另一项会抖动的问题 [#180](https://github.com/ksc-fe/kpc/issues/180)
+2. `Fix` 修复`Icon`在默认主题下`color`无效的问题
+3. `Fix` 修复`Slider`不能展示间隔点的问题 [#189](https://github.com/ksc-fe/kpc/issues/189)
+4. `Fix` 修复`Timepicker`在时间面板展开的情况下，点击清空按钮报错的问题 [#192](https://github.com/ksc-fe/kpc/issues/192)
+6. `Fix` 修复`Pagination`在默认主题下，无边框模式高亮按钮文字消失的问题 [#199](https://github.com/ksc-fe/kpc/issues/199)
+7. `Fix` 修复`Select`在默认主题下，`size`属性无效的问题 [#181](https://github.com/ksc-fe/kpc/issues/181)
+8. `Fix` 修复`Datepicker`时间范围选择，年份会出现负数的问题 [#186](https://github.com/ksc-fe/kpc/issues/186)
+9. `Fix` 修复`Table`在默认主题下，排序按钮消失的问题 [#191](https://github.com/ksc-fe/kpc/issues/191)
+10. `Fix` 修复`Table`在MacOS下，固定列不能展示阴影的问题 [#201](https://github.com/ksc-fe/kpc/issues/201)
+11. `Fix` 修复`Drawer`关闭后，`document`上绑定的`click`事件没有被解绑，可能引起报错的问题 [#203](https://github.com/ksc-fe/kpc/issues/203)
+12. `Fix` 修复`Dialog`渲染的同时进行展示，弹窗不能居中和进行动画的问题 [#185](https://github.com/ksc-fe/kpc/issues/185)
+13. `Fix` 修复`Dialog`中展示`Spin`，由于`k-overlay`样式冲突，导致蒙层不能被删除的问题 [#205](https://github.com/ksc-fe/kpc/issues/205)
+
+##### Vue
+1. `Fix` 修复`Table`，当一个`TableColumn`存在`title`扩展点，另一个`TableColumn`固定列时，头部渲染丢失的问题 [#202](https://github.com/ksc-fe/kpc/issues/202)
+2. `Doc` 补充`Vue CLI`创建的项目使用KPC组件库的文档
+
+##### React
+1. `Fix` 修复`Table`使用自定义数据导出报错的问题 [#190](https://github.com/ksc-fe/kpc/issues/190)
+2. `Fix` 修复`Grid`在响应式`gutter`属性下，渲染报错的问题 [#196](https://github.com/ksc-fe/kpc/issues/196)
+3. `Fix` 修复`Tree` `rightclick:node`事件对应`React`下写法`onRightclick-node`不能被正确触发的问题 [#194](https://github.com/ksc-fe/kpc/issues/194)
+4. `Fix` 修复`Switch` `on`属性被错误地当做事件处理的问题 [#188](https://github.com/ksc-fe/kpc/issues/188)
+5. `Fix` 修复`Input`不能根据`append`扩展点传入的字符串节点进行判断，自动添加`padding`的问题 [#187](https://github.com/ksc-fe/kpc/issues/187)
+6. `Fix` 修复`Dropdown`和`Tooltip`嵌套使用时，存在找不到定位元素的问题 [#184](https://github.com/ksc-fe/kpc/issues/184)
+7. `Fix` 修复`Dropdown`自身嵌套使用渲染报错的问题 [#183](https://github.com/ksc-fe/kpc/issues/183)
+8. `Fix` 修复通过`React.Fragment`传入文本节点无法渲染的问题 [#182](https://github.com/ksc-fe/kpc/issues/182)
+9. `Doc` 完善React使用文档和单元测试
+
+
 ## v0.8.0
 
 ##### Core
