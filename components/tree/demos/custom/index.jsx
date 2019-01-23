@@ -88,9 +88,7 @@ export default class extends React.Component {
                                     <Button icon size="small" onClick={this._append.bind(this, node)}>+</Button>
                                     <Button icon size="small" onClick={this._remove.bind(this, node)}>-</Button>
                                 </ButtonGroup> :
-                                a ?
-                                    <div>test</div> :
-                                    <div>aaa</div>
+                                undefined
                             }
                         </>
                     }}

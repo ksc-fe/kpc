@@ -18,7 +18,10 @@ export default class extends React.Component {
             <div>
                 <Table data={data} resizable stickHeader="87">
                     <TableColumn fixed="left" key="name" title="Name" width="200" className="name" />
-                    <TableColumn key="column1" title="Column1" width="300" />
+                    <TableColumn key="column1" title="Column1" width="300"
+                        b-title={<><div>Column1</div></>}
+                    >
+                    </TableColumn>
                     <TableColumn key="column2" title="Column2" width="300" />
                     <TableColumn key="column3" title="Column3" width="300" />
                     <TableColumn key="column4" title="Column4" width="300" />

@@ -1793,6 +1793,47 @@
                 {
                     "children": [
                         {
+                            "title": "v0.8.1",
+                            "path": "#header-v0.8.1",
+                            "level": 2,
+                            "content": "<h2 id='header-v0.8.1'>v0.8.1</h2>",
+                            "text": "v0.8.1",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "title": "Core",
+                                                    "path": "#header-Core",
+                                                    "level": 5,
+                                                    "content": "<h5 id='header-Core'>Core</h5>",
+                                                    "text": "Core",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "title": "Vue",
+                                                    "path": "#header-Vue",
+                                                    "level": 5,
+                                                    "content": "<h5 id='header-Vue'>Vue</h5>",
+                                                    "text": "Vue",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "title": "React",
+                                                    "path": "#header-React",
+                                                    "level": 5,
+                                                    "content": "<h5 id='header-React'>React</h5>",
+                                                    "text": "React",
+                                                    "children": []
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
                             "title": "v0.8.0",
                             "path": "#header-v0.8.0",
                             "level": 2,

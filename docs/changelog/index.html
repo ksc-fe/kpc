@@ -14,7 +14,37 @@
                     如果你发现文档有问题，请帮忙在
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/docs/changelog.md">github</a>
                     上修正该文档
-                </div></div><div class="contents"><div class="api"><div><h2 id='header-v0.8.0'>v0.8.0</h2><h5 id='header-Core'>Core</h5><ol>
+                </div></div><div class="contents"><div class="api"><div><h2 id='header-v0.8.1'>v0.8.1</h2><h5 id='header-Core'>Core</h5><ol>
+<li><code>Add</code> <code>Spinner</code>支持<code>precision</code>属性，用于控制数值精度 <a href="https://github.com/ksc-fe/kpc/issues/195">#195</a></li>
+<li><code>Fix</code> 修复<code>Collapse</code>折叠一项，另一项会抖动的问题 <a href="https://github.com/ksc-fe/kpc/issues/180">#180</a></li>
+<li><code>Fix</code> 修复<code>Icon</code>在默认主题下<code>color</code>无效的问题</li>
+<li><code>Fix</code> 修复<code>Slider</code>不能展示间隔点的问题 <a href="https://github.com/ksc-fe/kpc/issues/189">#189</a></li>
+<li><code>Fix</code> 修复<code>Timepicker</code>在时间面板展开的情况下，点击清空按钮报错的问题 <a href="https://github.com/ksc-fe/kpc/issues/192">#192</a></li>
+<li><code>Fix</code> 修复<code>Pagination</code>在默认主题下，无边框模式高亮按钮文字消失的问题 <a href="https://github.com/ksc-fe/kpc/issues/199">#199</a></li>
+<li><code>Fix</code> 修复<code>Select</code>在默认主题下，<code>size</code>属性无效的问题 <a href="https://github.com/ksc-fe/kpc/issues/181">#181</a></li>
+<li><code>Fix</code> 修复<code>Datepicker</code>时间范围选择，年份会出现负数的问题 <a href="https://github.com/ksc-fe/kpc/issues/186">#186</a></li>
+<li><code>Fix</code> 修复<code>Table</code>在默认主题下，排序按钮消失的问题 <a href="https://github.com/ksc-fe/kpc/issues/191">#191</a></li>
+<li><code>Fix</code> 修复<code>Table</code>在MacOS下，固定列不能展示阴影的问题 <a href="https://github.com/ksc-fe/kpc/issues/201">#201</a></li>
+<li><code>Fix</code> 修复<code>Drawer</code>关闭后，<code>document</code>上绑定的<code>click</code>事件没有被解绑，可能引起报错的问题 <a href="https://github.com/ksc-fe/kpc/issues/203">#203</a></li>
+<li><code>Fix</code> 修复<code>Dialog</code>渲染的同时进行展示，弹窗不能居中和进行动画的问题 <a href="https://github.com/ksc-fe/kpc/issues/185">#185</a></li>
+<li><code>Fix</code> 修复<code>Dialog</code>中展示<code>Spin</code>，由于<code>k-overlay</code>样式冲突，导致蒙层不能被删除的问题 <a href="https://github.com/ksc-fe/kpc/issues/205">#205</a></li>
+</ol>
+<h5 id='header-Vue'>Vue</h5><ol>
+<li><code>Fix</code> 修复<code>Table</code>，当一个<code>TableColumn</code>存在<code>title</code>扩展点，另一个<code>TableColumn</code>固定列时，头部渲染丢失的问题 <a href="https://github.com/ksc-fe/kpc/issues/202">#202</a></li>
+<li><code>Doc</code> 补充<code>Vue CLI</code>创建的项目使用KPC组件库的文档</li>
+</ol>
+<h5 id='header-React'>React</h5><ol>
+<li><code>Fix</code> 修复<code>Table</code>使用自定义数据导出报错的问题 <a href="https://github.com/ksc-fe/kpc/issues/190">#190</a></li>
+<li><code>Fix</code> 修复<code>Grid</code>在响应式<code>gutter</code>属性下，渲染报错的问题 <a href="https://github.com/ksc-fe/kpc/issues/196">#196</a></li>
+<li><code>Fix</code> 修复<code>Tree</code> <code>rightclick:node</code>事件对应<code>React</code>下写法<code>onRightclick-node</code>不能被正确触发的问题 <a href="https://github.com/ksc-fe/kpc/issues/194">#194</a></li>
+<li><code>Fix</code> 修复<code>Switch</code> <code>on</code>属性被错误地当做事件处理的问题 <a href="https://github.com/ksc-fe/kpc/issues/188">#188</a></li>
+<li><code>Fix</code> 修复<code>Input</code>不能根据<code>append</code>扩展点传入的字符串节点进行判断，自动添加<code>padding</code>的问题 <a href="https://github.com/ksc-fe/kpc/issues/187">#187</a></li>
+<li><code>Fix</code> 修复<code>Dropdown</code>和<code>Tooltip</code>嵌套使用时，存在找不到定位元素的问题 <a href="https://github.com/ksc-fe/kpc/issues/184">#184</a></li>
+<li><code>Fix</code> 修复<code>Dropdown</code>自身嵌套使用渲染报错的问题 <a href="https://github.com/ksc-fe/kpc/issues/183">#183</a></li>
+<li><code>Fix</code> 修复通过<code>React.Fragment</code>传入文本节点无法渲染的问题 <a href="https://github.com/ksc-fe/kpc/issues/182">#182</a></li>
+<li><code>Doc</code> 完善React使用文档和单元测试</li>
+</ol>
+<h2 id='header-v0.8.0'>v0.8.0</h2><h5 id='header-Core'>Core</h5><ol>
 <li><code>Add</code> <code>TableColumn</code>支持<code>className</code>属性，用于给当前列所有单元格添加<code>class</code>来控制列样式 <a href="https://github.com/ksc-fe/kpc/issues/164">#164</a></li>
 <li><code>Add</code> <code>Table</code>支持导出表格内容成<code>csv</code>格式并下载，而且支持自定义表格数据进行全量导出 <a href="https://github.com/ksc-fe/kpc/issues/171">#171</a></li>
 <li><code>Add</code> 新增<code>Icon</code>组件，统一字体图标使用方式 <a href="https://github.com/ksc-fe/kpc/issues/169">#169</a></li>
