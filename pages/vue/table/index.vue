@@ -1,6 +1,12 @@
 <template>
     <div>
         <Table :data="data">
+            <TableColumn key="a">
+                <div slot="title">test</div>
+            </TableColumn>
+            <TableColumn title="b" key="test" fixed="right" />
+        </Table>
+        <Table :data="data">
             <TableColumn key="test" title="测试">
                 <template slot-scope="data, index">
                     <div><i class="ion-search"></i>{{ data.test }}</div>

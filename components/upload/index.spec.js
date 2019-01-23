@@ -145,7 +145,7 @@ describe('Upload', () => {
         }
         instance = mount(Demo);
         const input = instance.element.querySelector('input');
-        input.files = getDataTransfer(['a'.repeat(1024 * 2)], {name: 'a'}).files;
+        input.files = getDataTransfer(['a'.repeat(1025 * 1)], {name: 'a'}).files;
     });
 
     it('should handle error on uploading correctly', function(done) {
@@ -154,7 +154,7 @@ describe('Upload', () => {
             @Intact.template()
             static template = `
                 <Upload
-                    action="//jsonplaceholder.typicode.com/posts/"
+                    action="//localhost"
                     ev-error={{ self._onError }}
                 />
             `;
@@ -171,7 +171,7 @@ describe('Upload', () => {
         }
         instance = mount(Demo);
         const input = instance.element.querySelector('input');
-        input.files = getDataTransfer(['a'.repeat(1024 * 512)], {name: 'a'}).files;
+        input.files = getDataTransfer(['a'.repeat(1024 * 100)], {name: 'a'}).files;
     });
 
     it('should abort request when remove file in progress', function(done) {
