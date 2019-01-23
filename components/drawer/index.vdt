@@ -1,6 +1,11 @@
 <t:parent class={{ {'k-drawer': true, [`k-${self.get('placement')}`]: true} }} >
     <b:overlay>
-        <Animate class="k-overlay" v-if={{ self.get('overlay') ? self.get('value') : false }} key="overlay"></Animate>
+        <Animate class="k-overlay"
+            v-if={{ self.get('overlay') ? self.get('value') : false }} 
+            key="overlay"
+            a:appear
+            a:transition="c-fade"
+        ></Animate>
     </b:overlay>
     <b:content>
         <div class='k-drawer-content'>
