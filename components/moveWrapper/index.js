@@ -19,11 +19,14 @@ export default class MoveWrapper extends Intact {
     }
 
     init(...args) {
+        // we must append the element before _mount lifecycles of children are called
+        this.mountedQueue.push(this._appendElement);
         super.init(...args);
         return this.placeholder = document.createComment("placeholder");
     }
 
     hydrate(...args) {
+        this.mountedQueue.push(this._appendElement);
         super.hydrate(...args);
         return this.placeholder = document.createComment('placeholder');
     }
@@ -39,7 +42,6 @@ export default class MoveWrapper extends Intact {
         }
     }
 
-    
     /**
      * @brief override super destroy 
      *
@@ -71,7 +73,7 @@ export default class MoveWrapper extends Intact {
         this.off();
     }
 
-    _mount(lastVNode, nextVNode) {
+    _appendElement() {
         const container = this.get('container');
         if (container) {
             if (typeof container === 'string') {
@@ -93,6 +95,7 @@ export default class MoveWrapper extends Intact {
             this.container = found || document.body;
         }
         this.container.appendChild(this.element);
+        this.trigger('appended');
     }
 }
 

@@ -4,14 +4,19 @@ import {_$} from '../utils';
 
 const {size} = self.get();
 
-<MoveWrapper autoDestroy={{ false }}>
+<MoveWrapper autoDestroy={{ false }} ev-appended={{ self._onAppended }}>
     <div class={{ {
         "k-dialog-wrapper": true,
         [self.get('className')]: self.get('className'),
         [scope.className]: scope.className,
     } }} ref={{ dom => self.$element = dom }}>
         <b:overlay>
-            <Animate class="k-overlay" v-if={{ self.get('value') }} key="overlay"></Animate>
+            <Animate class="k-overlay"
+                v-if={{ self.get('value') }}
+                key="overlay"
+                a:appear
+                a:transition="c-fade"
+            ></Animate>
         </b:overlay>
         <Animate 
             class={{ {
@@ -22,6 +27,7 @@ const {size} = self.get();
             ref={{ i => self.dialog = i ? i.element : null }}
             v-if={{ self.get('value') }}
             ev-a:leaveEnd={{ self._leaveEnd }}
+            a:appear
             key="dialog"
         >
             <template>

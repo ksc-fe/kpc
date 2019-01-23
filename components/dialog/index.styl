@@ -15,11 +15,6 @@
         height 100%
         background #000
         opacity 0.5 
-        transition opacity $transition 
-        // overlay animation
-        &.animate-enter
-        &.animate-leave
-            opacity 0
 
 .k-dialog
     position absolute 
@@ -67,9 +62,11 @@
     // animation
     &.animate-enter-active
     &.animate-leave-active
+    &.animate-appear-active
         transition all $transition
     &.animate-enter
     &.animate-leave
+    &.animate-appear
         transform $dialog-transform 
         opacity 0
 

@@ -49,6 +49,17 @@ describe('Dialog', () => {
         expect(element.children[1].children[1].innerHTML).to.equal('test');
     });
 
+    it('should show correctly when render with value is true', () => {
+        class Component extends Intact {
+            @Intact.template()
+            static template = `<Dialog value={{ true }}>test</Dialog>`;
+            _init() { this.Dialog = Dialog; }
+        }
+        component = render(Component);
+        const element = getElement('.k-dialog-wrapper');
+        expect(element.innerHTML.replace(/\d+px/g, '')).to.matchSnapshot();
+    });
+
     it('show dialog as instance', () => {
         class MyDialog extends Dialog {
             @Intact.template()

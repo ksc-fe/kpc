@@ -57,8 +57,14 @@ export default class Dialog extends Intact {
     _mount(lastVNode, nextVNode) {
         // for debug
         window.__dialog = this;
+    }
 
+    _onAppended() {
+        // if appear, it has animate-appear className and this will effect the dialog
+        // so we can not call _center after it
+        // in this case we center dialog as soon as it has been appended to container
         if (this.get('value')) {
+            this.mounted = true;
             this._onOpen();
         }
     }
