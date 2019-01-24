@@ -546,7 +546,7 @@ function parseVIf(template) {
                     });
                 }
                 if (stack.vElse) {
-                    results.push(indent(stack.vElse.codes, stack.vElseIf.length + 1));
+                    results.push(...indent(stack.vElse.codes, stack.vElseIf.length + 1));
                 } else {
                     results.push(indentOneLine(`${spaces}undefined`, stack.vElseIf.length + 1));
                 }
