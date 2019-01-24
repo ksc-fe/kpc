@@ -52,13 +52,13 @@ module.exports = {
                         options: {
                             url: true,
                             minimize: isProduction,
-                            // sourceMap: !isProduction,
+                            sourceMap: !isProduction,
                         }
                     },
                     {
                         loader: 'postcss-loader',
                         // options: {
-                            // // sourceMap: !isProduction,
+                            // sourceMap: !isProduction,
                         // }
                     },
                     {

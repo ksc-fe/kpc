@@ -8,6 +8,7 @@
   "scripts": {
     "test": "karma start test/karma.conf.js",
     "test:react": "cross-env REACT=1 karma start test/karma.react.conf.js",
+    "test:theme": "mocha test/themes/index.js",
     "snapshot": "cross-env UPDATE=1 npm run test; npm run snapshot:react",
     "snapshot:react": "cross-env UPDATE=1 npm run test:react",
     "snapshot:prune": "cross-env UPDATE=3 npm run test",

@@ -12,8 +12,8 @@ module.exports = function() {
             return path.dirname(style.nodes.filename);
         });
 
-        style.define('require', function(file) {
-            file = stylus.utils.lookup(file.string, this.paths);
+        style.define('require', function(file, path) {
+            file = stylus.utils.lookup(file.string, [path.string]);
             if (file) {
                 const res = new nodes.Root();
                 res.push(new nodes.Import(new nodes.String(file)));

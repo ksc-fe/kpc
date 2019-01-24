@@ -110,3 +110,7 @@ palette(color, level)
         return hsv(h + level, s + level * inS, b - level * inB)
     else
         return color
+
+requireTheme(name)
+    for dir in $theme-dir
+        require(name + '.styl', dir)

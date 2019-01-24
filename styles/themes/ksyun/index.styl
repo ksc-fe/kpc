@@ -1,6 +1,10 @@
 // $theme-dir := '../../styles/themes/ksyun'
 use('../../functions.js')
-$theme-dir := __dirname()
+
+if lookup('$theme-dir') 
+    push($theme-dir, __dirname())
+else
+    $theme-dir = __dirname()
 
 // we must require other file after defined $theme-dir
 // otherwise, the __dirname may be weird
