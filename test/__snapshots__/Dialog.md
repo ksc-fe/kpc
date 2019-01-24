@@ -3,7 +3,7 @@
 #### `should show correctly when render with value is true`
 
 ```
-"<div class=\"k-overlay c-fade-appear\"></div><div class=\"k-dialog animate-appear\" style=\"left: 552.; top: ;\"><div class=\"k-header\"><span class=\"k-title\">提示</span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body\">test</div><div class=\"k-footer c-clearfix\"><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>确认</span></button></div></div>"
+"<div class=\"k-overlay c-fade-appear\"></div><div class=\"k-dialog animate-appear\" style=\"left: ; top: ;\"><div class=\"k-header\"><span class=\"k-title\">提示</span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body\">test</div><div class=\"k-footer c-clearfix\"><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>确认</span></button></div></div>"
 ```
 
 #### `should prepend conent to block correctly`

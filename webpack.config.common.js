@@ -52,7 +52,7 @@ module.exports = {
                         options: {
                             url: true,
                             minimize: isProduction,
-                            sourceMap: !isProduction,
+                            // sourceMap: !isProduction,
                         }
                     },
                     {

@@ -7,9 +7,9 @@ const vueReq = require.context('~/components/', true, /demos\/.*index\.vue$/);
 describe('Demos', () => {
     let demo;
 
-    // afterEach(() => {
-        // unmount(demo);
-    // });
+    afterEach(() => {
+        unmount(demo);
+    });
 
     describe('Intact', () => {
         testDemos(req, (Demo, done) => {

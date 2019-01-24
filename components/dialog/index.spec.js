@@ -57,7 +57,7 @@ describe('Dialog', () => {
         }
         component = render(Component);
         const element = getElement('.k-dialog-wrapper');
-        expect(element.innerHTML.replace(/\d+px/g, '')).to.matchSnapshot();
+        expect(element.innerHTML.replace(/[\d\.]+px/g, '')).to.matchSnapshot();
     });
 
     it('show dialog as instance', () => {
