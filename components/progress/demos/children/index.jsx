@@ -33,7 +33,9 @@ export default class extends React.Component {
                             正在上传<br />
                             {this.state.percent}%
                         </div> :
-                        <div style={{"fontSize":"14px","lineHeight":"20px","color":"#4db500"}}>,                上传完成,            </div>
+                        <div style={{"fontSize":"14px","lineHeight":"20px","color":"#4db500"}}>
+                            上传完成
+                        </div>
                     }
                 </Progress>
                 <ButtonGroup>
