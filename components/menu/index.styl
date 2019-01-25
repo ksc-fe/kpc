@@ -6,17 +6,21 @@
     transition width $transition
     background $menu-bg-color
     font-size $menu-font-size
+    overflow hidden
     // nested menu
     .k-menu
         width auto
         background $menu-sub-bg-color 
-        .k-menu-item
-            > .k-title
-                padding-left getLeft($menu-item-padding) + $menu-item-icon-min-width + $menu-item-icon-margin-right
         .k-menu
             .k-menu-item
                 > .k-title
-                    padding-left getLeft($menu-item-padding) + ($menu-item-icon-min-width + $menu-item-icon-margin-right) * 2
+                    padding-left getLeft($menu-item-padding) + $menu-item-icon-left * 2
+    .k-icon
+        position absolute
+        width $menu-item-icon-width
+        left $menu-item-icon-left
+        text-align center
+
     // header
     .k-header
         height $menu-header-height
@@ -29,10 +33,6 @@
         color $menu-item-color
         overflow hidden
         .k-icon
-            position absolute
-            width $menu-header-icon-width
-            left $menu-header-icon-left
-            text-align center
             line-height $menu-header-height
 
     // light theme
@@ -58,10 +58,10 @@
 
     // collapse
     &.k-collapsed
-        width getLeft($menu-item-padding) * 2 + $menu-item-icon-min-width
-        overflow hidden
+        width $menu-item-icon-left * 2 + $menu-item-icon-width
         .k-menu-item
             > .k-title
+                padding-right $menu-item-icon-left 
                 span
                 .k-arrow
                     display none
@@ -73,31 +73,15 @@
 
     // size
     generate(size)
-        $height = lookup('$menu-' + size + '-item-height')
-        $padding = lookup('$menu-' + size + '-item-padding')
         &.k-{size}
             width lookup('$menu-' + size + '-width')
             if lookup('$menu-' + size + '-font-size')
                 font-size lookup('$menu-' + size + '-font-size')
-            .k-menu-item
-                > .k-title
-                    height $height 
-                    line-height @height
-                    padding $padding 
-                    .k-arrow
-                        height $height 
             &.k-collapsed
-                width getLeft($padding) * 2 + $menu-item-icon-min-width 
+                width $menu-item-icon-left * 2 + $menu-item-icon-width
             .k-menu
                 if lookup('$menu-' + size + '-font-size')
                     font-size lookup('$menu-' + size + '-font-size')
-                .k-menu-item
-                    > .k-title
-                        padding-left getLeft($padding) + $menu-item-icon-min-width + $menu-item-icon-margin-right
-                .k-menu
-                    .k-menu-item
-                        > .k-title
-                            padding-left getLeft($padding) + ($menu-item-icon-min-width + $menu-item-icon-margin-right) * 2
     for size in large small
         generate(size)
 
@@ -135,6 +119,7 @@
         position relative
         overflow hidden
         transition all $transition
+        padding-left 46px
         &:hover
             color $menu-item-hover-color
         .k-arrow
@@ -143,12 +128,8 @@
             transition transform $transition
             margin-left $menu-item-arrow-margin-left
         .k-icon
-            display inline-block
-            vertical-align top 
-            min-width $menu-item-icon-min-width
-            text-align center
-            margin-right $menu-item-icon-margin-right
-    
+            line-height $menu-item-height
+
     // expanded
     &.k-expanded
     &.k-show
@@ -193,6 +174,7 @@
     min-width $menu-dropdown-min-width
     .k-menu-item
         > .k-title
+            padding 0 getRight($menu-item-padding)
             .k-arrow
                 transform rotate(-90deg)
 
