@@ -7,6 +7,9 @@ import './test.styl';
 
 chai.use(matchSnapshot);
 
+const testsContext = require.context('../components/', true, /index\.react\.spec\.js/);
+testsContext.keys().forEach(testsContext);
+
 const reactReq = require.context('~/components/', true, /demos\/.*index\.jsx$/);
 
 describe('React Demos', () => {

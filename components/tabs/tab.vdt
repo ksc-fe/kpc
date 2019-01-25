@@ -5,7 +5,7 @@ const {
     disabled, _parent, closable,
 } = self.get();
 
-<a 
+<div 
     class={{ {
         'k-tab': true, 
         'k-active': value !== undefined && value === _value, 
@@ -25,4 +25,4 @@ const {
     >
         <i class="k-icon ion-ios-close-empty" />
     </Button>
-</a>
+</div>
