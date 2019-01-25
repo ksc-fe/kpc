@@ -171,7 +171,10 @@ export default class Dialog extends Intact {
                 if (height > outerHeight) {
                     position.top = scrollTop;
                 }    
-            }
+            },
+            // let dialog padding top half of padding bottom
+            my: 'center center+16%',
+            at: 'center center-16%'
         });
     }
 
