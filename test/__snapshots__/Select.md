@@ -59,7 +59,7 @@
 ```
 
 ```
-"<div class=\"k-tabs k-vertical k-border-card\"><div class=\"k-scroll c-clearfix\"><div class=\"k-wrapper\" style=\"transform: translateX(0px);\"><a class=\"k-tab k-active\">工作日</a><a class=\"k-tab\"><i class=\"ion-wineglass\"></i>休息日</a></div></div></div><div class=\"k-groups\"><div class=\"k-group\"><div class=\"k-item k-active\">星期一</div><div class=\"k-item\">星期二</div><div class=\"k-item\">星期三</div><div class=\"k-item\">星期四</div><div class=\"k-item\">星期五</div></div></div>"
+"<div class=\"k-tabs k-vertical k-border-card\"><div class=\"k-scroll c-clearfix\"><div class=\"k-wrapper\" style=\"transform: translateX(0px);\"><div class=\"k-tab k-active\">工作日</div><div class=\"k-tab\"><i class=\"ion-wineglass\"></i>休息日</div></div></div></div><div class=\"k-groups\"><div class=\"k-group\"><div class=\"k-item k-active\">星期一</div><div class=\"k-item\">星期二</div><div class=\"k-item\">星期三</div><div class=\"k-item\">星期四</div><div class=\"k-item\">星期五</div></div></div>"
 ```
 
 #### `keyboard operations`
