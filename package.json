@@ -125,6 +125,7 @@
     "vdt-loader": "^1.5.1",
     "vue": "^2.5.16",
     "vue-loader": "^13.7.1",
+    "vue-router": "^3.0.2",
     "vue-template-compiler": "^2.5.16",
     "webpack": "^3.11.0",
     "webpack-dev-middleware": "^1.12.0",
@@ -137,8 +138,8 @@
     "downloadjs": "^1.4.7",
     "enquire.js": "^2.1.6",
     "intact": "^2.4.8",
-    "intact-react": "^1.1.11",
-    "intact-vue": "^0.4.10",
+    "intact-react": "^1.1.12",
+    "intact-vue": "^0.4.11",
     "resize-observer-polyfill": "^1.5.0"
   },
   "sideEffects": [

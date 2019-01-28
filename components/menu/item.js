@@ -3,6 +3,7 @@ import template from './item.vdt';
 import DropdownItem from '../dropdown/item';
 import Dropdown from '../dropdown/dropdown';
 import Menu from './menu';
+import {findRouter} from '../utils';
 
 export default class MenuItem extends DropdownItem {
     @Intact.template()
@@ -57,6 +58,11 @@ export default class MenuItem extends DropdownItem {
         _root.on('$change:selectedKey', this._updateStatus);
     }
 
+    _mount() {
+        super._mount();
+        this.$router = findRouter(this);
+    }
+
     _updateStatus(c, v) {
         if (v === this.get('key')) {
             const items = [];
@@ -94,7 +100,11 @@ export default class MenuItem extends DropdownItem {
             this.trigger('select', this, e);
             const to = this.get('to');
             if (to) {
-                location.href = to;
+                if (this.$router) {
+                    this.$router.push(to);
+                } else {
+                    location.href = to;
+                }
             }
         }
     }

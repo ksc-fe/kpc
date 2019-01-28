@@ -1,5 +1,6 @@
 import Intact from 'intact';
 import template from './item.vdt';
+import {findRouter} from '../utils';
 
 export default class BreadcrumbItem extends Intact {
     @Intact.template()
@@ -17,10 +18,19 @@ export default class BreadcrumbItem extends Intact {
         }
     }
 
+    _mount() {
+        this.$router = findRouter(this);
+    }
+
     onClick() {
         const to = this.get('to');
         if (to) {
-            window.location.href = to;
+            const $router = this.$router;
+            if ($router) {
+                $router.push(to);
+            } else {
+                window.location.href = to;
+            }
         }
     }
 }

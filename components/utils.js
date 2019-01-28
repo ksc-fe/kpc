@@ -83,6 +83,30 @@ export function findParentComponent(Component, instance, isUntil) {
     return ret;
 }
 
+// find the router instance
+// in React, find the history of history
+// in Vue, find the $router
+export function findRouter(instance) {
+    const Component = instance.constructor;
+    if (Component.$$cid === 'IntactReact') {
+        // in React
+        let parentVNode = instance.vNode;
+        while (parentVNode) {
+            let i;
+            if (
+                parentVNode.type === Types.ComponentClass && 
+                (i = parentVNode.children.context) &&
+                (i = i.router)
+            ) {
+                return i.history;
+            }
+            parentVNode = parentVNode.parentVNode;
+        }
+    } else if (Component.cid = 'IntactVue') {
+        return instance.get('_context').data.$router;
+    }
+}
+
 export function strPad(str, length, pad) {
     str = str.toString();
     pad = pad === undefined ? '0' : pad;

@@ -12,9 +12,7 @@ describe('Breadcrumb', () => {
         let link;
         const Test = () => (
             <Breadcrumb>
-                <BreadcrumbItem>
-                    <Link to="/index" ref={i => link = i}>Home</Link>
-                </BreadcrumbItem>
+                <BreadcrumbItem to="/index" ref={i => link = i}>Home</BreadcrumbItem>
                 <BreadcrumbItem>Detail</BreadcrumbItem>
             </Breadcrumb>
         );
@@ -27,7 +25,7 @@ describe('Breadcrumb', () => {
         );
 
         const dom = ReactDOM.findDOMNode(link);
-        dom.click();
+        dom.querySelector('a').click();
         expect(location.pathname).to.eql('/index');
         history.back();
         document.body.removeChild(container);
