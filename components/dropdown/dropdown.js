@@ -99,6 +99,7 @@ export default class Dropdown extends Intact {
         if (this.get('disabled')) return;
 
         const menu = this.menu.children;
+        menu.__event = e;
         menu.show();
 
         if (isFocus) {
