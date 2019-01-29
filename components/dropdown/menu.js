@@ -178,9 +178,12 @@ export default class DropdownMenu extends Intact {
             // no matter what the trigger is
             // we should let the layer hide when click document. #52
 
-            // if (this.get('trigger') === 'click') {
+            // in vue the click event of trigger element
+            // will propagate to document immediately
+            // and this will lead close the layer. #209
+            this.timer = setTimeout(() => {
                 document.addEventListener('click', this._onDocumentClick);
-            // }
+            });
         } else {
             parent.locked = true;
         }
@@ -192,9 +195,8 @@ export default class DropdownMenu extends Intact {
         this.positioned = false;
         const parent = this._findParentDropdownMenu();
         if (!parent) {
-            // if (this.get('trigger') === 'click') {
-                document.removeEventListener('click', this._onDocumentClick);
-            // }
+            clearTimeout(this.timer);
+            document.removeEventListener('click', this._onDocumentClick);
         } else {
             parent.locked = false;
         }

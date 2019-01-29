@@ -38,6 +38,9 @@ export default class Drawer extends Dialog {
 
     _addDocumentEvents() {
         if(!this.get('closable')) return;
+        // in vue the click event of trigger element
+        // will propagate to document immediately
+        // and this will lead close the layer
         this.timer = setTimeout(() => {
             document.addEventListener('click', this._onDocumentClick);
         });
