@@ -14,7 +14,19 @@
                     如果你发现文档有问题，请帮忙在
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/docs/changelog.md">github</a>
                     上修正该文档
-                </div></div><div class="contents"><div class="api"><div><h2 id='header-v0.8.1'>v0.8.1</h2><h5 id='header-Core'>Core</h5><ol>
+                </div></div><div class="contents"><div class="api"><div><h2 id='header-v0.8.2'>v0.8.2</h2><h4 id='header-Core'>Core</h4><ol>
+<li><code>Add</code> 内置主题<code>ksyun</code>支持再次继承，不会再因为重新定义了<code>$theme-dir</code>而导致部分样式丢失 <a href="https://github.com/ksc-fe/kpc/issues/193">#193</a></li>
+<li><code>Change</code> <code>Dialog</code>弹出位置优化，以前为垂直居中弹出，现在弹出位置向上偏移 <a href="https://github.com/ksc-fe/kpc/issues/207">#207</a></li>
+<li><code>Fix</code> 修复<code>Spinner</code>当父元素设置了<code>line-height</code>后，布局错位的问题 <a href="https://github.com/ksc-fe/kpc/issues/206">#206</a></li>
+<li><code>Fix</code> 修复<code>Table</code>当固定了列时，<code>loading</code>状态不能遮住固定列的问题 <a href="https://github.com/ksc-fe/kpc/issues/208">#208</a></li>
+</ol>
+<h4 id='header-Vue'>Vue</h4><ol>
+<li><code>Add</code> <code>BreadcrumbItem</code> <code>MenuItem</code>等组件的<code>to</code>属性支持<code>vue-router</code>的<code>router-link</code>写法 <a href="https://github.com/ksc-fe/kpc/issues/166">#166</a></li>
+</ol>
+<h4 id='header-React'>React</h4><ol>
+<li><code>Add</code> <code>BreadcrumbItem</code> <code>MenuItem</code>等组件的<code>to</code>属性支持<code>react-router</code>的<code>Link</code>写法 <a href="https://github.com/ksc-fe/kpc/issues/166">#166</a></li>
+</ol>
+<h2 id='header-v0.8.1'>v0.8.1</h2><h5 id='header-Core'>Core</h5><ol>
 <li><code>Add</code> <code>Spinner</code>支持<code>precision</code>属性，用于控制数值精度 <a href="https://github.com/ksc-fe/kpc/issues/195">#195</a></li>
 <li><code>Fix</code> 修复<code>Collapse</code>折叠一项，另一项会抖动的问题 <a href="https://github.com/ksc-fe/kpc/issues/180">#180</a></li>
 <li><code>Fix</code> 修复<code>Icon</code>在默认主题下<code>color</code>无效的问题</li>

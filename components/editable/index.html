@@ -15,17 +15,17 @@
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/components/editable/index.md">github</a>
                     上修正该文档
                 </div></div><div class="contents"><div><h1>示例</h1><div class="example index-42" id="42"><div class="example-opera"><div><div class="k-editable" style=""><i class="ion-edit k-edit" title="编辑"></i><div class="c-ellipsis"><i class="ion-ios-location"></i><a href="">editable text</a></div></div><br /><div class="k-editable k-disabled" style=""><div class="c-ellipsis"><i class="ion-ios-location"></i><a href="">disabled editable text</a></div></div></div></div><div class="example-desc"><div class="title">基础用法</div><div class="desc"><p>使用<code>v-model</code>建立需要编辑的文本的双向数据绑定；使用<code>disabled</code>可以禁用文本编辑</p>
-</div></div><div class="example-code"><div class="k-tabs" style=""><div class="k-scroll c-clearfix"><div class="k-wrapper" style="transform:translateX(0px);"><a class="k-tab">index.vdt<!---->
-                            </a><a class="k-tab">index.styl<!---->
-                            </a><a class="k-tab">index.js<!---->
-                            </a><a class="k-tab">index.vue<!---->
-                            <!---->(Vue)</a><a class="k-tab">index.jsx<!---->
-                            <!---->(React)</a><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div><div class="example index-71" id="71"><div class="example-opera"><div><div class="k-editable" style=""><i class="ion-edit k-edit" title="编辑"></i><div class="c-ellipsis">100</div></div><br /><div class="k-editable" style=""><i class="ion-edit k-edit" title="编辑"></i><div class="c-ellipsis">100</div></div><br /><div class="k-editable" style=""><i class="ion-edit k-edit" title="编辑"></i><div class="c-ellipsis">100</div></div></div></div><div class="example-desc"><div class="title">验证输入</div><div class="desc"><p>使用<code>validate</code>属性，指定输入验证规则，改值可以是函数/正则/正则字符串。验证失败，输入框会添加className: <code>k-invalid</code>，用以改变样式。我们还可以绑定<code>error</code>事件弹出更多错误提示。</p>
-</div></div><div class="example-code"><div class="k-tabs" style=""><div class="k-scroll c-clearfix"><div class="k-wrapper" style="transform:translateX(0px);"><a class="k-tab">index.vdt<!---->
-                            </a><a class="k-tab">index.js<!---->
-                            </a><a class="k-tab">index.vue<!---->
-                            <!---->(Vue)</a><a class="k-tab">index.jsx<!---->
-                            <!---->(React)</a><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div></div><div class="api"><div><blockquote>
+</div></div><div class="example-code"><div class="k-tabs" style=""><div class="k-scroll c-clearfix"><div class="k-wrapper" style="transform:translateX(0px);"><div class="k-tab">index.vdt<!---->
+                            </div><div class="k-tab">index.styl<!---->
+                            </div><div class="k-tab">index.js<!---->
+                            </div><div class="k-tab">index.vue<!---->
+                            <!---->(Vue)</div><div class="k-tab">index.jsx<!---->
+                            <!---->(React)</div><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div><div class="example index-71" id="71"><div class="example-opera"><div><div class="k-editable" style=""><i class="ion-edit k-edit" title="编辑"></i><div class="c-ellipsis">100</div></div><br /><div class="k-editable" style=""><i class="ion-edit k-edit" title="编辑"></i><div class="c-ellipsis">100</div></div><br /><div class="k-editable" style=""><i class="ion-edit k-edit" title="编辑"></i><div class="c-ellipsis">100</div></div></div></div><div class="example-desc"><div class="title">验证输入</div><div class="desc"><p>使用<code>validate</code>属性，指定输入验证规则，改值可以是函数/正则/正则字符串。验证失败，输入框会添加className: <code>k-invalid</code>，用以改变样式。我们还可以绑定<code>error</code>事件弹出更多错误提示。</p>
+</div></div><div class="example-code"><div class="k-tabs" style=""><div class="k-scroll c-clearfix"><div class="k-wrapper" style="transform:translateX(0px);"><div class="k-tab">index.vdt<!---->
+                            </div><div class="k-tab">index.js<!---->
+                            </div><div class="k-tab">index.vue<!---->
+                            <!---->(Vue)</div><div class="k-tab">index.jsx<!---->
+                            <!---->(React)</div><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div></div><div class="api"><div><blockquote>
 <p>如果你不是通过<code>v-model</code>指令进行数据双向绑定，而是通过绑定<code>change</code>事件去修改的引用数据，则你需要在修改数据后，手动触发更新<code>this.update()</code>，这样才能传递新的<code>children</code>子元素给组件去渲染。</p>
 <p><code>vue</code>因为所有数据修改都会触发更新，所以无需手动触发更新</p>
 </blockquote>

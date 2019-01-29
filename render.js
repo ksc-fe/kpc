@@ -39,7 +39,7 @@ module.exports =
 /******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
 /******/ 		// "0" is the signal for "already loaded"
 /******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("./chunk/" + {"0":"ce4d3ea2c0dccccf254e","1":"0f4f1ea7fab87128854f","2":"8965350dc9f0171c3758","3":"26ff3fc425f708d286e1"}[chunkId] + ".js");
+/******/ 			var chunk = require("./chunk/" + {"0":"358755bf0a28e914d564","1":"b5f9e77c39465025ae5f","2":"cdcc24a5c6627dc2b68d","3":"b86d323db76cdb1175ee"}[chunkId] + ".js");
 /******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				modules[moduleId] = moreModules[moduleId];
@@ -238,7 +238,7 @@ exports.App = exports.default = App;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1548331790590
+      // 1548749757015
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -393,7 +393,7 @@ exports.Spin = exports.default = Spin;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1548331792659
+      // 1548749757692
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -525,6 +525,7 @@ exports.isTextVNode = isTextVNode;
 exports.isStringOrNumberNotEmpty = isStringOrNumberNotEmpty;
 exports.getTextByChildren = getTextByChildren;
 exports.findParentComponent = findParentComponent;
+exports.findRouter = findRouter;
 exports.strPad = strPad;
 exports.range = range;
 exports.selectInput = selectInput;
@@ -658,6 +659,30 @@ function findParentComponent(Component, instance, isUntil) {
   }
 
   return ret;
+} // find the router instance
+// in React, find the history of history
+// in Vue, find the $router
+
+
+function findRouter(instance) {
+  var Component = instance.constructor;
+
+  if (Component.$$cid === 'IntactReact') {
+    // in React
+    var parentVNode = instance.vNode;
+
+    while (parentVNode) {
+      var i = void 0;
+
+      if (parentVNode.type === Types.ComponentClass && (i = parentVNode.children.context) && (i = i.router)) {
+        return i.history;
+      }
+
+      parentVNode = parentVNode.parentVNode;
+    }
+  } else if (Component.cid = 'IntactVue') {
+    return instance.get('_context').data.$router;
+  }
 }
 
 function strPad(str, length, pad) {
@@ -1399,7 +1424,7 @@ exports.default = _default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1548331794110
+      // 1548749759811
       var cssReload = require("!../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);

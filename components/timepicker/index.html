@@ -17,30 +17,30 @@
                 </div></div><div class="contents"><div><h1>示例</h1><div class="example index-21" id="21"><div class="example-opera"><div><div class="k-datepicker k-time-picker" style="" tabindex="0"><div class="k-input k-with-prefix" style=""><div class="k-wrapper"><div class="k-prefix"><i class="ion-ios-clock-outline"></i></div><input class="k-inner" type="text" readOnly placeholder="请选择时间" tabindex="-1" style="" /></div></div><!--MoveWrapper--></div>
     You selected: <br /><br /><div class="k-datepicker k-time-picker" style="" tabindex="0"><div class="k-input k-with-prefix" style=""><div class="k-wrapper"><div class="k-prefix"><i class="ion-ios-clock-outline"></i></div><input class="k-inner" type="text" readOnly placeholder="请选择时间" tabindex="-1" style="" /></div></div><!--MoveWrapper--></div>
     You selected: </div></div><div class="example-desc"><div class="title">基础使用</div><div class="desc"><p>基础用法，通过<code>v-model</code>双向绑定，值为时间字符串，并非<code>Date</code>对象。添加<code>multiple</code>属性可以支持多选；通过<code>min</code> <code>max</code>属性可以指定最小最大可选时间</p>
-</div></div><div class="example-code"><div class="k-tabs" style=""><div class="k-scroll c-clearfix"><div class="k-wrapper" style="transform:translateX(0px);"><a class="k-tab">index.vdt<!---->
-                            </a><a class="k-tab">index.js<!---->
-                            </a><a class="k-tab">index.vue<!---->
-                            <!---->(Vue)</a><a class="k-tab">index.jsx<!---->
-                            <!---->(React)</a><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div><div class="example index-61" id="61"><div class="example-opera"><div><div class="k-datepicker k-range k-time-picker" style="" tabindex="0"><div class="k-input k-with-prefix k-clearable" style=""><div class="k-wrapper"><div class="k-prefix"><i class="ion-ios-clock-outline"></i></div><input class="k-inner" type="text" readOnly placeholder="开始时间 ~ 结束时间" tabindex="-1" style="" /><div class="k-suffix"><i class="k-icon k-clear ion-ios-close" style=""></i> </div></div></div><!--MoveWrapper--></div>
+</div></div><div class="example-code"><div class="k-tabs" style=""><div class="k-scroll c-clearfix"><div class="k-wrapper" style="transform:translateX(0px);"><div class="k-tab">index.vdt<!---->
+                            </div><div class="k-tab">index.js<!---->
+                            </div><div class="k-tab">index.vue<!---->
+                            <!---->(Vue)</div><div class="k-tab">index.jsx<!---->
+                            <!---->(React)</div><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div><div class="example index-61" id="61"><div class="example-opera"><div><div class="k-datepicker k-range k-time-picker" style="" tabindex="0"><div class="k-input k-with-prefix k-clearable" style=""><div class="k-wrapper"><div class="k-prefix"><i class="ion-ios-clock-outline"></i></div><input class="k-inner" type="text" readOnly placeholder="开始时间 ~ 结束时间" tabindex="-1" style="" /><div class="k-suffix"><i class="k-icon k-clear ion-ios-close" style=""></i> </div></div></div><!--MoveWrapper--></div>
     You selected: </div></div><div class="example-desc"><div class="title">时间范围</div><div class="desc"><p>添加<code>range</code>属性，支持时间范围选择</p>
-</div></div><div class="example-code"><div class="k-tabs" style=""><div class="k-scroll c-clearfix"><div class="k-wrapper" style="transform:translateX(0px);"><a class="k-tab">index.vdt<!---->
-                            </a><a class="k-tab">index.js<!---->
-                            </a><a class="k-tab">index.vue<!---->
-                            <!---->(Vue)</a><a class="k-tab">index.jsx<!---->
-                            <!---->(React)</a><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div><div class="example index-106" id="106"><div class="example-opera"><div><div class="k-select k-datepicker time k-with-prefix" style="" tabindex="0"><div class="k-wrapper" tabindex="-1" _evHasSaved><div class="k-prefix"><i class="ion-ios-clock-outline"></i></div><div class="k-main"><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择时间</span></div></div><!--MoveWrapper--></div>
+</div></div><div class="example-code"><div class="k-tabs" style=""><div class="k-scroll c-clearfix"><div class="k-wrapper" style="transform:translateX(0px);"><div class="k-tab">index.vdt<!---->
+                            </div><div class="k-tab">index.js<!---->
+                            </div><div class="k-tab">index.vue<!---->
+                            <!---->(Vue)</div><div class="k-tab">index.jsx<!---->
+                            <!---->(React)</div><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div><div class="example index-106" id="106"><div class="example-opera"><div><div class="k-select k-datepicker time k-with-prefix" style="" tabindex="0"><div class="k-wrapper" tabindex="-1" _evHasSaved><div class="k-prefix"><i class="ion-ios-clock-outline"></i></div><div class="k-main"><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择时间</span></div></div><!--MoveWrapper--></div>
     You selected: <br /><br /><div class="k-select k-datepicker k-clearable k-with-prefix" style="" tabindex="0"><div class="k-wrapper" tabindex="-1" _evHasSaved><div class="k-prefix"><i class="ion-ios-clock-outline"></i></div><div class="k-main"><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择时间</span></div><span class="k-suffix"><i class="k-clear ion-ios-close"></i></span></div><!--MoveWrapper--></div>
     You selected: </div></div><div class="example-desc"><div class="title">固定时间点</div><div class="desc"><p>当指定了<code>step</code>属性时，组件将展示成<code>Select</code>样式，只能选择固定的几个时间点。通过<code>min</code>和<code>max</code>限定选择时间范围（默认：00:00:00 ~ 23:59:59），<code>step</code>指定步长，它们值类型都为时间字符串，指定时可以省略秒，但是组件会添加秒（00）</p>
-</div></div><div class="example-code"><div class="k-tabs" style=""><div class="k-scroll c-clearfix"><div class="k-wrapper" style="transform:translateX(0px);"><a class="k-tab">index.vdt<!---->
-                            </a><a class="k-tab">index.js<!---->
-                            </a><a class="k-tab">index.vue<!---->
-                            <!---->(Vue)</a><a class="k-tab">index.jsx<!---->
-                            <!---->(React)</a><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div><div class="example index-165" id="165"><div class="example-opera"><div><div class="k-datepicker k-range k-time-picker" style="" tabindex="0"><div class="k-input k-with-prefix k-clearable" style=""><div class="k-wrapper"><div class="k-prefix"><i class="ion-ios-clock-outline"></i></div><input class="k-inner" type="text" readOnly placeholder="开始时间 ~ 结束时间" tabindex="-1" style="" /><div class="k-suffix"><i class="k-icon k-clear ion-ios-close" style=""></i> </div></div></div><!--MoveWrapper--></div>
+</div></div><div class="example-code"><div class="k-tabs" style=""><div class="k-scroll c-clearfix"><div class="k-wrapper" style="transform:translateX(0px);"><div class="k-tab">index.vdt<!---->
+                            </div><div class="k-tab">index.js<!---->
+                            </div><div class="k-tab">index.vue<!---->
+                            <!---->(Vue)</div><div class="k-tab">index.jsx<!---->
+                            <!---->(React)</div><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div><div class="example index-165" id="165"><div class="example-opera"><div><div class="k-datepicker k-range k-time-picker" style="" tabindex="0"><div class="k-input k-with-prefix k-clearable" style=""><div class="k-wrapper"><div class="k-prefix"><i class="ion-ios-clock-outline"></i></div><input class="k-inner" type="text" readOnly placeholder="开始时间 ~ 结束时间" tabindex="-1" style="" /><div class="k-suffix"><i class="k-icon k-clear ion-ios-close" style=""></i> </div></div></div><!--MoveWrapper--></div>
     You selected: </div></div><div class="example-desc"><div class="title">固定时间点范围选择</div><div class="desc"><p>添加<code>range</code>属性，同时指定<code>step</code>可以展示固定时间点范围选择</p>
-</div></div><div class="example-code"><div class="k-tabs" style=""><div class="k-scroll c-clearfix"><div class="k-wrapper" style="transform:translateX(0px);"><a class="k-tab">index.vdt<!---->
-                            </a><a class="k-tab">index.js<!---->
-                            </a><a class="k-tab">index.vue<!---->
-                            <!---->(Vue)</a><a class="k-tab">index.jsx<!---->
-                            <!---->(React)</a><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div></div><div class="api"><div><h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1><div class="k-table k-border">
+</div></div><div class="example-code"><div class="k-tabs" style=""><div class="k-scroll c-clearfix"><div class="k-wrapper" style="transform:translateX(0px);"><div class="k-tab">index.vdt<!---->
+                            </div><div class="k-tab">index.js<!---->
+                            </div><div class="k-tab">index.vue<!---->
+                            <!---->(Vue)</div><div class="k-tab">index.jsx<!---->
+                            <!---->(React)</div><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div></div><div class="api"><div><h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1><div class="k-table k-border">
                     <div class="k-table-wrapper">
                         <div class="k-thead">
                             <table>

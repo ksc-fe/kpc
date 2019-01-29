@@ -18,40 +18,40 @@
 <blockquote>
 <p>选中状态的判定条件是<code>value === trueValue || value.indexOf(trueValue)</code>，对于值为对象的情况要注意。</p>
 </blockquote>
-</div></div><div class="example-code"><div class="k-tabs" style=""><div class="k-scroll c-clearfix"><div class="k-wrapper" style="transform:translateX(0px);"><a class="k-tab">index.vdt<!---->
-                            </a><a class="k-tab">index.styl<!---->
-                            </a><a class="k-tab">index.js<!---->
-                            </a><a class="k-tab">index.vue<!---->
-                            <!---->(Vue)</a><a class="k-tab">index.jsx<!---->
-                            <!---->(React)</a><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div><div class="example index-90" id="90"><div class="example-opera"><div><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" value="Javascript" tabindex="-1" name="languages" /></span><span class="k-text">Javascript</span></label><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" value="C++" tabindex="-1" name="languages" /></span><span class="k-text">C++</span></label><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" value="PHP" tabindex="-1" name="languages" /></span><span class="k-text">PHP</span></label>
+</div></div><div class="example-code"><div class="k-tabs" style=""><div class="k-scroll c-clearfix"><div class="k-wrapper" style="transform:translateX(0px);"><div class="k-tab">index.vdt<!---->
+                            </div><div class="k-tab">index.styl<!---->
+                            </div><div class="k-tab">index.js<!---->
+                            </div><div class="k-tab">index.vue<!---->
+                            <!---->(Vue)</div><div class="k-tab">index.jsx<!---->
+                            <!---->(React)</div><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div><div class="example index-90" id="90"><div class="example-opera"><div><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" value="Javascript" tabindex="-1" name="languages" /></span><span class="k-text">Javascript</span></label><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" value="C++" tabindex="-1" name="languages" /></span><span class="k-text">C++</span></label><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" value="PHP" tabindex="-1" name="languages" /></span><span class="k-text">PHP</span></label>
     Your selected: <!---->[]</div></div><div class="example-desc"><div class="title">Checkbox组</div><div class="desc"><p>和浏览器原生行为一样，给<code>Checkbox</code>指定相同的<code>name</code>，它们便组成了复选框组。</p>
 <blockquote>
 <p>此时必须初始化绑定的属性为数组，否则<code>Checkbox</code>将类似<code>radio</code>一样只能单选</p>
 </blockquote>
-</div></div><div class="example-code"><div class="k-tabs" style=""><div class="k-scroll c-clearfix"><div class="k-wrapper" style="transform:translateX(0px);"><a class="k-tab">index.vdt<!---->
-                            </a><a class="k-tab">index.styl<!---->
-                            </a><a class="k-tab">index.js<!---->
-                            </a><a class="k-tab">index.vue<!---->
-                            <!---->(Vue)</a><a class="k-tab">index.jsx<!---->
-                            <!---->(React)</a><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div><div class="example index-55" id="55"><div class="example-opera"><div><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" value tabindex="-1" /></span><span class="k-text">默认值: </span></label><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" value="checked" tabindex="-1" /></span><span class="k-text">
+</div></div><div class="example-code"><div class="k-tabs" style=""><div class="k-scroll c-clearfix"><div class="k-wrapper" style="transform:translateX(0px);"><div class="k-tab">index.vdt<!---->
+                            </div><div class="k-tab">index.styl<!---->
+                            </div><div class="k-tab">index.js<!---->
+                            </div><div class="k-tab">index.vue<!---->
+                            <!---->(Vue)</div><div class="k-tab">index.jsx<!---->
+                            <!---->(React)</div><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div><div class="example index-55" id="55"><div class="example-opera"><div><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" value tabindex="-1" /></span><span class="k-text">默认值: </span></label><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" value="checked" tabindex="-1" /></span><span class="k-text">
         指定选中时取值为&quot;checked&quot;: </span></label><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" value="0" tabindex="-1" /></span><span class="k-text">
         指定非选中时取值为对象：</span></label></div></div><div class="example-desc"><div class="title">指定选中和非选中的取值</div><div class="desc"><p><code>Checkbox</code>默认选中的值为<code>true</code>，非选中的值为<code>false</code>，通过<code>trueValue</code>和<code>falseValue</code>属性，我们可以指定选中和非选中的值。</p>
 <blockquote>
 <p>当指定值为对象时，不要在模板中直接定义对象字面量（如：trueValue={{ {a: 1} }}），因为在模板中创建的对象每次执行模板都会生成一份新数据，使全等判断(<code>===</code>)失效。此时应该在js中定义该对象，然后模板中引用它。</p>
 </blockquote>
-</div></div><div class="example-code"><div class="k-tabs" style=""><div class="k-scroll c-clearfix"><div class="k-wrapper" style="transform:translateX(0px);"><a class="k-tab">index.vdt<!---->
-                            </a><a class="k-tab">index.styl<!---->
-                            </a><a class="k-tab">index.js<!---->
-                            </a><a class="k-tab">index.vue<!---->
-                            <!---->(Vue)</a><a class="k-tab">index.jsx<!---->
-                            <!---->(React)</a><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div><div class="example index-116" id="116"><div class="example-opera"><div><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" value tabindex="-1" /></span><span class="k-text">全选</span></label><hr /><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" value="Javascript" tabindex="-1" name="languages" /></span><span class="k-text">Javascript</span></label><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" value="C++" tabindex="-1" name="languages" /></span><span class="k-text">C++</span></label><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" value="PHP" tabindex="-1" name="languages" /></span><span class="k-text">PHP</span></label>
+</div></div><div class="example-code"><div class="k-tabs" style=""><div class="k-scroll c-clearfix"><div class="k-wrapper" style="transform:translateX(0px);"><div class="k-tab">index.vdt<!---->
+                            </div><div class="k-tab">index.styl<!---->
+                            </div><div class="k-tab">index.js<!---->
+                            </div><div class="k-tab">index.vue<!---->
+                            <!---->(Vue)</div><div class="k-tab">index.jsx<!---->
+                            <!---->(React)</div><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div><div class="example index-116" id="116"><div class="example-opera"><div><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" value tabindex="-1" /></span><span class="k-text">全选</span></label><hr /><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" value="Javascript" tabindex="-1" name="languages" /></span><span class="k-text">Javascript</span></label><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" value="C++" tabindex="-1" name="languages" /></span><span class="k-text">C++</span></label><label class="k-checkbox" style="" tabindex="0"><span class="k-wrapper"><input type="checkbox" value="PHP" tabindex="-1" name="languages" /></span><span class="k-text">PHP</span></label>
     Your selected: <!---->[]</div></div><div class="example-desc"><div class="title">半选中状态</div><div class="desc"><p>通过<code>indeterminate</code>属性可以控制<code>Checkbox</code>的半选中状态</p>
-</div></div><div class="example-code"><div class="k-tabs" style=""><div class="k-scroll c-clearfix"><div class="k-wrapper" style="transform:translateX(0px);"><a class="k-tab">index.vdt<!---->
-                            </a><a class="k-tab">index.styl<!---->
-                            </a><a class="k-tab">index.js<!---->
-                            </a><a class="k-tab">index.vue<!---->
-                            <!---->(Vue)</a><a class="k-tab">index.jsx<!---->
-                            <!---->(React)</a><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div></div><div class="api"><div><h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1><div class="k-table k-border">
+</div></div><div class="example-code"><div class="k-tabs" style=""><div class="k-scroll c-clearfix"><div class="k-wrapper" style="transform:translateX(0px);"><div class="k-tab">index.vdt<!---->
+                            </div><div class="k-tab">index.styl<!---->
+                            </div><div class="k-tab">index.js<!---->
+                            </div><div class="k-tab">index.vue<!---->
+                            <!---->(Vue)</div><div class="k-tab">index.jsx<!---->
+                            <!---->(React)</div><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div></div><div class="api"><div><h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1><div class="k-table k-border">
                     <div class="k-table-wrapper">
                         <div class="k-thead">
                             <table>

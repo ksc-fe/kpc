@@ -1793,6 +1793,43 @@
                 {
                     "children": [
                         {
+                            "title": "v0.8.2",
+                            "path": "#header-v0.8.2",
+                            "level": 2,
+                            "content": "<h2 id='header-v0.8.2'>v0.8.2</h2>",
+                            "text": "v0.8.2",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "title": "Core",
+                                            "path": "#header-Core",
+                                            "level": 4,
+                                            "content": "<h4 id='header-Core'>Core</h4>",
+                                            "text": "Core",
+                                            "children": []
+                                        },
+                                        {
+                                            "title": "Vue",
+                                            "path": "#header-Vue",
+                                            "level": 4,
+                                            "content": "<h4 id='header-Vue'>Vue</h4>",
+                                            "text": "Vue",
+                                            "children": []
+                                        },
+                                        {
+                                            "title": "React",
+                                            "path": "#header-React",
+                                            "level": 4,
+                                            "content": "<h4 id='header-React'>React</h4>",
+                                            "text": "React",
+                                            "children": []
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
                             "title": "v0.8.1",
                             "path": "#header-v0.8.1",
                             "level": 2,
