@@ -7,7 +7,7 @@ sidebar: doc
 ## v0.8.2
 
 #### Core
-3. `Add` 内置主题`ksyun`支持再次继承，不会再因为重新定义了`$theme-dir`而导致部分样式丢失 [#193](https://github.com/ksc-fe/kpc/issues/193)
+1. `Add` 内置主题`ksyun`支持再次继承，不会再因为重新定义了`$theme-dir`而导致部分样式丢失 [#193](https://github.com/ksc-fe/kpc/issues/193)
 1. `Change` `Dialog`弹出位置优化，以前为垂直居中弹出，现在弹出位置向上偏移 [#207](https://github.com/ksc-fe/kpc/issues/207)
 2. `Fix` 修复`Spinner`当父元素设置了`line-height`后，布局错位的问题 [#206](https://github.com/ksc-fe/kpc/issues/206)
 4. `Fix` 修复`Table`当固定了列时，`loading`状态不能遮住固定列的问题 [#208](https://github.com/ksc-fe/kpc/issues/208)
