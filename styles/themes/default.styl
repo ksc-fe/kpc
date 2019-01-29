@@ -1,12 +1,15 @@
-@require('../mixin.styl')
-
 /******************************
              Theme
 *******************************/
+
 use('../functions.js')
 $theme-dir := __dirname()
 // $fonts-dir := './fonts';
 $fonts-dir := '.';
+
+// we must require other file after defined $theme-dir
+// otherwise, the __dirname may be weird
+@require('../mixin.styl')
 
 /******************************
              Colors
