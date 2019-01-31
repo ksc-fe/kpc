@@ -1445,14 +1445,6 @@
                     "children": []
                 },
                 {
-                    "title": "使用脚手架",
-                    "path": "#header-%E4%BD%BF%E7%94%A8%E8%84%9A%E6%89%8B%E6%9E%B6",
-                    "level": 1,
-                    "content": "<h1 id='header-%E4%BD%BF%E7%94%A8%E8%84%9A%E6%89%8B%E6%9E%B6'>使用脚手架</h1>",
-                    "text": "使用脚手架",
-                    "children": []
-                },
-                {
                     "title": "手动引入",
                     "path": "#header-%E6%89%8B%E5%8A%A8%E5%BC%95%E5%85%A5",
                     "level": 1,

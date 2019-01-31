@@ -19,30 +19,6 @@
 <li><a href="https://webpack.js.org/">webpack</a> + <a href="https://babeljs.io/">babel</a></li>
 <li><a href="https://cn.vuejs.org/index.html">Vue</a>（如果将kpc用于Vue项目）或者<a href="http://javey.github.io/intact/">intact</a>（如果将kpc用于Intact项目）或者<a href="https://reactjs.org/">React</a>（如果将kpc用于React项目）</li>
 </ol>
-<h1 id='header-%E4%BD%BF%E7%94%A8%E8%84%9A%E6%89%8B%E6%9E%B6'>使用脚手架</h1><p>使用<a href="http://yeoman.io/">Yeoman</a>以及generator-kscpm，可以快速初始化kpc项目</p>
-<blockquote>
-<p>目前仅支持初始化Intact和Vue项目，React项目正在添加中</p>
-</blockquote>
-<ol>
-<li>安装yo和generator-kscpm</li>
-</ol>
-<pre><code class="hljs shell">npm <span class="hljs-keyword">install</span> -g yo generator-kscpm
-</code></pre>
-<ol start="2">
-<li>初始化kpc项目</li>
-</ol>
-<p>kscpm提供了很多工程模板，用于初始化项目，页面以及组件等</p>
-<pre><code class="hljs shell"><span class="hljs-string">yo</span> <span class="hljs-string">kscpm</span> <span class="hljs-comment"># 列出所有可选工程模板</span>
-<span class="hljs-string">yo</span> <span class="hljs-attr">kscpm:intact</span> <span class="hljs-comment"># 初始化基于intact的kpc项目</span>
-<span class="hljs-string">yo</span> <span class="hljs-attr">kscpm:vue</span> <span class="hljs-comment"># 初始化基于vue的kpc项目</span>
-
-<span class="hljs-string">...</span>
-</code></pre>
-<ol start="3">
-<li>启动项目</li>
-</ol>
-<pre><code class="hljs shell">npm <span class="hljs-keyword">run</span><span class="bash"> dev</span>
-</code></pre>
 <h1 id='header-%E6%89%8B%E5%8A%A8%E5%BC%95%E5%85%A5'>手动引入</h1><h2 id='header-%E5%AE%89%E8%A3%85'>安装</h2><pre><code class="hljs js">npm <span class="hljs-keyword">install</span> kpc -S
 </code></pre>
 <h2 id='header-%E5%8D%95%E6%96%87%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%89%88'>单文件构建版</h2><p>如果你的项目没有使用webpack来构建，可以引入单文件构建版。将<code>kpc.css</code>和<code>kpc.js</code>在html文件中引入。此时所有组件都在<code>Kpc</code>命名空间下，例如<code>Kpc.Button</code> <code>Kpc.Table</code>等。</p>
