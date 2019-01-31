@@ -11,36 +11,6 @@ sidebar: doc
 1. [webpack][1] + [babel][2]
 2. [Vue][3]（如果将kpc用于Vue项目）或者[intact][4]（如果将kpc用于Intact项目）或者[React][7]（如果将kpc用于React项目）
 
-# 使用脚手架
-
-使用[Yeoman][5]以及generator-kscpm，可以快速初始化kpc项目
-
-> 目前仅支持初始化Intact和Vue项目，React项目正在添加中
-
-1. 安装yo和generator-kscpm
-
-```shell
-npm install -g yo generator-kscpm
-```
-
-2. 初始化kpc项目
-
-kscpm提供了很多工程模板，用于初始化项目，页面以及组件等
-
-```shell
-yo kscpm # 列出所有可选工程模板
-yo kscpm:intact # 初始化基于intact的kpc项目
-yo kscpm:vue # 初始化基于vue的kpc项目
-
-...
-```
-
-3. 启动项目
-
-```shell
-npm run dev
-```
-
 # 手动引入
 
 ## 安装
