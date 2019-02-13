@@ -11,15 +11,18 @@
     .k-menu
         width auto
         background $menu-sub-bg-color 
+        .k-menu-item
+            > .k-title
+                padding-left $menu-item-padding-left 
         .k-menu
             .k-menu-item
                 > .k-title
-                    padding-left getLeft($menu-item-padding) + $menu-item-icon-left * 2
+                    padding-left $menu-item-padding-left + $menu-item-icon-left * 2
     .k-icon
-        position absolute
+        display inline-block
         width $menu-item-icon-width
-        left $menu-item-icon-left
         text-align center
+        margin-left -($menu-item-icon-width - $menu-item-padding-left + getLeft($menu-item-padding))
 
     // header
     .k-header
@@ -61,12 +64,9 @@
         width $menu-item-icon-left * 2 + $menu-item-icon-width
         .k-menu-item
             > .k-title
-                padding-right $menu-item-icon-left 
                 span
                 .k-arrow
                     display none
-                .k-icon
-                    margin 0
         .k-header 
             :not(.k-icon)
                 display none
@@ -119,14 +119,15 @@
         position relative
         overflow hidden
         transition all $transition
-        padding-left 46px
+        // padding-left 46px
         &:hover
             color $menu-item-hover-color
         .k-arrow
             float right
-            height $menu-item-height
             transition transform $transition
             margin-left $menu-item-arrow-margin-left
+            &:before
+                vertical-align top
         .k-icon
             line-height $menu-item-height
 

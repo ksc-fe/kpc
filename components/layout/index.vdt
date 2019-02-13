@@ -1,0 +1,10 @@
+const {className, children, style} = self.get();
+
+const __className = self.get('_className');
+
+const classNameObj = {
+    [__className]: true,
+    [className]: className,
+};
+
+<div class={{ classNameObj }} style={{ style }}>{{ children }}</div>

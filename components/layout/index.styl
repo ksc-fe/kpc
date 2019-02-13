@@ -1,0 +1,30 @@
+@require('./variables.styl')
+
+.k-layout
+    display flex
+    flex-direction column
+    flex 1
+    &.k-has-aside
+        flex-direction row
+        .k-layout
+            > .k-header
+                background #fff
+                border-bottom 1px solid $border-color
+    > .k-header
+        height 64px
+        line-height 64px
+        background $layout-header-bg-color
+        .k-menu
+            .k-menu-item
+                vertical-align top
+                > .k-title
+                    height auto
+                    line-height inherit
+    > .k-aside
+        background $layout-header-bg-color
+        transition all $transition
+    > .k-footer
+        padding 24px 50px
+    > .k-body
+        flex 1
+        margin 0 20px
