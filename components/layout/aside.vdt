@@ -1,0 +1,23 @@
+import {mapChildren} from '../utils';
+import {Menu} from '../menu';
+
+const {className, children, style, collapse, fixed} = self.get();
+
+mapChildren(children, vNode => {
+    if (vNode.tag === Menu) {
+        vNode.props = {...vNode.props, collapse}
+    }
+});
+
+const classNameObj = {
+    'k-aside': true,
+    'k-collapse': collapse,
+    'k-fixed': fixed,
+    [className]: className,
+};
+
+<div class={{ classNameObj }} style={{ style }}>
+    <div class="k-wrapper">
+        {{ children }}
+    </div>
+</div>

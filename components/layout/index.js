@@ -14,7 +14,7 @@ export default class Layout extends Intact {
 
     defaults() {
         return {
-            _className: 'k-layout',
+            _className: {'k-layout': true},
         };
     }
 
@@ -27,7 +27,7 @@ export default class Layout extends Intact {
             }
         });
         if (hasAside) {
-            this.set('_className', 'k-layout k-has-aside');
+            this.set('_className', {'k-layout k-has-aside': true});
         }
     }
 }

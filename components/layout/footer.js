@@ -7,7 +7,7 @@ export default class Footer extends Intact {
 
     defaults() {
         return {
-            _className: 'k-footer',
+            _className: {'k-footer': true},
         };
     }
 }

@@ -117,12 +117,6 @@ module.exports = function(isDev = true) {
 
                 let jsHead;
 
-                console.log(file.md.setting);
-                const setting = file.md.setting;
-                if (setting.iframe) {
-                    
-                }
-
                 const codes = file.md.codes = file.md.codes.filter((item, index) => {
                     if (item.example) {
                         item.content = [
@@ -293,6 +287,13 @@ module.exports = function(isDev = true) {
                             `    static template = '<div class="browser-mockup"><iframe height="${iframe}" src="${file.url}/index.html"></iframe></div>';`,
                             `}`,
                         ].join('\n'));
+
+                        await ctx.fsWrite(
+                            file.dirname + '/index.html',
+                            Vdt.renderFile(path.resolve(__dirname, '../site/src/iframe.vdt'), {
+                                script: file.url + '/bundle.js',
+                            })
+                        );
                     }
                 } else {
                     file.extname = '.js';
@@ -340,8 +341,9 @@ module.exports = function(isDev = true) {
             });
 
             // 静态化
+            const iframes = [];
             if (isDev) {
-                ctx.fsEach(async function(file) {
+                await ctx.fsEach(async function(file) {
                     if (!/demos/.test(file.path)) {
                         file.extname = '.html';
                         await ctx.fsWrite(
@@ -349,28 +351,15 @@ module.exports = function(isDev = true) {
                             Vdt.renderFile(path.resolve(__dirname, '../site/src/index.vdt'))
                         );
                     } else if (file.md.setting.iframe) {
-                        file.extname = '.html';
-                        await ctx.fsWrite(
-                            file.relative,
-                            Vdt.renderFile(path.resolve(__dirname, '../site/src/iframe.vdt'), {
-                                script: file.url + '/bundle.js',
-                            })
-                        );
-                        const config = webpackConfigClient();
-                        config.entry = {
-                            [file.url.substring(1) + '/bundle']: file.dirname + '/index.js'
-                        };
-                        const compiler = webpack(config);
-                        await new Promise(resolve => {
-                            compiler.run((err, stats) => {
-                                console.log(stats.toString({colors: true}));
-                                resolve();
-                            });
+                        iframes.push({
+                            [file.url.substring(1) + '/bundle']: [
+                                file.dirname + '/index.js',
+                            ]
                         });
                     }
                 });
 
-                promise.resolve();
+                promise.resolve({iframes});
             } else {
                 const compiler = webpack(webpackConfig()); 
                 compiler.run(async (err, stats) => {
@@ -393,10 +382,14 @@ module.exports = function(isDev = true) {
                                     style: data.style,
                                 })
                             );
+                        } else if (file.md.setting.iframe) {
+                            iframes.push({
+                                [file.url.substring(1) + '/bundle']: file.dirname + '/index.js'
+                            });
                         }
                     });
 
-                    promise.resolve(render);
+                    promise.resolve({render, iframes});
                 });
             }
         });

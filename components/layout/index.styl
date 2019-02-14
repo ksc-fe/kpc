@@ -11,8 +11,8 @@
                 background #fff
                 border-bottom 1px solid $border-color
     > .k-header
-        height 64px
-        line-height 64px
+        height $layout-header-height 
+        line-height @height 
         background $layout-header-bg-color
         .k-menu
             .k-menu-item
@@ -23,6 +23,20 @@
     > .k-aside
         background $layout-header-bg-color
         transition all $transition
+        width 200px
+        display flex
+        // fixed
+        &.k-fixed
+            position fixed
+            height calc(100vh - $layout-header-height)
+            overflow hidden
+            > .k-wrapper
+                height 100%
+                overflow auto
+                margin-right -15px
+                > .k-menu
+                    min-height 100%
+
     > .k-footer
         padding 24px 50px
     > .k-body

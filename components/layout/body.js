@@ -7,7 +7,7 @@ export default class Body extends Intact {
 
     defaults() {
         return {
-            _className: 'k-body',
+            _className: {'k-body': true}
         };
     }
 }

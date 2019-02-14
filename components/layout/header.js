@@ -5,9 +5,14 @@ export default class Header extends Intact {
     @Intact.template()
     static template = template;
 
+    static propTypes = {
+        fixed: Boolean,
+    };
+
     defaults() {
         return {
-            _className: 'k-header',
+            fixed: false,
+            _className: {'k-header': true},
         };
     }
 }

@@ -26,17 +26,27 @@ const pages = {
 const vdtFile = path.resolve(__dirname, './site/src/index.vdt');
 const isDev = process.env.NODE_ENV !== 'production';
 
+let globalIframes;
+
 gulp.task('doc', () => {
     console.log('build markdown');
-    return doc(true);
+    return doc(true).then(({iframes}) => {
+        globalIframes = iframes;
+    });
 });
 gulp.task('doc:production', () => {
     console.log('build markdown');
-    return doc(false);
+    return doc(false).then(({iframes}) => {
+        globalIframes = iframes;
+    });
 });
 
 function webpackWatch(theme) {
     const config = webpackConfig(theme);
+    return webpackBuild(config);
+}
+
+function webpackBuild(config) {
     const compiler = webpack(config);
     return [
         compiler, 
@@ -58,18 +68,13 @@ function webpackWatch(theme) {
     ];
 }
 
-gulp.task('build:iframe', async () => {
-    const config = webpackConfig();
-    config.entry = {
-        'static/test': path.resolve(__dirname, 'site/.dist/components/button/demos/basic') 
-    };
-    const compiler = webpack(config);
-    await new Promise(resolve => {
-        compiler.run((err, stats) => {
-            console.log(stats.toString({colors: true}));
-            resolve();
-        });
-    });
+gulp.task('build:iframes', async () => {
+    await Promise.all(globalIframes.map(iframe => {
+        const config = webpackConfig();
+        config.entry = iframe;
+        const [, p] = webpackBuild(config);
+        return p;
+    }));
 });
 
 gulp.task('build:themes:css', async () => {
@@ -100,7 +105,6 @@ gulp.task('dev:doc:server', async () => {
 
 gulp.task('server', () => {
     const [compiler] = webpackWatch(process.env.THEME);
-
     const webpackHotMiddleware = require('webpack-hot-middleware');
     return connect.server({
         root: ['site/.dist', 'site/src'],
@@ -123,10 +127,11 @@ gulp.task('watch', gulp.series(
     'clean:doc:dev', 
     'doc', 
     gulp.parallel(
-        'server', 
+        'server',
+        'build:iframes',
         process.env.THEME ? 'noop' : 'build:themes:css', 
         'dev:doc:server', 
-        /* 'webpack', */ 
+        // 'webpack',
         () => {
             gulp.watch(
                 './@(components|docs)/**/*.md', 
@@ -150,14 +155,14 @@ gulp.task('clean:doc', () => {
     );
 });
 gulp.task('build:doc:server', () => {
-    return doc(false).then(async render => {
+    return doc(false).then(async ({render}) => {
         await Promise.all(Object.keys(pages).map(async key => {
             const data = await render(key);
             await new Promise(resolve => {
                 fs.writeFile(
                     path.resolve(__dirname, `./site/dist/${pages[key]}.html`),
                     Vdt.renderFile(vdtFile, {
-                        title: 'Kpc',
+                        title: 'KPC',
                         content: data.content,
                         style: data.style,
                     }),
@@ -173,7 +178,7 @@ gulp.task('build:doc:client', (done) => {
     // };
     webpack(webpackConfig(), (err, stats) => {
         console.log(stats.toString({
-            colors: true    // 在控制台展示颜色
+            colors: true
         }));
         done();
     });
@@ -197,7 +202,7 @@ gulp.task('copy:cname', () => {
         .pipe(gulp.dest('./site/dist'));
 });
 
-gulp.task('build:doc', gulp.series('clean:doc', 'build:doc:server', 'build:doc:client', 'build:themes:css', 'copy:imgs', 'copy:cname'));
+gulp.task('build:doc', gulp.series('clean:doc', 'build:doc:server', 'build:doc:client', 'build:themes:css', 'build:iframes', 'copy:imgs', 'copy:cname'));
 gulp.task('deploy:doc', gulp.series('build:doc', 'push:doc'));
 gulp.task('watch:doc', gulp.series('doc:production', gulp.parallel('webpack', () => {
     gulp.watch('./@(components|docs)/**/*.md', {ignored: /node_modules/}, gulp.parallel('doc:production'));

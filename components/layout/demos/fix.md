@@ -11,7 +11,7 @@ import Icon from 'kpc/components/icon';
 import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
 
 <Layout class="layout">
-    <Header>
+    <Header fixed>
         <div class="logo">LOGO</div>
         <Menu type="horizontal">
             <MenuItem key="1">menu 1</MenuItem>
@@ -35,7 +35,7 @@ import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
         </Menu>
     </Header>
     <Layout>
-        <Aside>
+        <Aside fixed>
             <Menu
                 v-model:expandedKeys="expandedKeys" 
                 v-model:selectedKey="selectedKey"
