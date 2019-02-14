@@ -105,6 +105,35 @@ $aside-width = 200px
                 padding 20px
                 border 1px solid #eee
                 margin 20px 0
+            .browser-mockup
+                border-top 30px solid #eee
+                position relative
+                border-radius $border-radius
+                box-shadow $box-shadow
+                &:before
+                    display block
+                    content ''
+                    box-shadow 0 0 0 2px $danger-color, 21px 0 0 2px $success-color, 42px 0 0 2px $warning-color
+                    background $danger-color
+                    position absolute
+                    width 7px
+                    height 7px
+                    border-radius 50%
+                    top -19px
+                    left 19px
+                &:after
+                    content ''
+                    display block
+                    height 20px
+                    background #fff
+                    position absolute
+                    top -26px
+                    left 85px
+                    width calc(100% - 90px)
+                    border-radius $border-radius
+            iframe
+                width 100%
+                border none
     .api
         .k-table-wrapper
             th:first-of-type

@@ -29,8 +29,8 @@ module.exports = function(isDev = true) {
         path.resolve(__dirname, `../site/dist`);
 
     const doc = new KDoc(
-        './@(docs|components)/**/*.md',
-        // './@(docs|components)/progress/demos/children.md',
+        // './@(docs|components)/**/*.md',
+        './@(docs|components)/layout/**/*.md',
         root
     );
 
@@ -116,6 +116,12 @@ module.exports = function(isDev = true) {
                 let reactMethods;
 
                 let jsHead;
+
+                console.log(file.md.setting);
+                const setting = file.md.setting;
+                if (setting.iframe) {
+                    
+                }
 
                 const codes = file.md.codes = file.md.codes.filter((item, index) => {
                     if (item.example) {
@@ -249,23 +255,45 @@ module.exports = function(isDev = true) {
         ctx.hook.add('dist.after', async files => {
             await ctx.fsEach(async function(file) {
                 if (/demos/.test(file.path)) {
+                    const iframe = file.md.setting.iframe;
                     await file.md.codes.forEach(async item => {
                         if (item.ignored) return;
                         file.extname = '.' + item.language;
                         let content = item.content;
                         if (item.language === 'js' && !item.file) {
-                            content = [
-                                `export {default as data} from './index.json';`,
-                                item.content,
-                            ].join('\n');
+                            if (!iframe) {
+                                content = [
+                                    `export {default as data} from './index.json';`,
+                                    item.content,
+                                ].join('\n');
+                            } else {
+                                content = [
+                                    item.content,
+                                    `Intact.mount(Demo, document.getElementById('page'));`,
+                                ].join('\n');
+                            }
                         } else if (item.language === 'styl' && !item.file) {
-                            content = [
-                                `.example.index-${file.md.index}`,
-                                ...content.split('\n').map(line => `    ${line}`)
-                            ].join('\n');
+                            if (!iframe) {
+                                content = [
+                                    `.example.index-${file.md.index}`,
+                                    ...content.split('\n').map(line => `    ${line}`)
+                                ].join('\n');
+                            }
                         }
                         await ctx.fsWrite(!item.file ? file.relative : file.dirname + '/' + item.file, content);
                     });
+                    if (iframe) {
+                        file.url = file.dirname.replace(root, '');
+                        await ctx.fsWrite(file.dirname + '/demo.js', [
+                            `export {default as data} from './index.json';`,
+                            `import Intact from 'intact';`,
+                            ``,
+                            `export default class extends Intact {`,
+                            `    @Intact.template()`,
+                            `    static template = '<div class="browser-mockup"><iframe height="${iframe}" src="${file.url}/index.html"></iframe></div>';`,
+                            `}`,
+                        ].join('\n'));
+                    }
                 } else {
                     file.extname = '.js';
                     if (!file.md.setting) return;
@@ -289,8 +317,15 @@ module.exports = function(isDev = true) {
                             `import data from './index.json';`,
                             sidebar ? `import sidebar from '~/${sidebar}.json';` : undefined,
                             ``,
-                            `const r = require.context('./', true, /demos.*index.js$/);`,
-                            `const demos = r.keys().map(r);`,
+                            `const r = require.context('./', true, /demos.*(index|demo).js$/);`,
+                            `const keys = r.keys();`,
+                            `const demos = [];`,
+                            `for (let i = 0; i < keys.length; i++) {`,
+                            `    const file = keys[i];`,
+                            `    // if we found demo.js then ignore index.js`,
+                            `    if (/demo\.js$/.test(file)) i++;`,
+                            `    demos.push(r(file));`,
+                            `}`,
                             ``,
                             `export default class extends Article {`,
                             sidebar ? `    static sidebar = sidebar;` : undefined,
@@ -313,6 +348,25 @@ module.exports = function(isDev = true) {
                             file.relative,
                             Vdt.renderFile(path.resolve(__dirname, '../site/src/index.vdt'))
                         );
+                    } else if (file.md.setting.iframe) {
+                        file.extname = '.html';
+                        await ctx.fsWrite(
+                            file.relative,
+                            Vdt.renderFile(path.resolve(__dirname, '../site/src/iframe.vdt'), {
+                                script: file.url + '/bundle.js',
+                            })
+                        );
+                        const config = webpackConfigClient();
+                        config.entry = {
+                            [file.url.substring(1) + '/bundle']: file.dirname + '/index.js'
+                        };
+                        const compiler = webpack(config);
+                        await new Promise(resolve => {
+                            compiler.run((err, stats) => {
+                                console.log(stats.toString({colors: true}));
+                                resolve();
+                            });
+                        });
                     }
                 });
 

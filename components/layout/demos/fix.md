@@ -1,8 +1,8 @@
 ---
-title: 基础用法
-order: 0
+title: 固定侧边栏或头部
+order: 2
+iframe: 400
 ---
-
 
 ```vdt
 import {Layout, Header, Aside, Body, Footer} from 'kpc/components/layout';
@@ -89,7 +89,7 @@ import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
 ```
 
 ```js
-export default class extends Intact {
+export default class Demo extends Intact {
     @Intact.template()
     static template = template;
 

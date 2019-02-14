@@ -58,6 +58,20 @@ function webpackWatch(theme) {
     ];
 }
 
+gulp.task('build:iframe', async () => {
+    const config = webpackConfig();
+    config.entry = {
+        'static/test': path.resolve(__dirname, 'site/.dist/components/button/demos/basic') 
+    };
+    const compiler = webpack(config);
+    await new Promise(resolve => {
+        compiler.run((err, stats) => {
+            console.log(stats.toString({colors: true}));
+            resolve();
+        });
+    });
+});
+
 gulp.task('build:themes:css', async () => {
     const themes = ['ksyun'];
     for (let i = 0; i < themes.length; i++) {
