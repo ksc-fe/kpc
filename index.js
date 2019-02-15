@@ -27,6 +27,7 @@ import {Editable} from './components/editable';
 import {Form, FormItem} from './components/form';
 import {Icon} from './components/icon';
 import {Input} from './components/input';
+import {Layout, Aside, Header, Body, Footer} from './components/layout';
 import {Link} from './components/link';
 import {Menu, MenuItem} from './components/menu';
 import {Message} from './components/message';
@@ -55,7 +56,9 @@ import {Upload} from './components/upload';
 
 export {
     App,
+    Aside,
     Badge,
+    Body,
     Breadcrumb,
     BreadcrumbItem,
     Button,
@@ -72,10 +75,13 @@ export {
     DropdownItem,
     DropdownMenu,
     Editable,
+    Footer,
     Form,
     FormItem,
+    Header,
     Icon,
     Input,
+    Layout,
     Link,
     Menu,
     MenuItem,
@@ -112,7 +118,9 @@ export {
 
 const components = {
     App,
+    Aside,
     Badge,
+    Body,
     Breadcrumb,
     BreadcrumbItem,
     Button,
@@ -129,10 +137,13 @@ const components = {
     DropdownItem,
     DropdownMenu,
     Editable,
+    Footer,
     Form,
     FormItem,
+    Header,
     Icon,
     Input,
+    Layout,
     Link,
     Menu,
     MenuItem,

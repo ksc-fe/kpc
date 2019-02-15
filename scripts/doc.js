@@ -261,10 +261,7 @@ module.exports = function(isDev = true) {
                                     item.content,
                                 ].join('\n');
                             } else {
-                                content = [
-                                    item.content,
-                                    `Intact.mount(Demo, document.getElementById('page'));`,
-                                ].join('\n');
+                                content = item.content;
                             }
                         } else if (item.language === 'styl' && !item.file) {
                             if (!iframe) {
@@ -286,6 +283,12 @@ module.exports = function(isDev = true) {
                             `    @Intact.template()`,
                             `    static template = '<div class="browser-mockup"><iframe height="${iframe}" src="${file.url}/index.html"></iframe></div>';`,
                             `}`,
+                        ].join('\n'));
+                        
+                        await ctx.fsWrite(file.dirname + '/iframe.js', [
+                            `import Intact from 'intact';`,
+                            `import Demo from './index.js';`,
+                            `Intact.mount(Demo, document.getElementById('page'));`,
                         ].join('\n'));
 
                         await ctx.fsWrite(
@@ -353,7 +356,7 @@ module.exports = function(isDev = true) {
                     } else if (file.md.setting.iframe) {
                         iframes.push({
                             [file.url.substring(1) + '/bundle']: [
-                                file.dirname + '/index.js',
+                                file.dirname + '/iframe.js',
                             ]
                         });
                     }

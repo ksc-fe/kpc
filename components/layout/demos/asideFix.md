@@ -93,6 +93,5 @@ export default class Demo extends Intact {
     _toggle() {
         this.set('collapse', !this.get('collapse'));
     }
-
 }
 ```
