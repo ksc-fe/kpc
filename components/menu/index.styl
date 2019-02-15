@@ -59,9 +59,23 @@
         .k-menu
             background $menu-light-sub-bg-color 
 
+    // size
+    generate(size)
+        &.k-{size}
+            width lookup('$menu-' + size + '-width')
+            if lookup('$menu-' + size + '-font-size')
+                font-size lookup('$menu-' + size + '-font-size')
+            // &.k-collapsed
+            //    width $menu-collapsed-width 
+            .k-menu
+                if lookup('$menu-' + size + '-font-size')
+                    font-size lookup('$menu-' + size + '-font-size')
+    for size in large small
+        generate(size)
+
     // collapse
     &.k-collapsed
-        width $menu-item-icon-left * 2 + $menu-item-icon-width
+        width $menu-collapsed-width 
         .k-menu-item
             > .k-title
                 span
@@ -70,20 +84,6 @@
         .k-header 
             :not(.k-icon)
                 display none
-
-    // size
-    generate(size)
-        &.k-{size}
-            width lookup('$menu-' + size + '-width')
-            if lookup('$menu-' + size + '-font-size')
-                font-size lookup('$menu-' + size + '-font-size')
-            &.k-collapsed
-                width $menu-item-icon-left * 2 + $menu-item-icon-width
-            .k-menu
-                if lookup('$menu-' + size + '-font-size')
-                    font-size lookup('$menu-' + size + '-font-size')
-    for size in large small
-        generate(size)
 
     // horizontal
     &.k-horizontal

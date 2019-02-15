@@ -1,23 +1,25 @@
 import {mapChildren} from '../utils';
 import {Menu} from '../menu';
 
-const {className, children, style, collapse, fixed} = self.get();
+const {
+    className, children, style,
+    collapse, fixed, size
+} = self.get();
 
-mapChildren(children, vNode => {
+const vNodes = mapChildren(children, vNode => {
     if (vNode.tag === Menu) {
-        vNode.props = {...vNode.props, collapse}
+        vNode.props = {...vNode.props, collapse, size}
+        return <div class="k-wrapper">{{ vNode }}</div>
     }
+    return vNode
 });
 
 const classNameObj = {
     'k-aside': true,
-    'k-collapse': collapse,
+    'k-collapsed': collapse,
     'k-fixed': fixed,
+    [`k-${size}`]: size !== 'default',
     [className]: className,
 };
 
-<div class={{ classNameObj }} style={{ style }}>
-    <div class="k-wrapper">
-        {{ children }}
-    </div>
-</div>
+<div class={{ classNameObj }} style={{ style }}>{{ vNodes }}</div>

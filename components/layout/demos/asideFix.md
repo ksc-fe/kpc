@@ -12,7 +12,7 @@ import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
 import {Button} from 'kpc/components/button';
 
 <Layout class="layout">
-    <Aside collapse={{ self.get('collapse') }} fixed>
+    <Aside collapse={{ self.get('collapse') }} fixed size="large">
         <div class="logo">LOGO</div>
         <Menu
             v-model:expandedKeys="expandedKeys" 
@@ -51,7 +51,7 @@ import {Button} from 'kpc/components/button';
                 <BreadcrumbItem>Home</BreadcrumbItem>
                 <BreadcrumbItem>Detail</BreadcrumbItem>
             </Breadcrumb>
-            <div>content</div>
+            <div v-for={{ Array.apply(null, {length: 100}) }}>content</div>
         </Body>
     </Layout>
 </Layout>
@@ -65,9 +65,10 @@ import {Button} from 'kpc/components/button';
     color #fff
     background gray
     margin 17px 20px
+    transition all .25s ease-in-out
 .k-breadcrumb
     margin 20px 0
-.k-aside.k-collapse
+.k-aside.k-collapsed
     .logo
         margin 17px 5px
 ```
@@ -81,7 +82,13 @@ export default class Demo extends Intact {
         return {
             expandedKeys: [],
             selectedKey: '3-1',
+            collapse: false,
         };
     }
+
+    _toggle() {
+        this.set('collapse', !this.get('collapse'));
+    }
+
 }
 ```

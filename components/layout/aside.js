@@ -8,12 +8,14 @@ export default class Aside extends Intact {
     static propTypes = {
         collapse: Boolean,
         fixed: Boolean,
+        size: ['large', 'default', 'small']
     };
 
     defaults() {
         return {
             collapse: false,
             fixed: false,
+            size: 'default',
         };
     }
 }

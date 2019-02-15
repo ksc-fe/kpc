@@ -68,7 +68,7 @@ import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
                 <BreadcrumbItem>Home</BreadcrumbItem>
                 <BreadcrumbItem>Detail</BreadcrumbItem>
             </Breadcrumb>
-            <div>content</div>
+            <div v-for={{ Array.apply(null, {length: 100}) }}>content</div>
         </Body>
     </Layout>
 </Layout>

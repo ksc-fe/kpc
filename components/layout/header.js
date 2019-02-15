@@ -15,4 +15,23 @@ export default class Header extends Intact {
             _className: {'k-header': true},
         };
     }
+
+    _beforeCreate() {
+        this._updateClassNames();
+    }
+
+    _beforeUpdate() {
+        this._updateClassNames();
+    }
+
+    _updateClassNames() {
+        this.set('_className', {
+            'k-header': true,
+            'k-fixed': this.get('fixed'),
+        });
+    }
+
+    _detectAside() {
+        
+    }
 }

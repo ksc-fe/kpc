@@ -20,25 +20,66 @@
                 > .k-title
                     height auto
                     line-height inherit
-    > .k-aside
-        background $layout-header-bg-color
-        transition all $transition
-        width 200px
-        display flex
         // fixed
         &.k-fixed
             position fixed
-            height calc(100vh - $layout-header-height)
+            width 100%
+            z-index 2
+            left 0
+            & + .k-layout
+            & + .k-body
+            & + .k-layout > .k-aside.k-fixed
+                padding-top $layout-header-height
+            & + .k-layout > .k-aside.k-fixed
+                z-index 1
+
+    > .k-aside
+        background $layout-header-bg-color
+        transition width $transition
+        width $layout-aside-width 
+        display flex
+        z-index 3
+        flex-direction column
+        // fixed
+        &.k-fixed
+            position fixed
+            height 100vh
             overflow hidden
+            top 0
             > .k-wrapper
                 height 100%
                 overflow auto
-                margin-right -15px
+                margin-right -20px
                 > .k-menu
                     min-height 100%
+            & + .k-layout
+            & + .k-body
+            & + .k-layout > .k-header.k-fixed
+                padding-left $layout-aside-width 
+                transition padding-left $transition
+            // collapse
+            &.k-collapsed
+                & + .k-layout
+                & + .k-body
+                & + .k-layout > .k-header.k-fixed
+                    padding-left $layout-aside-collapsed-width
+        // size
+        generate(size)
+            &.k-{size}
+                width lookup('$layout-aside-' + size + '-width')
+                & + .k-layout
+                & + .k-body
+                & + .k-layout > .k-header.k-fixed
+                    padding-left lookup('$layout-aside-' + size + '-width')
+        for size in large small
+            generate(size)
+        // collapse
+        &.k-collapsed
+            width $layout-aside-collapsed-width
 
     > .k-footer
-        padding 24px 50px
+        padding $layout-footer-padding
+
     > .k-body
         flex 1
-        margin 0 20px
+        margin $layout-body-margin
