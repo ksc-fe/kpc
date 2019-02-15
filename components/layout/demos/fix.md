@@ -1,8 +1,11 @@
 ---
-title: 固定侧边栏或头部
+title: 上下布局固定侧边栏或头部
 order: 2
 iframe: 400
 ---
+
+给`Header`和`Aside`分别添加`fixed`属性，即可固定顶部或者侧边栏，组件会自动添加相应样式，无需手动
+添加样式
 
 ```vdt
 import {Layout, Header, Aside, Body, Footer} from 'kpc/components/layout';

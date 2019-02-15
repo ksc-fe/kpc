@@ -1,8 +1,17 @@
 ---
-title: 基础用法
+title: 上下布局
 order: 0
 ---
 
+1. `Layout`: 布局容器，其下可嵌套`Header` `Aside` `Body` `Footer`以及`Layout`，可以放置任何容器中
+2. `Header`: 顶部导航条，只能放置`Layout`中
+3. `Aside`: 侧边栏，只能放置`Layout`中
+4. `Body`: 主题部分，只能放置`Layout`中
+5. `Footer`: 底部容器，只能放置`Layout`中
+
+上下布局，导航条和侧边栏为左右关系
+
+> 布局组件采用`flex`实现，请注意[浏览器兼容性](https://caniuse.com/#search=flex)，IE需要10及以上
 
 ```vdt
 import {Layout, Header, Aside, Body, Footer} from 'kpc/components/layout';

@@ -3,6 +3,8 @@ title: 侧边栏布局
 order: 1
 ---
 
+侧边栏布局，导航条和侧边栏为左右关系，通常需要展开收起侧边栏，给`Aside`添加`collapse`属性即可
+控制侧边栏的展开收起状态。组件会自动给侧边栏下的菜单组件`Menu`应用相同的`collapse`属性
 
 ```vdt
 import {Layout, Header, Aside, Body, Footer} from 'kpc/components/layout';
@@ -67,7 +69,7 @@ import {Button} from 'kpc/components/button';
     margin 17px 20px
 .k-breadcrumb
     margin 20px 0
-.k-aside.k-collapse
+.k-aside.k-collapsed
     .logo
         margin 17px 5px
 ```
