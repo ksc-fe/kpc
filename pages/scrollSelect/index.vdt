@@ -13,5 +13,5 @@ import ScrollSelect from 'components/scrollSelect';
 
     <ScrollSelect data={{ (value) => {
         return Array.apply(null, {length: 10}).map((v, i) => i + value - 5);
-    } }} value={{ 2018 }} />
+    } }} value={{ 2018 }}  count={{ 19 }}/>
 </div>

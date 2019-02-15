@@ -66,9 +66,12 @@ export default class ScrollSelect extends Intact {
     }
 
     _mount() {
+        const count = this.get('count');
         const height = this.element.offsetHeight;
+        const itemHeight = this.refs.item.offsetHeight;
         const totalHeight = this.refs.wrapper.offsetHeight; 
-        this._deltaY = -Math.floor((totalHeight - height) / 2);
+        // for even count, #211
+        this._deltaY = -(Math.floor(count / 2) * itemHeight - (height - itemHeight) / 2);
         this.set({
             _translate: this._deltaY 
         });

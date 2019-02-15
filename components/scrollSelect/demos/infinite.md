@@ -11,6 +11,7 @@ import ScrollSelect from 'kpc/components/scrollSelect';
 <ScrollSelect
     data={{ self.generateData }}
     v-model="value"
+    count={{ 10 }}
 />
 ```
 
