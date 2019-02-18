@@ -69,12 +69,12 @@ It is recommend to use specified version, for example: [cdn.jsdelivr.net/npm/kpc
 
 ## Multi-file css built version
 
-When your progrect is built with webpack, you can use multi-file css built version of kpc, which 
+When your project is built with webpack, you can use multi-file css built version of kpc, which 
 can be imported on demand instead of a single file. The css and font files need to be imported 
 by `css-loader & style-loader` and `file-loader`.
 
-> The files of this files are placed under `@css` folder. The name of this folder means that all 
-> the style `stylus` files are compiled to `css` files, not just the directory where css files are placed.
+> The files of this version are placed under `@css` folder. The name of this folder means that all 
+> the style `stylus` files are compiled to `css` files, not just the directory where css files are placed. 
 > ES6 grammar `js` and `vdt` files are compiled as ES5 grammar `js` files, so you don't need `babel-loader` 
 > and `vdt-loader` to deal with them, only just need `css-loader` and `style-loader` to deal with 
 > `css` files. Need `file-loader` to deal with font files of course.
