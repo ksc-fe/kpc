@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>给表格定义复杂的内容有两种方式，这取决于你使用哪种表格结构定义方式：</p>\n<ol>\n<li><code>scheme</code>属性定义方式：直接传入<code>vNode</code>当做<code>title</code>属性</li>\n<li><code>TableColumn</code>组件定义方式：通过<code>title</code>扩展点传入自定义内容</li>\n</ol>\n",
-    "index": 97,
+    "index": 96,
     "highlighted": [
         {
             "language": "vdt",

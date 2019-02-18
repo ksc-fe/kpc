@@ -2,6 +2,7 @@
     <ScrollSelect
         :data="generateData"
         v-model="value"
+        :count="10"
     />
 </template>
 <script>

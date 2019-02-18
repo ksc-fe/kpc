@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>Menu</code>定义菜单，<code>MenuItem</code>定义菜单项，将<code>Menu</code>嵌套在<code>MenuItem</code>下，可以定义子菜单；<code>expandedKeys</code>定义菜单展开项，<code>selectedKey</code>定义菜单选中项。我们必须给<code>MenuItem</code>指定一个全局唯一的<code>key</code>用来标识每一个菜单项；通过<code>to</code>属性，可以定义超链接菜单，另外也可以绑定<code>MenuItem</code>的<code>select</code>事件来定义菜单项被选中的行为</p>\n",
-    "index": 5,
+    "index": 10,
     "highlighted": [
         {
             "language": "vdt",

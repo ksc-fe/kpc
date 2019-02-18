@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>给<code>Col</code>添加<code>order</code>属性，即可自动启用<code>flex</code>布局来定义<code>Col</code>的顺序</p>\n",
-    "index": 207,
+    "index": 212,
     "highlighted": [
         {
             "language": "vdt",

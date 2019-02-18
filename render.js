@@ -39,7 +39,7 @@ module.exports =
 /******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
 /******/ 		// "0" is the signal for "already loaded"
 /******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("./chunk/" + {"0":"dcc778f69238afe0af97","1":"7618384505b584add8fe","2":"3970deb0fbad9baa8c67","3":"4524b9453cbe3ee47438"}[chunkId] + ".js");
+/******/ 			var chunk = require("./chunk/" + {"0":"64ff000973c8fcacd0ab","1":"63bfd6efe8eec3971af9","2":"77dc29a6daa9f3634791","3":"04a0e540c90046009f08"}[chunkId] + ".js");
 /******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				modules[moduleId] = moreModules[moduleId];
@@ -238,7 +238,7 @@ exports.App = exports.default = App;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1548927811492
+      // 1550471368782
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -393,7 +393,7 @@ exports.Spin = exports.default = Spin;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1548927813067
+      // 1550471369348
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -537,6 +537,7 @@ exports.toggleArray = toggleArray;
 exports.isNumber = isNumber;
 exports.nextFrame = nextFrame;
 exports.throttle = throttle;
+exports.isExternalLink = isExternalLink;
 exports.browser = exports.expandAnimationCallbacks = exports.noop = exports.isFunction = exports.isObject = exports.isNullOrUndefined = exports.get = void 0;
 
 var _parseInt2 = _interopRequireDefault(__webpack_require__("@babel/runtime-corejs2/core-js/parse-int"));
@@ -900,6 +901,13 @@ if (typeof navigator !== 'undefined') {
       browser.isSafari = true;
     }
   }
+}
+
+var externalLinkReg = /^(https?:)?\/\//;
+
+function isExternalLink(to) {
+  if (typeof to !== 'string') return false;
+  return externalLinkReg.test(to);
 }
 
 /***/ }),
@@ -1424,7 +1432,7 @@ exports.default = _default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1548927814700
+      // 1550471371298
       var cssReload = require("!../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);

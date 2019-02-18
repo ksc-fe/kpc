@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>给<code>Tree</code>指定<code>filter</code>函数，即可实现节点过滤功能，该函数返回<code>false</code>则表示过滤掉该项。你需要给<code>data</code>的每一项添加全局唯一的<code>key</code>否则过滤时，会因为每次更新<code>key</code>不同而闪动</p>\n",
-    "index": 191,
+    "index": 196,
     "highlighted": [
         {
             "language": "vdt",

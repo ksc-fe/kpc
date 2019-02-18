@@ -28,6 +28,7 @@ export default class extends React.Component {
                 data={this.generateData}
                 value={this.state.value}
                 on$change-value={(c, value) => this.setState({value})}
+                count={10}
             />
         )
     }

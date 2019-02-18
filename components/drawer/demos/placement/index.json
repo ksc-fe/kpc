@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>添加<code>placement</code>属性，定义如下位置：<code>top</code>,<code>bottom</code>,<code>left</code>,<code>right</code>。默认<code>right</code>从右侧出现</p>\n",
-    "index": 46,
+    "index": 47,
     "highlighted": [
         {
             "language": "vdt",

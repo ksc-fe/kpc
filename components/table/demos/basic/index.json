@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>上面是一个简单的<code>Table</code>，通过<code>data</code>属性设置表格展示的数据，通过<code>scheme</code>属性或者<code>TableColumn</code>组件定义表格结构，详见”定义表格结构“说明</p>\n",
-    "index": 27,
+    "index": 1,
     "highlighted": [
         {
             "language": "vdt",
