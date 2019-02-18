@@ -68,4 +68,21 @@ describe('Spinner', () => {
         dispatchEvent(input2, 'change');
         expect(input2.value).to.eql('0.6');
     });
+
+    it('should change value as long as the input is valid', () => {
+        instance = mount(PrecisionDemo);
+
+        const input = instance.element.querySelector('input');
+        input.value = '01';
+        dispatchEvent(input, 'input');
+        expect(instance.get('value1')).to.eql(1);
+
+        input.value = 'xx';
+        dispatchEvent(input, 'input');
+        expect(instance.get('value1')).to.eql(1);
+
+        input.value = '100';
+        dispatchEvent(input, 'input');
+        expect(instance.get('value1')).to.eql(10);
+    });
 });

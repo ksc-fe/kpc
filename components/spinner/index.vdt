@@ -3,7 +3,7 @@ import {Input} from '../input';
 
 const {
     className, disabled, max, min, step,
-    children, style, size, vertical,
+    children, style, size, vertical, _value
 } = self.get();
 
 const classNameObj = {
@@ -25,7 +25,8 @@ const classNameObj = {
     </Button>
     <Input disabled={{ disabled }} 
         ev-change={{ self._changeValue }}
-        v-model="_value"
+        value={{ _value }}
+        ev-input={{ self._onInput }}
         size={{ size }}
     />
     <Button icon ev-click={{ self._increase }}

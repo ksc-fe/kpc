@@ -44,6 +44,10 @@ export default class Spinner extends Intact {
     }
 
     _fixValue(value = this.get('value'), fallbackValue = 0) {
+        this.set(this._getFixedValue(value, fallbackValue));
+    }
+
+    _getFixedValue(value = this.get('value'), fallbackValue = 0) {
         const {precision, max, min} = this.get();
         const originValue = this.get('value');
         if (value == null || !numberReg.test(value)) {
@@ -61,7 +65,7 @@ export default class Spinner extends Intact {
             _value = value.toFixed(precision);
         }
 
-        this.set({_value, value});
+        return {_value, value};
     }
 
     _increase(e) {
@@ -90,6 +94,17 @@ export default class Spinner extends Intact {
 
     _changeValue(e) {
         this._fixValue(e.target.value.trim(), this.get('value'));
+    }
+
+    // we need change value as long as the input is valid, #213
+    _onInput(e) {
+        const val = e.target.value.trim();
+        const {_value, value} = this._getFixedValue(val, this.get('value'));
+        const data = {_value: val};
+        if (Number(_value) === value) {
+            data.value = value;
+        }
+        this.set(data);
     }
 }
 
