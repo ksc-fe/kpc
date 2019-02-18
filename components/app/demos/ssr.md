@@ -3,12 +3,25 @@ title: 服务器端渲染
 order: 1
 ---
 
+## zh-CN
+
 `App`组件还可以管理服务器端渲染，服务器端渲染时，调用`render(Page, [data])`方法，来将组件渲染成
 字符串，参数与`load`方法一样。然后前端进行加载时，需要在实例化`App`时传入`ssr: true`来
 标明当前页面为服务器端渲染，首次加载时进行混合`hydrate`
 
-本例中，点击`Render in server`来模拟`PageA`服务器端渲染结果，插入`container`下面，然后点击`PageA`来混合
-结果，可以看到混合时，页面并不会发生任何改变
+本例中，点击`Render on server`来模拟`PageA`服务器端渲染结果，插入`container`下面，然后点击`PageA`
+来混合结果，可以看到混合时，页面并不会发生任何改变
+
+## en-US
+
+`App` can also mange server-side rendering. When redering on the server side, we can call `render(Page, [data])` 
+method to render the component to a string. The parameters of this method are the same as `load`'s.
+Then in front end, we need pass `ssr: true` to `App` during instantiation to indicate the the current 
+page is rendered on server side, and call `hydrate` method to hydrate for first load.
+
+In this example, click `Render on server` to simulate the server-side rendering result of `PageA`, 
+and append it to `container`. Then click `PageA` to hydrate, you can see that the page will not 
+change when hydrating.
 
 ```vdt
 // @file pageA.vdt 
@@ -48,7 +61,7 @@ import {ButtonGroup, Button} from 'kpc/components/button';
     <Button ev-click={{ self._renderString }}
         style="margin-right: 10px;"
         ref="ssr"
-    >Render in server</Button>
+    >Render on server</Button>
     <ButtonGroup>
         <Button ev-click={{ self._changePage.bind(self, 'a') }}>PageA</Button>
         <Button ev-click={{ self._changePage.bind(self, 'b') }}>PageB</Button>

@@ -3,9 +3,11 @@ title: 基础用法
 order: 0
 ---
 
+## zh-CN
+
 `App`组件是个应用管理组件，用它可以当做整个单页应用的骨架，用来切换各个子页面，在切换的过程中，
 组件会展示loading动画来作为过渡。该组件实例化时，需要传入`container`属性来指明组件的挂载点，然后
-通过`load(Page, [data])`方法来记载页面
+通过`load(Page, [data])`方法来加载页面
 
 1. @param `Page` 当前要加载的页面组件
 2. @param `data` 传入组件的数据
@@ -15,6 +17,24 @@ order: 0
 可以根据不同的路由来加载不同的页面。
 
 > 该组件只适用于Intact框架，Vue下无需该组件来管理页面，应该使用`vue-router`
+
+## en-US
+
+`App` is an application management component that can be used as the skeleton of the entire 
+single-page appliction to switch page between sub-pages. During the switching process, the 
+component will diplay the loading animation as a transiton. You need to pass `container` property 
+to specify the mount point of the component when it is instantiated, and then call `load(page, [data])` 
+method to load page.
+
+1. @param `Page` the page component that will load
+2. @param `data` the data that will pass to page component 
+3. @return `Promise` return `Promise` object
+
+In this example, we assume that there are two pages `PageA` and `PageB`, then load different pages
+by clicking different buttons. In actual case, different pages are loaded according to different routes.
+
+> This component is only available for Intact framework. We should use `vue-router` in Vue and `React-router`
+> in React to manage pages.
 
 ```vdt
 // @file pageA.vdt 
@@ -69,12 +89,12 @@ export default class extends Intact {
     static template = template;
 
     _mount() {
-        // 通过container来指明挂载点
+        // specify the mount point via container property
         this.app = new App({container: this.refs.container});
     }
 
     _changePage(name) {
-        // 模拟路由切换
+        // simulate the router 
         switch (name) {
             case 'a':
                 return this.app.load(PageA);
