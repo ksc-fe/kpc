@@ -33,7 +33,7 @@ to avoid naming collisions, all component names are prefixed with `K`, for examp
 ### CDN
 
 The latest version of kpc can be directly imported via [cdn.jsdelivr.net/npm/kpc/dist/](https://cdn.jsdelivr.net/npm/kpc/dist/).
-it is recommend to use specified version, for example: [cdn.jsdelivr.net/npm/kpc@0.5.14/dist/](https://cdn.jsdelivr.net/npm/kpc@0.5.14/dist/)
+It is recommend to use specified version, for example: [cdn.jsdelivr.net/npm/kpc@0.5.14/dist/](https://cdn.jsdelivr.net/npm/kpc@0.5.14/dist/)
 
 ```html
 <!DOCTYPE html>
@@ -66,6 +66,86 @@ it is recommend to use specified version, for example: [cdn.jsdelivr.net/npm/kpc
 </body>
 </html>
 ```
+
+## Multi-file css built version
+
+When your progrect is built with webpack, you can use multi-file css built version of kpc, which 
+can be imported on demand instead of a single file. The css and font files need to be imported 
+by `css-loader & style-loader` and `file-loader`.
+
+> The files of this files are placed under `@css` folder. The name of this folder means that all 
+> the style `stylus` files are compiled to `css` files, not just the directory where css files are placed.
+> ES6 grammar `js` and `vdt` files are compiled as ES5 grammar `js` files, so you don't need `babel-loader` 
+> and `vdt-loader` to deal with them, only just need `css-loader` and `style-loader` to deal with 
+> `css` files. Need `file-loader` to deal with font files of course.
+
+1. Install dependencies
+
+```shell
+npm install kpc --save
+
+npm install css-loader style-loader file-loader --save-dev
+```
+
+2. Configure `webpack.config.js`
+
+In order to unify the component loading path, we can add `alias`. For example: we can use `kpc/components/button` 
+to point to `kpc/@css/components/button`.
+
+```js
+module.exports = {
+    ...
+    resolve: {
+        alias: {
+            // let kpc point to multi-file built css version
+            // it can unify the component loading path
+            'kpc': 'kpc/@css'
+        }
+    },
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: 'style-loader',
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            url: true
+                        }
+                    }
+                ]
+            },
+            // load font files
+            {
+                test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            outputPath: 'fonts/',
+                        }
+                    }
+                ]
+            },
+        ]
+    }
+}
+```
+
+3. Import components on demand
+
+```js
+import {Button, ButtonGroup} from 'kpc/components/button';
+
+<ButtonGroup>
+    <Button>button1</Button>
+    <Button>button2</Button>
+</ButtonGroup>
+```
+
 
 [1]: https://webpack.js.org/
 [2]: https://babeljs.io/
