@@ -293,3 +293,9 @@ if (typeof navigator !== 'undefined') {
         }
     }
 }
+
+const externalLinkReg = /^(https?:)?\/\//;
+export function isExternalLink(to) {
+    if (typeof to !== 'string') return false;
+    return externalLinkReg.test(to);
+}

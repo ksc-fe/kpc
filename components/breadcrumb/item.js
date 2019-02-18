@@ -1,6 +1,6 @@
 import Intact from 'intact';
 import template from './item.vdt';
-import {findRouter} from '../utils';
+import {findRouter, isExternalLink} from '../utils';
 
 export default class BreadcrumbItem extends Intact {
     @Intact.template()
@@ -26,7 +26,7 @@ export default class BreadcrumbItem extends Intact {
         const to = this.get('to');
         if (to) {
             const $router = this.$router;
-            if ($router) {
+            if ($router && !isExternalLink(to)) {
                 $router.push(to);
             } else {
                 window.location.href = to;
