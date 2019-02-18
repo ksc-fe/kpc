@@ -19,6 +19,7 @@ const fs = require('fs');
 const packageJson = require('./package.json');
 const childProcess = require('child_process');
 const uglifyjs = require('gulp-uglify');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const pages = {
     '/': 'index',
@@ -70,7 +71,7 @@ function webpackBuild(config) {
 
 gulp.task('build:iframes', async () => {
     await Promise.all(globalIframes.map(iframe => {
-        const config = webpackConfig();
+        const config = webpackConfig('__nouse');
         config.entry = iframe;
         const [, p] = webpackBuild(config);
         return p;
@@ -155,7 +156,8 @@ gulp.task('clean:doc', () => {
     );
 });
 gulp.task('build:doc:server', () => {
-    return doc(false).then(async ({render}) => {
+    return doc(false).then(async ({render, iframes}) => {
+        globalIframes = iframes;
         await Promise.all(Object.keys(pages).map(async key => {
             const data = await render(key);
             await new Promise(resolve => {

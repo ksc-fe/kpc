@@ -264,12 +264,12 @@ module.exports = function(isDev = true) {
                                 content = item.content;
                             }
                         } else if (item.language === 'styl' && !item.file) {
-                            if (!iframe) {
+                            // if (!iframe) {
                                 content = [
                                     `.example.index-${file.md.index}`,
                                     ...content.split('\n').map(line => `    ${line}`)
                                 ].join('\n');
-                            }
+                            // }
                         }
                         await ctx.fsWrite(!item.file ? file.relative : file.dirname + '/' + item.file, content);
                     });
@@ -295,6 +295,7 @@ module.exports = function(isDev = true) {
                             file.dirname + '/index.html',
                             Vdt.renderFile(path.resolve(__dirname, '../site/src/iframe.vdt'), {
                                 script: file.url + '/bundle.js',
+                                index: file.md.index,
                             })
                         );
                     }
@@ -355,9 +356,7 @@ module.exports = function(isDev = true) {
                         );
                     } else if (file.md.setting.iframe) {
                         iframes.push({
-                            [file.url.substring(1) + '/bundle']: [
-                                file.dirname + '/iframe.js',
-                            ]
+                            [file.url.substring(1) + '/bundle']: file.dirname + '/iframe.js',
                         });
                     }
                 });
@@ -387,7 +386,7 @@ module.exports = function(isDev = true) {
                             );
                         } else if (file.md.setting.iframe) {
                             iframes.push({
-                                [file.url.substring(1) + '/bundle']: file.dirname + '/index.js'
+                                [file.url.substring(1) + '/bundle']: file.dirname + '/iframe.js'
                             });
                         }
                     });

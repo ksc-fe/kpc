@@ -9,7 +9,7 @@
     />
 </head>
 <body>
-    <div id="page" innerHTML={{ self.content }}></div>
+    <div id="page" innerHTML={{ self.content }} class={{ `example index-${self.index}` }}></div>
     <script src={{ self.script }} type="text/javascript"></script>
 </body>
 </html>

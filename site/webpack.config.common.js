@@ -11,7 +11,7 @@ process.URL_PREFIX = '';
 module.exports = function(theme) {
     // add theme
     const commonConfig = merge.smartStrategy()(webpackConfig);
-    if (theme && theme !== 'default') {
+    if (theme && theme !== 'default' && theme !== '__nouse') {
         commonConfig.module.rules[2].use[2].options.import =
             path.resolve(__dirname, `../styles/themes/${theme}/index.styl`);
     }
@@ -41,7 +41,7 @@ module.exports = function(theme) {
                 },
                 {
                     test: /\.(styl|css)$/,
-                    use: !process.env.THEME ?
+                    use: !process.env.THEME && theme !== '__nouse' ?
                         ['css-hot-loader'].concat(ExtractTextPlugin.extract({
                             // the third rule is a stylus rule
                             use: commonConfig.module.rules[2].use,
@@ -69,7 +69,7 @@ module.exports = function(theme) {
         }),
     ];
 
-    if (!process.env.THEME) {
+    if (!process.env.THEME && theme !== '__nouse') {
         config.plugins.push(
             new ExtractTextPlugin({
                 filename: theme ? `theme-${theme}.css` : 'theme-kpc.css',
