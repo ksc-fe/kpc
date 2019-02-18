@@ -4,6 +4,20 @@ order: 99
 sidebar: doc
 ---
 
+## v0.8.3
+
+### Core
+
+1. `Add` 新增布局组件`Layout` [#210](https://github.com/ksc-fe/kpc/issues/210)
+2. `Fix` 修复`ScrollSelect`当虚拟元素个数`count`为偶数时，选中项不能居中的问题 [#211](https://github.com/ksc-fe/kpc/issues/211)
+3. `Fix` 修复`Spinner`当输入值合法`value`不能立即变更，而必须失去焦点才能变更的问题 [#213](https://github.com/ksc-fe/kpc/issues/213)
+
+### Vue
+
+1. `Fix` 修复`Tooltip`在`click`触发方式下，当触发元素为vue元素时，弹层会立即消失的问题 [#209](https://github.com/ksc-fe/kpc/issues/209)
+2. `Fix` 修复`MenuItem`等支持`to`属性的组件，当`to`指向外部链接时不能正确跳转的问题 [#212](https://github.com/ksc-fe/kpc/issues/212) 
+
+
 ## v0.8.2
 
 #### Core
