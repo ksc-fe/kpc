@@ -96,7 +96,9 @@ module.exports = function(isDev = true) {
             await ctx.fsEach(async function(file, index) {
                 file.extname = '.json';
                 const basename = path.basename(file.path, '.json');
-                if (basename !== 'index') {
+                if (basename === 'index.en-US') {
+                    file.path = path.join(path.dirname(file.path) + '-en', 'index.json');
+                } else if (basename !== 'index') {
                     file.path = path.join(path.dirname(file.path), basename, 'index.json');
                 }
                 file.md.index = index;

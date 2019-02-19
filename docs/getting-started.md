@@ -154,7 +154,7 @@ import {Button, ButtonGroup} from 'kpc/components/button';
 
 1. 新增依赖
 
-为了提供css兼容性，这里加入`autoprefixer`
+为了提高css兼容性，这里加入`autoprefixer`
 
 ```shell
 npm install postcss-loader autoprefixer stylus-loader --save-dev

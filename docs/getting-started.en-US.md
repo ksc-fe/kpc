@@ -146,6 +146,97 @@ import {Button, ButtonGroup} from 'kpc/components/button';
 </ButtonGroup>
 ```
 
+## Multi-file stylus built version
+
+The different between the so-called stylus built version and the css built version is that the 
+style files are `stylus` instead of compiled `css`. When we need to modify or import a new theme, 
+you can use this version to implement it easily. See [Customize Theme][6] for details.
+
+Due to the use of `stylus`, the only difference from the use of the css built version is that we 
+need to require `stylus-loader`.
+
+> Similar to the multi-file css built version, this version is placed under `@stylus` directory.
+
+1. Install new dependencies
+
+In order to improve css compatibility, add `autoprefixer` here.
+
+```shell
+npm install postcss-loader autoprefixer stylus-loader --save-dev
+```
+
+2. Modify `webpack.config.js`
+
+Modify the css loader like bellow (we can import the theme file through the `import` setting of `stylus-loader`):
+
+```js
+const autoprefixer = require('autoprefixer');
+
+module.export = {
+    ...
+    resolve: {
+        alias: {
+            'kpc': 'kpc/@stylus'
+        }
+    },
+    module: {
+        rules: [
+            ...
+            // compile stylus
+            {
+                test: /\.(styl|css)$/,
+                use: [
+                    {
+                        loader: 'style-loader'
+                    },
+                    {
+                        loader: 'css-loader', 
+                        options: {
+                            url: true,
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: [
+                                autoprefixer({
+                                    browsers: [
+                                        'last 2 versions',
+                                        'ie >= 9',
+                                    ],
+                                })
+                            ],
+                        }
+                    },
+                    {
+                        loader: 'stylus-loader', 
+                        options: {
+                            'include css': true,
+                            'resolve url': true, // @since v0.6.0
+                            sourceMap: false,
+                            // import theme file through import setting, see Custom Theme for details
+                            // 'import': path.resolve(__dirname, 'styles/themes/ksyun/index.styl'),
+                        }
+                    }
+                ]
+            },
+            // load font files 
+            {
+                test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            outputPath: 'fonts/',
+                        }
+                    }
+                ]
+            },
+        ]
+    }
+}
+```
+
 
 [1]: https://webpack.js.org/
 [2]: https://babeljs.io/
