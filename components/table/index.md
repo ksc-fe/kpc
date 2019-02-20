@@ -94,3 +94,4 @@ sidebar: doc
 | 事件名 | 说明 | 参数 |
 | --- | --- | --- |
 | $change:checked | 选中的数据变化会触发的事件 | `instance, newValue, oldValue` |
+| click:row | 点击行时触发，当点击`input`元素或者行`disabled`时不会触发 | `data, index, key, event` |
