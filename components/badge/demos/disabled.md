@@ -1,9 +1,17 @@
 ---
-title: 禁用状态
+title: 
+    zh-CN: 禁用状态
+    en-US: Disabled
 order: 2
 ---
 
+## zh-CN
+
 不管是哪种展示类型，只要添加`disabled`属性，就不展示徽标
+
+## en-US
+
+Regardless of the type to be displayed, if you add the `disabled` property, then it doesn't show the badge.
 
 ```vdt
 import Badge from 'kpc/components/badge';
