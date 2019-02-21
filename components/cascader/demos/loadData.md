@@ -1,11 +1,22 @@
 ---
-title: 动态加载数据
+title: 
+    zh-CN: 动态加载数据
+    en-US: Load Data Dynamically
 order: 7
 ---
+
+## zh-CN
 
 如果数据项中的`children`属性为空数组`[]`，则代表该项子数据为动态加载的，此时可以指定`loadData`
 属性来定义动态加载的逻辑，组件会将当前展开项的数据当做参数`item`传入，你只需要更新`item`的`children`
 属性即可，该函数的返回值为`Promise`对象
+
+## en-US
+
+If the `children` of the data item is an empty array `[]`, it means that the sub-data is loaded dynamically. 
+In this case, you can sepecify the logic of loading data by `loadData` property. The component will 
+pass the data of the currently expanded item as a parameter `item` to the function, and you only 
+need to update the children of it. The return value of the function should be a `Promise` object.
 
 ```vdt
 import Cascader from 'kpc/components/cascader';
@@ -23,12 +34,12 @@ export default class extends Intact {
             data: [
                 {
                     value: 'beijing',
-                    label: '北京',
+                    label: 'Beijing',
                     children: []
                 },
                 {
                     value: 'hunan',
-                    label: '湖南',
+                    label: 'Hunan',
                     children: []
                 }
             ]
@@ -43,15 +54,15 @@ export default class extends Intact {
                         item.children = [
                             {
                                 value: 'haidian',
-                                label: '海淀区'
+                                label: 'Haidian'
                             },
                             {
                                 value: 'chaoyang',
-                                label: '朝阳区'
+                                label: 'Chaoyang'
                             },
                             {
                                 value: 'fengtai',
-                                label: '丰台区'
+                                label: 'Fengtai'
                             }
                         ];
                         break;
@@ -59,17 +70,17 @@ export default class extends Intact {
                         item.children = [
                             {
                                 value: 'changsha',
-                                label: '长沙市',
+                                label: 'Changsha',
                                 children: [
                                     {
                                         value: 'yuelu',
-                                        label: '岳麓区',
+                                        label: 'Yuelu',
                                     }
                                 ]
                             },
                             {
                                 value: 'yueyang',
-                                label: '岳阳市',
+                                label: 'Yueyang',
                                 children: []
                             }
                         ];
@@ -78,11 +89,11 @@ export default class extends Intact {
                         item.children = [
                             {
                                 value: 'yueyanglou',
-                                label: '岳阳楼区',
+                                label: 'Yueyanglou',
                             },
                             {
                                 value: 'yueyangxian',
-                                label: '岳阳县',
+                                label: 'Yueyangxian',
                             }
                         ];
                         break;

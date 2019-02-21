@@ -1,11 +1,22 @@
 ---
-title: 自定义结果显示
+title: 
+    zh-CN: 自定义结果显示
+    en-US: Customize the Displayed Content
 order: 5
 ---
+
+## zh-CN
 
 给组件指定`format`扩展点，可以自定义选择结果显示，组件会将当前选择的数据项以数组的格式作为参数传入
 
 > Vue下通过`slot="format" slot-scope="values"`指定
+
+## en-US
+
+You can customize the displayed content of selected values by specifying `format` block, and 
+the component will pass all the currently selected values to the function in an array type.
+
+> Use `slot="format" slot-scope="values"` to sepecify in Vue.
 
 ```vdt
 import Cascader from 'kpc/components/cascader';
@@ -30,47 +41,47 @@ export default class extends Intact {
             data: [
                 {
                     value: 'beijing',
-                    label: '北京',
+                    label: 'Beijing',
                     children: [
                         {
                             value: 'haidian',
-                            label: '海淀区'
+                            label: 'Haidian'
                         },
                         {
                             value: 'chaoyang',
-                            label: '朝阳区'
+                            label: 'Chaoyang'
                         },
                         {
                             value: 'fengtai',
-                            label: '丰台区'
+                            label: 'Fengtai'
                         }
                     ]
                 },
                 {
                     value: 'hunan',
-                    label: '湖南',
+                    label: 'Hunan',
                     children: [
                         {
                             value: 'changsha',
-                            label: '长沙市',
+                            label: 'Changshai',
                             children: [
                                 {
                                     value: 'yuelu',
-                                    label: '岳麓区',
+                                    label: 'Yuelu',
                                 }
                             ]
                         },
                         {
                             value: 'yueyang',
-                            label: '岳阳市',
+                            label: 'Yueyang',
                             children: [
                                 {
                                     value: 'yueyanglou',
-                                    label: '岳阳楼区',
+                                    label: 'Yueyanglou',
                                 },
                                 {
                                     value: 'yueyangxian',
-                                    label: '岳阳县',
+                                    label: 'Yueyangxian',
                                 }
                             ]
                         }

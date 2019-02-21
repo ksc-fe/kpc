@@ -1,9 +1,18 @@
 --- 
-title: 触发方式
+title:
+    zh-CN: 触发方式
+    en-US: Trigger Mode
 order: 2
 ---
 
+## zh-CN
+
 子菜单的触发的方式默认是`click`点击展开，通过设置`trigger`属性为`hover`，可以指定为移入展开
+
+## en-US
+
+The trigger mode of the submenu is `click` to expand by default, by setting the `trigger` property 
+to `hover`, you can specify it to expand by mouse move in.
 
 ```vdt
 import Cascader from 'kpc/components/cascader';
@@ -21,47 +30,47 @@ export default class extends Intact {
             data: [
                 {
                     value: 'beijing',
-                    label: '北京',
+                    label: 'Beijing',
                     children: [
                         {
                             value: 'haidian',
-                            label: '海淀区'
+                            label: 'Haidian'
                         },
                         {
                             value: 'chaoyang',
-                            label: '朝阳区'
+                            label: 'Chaoyang'
                         },
                         {
                             value: 'fengtai',
-                            label: '丰台区'
+                            label: 'Fengtai'
                         }
                     ]
                 },
                 {
                     value: 'hunan',
-                    label: '湖南',
+                    label: 'Hunan',
                     children: [
                         {
                             value: 'changsha',
-                            label: '长沙市',
+                            label: 'Changshai',
                             children: [
                                 {
                                     value: 'yuelu',
-                                    label: '岳麓区',
+                                    label: 'Yuelu',
                                 }
                             ]
                         },
                         {
                             value: 'yueyang',
-                            label: '岳阳市',
+                            label: 'Yueyang',
                             children: [
                                 {
                                     value: 'yueyanglou',
-                                    label: '岳阳楼区',
+                                    label: 'Yueyanglou',
                                 },
                                 {
                                     value: 'yueyangxian',
-                                    label: '岳阳县',
+                                    label: 'Yueyangxian',
                                 }
                             ]
                         }

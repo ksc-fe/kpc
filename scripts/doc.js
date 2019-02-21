@@ -250,7 +250,7 @@ module.exports = function(isDev = true) {
                     });
                     delete data.catalogs;
 
-                    const headingReg = /<h2[^>]*>([\w\-]*)<\/h2>((?!<h2).*)/g;
+                    const headingReg = /<h2[^>]*>([\w\-]*)<\/h2>(((?!<h2)[\s\S])*)/g;
                     const contents = {};
                     data.contents.replace(headingReg, function(nouse, language, text) {
                         contents[language] = text;
@@ -258,6 +258,7 @@ module.exports = function(isDev = true) {
                     if (!Object.keys(contents).length) {
                         contents['zh-CN'] = data.contents;
                     }
+                    data._contents = data.contents;
                     data.contents = contents;
                 }
 

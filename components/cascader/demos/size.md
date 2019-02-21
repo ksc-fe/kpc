@@ -1,9 +1,17 @@
 ---
-title: 尺寸
+title: 
+    zh-CN: 尺寸
+    en-US: Size
 order: 4
 ---
 
+## zh-CN
+
 组件提供4中尺寸：`large` `default` `small` `mini`
+
+## en-US
+
+There are 4 sizes: `large` `default` `small` `mini`
 
 ```vdt
 import Cascader from 'kpc/components/cascader';
@@ -31,47 +39,47 @@ export default class extends Intact {
             data: [
                 {
                     value: 'beijing',
-                    label: '北京',
+                    label: 'Beijing',
                     children: [
                         {
                             value: 'haidian',
-                            label: '海淀区'
+                            label: 'Haidian'
                         },
                         {
                             value: 'chaoyang',
-                            label: '朝阳区'
+                            label: 'Chaoyang'
                         },
                         {
                             value: 'fengtai',
-                            label: '丰台区'
+                            label: 'Fengtai'
                         }
                     ]
                 },
                 {
                     value: 'hunan',
-                    label: '湖南',
+                    label: 'Hunan',
                     children: [
                         {
                             value: 'changsha',
-                            label: '长沙市',
+                            label: 'Changshai',
                             children: [
                                 {
                                     value: 'yuelu',
-                                    label: '岳麓区',
+                                    label: 'Yuelu',
                                 }
                             ]
                         },
                         {
                             value: 'yueyang',
-                            label: '岳阳市',
+                            label: 'Yueyang',
                             children: [
                                 {
                                     value: 'yueyanglou',
-                                    label: '岳阳楼区',
+                                    label: 'Yueyanglou',
                                 },
                                 {
                                     value: 'yueyangxian',
-                                    label: '岳阳县',
+                                    label: 'Yueyangxian',
                                 }
                             ]
                         }

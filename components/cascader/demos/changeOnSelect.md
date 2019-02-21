@@ -1,9 +1,18 @@
 ---
-title: 选择即改变
+title: 
+    zh-CN: 选择即改变
+    en-US: Change on Select
 order: 3
 ---
 
+## zh-CN
+
 添加`changeOnSelect`属性，即可使组件选择即改变`value`，这样可以只选中父级
+
+## en-US
+
+You can make the component change `value` as long as you select by adding `changeOnSelect` property, 
+so you can only select parent item.
 
 ```vdt
 import Cascader from 'kpc/components/cascader';
@@ -24,47 +33,47 @@ export default class extends Intact {
             data: [
                 {
                     value: 'beijing',
-                    label: '北京',
+                    label: 'Beijing',
                     children: [
                         {
                             value: 'haidian',
-                            label: '海淀区'
+                            label: 'Haidian'
                         },
                         {
                             value: 'chaoyang',
-                            label: '朝阳区'
+                            label: 'Chaoyang'
                         },
                         {
                             value: 'fengtai',
-                            label: '丰台区'
+                            label: 'Fengtai'
                         }
                     ]
                 },
                 {
                     value: 'hunan',
-                    label: '湖南',
+                    label: 'Hunan',
                     children: [
                         {
                             value: 'changsha',
-                            label: '长沙市',
+                            label: 'Changshai',
                             children: [
                                 {
                                     value: 'yuelu',
-                                    label: '岳麓区',
+                                    label: 'Yuelu',
                                 }
                             ]
                         },
                         {
                             value: 'yueyang',
-                            label: '岳阳市',
+                            label: 'Yueyang',
                             children: [
                                 {
                                     value: 'yueyanglou',
-                                    label: '岳阳楼区',
+                                    label: 'Yueyanglou',
                                 },
                                 {
                                     value: 'yueyangxian',
-                                    label: '岳阳县',
+                                    label: 'Yueyangxian',
                                 }
                             ]
                         }

@@ -1,10 +1,19 @@
 ---
-title: 禁用状态
+title: 
+    zh-CN: 禁用状态
+    en-US: Disabled
 order: 1
 ---
 
+## zh-CN
+
 给组件添加`disabled`属性，可以禁用整个组件；给`data`数据项添加`disabled`属性
 可以单独禁用该项
+
+## en-US
+
+Add `disabled` property to component to disable the component, and add `disabled` property to `data` to disable 
+the item individually.
 
 ```vdt
 import Cascader from 'kpc/components/cascader';
@@ -30,50 +39,50 @@ export default class extends Intact {
             data: [
                 {
                     value: 'beijing',
-                    label: '北京',
+                    label: 'Beijing',
                     disabled: true,
                     children: [
                         {
                             value: 'haidian',
-                            label: '海淀区'
+                            label: 'Haidian'
                         },
                         {
                             value: 'chaoyang',
-                            label: '朝阳区'
+                            label: 'Chaoyang'
                         },
                         {
                             value: 'fengtai',
-                            label: '丰台区'
+                            label: 'Fengtai'
                         }
                     ]
                 },
                 {
                     value: 'hunan',
-                    label: '湖南',
+                    label: 'Hunan',
                     children: [
                         {
                             value: 'changsha',
-                            label: '长沙市',
+                            label: 'Changshai',
                             disabled: true,
                             children: [
                                 {
                                     value: 'yuelu',
-                                    label: '岳麓区',
+                                    label: 'Yuelu',
                                 }
                             ]
                         },
                         {
                             value: 'yueyang',
-                            label: '岳阳市',
+                            label: 'Yueyang',
                             children: [
                                 {
                                     value: 'yueyanglou',
-                                    label: '岳阳楼区',
+                                    label: 'Yueyanglou',
                                     disabled: true,
                                 },
                                 {
                                     value: 'yueyangxian',
-                                    label: '岳阳县',
+                                    label: 'Yueyangxian',
                                 }
                             ]
                         }

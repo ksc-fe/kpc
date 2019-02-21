@@ -1,10 +1,20 @@
 ---
-title: 可搜索
+title: 
+    zh-CN: 可搜索
+    en-US: Filterable
 order: 6
 ---
 
+## zh-CN
+
 添加`filterable`属性，即可实现搜索。默认会根据`label`进行搜索，你也可以通过`filter`属性，传入
 自定义的搜索逻辑，组件会将当前的搜索关键词和每一项数据作为参数传入
+
+## en-US
+
+Add `filterable` to make the component searchable. The default searching behavior is based on `label`, 
+you can also add `filter` property to customize the search logic, the component will pass the 
+current search keyword and each item of data to that function.
 
 ```vdt
 import Cascader from 'kpc/components/cascader';
@@ -24,48 +34,48 @@ export default class extends Intact {
             data: [
                 {
                     value: 'beijing',
-                    label: '北京',
+                    label: 'Beijing',
                     children: [
                         {
                             value: 'haidian',
-                            label: '海淀区'
+                            label: 'Haidian'
                         },
                         {
                             value: 'chaoyang',
-                            label: '朝阳区'
+                            label: 'Chaoyang'
                         },
                         {
                             value: 'fengtai',
-                            label: '丰台区'
+                            label: 'Fengtai'
                         }
                     ]
                 },
                 {
                     value: 'hunan',
-                    label: '湖南',
+                    label: 'Hunan',
                     children: [
                         {
                             value: 'changsha',
-                            label: '长沙市',
+                            label: 'Changshai',
                             disabled: true,
                             children: [
                                 {
                                     value: 'yuelu',
-                                    label: '岳麓区',
+                                    label: 'Yuelu',
                                 }
                             ]
                         },
                         {
                             value: 'yueyang',
-                            label: '岳阳市',
+                            label: 'Yueyang',
                             children: [
                                 {
                                     value: 'yueyanglou',
-                                    label: '岳阳楼区',
+                                    label: 'Yueyanglou',
                                 },
                                 {
                                     value: 'yueyangxian',
-                                    label: '岳阳县',
+                                    label: 'Yueyangxian',
                                 }
                             ]
                         }

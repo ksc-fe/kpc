@@ -18,7 +18,6 @@ order: 0
 
 Pass data to the component by `data` property, you can use `v-model` for two-way binding. 
 The resulat is an array of each value selected. Wherein the format of `data` as shown in the example:
-
 1. `value` selected value
 2. `label` displayed text
 3. `children` if there are suboptions, you need to specify this property recursively
