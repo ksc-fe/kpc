@@ -1,10 +1,19 @@
 ---
-title: 遮罩层
+title: 
+    zh-CN: 遮罩层
+    en-US: Overlay
 order: 0.2
 ---
 
+## zh-CN
+
 添加`overlay`属性，false则不展示遮罩层，true展示遮罩层。默认为true。
-另外添加`closabled`属性，`false`：点非抽屉区不可自动关闭抽屉（点击抽屉内关闭按钮才可以关闭），`true`：点非抽屉区可以自动关闭。默认为true
+另外添加`closable`属性，`false`：点非抽屉区不可自动关闭抽屉（点击抽屉内关闭按钮才可以关闭），`true`：点非抽屉区可以自动关闭。默认为true
+
+## en-US
+
+Add the `overlay` property to display the overlay. In addition, Adding the `closable` property can 
+close the drawer by clicking outside of it. Otherwise you must close it by clicking close button.
 
 ```vdt
 import Drawer from 'kpc/components/drawer';

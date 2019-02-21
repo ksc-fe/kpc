@@ -12,9 +12,9 @@ sidebar: doc
 | placement | 自定义位置 | `"top"` &#124; `"bottom"` &#124;`"left"` &#124;`"right"`|`"right"`|
 | overlay | 是否展示遮罩层 | `Boolean` | `"true"` |
 | closable | 点击非抽屉部分是否可以关闭抽屉 | `Boolean` | `"true"` |
-| title | 弹窗标题 | `String` | `"提示"` |
-| value | 弹窗是否展示出来 | `Boolean` | `false` |
-| size | 弹窗尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
+| title | 抽屉标题 | `String` | `"提示"` |
+| value | 抽屉是否展示出来 | `Boolean` | `false` |
+| size | 抽屉尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
 | loading | “确认”按钮是否为加载状态 | `Boolean` | `false` |
 | okText | “确认”按钮文案 | `String` | `"确认"` |
 | cancelText | “取消”按钮文案 | `String` | `"取消"` |
@@ -26,23 +26,23 @@ sidebar: doc
 
 | 名称 | 说明 |
 | --- | --- |
-| header | 扩展弹窗头部 |
-| body | 扩展弹窗主体部分 |
-| footer | 扩展弹窗底部 |
-| footer-wrapper | 扩展弹窗整个底部，上述`footer`是它下面一个子扩展点 |
+| header | 扩展抽屉头部 |
+| body | 扩展抽屉主体部分 |
+| footer | 扩展抽屉底部 |
+| footer-wrapper | 扩展抽屉整个底部，上述`footer`是它下面一个子扩展点 |
 
 # 方法
 
 | 方法名 | 说明 | 参数 | 返回值 |
 | --- | --- | --- | --- |
-| show | 弹出弹窗 | - | `Promise` |
-| close | 关闭弹窗 | - | `undefined` |
+| show | 弹出抽屉 | - | `Promise` |
+| close | 关闭抽屉 | - | `undefined` |
 | showLoading | “确认”按钮变为加载状态 | - | `undefined` |
 | hideLoading | “确认”按钮变为正常状态 | - | `undefined` |
 | disableOk | “确认”按钮变为禁用状态 | - | `undefined` |
 | enableOk | “确认”按钮变为正常状态 | - | `undefined` |
-| ok | 点击“确认”按钮的回调方法，继承`Dialog`时，可以复写该方法实现自定义需求 | - | `undefined` |
-| cancel | 点击“取消”按钮的回调方法，继承`Dialog`时，可以复写该方法实现自定义需求 | - | `undefined` |
+| ok | 点击“确认”按钮的回调方法，继承`Drawer`时，可以复写该方法实现自定义需求 | - | `undefined` |
+| cancel | 点击“取消”按钮的回调方法，继承`Drawer`时，可以复写该方法实现自定义需求 | - | `undefined` |
 
 # 事件
 
@@ -50,5 +50,5 @@ sidebar: doc
 | --- | --- | --- |
 | cancel | 点击取消按钮时触发 | - |
 | ok | 点击确定按钮时触发 | - |
-| open | 弹窗打开后触发 | - |
-| close | 弹窗关闭后触发 | - |
+| open | 抽屉打开后触发 | - |
+| close | 抽屉关闭后触发 | - |
