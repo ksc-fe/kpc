@@ -1,8 +1,10 @@
 import Button from 'components/button';
 import Link from 'components/link';
 import Badge from 'components/badge';
+import {_$} from 'kpc/components/utils';
 
 const Article = self.get('Article');
+const language = Article.language;
 
 let currentNav = {};
 let demos = self.get('demos') || [];
@@ -15,10 +17,8 @@ function Catalog(props) {
         return <li
             class={{ {
                 active: (() => {
-                    const path = self.path.slice(1);
-                    if (value.path.indexOf(path + '/') > -1 ||
-                        value.path.indexOf(path + '.md') > -1
-                    ) {
+                    const path = self.path + '/';
+                    if (value.url === path) {
                         currentNav = value;
                         return true;
                     }
@@ -26,17 +26,17 @@ function Catalog(props) {
             } }}
             v-if={{ !value.disabled }}
         >
-            <Link href={{ `${process.URL_PREFIX}/${value.path.replace('.md', '/').replace('index/', '')}` }}>
+            <Link href={{ `${process.URL_PREFIX}${value.url}` }}>
                 {{ do {
                     const matches = value.path.match(/components\/([^\/]+)/);
                     if (matches) {
                         const name = matches[1];
                         [
                             name[0].toUpperCase() + name.substring(1),
-                            <span>{{ value.title }}</span>
+                            language !== 'en-US' ? <span>{{ value.title }}</span> : undefined,
                         ];
                     } else {
-                        if (value.title === '更新日志') {
+                        if (value.title === '更新日志' || value.title === 'Change Log') {
                             <Badge disabled={{ !!self.get('hasRead') }}>{{ value.title }}</Badge>
                         } else {
                             value.title;
@@ -66,7 +66,7 @@ if (sidebar) {
         if (key !== 'undefined') {
             _sidebar.push({
                 key,
-                value: key !== '组件' ? 
+                value: key !== '组件' || key !== 'Components' ? 
                     sidebar[key] :
                     sidebar[key].sort((a, b) => {
                         return a.path > b.path ? 1 : -1;
@@ -93,11 +93,15 @@ if (sidebar) {
             <div class="article-head">
                 <div class="title">{{ currentNav.title }}</div>
                 <div class="edit-link">
-                    如果你发现文档有问题，请帮忙在
-                    <a target="_blank" 
-                        href={{ `https://github.com/ksc-fe/kpc/blob/master/${currentNav.path}` }}
-                    >github</a>
-                    上修正该文档
+                    {{ do {
+                        const results = _$('如果你发现文档有问题，请帮忙在%上修正该文档').split('%');
+                        results.splice(1, 0, (
+                            <a target="_blank" 
+                                href={{ `https://github.com/ksc-fe/kpc/blob/master/${currentNav.path}` }}
+                            >github</a>
+                        ));
+                        results
+                    } }}
                 </div>
             </div>
             <Article ref="article" />
@@ -114,7 +118,14 @@ if (sidebar) {
                     } }}
                     ev-click={{ self._scrollToView.bind(self, value) }}
                 >
-                    {{ value.data.setting.title }}
+                    {{ do {
+                        let title = value.data.setting.title;
+                        if (typeof title === 'object') {
+                            title[language];
+                        } else {
+                            title;
+                        }
+                    } }}
                 </li>
             </ul>
             <div v-if={{ false }} class="aside-border transition" style={{ self.get('borderStyle') }}></div>

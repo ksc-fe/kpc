@@ -1,7 +1,7 @@
 ---
 title: Customize Theme
 order: 1
-sidebar: doc
+sidebar: doc-en
 ---
 
 In the Getting Started section we mentioned that "multi-file stylus built version" can support 

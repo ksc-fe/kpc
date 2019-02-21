@@ -2,7 +2,7 @@
 title: App
 order: -1
 category: Components
-sidebar: doc
+sidebar: doc-en
 ---
 
 ## Properties

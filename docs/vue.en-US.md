@@ -1,7 +1,7 @@
 ---
 title: Use in Vue
 order: 1
-sidebar: doc
+sidebar: doc-en
 ---
 
 When we want to use kpc in Vue framework, we only need to import Vue compatibility layer [intact-vue][1].

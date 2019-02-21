@@ -1,7 +1,7 @@
 ---
 title: Getting Started 
 order: 0
-sidebar: doc
+sidebar: doc-en
 ---
 
 # Ready to work

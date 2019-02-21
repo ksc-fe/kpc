@@ -1,5 +1,7 @@
 ---
-title: 服务器端渲染
+title: 
+    zh-CN: 服务器端渲染
+    en-US: Render on Server
 order: 1
 ---
 

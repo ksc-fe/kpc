@@ -92,15 +92,33 @@ module.exports = function(isDev = true) {
             // }
         });
 
+        const getBuiltPath = (p, file) => {
+            const basename = path.basename(p, '.md');
+            const dirname = path.dirname(p);
+            if (file) file.language = 'zh-CN';
+            if (basename.endsWith('.en-US')) {
+                if (file) file.language = 'en-US';
+                if (basename === 'index.en-US') {
+                    if (file) {
+                        file.componentName = path.basename(path.dirname(p));
+                    }
+                    return path.join(dirname + '-en', 'index.json');
+                } else {
+                    return path.join(dirname, basename.replace('.en-US', '-en'), 'index.json');
+                }
+            } else if (basename !== 'index') {
+                return path.join(dirname, basename, 'index.json');
+            }
+            if (file) {
+                file.componentName = path.basename(path.dirname(p));
+            }
+            return path.join(dirname, 'index.json');
+        };
+
         ctx.hook.add('dist.before', async function(files) {
             await ctx.fsEach(async function(file, index) {
+                file.path = getBuiltPath(file.path, file);
                 file.extname = '.json';
-                const basename = path.basename(file.path, '.json');
-                if (basename === 'index.en-US') {
-                    file.path = path.join(path.dirname(file.path) + '-en', 'index.json');
-                } else if (basename !== 'index') {
-                    file.path = path.join(path.dirname(file.path), basename, 'index.json');
-                }
                 file.md.index = index;
 
                 let hasJs = false;
@@ -239,7 +257,17 @@ module.exports = function(isDev = true) {
 
                 const sidebar = data.setting && data.setting.sidebar;
                 if (sidebar && !hasWrittenSidebar[sidebar]) {
-                    await ctx.fsWrite(path.join(root, `${sidebar}.json`), JSON.stringify(data.sideBars, null, 4));
+                    const sideBars = {};
+                    for (let key in data.sideBars) {
+                        sideBars[key] = [];
+                        for (let i = 0; i < data.sideBars[key].length; i++) {
+                            const item = data.sideBars[key][i];
+                            delete item.children;
+                            item.url = '/' + getBuiltPath(item.path).replace('index.json', '');
+                            sideBars[key].push(item);
+                        }
+                    }
+                    await ctx.fsWrite(path.join(root, `${sidebar}.json`), JSON.stringify(sideBars, null, 4));
                     hasWrittenSidebar[sidebar] = true;
                 }
                 delete _data.sideBars;
@@ -324,19 +352,22 @@ module.exports = function(isDev = true) {
                             `import data from './index.json';`,
                             sidebar ? `import sidebar from '~/${sidebar}.json';` : undefined,
                             ``,
-                            `const r = require.context('./', true, /demos.*(index|demo).js$/);`,
-                            `const keys = r.keys();`,
-                            `const demos = [];`,
-                            `for (let i = 0; i < keys.length; i++) {`,
-                            `    const file = keys[i];`,
-                            `    // if we found demo.js then ignore index.js`,
-                            `    if (/demo\.js$/.test(file)) i++;`,
-                            `    demos.push(r(file));`,
-                            `}`,
+                            file.componentName ? [
+                                `const r = require.context('${file.language === 'en-US' ? '../' + file.componentName : './'}', true, /demos.*(index|demo).js$/);`,
+                                `const keys = r.keys();`,
+                                `const demos = [];`,
+                                `for (let i = 0; i < keys.length; i++) {`,
+                                `    const file = keys[i];`,
+                                `    // if we found demo.js then ignore index.js`,
+                                `    if (/demo\.js$/.test(file)) i++;`,
+                                `    demos.push(r(file));`,
+                                `}`,
+                            ].join('\n') : `const demos = [];`,
                             ``,
                             `export default class extends Article {`,
                             sidebar ? `    static sidebar = sidebar;` : undefined,
                             `    static data = data;`,
+                            `    static language = '${file.language}';`,
                             `    defaults() {`,
                             `        return {...super.defaults(), ...data, demos};`,
                             `    }`,

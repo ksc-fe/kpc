@@ -1,7 +1,7 @@
 ---
 title: Use in React
 order: 1.1
-sidebar: doc
+sidebar: doc-en
 ---
 
 When we want to use kpc in React framework, we only need to import React compatibility layer [intact-react][1].

@@ -3,6 +3,7 @@ import Layout from '../layout';
 import template from './index.vdt';
 import './index.styl';
 import 'kpc/components/table/index.styl';
+import {localize} from 'kpc/components/utils';
 
 const req = require.context('~/', true, /^\.\/(components|docs)\/.*index\.js$/);
 
@@ -27,6 +28,14 @@ export default class extends Layout {
         this.path = path;
 
         const Article = (await req(`.${path}/index.js`)).default;
+        const language = Article.language;
+        if (language === 'en-US') {
+            const kpcI18n = (await import('kpc/i18n/en-US')).default;
+            const i18n = (await import('../../i18n/en-US')).default;
+            localize({...i18n, ...kpcI18n});
+        } else {
+            localize({});
+        }
         this.set({Article});
     }
 

@@ -1,9 +1,16 @@
 import {Tabs, Tab} from 'kpc/components/tabs';
+import {_$} from 'kpc/components/utils';
+
+const language = self.constructor.language;
 
 <div class="contents">
     <div key="demos" v-if={{ self.get('demos').length }}>
-        <h1>示例</h1>
+        <h1>{{ _$('示例') }}</h1>
         {{ self.get('demos').map(Demo => {
+            let title = Demo.data.setting.title;
+            if (typeof title === 'object') {
+                title = title[language];
+            }
             return <div class={{ `example index-${Demo.data.index}` }}
                 key={{ Demo.data.index }}
                 id={{ Demo.data.index }}
@@ -12,7 +19,7 @@ import {Tabs, Tab} from 'kpc/components/tabs';
                     <Demo.default /> 
                 </div>
                 <div class="example-desc">
-                    <div class="title">{{ Demo.data.setting.title }}</div>
+                    <div class="title">{{ title }}</div>
                     <div class="desc" innerHTML={{ Demo.data.contents }}></div>
                 </div>
                 <div class="example-code">
