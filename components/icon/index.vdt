@@ -19,6 +19,6 @@ if (self.colors.indexOf(color) > -1) {
 }
 
 <i class={{ classNameObj }}
-    style={{ addStyle(style, _style) }}
+    style={{ addStyle(_style, style) }}
     {{ ...rest }}
 ></i>
