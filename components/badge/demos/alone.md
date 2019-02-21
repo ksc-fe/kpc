@@ -1,7 +1,7 @@
 ---
 title:
     zh-CN: 独立使用
-    en-US: Independent usage
+    en-US: Independent Usage
 order: 3
 ---
 

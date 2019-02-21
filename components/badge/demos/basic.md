@@ -1,7 +1,7 @@
 ---
 title:
     zh-CN: 基础用法
-    en-US: Basic usage
+    en-US: Basic Usage
 order: 0
 ---
 

@@ -1,9 +1,17 @@
 ---
-title: 指定分隔符
+title: 
+    zh-CN: 指定分隔符
+    en-US: Specify Separator
 order: 1
 ---
 
+## zh-CN
+
 通过`separator`属性或者`separator`扩展点可以指定分隔符
+
+## en-US
+
+You can specify the separator by `separator` property or `separator` block.
 
 ```vdt
 import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';

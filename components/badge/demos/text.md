@@ -1,7 +1,7 @@
 ---
 title:
     zh-CN: 展示文字
-    en-US: Display text
+    en-US: Display Text
 order: 0
 ---
 
