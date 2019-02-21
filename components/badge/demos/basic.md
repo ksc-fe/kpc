@@ -1,9 +1,17 @@
 ---
-title: 基础用法
+title:
+    zh-CN: 基础用法
+    en-US: Basic usage
 order: 0
 ---
 
+## zh-CN
+
 给子元素展示红点
+
+## en-US
+
+Show red dots to children.
 
 ```vdt
 import Badge from 'kpc/components/badge';
