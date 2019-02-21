@@ -1,10 +1,18 @@
 ---
-title: 继承弹窗
+title: 
+    zh-CN: 继承弹窗
+    en-US: Inheriting dialog
 order: 3
 ---
 
+## zh-CN
+
 在实际应用中，弹窗的逻辑一般都很复杂，通过继承，我们可以将所有弹窗里的逻辑进行分装，形成一个新的弹窗组件。
 例如：点击确定时进行表单验证，发送请求，延迟关闭等等。将这些业务逻辑封装在单独的模块中，是推荐的做法。
+
+## en-US
+
+In practical applications, the logic of dialog is generally very complicated. Through inheritance,we can encapsulate all logic in the dialog to form a new dialog component. For example: form validation when clicking OK button, send request, delay close, and more. It is recommended to encapsulate these business logic in separate module.
 
 ```vdt
 // @file dialog.vdt
@@ -69,9 +77,9 @@ export default class extends Intact {
 ```
 
 ```vue-ignore
-Vue不支持继承的用法，请使用Dialog组件用法
+Vue does not support the use of inheritance, please use the dialog component usage
 ```
 
 ```react-ignore
-React不支持继承的用法，请使用Dialog组件用法
+React does not support the use of inheritance, please use the dialog component usage
 ```

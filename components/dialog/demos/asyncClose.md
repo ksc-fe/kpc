@@ -1,10 +1,19 @@
 ---
-title: 异步关闭
+title: 
+    zh-CN: 异步关闭
+    en-US: Close asynchronously
 order: 6
 ---
 
+## zh-CN
+
 `Dialog`默认点击确定按钮会立即关闭弹窗并触发`ok`事件，我们可以给`ok`属性（并非`ok`事件）
 指定一个函数来去掉默认函数行为，此时你可以自己控制弹窗的关闭情况。`cancel`属性同理。
+
+## en-US
+
+Click the `OK` button will close the dialog and trigger the `ok` event by default immediately. We can assign a function to the `ok` property (not the `ok` event) to remove the default behavior, then you can control the closing of the dialog by yourself. `cancel` property is the same.
+
 
 ```vdt
 import Dialog from 'kpc/components/dialog';

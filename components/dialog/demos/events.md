@@ -1,10 +1,18 @@
 ---
-title: 事件回调
+title: 
+    zh-CN: 事件回调
+    en-US: Event callback
 order: 2
 ---
 
+## zh-CN
+
 弹窗点击“确认”和“取消”时，分别会派发出`ok`和`cancel`事件，通过它们可以执行相应的回调逻辑。
 此时弹窗会自动立即关闭，如果需要控制更多细节，可以使用`ok`和`cancel`属性，详见异步关闭。
+
+## en-US
+
+When you click `confirm` and `cancel` button, it will trigger `ok` and `cancel` event respectively , through which the corresponding callback logic can be executed. At this point, the dialog will automatically close immediately. If you need to control more details, you can use the `ok` and `cancel` properties. See asynchronous close for details.
 
 ```vdt
 import Button from 'kpc/components/button';
