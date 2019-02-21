@@ -1,9 +1,17 @@
 ---
-title: 按钮尺寸
+title: 
+    zh-CN: 按钮尺寸
+    en-US: Size
 order: 4
 ---
 
-通过`size`属性可以指定按钮的尺寸：`large`, `default`,`small`, `mini`。
+## zh-CN
+
+通过`size`属性可以指定按钮的尺寸：`large`, `default`, `small`, `mini`。
+
+## en-US
+
+Specify the size of button by `size` property: `large`, `default`, `small`, 'mini'.
 
 ```vdt
 import Button from 'kpc/components/button';

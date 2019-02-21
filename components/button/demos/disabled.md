@@ -1,9 +1,17 @@
 ---
-title: 禁用状态
+title: 
+    zh-CN: 禁用状态
+    en-US: Disabled
 order: 5
 ---
 
+## zh-CN
+
 添加`disabled`属性，可以禁用按钮
+
+## en-US
+
+Add a `disabled` property to disable the button.
 
 ```vdt
 import Button from 'kpc/components/button';
