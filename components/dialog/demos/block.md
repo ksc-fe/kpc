@@ -1,7 +1,11 @@
 ---
-title: 自定义头部和底部
+title: 
+    zh-CN: 自定义头部和底部
+    en-US: Custom header and footer
 order: 1
 ---
+
+## zh-CN
 
 组件提供了`header`和`footer`扩展点（block），通过它们可以自定义头部和底部。有时候我们可能想
 完整去掉整个底部`footer`，这可以通过置空`footer-wrapper`这个扩展点做到。
@@ -9,6 +13,14 @@ order: 1
 > 可以通过`parent()`引用到组件定义的默认内容
 
 > vue会忽略所有空`slot`，所以如果要重置`footer-wrapper`可以传一个空`div`代替
+
+## en-US
+
+The component provides `header` and `footer` extension points ,through them you can customize the header and footer. Sometimes we may want to completely remove the entire `footer`, we can do it by blanking the `footer-wrapper` extension point.
+
+> Through `parent()` that can be referenced to default content defined by the component
+
+> Vue will ignore all empty `slot`, so if you want to reset `footer-wrapper`, you can pass an empty `div` instead
 
 ```vdt
 import Button from 'kpc/components/button';
@@ -62,9 +74,9 @@ import Dialog from 'kpc/components/dialog';
 
         <template slot="footer">
             Custom Footer
-            <!-- vue不支持parent()引用，我们需要重新定义按钮 -->
-            <Button @click="show = false">取消</Button>
-            <Button type="primary" @click="show = false">确认</Button>
+            <!--Vue does not support parent() references, we need to redefine the button-->
+            <Button @click="show = false">cancel</Button>
+            <Button type="primary" @click="show = false">confirm</Button>
         </template>
     </Dialog>
     <Dialog v-model="show1" title="No Footer">
@@ -111,8 +123,8 @@ export default class extends React.Component {
                     b-footer={
                         <>
                             Custom Footer
-                            <Button onClick={() => this.setState({show: false})}>取消</Button>
-                            <Button type="primary" onClick={() => this.setState({show: false})}>确认</Button>
+                            <Button onClick={() => this.setState({show: false})}>cancel</Button>
+                            <Button type="primary" onClick={() => this.setState({show: false})}>confirm</Button>
                         </>
                     }
                 >

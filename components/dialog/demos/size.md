@@ -1,9 +1,17 @@
 ---
-title: 尺寸
+title: 
+    zh-CN: 尺寸
+    en-US: Size
 order: 0.1
 ---
 
+## zh-CN
+
 添加`size`属性，定义如下尺寸：`large`, `default`，`small`，`mini`
+
+## en-US
+
+Add `size` property,  defines the following sizes: `large`, `default`, `small`,`mini`
 
 ```vdt
 import {Button, ButtonGroup} from 'kpc/components/button';
