@@ -248,6 +248,17 @@ module.exports = function(isDev = true) {
                             file: item.file,
                         };
                     });
+                    delete data.catalogs;
+
+                    const headingReg = /<h2[^>]*>([\w\-]*)<\/h2>((?!<h2).*)/g;
+                    const contents = {};
+                    data.contents.replace(headingReg, function(nouse, language, text) {
+                        contents[language] = text;
+                    });
+                    if (!Object.keys(contents).length) {
+                        contents['zh-CN'] = data.contents;
+                    }
+                    data.contents = contents;
                 }
 
                 delete data.source;

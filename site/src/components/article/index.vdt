@@ -20,7 +20,7 @@ const language = self.constructor.language;
                 </div>
                 <div class="example-desc">
                     <div class="title">{{ title }}</div>
-                    <div class="desc" innerHTML={{ Demo.data.contents }}></div>
+                    <div class="desc" innerHTML={{ Demo.data.contents[language] }}></div>
                 </div>
                 <div class="example-code">
                     <Tabs v-model={{  `file${Demo.data.index}` }}>

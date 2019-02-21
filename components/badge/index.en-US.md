@@ -2,7 +2,7 @@
 title: Badge
 order: 0.1
 category: Components
-sidebar: doc
+sidebar: doc-en
 ---
 
 # Properties
