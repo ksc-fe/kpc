@@ -275,7 +275,7 @@ module.exports = function(isDev = true) {
                         for (let i = 0; i < data.sideBars[key].length; i++) {
                             const item = data.sideBars[key][i];
                             delete item.children;
-                            item.url = '/' + getBuiltPath(item.path).replace('index.json', '');
+                            item.url = '/' + getBuiltPath(item.path).replace('index.json', '').replace(/\\/g, '/');
                             sideBars[key].push(item);
                         }
                     }

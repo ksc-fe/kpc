@@ -4,6 +4,7 @@ title:
     en-US: Photo Wall
 order: 2
 ---
+
 ## zh-CN
 
 指定`type`为`gallery`可以展示照片墙风格的上传组件；我们还可以通过`limit`限制最大上传数量，
