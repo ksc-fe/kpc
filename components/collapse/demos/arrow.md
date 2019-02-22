@@ -1,10 +1,20 @@
 ---
-title: 箭头位置
+title: 
+    zh-CN: 箭头位置
+    en-US: The Position of Arrow
 order: 3
 ---
 
+## zh-CN
+
 默认情况下箭头展示在标题右边，某些情况下，如：你需要在标题后面添加说明文字，我们可能需要将
 箭头展示在左边。指定`arrow`属性为`left`即可
+
+## en-US
+
+By default, the arrow appears to the right of the title. In some cases, such as: you need to add 
+a caption after the title, we may need to show the arrow on the left. Just specify the `arrow` 
+property with `left`.
 
 ```vdt
 import {Collapse, CollapseItem} from 'kpc/components/collapse';

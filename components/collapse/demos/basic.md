@@ -1,12 +1,24 @@
 ---
-title: 基础用法
+title: 
+    zh-CN: 基础用法
+    en-US: Basic Usage
 order: 0
 ---
+
+## zh-CN
 
 使用`CollapseItem`定义每一项，`CollapseItem`的`title`属性是要展示的标题，`disabled`属性用来禁用
 该项，`value`属性是选中该项的取值，如果没有提供`value`属性，则默认会使用形如`$0`的索引字符串当作
 `value`。给`Collapse`添加`value`可以展开指定的`CollapseItem`，`Collapse`的`value`是`Array`类型，
 可以使用`v-model`进行双向绑定
+
+## en-US
+
+Use `CollapseItem` to define each item, and the `title` property of `CollapseItem` to define the 
+title to be displayed. Use `disabled` property to disable the `CollapseItem`. Use `value` to define 
+the checked value, if no `value` property is provided, the index string like `$0` will be 
+used as default `value`. Adding `value` property to `Collapse` can expand the specified `CollapseItem`s, 
+and the `value` property of `Collapse` is an `Array` type, you can use `v-model` for two-way binding.
 
 ```vdt
 import {Collapse, CollapseItem} from 'kpc/components/collapse';

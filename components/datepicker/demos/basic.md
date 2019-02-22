@@ -1,9 +1,17 @@
 ---
-title: 基本用法
+title: 
+    zh-CN: 基本用法
+    en-US: Basic Usage
 order: 0
 ---
 
+## zh-CN
+
 基本用法和禁用状态
+
+## en-US
+
+The basic and disabled usage.
 
 ```vdt
 import Datepicker from 'kpc/components/datepicker';

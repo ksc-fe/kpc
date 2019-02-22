@@ -1,11 +1,22 @@
 ---
-title: 手风琴
+title: 
+    zh-CN: 手风琴
+    en-US: Accordion Style
 order: 1
 ---
+
+## zh-CN
 
 添加`accordion`属性，可以实现类似手风琴的交互风格，即一次只能展开一项
 
 > 手风琴风格的`value`依然是`Array`类型
+
+## en-US
+
+Adding the `accordion` property can achived an interaction style similar to an accordion, that is, 
+only one item can be expanded at a time.
+
+> The `value` of accordion style is still an `Array` type.
 
 ```vdt
 import {Collapse, CollapseItem} from 'kpc/components/collapse';

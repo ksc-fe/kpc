@@ -1,7 +1,11 @@
 ---
-title: 快捷方式
+title: 
+    zh-CN: 快捷方式
+    en-US: Shortcuts
 order: 0.1
 ---
+
+## zh-CN
 
 通过`shortcuts`属性可以指定快捷方式，数组的成员为对象，形如：`{label, value}`:
 
@@ -9,6 +13,17 @@ order: 0.1
 2. `value` `Function` 指定选中后的值（日期对象），如果是范围选择，返回数组
 
 组件内置了一些快捷方式，可以直接使用，如本例所示
+
+## en-US
+
+By `shortcuts` property you can specify some shortcuts. The members of the array are objects, 
+like: `{label, value}`:
+
+1. `label` `String | vNode | Funtion` Specify the text to be displayed, which can be a function 
+that returns the text.
+2. `value` `Funtion` Specify the selected value (date object), if it is range selection, return an array.
+
+There are some built-in shortcuts that can be used directly, as shown in this example.
 
 ```vdt
 import Datepicker from 'kpc/components/datepicker';

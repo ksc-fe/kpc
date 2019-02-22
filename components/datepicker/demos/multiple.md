@@ -1,9 +1,17 @@
 ---
-title: 日期多选
+title: 
+    zh-CN: 日期多选
+    en-US: Multiple Selection
 order: 4
 ---
 
+## zh-CN
+
 添加`multiple`属性，即可支持日期多选。
+
+## en-US
+
+Add the `multiple` property to make it support multiple selections of dates.
 
 ```vdt
 import Datepicker from 'kpc/components/datepicker';

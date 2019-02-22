@@ -1,9 +1,17 @@
 ---
-title: 自定义标题
+title: 
+    zh-CN: 自定义标题
+    en-US: Customize Title
 order: 2
 ---
 
+## zh-CN
+
 使用`title`扩展点，可以定义复杂的标题内容
+
+## en-US
+
+Use the `title` block to define complex title.
 
 ```vdt
 import {Collapse, CollapseItem} from 'kpc/components/collapse';

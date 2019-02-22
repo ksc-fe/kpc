@@ -1,9 +1,17 @@
 ---
-title: 无边框样式
+title: 
+    zh-CN: 无边框样式
+    en-US: Borderless Style
 order: 4
 ---
 
+## zh-CN
+
 添加`noBorder`属性，可以展示无边框的简洁样式
+
+## en-US
+
+Add the `noBorder` property to show borderless style.
 
 ```vdt
 import {Collapse, CollapseItem} from 'kpc/components/collapse';

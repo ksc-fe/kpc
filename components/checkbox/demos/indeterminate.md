@@ -1,9 +1,17 @@
 ---
-title: 半选中状态
+title: 
+    zh-CN: 半选中状态
+    en-US: Semi-checked State
 order: 2
 ---
 
+## zh-CN
+
 通过`indeterminate`属性可以控制`Checkbox`的半选中状态
+
+## en-US
+
+Add `indeterminate` property to make it semi-checked.
 
 ```vdt
 import Checkbox from 'kpc/components/checkbox';
@@ -14,7 +22,7 @@ const length = self.get('languages').length;
     <Checkbox indeterminate={{ length > 0 && length < 3 }}
         value={{ length === 3 }}
         ev-$change:value={{ self._toggleSelectAll }}
-    >全选</Checkbox>
+    >Check All</Checkbox>
     <hr />
     <Checkbox v-for={{ self.get('options') }}
         name="languages" 
@@ -37,7 +45,7 @@ export default class extends Intact {
 
     defaults() {
         return {
-            // 必须初始化为数组
+            // must be initialized to an array
             languages: [],
             options: ['Javascript', 'C++', 'PHP'],
         };
@@ -58,7 +66,7 @@ export default class extends Intact {
     <Checkbox :indeterminate="length > 0 && length < 3"
         :value="length === 3"
         @$change:value="_toggleSelectAll"
-    >全选</Checkbox>
+    >Check All</Checkbox>
     <hr />
     <Checkbox v-for="(value, key) in options"
         name="languages" 
