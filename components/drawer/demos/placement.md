@@ -1,9 +1,18 @@
 ---
-title: 位置
+title:
+    zh-CN: 位置
+    en-US: Position
 order: 0.1
 ---
 
+## zh-CN
+
 添加`placement`属性，定义如下位置：`top`,`bottom`,`left`,`right`。默认`right`从右侧出现
+
+## en-US
+
+Add the `placement` property to define the following positions: `top` `bottom` `left` `right`. 
+The default value is `right`.
 
 ```vdt
 import Drawer from 'kpc/components/drawer';
@@ -38,16 +47,16 @@ export default class extends Intact {
             showPosition: 'right',
             showList: [{
                 key: 'top',
-                value: '从上侧出现'
+                value: 'Appear from Top'
             }, {
                 key: 'bottom',
-                value: '从下侧出现'
+                value: 'Appear from Bottom'
             }, {
                 key: 'left',
-                value: '从左侧出现'
+                value: 'Appear from Left'
             }, {
                 key: 'right',
-                value: '从右侧出现'
+                value: 'Appear from Right'
             },]
         }
     }
