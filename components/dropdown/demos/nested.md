@@ -33,13 +33,13 @@ import Icon from 'kpc/components/icon';
             <Dropdown position={{ {my: 'left top', at: 'right top'} }}>
                 <DropdownItem>
                     <span>hover</span>
-                    <i class="ion-ios-arrow-right"></i>
+                    <i class="ion-ios-arrow-right right-icon"></i>
                 </DropdownItem>
                 <DropdownMenu>
                     <Dropdown position={{ {my: 'left top', at: 'right top'} }}>
                         <DropdownItem>
                             <span>hover</span>
-                            <i class="ion-ios-arrow-right"></i>
+                            <i class="ion-ios-arrow-right right-icon"></i>
                         </DropdownItem>
                         <DropdownMenu>
                             <DropdownItem>item 1</DropdownItem>
@@ -52,13 +52,13 @@ import Icon from 'kpc/components/icon';
             <Dropdown trigger="click" position={{ {my: 'left top', at: 'right top'} }}>
                 <DropdownItem>
                     <span>click</span>
-                    <i class="ion-ios-arrow-right"></i>
+                    <i class="ion-ios-arrow-right right-icon"></i>
                 </DropdownItem>
                 <DropdownMenu>
                     <Dropdown trigger="click" position={{ {my: 'left top', at: 'right top'} }}>
                         <DropdownItem>
                             <span>click</span>
-                            <i class="ion-ios-arrow-right"></i>
+                            <i class="ion-ios-arrow-right right-icon"></i>
                         </DropdownItem>
                         <DropdownMenu>
                             <DropdownItem>item 1</DropdownItem>
@@ -76,7 +76,7 @@ import Icon from 'kpc/components/icon';
 
 ```styl
 /.k-dropdown-menu
-    .ion-ios-arrow-right
+    .right-icon
         float right
         height 32px
         &:before

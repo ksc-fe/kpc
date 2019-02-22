@@ -68,7 +68,7 @@ const i18n = {
     '请输入不大于 {n} 的数': 'Please enter a value less than or equal to {n}.',
     '请输入不小于 {n} 的数': 'Please enter a value greater than or equal to {n}.',
     '请输入 {n[0]} 到 {n[1]} 之间的数': 'Please enter a value between {n[0]} and {n[1]}.',
-    '请输入步长为 {n} 的数': 'Please enter a number which should be a multipe of {n}',
+    '请输入步长为 {n} 的数': 'Please enter a number which should be a multipe of {n}.',
     '两次输入不一致': 'Please enter the same value again.',
     '两': '2',
     '最多选择 {n} 项': 'Please select no more than {n} item{s:n}.',
