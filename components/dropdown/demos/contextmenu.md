@@ -1,7 +1,11 @@
 ---
-title: 右键菜单
+title: 
+    zh-CN: 右键菜单
+    en-US: Context Menu
 order: 7
 ---
+
+## zh-CN
 
 将`DropdownMenu`作为顶层元素，而不是`Dropdown`的子元素，然后指定`of`属性为事件对象，即可以实现
 跟随鼠标位置的弹出菜单
@@ -10,6 +14,19 @@ order: 7
 
 > `React`下事件对象会复用，我们不能在异步函数中调用事件对象的属性和方法，如果需要保留事件
 > 对象，需要调用`event.persist()`方法 https://reactjs.org/docs/events.html#event-pooling
+
+## en-US
+
+Use `DropdownMenu` as the top-level element, rather than the child element of `Dropdown`, and then 
+specify `of` property to the event object, which can implement the dropdown menu that follow the 
+mouse position.
+
+> Here the `position` property is specified to `left+1` is to avoid selecting the first item of the 
+> the menu when it pops up.
+
+> The event object will be reused in `React`, so we can't get properties and call methods of the event 
+> object in a asynchronous function. If we need to reserve the event object, we need to call the 
+> `event.persit()` method. https://reactjs.org/docs/events.html#event-pooling
 
 ```vdt
 import {DropdownMenu, DropdownItem} from 'kpc/components/dropdown';

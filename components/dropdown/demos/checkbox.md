@@ -1,7 +1,11 @@
 ---
-title: 菜单项添加Checkbox
+title: 
+    zh-CN: 菜单项添加Checkbox
+    en-US: Add Checkbox to Menu Item
 order: 6
 ---
+
+## zh-CN
 
 在`DropdownItem`中使用`Checkbox`，需要注意的是：
 
@@ -10,6 +14,17 @@ order: 6
 处理选中的值时，需要阻止`label` `click`事件的默认行为
 
 > `Radio`也类似
+
+## en-US
+
+To add `Checkbox` to `DropdownItem`, you need to pay attention to:
+
+If bind `select` event on `DropdownItem`, the vent will fire twice, becasue  `Checkbox` uses 
+`label` to wrap the `input` element, the two events, one from `label`, the other one from `input`.
+You need to prevent the default behavior of the `click` event from `label` when you want to handle 
+the selected value in `select` by yourself.
+
+> `Radio` is also similar.
 
 ```vdt
 import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';

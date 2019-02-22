@@ -1,9 +1,18 @@
 ---
-title: 菜单位置
+title: 
+    zh-CN: 菜单位置
+    en-US: The Position of Menu
 order: 2
 ---
 
+## zh-CN
+
 通过`position`属性，可以定义菜单相对触发器的位置。位置对象中`my`指菜单，`at`指触发器
+
+## en-US
+
+The `position` property allows you to define the position of the menu relative to the trigger element. 
+In the position object, `my` refers to the menu, `at` refers to the trigger.
 
 ```vdt
 import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';

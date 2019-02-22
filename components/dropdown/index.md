@@ -5,7 +5,7 @@ order: 11
 sidebar: doc
 ---
 
-> `kpc/component/dropdown`暴露出来的并非`Dropdown`组件本身，而是包装该组件的函数（vdt中称作宏函数）
+> `kpc/components/dropdown`暴露出来的并非`Dropdown`组件本身，而是包装该组件的函数（vdt中称作宏函数）
 > 所以不要试图继承它。
 
 # 属性

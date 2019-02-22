@@ -1,10 +1,20 @@
 ---
-title: 嵌套菜单
+title: 
+    zh-CN: 嵌套菜单
+    en-US: Nested Menu
 order: 4
 ---
 
+## zh-CN
+
 `Dropdown`可以嵌套使用，实现级联菜单。子菜单需要指定展示的位置`position`。
-我们还可以通过`trigger`单独子菜单触发方式。
+我们还可以通过`trigger`单独定义子菜单触发方式。
+
+## en-US
+
+`Dropdown` can be nested to implement cascading menus. The submenu needs to specify the position 
+through `position` property. We can also define the trigger mode of submenu seperately through 
+`trigger` property.
 
 ```vdt
 import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';

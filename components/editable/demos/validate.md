@@ -1,11 +1,21 @@
 ---
-title: 验证输入
+title: 
+    zh-CN: 验证输入
+    en-US: Validate the Input
 order: 1
 ---
+
+## zh-CN
 
 使用`validate`属性，指定输入验证规则，改值可以是函数/正则/正则字符串。验证失败，
 输入框会添加className: `k-invalid`，用以改变样式。我们还可以绑定`error`事件
 弹出更多错误提示。
+
+## en-US
+
+Use `validate` property to define the rule to validate the input. It can be a function/regular/
+regular string. If the validation fails, the input element will add className: `k-invalid` to 
+change the style. We can also bind the `error` event to pop up detailed error tip.
 
 ```vdt
 import Editable from 'kpc/components/editable';

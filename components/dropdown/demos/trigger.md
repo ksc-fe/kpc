@@ -1,10 +1,19 @@
 ---
-title: 触发方式
+title:
+    zh-CN: 触发方式
+    en-US: Trigger Mode
 order: 0
 ---
 
-`Dropdown`提供了两种触发方式来弹窗菜单，`hover`悬停触发（默认），`click`点击触发。
+## zh-CN
+
+`Dropdown`提供了两种方式来触发菜单弹层，`hover`悬停触发（默认），`click`点击触发。
 通过`trigger`属性来指定它们。
+
+## en-US
+
+The `Dropdown` component provides two modes to trigger the dropdown menu, `hover` hover to trigger (default), 
+`click` click to trigger. You can specify them by the `trigger` property.
 
 ```vdt
 import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';

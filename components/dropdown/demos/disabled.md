@@ -1,9 +1,17 @@
 ---
-title: 禁用菜单（项）
+title: 
+    zh-CN: 禁用菜单（项）
+    en-US: Disable Menu (Item)
 order: 3
 ---
 
+## zh-CN
+
 通过给`Dropdown`和`DropdownItem`添加`disabled`属性，可以分别禁用菜单和菜单项。
+
+## en-US
+
+Menu and menu item can be disabled seperately by adding the `disabled` property to `Dropdown` and `DropdownItem`.
 
 ```vdt
 import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
