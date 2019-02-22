@@ -1,9 +1,16 @@
 ---
-title: 手动上传
+title: 
+    zh-CN: 手动上传
+    en-US: Manual upload 
 order: 4
 ---
+## zh-CN
 
 手动上传需要通过指定`autoUpload`为`false`来关闭自动上传，然后调用组件的`submit`方法来手动上传
+
+## en-US
+
+you can close automatic upload through specifying `autoUpload` to `false` and  then calling `submit` function to Manual upload.
 
 ```vdt
 import Upload from 'kpc/components/upload';
@@ -15,9 +22,9 @@ import Button from 'kpc/components/button';
     action="//jsonplaceholder.typicode.com/posts/"
     autoUpload={{ false }}
 >
-    <Button type="primary">选择文件</Button>
+    <Button type="primary">Select file</Button>
     <b:tip>
-        <Button ev-click={{ self.upload }}>开始上传</Button>
+        <Button ev-click={{ self.upload }}>start upload</Button>
     </b:tip>
 </Upload>
 ```

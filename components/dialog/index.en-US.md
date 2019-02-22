@@ -19,7 +19,7 @@ sidebar: doc-en
 | ok | sepcify callback function after clicking the `confirm` button | `Function` | `undefined` |
 | cancel | specify callback function after clicking the `cancel` button | `Function` | `undefined` |
 
-# Extension point
+#  Blocks
 
 | Name | Description |
 | --- | --- |
