@@ -10,7 +10,7 @@ order: 4
 
 ## en-US
 
-you can close automatic upload through specifying `autoUpload` to `false` and  then calling `submit` function to Manual upload.
+You can close automatic upload through specifying `autoUpload` to `false` and  then calling `submit` function to Manual upload.
 
 ```vdt
 import Upload from 'kpc/components/upload';

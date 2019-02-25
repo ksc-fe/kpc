@@ -13,7 +13,7 @@ order: 2
 
 ## en-US
 
-you can show photo wall styles's upload componets through specifying `type` to `gallery`; you can also limit the maximum number of uploads by `limit`, if exceeds the file maximum number, the component will throw `error` event; specify the file type to upload by `accept`:[accept](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-accept)
+You can show photo wall styles's upload componets through specifying `type` to `gallery`; you can also limit the maximum number of uploads by `limit`, if exceeds the file maximum number, the component will throw `error` event; specify the file type to upload by `accept`:[accept](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-accept)
 
 ```vdt
 import Upload from 'kpc/components/upload';

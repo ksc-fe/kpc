@@ -1,9 +1,16 @@
 ---
-title: 多选
+title: 
+    zh-CN: 多选
+    en-US: Multiple selection
 order: 1.1
 ---
+## zh-CN
 
 添加`multiple`属性，可以支持节点多选，通过`getCheckedData()`方法，可以获取选中的节点数据
+
+## en-US
+
+Add `multiple` property, it can support multiple selection. you can get selected node data by `getCheckedData()` method.
 
 ```vdt
 import Tree from 'kpc/components/tree';

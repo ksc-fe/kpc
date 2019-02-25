@@ -1,7 +1,10 @@
 ---
-title: 自定义节点内容
+title: 
+    zh-CN: 自定义节点内容
+    en-US: Custom node content
 order: 2
 ---
+## zh-CN
 
 通过`label`扩展点，可以自定义节点的内容。该扩展点会传入两个参数：
 
@@ -14,6 +17,20 @@ order: 2
 2. `remove()` 移除该节点
 
 组件默认会生成一个`root`节点对象，你可以通过它往根节点追加子节点
+
+## en-US
+
+You can custom node content by `label` block, the block will pass two parameters:
+
+1. the original data of `data` node
+2. `node` node object ( component internally maps the node data to a node object,the property has some properties and methods ) 
+
+`node` object has following methods to operate the node: 
+
+1. `append(data)` property append child node, `data` can be a single object or an object array
+2.  `remove()` property can remove the node
+
+Component will generate a `root` node object by default, you can use it to append child node to the root node. 
 
 ```vdt
 import Tree from 'kpc/components/tree';

@@ -12,7 +12,7 @@ order: 1
 
 ## en-US
 
-you can show drag and drop upload componets through specifying  `type` to `drag`
+You can show drag and drop upload componets through specifying  `type` to `drag`
 
 > if you don't specify a child element for the component, component's `type` property will display different content by default , otherwise it will show the element you specified.
 

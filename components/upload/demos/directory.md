@@ -10,7 +10,7 @@ order: 5
 
 ## en-US
 
-add `directory` property to upload folder [caniuse](https://caniuse.com/#feat=input-file-directory)
+Add `directory` property to upload folder [caniuse](https://caniuse.com/#feat=input-file-directory)
 
 ```vdt
 import Upload from 'kpc/components/upload';

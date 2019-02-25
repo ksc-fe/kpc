@@ -1,9 +1,17 @@
 ---
-title: 右键菜单
+title: 
+    zh-CN: 右键菜单
+    en-US: Right-click  menu
 order: 4
 ---
 
+## zh-CN
+
 绑定`rightclick:node`并利用`DropdownMenu`可以实现右键菜单来操作节点增删
+
+## en-US
+
+You can implement right-click menu to operate node addition and deletion throuth bind `rightclick:node` and use the `DropdownMenu`.
 
 ```vdt
 import Tree from 'kpc/components/tree';

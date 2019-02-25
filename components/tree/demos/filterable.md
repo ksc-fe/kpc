@@ -1,10 +1,18 @@
 ---
-title: 过滤
+title: 
+    zh-CN: 过滤
+    en-US: Filter
 order: 5
 ---
 
+## zh-CN
+
 给`Tree`指定`filter`函数，即可实现节点过滤功能，该函数返回`false`则表示过滤掉该项。你需要给`data`的每一项添加全局唯一的`key`
 否则过滤时，会因为每次更新`key`不同而闪动
+
+## en-US
+
+Specifing `filter` function to `Tree` component can implement filter function, the function returns `false` means filtering out the item. you need to add a globally unique `key` for each item of `data`, otherwise, it will flash beacuse the `key` is different in each updating when you filter.
 
 ```vdt
 import Tree from 'kpc/components/tree';

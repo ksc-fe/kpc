@@ -1,13 +1,22 @@
 ---
-title: 带复选框
+title: 
+    zh-CN: 带复选框
+    en-US: With checkbox
 order: 1
 ---
+## zh-CN
 
-添加`checkbox`属性即可支持但复选框的树形控件；你也可以通过`checkedKeys`指定哪些节点选中，
+添加`checkbox`属性即可支持带复选框的树形控件；你也可以通过`checkedKeys`指定哪些节点选中，
 与`expandedKeys`不同的是，你无需指定父节点也选中，组件会自动判断父节点的选中和取消选中状态。
 
 通过`getCheckedData([onlyLeaf])`方法可以获取选中的节点的数据，当`onlyLeaf`为`true`时，仅返回
 选中的叶子节点
+
+## en-US
+
+Add `checkbox` property can support tree component with checkbox, you can also specify which nodes are selected by `checkedKeys`, the difference width `expandedKeys`, you don't need to specify parent node to be selected, component will automatically determine parent node's selected and unchecked state.
+
+You can get selected node data by `getCheckedData([onlyLeaf])` method, when `onlyLeaf` is `true`,only return selected leaf node.
 
 ```vdt
 import Tree from 'kpc/components/tree';

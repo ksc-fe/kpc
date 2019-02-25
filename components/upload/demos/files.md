@@ -12,7 +12,7 @@ order: 3
 
 ## en-US
 
-you can define initialize the upload list by `defaultFiles`, this property takes an array, the  each item of array as follows:
+You can define initialize the upload list by `defaultFiles`, this property takes an array, the  each item of array as follows:
 1. `name` file name
 2. `url` file url address
 
