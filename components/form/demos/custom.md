@@ -1,7 +1,11 @@
 ---
-title: 自定义验证规则
+title: 
+    zh-CN: 自定义验证规则
+    en-US: Custom Validation Rules
 order: 1
 ---
+
+## zh-CN
 
 当内置的验证规则不能满足需求时，我们还可以自定义验证规则。有如下两种方式添加规则：
 
@@ -15,21 +19,39 @@ order: 1
 > 验证方法中`param`，即为使用该规则时传入的参数，例如本例中的`letter: true`，`true`会作为`param`
 > 参数传给验证方法。当然我们还可以指定任意值，只要不是`false`就行，因为`false`代表不验证
 
+## en-US
+
+We can also customize the validation rules when the built-in validation rules do not meet our 
+requirements. There are two ways to add rules: 
+
+1. Add a global validation rule by `Form.addMethod()` static method. Because it is global, we 
+can use this rule at any place. See the API instructions for how to use it.
+2. Add a local rule by the `rules` property of the `FormItem` component. This rule is only valid 
+for this `FormItem`.
+
+In this example, we add a global rule `letter` to validate that only letters can be entered, and 
+add a local rule `unique` to validate that all inputs must be different.
+
+> The parameter `param` of the validation method is the value passed in when the rule is used. 
+> Such as in this example: `letter: true`, `true` will be passed in the validation method as 
+> `param` parameter. Of course, we call also specify any other value, as long as it is not `false`, 
+> because `false` means no validation.
+
 ```vdt
 import {Form, FormItem} from 'kpc/components/form';
 import {Input} from 'kpc/components/input';
 import {Button} from 'kpc/components/button';
 
 <Form>
-    <FormItem label="描述">
+    <FormItem label="Descriptions">
         <FormItem v-for={{ self.get('descriptions') }}
             model={{ `descriptions[${key}]` }}
             hideLabel
             rules={{ {
                 required: true, 
-                // 自定义全局规则
+                // custom global rule
                 letter: true,
-                // 自定义局部规则，所有描述必须不重复
+                // custom local rule, all descriptions must be different
                 unique: (value) => {
                     let count = 0;
                     self.get('descriptions').find(item => {
@@ -37,17 +59,18 @@ import {Button} from 'kpc/components/button';
                         return count > 1;
                     });
 
-                    // 直接返回错误文案，或者也可以单独定义messages为{unique: '不能相同'}
-                    return count === 1 || '不能相同';
+                    // return the error message directly, or you can specify it
+                    // by the messages property: {unique: 'Must be different'}
+                    return count === 1 || 'Must be different.';
                 }
             } }}
         >
             <Input v-model={{ `descriptions[${key}]` }} />    
             <b:append>
-                <Button ev-click={{ self.remove.bind(self, key) }}>删除</Button>
+                <Button ev-click={{ self.remove.bind(self, key) }}>Delete</Button>
             </b:append>
         </FormItem>
-        <Button ev-click={{ self.add }}>添加</Button>
+        <Button ev-click={{ self.add }}>Add</Button>
     </FormItem>
 </Form>
 ```
@@ -69,10 +92,10 @@ import {Button} from 'kpc/components/button';
 ```js
 import {Form} from 'kpc/components/form';
 
-// 添加全局规则
+// add a global rule
 Form.addMethod('letter', (value, item, param) => {
     return /^[a-z|A-Z]+$/.test(value);
-}, '只能输入字母');
+}, 'Only letters can be entered.');
 
 export default class extends Intact {
     @Intact.template()
@@ -97,10 +120,10 @@ export default class extends Intact {
 ```
 
 ```js-head
-// 添加全局规则
+// add a global rule
 Form.addMethod('letter', (value, item, param) => {
     return /^[a-z|A-Z]+$/.test(value);
-}, '只能输入字母');
+}, 'Only letters can be entered.');
 ```
 
 ```vue-methods
@@ -113,7 +136,7 @@ remove(index) {
 ```
 
 ```react-methods
-// 注入_context上下文
+// inject the current context by _context
 static childContextTypes = {
     _context: () => {}
 }
