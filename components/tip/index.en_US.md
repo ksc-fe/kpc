@@ -5,7 +5,7 @@ order: 89
 sidebar: doc-en
 ---
 
-> `Tip` component extends `Tag` component, so many properties are the same
+> `Tip` component extends `Tag` component, so many properties are the same.
 
 # Properties
 

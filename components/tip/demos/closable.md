@@ -16,9 +16,9 @@ order: 1
 
 ## en-US
 
-you can close the tag through adding `closable` property to component, it will trigger `close` event when it is closed; you can customize the content of the close button by `close` block.
+You can close the tag through adding `closable` property to component, it will trigger `close` event when it is closed; you can customize the content of the close button by `close` block.
 
-> if you only specify `closable` property, the opening and closing status of component need to maintain by component itself.
+> If you only specify `closable` property, the opening and closing status of component need to maintain by component itself.
 > Once the component is be recreated ,it will return to the default status, so if you need to maintain the state of the component,and you need to maintain `closed` property by yourself, or controling the component by `v-if`.
 
 ```vdt

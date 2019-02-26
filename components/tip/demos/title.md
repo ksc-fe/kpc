@@ -11,7 +11,7 @@ order: 2
 
 ## en-US
 
-you can customize title content by `title` block.
+You can customize title content by `title` block.
 
 ```vdt
 import Tip from 'kpc/components/tip';
