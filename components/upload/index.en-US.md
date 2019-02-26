@@ -1,5 +1,5 @@
 ---
-title: upload
+title: Upload
 category: Components
 order: 100 
 sidebar: doc-en

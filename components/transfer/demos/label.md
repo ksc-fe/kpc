@@ -18,7 +18,7 @@ order: 1
 
 ## en-US
 
-You can custom list rendering logic by `label` property. at this point, if you need to enable list filtering function (`filterable`), you can custom filter function by `filter` property.
+You can customize list rendering logic by `label` property. at this point, if you need to enable list filtering function (`filterable`), you can customize filter function by `filter` property.
 
 When selecting all and `filterable` working together,the interaction logic is as follows:
 

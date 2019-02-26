@@ -20,7 +20,7 @@ order: 2
 
 ## en-US
 
-You can custom node content by `label` block, the block will pass two parameters:
+You can customize node content by `label` block, the block will pass two parameters:
 
 1. the original data of `data` node
 2. `node` node object ( component internally maps the node data to a node object,the property has some properties and methods ) 
