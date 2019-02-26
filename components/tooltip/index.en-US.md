@@ -23,7 +23,7 @@ sidebar: doc-en
 
 # Events
 
-| event | Description | Parameter |
+| Event | Description | Parameter |
 | --- | --- | --- |
 | show | the event of tooltip show | - |
 | hide | the event of tooltip hide | - |

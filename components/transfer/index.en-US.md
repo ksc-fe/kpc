@@ -23,7 +23,7 @@ sidebar: doc-en
 
 # Blocks
 
-| name | Description |
+| Name | Description |
 | --- | --- |
 | label | customize the rendering function for each item, similar to the `label` property |
 

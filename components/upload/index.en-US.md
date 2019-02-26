@@ -43,7 +43,7 @@ sidebar: doc-en
 
 # Events
 
-| event | Description | Parameter |
+| Event | Description | Parameter |
 | --- | --- | --- |
 | error | exceeds the file maximum number, exceeds the file size limit, or the upload will fail to throw the event | `Error, file, files` |
 | progress | this event is thrown during the file uploading | `Event, file, files` |

@@ -44,20 +44,20 @@ sidebar: doc-en
 
 ### Methods
 
-| name | Description | Parameter | Return |
+| Name | Description | Parameter | Return |
 | --- | --- | --- | --- |
 | append | add child node | the data or array of append child node | `undefined` |
 | remove | delete session node | - | `undefined` |
 
 # Blocks
 
-| name | Description | Parameter |
+| Name | Description | Parameter |
 | --- | --- | --- |
 | label | custom node rendering content | `data, node` |
 
 # Methods
 
-| method | Description | Parameter | Return |
+| Method | Description | Parameter | Return |
 | --- | --- | --- | --- |
 | getCheckedData | get checked node data | whether `onlyLeaf` return only leaf nodes | `Array` |
 | getSelectedData | get the checked node data | - | `Array` |
@@ -67,7 +67,7 @@ sidebar: doc-en
 
 # Events
 
-| event | Description | Parameter |
+| Event | Description | Parameter |
 | --- | --- | --- |
 | click:node | trigger when click node | `Node, Event` |
 | rightclick:node | trigger when right click node | `Node, Event` |
