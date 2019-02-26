@@ -11,7 +11,7 @@ const {
     disabled, filterable, keywords, _show,
     placeholder, size, style, name, children,
     fluid, width, allowUnmatch, card, hideIcon,
-    container, inline
+    container, inline, loading
 } = self.get();
 
 let _activeLabel = self.get('_activeLabel');
@@ -30,7 +30,7 @@ const classNameObj = {
     [`k-${size}`]: size !== 'default',
     'k-fluid': fluid,
     'k-with-prefix': blocks.prefix,
-    'k-with-suffix': !hideIcon,
+    'k-with-suffix': !hideIcon || loading,
     'k-inline': inline,
 };
 
@@ -272,12 +272,13 @@ if (hasValue && labelObj.label == null && !labelObj.labels.length) {
                     />
                 </Animate>
             </div>
-            <span class="k-suffix" v-if={{ !hideIcon || clearable }}>
+            <span class="k-suffix" v-if={{ !hideIcon || clearable || loading }}>
                 <i v-if={{ clearable }}
                     class={{ {"k-clear ion-ios-close": true, "k-show": hasValue} }}
                     ev-click={{ self._onClear }}
                 ></i>
-                <i class="k-arrow ion-arrow-down-b" v-if={{ !hideIcon }}></i>
+                <Icon class="ion-load-c icon-loading" v-if={{ loading }} />
+                <i class="k-arrow ion-arrow-down-b" v-else-if={{ !hideIcon }}></i>
             </span>
         </div>{{ 
         Menu 

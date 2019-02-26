@@ -26,6 +26,7 @@ export default class Select extends Intact {
         card: Boolean,
         container: [Function, String],
         inline: Boolean,
+        loading: Boolean,
     };
 
     defaults() {
@@ -64,6 +65,7 @@ export default class Select extends Intact {
             card: false, // 卡片式分组
             container: undefined,
             inline: false,
+            loading: false,
 
             _show: false,
             _activeLabel: undefined,
