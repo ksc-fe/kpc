@@ -1,7 +1,11 @@
 ---
-title: 自定义渲染列表
+title: 
+    zh-CN: 自定义渲染列表
+    en-US: Custom render list
 order: 1
 ---
+
+## zh-CN
 
 通过`label`属性，可以自定义列表渲染逻辑。此时如果你需要启动列表过滤功能`filterable`，
 需要通过`filter`属性，指定自定义过滤函数。
@@ -12,6 +16,15 @@ order: 1
 2. 左侧已过滤，全选则选中当前过滤出的非`disabled`的选项
 3. 左侧先全选，再过滤，过滤掉的选项保持选中状态
 
+## en-US
+
+You can custom list rendering logic by `label` property. at this point, if you need to enable list filtering function (`filterable`), you can custom filter function by `filter` property.
+
+When selecting all and `filterable` working together,the interaction logic is as follows:
+
+1. Left unfiltered, it will select all non ` disabled ` options when selecting all.
+2. Left filtered, it will select current filtered non ` disabled ` options when selecting all.
+3. Select all on the left, then filter, and the filtered option remains selected state.
 
 ```vdt
 import Transfer from 'kpc/components/transfer';
@@ -46,11 +59,11 @@ export default class extends Intact {
     defaults() {
         return {
             data: [
-                {name: '主机名0', desc: '前端服务器0', ip: '192.168.1.0'},
-                {name: '主机名1', desc: '前端服务器1', ip: '192.168.1.1'},
-                {name: '主机名2', desc: '前端服务器2', ip: '192.168.1.2'},
-                {name: '主机名3', desc: '前端服务器3', ip: '192.168.1.3', disabled: true},
-                {name: '主机名4', desc: '前端服务器4', ip: '192.168.1.4'},
+                {name: 'Host Name 0', desc: 'Front-end server 0', ip: '192.168.1.0'},
+                {name: 'Host Name 1', desc: 'Front-end server 1', ip: '192.168.1.1'},
+                {name: 'Host Name 2', desc: 'Front-end server 2', ip: '192.168.1.2'},
+                {name: 'Host Name 3', desc: 'Front-end server 3', ip: '192.168.1.3', disabled: true},
+                {name: 'Host Name 4', desc: 'Front-end server 4', ip: '192.168.1.4'},
             ]
         }
     }
@@ -61,4 +74,5 @@ export default class extends Intact {
             data.ip.includes(keywords);
     }
 }
+
 ```
