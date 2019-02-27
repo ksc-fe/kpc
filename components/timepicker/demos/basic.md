@@ -1,10 +1,18 @@
 ---
-title: 基础使用
+title:
+    zh-CN: 基础用法
+    en-US: Basic usage
 order: 0
 ---
 
+## zh-CN
+
 基础用法，通过`v-model`双向绑定，值为时间字符串，并非`Date`对象。添加`multiple`属性可以支持多选；
 通过`min` `max`属性可以指定最小最大可选时间
+
+## en-US
+
+Basic usage, two-way binding by the `v-model` property, the value is time string ,not `Date` object. it can support multiple selections through adding `multiple` property.and you can specify minimum and maximum optional time by `min` and `max` property.
 
 ```vdt
 import Timepicker from 'kpc/components/timepicker';
