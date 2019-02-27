@@ -1,9 +1,17 @@
 ---
-title: 组件尺寸
+title: 
+    zh-CN: 组件尺寸
+    en-US: Component size
 order: 3
 ---
 
+## zh-CN
+
 通过`size`可以定义尺寸: `default` `large` `small` `mini`
+
+## en-US
+
+You can define the component size by `size`,the property value: `default` `large` `small` `mini`
 
 ```vdt
 import {Tabs, Tab} from 'kpc/components/tabs';

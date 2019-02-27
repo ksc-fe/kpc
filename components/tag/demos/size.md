@@ -1,9 +1,17 @@
 ---
-title: 组件尺寸
+title: 
+    zh-CN: 组件尺寸
+    en-US: Component size
 order: 2
 ---
 
+## zh-Cn
+
 通过`size`可以定义尺寸: `default` `large` `small` `mini`
+
+## en-US
+
+You can customize the component size by `size` property, the property value:`default` `large` `small` `mini`
 
 ```vdt
 import Tag from 'kpc/components/tag';

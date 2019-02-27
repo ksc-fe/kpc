@@ -18,8 +18,8 @@ order: 1
 
 You can close the tag through adding `closable` property to component, it will trigger `close` event when it is closed; you can customize the content of the close button by `close` block.
 
-> If you only specify `closable` property, the opening and closing status of component need to maintain by component itself.
-> Once the component is be recreated ,it will return to the default status, so if you need to maintain the state of the component,and you need to maintain `closed` property by yourself, or controling the component by `v-if`.
+> If you only specified the `closable` property, the open and closed states of the component are maintained by the component itself.
+> Once the component is recreated, it will back to the default states, so if you need to maintain the states of the component, you need to maintain the `closed` property by yourself, or control the component by `v-if`.
 
 ```vdt
 import Tip from 'kpc/components/tip';

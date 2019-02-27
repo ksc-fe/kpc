@@ -1,11 +1,19 @@
 ---
-title: 新增和关闭标签
+title: 
+    zh-CN: 新增和关闭标签
+    en-US: Add and close tags
 order: 6
 ---
+
+## zh-CN
 
 给`Tabs`添加`closable`属性，可以使所有标签可以关闭，当然你也可以通过`Tab`的`closable`属性单独
 控制该`Tab`是否可关闭。当点击关闭按钮时，`Tabs`会触发`remove`事件，并且将关闭的`Tab`的`value`
 作为参数传给事件回调函数
+
+## en-US
+
+The all tags can be closed through adding `closable` property to `Tabs`. of course, you can also individually control the `Tab` whether it is closed by the `closable` property of the `Tab`. `Tabs` will trigger the `remove` event when you click the close button, and it will close the `value` of the `Tab` as a parameter to pass in the event calllback function.
 
 ```vdt
 import {Tabs, Tab} from 'kpc/components/tabs';
@@ -18,7 +26,7 @@ import {Button, ButtonGroup} from 'kpc/components/button';
         >{{ value }}</Button>
     </ButtonGroup>
     <br /><br />
-    <Button ev-click={{ self._add }}>新增Tab</Button>
+    <Button ev-click={{ self._add }}>new Tab</Button>
     <Tabs v-model="tab"
         closable={{ self.get('tabs').length > 1 }}
         ev-remove={{ self._remove }}
@@ -65,7 +73,7 @@ export default class extends Intact {
         const index = tabs.findIndex(item => item.value === value);
         tabs.splice(index, 1);
 
-        // 如果删除当前tab，则切换至下一个
+        // If the current tab is deleted, switch to the next one
         let tab = this.get('tab');
         if (value === tab) {
             tab = (tabs[index] || tabs[index - 1]).value
@@ -96,7 +104,7 @@ _remove(value) {
     const index = this.tabs.findIndex(item => item.value === value);
     this.tabs.splice(index, 1);
 
-    // 如果删除当前tab，则切换至下一个
+    // If the current tab is deleted, switch to the next one
     if (value === this.tab) {
         this.tab = (this.tabs[index] || this.tabs[index - 1]).value
     }
