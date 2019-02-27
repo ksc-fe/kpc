@@ -144,4 +144,11 @@ describe('Slider', () => {
         dispatchEvent(wrapper, 'click', {clientX: 0});
         expect(slider.innerHTML).to.matchSnapshot();
     });
+
+    it('min/max/step is undefined', () => {
+        instance = mount(BasicDemo);
+
+        instance.set({min: undefined, max: undefined});
+        expect(instance.element.innerHTML).to.matchSnapshot();
+    });
 });

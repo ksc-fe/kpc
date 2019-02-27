@@ -35,9 +35,19 @@ export default class Spinner extends Intact {
     }
 
     _init() {
+        // make sure the min/max/step is valid
+        const defaults = this.defaults();
+        ['min', 'max', 'step'].forEach(item => {
+            this.on(`$receive:${item}`, (c, v) => {
+                if (typeof v !== 'number') {
+                    this.set(item, defaults[item], {async: true});
+                }
+            });
+        });
+
         ['max', 'min', 'precision'].forEach(item => {
             this.on(`$receive:${item}`, () => this._fixValue());
-        })
+        });
         this.on('$receive:value', (c, v) => {
             this._fixValue(v);
         });

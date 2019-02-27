@@ -3,8 +3,8 @@
 #### `should select value correctly`
 
 ```
-"<div><div class=\"k-select k-show k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div>
-    You selected: </div>"
+"<div><div style=\"margin-bottom: 16px;\"><div class=\"k-select k-show k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div>
+        You selected: </div><div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><i class=\"k-icon ion-load-c icon-loading\"></i></span></div><!--placeholder--></div></div>"
 ```
 
 ```
@@ -12,8 +12,8 @@
 ```
 
 ```
-"<div><div class=\"k-select k-with-suffix k-has-value\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\" value=\"Monday\"><span class=\"k-value c-ellipsis\">星期一</span></div><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div>
-    You selected: Monday</div>"
+"<div><div style=\"margin-bottom: 16px;\"><div class=\"k-select k-with-suffix k-has-value\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\" value=\"Monday\"><span class=\"k-value c-ellipsis\">星期一</span></div><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div>
+        You selected: Monday</div><div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><i class=\"k-icon ion-load-c icon-loading\"></i></span></div><!--placeholder--></div></div>"
 ```
 
 ```
