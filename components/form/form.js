@@ -18,6 +18,7 @@ export default class Form extends Intact {
         items: Array,
         rules: Object,
         labelWidth: [String, Number],
+        layout: ['horizontal', 'vertical', 'inline'],
     };
 
     defaults() {
@@ -25,6 +26,7 @@ export default class Form extends Intact {
             items: [],
             rules: {},
             labelWidth: undefined,
+            layout: 'horizontal',
         }
     }
 

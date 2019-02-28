@@ -1,8 +1,9 @@
-const {children, className, ref, key, style} = self.get();
+const {children, className, ref, key, style, layout} = self.get();
 
 const classNameObj = {
     'k-form': true,
-    [className]: className
+    [className]: className,
+    [`k-${layout}`]: layout,
 };
 
 <form class={{ classNameObj }} style={{ style }} 
