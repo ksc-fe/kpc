@@ -93,7 +93,7 @@
 #### `async close`
 
 ```
-"<div class=\"k-header\"><span class=\"k-title\">Customized ok callback</span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body\"><form class=\"k-form\" novalidate=\"\"><div class=\"k-form-item\"><label class=\"k-label\">Code:</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter digits\"></div></div></div></div></form></div><div class=\"k-footer c-clearfix\"><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>确认</span></button></div>"
+"<div class=\"k-header\"><span class=\"k-title\">Customized ok callback</span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body\"><form class=\"k-form k-horizontal\" novalidate=\"\"><div class=\"k-form-item\"><label class=\"k-label\">Code:</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter digits\"></div></div></div></div></form></div><div class=\"k-footer c-clearfix\"><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>确认</span></button></div>"
 ```
 
 #### `async open`
