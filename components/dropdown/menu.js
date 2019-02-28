@@ -181,7 +181,10 @@ export default class DropdownMenu extends Intact {
             // in vue the click event of trigger element
             // will propagate to document immediately
             // and this will lead close the layer. #209
-            if (this.__event) this.__event._dropdown = true;
+            // we need to set this _dropdown to `this` to indentify
+            // which component has been clicked. Otherwise the menu 
+            // will not hide when click the other component. #221
+            if (this.__event) this.__event._dropdown = this;
 
             document.addEventListener('click', this._onDocumentClick);
         } else {
@@ -217,7 +220,7 @@ export default class DropdownMenu extends Intact {
         // is click on sub menu
         if (this._isClickSubMenu(target, this.subDropdowns)) return;
         // custom flag to indicate that the event does not lead to close menu
-        if (e._dropdown) return;
+        if (e._dropdown === true || e._dropdown === this) return;
 
         this.hide(true);
     }
