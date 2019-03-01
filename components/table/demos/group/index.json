@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>分组需要两个<code>group</code>来指定：</p>\n<ol>\n<li>第一个是<code>Table</code>上的<code>group</code>属性，该属性指定当前分组的方式，形式为：<code>{[&quot;分组的列的key&quot;]: [&quot;当前列选择的分组的值&quot;]}</code></li>\n<li>第二个是<code>TableColumn</code>或者<code>scheme</code>上的<code>group</code>属性，该属性指定当前列有哪些可选的分组方式，\n如果该列支持多选，还可以添加<code>multiple</code>属性，默认为单选。形式为：<code>[{label: &quot;分组展示文案&quot;, value: &quot;选择后的值&quot;}]</code></li>\n</ol>\n<p>当分组方式改变时，可以监听默认事件<code>$change:group</code>来执行自定义分组逻辑</p>\n<blockquote>\n<p><code>group</code>属性不会双向绑定，所以在改变时，你应该同步更新当前属性值(<code>sort</code>也一样)</p>\n</blockquote>\n",
-    "index": 245,
+    "index": 250,
     "highlighted": [
         {
             "language": "vdt",

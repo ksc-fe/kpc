@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过给<code>Dropdown</code>和<code>DropdownItem</code>添加<code>disabled</code>属性，可以分别禁用菜单和菜单项。</p>\n",
-    "index": 158,
+    "index": 164,
     "highlighted": [
         {
             "language": "vdt",

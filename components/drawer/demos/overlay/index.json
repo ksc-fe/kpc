@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>添加<code>overlay</code>属性，false则不展示遮罩层，true展示遮罩层。默认为true。另外添加<code>closabled</code>属性，<code>false</code>：点非抽屉区不可自动关闭抽屉（点击抽屉内关闭按钮才可以关闭），<code>true</code>：点非抽屉区可以自动关闭。默认为true</p>\n",
-    "index": 53,
+    "index": 54,
     "highlighted": [
         {
             "language": "vdt",

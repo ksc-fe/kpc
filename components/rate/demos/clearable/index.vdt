@@ -1,0 +1,3 @@
+import Rate from 'kpc/components/rate';
+
+<Rate v-model="value" clearable />

@@ -138,8 +138,8 @@ $checkbox-checked-bg-<span class="hljs-keyword">color</span> := $checkbox-checke
 </code></pre>
 <p>实际主题定制中，仅仅通过改变变量并不能完成100%的定制需求，当我们需要为组件添加新样式时，仅有的变量便无法满足，因为新增的样式kpc并没有声明相应的变量。所以还需一种方式引入额外样式声明文件。</p>
 <p>例如：<code>Select</code>默认主题并没有定义<code>border-radius</code>，也没有相应的变量声明，此时我们需要在自定义主题中添加<code>border-radius</code>怎么办？</p>
-</div><div><div class="k-select k-with-suffix" style="" tabindex="0"><div class="k-wrapper" tabindex="-1" _evHasSaved><div class="k-main"><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span></div><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div>
-    You selected: </div><div><p>kpc为每个组件的样式文件<code>index.styl</code>添加了一句代码</p>
+</div><div><div style="margin-bottom: 16px;"><div class="k-select k-with-suffix" style="" tabindex="0"><div class="k-wrapper" tabindex="-1" _evHasSaved><div class="k-main"><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span></div><span class="k-suffix"><i class="k-arrow ion-arrow-down-b"></i></span></div><!--MoveWrapper--></div>
+        You selected: </div><div class="k-select k-with-suffix" style="" tabindex="0"><div class="k-wrapper" tabindex="-1" _evHasSaved><div class="k-main"><input type="hidden" value="" /><span class="k-placeholder c-ellipsis">请选择</span></div><span class="k-suffix"><i class="k-icon ion-load-c icon-loading" style=""></i></span></div><!--MoveWrapper--></div></div><div><p>kpc为每个组件的样式文件<code>index.styl</code>添加了一句代码</p>
 <pre><code class="hljs js"><span class="hljs-function"><span class="hljs-title">require</span><span class="hljs-params">(<span class="hljs-variable">$theme</span>-dir + <span class="hljs-string">'/select.styl'</span>)</span></span>
 </code></pre>
 <p>这里<code>require</code>方法是自定义的方法，定义在文件<code>styles/functions.js</code>中，它的意思是：当文件存在时就包含该文件。所以我们只需要在<code>$theme-dir</code>定义的文件夹中创建<code>select.styl</code>文件，组件就会默认包含该样式文件。</p>

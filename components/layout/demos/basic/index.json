@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<ol>\n<li><code>Layout</code>: 布局容器，其下可嵌套<code>Header</code> <code>Aside</code> <code>Body</code> <code>Footer</code>以及<code>Layout</code>，可以放置任何容器中</li>\n<li><code>Header</code>: 顶部导航条，只能放置<code>Layout</code>中</li>\n<li><code>Aside</code>: 侧边栏，只能放置<code>Layout</code>中</li>\n<li><code>Body</code>: 主题部分，只能放置<code>Layout</code>中</li>\n<li><code>Footer</code>: 底部容器，只能放置<code>Layout</code>中</li>\n</ol>\n<p>上下布局，导航条和侧边栏为左右关系</p>\n<blockquote>\n<p>布局组件采用<code>flex</code>实现，请注意<a href=\"https://caniuse.com/#search=flex\">浏览器兼容性</a>，IE需要10及以上</p>\n</blockquote>\n",
-    "index": 46,
+    "index": 47,
     "highlighted": [
         {
             "language": "vdt",

@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>position</code>属性，可以定义菜单相对触发器的位置。位置对象中<code>my</code>指菜单，<code>at</code>指触发器</p>\n",
-    "index": 134,
+    "index": 138,
     "highlighted": [
         {
             "language": "vdt",
