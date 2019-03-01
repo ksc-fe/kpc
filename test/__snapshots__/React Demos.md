@@ -706,6 +706,32 @@
 "<div><label class=\"k-radio\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"radio\" tabindex=\"-1\" value=\"true\"></span><span class=\"k-text\">默认值：</span></label><label class=\"k-radio\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"radio\" tabindex=\"-1\" value=\"checked\"></span><span class=\"k-text\">指定选中时的取值为\"checked\": </span></label><label class=\"k-radio\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"radio\" tabindex=\"-1\" value=\"[object Object]\"></span><span class=\"k-text\">指定选中时的取值为对象：</span></label></div>"
 ```
 
+## `rate`
+
+####   `Rate basic`
+
+```
+"<div><div class=\"k-rate\"><div class=\"k-item k-full\"><div class=\"k-first\"><i class=\"k-icon ion-android-star\"></i></div><div class=\"k-second\"><i class=\"k-icon ion-android-star\"></i></div></div><div class=\"k-item k-full\"><div class=\"k-first\"><i class=\"k-icon ion-android-star\"></i></div><div class=\"k-second\"><i class=\"k-icon ion-android-star\"></i></div></div><div class=\"k-item\"><div class=\"k-first\"><i class=\"k-icon ion-android-star\"></i></div><div class=\"k-second\"><i class=\"k-icon ion-android-star\"></i></div></div><div class=\"k-item\"><div class=\"k-first\"><i class=\"k-icon ion-android-star\"></i></div><div class=\"k-second\"><i class=\"k-icon ion-android-star\"></i></div></div><div class=\"k-item\"><div class=\"k-first\"><i class=\"k-icon ion-android-star\"></i></div><div class=\"k-second\"><i class=\"k-icon ion-android-star\"></i></div></div></div><br><div class=\"k-rate\"><div class=\"k-item k-full\"><div class=\"k-first\"><i class=\"k-icon ion-android-star\"></i></div><div class=\"k-second\"><i class=\"k-icon ion-android-star\"></i></div></div><div class=\"k-item k-full\"><div class=\"k-first\"><i class=\"k-icon ion-android-star\"></i></div><div class=\"k-second\"><i class=\"k-icon ion-android-star\"></i></div></div><div class=\"k-item k-half\"><div class=\"k-first\"><i class=\"k-icon ion-android-star\"></i></div><div class=\"k-second\"><i class=\"k-icon ion-android-star\"></i></div></div><div class=\"k-item\"><div class=\"k-first\"><i class=\"k-icon ion-android-star\"></i></div><div class=\"k-second\"><i class=\"k-icon ion-android-star\"></i></div></div><div class=\"k-item\"><div class=\"k-first\"><i class=\"k-icon ion-android-star\"></i></div><div class=\"k-second\"><i class=\"k-icon ion-android-star\"></i></div></div></div></div>"
+```
+
+####   `Rate clearable`
+
+```
+"<div class=\"k-rate\"><div class=\"k-item k-full\"><div class=\"k-first\"><i class=\"k-icon ion-android-star\"></i></div><div class=\"k-second\"><i class=\"k-icon ion-android-star\"></i></div></div><div class=\"k-item k-full\"><div class=\"k-first\"><i class=\"k-icon ion-android-star\"></i></div><div class=\"k-second\"><i class=\"k-icon ion-android-star\"></i></div></div><div class=\"k-item\"><div class=\"k-first\"><i class=\"k-icon ion-android-star\"></i></div><div class=\"k-second\"><i class=\"k-icon ion-android-star\"></i></div></div><div class=\"k-item\"><div class=\"k-first\"><i class=\"k-icon ion-android-star\"></i></div><div class=\"k-second\"><i class=\"k-icon ion-android-star\"></i></div></div><div class=\"k-item\"><div class=\"k-first\"><i class=\"k-icon ion-android-star\"></i></div><div class=\"k-second\"><i class=\"k-icon ion-android-star\"></i></div></div></div>"
+```
+
+####   `Rate custom`
+
+```
+"<div class=\"k-rate\"><div class=\"k-item k-full\"><div class=\"k-first\"><i class=\"k-icon ion-heart\"></i></div><div class=\"k-second\"><i class=\"k-icon ion-heart\"></i></div></div><div class=\"k-item k-full\"><div class=\"k-first\"><i class=\"k-icon ion-heart\"></i></div><div class=\"k-second\"><i class=\"k-icon ion-heart\"></i></div></div><div class=\"k-item\"><div class=\"k-first\"><i class=\"k-icon ion-heart\"></i></div><div class=\"k-second\"><i class=\"k-icon ion-heart\"></i></div></div><div class=\"k-item\"><div class=\"k-first\"><i class=\"k-icon ion-heart\"></i></div><div class=\"k-second\"><i class=\"k-icon ion-heart\"></i></div></div><div class=\"k-item\"><div class=\"k-first\"><i class=\"k-icon ion-heart\"></i></div><div class=\"k-second\"><i class=\"k-icon ion-heart\"></i></div></div></div>"
+```
+
+####   `Rate disabled`
+
+```
+"<div class=\"k-rate k-disabled\"><div class=\"k-item k-full\"><div class=\"k-first\"><i class=\"k-icon ion-android-star\"></i></div><div class=\"k-second\"><i class=\"k-icon ion-android-star\"></i></div></div><div class=\"k-item k-full\"><div class=\"k-first\"><i class=\"k-icon ion-android-star\"></i></div><div class=\"k-second\"><i class=\"k-icon ion-android-star\"></i></div></div><div class=\"k-item\"><div class=\"k-first\"><i class=\"k-icon ion-android-star\"></i></div><div class=\"k-second\"><i class=\"k-icon ion-android-star\"></i></div></div><div class=\"k-item\"><div class=\"k-first\"><i class=\"k-icon ion-android-star\"></i></div><div class=\"k-second\"><i class=\"k-icon ion-android-star\"></i></div></div><div class=\"k-item\"><div class=\"k-first\"><i class=\"k-icon ion-android-star\"></i></div><div class=\"k-second\"><i class=\"k-icon ion-android-star\"></i></div></div></div>"
+```
+
 ## `scrollSelect`
 
 ####   `ScrollSelect basic`

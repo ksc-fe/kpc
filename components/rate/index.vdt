@@ -1,0 +1,41 @@
+import Icon from '../icon';
+
+const {
+    _value, count, className, 
+    style, disabled, half
+} = self.get();
+
+const classNameObj = {
+    'k-rate': true,
+    'k-disabled': disabled,
+    [className]: className,
+};
+
+const icon = <b:icon><Icon class="ion-android-star" /></b:icon>
+
+<div className={{ classNameObj }} style={{ style }}
+    ev-mouseleave={{ self.onMouseLeaveComponent }}
+>
+    {{ (() => {
+        const ret = [];
+        for (let i = 0; i < count; i++) {
+            const className = _value >= i + 1 ? 
+                'k-full' : _value === i + 0.5 ? 
+                    'k-half' : null;
+            const halfStep = half ? i + 0.5 : i + 1;
+            ret.push(
+                <div class={{ {"k-item": true, [className]: className } }}>
+                    <div class="k-first" 
+                        ev-click={{ self.onClick.bind(self, halfStep) }}
+                        ev-mouseenter={{ self.onMouseEnter.bind(self, halfStep) }}
+                    >{{ icon }}</div>
+                    <div class="k-second" 
+                        ev-click={{ self.onClick.bind(self, i + 1) }}
+                        ev-mouseenter={{ self.onMouseEnter.bind(self, i + 1) }}
+                    >{{ icon }}</div>
+                </div>
+            );
+        }
+        return ret;
+    })() }}
+</div>

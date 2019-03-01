@@ -1,0 +1,36 @@
+@require('./variables.styl')
+
+.k-rate
+    display inline-block
+    .k-item
+        display inline-block
+        margin-right $rate-item-margin-right
+        cursor pointer
+        position relative
+        color $rate-color 
+        transition all $transition
+        &:hover
+            transform $rate-item-hover-transform 
+    .k-first
+        position absolute
+        top 0
+        left 0
+        width 50%
+        height 100%
+        overflow hidden
+    .k-icon
+        font-size $rate-icon-font-size 
+    .k-full
+        color $rate-active-color 
+    .k-half
+        .k-first
+            color $rate-active-color 
+    // disabled
+    &.k-disabled
+        .k-item
+            cursor default 
+            &:hover
+                transform none
+            
+
+requireTheme('rate')
