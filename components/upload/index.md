@@ -17,7 +17,7 @@ sidebar: doc
 | action | 上传地址 | `String` | `""` |
 | name | 指定上传文件字段名，不存在时，组件默认会使用原始文件名 | `String` | `undefined` |
 | headers | 指定上传的请求头 | `Object` | `undefined` |
-| data | 指定上传附加的请求数据 | `Object` | `undefined` |
+| data | 指定上传附加的请求数据，可以为对象或者函数，为函数时，组件会将当前文件对象作为参数传入，函数应返回一个对象作为附加数据 | `Object` &#124; `Function` | `undefined` |
 | withCredentials | 指定跨域请求是是否允许传送cookie | `Boolean` | `false` |
 | limit | 最大上传文件数量限制，默认无限制 | `Number` | `undefined` |
 | maxSize | 最大上传文件大小限制(kb)，默认无限制 | `Number` | `undefined` |
