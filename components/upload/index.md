@@ -15,7 +15,7 @@ sidebar: doc
 | autoUpload | 是否选择文件后即自动上传 | `Boolean` | `true` |
 | disabled | 是否禁用上传 | `Boolean` | `false` |
 | action | 上传地址 | `String` | `""` |
-| name | 上传文件名，当只允许上传一个文件时，可以通过该属性来指定文件名，组件默认会使用原始文件名代替 | `String` | `undefined` |
+| name | 指定上传文件字段名，不存在时，组件默认会使用原始文件名 | `String` | `undefined` |
 | headers | 指定上传的请求头 | `Object` | `undefined` |
 | data | 指定上传附加的请求数据 | `Object` | `undefined` |
 | withCredentials | 指定跨域请求是是否允许传送cookie | `Boolean` | `false` |
