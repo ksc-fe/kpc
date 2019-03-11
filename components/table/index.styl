@@ -85,10 +85,18 @@
         left 0
         cursor ew-resize
 
+    // stripe
+    &.k-stripe
+        tr:nth-child(even)
+            background $table-even-tr-bg-color
+            &.k-hover
+                background $table-tr-hover-bg-color
+
     // tbody
     tbody
         tr
             border-bottom $table-tr-border
+            transition background $transition
             &.k-hover
                 background $table-tr-hover-bg-color
     td

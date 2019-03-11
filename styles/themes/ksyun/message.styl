@@ -13,3 +13,7 @@
             > .k-container
                 color lookup('$' + type + '-color')
                 background palette(lookup('$' + type + '-color'), -4)
+                > .k-close
+                    color lookup('$' + type + '-color')
+                    &:hover
+                        color palette(lookup('$' + type + '-color'), 1)

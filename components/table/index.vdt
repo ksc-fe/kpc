@@ -9,7 +9,7 @@ import Spin from '../spin';
 const {
     checkType, scheme, checkedKeys, data, rowKey, 
     className, fixHeader, noDataTemplate, disableRow,
-    resizable, expandedKeys, type, _isSticky,
+    resizable, expandedKeys, type, _isSticky, stripe,
     style, rowClassName, children, sort, group, _scrollBarWidth,
     _scrollLeft, _scrollTop, _hoverIndex, _scrollPosition, 
     _paddingBottom, _isStickyScrollbar, loading, _isShowLeftRightMiddle
@@ -346,6 +346,7 @@ const classNameObj = {
     'k-sticky': _isSticky, 
     [`k-scroll-${_scrollPosition}`]: _isShowLeftRightMiddle,
     'k-sticky-scrollbar': _isStickyScrollbar,
+    'k-stripe': stripe,
 };
 
 <div class={{ classNameObj }} style={{ style }}>

@@ -41,7 +41,7 @@ sizes = large small mini
                 border-color lookup('$btn-' + type + '-hover-border-color')
             &:active
                 background-color palette(@background-color, 1)
-                border-color lookup('$btn-' + type + '-hover-border-color')
+                border-color palette(@border-color, 1) 
     // disabled
     &.k-disabled
         &, &:hover
