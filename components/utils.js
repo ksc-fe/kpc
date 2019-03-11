@@ -255,7 +255,9 @@ if (typeof window !== 'undefined') {
         window.requestAnimationFrame.bind(window) : setTimeout;
 }
 export function nextFrame(fn) {
-    raf(fn);
+    raf(() => raf(fn));
+    // bellow does not work in firefox
+    // raf(fn);
 }
 
 export function throttle(fn, delay) {
