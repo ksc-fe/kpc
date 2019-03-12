@@ -4,12 +4,31 @@ import DropdownMenu from './menu';
 import '../../styles/kpc.styl';
 import './index.styl';
 
-const h = Intact.Vdt.miss.h;
+const {h, Types} = Intact.Vdt.miss;
+const _className = Intact.Vdt.utils.className;
 
 export default class Dropdown extends Intact {
     @Intact.template()
     static template(data) {
-        return data.get('children');
+        const vNode = data.get('children');
+        const isShow = data.get('_isShow');
+        let props = vNode.props;
+        const className = vNode.className || props.className;
+        const classNames = _className({
+            [className]: className,
+            'k-dropdown-open': isShow, 
+        });
+        if (vNode.type & Types.ComponentClassOrInstance) {
+            props = {...props, className: classNames};
+        }
+        return h(
+            vNode.tag, 
+            props, 
+            vNode.children,
+            classNames,
+            vNode.key, 
+            vNode.ref
+        );
     }
 
     static propTypes = {
@@ -21,6 +40,8 @@ export default class Dropdown extends Intact {
         return {
             trigger: 'hover',
             disabled: false,
+
+            _isShow: false,
         }
     }
 

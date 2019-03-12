@@ -35,6 +35,10 @@ export default class DropdownMenu extends Intact {
         this.focusIndex = -1;
         this.locked = false;
 
+        this.on('$change:value', (c, v) => {
+            this.dropdown.set('_isShow', v);
+        });
+
         this.on('$changed:value', (c, value) => {
             if (value) {
                 this.trigger('show', this);
