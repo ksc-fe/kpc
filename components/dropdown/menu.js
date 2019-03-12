@@ -36,7 +36,10 @@ export default class DropdownMenu extends Intact {
         this.locked = false;
 
         this.on('$change:value', (c, v) => {
-            this.dropdown.set('_isShow', v);
+            // contextmenu has not dropdown
+            if (this.dropdown) {
+                this.dropdown.set('_isShow', v);
+            }
         });
 
         this.on('$changed:value', (c, value) => {

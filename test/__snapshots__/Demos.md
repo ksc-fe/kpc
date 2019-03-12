@@ -366,7 +366,7 @@
 
 ```
 "<div><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            hover </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--></div>"
+            hover </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div>"
 ```
 
 ####     `Dropdown checkbox`
@@ -387,24 +387,24 @@
 
 ```
 "<div><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            disabled </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            disabled item</span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--></div>"
+            disabled </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
+            disabled item </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div>"
 ```
 
 ####     `Dropdown nested`
 
 ```
 "<div><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            click </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--></div>"
+            click </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div>"
 ```
 
 ####     `Dropdown position`
 
 ```
 "<div><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            left </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            right </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            top center </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--></div>"
+            left </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
+            right </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
+            top center </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div>"
 ```
 
 ####     `Dropdown tooltip`
@@ -417,8 +417,8 @@
 
 ```
 "<div><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            hover </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            click </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--></div>"
+            hover </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
+            click </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div>"
 ```
 
 ##   `editable`
@@ -1216,9 +1216,11 @@
 ####     `Table rowClassName`
 
 ```
-"<div class=\"k-table\"><div class=\"k-table-wrapper\"><div class=\"k-thead\"><div class=\"k-thead-wrapper\" style=\"padding-right: 0px;\"><table><colgroup><col class=\"k-th-check\"><col></colgroup><thead><tr><th minwidth=\"40\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
+"<div><div class=\"k-table\"><div class=\"k-table-wrapper\"><div class=\"k-thead\"><div class=\"k-thead-wrapper\" style=\"padding-right: 0px;\"><table><colgroup><col class=\"k-th-check\"><col></colgroup><thead><tr><th minwidth=\"40\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
             <th title=\"偶数行背景变换\"><div class=\"k-th\"><div class=\"c-ellipsis\">偶数行背景变换</div></div></th>
-            </tr></thead></table></div></div><div class=\"k-tbody\"><table><colgroup><col class=\"k-th-check\"><col></colgroup><tbody><tr class=\"even\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td><td title=\"1\">1</td></tr><tr class=\"odd\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td><td title=\"2\">2</td></tr><tr class=\"even\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"2\"></span></label></td><td title=\"3\">3</td></tr><tr class=\"odd\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"3\"></span></label></td><td title=\"4\">4</td></tr><tr class=\"even\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"4\"></span></label></td><td title=\"5\">5</td></tr></tbody></table></div></div></div>"
+            </tr></thead></table></div></div><div class=\"k-tbody\"><table><colgroup><col class=\"k-th-check\"><col></colgroup><tbody><tr class=\"odd\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td><td title=\"1\">1</td></tr><tr class=\"even\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td><td title=\"2\">2</td></tr><tr class=\"odd\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"2\"></span></label></td><td title=\"3\">3</td></tr><tr class=\"even\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"3\"></span></label></td><td title=\"4\">4</td></tr><tr class=\"odd\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"4\"></span></label></td><td title=\"5\">5</td></tr></tbody></table></div></div></div><div class=\"k-table k-stripe\"><div class=\"k-table-wrapper\"><div class=\"k-thead\"><div class=\"k-thead-wrapper\" style=\"padding-right: 0px;\"><table><colgroup><col class=\"k-th-check\"><col></colgroup><thead><tr><th minwidth=\"40\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
+            <th title=\"偶数行背景变换\"><div class=\"k-th\"><div class=\"c-ellipsis\">偶数行背景变换</div></div></th>
+            </tr></thead></table></div></div><div class=\"k-tbody\"><table><colgroup><col class=\"k-th-check\"><col></colgroup><tbody><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td><td title=\"1\">1</td></tr><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td><td title=\"2\">2</td></tr><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"2\"></span></label></td><td title=\"3\">3</td></tr><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"3\"></span></label></td><td title=\"4\">4</td></tr><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"4\"></span></label></td><td title=\"5\">5</td></tr></tbody></table></div></div></div></div>"
 ```
 
 ####     `Table rowExpandable`
@@ -1931,7 +1933,7 @@
 
 ```
 "<div><div><div class=\"k-dropdown\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            hover </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--></div></div></div>"
+            hover </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div></div></div>"
 ```
 
 ####     `Dropdown checkbox`
@@ -1952,24 +1954,24 @@
 
 ```
 "<div><div><div class=\"k-dropdown\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            disabled </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--></div><div class=\"k-dropdown\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            disabled item</span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--></div></div></div>"
+            disabled </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div><div class=\"k-dropdown\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
+            disabled item </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div></div></div>"
 ```
 
 ####     `Dropdown nested`
 
 ```
 "<div><div><div class=\"k-dropdown\" trigger=\"click\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            click </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--></div></div></div>"
+            click </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div></div></div>"
 ```
 
 ####     `Dropdown position`
 
 ```
 "<div><div><div class=\"k-dropdown\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            left </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--></div><div class=\"k-dropdown\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            right </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--></div><div class=\"k-dropdown\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            top center </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--></div></div></div>"
+            left </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div><div class=\"k-dropdown\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
+            right </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div><div class=\"k-dropdown\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
+            top center </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div></div></div>"
 ```
 
 ####     `Dropdown tooltip`
@@ -1982,8 +1984,8 @@
 
 ```
 "<div><div><div class=\"k-dropdown\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            hover </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--></div><div class=\"k-dropdown\" trigger=\"click\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
-            click </span><i class=\"k-icon ion-arrow-down-b k-small\"></i></button><!--placeholder--></div></div></div>"
+            hover </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div><div class=\"k-dropdown\" trigger=\"click\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>
+            click </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div></div></div>"
 ```
 
 ##   `editable`
@@ -2797,9 +2799,11 @@
 ####     `Table rowClassName`
 
 ```
-"<div><div class=\"k-table\"><div class=\"k-table-wrapper\"><div class=\"k-thead\"><div class=\"k-thead-wrapper\" style=\"padding-right: 0px;\"><table><colgroup><col class=\"k-th-check\"><col></colgroup><thead><tr><th minwidth=\"40\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
+"<div><div><div class=\"k-table\"><div class=\"k-table-wrapper\"><div class=\"k-thead\"><div class=\"k-thead-wrapper\" style=\"padding-right: 0px;\"><table><colgroup><col class=\"k-th-check\"><col></colgroup><thead><tr><th minwidth=\"40\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
             <th title=\"偶数行背景变换\"><div class=\"k-th\"><div class=\"c-ellipsis\">偶数行背景变换</div></div></th>
-            </tr></thead></table></div></div><div class=\"k-tbody\"><table><colgroup><col class=\"k-th-check\"><col></colgroup><tbody><tr class=\"even\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td><td title=\"1\">1</td></tr><tr class=\"odd\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td><td title=\"2\">2</td></tr><tr class=\"even\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"2\"></span></label></td><td title=\"3\">3</td></tr><tr class=\"odd\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"3\"></span></label></td><td title=\"4\">4</td></tr><tr class=\"even\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"4\"></span></label></td><td title=\"5\">5</td></tr></tbody></table></div></div></div></div>"
+            </tr></thead></table></div></div><div class=\"k-tbody\"><table><colgroup><col class=\"k-th-check\"><col></colgroup><tbody><tr class=\"odd\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td><td title=\"1\">1</td></tr><tr class=\"even\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td><td title=\"2\">2</td></tr><tr class=\"odd\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"2\"></span></label></td><td title=\"3\">3</td></tr><tr class=\"even\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"3\"></span></label></td><td title=\"4\">4</td></tr><tr class=\"odd\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"4\"></span></label></td><td title=\"5\">5</td></tr></tbody></table></div></div></div><div class=\"k-table k-stripe\"><div class=\"k-table-wrapper\"><div class=\"k-thead\"><div class=\"k-thead-wrapper\" style=\"padding-right: 0px;\"><table><colgroup><col class=\"k-th-check\"><col></colgroup><thead><tr><th minwidth=\"40\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
+            <th title=\"偶数行背景变换\"><div class=\"k-th\"><div class=\"c-ellipsis\">偶数行背景变换</div></div></th>
+            </tr></thead></table></div></div><div class=\"k-tbody\"><table><colgroup><col class=\"k-th-check\"><col></colgroup><tbody><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td><td title=\"1\">1</td></tr><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td><td title=\"2\">2</td></tr><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"2\"></span></label></td><td title=\"3\">3</td></tr><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"3\"></span></label></td><td title=\"4\">4</td></tr><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"4\"></span></label></td><td title=\"5\">5</td></tr></tbody></table></div></div></div></div></div>"
 ```
 
 ####     `Table rowExpandable`
@@ -2864,10 +2868,10 @@
 
 ```
 "<div><div><div class=\"k-table\"><div class=\"k-table-wrapper\"><div class=\"k-thead\"><div class=\"k-thead-wrapper\" style=\"padding-right: 0px;\"><table><colgroup><col class=\"k-th-check\"><col><col></colgroup><thead><tr><th minwidth=\"40\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
-            <th class=\"k-sortable\"><div class=\"k-th\"><div class=\"k-group\"><i class=\"k-arrow ion-ios-arrow-down\"></i><!--placeholder--><div class=\"c-ellipsis\"><div><span title=\"自定义表头内容\" class=\"c-middle title\">自定义表头内容</span><div class=\"k-tooltip\"><i _evhassaved=\"true\" class=\"ion-ios-help-outline c-middle\"></i><!--placeholder--></div></div></div></div><div class=\"k-sort\"><i class=\"k-icon icon-sortable\"></i></div></div></th><th title=\"表头2\"><div class=\"k-th\"><div class=\"c-ellipsis\">表头2</div></div></th>
+            <th class=\"k-sortable\"><div class=\"k-th\"><div class=\"k-group\"><i class=\"k-arrow ion-ios-arrow-down\"></i><!--placeholder--><div class=\"c-ellipsis\"><div><span title=\"自定义表头内容\" class=\"c-middle title\">自定义表头内容</span><div class=\"k-tooltip\"><i class=\"ion-ios-help-outline c-middle\"></i><!--placeholder--></div></div></div></div><div class=\"k-sort\"><i class=\"k-icon icon-sortable\"></i></div></div></th><th title=\"表头2\"><div class=\"k-th\"><div class=\"c-ellipsis\">表头2</div></div></th>
             </tr></thead></table></div></div><div class=\"k-tbody\"><table><colgroup><col class=\"k-th-check\"><col><col></colgroup><tbody><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td><td title=\"第一行\">第一行</td><td title=\"哈哈2\">哈哈2</td></tr><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td><td title=\"第二行\">第二行</td><td title=\"哈哈2\">哈哈2</td></tr></tbody></table></div></div></div><div class=\"k-table\"><div class=\"k-table-wrapper\"><div class=\"k-thead\"><div class=\"k-thead-wrapper\" style=\"padding-right: 0px;\"><table><colgroup><col class=\"k-th-check\"><col><col></colgroup><thead><tr><th minwidth=\"40\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
             
-            <th class=\"k-sortable\"><div class=\"k-th\"><div class=\"k-group\"><i class=\"k-arrow ion-ios-arrow-down\"></i><!--placeholder--><div class=\"c-ellipsis\"><span title=\"自定义表头内容\" class=\"c-middle title\">自定义表头内容</span><div class=\"k-tooltip\"><i _evhassaved=\"true\" class=\"ion-ios-help-outline c-middle\"></i><!--placeholder--></div></div></div><div class=\"k-sort\"><i class=\"k-icon icon-sortable\"></i></div></div></th><th title=\"表头2\"><div class=\"k-th\"><div class=\"c-ellipsis\">表头2</div></div></th></tr></thead></table></div></div><div class=\"k-tbody\"><table><colgroup><col class=\"k-th-check\"><col><col></colgroup><tbody><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td><td title=\"第一行\">第一行</td><td title=\"哈哈2\">哈哈2</td></tr><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td><td title=\"第二行\">第二行</td><td title=\"哈哈2\">哈哈2</td></tr></tbody></table></div></div></div></div></div>"
+            <th class=\"k-sortable\"><div class=\"k-th\"><div class=\"k-group\"><i class=\"k-arrow ion-ios-arrow-down\"></i><!--placeholder--><div class=\"c-ellipsis\"><span title=\"自定义表头内容\" class=\"c-middle title\">自定义表头内容</span><div class=\"k-tooltip\"><i class=\"ion-ios-help-outline c-middle\"></i><!--placeholder--></div></div></div><div class=\"k-sort\"><i class=\"k-icon icon-sortable\"></i></div></div></th><th title=\"表头2\"><div class=\"k-th\"><div class=\"c-ellipsis\">表头2</div></div></th></tr></thead></table></div></div><div class=\"k-tbody\"><table><colgroup><col class=\"k-th-check\"><col><col></colgroup><tbody><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td><td title=\"第一行\">第一行</td><td title=\"哈哈2\">哈哈2</td></tr><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td><td title=\"第二行\">第二行</td><td title=\"哈哈2\">哈哈2</td></tr></tbody></table></div></div></div></div></div>"
 ```
 
 ####     `Table type`

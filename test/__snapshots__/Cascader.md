@@ -3,7 +3,7 @@
 #### `basic test`
 
 ```
-"<div class=\"k-item\">北京<i class=\"k-arrow ion-ios-arrow-right\"></i></div><!--placeholder--><div class=\"k-item\">湖南<i class=\"k-arrow ion-ios-arrow-right\"></i></div><!--placeholder-->"
+"<div class=\"k-item\">北京<i class=\"k-arrow ion-ios-arrow-right\"></i></div><!--placeholder--><div class=\"k-item k-dropdown-open\">湖南<i class=\"k-arrow ion-ios-arrow-right\"></i></div><!--placeholder-->"
 ```
 
 ```
@@ -12,7 +12,7 @@
 ```
 
 ```
-"<div class=\"k-item\">北京<i class=\"k-arrow ion-ios-arrow-right\"></i></div><!--placeholder--><div class=\"k-item k-active\">湖南<i class=\"k-arrow ion-ios-arrow-right\"></i></div><!--placeholder-->"
+"<div class=\"k-item\">北京<i class=\"k-arrow ion-ios-arrow-right\"></i></div><!--placeholder--><div class=\"k-item k-active k-dropdown-open\">湖南<i class=\"k-arrow ion-ios-arrow-right\"></i></div><!--placeholder-->"
 ```
 
 ```
@@ -20,7 +20,7 @@
 ```
 
 ```
-"<div class=\"k-item\">长沙市<i class=\"k-arrow ion-ios-arrow-right\"></i></div><!--placeholder--><div class=\"k-item k-active\">岳阳市<i class=\"k-arrow ion-ios-arrow-right\"></i></div><!--placeholder-->"
+"<div class=\"k-item\">长沙市<i class=\"k-arrow ion-ios-arrow-right\"></i></div><!--placeholder--><div class=\"k-item k-active k-dropdown-open\">岳阳市<i class=\"k-arrow ion-ios-arrow-right\"></i></div><!--placeholder-->"
 ```
 
 #### `custom label`
@@ -42,7 +42,7 @@
     tabindex="0"
   >
     <div
-      class="k-wrapper"
+      class="k-wrapper k-dropdown-open"
       tabindex="-1"
     >
       <div

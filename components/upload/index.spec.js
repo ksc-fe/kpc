@@ -106,7 +106,7 @@ describe('Upload', () => {
                     done();
                 });
                 input.files = getDataTransfer(['b', 'c', 'd']).files;
-            }, 500);
+            }, 600);
         });
         const input = instance.element.querySelector('input');
         input.files = getDataTransfer(['a']).files;

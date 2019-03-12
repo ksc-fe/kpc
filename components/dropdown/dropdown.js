@@ -71,6 +71,7 @@ export default class Dropdown extends Intact {
                 originProps._evClick = on.click;
                 originProps._evMouseEnter = on.mouseenter;
                 originProps._evMouseLeave = on.mouseleave;
+                // children.className = undefined;
             } else if (originProps.reactVNode) {
                 // for react element
                 const props = originProps.reactVNode.props;

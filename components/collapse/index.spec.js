@@ -25,8 +25,8 @@ describe('Collapse', () => {
                 expect(instance.element.innerHTML).to.matchSnapshot();
 
                 done();
-            }, 500)
-        }, 500);
+            }, 700)
+        }, 700);
     });
 
     it('should expand only one panel', (done) => {
@@ -42,8 +42,8 @@ describe('Collapse', () => {
                 expect(instance.element.innerHTML).to.matchSnapshot();
 
                 done();
-            }, 500)
-        }, 500);
+            }, 700)
+        }, 700);
     });
 
     it('should trigger end even if height is 0', () => {
