@@ -13,7 +13,7 @@ import Icon from 'kpc/components/icon';
 <div>
     <Dropdown disabled>
         <Button type="primary">
-            disabled <Icon class="ion-arrow-down-b" size="small" />
+            disabled <Icon class="ion-ios-arrow-down" />
         </Button>
         <DropdownMenu>
             <DropdownItem>item 1</DropdownItem>
@@ -24,7 +24,7 @@ import Icon from 'kpc/components/icon';
 
     <Dropdown>
         <Button type="primary">
-            disabled item<Icon class="ion-arrow-down-b" size="small" />
+            disabled item <Icon class="ion-ios-arrow-down" />
         </Button>
         <DropdownMenu>
             <DropdownItem>item 1</DropdownItem>
@@ -38,4 +38,10 @@ import Icon from 'kpc/components/icon';
 ```styl
 .k-btn
     margin-right 20px
+.k-icon
+    display inline-block
+    transition transform .25s ease-in-out
+.k-dropdown-open
+    .k-icon
+        transform rotate(180deg)
 ```

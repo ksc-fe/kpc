@@ -14,7 +14,7 @@ import Icon from 'kpc/components/icon';
 <div>
     <Dropdown trigger="click">
         <Button type="primary">
-            click <Icon class="ion-arrow-down-b" size="small" />
+            click <Icon class="ion-ios-arrow-down" />
         </Button>
         <DropdownMenu>
             <DropdownItem>item 1</DropdownItem>
@@ -71,4 +71,10 @@ import Icon from 'kpc/components/icon';
         height 32px
         &:before
             font-size inherit
+.k-icon
+    display inline-block
+    transition transform .25s ease-in-out
+.k-dropdown-open
+    .k-icon
+        transform rotate(180deg)
 ```
