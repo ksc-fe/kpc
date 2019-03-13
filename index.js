@@ -1,5 +1,5 @@
 /*!
- * kpc v0.8.3
+ * kpc v0.8.4
  *
  * Copyright (c) Kingsoft Cloud
  * Released under the MIT License
@@ -35,6 +35,7 @@ import {MoveWrapper} from './components/moveWrapper';
 import {Pagination} from './components/pagination';
 import {Progress} from './components/progress';
 import {Radio} from './components/radio';
+import {Rate} from './components/rate';
 import {Row, Col} from './components/grid';
 import {ScrollSelect} from './components/scrollSelect';
 import {Select, Option, OptionGroup} from './components/select';
@@ -92,6 +93,7 @@ export {
     Pagination,
     Progress,
     Radio,
+    Rate,
     Row,
     ScrollSelect,
     Select,
@@ -154,6 +156,7 @@ const components = {
     Pagination,
     Progress,
     Radio,
+    Rate,
     Row,
     ScrollSelect,
     Select,
@@ -178,7 +181,7 @@ const components = {
     Upload
 };
 
-export const version = '0.8.3';
+export const version = '0.8.4';
 
 /* generate end */
 

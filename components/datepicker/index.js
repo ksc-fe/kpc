@@ -13,6 +13,10 @@ export default class Datepicker extends Intact {
     @Intact.template()
     static template = template;
 
+    static getDateString = getDateString;
+
+    static createDate = createDate;
+
     static propTypes = {
         value: [String, Array, Date, Number],
         clearable: Boolean,

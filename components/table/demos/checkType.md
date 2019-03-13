@@ -1,9 +1,17 @@
 ---
-title: 选择框的类型
+title: 
+    zh-CN: 选择框的类型
+    en-US: Selection box type
 order: 2
 ---
 
+## zh-CN
+
 通过`checkType`设置行选择类型，`checkbox`多选(默认) / `radio`单选 / `none`不可选
+
+## en-US
+
+You can set the row selection type by `checkType` property, `checkbox` multiple selection(default) /  `radio` radio / `none` unselectable
 
 ```vdt
 import Table from 'kpc/components/table';
@@ -27,10 +35,10 @@ export default class extends Intact {
 
     defaults() {
         return {
-            scheme: {a: '表头'},
-            data1: [{a: '多选1'}, {a: '多选2'}],
-            data2: [{a: '单选1'}, {a: '单选2'}],
-            data3: [{a: '不可选1'}, {a: '不可选2'}],
+            scheme: {a: 'header'},
+            data1: [{a: 'checkbox 1'}, {a: 'checkbox 2'}],
+            data2: [{a: 'radio 1'}, {a: 'radio 2'}],
+            data3: [{a: 'unselect 1'}, {a: 'unselect 2'}],
         }
     }
 }

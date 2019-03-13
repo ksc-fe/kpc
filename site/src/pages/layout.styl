@@ -57,7 +57,8 @@ blockquote
     padding-top $headerHeight
 
 .header-shadow
-    box-shadow 0 2px 5px rgba(0, 0, 0, .08)
+    // box-shadow 0 2px 5px rgba(0, 0, 0, .08)
+    border-bottom 1px solid #e5e5e5
 .header-wrapper
     height $headerHeight 
     line-height @height 
@@ -106,7 +107,7 @@ blockquote
                 color #333
                 &.active
                     color linkColor
-                    border-bottom 2px solid linkColor
+                    // border-bottom 2px solid linkColor
         .line
             display inline
             margin 0 10px
@@ -119,7 +120,7 @@ blockquote
         font-size 12px
     .border
         position absolute
-        bottom 0
+        bottom 1px 
         border-bottom 2px solid linkColor
 .transition
     transition all 350ms cubic-bezier(.55, 0, .1, 1)

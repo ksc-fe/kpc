@@ -5,7 +5,7 @@ import './index.styl';
 import {selectInput} from '../utils';
 
 export default class Input extends Intact {
-    @Intact.template
+    @Intact.template()
     static template = template;
 
     static propTypes = {

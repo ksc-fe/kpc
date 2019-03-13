@@ -38,10 +38,10 @@ sizes = large small mini
             &:hover
             &:focus
                 background-color palette(@background-color, -1)
-                border-color palette(@border-color, 1)
+                border-color lookup('$btn-' + type + '-hover-border-color')
             &:active
                 background-color palette(@background-color, 1)
-                border-color palette(@border-color, 1)
+                border-color palette(@border-color, 1) 
     // disabled
     &.k-disabled
         &, &:hover
@@ -139,8 +139,9 @@ sizes = large small mini
         display inline-flex
         align-items center
         justify-content center
-        .k-icon
-            line-height inherit
+        // it will cause icon can not vertical align middle with text 
+        // .k-icon
+        //     line-height inherit
 
 // buttons
 .k-btns

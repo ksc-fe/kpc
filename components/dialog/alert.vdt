@@ -1,0 +1,34 @@
+import Icon from '../icon';
+import Button from '../button';
+import {normalize} from 'intact';
+
+let {type, content, hideIcon, hideFooter, showClose} = self.get();
+
+if (normalize) {
+    content = normalize(content);
+}
+
+<t:parent class={{ {[`k-${type}`]: true, 'k-alert-dialog': true} }}
+    hideClose={{ !showClose }}
+>
+    <b:body>
+        <div class="k-tip-icon">
+            <Icon class={{ {
+                "ion-ios-checkmark": type === 'success',
+                "ion-ios-information": type === 'warning' || type === 'confirm',
+                "ion-ios-close": type === 'error',
+            } }} v-if={{ !hideIcon }} />
+        </div>
+        {{ content }}
+    </b:body>
+    <b:footer>
+        <Button ev-click={{ self.cancel }}
+            v-if={{ type === 'confirm' && !hideFooter }}
+        >{{ self.get('cancelText') }}</Button>
+        <Button type="primary" ev-click={{ self.ok }} 
+            loading={{ self.get('loading') }}
+            disabled={{ self.get('disabledOk') }}
+            v-if={{ !hideFooter }}
+        >{{ self.get('okText') }}</Button>
+    </b:footer>
+</t:parent>

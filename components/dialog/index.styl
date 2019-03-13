@@ -35,6 +35,7 @@
             line-height $dialog-title-height
             font-size $dialog-title-font-size
             color $dialog-title-color
+            display inline-block
         .k-close
             position absolute
             right $dialog-close-right 
@@ -74,6 +75,27 @@
     for size in large small mini
         &.k-{size}
             width lookup('$dialog-' + size + '-width')
+
+// alert dialog
+.k-alert-dialog
+    .k-dialog
+        > .k-body
+            padding $dialog-alert-padding 
+            text-align center
+        > .k-header
+        > .k-footer
+            border none
+    .k-tip-icon
+        text-align center
+        margin $dialog-alert-tip-icon-margin
+        .k-icon
+            font-size $dialog-alert-tip-icon-font-size
+            line-height $dialog-alert-tip-icon-line-height 
+    for type in 'success' 'warning' 'error' 'confirm'
+        // error is a built-in function, we must use string
+        &.k-{type}
+            .k-tip-icon
+                color lookup('$dialog-alert-' + type + '-tip-icon-color')
 
 
 requireTheme('dialog')

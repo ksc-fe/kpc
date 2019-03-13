@@ -51,6 +51,15 @@ export default class Slider extends Intact {
                 this._setFixedValue(val);
             }
         });
+        // make sure the min/max/step is valid
+        const defaults = this.defaults();
+        ['min', 'max', 'step'].forEach(item => {
+            this.on(`$receive:${item}`, (c, v) => {
+                if (typeof v !== 'number') {
+                    this.set(item, defaults[item], {async: true});
+                }
+            });
+        });
         ['min', 'max', 'step', 'value'].forEach(item => {
             this.on(`$receive:${item}`, () => {
                 if (!this.get('_isDragging')) {

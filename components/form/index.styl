@@ -51,5 +51,26 @@
         padding $form-item-append-padding
         vertical-align middle
 
+.k-form
+    // layout: inline
+    &.k-inline
+        .k-form-item
+            display inline-block
+            vertical-align top
+            margin-right $form-item-inline-margin-right 
+            > .k-label
+                width auto
+    // layout: vertical
+    &.k-vertical
+        .k-form-item
+        .k-form-item > .k-label
+        .k-form-item > .k-content
+            display block
+        .k-form-item > .k-label
+            width auto
+            text-align left
+            line-height inherit
+            margin-bottom $form-item-vertical-label-margin-bottom 
+
 
 requireTheme('form')

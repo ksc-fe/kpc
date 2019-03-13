@@ -31,7 +31,7 @@ import Icon from 'kpc/components/icon';
 <div>
     <Dropdown>
         <Button type="primary">
-            hover <Icon class="ion-arrow-down-b" size="small" />
+            hover <Icon class="ion-ios-arrow-down" />
         </Button>
         <DropdownMenu>
             <DropdownItem>item 1</DropdownItem>
@@ -40,4 +40,13 @@ import Icon from 'kpc/components/icon';
         </DropdownMenu>
     </Dropdown>
 </div>
+```
+
+```styl
+.k-icon
+    display inline-block
+    transition transform .25s ease-in-out
+.k-dropdown-open
+    .k-icon
+        transform rotate(180deg)
 ```

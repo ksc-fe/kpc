@@ -25,3 +25,10 @@ sidebar: doc
 | shortcuts | 指定快捷方式 | `Array<Object>` | `undefined` |
 | range | 是否选择日期范围 | `Boolean` | `false` |
 | container | 指定弹出选择层追加的位置，默认：`Dialog`类型的组件会追加到`Dialog`中，其他会追加到`body`中。你可以传入函数返回一个DOM用来作为插入的容器，或者传入字符串用来给`querySelector`进行查询 | `Function` &#124; `String` | `undefined` |
+
+# 静态方法
+
+| 方法名 | 说明 | 参数 | 返回值 |
+| --- | --- | --- | --- |
+| getDateString | 将日期对象转为形如`2019-02-01 12:00:00`的字符串 | 1. `date` 将要转化的日期对象 <br /> 2. `type` `"year"`： 只返回年份；`"month"`：返回年份和月份；`"datetime"`：返回日期和时间字符串；`*`：否则返回日期字符串 | `String` |
+| createDate | 传入形如`2019-02-01 12:00:00`或`2019-02-01`的字符串，返回日期对象（跨浏览器） | `dateString` | `Date` |

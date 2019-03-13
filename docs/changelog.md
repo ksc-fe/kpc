@@ -4,6 +4,21 @@ order: 99
 sidebar: doc
 ---
 
+## v0.8.4
+
+### Core
+
+1. `Add` 新增评分组件`Rate` [#218](https://github.com/ksc-fe/kpc/issues/218)
+2. `Add` `Form`支持`vertical`和`inline`布局方式 [#219](https://github.com/ksc-fe/kpc/issues/219)
+3. `Add` `Select`支持`loading`状态 [#220](https://github.com/ksc-fe/kpc/issues/220)
+4. `Add` `Datepicker`新增`getDateString`和`createDate`方法，用于日期字符串和日期对象之间进行转换
+5. `Fix` 修复`Icon`不能通过`style`属性定义图标颜色的问题 [#217](https://github.com/ksc-fe/kpc/issues/217)
+6. `Fix` 修复`Slider`属性`max/min`取值为`undefined`时会报错的问题 [#216](https://github.com/ksc-fe/kpc/issues/216)
+7. `Fix` 修复`Table`在边框模式下，吸顶的表头宽度会超出`2px`的问题 [#222](https://github.com/ksc-fe/kpc/issues/222)
+8. `Fix` 修复`Dropdown`及该类型的组件，在菜单弹出后，点击另一个组件，上一个菜单不会自动隐藏的问题 [#221](https://github.com/ksc-fe/kpc/issues/221)
+9. `Fix` 修复`Datepicker`被禁用的日期`hover`时依然有背景色的问题 [#223](https://github.com/ksc-fe/kpc/issues/223)
+
+
 ## v0.8.3
 
 ### Core

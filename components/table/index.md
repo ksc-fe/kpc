@@ -33,6 +33,7 @@ sidebar: doc
 | minColWidth | 指定所有列拖动时的最小宽度 | `Number` | `40` |
 | loading | 是否展示加载状态 | `Boolean` | `false` |
 | container | 指定`group`弹出菜单追加的位置，默认：`Dialog`类型的组件会追加到`Dialog`中，其他会追加到`body`中。你可以传入函数返回一个DOM用来作为插入的容器，或者传入字符串用来给`querySelector`进行查询 | `Function` &#124; `String` | `undefined` |
+| stripe | 相邻行是否展示不同的背景色 | `Boolean` | `false` |
 
 ## TableColumn
 

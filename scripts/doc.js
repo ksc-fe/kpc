@@ -291,6 +291,8 @@ module.exports = function(isDev = true) {
         ctx.hook.add('dist.after', async files => {
             await ctx.fsEach(async function(file) {
                 if (/demos/.test(file.path)) {
+                    if (!file.md.setting) return;
+
                     const iframe = file.md.setting.iframe;
                     await file.md.codes.forEach(async item => {
                         if (item.ignored) return;
@@ -393,6 +395,8 @@ module.exports = function(isDev = true) {
             const iframes = [];
             if (isDev) {
                 await ctx.fsEach(async function(file) {
+                    if (!file.md.setting) return;
+
                     if (!/demos/.test(file.path)) {
                         file.extname = '.html';
                         await ctx.fsWrite(

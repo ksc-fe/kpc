@@ -85,10 +85,18 @@
         left 0
         cursor ew-resize
 
+    // stripe
+    &.k-stripe
+        tr:nth-child(even)
+            background $table-even-tr-bg-color
+            &.k-hover
+                background $table-tr-hover-bg-color
+
     // tbody
     tbody
         tr
             border-bottom $table-tr-border
+            transition background $transition
             &.k-hover
                 background $table-tr-hover-bg-color
     td
@@ -143,8 +151,10 @@
 
     // type: border
     &.k-border
-        border-left $table-border-left
-        border-right $table-border-right
+        .k-thead
+        .k-tbody
+            border-left $table-border-left
+            border-right $table-border-right
 
     // sticky
     &.k-sticky
@@ -163,6 +173,10 @@
     // loading
     > .k-spin
         z-index 2
+
+    // expanded
+    tr.k-expand
+        background $table-expanded-tr-bg-color
 
 .k-table-wrapper
     // overflow auto
