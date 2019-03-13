@@ -40,6 +40,7 @@ const {size} = self.get();
                         </b:header>
                         <Button type="none" icon title={{ _$("关闭") }} class="k-close"
                             ev-click={{ self.close }}
+                            v-if={{ !scope.hideClose }}
                         >
                             <i class="k-icon ion-ios-close-empty"></i>
                         </Button>

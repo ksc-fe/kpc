@@ -4,6 +4,7 @@ import '../../styles/kpc.styl';
 import './index.styl';
 import {position} from '../moveWrapper/position';
 import {_$} from '../utils';
+import addStaticMethods from './methods';
 
 export default class Dialog extends Intact {
     @Intact.template()
@@ -229,5 +230,7 @@ export default class Dialog extends Intact {
         this._dragEnd();
     }
 }
+
+addStaticMethods(Dialog);
 
 export {Dialog};

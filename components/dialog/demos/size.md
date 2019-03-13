@@ -1,6 +1,6 @@
 ---
 title: 尺寸
-order: 0.1
+order: 0.2
 ---
 
 添加`size`属性，定义如下尺寸：`large`, `default`，`small`，`mini`

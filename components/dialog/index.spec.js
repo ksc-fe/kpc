@@ -184,6 +184,7 @@ describe('Dialog', () => {
     it('demos test', () => {
         const req = require.context('~/components/dialog/demos', true, /^((?!async).)*index\.js$/i);
         req.keys().forEach(item => {
+            if (/static/.test(item)) return;
             const Demo = req(item).default;
             const i = mount(Demo);
 
@@ -234,4 +235,30 @@ describe('Dialog', () => {
         // should add style
         expect(dialog.getAttribute('style')).include('left');
     });
+
+    it('static methods', (done) => {
+        let cb = sinon.spy();
+        Dialog.success({content: 'test'}).then(cb);
+
+        let dialog = getElement('.k-dialog');
+        expect(dialog.innerHTML).to.matchSnapshot();
+        dialog.querySelector('.k-btn').click();
+        // remove immediately for next test
+        document.body.removeChild(dialog.parentElement);
+        setTimeout(() => {
+            expect(cb.callCount).to.eql(1);
+
+            let cb1 = sinon.spy();
+            Dialog.confirm({content: 'test', hideIcon: true, showClose: true}).then(cb, cb1)
+            dialog = getElement('.k-dialog');
+            expect(dialog.innerHTML).to.matchSnapshot();
+            dialog.querySelector('.k-footer .k-btn').click();
+            document.body.removeChild(dialog.parentElement);
+            setTimeout(() => {
+                expect(cb1.callCount).to.eql(1);
+
+                done();
+            });
+        });
+    })
 });

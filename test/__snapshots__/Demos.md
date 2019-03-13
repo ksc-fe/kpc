@@ -340,6 +340,12 @@
 "<div><div class=\"k-btns\"><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>Show </span><span>large</span><span> Dialog</span></button><!--placeholder--><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>Show </span><span>default</span><span> Dialog</span></button><!--placeholder--><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>Show </span><span>small</span><span> Dialog</span></button><!--placeholder--><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>Show </span><span>mini</span><span> Dialog</span></button><!--placeholder--></div></div>"
 ```
 
+####     `Dialog static`
+
+```
+"<div class=\"k-btns\"><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>Show </span><span>Success</span><span> Dialog</span></button><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>Show </span><span>Warning</span><span> Dialog</span></button><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>Show </span><span>Error</span><span> Dialog</span></button><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>Show </span><span>Confirm</span><span> Dialog</span></button></div>"
+```
+
 ##   `drawer`
 
 ####     `Drawer basic`
@@ -1905,6 +1911,12 @@
 
 ```
 "<div><div><div class=\"k-btns\"><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>Show large Dialog</span></button><!--placeholder--><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>Show default Dialog</span></button><!--placeholder--><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>Show small Dialog</span></button><!--placeholder--><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>Show mini Dialog</span></button><!--placeholder--></div></div></div>"
+```
+
+####     `Dialog static`
+
+```
+"<div><div class=\"k-btns\"><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>Show Success Dialog</span></button><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>Show Warning Dialog</span></button><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>Show Error Dialog</span></button><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>Show Confirm Dialog</span></button></div></div>"
 ```
 
 ##   `drawer`

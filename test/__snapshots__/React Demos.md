@@ -280,6 +280,12 @@
 "<div><div class=\"k-btns\"><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>Show </span><span>large</span><span> Dialog</span></button><!--placeholder--><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>Show </span><span>default</span><span> Dialog</span></button><!--placeholder--><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>Show </span><span>small</span><span> Dialog</span></button><!--placeholder--><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>Show </span><span>mini</span><span> Dialog</span></button><!--placeholder--></div></div>"
 ```
 
+####   `Dialog static`
+
+```
+"<div class=\"k-btns\"><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>Show </span><span>Success</span><span> Dialog</span></button><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>Show </span><span>Warning</span><span> Dialog</span></button><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>Show </span><span>Error</span><span> Dialog</span></button><button class=\"k-btn\" tabindex=\"0\" type=\"button\"><span>Show </span><span>Confirm</span><span> Dialog</span></button></div>"
+```
+
 ## `drawer`
 
 ####   `Drawer basic`
