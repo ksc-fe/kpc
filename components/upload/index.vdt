@@ -57,7 +57,7 @@ const CloseBtn = (props) => (
         accept={{ accept }}
         class="c-hidden" 
         ref="input" 
-        ev-change={{ self._onInputChange}}
+        ev-change={{ self._onInputChange }}
         multiple={{ multiple }}
         directory={{ directory ? '' : undefined }}
         webkitdirectory={{ directory ? '' : undefined }}

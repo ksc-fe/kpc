@@ -19,11 +19,34 @@ function getDataTransfer(names, options = {}) {
     return dt;
 }
 
+let respond = xhr => { xhr.respond(200) };
+
+// we should trigger change event manually in the newest ChromeHeadless
+function fixInputChange(input) {
+    let files;
+    Object.defineProperty(input, 'files', {
+        set(v) { files = v; dispatchEvent(input, 'change'); },
+        get(v) { return files }
+    });
+}
+
 describe('Upload', () => {
     let instance;
 
-    afterEach((done) => {
+    beforeEach(function() {
+        this.xhr = sinon.useFakeXMLHttpRequest();
+        const requests = this.requests = [];
+        this.xhr.onCreate = (xhr) => {
+            setTimeout(() => {
+                respond(xhr);
+            });
+        };
+    });
+
+    afterEach(function(done) {
         unmount(instance);
+        respond = xhr => { xhr.respond(200) };
+        this.xhr.restore();
         setTimeout(done, 400);
     });
 
@@ -55,10 +78,10 @@ describe('Upload', () => {
                         done();
                     }, 500);
                 }, 500);
-
             }, 500);
         });
         const input = instance.element.querySelector('input');
+        fixInputChange(input);
         input.files = getDataTransfer(['a']).files;
         expect(instance.element.innerHTML).to.matchSnapshot();
     });
@@ -109,6 +132,7 @@ describe('Upload', () => {
             }, 600);
         });
         const input = instance.element.querySelector('input');
+        fixInputChange(input);
         input.files = getDataTransfer(['a']).files;
         expect(instance.element.innerHTML.replace(/blob:[^"]*/g, '')).to.matchSnapshot();
     });
@@ -126,6 +150,7 @@ describe('Upload', () => {
         });
 
         const input = instance.element.querySelector('input');
+        fixInputChange(input);
         input.files = getDataTransfer(['a']).files;
         expect(instance.element.innerHTML).to.matchSnapshot();
         instance.upload();
@@ -145,6 +170,7 @@ describe('Upload', () => {
         }
         instance = mount(Demo);
         const input = instance.element.querySelector('input');
+        fixInputChange(input);
         input.files = getDataTransfer(['a'.repeat(1025 * 1)], {name: 'a'}).files;
     });
 
@@ -171,7 +197,10 @@ describe('Upload', () => {
         }
         instance = mount(Demo);
         const input = instance.element.querySelector('input');
+        fixInputChange(input);
         input.files = getDataTransfer(['a'.repeat(1024 * 100)], {name: 'a'}).files;
+
+        respond = xhr => xhr.respond(500)
     });
 
     it('should abort request when remove file in progress', function(done) {
@@ -190,6 +219,7 @@ describe('Upload', () => {
         }
         instance = mount(Demo);
         const input = instance.element.querySelector('input');
+        fixInputChange(input);
         input.files = getDataTransfer(['a'.repeat(1024 * 512)], {name: 'a'}).files;
         instance.refs.upload.one('progress', () => {
             instance.element.querySelector('.k-close').click();
