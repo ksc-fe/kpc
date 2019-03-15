@@ -26,11 +26,16 @@
         line-height @height
         cursor pointer
         font-weight bold
+        transition color $transition
         .k-arrow
             float right
             height $collapse-item-height
             transition transform $transition
             transform-origin left center 0
+    &:not(.k-disabled)
+        > .k-title
+            &:hover
+                color $collapse-item-title-hover-color 
     > .k-content
         overflow hidden
         > .k-wrapper
