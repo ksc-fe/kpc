@@ -4,7 +4,7 @@ import Icon from '../icon';
 let {
     type, className, size, icon, circle, ref, key, tabindex,
     tagName, htmlType, fluid, children, loading, disabled,
-    value, _value, name, tagProps, _checkType, ...rest
+    value, _value, name, tagProps, _checkType, ghost, ...rest
 } = self.get();
 
 const checked = value !== undefined ?
@@ -19,16 +19,18 @@ const checked = value !== undefined ?
 
 const classNameObj = {
     'k-btn': true,
-    [`k-${type}`]: type !== 'default',
+    [`k-${type}`]: type,
     'k-btn-icon': icon,
-    [`k-${size}`]: size !== 'default',
     [className]: className, 
     'k-circle': circle,
     'k-loading': loading,
     'k-fluid': fluid,
     'k-active': checked,
     'k-disabled': disabled || loading,
+    'k-ghost': ghost,
 };
+// type and size may both be default
+if (size !== 'default') classNameObj[`k-${size}`] = true;
 
 const Button = props => {
     if (props.href && tagName === 'button') {

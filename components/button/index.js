@@ -23,6 +23,7 @@ export default class Button extends Intact {
             value: undefined,
             name: undefined,
             tabindex: '0',
+            ghost: false,
 
             _value: undefined,
             _checkType: 'none',
@@ -42,6 +43,7 @@ export default class Button extends Intact {
         tagProps: Object,
         name: String,
         tabindex: [String, Number],
+        ghost: Boolean,
     }
 
     _mount() {

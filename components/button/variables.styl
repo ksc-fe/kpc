@@ -10,32 +10,43 @@ $btn-padding := 0 unit($default-padding / 14, rem)
 $btn-font-size := $default-font-size 
 $btn-hover-border-color := $primary-color
 $btn-hover-color := $primary-color
+$btn-ghost-color := #fff
+$btn-ghost-hover-color := palette($primary-color, -1)
+
+// ghost
+$btn-default-ghost-border-color := #fff
+$btn-default-ghost-hover-border-color := palette($primary-color, -1)
 
 // type
 $btn-primary-color := #fff
 $btn-primary-bg-color := $primary-color
 $btn-primary-border-color := $primary-color
 $btn-primary-hover-border-color := palette($btn-primary-border-color, 1)
+$btn-primary-ghost-color := $primary-color
 
 $btn-warning-color := #fff
 $btn-warning-bg-color := $warning-color
 $btn-warning-border-color := $warning-color
 $btn-warning-hover-border-color := palette($btn-warning-border-color, 1)
+$btn-warning-ghost-color := $warning-color
 
 $btn-danger-color := #fff 
 $btn-danger-bg-color := $danger-color
 $btn-danger-border-color := $danger-color
 $btn-danger-hover-border-color := palette($btn-danger-border-color, 1)
+$btn-danger-ghost-color := $danger-color
 
 $btn-active-color := $btn-primary-color 
 $btn-active-bg-color := $btn-primary-bg-color
 $btn-active-border-color := $btn-primary-border-color
 $btn-active-hover-border-color := palette($btn-active-border-color, 1)
+$btn-active-ghost-color := $btn-primary-ghost-color
 
 $btn-success-color := #fff
 $btn-success-bg-color := $success-color
 $btn-success-border-color := $success-color
 $btn-success-hover-border-color := palette($btn-success-border-color, 1)
+$btn-success-ghost-color := $success-color
 
 // size
 $btn-large-font-size := $large-font-size
@@ -52,6 +63,7 @@ $btn-mini-padding := 0 unit($mini-padding / 14, rem)
 $btn-disabled-color := $disabled-color
 $btn-disabled-bg-color := $disabled-bg-color 
 $btn-disabled-border-color := $disabled-border-color
+$btn-disabled-ghost-border-color := $disabled-color
 
 // icon
 $btn-icon-margin-right := unit(5 / 14, em) 

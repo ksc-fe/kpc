@@ -143,6 +143,39 @@ sizes = large small mini
         // .k-icon
         //     line-height inherit
 
+    // ghost
+    &.k-ghost
+        background transparent
+        color $btn-ghost-color
+        &:hover
+        &:active
+            background transparent
+        &:hover
+            color $btn-ghost-hover-color
+        &:active
+            color $primary-color
+        &.k-default
+            border-color $btn-default-ghost-border-color
+            &:hover
+                border-color $btn-default-ghost-hover-border-color
+            &:active
+                border-color $primary-color
+        for type in types
+            &.k-{type}
+                color lookup('$btn-' + type + '-ghost-color')
+                &:hover
+                    color palette(@color, -1)
+                    border-color palette(@color, -1)
+                &:active
+                    color palette(@color, 1) 
+                    border-color palette(@color, 1)
+        // disabled
+        &.k-disabled
+            &, &:hover
+                color $btn-disabled-color 
+                border-color $btn-disabled-ghost-border-color 
+                background-color transparent
+
 // buttons
 .k-btns
     display inline-block
