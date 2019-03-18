@@ -51,3 +51,6 @@ for size in large default small mini
         if !lookup('$input-' + size + '-clearable-suffix-padding-right')
             define('$input-' + size + '-clearable-suffix-padding-right', add(lookup('$input-' + size + '-padding-left-right'), 14, $icon-text-gutter, 14, $icon-text-gutter))
 
+
+// search input
+$search-input-suffix-margin-right := unit(20 / 14, rem)

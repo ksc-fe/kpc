@@ -7,6 +7,8 @@ sidebar: doc
 
 # 属性
 
+## Input
+
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | type | 在原生`input`标签的`type`取值的基础上扩展了`textarea`值,当我改值时渲染成`textarea` | `String` | `"text"` |
@@ -26,7 +28,19 @@ sidebar: doc
 | tabindex | 原生`tabindex`属性 | `String` | `undefined` |
 | autocomplete | 原生`autocomplete`属性 | `String` | `undefined` |
 
+
+## Search
+
+| 属性 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| value | 组件输入的值 | `String` | `""` |
+| placeholder | 展位文案 | `String` | `"请输入关键字"` |
+| type | 类型 | `"default"` &#124; `"line"` | `"default"` |
+| size | 尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
+
 # 扩展点
+
+## Input
 
 | 名称 | 说明 |
 | --- | --- |
@@ -38,6 +52,14 @@ sidebar: doc
 
 # 事件
 
+## Input
+
 | 事件名 | 说明 | 参数 |
 | --- | --- | --- |
 | clear | 点击清除按钮时触发 | - |
+
+## Search
+
+| 事件名 | 说明 | 参数 |
+| --- | --- | --- |
+| submit | 表单提交事件 | `keywords` |

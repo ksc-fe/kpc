@@ -504,6 +504,12 @@
 "<div><div class=\"k-input k-clearable\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> </div></div></div><br><div class=\"k-input k-with-suffix k-clearable\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> <i class=\"ion-ios-search\"></i><!-- react-mount-point-unstable --></div></div></div></div>"
 ```
 
+####   `Input search`
+
+```
+"<div><form class=\"k-search k-hide\"><div class=\"k-input k-with-suffix k-clearable\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" readonly=\"\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> </div></div></div><button class=\"k-btn k-none k-btn-icon\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search k-search-icon\"></i></button></form><br><form class=\"k-search k-hide k-line\"><div class=\"k-input k-with-suffix k-clearable\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" readonly=\"\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> </div></div></div><button class=\"k-btn k-none k-btn-icon\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search k-search-icon\"></i></button></form></div>"
+```
+
 ####   `Input select`
 
 ```

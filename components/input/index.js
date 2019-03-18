@@ -3,6 +3,7 @@ import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
 import {selectInput} from '../utils';
+import Search from './search';
 
 export default class Input extends Intact {
     @Intact.template()
@@ -95,4 +96,4 @@ export default class Input extends Intact {
     }
 }
 
-export {Input};
+export {Input, Search};
