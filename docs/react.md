@@ -34,7 +34,7 @@ class App extends React.Component {
     render() {
         return (
             // 作为属性，需要normalize
-            <Badge text={Intact.normalize(<div>test</div>)}>
+            <Badge text={Intact.normalize(<i>test</i>)}>
                 <div>test</div>
             </Badge>
         )

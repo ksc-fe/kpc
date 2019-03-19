@@ -72,7 +72,7 @@ export default {
         const h = this.$createElement;
         return {
             // 作为属性，需要normalize
-            text: Intact.normalize(h('div', null, 'test')),
+            text: Intact.normalize(h('i', null, 'test')),
             // 作为子元素，没有必要normalize
             children: h('div', null, 'test')
         }
@@ -106,6 +106,7 @@ module.exports = {
     configureWebpack: {
         resolve: {
             alias: {
+                // 如果需要引入主题，需要指向kpc/@stylus
                 'kpc': 'kpc/@css',
                 'intact$': 'intact-vue',
             }
