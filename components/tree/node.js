@@ -101,6 +101,7 @@ export default class Node {
         parent.checked = !!(checkedCount && checkedCount === count);
         parent.indeterminate = indeterminate;
 
+        if (parent === this) debugger;
         this.tree._updateCheckedKeys(parent);
 
         parent.updateUpward();
@@ -131,10 +132,42 @@ export default class Node {
         this.tree.update();
     }
 
-    remove() {
+    remove(noUpdate) {
         const siblings = this.parent.children;
-        siblings.splice(siblings.indexOf(this), 1);
+        const index = siblings.indexOf(this);
+
+        if (!~index) {
+            debugger;
+            return;
+        }
+        siblings.splice(index, 1);
+
+        if (noUpdate) return;
         this.updateUpward();
+        this.tree.update();
+    }
+
+    _insert(node, index) {
+        const siblings = node.parent.children;
+        siblings.splice(siblings.indexOf(node) + index, 0, this);
+        this.parent = node.parent;
+        this.updateUpward();
+        this.tree.update();
+    }
+
+    insertBefore(node) {
+        this._insert(node, 0);
+    }
+
+    insertAfter(node) {
+        this._insert(node, 1);
+    }
+
+    appendTo(node) {
+        this.parent = node;
+        const children = node.children || (node.children = []);
+        children.push(this);
+        this.tree.expand(node.key, false);
         this.tree.update();
     }
 }

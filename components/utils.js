@@ -260,7 +260,7 @@ export function nextFrame(fn) {
     // raf(fn);
 }
 
-export function throttle(fn, delay) {
+export function debounce(fn, delay) {
     let timer;
     return function() {
         const args = arguments;
@@ -270,6 +270,20 @@ export function throttle(fn, delay) {
             fn.apply(context, args);
         }, delay);
     };
+}
+
+export function throttle(fn, delay) {
+    let lock = false;
+    return function() {
+        if (lock) return;
+        lock = true;
+        const args = arguments;
+        const context = this;
+        const timer = setTimeout(() => {
+            fn.apply(context, args);
+            lock = false;
+        }, delay);
+    }
 }
 
 export const browser = {};

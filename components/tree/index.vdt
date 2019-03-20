@@ -1,15 +1,17 @@
 import Checkbox from '../checkbox';
 import {expandAnimationCallbacks} from '../utils';
 
-const {checkbox, load, className, style} = self.get();
+const {checkbox, load, className, style, draggable, _draggingNode} = self.get();
 const {expandedKeys, selectedKeys} = self;
 
 const TreeNodes = ({data}) => {
     return __u.map(data, value => {
         if (!value.filter) return;
 
-        const expanded = expandedKeys.has(value.key);
-        const selected = selectedKeys.has(value.key);
+        const key = value.key;
+        const expanded = expandedKeys.has(key);
+        const selected = selectedKeys.has(key);
+        const disabled = value.data.disabled;
 
         return <Animate
             a:move={{ false }}
@@ -17,12 +19,16 @@ const TreeNodes = ({data}) => {
             class={{ {
                 "k-node": true,
                 "k-expanded": expanded, 
-                "k-disabled": value.data.disabled,
+                "k-disabled": disabled,
                 "k-selected": selected,
+                "k-dragging": _draggingNode && _draggingNode.key === key,
             } }}
-            key={{ value.key }}
+            key={{ key }}
         >
-            <div class={{ {"k-label": true, "k-leaf": !value.children} }}>
+            <div class={{ {"k-label": true, "k-leaf": !value.children} }}
+                ev-mousedown={{ self._onMouseDown.bind(self, value) }}
+                ev-dragover={{ !disabled && self._onDragOver.bind(self, value) }}
+            >
                 <i class="k-icon ion-android-arrow-dropdown"
                     ev-click={{ self._toggleExpand.bind(self, value, expanded) }}
                     v-if={{ value.children && value.loaded !== false }}
@@ -42,9 +48,10 @@ const TreeNodes = ({data}) => {
                 </b:label>
             </div>
             <Animate 
-                a:move={{ false }}
+                a:move={{ true }}
                 {{ ...expandAnimationCallbacks }}
                 v-if={{ expanded }}
+                class="k-tree"
             > 
                 <TreeNodes data={{ value.children }} />
             </Animate>
@@ -52,6 +59,11 @@ const TreeNodes = ({data}) => {
     });
 };
 
-<div class={{ {"k-tree": true, [className]: className} }} style={{ style }}>
+<Animate class={{ {"k-tree": true, [className]: className} }} style={{ style }}
+    draggable={{ draggable ? "true" : undefined }}
+    a:disabled={{ true }}
+    ev-dragstart={{ draggable && self._onDragStart }}
+    ev-dragend={{ draggable && self._onDragEnd }}
+>
     <TreeNodes data={{ self.root.children }} />
-</div>
+</Animate>

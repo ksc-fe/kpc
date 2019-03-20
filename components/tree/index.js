@@ -3,6 +3,12 @@ import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
 import Node from './node';
+import {debounce} from '../utils';
+
+const BEFORE = -1;
+const AFTER = 1;
+const INNER = 0;
+const RANGE = 0.25;
 
 export default class Tree extends Intact {
     @Intact.template()
@@ -17,6 +23,7 @@ export default class Tree extends Intact {
         filter: Function,
         selectedKeys: Array,
         multiple: Boolean,
+        draggable: Boolean,
     };
 
     defaults() {
@@ -29,6 +36,7 @@ export default class Tree extends Intact {
             filter: undefined,
             selectedKeys: undefined,
             multiple: false,
+            draggable: false,
         }
     }
 
@@ -50,6 +58,8 @@ export default class Tree extends Intact {
         this.on('$receive:selectedKeys', () => {
             this.selectedKeys = new Set(this.get('selectedKeys'));
         });
+
+        this._onDragOver = debounce(this._onDragOver, 100);
     }
 
     _mappingKeys() {
@@ -199,6 +209,94 @@ export default class Tree extends Intact {
         ) return;
 
         this._mappingKeys();
+    }
+
+    _onDragStart(event) {
+        event.stopPropagation();
+
+        const node = this._draggingNode;
+        if (node.data.disabled) {
+            return event.preventDefault();
+        }
+
+        // this.shrink(node.key, false);
+        this.set({'_draggingNode': node});
+
+        event.dataTransfer.setDragImage(this._draggingDOM, 0, 0);
+    }
+
+    _onMouseDown(node, event) {
+        // dragend is not dispatched if the source node was moved or remove
+        // during the drag session
+        // https://bugzilla.mozilla.org/show_bug.cgi?id=460801
+        // we can not use mouseup instead, because the event does not trigger
+        this._draggingNode = node;
+        this._draggingDOM = event.currentTarget;
+    }
+
+    _onDragOver(node, event) {
+        event.preventDefault();
+
+        const draggingNode = this.get('_draggingNode');
+        // maybe it is end
+        if (!draggingNode) return;
+
+        // if the mouse does not move, do nothing
+        const {clientX, clientY} = event;
+        const {_clientX, _clientY} = this;
+        if (clientX === _clientX && clientY === _clientY) return;
+        this._clientX = clientX;
+        this._clientY = clientY;
+
+        let parentNode = node;
+        do {
+            if (parentNode.key === draggingNode.key) {
+                return;
+            }
+        } while (parentNode = parentNode.parent)
+
+        const {_node, _mode} = this;
+        const mode = this._calcInsertMode(event);
+        if (_mode !== mode || _node !== node) {
+            draggingNode.remove(true);
+            this._mode = mode;
+            this._node = node;
+            this._insertNode(node, draggingNode, mode);
+        }
+    }
+
+    _calcInsertMode(event) {
+        const {clientY, currentTarget} = event; 
+        const {top, bottom, height} = currentTarget.getBoundingClientRect();
+        const des = height * RANGE;
+
+        if (clientY <= top + des) return BEFORE;
+        else if (clientY >= bottom - des) return AFTER;
+        return INNER;
+    }
+
+    _insertNode(node, draggingNode, mode) {
+        switch (mode) {
+            case BEFORE:
+                draggingNode.insertBefore(node);
+                break;
+            case AFTER:
+                draggingNode.insertAfter(node);
+                break;
+            case INNER:
+                draggingNode.appendTo(node);
+                break;
+            default:
+                break;
+        }
+    }
+
+    _onDragEnd() {
+        this.set('_draggingNode', undefined);
+        this._draggingDOM = null;
+        this._draggingNode = null;
+
+        this.trigger('dragend');
     }
 }
 

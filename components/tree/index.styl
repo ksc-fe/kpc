@@ -4,6 +4,7 @@
     if $tree-font-size != inherit
         font-size $tree-font-size
     line-height $tree-line-height 
+    position relative
     .k-label
         > .k-text
             vertical-align middle
@@ -45,6 +46,12 @@
             > .k-label .k-text
                 background $tree-selected-text-bg-color
                 border-radius $tree-selected-text-border-radius
+        // dragging
+        &.k-dragging
+            background $bg-color
+        &.c-expand-leave
+            width 100%
+
     // checkbox
     .k-checkbox
         margin-right $tree-checkbox-margin-right
