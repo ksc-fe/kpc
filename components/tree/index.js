@@ -59,7 +59,7 @@ export default class Tree extends Intact {
             this.selectedKeys = new Set(this.get('selectedKeys'));
         });
 
-        this._onDragOver = debounce(this._onDragOver, 100);
+        this._handleDragOver = debounce(this._handleDragOver, 100);
     }
 
     _mappingKeys() {
@@ -247,16 +247,20 @@ export default class Tree extends Intact {
     _onDragOver(node, event) {
         event.preventDefault();
 
-        const draggingNode = this.get('_draggingNode');
-        // maybe it is end
-        if (!draggingNode) return;
-
         // if the mouse does not move, do nothing
         const {clientX, clientY} = event;
         const {_clientX, _clientY} = this;
         if (clientX === _clientX && clientY === _clientY) return;
         this._clientX = clientX;
         this._clientY = clientY;
+
+        this._handleDragOver(node, event);
+    }
+
+    _handleDragOver(node, event) {
+        const draggingNode = this.get('_draggingNode');
+        // maybe it is end
+        if (!draggingNode) return;
 
         let parentNode = node;
         do {
@@ -268,18 +272,18 @@ export default class Tree extends Intact {
         const {_node, _mode} = this;
         const mode = this._calcInsertMode(event);
 
-        // if this node does not allow drop, prevent to insert the dragging node inner it
-        if (mode === INNER) {
-            const {allowDrop} = this.get();
-            if (node.data.disabled || allowDrop && !allowDrop(node)) {
-                return this.trigger('denydrop', node);
-            }
-        }
-
         if (_mode !== mode || _node !== node) {
-            draggingNode.remove(true);
             this._mode = mode;
             this._node = node;
+             // if this node does not allow drop, prevent to insert the dragging node inner it
+            if (mode === INNER) {
+                const {allowDrop} = this.get();
+                if (node.data.disabled || allowDrop && !allowDrop(node)) {
+                    return this.trigger('denydrop', node);
+                }
+            }
+
+            draggingNode.remove(true);
             this._insertNode(node, draggingNode, mode);
         }
     }
