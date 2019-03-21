@@ -283,6 +283,8 @@ export default class Tree extends Intact {
                 }
             }
 
+            this._lastValidNode = node;
+
             draggingNode.remove(true);
             this._insertNode(node, draggingNode, mode);
         }
@@ -315,11 +317,11 @@ export default class Tree extends Intact {
     _onDragEnd() {
         const {_draggingNode} = this.get();
 
-        if (this._node) {
+        if (this._lastValidNode) {
             this.trigger('dragend', {
                 tree: this.root,
                 srcNode: _draggingNode,
-                toNode: this._node,
+                toNode: this._lastValidNode,
                 mode: this._mode,
             });
         }
@@ -328,6 +330,7 @@ export default class Tree extends Intact {
         this._draggingNode = null;
         this._node = null;
         this._mode = null;
+        this._lastValidNode = null;
 
         this.set('_draggingNode', undefined);
     }
