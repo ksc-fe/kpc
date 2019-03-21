@@ -4,6 +4,13 @@ order: 99
 sidebar: doc
 ---
 
+## v0.8.6
+
+### Core
+
+1. `Fix` 修复`Tree`在Firefox下无法拖动的问题
+2. `Fix` 修复`Tree`在某些浏览器下，由于`dragover`事件触发太快，导致不能释放的问题
+
 ## v0.8.5
 
 ### Core
