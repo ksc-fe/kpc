@@ -12,9 +12,13 @@ $tree-icon-width := unit(21 / 14, rem)
 $tree-icon-color := $text-color
 $tree-checkbox-margin-right := unit(8 / 14, rem)
 
-$tree-leaf-padding-left := $tree-node-node-padding-left
+$tree-leaf-padding-left := $tree-icon-width // $tree-node-node-padding-left
 $tree-leaf-checkbox-margin-left := unit(5 / 14, rem)
 
 // selected
 $tree-selected-text-border-radius := $border-radius
 $tree-selected-text-bg-color := palette($primary-color, -3)
+
+// draggable
+$tree-dragging-over-border := 1px solid $primary-color
+$tree-dragging-bg-color := $bg-color

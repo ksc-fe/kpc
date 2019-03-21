@@ -4,11 +4,7 @@ import '../../styles/kpc.styl';
 import './index.styl';
 import Node from './node';
 import {debounce} from '../utils';
-
-const BEFORE = -1;
-const AFTER = 1;
-const INNER = 0;
-const RANGE = 0.25;
+import {BEFORE, AFTER, INNER, RANGE} from './constants';
 
 export default class Tree extends Intact {
     @Intact.template()
@@ -292,11 +288,21 @@ export default class Tree extends Intact {
     }
 
     _onDragEnd() {
-        this.set('_draggingNode', undefined);
+        const {_draggingNode} = this.get();
+
+        this.trigger('dragend', {
+            tree: this.root,
+            srcNode: _draggingNode,
+            toNode: this._node,
+            mode: this._mode,
+        });
+
         this._draggingDOM = null;
         this._draggingNode = null;
+        this._node = null;
+        this._mode = null;
 
-        this.trigger('dragend');
+        this.set('_draggingNode', undefined);
     }
 }
 

@@ -12,6 +12,7 @@ import Input from 'kpc/components/input';
 
 <Tree 
     draggable
+    ev-dragend={{ self._onDragEnd }}
     data={{ [
         {
             label: 'First floor-1',
@@ -78,6 +79,10 @@ export default class extends Intact {
         return {
             expandedKeys: ['2', '2-1'],
         };
+    }
+
+    _onDragEnd(data) {
+        console.log(data);
     }
 }
 ```

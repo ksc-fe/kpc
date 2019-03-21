@@ -6,10 +6,30 @@
     line-height $tree-line-height 
     position relative
     .k-label
+        position relative
         > .k-text
             vertical-align middle
             transition background $transition
             padding $tree-text-padding 
+        // dragging
+        &.k-insert-before
+        &.k-insert-after
+            &:before
+                content ''
+                display block
+                position absolute
+                border-top $tree-dragging-over-border
+                width 100%
+                left 0
+        &.k-insert-before
+            &:before
+                top 0
+        &.k-insert-after
+            &:before
+                bottom 0
+        &.k-insert-inner
+            background $tree-selected-text-bg-color
+            border-radius $tree-selected-text-border-radius
     .k-leaf
         padding-left $tree-leaf-padding-left
         .k-checkbox
@@ -48,7 +68,7 @@
                 border-radius $tree-selected-text-border-radius
         // dragging
         &.k-dragging
-            background $bg-color
+            background $tree-dragging-bg-color
         &.c-expand-leave
             width 100%
 

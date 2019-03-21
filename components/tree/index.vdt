@@ -1,8 +1,9 @@
 import Checkbox from '../checkbox';
 import {expandAnimationCallbacks} from '../utils';
+import {BEFORE, AFTER, INNER} from './constants';
 
 const {checkbox, load, className, style, draggable, _draggingNode} = self.get();
-const {expandedKeys, selectedKeys} = self;
+const {expandedKeys, selectedKeys, _node, _mode} = self;
 
 const TreeNodes = ({data}) => {
     return __u.map(data, value => {
@@ -25,7 +26,14 @@ const TreeNodes = ({data}) => {
             } }}
             key={{ key }}
         >
-            <div class={{ {"k-label": true, "k-leaf": !value.children} }}
+            <div
+                class={{ {
+                    "k-label": true, 
+                    "k-leaf": !value.children,
+                    "k-insert-before": _node && _node.key === key && _mode === BEFORE,
+                    "k-insert-after": _node && _node.key === key && _mode === AFTER,
+                    "k-insert-inner": _node && _node.key === key && _mode === INNER,
+                } }}
                 ev-mousedown={{ self._onMouseDown.bind(self, value) }}
                 ev-dragover={{ !disabled && self._onDragOver.bind(self, value) }}
             >
