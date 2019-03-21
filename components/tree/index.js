@@ -224,6 +224,14 @@ export default class Tree extends Intact {
         // this.shrink(node.key, false);
         this.set({'_draggingNode': node});
 
+        try {
+            // ie throw error
+            // firefox-need-it
+            event.dataTransfer.setData('text/plain', '');
+        } catch (error) {
+          // empty
+        }
+
         event.dataTransfer.setDragImage(this._draggingDOM, 0, 0);
     }
 
