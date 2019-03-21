@@ -35,7 +35,7 @@ const TreeNodes = ({data}) => {
                     "k-insert-inner": _node && _node.key === key && _mode === INNER,
                 } }}
                 ev-mousedown={{ self._onMouseDown.bind(self, value) }}
-                ev-dragover={{ !disabled && self._onDragOver.bind(self, value) }}
+                ev-dragover={{ self._onDragOver.bind(self, value) }}
             >
                 <i class="k-icon ion-android-arrow-dropdown"
                     ev-click={{ self._toggleExpand.bind(self, value, expanded) }}

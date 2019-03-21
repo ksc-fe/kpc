@@ -20,6 +20,8 @@ export default class Tree extends Intact {
         selectedKeys: Array,
         multiple: Boolean,
         draggable: Boolean,
+        allowDrag: Function,
+        allowDrop: Function,
     };
 
     defaults() {
@@ -33,6 +35,8 @@ export default class Tree extends Intact {
             selectedKeys: undefined,
             multiple: false,
             draggable: false,
+            allowDrag: undefined,
+            allowDrop: undefined,
         }
     }
 
@@ -211,7 +215,9 @@ export default class Tree extends Intact {
         event.stopPropagation();
 
         const node = this._draggingNode;
-        if (node.data.disabled) {
+        const {allowDrag} = this.get();
+        if (node.data.disabled || allowDrag && !allowDrag(node)) {
+            this.trigger('denydrop', node);
             return event.preventDefault();
         }
 
@@ -253,6 +259,15 @@ export default class Tree extends Intact {
 
         const {_node, _mode} = this;
         const mode = this._calcInsertMode(event);
+
+        // if this node does not allow drop, prevent to insert the dragging node inner it
+        if (mode === INNER) {
+            const {allowDrop} = this.get();
+            if (node.data.disabled || allowDrop && !allowDrop(node)) {
+                return this.trigger('denydrop', node);
+            }
+        }
+
         if (_mode !== mode || _node !== node) {
             draggingNode.remove(true);
             this._mode = mode;

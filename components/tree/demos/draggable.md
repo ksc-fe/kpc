@@ -3,8 +3,9 @@ title: 可拖拽
 order: 6
 ---
 
-给`Tree`指定`filter`函数，即可实现节点过滤功能，该函数返回`false`则表示过滤掉该项。你需要给`data`的每一项添加全局唯一的`key`
-否则过滤时，会因为每次更新`key`不同而闪动
+添加`draggable`属性，可以实现节点拖拽功能，我们可以通过事件名`dragend`来监听拖拽完成事件，通过
+`allowDrag`和`allowDrop`属性可以分别指定哪些节点可以拖拽和插入子节点，组件会在不满足的情况下分别
+触发`denydrag`和`denydrop`事件来告知用户
 
 ```vdt
 import Tree from 'kpc/components/tree';
@@ -13,6 +14,10 @@ import Input from 'kpc/components/input';
 <Tree 
     draggable
     ev-dragend={{ self._onDragEnd }}
+    allowDrag={{ self._allowDrag }}
+    allowDrop={{ self._allowDrop }}
+    ev-denydrag={{ self._onDenyDrag }}
+    ev-denydrop={{ self._onDenyDrop }}
     data={{ [
         {
             label: 'First floor-1',
@@ -71,6 +76,8 @@ import Input from 'kpc/components/input';
 ```
 
 ```js
+import Message from 'kpc/components/message';
+
 export default class extends Intact {
     @Intact.template()
     static template = template;
@@ -83,6 +90,22 @@ export default class extends Intact {
 
     _onDragEnd(data) {
         console.log(data);
+    }
+
+    _allowDrag(node) {
+        return node.key !== '1-1-1';
+    }
+
+    _allowDrop(node) {
+        return node.key !== '1-1-1';
+    }
+
+    _onDenyDrag(node) {
+        Message.error(`The node '${node.data.label}' is not allowed to drag.`);
+    }
+
+    _onDenyDrop(node) {
+        Message.error(`The node '${node.data.label}' is not allowed to drop.`);
     }
 }
 ```

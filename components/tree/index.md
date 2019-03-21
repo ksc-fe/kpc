@@ -17,6 +17,9 @@ sidebar: doc
 | checkbox | 是否展示复选框 | `Boolean` | `false` |
 | load | 指定异步加载节点数据的函数，该函数通过`Promise`返回数组来添加子节点数据 | `Function` | `undefined` |
 | filter | 指定节点过滤函数，返回`true`则展示，否则过滤掉 | `Function` | `undefined` |
+| draggable | 是否支持拖拽 | `Boolean` | `false` |
+| allowDrag | 指定哪些节点可拖拽 | `Function` | `undefined` |
+| allowDrop | 指定哪些节点可以插入子节点 | `Function` | `undefined` |
 
 ## 实例属性
 
@@ -70,3 +73,6 @@ sidebar: doc
 | --- | --- | --- |
 | click:node | 点击节点触发 | `Node, Event` |
 | rightclick:node | 右键点击节点触发 | `Node, Event` |
+| dragend | 拖拽完成触发 | `{srcNode: '源节点', toNode: '目标节点', mode: '插入模式, -1: 插入节点前面, 1: 插入节点后面, 0: 插入节点内部', tree: '整颗节点树'}` |
+| denydrag | 拖拽不允许拖拽的节点触发 | `Node` |
+| denydrop | 插入到不允许插入的节点时触发 | `Node` |
