@@ -217,7 +217,7 @@ export default class Tree extends Intact {
         const node = this._draggingNode;
         const {allowDrag} = this.get();
         if (node.data.disabled || allowDrag && !allowDrag(node)) {
-            this.trigger('denydrop', node);
+            this.trigger('denydrag', node);
             return event.preventDefault();
         }
 
@@ -294,10 +294,8 @@ export default class Tree extends Intact {
             case AFTER:
                 draggingNode.insertAfter(node);
                 break;
-            case INNER:
-                draggingNode.appendTo(node);
-                break;
             default:
+                draggingNode.appendTo(node);
                 break;
         }
     }
@@ -305,12 +303,14 @@ export default class Tree extends Intact {
     _onDragEnd() {
         const {_draggingNode} = this.get();
 
-        this.trigger('dragend', {
-            tree: this.root,
-            srcNode: _draggingNode,
-            toNode: this._node,
-            mode: this._mode,
-        });
+        if (this._node) {
+            this.trigger('dragend', {
+                tree: this.root,
+                srcNode: _draggingNode,
+                toNode: this._node,
+                mode: this._mode,
+            });
+        }
 
         this._draggingDOM = null;
         this._draggingNode = null;

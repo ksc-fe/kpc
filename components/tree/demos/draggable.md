@@ -28,7 +28,7 @@ import Input from 'kpc/components/input';
                     key: '1-1',
                     children: [
                         {
-                            label: 'Third floor-1.1.1',
+                            label: 'This node can not be dragged and dropped.',
                             key: '1-1-1'
                         }
                     ]
@@ -101,11 +101,11 @@ export default class extends Intact {
     }
 
     _onDenyDrag(node) {
-        Message.error(`The node '${node.data.label}' is not allowed to drag.`);
+        Message.error(node.data.label);
     }
 
     _onDenyDrop(node) {
-        Message.error(`The node '${node.data.label}' is not allowed to drop.`);
+        Message.error(node.data.label);
     }
 }
 ```
