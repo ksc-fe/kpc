@@ -4,6 +4,19 @@ order: 99
 sidebar: doc
 ---
 
+## v0.8.5
+
+### Core
+
+1. `Add` `Dialog`提供`success` `warning` `error` `confirm`4种快捷弹窗 [#230](https://github.com/ksc-fe/kpc/issues/230)
+2. `Add` `Table`新增`stripe`属性，来展示奇偶行交替色样式 [#228](https://github.com/ksc-fe/kpc/issues/228)
+3. `Add` `Dropdown`在展开状态下会自动添加`k-dropdown-open`样式名，以便定义展开状态样式 [#229](https://github.com/ksc-fe/kpc/issues/229)
+4. `Add` `Button`支持`ghost`属性，用来定义透明背景的按钮，用于底色为深色的场景 [#231](https://github.com/ksc-fe/kpc/issues/231)
+5. `Add` 新增`Search`组件，该组件默认为收起状态，点击后展开搜索框 [#227](https://github.com/ksc-fe/kpc/issues/227)
+6. `Add` `Tree`新增`draggable`属性，支持节点拖拽功能 [#234](https://github.com/ksc-fe/kpc/issues/234) 
+7. `Style` 一些样式调整 [#228](https://github.com/ksc-fe/kpc/issues/228)
+8. `Fix` 修复`Collapse`在Firefox下没有收起动画的问题 [#228](https://github.com/ksc-fe/kpc/issues/228)
+
 ## v0.8.4
 
 ### Core
