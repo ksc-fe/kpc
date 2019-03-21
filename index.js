@@ -1,5 +1,5 @@
 /*!
- * kpc v0.8.4
+ * kpc v0.8.5
  *
  * Copyright (c) Kingsoft Cloud
  * Released under the MIT License
@@ -26,7 +26,7 @@ import {Dropdown, DropdownMenu, DropdownItem} from './components/dropdown';
 import {Editable} from './components/editable';
 import {Form, FormItem} from './components/form';
 import {Icon} from './components/icon';
-import {Input} from './components/input';
+import {Input, Search} from './components/input';
 import {Layout, Aside, Header, Body, Footer} from './components/layout';
 import {Link} from './components/link';
 import {Menu, MenuItem} from './components/menu';
@@ -96,6 +96,7 @@ export {
     Rate,
     Row,
     ScrollSelect,
+    Search,
     Select,
     Slider,
     Spin,
@@ -159,6 +160,7 @@ const components = {
     Rate,
     Row,
     ScrollSelect,
+    Search,
     Select,
     Slider,
     Spin,
@@ -181,7 +183,7 @@ const components = {
     Upload
 };
 
-export const version = '0.8.4';
+export const version = '0.8.5';
 
 /* generate end */
 
