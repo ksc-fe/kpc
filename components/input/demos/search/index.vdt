@@ -1,0 +1,7 @@
+import {Search} from 'kpc/components/input';
+
+<div>
+    <Search ev-submit={{ self._search }} />
+    <br />
+    <Search type="line" ev-submit={{ self._search }} />
+</div>

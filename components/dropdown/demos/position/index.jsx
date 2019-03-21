@@ -9,7 +9,7 @@ export default class extends React.Component {
             <div>
                 <Dropdown position={{my: 'left top', at: 'left bottom+5'}}>
                     <Button type="primary">
-                        left <Icon className="ion-arrow-down-b" size="small" />
+                        left <Icon className="ion-ios-arrow-down" />
                     </Button>
                     <DropdownMenu>
                         <DropdownItem>item 1</DropdownItem>
@@ -20,7 +20,7 @@ export default class extends React.Component {
             
                 <Dropdown position={{my: 'right top', at: 'right bottom+5'}}>
                     <Button type="primary">
-                        right <Icon className="ion-arrow-down-b" size="small" />
+                        right <Icon className="ion-ios-arrow-down" />
                     </Button>
                     <DropdownMenu>
                         <DropdownItem>item 1</DropdownItem>
@@ -31,7 +31,7 @@ export default class extends React.Component {
             
                 <Dropdown position={{my: 'center bottom-5', at: 'center top'}}>
                     <Button type="primary">
-                        top center <Icon className="ion-arrow-down-b" size="small" />
+                        top center <Icon className="ion-ios-arrow-down" />
                     </Button>
                     <DropdownMenu>
                         <DropdownItem>item 1</DropdownItem>

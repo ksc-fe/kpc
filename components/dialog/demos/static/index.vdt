@@ -1,0 +1,8 @@
+import {Button, ButtonGroup} from 'kpc/components/button';
+
+<ButtonGroup>
+    <Button 
+        v-for={{ ['success', 'warning', 'error', 'confirm'] }}
+        ev-click={{ self.showDialog.bind(self, value) }}
+    >Show {{ value[0].toUpperCase() + value.substring(1) }} Dialog</Button>
+</ButtonGroup>

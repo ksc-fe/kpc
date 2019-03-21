@@ -1,7 +1,7 @@
 <template>
     <div>
         <KSwitch on="开启" off="关闭" width="62" />
-        <KSwitch height="30" />
+        <KSwitch height="22" />
         <KSwitch on="开启" off="关闭" width="100" height="30" />
     </div>
 </template>

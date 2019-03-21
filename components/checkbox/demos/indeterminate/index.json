@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>indeterminate</code>属性可以控制<code>Checkbox</code>的半选中状态</p>\n",
-    "index": 135,
+    "index": 117,
     "highlighted": [
         {
             "language": "vdt",

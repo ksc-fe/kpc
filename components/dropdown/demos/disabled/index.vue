@@ -2,7 +2,7 @@
     <div>
         <Dropdown disabled>
             <Button type="primary">
-                disabled <Icon class="ion-arrow-down-b" size="small" />
+                disabled <Icon class="ion-ios-arrow-down" />
             </Button>
             <DropdownMenu>
                 <DropdownItem>item 1</DropdownItem>
@@ -13,7 +13,7 @@
     
         <Dropdown>
             <Button type="primary">
-                disabled item<Icon class="ion-arrow-down-b" size="small" />
+                disabled item <Icon class="ion-ios-arrow-down" />
             </Button>
             <DropdownMenu>
                 <DropdownItem>item 1</DropdownItem>

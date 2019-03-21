@@ -9,7 +9,7 @@ export default class extends React.Component {
             <div>
                 <Dropdown>
                     <Button type="primary">
-                        hover <Icon className="ion-arrow-down-b" size="small" />
+                        hover <Icon className="ion-ios-arrow-down" />
                     </Button>
                     <DropdownMenu>
                         <DropdownItem>item 1</DropdownItem>

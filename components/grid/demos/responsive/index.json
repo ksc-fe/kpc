@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>响应式布局参考<a href=\"https://getbootstrap.com/docs/4.0/layout/grid/\">bootstrap v4</a>，分为6个等级：<code>xs</code> <code>sm</code> <code>md</code> <code>lg</code> <code>xl</code> <code>xxl</code>。你也可以以对象的方式指定多个属性(包括：<code>span</code> <code>offset</code> <code>pull</code> <code>push</code> <code>order</code>)的响应式，其中<code>xs=&quot;2&quot;</code>等价于<code>xs={{ {span: 2} }}</code></p>\n",
-    "index": 226,
+    "index": 222,
     "highlighted": [
         {
             "language": "vdt",

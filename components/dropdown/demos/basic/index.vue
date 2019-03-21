@@ -2,7 +2,7 @@
     <div>
         <Dropdown>
             <Button type="primary">
-                hover <Icon class="ion-arrow-down-b" size="small" />
+                hover <Icon class="ion-ios-arrow-down" />
             </Button>
             <DropdownMenu>
                 <DropdownItem>item 1</DropdownItem>

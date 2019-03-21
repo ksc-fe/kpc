@@ -9,7 +9,7 @@ export default class extends React.Component {
             <div>
                 <Dropdown trigger="click">
                     <Button type="primary">
-                        click <Icon className="ion-arrow-down-b" size="small" />
+                        click <Icon className="ion-ios-arrow-down" />
                     </Button>
                     <DropdownMenu>
                         <DropdownItem>item 1</DropdownItem>

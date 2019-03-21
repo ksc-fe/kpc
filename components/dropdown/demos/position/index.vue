@@ -2,7 +2,7 @@
     <div>
         <Dropdown :position="{my: 'left top', at: 'left bottom+5'}">
             <Button type="primary">
-                left <Icon class="ion-arrow-down-b" size="small" />
+                left <Icon class="ion-ios-arrow-down" />
             </Button>
             <DropdownMenu>
                 <DropdownItem>item 1</DropdownItem>
@@ -13,7 +13,7 @@
     
         <Dropdown :position="{my: 'right top', at: 'right bottom+5'}">
             <Button type="primary">
-                right <Icon class="ion-arrow-down-b" size="small" />
+                right <Icon class="ion-ios-arrow-down" />
             </Button>
             <DropdownMenu>
                 <DropdownItem>item 1</DropdownItem>
@@ -24,7 +24,7 @@
     
         <Dropdown :position="{my: 'center bottom-5', at: 'center top'}">
             <Button type="primary">
-                top center <Icon class="ion-arrow-down-b" size="small" />
+                top center <Icon class="ion-ios-arrow-down" />
             </Button>
             <DropdownMenu>
                 <DropdownItem>item 1</DropdownItem>

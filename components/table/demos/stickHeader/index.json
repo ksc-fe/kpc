@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>stickHeader</code>：设置表头是否当表格滚动超出规定高度时，将表头固定在页面顶部，类型<code>Boolean</code> | <code>Number</code>，默认：<code>false</code></p>\n<ol>\n<li>如果取值为<code>Boolean</code>，<code>false</code>表示不吸顶，<code>true</code>表示吸顶，此时等价于<code>0</code>，表示固定的位置的<code>top</code>为<code>0</code></li>\n<li>如果取值为<code>Number</code>，用来指定固定的位置距离视窗顶部的距离，例如本例中，固定在<code>top = 50px</code>的地方</li>\n</ol>\n",
-    "index": 242,
+    "index": 246,
     "highlighted": [
         {
             "language": "vdt",

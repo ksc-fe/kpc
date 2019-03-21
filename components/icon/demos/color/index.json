@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>使用<code>color</code>属性可以定义图标的颜色，组件内置了4中颜色：<code>primary</code> <code>warning</code> <code>danger</code> <code>success</code>。你也可以自定义<code>color</code>值</p>\n",
-    "index": 90,
+    "index": 82,
     "highlighted": [
         {
             "language": "vdt",

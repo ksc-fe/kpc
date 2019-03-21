@@ -39,7 +39,7 @@ module.exports =
 /******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
 /******/ 		// "0" is the signal for "already loaded"
 /******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("./chunk/" + {"0":"a54b15db6a202d76554b","1":"01cd64852e7938fa7f8b","2":"c20200fe814041c461d8","3":"3828c0c6b8e2a00fb258"}[chunkId] + ".js");
+/******/ 			var chunk = require("./chunk/" + {"0":"e004a13029b6de050132","1":"c7c02f5ac1fe5f5148d2","2":"4894818e60a6563ed97a","3":"7fd6c00ba5dc597b3e07"}[chunkId] + ".js");
 /******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				modules[moduleId] = moreModules[moduleId];
@@ -238,7 +238,7 @@ exports.App = exports.default = App;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1551432780525
+      // 1553155962251
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -393,7 +393,7 @@ exports.Spin = exports.default = Spin;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1551432781190
+      // 1553155962835
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -536,6 +536,7 @@ exports.mapChildren = mapChildren;
 exports.toggleArray = toggleArray;
 exports.isNumber = isNumber;
 exports.nextFrame = nextFrame;
+exports.debounce = debounce;
 exports.throttle = throttle;
 exports.isExternalLink = isExternalLink;
 exports.browser = exports.expandAnimationCallbacks = exports.noop = exports.isFunction = exports.isObject = exports.isNullOrUndefined = exports.get = void 0;
@@ -861,10 +862,13 @@ if (typeof window !== 'undefined') {
 }
 
 function nextFrame(fn) {
-  raf(fn);
+  raf(function () {
+    return raf(fn);
+  }); // bellow does not work in firefox
+  // raf(fn);
 }
 
-function throttle(fn, delay) {
+function debounce(fn, delay) {
   var timer;
   return function () {
     var args = arguments;
@@ -872,6 +876,20 @@ function throttle(fn, delay) {
     clearTimeout(timer);
     timer = setTimeout(function () {
       fn.apply(context, args);
+    }, delay);
+  };
+}
+
+function throttle(fn, delay) {
+  var lock = false;
+  return function () {
+    if (lock) return;
+    lock = true;
+    var args = arguments;
+    var context = this;
+    var timer = setTimeout(function () {
+      fn.apply(context, args);
+      lock = false;
     }, delay);
   };
 }
@@ -1432,7 +1450,7 @@ exports.default = _default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1551432783486
+      // 1553155965663
       var cssReload = require("!../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);

@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>给<code>Select</code>添加<code>inline</code>属性，可以展示内联模式，该模式下，组件没有边框，宽度和高度如同内联元素一样由内容撑开</p>\n",
-    "index": 245,
+    "index": 249,
     "highlighted": [
         {
             "language": "vdt",

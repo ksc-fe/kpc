@@ -1,11 +1,11 @@
 {
     "setting": {
         "title": "尺寸",
-        "order": 0.1
+        "order": 0.2
     },
     "catalogs": [],
     "contents": "<p>添加<code>size</code>属性，定义如下尺寸：<code>large</code>, <code>default</code>，<code>small</code>，<code>mini</code></p>\n",
-    "index": 49,
+    "index": 54,
     "highlighted": [
         {
             "language": "vdt",

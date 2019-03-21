@@ -9,7 +9,7 @@ export default class extends React.Component {
             <div>
                 <Dropdown disabled>
                     <Button type="primary">
-                        disabled <Icon className="ion-arrow-down-b" size="small" />
+                        disabled <Icon className="ion-ios-arrow-down" />
                     </Button>
                     <DropdownMenu>
                         <DropdownItem>item 1</DropdownItem>
@@ -20,7 +20,7 @@ export default class extends React.Component {
             
                 <Dropdown>
                     <Button type="primary">
-                        disabled item<Icon className="ion-arrow-down-b" size="small" />
+                        disabled item <Icon className="ion-ios-arrow-down" />
                     </Button>
                     <DropdownMenu>
                         <DropdownItem>item 1</DropdownItem>

@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>value</code>设置组件的值，当添加<code>half</code>属性时，支持选中半星</p>\n",
-    "index": 45,
+    "index": 1,
     "highlighted": [
         {
             "language": "vdt",

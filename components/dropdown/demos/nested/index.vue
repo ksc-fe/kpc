@@ -2,7 +2,7 @@
     <div>
         <Dropdown trigger="click">
             <Button type="primary">
-                click <Icon class="ion-arrow-down-b" size="small" />
+                click <Icon class="ion-ios-arrow-down" />
             </Button>
             <DropdownMenu>
                 <DropdownItem>item 1</DropdownItem>

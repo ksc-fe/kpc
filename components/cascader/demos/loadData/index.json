@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>如果数据项中的<code>children</code>属性为空数组<code>[]</code>，则代表该项子数据为动态加载的，此时可以指定<code>loadData</code>属性来定义动态加载的逻辑，组件会将当前展开项的数据当做参数<code>item</code>传入，你只需要更新<code>item</code>的<code>children</code>属性即可，该函数的返回值为<code>Promise</code>对象</p>\n",
-    "index": 234,
+    "index": 240,
     "highlighted": [
         {
             "language": "vdt",
