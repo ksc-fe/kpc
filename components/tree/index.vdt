@@ -5,6 +5,8 @@ import {BEFORE, AFTER, INNER} from './constants';
 const {checkbox, load, className, style, draggable, _draggingNode} = self.get();
 const {expandedKeys, selectedKeys, _node, _mode} = self;
 
+const useMoveAnimation = !!_draggingNode;
+
 const TreeNodes = ({data}) => {
     return __u.map(data, value => {
         if (!value.filter) return;
@@ -56,7 +58,7 @@ const TreeNodes = ({data}) => {
                 </b:label>
             </div>
             <Animate 
-                a:move={{ true }}
+                a:move={{ useMoveAnimation }}
                 {{ ...expandAnimationCallbacks }}
                 v-if={{ expanded }}
                 class="k-tree"
@@ -67,11 +69,13 @@ const TreeNodes = ({data}) => {
     });
 };
 
-<Animate class={{ {"k-tree": true, [className]: className} }} style={{ style }}
+<Animate class={{ {"k-tree": true, [className]: className} }}
+    style={{ style }}
     draggable={{ draggable ? "true" : undefined }}
     a:disabled={{ true }}
     ev-dragstart={{ draggable && self._onDragStart }}
     ev-dragend={{ draggable && self._onDragEnd }}
+    a:move={{ useMoveAnimation }}
 >
     <TreeNodes data={{ self.root.children }} />
 </Animate>
