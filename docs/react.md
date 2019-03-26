@@ -1,6 +1,6 @@
 ---
 title: React中使用
-order: 1.1
+order: 1.2
 sidebar: doc
 ---
 

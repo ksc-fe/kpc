@@ -1,6 +1,6 @@
 ---
 title: Vue中使用
-order: 1
+order: 1.1
 sidebar: doc
 ---
 
