@@ -11,7 +11,7 @@ import {RANGE} from './constants';
 describe('Tree', () => {
     let instance;
 
-    // afterEach(() => unmount(instance));
+    afterEach(() => unmount(instance));
 
     it('expand and shrink', (done) => {
         instance = mount(BasicDemo);
