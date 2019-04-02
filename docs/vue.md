@@ -117,6 +117,9 @@ module.exports = {
 
 然后就可以引入kpc组件使用了
 
+> `@vue/cli@3.5.0`如果浏览器运行报: `Cannot assign to read only property...`的错误，可以在
+> `babel.config.js`中添加`sourceType: "unambiguous"`解决，详见https://github.com/webpack/webpack/issues/4039
+
 ## 引入主题文件
 
 如果你需要引入主题文件，需要安装`stylus`和`stylus-loader`
