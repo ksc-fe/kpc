@@ -137,8 +137,8 @@
     "@babel/runtime-corejs2": "^7.2.0",
     "downloadjs": "^1.4.7",
     "enquire.js": "^2.1.6",
-    "intact": "^2.4.14",
-    "intact-react": "^1.1.13",
+    "intact": "^2.4.15",
+    "intact-react": "^1.1.15",
     "intact-vue": "^0.4.14",
     "resize-observer-polyfill": "^1.5.0"
   },
