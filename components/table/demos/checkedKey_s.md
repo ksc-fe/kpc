@@ -20,7 +20,7 @@ import Table from 'kpc/components/table';
 
 <div>
     <div class='no-data-template'>
-        <Table scheme={{ {a: 'radio don't specify rowKey'} }}
+        <Table scheme={{ {a: "radio don't specify rowKey"} }}
             data={{ self.get('data1') }}
             checkedKey={{ 0 }}
             checkType='radio'
@@ -33,7 +33,7 @@ import Table from 'kpc/components/table';
         />
     </div>
     <div class='no-data-template'>
-        <Table scheme={{ {a: 'checkbox don't specify rowKey'} }} 
+        <Table scheme={{ {a: "checkbox don't specify rowKey"} }} 
             data={{ self.get('data3') }} 
             checkedKeys={{ [0, 2] }}
         />
@@ -73,8 +73,3 @@ export default class extends Intact {
     }
 }
 ```
-
-
-
-
-
