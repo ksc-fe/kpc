@@ -7,21 +7,25 @@ describe('Transfer', () => {
 
     afterEach(() => unmount(instance));
 
-    it('should fix value, leftChecked and rightChecked when change data', () => {
+    it('should only fix leftChecked when data changed', () => {
         instance = mount(BasicDemo);
 
         const transfer = instance.refs.__test;
         const checkAll = instance.element.querySelector('.k-checkbox');
         checkAll.click();
-        const data = [{label: '1', key: 'a1'}, {label: '2', key: 'a2'}];
+        let data = [{label: '1', key: 'a1'}, {label: '2', key: 'a2'}];
         instance.set('data', data);
         expect(transfer._isCheckAll('left')).to.be.false;
         expect(transfer.get('leftChecked')).to.eql([]);
         expect(transfer.get('rightChecked')).to.eql([]);
-        expect(instance.get('value')).to.eql([]);
+        expect(instance.get('value').length).to.eql(2);
 
+        // keep the checked item when the key in the new data
         checkAll.click();
-        expect(transfer.get('leftChecked')).to.eql(data);
+        data = [{label: '1', key: 'a1'}, {label: '3', key: 'a3'}];
+        instance.set('data', data);
+        expect(transfer.get('leftChecked')).to.eql([{label: '1', key: 'a1'}]);
+
         instance.set('data', []);
         expect(transfer.get('leftChecked')).to.eql([]);
     });

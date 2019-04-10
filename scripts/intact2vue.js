@@ -58,6 +58,7 @@ function parse(vdt, js, vueScript, vueTemplate, vueMethods, vueData) {
         const _head = [];
         for (let i = 0; i < lines.length; i++) {
             const line = lines[i];
+            if (line.startsWith('import')) continue;
             if (line.startsWith('export default')) {
                 js = lines.slice(i).join('\n');
                 break;
