@@ -11,7 +11,7 @@ order: 0
 
 ## en-US
 
-Will ` Col ` nested in ` Row `, then use ` span ` attribute definition of width, width to percentage, each is a `1/24`
+Nest `Col` in `Row`, then define the width with the `span` attribute, the width is a percentage, and each one is `1/24`
 
 
 ```vdt

@@ -13,7 +13,7 @@ order: 1.1
 
 ## en-US
 
-Add `dot` attribute to `Menu`, which can make all the child elements under the current menu `MenuItem` (excluding nested `MenuItem`) display the dot; give `MenuItem` a separate `dot` to control the current menu item. Whether to display dots; add header information to the menu via the `header` extension point
+Add `dot` attribute to `Menu`, which can make all the child elements under the current menu `MenuItem` (excluding nested `MenuItem`) display the dot; give `MenuItem` a separate `dot` to control the current menu item whether to display dots; add header information to the menu via the `header` extension point
 
 ```vdt
 import {Menu, MenuItem} from 'kpc/components/menu';

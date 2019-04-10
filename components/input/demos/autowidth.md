@@ -12,7 +12,7 @@ order: 5
 
 ## en-US
 
-Specify ` autoWidth ` can make changes over the length of the text input box width
+Specify ` autoWidth ` can change the width of the input box as the length of the text changes
 
 ```vdt
 import Input from 'kpc/components/input';

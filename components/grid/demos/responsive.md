@@ -7,15 +7,11 @@ order: 6
 
 ## zh-CN
 
-响应式布局参考[bootstrap v4](https://getbootstrap.com/docs/4.0/layout/grid/)，分为6个等级：
-`xs` `sm` `md` `lg` `xl` `xxl`。你也可以以对象的方式指定多个属性(包括：`span` `offset` `pull`
-`push` `order`)的响应式，其中`xs="2"`等价于`xs={{ {span: 2} }}`
+响应式布局参考[bootstrap v4](https://getbootstrap.com/docs/4.0/layout/grid/)，分为6个等级：`xs` `sm` `md` `lg` `xl` `xxl`。你也可以以对象的方式指定多个属性(包括：`span` `offset` `pull` `push` `order`)的响应式，其中`xs="2"`等价于`xs={{ {span: 2} }}`
 
 ## en-US
 
-The responsive layout reference [bootstrap v4] (https://getbootstrap.com/docs/4.0/layout/grid/) is divided into 6 levels:
-`xs` `sm` `md` `lg` `xl` `xxl`. You can also specify multiple properties as objects (including: `span` `offset` `pull`
-The response of `push` `order`), where `xs="2"` is equivalent to `xs={{ {span: 2} }}`
+The responsive layout reference [bootstrap v4] (https://getbootstrap.com/docs/4.0/layout/grid/) is divided into 6 levels: `xs` `sm` `md` `lg` `xl` `xxl `. You can also specify multiple properties (including :`span` `offset` `pull` `push` `order`) in the form of an object, where `xs="2"` is equivalent to `xs={{ {span: 2} }}`
 
 ```vdt
 import {Row, Col} from 'kpc/components/grid';

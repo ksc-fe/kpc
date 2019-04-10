@@ -12,8 +12,7 @@ order: 2.1
 1. `pull` 定义列距离右边界的栅格数
 2. `push` 定义列距离左边界的栅格数
 
-> 通过`pull`和`push`排序可以有比较好的浏览器兼容性，当然如果你无需支持IE9及以下的浏览器，可以
-> 使用flex布局的order进行排序
+> 通过`pull`和`push`排序可以有比较好的浏览器兼容性，当然如果你无需支持IE9及以下的浏览器，可以使用flex布局的order进行排序
 
 ## en-US
 
@@ -22,8 +21,7 @@ The order of the columns can be changed by `pull` and `push`
 1. `pull` defines the number of rasters whose columns are from the right border
 2. `push` defines the number of rasters in the column from the left border
 
-> Sorting by `pull` and `push` can have better browser compatibility, of course, if you don't need to support IE9 and below, you can
-> Sort using the order of the flex layout
+> Sorting by `pull` and `push` can have better browser compatibility. Of course, if you don't need to support IE9 and below, you can use the order of flex layout to sort.
 
 ```vdt
 import {Row, Col} from 'kpc/components/grid';

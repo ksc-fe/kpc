@@ -9,13 +9,13 @@ order: 2
 
 `Radio`默认选中的值为`true`，通过`trueValue`属性我们可以指定任意值。
 
-> 和`Checkbox`一样，判定选中状态时，当值为对象比较的是引用地址
+> 和`Checkbox`一样，判定选中状态时，当它的值是对象的时候，比较的是引用地址
 
 ## en-US
 
 The default value of `Radio` is `true`. We can specify any value through the `trueValue` property.
 
-> Like `Checkbox`, when the selected state is judged, the value is the reference address when the object is compared.
+> Like `Checkbox`, when the selected state is judged, when its value is an object, the comparison is the reference address.
 
 ```vdt
 import Radio from 'kpc/components/radio';

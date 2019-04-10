@@ -11,7 +11,7 @@ order: 5.1
 
 ## en-US
 
-Give ` Col ` add ` order ` attributes, can be automatically enabled ` flex ` layout to define ` Col ` order
+Add the `order` attribute to `Col` to automatically enable the `flex` layout to define the order of `Col`
 
 ```vdt
 import {Row, Col} from 'kpc/components/grid';

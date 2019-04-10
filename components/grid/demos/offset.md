@@ -10,7 +10,8 @@ order: 2
 给`Col`添加`offset`属性可以使列相对本来的位置向右偏移相应的列数
 
 ## en-US
-Give ` Col ` add ` offset ` properties can make relative was the location of the shift to the right column corresponding to the number of columns
+
+Add the `offset` attribute to `Col` to offset the column from the original position to the right by the number of columns it matches.
 
 ```vdt
 import {Row, Col} from 'kpc/components/grid';

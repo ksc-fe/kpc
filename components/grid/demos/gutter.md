@@ -17,8 +17,8 @@ order: 1
 
 Add `Row` to `gutter`, you can define the spacing between `Col` in units of `px`; if you want to support responsiveness, you can define it as an object, such as: `{lg: 16, md: 4} `
 
-> IE9 does not support matchMedia. If you want `gutter` to support responsiveness under IE9, you need to introduce [matchMedia polyfill] (https://github.com/paulirish/matchMedia.js)
-> `@since v0.7.4` already contains matchMedia polyfill without reintroduction
+>  IE9 does not support matchMedia. If you want `gutter` to support responsive pages in IE9, you need to introduce [matchMedia polyfill] (https://github.com/paulirish/matchMedia.js)
+> `@since v0.7.4` already includes matchMedia polyfill, so there is no need to introduce it again
 
 ```vdt
 import {Row, Col} from 'kpc/components/grid';

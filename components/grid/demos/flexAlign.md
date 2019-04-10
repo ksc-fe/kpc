@@ -12,8 +12,7 @@ order: 5
 
 ## en-US
 
-Give ` Row ` add ` align ` attributes, can be automatically enabled ` flex ` layout to define ` Col ` vertical arrangement, it's optional value is:
-` top ` ` bottom ` ` middle ` ` stretch ` ` baseline `
+Add the `align` attribute to `Row` to automatically enable the `flex` layout to define the vertical arrangement of `Col`. Its optional values are: `top` `bottom` `middle` `stretch` `baseline `
 
 
 ```vdt

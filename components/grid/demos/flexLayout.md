@@ -12,8 +12,8 @@ order: 4
 
 ## en-US
 
-Give ` Row ` add ` the justify ` attributes, can be automatically enabled ` flex ` layout to define ` Col ` horizontal arrangement, it's optional value is:
-` start ` ` end ` ` center ` ` between ` ` around ` ` evenly `
+Add `justify` attribute to `Row` to automatically enable `flex` layout to define the arrangement of `Col` horizontally. Its optional values are:
+`start` `end` `center` `between` `around` `evenly`
 
 
 ```vdt

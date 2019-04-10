@@ -11,7 +11,7 @@ order: 1.1
 
 ## en-US
 
-Through the extension points described above, we can with ` Select ` are combined
+With the extension points described earlier, we can combine them with `Select`
 
 ```vdt
 import Input from 'kpc/components/input';

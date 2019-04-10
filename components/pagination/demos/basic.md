@@ -11,7 +11,7 @@ order: 0
 
 ## en-US
 
-The basic usage of `Pagination`, the total number of data is specified by `total`, `limit` specifies the number of data per page, and the `limits` array defines the number of items to choose. You can listen for changes to the components `current` and `limit` through the `change` event. The component passes the `current` and `limit` objects to the event callback function.
+The basic usage of `Pagination`, the total number of data is specified by `total`, `limit` specifies the number of data per page, and the `limits` array defines the number of items to choose. You can listen for changes to the components `current` and `limit` through the `change` event. The component passes `current` and `limit` to the event callback function via the object.
 
 ```vdt
 import Pagination from 'kpc/components/pagination';

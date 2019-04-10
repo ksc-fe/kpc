@@ -11,7 +11,7 @@ order: 3
 
 ## en-US
 
-Specify ` type ` for ` textarea ` rendering into the text box, at the same time can use ` rows ` to specify the number of rows
+Specify `type` as `textarea` to render it as a text box, and use `rows` to specify the number of rows to display.
 
 
 ```vdt

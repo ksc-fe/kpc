@@ -12,8 +12,7 @@ order: 1
 
 ## en-US
 
-The sidebar layout, the navigation bar and the sidebar are left and right. It is usually necessary to expand the sidebar and add the `collapse` attribute to `Aside`.
-Controls the collapsed state of the sidebar. The component will automatically apply the same `collapse` attribute to the menu component `Menu` under the sidebar.
+The sidebar layout, the navigation bar and the sidebar are left-right relations. Usually, you need to expand the sidebar and add the `collapse` attribute to `Aside` to control the expansion and collapse of the sidebar. The component will automatically apply the same `collapse` attribute to the menu component `Menu` under the sidebar.
 
 ```vdt
 import {Layout, Header, Aside, Body, Footer} from 'kpc/components/layout';

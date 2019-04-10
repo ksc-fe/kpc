@@ -11,7 +11,7 @@ order: 1
 
 ## en-US
 
-As with the browser's native behavior, assign the same `name` to `Radio`, which makes up the radio group.
+As with the browser's native behavior, assign the same `name` attribute to `Radio`, which is combined into a set of radio buttons.
 
 ```vdt
 import Radio from 'kpc/components/radio';

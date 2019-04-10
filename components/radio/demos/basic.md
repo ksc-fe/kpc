@@ -15,7 +15,7 @@ order: 0
 
 The basic usage of `Radio`, and the disabled state. Data bidirectional binding via `v-model`. Since the default value of `trueValue` is `true`, you can directly pass `value=true` to specify the selected state.
 
-> The decision condition for the selected state is `value === trueValue`, and you should pay attention to the case of the value of the object.
+> The decision condition for the selected state is `value === trueValue`, Be careful when the value is object.
 
 ```vdt
 import Radio from 'kpc/components/radio';
