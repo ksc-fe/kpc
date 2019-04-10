@@ -54,6 +54,18 @@ function parse(vdt, js, vueScript, vueTemplate, vueMethods, vueData) {
 
     let methodsObj = {};
     if (js) {
+        const lines = js.split('\n');
+        const _head = [];
+        for (let i = 0; i < lines.length; i++) {
+            const line = lines[i];
+            if (line.startsWith('export default')) {
+                js = lines.slice(i).join('\n');
+                break;
+            }
+            _head.push(line);
+        }
+        head += _head.join('\n');
+        
         const {defaults, methods} = parseJS(js, vueData);
         if (defaults) {
             properties = {...properties, ...defaults};

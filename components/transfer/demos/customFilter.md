@@ -108,3 +108,33 @@ export default class extends Intact {
     }
 }
 ```
+
+```vue-script
+created() {
+    this._fetch();
+},
+watch: {
+    policy: function() {
+        this._fetch();
+    },
+    keywords: function() {
+        this._filter();
+    },
+},
+```
+
+```react-methods
+componentDidMount() {
+    this._fetch();
+}
+
+setState(state, cb) {
+    if ('policy' in state) {
+        super.setState(state, this._fetch);
+    } else if ('keywords' in state) {
+        super.setState(state, this._filter);
+    } else {
+        super.setState(state, cb);
+    }
+}
+```
