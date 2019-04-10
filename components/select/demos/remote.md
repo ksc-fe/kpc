@@ -1,10 +1,18 @@
 ---
-title: 远程搜索
+title: 
+    zh-CN: 远程搜索
+    en-US: Remote search
 order: 4.1
 ---
+## zh-CN
 
 监听`$change:keywords`事件，可以在关键词变化时进行远程搜索，此时需要将过滤函数设为`() => true`
 让它不要真正去过滤结果。
+
+## en-US
+
+Listening to the `$change:keywords` event, you can perform a remote search when the keyword changes. In this case, you need to set the filter function to `() => true`
+Let it not really filter the results.
 
 ```vdt
 import {Select, Option} from 'kpc/components/select';

@@ -1,9 +1,16 @@
 ---
-title: 禁用组件
+title: 
+    zh-CN: 禁用组件
+    en-US: Disable component
 order: 3
 ---
+## zh-CN
 
 添加`disabled`禁用组件
+
+## en-US
+
+Add `disabled` to disable components
 
 ```vdt
 import Slider from 'kpc/components/slider';

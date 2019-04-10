@@ -1,10 +1,16 @@
 ---
-title: 开关值
+title:  
+    zh-CN: 开关值
+    en-US: Switch value
 order: 5
 ---
+## zh-CN
 
-`Switch`默认选中的值为`true`，非选中的值为`false`，通过`trueValue`和`falseValue`属性，
-我们可以指定选中和非选中的值。
+`Switch`默认选中的值为`true`，非选中的值为`false`，通过`trueValue`和`falseValue`属性，我们可以指定选中和非选中的值。
+
+## en-US
+
+The default selected value of `Switch` is `true`, the unselected value is `false`, passing the `trueValue` and `falseValue` attributes,We can specify selected and unselected values.
 
 ```vdt
 import {Switch} from 'kpc/components/switch';

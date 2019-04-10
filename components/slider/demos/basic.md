@@ -1,10 +1,16 @@
 ---
-title: 基础用法
+title: 
+    zh-CN: 基本用法
+    en-US: Basic Usage
 order: 0
 ---
+## zh-CN
 
-用`min`和`max`指定取值范围，`v-model`进行双向数据绑定。动态改变组件的取值范围，组件会修正`value`
-值不让它超出该范围
+用`min`和`max`指定取值范围，`v-model`进行双向数据绑定。动态改变组件的取值范围，组件会修正`value`值不让它超出该范围
+
+## en-US
+
+Use `min` and `max` to specify the range of values, and `v-model` for two-way data binding. Dynamically change the value range of the component, the component will correct the `value` value and prevent it from exceeding the range
 
 ```vdt
 import Slider from 'kpc/components/slider';

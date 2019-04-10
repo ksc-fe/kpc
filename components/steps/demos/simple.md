@@ -1,9 +1,16 @@
 ---
-title: 简洁样式
+title: 
+    zh-CN: 简洁样式
+    en-US: Simple style
 order: 3
 ---
+## zh-CN
 
 设置`type`属性值为`simple`，可以展示简洁样式的步骤条
+
+##en-US
+
+Set the `type` attribute value to `simple` to display a simple style step bar
 
 ```vdt
 import {Steps, Step} from 'kpc/components/steps';
@@ -11,9 +18,9 @@ import Button from 'kpc/components/button';
 
 <div>
     <Steps v-model="index" type="simple">
-        <Step title="选择配置">请选择主机的配置信息</Step>
-        <Step title="选择弹性IP">请选择主机弹性IP的配置信息</Step>
-        <Step title="设置VPC" />
+        <Step title="Select configuration">Please select the configuration information of the host</Step>
+        <Step title="Select Elastic IP">Please select the configuration information of the host elastic IP</Step>
+        <Step title="Set up VPC" />
     </Steps>
 
     <Button type="primary" ev-click={{ self.previous }}
@@ -24,9 +31,9 @@ import Button from 'kpc/components/button';
     >Next Step</Button>
 
     <Steps value="1" status="error" type="simple">
-        <Step title="选择配置">请选择主机的配置信息</Step>
-        <Step title="选择弹性IP">请选择主机弹性IP的配置信息</Step>
-        <Step title="设置VPC" />
+        <Step title="Select configuration">Please select the configuration information of the host</Step>
+        <Step title="Select Elastic IP">Please select the configuration information of the host elastic IP</Step>
+        <Step title="Set up VPC" />
     </Steps>
 </div>
 ```

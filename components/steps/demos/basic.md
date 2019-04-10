@@ -1,9 +1,16 @@
 ---
-title: 基础用法
+title: 
+    zh-CN: 基础用法
+    en-US: Basic usage
 order: 0
 ---
+## zh-CN
 
 `Steps`嵌套`Step`即可实现步骤条，用`v-model`双向绑定当前指向哪一步，索引从`0`开始
+
+## en-US
+
+`Steps` nesting `Step` can implement the step bar, use `v-model` two-way binding which step is currently pointing, the index starts from `0`
 
 ```vdt
 import {Steps, Step} from 'kpc/components/steps';
@@ -11,9 +18,9 @@ import Button from 'kpc/components/button';
 
 <div>
     <Steps v-model="index">
-        <Step title="选择配置">请选择主机的配置信息</Step>
-        <Step title="选择弹性IP">请选择主机弹性IP的配置信息</Step>
-        <Step title="设置VPC" />
+        <Step title="Select configuration">Please select the configuration information of the host</Step>
+        <Step title="Select Elastic IP">Please select the configuration information of the host elastic IP</Step>
+        <Step title="Set up VPC" />
     </Steps>
     <Button type="primary" ev-click={{ self.previous }}
         disabled={{ self.get('index') === 0 }}

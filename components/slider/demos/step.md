@@ -1,9 +1,16 @@
 ---
-title: 设置步长
+title: 
+    zh-CN: 设置步长
+    en-US: Set step size
 order: 1
 ---
+## zh-CN
 
 通过`step`可以设置步长，默认步长为`1`
+
+## en-US
+
+The step size can be set by `step`, the default step size is `1`
 
 ```vdt
 import Slider from 'kpc/components/slider';
