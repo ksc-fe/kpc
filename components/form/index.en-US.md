@@ -1,6 +1,6 @@
 ---
-title: Form 
-category: Components 
+title: Form
+category: Components
 order: 9
 sidebar: doc-en
 ---
@@ -22,7 +22,7 @@ sidebar: doc-en
 | messages | specify error message when validation fails | `Object` | `{}` |
 | classNames | specify the className to be added when validation fails | `Object` | `{}` |
 | label | specify the title to be displayed in front of each item in the form | `String` | `undefined` |
-| htmlFor | specify the `for` property of `label` | `String` | `undefined` | 
+| htmlFor | specify the `for` property of `label` | `String` | `undefined` |
 | hideLabel | whether to hide `label`. It will be displayed by default, even if the `label` property is empty. | `Boolean` | `false` |
 | isDirty | whether it is dirtied. The component only validates after it has been dirtied. | `Boolean` | `false` |
 | force | If the component has been dirtied, force validate it when `FormItem` updates。You can also specify the timing of mandatory validation with the `isDirty` property. [#6][1] | `Boolean` | `false` |

@@ -1,9 +1,17 @@
 ---
-title: 简洁样式
+title:
+    zh-CN: 简洁样式
+    en-US: Simple style
 order: 1.2
 ---
 
+## zh-CN
+
 添加`simple`属性，可以展示简洁样式
+
+## en-US
+
+Add the `simple` attribute to show a clean style
 
 ```vdt
 import Pagination from 'kpc/components/pagination';

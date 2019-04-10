@@ -1,9 +1,17 @@
 ---
-title: 尺寸
+title:
+    zh-CN: 尺寸
+    en-US: Size
 order: 4
 ---
 
+## zh-CN
+
 通过`size`属性，可以定义菜单的尺寸：`large` `default` `small`
+
+## en-US
+
+The size of the menu can be defined by the `size` attribute: `large` `default` `small`
 
 ```vdt
 import {Menu, MenuItem} from 'kpc/components/menu';
@@ -12,7 +20,7 @@ import {ButtonGroup, Button} from 'kpc/components/button';
 import Icon from 'kpc/components/icon';
 
 <div>
-    <Switch on="收起" off="展开" v-model="isCollapse" width="60" />
+    <Switch on="Collapse" off="Expand" v-model="isCollapse" width="60" />
     <Switch on="light" off="dark" v-model="theme" width="60" trueValue="light" falseValue="dark"  />
     <Switch on="horizontal" off="vertical" v-model="type" width="100" trueValue="horizontal" falseValue="vertical" />
     <ButtonGroup checkType="radio" v-model="size">
@@ -21,7 +29,7 @@ import Icon from 'kpc/components/icon';
         <Button value="small">small</Button>
     </ButtonGroup>
     <br /><br />
-    <Menu v-model:expandedKeys="expandedKeys" 
+    <Menu v-model:expandedKeys="expandedKeys"
         collapse={{ self.get('isCollapse') }}
         theme={{ self.get('theme') }}
         size={{ self.get('size') }}

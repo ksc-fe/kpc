@@ -1,9 +1,17 @@
 ---
-title: 手风琴
+title:
+    zh-CN: 手风琴
+    en-US: Accordion
 order: 1.1
 ---
 
+## zh-CN
+
 添加`accordion`属性，可以使菜单每次只能展开一项
+
+## en-US
+
+Add the `accordion` attribute to make the menu expand only one item at a time.
 
 ```vdt
 import {Menu, MenuItem} from 'kpc/components/menu';

@@ -1,9 +1,17 @@
 ---
-title: 自定义百分比内容
+title:
+    zh-CN: 自定义百分比内容
+    en-US: Custom percentage content
 order: 4
 ---
 
+## zh-CN
+
 组件默认会展示当前百分比，我们可以给组件添加子元素展示任意内容
+
+## en-US
+
+The component will display the current percentage by default, we can add child elements to the component to display any content.
 
 ```vdt
 import Progress from 'kpc/components/progress';
@@ -12,11 +20,11 @@ import {ButtonGroup, Button} from 'kpc/components/button';
 <div>
     <Progress percent={{ self.get('percent') }} type="circle">
         <div style="font-size: 14px; line-height: 20px;" v-if={{ self.get('percent') !== 100 }}>
-            正在上传<br />
+            Uploading<br />
             {{ self.get('percent') }}%
         </div>
         <div style="font-size: 14px; line-height: 20px; color: #4db500;" v-else>
-            上传完成
+            Uploaded completed
         </div>
     </Progress>
     <ButtonGroup>

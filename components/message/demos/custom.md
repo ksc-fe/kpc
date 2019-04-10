@@ -1,10 +1,19 @@
 ---
-title: 自定义展示内容
+title:
+    zh-CN: 自定义展示内容
+    en-US: Custom display content
 order: 2
 ---
 
+## zh-CN
+
 当需要自定义提示的内容时，我们可以将`Message`当做组件定义在模板中，而非调用它的静态方法。
 此时我们需要给`Message`指定唯一的`key`。
+
+## en-US
+
+When we need to customize the content of the prompt, we can define `Message` as a component in the template instead of calling its static method.
+At this point we need to assign a unique `key` to `Message`.
 
 ```vdt
 import Message from 'kpc/components/message';
@@ -13,12 +22,12 @@ import {Progress} from 'kpc/components/progress';
 
 <div>
     <Button ev-click={{ self.set.bind(self, 'show', true) }}>custom message</Button>
-    <Message v-model="show" key="message" 
-        duration={{ 0 }} 
+    <Message v-model="show" key="message"
+        duration={{ 0 }}
         type={{ self.get('percent') >= 100 ? 'success' : 'info' }}
         hideIcon
     >
-        <Progress style="width: 200px" 
+        <Progress style="width: 200px"
             percent={{ self.get('percent') }}
             ev-click={{ self.add }}
         />
@@ -33,7 +42,7 @@ export default class extends Intact {
 
     defaults() {
         return {
-            percent: 10, 
+            percent: 10,
             show: false
         };
     }

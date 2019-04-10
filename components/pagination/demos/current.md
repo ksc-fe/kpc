@@ -1,18 +1,25 @@
 ---
-title: 当前页码
+title:
+    zh-CN: 当前页码
+    en-US: Current page number
 order: 4
 ---
 
-通过`current`可以指定当前页码，当页码改变时，会触发默认事件`$change:current`和`$changed:current`，
-我们可以指定相应的回调函数。
+## zh-CN
+
+通过`current`可以指定当前页码，当页码改变时，会触发默认事件`$change:current`和`$changed:current`，我们可以指定相应的回调函数。
+
+## en-US
+
+The current page number can be specified by `current`. When the page number changes, the default events `$change:current` and `$changed:current` are triggered. We can specify the corresponding callback function.
 
 ```vdt
 import Pagination from 'kpc/components/pagination';
 
 <div>
-    <Pagination total={{ 200 }} 
+    <Pagination total={{ 200 }}
         current={{ self.get('current') }}
-        ev-$change:current={{ self._fetch }} 
+        ev-$change:current={{ self._fetch }}
     />
 </div>
 ```

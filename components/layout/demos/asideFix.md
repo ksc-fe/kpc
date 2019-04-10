@@ -1,12 +1,20 @@
 ---
-title: 左右布局固定侧边栏和头部
+title:
+    zh-CN: 左右布局固定侧边栏和头部
+    en-US: Left and right layout fixed sidebar and head
 order: 3
 iframe: 400
 ---
 
+## zh-CN
+
 给`Header`和`Aside`分别添加`fixed`属性，即可固定顶部或者侧边栏，组件会自动添加相应样式，无需手动
 添加样式。另外我们可以通过给`Aside`添加`size`属性，来控制侧边栏的宽度，给属性会自动应用到子组件
 `Menu`中
+
+## en-US
+
+Add the `fixed` attribute to `Header` and `Aside` to fix the top or sidebar, and the component will automatically add the style without having to manually add styles. In addition, we can control the width of the sidebar by adding the `size` property to `Aside`, and the property will be automatically applied to the subcomponent `Menu`.
 
 ```vdt
 import {Layout, Header, Aside, Body, Footer} from 'kpc/components/layout';
@@ -19,7 +27,7 @@ import {Button} from 'kpc/components/button';
     <Aside collapse={{ self.get('collapse') }} fixed size="large">
         <div class="logo">LOGO</div>
         <Menu
-            v-model:expandedKeys="expandedKeys" 
+            v-model:expandedKeys="expandedKeys"
             v-model:selectedKey="selectedKey"
         >
             <MenuItem key="1">

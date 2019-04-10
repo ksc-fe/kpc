@@ -1,9 +1,17 @@
 ---
-title: 展开收起
+title:
+    zh-CN: 展开收起
+    en-US: Expand and collapse
 order: 2
 ---
 
+## zh-CN
+
 添加`collapse`属性，可以使菜单呈现折叠状态
+
+## en-US
+
+Add the `collapse` attribute to make the menu collapsed
 
 ```vdt
 import {Menu, MenuItem} from 'kpc/components/menu';
@@ -11,10 +19,10 @@ import {Switch} from 'kpc/components/switch';
 import Icon from 'kpc/components/icon';
 
 <div>
-    <Switch on="收起" off="展开" v-model="isCollapse" width="60" style="margin-right: 16px;" />
+    <Switch on="Collapse" off="Expand" v-model="isCollapse" width="60" style="margin-right: 16px;" />
     <Switch on="light" off="dark" v-model="theme" width="60" trueValue="light" falseValue="dark"/>
     <br /><br />
-    <Menu v-model:expandedKeys="expandedKeys" 
+    <Menu v-model:expandedKeys="expandedKeys"
         collapse={{ self.get('isCollapse') }}
         theme={{ self.get('theme') }}
     >

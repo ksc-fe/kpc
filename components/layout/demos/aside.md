@@ -1,10 +1,19 @@
 ---
-title: 侧边栏布局
+title:
+    zh-CN: 侧边栏布局
+    en-US: Sidebar layout
 order: 1
 ---
 
+## zh-CN
+
 侧边栏布局，导航条和侧边栏为左右关系，通常需要展开收起侧边栏，给`Aside`添加`collapse`属性即可
 控制侧边栏的展开收起状态。组件会自动给侧边栏下的菜单组件`Menu`应用相同的`collapse`属性
+
+## en-US
+
+The sidebar layout, the navigation bar and the sidebar are left and right. It is usually necessary to expand the sidebar and add the `collapse` attribute to `Aside`.
+Controls the collapsed state of the sidebar. The component will automatically apply the same `collapse` attribute to the menu component `Menu` under the sidebar.
 
 ```vdt
 import {Layout, Header, Aside, Body, Footer} from 'kpc/components/layout';
@@ -17,7 +26,7 @@ import {Button} from 'kpc/components/button';
     <Aside collapse={{ self.get('collapse') }}>
         <div class="logo">LOGO</div>
         <Menu
-            v-model:expandedKeys="expandedKeys" 
+            v-model:expandedKeys="expandedKeys"
             v-model:selectedKey="selectedKey"
         >
             <MenuItem key="1">

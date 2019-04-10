@@ -1,15 +1,22 @@
 ---
-title: 偏移
+title:
+    zh-CN: 偏移
+    en-US: offset
 order: 2
 ---
 
+## zh-CN
+
 给`Col`添加`offset`属性可以使列相对本来的位置向右偏移相应的列数
+
+## en-US
+Give ` Col ` add ` offset ` properties can make relative was the location of the shift to the right column corresponding to the number of columns
 
 ```vdt
 import {Row, Col} from 'kpc/components/grid';
 
 <div>
-    <Row class="no-gutter"> 
+    <Row class="no-gutter">
         <Col span="6" offset="6">col-6 offset-6</Col>
         <Col span="6" offset="6">col-6 offset-6</Col>
     </Row>

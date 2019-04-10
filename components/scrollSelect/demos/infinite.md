@@ -1,9 +1,18 @@
 ---
-title: 数据长度无限
+title:
+    zh-CN: 数据长度无限
+    en-US: Unlimited data length
 order: 1
 ---
 
+
+## zh-CN
+
 将数据生成函数传给`data`属性，可以实现无限长度数据的滚动，本例中：可以无限滚动选择年份
+
+## en-US
+
+Passing the data generation function to the `data` attribute enables scrolling of infinite length data. In this example: you can scroll infinitely by selecting the year.
 
 ```vdt
 import ScrollSelect from 'kpc/components/scrollSelect';
@@ -30,9 +39,9 @@ export default class extends Intact {
         const start = value - 5;
         return Array.apply(null, {length: 10})
             .map((v, i) => {
-                const year = start + i; 
+                const year = start + i;
                 return {
-                    label: `${year}年`,
+                    label: `${year} year`,
                     value: year
                 };
             });

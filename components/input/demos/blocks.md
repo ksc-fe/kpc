@@ -1,9 +1,17 @@
 ---
-title: 追加内容
+title:
+    zh-CN: 追加内容
+    en-US: Additional content
 order: 1
 ---
 
+## zh-CN
+
 使用`append`，`prepend`，`suffix`，`prefix`扩展点，可以往组件追加内容
+
+## en-US
+
+Using ` append `, ` the prepend `, ` suffix `, ` prefix ` extension point, additional content into components
 
 ```vdt
 import Input from 'kpc/components/input';

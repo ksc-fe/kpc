@@ -1,9 +1,17 @@
 ---
-title: 圆形进度
+title:
+    zh-CN: 圆形进度
+    en-US: Round progress
 order: 3
 ---
 
-将`type`设为`circle`可以展示圆形进度
+## zh-CN
+
+Set `type` to `circle` to show circular progress
+
+## en-US
+
+将`type`设置为`circle`以显示循环进度
 
 ```vdt
 import Progress from 'kpc/components/progress';
