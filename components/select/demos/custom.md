@@ -1,10 +1,18 @@
 ---
-title: 自定义显示内容
+title: 
+    zh-CN: 自定义显示内容
+    en-US: Custom display content
 order: 5
 ---
+## zh-CN
 
 `Option`的子元素可以是任意dom结构，而非仅仅只是字符串。此时如果需要支持`filterable`，我们应该
 指定`label`，以便组件知道筛选的内容，当然你也可以通过`filter`指定过滤函数。
+
+## en-US
+
+The child elements of `Option` can be any dom structure, not just strings. At this point, if you need to support `filterable`, we should
+Specify `label` so that the component knows what to filter, but you can also specify the filter function via `filter`.
 
 ```vdt
 import {Select, Option} from 'kpc/components/select';
@@ -27,13 +35,13 @@ export default class extends Intact {
     defaults() {
         return {
             data: [
-                {label: '星期一', value: 'Monday'},
-                {label: '星期二', value: 'Tuesday'},
-                {label: '星期三', value: 'Wednesday'},
-                {label: '星期四', value: 'Thursday'},
-                {label: '星期五', value: 'Friday'},
-                {label: '星期六', value: 'Saturday'},
-                {label: '星期天', value: 'Sunday'},
+                {label: 'Monday', value: 'Monday'},
+                {label: 'Tuesday', value: 'Tuesday'},
+                {label: 'Wednesday', value: 'Wednesday'},
+                {label: 'Thursday', value: 'Thursday'},
+                {label: 'Friday', value: 'Friday'},
+                {label: 'Saturday', value: 'Saturday'},
+                {label: 'Sunday', value: 'Sunday'},
             ]
         }
     }

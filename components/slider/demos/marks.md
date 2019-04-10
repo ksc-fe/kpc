@@ -1,10 +1,16 @@
 ---
-title: 展示标签
+title: 
+    zh-CN: 展示标签
+    en-US: Display label
 order: 5
 ---
+## zh-CN
 
-通过`marks`属性，可以给`Slider`标注刻度，该属性类型为`Object`，`key`表示组件的值，`value`为该
-值对应展示的标注文案。
+通过`marks`属性，可以给`Slider`标注刻度，该属性类型为`Object`，`key`表示组件的值，`value`为该值对应展示的标注文案。
+
+## en-US
+
+The `Slider` can be marked with a scale by the `marks` attribute. The attribute type is `Object`, `key` indicates the value of the component, and `value` is the label copy corresponding to the value
 
 ```vdt
 import Slider from 'kpc/components/slider';
@@ -35,13 +41,13 @@ export default class extends Intact {
                 3: '3',
                 4: '4',
                 5: '5',
-                6: '6月',
+                6: '6month',
                 7: '7',
                 8: '8',
                 9: '9',
-                10: '1年',
-                11: '2年',
-                12: '3年',
+                10: '1year',
+                11: '2year',
+                12: '3year',
             }
         }
     }

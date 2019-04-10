@@ -23,7 +23,7 @@ sidebar: doc-en
 | trueValue | value when turned on | `*` | `true` |
 | falseValue | value when closed | `*` | `false` |
 
-# Extension point
+# Blocks
 
 | Name | Description |
 | --- | --- |

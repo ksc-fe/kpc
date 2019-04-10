@@ -1,9 +1,16 @@
 ---
-title: 最大/小值及步长
+title: 
+    zh-CN: 最大/小值及步长
+    en-US: Maximum/minimum and step size
 order: 1
 ---
+## zh-CN
 
 `max`和`min`可指定取值范围，`step`指定步长
+
+## en-US
+
+`max` and `min` can specify the range of values, `step` specifies the step size
 
 ```vdt
 import Spinner from 'kpc/components/spinner';
