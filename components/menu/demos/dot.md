@@ -1,20 +1,28 @@
 ---
-title: 自定义头部和添加圆点
+title:
+    zh-CN: 自定义头部和添加圆点
+    en-US: Customize the head and add dots
 order: 1.1
 ---
+
+## zh-CN
 
 给`Menu`添加`dot`属性，即可以让当前菜单下所有子元素`MenuItem`（不包括嵌套`MenuItem`）前面展示
 圆点；给`MenuItem`单独指定`dot`可以控制当前菜单项是否展示圆点；通过`header`扩展点可以给菜单
 添加头部信息
 
+## en-US
+
+Add `dot` attribute to `Menu`, which can make all the child elements under the current menu `MenuItem` (excluding nested `MenuItem`) display the dot; give `MenuItem` a separate `dot` to control the current menu item. Whether to display dots; add header information to the menu via the `header` extension point
+
 ```vdt
 import {Menu, MenuItem} from 'kpc/components/menu';
 import Icon from 'kpc/components/icon';
 
-<Menu 
+<Menu
     v-model:expandedKeys="expandedKeys"
     v-model:selectedKey="selectedKey"
-    dot 
+    dot
     theme="light"
 >
     <b:header><Icon class="ion-star" />Header</b:header>

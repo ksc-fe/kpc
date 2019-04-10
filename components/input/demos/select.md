@@ -1,9 +1,17 @@
 ---
-title: 与Select组合
+title:
+    zh-CN: 与select的组合
+    en-US: Combined with select
 order: 1.1
 ---
 
+## zh-CN
+
 通过前面介绍的扩展点，我们可以与`Select`进行组合
+
+## en-US
+
+Through the extension points described above, we can with ` Select ` are combined
 
 ```vdt
 import Input from 'kpc/components/input';

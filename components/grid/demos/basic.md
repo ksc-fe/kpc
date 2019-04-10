@@ -1,15 +1,24 @@
 ---
-title: 基本用法
+title:
+    zh-CN: 基本用法
+    en-US: Basic Usage
 order: 0
 ---
 
+## zh-CN
+
 将`Col`嵌套在`Row`中，然后用`span`属性定义所占的宽度，宽度为百分比，每一份是`1/24`
+
+## en-US
+
+Will ` Col ` nested in ` Row `, then use ` span ` attribute definition of width, width to percentage, each is a `1/24`
+
 
 ```vdt
 import {Row, Col} from 'kpc/components/grid';
 
 <div>
-    <Row> 
+    <Row>
         <Col span="12">col-12</Col>
         <Col span="12">col-12</Col>
     </Row>

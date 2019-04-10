@@ -1,9 +1,17 @@
 ---
-title: 自定义图标
+title:
+    zh-CN: 自定义图标
+    en-US: Custom icon
 order: 3
 ---
 
+## zh-CN
+
 通过`icon`扩展点，可以自定义图标
+
+## en-US
+
+Customize icons with the `icon` extension point
 
 ```vdt
 import Rate from 'kpc/components/rate';

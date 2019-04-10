@@ -1,11 +1,19 @@
 ---
-title: 上下布局固定侧边栏和头部
+title:
+    zh-CN: 上下布局固定侧边栏和头部
+    en-US: Top and bottom layout fixed sidebar and head
 order: 2
 iframe: 400
 ---
 
+## zh-CN
+
 给`Header`和`Aside`分别添加`fixed`属性，即可固定顶部或者侧边栏，组件会自动添加相应样式，无需手动
 添加样式
+
+## en-US
+
+Add the `fixed` attribute to `Header` and `Aside` to fix the top or sidebar, and the component will automatically add the style without having to manually add the style.
 
 ```vdt
 import {Layout, Header, Aside, Body, Footer} from 'kpc/components/layout';
@@ -40,7 +48,7 @@ import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
     <Layout>
         <Aside fixed>
             <Menu
-                v-model:expandedKeys="expandedKeys" 
+                v-model:expandedKeys="expandedKeys"
                 v-model:selectedKey="selectedKey"
                 theme="light"
             >

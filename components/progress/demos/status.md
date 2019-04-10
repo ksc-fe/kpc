@@ -1,9 +1,17 @@
 ---
-title: 状态
+title:
+    zh-CN: 状态
+    en-US: Status
 order: 1
 ---
 
+## zh-CN
+
 通过`status`来指定状态：`active` `normal` `error` `success`
+
+## en-US
+
+Specify the status with `status`: `active` `normal` `error` `success`
 
 ```vdt
 import Progress from 'kpc/components/progress';

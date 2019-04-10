@@ -1,9 +1,17 @@
 ---
-title: 水平菜单
+title:
+    zh-CN: 水平菜单
+    en-US: Horizontal menu
 order: 3
 ---
 
+## zh-CN
+
 通过`type`属性，可以定义菜单垂直或者水平排列：`vertical` `horizontal`，默认`vertical`
+
+## en-US
+
+With the `type` attribute, you can define the menu to be arranged vertically or horizontally: `vertical` `horizontal`, default `vertical`
 
 ```vdt
 import {Menu, MenuItem} from 'kpc/components/menu';
@@ -32,7 +40,7 @@ import Icon from 'kpc/components/icon';
         <MenuItem key="4"><Icon class="ion-gear-b" />menu 4</MenuItem>
     </Menu>
     <br /><br />
-    <Switch 
+    <Switch
         on="light"
         off="dark"
         v-model="theme"

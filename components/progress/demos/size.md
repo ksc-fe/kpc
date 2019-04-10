@@ -1,9 +1,17 @@
 ---
-title: 尺寸
+title:
+    zh-CN: 尺寸
+    en-US: Size
 order: 2
 ---
 
+## zh-CN
+
 通过`size`来指定尺寸：`default` `small` `mini`
+
+## en-US
+
+Specify the size by `size`: `default` `small` `mini`
 
 ```vdt
 import Progress from 'kpc/components/progress';

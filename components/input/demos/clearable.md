@@ -1,9 +1,17 @@
 ---
-title: 可清除
+title:
+    zh-CN: 可清除
+    en-US: Purgeable
 order: 4
 ---
 
+## zh-CN
+
 指定`clearable`可以展示快速清除按钮
+
+## en-US
+
+Specify ` clearable ` can show quickly remove button
 
 ```vdt
 import Input from 'kpc/components/input';

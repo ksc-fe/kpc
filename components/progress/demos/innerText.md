@@ -1,9 +1,17 @@
 ---
-title: 在进度条上展示百分比
+title:
+    zh-CN: 在进度条上展示百分比
+    en-US: Show percentage on progress bar
 order: 1.1
 ---
 
+## zh-CN
+
 添加`inInnerText`属性，可以在进度条上展示百分比
+
+## en-US
+
+Add the `inInnerText` attribute to display the percentage on the progress bar
 
 ```vdt
 import Progress from 'kpc/components/progress';

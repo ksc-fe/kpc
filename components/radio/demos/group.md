@@ -1,9 +1,17 @@
 ---
-title: Radio组
+title:
+    zh-CN: Radio组
+    en-US: Radio group
 order: 1
 ---
 
+## zh-CN
+
 和浏览器原生行为一样，给`Radio`指定相同的`name`，它们便组成了单选框组。
+
+## en-US
+
+As with the browser's native behavior, assign the same `name` to `Radio`, which makes up the radio group.
 
 ```vdt
 import Radio from 'kpc/components/radio';

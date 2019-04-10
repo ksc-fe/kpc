@@ -1,9 +1,17 @@
 ---
-title: 尺寸
+title:
+    zh-CN: 尺寸
+    en-US: Size
 order: 2
 ---
 
+## zh-CN
+
 添加`size`属性，定义如下尺寸：`large`, `default`，`small`，`mini`
+
+## en-US
+
+Add ` size ` properties, define the following dimensions: ` large `, ` default `, ` small `, ` mini `
 
 ```vdt
 import Input from 'kpc/components/input';
