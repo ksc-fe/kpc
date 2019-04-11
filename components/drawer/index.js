@@ -42,7 +42,7 @@ export default class Drawer extends Dialog {
         // will propagate to document immediately
         // and this will lead close the layer
         this.timer = setTimeout(() => {
-            document.addEventListener('click', this._onDocumentClick);
+            document.addEventListener('click', this._onDocumentClick, true);
         });
     }
 
@@ -54,7 +54,7 @@ export default class Drawer extends Dialog {
     }
     
     _removeDocumentEvents() {
-        document.removeEventListener('click', this._onDocumentClick);
+        document.removeEventListener('click', this._onDocumentClick, true);
     }
 
     _center() {}
