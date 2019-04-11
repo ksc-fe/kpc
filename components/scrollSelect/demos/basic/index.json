@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>data</code>属性给组件指定可选项，通过<code>v-model</code>双向绑定<code>value</code>值。<code>data</code>为数组，每一项结构为：</p>\n<ol>\n<li><code>label</code>要展示的文案</li>\n<li><code>value</code> 该项的取值</li>\n</ol>\n<p><code>ScrollSelect</code>可以无限循坏滚动，所以数据项的长度不应过短，否则会出现重复的项；支持拖拽、点击、滚动进行选择</p>\n",
-    "index": 30,
+    "index": 23,
     "highlighted": [
         {
             "language": "vdt",

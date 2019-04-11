@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>和浏览器原生行为一样，给<code>Checkbox</code>指定相同的<code>name</code>，它们便组成了复选框组。</p>\n<blockquote>\n<p>此时必须初始化绑定的属性为数组，否则<code>Checkbox</code>将类似<code>radio</code>一样只能单选</p>\n</blockquote>\n",
-    "index": 78,
+    "index": 70,
     "highlighted": [
         {
             "language": "vdt",

@@ -27,7 +27,6 @@ import {Tabs, Tab} from 'kpc/components/tabs';
 import {Button, ButtonGroup} from 'kpc/components/button';
 
 let id = 3;
-
 export default {
     components: {
         Tabs, Tab, Button, ButtonGroup

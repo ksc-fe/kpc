@@ -1,7 +1,7 @@
 import React from 'react';
 import Tooltip from 'kpc/components/tooltip';
 import Button from 'kpc/components/button';
-import Message from 'kpc/components/message';
+
 
 export default class extends React.Component {
     constructor(props) {

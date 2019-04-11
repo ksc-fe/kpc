@@ -11,6 +11,7 @@
 import {Form, FormItem} from 'kpc/components/form';
 import {Input} from 'kpc/components/input';
 
+
 export default {
     components: {
         Form, FormItem, Input

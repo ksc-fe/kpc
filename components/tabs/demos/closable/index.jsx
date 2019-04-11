@@ -3,7 +3,6 @@ import {Tabs, Tab} from 'kpc/components/tabs';
 import {Button, ButtonGroup} from 'kpc/components/button';
 
 let id = 3;
-
 export default class extends React.Component {
     constructor(props) {
         super(props);

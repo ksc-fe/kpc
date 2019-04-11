@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>给<code>Row</code>添加<code>justify</code>属性，即可自动启用<code>flex</code>布局来定义<code>Col</code>水平方向的排列方式，它的可选值为：<code>start</code> <code>end</code> <code>center</code> <code>between</code> <code>around</code> <code>evenly</code></p>\n",
-    "index": 196,
+    "index": 195,
     "highlighted": [
         {
             "language": "vdt",

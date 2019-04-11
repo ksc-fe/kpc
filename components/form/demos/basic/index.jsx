@@ -8,7 +8,7 @@ import {ButtonGroup, Button} from 'kpc/components/button';
 import {Switch} from 'kpc/components/switch';
 import {Slider} from 'kpc/components/slider';
 import {Datepicker} from 'kpc/components/datepicker';
-import Message from 'kpc/components/message';
+
 
 export default class extends React.Component {
     constructor(props) {

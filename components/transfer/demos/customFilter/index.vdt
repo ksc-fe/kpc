@@ -1,0 +1,39 @@
+import Transfer from 'kpc/components/transfer';
+import Input from 'kpc/components/input';
+import {Select, Option} from 'kpc/components/select';
+import Tag from 'kpc/components/tag';
+
+<div>
+    <Transfer data={{ self.get('data') }} 
+        filterable
+        keyName="name"
+        v-model="value"
+        ref="__test"
+    >
+        <b:filter params="type">
+            <Input v-if={{ type === 'left' }} size="small"
+                placeholder="请输入"
+                clearable
+                v-model="keywords"
+            >
+                <b:prepend>
+                    <Select v-model="policy" width="100" size="small">
+                        <Option value="all">全部策略</Option>
+                        <Option value="system">系统策略</Option>
+                        <Option value="common">通用策略</Option>
+                    </Select>
+                </b:prepend>
+            </Input>
+        </b:filter>
+        <b:label params="data, index, type">
+            <div>
+                <div>
+                    {{ data.name }}
+                    <Tag type="warning" size="mini" v-if={{ data.policy === 'system' }}>系统策略</Tag>
+                </div>
+                <p>{{ data.members }}人 / {{ data.desc }}</p>
+            </div>
+        </b:label>
+    </Transfer>
+    <p>You selected: {{ JSON.stringify(self.get('value')) }}</p>
+</div>

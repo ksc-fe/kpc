@@ -29,6 +29,7 @@
 <script>
 import Table from 'kpc/components/table';
 
+
 export default {
     components: {
         Table

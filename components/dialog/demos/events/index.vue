@@ -12,7 +12,7 @@
 <script>
 import Button from 'kpc/components/button';
 import Dialog from 'kpc/components/dialog';
-import Message from 'kpc/components/message';
+
 
 export default {
     components: {

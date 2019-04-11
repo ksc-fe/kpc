@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>使用<code>v-model</code>绑定输入的值，<code>disabled</code>来禁用组件</p>\n",
-    "index": 38,
+    "index": 12,
     "highlighted": [
         {
             "language": "vdt",

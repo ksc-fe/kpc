@@ -27,10 +27,10 @@ export default class extends React.Component {
                 <Table data={data}>
                     <TableColumn key="a"
                         b-title={<>
-                        <span title="自定义表头内容" className="c-middle title">自定义表头内容</span>
-                        <Tooltip content="tooltip content">
-                            <i className="ion-ios-help-outline c-middle"></i>
-                        </Tooltip>
+                            <span title="自定义表头内容" className="c-middle title">自定义表头内容</span>
+                            <Tooltip content="tooltip content">
+                                <i className="ion-ios-help-outline c-middle"></i>
+                            </Tooltip>
                         </>}
                         group={[{label: 'test', value: ''}]}
                         sortable

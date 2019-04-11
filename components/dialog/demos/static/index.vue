@@ -8,7 +8,7 @@
 </template>
 <script>
 import {Button, ButtonGroup} from 'kpc/components/button';
-import Dialog from 'kpc/components/dialog';
+
 
 export default {
     components: {

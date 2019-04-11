@@ -14,12 +14,12 @@ export default class extends React.Component {
             <div>
                 <Tooltip trigger="click"
                     b-content={<>
-                    <Slider value={this.state.volume}
-                        on$change-value={(c, volume) => this.setState({volume})} 
-                        style={{"width":"200px"}}
-                        isShowInput={false} 
-                        isShowEnd={false}
-                    />
+                        <Slider value={this.state.volume}
+                            on$change-value={(c, volume) => this.setState({volume})} 
+                            style={{"width":"200px"}}
+                            isShowInput={false} 
+                            isShowEnd={false}
+                        />
                     </>}
                 >
                     <Button>Adjust Volume</Button>

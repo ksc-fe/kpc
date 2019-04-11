@@ -17,7 +17,7 @@
 </template>
 <script>
 import Editable from 'kpc/components/editable';
-import Message from 'kpc/components/message';
+
 
 export default {
     components: {

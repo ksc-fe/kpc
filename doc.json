@@ -136,124 +136,6 @@
             ]
         },
         {
-            "title": "字体图标",
-            "category": "组件",
-            "order": 2,
-            "sidebar": "doc",
-            "path": "components/icon/index.md",
-            "children": [
-                {
-                    "title": "属性",
-                    "path": "#header-%E5%B1%9E%E6%80%A7",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                    "text": "属性",
-                    "children": []
-                }
-            ]
-        },
-        {
-            "title": "评分",
-            "category": "组件",
-            "order": 2,
-            "sidebar": "doc",
-            "path": "components/rate/index.md",
-            "children": [
-                {
-                    "title": "属性",
-                    "path": "#header-%E5%B1%9E%E6%80%A7",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                    "text": "属性",
-                    "children": []
-                },
-                {
-                    "title": "扩展点",
-                    "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
-                    "level": 1,
-                    "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
-                    "text": "扩展点",
-                    "children": []
-                }
-            ]
-        },
-        {
-            "title": "输入框",
-            "category": "组件",
-            "order": 2,
-            "sidebar": "doc",
-            "path": "components/input/index.md",
-            "children": [
-                {
-                    "title": "属性",
-                    "path": "#header-%E5%B1%9E%E6%80%A7",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                    "text": "属性",
-                    "children": [
-                        {
-                            "title": "Input",
-                            "path": "#header-Input",
-                            "level": 2,
-                            "content": "<h2 id='header-Input'>Input</h2>",
-                            "text": "Input",
-                            "children": []
-                        },
-                        {
-                            "title": "Search",
-                            "path": "#header-Search",
-                            "level": 2,
-                            "content": "<h2 id='header-Search'>Search</h2>",
-                            "text": "Search",
-                            "children": []
-                        }
-                    ]
-                },
-                {
-                    "title": "扩展点",
-                    "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
-                    "level": 1,
-                    "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
-                    "text": "扩展点",
-                    "children": [
-                        {
-                            "title": "Input",
-                            "path": "#header-Input",
-                            "level": 2,
-                            "content": "<h2 id='header-Input'>Input</h2>",
-                            "text": "Input",
-                            "children": []
-                        }
-                    ]
-                },
-                {
-                    "title": "事件",
-                    "path": "#header-%E4%BA%8B%E4%BB%B6",
-                    "level": 1,
-                    "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
-                    "text": "事件",
-                    "children": [
-                        {
-                            "title": "Input",
-                            "path": "#header-Input",
-                            "level": 2,
-                            "content": "<h2 id='header-Input'>Input</h2>",
-                            "text": "Input",
-                            "children": []
-                        },
-                        {
-                            "title": "Search",
-                            "path": "#header-Search",
-                            "level": 2,
-                            "content": "<h2 id='header-Search'>Search</h2>",
-                            "text": "Search",
-                            "children": []
-                        }
-                    ]
-                }
-            ]
-        },
-        {
             "title": "布局",
             "category": "组件",
             "order": 2,
@@ -356,11 +238,11 @@
             ]
         },
         {
-            "title": "单选框",
+            "title": "字体图标",
             "category": "组件",
-            "order": 3,
+            "order": 2,
             "sidebar": "doc",
-            "path": "components/radio/index.md",
+            "path": "components/icon/index.md",
             "children": [
                 {
                     "title": "属性",
@@ -373,11 +255,129 @@
             ]
         },
         {
+            "title": "输入框",
+            "category": "组件",
+            "order": 2,
+            "sidebar": "doc",
+            "path": "components/input/index.md",
+            "children": [
+                {
+                    "title": "属性",
+                    "path": "#header-%E5%B1%9E%E6%80%A7",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                    "text": "属性",
+                    "children": [
+                        {
+                            "title": "Input",
+                            "path": "#header-Input",
+                            "level": 2,
+                            "content": "<h2 id='header-Input'>Input</h2>",
+                            "text": "Input",
+                            "children": []
+                        },
+                        {
+                            "title": "Search",
+                            "path": "#header-Search",
+                            "level": 2,
+                            "content": "<h2 id='header-Search'>Search</h2>",
+                            "text": "Search",
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "title": "扩展点",
+                    "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
+                    "level": 1,
+                    "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
+                    "text": "扩展点",
+                    "children": [
+                        {
+                            "title": "Input",
+                            "path": "#header-Input",
+                            "level": 2,
+                            "content": "<h2 id='header-Input'>Input</h2>",
+                            "text": "Input",
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "title": "事件",
+                    "path": "#header-%E4%BA%8B%E4%BB%B6",
+                    "level": 1,
+                    "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
+                    "text": "事件",
+                    "children": [
+                        {
+                            "title": "Input",
+                            "path": "#header-Input",
+                            "level": 2,
+                            "content": "<h2 id='header-Input'>Input</h2>",
+                            "text": "Input",
+                            "children": []
+                        },
+                        {
+                            "title": "Search",
+                            "path": "#header-Search",
+                            "level": 2,
+                            "content": "<h2 id='header-Search'>Search</h2>",
+                            "text": "Search",
+                            "children": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "评分",
+            "category": "组件",
+            "order": 2,
+            "sidebar": "doc",
+            "path": "components/rate/index.md",
+            "children": [
+                {
+                    "title": "属性",
+                    "path": "#header-%E5%B1%9E%E6%80%A7",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                    "text": "属性",
+                    "children": []
+                },
+                {
+                    "title": "扩展点",
+                    "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
+                    "level": 1,
+                    "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
+                    "text": "扩展点",
+                    "children": []
+                }
+            ]
+        },
+        {
             "title": "滚动选择框",
             "category": "组件",
             "order": 3,
             "sidebar": "doc",
             "path": "components/scrollSelect/index.md",
+            "children": [
+                {
+                    "title": "属性",
+                    "path": "#header-%E5%B1%9E%E6%80%A7",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                    "text": "属性",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "title": "单选框",
+            "category": "组件",
+            "order": 3,
+            "sidebar": "doc",
+            "path": "components/radio/index.md",
             "children": [
                 {
                     "title": "属性",
@@ -508,6 +508,23 @@
             ]
         },
         {
+            "title": "时间选择",
+            "category": "组件",
+            "order": 7,
+            "sidebar": "doc",
+            "path": "components/timepicker/index.md",
+            "children": [
+                {
+                    "title": "属性",
+                    "path": "#header-%E5%B1%9E%E6%80%A7",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                    "text": "属性",
+                    "children": []
+                }
+            ]
+        },
+        {
             "title": "日期选择",
             "category": "组件",
             "order": 7,
@@ -533,11 +550,11 @@
             ]
         },
         {
-            "title": "时间选择",
+            "title": "滑块",
             "category": "组件",
-            "order": 7,
+            "order": 8,
             "sidebar": "doc",
-            "path": "components/timepicker/index.md",
+            "path": "components/slider/index.md",
             "children": [
                 {
                     "title": "属性",
@@ -570,23 +587,6 @@
                     "level": 1,
                     "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
                     "text": "扩展点",
-                    "children": []
-                }
-            ]
-        },
-        {
-            "title": "滑块",
-            "category": "组件",
-            "order": 8,
-            "sidebar": "doc",
-            "path": "components/slider/index.md",
-            "children": [
-                {
-                    "title": "属性",
-                    "path": "#header-%E5%B1%9E%E6%80%A7",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                    "text": "属性",
                     "children": []
                 }
             ]
@@ -1616,7 +1616,7 @@
         },
         {
             "title": "Vue中使用",
-            "order": 1,
+            "order": 1.1,
             "sidebar": "doc",
             "path": "docs/vue.md",
             "children": [
@@ -1739,8 +1739,65 @@
             ]
         },
         {
+            "title": "React中使用",
+            "order": 1.2,
+            "sidebar": "doc",
+            "path": "docs/react.md",
+            "children": [
+                {
+                    "title": "语法说明",
+                    "path": "#header-%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E",
+                    "level": 1,
+                    "content": "<h1 id='header-%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E'>语法说明</h1>",
+                    "text": "语法说明",
+                    "children": []
+                },
+                {
+                    "title": "Create React App",
+                    "path": "#header-Create%20React%20App",
+                    "level": 1,
+                    "content": "<h1 id='header-Create%20React%20App'>Create React App</h1>",
+                    "text": "Create React App",
+                    "children": [
+                        {
+                            "title": "安装和初始化",
+                            "path": "#header-%E5%AE%89%E8%A3%85%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96",
+                            "level": 2,
+                            "content": "<h2 id='header-%E5%AE%89%E8%A3%85%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96'>安装和初始化</h2>",
+                            "text": "安装和初始化",
+                            "children": []
+                        },
+                        {
+                            "title": "修改配置",
+                            "path": "#header-%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE",
+                            "level": 2,
+                            "content": "<h2 id='header-%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE'>修改配置</h2>",
+                            "text": "修改配置",
+                            "children": []
+                        },
+                        {
+                            "title": "修改主题",
+                            "path": "#header-%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98",
+                            "level": 2,
+                            "content": "<h2 id='header-%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98'>修改主题</h2>",
+                            "text": "修改主题",
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "title": "使用",
+                    "path": "#header-%E4%BD%BF%E7%94%A8",
+                    "level": 1,
+                    "content": "<h1 id='header-%E4%BD%BF%E7%94%A8'>使用</h1>",
+                    "text": "使用",
+                    "children": []
+                }
+            ]
+        },
+        {
             "title": "定制主题",
-            "order": 1,
+            "order": 1.3,
             "sidebar": "doc",
             "path": "docs/theme.md",
             "children": [
@@ -1797,63 +1854,6 @@
             ]
         },
         {
-            "title": "React中使用",
-            "order": 1.1,
-            "sidebar": "doc",
-            "path": "docs/react.md",
-            "children": [
-                {
-                    "title": "语法说明",
-                    "path": "#header-%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E",
-                    "level": 1,
-                    "content": "<h1 id='header-%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E'>语法说明</h1>",
-                    "text": "语法说明",
-                    "children": []
-                },
-                {
-                    "title": "Create React App",
-                    "path": "#header-Create%20React%20App",
-                    "level": 1,
-                    "content": "<h1 id='header-Create%20React%20App'>Create React App</h1>",
-                    "text": "Create React App",
-                    "children": [
-                        {
-                            "title": "安装和初始化",
-                            "path": "#header-%E5%AE%89%E8%A3%85%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96",
-                            "level": 2,
-                            "content": "<h2 id='header-%E5%AE%89%E8%A3%85%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96'>安装和初始化</h2>",
-                            "text": "安装和初始化",
-                            "children": []
-                        },
-                        {
-                            "title": "修改配置",
-                            "path": "#header-%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE",
-                            "level": 2,
-                            "content": "<h2 id='header-%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE'>修改配置</h2>",
-                            "text": "修改配置",
-                            "children": []
-                        },
-                        {
-                            "title": "修改主题",
-                            "path": "#header-%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98",
-                            "level": 2,
-                            "content": "<h2 id='header-%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98'>修改主题</h2>",
-                            "text": "修改主题",
-                            "children": []
-                        }
-                    ]
-                },
-                {
-                    "title": "使用",
-                    "path": "#header-%E4%BD%BF%E7%94%A8",
-                    "level": 1,
-                    "content": "<h1 id='header-%E4%BD%BF%E7%94%A8'>使用</h1>",
-                    "text": "使用",
-                    "children": []
-                }
-            ]
-        },
-        {
             "title": "国际化",
             "order": 2,
             "sidebar": "doc",
@@ -1895,6 +1895,39 @@
             ]
         },
         {
+            "title": "默认事件",
+            "order": 3,
+            "sidebar": "doc",
+            "path": "docs/event.md",
+            "children": [
+                {
+                    "title": "<code>$change:*</code>",
+                    "path": "#header-%24change%3A*",
+                    "level": 1,
+                    "content": "<h1 id='header-%24change%3A*'><code>$change:*</code></h1>",
+                    "text": "<code>$change:*</code>",
+                    "children": [
+                        {
+                            "title": "事件回调函数",
+                            "path": "#header-%E4%BA%8B%E4%BB%B6%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0",
+                            "level": 2,
+                            "content": "<h2 id='header-%E4%BA%8B%E4%BB%B6%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0'>事件回调函数</h2>",
+                            "text": "事件回调函数",
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "title": "<code>$changed:*</code>",
+                    "path": "#header-%24changed%3A*",
+                    "level": 1,
+                    "content": "<h1 id='header-%24changed%3A*'><code>$changed:*</code></h1>",
+                    "text": "<code>$changed:*</code>",
+                    "children": []
+                }
+            ]
+        },
+        {
             "title": "更新日志",
             "order": 99,
             "sidebar": "doc",
@@ -1902,6 +1935,39 @@
             "children": [
                 {
                     "children": [
+                        {
+                            "title": "v0.8.7",
+                            "path": "#header-v0.8.7",
+                            "level": 2,
+                            "content": "<h2 id='header-v0.8.7'>v0.8.7</h2>",
+                            "text": "v0.8.7",
+                            "children": [
+                                {
+                                    "title": "Core",
+                                    "path": "#header-Core",
+                                    "level": 3,
+                                    "content": "<h3 id='header-Core'>Core</h3>",
+                                    "text": "Core",
+                                    "children": []
+                                },
+                                {
+                                    "title": "Vue",
+                                    "path": "#header-Vue",
+                                    "level": 3,
+                                    "content": "<h3 id='header-Vue'>Vue</h3>",
+                                    "text": "Vue",
+                                    "children": []
+                                },
+                                {
+                                    "title": "React",
+                                    "path": "#header-React",
+                                    "level": 3,
+                                    "content": "<h3 id='header-React'>React</h3>",
+                                    "text": "React",
+                                    "children": []
+                                }
+                            ]
+                        },
                         {
                             "title": "v0.8.6",
                             "path": "#header-v0.8.6",

@@ -8,7 +8,7 @@
 </template>
 <script>
 import Upload from 'kpc/components/upload';
-import Dialog from 'kpc/components/dialog';
+
 
 export default {
     components: {

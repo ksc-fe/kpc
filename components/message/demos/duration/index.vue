@@ -6,7 +6,7 @@
 </template>
 <script>
 import {ButtonGroup, Button} from 'kpc/components/button';
-import Message from 'kpc/components/message';
+
 
 export default {
     components: {

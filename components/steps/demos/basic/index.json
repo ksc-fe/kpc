@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>Steps</code>嵌套<code>Step</code>即可实现步骤条，用<code>v-model</code>双向绑定当前指向哪一步，索引从<code>0</code>开始</p>\n",
-    "index": 24,
+    "index": 40,
     "highlighted": [
         {
             "language": "vdt",

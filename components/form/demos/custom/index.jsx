@@ -3,6 +3,7 @@ import {Form, FormItem} from 'kpc/components/form';
 import {Input} from 'kpc/components/input';
 import {Button} from 'kpc/components/button';
 
+
 // 添加全局规则
 Form.addMethod('letter', (value, item, param) => {
     return /^[a-z|A-Z]+$/.test(value);

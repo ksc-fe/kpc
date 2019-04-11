@@ -1,7 +1,6 @@
 import React from 'react';
 import Upload from 'kpc/components/upload';
-import Dialog from 'kpc/components/dialog';
-import Message from 'kpc/components/message';
+
 
 export default class extends React.Component {
     constructor(props) {

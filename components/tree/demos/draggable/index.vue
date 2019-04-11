@@ -65,7 +65,7 @@
 <script>
 import Tree from 'kpc/components/tree';
 import Input from 'kpc/components/input';
-import Message from 'kpc/components/message';
+
 
 export default {
     components: {
