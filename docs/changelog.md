@@ -14,6 +14,7 @@ sidebar: doc
 4. `Fix` 修复`Tooltip`当单词过长，会超出内容区域的问题 [#240](https://github.com/ksc-fe/kpc/issues/240)
 5. `Fix` 修复`Drawer`，点击抽屉内的元素，然后该元素立即消失，导致抽屉被关闭的问题 [#243](https://github.com/ksc-fe/kpc/issues/243)
 6. `Fix` 修复`Steps`在简洁模式`simple`下，描述文案过长会消失的问题 [#242](https://github.com/ksc-fe/kpc/issues/242)
+7. `Doc` 新增默认事件说明文档 [#244](https://github.com/ksc-fe/kpc/issues/244)
 
 ### Vue
 
