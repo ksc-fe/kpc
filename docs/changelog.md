@@ -4,6 +4,26 @@ order: 99
 sidebar: doc
 ---
 
+## v0.8.7
+
+### Core
+
+1. `Add` `Transfer`支持自定义过滤内容 [#233](https://github.com/ksc-fe/kpc/issues/233)
+2. `Add` `Transfer`改用`key`跟踪数据，以支持动态数据，并且右侧已选数据可以不存在全部数据中 [#235](https://github.com/ksc-fe/kpc/issues/235)
+3. `Fix` 修复`Tree`拖拽节点到不能够放置的节点上时，不应该触发`dragend`事件的问题
+4. `Fix` 修复`Tooltip`当单词过长，会超出内容区域的问题 [#240](https://github.com/ksc-fe/kpc/issues/240)
+5. `Fix` 修复`Drawer`，点击抽屉内的元素，然后该元素立即消失，导致抽屉被关闭的问题 [#243](https://github.com/ksc-fe/kpc/issues/243)
+6. `Fix` 修复`Steps`在简洁模式`simple`下，描述文案过长会消失的问题 [#242](https://github.com/ksc-fe/kpc/issues/242)
+
+### Vue
+
+1. `Add` 优化`vue-devtool`下的调试体验
+2. `Fix` 修复在kpc组件上同时使用`v-for`和`ref`可能会到时`ref`数组顺序错乱的问题 [#239](https://github.com/ksc-fe/kpc/issues/239)
+
+### React
+
+1. `Fix` 修复某些情况下动画元素不能被正确删除的问题 [#238](https://github.com/ksc-fe/kpc/issues/238)
+
 ## v0.8.6
 
 ### Core
