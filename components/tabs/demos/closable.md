@@ -86,10 +86,6 @@ export default class extends Intact {
 }
 ```
 
-```js-head
-let id = 3;
-```
-
 
 ```vue-methods
 _remove(value) {

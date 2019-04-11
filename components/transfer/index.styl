@@ -39,13 +39,21 @@
         &:not(.k-disabled):hover
             if $transfer-item-hover-bg-hover != transparent
                 background $transfer-item-hover-bg-color 
-            color $primary-color
+            color $transfer-item-hover-color
+            p
+                color $transfer-item-hover-color
         .k-checkbox
             padding $transfer-item-padding
             display table-cell
             height $transfer-item-height
             vertical-align middle
             white-space nowrap
+        p
+            margin 0
+            color $transfer-item-desc-color
+        &.k-disabled
+            p
+                color $disabled-color
     .k-input
         width auto
         margin $transfer-search-margin

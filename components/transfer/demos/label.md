@@ -31,13 +31,6 @@ import Transfer from 'kpc/components/transfer';
 </Transfer>
 ```
 
-```styl
-.k-item
-    p
-        margin 0
-        font-size 12px
-```
-
 ```js
 export default class extends Intact {
     @Intact.template()

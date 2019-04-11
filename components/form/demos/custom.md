@@ -96,13 +96,6 @@ export default class extends Intact {
 }
 ```
 
-```js-head
-// 添加全局规则
-Form.addMethod('letter', (value, item, param) => {
-    return /^[a-z|A-Z]+$/.test(value);
-}, '只能输入字母');
-```
-
 ```vue-methods
 add() {
     this.descriptions.push('');

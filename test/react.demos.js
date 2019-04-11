@@ -15,9 +15,9 @@ const reactReq = require.context('~/components/', true, /demos\/.*index\.jsx$/);
 describe('React Demos', () => {
     let demo;
 
-    // afterEach(() => {
-        // unmount(demo);
-    // });
+    afterEach(() => {
+        unmount(demo);
+    });
 
     function wrap(Demo) {
         return class extends Intact {

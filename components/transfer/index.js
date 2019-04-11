@@ -39,6 +39,10 @@ export default class Transfer extends Intact {
             placeholder: _$('请输入'),
             leftTitle: _$('请选择'),
             rightTitle: _$('已选择'),
+
+            selectedKeys: [],
+            leftCheckedKeys: [],
+            rightCheckedKeys: [],
         };
     }
 
@@ -49,51 +53,80 @@ export default class Transfer extends Intact {
             }
         };
         this.on('$receive:value', (c, v) => fixValue(v));
+
+        // keep the keys consistence with the conresponding value
+        const setKeys = (key, value) => {
+            const keyName = this.get('keyName');
+            this.set(key, value.map(item => {
+                return item[keyName];
+            }));
+        };
+        const setValues = (key, value, list) => {
+            const keyName = this.get('keyName');
+            this.set(key, list.filter(item => {
+                return ~value.indexOf(item[keyName]);
+            }));
+        };
+        // maybe the value is undefined, but above $receive:value is called after this
+        fixValue(this.get('value'));
+        setKeys('selectedKeys', this.get('value'));
+        this.on('$change:value', (c, v) => setKeys('selectedKeys', v));
+        [
+            ['leftCheckedKeys', 'leftChecked', 'data'],
+            ['rightCheckedKeys', 'rightChecked', 'value']
+        ].forEach(([key, value, list]) => {
+            this.on(`$receive:${value}`, (c, v) => setKeys(key, v));
+            this.on(`$change:${key}`, (c, v) => setValues(value, v, this.get(list)));
+        });
+        
+        // only change the left status, reserve the right status
         this.on('$receive:data', (c, v) => {
             if (!v || !v.length) {
                 this.set({
-                    leftChecked: [],
-                    rightChecked: [],
-                    value: []
+                    leftCheckedKeys: []
                 });
             } else {
-                const {leftChecked, rightChecked, value} = this.get();
-                const fix = (data) => {
+                const {leftCheckedKeys, keyName} = this.get();
+                const allKeys = v.reduce((memo, item) => {
+                    memo[item[keyName]] = true;
+                    return memo;
+                }, {});
+                const fix = (keys) => {
                     const ret = [];
-                    if (data) {
-                        for (let i = 0; i < data.length; i++) {
-                            if (v.indexOf(data[i]) > -1) {
-                                ret.push(data[i]);
+                    if (keys) {
+                        keys.forEach(key => {
+                            if (allKeys[key]) {
+                                ret.push(key);
                             }
-                        }
+                        });
                     }
                     return ret;
                 };
                 this.set({
-                    leftChecked: fix(leftChecked),
-                    rightChecked: fix(rightChecked),
-                    value: fix(value)
+                    leftCheckedKeys: fix(leftCheckedKeys),
                 });
             }
         });
     }
 
     _add() {
-        const value = this.get('value').concat(this.get('leftChecked'));
+        let {data, value, leftCheckedKeys, keyName} = this.get();
+        value = value.concat(data.filter(item => {
+            return ~leftCheckedKeys.indexOf(item[keyName]);
+        })); 
         this.set({
-            leftChecked: [],
+            leftCheckedKeys: [],
             value: value,
         });
     }
 
     _remove() {
-        const value = this.get('value').slice(0);
-        this.get('rightChecked').forEach(item => {
-            const index = value.indexOf(item);
-            value.splice(index, 1);
+        let {value, rightCheckedKeys, keyName} = this.get();
+        value = value.filter(item => {
+            return !~rightCheckedKeys.indexOf(item[keyName]);
         });
         this.set({
-            rightChecked: [],
+            rightCheckedKeys: [],
             value: value,
         });
     }
@@ -107,20 +140,22 @@ export default class Transfer extends Intact {
             e.preventDefault();
 
             const values = this._getShowedData(type);
-            const checkedValues = this.get(`${type}Checked`).slice(0);
+            const checkedKeys = this.get(`${type}CheckedKeys`).slice(0);
             const lastEndIndex = this.endIndex;
+            const keyName = this.get('keyName');
             this.endIndex = index;
             const update = (data, isCheck) => {
                 data.forEach(item => {
                     if (!item.disabled) {
-                        const index = checkedValues.indexOf(item);
+                        const key = item[keyName];
+                        const index = checkedKeys.indexOf(key);
                         if (isCheck) {
                             if (!~index) {
-                                checkedValues.push(item);
+                                checkedKeys.push(key);
                             }
                         } else {
                             if (~index) {
-                                checkedValues.splice(index, 1);
+                                checkedKeys.splice(index, 1);
                             }
                         }
                     }
@@ -146,7 +181,7 @@ export default class Transfer extends Intact {
                 this.checked
             );
 
-            this.set(`${type}Checked`, checkedValues);
+            this.set(`${type}CheckedKeys`, checkedKeys);
         }
     }
 
@@ -161,12 +196,13 @@ export default class Transfer extends Intact {
         if (e.target.checked) {
             this._selectAll(model);
         }  else {
-            this.set(`${model}Checked`, []);
+            this.set(`${model}CheckedKeys`, []);
         }
     }
 
     _selectAll(model) {
-        this.set(`${model}Checked`, this._getEnabledData(model));
+        const keyName = this.get('keyName');
+        this.set(`${model}CheckedKeys`, this._getEnabledData(model).map(item => item[keyName]));
     }
 
     _getEnabledData(model) {
@@ -176,11 +212,14 @@ export default class Transfer extends Intact {
     }
 
     _getShowedData(model) {
-        let data = this.get('value');
+        let data;
         if (model === 'left') {
+            const {selectedKeys, keyName} = this.get();
             data = this.get('data').filter(item => {
-                return !~data.indexOf(item)
+                return !~selectedKeys.indexOf(item[keyName]);
             });
+        } else {
+            data = this.get('value');
         }
 
         let keywords = this.get(`${model}Keywords`);

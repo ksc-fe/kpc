@@ -50,6 +50,19 @@ function parse(vdt, js, reactMethods) {
     let scripts = [];
 
     if (js) {
+        const lines = js.split('\n');
+        const _head = [];
+        for (let i = 0; i < lines.length; i++) {
+            const line = lines[i];
+            if (line.startsWith('import')) continue;
+            if (line.startsWith('export default')) {
+                js = lines.slice(i).join('\n');
+                break;
+            }
+            _head.push(line);
+        }
+        head += _head.join('\n');
+
         const defaults = getDefaults(js);
         if (defaults) {
             properties.state = defaults;
@@ -325,7 +338,8 @@ function parseBlock(template) {
                     const lastChar = componentCode[componentCode.length - 1];
                     const indentCount = compponentSpaces.length / 4 + 1;
     
-                    results[0] = (lastChar === '>' ? componentCode.slice(0, -1) : componentCode) + '\n' +
+                    results[0] = [
+                        (lastChar === '>' ? componentCode.slice(0, -1) : componentCode),
                         indent([
                             blocks.map(block => {
                                 const codes = block.codes;
@@ -335,7 +349,7 @@ function parseBlock(template) {
                                     } else {
                                         return [
                                             indent(`b-${block.name}={<>`, indentCount),
-                                            dedent(block.codes),
+                                            block.codes,
                                             indent(`</>}`, indentCount)
                                         ];
                                     }
@@ -350,14 +364,26 @@ function parseBlock(template) {
                                 }
                             }),
                             lastChar === '>' ? indent('>', indentCount - 1) : undefined,
-                        ], 0).join('\n');
+                        ], 0)
+                    ];
                 }
                 results.push(code);
                 const _results = results;
 
+                function flat(arr) {
+                    return arr.reduce((memo, item) => {
+                        if (Array.isArray(item)) {
+                            memo = memo.concat(flat(item));
+                        } else {
+                            memo.push(item);
+                        }
+                        return memo;
+                    }, []);
+                }
+
                 stacks.pop();
                 results = resultsStacks.pop();
-                results.push(..._results);
+                results.push(...(flat(_results)));
                 continue;
             }
         }

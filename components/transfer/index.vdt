@@ -6,7 +6,8 @@ import {_$} from '../utils';
 const {
     data, className, style, value, keyName,
     leftChecked, rightChecked, filterable, batchable,
-    filter, label, placeholder, leftTitle, rightTitle
+    filter, label, placeholder, leftTitle, rightTitle,
+    selectedKeys
 } = self.get();
 
 const classNameObj = {
@@ -30,15 +31,17 @@ const Panel = props => {
                 ev-click={{ self._toggleCheckAll.bind(self, props.model) }}
             >{{ props.title }}</Checkbox>
         </div>
-        <Input v-if={{ filterable }} placeholder={{ placeholder }}
-            v-model={{ `${props.model}Keywords` }}
-            clearable
-            size="small"
-        >
-            <b:prefix>
-                <i class="ion-ios-search"></i>
-            </b:prefix>
-        </Input>
+        <b:filter args={{ [props.model] }} v-if={{ filterable }}>
+            <Input placeholder={{ placeholder }}
+                v-model={{ `${props.model}Keywords` }}
+                clearable
+                size="small"
+            >
+                <b:prefix>
+                    <i class="ion-ios-search"></i>
+                </b:prefix>
+            </Input>
+        </b:filter>
         <Animate class="k-list">
             <Animate 
                 v-for={{ data }} 
@@ -46,8 +49,8 @@ const Panel = props => {
                 key={{ value[keyName] || value.label || value }}
                 a:transition="c-fade"
             >
-                <Checkbox v-model={{ `${props.model}Checked` }} name={{ props.model }}
-                    trueValue={{ value }}
+                <Checkbox v-model={{ `${props.model}CheckedKeys` }} name={{ props.model }}
+                    trueValue={{ value[keyName] }}
                     disabled={{ value.disabled }}
                     ev-click={{ self._onCheckboxChange.bind(self, props.model, key) }}
                 >
@@ -63,7 +66,7 @@ const Panel = props => {
 };
 
 <div class={{ classNameObj }} style={{ style }}>
-    <Panel data={{ data.filter(item => !~(value || []).indexOf(item)) }}
+    <Panel data={{ data.filter(item => !~selectedKeys.indexOf(item[keyName])) }}
         model="left" 
         title={{ leftTitle }}
     />
@@ -83,7 +86,7 @@ const Panel = props => {
             <i class="k-icon ion-ios-arrow-right" />
         </Button>
     </div>
-    <Panel data={{ data.filter(item => ~value.indexOf(item)) }} 
+    <Panel data={{ value }} 
         model="right" 
         title={{ rightTitle }}
     />

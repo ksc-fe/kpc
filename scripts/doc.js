@@ -30,7 +30,7 @@ module.exports = function(isDev = true) {
 
     const doc = new KDoc(
         './@(docs|components)/**/*.md',
-        // './@(docs|components)/layout/**/*.md',
+        // './@(docs|components)/transfer/demos/customFilter.md',
         root
     );
 
@@ -197,7 +197,11 @@ module.exports = function(isDev = true) {
                     // ignore App component
                     if (!/\/app\//.test(file.path)) {
                         const vdt = codes[0].content;
-                        const js = hasJs ? codes[hasStylus ? 2 : 1].content : null;
+                        let js;
+                        if (hasJs) {
+                            js = codes[hasStylus ? 2 : 1].content;
+                            js = js.split('\n').slice(hasStylus ? 3 : 2).join('\n');
+                        }
 
                         if (!hasVue) {
                             const code = {
