@@ -17,6 +17,7 @@ export default class Pagination extends Intact {
         size: ['large', 'default', 'small', 'mini'],
         noBorder: Boolean,
         simple: Boolean,
+        showLimits: Boolean,
     };
 
     defaults() {
@@ -32,6 +33,7 @@ export default class Pagination extends Intact {
             size: 'default',
             noBorder: false,
             simple: false,
+            showLimits: true,
         };
     }
 

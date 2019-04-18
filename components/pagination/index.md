@@ -12,13 +12,14 @@ sidebar: doc
 | size | 尺寸 | `"large"` &#124; `"default"` &#124; `"mini"` &#124; `"small"` | `"default"` |
 | counts | 展示按钮个数 | `Number` | `7` |
 | total | 数据总条数 | `Number` | `0` |
-| showTotal | 显示总条数 | `Boolean` | `true` |
 | current | 当前页码 | `Number` | `1` |
-| showGoto | 显示快速跳转框 | `Boolean` | `false` |
 | limit | 页面条数 | `Number` | `10` |
 | limits | 页面条数 | `Array<Number>` | `[10, 20, 50]` |
 | noBorder | 是否展示无边框样式，默认有边框 | `Boolean` | `false` |
 | simple | 是否展示简洁样式 | `Boolean` | `Boolean` |
+| showTotal | 显示总条数 | `Boolean` | `true` |
+| showGoto | 显示快速跳转框 | `Boolean` | `false` |
+| showLimits | 是否显示每页条数选择框 | `Boolean` | `true` |
 
 # 方法
 

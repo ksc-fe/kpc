@@ -8,7 +8,7 @@ const {
     total, current, limit, limits, 
     className, showTotal, showGoto,
     counts, size, noBorder, simple,
-    ...rest
+    showLimits, ...rest
 } = self.get();
 
 if (!total) return <!-- pagination -->
@@ -110,7 +110,7 @@ const paginationDot = function(callback) {
     </ButtonGroup>
 
     <template v-if={{ !simple }}>
-        <div class="k-limits">
+        <div class="k-limits" v-if={{ showLimits }}>
             <Select v-model="limit" allowUnmatch
                 data={{ limits.map(item => {
                     return {'value': item, 'label': _$('{n} 条 / 页', {n: item})};
