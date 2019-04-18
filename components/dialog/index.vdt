@@ -2,9 +2,11 @@ import Button from '../button';
 import MoveWrapper from '../moveWrapper';
 import {_$} from '../utils';
 
-const {size} = self.get();
+const {size, container} = self.get();
 
-<MoveWrapper autoDestroy={{ false }} ev-appended={{ self._onAppended }}>
+<MoveWrapper autoDestroy={{ false }} ev-appended={{ self._onAppended }}
+    container={{ container }}
+>
     <div class={{ {
         "k-dialog-wrapper": true,
         [self.get('className')]: self.get('className'),

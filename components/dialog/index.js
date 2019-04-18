@@ -20,6 +20,7 @@ export default class Dialog extends Intact {
         cancelText: String,
         ok: Function,
         cancel: Function,
+        container: [String, Function],
     };
 
     defaults() {
@@ -33,6 +34,7 @@ export default class Dialog extends Intact {
             cancelText: _$('取消'),
             ok: undefined,
             cancel: undefined,
+            container: undefined,
 
             _dragging: false,
         }

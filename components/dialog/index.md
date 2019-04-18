@@ -18,6 +18,7 @@ sidebar: doc
 | disabledOk | “确认”按钮是否为禁用状态 | `Boolean` | `false` |
 | ok | “确认”按钮点击后自定义回调函数 | `Function` | `undefined` |
 | cancel | “取消”按钮点击后自定义回调函数 | `Function` | `undefined` |
+| container | 指定弹层插入的容器，默认会追加到`body`中。你可以传入函数返回一个DOM用来作为插入的容器，或者传入字符串用来给`querySelector`进行查询 | `Function` &#124; `String` | `undefined` |
 
 # 扩展点
 
