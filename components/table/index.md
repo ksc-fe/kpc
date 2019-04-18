@@ -27,7 +27,7 @@ sidebar: doc
 | disableRow | 定义行禁用可选的逻辑，返回`true`，则改行被禁用选择 | `Function` | `function(data, index) { return false }` |
 | rowExpandable | 是否点击改行任意区域即展开 | `Boolean` | `true` |
 | expandedKeys | 通过`key`来指定哪些行展开 | `Array` | `[]` |
-| type | 表格类型，默认左右无边框，`"border"`类型会添加边框 | `"default"` &#124; `"border"` | `"default"` |
+| type | 表格类型，默认左右无边框，`"border"`类型会添加边框, `"grid"`类型会展示栅格边框 | `"default"` &#124; `"border"` &#124; `"grid"` | `"default"` |
 | sort | 排序，详见示例说明 | `Object` | `{}` |
 | group | 分组，详见示例说明 | `Object` | `{}` |
 | minColWidth | 指定所有列拖动时的最小宽度 | `Number` | `40` |

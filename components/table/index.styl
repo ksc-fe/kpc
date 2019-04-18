@@ -82,7 +82,7 @@
         width $table-resize-width 
         position absolute
         top 0
-        left 0
+        left -1px 
         cursor ew-resize
 
     // stripe
@@ -150,11 +150,18 @@
         box-shadow $box-shadow
 
     // type: border
+    // type: grid
     &.k-border
+    &.k-grid
         .k-thead
         .k-tbody
             border-left $table-border-left
             border-right $table-border-right
+    // type: grid
+    &.k-grid
+        td:not(:last-of-type)
+        th:not(:last-of-type)
+            border-right $table-border-right 
 
     // sticky
     &.k-sticky
