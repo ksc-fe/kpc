@@ -21,6 +21,7 @@ export default class Dialog extends Intact {
         ok: Function,
         cancel: Function,
         container: [String, Function],
+        hideClose: Boolean,
     };
 
     defaults() {
@@ -35,6 +36,7 @@ export default class Dialog extends Intact {
             ok: undefined,
             cancel: undefined,
             container: undefined,
+            hideClose: false,
 
             _dragging: false,
         }
