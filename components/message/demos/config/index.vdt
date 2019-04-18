@@ -1,0 +1,7 @@
+import {ButtonGroup, Button} from 'kpc/components/button';
+
+<ButtonGroup>
+    <Button v-for={{ ['info', 'error', 'warning', 'success'] }}
+        ev-click={{ self.showMessage.bind(self, value) }}
+    >{{ value }}</Button>
+</ButtonGroup>

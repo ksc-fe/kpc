@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>调用<code>Table</code>的<code>exportTable([data, [filename]])</code>方法，可以导出当前表格内容成<code>csv</code>格式。导出的文本默认为当前单元格下的<code>textContent</code>内容，当需要自定义导出文本时，我们可以给单元格首个<code>Element</code>元素添加<code>data-text</code>属性来指定。另外如果给当前列设置<code>ignore</code>属性，则会忽略该列内容，例如：本例中我们忽略”操作“栏内容</p>\n<ol>\n<li><code>data</code> 要导出的数据，默认为当前表格的数据</li>\n<li><code>filename</code> 下载的文件名，默认为<code>table</code></li>\n</ol>\n",
-    "index": 263,
+    "index": 264,
     "highlighted": [
         {
             "language": "vdt",

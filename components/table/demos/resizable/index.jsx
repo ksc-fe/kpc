@@ -45,6 +45,7 @@ export default class extends React.Component {
                     data={data}
                     resizable
                     minColWidth={100}
+                    type="grid"
                 />
                 <Form style={{"marginTop":"20px"}}>
                     <FormItem style={{"width":"100%"}}

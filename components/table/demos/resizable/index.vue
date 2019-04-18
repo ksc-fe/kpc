@@ -19,6 +19,7 @@
             :data="data"
             resizable
             :minColWidth="100"
+            type="grid"
         />
         <Form style="margin-top: 20px;">
             <FormItem style="width: 100%">

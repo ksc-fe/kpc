@@ -1,6 +1,7 @@
 import React from 'react';
 import {Search} from 'kpc/components/input';
 
+import Message from 'kpc/components/message';
 
 export default class extends React.Component {
     constructor(props) {

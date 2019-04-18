@@ -170,6 +170,82 @@
             ]
         },
         {
+            "title": "输入框",
+            "category": "组件",
+            "order": 2,
+            "sidebar": "doc",
+            "path": "components/input/index.md",
+            "children": [
+                {
+                    "title": "属性",
+                    "path": "#header-%E5%B1%9E%E6%80%A7",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                    "text": "属性",
+                    "children": [
+                        {
+                            "title": "Input",
+                            "path": "#header-Input",
+                            "level": 2,
+                            "content": "<h2 id='header-Input'>Input</h2>",
+                            "text": "Input",
+                            "children": []
+                        },
+                        {
+                            "title": "Search",
+                            "path": "#header-Search",
+                            "level": 2,
+                            "content": "<h2 id='header-Search'>Search</h2>",
+                            "text": "Search",
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "title": "扩展点",
+                    "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
+                    "level": 1,
+                    "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
+                    "text": "扩展点",
+                    "children": [
+                        {
+                            "title": "Input",
+                            "path": "#header-Input",
+                            "level": 2,
+                            "content": "<h2 id='header-Input'>Input</h2>",
+                            "text": "Input",
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "title": "事件",
+                    "path": "#header-%E4%BA%8B%E4%BB%B6",
+                    "level": 1,
+                    "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
+                    "text": "事件",
+                    "children": [
+                        {
+                            "title": "Input",
+                            "path": "#header-Input",
+                            "level": 2,
+                            "content": "<h2 id='header-Input'>Input</h2>",
+                            "text": "Input",
+                            "children": []
+                        },
+                        {
+                            "title": "Search",
+                            "path": "#header-Search",
+                            "level": 2,
+                            "content": "<h2 id='header-Search'>Search</h2>",
+                            "text": "Search",
+                            "children": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "title": "菜单",
             "category": "组件",
             "order": 2,
@@ -251,82 +327,6 @@
                     "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
                     "text": "属性",
                     "children": []
-                }
-            ]
-        },
-        {
-            "title": "输入框",
-            "category": "组件",
-            "order": 2,
-            "sidebar": "doc",
-            "path": "components/input/index.md",
-            "children": [
-                {
-                    "title": "属性",
-                    "path": "#header-%E5%B1%9E%E6%80%A7",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                    "text": "属性",
-                    "children": [
-                        {
-                            "title": "Input",
-                            "path": "#header-Input",
-                            "level": 2,
-                            "content": "<h2 id='header-Input'>Input</h2>",
-                            "text": "Input",
-                            "children": []
-                        },
-                        {
-                            "title": "Search",
-                            "path": "#header-Search",
-                            "level": 2,
-                            "content": "<h2 id='header-Search'>Search</h2>",
-                            "text": "Search",
-                            "children": []
-                        }
-                    ]
-                },
-                {
-                    "title": "扩展点",
-                    "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
-                    "level": 1,
-                    "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
-                    "text": "扩展点",
-                    "children": [
-                        {
-                            "title": "Input",
-                            "path": "#header-Input",
-                            "level": 2,
-                            "content": "<h2 id='header-Input'>Input</h2>",
-                            "text": "Input",
-                            "children": []
-                        }
-                    ]
-                },
-                {
-                    "title": "事件",
-                    "path": "#header-%E4%BA%8B%E4%BB%B6",
-                    "level": 1,
-                    "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
-                    "text": "事件",
-                    "children": [
-                        {
-                            "title": "Input",
-                            "path": "#header-Input",
-                            "level": 2,
-                            "content": "<h2 id='header-Input'>Input</h2>",
-                            "text": "Input",
-                            "children": []
-                        },
-                        {
-                            "title": "Search",
-                            "path": "#header-Search",
-                            "level": 2,
-                            "content": "<h2 id='header-Search'>Search</h2>",
-                            "text": "Search",
-                            "children": []
-                        }
-                    ]
                 }
             ]
         },
@@ -1935,6 +1935,23 @@
             "children": [
                 {
                     "children": [
+                        {
+                            "title": "v0.8.8",
+                            "path": "#header-v0.8.8",
+                            "level": 2,
+                            "content": "<h2 id='header-v0.8.8'>v0.8.8</h2>",
+                            "text": "v0.8.8",
+                            "children": [
+                                {
+                                    "title": "Core",
+                                    "path": "#header-Core",
+                                    "level": 3,
+                                    "content": "<h3 id='header-Core'>Core</h3>",
+                                    "text": "Core",
+                                    "children": []
+                                }
+                            ]
+                        },
                         {
                             "title": "v0.8.7",
                             "path": "#header-v0.8.7",

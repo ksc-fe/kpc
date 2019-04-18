@@ -24,7 +24,12 @@
                             </div><div class="k-tab">index.js<!---->
                             </div><div class="k-tab">index.vue<!---->
                             <!---->(Vue)</div><div class="k-tab">index.jsx<!---->
-                            <!---->(React)</div><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div><div class="example index-117" id="117"><div class="example-opera"><div><button class="k-btn k-default" tabindex="0" type="button"><span>custom message</span></button><!--message--></div></div><div class="example-desc"><div class="title">自定义展示内容</div><div class="desc"><p>当需要自定义提示的内容时，我们可以将<code>Message</code>当做组件定义在模板中，而非调用它的静态方法。此时我们需要给<code>Message</code>指定唯一的<code>key</code>。</p>
+                            <!---->(React)</div><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div><div class="example index-100" id="100"><div class="example-opera"><div class="k-btns" style=""><button class="k-btn k-default" tabindex="0" type="button"><span>info</span></button><button class="k-btn k-default" tabindex="0" type="button"><span>error</span></button><button class="k-btn k-default" tabindex="0" type="button"><span>warning</span></button><button class="k-btn k-default" tabindex="0" type="button"><span>success</span></button></div></div><div class="example-desc"><div class="title">隐藏Icon或关闭按钮</div><div class="desc"><p>静态方法还可以使用对象作为参数，对象格式见API说明，通过该方式，我们可以做到隐藏关闭按钮或者隐藏前面的<code>Icon</code></p>
+</div></div><div class="example-code"><div class="k-tabs" style=""><div class="k-scroll c-clearfix"><div class="k-wrapper" style="transform:translateX(0px);"><div class="k-tab">index.vdt<!---->
+                            </div><div class="k-tab">index.js<!---->
+                            </div><div class="k-tab">index.vue<!---->
+                            <!---->(Vue)</div><div class="k-tab">index.jsx<!---->
+                            <!---->(React)</div><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div><div class="example index-118" id="118"><div class="example-opera"><div><button class="k-btn k-default" tabindex="0" type="button"><span>custom message</span></button><!--message--></div></div><div class="example-desc"><div class="title">自定义展示内容</div><div class="desc"><p>当需要自定义提示的内容时，我们可以将<code>Message</code>当做组件定义在模板中，而非调用它的静态方法。此时我们需要给<code>Message</code>指定唯一的<code>key</code>。</p>
 </div></div><div class="example-code"><div class="k-tabs" style=""><div class="k-scroll c-clearfix"><div class="k-wrapper" style="transform:translateX(0px);"><div class="k-tab">index.vdt<!---->
                             </div><div class="k-tab">index.js<!---->
                             </div><div class="k-tab">index.vue<!---->
@@ -186,27 +191,33 @@
                             <table>
                                 <tbody><tr>
 <td>content</td>
-<td>同上</td>
-<td>同上</td>
-<td>同上</td>
+<td>提示内容</td>
+<td><code>String</code> &#124; <code>VNode</code></td>
+<td><code>undefined</code></td>
 </tr>
 <tr>
 <td>duration</td>
-<td>同上</td>
-<td>同上</td>
-<td>同上</td>
+<td>提示展示多长时间后自动关闭，当传入0时，提示将会一直展示。单位ms</td>
+<td><code>Number</code></td>
+<td><code>5000</code></td>
 </tr>
 <tr>
 <td>type</td>
-<td>同上</td>
-<td>同上</td>
-<td>同上</td>
+<td>提示类型</td>
+<td><code>&quot;info&quot;</code> &#124; <code>&quot;error&quot;</code> &#124; <code>&quot;success&quot;</code> &#124; <code>&quot;warning&quot;</code></td>
+<td><code>&quot;info&quot;</code></td>
 </tr>
 <tr>
 <td>closable</td>
-<td>同上</td>
-<td>同上</td>
-<td>同上</td>
+<td>是否展示关闭按钮</td>
+<td><code>Boolean</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td>hideIcon</td>
+<td>是否隐藏文字前面的icon</td>
+<td><code>Boolean</code></td>
+<td><code>false</code></td>
 </tr>
 </tbody>
                             </table>

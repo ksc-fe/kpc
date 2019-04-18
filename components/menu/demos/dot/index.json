@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>给<code>Menu</code>添加<code>dot</code>属性，即可以让当前菜单下所有子元素<code>MenuItem</code>（不包括嵌套<code>MenuItem</code>）前面展示圆点；给<code>MenuItem</code>单独指定<code>dot</code>可以控制当前菜单项是否展示圆点；通过<code>header</code>扩展点可以给菜单添加头部信息</p>\n",
-    "index": 102,
+    "index": 104,
     "highlighted": [
         {
             "language": "vdt",

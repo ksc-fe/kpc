@@ -20,6 +20,7 @@ import {Form, FormItem} from 'kpc/components/form';
 import {Input} from 'kpc/components/input';
 import {Button} from 'kpc/components/button';
 
+import Message from 'kpc/components/message';
 
 export default {
     components: {
