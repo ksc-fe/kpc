@@ -34,19 +34,19 @@ export default class Message extends Intact {
     }
 
     static info = (content, duration) => {
-        Message.notice(content, duration, 'info');
+        return Message.notice(content, duration, 'info');
     }
 
     static error = (content, duration) => {
-        Message.notice(content, duration, 'danger');
+        return Message.notice(content, duration, 'danger');
     }
 
     static success = (content, duration) => {
-        Message.notice(content, duration, 'success');
+        return Message.notice(content, duration, 'success');
     }
 
     static warning = (content, duration) => {
-        Message.notice(content, duration, 'warning');
+        return Message.notice(content, duration, 'warning');
     }
 
     static propTypes = {
