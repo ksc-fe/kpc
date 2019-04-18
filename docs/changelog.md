@@ -4,6 +4,17 @@ order: 99
 sidebar: doc
 ---
 
+## v0.8.8
+
+### Core
+
+1. `Add` `Dialog / Drawer`支持指定插入的容器 [#250](https://github.com/ksc-fe/kpc/issues/250)
+2. `Add` `Dialog`支持隐藏关闭按钮 [#248](https://github.com/ksc-fe/kpc/issues/248)
+3. `Add` `Message`静态方法会返回`Message`实例，以便外部操作`Message` [#247](https://github.com/ksc-fe/kpc/issues/247)
+4. `Add` `Pagination`支持隐藏每页条数选择框 [#246](https://github.com/ksc-fe/kpc/issues/246)
+5. `Add` `Table`支持内边框的栅格样式 [#110](https://github.com/ksc-fe/kpc/issues/110)
+7. `Fix` 修复`Message`在`ksyun`主题下，文本内容超长时，展示不友好的问题 [#245](https://github.com/ksc-fe/kpc/issues/245)
+
 ## v0.8.7
 
 ### Core
