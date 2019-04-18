@@ -70,7 +70,7 @@ export default class Table extends Intact {
         group: Object,
         resizable: Boolean,
         expandedKeys: Array,
-        type: ['default', 'border'],
+        type: ['default', 'border', 'grid'],
         fixHeader: [Boolean, String, Number],
         minColWidth: Number,
         stickHeader: [Boolean, String, Number],
