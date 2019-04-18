@@ -54,7 +54,11 @@ function parse(vdt, js, reactMethods) {
         const _head = [];
         for (let i = 0; i < lines.length; i++) {
             const line = lines[i];
-            if (line.startsWith('import')) continue;
+            if (line.startsWith('import')) {
+                const matches = line.match(/import \{?(.*?)\}? from .*/);
+                const names = matches[1].split(', ').map(item => item === 'Switch' ? 'KSwitch' : item)
+                if (names.find(name => components.indexOf(name) > -1)) continue;
+            }
             if (line.startsWith('export default')) {
                 js = lines.slice(i).join('\n');
                 break;

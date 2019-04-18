@@ -8,15 +8,17 @@ const {type, content, children, closable, hideIcon} = self.get();
     ev-mouseleave={{ self.onMouseLeave }}
 >
     <div class="k-container">
-        <Icon v-if={{ !hideIcon }} class={{ {
-            "ion-ios-information-outline": type === 'info' || type === 'warning',
-            "ion-ios-checkmark-outline": type === 'success',
-            "ion-ios-close-outline": type === 'danger'
-        } }} />
-        <div v-if={{ typeof content === 'string' || typeof content === 'number' }}
-            class="k-content" innerHTML={{ content }}
-        ></div>
-        <div v-else class="k-content">{{ children }}</div>
+        <div class={{ {"k-wrapper": true, "k-with-icon": !hideIcon} }}>
+            <Icon v-if={{ !hideIcon }} class={{ {
+                "ion-ios-information-outline": type === 'info' || type === 'warning',
+                "ion-ios-checkmark-outline": type === 'success',
+                "ion-ios-close-outline": type === 'danger'
+            } }} />
+            <div v-if={{ typeof content === 'string' || typeof content === 'number' }}
+                class="k-content" innerHTML={{ content }}
+            ></div>
+            <div v-else class="k-content">{{ children }}</div>
+        </div>
         <Button 
             v-if={{ closable }}
             type="none" icon class="k-close"

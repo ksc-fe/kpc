@@ -606,6 +606,12 @@
 "<div class=\"k-btns\"><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">info</button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">error</button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">warning</button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">success</button></div>"
 ```
 
+####   `Message config`
+
+```
+"<div class=\"k-btns\"><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">info</button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">error</button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">warning</button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">success</button></div>"
+```
+
 ####   `Message custom`
 
 ```
@@ -1189,9 +1195,11 @@
 ####   `Table type`
 
 ```
-"<div class=\"k-table k-border\"><div class=\"k-table-wrapper\"><div class=\"k-thead\"><div class=\"k-thead-wrapper\" style=\"padding-right: 0px;\"><table><colgroup><col class=\"k-th-check\"><col></colgroup><thead><tr><th minwidth=\"40\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
-            <th title=\"类型\"><div class=\"k-th\"><div class=\"c-ellipsis\">类型</div></div></th>
-            </tr></thead></table></div></div><div class=\"k-tbody\"><table><colgroup><col class=\"k-th-check\"><col></colgroup><tbody><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td><td title=\"border类型\">border类型</td></tr></tbody></table></div></div></div>"
+"<div><div class=\"k-table k-border\"><div class=\"k-table-wrapper\"><div class=\"k-thead\"><div class=\"k-thead-wrapper\" style=\"padding-right: 0px;\"><table><colgroup><col class=\"k-th-check\"><col><col></colgroup><thead><tr><th minwidth=\"40\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
+            <th title=\"类型\"><div class=\"k-th\"><div class=\"c-ellipsis\">类型</div></div></th><th title=\"属性\"><div class=\"k-th\"><div class=\"c-ellipsis\">属性</div></div></th>
+            </tr></thead></table></div></div><div class=\"k-tbody\"><table><colgroup><col class=\"k-th-check\"><col><col></colgroup><tbody><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td><td title=\"border类型\">border类型</td><td title=\"type=&quot;border&quot;\">type=\"border\"</td></tr></tbody></table></div></div></div><div class=\"k-table k-grid\"><div class=\"k-table-wrapper\"><div class=\"k-thead\"><div class=\"k-thead-wrapper\" style=\"padding-right: 0px;\"><table><colgroup><col class=\"k-th-check\"><col><col></colgroup><thead><tr><th minwidth=\"40\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
+            <th title=\"类型\"><div class=\"k-th\"><div class=\"c-ellipsis\">类型</div></div></th><th title=\"属性\"><div class=\"k-th\"><div class=\"c-ellipsis\">属性</div></div></th>
+            </tr></thead></table></div></div><div class=\"k-tbody\"><table><colgroup><col class=\"k-th-check\"><col><col></colgroup><tbody><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td><td title=\"grid类型\">grid类型</td><td title=\"type=&quot;grid&quot;\">type=\"grid\"</td></tr></tbody></table></div></div></div></div>"
 ```
 
 ## `tabs`

@@ -704,6 +704,12 @@
 "<div class=\"k-btns\"><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>info</span></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>error</span></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>warning</span></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>success</span></button></div>"
 ```
 
+####     `Message config`
+
+```
+"<div class=\"k-btns\"><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>info</span></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>error</span></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>warning</span></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>success</span></button></div>"
+```
+
 ####     `Message custom`
 
 ```
@@ -2299,6 +2305,12 @@
 ##   `message`
 
 ####     `Message basic`
+
+```
+"<div><div class=\"k-btns\"><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>info</span></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>error</span></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>warning</span></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>success</span></button></div></div>"
+```
+
+####     `Message config`
 
 ```
 "<div><div class=\"k-btns\"><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>info</span></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>error</span></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>warning</span></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>success</span></button></div></div>"
