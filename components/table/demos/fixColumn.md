@@ -37,7 +37,7 @@ const data = [
             </b:template>
         </TableColumn>
     </Table>
-    <Table data={{ data }} fixHeader="100" resizable ref="__test">
+    <Table data={{ data }} fixHeader="100" resizable ref="__test" type="grid">
         <TableColumn fixed="left" key="name" title="Name" width="200" />
         <TableColumn key="column1" title="Column1" width="300" />
         <TableColumn key="column2" title="Column2" width="300" />

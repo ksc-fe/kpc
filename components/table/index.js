@@ -397,16 +397,21 @@ export default class Table extends Intact {
             this.set('_tableWidth', tableWidth);
 
             if (hasFixed) {
+                const type = this.get('type');
+                let borderWidth = 0;
+                if (type === 'border' || type === 'grid') {
+                    borderWidth = 1;
+                }
                 if (this.hasFixedLeft) {
                     const width = this.leftColumns.reduce((memo, elem) => {
-                        return memo + elem.offsetWidth;
+                        return memo + elem.offsetWidth + borderWidth;
                     }, 0);
                     data._leftWidth = width;
                 } 
 
                 if (this.hasFixedRight) {
                     const width = this.rightColumns.reduce((memo, elem) => {
-                        return memo + elem.offsetWidth;
+                        return memo + elem.offsetWidth + borderWidth;
                     }, 0);
                     data._rightWidth = width + this.get('_padding');
                 }
