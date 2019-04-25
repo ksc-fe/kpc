@@ -35,7 +35,7 @@ export default class Dialog extends Intact {
             cancelText: _$('取消'),
             ok: undefined,
             cancel: undefined,
-            container: undefined,
+            container: () => document.body,
             hideClose: false,
 
             _dragging: false,
