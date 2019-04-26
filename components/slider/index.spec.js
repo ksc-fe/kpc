@@ -2,12 +2,14 @@ import BasicDemo from '~/components/slider/demos/basic';
 import RangeDemo from '~/components/slider/demos/range';
 import DisabledDemo from '~/components/slider/demos/disabled';
 import {mount, unmount, dispatchEvent} from 'test/utils';
+import Slider from 'kpc/components/slider';
+import Intact from 'intact';
 
 describe('Slider', () => {
     let instance;
 
     afterEach(() => {
-        unmount(instance);
+        // unmount(instance);
     });
 
     it('basic test', () => {
@@ -146,9 +148,19 @@ describe('Slider', () => {
     });
 
     it('min/max/step is undefined', () => {
-        instance = mount(BasicDemo);
+        class Component extends Intact {
+            @Intact.template()
+            static template = `<Slider min={{ undefined }}
+                max={{ undefined }}
+                step={{ undefined }}
+                value={{ 1 }}
+            />`;
+            _init() {
+                this.Slider = Slider;
+            }
+        }
+        instance = mount(Component);
 
-        instance.set({min: undefined, max: undefined});
         expect(instance.element.innerHTML).to.matchSnapshot();
     });
 });

@@ -60,12 +60,14 @@ export default class Slider extends Intact {
                 }
             });
         });
-        ['min', 'max', 'step', 'value'].forEach(item => {
-            this.on(`$receive:${item}`, () => {
-                if (!this.get('_isDragging')) {
-                    this._setFixedValue(this.get('value'));
-                }
-            });
+        const needFixedKeys = ['min', 'max', 'step', 'value'];
+        this.on('$receive', (c, keys) => {
+            if (
+                !this.get('_isDragging') &&
+                needFixedKeys.find(key => keys.indexOf(key) > -1)
+            ) {
+                this._setFixedValue(this.get('value'));
+            }
         });
     }
 

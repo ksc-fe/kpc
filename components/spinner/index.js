@@ -45,11 +45,10 @@ export default class Spinner extends Intact {
             });
         });
 
-        ['max', 'min', 'precision'].forEach(item => {
-            this.on(`$receive:${item}`, () => this._fixValue());
-        });
-        this.on('$receive:value', (c, v) => {
-            this._fixValue(v);
+        this.on('$receive', (c, keys) => {
+            if (['max', 'min', 'precision', 'value'].find(key => ~keys.indexOf(key))) {
+                this._fixValue();
+            }
         });
     }
 

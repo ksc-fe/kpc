@@ -45,8 +45,9 @@ export default class Row extends Intact {
 
     _init() {
         this.useFlex = false;
-        ['justify', 'align', 'flex', 'children'].forEach(item => {
-            this.on(`$receive:${item}`, (c, v) => {
+        const needKeys = ['justify', 'align', 'flex', 'children'];
+        this.on(`$receive`, (c, keys) {
+            if (needKeys.find(key => keys.indexOf(key) > -1)) {
                 const {flex, justify, align, children} = this.get();
                 this.useFlex = flex || justify || align;
 
@@ -76,7 +77,7 @@ export default class Row extends Intact {
                         }
                     }
                 }
-            });
+            }
         });
     }
 
