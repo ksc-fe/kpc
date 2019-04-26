@@ -46,7 +46,7 @@ export default class Row extends Intact {
     _init() {
         this.useFlex = false;
         const needKeys = ['justify', 'align', 'flex', 'children'];
-        this.on(`$receive`, (c, keys) {
+        this.on(`$receive`, (c, keys) => {
             if (needKeys.find(key => keys.indexOf(key) > -1)) {
                 const {flex, justify, align, children} = this.get();
                 this.useFlex = flex || justify || align;
