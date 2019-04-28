@@ -1,10 +1,11 @@
 import CollapseDemo from '~/components/menu/demos/collapse';
+import AccordionDemo from '~/components/menu/demos/accordion';
 import {mount, unmount, dispatchEvent, getElement} from 'test/utils';
 
 describe('Menu', () => {
     let instance;
 
-    afterEach(() => unmount(instance));
+    // afterEach(() => unmount(instance));
 
     it('expand and shrink sub menu', (done) => {
         instance = mount(CollapseDemo);
@@ -78,5 +79,27 @@ describe('Menu', () => {
             expect(getElement('.k-dropdown-menu.k-menu')).to.be.undefined;
             done();
         }, 500);
+    });
+
+    it('accordion', (done) => {
+        instance = mount(AccordionDemo);
+
+        const element = instance.element;
+        const menu3 = element.children[2];
+        const subMenu1 = menu3.querySelector('.k-menu').firstChild.querySelector('.k-title');
+        subMenu1.click();
+        expect(element.innerHTML).to.matchSnapshot();
+
+        const subMenu4 = menu3.querySelector('.k-menu').lastChild.querySelector('.k-title');
+        subMenu4.click();
+        expect(element.innerHTML).to.matchSnapshot();
+
+        const menu1 = element.firstChild.querySelector('.k-title');
+        menu1.click();
+        expect(element.innerHTML).to.matchSnapshot();
+
+        menu3.querySelector('.k-title').click();
+        expect(element.innerHTML).to.matchSnapshot();
+        done();
     });
 });

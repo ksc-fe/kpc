@@ -23,7 +23,12 @@ import Icon from 'kpc/components/icon';
     <MenuItem key="3">
         <Icon class="ion-heart" />menu 3
         <Menu>
-            <MenuItem key="3-1">sub menu 1</MenuItem>
+            <MenuItem key="3-1">
+                sub menu 1
+                <Menu>
+                    <MenuItem key="3-1-1">Option 1</MenuItem>
+                </Menu>
+            </MenuItem>
             <MenuItem key="3-2">sub menu 2</MenuItem>
             <MenuItem key="3-3" disabled>sub menu 3</MenuItem>
             <MenuItem key="3-4">

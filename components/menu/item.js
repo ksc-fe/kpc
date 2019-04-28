@@ -30,6 +30,7 @@ export default class MenuItem extends DropdownItem {
             _isFirstFloorChildren: false,
             _show: false,
             _parentItem: undefined,
+            _parentMenu: undefined,
         };
     }
 
@@ -88,8 +89,9 @@ export default class MenuItem extends DropdownItem {
         if (this.get('disabled')) return;
 
         const root = this.get('_root');
+        const menu = this.get('_parentMenu');
         if (hasSubMenu) {
-            root.toggleExpand(this.get('key'));
+            root.toggleExpand(this.get('key'), menu);
         } else {
             root.select(this.get('key'));
         }

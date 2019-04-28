@@ -18,13 +18,14 @@ export default class VShow extends Intact {
     defaults() {
         return {
             show: false,
+            _active: false,
         }
     }
 
     template(data, vdt) {
         const h = vdt.miss.h;
         const _c = vdt.utils.className;
-        const {height, display, className} = data.get();
+        const {height, display, className, _active} = data.get();
         return h(
             'div',
             {
@@ -36,6 +37,7 @@ export default class VShow extends Intact {
             data.get('children'), 
             _c({
                 'k-show-height': true,
+                'k-show-active': _active,
                 [className]: className
             })
         );
@@ -45,7 +47,7 @@ export default class VShow extends Intact {
         this.on('$receive:show', (c, v) => {
             if (c.isRender === false) return;
             if (!v) {
-                this.set({'display': 'none', 'height': 0});
+                this.set({display: 'none', height: undefined});
             } else {
                 this.set({display: undefined, height: undefined});
             }
@@ -62,7 +64,12 @@ export default class VShow extends Intact {
             }
         }
 
-        element.addEventListener(this.transitionendName, this.transitionend);
+        this._on = (callback) => {
+            element.addEventListener(this.transitionendName, callback);
+        };
+        this._off = (callback) => {
+            element.removeEventListener(this.transitionendName, callback);
+        };
 
         this.on('$changed:show', (c, v) => {
             if (this.isRender) return;
@@ -72,15 +79,22 @@ export default class VShow extends Intact {
     }
 
     show() {
+        if (this.hiding) {
+            this.hideEnd();
+        }
+        this.showing = true;
         this.set({'display': 'block', 'height': 0});
+        this._on(this.showEnd);
         const height = this.element.firstChild.clientHeight;
         if (!height) {
             // if the height is 0, call end immediately
-            this.transitionend({target: this.element});
+            this.showEnd();
         } else {
             nextFrame(() => {
+                if (!this.get('show')) return;
                 this.set({
-                    'height': height + 'px',
+                    _active: true,
+                    height: height + 'px',
                 });
             });
         }
@@ -88,29 +102,39 @@ export default class VShow extends Intact {
     }
 
     hide() {
+        if (this.showing) {
+            this.showEnd();
+        }
+        this.hiding = true;
         const height = this.element.firstChild.clientHeight;
         this.set('height', height + 'px');
+        this._on(this.hideEnd);
         if (!height) {
             // if the height is 0, call end immediately
-            this.transitionend({target: this.element});
+            this.hideEnd();
         } else {
             nextFrame(() => {
-                this.set('height', 0);
+                if (this.get('show')) return;
+                this.set({
+                    _active: true,
+                    height: 0,
+                });
             });
         }
         this.trigger('hide');
     }
 
-    transitionend(e) {
-        if (e.target !== this.element) return;
-        if (this.get('show')) {
-            this.set('height', undefined);
-        } else {
-            this.set({'display': 'none'});
-        }
+    showEnd(e) {
+        if (e && e.target !== this.element) return;
+        this._off(this.showEnd);
+        this.showing = false;
+        this.set({height: undefined, _active: false});
     }
 
-    _destroy() {
-        this.element.removeEventListener(this.transitionendName, this.transitionend);
+    hideEnd(e) {
+        if (e && e.target !== this.element) return;
+        this._off(this.hideEnd);
+        this.hiding = false;
+        this.set({display: 'none', height: undefined, _active: false});
     }
 }

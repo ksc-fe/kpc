@@ -23,6 +23,7 @@ const _children = mapChildren(children, vNode => {
             _root: _root || self,
             _isFirstFloorChildren: !_root,
             _parentItem: _parent,
+            _parentMenu: self,
         });
     }
     return vNode;

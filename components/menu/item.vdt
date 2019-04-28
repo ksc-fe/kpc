@@ -8,7 +8,8 @@ import Icon from '../icon';
 const {
     children, key, className, style, dot,
     disabled, _root, _isFirstFloorChildren,
-    _isFocus, _show, _active, _highlighted
+    _isFocus, _show, _active, _highlighted,
+    _parentMenu
 } = self.get();
 
 let subMenuVNode;
@@ -33,6 +34,9 @@ const titleVNodes = mapChildren(children, vNode => {
 });
 
 const isExpanded = subMenuVNode && _root.isExpanded(key);
+if (isExpanded) {
+    _parentMenu._expandedKeys.add(key);
+}
 const classNameObj = {
     'k-menu-item': true,
     'k-expanded': isExpanded, 

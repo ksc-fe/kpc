@@ -43,10 +43,19 @@ export default class Menu extends DropdownMenu {
         };
     }
 
+    _init() {
+        super._init();
+        this._expandedKeys = new Set(); 
+    }
+
     _mount() {
         if (this._isDropdownMenu()) {
             super._mount();
         }
+    }
+
+    _beforeUpdate() {
+        this._expandedKeys = new Set(); 
     }
 
     _findParentDropdownMenu() {
@@ -68,20 +77,24 @@ export default class Menu extends DropdownMenu {
         this.set('expandedKeys', expandedKeys);
     }
 
-    shrink(key) {
+    shrink(key, silent) {
         const expandedKeys = this.get('expandedKeys').slice(0);
         const index = expandedKeys.indexOf(key);
         expandedKeys.splice(index, 1);
-        this.set('expandedKeys', expandedKeys);
+        this.set('expandedKeys', expandedKeys, {silent});
     }
 
-    toggleExpand(key) {
+    toggleExpand(key, menu) {
         if (this.isExpanded(key)) {
             this.shrink(key);
         } else if (!this.get('accordion')) {
             this.expand(key);
         } else {
-            this.set('expandedKeys', [key]);
+            const {_expandedKeys} = menu;
+            _expandedKeys.forEach(key => {
+                this.shrink(key, true);
+            });
+            this.expand(key);
         }
     }
 
