@@ -5,7 +5,7 @@ import {mount, unmount, dispatchEvent, getElement} from 'test/utils';
 describe('Menu', () => {
     let instance;
 
-    // afterEach(() => unmount(instance));
+    afterEach(() => unmount(instance));
 
     it('expand and shrink sub menu', (done) => {
         instance = mount(CollapseDemo);
