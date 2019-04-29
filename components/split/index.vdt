@@ -1,0 +1,27 @@
+const {mode, style, className, firstSize, lastSize} = self.get();
+
+const classNameObj = {
+    'k-split': true,
+    [`k-${mode}`]: true,
+    [className]: className,
+    'k-first-auto': firstSize === 'auto',
+    'k-last-auto': lastSize === 'auto',
+};
+
+const stylePropName = mode === 'horizontal' ? 'width' : 'height';
+
+<div className={{ classNameObj }} style={{ style }}>
+    <div class="k-first" style={{ {[stylePropName]: firstSize} }} ref="first">
+        <b:first />
+    </div>
+    <div class="k-line-wrapper" ev-mousedown={{ self._onMoveStart }}>
+        <b:line>
+            <div class="k-line">
+                <div class="k-drag-lines"></div>
+            </div> 
+        </b:line>
+    </div>
+    <div class="k-last" style={{ {[stylePropName]: lastSize} }} ref="last">
+        <b:last />
+    </div>
+</div>

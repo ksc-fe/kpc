@@ -1,0 +1,70 @@
+@require('./variables.styl')
+
+.k-split
+    display flex
+    height 100%
+    > .k-first
+    > .k-last
+        overflow auto
+    > .k-first
+        flex 0 0 auto
+    > .k-last
+        flex auto
+    &.k-first-auto
+        > .k-first
+            flex auto
+        > .k-last
+            flex 0 0 auto
+
+    // drag line
+    > .k-line-wrapper
+        flex 0 0 auto
+        .k-line
+            height 100%
+            background $bg-color
+            position relative
+        .k-drag-lines
+            background $border-color
+            position absolute
+
+    // horizontal
+    &.k-horizontal
+        > .k-line-wrapper
+            width 6px
+            cursor col-resize
+            .k-line
+                border-left 1px solid $border-color
+                border-right 1px solid $border-color
+            .k-drag-lines
+                height 1px
+                width 100%
+                top 50%
+                count = 5
+                margin-top -(unit((count  * 6) / 2, px))
+                generate()
+                    value = ()
+                    for i in (1..count)
+                        push(value, unquote('0 ' + i * 5 + 'px 0 0 ' + $border-color))
+                    unquote(join(', ', value))
+                box-shadow generate()
+    // veritcal
+    &.k-vertical
+        flex-direction column
+        > .k-line-wrapper
+            height 6px
+            cursor row-resize
+            .k-line
+                border-top 1px solid $border-color
+                border-bottom 1px solid $border-color
+            .k-drag-lines
+                width 1px
+                height 100%
+                left 50%
+                count = 5
+                margin-left -(unit((count  * 6) / 2, px))
+                generate()
+                    value = ()
+                    for i in (1..count)
+                        push(value, unquote('' + i * 5 + 'px 0 0 0 ' + $border-color))
+                    unquote(join(', ', value))
+                box-shadow generate()
