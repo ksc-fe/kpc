@@ -6,12 +6,13 @@ import GroupDemo from '~/components/table/demos/group';
 import FixColumnDemo from '~/components/table/demos/fixColumn';
 import LoadingDemo from '~/components/table/demos/loading';
 import ExportDemo from '~/components/table/demos/export';
+import SelectedKeysDemo from '~/components/table/demos/selectedKeys';
 import {mount, unmount, dispatchEvent, getElement} from 'test/utils';
 
 describe('Table', () => {
     let instance;
 
-    afterEach(() => unmount(instance));
+    // afterEach(() => unmount(instance));
 
     it('check & uncheck', () => {
         instance = mount(BasicDemo);
@@ -186,5 +187,30 @@ describe('Table', () => {
             {a: '1', b: 2, c: 3}
         ]);
         expect(content1.replace(/\r\n|\r/g, '\n')).to.matchSnapshot();
+    });
+
+    it('selectedKeys', () => {
+        instance = mount(SelectedKeysDemo);
+
+        const [table1, table2] = instance.element.querySelectorAll('.k-tbody');
+        const [tr1, tr2] = table1.querySelectorAll('tr');
+        tr1.click();
+        expect(table1.innerHTML).to.matchSnapshot();
+        tr2.click();
+        expect(table1.innerHTML).to.matchSnapshot();
+        expect(instance.refs.__test1.getSelectedData()).to.have.lengthOf(1);
+        tr2.click();
+        expect(table1.innerHTML).to.matchSnapshot();
+        expect(instance.refs.__test1.getSelectedData()).to.have.lengthOf(0);
+
+        const [tr21, tr22] = table2.querySelectorAll('tr');
+        tr21.click();
+        expect(table2.innerHTML).to.matchSnapshot();
+        tr22.click();
+        expect(table2.innerHTML).to.matchSnapshot();
+        expect(instance.refs.__test2.getSelectedData()).to.have.lengthOf(2);
+        tr22.click();
+        expect(table2.innerHTML).to.matchSnapshot();
+        expect(instance.refs.__test2.getSelectedData()).to.have.lengthOf(1);
     });
 });

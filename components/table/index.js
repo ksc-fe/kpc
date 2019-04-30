@@ -38,6 +38,8 @@ export default class Table extends Intact {
             loading: false,
             container: undefined,
             stripe: false,
+            rowSelectable: false,
+            selectedKeys: [],
 
             _padding: 0,
             _paddingBottom: 0,
@@ -77,6 +79,8 @@ export default class Table extends Intact {
         loading: Boolean,
         container: [Function, String],
         stripe: Boolean,
+        rowSelectable: [Boolean, 'single', 'multiple'],
+        selectedKeys: Array,
     }
 
     _init() {
@@ -173,6 +177,10 @@ export default class Table extends Intact {
         return super.get(key, defaultValue);
     }
 
+    refreshHeader() {
+        this._calcHeaderPadding();
+    }
+
     isCheckAll() {
         const checkedKeys = this.get('checkedKeys');
         const dataLength = this.get('data').length;
@@ -189,6 +197,14 @@ export default class Table extends Intact {
             return checkedKey === key;
         }
         return false
+    }
+
+    isSelected(key) {
+        const {rowSelectable, selectedKeys} = this.get();
+        if (rowSelectable) {
+            return ~selectedKeys.indexOf(key);
+        }
+        return false;
     }
 
     checkAll() {
@@ -223,6 +239,14 @@ export default class Table extends Intact {
         this._expandShrinkRow(key, true, false);
     }
 
+    selectRow(key) {
+        this._selectUnselectRow(key, true, false);
+    }
+
+    unselectRow(key) {
+        this._selectUnselectRow(key, false, false);
+    }
+
     /**
      * @brief get the checked data
      * @return {Array}
@@ -248,6 +272,18 @@ export default class Table extends Intact {
         } else {
             return [];
         }
+    }
+
+    getSelectedData() {
+        const {rowKey, rowSelectable, selectedKeys} = this.get();
+        if (rowSelectable) {
+            const map = {};
+            selectedKeys.forEach(key => map[key] = true);
+            return this.get('data').filter((value, index) => {
+                return map[rowKey.call(this, value, index)];
+            });
+        }
+        return [];
     }
 
     async exportTable(data, filename = 'table') {
@@ -469,6 +505,10 @@ export default class Table extends Intact {
             this._expandShrinkRow(key); 
         }
 
+        if (this.get('rowSelectable')) {
+            this._selectUnselectRow(key);
+        }
+
         this.trigger('click:row', value, index, key, e);
     }
 
@@ -513,9 +553,31 @@ export default class Table extends Intact {
         }
     }
 
+    _selectUnselectRow(key, isSelect = false, isToggle = true) {
+        const selectedKeys = this.get('selectedKeys').slice(0);
+        const rowSelectable = this.get('rowSelectable');
+        const i = selectedKeys.indexOf(key);
+        if (rowSelectable === 'multiple') {
+            if ((!isSelect || isToggle) && i > -1) {
+                selectedKeys.splice(i, 1);
+                this.set({selectedKeys});
+            } else if (isSelect || isToggle) {
+                selectedKeys.push(key);
+                this.set({selectedKeys});
+            }
+        } else if (rowSelectable) {
+            if ((!isSelect || isToggle) && i > -1) {
+                this.set('selectedKeys', []);
+            } else if (isSelect || isToggle) {
+                this.set('selectedKeys', [key]);
+            }
+        }
+    }
+
     _onRowDestroyed(key) {
         this.shrinkRow(key); 
         this.uncheckRow(key);
+        this.unselectRow(key);
     }
 
     _sort(key, value) {

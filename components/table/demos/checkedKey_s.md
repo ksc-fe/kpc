@@ -65,8 +65,3 @@ export default class extends Intact {
     }
 }
 ```
-
-
-
-
-
