@@ -5,6 +5,7 @@ import './index.styl';
 import Column from './column';
 import {_$, throttle, browser} from '../utils';
 import {scrollbarWidth} from '../moveWrapper/position';
+import ResizeObserver from 'resize-observer-polyfill'; 
 
 const slice = Array.prototype.slice;
 const each = Intact.utils.each;
@@ -101,10 +102,11 @@ export default class Table extends Intact {
         this.on('$change:checkedKey', (c, newValue, oldValue) => {
             this.trigger('$change:checked', c, [newValue], [oldValue]);
         });
+        // use ResizeObserver instead of
         // calculate padding of header when some props have changed
-        ['data', 'fixHeader'].forEach(item => {
-            this.on(`$changed:${item}`, this._calcHeaderPadding);
-        });
+        // ['data', 'fixHeader'].forEach(item => {
+            // this.on(`$changed:${item}`, this._calcHeaderPadding);
+        // });
         // update disabled amount when some props have changed
         ['data', 'disableRow'].forEach(item => {
             this.on(`$change:${item}`, this._updateDisabledAmount);
@@ -150,6 +152,11 @@ export default class Table extends Intact {
         if (this.get('_isStickyScrollbar')) {
             this._onStickyScrollbarMount();
         }
+
+        const ro = this.ro = new ResizeObserver(() => {
+            this._calcHeaderPadding();
+        });
+        ro.observe(this.element);
     }
 
     _onStickyHeaderMount() {
@@ -733,6 +740,7 @@ export default class Table extends Intact {
         if (this.get('_isStickyScrollbar')) {
             this._onStickyScrollbarUnmount();
         }
+        this.ro.disconnect();
     }
 }
 
