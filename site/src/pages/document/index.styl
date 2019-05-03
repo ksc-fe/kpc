@@ -236,7 +236,7 @@ $aside-width = 260px
                 position fixed
                 z-index $max-z-index
                 height 100%
-                transform translateX(-201px)
+                transform translateX(unit(-($aside-width + 1), px))
                 transition transform $transition
                 &.expanded
                     transform translateX(0)
