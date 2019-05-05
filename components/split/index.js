@@ -142,10 +142,16 @@ export default class Split extends Intact {
     }
 
     _onMoveEnd(e) {
-        document.removeEventListener('mousemove', this._onMove);
-        document.removeEventListener('mouseup', this._onMoveEnd);
-        this.set('_resizing', false);
-        this.trigger('moveEnd', e);
+        if (this.get('_resizing')) {
+            document.removeEventListener('mousemove', this._onMove);
+            document.removeEventListener('mouseup', this._onMoveEnd);
+            this.set('_resizing', false);
+            this.trigger('moveEnd', e);
+        }
+    }
+
+    _destroy() {
+        this._onMoveEnd();
     }
 }
 

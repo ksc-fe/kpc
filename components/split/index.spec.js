@@ -8,7 +8,7 @@ import Split from 'kpc/components/split';
 describe('Split', () => {
     let instance;
 
-    // afterEach(() => unmount(instance));
+    afterEach(() => unmount(instance));
 
     it('should fix leftSize and rightSize', () => {
         const instance = render(Split, {lastSize: '10px', firstSize: '10px'});
