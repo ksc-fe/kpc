@@ -271,10 +271,20 @@ module.exports = function(isDev = true) {
                             }
                         } else if (item.language === 'styl' && !item.file) {
                             // if (!iframe) {
+                                const requires = [];
                                 content = [
                                     `.example.index-${file.md.index}`,
-                                    ...content.split('\n').map(line => `    ${line}`)
+                                    ...content.split('\n').map(line => {
+                                        if (line.startsWith('@require')) {
+                                            requires.push(line);
+                                            return '';
+                                        }
+                                        return `    ${line}`
+                                    })
                                 ].join('\n');
+                                if (requires.length) {
+                                    content = requires.join('\n') + '\n' + content;
+                                }
                             // }
                         }
                         await ctx.fsWrite(!item.file ? file.relative : file.dirname + '/' + item.file, content);

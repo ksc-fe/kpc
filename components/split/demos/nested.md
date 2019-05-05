@@ -3,6 +3,8 @@ title: 嵌套使用
 order: 2
 ---
 
+`Split`可以嵌套使用，定义复杂的分割面板
+
 ```vdt
 import Split from 'kpc/components/split';
 

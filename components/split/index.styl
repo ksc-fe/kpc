@@ -6,6 +6,7 @@
     > .k-first
     > .k-last
         overflow auto
+        position relative
     > .k-first
         flex 0 0 auto
     > .k-last
@@ -15,56 +16,61 @@
             flex auto
         > .k-last
             flex 0 0 auto
+    &:not(.k-resizing)
+        > .k-first
+        > .k-last
+            transition all $transition
 
     // drag line
     > .k-line-wrapper
         flex 0 0 auto
+        text-align center
         .k-line
             height 100%
-            background $bg-color
+            background $split-line-bg-color
             position relative
         .k-drag-lines
-            background $border-color
+            background $split-drag-lines-bg-color
             position absolute
 
     // horizontal
     &.k-horizontal
         > .k-line-wrapper
-            width 6px
+            width $split-line-size
             cursor col-resize
             .k-line
-                border-left 1px solid $border-color
-                border-right 1px solid $border-color
+                border-left $split-line-border-first
+                border-right $split-line-border-last
             .k-drag-lines
-                height 1px
+                height $split-drag-lines-size
                 width 100%
                 top 50%
-                count = 5
-                margin-top -(unit((count  * 6) / 2, px))
+                count = $split-drag-lines-count
+                margin-top -(unit((count  * ($split-drag-lines-gutter + 1)) / 2, px))
                 generate()
                     value = ()
                     for i in (1..count)
-                        push(value, unquote('0 ' + i * 5 + 'px 0 0 ' + $border-color))
+                        push(value, unquote('0 ' + i * $split-drag-lines-gutter + 'px 0 0 ' + $split-drag-lines-bg-color))
                     unquote(join(', ', value))
                 box-shadow generate()
     // veritcal
     &.k-vertical
         flex-direction column
         > .k-line-wrapper
-            height 6px
+            height $split-line-size
             cursor row-resize
             .k-line
-                border-top 1px solid $border-color
-                border-bottom 1px solid $border-color
+                border-top $split-line-border-first
+                border-bottom $split-line-border-last
             .k-drag-lines
-                width 1px
+                width $split-drag-lines-size
                 height 100%
                 left 50%
-                count = 5
-                margin-left -(unit((count  * 6) / 2, px))
+                count = $split-drag-lines-count
+                margin-left -(unit((count  * ($split-drag-lines-gutter + 1)) / 2, px))
                 generate()
                     value = ()
                     for i in (1..count)
-                        push(value, unquote('' + i * 5 + 'px 0 0 0 ' + $border-color))
+                        push(value, unquote('' + i * $split-drag-lines-gutter + 'px 0 0 0 ' + $split-drag-lines-bg-color))
                     unquote(join(', ', value))
                 box-shadow generate()

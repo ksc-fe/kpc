@@ -3,6 +3,8 @@ title: 上下分割
 order: 1
 ---
 
+指定`mode`属性的值为`vertical`即可上下分割，其它属性用法同左右分割
+
 ```vdt
 import Split from 'kpc/components/split';
 

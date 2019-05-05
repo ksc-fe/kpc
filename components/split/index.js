@@ -7,6 +7,14 @@ export default class Split extends Intact {
     @Intact.template()
     static template = template;
 
+    static propTypes = {
+        mode: ['horizontal', 'vertical'],
+        firstSize: String,
+        lastSize: String,
+        min: [Number, String],
+        max: [Number, String],
+    };
+
     defaults() {
         return {
             mode: 'horizontal',
@@ -14,6 +22,8 @@ export default class Split extends Intact {
             lastSize: 'auto',
             min: 0,
             max: '100%-6',
+
+            _resizing: false,
         };
     }
 
@@ -26,7 +36,7 @@ export default class Split extends Intact {
                 this.set('lastSize', 'auto');
             }
         };
-        this.on('$received', (c, keys) => {
+        this.on('$receive', (c, keys) => {
             if (['firstSize', 'lastSize'].find(key => ~keys.indexOf(key))) {
                 fixSize();
             }
@@ -35,57 +45,79 @@ export default class Split extends Intact {
         fixSize();
     }
 
+    _generateMinMaxValue() {
+        let {firstSize, lastSize, mode, min, max} = this.get();
+        const minObject = parseValue(min);
+        const maxObject = parseValue(max);
+
+        if (minObject.percent || maxObject.percent) {
+            const totalSize = mode === 'horizontal' ?
+                this.element.offsetWidth :
+                this.element.offsetHeight;
+            function generateValue({percent, op, px}) {
+                if (percent) {
+                    let value = totalSize * percent / 100;
+                    if (px) {
+                        px = +px;
+                        value = op === '-' ? value - px : value + px;
+                    }
+                    return value;
+                }
+                return +px;
+            }
+            min = generateValue(minObject);
+            max = generateValue(maxObject);
+        }
+
+        this.min = min;
+        this.max = max;
+    }
+
+    _restrainValue(v) {
+        return Math.min(Math.max(v, this.min), this.max);
+    }
+
     _onMoveStart(e) {
         // left mouse key
         if (e.which !== 1) return;
 
-        const {firstSize, lastSize, mode} = this.get();
+        this.set('_resizing', true);
+
+        this._generateMinMaxValue();
+
+        const {mode, firstSize, lastSize} = this.get();
         if (lastSize === 'auto') {
             this._changeSizeName = 'firstSize';
             if (mode === 'horizontal') {
-                const width = this.refs.first.offsetWidth;
+                const width = this._restrainValue(this.refs.first.offsetWidth);
                 this._x = width - e.clientX;
             } else {
-                const height = this.refs.first.offsetHeight;
+                const height = this._restrainValue(this.refs.first.offsetHeight);
                 this._y = height - e.clientY;
             }
         } else {
             this._changeSizeName = 'lastSize';
             if (mode === 'horizontal') {
-                const width = this.refs.last.offsetWidth;
+                const width = this._restrainValue(this.refs.last.offsetWidth);
                 this._x = width + e.clientX;
             } else {
-                const height = this.refs.last.offsetHeight;
+                const height = this._restrainValue(this.refs.last.offsetHeight);
                 this._y = height + e.clientY;
             }
         }
 
         document.addEventListener('mousemove', this._onMove);
         document.addEventListener('mouseup', this._onMoveEnd);
+
+        this.trigger('moveStart', e);
     }
 
     _onMove(e) {
         e.preventDefault();
 
-        let {min, max, mode} = this.get();
-        const minObject = parseValue(min);
-        const maxObject = parseValue(max);
-        if (minObject.percent || maxObject.percent) {
-            const totalSize = mode === 'horizontal' ?
-                this.element.offsetWidth :
-                this.element.offsetHeight;
-            function generateValue({percent, op, px}, value) {
-                if (percent) {
-                    value = totalSize * percent / 100;
-                }
-                if (px) {
-                    value = op === '+' ? value + px : value - px;
-                }
-                return value;
-            }
-            min = generateValue(minObject, min);
-            max = generateValue(maxObject, max);
-        }
+        let {mode} = this.get();
+
+        const {min, max} = this;
 
         let size;
         if (this._changeSizeName === 'firstSize') {
@@ -101,21 +133,26 @@ export default class Split extends Intact {
                 size = this._y - e.clientY;
             }
         }
-        size = Math.min(Math.max(min, size), max);
+
+        size = this._restrainValue(size);
 
         this.set(this._changeSizeName, size + 'px');
+
+        this.trigger('moving', e);
     }
 
-    _onMoveEnd() {
+    _onMoveEnd(e) {
         document.removeEventListener('mousemove', this._onMove);
         document.removeEventListener('mouseup', this._onMoveEnd);
+        this.set('_resizing', false);
+        this.trigger('moveEnd', e);
     }
 }
 
 const regexp = /(?:(\d+(?:\.\d+)?)%)?([\+\-])?(\d+(?:\.\d+)?)?/;
 const cache = {};
 function parseValue(v) {
-    if (typeof v === 'number') return {};
+    if (typeof v === 'number') return {px: v};
     if (!cache[v]) {
         const matches = v.match(regexp) || [];
         cache[v] = {percent: matches[1], op: matches[2], px: matches[3]};

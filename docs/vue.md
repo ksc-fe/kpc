@@ -164,6 +164,27 @@ module.exports = {
 }
 ```
 
+如果采用链式写法，不要直接修改`stylus-loader`配置，可以采用`css`配置项来配置，如下所示：
+
+```js
+module.exports = {
+    chainWebpack: config => {
+        config.resolve.alias
+            .set('kpc', 'kpc/@stylus')
+            .set('intact$', 'intact-vue');
+    },
+    css: {
+        loaderOptions: {
+            stylus: {
+                'include css': true,
+                'resolve url': true,
+                import: `~kpc/styles/themes/ksyun/index.styl`
+            }
+        }
+    }
+}
+```
+
 > `@vue/cli@3.0`版本如果报找不到`babel-types`的错误，可以安装`babel-types`重启项目即可
 
 # Vue CLI 2

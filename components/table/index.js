@@ -740,7 +740,9 @@ export default class Table extends Intact {
         if (this.get('_isStickyScrollbar')) {
             this._onStickyScrollbarUnmount();
         }
-        this.ro.disconnect();
+        if (this.ro) {
+            this.ro.disconnect();
+        }
     }
 }
 
