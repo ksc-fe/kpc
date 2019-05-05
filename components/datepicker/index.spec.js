@@ -5,6 +5,8 @@ import DatetimeDemo from '~/components/datepicker/demos/datetime';
 import YearMonthDemo from '~/components/datepicker/demos/yearMonth';
 import RangeDemo from '~/components/datepicker/demos/range';
 import {mount, unmount, dispatchEvent, getElement} from 'test/utils';
+import Intact from 'intact';
+import Datepicker from 'kpc/components/datepicker';
 
 describe('Datepicker', () => {
     let instance;
@@ -306,5 +308,32 @@ describe('Datepicker', () => {
         dispatchEvent(input, 'keydown', {keyCode: 13});
         dispatchEvent(input, 'keydown', {keyCode: 13});
         expect(instance.get('date')).eql(value);
+    });
+
+    it('should not trigger change event when select range value has not complete', () => {
+        const fn = sinon.spy();
+        class Demo extends Intact {
+            @Intact.template()
+            static template = `<Datepicker v-model="value"
+                ev-$change:value={{ self._onChange }}
+                range
+            />`;
+            defaults() {
+                return { value: [] };
+            }
+            _init() { this.Datepicker = Datepicker; }
+            _onChange() { fn(); }
+        }        
+        instance = mount(Demo);
+        const input = instance.element.querySelector('.k-input');
+        input.click();
+        const content = getElement('.k-datepicker-content');
+        const [calendar1, calendar2] = content.querySelectorAll('.k-calendar-wrapper');
+        const first = calendar1.querySelectorAll('.k-day')[17];
+        const second = calendar2.querySelectorAll('.k-day')[17];
+        first.click();
+        expect(fn.callCount).to.eql(0);
+        second.click();
+        expect(fn.callCount).to.eql(1);
     });
 });

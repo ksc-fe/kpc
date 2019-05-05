@@ -30,9 +30,9 @@ export default class Timepicker extends Datepicker {
         // proxy _value to value
         this.on('$change:_value', (c, v) => {
             if (this.get('range')) {
-                // if only select one date for range, set to undefined
+                // if only select one date for range, do not set it, #259
                 if (Array.isArray(v) && v.length === 1) {
-                    v = undefined;
+                    return;
                 }
             }
             if (Array.isArray(v)) {

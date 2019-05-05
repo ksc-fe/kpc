@@ -59,9 +59,9 @@ export default class Datepicker extends Intact {
     _init() {
         // proxy _value to value
         this.on('$change:_value', (c, v) => {
-            // if only select one date for range, set with undefined
+            // if only select one date for range, do not change value, #259
             if (v && v.length === 1) {
-                v = undefined;
+                return;
             }
             this.set('value', v);
         });
