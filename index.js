@@ -1,5 +1,5 @@
 /*!
- * kpc v0.8.8
+ * kpc v0.8.9
  *
  * Copyright (c) Kingsoft Cloud
  * Released under the MIT License
@@ -42,6 +42,7 @@ import {Select, Option, OptionGroup} from './components/select';
 import {Slider} from './components/slider';
 import {Spinner} from './components/spinner';
 import {Spin} from './components/spin';
+import {Split} from './components/split';
 import {Steps, Step} from './components/steps';
 import {Switch} from './components/switch';
 import {Table, TableColumn} from './components/table';
@@ -101,6 +102,7 @@ export {
     Slider,
     Spin,
     Spinner,
+    Split,
     Step,
     Steps,
     Switch,
@@ -165,6 +167,7 @@ const components = {
     Slider,
     Spin,
     Spinner,
+    Split,
     Step,
     Steps,
     Switch,
@@ -183,7 +186,7 @@ const components = {
     Upload
 };
 
-export const version = '0.8.8';
+export const version = '0.8.9';
 
 /* generate end */
 
