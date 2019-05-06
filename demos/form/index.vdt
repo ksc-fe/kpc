@@ -1,0 +1,82 @@
+import {Form, FormItem} from 'components/form';
+import Radio from 'components/radio';
+import Button from 'components/button';
+import Checkbox from 'components/checkbox';
+import {Row, Col} from 'components/grid';
+import Input from 'components/input';
+
+<Form ref="form" style="margin: 20px;"
+    ev-submit={{ self.submit.bind(self) }}
+    class="form-page"
+>
+    <FormItem label="用户名" model={{ self.get('remove') ? undefined : "model.userName" }} rules={{ {required: true, checkName: true} }} classNames={{ {required: 'test'} }}>
+        <Input v-model="model.userName" />
+        <b:append><Button ev-click={{ self.set.bind(self, 'remove', !self.get('remove')) }}>toggle model</Button></b:append>
+    </FormItem>
+    <FormItem label="姓名" class="real-user-name">
+        <Row gutter="16">
+            <Col span="12">
+                <FormItem hideLabel model="model.realUserName.firstName" rules={{ {required: self.get('model.realUserName.lastName')} }}>
+                    <Input v-model="model.realUserName.firstName" fluid/>
+                </FormItem>
+            </Col>
+            <Col span="12">
+                <FormItem hideLabel model="model.realUserName.lastName" rules={{ {required: self.get('model.realUserName.firstName')} }}>
+                    <Input v-model="model.realUserName.lastName" fluid/>
+                </FormItem>
+            </Col>
+        </Row>
+    </FormItem>
+    <FormItem label="性别" model="model.sex" rules={{ {required: true} }} messages={{ {required: '必须选择'} }}>
+        <Radio v-model="model.sex" trueValue="female" name="sex">女</Radio>
+        <Radio v-model="model.sex" trueValue="male" name="sex" style="margin-left: 10px;">男</Radio>
+    </FormItem>
+    <FormItem label="爱好" for="sport" model="model.hobbies" rules={{ {required: true, maxLength: 2} }} messages={{ {required: '必须选择'} }}>
+        <Checkbox v-model="model.hobbies" trueValue="sport" name="hobbies" id="sport">运动</Checkbox>
+        <Checkbox v-model="model.hobbies" trueValue="music" name="hobbies" style="margin-left: 10px;">音乐</Checkbox>
+        <Checkbox v-model="model.hobbies" trueValue="coding" name="hobbies" style="margin-left: 10px;">写代码</Checkbox>
+    </FormItem>
+    <FormItem label="年龄" model="model.age" rules={{ {required: true, digits: true, min: 1} }}>
+        <Input v-model="model.age" />
+    </FormItem>
+    <FormItem label="邮箱" model="model.email" rules={{ {email: true} }}>
+        <Input v-model="model.email" />
+    </FormItem>
+    <FormItem label="密码" model="model.password" rules={{ {required: true} }}>
+        <Input type="password" v-model="model.password" />
+    </FormItem>
+    <FormItem v-if={{ !self.get('hide') }} label="确认密码" model="model.confirmPassword" rules={{ {required: true, equal(value) { return value === self.get('model.password') || '两次密码输入不一致'; }} }}>
+        <Input type="password" v-model="model.confirmPassword" />
+    </FormItem>
+    <FormItem label="描述" class="descriptions">
+        <FormItem v-for={{ self.get('model.descriptions') }} model={{ `model.descriptions.${key}` }} hideLabel rules={{ {
+            required: true,
+            unique(value) {
+                let count = 0;
+                self.get('model.descriptions').find(item => {
+                    if (item === value) count++;
+                    return count > 1;
+                });
+                return count === 1 || '不能相同';
+            }
+        } }}>
+            <Row gutter="16">
+                <Col span="18">
+                    <Input v-model={{ `model.descriptions.${key}` }} />
+                </Col>
+                <Col span="6">
+                    <Button fluid ev-click={{ self.delete.bind(self, key) }}>删除</Button>
+                </Col>
+            </Row>
+        </FormItem>
+        <Button ev-click={{ self.add.bind(self) }} size="small">添加</Button>
+    </FormItem>
+    <FormItem label="验证码" model="model.captcha" rules={{ {isEqual: true} }}>
+        <b:label>验证码 (<span style="color: red;">3</span>)</b:label>
+        <Input v-model="model.captcha" />
+    </FormItem>
+    <FormItem>
+        <Button htmlType="submit" type="primary">提交</Button>
+        <Button style="margin-left: 10px;" ev-click={{ self.reset.bind(self) }}>重置</Button>
+    </FormItem>
+</Form>

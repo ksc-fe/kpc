@@ -1,0 +1,16 @@
+import Editable from 'components/editable';
+
+<div>
+    <Editable v-model='text'>
+        <i class="ion ion-ios-location c-middle" style="margin-right: 10px;"></i>
+        <a>{{ self.get('text') }}</a>
+    </Editable>
+    <br />
+    <Editable value="aaa" disabled>
+        <a>aaaa</a>
+    </Editable>
+    <br />
+    <Editable v-model="text1" validate={{ /\d+/ }}>
+        <a>{{ self.get('text1') }}</a>
+    </Editable>
+</div>

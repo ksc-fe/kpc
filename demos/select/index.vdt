@@ -1,0 +1,148 @@
+import Select, {Option, OptionGroup} from 'components/select';
+import {Form, FormItem} from 'components/form';
+
+const data = [
+    {label: '星期一', value: 'Monday'},
+    {label: '星期二', value: 'Tuesday'},
+    {label: '星期三', value: 'Wednesday'},
+    {label: '星期四', value: 'Thursday'},
+    {label: '星期五', value: 'Friday'},
+    {label: '星期六', value: 'Saturday'},
+    {label: '星期天', value: 'Sunday'},
+];
+
+<Form style="margin: 20px;" class="select-page">
+    <FormItem label="标准：">
+        <Select v-model="value" data={{ data }} />
+        <b:append>
+            Your selected value is {{ self.get('value') }}
+        </b:append>
+    </FormItem>
+    <FormItem label="禁用状态：">
+        <Select disabled data={{ data }} />
+    </FormItem>
+    <FormItem label="禁用某一项：">
+        <Select data={{ data.map(item => {
+            item = {...item};
+            if (item.value === 'Tuesday') {
+                item.disabled = true;
+            }
+            return item;
+        }) }} />
+    </FormItem>
+    <FormItem label="可清空：">
+        <Select clearable data={{ data }} />
+    </FormItem>
+    <FormItem label="多选：">
+        <Select multiple data={{ data }} v-model="values" />
+        <b:append>
+            Your selected values is {{ JSON.stringify(self.get('values')) }}
+        </b:append>
+    </FormItem>
+    <FormItem label="可搜索：">
+        <Select filterable data={{ data }} />
+    </FormItem>
+    <FormItem label="多选+可搜索：">
+        <Select multiple filterable data={{ data }} />
+    </FormItem>
+    <FormItem label="自定义显示内容：">
+        <Select data={{ data.map(item => {
+            item = {...item};
+            item.template = () => {
+                return <div>
+                    <span>{{ item.label }}</span>
+                    <span style="float: right; color: #ccc">{{ item.value }}</span>
+                </div>
+            }
+            return item;
+        }) }} />
+    </FormItem>
+    <FormItem label="分组：">
+        <Select filterable data={{ data.reduce(
+            (memo, item) => {
+                if (item.value === 'Saturday' || item.value === 'Sunday') {
+                    memo[1].data.push(item);
+                } else {
+                    memo[0].data.push(item);
+                }
+                return memo;
+            }, 
+            [
+                {label: '工作日', data: []}, 
+                {label: '双休日', data: []}
+            ]
+        ) }} />
+    </FormItem>
+    <FormItem label="size：">
+        <Select data={{ data }} size="small" style="margin-bottom: 10px;"/>
+        <Select data={{ data }} size="small" filterable style="margin-bottom: 10px;"/>
+        <Select data={{ data }} size="small" filterable multiple style="margin-bottom: 10px;"/>
+        <Select data={{ data }} size="mini" />
+    </FormItem>
+    <FormItem label="use option：">
+        <Select v-model="value">
+            <Option v-for={{ data }} value={{ value.value }}>
+                {{ value.label }}
+            </Option>
+        </Select>
+        <b:append>
+            Your selected value is {{ self.get('value') }}
+        </b:append>
+    </FormItem>
+    <FormItem label="disable option：">
+        <Select>
+            <Option v-for={{ data }} value={{ value.value }}
+                disabled={{ value.value === 'Tuesday' }}
+            >
+                {{ value.label }}
+            </Option>
+        </Select>
+    </FormItem>
+    <FormItem label="option & multiple">
+        <Select v-model="values" multiple>
+            <Option v-for={{ data }} value={{ value.value }}>
+                {{ value.label }}
+            </Option>
+        </Select>
+        <b:append>
+            Your selected values is {{ JSON.stringify(self.get('values')) }}
+        </b:append>
+    </FormItem>
+    <FormItem label="multiple & filterable">
+        <Select v-model="values" multiple filterable>
+            <Option v-for={{ data }} value={{ value.value }}>
+                {{ value.label }}
+            </Option>
+        </Select>
+    </FormItem>
+    <FormItem label="custom template:">
+        <Select filterable>
+            <Option v-for={{ data }} value={{ value.value }}
+                label={{ value.label }}
+            >
+                <div>
+                    <span>{{ value.label }}</span>
+                    <span style="float: right; color: #ccc">{{ value.value }}</span>
+                </div>
+            </Option>
+        </Select>
+    </FormItem>
+    <FormItem label="group:">
+        <Select filterable>
+            <OptionGroup label="工作日">
+                <Option v-for={{ data }} 
+                    v-if={{ key < 5 }}
+                    value={{ value.value }}
+                    label={{ value.label }}
+                />
+            </OptionGroup>
+            <OptionGroup label="双休日">
+                <Option v-for={{ data }} 
+                    v-if={{ key > 4 }}
+                    value={{ value.value }}
+                    label={{ value.label }}
+                />
+            </OptionGroup>
+        </Select>
+    </FormItem>
+</Form>

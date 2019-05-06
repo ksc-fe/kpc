@@ -1,0 +1,17 @@
+import Dialog from 'components/dialog';
+import {Dropdown, DropdownMenu, DropdownItem} from 'components/dropdown';
+
+<div class="a">
+    <div v-if={{ self.get('a') }}>
+        <span>click</span>
+        <Dialog value={{ false }}/>
+    </div>
+    <div v-else>
+        <Dropdown>
+            <span>click</span>
+            <DropdownMenu>
+                <DropdownItem>1</DropdownItem>
+            </DropdownMenu>
+        </Dropdown>
+    </div>
+</div>

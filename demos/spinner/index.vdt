@@ -1,0 +1,12 @@
+import Spinner from 'components/spinner';
+
+<div class="spinner-page">
+    <Spinner value={{6}} max={{10}} min={{-10}}></Spinner>
+    <br/>
+    <Spinner disabled={{ true }}></Spinner>
+    <br/>
+    <Spinner value={{4}} size="small"></Spinner>
+    <br/>
+    <Spinner v-model="rangeValue" max={{15}} min={{1}}></Spinner>
+    <span>{{"当前值： " + self.get('rangeValue')}}</span>
+</div>

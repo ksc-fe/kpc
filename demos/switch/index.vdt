@@ -1,0 +1,26 @@
+import Switch from 'components/switch';
+
+<div style="margin: 10px;">
+    <Switch />
+    <Switch value={{ true }} />
+    <br />
+    <Switch on="开" off="关" v-model="status1" />
+    <span>status1: {{ JSON.stringify(self.get('status1')) }}</span>
+    <Switch width="100" height="30" v-model="status2"
+        trueValue="on"
+        falseValue="off"
+        class="big-switch"
+    >
+        <b:on>开启主机</b:on>
+        <b:off>关闭主机</b:off>
+    </Switch>
+    <span>status2: {{ JSON.stringify(self.get('status2')) }}</span>
+    <br />
+    <Switch size="default" />
+    <Switch size="small" on="开" off="关"/>
+    <Switch size="mini" />
+    <br />
+    <Switch disabled />
+    <Switch disabled value={{ true }} />
+    <Switch disabled off="关" />
+</div>

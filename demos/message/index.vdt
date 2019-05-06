@@ -1,0 +1,29 @@
+import Button from 'components/button';
+import Progress from 'components/progress';
+import Message from 'components/message';
+
+<div>
+    <Button ev-click={{ self.showMessage.bind(self, value) }}
+        v-for={{ ['info', 'error', 'success', 'warning'] }}
+    >Show {{ value }} message</Button>
+    <br />
+    <Button ev-click={{ self.showStickMessage.bind(self) }}>
+        Show stick message
+    </Button>
+    <br />
+    <Button ev-click={{ () => self.set('show', true) }}>
+        Show stick message with custom template
+    </Button>
+    <Button ev-click={{ () => self.set('show2', true) }}>
+        Show message with custom template
+    </Button>
+    <Message v-model="show" key="key1" duration={{ 0 }}>
+        <Progress percent={{ self.get('percent') }} 
+            style="width: 200px" 
+            ev-click={{ self.onClick.bind(self) }}
+        />
+    </Message>
+    <Message v-model="show2" key="key2">
+        <Progress percent={{ self.get('percent') }} style="width: 200px" />
+    </Message>
+</div>

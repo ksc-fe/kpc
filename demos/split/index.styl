@@ -1,0 +1,39 @@
+@require('../../styles/themes/default.styl')
+@require('../../components/table/variables.styl')
+
+.split-container
+    height 100%
+    padding 20px
+    font-size 12px
+    .k-first
+        border 1px solid $table-border-color
+        border-top none
+        height 100%
+        display flex
+        flex-direction column
+    .k-table
+        flex 1
+    .k-table-wrapper
+        height 100%
+        display flex
+        flex-direction column
+    .k-tbody
+        flex 1
+    .k-pagination
+        padding 10px
+        border-top 1px solid $table-border-color
+    .tab-panel
+        padding 10px
+        .k-form-item
+            margin 0
+    .close
+        position absolute
+        right 0
+        top 0
+        z-index 1
+    .k-split.closed
+        .k-line-wrapper
+            display none
+    .ion-drag
+        position relative
+        z-index 1
