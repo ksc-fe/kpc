@@ -1,5 +1,8 @@
 import {getRestProps} from '../utils';
 
-const {name, isReplace} = self.get();
+const {className} = self.get();
 
-<a {{ ...getRestProps(self) }} ev-click={{ self.to }}>{{ self.get('children') }}</a>
+<a {{ ...getRestProps(self) }}
+    className={{ className }}
+    ev-click={{ self.to }}
+>{{ self.get('children') }}</a>
