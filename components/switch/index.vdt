@@ -4,7 +4,8 @@ let {
     className, style, children,
     name, on, off, value,
     trueValue, falseValue, width,
-    height, size, disabled, _dragging
+    height, size, disabled, _dragging,
+    key, ref, ...rest
 } = self.get();
 
 const classNameObj = {
@@ -52,8 +53,9 @@ if (width || height) {
 }
 
 <div class={{ classNameObj }} 
+    {{ ...rest }}
     style={{ style }} 
-    ev-click={{ self._toggle }}
+    ev-click={{ self._onClick }}
     tabindex={{ disabled ? "-1" : "0" }}
     ev-keypress={{ self._onKeypress }}
 >

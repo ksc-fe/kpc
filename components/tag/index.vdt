@@ -3,7 +3,7 @@ import Button from '../button';
 const {
     className, children, type,
     disabled, closable, closed, size,
-    ...rest
+    key, ref, ...rest
 } = self.get();
 
 if (closed) return;
@@ -19,10 +19,10 @@ const classNameObj = {
 };
 
 <Animate
+    {{ ...rest }}
     a:disabled={{ disabled }}
     a:transition="c-fade" 
     class={{ classNameObj }}
-    {{ ...rest }}
 >
     <template>
         <b:body>{{ children }}</b:body>

@@ -18,7 +18,7 @@ if (self.colors.indexOf(color) > -1) {
     _style.color = color;
 }
 
-<i class={{ classNameObj }}
+<i {{ ...rest }}
+    class={{ classNameObj }}
     style={{ addStyle(_style, style) }}
-    {{ ...rest }}
 ></i>

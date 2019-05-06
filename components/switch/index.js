@@ -90,6 +90,11 @@ export default class Switch extends Intact {
         document.removeEventListener('mouseup', this._dragEnd);
     }
 
+    _onClick(e) {
+        this.trigger('click', e);
+        this._toggle(e, false);
+    }
+
     _toggle(e, isKeypress) {
         if (this.get('disabled')) return;
 
@@ -106,6 +111,7 @@ export default class Switch extends Intact {
     }
 
     _onKeypress(e) {
+        this.trigger('keypress', e);
         if (e.keyCode === 13) {
             this._toggle(e, true);
         }

@@ -4,7 +4,7 @@ import gutterStyle from './utils';
 
 let {
     children, className, style,
-    justify, align
+    justify, align, key, ref, ...rest
 } = self.get();
 const useFlex = self.useFlex;
 
@@ -31,7 +31,7 @@ const classNameObj = {
     /* }); */
 /* } */
 
-<div class={{ classNameObj }} style={{ style }}>{{
+<div {{ ...rest }} class={{ classNameObj }} style={{ style }}>{{
     mapChildren(children, vNode => {
         if (vNode && vNode.tag === Col) {
             vNode.props = {...vNode.props, gutter};

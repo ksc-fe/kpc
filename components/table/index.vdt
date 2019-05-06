@@ -12,7 +12,8 @@ const {
     resizable, expandedKeys, type, _isSticky, stripe,
     style, rowClassName, children, sort, group, _scrollBarWidth,
     _scrollLeft, _scrollTop, _hoverIndex, _scrollPosition, 
-    _paddingBottom, _isStickyScrollbar, loading, _isShowLeftRightMiddle
+    _paddingBottom, _isStickyScrollbar, loading, _isShowLeftRightMiddle,
+    key, ref, ...rest
 } = self.get();
 
 let colSpan = checkType === 'checkbox' || checkType === 'radio' ? 1 : 0;
@@ -350,7 +351,7 @@ const classNameObj = {
     'k-stripe': stripe,
 };
 
-<div class={{ classNameObj }} style={{ style }}>
+<div class={{ classNameObj }} {{ ...rest }}>
     {{ table }}    
     <div class="k-table-wrapper k-fixed-left" v-if={{ hasFixedLeft }} 
         style={{ {width: self.get('_leftWidth') + 'px'} }}

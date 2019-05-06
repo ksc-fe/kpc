@@ -3,8 +3,9 @@ import Icon from '../icon';
 import Button from '../button';
 
 const {
-    className, style, _open, 
-    placeholder, value, type, size
+    className, _open, 
+    placeholder, value, type, size,
+    key, ref, ...rest
 } = self.get();
 
 const classNameObj = {
@@ -15,7 +16,7 @@ const classNameObj = {
     [`k-${type}`]: type !== 'default',
 };
 
-<form class={{ classNameObj }} style={{ style }} ev-submit={{ self._onSubmit }}>
+<form {{ ...rest }} class={{ classNameObj }} ev-submit={{ self._onSubmit }}>
     <Input clearable
         ref="input" 
         placeholder={{ _open ? placeholder : undefined }}

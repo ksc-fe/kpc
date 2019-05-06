@@ -3,9 +3,9 @@ import Button from '../button';
 
 const {
     className, data, value, children,
-    style, vertical, size, type,
+    vertical, size, type,
     _activeBarStyle, _scroll, _left,
-    _prev, _next
+    _prev, _next, key, ref, ...rest
 } = self.get();
 
 const classNameObj = {
@@ -18,7 +18,7 @@ const classNameObj = {
     [`k-is-scroll`]: _scroll
 };
 
-<div class={{ classNameObj }} style={{ style }}>
+<div class={{ classNameObj }} {{ ...rest }}>
     <Button class="k-prev" type="none" icon
         v-if={{ _scroll }}
         key="prev" 

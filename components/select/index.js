@@ -174,12 +174,14 @@ export default class Select extends Intact {
     }
 
     _onKeypress(e) {
+        this.trigger('keypress', e);
         if (e.keyCode === 13) {
             this.refs.wrapper.click();
         }
     }
 
     _onKeydown(e) {
+        this.trigger('keydown', e);
         if (e.keyCode === 9) { // tab
             this.refs.dropdown.hide();
         }

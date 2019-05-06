@@ -1,4 +1,4 @@
-const {className, style, children, type, size} = self.get();
+const {className, children, type, size, key, ref, ...rest} = self.get();
 
 const classNameObj = {
     'k-item': true,
@@ -7,7 +7,7 @@ const classNameObj = {
     [`k-${size}`]: size !== 'default',
 };
 
-<div class={{ classNameObj }} style={{ style }}>
+<div class={{ classNameObj }} {{ ...rest }}>
     <div class="k-indicator">
         <div class="k-dot">
             <b:dot>

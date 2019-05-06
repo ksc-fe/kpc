@@ -2,7 +2,8 @@ import Icon from '../icon';
 
 const {
     _value, count, className, 
-    style, disabled, half
+    disabled, half,
+    key, ref, ...rest
 } = self.get();
 
 const classNameObj = {
@@ -13,7 +14,7 @@ const classNameObj = {
 
 const icon = <b:icon><Icon class="ion-android-star" /></b:icon>
 
-<div className={{ classNameObj }} style={{ style }}
+<div {{ ...rest }} class={{ classNameObj }}
     ev-mouseleave={{ self.onMouseLeaveComponent }}
 >
     {{ (() => {

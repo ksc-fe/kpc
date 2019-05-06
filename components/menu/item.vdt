@@ -6,10 +6,10 @@ import VShow from './vShow';
 import Icon from '../icon';
 
 const {
-    children, key, className, style, dot,
+    children, key, className, dot,
     disabled, _root, _isFirstFloorChildren,
     _isFocus, _show, _active, _highlighted,
-    _parentMenu
+    _parentMenu, ref, ...rest
 } = self.get();
 
 let subMenuVNode;
@@ -65,7 +65,7 @@ const title = (
     </div>
 );
 
-<div class={{ classNameObj }} style={{ style }}
+<div {{ ...rest }} class={{ classNameObj }}
     ev-mouseenter={{ self._onMouseEnter }}
     ev-mouseleave={{ self._onMouseLeave }}
 >

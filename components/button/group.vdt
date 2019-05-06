@@ -2,7 +2,8 @@ import Button from './';
 
 const {
     className, vertical, style, 
-    children, value, fluid, checkType
+    children, value, fluid, checkType,
+    key, ref, ...rest
 } = self.get();
 
 const classNameObj = {
@@ -12,7 +13,7 @@ const classNameObj = {
     'k-fluid': fluid,
 };
 
-<div class={{ classNameObj }} style={{ style }}>{{ 
+<div {{ ...rest }} class={{ classNameObj }}>{{ 
     checkType !== 'none' ? __u.map(
         children ? 
             (Array.isArray(children) ? children : [children]) :

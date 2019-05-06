@@ -1,6 +1,6 @@
 import BreadcrumbItem from './item';
 
-const {children, separator, className, style} = self.get();
+const {children, separator, className, key, ref, ...rest} = self.get();
 
 const classNameObj = {
     'k-breadcrumb': true,
@@ -11,7 +11,7 @@ const _children = children ? (Array.isArray(children) ? children : [children]) :
 
 const _separator = <b:separator>{{ separator }}</b:separator>
 
-<div class={{ classNameObj }} style={{ style }}>
+<div {{ ...rest }} class={{ classNameObj }}>
     {{ __u.map(_children, (vNode, index) => {
         if (vNode.tag === BreadcrumbItem) {
             vNode.props = {...vNode.props};

@@ -3,7 +3,8 @@ import {isNullOrUndefined} from '../utils';
 
 let {
     children, span, className, order,
-    style, gutter, offset, push, pull
+    gutter, offset, push, pull,
+    style, key, ref, ...rest
 } = self.get();
 
 const {xs, sm, md, lg, xl} = self;
@@ -37,7 +38,7 @@ breakpoints.forEach(item => {
     });
 });
 
-<div class={{ classNameObj }} style={{ style }}>{{
+<div {{ ...rest }} class={{ classNameObj }} style={{ style }}>{{
     hasGutter ?
         <div class={{ className }}>{{ children }}</div> :
         children

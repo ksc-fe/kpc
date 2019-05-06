@@ -1,6 +1,6 @@
 let {
-    className, style, children, text, disabled,
-    max,
+    className, children, text, disabled,
+    max, key, ref, ...rest
 } = self.get();
 
 if (typeof text === 'number' && max && text > max) {
@@ -14,7 +14,7 @@ const classNameObj = {
     'k-alone': !children,
 };
 
-<div class={{ classNameObj }} style={{ style }}>
+<div {{ ...rest }} class={{ classNameObj }}>
     {{ children }}
     <sup class="k-text" v-if={{ !disabled }}>{{ text }}</sup>
 </div>

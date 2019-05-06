@@ -87,7 +87,7 @@ const loadingIcon = (
 <Button class={{ classNameObj }} {{ ...rest }} {{ ...tagProps }}
     ev-click={{ self._onClick }}
     tabindex={{ disabled || loading ? "-1" : tabindex }}
-    ev-mouseup={{ self._blur }}
+    ev-mouseup={{ self._onMouseUp }}
 >
     {{ loading ? 
         classNameObj['k-icon-right'] ?

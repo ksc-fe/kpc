@@ -4,6 +4,7 @@ const {
     editing, value, validate,
     disabled, style, tip,
     children, invalid, className,
+    key, ref, ...rest
 } = self.get();
 
 const classNameObj = {
@@ -14,7 +15,7 @@ const classNameObj = {
     [className]: className,
 };
 
-<div class={{ classNameObj }} style={{ style }}>
+<div {{ ...rest }} class={{ classNameObj }}>
     <i class="ion-edit k-edit" title={{ tip }}
         v-if={{ !disabled && !editing }}
         ev-click={{ self._edit }}

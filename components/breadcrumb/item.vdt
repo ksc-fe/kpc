@@ -1,6 +1,6 @@
-const {to, separator, children} = self.get();
+const {to, separator, children, className, key, ref, ...rest} = self.get();
 
-<div class="k-item">
+<div {{ ...rest }} class={{ {"k-item": true, [className]: className} }}>
     <a v-if={{ to }} ev-click={{ self.onClick }} class="k-item-link">{{ children }}</a>
     <span v-else class="k-item-link">{{ children }}</span>
     <span v-if={{ separator != null }} class="k-separator">

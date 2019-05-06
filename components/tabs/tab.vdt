@@ -2,7 +2,7 @@ import Button from '../button';
 
 const {
     value, children, _value, className,
-    disabled, _parent, closable,
+    disabled, _parent, closable, key, ref, ...rest
 } = self.get();
 
 <div 
@@ -12,6 +12,7 @@ const {
         [className]: className,
         'k-disabled': disabled,
     } }}
+    {{ ...rest }}
     ev-click={{ self._changeTab }}
 >
     {{ self.get('children') }}

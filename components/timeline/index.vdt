@@ -1,13 +1,13 @@
 import {mapChildren} from '../utils';
 
-const {className, style, children} = self.get();
+const {className, children, key, ref, ...rest} = self.get();
 
 const classNameObj = {
     'k-timeline': true,
     [className]: className,
 };
 
-<div class={{ classNameObj }} style={{ style }}>
+<div class={{ classNameObj }} {{ ...rest }}>
     {{ mapChildren(children, vNode => {
         return vNode;
     }) }}

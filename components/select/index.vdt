@@ -11,7 +11,7 @@ const {
     disabled, filterable, keywords, _show,
     placeholder, size, style, name, children,
     fluid, width, allowUnmatch, card, hideIcon,
-    container, inline, loading
+    container, inline, loading, key, ref, ...rest
 } = self.get();
 
 let _activeLabel = self.get('_activeLabel');
@@ -215,6 +215,7 @@ if (hasValue && labelObj.label == null && !labelObj.labels.length) {
 }
 
 <div class={{ {...classNameObj, 'k-has-value': hasValue} }}
+    {{ ...rest }}
     style={{ width != null ? addStyle(style, {width: `${width}px`}) : style }} 
     tabindex={{ disabled ? "-1" : "0" }}
     ev-keypress={{ self._onKeypress }}

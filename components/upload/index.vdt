@@ -4,8 +4,9 @@ import Dialog from '../dialog';
 import {expandAnimationCallbacks, _$} from '../utils';
 
 const {
-    className, style, accept, multiple, limit,
-    files, children, type, _dragOver, directory
+    className, accept, multiple, limit,
+    files, children, type, _dragOver, directory,
+    key, ref, ...rest
 } = self.get();
 
 const classNameObj = {
@@ -52,7 +53,7 @@ const CloseBtn = (props) => (
     </Button>
 );
 
-<div class={{ classNameObj }} style={{ style }}>
+<div class={{ classNameObj }} {{ ...rest }}>
     <input type="file" 
         accept={{ accept }}
         class="c-hidden" 

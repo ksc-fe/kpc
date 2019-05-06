@@ -1,6 +1,6 @@
-const {children, label, _card, className} = self.get();
+const {children, label, _card, className, key, ref, ...rest} = self.get();
 
-<div class={{ {"k-group": true, [className]: className} }}>
+<div class={{ {"k-group": true, [className]: className} }} {{ ...rest }}>
     <div class="k-label" v-if={{ !_card }}>
         <b:label>{{ label }}</b:label>
     </div>

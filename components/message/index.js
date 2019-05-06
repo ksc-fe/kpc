@@ -152,11 +152,13 @@ export default class Message extends Intact {
         }
     }
 
-    onMouseEnter() {
+    onMouseEnter(e) {
+        this.trigger('mouseenter', e);
         clearTimeout(this.timer);
     }
 
     onMouseLeave() {
+        this.trigger('mouseleave', e);
         clearTimeout(this.timer);
         this._mount();
     }

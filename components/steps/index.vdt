@@ -2,7 +2,8 @@ import Step from './step';
 
 const {
     children, value, style,
-    status, type, clickable
+    status, type, clickable,
+    key, ref, ...rest
 } = self.get();
 
 const classNameObj = {
@@ -36,4 +37,4 @@ steps = steps.map(vNode => {
     return vNode;
 });
 
-<div class={{ classNameObj }} style={{ style }}>{{ steps }}</div>
+<div class={{ classNameObj }} {{ ...rest }}>{{ steps }}</div>

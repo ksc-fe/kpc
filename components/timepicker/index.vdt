@@ -5,7 +5,7 @@ import {Select, Option} from '../select';
 const {
     range, multiple, _options, size,
     clearable, placeholder, disabled,
-    className, style, container,
+    className, container, key, ref, ...rest
 } = self.get(); 
 
 const _placeholder = range ?
@@ -35,6 +35,7 @@ const _placeholder = range ?
     </t:parent>
     <Select v-else
         v-model="value" 
+        {{ ...rest }}
         multiple={{ multiple }}
         placeholder={{ placeholder || _placeholder }}
         hideIcon

@@ -12,9 +12,12 @@ const {
 
 // pass the rest props to Calendar, except events
 const _rest = {};
+const _events = {};
 for (let key in rest) {
     if (key.substring(0, 3) !== 'ev-') {
         _rest[key] = rest[key];
+    } else {
+        _events[key] = rest[key];
     }
 }
 
@@ -108,7 +111,7 @@ const content = <b:content>
 
 const prefix = <b:prefix><i class="ion-ios-calendar-outline"></i></b:prefix>
 
-<div class={{ classNameObj }} style={{ style }}
+<div {{ ..._events }} class={{ classNameObj }} style={{ style }}
     tabindex={{ disabled ? '-1' : '0' }}
     ev-keydown={{ self._onKeydown }}
 >

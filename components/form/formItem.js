@@ -206,6 +206,16 @@ export default class FormItem extends Intact {
         }, 100);
     }
 
+    _onChange(e) {
+        this.trigger('change', e);
+        this._dirty();
+    }
+
+    _onFocusout(e) {
+        this.trigger('focusout', e);
+        this._dirty();
+    }
+
     _cancel() {
         // cancel the last promise
         if (this.promise) {

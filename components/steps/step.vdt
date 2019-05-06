@@ -2,7 +2,7 @@ import {addStyle} from '../utils';
 const {
     children, selected, done, 
     title, index, width, error,
-    className, style, ...rest
+    className, style, key, ref, ...rest
 } = self.get();
 
 const classNameObj = {

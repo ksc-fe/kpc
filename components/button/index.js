@@ -118,9 +118,10 @@ export default class Button extends Intact {
         this.trigger('click', e);
     }
 
-    _blur() {
+    _onMouseUp(e) {
         // when click, blur it to remove the focus style
         this.element.blur();
+        this.trigger('mouseup', e);
     }
 }
 

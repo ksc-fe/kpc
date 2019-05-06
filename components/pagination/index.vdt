@@ -8,7 +8,7 @@ const {
     total, current, limit, limits, 
     className, showTotal, showGoto,
     counts, size, noBorder, simple,
-    showLimits, ...rest
+    showLimits, key, ref, ...rest
 } = self.get();
 
 if (!total) return <!-- pagination -->
@@ -38,7 +38,7 @@ const paginationDot = function(callback) {
     return <Button type={{ type }} size={{ size }} icon class="k-ellipsis" ev-click={{ callback }}>...</Button>
 };
 
-<div class={{ classNameObj }}>
+<div {{ ...rest }} class={{ classNameObj }}>
     <ButtonGroup checkType="radio" v-model="current">
         <Button icon size={{ size }}
             disabled={{ current <= 1 }}

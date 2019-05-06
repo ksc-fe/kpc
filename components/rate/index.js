@@ -57,7 +57,9 @@ export default class Rate extends Intact {
         this.set('_value', value);
     }
 
-    onMouseLeaveComponent() {
+    onMouseLeaveComponent(e) {
+        this.trigger('mouseleave', e);
+
         if (this.get('disabled')) return;
 
         this.set('_value', this.get('value'));

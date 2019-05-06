@@ -1,9 +1,10 @@
 import Button from '../button';
 import Icon from '../icon';
 
-const {type, content, children, closable, hideIcon} = self.get();
+const {type, content, children, closable, hideIcon, key, ref, ...rest} = self.get();
 
-<div class={{ {"k-message": true, [`k-${type}`]: type !== 'info'} }}
+<div {{ ...rest }}
+    class={{ {"k-message": true, [`k-${type}`]: type !== 'info'} }}
     ev-mouseenter={{ self.onMouseEnter }}
     ev-mouseleave={{ self.onMouseLeave }}
 >

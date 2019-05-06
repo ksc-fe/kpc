@@ -4,10 +4,10 @@ import Input from '../input';
 import {_$} from '../utils';
 
 const {
-    data, className, style, value, keyName,
+    data, className, value, keyName,
     leftChecked, rightChecked, filterable, batchable,
     filter, label, placeholder, leftTitle, rightTitle,
-    selectedKeys
+    selectedKeys, key, ref, ...rest
 } = self.get();
 
 const classNameObj = {
@@ -65,7 +65,7 @@ const Panel = props => {
     </div>
 };
 
-<div class={{ classNameObj }} style={{ style }}>
+<div class={{ classNameObj }} {{ ...rest }}>
     <Panel data={{ data.filter(item => !~selectedKeys.indexOf(item[keyName])) }}
         model="left" 
         title={{ leftTitle }}
