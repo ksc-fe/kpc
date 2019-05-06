@@ -25,9 +25,10 @@ import Icon from 'kpc/components/icon';
             <Table data={{ self.get('data') }}
                 fixHeader
                 ref="table"
-                ev-$change:selectedKeys={{ self._togglePanel }}
-                rowSelectable
                 rowCheckable={{ false }}
+                v-model:checkedKeys="checkedKeys"
+                ev-click:row={{ self._onClickRow }}
+                ev-$change:checkedKeys={{ self._togglePanel }}
             >
                 <TableColumn title="名称" key="name" />
                 <TableColumn title="网段" key="ip" />
@@ -122,6 +123,7 @@ export default class extends Intact {
             tab: 'detail',
             size: '0px',
             selectedData: undefined,
+            checkedKeys: [],
         }
     }
 
@@ -135,14 +137,27 @@ export default class extends Intact {
         }
     }
 
-    _togglePanel(table, selectedKeys) {
-        if (selectedKeys.length) {
-            const data = table.getSelectedData()[0];
+    _togglePanel(table, keys) {
+        if (keys.length === 1) {
+            // 只选中一行时，展开详情面板
+            const data = table.getCheckedData()[0];
             this.set('selectedData', data);
             this._open();
         } else {
             this._close();
         }
+    }
+
+    _onClickRow(data, index, key) {
+        const checkedKeys = this.get('checkedKeys');
+        if (checkedKeys.length === 1 && checkedKeys[0] === key) {
+            // 如果只选中了一行，再次点击当前行，则取消选中
+            key = [];
+        } else {
+            // 否则只选中当前行
+            key = [key];
+        }
+        this.set('checkedKeys', key);
     }
 }
 ```
@@ -159,6 +174,7 @@ data() {
         tab: 'detail',
         size: '0px',
         selectedData: {},
+        checkedKeys: [],
     }
 },
 ```
@@ -176,6 +192,7 @@ constructor(props) {
         tab: 'detail',
         size: '0px',
         selectedData: {},
+        checkedKeys: [],
     };
     this._classNames = this._classNames.bind(this);
     this._close = this._close.bind(this);

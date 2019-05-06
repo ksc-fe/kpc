@@ -9,7 +9,6 @@ test/coverage
 .dev/
 site/.dist/
 *hot-update.js*
-/demos/
 @*
 .cache
 out/
