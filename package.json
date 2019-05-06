@@ -139,7 +139,7 @@
     "enquire.js": "^2.1.6",
     "intact": "^2.4.18",
     "intact-react": "^1.1.15",
-    "intact-vue": "^0.4.18",
+    "intact-vue": "^0.4.19",
     "resize-observer-polyfill": "^1.5.0"
   },
   "sideEffects": [
