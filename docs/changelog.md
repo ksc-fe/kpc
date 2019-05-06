@@ -16,6 +16,7 @@ sidebar: doc
 6. `Fix` 修复`Table`在固定表头，并且表格体高度自适应的情况，改变表格高度，导致出现滚动条时，表头不能自动对齐的问题 [#258](https://github.com/ksc-fe/kpc/issues/258)
 7. `Fix` 修复`Datepicker`在范围选择情况下，当只选择一个值即触发`$change:value`事件的问题 [#259](https://github.com/ksc-fe/kpc/issues/259)
 8. `Fix` 修复`Tooltip`作用于不支持`click`或者`mouseenter/mouseleave`的组件上，提示失效的问题 [#269](https://github.com/ksc-fe/kpc/issues/269)
+9. `Fix` 修复`Cascader`首次点击子菜单，不能展开的问题 [#253](https://github.com/ksc-fe/kpc/issues/253)
 
 ### React
 
