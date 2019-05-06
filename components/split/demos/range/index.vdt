@@ -1,0 +1,6 @@
+import Split from 'kpc/components/split';
+
+<Split min="40" max="50%+10" firstSize="80px">
+    <b:first><div class="panel">left</div></b:first>
+    <b:last><div class="panel">right</div></b:last>
+</Split>

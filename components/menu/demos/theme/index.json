@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>theme</code>属性可以指定主题：<code>dark</code> <code>light</code>，默认<code>dark</code></p>\n",
-    "index": 93,
+    "index": 97,
     "highlighted": [
         {
             "language": "vdt",

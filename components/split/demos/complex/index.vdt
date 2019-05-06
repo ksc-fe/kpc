@@ -1,0 +1,55 @@
+import Split from 'kpc/components/split';
+import {Table, TableColumn} from 'kpc/components/table';
+import {Pagination} from 'kpc/components/pagination';
+import {Tabs, Tab} from 'kpc/components/tabs';
+import {FormItem} from 'kpc/components/form';
+import Button from 'kpc/components/button';
+import Icon from 'kpc/components/icon';
+
+<div class="split-container">
+    <Split mode="vertical"
+        v-model:lastSize="size"
+        class={{ {closed: self.get('size') === '0px'} }}
+        min={{ 10 }}
+    >
+        <b:first>
+            <Table data={{ self.get('data') }}
+                fixHeader
+                ref="table"
+                rowCheckable={{ false }}
+                v-model:checkedKeys="checkedKeys"
+                ev-click:row={{ self._onClickRow }}
+                ev-$change:checkedKeys={{ self._togglePanel }}
+            >
+                <TableColumn title="名称" key="name" />
+                <TableColumn title="网段" key="ip" />
+                <TableColumn title="操作" key="op">
+                    <b:template params="data">
+                        <a>删除</a> 
+                    </b:template>
+                </TableColumn>
+            </Table>
+            <Pagination total={{ 100 }} size="small" />
+        </b:first>
+        <b:last>
+            <Button type="none" icon class="close"
+                ev-click={{ self._close }}
+            >
+                <Icon class="ion-ios-close-empty" size="40" />
+            </Button>
+            <Tabs v-model="tab">
+                <Tab value="detail">详情</Tab>
+                <Tab value="data">流量统计</Tab>
+                <Tab value="tag">标签</Tab>
+            </Tabs>
+            <div v-if={{ self.get('tab') === 'detail' }} class="tab-panel">
+                <FormItem label="创建时间：">2018-09-28 17:31:25</FormItem>
+                <FormItem label="弹性IP：">{{ self.get('selectedData.ip') }}</FormItem>
+                <FormItem label="名称：">{{ self.get('selectedData.name') }}</FormItem>
+            </div>
+        </b:last>
+        <b:drag>
+            <Icon class="ion-drag" />
+        </b:drag>
+    </Split>
+</div>

@@ -6,7 +6,7 @@
     },
     "catalogs": [],
     "contents": "<p>给<code>Header</code>和<code>Aside</code>分别添加<code>fixed</code>属性，即可固定顶部或者侧边栏，组件会自动添加相应样式，无需手动添加样式</p>\n",
-    "index": 145,
+    "index": 116,
     "highlighted": [
         {
             "language": "vdt",

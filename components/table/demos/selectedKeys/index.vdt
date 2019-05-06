@@ -1,0 +1,21 @@
+import {Table, TableColumn} from 'kpc/components/table';
+
+<div>
+    <Table data={{ self.get('data') }} 
+        rowSelectable
+        ev-$change:selectedKeys={{ self._onSelectedKeysChanged }}
+        rowCheckable={{ false }}
+        ref="__test1"
+    >
+        <TableColumn key="a" title="表头1" />
+        <TableColumn key="b" title="表头2" />
+    </Table>
+    <Table data={{ self.get('data') }}
+        rowSelectable="multiple"
+        rowCheckable={{ false }}
+        ref="__test2"
+    >
+        <TableColumn key="a" title="表头1" />
+        <TableColumn key="b" title="表头2" />
+    </Table>
+</div>

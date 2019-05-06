@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>添加<code>multiple</code>属性，可以支持节点多选，通过<code>getCheckedData()</code>方法，可以获取选中的节点数据</p>\n",
-    "index": 102,
+    "index": 109,
     "highlighted": [
         {
             "language": "vdt",

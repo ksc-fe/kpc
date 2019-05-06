@@ -39,7 +39,7 @@ module.exports =
 /******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
 /******/ 		// "0" is the signal for "already loaded"
 /******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("./chunk/" + {"0":"26eb2f37fab36b94fd00","1":"7ead9ba143a5ee6abae8","2":"932cb3e2fdd2033a7c6f","3":"d0527e7b94da231c8827"}[chunkId] + ".js");
+/******/ 			var chunk = require("./chunk/" + {"0":"c348a5014b4af012f03a","1":"7c19e7526c540b9d89fc","2":"974aba1212d135d0550f","3":"540f04b158e49a650fa4"}[chunkId] + ".js");
 /******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				modules[moduleId] = moreModules[moduleId];
@@ -238,7 +238,7 @@ exports.App = exports.default = App;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1556948176766
+      // 1557137525877
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -393,7 +393,7 @@ exports.Spin = exports.default = Spin;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1556948179666
+      // 1557137526034
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -408,8 +408,14 @@ exports.Spin = exports.default = Spin;
 "use strict";
 
 
+var _interopRequireDefault = __webpack_require__("@babel/runtime-corejs2/helpers/interopRequireDefault");
+
 exports.__esModule = true;
 exports.default = _default;
+
+var _assign = _interopRequireDefault(__webpack_require__("@babel/runtime-corejs2/core-js/object/assign"));
+
+var _utils = __webpack_require__("./components/utils.js");
 
 function _default(obj, _Vdt, blocks, $callee) {
   var _classNameObj;
@@ -445,7 +451,6 @@ function _default(obj, _Vdt, blocks, $callee) {
   var _self$get = self.get(),
       size = _self$get.size,
       center = _self$get.center,
-      style = _self$get.style,
       className = _self$get.className,
       overlay = _self$get.overlay;
 
@@ -466,22 +471,22 @@ function _default(obj, _Vdt, blocks, $callee) {
       return _blocks['canvas'].apply($this, args);
     }].concat(__slice.call(args, 1))) : _blocks['canvas'].apply($this, args);
   }) && __blocks['canvas'].apply($this, [__noop]), 'k-canvas');
-  return h(Animate, {
+  return h(Animate, (0, _assign.default)({
     'className': _className(function () {
       try {
         return classNameObj;
       } catch (e) {
         _e(e);
       }
-    }.call($this)),
+    }.call($this))
+  }, function () {
+    try {
+      return (0, _utils.getRestProps)(self);
+    } catch (e) {
+      _e(e);
+    }
+  }.call($this), {
     'a:transition': 'c-fade',
-    'style': function () {
-      try {
-        return style;
-      } catch (e) {
-        _e(e);
-      }
-    }.call($this),
     'children': function () {
       try {
         return overlay;
@@ -502,7 +507,7 @@ function _default(obj, _Vdt, blocks, $callee) {
       }
     }.call($this),
     '_context': $this
-  });
+  }));
 }
 
 /***/ }),
@@ -539,6 +544,7 @@ exports.nextFrame = nextFrame;
 exports.debounce = debounce;
 exports.throttle = throttle;
 exports.isExternalLink = isExternalLink;
+exports.getRestProps = getRestProps;
 exports.browser = exports.expandAnimationCallbacks = exports.noop = exports.isFunction = exports.isObject = exports.isNullOrUndefined = exports.get = void 0;
 
 var _parseInt2 = _interopRequireDefault(__webpack_require__("@babel/runtime-corejs2/core-js/parse-int"));
@@ -926,6 +932,19 @@ var externalLinkReg = /^(https?:)?\/\//;
 function isExternalLink(to) {
   if (typeof to !== 'string') return false;
   return externalLinkReg.test(to);
+}
+
+function getRestProps(instance) {
+  var props = instance.get();
+  var selfProps = instance.defaults() || {};
+  var ret = {};
+
+  for (var key in props) {
+    if (key === 'key' || key === 'ref' || key === 'className' || key === 'children' || key === 'v-model' || key[0] === '_' || key in selfProps) continue;
+    ret[key] = props[key];
+  }
+
+  return ret;
 }
 
 /***/ }),
@@ -1450,7 +1469,7 @@ exports.default = _default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1556948176781
+      // 1557137528232
       var cssReload = require("!../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);

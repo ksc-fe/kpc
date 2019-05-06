@@ -59,7 +59,8 @@ export default {
                     (a[sort.key] > b[sort.key] ? -1 : 1) : 
                     (a[sort.key] > b[sort.key] ? 1 : -1);
             });
-            this.set({data, sort});
+            this.data = data;
+            this.sort = sort;
         },
     },
 }

@@ -1,0 +1,16 @@
+import Split from 'kpc/components/split';
+
+<div>
+    <Split>
+        <b:first><div class="panel">left</div></b:first>
+        <b:last><div class="panel">right</div></b:last>
+    </Split>
+    <Split firstSize="80px">
+        <b:first><div class="panel">left</div></b:first>
+        <b:last><div class="panel">right</div></b:last>
+    </Split>
+    <Split lastSize="80px">
+        <b:first><div class="panel">left</div></b:first>
+        <b:last><div class="panel">right</div></b:last>
+    </Split>
+</div>

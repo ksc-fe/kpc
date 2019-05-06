@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>添加<code>clearable</code>属性可以使组件在再次点击后清空值</p>\n",
-    "index": 126,
+    "index": 141,
     "highlighted": [
         {
             "language": "vdt",
