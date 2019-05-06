@@ -9,7 +9,7 @@ describe('Slider', () => {
     let instance;
 
     afterEach(() => {
-        // unmount(instance);
+        unmount(instance);
     });
 
     it('basic test', () => {

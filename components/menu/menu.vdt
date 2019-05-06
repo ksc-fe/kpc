@@ -1,10 +1,9 @@
 import Item from './item';
-import {mapChildren, isStringOrNumberNotEmpty} from '../utils';
+import {mapChildren, isStringOrNumberNotEmpty, getRestProps} from '../utils';
 
 const {
     children, className, collapse, dot,
-    theme, type, size, _isSubMenu, _root, _parent,
-    key, ref, ...rest
+    theme, type, size, _isSubMenu, _root, _parent
 } = self.get();
 
 const classNameObj = {
@@ -46,7 +45,7 @@ const header = (
 
 <template>
     <div v-if={{ !self._isDropdownMenu() }}
-        {{ ...rest }}
+        {{ ...getRestProps(self) }}
         class={{ classNameObj }}
     >{{ header }}{{ _children }}</div>
     <t:parent v-else>

@@ -1,9 +1,9 @@
 import Step from './step';
+import {getRestProps} from '../utils';
 
 const {
     children, value, style,
-    status, type, clickable,
-    key, ref, ...rest
+    status, type, clickable
 } = self.get();
 
 const classNameObj = {
@@ -37,4 +37,4 @@ steps = steps.map(vNode => {
     return vNode;
 });
 
-<div class={{ classNameObj }} {{ ...rest }}>{{ steps }}</div>
+<div class={{ classNameObj }} {{ ...getRestProps(self) }}>{{ steps }}</div>

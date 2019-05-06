@@ -1,11 +1,11 @@
 import TimePanel from './panel';
-import {_$} from '../utils';
+import {_$, getRestProps} from '../utils';
 import {Select, Option} from '../select';
 
 const {
     range, multiple, _options, size,
     clearable, placeholder, disabled,
-    className, container, key, ref, ...rest
+    className, container
 } = self.get(); 
 
 const _placeholder = range ?
@@ -35,7 +35,7 @@ const _placeholder = range ?
     </t:parent>
     <Select v-else
         v-model="value" 
-        {{ ...rest }}
+        {{ ...getRestProps(self) }}
         multiple={{ multiple }}
         placeholder={{ placeholder || _placeholder }}
         hideIcon
@@ -46,7 +46,6 @@ const _placeholder = range ?
             'k-datepicker': true,
             [className]: className
         } }}
-        style={{ style }}
         container={{ container }}
     >
         <Option v-for={{ _options }} value={{ value }}>{{ value }}</Option>

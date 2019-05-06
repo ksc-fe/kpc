@@ -1,14 +1,14 @@
 import Select from '../select';
 import Input from '../input';
 import {ButtonGroup, Button} from '../button';
-import {_$} from '../utils';
+import {_$, getRestProps} from '../utils';
 import Icon from '../icon';
 
 const {
     total, current, limit, limits, 
     className, showTotal, showGoto,
     counts, size, noBorder, simple,
-    showLimits, key, ref, ...rest
+    showLimits
 } = self.get();
 
 if (!total) return <!-- pagination -->
@@ -38,7 +38,7 @@ const paginationDot = function(callback) {
     return <Button type={{ type }} size={{ size }} icon class="k-ellipsis" ev-click={{ callback }}>...</Button>
 };
 
-<div {{ ...rest }} class={{ classNameObj }}>
+<div {{ ...getRestProps(self) }} class={{ classNameObj }}>
     <ButtonGroup checkType="radio" v-model="current">
         <Button icon size={{ size }}
             disabled={{ current <= 1 }}

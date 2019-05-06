@@ -17,6 +17,7 @@ export default class TableColumn extends Intact {
         multiple: Boolean,
         minWidth: [Number, String],
         ignore: Boolean,
+        fixed: ['left', 'right'],
     };
 
     defaults() {
@@ -31,6 +32,7 @@ export default class TableColumn extends Intact {
             value: [],
             minWidth: undefined,
             ignore: false,
+            fixed: undefined,
 
             // passed by parent
             $parent: undefined,

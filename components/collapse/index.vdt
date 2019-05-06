@@ -1,7 +1,7 @@
 import CollapseItem from './item';
-import {mapChildren} from '../utils';
+import {mapChildren, getRestProps} from '../utils';
 
-const {className, value, children, arrow, noBorder, key, ref, ...rest} = self.get();
+const {className, value, children, arrow, noBorder} = self.get();
 
 const classNameObj = {
     'k-collapse': true,
@@ -24,4 +24,4 @@ const _children = mapChildren(children, vNode => {
     return vNode;
 });
 
-<div {{ ...rest }} class={{ classNameObj }}>{{ _children }}</div>
+<div {{ ...getRestProps(self) }} class={{ classNameObj }}>{{ _children }}</div>

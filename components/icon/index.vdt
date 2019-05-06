@@ -1,6 +1,6 @@
-import {addStyle} from '../utils';
+import {addStyle, getRestProps} from '../utils';
 
-const {className, style, size, color, ref, key, ...rest} = self.get();
+const {className, style, size, color} = self.get();
 
 const classNameObj = {
     "k-icon": true,
@@ -18,7 +18,7 @@ if (self.colors.indexOf(color) > -1) {
     _style.color = color;
 }
 
-<i {{ ...rest }}
+<i {{ ...getRestProps(self) }}
     class={{ classNameObj }}
     style={{ addStyle(_style, style) }}
 ></i>

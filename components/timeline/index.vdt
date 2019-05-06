@@ -1,13 +1,13 @@
-import {mapChildren} from '../utils';
+import {mapChildren, getRestProps} from '../utils';
 
-const {className, children, key, ref, ...rest} = self.get();
+const {className, children} = self.get();
 
 const classNameObj = {
     'k-timeline': true,
     [className]: className,
 };
 
-<div class={{ classNameObj }} {{ ...rest }}>
+<div class={{ classNameObj }} {{ ...getRestProps(self) }}>
     {{ mapChildren(children, vNode => {
         return vNode;
     }) }}

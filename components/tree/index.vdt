@@ -1,8 +1,8 @@
 import Checkbox from '../checkbox';
-import {expandAnimationCallbacks} from '../utils';
+import {expandAnimationCallbacks, getRestProps} from '../utils';
 import {BEFORE, AFTER, INNER} from './constants';
 
-const {checkbox, load, className, draggable, _draggingNode, key, ref, ...rest} = self.get();
+const {checkbox, load, className, draggable, _draggingNode} = self.get();
 const {expandedKeys, selectedKeys, _node, _mode} = self;
 
 const useMoveAnimation = !!_draggingNode;
@@ -70,7 +70,7 @@ const TreeNodes = ({data}) => {
 };
 
 <Animate class={{ {"k-tree": true, [className]: className} }}
-    {{ ...rest }}
+    {{ ...getRestProps(self) }}
     draggable={{ draggable ? "true" : undefined }}
     a:disabled={{ true }}
     ev-dragstart={{ draggable && self._onDragStart }}

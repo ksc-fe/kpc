@@ -1,11 +1,12 @@
 import Tab from './tab';
 import Button from '../button';
+import {getRestProps} from '../utils';
 
 const {
     className, data, value, children,
     vertical, size, type,
     _activeBarStyle, _scroll, _left,
-    _prev, _next, key, ref, ...rest
+    _prev, _next
 } = self.get();
 
 const classNameObj = {
@@ -18,7 +19,7 @@ const classNameObj = {
     [`k-is-scroll`]: _scroll
 };
 
-<div class={{ classNameObj }} {{ ...rest }}>
+<div class={{ classNameObj }} {{ ...getRestProps(self) }}>
     <Button class="k-prev" type="none" icon
         v-if={{ _scroll }}
         key="prev" 

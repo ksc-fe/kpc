@@ -157,7 +157,7 @@ export default class Message extends Intact {
         clearTimeout(this.timer);
     }
 
-    onMouseLeave() {
+    onMouseLeave(e) {
         this.trigger('mouseleave', e);
         clearTimeout(this.timer);
         this._mount();

@@ -1,11 +1,10 @@
-const {addStyle} = require('../utils');
+const {addStyle, getRestProps} = require('../utils');
 
 let {
     className, style, children,
     name, on, off, value,
     trueValue, falseValue, width,
-    height, size, disabled, _dragging,
-    key, ref, ...rest
+    height, size, disabled, _dragging
 } = self.get();
 
 const classNameObj = {
@@ -53,7 +52,7 @@ if (width || height) {
 }
 
 <div class={{ classNameObj }} 
-    {{ ...rest }}
+    {{ ...getRestProps(self) }}
     style={{ style }} 
     ev-click={{ self._onClick }}
     tabindex={{ disabled ? "-1" : "0" }}

@@ -1,10 +1,10 @@
 import Col from './col';
-import {mapChildren} from '../utils';
+import {mapChildren, getRestProps} from '../utils';
 import gutterStyle from './utils';
 
 let {
     children, className, style,
-    justify, align, key, ref, ...rest
+    justify, align
 } = self.get();
 const useFlex = self.useFlex;
 
@@ -31,7 +31,7 @@ const classNameObj = {
     /* }); */
 /* } */
 
-<div {{ ...rest }} class={{ classNameObj }} style={{ style }}>{{
+<div {{ ...getRestProps(self) }} class={{ classNameObj }} style={{ style }}>{{
     mapChildren(children, vNode => {
         if (vNode && vNode.tag === Col) {
             vNode.props = {...vNode.props, gutter};

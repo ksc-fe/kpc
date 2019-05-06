@@ -1,12 +1,11 @@
 import Button from '../button';
 import Progress from '../progress';
 import Dialog from '../dialog';
-import {expandAnimationCallbacks, _$} from '../utils';
+import {expandAnimationCallbacks, _$, getRestProps} from '../utils';
 
 const {
     className, accept, multiple, limit,
-    files, children, type, _dragOver, directory,
-    key, ref, ...rest
+    files, children, type, _dragOver, directory
 } = self.get();
 
 const classNameObj = {
@@ -53,7 +52,7 @@ const CloseBtn = (props) => (
     </Button>
 );
 
-<div class={{ classNameObj }} {{ ...rest }}>
+<div class={{ classNameObj }} {{ ...getRestProps(self) }}>
     <input type="file" 
         accept={{ accept }}
         class="c-hidden" 

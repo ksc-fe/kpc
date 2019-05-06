@@ -315,3 +315,22 @@ export function isExternalLink(to) {
     if (typeof to !== 'string') return false;
     return externalLinkReg.test(to);
 }
+
+export function getRestProps(instance) {
+    const props = instance.get();
+    const selfProps = instance.defaults() || {};
+    const ret = {};
+    for (let key in props) {
+        if (
+            key === 'key' || 
+            key === 'ref' || 
+            key === 'className' ||
+            key === 'children' ||
+            key === 'v-model' ||
+            key[0] === '_' || 
+            key in selfProps
+        ) continue;
+        ret[key] = props[key];
+    }
+    return ret;
+}

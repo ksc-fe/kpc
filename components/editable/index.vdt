@@ -1,10 +1,10 @@
 import Input from '../input';
+import {getRestProps} from '../utils';
 
 const {
     editing, value, validate,
     disabled, style, tip,
-    children, invalid, className,
-    key, ref, ...rest
+    children, invalid, className
 } = self.get();
 
 const classNameObj = {
@@ -15,7 +15,7 @@ const classNameObj = {
     [className]: className,
 };
 
-<div {{ ...rest }} class={{ classNameObj }}>
+<div {{ ...getRestProps(self) }} class={{ classNameObj }}>
     <i class="ion-edit k-edit" title={{ tip }}
         v-if={{ !disabled && !editing }}
         ev-click={{ self._edit }}

@@ -1,4 +1,5 @@
 import Spinner from '../spinner';
+import {getRestProps} from '../utils';
 
 const {
     value, min, max, className,
@@ -6,7 +7,7 @@ const {
     isShowInput, isShowEnd, unit,
     step, _isDragging, _isFirst, _inputValue,
     _isSecond, _sliderValue, 
-    isShowStop, marks, key, ref, ...rest
+    isShowStop, marks
 } = self.get();
 
 const classNameObj = {
@@ -20,7 +21,7 @@ const classNameObj = {
 
 const sliderWidth = max - min;
 
-<div class={{ classNameObj }} {{ ...rest }}>
+<div class={{ classNameObj }} {{ ...getRestProps(self) }}>
     <div class="k-slider-wrapper">
         <div class="k-wrapper" 
             ev-click={{ self._clickWrapper }} 

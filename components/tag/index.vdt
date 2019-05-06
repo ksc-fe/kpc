@@ -1,9 +1,9 @@
 import Button from '../button';
+import {getRestProps} from '../utils';
 
 const {
     className, children, type,
-    disabled, closable, closed, size,
-    key, ref, ...rest
+    disabled, closable, closed, size
 } = self.get();
 
 if (closed) return;
@@ -19,7 +19,7 @@ const classNameObj = {
 };
 
 <Animate
-    {{ ...rest }}
+    {{ ...getRestProps(self) }}
     a:disabled={{ disabled }}
     a:transition="c-fade" 
     class={{ classNameObj }}

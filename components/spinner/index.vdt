@@ -1,10 +1,10 @@
 import {Button} from '../button';
 import {Input} from '../input';
+import {getRestProps} from '../utils';
 
 const {
     className, disabled, max, min, step,
-    children, style, size, vertical, _value,
-    key, ref, ...rest
+    children, style, size, vertical, _value
 } = self.get();
 
 const classNameObj = {
@@ -15,7 +15,7 @@ const classNameObj = {
     'k-vertical': vertical,
 };
 
-<div class={{ classNameObj }} {{ ...rest }}>
+<div class={{ classNameObj }} {{ ...getRestProps(self) }}>
     <Button icon ev-click={{ self._decrease }}
         disabled={{ self._disableDecrease() }}
         class="k-left"

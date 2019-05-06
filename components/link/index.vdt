@@ -1,2 +1,5 @@
-const {name, isReplace, key, ref, ...rest} = self.get();
-<a {{ ...rest }} ev-click={{ self.to }}>{{ self.get('children') }}</a>
+import {getRestProps} from '../utils';
+
+const {name, isReplace} = self.get();
+
+<a {{ ...getRestProps(self) }} ev-click={{ self.to }}>{{ self.get('children') }}</a>

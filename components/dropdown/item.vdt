@@ -1,8 +1,12 @@
 /* import {proxyEvent} from '../utils'; */
 import {Checkbox} from '../checkbox';
 import {Radio} from '../radio';
+import {getRestProps} from '../utils';
 
-const {children, disabled, className, _isFocus, key, ref, ...rest} = self.get();
+const {
+    children, disabled, className, 
+    _isFocus, hideOnSelect
+} = self.get();
 
 const classNameObj = {
     'k-item': true,
@@ -12,7 +16,7 @@ const classNameObj = {
     'k-no-padding': children && (children.tag === Checkbox || children.tag === Radio),
 }
 
-<div {{ ...rest }}
+<div {{ ...getRestProps(self) }}
     class={{ classNameObj }}
     ev-click={{ self._onClick }}
     ev-mouseenter={{ self._onMouseEnter }}

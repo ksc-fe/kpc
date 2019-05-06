@@ -1,5 +1,8 @@
 import Menu from './menu';
-import {mapChildren, expandAnimationCallbacks, isStringOrNumberNotEmpty} from '../utils';
+import {
+    mapChildren, expandAnimationCallbacks,
+    isStringOrNumberNotEmpty, getRestProps
+} from '../utils';
 import Dropdown from '../dropdown';
 import {Tooltip} from '../tooltip';
 import VShow from './vShow';
@@ -9,7 +12,7 @@ const {
     children, key, className, dot,
     disabled, _root, _isFirstFloorChildren,
     _isFocus, _show, _active, _highlighted,
-    _parentMenu, ref, ...rest
+    _parentMenu
 } = self.get();
 
 let subMenuVNode;
@@ -65,7 +68,7 @@ const title = (
     </div>
 );
 
-<div {{ ...rest }} class={{ classNameObj }}
+<div {{ ...getRestProps(self) }} class={{ classNameObj }}
     ev-mouseenter={{ self._onMouseEnter }}
     ev-mouseleave={{ self._onMouseLeave }}
 >

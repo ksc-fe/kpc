@@ -1,7 +1,8 @@
+import {getRestProps} from '../utils';
+
 const {
     value, _list, disabled, disable,
-    _translate, _marginTop, _dragging,
-    key, ref, ...rest
+    _translate, _marginTop, _dragging
 } = self.get();
 
 const classNameObj = {
@@ -10,7 +11,7 @@ const classNameObj = {
     "k-disabled": disabled,
 }
 
-<div {{ ...rest }} class={{ classNameObj }}>
+<div {{ ...getRestProps(self) }} class={{ classNameObj }}>
     <div class="k-wrapper"
         style={{ {
             transform: `translateY(${_translate}px)`,

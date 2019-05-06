@@ -1,8 +1,9 @@
-import {addStyle} from '../utils';
+import {addStyle, getRestProps} from '../utils';
+
 const {
     children, selected, done, 
     title, index, width, error,
-    className, style, key, ref, ...rest
+    className, style
 } = self.get();
 
 const classNameObj = {
@@ -13,7 +14,10 @@ const classNameObj = {
     [className]: className,
 };
 
-<div class={{ classNameObj }} style={{ addStyle(style, {width: width}) }} {{ ...rest }}>
+<div {{ ...getRestProps(self) }} 
+    class={{ classNameObj }}
+    style={{ addStyle(style, {width: width}) }} 
+>
     <div class="k-tail"></div>
     <div class="k-wrapper">
         <div class="k-head">

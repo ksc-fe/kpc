@@ -1,13 +1,13 @@
 import Button from '../button';
 import Checkbox from '../checkbox';
 import Input from '../input';
-import {_$} from '../utils';
+import {_$, getRestProps} from '../utils';
 
 const {
     data, className, value, keyName,
     leftChecked, rightChecked, filterable, batchable,
     filter, label, placeholder, leftTitle, rightTitle,
-    selectedKeys, key, ref, ...rest
+    selectedKeys
 } = self.get();
 
 const classNameObj = {
@@ -65,7 +65,7 @@ const Panel = props => {
     </div>
 };
 
-<div class={{ classNameObj }} {{ ...rest }}>
+<div class={{ classNameObj }} {{ ...getRestProps(self) }}>
     <Panel data={{ data.filter(item => !~selectedKeys.indexOf(item[keyName])) }}
         model="left" 
         title={{ leftTitle }}

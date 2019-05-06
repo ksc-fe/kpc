@@ -1,10 +1,9 @@
-import {mapChildren} from '../utils';
+import {mapChildren, getRestProps} from '../utils';
 import {Menu} from '../menu';
 
 const {
     className, children, style,
-    collapse, fixed, size,
-    key, ref, ...rest
+    collapse, fixed, size
 } = self.get();
 
 const vNodes = mapChildren(children, vNode => {
@@ -23,4 +22,4 @@ const classNameObj = {
     [className]: className,
 };
 
-<div {{ ...rest }} class={{ classNameObj }}>{{ vNodes }}</div>
+<div {{ ...getRestProps(self) }} class={{ classNameObj }}>{{ vNodes }}</div>

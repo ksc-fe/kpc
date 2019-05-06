@@ -1,6 +1,7 @@
+import {getRestProps} from '../utils';
+
 let {
-    className, children, text, disabled,
-    max, key, ref, ...rest
+    className, children, text, disabled, max
 } = self.get();
 
 if (typeof text === 'number' && max && text > max) {
@@ -14,7 +15,7 @@ const classNameObj = {
     'k-alone': !children,
 };
 
-<div {{ ...rest }} class={{ classNameObj }}>
+<div {{ ...getRestProps(self) }} class={{ classNameObj }}>
     {{ children }}
     <sup class="k-text" v-if={{ !disabled }}>{{ text }}</sup>
 </div>

@@ -1,9 +1,9 @@
 import Button from './';
+import {getRestProps} from '../utils';
 
 const {
     className, vertical, style, 
-    children, value, fluid, checkType,
-    key, ref, ...rest
+    children, value, fluid, checkType
 } = self.get();
 
 const classNameObj = {
@@ -13,7 +13,7 @@ const classNameObj = {
     'k-fluid': fluid,
 };
 
-<div {{ ...rest }} class={{ classNameObj }}>{{ 
+<div {{ ...getRestProps(self) }} class={{ classNameObj }}>{{ 
     checkType !== 'none' ? __u.map(
         children ? 
             (Array.isArray(children) ? children : [children]) :

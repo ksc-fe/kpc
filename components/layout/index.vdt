@@ -1,4 +1,6 @@
-const {className, children, style, key, ref, ...rest} = self.get();
+import {getRestProps} from '../utils';
+
+const {className, children} = self.get();
 
 const __className = self.get('_className');
 
@@ -7,4 +9,4 @@ const classNameObj = {
     [className]: className,
 };
 
-<div {{ ...rest }} class={{ classNameObj }}>{{ children }}</div>
+<div {{ ...getRestProps(self) }} class={{ classNameObj }}>{{ children }}</div>

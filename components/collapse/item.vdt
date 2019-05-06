@@ -3,7 +3,7 @@ import VShow from '../menu/vShow';
 
 const {
     className, style, value, children,
-    title, _parent, disabled,
+    title, _parent, disabled, key, ref, ...rest
 } = self.get();
 
 const active = _parent._isActive(value);
@@ -14,7 +14,7 @@ const classNameObj = {
     'k-disabled': disabled,
 };
 
-<div class={{ classNameObj }} style={{ style }}>
+<div class={{ classNameObj }} {{ ...rest }}>
     <div class="k-title" ev-click={{ self._toggle }}>
         <b:title>{{ title }}</b:title>
         <i class="k-arrow ion-ios-arrow-right"></i>

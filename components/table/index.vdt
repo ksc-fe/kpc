@@ -3,7 +3,7 @@ import Radio from '../radio';
 import Row from './row';
 import {normalize} from 'intact';
 import Column from './column';
-import {noop, isStringOrNumber, getTextByChildren} from '../utils';
+import {noop, isStringOrNumber, getTextByChildren, getRestProps} from '../utils';
 import Spin from '../spin';
 
 const {
@@ -12,8 +12,7 @@ const {
     resizable, expandedKeys, type, _isSticky, stripe,
     style, rowClassName, children, sort, group, _scrollBarWidth,
     _scrollLeft, _scrollTop, _hoverIndex, _scrollPosition, 
-    _paddingBottom, _isStickyScrollbar, loading, _isShowLeftRightMiddle,
-    key, ref, ...rest
+    _paddingBottom, _isStickyScrollbar, loading, _isShowLeftRightMiddle
 } = self.get();
 
 let colSpan = checkType === 'checkbox' || checkType === 'radio' ? 1 : 0;
@@ -351,7 +350,7 @@ const classNameObj = {
     'k-stripe': stripe,
 };
 
-<div class={{ classNameObj }} {{ ...rest }}>
+<div class={{ classNameObj }} {{ ...getRestProps(self) }}>
     {{ table }}    
     <div class="k-table-wrapper k-fixed-left" v-if={{ hasFixedLeft }} 
         style={{ {width: self.get('_leftWidth') + 'px'} }}

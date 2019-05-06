@@ -27,6 +27,7 @@ export default class Select extends Intact {
         container: [Function, String],
         inline: Boolean,
         loading: Boolean,
+        hideIcon: Boolean,
     };
 
     defaults() {
@@ -66,6 +67,7 @@ export default class Select extends Intact {
             container: undefined,
             inline: false,
             loading: false,
+            hideIcon: false,
 
             _show: false,
             _activeLabel: undefined,

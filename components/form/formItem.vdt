@@ -1,7 +1,9 @@
+import {getRestProps} from '../utils';
+
 const {
     className, children, label,
     isValid, isDirty, hideLabel, htmlFor,
-    errorClassName, key, ref, ...rest
+    errorClassName
 } = self.get();
 
 const classNameObj = {
@@ -21,7 +23,7 @@ if (labelWidth != null) {
     }
 }
 
-<div {{ ...rest }} class={{ classNameObj }}
+<div {{ ...getRestProps(self) }} class={{ classNameObj }}
     ev-change={{ self._onChange }}
     ev-focusout={{ self._onFocusout }}
 >

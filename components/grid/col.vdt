@@ -1,10 +1,9 @@
 import gutterStyle, {breakpoints} from './utils';
-import {isNullOrUndefined} from '../utils';
+import {isNullOrUndefined, getRestProps} from '../utils';
 
 let {
     children, span, className, order,
-    gutter, offset, push, pull,
-    style, key, ref, ...rest
+    gutter, offset, push, pull, style
 } = self.get();
 
 const {xs, sm, md, lg, xl} = self;
@@ -38,7 +37,7 @@ breakpoints.forEach(item => {
     });
 });
 
-<div {{ ...rest }} class={{ classNameObj }} style={{ style }}>{{
+<div {{ ...getRestProps(self) }} class={{ classNameObj }} style={{ style }}>{{
     hasGutter ?
         <div class={{ className }}>{{ children }}</div> :
         children

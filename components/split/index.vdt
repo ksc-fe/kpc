@@ -1,4 +1,6 @@
-const {mode, className, firstSize, lastSize, _resizing, key, ref, ...rest} = self.get();
+import {getRestProps} from '../utils';
+
+const {mode, className, firstSize, lastSize, _resizing} = self.get();
 
 const classNameObj = {
     'k-split': true,
@@ -11,7 +13,7 @@ const classNameObj = {
 
 const stylePropName = mode === 'horizontal' ? 'width' : 'height';
 
-<div className={{ classNameObj }} {{ ...rest }}>
+<div className={{ classNameObj }} {{ ...getRestProps(self) }}>
     <div class="k-first" style={{ {[stylePropName]: firstSize} }} ref="first">
         <b:first />
     </div>

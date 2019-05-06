@@ -1,9 +1,10 @@
 import Icon from '../icon';
+import {getRestProps} from '../utils';
 
 const {
     type, className, percent, status, size,
-    isOuterText, isInnerText, ref, key, strokeWidth,
-    children, ...rest
+    isOuterText, isInnerText, strokeWidth,
+    children
 } = self.get();
 
 const classNameObj = {
@@ -14,7 +15,7 @@ const classNameObj = {
     [`k-${size}`]: size !== 'default',
 }
 
-<div class={{ classNameObj }} {{ ...rest }}>
+<div class={{ classNameObj }} {{ ...getRestProps(self) }}>
     <div class="k-container" v-if={{ type === 'bar' }}>
         <div  class="k-content">
             <div class="k-bg" style={{ {width: percent + '%'} }}>
