@@ -4,6 +4,28 @@ order: 99
 sidebar: doc
 ---
 
+## v0.8.9
+
+### Core
+
+1. `Add` 新增分割面板组件`Split` [#93](https://github.com/ksc-fe/kpc/issues/93)
+2. `Add` `Table`支持选中行并高亮，不同与`checked`状态 [#257](https://github.com/ksc-fe/kpc/issues/257)
+3. `Fix` 修复`Drawer`下面嵌套使用`Dialog`，`Dialog`的样式会收到`Drawer`影响的问题 [#252](https://github.com/ksc-fe/kpc/issues/252)
+4. `Fix` 修复`Slider` `Spinner`在`max/min/step`为`undefined`时，会导致死循环的问题 [#255](https://github.com/ksc-fe/kpc/issues/255]) [#216](https://github.com/ksc-fe/kpc/issues/216)
+5. `Fix` 修复`Menu`在手风琴`accordion`模式下，如果存在嵌套菜单，嵌套菜单不能展开的问题 [#251](https://github.com/ksc-fe/kpc/issues/251)
+6. `Fix` 修复`Table`在固定表头，并且表格体高度自适应的情况，改变表格高度，导致出现滚动条时，表头不能自动对齐的问题 [#258](https://github.com/ksc-fe/kpc/issues/258)
+7. `Fix` 修复`Datepicker`在范围选择情况下，当只选择一个值即触发`$change:value`事件的问题 [#259](https://github.com/ksc-fe/kpc/issues/259)
+8. `Fix` 修复`Tooltip`作用于不支持`click`或者`mouseenter/mouseleave`的组件上，提示失效的问题 [#269](https://github.com/ksc-fe/kpc/issues/269)
+
+### React
+
+1. `Fix` 修复在kpc组件前插入dom时报错的问题 [#256](https://github.com/ksc-fe/kpc/issues/256)
+
+### Vue
+
+1. `Fix` 修复`Editable`嵌套使用`router-link`某些情况下会造成`$router`丢失的问题 [#254](https://github.com/ksc-fe/kpc/issues/254)
+
+
 ## v0.8.8
 
 ### Core
