@@ -18,6 +18,7 @@ export default class TableColumn extends Intact {
         minWidth: [Number, String],
         ignore: Boolean,
         fixed: ['left', 'right'],
+        align: ['left', 'center', 'right'],
     };
 
     defaults() {
@@ -33,6 +34,7 @@ export default class TableColumn extends Intact {
             minWidth: undefined,
             ignore: false,
             fixed: undefined,
+            align: undefined,
 
             // passed by parent
             $parent: undefined,

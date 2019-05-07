@@ -53,8 +53,9 @@ sidebar: doc
 | multiple | 分组是否支持多选 | `Boolean` | `false` |
 | minWidth | 指定当前列拖动时的最小宽度，优先级高于`Table`的`minColWidth` | `Number` | `40` |
 | fix | 是否将列固定，`"left"`固定在左侧；`"right"`固定在右侧 | `"left"` &#124; `"right"` | `undefined` |
-| class | 给当前列添加className | `String` &#124; `Object` | `undefined` |
+| className | 给当前列添加className | `String` &#124; `Object` | `undefined` |
 | ignore | 是否忽略当前列的导出 | `Boolean` | `false` |
+| align | 当前列对齐方式 | `"left"` &#124; `"center"` &#124; `"right"` | `undefined` |
 
 # 扩展点
 

@@ -32,7 +32,7 @@ import {Button} from 'kpc/components/button';
                 </div>
             </b:template>
         </TableColumn>
-        <TableColumn title="操作" key="op" ignore>
+        <TableColumn title="操作" key="op" ignore align="center">
             <b:template params="data">
                 <a>删除</a> 
             </b:template>

@@ -38,6 +38,7 @@
         cursor pointer
     .k-sort
         margin-left $table-sort-margin-left
+        width 2 * $table-sort-icon-width
         position relative
         .k-icon
             display block
@@ -106,6 +107,18 @@
     td
         padding $table-td-padding
         word-wrap break-word
+
+    // align
+    for align in center right
+        td.k-{align}
+        th.k-{align}
+            text-align align
+        th.k-{align}
+            .k-th
+                if align == right
+                    justify-content flex-end
+                else
+                    justify-content align
 
     // checkbox or radio
     .k-th-check
