@@ -128,6 +128,13 @@ const TheadCreator = ({onlyLeft, onlyRight, refContainer, style}) => {
                         keys[props.key] = true;
                         props.value = group[props.key];
 
+                        const blockFn = props._blocks && (props._blocks.default || props._blocks.template);
+                        _scheme[props.key] = {
+                            ...props,
+                            template: props.template || 
+                                blockFn && ((...args) => blockFn.call(this, noop, ...args))
+                        };
+
                         const dragStart = self._dragStart;
                         /* .bind(self, prevItem); */
                         /* props.prevColumn = prevItem; */
@@ -143,13 +150,6 @@ const TheadCreator = ({onlyLeft, onlyRight, refContainer, style}) => {
                             [className]: className,
                             'k-invisible': invisible, 
                         });
-
-                        const blockFn = props._blocks && (props._blocks.default || props._blocks.template);
-                        _scheme[props.key] = {
-                            ...props,
-                            template: props.template || 
-                                blockFn && ((...args) => blockFn.call(this, noop, ...args))
-                        };
 
                         if (props.fixed === 'left') {
                             hasFixedLeft = true;
