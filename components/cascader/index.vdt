@@ -120,8 +120,10 @@ if (!filterable || !keywords) {
     )
 }
 
-labelObj.label = blocks.format ? <b:format args={{ [labelObj.values] }}>{{ do {
-    labelObj.values.map(value => value.label).join(' / ')
-} }}</b:format> : format.call(this, labelObj.values);
+labelObj.label = blocks.format ? 
+    <b:format args={{ [labelObj.values] }}>{{ do {
+        labelObj.values.map(value => value.label).join(' / ')
+    } }}</b:format> : 
+    format.call(this, labelObj.values);
 
 <t:parent Menu={{ Menu }} class="k-cascader" labelObj={{ labelObj }} />

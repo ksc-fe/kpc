@@ -4,7 +4,7 @@
 import Intact from 'intact';
 import template from './index.vdt'
 import '../../styles/kpc.styl';
-import './index.styl'
+import './index.styl';
 
 export default class Slider extends Intact {
     get template() { return template; }
@@ -99,6 +99,11 @@ export default class Slider extends Intact {
 
     _fix(v) {
         let {step, max, min} = this.get();
+
+        if (min > max) {
+            Intact.utils.error(new Error(`[Slider] min must less than or equal to max, but got min: ${min} max: ${max}`));
+            return 0;
+        }
 
         if (Number.isNaN(Number(v))) {
             return min;

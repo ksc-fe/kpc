@@ -1,6 +1,8 @@
 import StepDemo from '~/components/spinner/demos/step';
 import PrecisionDemo from '~/components/spinner/demos/precision';
 import {mount, unmount, dispatchEvent} from 'test/utils';
+import {Spinner} from 'kpc/components/spinner';
+import Intact from 'intact';
 
 describe('Spinner', () => {
     let instance;
@@ -84,5 +86,21 @@ describe('Spinner', () => {
         input.value = '100';
         dispatchEvent(input, 'input');
         expect(instance.get('value1')).to.eql(10);
+    });
+
+    it('should log error when max < min', () => {
+         class Component extends Intact {
+            @Intact.template()
+            static template = `<Spinner min={{ 20 }}
+                max={{ 0 }}
+                step={{ undefined }}
+                value={{ 1 }}
+            />`;
+            _init() {
+                this.Spinner = Spinner;
+            }
+        }
+        instance = mount(Component);
+        expect(instance.element.innerHTML).to.matchSnapshot();
     });
 });

@@ -163,4 +163,20 @@ describe('Slider', () => {
 
         expect(instance.element.innerHTML).to.matchSnapshot();
     });
+
+    it('should log error when max < min', () => {
+         class Component extends Intact {
+            @Intact.template()
+            static template = `<Slider min={{ 20 }}
+                max={{ 0 }}
+                step={{ undefined }}
+                value={{ 1 }}
+            />`;
+            _init() {
+                this.Slider = Slider;
+            }
+        }
+        instance = mount(Component);
+        expect(instance.element.innerHTML).to.matchSnapshot();
+    });
 });

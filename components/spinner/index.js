@@ -58,6 +58,12 @@ export default class Spinner extends Intact {
 
     _getFixedValue(value = this.get('value'), fallbackValue = 0) {
         const {precision, max, min} = this.get();
+
+        if (min > max) {
+            Intact.utils.error(new Error(`[Spinner] min must less than or equal to max, but got min: ${min} max: ${max}`));
+            return {_value: 0, value: 0};
+        }
+
         const originValue = this.get('value');
         if (value == null || !numberReg.test(value)) {
             value = fallbackValue;
