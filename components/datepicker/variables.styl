@@ -2,14 +2,14 @@
 @require('../../styles/mixin.styl')
 
 $datepicker-color := $text-color
-$datepicker-width := unit(300 / 14, rem)
-$datepicker-content-width := unit(300 / 14, rem)
-$datepicker-padding := unit(16 / 14, rem) unit(16 / 14, rem) unit(4 / 14, rem) 
+$datepicker-width := unit(300 / $rem, rem)
+$datepicker-content-width := unit(300 / $rem, rem)
+$datepicker-padding := unit(16 / $rem, rem) unit(16 / $rem, rem) unit(4 / $rem, rem) 
 
 $datepicker-inner-border := 1px solid #e5e5e5
 
-$datepicker-day-width := unit(24 / 14, rem)
-$datepicker-day-margin := unit(7 / 14, rem)
+$datepicker-day-width := unit(24 / $rem, rem)
+$datepicker-day-margin := unit(7 / $rem, rem)
 $datepicker-day-hover-bg-color := $bg-color
 $datepicker-day-hover-color := $datepicker-color
 $datepicker-day-out-color := $disabled-color
@@ -28,17 +28,17 @@ $datepicker-day-disabled-hover-bg-color := none
 $datepicker-weekday-color := inherit 
 
 // month
-$datepicker-month-padding := 0 unit(6 / 14, rem) unit(12 / 14, rem)
-$datepicker-month-text-margin := 0 unit(3 / 14, rem)
-$datepicker-month-text-line-height := unit($small-height / 14, rem)
-// $datepicker-month-icon-font-size := unit(16 / 14, rem)
+$datepicker-month-padding := 0 unit(6 / $rem, rem) unit(12 / $rem, rem)
+$datepicker-month-text-margin := 0 unit(3 / $rem, rem)
+$datepicker-month-text-line-height := unit($small-height / $rem, rem)
+// $datepicker-month-icon-font-size := unit(16 / $rem, rem)
 
 // year picker
-$datepicker-scroll-select-height := unit((267 - 2 * 12) / 14, rem)
+$datepicker-scroll-select-height := unit((267 - 2 * 12) / $rem, rem)
 
 // range
-$datepicker-range-width := unit(400 / 14, rem)
-$datepicker-range-gutter := unit(0 / 14, rem)
+$datepicker-range-width := unit(400 / $rem, rem)
+$datepicker-range-gutter := unit(0 / $rem, rem)
 $datepicker-range-day-bg-color := palette($datepicker-day-active-bg-color, -2) 
 $datepicker-range-day-color := $datepicker-day-active-color
 $datepicker-range-day-left := -(getLeft($datepicker-day-margin))
@@ -46,11 +46,11 @@ $datepicker-range-day-top := -1px
 $datepicker-range-day-padding := 0 getRight($datepicker-day-margin)
 
 // shortcuts
-$datepicker-shortcuts-width := unit(100 / 14, rem)
-$datepicker-shortcuts-padding := unit(12 / 14, rem) 0
-$datepicker-shortcuts-line-height := unit(32 / 14, rem)
-$datepicker-shortcuts-item-padding := 0 unit(16 / 14, rem)
+$datepicker-shortcuts-width := unit(100 / $rem, rem)
+$datepicker-shortcuts-padding := unit(12 / $rem, rem) 0
+$datepicker-shortcuts-line-height := unit(32 / $rem, rem)
+$datepicker-shortcuts-item-padding := 0 unit(16 / $rem, rem)
 $datepicker-shortcuts-item-hover-bg-color := $bg-color
 
 // datetime
-$datepicker-datetime-margin-top := unit($default-height / 14, rem)
+$datepicker-datetime-margin-top := unit($default-height / $rem, rem)

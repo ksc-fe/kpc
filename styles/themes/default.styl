@@ -7,6 +7,9 @@ $theme-dir := __dirname()
 // $fonts-dir := './fonts';
 $fonts-dir := '.';
 
+// root font size
+$rem := 16
+
 // we must require other file after defined $theme-dir
 // otherwise, the __dirname may be weird
 @require('../mixin.styl')
@@ -28,7 +31,7 @@ $light-black := #595959
 *******************************/
 
 $font-family := 'Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,微软雅黑,Arial,sans-serif'
-$font-size := 14px 
+$font-size := unit(14 / $rem, rem)
 $text-color := $light-black 
 $primary-color := $blue
 $warning-color := $yellow
@@ -46,16 +49,16 @@ $placeholder-color := $disabled-color
 
 // size
 $large-height := 40
-$large-font-size := unit(16 / 14, rem)
+$large-font-size := unit(16 / $rem, rem)
 $large-padding := 25
 $default-height := 36
-$default-font-size := 1rem
+$default-font-size := unit(14 / $rem, rem)
 $default-padding := 20
 $small-height := 30
-$small-font-size := unit(12 / 14, rem)
+$small-font-size := unit(12 / $rem, rem)
 $small-padding := 15
 $mini-height := 26
-$mini-font-size := unit(12 / 14, rem)
+$mini-font-size := unit(12 / $rem, rem)
 $mini-padding := 10
 
 // the gutter between icon and text
@@ -63,9 +66,10 @@ $icon-text-gutter := 6
 
 // box-shadow
 $box-shadow := 0 2px 8px 0 rgba(191, 191, 191, .5)
-$border-radius := unit(2 / 14, rem) 
+$border-radius := unit(2 / $rem, rem) 
 
 $max-z-index := 9999
+$mid-z-index := 999
 
 $line-height := 1.5
 
@@ -76,11 +80,11 @@ $line-height := 1.5
 $header-font-family := $font-family
 $header-margin := 0
 $header-font-weight := bold
-$h1 := unit(28 / 14, rem)
-$h2 := unit(24 / 14, rem)
-$h3 := unit(18 / 14, rem)
-$h4 := unit(15 / 14, rem)
-$h5 := unit(14 / 14, rem)
+$h1 := unit(28 / $rem, rem)
+$h2 := unit(24 / $rem, rem)
+$h3 := unit(18 / $rem, rem)
+$h4 := unit(15 / $rem, rem)
+$h5 := unit(14 / $rem, rem)
 
 
 /******************************

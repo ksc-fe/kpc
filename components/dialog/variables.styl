@@ -1,41 +1,41 @@
 @require('../../styles/themes/default.styl')
 
-$dialog-width := unit(800 / 14, rem) 
+$dialog-width := unit(800 / $rem, rem) 
 $dialog-bg-color := #fff
-$dialog-border-radius := 2px
-$dialog-padding := unit(30 / 14, rem)
+$dialog-border-radius := $border-radius
+$dialog-padding := unit(30 / $rem, rem)
 $dialog-color := $text-color
 $dialog-font-size := $default-font-size 
 
 // header
-$dialog-title-font-size := unit(16 / 14, rem) 
+$dialog-title-font-size := unit(16 / $rem, rem) 
 $dialog-title-color := $title-color 
-$dialog-title-height := unit(60 / 14, rem)
+$dialog-title-height := unit(60 / $rem, rem)
 $dialog-title-border := 1px solid $border-color
-$dialog-close-top := unit(10 / 14, rem)
-$dialog-close-right := unit(5 / 14, rem)
-$dialog-close-icon-font-size := unit(32 / 14, rem)
+$dialog-close-top := unit(10 / $rem, rem)
+$dialog-close-right := unit(5 / $rem, rem)
+$dialog-close-icon-font-size := unit(32 / $rem, rem)
 
 // body
-$dialog-body-padding := unit(18 / 14, rem) $dialog-padding
+$dialog-body-padding := unit(18 / $rem, rem) $dialog-padding
 
 // footer
-$dialog-footer-padding := unit(24 / 14, rem) $dialog-padding
-$dialog-footer-btn-margin := unit(12 / 14, rem)
+$dialog-footer-padding := unit(24 / $rem, rem) $dialog-padding
+$dialog-footer-btn-margin := unit(12 / $rem, rem)
 
 // animation
 $dialog-transform := translateY(-10px) scale(1.05)
 
 // size
-$dialog-large-width := unit(1000 / 14, rem)
-$dialog-small-width := unit(600 / 14, rem)
-$dialog-mini-width := unit(400 / 14, rem)
+$dialog-large-width := unit(1000 / $rem, rem)
+$dialog-small-width := unit(600 / $rem, rem)
+$dialog-mini-width := unit(400 / $rem, rem)
 
 // alert dialog
-$dialog-alert-padding := 0 unit(30 / 14, rem)
-$dialog-alert-tip-icon-margin := -(unit(25 / 14, rem)) 0 unit(10 / 14, rem)
-$dialog-alert-tip-icon-font-size := unit(62 / 14, rem)
-$dialog-alert-tip-icon-line-height := unit(50 / 14, rem)
+$dialog-alert-padding := 0 unit(30 / $rem, rem)
+$dialog-alert-tip-icon-margin := -(unit(25 / $rem, rem)) 0 unit(10 / $rem, rem)
+$dialog-alert-tip-icon-font-size := unit(62 / $rem, rem)
+$dialog-alert-tip-icon-line-height := unit(50 / $rem, rem)
 $dialog-alert-success-tip-icon-color := $success-color
 $dialog-alert-warning-tip-icon-color := $warning-color
 $dialog-alert-error-tip-icon-color := $danger-color

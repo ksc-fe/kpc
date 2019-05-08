@@ -2,10 +2,10 @@
 @require('../../styles/mixin.styl')
 
 $input-font-size := $default-font-size
-$input-height := unit($default-height / 14, rem)
-$input-width := unit(300 / 14, rem)
+$input-height := unit($default-height / $rem, rem)
+$input-width := unit(300 / $rem, rem)
 $input-border := 1px solid $border-color
-$input-padding-left-right := unit($mini-padding / 14, rem) 
+$input-padding-left-right := unit($mini-padding / $rem, rem) 
 $input-bg-color := #fff
 $input-focus-border := 1px solid $primary-color
 $input-hover-border := 1px solid $dark-border-color
@@ -14,14 +14,14 @@ $input-hover-border := 1px solid $dark-border-color
 $input-clear-icon-color := $placeholder-color
 
 // textarea
-$input-textarea-padding := unit(5 / 14, rem) $input-padding-left-right
+$input-textarea-padding := unit(5 / $rem, rem) $input-padding-left-right
 
 // group
 $input-group-bg-color := #eee
-$input-group-padding-horizontal := unit(7 / 14, em)
+$input-group-padding-horizontal := unit(7 / $rem, rem)
 
 // clearable
-$input-clear-margin-right := unit(5 / 14, rem)
+$input-clear-margin-right := unit(5 / $rem, rem)
 
 // disabled
 $input-disabled-border-color := $disabled-border-color
@@ -30,14 +30,14 @@ $input-disabled-bg-color := $disabled-bg-color
 
 // size
 $input-large-font-size := $large-font-size 
-$input-large-height := unit($large-height / 14, rem)
+$input-large-height := unit($large-height / $rem, rem)
 $input-default-padding-left-right = $input-padding-left-right
 $input-default-font-size = $input-font-size
 $input-default-height = $input-height
 $input-small-font-size := $small-font-size 
-$input-small-height := unit($small-height / 14, rem)
+$input-small-height := unit($small-height / $rem, rem)
 $input-mini-font-size := $mini-font-size 
-$input-mini-height := unit($mini-height / 14, rem)
+$input-mini-height := unit($mini-height / $rem, rem)
 
 /** 
  * calculate the padding for different size
@@ -53,4 +53,4 @@ for size in large default small mini
 
 
 // search input
-$search-input-suffix-margin-right := unit(20 / 14, rem)
+$search-input-suffix-margin-right := unit(20 / $rem, rem)

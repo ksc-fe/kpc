@@ -27,7 +27,7 @@ clearfix()
 add(main, args...)
     if unit(main) == 'rem' || unit(main) == 'em'
         for arg in args
-            main = main + unit(arg / 14, rem)
+            main = main + unit(arg / $rem, rem)
     else
         for arg in args
             main = main + unit(arg, px)

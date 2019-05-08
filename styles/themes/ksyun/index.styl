@@ -6,6 +6,8 @@ if lookup('$theme-dir')
 else
     $theme-dir = __dirname()
 
+$rem := 16
+
 // we must require other file after defined $theme-dir
 // otherwise, the __dirname may be weird
 @require('../../mixin.styl')
@@ -118,7 +120,7 @@ $switch-small-width := 32px
  */
 $input-padding-left-right := unit($default-padding, px)
 $input-group-bg-color := $bg-color
-$input-group-padding-horizontal := unit(16 / 14, em)
+$input-group-padding-horizontal := unit(16 / $rem, em)
 $input-large-padding-left-right := unit($large-padding, px)
 $input-small-padding-left-right := unit($small-padding, px)
 $input-mini-padding-left-right := unit($mini-padding, px)
@@ -285,12 +287,12 @@ $dropdown-item-hover-color := inherit
  */
 // $tag-color := $ghost-text-color
 $tag-border-color := $placeholder-color
-$tag-padding := unit(6 / 14, rem) unit($default-padding / 14, rem)
-$tag-closable-padding-right := unit(30 / 14, rem)
-$tag-large-padding := unit(9 / 14, rem) unit($large-padding / 14, rem)
-$tag-small-padding := unit(2 / 14, rem) unit($small-padding / 14, rem)
-$tag-mini-padding := 0 unit($mini-padding / 14, rem)
-$tag-mini-closable-padding-right := unit($mini-height / 14, rem)
+$tag-padding := unit(6 / $rem, rem) unit($default-padding / $rem, rem)
+$tag-closable-padding-right := unit(30 / $rem, rem)
+$tag-large-padding := unit(9 / $rem, rem) unit($large-padding / $rem, rem)
+$tag-small-padding := unit(2 / $rem, rem) unit($small-padding / $rem, rem)
+$tag-mini-padding := 0 unit($mini-padding / $rem, rem)
+$tag-mini-closable-padding-right := unit($mini-height / $rem, rem)
 
 /**
  * tip

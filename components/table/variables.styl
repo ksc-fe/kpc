@@ -1,19 +1,19 @@
 @require('../../styles/themes/default.styl')
 
-$table-font-size := unit(12 / 14, rem)
+$table-font-size := unit(12 / $rem, rem)
 $table-bg-color := #fff
 $table-color := $text-color
 $table-border-color := #f0f0f0
 $table-border-bottom := 1px solid $table-border-color
 
 // checkbox
-$table-check-width := unit(36 / 14, rem)
+$table-check-width := unit(36 / $rem, rem)
 
 // thead
 $table-thead-bg-color := linear-gradient(to bottom, #fff, #fafafa)
 $table-thead-color := #3f3f3f
-$table-thead-font-size := unit(12 / 14, rem)
-$table-th-padding := unit(11 / 14, rem) unit(5 / 14, rem) unit(11 / 14, rem) unit(12 / 14, rem)
+$table-thead-font-size := unit(12 / $rem, rem)
+$table-th-padding := unit(11 / $rem, rem) unit(5 / $rem, rem) unit(11 / $rem, rem) unit(12 / $rem, rem)
 $table-th-text-align := left
 $table-th-font-weight := normal
 $table-th-border-top := 1px solid $table-border-color 
@@ -25,23 +25,23 @@ $table-border-left := 1px solid $table-border-color
 $table-expanded-tr-bg-color := #fdfcff
 
 // tbody
-$table-td-padding := unit(11 / 14, rem) unit(5 / 14, rem) unit(11 / 14, rem) unit(12 / 14, rem)
+$table-td-padding := unit(11 / $rem, rem) unit(5 / $rem, rem) unit(11 / $rem, rem) unit(12 / $rem, rem)
 $table-tr-hover-bg-color := #f4f8fb
 $table-tr-border := 1px solid $table-border-color
 
 // sortable
-$table-sort-margin-left := unit(10 / 16, em)
+$table-sort-margin-left := unit(10 / $rem, rem)
 // $table-sort-icon-font-size := unit(16 / 12, em)
-$table-sort-icon-width := unit(4 / 14, rem)
-$table-sort-icon-height := unit(11 / 14, rem)
+$table-sort-icon-width := unit(4 / $rem, rem)
+$table-sort-icon-height := unit(11 / $rem, rem)
 $table-sort-active-color := #a6a6a6
 $table-sort-non-active-color := #ddd
 
 // resizable
-$table-resize-width := unit(5 / 16, em)
+$table-resize-width := unit(5 / $rem, rem)
 
 // group
-$table-group-margin-left := unit(10 / 16, em)
+$table-group-margin-left := unit(10 / $rem, rem)
 $table-group-item-hover-bg-color := $bg-color
 $table-group-item-hover-color := $text-color
 $table-group-item-active-color := $primary-color

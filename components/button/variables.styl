@@ -5,8 +5,8 @@ $btn-color := $light-black
 $btn-bg-color := #fff
 $btn-border-color := $border-color
 $btn-border-radius := $border-radius 
-$btn-height := unit($default-height / 14, rem)
-$btn-padding := 0 unit($default-padding / 14, rem)
+$btn-height := unit($default-height / $rem, rem)
+$btn-padding := 0 unit($default-padding / $rem, rem)
 $btn-font-size := $default-font-size 
 $btn-hover-border-color := $primary-color
 $btn-hover-color := $primary-color
@@ -50,14 +50,14 @@ $btn-success-ghost-color := $success-color
 
 // size
 $btn-large-font-size := $large-font-size
-$btn-large-height := unit($large-height / 14, rem)
-$btn-large-padding := 0 unit($large-padding / 14, rem)
+$btn-large-height := unit($large-height / $rem, rem)
+$btn-large-padding := 0 unit($large-padding / $rem, rem)
 $btn-small-font-size := $small-font-size 
-$btn-small-height := unit($small-height / 14, rem)
-$btn-small-padding := 0 unit($small-padding / 14, rem)
+$btn-small-height := unit($small-height / $rem, rem)
+$btn-small-padding := 0 unit($small-padding / $rem, rem)
 $btn-mini-font-size := $mini-font-size 
-$btn-mini-height := unit($mini-height / 14, rem)
-$btn-mini-padding := 0 unit($mini-padding / 14, rem)
+$btn-mini-height := unit($mini-height / $rem, rem)
+$btn-mini-padding := 0 unit($mini-padding / $rem, rem)
 
 // disabled
 $btn-disabled-color := $disabled-color
@@ -66,8 +66,8 @@ $btn-disabled-border-color := $disabled-border-color
 $btn-disabled-ghost-border-color := $disabled-color
 
 // icon
-$btn-icon-margin-right := unit(5 / 14, em) 
-$btn-btn-icon-font-size := unit(16 / 14, em)
+$btn-icon-margin-right := unit(5 / $rem, em) 
+$btn-btn-icon-font-size := unit(16 / $rem, em)
 
 // buttons
 $btns-primary-border-color := darken($btn-primary-border-color, 6%)

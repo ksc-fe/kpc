@@ -1,18 +1,18 @@
 @require('../../styles/themes/default.styl')
 
 $steps-bg-color := $bg-color
-$steps-height := unit($default-height / 14, rem)
-$steps-head-padding-right := unit(10 / 14, rem)
-$steps-gutter := unit(10 / 14, rem)
-$steps-head-inner-width := unit(20 / 14, rem)
+$steps-height := unit($default-height / $rem, rem)
+$steps-head-padding-right := unit(10 / $rem, rem)
+$steps-gutter := unit(10 / $rem, rem)
+$steps-head-inner-width := unit(20 / $rem, rem)
 $steps-head-color := $disabled-color 
 $steps-head-inner-border := 1px solid $steps-head-color
-$steps-head-icon-font-size := unit(24 / 14, rem)
+$steps-head-icon-font-size := unit(24 / $rem, rem)
 
 $steps-main-color := $disabled-color
 $steps-main-title-font-weight := bold
 $steps-main-title-padding-right := $steps-head-padding-right
-$steps-main-content-font-size := unit(12 / 14, rem)
+$steps-main-content-font-size := unit(12 / $rem, rem)
 
 
 // done
@@ -36,7 +36,7 @@ $steps-error-main-color := $danger-color
  * line
  */
 $steps-line-bg-color := #fff
-$steps-line-main-content-margin := unit(5 / 14, rem) 0 0
+$steps-line-main-content-margin := unit(5 / $rem, rem) 0 0
 $steps-line-tail-bg-color := $disabled-border-color 
 
 // done
@@ -45,7 +45,7 @@ $steps-line-done-tail-bg-color := $primary-color
 // simple
 $steps-simple-color := $disabled-color
 $steps-simple-head-font-weight := bold
-$steps-simple-head-padding-right := unit(6 / 14, rem)
+$steps-simple-head-padding-right := unit(6 / $rem, rem)
 $steps-simple-done-color := $text-color
 $steps-simple-active-color := $primary-color
 $steps-simple-error-color := $danger-color
