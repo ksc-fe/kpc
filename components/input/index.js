@@ -26,6 +26,7 @@ export default class Input extends Intact {
         width: [Number, String],
         tabindex: [Number, String],
         autocomplete: String,
+        nativeProps: Object,
     };
 
     defaults() {
@@ -46,6 +47,7 @@ export default class Input extends Intact {
             width: undefined,
             tabindex: undefined,
             autocomplete: undefined,
+            nativeProps: undefined,
 
             _width: 1,
         }

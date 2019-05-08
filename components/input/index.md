@@ -27,6 +27,7 @@ sidebar: doc
 | width | 指定宽度，组件会加上单位`px` | `String`  &#124; `Number` | `undefined` |
 | tabindex | 原生`tabindex`属性 | `String` | `undefined` |
 | autocomplete | 原生`autocomplete`属性 | `String` | `undefined` |
+| nativeProps | 原生`input`或`textarea`上的属性 | `Object` | `undefined` |
 
 
 ## Search

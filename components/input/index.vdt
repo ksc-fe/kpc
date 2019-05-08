@@ -3,7 +3,7 @@ import {addStyle, isTextChildren} from '../utils';
 
 const {
     type, name, value, placeholder, tabindex,
-    readonly, clearable, disabled, size, 
+    readonly, clearable, disabled, size, nativeProps,
     rows, spellcheck, defaultValue, style, _width,
     className, autoWidth, fluid, width, autocomplete,
 } = self.get();
@@ -57,6 +57,7 @@ const wrapperEvents = [
             <b:prefix />
         </div>
         <input v-if={{ type !== 'textarea' }}
+            {{ ...(nativeProps || {}) }}
             class="k-inner" 
             type={{ type }}
             name={{ name }}
@@ -73,6 +74,7 @@ const wrapperEvents = [
             style={{ autoWidth ? {width: _width + 'px'} : undefined }}
         />
         <textarea v-else 
+            {{ ...(nativeProps || {}) }}
             class="k-inner k-textarea"
             value={{ value }}
             ev-input={{ self._onInput }}
