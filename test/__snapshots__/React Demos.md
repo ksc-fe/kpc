@@ -317,13 +317,13 @@
 ####   `Dropdown basic`
 
 ```
-"<div><div class=\"k-dropdown\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>hover </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div></div>"
+"<div><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>hover </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div>"
 ```
 
 ####   `Dropdown checkbox`
 
 ```
-"<div><div class=\"k-dropdown\"><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">More &gt;</button><!--placeholder--></div></div>"
+"<div><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">More &gt;</button><!--placeholder--></div>"
 ```
 
 ####   `Dropdown contextmenu`
@@ -335,31 +335,31 @@
 ####   `Dropdown disabled`
 
 ```
-"<div><div class=\"k-dropdown\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>disabled </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div><div class=\"k-dropdown\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>disabled item </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div></div>"
+"<div><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>disabled </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>disabled item </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div>"
 ```
 
 ####   `Dropdown nested`
 
 ```
-"<div><div class=\"k-dropdown\" trigger=\"click\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>click </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div></div>"
+"<div><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>click </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div>"
 ```
 
 ####   `Dropdown position`
 
 ```
-"<div><div class=\"k-dropdown\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>left </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div><div class=\"k-dropdown\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>right </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div><div class=\"k-dropdown\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>top center </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div></div>"
+"<div><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>left </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>right </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>top center </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div>"
 ```
 
 ####   `Dropdown tooltip`
 
 ```
-"<div><div class=\"k-dropdown\"><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">DropdownItem with Tooltip</button><!--placeholder--></div></div>"
+"<div><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">DropdownItem with Tooltip</button><!--placeholder--></div>"
 ```
 
 ####   `Dropdown trigger`
 
 ```
-"<div><div class=\"k-dropdown\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>hover </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div><div class=\"k-dropdown\" trigger=\"click\"><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>click </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div></div>"
+"<div><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>hover </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>click </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div>"
 ```
 
 ## `editable`
@@ -1381,19 +1381,19 @@
 ####   `Tooltip basic`
 
 ```
-"<div><div class=\"k-tooltip\"><span>hover the text</span><!--placeholder--></div><br> <br><div class=\"k-tooltip\"><span>don't show anything if content is empty</span><!--placeholder--></div></div>"
+"<div><span class=\"k-tooltip\">hover the text</span><!--placeholder--><br> <br><span class=\"k-tooltip\">don't show anything if content is empty</span><!--placeholder--></div>"
 ```
 
 ####   `Tooltip confirm`
 
 ```
-"<div><div class=\"k-tooltip\" confirm=\"true\" trigger=\"click\"><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">删除</button><!--placeholder--></div></div>"
+"<div><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">删除</button><!--placeholder--></div>"
 ```
 
 ####   `Tooltip content`
 
 ```
-"<div><div class=\"k-tooltip\" trigger=\"click\"><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">Adjust Volume</button><!--placeholder--></div></div>"
+"<div><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">Adjust Volume</button><!--placeholder--></div>"
 ```
 
 ####   `Tooltip position`

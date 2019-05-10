@@ -21,44 +21,19 @@ function Wrapper(props, inVue) {
         ...rest
     });
 
-    return !inVue ? 
-        [
-            h(Tooltip, {
-                _context,
-                children,
-                menu: contentVNode,
-                ...rest,
-                className: 'k-tooltip',
-            }),
-            contentVNode
-        ] :
-        h(TooltipVueWrapper, {
-            children: [
-                h(Tooltip, {
-                    _context,
-                    children: children,
-                    menu: contentVNode,
-                    ...(props.trigger ? {trigger: props.trigger} : {}),
-                }),
-                contentVNode
-            ],
-            ...rest
-        });
+    return [
+        h(Tooltip, {
+            _context,
+            children,
+            ...rest,
+            className: 'k-tooltip',
+        }),
+        contentVNode
+    ]; 
 }
 
 // for vue Boolean cast
 Wrapper.propTypes = TooltipContent.propTypes;
-
-const _className = Intact.Vdt.utils.className;
-class TooltipVueWrapper extends Intact {
-    template(data) {
-        const {className, children, ...rest} = data.get();
-        return h('div', rest, children, _className({
-            'k-tooltip': true,
-            [className]: className,
-        }));
-    }
-}
 
 const _Wrapper = Intact.functionalWrapper ?
     Intact.functionalWrapper(Wrapper) : Wrapper;

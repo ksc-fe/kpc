@@ -60,31 +60,22 @@ export default class DropdownMenu extends Intact {
         const parent = this._findParentDropdownMenu();
         if (parent) parent.subDropdowns.push(this);
 
-        // because the DropdownMenu can be changed by key
-        // and it can not be found in Dropdown
-        // so we handle it here again
-        if (!this.dropdown) {
-            // for contextmenu usage
-            // 1. the parentVNode is undefined in vue
-            if (!this.parentVNode) return;
-
-            // 2. the children of parentVNode does not contain Dropdown
-
-            // the previous sibling is Dropdown
-            const siblings = this.parentVNode.children;
-            if (!Array.isArray(siblings)) return;
-            const index = siblings.indexOf(this.vNode);
-            const dropdown = siblings[index - 1];
-            if (dropdown && dropdown.tag === Dropdown) {
-                this.dropdown = dropdown.children;
-                this.dropdown.menu = this.vNode;
-            }
+        // the previous sibling is Dropdown
+        let triggerElement = this.element.previousSibling;
+        // maybe it is used as contextmenu
+        if (!triggerElement) return;
+        // in react, it may be a comment which value is ' react-mount-point-unstable ' 
+        if (
+            triggerElement.nodeType === 8 && 
+            triggerElement.nodeValue === ' react-mount-point-unstable '
+        ) {
+            triggerElement = triggerElement.previousSibling;
         }
-
-        // if (this.get('show')) {
-            // this._onShow();
-            // this.show();
-        // }
+        let dropdown;
+        if (dropdown = triggerElement._dropdown) {
+            this.dropdown = dropdown;
+            dropdown.menu = this;
+        }
     }
 
     _findParentDropdownMenu() {

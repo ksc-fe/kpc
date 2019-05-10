@@ -101,18 +101,8 @@ export default class Dropdown extends Intact {
     }
 
     _mount() {
-        // the next sibling is DropdownMenu
-        // we can not get the menu by call get('menu') directly,
-        // because the vNode may be cloned
-        // 
-        // we only handle it when mount 
-        // so you can not change the DropdownMenu by key
-        // ohterwise it can not be found 
-        const siblings = this.parentVNode.children;
-        const index = siblings.indexOf(this.vNode);
-        const menu = siblings[index + 1];
-        menu.children.dropdown = this;
-        this.menu = menu;
+        // add instance to dom, for menu to get it by previousSibling
+        this.element._dropdown = this;
     }
 
     show(fn, e, isFocus) {
@@ -120,7 +110,7 @@ export default class Dropdown extends Intact {
 
         if (this.get('disabled')) return;
 
-        const menu = this.menu.children;
+        const menu = this.menu;
         menu.__event = e;
         menu.show();
 
@@ -134,7 +124,7 @@ export default class Dropdown extends Intact {
 
         if (this.get('disabled')) return;
 
-        const menu = this.menu.children;
+        const menu = this.menu;
         menu.hide(immediately);
     }
 }
