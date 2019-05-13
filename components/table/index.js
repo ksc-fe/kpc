@@ -82,7 +82,11 @@ export default class Table extends Intact {
         stripe: Boolean,
         rowSelectable: [Boolean, 'single', 'multiple'],
         selectedKeys: Array,
-    }
+    };
+
+    static events = {
+        'click:row': true,
+    };
 
     _init() {
         // save the width of header cell

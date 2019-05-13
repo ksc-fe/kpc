@@ -24,6 +24,14 @@ export default class Tree extends Intact {
         allowDrop: Function,
     };
 
+    static events = {
+        'rightclick:node': true,
+        'click:node': true,
+        'denydrag': true,
+        'denydrop': true,
+        'dragend': true,
+    };
+
     defaults() {
         return {
             data: undefined,
@@ -333,6 +341,10 @@ export default class Tree extends Intact {
         this._lastValidNode = null;
 
         this.set('_draggingNode', undefined);
+    }
+
+    _destroy() {
+        console.log('destroy')
     }
 }
 

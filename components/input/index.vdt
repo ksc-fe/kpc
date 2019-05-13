@@ -1,5 +1,5 @@
 import Icon from '../icon';
-import {addStyle, isTextChildren} from '../utils';
+import {addStyle, isTextChildren, getRestProps} from '../utils';
 
 const {
     type, name, value, placeholder, tabindex,
@@ -70,7 +70,7 @@ const wrapperEvents = [
             ref="input"
             tabindex={{ tabindex }}
             autocomplete={{ autocomplete }}
-            {{ ...events }}
+            {{ ...getRestProps(self, events) }}
             style={{ autoWidth ? {width: _width + 'px'} : undefined }}
         />
         <textarea v-else 
@@ -87,7 +87,7 @@ const wrapperEvents = [
             rows={{ rows }}
             spellcheck={{ spellcheck }}
             tabindex={{ tabindex }}
-            {{ ...events }}
+            {{ ...getRestProps(self, events) }}
         ></textarea>
         <div class="k-suffix" v-if={{ blocks.suffix || clearable }}>
             <Icon v-if={{ clearable }}

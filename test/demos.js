@@ -8,7 +8,7 @@ describe('Demos', () => {
     let demo;
 
     afterEach(() => {
-        unmount(demo);
+        // unmount(demo);
     });
 
     describe('Intact', () => {

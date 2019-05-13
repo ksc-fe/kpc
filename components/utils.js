@@ -316,9 +316,9 @@ export function isExternalLink(to) {
     return externalLinkReg.test(to);
 }
 
-export function getRestProps(instance) {
-    const props = instance.get();
+export function getRestProps(instance, props = instance.get()) {
     const selfProps = instance.defaults() || {};
+    const events = instance.constructor.events || {};
     const ret = {};
     for (let key in props) {
         if (
@@ -328,7 +328,10 @@ export function getRestProps(instance) {
             key === 'children' ||
             key === 'v-model' ||
             key[0] === '_' || 
-            key in selfProps
+            key in selfProps ||
+            key.substring(3) in events ||
+            // ev-$change / $destroy
+            key.substring(0, 4) === 'ev-$'
         ) continue;
         ret[key] = props[key];
     }

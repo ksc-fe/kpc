@@ -43,7 +43,11 @@ export default class Slider extends Intact {
         isShowStop: Boolean,
         marks: Object,
         disabled: Boolean,
-    }
+    };
+
+    static events = {
+        stop: true,
+    };
 
     _init() {
         this.on("$change:_inputValue", (c, val) => {

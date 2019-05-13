@@ -15,6 +15,10 @@ export default class Rate extends Intact {
         clearable: false,
     };
 
+    static events = {
+        mouseleave: true,
+    };
+
     defaults() {
         return {
             value: 0,

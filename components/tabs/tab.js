@@ -11,6 +11,10 @@ export default class Tab extends Intact {
         closable: Boolean,
     };
 
+    static events = {
+        click: true,
+    };
+
     defaults() {
         return {
             value: undefined,

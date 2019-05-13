@@ -46,6 +46,11 @@ export default class Button extends Intact {
         ghost: Boolean,
     }
 
+    static events = {
+        click: true,
+        mouseup: true,
+    }
+
     _mount() {
         let parentVNode = this.parentVNode;
 

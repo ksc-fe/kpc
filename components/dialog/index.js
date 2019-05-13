@@ -24,6 +24,13 @@ export default class Dialog extends Intact {
         hideClose: Boolean,
     };
 
+    static events = {
+        open: true,
+        close: true,
+        ok: true,
+        cancel: true,
+    };
+
     defaults() {
         return {
             title: _$('提示'),

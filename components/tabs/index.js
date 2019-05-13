@@ -33,7 +33,11 @@ export default class Tabs extends Intact {
         size: ['large', 'default', 'small', 'mini'],
         type: ['default', 'card', 'border-card', 'no-border-card'],
         closable: Boolean,
-    }
+    };
+
+    static events = {
+        remove: true,
+    };
 
     _changeTab(item) {
         // if exits 'to', we don't change the value,

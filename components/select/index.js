@@ -30,6 +30,11 @@ export default class Select extends Intact {
         hideIcon: Boolean,
     };
 
+    static events = {
+        keypress: true,
+        keydown: true,
+    };
+
     defaults() {
         return {
             data: [],

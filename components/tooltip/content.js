@@ -20,6 +20,14 @@ export default class TooltipContent extends DropdownMenu {
         cancelText: String,
     };
 
+    static events = {
+        ...DropdownMenu.events,
+        beforeShow: true,
+        beforeHide: true,
+        cancel: true,
+        ok: true,
+    };
+
     defaults() {
         return {
             ...super.defaults(),

@@ -16,7 +16,13 @@ export default class DropdownMenu extends Intact {
         // Event is undefined in NodeJs
         of: ['self', 'parent', Object/* Intact Event */, typeof Event === 'undefined' ? undefined : Event],
         container: [String, Function],
-    }
+    };
+
+    static events = {
+        show: true,
+        hide: true,
+        positioned: true,
+    };
 
     defaults() {
         return {

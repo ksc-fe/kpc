@@ -21,6 +21,10 @@ export default class Form extends Intact {
         layout: ['horizontal', 'vertical', 'inline'],
     };
 
+    static events = {
+        submit: true,
+    };
+
     defaults() {
         return {
             items: [],

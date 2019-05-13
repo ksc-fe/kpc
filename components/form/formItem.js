@@ -20,7 +20,12 @@ export default class FormItem extends Intact {
         htmlFor: String,
         hideLabel: Boolean,
         force: Boolean,
-    }
+    };
+
+    static events = {
+        change: true,
+        focusout: true,
+    };
 
     defaults() {
         return {

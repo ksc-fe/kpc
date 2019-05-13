@@ -15,6 +15,12 @@ export default class Split extends Intact {
         max: [Number, String],
     };
 
+    static events = {
+        moveStart: true,
+        moving: true,
+        moveEnd: true,
+    };
+
     defaults() {
         return {
             mode: 'horizontal',

@@ -11,7 +11,11 @@ export default class Link extends Intact {
         href: String,
         name: [String, Array],
         isReplace: Boolean,
-    }
+    };
+
+    static events = {
+        click: true,
+    };
 
     defaults() {
         return {

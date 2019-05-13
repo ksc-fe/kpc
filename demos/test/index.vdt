@@ -1,17 +1,21 @@
 import Dialog from 'components/dialog';
 import {Dropdown, DropdownMenu, DropdownItem} from 'components/dropdown';
+import Tree from 'components/tree';
 
 <div class="a">
     <div v-if={{ self.get('a') }}>
-        <span>click</span>
-        <Dialog value={{ false }}/>
-    </div>
-    <div v-else>
-        <Dropdown>
-            <span>click</span>
-            <DropdownMenu>
-                <DropdownItem>1</DropdownItem>
-            </DropdownMenu>
-        </Dropdown>
+        <Tree
+            data={{ [
+                {
+                    label: 'First floor-1',
+                    children: [
+                        {
+                            label: 'Second floor-1.1',
+                        }
+                    ]
+                },
+            ] }}
+            expandedKeys={{ ['2', '2-1'] }} 
+        />
     </div>
 </div>

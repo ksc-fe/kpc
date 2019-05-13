@@ -1,6 +1,6 @@
 import Input from '../input';
 import Tooltip from '../tooltip';
-import {_$, isFunction} from '../utils';
+import {_$, isFunction, getRestProps} from '../utils';
 import Calendar from './calendar';
 
 const {
@@ -111,7 +111,7 @@ const content = <b:content>
 
 const prefix = <b:prefix><i class="ion-ios-calendar-outline"></i></b:prefix>
 
-<div {{ ..._events }} class={{ classNameObj }} style={{ style }}
+<div {{ ...getRestProps(self, _events) }} class={{ classNameObj }} style={{ style }}
     tabindex={{ disabled ? '-1' : '0' }}
     ev-keydown={{ self._onKeydown }}
 >

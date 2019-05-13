@@ -32,7 +32,12 @@ export default class Switch extends Intact {
         height: [Number, String],
         size: ['large', 'default', 'small', 'mini'],
         disabled: Boolean,
-    }
+    };
+
+    static events = {
+        click: true,
+        keypress: true,
+    };
 
     _dragStart(e) {
         if (this.get('disabled') || e.which !== 1) return;

@@ -19,6 +19,11 @@ export default class MenuItem extends DropdownItem {
         dot: Boolean,
     };
 
+    static events = {
+        click: true,
+        select: true,
+    };
+
     defaults() {
         return {
             ...super.defaults(),

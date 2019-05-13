@@ -15,6 +15,10 @@ export default class Search extends Intact {
         size: ['large', 'default', 'small', 'mini'],
     };
 
+    static events = {
+        submit: true,
+    };
+
     defaults() {
         return {
             placeholder: _$('请输入关键字'),

@@ -23,7 +23,11 @@ export default class Tag extends Intact {
         closed: Boolean,
         disabled: Boolean,
         size: ['large', 'default', 'small', 'mini']
-    }
+    };
+
+    static events = {
+        close: true,
+    };
 
     _close() {
         this.set('closed', true);

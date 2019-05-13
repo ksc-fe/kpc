@@ -20,6 +20,10 @@ export default class Pagination extends Intact {
         showLimits: Boolean,
     };
 
+    static events = {
+        change: true,
+    };
+
     defaults() {
         return {
             total: 0,

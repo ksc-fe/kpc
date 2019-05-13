@@ -57,7 +57,13 @@ export default class Upload extends Intact {
         beforeUpload: Function,
         beforeRemove: Function,
         directory: Boolean,
-    }
+    };
+
+    static events = {
+        error: true,
+        progress: true,
+        success: true,
+    };
 
     _init() {
         this._counter = 0;

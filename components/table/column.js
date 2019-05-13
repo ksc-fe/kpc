@@ -21,6 +21,11 @@ export default class TableColumn extends Intact {
         align: ['left', 'center', 'right'],
     };
 
+    static events = {
+        click: true,
+        dragStart: true,
+    };
+
     defaults() {
         return {
             title: undefined,
