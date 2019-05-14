@@ -1,0 +1,3 @@
+const Demo = self.get('Demo');
+
+<Demo />
