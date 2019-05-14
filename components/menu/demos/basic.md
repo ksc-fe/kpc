@@ -13,7 +13,6 @@ import {Menu, MenuItem} from 'kpc/components/menu';
 import Icon from 'kpc/components/icon';
 
 <Menu
-    collapse
     v-model:expandedKeys="expandedKeys" 
     v-model:selectedKey="selectedKey"
 >
