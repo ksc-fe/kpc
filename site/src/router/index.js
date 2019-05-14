@@ -36,6 +36,14 @@ export default new Router([
         }
     },
     {
+        path: "/demo.html",
+        action: async context => {
+            return {
+                Page: (await import('../pages/demo')).default,
+            }
+        }
+    },
+    {
         path: /(.*)/,
         action: async (context) => {
             return {
