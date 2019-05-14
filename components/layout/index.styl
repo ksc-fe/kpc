@@ -24,21 +24,21 @@
         &.k-fixed
             position fixed
             width 100%
-            z-index 2
+            z-index $mid-z-index - 1
             left 0
             & + .k-layout
             & + .k-body
             & + .k-layout > .k-aside.k-fixed
                 padding-top $layout-header-height
             & + .k-layout > .k-aside.k-fixed
-                z-index 1
+                z-index $mid-z-index - 2 
 
     > .k-aside
         background $layout-header-bg-color
         transition width $transition
         width $layout-aside-width 
         display flex
-        z-index 3
+        z-index $mid-z-index
         flex-direction column
         // fixed
         &.k-fixed
