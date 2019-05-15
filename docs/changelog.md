@@ -4,6 +4,28 @@ order: 99
 sidebar: doc
 ---
 
+## v0.8.10
+
+### Core
+
+1. `Add` 对`Slider/Spinner`在`min/max/step`等属性加入更多的验证和错误提示，以便排查问题 [#270](https://github.com/ksc-fe/kpc/issues/270)
+2. `Add` `Table`的`TableColumn`新增`align`属性，用于定义单元格和表头对齐方式 [#263](https://github.com/ksc-fe/kpc/issues/263)
+3. `Add` `Input`新增`nativeProps`属性，用来直接定义原生`input`上的属性，如：`maxlength` [#272](https://github.com/ksc-fe/kpc/issues/272)
+4. `Add` 所有组件如果定义的属性不在组件声明的样式中，则默认添加到组件返回的元素上 [#269](https://github.com/ksc-fe/kpc/issues/269)
+5. `Change` `Dropdown`及其它派生的弹层类型，将`z-index`设为`999` [#273](https://github.com/ksc-fe/kpc/issues/273)
+6. `Change` 修改`root` `font-size`为默认的`16px`，以便与其它样式库（bootstrap）结合使用 [#266](https://github.com/ksc-fe/kpc/issues/266)
+7. `Fix` 修复一些webpack 1.0的兼容性问题 [#280](https://github.com/ksc-fe/kpc/issues/280)
+8. `Fix` 修复`Drawer`内容过长，没有展示滚动条的问题 [#275](https://github.com/ksc-fe/kpc/issues/275)
+
+### Vue
+
+1. `Fix` 修复`Form`无法验证父组件传入的`props`里的数据，只能验证`data`上的数据的问题 [#261](https://github.com/ksc-fe/kpc/issues/261)
+2. `Change` `Dropdown`及其它派生的弹层类型，都不会再用另外一个元素包裹，这样它们不会影响到触发器的样式 [#147](https://github.com/ksc-fe/kpc/issues/147)
+
+## React
+
+1. `Change` `Dropdown`及其它派生的弹层类型，都不会再用另外一个元素包裹，这样它们不会影响到触发器的样式 [#147](https://github.com/ksc-fe/kpc/issues/147)
+
 ## v0.8.9
 
 ### Core
