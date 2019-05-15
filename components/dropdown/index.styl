@@ -1,8 +1,5 @@
 @require('./variables.styl')
 
-.k-dropdown
-    display inline-block
-
 .k-dropdown-menu
     position absolute
     min-width $dropdown-min-width 
@@ -14,9 +11,6 @@
     top 0
     left 0
 
-    // nested dropdown
-    .k-dropdown
-        display block
     .k-item
         padding $dropdown-item-padding 
         cursor pointer
@@ -49,13 +43,6 @@
                 vertical-align baseline
         &.k-no-padding
             padding 0
-
-    // tooltip
-    .k-tooltip
-        display block
-    .k-dropdown
-        > .k-tooltip
-            display block
 
 
 requireTheme('dropdown')
