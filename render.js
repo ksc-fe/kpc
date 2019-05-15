@@ -7,7 +7,7 @@ module.exports =
 /******/ 	// object to store loaded chunks
 /******/ 	// "0" means "already loaded"
 /******/ 	var installedChunks = {
-/******/ 		4: 0
+/******/ 		5: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -39,7 +39,7 @@ module.exports =
 /******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
 /******/ 		// "0" is the signal for "already loaded"
 /******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("./chunk/" + {"0":"c348a5014b4af012f03a","1":"7c19e7526c540b9d89fc","2":"974aba1212d135d0550f","3":"540f04b158e49a650fa4"}[chunkId] + ".js");
+/******/ 			var chunk = require("./chunk/" + {"0":"648fb4e7b8225e7d7f96","1":"60a0895b21c39dfe5031","2":"d35624a17b45803a3594","3":"6677db51a6e3625d42b6","4":"3ddbfd20b9a412c6926b"}[chunkId] + ".js");
 /******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				modules[moduleId] = moreModules[moduleId];
@@ -238,7 +238,7 @@ exports.App = exports.default = App;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1557137525877
+      // 1557900064908
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -393,7 +393,7 @@ exports.Spin = exports.default = Spin;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1557137526034
+      // 1557900067901
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -934,13 +934,18 @@ function isExternalLink(to) {
   return externalLinkReg.test(to);
 }
 
-function getRestProps(instance) {
-  var props = instance.get();
+function getRestProps(instance, props) {
+  if (props === void 0) {
+    props = instance.get();
+  }
+
   var selfProps = instance.defaults() || {};
+  var events = instance.constructor.events || {};
   var ret = {};
 
   for (var key in props) {
-    if (key === 'key' || key === 'ref' || key === 'className' || key === 'children' || key === 'v-model' || key[0] === '_' || key in selfProps) continue;
+    if (key === 'key' || key === 'ref' || key === 'className' || key === 'children' || key === 'v-model' || key[0] === '_' || key in selfProps || key.substring(3) in events || // ev-$change / $destroy
+    key.substring(0, 4) === 'ev-$') continue;
     ret[key] = props[key];
   }
 
@@ -1325,7 +1330,7 @@ var _default = new _universalRouter.default([{
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return __webpack_require__.e/* import() */(3).then(__webpack_require__.bind(null, "./site/src/pages/index/index.js"));
+              return __webpack_require__.e/* import() */(4).then(__webpack_require__.bind(null, "./site/src/pages/index/index.js"));
 
             case 2:
               _context.t0 = _context.sent.default;
@@ -1422,7 +1427,7 @@ var _default = new _universalRouter.default([{
     return action;
   }()
 }, {
-  path: /(.*)/,
+  path: "/demo.html",
   action: function () {
     var _action4 = (0, _asyncToGenerator2.default)(
     /*#__PURE__*/
@@ -1432,19 +1437,15 @@ var _default = new _universalRouter.default([{
           switch (_context4.prev = _context4.next) {
             case 0:
               _context4.next = 2;
-              return __webpack_require__.e/* import() */(2).then(__webpack_require__.bind(null, "./site/src/pages/document/index.js"));
+              return __webpack_require__.e/* import() */(3).then(__webpack_require__.bind(null, "./site/src/pages/demo/index.js"));
 
             case 2:
               _context4.t0 = _context4.sent.default;
-              _context4.t1 = {
-                path: context.params[0]
-              };
               return _context4.abrupt("return", {
-                Page: _context4.t0,
-                data: _context4.t1
+                Page: _context4.t0
               });
 
-            case 5:
+            case 4:
             case "end":
               return _context4.stop();
           }
@@ -1454,6 +1455,43 @@ var _default = new _universalRouter.default([{
 
     function action(_x3) {
       return _action4.apply(this, arguments);
+    }
+
+    return action;
+  }()
+}, {
+  path: /(.*)/,
+  action: function () {
+    var _action5 = (0, _asyncToGenerator2.default)(
+    /*#__PURE__*/
+    _regenerator.default.mark(function _callee5(context) {
+      return _regenerator.default.wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              _context5.next = 2;
+              return __webpack_require__.e/* import() */(2).then(__webpack_require__.bind(null, "./site/src/pages/document/index.js"));
+
+            case 2:
+              _context5.t0 = _context5.sent.default;
+              _context5.t1 = {
+                path: context.params[0]
+              };
+              return _context5.abrupt("return", {
+                Page: _context5.t0,
+                data: _context5.t1
+              });
+
+            case 5:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, this);
+    }));
+
+    function action(_x4) {
+      return _action5.apply(this, arguments);
     }
 
     return action;
@@ -1469,7 +1507,7 @@ exports.default = _default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1557137528232
+      // 1557900070398
       var cssReload = require("!../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);

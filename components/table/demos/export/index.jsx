@@ -60,7 +60,7 @@ export default class extends React.Component {
                         }}
                     >
                     </TableColumn>
-                    <TableColumn title="操作" key="op" ignore
+                    <TableColumn title="操作" key="op" ignore align="right"
                         b-template={(data) => {
                             return <>
                                 <a>删除</a> 

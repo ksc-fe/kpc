@@ -14,7 +14,24 @@
                     如果你发现文档有问题，请帮忙在
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/docs/changelog.md">github</a>
                     上修正该文档
-                </div></div><div class="contents"><div class="api"><div><h2 id='header-v0.8.9'>v0.8.9</h2><h3 id='header-Core'>Core</h3><ol>
+                </div></div><div class="contents"><div class="api"><div><h2 id='header-v0.8.10'>v0.8.10</h2><h3 id='header-Core'>Core</h3><ol>
+<li><code>Add</code> 对<code>Slider/Spinner</code>在<code>min/max/step</code>等属性加入更多的验证和错误提示，以便排查问题 <a href="https://github.com/ksc-fe/kpc/issues/270">#270</a></li>
+<li><code>Add</code> <code>Table</code>的<code>TableColumn</code>新增<code>align</code>属性，用于定义单元格和表头对齐方式 <a href="https://github.com/ksc-fe/kpc/issues/263">#263</a></li>
+<li><code>Add</code> <code>Input</code>新增<code>nativeProps</code>属性，用来直接定义原生<code>input</code>上的属性，如：<code>maxlength</code> <a href="https://github.com/ksc-fe/kpc/issues/272">#272</a></li>
+<li><code>Add</code> 所有组件如果定义的属性不在组件声明的样式中，则默认添加到组件返回的元素上 <a href="https://github.com/ksc-fe/kpc/issues/269">#269</a></li>
+<li><code>Change</code> <code>Dropdown</code>及其它派生的弹层类型，将<code>z-index</code>设为<code>999</code> <a href="https://github.com/ksc-fe/kpc/issues/273">#273</a></li>
+<li><code>Change</code> 修改<code>root</code> <code>font-size</code>为默认的<code>16px</code>，以便与其它样式库（bootstrap）结合使用 <a href="https://github.com/ksc-fe/kpc/issues/266">#266</a></li>
+<li><code>Fix</code> 修复一些webpack 1.0的兼容性问题 <a href="https://github.com/ksc-fe/kpc/issues/280">#280</a></li>
+<li><code>Fix</code> 修复<code>Drawer</code>内容过长，没有展示滚动条的问题 <a href="https://github.com/ksc-fe/kpc/issues/275">#275</a></li>
+</ol>
+<h3 id='header-Vue'>Vue</h3><ol>
+<li><code>Fix</code> 修复<code>Form</code>无法验证父组件传入的<code>props</code>里的数据，只能验证<code>data</code>上的数据的问题 <a href="https://github.com/ksc-fe/kpc/issues/261">#261</a></li>
+<li><code>Change</code> <code>Dropdown</code>及其它派生的弹层类型，都不会再用另外一个元素包裹，这样它们不会影响到触发器的样式 <a href="https://github.com/ksc-fe/kpc/issues/147">#147</a></li>
+</ol>
+<h2 id='header-React'>React</h2><ol>
+<li><code>Change</code> <code>Dropdown</code>及其它派生的弹层类型，都不会再用另外一个元素包裹，这样它们不会影响到触发器的样式 <a href="https://github.com/ksc-fe/kpc/issues/147">#147</a></li>
+</ol>
+<h2 id='header-v0.8.9'>v0.8.9</h2><h3 id='header-Core'>Core</h3><ol>
 <li><code>Add</code> 新增分割面板组件<code>Split</code> <a href="https://github.com/ksc-fe/kpc/issues/93">#93</a></li>
 <li><code>Add</code> <code>Table</code>支持选中行并高亮，不同与<code>checked</code>状态 <a href="https://github.com/ksc-fe/kpc/issues/257">#257</a></li>
 <li><code>Fix</code> 修复<code>Drawer</code>下面嵌套使用<code>Dialog</code>，<code>Dialog</code>的样式会收到<code>Drawer</code>影响的问题 <a href="https://github.com/ksc-fe/kpc/issues/252">#252</a></li>

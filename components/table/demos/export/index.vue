@@ -16,7 +16,7 @@
                     </div>
                 </template>
             </TableColumn>
-            <TableColumn title="操作" key="op" ignore>
+            <TableColumn title="操作" key="op" ignore align="right">
                 <template slot="template" slot-scope="data">
                     <a>删除</a> 
                 </template>

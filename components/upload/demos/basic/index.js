@@ -4,6 +4,7 @@ import template from './index.vdt';
 import './index.styl'; 
 
 import Dialog from 'kpc/components/dialog';
+import Message from 'kpc/components/message';
 
 export default class extends Intact {
     @Intact.template()
@@ -20,5 +21,9 @@ export default class extends Intact {
             dialog.on('ok', resolve);
             dialog.on('cancel', reject);
         });
+    }
+
+    _showError(e) {
+        Message.error(e.message);
     }
 }

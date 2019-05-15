@@ -2,6 +2,9 @@
     <Upload multiple
         :beforeRemove="_beforeRemove"
         action="//jsonplaceholder.typicode.com/posts/"
+        accept=".jpg, .png"
+        :maxSize="500"
+        @error="_showError"
     >
         <template slot="tip">只能上传JPG/PNG格式文件，且不超过500kb</template>
     </Upload>
@@ -10,6 +13,7 @@
 import Upload from 'kpc/components/upload';
 
 import Dialog from 'kpc/components/dialog';
+import Message from 'kpc/components/message';
 
 export default {
     components: {
@@ -27,6 +31,9 @@ export default {
                 dialog.on('ok', resolve);
                 dialog.on('cancel', reject);
             });
+        },
+        _showError(e) {
+            Message.error(e.message);
         },
     },
 }

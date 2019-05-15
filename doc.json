@@ -1969,6 +1969,39 @@
                 {
                     "children": [
                         {
+                            "title": "v0.8.10",
+                            "path": "#header-v0.8.10",
+                            "level": 2,
+                            "content": "<h2 id='header-v0.8.10'>v0.8.10</h2>",
+                            "text": "v0.8.10",
+                            "children": [
+                                {
+                                    "title": "Core",
+                                    "path": "#header-Core",
+                                    "level": 3,
+                                    "content": "<h3 id='header-Core'>Core</h3>",
+                                    "text": "Core",
+                                    "children": []
+                                },
+                                {
+                                    "title": "Vue",
+                                    "path": "#header-Vue",
+                                    "level": 3,
+                                    "content": "<h3 id='header-Vue'>Vue</h3>",
+                                    "text": "Vue",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "title": "React",
+                            "path": "#header-React",
+                            "level": 2,
+                            "content": "<h2 id='header-React'>React</h2>",
+                            "text": "React",
+                            "children": []
+                        },
+                        {
                             "title": "v0.8.9",
                             "path": "#header-v0.8.9",
                             "level": 2,

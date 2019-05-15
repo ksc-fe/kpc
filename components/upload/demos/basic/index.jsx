@@ -2,11 +2,13 @@ import React from 'react';
 import Upload from 'kpc/components/upload';
 
 import Dialog from 'kpc/components/dialog';
+import Message from 'kpc/components/message';
 
 export default class extends React.Component {
     constructor(props) {
         super(props);
         this._beforeRemove = this._beforeRemove.bind(this);
+        this._showError = this._showError.bind(this);
     }
 
     _beforeRemove(file) {
@@ -22,12 +24,19 @@ export default class extends React.Component {
         });
     }
     
+    _showError(e) {
+        Message.error(e.message);
+    }
+    
     render() {
         return (
             <Upload multiple
                 b-tip={<>只能上传JPG/PNG格式文件，且不超过500kb</>}
                 beforeRemove={this._beforeRemove}
                 action="//jsonplaceholder.typicode.com/posts/"
+                accept=".jpg, .png"
+                maxSize={500}
+                onError={this._showError}
             >
             </Upload>
         )
