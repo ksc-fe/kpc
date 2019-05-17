@@ -12,6 +12,7 @@ order: 0
     2. `digits {Boolean}`： 请输入数字
     3. `email {Boolean}`: 请输入正确的邮箱地址
     4. `url {Boolean}`: 请输入正确的网址
+        > 该规则可以验证IP地址，但是会排除`192.168.X.X | 192.254.X.X | 172.16.0.0 - 172.31.255.255 | 10.X.X.X | 172.X.X.X`这类保留IP地址
     5. `date {Boolean}`：请输入正确的日期
     6. `dateISO {Boolean}`：请输入正确的日期（YYYY-MM-DD）
     7. `number {Boolean}`：请输入正确的数
