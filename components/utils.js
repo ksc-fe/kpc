@@ -1,5 +1,4 @@
 import Intact from 'intact';
-import { functionTypeAnnotation } from 'babel-types';
 
 const utils = Intact.utils;
 const {get, isNullOrUndefined, isObject, isFunction, noop} = utils;
