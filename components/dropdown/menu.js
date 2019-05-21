@@ -55,6 +55,8 @@ export default class DropdownMenu extends Intact {
                 this.trigger('hide', this);
             }
         });
+        this.on('show', this._onShow);
+        this.on('hide', this._removeDocumentEvents);
         this.on('$changed:of', () => {
             if (this.get('value')) {
                 this.position();
@@ -81,6 +83,10 @@ export default class DropdownMenu extends Intact {
         if (dropdown = triggerElement._dropdown) {
             this.dropdown = dropdown;
             dropdown.menu = this;
+        }
+
+        if (this.get('value')) {
+            this._onShow();
         }
     }
 

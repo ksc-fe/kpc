@@ -11,15 +11,13 @@ if (trigger === 'hover') {
 }
 
 <MoveWrapper ref="wrapper" _parent={{ self }} container={{ container }}>
-    <Animate v-if={{ value }}
+    <Animate a:show={{ value }}
         class={{ {"k-dropdown-menu": true, [className]: className} }}
         a:transition={{ transition }}
         a:appear={{ true }}
         ref="menu"
         {{ ...events }}
         a:delayDestroy={{ false }}
-        ev-$destroyed={{ self._removeDocumentEvents }}
-        ev-$mounted={{ self._onShow }}
     >
         <template>
             <b:children>{{ children }}</b:children>
