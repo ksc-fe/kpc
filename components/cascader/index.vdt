@@ -3,7 +3,8 @@ import Dropdown, {DropdownItem, DropdownMenu} from '../dropdown';
 
 const {
     data, className, style, value, trigger,
-    changeOnSelect, format, filterable, keywords,
+    changeOnSelect, format, filterable,
+    keywords, _show,
 } = self.get();
 
 const labelObj = {
@@ -15,6 +16,7 @@ const labelObj = {
 const Options = (props) => {
     const data = props.data || [];
     const level = props.level;
+    const parentShowed = props.parentShowed;
     const ret = [];
 
     // show loading
@@ -47,6 +49,7 @@ const Options = (props) => {
             );
         };
 
+        const show = parentShowed && active;
         ret.push(
             !item.children ? 
                 <Item /> :
@@ -55,7 +58,7 @@ const Options = (props) => {
                     of="parent"
                     disabled={{ item.disabled }}
                     trigger={{ trigger }}
-                    value={{ active }}
+                    value={{ show }}
                 >
                     <Item />
                     <DropdownMenu
@@ -65,7 +68,7 @@ const Options = (props) => {
                         } }}
                         ev-show={{ self._onSubMenuShow.bind(self, item) }}
                     >
-                        <Options data={{ item.children }} level={{ level + 1 }} />
+                        <Options data={{ item.children }} level={{ level + 1 }} parentShowed={{ show }}/>
                     </DropdownMenu>
                 </Dropdown>
         );
@@ -86,7 +89,7 @@ if (!filterable || !keywords) {
             ev-$change:value={{ self._onChangeShow }}
             key="cascader"
         >
-            <Options data={{ data }} level={{ 0 }} />
+            <Options data={{ data }} level={{ 0 }} parentShowed={{ _show }} />
         </DropdownMenu>
     );
 } else {

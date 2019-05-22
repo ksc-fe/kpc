@@ -154,6 +154,8 @@ function parse(vdt, js, reactMethods) {
 
 const delimitersRegExp = /\b([^\s]*?)=\{\{\s+([\s\S]*?)\s+}}/g;
 function parseProperty(template, properties, methods) {
+    // specical for Editable validate string
+    template = template.replace('"\\d+"', '"\\\\d+"');
     return template.replace(delimitersRegExp, (match, name, value) => {
         value = parseGet(value, properties); 
         if (name.substring(0, 3) === 'ev-') {

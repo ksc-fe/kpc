@@ -18,6 +18,7 @@ if (trigger === 'hover') {
         ref="menu"
         {{ ...events }}
         a:delayDestroy={{ false }}
+        ev-$changed:a:show={{ self._onChangedShow }}
     >
         <template>
             <b:children>{{ children }}</b:children>

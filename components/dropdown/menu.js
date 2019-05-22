@@ -55,8 +55,6 @@ export default class DropdownMenu extends Intact {
                 this.trigger('hide', this);
             }
         });
-        this.on('show', this._onShow);
-        this.on('hide', this._removeDocumentEvents);
         this.on('$changed:of', () => {
             if (this.get('value')) {
                 this.position();
@@ -65,7 +63,7 @@ export default class DropdownMenu extends Intact {
     }
 
     _mount() {
-        const parent = this._findParentDropdownMenu();
+        const parent = this.parent = this._findParentDropdownMenu();
         if (parent) parent.subDropdowns.push(this);
 
         // the previous sibling is Dropdown
@@ -87,6 +85,14 @@ export default class DropdownMenu extends Intact {
 
         if (this.get('value')) {
             this._onShow();
+        }
+    }
+
+    _onChangedShow(c, v) {
+        if (v) {
+            this._onShow();
+        } else {
+            this._removeDocumentEvents();
         }
     }
 
@@ -117,10 +123,18 @@ export default class DropdownMenu extends Intact {
     hide(immediately) {
         if (!immediately) {
             this.timer = setTimeout(() => {
-                this.set('value', false);
+                this._hide();
             }, 200);
         } else {
-            this.set('value', false);
+            this._hide();
+        }
+    }
+
+    _hide() {
+        this.set('value', false);
+        // hide sub dropdown
+        for (let i = 0; i < this.subDropdowns.length; i++) {
+            this.subDropdowns[i].hide(true);
         }
     }
 
@@ -138,26 +152,26 @@ export default class DropdownMenu extends Intact {
                 at: 'center bottom', 
                 of: _of,
                 using: (feedback) => {
-                    using = () => {
+                    // using = () => {
                         // let the child menu has the same transition with parent menu
                         this.set('transition', transition || getTransition(feedback));
-                        using = null;
-                    } 
+                        // using = null;
+                    // } 
                     // if it is the first menu, getTransition immediately
-                    if (!transition) {
-                        using();
-                    }
+                    // if (!transition) {
+                        // using();
+                    // }
                 },
                 ...this.get('position')
             });
             this.positioned = true;
             this.trigger('positioned', transition);
-            using && using();
+            // using && using();
         }
 
         let _of = this.get('of');
-        if (_of  === 'parent') {
-            const parent = this._findParentDropdownMenu();
+        if (_of === 'parent') {
+            const parent = this.parent;
             if (parent) {
                 _of = parent.refs.menu.element;
                 if (parent.positioned) {
@@ -177,13 +191,13 @@ export default class DropdownMenu extends Intact {
     }
 
     _onShow() {
-        this.focusIndex = -1;
+        this.unFocusLastItem();
         this._addDocumentEvents();
         this.position();
     }
 
     _addDocumentEvents() {
-        const parent = this._findParentDropdownMenu();
+        const parent = this.parent;
         if (!parent) {
             // no matter what the trigger is
             // we should let the layer hide when click document. #52
@@ -206,7 +220,7 @@ export default class DropdownMenu extends Intact {
 
     _removeDocumentEvents() {
         this.positioned = false;
-        const parent = this._findParentDropdownMenu();
+        const parent = this.parent;
         if (!parent) {
             document.removeEventListener('click', this._onDocumentClick);
         } else {
@@ -331,7 +345,7 @@ export default class DropdownMenu extends Intact {
     }
 
     _showSubMenu(e) {
-        const parent = this._findParentDropdownMenu();
+        const parent = this.parent;
         if (!parent && this.focusIndex < 0) return;
 
         e.preventDefault();
@@ -339,7 +353,7 @@ export default class DropdownMenu extends Intact {
             this.focusItemByIndex(0);
         } else if (this.focusIndex > -1) {
             // maybe the items has been filtered, #50
-            this.items[this.focusIndex] && this.items[this.focusIndex].showMenuAndFocus();
+            this.items[this.focusIndex] && this.items[this.focusIndex].showMenuAndFocus(e);
         }
     }
 

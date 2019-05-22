@@ -68,14 +68,14 @@ export default class DropdownItem extends Intact {
         // if (this.get('disabled')) return;
     }
 
-    select(e) {
+    select(e, isFocus) {
         // is not a sub dropdown trigger
         const dropdown = this._isSubMenu();
         this.trigger('click', e);
         if (!dropdown) {
             this.trigger('select', this);
         } else {
-            dropdown.show();
+            dropdown.show(null, null, isFocus);
         }
     }
 
@@ -104,10 +104,10 @@ export default class DropdownItem extends Intact {
         // }
     }
 
-    showMenuAndFocus() {
+    showMenuAndFocus(e) {
         const dropdown = this._isSubMenu();
         if (dropdown) {
-            dropdown.show(null, null, true);
+            this.select(e, true);
         }
     }
 
