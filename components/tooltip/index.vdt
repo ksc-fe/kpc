@@ -21,14 +21,14 @@ const classNameObj = {
 };
 
 <MoveWrapper container={{ container }}>
-    <Animate v-if={{ value }}
+    <Animate a:show={{ value }}
         class={{ classNameObj }}
         a:transition={{ transition }}
         ref="menu"
         {{ ...events }}
         a:delayDestroy={{ false }}
-        ev-$destroyed={{ self._removeDocumentEvents }}
-        ev-$mounted={{ self._onShow }}
+        a:enterStart={{ self._onShow }}
+        ev-a:leaveStart={{ self._removeDocumentEvents }}
     >
         <i v-if={{ showArrow }}
             class={{ {

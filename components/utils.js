@@ -221,6 +221,7 @@ export const expandAnimationCallbacks = {
     'a:transition': 'c-expand',
     'ev-a:leaveStart': (el) => el.style.height = el.clientHeight + 'px',
     'ev-a:leave': (el) => el.style.height = 0,
+    'ev-a:leaveEnd': (el) => el.style.height = '',
     'ev-a:enterStart': (el) => {
         el._height = el.clientHeight + 'px';
         el.style.height = 0;

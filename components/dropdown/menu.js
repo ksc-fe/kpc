@@ -32,6 +32,9 @@ export default class DropdownMenu extends Intact {
             transition: 'c-slidedown',
             of: 'self', // self | parent
             container: undefined,
+
+            // indicate that it is use in Dropdown or alone for lookup dropdown instance in _mount
+            _useInDropdown: false,
         };
     }
 
@@ -63,37 +66,44 @@ export default class DropdownMenu extends Intact {
     }
 
     _mount() {
-        const parent = this.parent = this._findParentDropdownMenu();
+        // maybe it is used as contextmenu
+        if (!this.get('_useInDropdown')) return;
+
+        const parent = this._getParent();
         if (parent) parent.subDropdowns.push(this);
 
         // the previous sibling is Dropdown
         let triggerElement = this.element.previousSibling;
-        // maybe it is used as contextmenu
-        if (!triggerElement) return;
         // in react, it may be a comment which value is ' react-mount-point-unstable ' 
-        if (
-            triggerElement.nodeType === 8 && 
-            triggerElement.nodeValue === ' react-mount-point-unstable '
-        ) {
+        // is may be a leaving animation element
+        // so we must look up it until the header
+        let dropdown;
+        while (triggerElement) {
+            if (dropdown = triggerElement._dropdown) {
+                this.dropdown = dropdown;
+                dropdown.menu = this;
+                break;
+            }
             triggerElement = triggerElement.previousSibling;
         }
-        let dropdown;
-        if (dropdown = triggerElement._dropdown) {
-            this.dropdown = dropdown;
-            dropdown.menu = this;
-        }
 
-        if (this.get('value')) {
-            this._onShow();
-        }
+        // when mount, the child animate element mount first
+        // if we use appearStart to show this menu
+        // the parent component can not be get correctly
+        // unless we find parent component in position method again
+        // so we do this at here instead of appearStart callback
+        //
+        // find parent component in position method instead of
+        // if (this.get('value')) {
+            // this._onShow();
+        // }
     }
 
-    _onChangedShow(c, v) {
-        if (v) {
-            this._onShow();
-        } else {
-            this._removeDocumentEvents();
+    _getParent() {
+        if (this.parent === undefined) {
+            this.parent = this._findParentDropdownMenu() || null;
         }
+        return this.parent;
     }
 
     _findParentDropdownMenu() {
@@ -152,33 +162,36 @@ export default class DropdownMenu extends Intact {
                 at: 'center bottom', 
                 of: _of,
                 using: (feedback) => {
-                    // using = () => {
+                    using = () => {
                         // let the child menu has the same transition with parent menu
                         this.set('transition', transition || getTransition(feedback));
-                        // using = null;
-                    // } 
+                        using = null;
+                    } 
                     // if it is the first menu, getTransition immediately
-                    // if (!transition) {
-                        // using();
-                    // }
+                    if (!transition) {
+                        using();
+                    }
                 },
                 ...this.get('position')
             });
             this.positioned = true;
             this.trigger('positioned', transition);
-            // using && using();
+            using && using();
         }
 
         let _of = this.get('of');
         if (_of === 'parent') {
-            const parent = this.parent;
+            const parent = this._getParent();
             if (parent) {
                 _of = parent.refs.menu.element;
                 if (parent.positioned) {
                     p(_of);
                 } else {
-                    parent.one('positioned', (transition) => {
-                        p(_of, transition || parent.get('transition'));
+                    return new Promise(resolve => {
+                        parent.one('positioned', (transition) => {
+                            p(_of, transition || parent.get('transition'));
+                            resolve();
+                        });
                     });
                 }
             }
@@ -191,9 +204,10 @@ export default class DropdownMenu extends Intact {
     }
 
     _onShow() {
+        this._enterEnd = false;
         this.unFocusLastItem();
         this._addDocumentEvents();
-        this.position();
+        return this.position();
     }
 
     _addDocumentEvents() {

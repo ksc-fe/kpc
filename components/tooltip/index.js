@@ -18,6 +18,7 @@ function Wrapper(props, inVue) {
         _context,
         children: content,
         ref,
+        _useInDropdown: true,
         ...rest
     });
 

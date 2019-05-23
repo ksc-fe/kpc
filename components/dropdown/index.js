@@ -21,10 +21,12 @@ function Wrapper(props) {
     });
     menu.props = {
         position, 
-        key: key == null ? key : `${key}.menu`,
+        // indicate that it is use in Dropdown or alone for lookup dropdown instance in _mount
+        _useInDropdown: true,
         ...rest,
         ...menu.props,
     };
+    menu.key = key == null ? menu.key : `${key}.menu`;
 
     return [dropdown, menu];
 }
