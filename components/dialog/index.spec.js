@@ -146,6 +146,7 @@ describe('Dialog', () => {
         let i;
         const _leaveEnd = Dialog.prototype._leaveEnd;
         Dialog.prototype._leaveEnd = function() {
+            debugger;
             _leaveEnd.call(this);
             expect(wrapper.parentNode).be.null;
 
@@ -158,6 +159,8 @@ describe('Dialog', () => {
         dispatchEvent(i.element.children[0], 'click');
         wrapper = getElement('.k-dialog-wrapper');
         i.destroy();
+        // done();
+        window.i = i;
     });
 
     it('methods test', () => {

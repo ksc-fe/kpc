@@ -157,8 +157,7 @@ describe('Datepicker', () => {
         instance = mount(DatetimeDemo);
 
         dispatchEvent(instance.element.children[0].children[0], 'click');
-        let content = document.querySelectorAll('.k-datepicker-content');
-        content = content[content.length - 1];
+        let content = getElement('.k-datepicker-content');
        
         dispatchEvent(content.querySelector('.k-day'), 'click');
         setTimeout(() => {
@@ -174,8 +173,7 @@ describe('Datepicker', () => {
         instance = mount(DatetimeDemo);
 
         dispatchEvent(instance.element.children[1].children[0], 'click');
-        let content = document.querySelectorAll('.k-datepicker-content');
-        content = content[content.length - 1];
+        let content = getElement('.k-datepicker-content');
        
         dispatchEvent(content.querySelector('.k-day'), 'click');
         setTimeout(() => {
@@ -304,7 +302,8 @@ describe('Datepicker', () => {
 
         // again
         input.click();
-        dispatchEvent(input, 'keydown', {keyCode: 40});
+        // dispatchEvent(input, 'keydown', {keyCode: 40});
+        dispatchEvent(input, 'keydown', {keyCode: 38});
         dispatchEvent(input, 'keydown', {keyCode: 13});
         dispatchEvent(input, 'keydown', {keyCode: 13});
         expect(instance.get('date')).eql(value);

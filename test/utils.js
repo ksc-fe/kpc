@@ -41,7 +41,11 @@ export function dispatchEvent(target, eventName, options) {
 
 export function getElement(query) {
     const elements = document.querySelectorAll(query);
-    return elements[elements.length - 1];
+    for (let i = elements.length - 1; i > -1; i--) {
+        if (elements[i].style.display !== 'none') {
+            return elements[i];
+        }
+    }
 }
 
 export function testDemos(req, test) {

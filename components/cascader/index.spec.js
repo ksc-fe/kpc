@@ -8,10 +8,10 @@ import {mount, unmount, dispatchEvent, getElement} from 'test/utils';
 describe('Cascader', () => {
     let instance;
 
-    afterEach((done) => {
-        unmount(instance);
-        setTimeout(done, 500);
-    });
+    // afterEach((done) => {
+        // unmount(instance);
+        // setTimeout(done, 500);
+    // });
 
     it('basic test', () => {
         instance = mount(BasicDemo);
