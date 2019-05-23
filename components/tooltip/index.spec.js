@@ -123,7 +123,7 @@ describe('Tooltip', () => {
 
         content.querySelector('.k-btn').click();
         setTimeout(() => {
-            expect(content.parentNode).eql(null);
+            expect(content.style.display).eql('none');
 
             dispatchEvent(instance.element.children[0], 'click');
             content = getElement('.k-tooltip-content');
@@ -131,7 +131,7 @@ describe('Tooltip', () => {
             btn.click();
 
             setTimeout(() => {
-                expect(content.parentNode).eql(null);
+                expect(content.style.display).eql('none');
                 expect(cancelCb.callCount).eql(1);
                 expect(okCb.callCount).eql(1);
 
