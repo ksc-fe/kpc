@@ -10,9 +10,6 @@ order: 0
 import Timepicker from 'kpc/components/timepicker';
 
 <div>
-    <Timepicker v-model="time" min="01:34:56" max="15:02:59" />
-    You selected: {{ self.get('time') }}
-    <br /><br />
     <Timepicker v-model="timeArray" multiple />
     You selected: {{ JSON.stringify(self.get('timeArray')) }}
 </div>

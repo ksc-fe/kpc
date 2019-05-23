@@ -16,11 +16,16 @@ describe('Dropdown', () => {
     it('demos test', () => {
         const req = require.context('~/components/dropdown/demos', true, /^((?!async).)*index\.js$/i);
         req.keys().forEach(item => {
+            if (item.includes('contextmenu')) return;
             const Demo = req(item).default;
             const i = mount(Demo);
 
-            dispatchEvent(i.element.firstChild, 'click');
-            expect(getElement('.k-dropdown-menu').innerHTML).to.matchSnapshot();
+            dispatchEvent(i.element.querySelector('.k-btn') || i.element, 'click');
+            if (item.includes('disabled')) {
+                expect(getElement('.k-dropdown-menu')).to.be.undefined;
+            } else {
+                expect(getElement('.k-dropdown-menu').innerHTML).to.matchSnapshot();
+            }
             unmount(i);
         });
     });
@@ -125,9 +130,10 @@ describe('Dropdown', () => {
         const subDropdown1 = getElement('.k-dropdown-menu');
         expect(subDropdown1.innerHTML).to.matchSnapshot();
 
+        // left
         dispatchEvent(document, 'keydown', {keyCode: 37});
         setTimeout(() => {
-            expect(subDropdown1.parentNode).not.exist;
+            expect(subDropdown1.style.display).to.eql('none');
 
             // down in sub-menu
             dispatchEvent(document, 'keydown', {keyCode: 40});

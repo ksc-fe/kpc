@@ -146,7 +146,6 @@ describe('Dialog', () => {
         let i;
         const _leaveEnd = Dialog.prototype._leaveEnd;
         Dialog.prototype._leaveEnd = function() {
-            debugger;
             _leaveEnd.call(this);
             expect(wrapper.parentNode).be.null;
 
@@ -159,8 +158,6 @@ describe('Dialog', () => {
         dispatchEvent(i.element.children[0], 'click');
         wrapper = getElement('.k-dialog-wrapper');
         i.destroy();
-        // done();
-        window.i = i;
     });
 
     it('methods test', () => {
@@ -191,7 +188,7 @@ describe('Dialog', () => {
             const Demo = req(item).default;
             const i = mount(Demo);
 
-            dispatchEvent(i.element.firstChild, 'click');
+            dispatchEvent(i.element.querySelector('.k-btn') || i.element, 'click');
             expect(getElement('.k-dialog').innerHTML).to.matchSnapshot();
             unmount(i);
         });
@@ -247,7 +244,8 @@ describe('Dialog', () => {
         expect(dialog.innerHTML).to.matchSnapshot();
         dialog.querySelector('.k-btn').click();
         // remove immediately for next test
-        document.body.removeChild(dialog.parentElement);
+        // it has been removed
+        // document.body.removeChild(dialog.parentElement);
         setTimeout(() => {
             expect(cb.callCount).to.eql(1);
 
@@ -256,7 +254,6 @@ describe('Dialog', () => {
             dialog = getElement('.k-dialog');
             expect(dialog.innerHTML).to.matchSnapshot();
             dialog.querySelector('.k-footer .k-btn').click();
-            document.body.removeChild(dialog.parentElement);
             setTimeout(() => {
                 expect(cb1.callCount).to.eql(1);
 

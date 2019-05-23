@@ -125,7 +125,7 @@ describe('Select', () => {
 
         dispatchEvent(select, 'keydown', {keyCode: 9});
         setTimeout(() => {
-            expect(dropdown.parentNode).to.eql(null);
+            expect(dropdown.style.display).to.eql('none');
             done();
         }, 500);
     });

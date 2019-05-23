@@ -166,7 +166,9 @@ export default class Dialog extends Intact {
     _leaveEnd() {
         // use as instance or use as component but it has be destroyed
         // then remove the element
-        if (!this._useAsComponent || this._useAsComponent && this.destroyed) {
+        // maybe the animation leaveEnd immediately when destroy it before enters
+        // so use `_destroyed` instead of `destroyed`
+        if (!this._useAsComponent || this._useAsComponent && this._destroyed) {
             this.vdt.vNode.children._$destroy();
         }
     }
@@ -233,6 +235,7 @@ export default class Dialog extends Intact {
     }
 
     _destroy(...args) {
+        this._destroyed = true;
         if (this.get('value')) {
             this.close();
         } else {
