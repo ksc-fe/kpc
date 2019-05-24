@@ -1,4 +1,5 @@
 @require('./variables.styl');
+@require('../button/variables.styl');
 
 .k-pagination
     font-size $pagination-font-size
@@ -16,6 +17,9 @@
                 margin-right $pagination-btn-margin-right
                 &:last-of-type
                     margin 0 !important
+            width auto
+            min-width $btn-height
+            padding $pagination-btn-padding
 
     // goto   
     .k-goto
@@ -35,6 +39,7 @@
                 .k-btns
                     .k-btn
                         margin-right lookup('$pagination-' + size + '-btn-margin-right')
+                        min-width lookup('$btn-' + size + '-height')
 
     // noBorder
     &.k-no-border
