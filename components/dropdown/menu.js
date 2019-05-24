@@ -224,7 +224,7 @@ export default class DropdownMenu extends Intact {
             // will not hide when click the other component. #221
             if (this.__event) this.__event._dropdown = this;
 
-            document.addEventListener('click', this._onDocumentClick);
+            document.addEventListener('click', this._onDocumentClick, true);
         } else {
             parent.locked = true;
         }
@@ -236,7 +236,7 @@ export default class DropdownMenu extends Intact {
         this.positioned = false;
         const parent = this.parent;
         if (!parent) {
-            document.removeEventListener('click', this._onDocumentClick);
+            document.removeEventListener('click', this._onDocumentClick, true);
         } else {
             parent.locked = false;
         }
