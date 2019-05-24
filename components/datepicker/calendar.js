@@ -82,7 +82,7 @@ export default class Calendar extends Intact {
             // if is select year or month, set the _showDate to vlue
             const type = this.get('type');
             if (type === 'year' || type === 'month') {
-                this.set('value', this._format(v));
+                // this.set('value', this._format(v));
             }
         });
     }

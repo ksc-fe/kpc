@@ -2,8 +2,12 @@ import Button from '../button';
 import ScrollSelect from '../scrollSelect';
 import Time from './time';
 import {Row, Col} from '../grid';
-import {range, strPad, _$} from '../utils';
-import {isEqual, isLT, isGT, getDateString, getTimeString, createDate} from './utils';
+import {strPad, _$} from '../utils';
+import {
+    isEqual, isLT, isGT, getDateString,
+    getTimeString, createDate,
+    yearArray, monthArray
+} from './utils';
 import {Tabs, Tab} from '../tabs';
 import Icon from '../icon';
 
@@ -31,6 +35,7 @@ const map = {
     'YYYY': <span class="k-text">{{ _$(`{n}年`, {n: showDate.getFullYear()}) }}</span>
 };
 const panel = type === 'year' ? map.YYYY : format.map(item => map[item]);
+const isYearOrMonth = type === 'year' || type === 'month';
 
 <div 
     class={{ {
@@ -83,9 +88,9 @@ const panel = type === 'year' ? map.YYYY : format.map(item => map[item]);
                 </Button>
             </div>
             <div class="k-text-wrapper"
-                ev-click={{ type === 'year' || type === 'month' ? undefined : self.showYearPicker }}
+                ev-click={{ isYearOrMonth ? undefined : self.showYearPicker }}
             >
-                <Animate a:show={{ _isShowYearPicker }}
+                <Animate a:show={{ !isYearOrMonth && _isShowYearPicker }}
                     a:transition="c-fade"
                     a:tag={{ Icon }}
                     class="ion-ios-undo"
@@ -160,9 +165,7 @@ const panel = type === 'year' ? map.YYYY : format.map(item => map[item]);
                     MM: (
                         <Col span={{ span }}>
                             <ScrollSelect 
-                                data={{ range(0, 11).map(i => {
-                                    return {label: _$(`${i + 1}月`), value: i};
-                                }) }}
+                                data={{ monthArray }}
                                 value={{ showDate.getMonth() }}
                                 ev-$change:value={{ self.onChangeMonth }}
                             />
@@ -171,9 +174,7 @@ const panel = type === 'year' ? map.YYYY : format.map(item => map[item]);
                     YYYY: (
                         <Col span={{ span }}>
                             <ScrollSelect 
-                                data={{ (value) => {
-                                    return range(value - 5, value + 5);
-                                } }}
+                                data={{ yearArray }}
                                 value={{ showDate.getFullYear() }}
                                 ev-$change:value={{ self.onChangeYear }}
                             />

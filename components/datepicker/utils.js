@@ -1,4 +1,4 @@
-import {strPad} from '../utils';
+import {strPad, range, _$} from '../utils';
 
 export function getNowDate() {
     // only date without time
@@ -106,3 +106,11 @@ export function createDate(date) {
     if (!date) return new Date();
     return new Date(date);
 }
+
+export const monthArray = range(0, 11).map(i => {
+    return {label: _$(`${i + 1}月`), value: i};
+});
+
+export const yearArray = (value) => {
+    return range(value - 5, value + 5);
+};

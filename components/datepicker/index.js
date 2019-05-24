@@ -66,6 +66,10 @@ export default class Datepicker extends Intact {
             this.set('value', v);
         });
 
+        this.on('$change:value', () => {
+            debugger;
+        })
+
         this.on('$receive:value', (c, v) => {
             this.set('_value', v);
         });
