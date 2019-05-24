@@ -85,10 +85,11 @@ const panel = type === 'year' ? map.YYYY : format.map(item => map[item]);
             <div class="k-text-wrapper"
                 ev-click={{ type === 'year' || type === 'month' ? undefined : self.showYearPicker }}
             >
-                <Animate v-if={{ _isShowYearPicker }}
+                <Animate a:show={{ _isShowYearPicker }}
                     a:transition="c-fade"
                     a:tag={{ Icon }}
                     class="ion-ios-undo"
+                    key="undo"
                 />
                 {{ panel }}
             </div>
@@ -189,13 +190,6 @@ const panel = type === 'year' ? map.YYYY : format.map(item => map[item]);
         </Row>
     </div>
     <div v-else class="k-time-picker" key="time">
-        <!--<b:time-head>
-            <div class="k-month c-clearfix">
-                <span class="k-text-wrapper"
-                    ev-click={{ self.cancel }}
-                >{{ panel }}</span>
-            </div>
-        </b:time-head>-->
         <b:time-body>
             <Time
                 data={{ [
