@@ -260,6 +260,10 @@ export default class DropdownMenu extends Intact {
         // custom flag to indicate that the event does not lead to close menu
         if (e._dropdown === true || e._dropdown === this) return;
 
+        // to indicate this click event will hide layer 
+        // and don't show it again when the target is the trigger element
+        e._hide = true;
+
         this.hide(true);
     }
 
