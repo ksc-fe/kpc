@@ -81,6 +81,10 @@
             font-size 14px
             cursor pointer
             overflow hidden
+            position relative
+            .k-icon
+                position absolute
+                margin-left -1rem
 
     .k-scroll-select
         height $datepicker-scroll-select-height
@@ -147,6 +151,9 @@
     .k-range
         .k-datetime:nth-child(2)
             border-left $datepicker-inner-border
+    .k-time-picker
+        .k-scroll-select
+            height $datepicker-time-scroll-select-height
 
 
 requireTheme('datepicker')

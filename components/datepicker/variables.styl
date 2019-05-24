@@ -34,7 +34,8 @@ $datepicker-month-text-line-height := unit($small-height / $rem, rem)
 // $datepicker-month-icon-font-size := unit(16 / $rem, rem)
 
 // year picker
-$datepicker-scroll-select-height := unit((267 - 2 * 12) / $rem, rem)
+$datepicker-scroll-select-margin := unit(12 / $rem, rem)
+$datepicker-scroll-select-height := unit(267 / $rem, rem) - getTop($datepicker-scroll-select-margin) - getBottom($datepicker-scroll-select-margin)
 
 // range
 $datepicker-range-width := unit(400 / $rem, rem)
@@ -54,3 +55,6 @@ $datepicker-shortcuts-item-hover-bg-color := $bg-color
 
 // datetime
 $datepicker-datetime-margin-top := unit($default-height / $rem, rem)
+
+// time picker
+$datepicker-time-scroll-select-height := unit(303 / $rem, rem) - getTop($datepicker-scroll-select-margin) - getBottom($datepicker-scroll-select-margin)

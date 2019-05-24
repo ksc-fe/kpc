@@ -15,6 +15,13 @@ getRight(args)
         args[1]
     else 
         args
+getBottom(args)
+    if length(args) >= 3
+        args[2]
+    else if length(args) > 1
+        args[0]
+    else
+        args
 
 clearfix()
     zoom 1
