@@ -5,7 +5,7 @@ import {Select, Option} from '../select';
 const {
     range, multiple, _options, size,
     clearable, placeholder, disabled,
-    className, container
+    className, container, _value
 } = self.get(); 
 
 const _placeholder = range ?
@@ -24,7 +24,8 @@ const _placeholder = range ?
         <b:prefix><i class="ion-ios-clock-outline"></i></b:prefix>
         <b:singe-panel>
             <TimePanel
-                v-model="_value"
+                value={{ _value }}
+                ev-$change:value={{ self._onChangeValue }}
                 ev-hide={{ self._hide }}
                 ref="begin"
                 multiple={{ multiple }}

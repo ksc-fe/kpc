@@ -57,34 +57,53 @@ export default class Calendar extends Intact {
         }
 
         this.on('$receive:type', (c, v) => {
-            if (v === 'year' || v === 'month') {
-                this.set('_isShowYearPicker', true);
-            }
+            this.initPickerType()
         });
 
         this.on('$receive:value', (c, v) => {
-            const type = this.get('type');
-            const now = createDate();
-            if (type === 'year') {
-                v && now.setFullYear(+v);
-                this.set('_showDate', now);
-            } else if (type === 'month') {
-                if (v) {
-                    const [year, month] = v.split('-');
-                    now.setFullYear(+year);
-                    now.setMonth(month - 1);
-                }
-                this.set('_showDate', now);
-            }
+            if (!v && this.get('_showDate')) return;
+
+            this.initShowDate(true);
         });
 
         this.on('$change:_showDate', (c, v) => {
             // if is select year or month, set the _showDate to vlue
-            const type = this.get('type');
-            if (type === 'year' || type === 'month') {
-                // this.set('value', this._format(v));
+            if (this._isYearOrMonth()) {
+                this.set('value', this._format(v));
             }
         });
+    }
+
+    initState() {
+        this.initPickerType();
+        this.initShowDate(false);
+        this.set('_isSelectTime', false);
+    }
+
+    initPickerType() {
+        this.set('_isShowYearPicker', this._isYearOrMonth());
+    }
+
+    initShowDate(silent) {
+        const v = this.get('value');
+        const type = this.get('type');
+        const now = createDate();
+        if (type === 'year') {
+            v && now.setFullYear(+v);
+            this.set('_showDate', now, {silent});
+        } else if (type === 'month') {
+            if (v) {
+                const [year, month] = v.split('-');
+                now.setFullYear(+year);
+                now.setMonth(month - 1);
+            }
+            this.set('_showDate', now, {silent});
+        }
+    }
+
+    _isYearOrMonth() {
+        const type = this.get('type');
+        return type === 'year' || type === 'month'; 
     }
 
     select(v, e) {
@@ -365,5 +384,14 @@ export default class Calendar extends Intact {
             return maxDate;
         }
     }
+
+    /**
+     * @brief clear the state when hide
+     */
+    // clear() {
+        // this.set({
+            // '_showDate': undefined,
+        // }, {silent: true});
+    // }
 }
 

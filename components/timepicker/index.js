@@ -90,6 +90,11 @@ export default class Timepicker extends Datepicker {
 
         return `${strPad(hours, 2)}:${strPad(minutes, 2)}:${strPad(seconds, 2)}`;
     }
+
+    _onChangeValue(c, v) {
+        if (!this.get('_isShow')) return;
+        this.set('_value', v);
+    }
 }
 
 export {Timepicker};

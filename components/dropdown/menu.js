@@ -262,9 +262,16 @@ export default class DropdownMenu extends Intact {
 
         // to indicate this click event will hide layer 
         // and don't show it again when the target is the trigger element
-        e._hide = true;
+        e._hide = this.dropdown;
 
-        this.hide(true);
+        // because we bind document click handler to hide menu in capture phase
+        // and we get cancelBubble is true even if we stopPropagation
+        // some action like clear in datepicker will prevent this menu hiding
+        this.documentTimer = setTimeout(() => {
+            if (!e._cancelBubble) {
+                this.hide(true);
+            }
+        });
     }
 
     _onKeydown(e) {
@@ -416,6 +423,7 @@ export default class DropdownMenu extends Intact {
             subDropdowns.splice(subDropdowns.indexOf(this), 1);
         } 
         clearTimeout(this.timer);
+        clearTimeout(this.documentTimer);
         this._removeDocumentEvents();
     }
 }

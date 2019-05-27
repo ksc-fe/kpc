@@ -66,10 +66,6 @@ export default class Datepicker extends Intact {
             this.set('value', v);
         });
 
-        this.on('$change:value', () => {
-            debugger;
-        })
-
         this.on('$receive:value', (c, v) => {
             this.set('_value', v);
         });
@@ -96,6 +92,11 @@ export default class Datepicker extends Intact {
     }
 
     _onChangeShow(c, v) {
+        if (v) {
+            const {begin, end} = this.refs;
+            begin && begin.initState();
+            end && end.initState();
+        }
         this.set('_isShow', v);
         this._hasSelectByArrowKey = false;
     }

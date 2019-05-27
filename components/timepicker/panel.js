@@ -43,6 +43,10 @@ export default class TimePanel extends Calendar {
         });
     }
 
+    initState() {
+        this.set('_isSelectTime', true);
+    }
+
     _format(date) {
         return getDateString(date, 'datetime');
     }

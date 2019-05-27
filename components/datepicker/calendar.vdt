@@ -35,7 +35,7 @@ const map = {
     'YYYY': <span class="k-text">{{ _$(`{n}年`, {n: showDate.getFullYear()}) }}</span>
 };
 const panel = type === 'year' ? map.YYYY : format.map(item => map[item]);
-const isYearOrMonth = type === 'year' || type === 'month';
+const isYearOrMonth = self._isYearOrMonth();
 
 <div 
     class={{ {
