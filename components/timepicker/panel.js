@@ -76,7 +76,7 @@ export default class TimePanel extends Calendar {
             this.set('value', _value);
         // }
 
-        this.isSelectTime = false;
+        // this.isSelectTime = false;
     }
 
     onChangeTime(...args) {
