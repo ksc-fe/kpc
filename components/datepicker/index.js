@@ -188,7 +188,13 @@ export default class Datepicker extends Intact {
             } else {
                 // select or re-select
                 const last = v[length - 1];
-                value = [last];
+                // if we select the end time firstly
+                // we should set the begin time automatically
+                if (c.isSelectTime && type === 'end') {
+                    value = [c._format(begin.getShowDate()), last];
+                } else {
+                    value = [last];
+                }
             }
         } else {
             this.set('value', undefined);

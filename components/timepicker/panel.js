@@ -3,7 +3,7 @@ import Calendar from '../datepicker/calendar';
 import template from './panel.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
-import {getDateString, createDate} from '../datepicker/utils';
+import {getDateString, createDate, getTimeString} from '../datepicker/utils';
 
 export const PREFIX = getDateString(new Date()) + ' ';
 
@@ -60,6 +60,11 @@ export default class TimePanel extends Calendar {
         const originalValue = value && value[this._index];
 
         let valueDate = createDate(originalValue || _now);
+
+        // does not trigger change again
+        // otherwise it can not be cleared
+        if (getTimeString(valueDate) === v[0]) return;
+
         valueDate = getDateString(valueDate, 'date') + ' ' + v[0];
 
         // if (!multiple) {
