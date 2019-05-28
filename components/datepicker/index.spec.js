@@ -183,7 +183,7 @@ describe('Datepicker', () => {
             expect(content.querySelector('.k-scroll-select-group').innerHTML).to.matchSnapshot();
 
             done();
-        });
+        }, 500);
     });
     
     it('range', () => {

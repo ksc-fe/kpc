@@ -342,10 +342,6 @@ export default class Tree extends Intact {
 
         this.set('_draggingNode', undefined);
     }
-
-    _destroy() {
-        console.log('destroy')
-    }
 }
 
 export {Tree};

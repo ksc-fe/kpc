@@ -22,7 +22,7 @@ RemoteDemo.prototype.validateUserName = function(value) {
 describe('Form', () => {
     let instance;
 
-    afterEach(() => unmount(instance));
+    // afterEach(() => unmount(instance));
 
     it('validate', (done) => {
         instance = mount(BasicDemo);

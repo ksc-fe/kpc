@@ -24,13 +24,10 @@ export default class TimePanel extends Calendar {
     _init() {
         this.isSelectTime = true;
 
-        const {value, multiple, _index} = this.get();
-        if (_index === undefined) {
-            // if multiple, add one value showed every time
-            this._index = multiple && value && value.length || 0;
-        } else {
-            this._index = _index;
-        }
+        this.initIndex();
+
+        this.on('$receive:value', this.initIndex);
+        this.on('$receive:multiple', this.initIndex);
         this.on('$receive:min', (c, v) => {
             if (v) {
                 this.set('minDate', PREFIX + v);
@@ -44,7 +41,19 @@ export default class TimePanel extends Calendar {
     }
 
     initState() {
+        this.initIndex();
         this.set('_isSelectTime', true);
+    }
+
+    initIndex(c) {
+        const {value, multiple, _index} = this.get();
+        if (_index === undefined) {
+            // if multiple, add one value showed every time
+            // if `c` does no exits it indicate this call is from initState
+            this._index = multiple && value && value.length - (c ? 1 : 0) || 0;
+        } else {
+            this._index = _index;
+        }
     }
 
     _format(date) {

@@ -225,6 +225,7 @@ export default class DropdownMenu extends Intact {
             if (this.__event) this.__event._dropdown = this;
 
             document.addEventListener('click', this._onDocumentClick, true);
+            document.addEventListener('click', this._documentClickHandler);
         } else {
             parent.locked = true;
         }
@@ -237,6 +238,7 @@ export default class DropdownMenu extends Intact {
         const parent = this.parent;
         if (!parent) {
             document.removeEventListener('click', this._onDocumentClick, true);
+            document.removeEventListener('click', this._documentClickHandler);
         } else {
             parent.locked = false;
         }
@@ -264,14 +266,22 @@ export default class DropdownMenu extends Intact {
         // and don't show it again when the target is the trigger element
         e._hide = this.dropdown;
 
+
         // because we bind document click handler to hide menu in capture phase
         // and we get cancelBubble is true even if we stopPropagation
         // some action like clear in datepicker will prevent this menu hiding
-        this.documentTimer = setTimeout(() => {
-            if (!e._cancelBubble) {
-                this.hide(true);
-            }
-        });
+        // we call this handler as soon as the event bubble to docuemnt
+        e._handler = () => this.hide(true);
+        // const handler = () => {
+            // if (!e._cancelBubble) {
+                // this.hide(true);
+            // }
+        // };
+        // this.documentTimer = setTimeout(handler);
+    }
+
+    _documentClickHandler(e) {
+        e._handler && e._handler();
     }
 
     _onKeydown(e) {
@@ -423,7 +433,7 @@ export default class DropdownMenu extends Intact {
             subDropdowns.splice(subDropdowns.indexOf(this), 1);
         } 
         clearTimeout(this.timer);
-        clearTimeout(this.documentTimer);
+        // clearTimeout(this.documentTimer);
         this._removeDocumentEvents();
     }
 }

@@ -3,7 +3,7 @@ import CustomDemo from '~/components/cascader/demos/custom';
 import ChangeOnSelectDemo from '~/components/cascader/demos/changeOnSelect';
 import LoadDataDemo from '~/components/cascader/demos/loadData';
 import FilterDemo from '~/components/cascader/demos/filterable';
-import {mount, unmount, dispatchEvent, getElement} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement, getElements} from 'test/utils';
 
 describe('Cascader', () => {
     let instance;
@@ -30,7 +30,7 @@ describe('Cascader', () => {
         expect(instance.element.innerHTML).to.matchSnapshot();
 
         select.click();
-        const [_dropdown1, _dropdown2, _dropdown3] = document.querySelectorAll('.k-cascader-dropdown');
+        const [_dropdown1, _dropdown2, _dropdown3] = getElements('.k-cascader-dropdown');
         expect(_dropdown1.innerHTML).to.matchSnapshot();
         expect(_dropdown2.innerHTML).to.matchSnapshot();
         expect(_dropdown3.innerHTML).to.matchSnapshot();

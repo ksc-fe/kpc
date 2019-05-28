@@ -85,7 +85,7 @@ describe('Drawer', () => {
         trigger.click();
         const overlay = getElement('.k-overlay');
         expect(overlay).to.be.undefined;
-        setTimeout(() =>{
+        setTimeout(() => {
             dispatchEvent(document, 'click');
             setTimeout(() => {
                 const dialog = getElement('.k-dialog');
@@ -96,9 +96,8 @@ describe('Drawer', () => {
                 setTimeout(() => {
                     expect(getElement('.k-drawer .k-dialog')).to.be.undefined;
                     done();
-                }, 400)
-            }, 400)
-        }, 200)
-        
-    })
-})
+                }, 400);
+            }, 400);
+        }, 200);
+    });
+});

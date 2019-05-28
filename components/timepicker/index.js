@@ -95,6 +95,11 @@ export default class Timepicker extends Datepicker {
         if (!this.get('_isShow')) return;
         this.set('_value', v);
     }
+
+    onClear(e) {
+        e.stopPropagation();
+        this.set('_value', undefined);
+    }
 }
 
 export {Timepicker};

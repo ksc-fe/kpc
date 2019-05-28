@@ -9,7 +9,7 @@ describe('Dialog', () => {
     let component;
     let instance;
 
-    afterEach(() => {
+    afterEach((done) => {
         component && component.destroy();
         component = null;
 
@@ -17,6 +17,7 @@ describe('Dialog', () => {
             unmount(instance);
             instance = null;
         }
+        setTimeout(done, 400);
     });
 
     it('should render dialog correctly', () => {

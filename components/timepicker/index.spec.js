@@ -9,7 +9,7 @@ describe('Timepicker', () => {
 
     afterEach((done) => {
         unmount(instance);
-        setTimeout(done, 400);
+        setTimeout(done, 500);
     });
 
     it('select time', () => {

@@ -16,11 +16,11 @@
 ```
 
 ```
-"<div class=\"k-item\">北京<i class=\"k-arrow ion-ios-arrow-right\"></i></div><!--placeholder--><div class=\"k-item k-active\">湖南<i class=\"k-arrow ion-ios-arrow-right\"></i></div><!--placeholder-->"
+"<div class=\"k-item\">长沙市<i class=\"k-arrow ion-ios-arrow-right\"></i></div><!--placeholder--><div class=\"k-item k-active k-dropdown-open\">岳阳市<i class=\"k-arrow ion-ios-arrow-right\"></i></div><!--placeholder-->"
 ```
 
 ```
-"<div class=\"k-item\">长沙市<i class=\"k-arrow ion-ios-arrow-right\"></i></div><!--placeholder--><div class=\"k-item k-active k-dropdown-open\">岳阳市<i class=\"k-arrow ion-ios-arrow-right\"></i></div><!--placeholder-->"
+"<div class=\"k-item\">岳阳楼区</div><div class=\"k-item k-active\">岳阳县</div>"
 ```
 
 #### `custom label`

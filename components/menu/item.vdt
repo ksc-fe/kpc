@@ -74,6 +74,7 @@ const title = (
     <template v-if={{ !Menu.showAsDropdown(_root) }}>
         {{ title }}
         <Animate a:show={{ isExpanded }}
+            v-if={{ subMenuVNode }}
             a:move={{ false }}
             {{ ...expandAnimationCallbacks }}
             key="submenu"

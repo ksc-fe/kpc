@@ -74,29 +74,3 @@
 "<div class=\"k-split k-horizontal k-last-auto k-resizing\"><div class=\"k-first\" style=\"width: 40px;\"><div class=\"panel\">left</div></div><div class=\"k-line-wrapper\"><div class=\"k-line\"><div class=\"k-drag-lines\"></div></div></div><div class=\"k-last\" style=\"width: auto;\"><div class=\"panel\">right</div></div></div>"
 ```
 
-#### `should drag to resize panel`
-
-```
-"<div class=\"k-split k-horizontal k-last-auto k-resizing\"><div class=\"k-first\" style=\"width: 100px;\"><div class=\"panel\">left</div></div><div class=\"k-line-wrapper\"><div class=\"k-line\"><div class=\"k-drag-lines\"></div></div></div><div class=\"k-last\" style=\"width: auto;\"><div class=\"panel\">right</div></div></div>"
-```
-
-```
-"<div class=\"k-split k-horizontal k-last-auto k-resizing\"><div class=\"k-first\" style=\"width: 794px;\"><div class=\"panel\">left</div></div><div class=\"k-line-wrapper\"><div class=\"k-line\"><div class=\"k-drag-lines\"></div></div></div><div class=\"k-last\" style=\"width: auto;\"><div class=\"panel\">right</div></div></div>"
-```
-
-```
-"<div class=\"k-split k-horizontal k-last-auto k-resizing\"><div class=\"k-first\" style=\"width: 0px;\"><div class=\"panel\">left</div></div><div class=\"k-line-wrapper\"><div class=\"k-line\"><div class=\"k-drag-lines\"></div></div></div><div class=\"k-last\" style=\"width: auto;\"><div class=\"panel\">right</div></div></div>"
-```
-
-```
-"<div class=\"k-split k-horizontal k-last-auto\"><div class=\"k-first\" style=\"width: 0px;\"><div class=\"panel\">left</div></div><div class=\"k-line-wrapper\"><div class=\"k-line\"><div class=\"k-drag-lines\"></div></div></div><div class=\"k-last\" style=\"width: auto;\"><div class=\"panel\">right</div></div></div>"
-```
-
-```
-"<div class=\"k-split k-horizontal k-last-auto\"><div class=\"k-first\" style=\"width: 0px;\"><div class=\"panel\">left</div></div><div class=\"k-line-wrapper\"><div class=\"k-line\"><div class=\"k-drag-lines\"></div></div></div><div class=\"k-last\" style=\"width: auto;\"><div class=\"panel\">right</div></div></div>"
-```
-
-```
-"<div class=\"k-split k-horizontal k-last-auto\"><div class=\"k-first\" style=\"width: 0px;\"><div class=\"panel\">left</div></div><div class=\"k-line-wrapper\"><div class=\"k-line\"><div class=\"k-drag-lines\"></div></div></div><div class=\"k-last\" style=\"width: auto;\"><div class=\"panel\">right</div></div></div>"
-```
-

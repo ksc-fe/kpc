@@ -49,20 +49,15 @@ export default class Calendar extends Intact {
     }
 
     _init() {
-        const {value, multiple, _index} = this.get();
-        if (_index === undefined) {
-            this._index = multiple && value && value.length - 1 || 0;
-        } else {
-            this._index = _index;
-        }
+        this.initIndex();
 
-        this.on('$receive:type', (c, v) => {
-            this.initPickerType()
-        });
+        this.on('$receive:type', this.initPickerType);
+
+        this.on('$receive:value', this.initIndex);
+        this.on('$receive:multiple', this.initIndex);
 
         this.on('$receive:value', (c, v) => {
             if (!v && this.get('_showDate')) return;
-
             this.initShowDate(true);
         });
 
@@ -75,9 +70,19 @@ export default class Calendar extends Intact {
     }
 
     initState() {
+        this.initIndex();
         this.initPickerType();
         this.initShowDate(false);
         this.set('_isSelectTime', false);
+    }
+
+    initIndex() {
+        const {value, multiple, _index} = this.get();
+        if (_index === undefined) {
+            this._index = multiple && value && value.length - 1 || 0;
+        } else {
+            this._index = _index;
+        }
     }
 
     initPickerType() {

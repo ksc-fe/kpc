@@ -48,6 +48,17 @@ export function getElement(query) {
     }
 }
 
+export function getElements(query) {
+    const elements = document.querySelectorAll(query);
+    const ret = [];
+    for (let i = 0; i < elements.length; i++) {
+        if (elements[i].style.display !== 'none') {
+            ret.push(elements[i]);
+        }
+    }
+    return ret;
+}
+
 export function testDemos(req, test) {
     const groups = {};
     req.keys().forEach(item => {

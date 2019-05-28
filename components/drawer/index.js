@@ -32,7 +32,7 @@ export default class Drawer extends Dialog {
 
     _onClose() {
         super._onClose();
-        clearTimeout(this.timer)
+        clearTimeout(this.timer);
         this._removeDocumentEvents();
     }
 
