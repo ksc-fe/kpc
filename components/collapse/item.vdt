@@ -1,5 +1,5 @@
-/* import {expandAnimationCallbacks} from '../utils'; */
-import VShow from '../menu/vShow';
+import {expandAnimationCallbacks} from '../utils';
+/* import VShow from '../menu/vShow'; */
 
 const {
     className, style, value, children,
@@ -19,18 +19,12 @@ const classNameObj = {
         <b:title>{{ title }}</b:title>
         <i class="k-arrow ion-ios-arrow-right"></i>
     </div>
-    <VShow show={{ !!active }} class="k-content"
-        ev-show={{ self._onShow }}
-        ev-hide={{ self._onHide }}
-    >
-        <div class="k-wrapper">{{ children }}</div>
-    </VShow>
-    {{/* <Animate class="k-content"
-        v-if={{ active }}
-        ev-$mounted={{ self._onShow }}
-        ev-$destroyed={{ self._onHide }}
+    <Animate class="k-content"
+        a:show={{ active }}
         {{ ...expandAnimationCallbacks }}
+        ev-a:enterStart={{ [self._onShow, expandAnimationCallbacks['ev-a:enterStart']] }}
+        ev-a:leaveStart={{ [self._onHide, expandAnimationCallbacks['ev-a:leaveStart']] }}
     >
         <div class="k-wrapper">{{ children }}</div>
-    </Animate> */}}
+    </Animate>
 </div>

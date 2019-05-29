@@ -72,7 +72,7 @@ const title = (
     ev-mouseleave={{ self._onMouseLeave }}
 >
     <template v-if={{ !Menu.showAsDropdown(_root) }}>
-        {{ title }}
+        <Tooltip>{{ title /* use Tooltip wrap it to make it does not be removed when it collapse*/ }}</Tooltip>
         <Animate a:show={{ isExpanded }}
             v-if={{ subMenuVNode }}
             a:move={{ false }}

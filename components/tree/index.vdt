@@ -62,6 +62,7 @@ const TreeNodes = ({data}) => {
                 {{ ...expandAnimationCallbacks }}
                 v-if={{ expanded }}
                 class="k-tree"
+                key="tree"
             > 
                 <TreeNodes data={{ value.children }} />
             </Animate>

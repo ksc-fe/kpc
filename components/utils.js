@@ -219,15 +219,31 @@ export function mapChildren(children, callback) {
 
 export const expandAnimationCallbacks = {
     'a:transition': 'c-expand',
-    'ev-a:leaveStart': (el) => el.style.height = el.clientHeight + 'px',
+    'ev-a:leaveStart': (el) => {
+        el._height || (el._height = el.clientHeight + 'px');
+        el.style.height = el._height;
+    },
     'ev-a:leave': (el) => el.style.height = 0,
-    'ev-a:leaveEnd': (el) => el.style.height = '',
+    'ev-a:leaveEnd': (el, isCancel) => {
+        // 保持动画的连贯性，可能在leave动画被enter动画cancel
+        // 此时el._height存在，不要在start中去获取，否则会重绘
+        // 导致多个动画时，动画时长不一致
+        if (!isCancel) {
+            el.style.height = '';
+            el._height = null;
+        }
+    },
     'ev-a:enterStart': (el) => {
-        el._height = el.clientHeight + 'px';
+        el._height || (el._height = el.clientHeight + 'px');
         el.style.height = 0;
     },
     'ev-a:enter': (el) => el.style.height = el._height,
-    'ev-a:enterEnd': (el) => el.style.height = '',
+    'ev-a:enterEnd': (el, isCancel) => {
+        if (!isCancel) {
+            el.style.height = '';
+            el._height = null;
+        }
+    },
 };
 
 export function toggleArray(arr, value) {

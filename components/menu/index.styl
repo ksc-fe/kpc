@@ -74,13 +74,18 @@
         generate(size)
 
     // collapse
+    .k-menu-item
+        > .k-title
+            span
+            .k-arrow
+                transition opacity $transition
     &.k-collapsed
         width $menu-collapsed-width 
         .k-menu-item
             > .k-title
                 span
                 .k-arrow
-                    display none
+                    opacity 0
         .k-header 
             :not(.k-icon)
                 display none
@@ -144,9 +149,9 @@
         > .k-title 
             color $menu-item-hover-color
 
-    .c-expand-enter
-    .c-expand-leave
-        opacity 1
+    // .c-expand-enter
+    // .c-expand-leave
+        // opacity 1
 
     // active
     &.k-active

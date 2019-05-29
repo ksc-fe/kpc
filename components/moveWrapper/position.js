@@ -226,8 +226,10 @@ export default function position(elem, options) {
     basePosition.left += atOffset[0];
     basePosition.top += atOffset[1];
 
-    const elemWidth = elem.offsetWidth;
-    const elemHeight = elem.offsetHeight;
+    // maybe it has scaled, so we use getBoundingClientRect
+    const {width: elemWidth, height: elemHeight} = elem.getBoundingClientRect();
+    // const elemWidth = elem.offsetWidth;
+    // const elemHeight = elem.offsetHeight;
     const position = Object.assign({}, basePosition);
     const myOffset = getOffsets(offsets.my, elemWidth, elemHeight);
     const computedStyle = window.getComputedStyle(elem);
