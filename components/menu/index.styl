@@ -74,11 +74,6 @@
         generate(size)
 
     // collapse
-    .k-menu-item
-        > .k-title
-            span
-            .k-arrow
-                transition opacity $transition
     &.k-collapsed
         width $menu-collapsed-width 
         .k-menu-item
@@ -127,9 +122,11 @@
         // padding-left 46px
         &:hover
             color $menu-item-hover-color
+        span
+        .k-arrow
+            transition all $transition
         .k-arrow
             float right
-            transition transform $transition
             margin-left $menu-item-arrow-margin-left
             &:before
                 vertical-align top
