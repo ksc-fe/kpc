@@ -5,6 +5,12 @@ import Dropdown from '../dropdown/dropdown';
 import Menu from './menu';
 import {findRouter, isExternalLink} from '../utils';
 
+class Wrapper extends Intact {
+    template(data) {
+        return data.get('children');
+    }
+}
+
 export default class MenuItem extends DropdownItem {
     @Intact.template()
     static template = template;
@@ -40,6 +46,8 @@ export default class MenuItem extends DropdownItem {
     }
 
     _init() {
+        this.Wrapper = Wrapper;
+
         // if selected hide all dropdown menu
         // the top ancestor dropdown menu can not hide
         // so we override the method here
