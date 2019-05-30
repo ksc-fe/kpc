@@ -1,5 +1,11 @@
 # `Dropdown`
 
+#### `should wrap dropdown when wrapDropdown is true`
+
+```
+"<div><div class=\"k-dropdown\"><div class=\"\">test</div><!-- react-mount-point-unstable --><!--placeholder--></div></div>"
+```
+
 #### `demos test`
 
 ```

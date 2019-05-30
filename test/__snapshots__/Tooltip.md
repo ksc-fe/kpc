@@ -1,5 +1,11 @@
 # `Tooltip`
 
+#### `should wrap Tooltip when wrapDropdown is true`
+
+```
+"<div class=\"k-tooltip\"><div class=\"\">test</div><!-- react-mount-point-unstable --><!--placeholder--></div>"
+```
+
 #### `should trigger correctly`
 
 ```
