@@ -74,6 +74,9 @@
         generate(size)
 
     // collapse
+    .k-menu-item > .k-title span
+    .k-header :not(.k-icon)
+        transition opacity $transition
     &.k-collapsed
         width $menu-collapsed-width 
         .k-menu-item
@@ -81,6 +84,15 @@
                 span
                 .k-arrow
                     opacity 0
+        .k-header 
+            :not(.k-icon)
+                opacity 0
+    &.k-horizontal.k-collapsed
+        .k-menu-item
+            > .k-title
+                span
+                .k-arrow
+                    display none
         .k-header 
             :not(.k-icon)
                 display none
@@ -122,11 +134,9 @@
         // padding-left 46px
         &:hover
             color $menu-item-hover-color
-        span
-        .k-arrow
-            transition all $transition
         .k-arrow
             float right
+            transition all $transition
             margin-left $menu-item-arrow-margin-left
             &:before
                 vertical-align top

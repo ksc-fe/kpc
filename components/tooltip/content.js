@@ -1,7 +1,7 @@
 import Intact from 'intact';
 import DropdownMenu from '../dropdown/menu';
 import position from '../moveWrapper/position';
-import template from './index.vdt';
+import template from './content.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
 import {findParentComponent, _$} from '../utils';
