@@ -6,7 +6,7 @@ import {mount, unmount} from '../../test/utils';
 
 describe('Dropdown', () => {
     it('should wrap dropdown when wrapDropdown is true', () => {
-        configure({wrapDropdown: true});
+        configure({useWrapper: true});
         const container = document.createElement('div');
         document.body.appendChild(container);
 
@@ -25,7 +25,7 @@ describe('Dropdown', () => {
 
         expect(container.innerHTML).to.matchSnapshot();
 
-        configure({wrapDropdown: false});
+        configure({useWrapper: false});
         document.body.removeChild(container);
     });
 });

@@ -30,7 +30,7 @@ module.exports = function(isDev = true) {
 
     const doc = new KDoc(
         './@(docs|components)/**/*.md',
-        // './@(docs|components)/transfer/demos/customFilter.md',
+        // './@(docs|components)/dropdown/demos/basic.md',
         root
     );
 
@@ -62,15 +62,25 @@ module.exports = function(isDev = true) {
             };
             const codeRenderer = renderer.code;
             renderer.code = function(code, language) {
-                const matches = code.match(/@file ([^\s]+)/);
+                let matches;
+                let showCode = false;
+                if (matches = code.match(/@code/)) {
+                    showCode = true;
+                } else {
+                    matches = code.match(/@file ([^\s]+)/);
+                }
                 if (matches) {
                     code = code.substring(code.indexOf('\n') + 1);
                 }
                 const result = codeRenderer.call(this, code, language);
                 if (matches) {
-                    codes[codes.length - 1].file = matches[1];
+                    if (!showCode) {
+                        codes[codes.length - 1].file = matches[1];
+                    } else {
+                        codes.pop();
+                    }
                 }
-                if (/demos/.test(file.path)) {
+                if (/demos/.test(file.path) && !showCode) {
                     return '';
                 } else {
                     return result; 
