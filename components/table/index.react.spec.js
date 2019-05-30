@@ -24,6 +24,6 @@ describe('Table', () => {
             container
         );
 
-        // document.body.removeChild(container);
+        document.body.removeChild(container);
     });
 });

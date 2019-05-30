@@ -2,10 +2,11 @@ import Intact from 'intact';
 import Dropdown from './dropdown';
 import DropdownMenu from './menu';
 import DropdownItem from './item';
+import {config} from '../utils';
 
 const {h} = Intact.Vdt.miss;
 
-function Wrapper(props) {
+function Wrapper(props, inVue) {
     let {
         children, position, key,
         ref, ...rest
@@ -28,10 +29,27 @@ function Wrapper(props) {
     };
     menu.key = key == null ? menu.key : `${key}.menu`;
 
-    return [dropdown, menu];
+    if (!inVue || !config.useWrapper) {
+        return [dropdown, menu];
+    }
+    return h(DropdownVueWrapper, {
+        children: [dropdown, menu],
+        ...rest
+    });
 }
 
 Wrapper.propTypes = Dropdown.propTypes;
+
+const _className = Intact.Vdt.utils.className;
+class DropdownVueWrapper extends Intact {
+    template(data) {
+        const {className, children, ...rest} = data.get();
+        return h('div', rest, children, _className({
+            'k-dropdown': true,
+            [className]: className,
+        }));
+    }
+}
 
 const _Wrapper = Intact.functionalWrapper ?
     Intact.functionalWrapper(Wrapper) : Wrapper;

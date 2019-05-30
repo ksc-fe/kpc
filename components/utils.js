@@ -1,7 +1,7 @@
 import Intact from 'intact';
 
 const utils = Intact.utils;
-const {get, isNullOrUndefined, isObject, isFunction, noop} = utils;
+const {get, isNullOrUndefined, isObject, isFunction, noop, extend} = utils;
 const Types = Intact.Vdt.miss.Types;
 
 export {get, isNullOrUndefined, isObject, isFunction, noop};
@@ -352,4 +352,11 @@ export function getRestProps(instance, props = instance.get()) {
         ret[key] = props[key];
     }
     return ret;
+}
+
+export const config = {
+    useWrapper: false
+};
+export function configure(options) {
+    extend(config, options);   
 }
