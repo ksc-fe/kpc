@@ -1,4 +1,5 @@
 @require('../../styles/themes/default.styl')
+@require('../select/variables.styl')
 
 $table-font-size := unit(12 / $rem, rem)
 $table-bg-color := #fff
@@ -41,6 +42,7 @@ $table-sort-non-active-color := #ddd
 $table-resize-width := unit(5 / $rem, rem)
 
 // group
+$table-group-height := $select-dropdown-max-height
 $table-group-margin-left := unit(10 / $rem, rem)
 $table-group-item-hover-bg-color := $bg-color
 $table-group-item-hover-color := $text-color
