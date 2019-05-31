@@ -15,11 +15,8 @@ describe('Collapse', () => {
         const [title1, title2, title3] = instance.element.querySelectorAll('.k-title');
         title2.click();
         setTimeout(() => {
-            console.log(instance.element.innerHTML);
-            expect(instance.element.innerHTML.replace(
-                'class="c-expand-enter" style="height: 0px;"',
-                'style="height: 0px;" class="c-expand-enter"',
-            )).to.matchSnapshot();
+            // the innerHTML is different on travis and local environment
+            expect(instance.element.innerHTML.replace(' style=""', '')).to.matchSnapshot();
 
             title1.click();
             setTimeout(() => {
