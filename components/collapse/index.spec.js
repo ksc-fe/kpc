@@ -15,7 +15,11 @@ describe('Collapse', () => {
         const [title1, title2, title3] = instance.element.querySelectorAll('.k-title');
         title2.click();
         setTimeout(() => {
-            expect(instance.element.innerHTML).to.matchSnapshot();
+            console.log(instance.element.innerHTML);
+            expect(instance.element.innerHTML.replace(
+                'class="c-expand-enter" style="height: 0px;"',
+                'style="height: 0px;" class="c-expand-enter"',
+            )).to.matchSnapshot();
 
             title1.click();
             setTimeout(() => {
