@@ -88,7 +88,11 @@ describe('Menu', () => {
         const menu3 = element.children[2];
         const subMenu1 = menu3.querySelector('.k-menu').firstChild.querySelector('.k-title');
         subMenu1.click();
-        expect(element.innerHTML).to.matchSnapshot();
+        // the order of style and class is different on travis and local environment
+        expect(element.innerHTML.replace(
+            'class="c-expand-enter" style="height: 0px;"',
+            'style="height: 0px;" class="c-expand-enter"',
+        )).to.matchSnapshot();
 
         const subMenu4 = menu3.querySelector('.k-menu').lastChild.querySelector('.k-title');
         subMenu4.click();
