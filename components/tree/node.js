@@ -55,7 +55,7 @@ export default class Node {
         this.key = key;
         this.children = undefined;
         this.tree = tree;
-        this.loaded = undefined;
+        this.loaded = data.loaded;
         this.filter = true;
     }
 
@@ -101,7 +101,6 @@ export default class Node {
         parent.checked = !!(checkedCount && checkedCount === count);
         parent.indeterminate = indeterminate;
 
-        if (parent === this) debugger;
         this.tree._updateCheckedKeys(parent);
 
         parent.updateUpward();
@@ -137,7 +136,6 @@ export default class Node {
         const index = siblings.indexOf(this);
 
         if (!~index) {
-            debugger;
             return;
         }
         siblings.splice(index, 1);

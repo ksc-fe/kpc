@@ -71,21 +71,27 @@ describe('Tree', () => {
         icon.click();
         expect(instance.element.outerHTML).to.matchSnapshot();
 
-        // loaded
         setTimeout(() => {
+            const [, icon] = instance.element.querySelectorAll('.k-icon');
+            icon.click();
             expect(instance.element.outerHTML).to.matchSnapshot();
 
-            // check
-            const checkbox = instance.element.querySelector('.k-checkbox');
-            checkbox.click();
-            const [, icon1] = instance.element.querySelectorAll('.k-icon');
-            icon1.click();
+            // loaded
             setTimeout(() => {
                 expect(instance.element.outerHTML).to.matchSnapshot();
 
-                done();
+                // check
+                const checkbox = instance.element.querySelector('.k-checkbox');
+                checkbox.click();
+                const [, , icon] = instance.element.querySelectorAll('.k-icon');
+                icon.click();
+                setTimeout(() => {
+                    expect(instance.element.outerHTML).to.matchSnapshot();
+
+                    done();
+                }, 1500);
             }, 1500);
-        }, 1500);
+        }, 500);
     });
 
     it('append and remove node', () => {

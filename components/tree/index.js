@@ -90,7 +90,9 @@ export default class Tree extends Intact {
             this.update();
             const children = await load(node);
             node.loaded = true;
-            node.append(children);
+            if (children) {
+                node.append(children);
+            }
         }
 
         if (expanded) {
