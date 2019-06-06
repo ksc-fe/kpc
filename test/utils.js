@@ -86,3 +86,9 @@ export function testDemos(req, test) {
         });
     });
 }
+
+export function wait(time) {
+    return new Promise(resolve => {
+        setTimeout(resolve, time);
+    });
+}

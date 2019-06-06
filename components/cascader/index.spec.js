@@ -3,7 +3,7 @@ import CustomDemo from '~/components/cascader/demos/custom';
 import ChangeOnSelectDemo from '~/components/cascader/demos/changeOnSelect';
 import LoadDataDemo from '~/components/cascader/demos/loadData';
 import FilterDemo from '~/components/cascader/demos/filterable';
-import {mount, unmount, dispatchEvent, getElement, getElements} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement, getElements, wait} from 'test/utils';
 
 describe('Cascader', () => {
     let instance;
@@ -57,7 +57,7 @@ describe('Cascader', () => {
         expect(instance.element).to.matchSnapshot();
     });
 
-    it('load data asychronously', (done) => {
+    it('load data asychronously', async () => {
         instance = mount(LoadDataDemo);
 
         const select = instance.element.querySelector('.k-wrapper');
@@ -68,14 +68,11 @@ describe('Cascader', () => {
         const dropdown2 = getElement('.k-cascader-dropdown');
         expect(dropdown2.innerHTML).to.matchSnapshot();
 
-        setTimeout(() => {
-            expect(dropdown2.innerHTML).to.matchSnapshot(); 
-
-            done();
-        }, 1500);
+        await wait(1500);
+        expect(dropdown2.innerHTML).to.matchSnapshot(); 
     });
 
-    it('filter', (done) => {
+    it('filter', () => {
         instance = mount(FilterDemo); 
 
         const input = instance.element.querySelector('.k-inner');
@@ -97,7 +94,5 @@ describe('Cascader', () => {
 
         dropdown1.querySelector('.k-item').click();
         expect(instance.element.innerHTML).to.matchSnapshot();
-
-        done();
     });
 });

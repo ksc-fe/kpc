@@ -130,6 +130,14 @@
 "<colgroup><col class=\"k-th-check\" style=\"width: 37px;\"><col><col></colgroup><tbody><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td><td title=\"第一行\">第一行</td><td title=\"哈哈2\">哈哈2</td></tr><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td><td title=\"第二行\">第二行</td><td title=\"哈哈2\">哈哈2</td></tr></tbody>"
 ```
 
+#### `store width on resizing`
+
+```
+"<div class=\"k-table-wrapper\"><div class=\"k-thead\"><div class=\"k-thead-wrapper\" style=\"padding-right: 0px;\"><table><colgroup><col class=\"k-th-check\" style=\"width: 38px;\"><col width=\"50%\" style=\"width: 380px;\"><col width=\"10%\"><col width=\"40%\"></colgroup><thead><tr><th minwidth=\"40\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th>
+            <th title=\"通过minColWidth控制最小宽度100px\"><div class=\"k-resize\"></div><div class=\"k-th\"><div class=\"c-ellipsis\">通过minColWidth控制最小宽度100px</div></div></th><th title=\"单独设置最小宽度300px\"><div class=\"k-resize\"></div><div class=\"k-th\"><div class=\"c-ellipsis\">单独设置最小宽度300px</div></div></th><th title=\"标题\"><div class=\"k-resize\"></div><div class=\"k-th\"><div class=\"c-ellipsis\">标题</div></div></th>
+            </tr></thead></table></div></div><div class=\"k-tbody\"><table><colgroup><col class=\"k-th-check\" style=\"width: 38px;\"><col width=\"50%\" style=\"width: 380px;\"><col width=\"10%\"><col width=\"40%\"></colgroup><tbody><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"0\"></span></label></td><td title=\"A\">A</td><td title=\"B\">B</td><td title=\"C\">C</td></tr><tr class=\"\"><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"1\"></span></label></td><td title=\"A\">A</td><td title=\"B\">B</td><td title=\"C\">C</td></tr></tbody></table></div></div>"
+```
+
 #### `loading`
 
 ```
