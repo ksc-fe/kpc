@@ -1,6 +1,6 @@
 import Intact from 'intact';
 import Dialog from 'kpc/components/dialog';
-import {getElement, render, mount, unmount, dispatchEvent} from 'test/utils';
+import {getElement, render, mount, unmount, dispatchEvent, wait} from 'test/utils';
 import BasicDemo from '~/components/dialog/demos/basic'; 
 import AsyncCloseDemo from '~/components/dialog/demos/asyncClose';
 import AsyncOpenDemo from '~/components/dialog/demos/asyncOpen';
@@ -206,7 +206,7 @@ describe('Dialog', () => {
         expect(dialog.innerHTML).to.matchSnapshot();
     });
 
-    it('async open', function(done) {
+    it('async open', async function() {
         this.enableTimeouts(false);
 
         instance = mount(AsyncOpenDemo);
@@ -214,13 +214,11 @@ describe('Dialog', () => {
         dispatchEvent(instance.element.firstChild, 'click');
         expect(instance.dialog.element === undefined).to.be.true;
 
-        setTimeout(() => {
-            const dialog = getElement('.k-dialog');
-            expect(dialog.innerHTML).to.matchSnapshot();
-            // close
-            dispatchEvent(dialog.querySelector('.k-footer .k-btn'), 'click');
-            done();
-        }, 3000);
+        await wait(3000);
+        const dialog = getElement('.k-dialog');
+        expect(dialog.innerHTML).to.matchSnapshot();
+        // close
+        dispatchEvent(dialog.querySelector('.k-footer .k-btn'), 'click');
     });
 
     it('drag', () => {
@@ -237,7 +235,7 @@ describe('Dialog', () => {
         expect(dialog.getAttribute('style')).include('left');
     });
 
-    it('static methods', (done) => {
+    it('static methods', async () => {
         let cb = sinon.spy();
         Dialog.success({content: 'test'}).then(cb);
 
@@ -247,19 +245,15 @@ describe('Dialog', () => {
         // remove immediately for next test
         // it has been removed
         // document.body.removeChild(dialog.parentElement);
-        setTimeout(() => {
-            expect(cb.callCount).to.eql(1);
+        await wait(0);
+        expect(cb.callCount).to.eql(1);
 
-            let cb1 = sinon.spy();
-            Dialog.confirm({content: 'test', hideIcon: true, showClose: true}).then(cb, cb1)
-            dialog = getElement('.k-dialog');
-            expect(dialog.innerHTML).to.matchSnapshot();
-            dialog.querySelector('.k-footer .k-btn').click();
-            setTimeout(() => {
-                expect(cb1.callCount).to.eql(1);
-
-                done();
-            });
-        });
-    })
+        let cb1 = sinon.spy();
+        Dialog.confirm({content: 'test', hideIcon: true, showClose: true}).then(cb, cb1)
+        dialog = getElement('.k-dialog');
+        expect(dialog.innerHTML).to.matchSnapshot();
+        dialog.querySelector('.k-footer .k-btn').click();
+        await wait(0);
+        expect(cb1.callCount).to.eql(1);
+    });
 });

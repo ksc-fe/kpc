@@ -2,7 +2,7 @@ import BasicDemo from '~/components/upload/demos/basic';
 import DragDemo from '~/components/upload/demos/drag';
 import GalleryDemo from '~/components/upload/demos/gallery';
 import ManuallyDemo from '~/components/upload/demos/manually';
-import {mount, unmount, dispatchEvent, getElement} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 import Upload from 'kpc/components/upload';
 import Intact from 'intact';
 
@@ -55,30 +55,27 @@ describe('Upload', () => {
         instance = mount(BasicDemo);
 
         const upload = instance.vdt.vNode.children;
-        upload.on('success', () => {
-            setTimeout(() => {
-                expect(instance.element.innerHTML).to.matchSnapshot();
+        upload.on('success', async () => {
+            await wait(500);
+            expect(instance.element.innerHTML).to.matchSnapshot();
 
-                // beforeRemove
-                const remove = instance.element.querySelector('.k-close');
-                remove.click();
-                let dialog = getElement('.k-dialog');
-                const [cancel] = dialog.querySelectorAll('.k-footer .k-btn');
-                cancel.click();
-                setTimeout(() => {
-                    expect(instance.element.innerHTML).to.matchSnapshot();
+            // beforeRemove
+            const remove = instance.element.querySelector('.k-close');
+            remove.click();
+            let dialog = getElement('.k-dialog');
+            const [cancel] = dialog.querySelectorAll('.k-footer .k-btn');
+            cancel.click();
+            await wait(500);
+            expect(instance.element.innerHTML).to.matchSnapshot();
 
-                    remove.click();
-                    dialog = getElement('.k-dialog');
-                    const [, ok] = dialog.querySelectorAll('.k-footer .k-btn');
-                    ok.click();
-                    setTimeout(() => {
-                        expect(instance.element.innerHTML).to.matchSnapshot();
+            remove.click();
+            dialog = getElement('.k-dialog');
+            const [, ok] = dialog.querySelectorAll('.k-footer .k-btn');
+            ok.click();
+            await wait(500);
+            expect(instance.element.innerHTML).to.matchSnapshot();
 
-                        done();
-                    }, 500);
-                }, 500);
-            }, 500);
+            done();
         });
         const input = instance.element.querySelector('input');
         fixInputChange(input);
@@ -91,12 +88,11 @@ describe('Upload', () => {
         instance = mount(DragDemo);
 
         const upload = instance.vdt.vNode.children;
-        upload.on('success', () => {
-            setTimeout(() => {
-                expect(instance.element.innerHTML).to.matchSnapshot();
+        upload.on('success', async () => {
+            await wait(500);
+            expect(instance.element.innerHTML).to.matchSnapshot();
 
-                done();
-            }, 500);
+            done();
         });
         const handle = instance.element.querySelector('.k-handle');
         dispatchEvent(handle, 'dragenter');
@@ -114,22 +110,21 @@ describe('Upload', () => {
         instance = mount(GalleryDemo);
 
         const upload = instance.vdt.vNode.children;
-        upload.one('success', () => {
-            setTimeout(() => {
+        upload.one('success', async () => {
+            await wait(600);
+            expect(instance.element.innerHTML.replace(/blob:[^"]*/g, '')).to.matchSnapshot();
+
+            const view = instance.element.querySelector('.k-overlap');
+            view.click();
+            const dialog = getElement('.k-dialog');
+            expect(dialog.innerHTML.replace(/blob:[^"]*/g, '')).to.matchSnapshot();
+
+            upload.one('error', () => {
                 expect(instance.element.innerHTML.replace(/blob:[^"]*/g, '')).to.matchSnapshot();
 
-                const view = instance.element.querySelector('.k-overlap');
-                view.click();
-                const dialog = getElement('.k-dialog');
-                expect(dialog.innerHTML.replace(/blob:[^"]*/g, '')).to.matchSnapshot();
-
-                upload.one('error', () => {
-                    expect(instance.element.innerHTML.replace(/blob:[^"]*/g, '')).to.matchSnapshot();
-
-                    done();
-                });
-                input.files = getDataTransfer(['b', 'c', 'd']).files;
-            }, 600);
+                done();
+            });
+            input.files = getDataTransfer(['b', 'c', 'd']).files;
         });
         const input = instance.element.querySelector('input');
         fixInputChange(input);
@@ -142,11 +137,10 @@ describe('Upload', () => {
         instance = mount(ManuallyDemo);
 
         const upload = instance.vdt.vNode.children;
-        upload.one('success', () => {
-            setTimeout(() => {
-                expect(instance.element.innerHTML).to.matchSnapshot();
-                done();
-            }, 500);
+        upload.one('success', async () => {
+            await wait(500);
+            expect(instance.element.innerHTML).to.matchSnapshot();
+            done();
         });
 
         const input = instance.element.querySelector('input');
@@ -187,12 +181,11 @@ describe('Upload', () => {
             _init() {
                 this.Upload = Upload;
             }
-            _onError(e) {
-                setTimeout(() => {
-                    // FIXME: the innerHTML has string: `height: 44px;` when we run test in travis-ci
-                    expect(instance.element.innerHTML.replace(/height: \d+px;/, '')).to.matchSnapshot();
-                    done();
-                }, 500);
+            async _onError(e) {
+                await wait(500);
+                // FIXME: the innerHTML has string: `height: 44px;` when we run test in travis-ci
+                expect(instance.element.innerHTML.replace(/height: \d+px;/, '')).to.matchSnapshot();
+                done();
             }
         }
         instance = mount(Demo);
@@ -221,12 +214,11 @@ describe('Upload', () => {
         const input = instance.element.querySelector('input');
         fixInputChange(input);
         input.files = getDataTransfer(['a'.repeat(1024 * 512)], {name: 'a'}).files;
-        instance.refs.upload.one('progress', () => {
+        instance.refs.upload.one('progress', async () => {
             instance.element.querySelector('.k-close').click();
-            setTimeout(() => {
-                expect(instance.element.innerHTML).to.matchSnapshot();
-                done();
-            }, 500);
+            await wait(500);
+            expect(instance.element.innerHTML).to.matchSnapshot();
+            done();
         });
     });
 });

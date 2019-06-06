@@ -1,25 +1,22 @@
 import CollapseDemo from '~/components/menu/demos/collapse';
 import AccordionDemo from '~/components/menu/demos/accordion';
-import {mount, unmount, dispatchEvent, getElement} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 
 describe('Menu', () => {
     let instance;
 
     afterEach(() => unmount(instance));
 
-    it('expand and shrink sub menu', (done) => {
+    it('expand and shrink sub menu', async () => {
         instance = mount(CollapseDemo);
 
         const title = instance.element.querySelector('.k-expanded .k-title');
         title.click();
-        setTimeout(() => {
-            expect(instance.element.outerHTML).to.matchSnapshot();
-            title.click();
-            setTimeout(() => {
-                expect(instance.element.outerHTML).to.matchSnapshot();
-                done();
-            }, 300);
-        }, 300);
+        await wait(300);
+        expect(instance.element.outerHTML).to.matchSnapshot();
+        title.click();
+        await wait(300);
+        expect(instance.element.outerHTML).to.matchSnapshot();
     });
 
     it('select', () => {
@@ -36,7 +33,7 @@ describe('Menu', () => {
         expect(instance.element.outerHTML).to.matchSnapshot();
     });
 
-    it('collapse', (done) => {
+    it('collapse', async () => {
         instance = mount(CollapseDemo);
 
         instance.set('isCollapse', true);
@@ -53,13 +50,11 @@ describe('Menu', () => {
 
         // hide all
         dispatchEvent(document, 'click');
-        setTimeout(() => {
-            expect(getElement('.k-dropdown-menu.k-menu')).to.be.undefined;
-            done();
-        }, 500);
+        await wait(500);
+        expect(getElement('.k-dropdown-menu.k-menu')).to.be.undefined;
     });
 
-    it('select collapsed menu', (done) => {
+    it('select collapsed menu', async () => {
         instance = mount(CollapseDemo);
 
         instance.set('isCollapse', true);
@@ -75,10 +70,8 @@ describe('Menu', () => {
         expect(dropdown.innerHTML).to.matchSnapshot();
 
         // should hide when select
-        setTimeout(() => {
-            expect(getElement('.k-dropdown-menu.k-menu')).to.be.undefined;
-            done();
-        }, 500);
+        await wait(500);
+        expect(getElement('.k-dropdown-menu.k-menu')).to.be.undefined;
     });
 
     it('accordion', (done) => {

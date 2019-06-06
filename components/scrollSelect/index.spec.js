@@ -1,4 +1,4 @@
-import {mount, unmount, dispatchEvent} from 'test/utils';
+import {mount, unmount, dispatchEvent, wait} from 'test/utils';
 import BasicDemo from '~/components/scrollSelect/demos/basic';
 
 describe('ScrollSelect', () => {
@@ -6,20 +6,17 @@ describe('ScrollSelect', () => {
 
     afterEach(() => unmount(instance));
 
-    it('should select by scroll', (done) => {
+    it('should select by scroll', async () => {
         instance = mount(BasicDemo);
 
         // scroll
         dispatchEvent(instance.element.firstChild, 'wheel', {deltaY: 1});
-        setTimeout(() => {
-            expect(instance.get('value')).to.eql(1);
-            
-            dispatchEvent(instance.element.firstChild, 'wheel', {deltaY: -1});
-            setTimeout(() => {
-                expect(instance.get('value')).to.eql(0);
-                done();
-            }, 100);
-        }, 100);
+        await wait(100);
+        expect(instance.get('value')).to.eql(1);
+        
+        dispatchEvent(instance.element.firstChild, 'wheel', {deltaY: -1});
+        await wait(100);
+        expect(instance.get('value')).to.eql(0);
     });
 
     it('should select by click', () => {

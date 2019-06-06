@@ -1,6 +1,6 @@
 import BasicDemo from '~/components/message/demos/basic';
 import CustomDemo from '~/components/message/demos/custom';
-import {mount, unmount, dispatchEvent, getElement} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 import Message from 'kpc/components/message';
 
 describe('Message', () => {
@@ -29,7 +29,7 @@ describe('Message', () => {
         expect(getElement('.k-message').outerHTML).matchSnapshot();
     });
 
-    it('set duration', function(done) {
+    it('set duration', async function() {
         this.enableTimeouts(false);
 
         Message.info('test', 500);
@@ -38,22 +38,18 @@ describe('Message', () => {
         expect(message.outerHTML).to.matchSnapshot();
         // should not remove when mouseenter
         dispatchEvent(message, 'mouseenter');
-        setTimeout(() => {
-            const message1 = getElement('.k-message');
-            expect(message1).eql(message);
+        await wait(1000);
+        let message1 = getElement('.k-message');
+        expect(message1).eql(message);
 
-            dispatchEvent(message, 'mouseleave');
-            setTimeout(() => {
-                const message1 = getElement('.k-message');
-                expect(message1).eql(message);
-            }, 300);
+        dispatchEvent(message, 'mouseleave');
+        await wait(300);
+        message1 = getElement('.k-message');
+        expect(message1).eql(message);
 
-            setTimeout(() => {
-                const message1 = getElement('.k-message');
-                expect(message1).not.eql(message);
-                done();
-            }, 1000);
-        }, 1000);
+        await wait(700);
+        message1 = getElement('.k-message');
+        expect(message1).not.eql(message);
     });
 
     it('custom message', () => {

@@ -5,7 +5,7 @@ import CustomDemo from '~/components/tree/demos/custom';
 import FilterableDemo from '~/components/tree/demos/filterable';
 import SelectDemo from '~/components/tree/demos/select';
 import DraggableDemo from '~/components/tree/demos/draggable';
-import {mount, unmount, dispatchEvent} from 'test/utils';
+import {mount, unmount, dispatchEvent, wait} from 'test/utils';
 import {RANGE} from './constants';
 
 describe('Tree', () => {
@@ -13,7 +13,7 @@ describe('Tree', () => {
 
     afterEach(() => unmount(instance));
 
-    it('expand and shrink', (done) => {
+    it('expand and shrink', async () => {
         instance = mount(BasicDemo);
 
         const element = instance.element;
@@ -23,14 +23,11 @@ describe('Tree', () => {
         expect(element.outerHTML).to.matchSnapshot();
 
         icon1.click();
-        setTimeout(() => {
-            expect(element.outerHTML).to.matchSnapshot();
+        await wait(500);
+        expect(element.outerHTML).to.matchSnapshot();
 
-            icon1.click();
-            expect(element.outerHTML).to.matchSnapshot();
-
-            done();
-        }, 500);
+        icon1.click();
+        expect(element.outerHTML).to.matchSnapshot();
     });
 
     it('checkbox', () => {
@@ -63,7 +60,7 @@ describe('Tree', () => {
         expect(tree.element.outerHTML).to.matchSnapshot();
     });
 
-    it('async load', function(done) {
+    it('async load', async function() {
         this.enableTimeouts(false);
         instance = mount(LoadingDemo);
 
@@ -71,27 +68,22 @@ describe('Tree', () => {
         icon.click();
         expect(instance.element.outerHTML).to.matchSnapshot();
 
-        setTimeout(() => {
-            const [, icon] = instance.element.querySelectorAll('.k-icon');
-            icon.click();
-            expect(instance.element.outerHTML).to.matchSnapshot();
+        await wait(500);
+        const [, icon1] = instance.element.querySelectorAll('.k-icon');
+        icon1.click();
+        expect(instance.element.outerHTML).to.matchSnapshot();
 
-            // loaded
-            setTimeout(() => {
-                expect(instance.element.outerHTML).to.matchSnapshot();
+        // loaded
+        await wait(1500);
+        expect(instance.element.outerHTML).to.matchSnapshot();
 
-                // check
-                const checkbox = instance.element.querySelector('.k-checkbox');
-                checkbox.click();
-                const [, , icon] = instance.element.querySelectorAll('.k-icon');
-                icon.click();
-                setTimeout(() => {
-                    expect(instance.element.outerHTML).to.matchSnapshot();
-
-                    done();
-                }, 1500);
-            }, 1500);
-        }, 500);
+        // check
+        const checkbox = instance.element.querySelector('.k-checkbox');
+        checkbox.click();
+        const [, , icon2] = instance.element.querySelectorAll('.k-icon');
+        icon2.click();
+        await wait(1500);
+        expect(instance.element.outerHTML).to.matchSnapshot();
     });
 
     it('append and remove node', () => {
@@ -117,20 +109,16 @@ describe('Tree', () => {
         expect(element.outerHTML).to.matchSnapshot();
     });
 
-    it('filterable', (done) => {
+    it('filterable', async () => {
         instance = mount(FilterableDemo);
 
         instance.set('keywords', 'F');
-        setTimeout(() => {
-            expect(instance.element.outerHTML).to.matchSnapshot();
+        await wait(500);
+        expect(instance.element.outerHTML).to.matchSnapshot();
 
-            instance.set('keywords', '2.1.1');
-            setTimeout(() => {
-                expect(instance.element.outerHTML).to.matchSnapshot();
-
-                done();
-            }, 500)
-        }, 500);
+        instance.set('keywords', '2.1.1');
+        await wait(500);
+        expect(instance.element.outerHTML).to.matchSnapshot();
     });
 
     it('select', () => {
@@ -203,23 +191,19 @@ describe('Tree', () => {
     });
 });
 
-function dragInsert(srcElement, toElement, mode) {
-    return new Promise(resolve => {
-        dispatchEvent(srcElement, 'mousedown');
-        dispatchEvent(srcElement, 'dragstart', {dataTransfer: new DataTransfer()});
-        const {top, bottom, height} = toElement.getBoundingClientRect();
-        const des = height * RANGE;
-        if (mode === 'before') {
-            dispatchEvent(toElement, 'dragover', {clientY: top + des - 1});
-        } else if (mode === 'after') {
-            dispatchEvent(toElement, 'dragover', {clientY: bottom - des + 1});
-        } else {
-            dispatchEvent(toElement, 'dragover', {clientY: top + des + 1});
-        }
+async function dragInsert(srcElement, toElement, mode) {
+    dispatchEvent(srcElement, 'mousedown');
+    dispatchEvent(srcElement, 'dragstart', {dataTransfer: new DataTransfer()});
+    const {top, bottom, height} = toElement.getBoundingClientRect();
+    const des = height * RANGE;
+    if (mode === 'before') {
+        dispatchEvent(toElement, 'dragover', {clientY: top + des - 1});
+    } else if (mode === 'after') {
+        dispatchEvent(toElement, 'dragover', {clientY: bottom - des + 1});
+    } else {
+        dispatchEvent(toElement, 'dragover', {clientY: top + des + 1});
+    }
 
-        setTimeout(() => {
-            dispatchEvent(toElement, 'dragend');
-            resolve();
-        }, 400)
-    });
+    await wait(400);
+    dispatchEvent(toElement, 'dragend');
 }

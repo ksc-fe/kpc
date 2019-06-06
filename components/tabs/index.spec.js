@@ -1,5 +1,5 @@
 import ClosableDemo from '~/components/tabs/demos/closable';
-import {mount, unmount, dispatchEvent} from 'test/utils';
+import {mount, unmount, dispatchEvent, wait} from 'test/utils';
 
 describe('Tabs', () => {
     let instance;
@@ -8,7 +8,7 @@ describe('Tabs', () => {
         unmount(instance);
     });
 
-    it('closable', function(done) {
+    it('closable', async function() {
         this.enableTimeouts(false);
         instance = mount(ClosableDemo);
 
@@ -17,23 +17,20 @@ describe('Tabs', () => {
 
         // add tab
         instance._add();
-        setTimeout(() => {
-            expect(tabs.outerHTML).to.matchSnapshot();
+        await wait(300);
+        expect(tabs.outerHTML).to.matchSnapshot();
 
-            // prev & next
-            const prev = tabs.querySelector('.k-prev');
-            const next = tabs.querySelector('.k-next');
-            prev.click();
-            expect(tabs.outerHTML).to.matchSnapshot();
-            next.click();
-            expect(tabs.outerHTML).to.matchSnapshot();
+        // prev & next
+        const prev = tabs.querySelector('.k-prev');
+        const next = tabs.querySelector('.k-next');
+        prev.click();
+        expect(tabs.outerHTML).to.matchSnapshot();
+        next.click();
+        expect(tabs.outerHTML).to.matchSnapshot();
 
-            // close
-            const icon = tabs.querySelector('.k-tab .k-btn');
-            icon.click();
-            expect(tabs.outerHTML).to.matchSnapshot();
-
-            done();
-        }, 300)
+        // close
+        const icon = tabs.querySelector('.k-tab .k-btn');
+        icon.click();
+        expect(tabs.outerHTML).to.matchSnapshot();
     });
 });

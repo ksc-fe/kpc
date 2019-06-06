@@ -8,7 +8,7 @@ import LoadingDemo from '~/components/table/demos/loading';
 import ExportDemo from '~/components/table/demos/export';
 import SelectedKeysDemo from '~/components/table/demos/selectedKeys';
 import ResizableDemo from '~/components/table/demos/resizable';
-import {mount, unmount, dispatchEvent, getElement} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 
 describe('Table', () => {
     let instance;
@@ -125,7 +125,7 @@ describe('Table', () => {
         expect(__test2.element.outerHTML).to.matchSnapshot();
     });
 
-    it('fix columns', (done) => {
+    it('fix columns', async () => {
         instance = mount(FixColumnDemo);
 
         const table = instance.refs.__test;
@@ -135,24 +135,19 @@ describe('Table', () => {
 
         // should add k-scroll-middle classname
         table.scroll.scrollLeft = 100;
-        setTimeout(() => {
-            expect(table.element.outerHTML).to.matchSnapshot();
+        await wait(100);
+        expect(table.element.outerHTML).to.matchSnapshot();
 
-            // should add k-scroll-right classname
-            table.scroll.scrollLeft = 1000;
-            setTimeout(() => {
-                expect(table.element.outerHTML).to.matchSnapshot();
+        // should add k-scroll-right classname
+        table.scroll.scrollLeft = 1000;
+        await wait(100);
+        expect(table.element.outerHTML).to.matchSnapshot();
 
-                // scroll vertically
-                table.scroll.scrollTop = 10;
-                setTimeout(() => {
-                    expect(table.element.querySelector('.k-fixed-left .k-tbody').scrollTop).to.eql(10);
-                    expect(table.element.querySelector('.k-fixed-right .k-tbody').scrollTop).to.eql(10);
-
-                    done();
-                }, 100);
-            }, 100);
-        }, 100);
+        // scroll vertically
+        table.scroll.scrollTop = 10;
+        await wait(100);
+        expect(table.element.querySelector('.k-fixed-left .k-tbody').scrollTop).to.eql(10);
+        expect(table.element.querySelector('.k-fixed-right .k-tbody').scrollTop).to.eql(10);
     });
 
     it('resize', () => {

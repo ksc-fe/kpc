@@ -1,4 +1,4 @@
-import {mount, unmount, dispatchEvent, getElement} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 import Intact from 'intact';
 import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
 import BasicDemo from '~/components/dropdown/demos/basic';
@@ -59,7 +59,7 @@ describe('Dropdown', () => {
         expect(getElement('.k-dropdown-menu').innerHTML).to.matchSnapshot();
     });
 
-    it('should move to dropdown menu', (done) => {
+    it('should move to dropdown menu', async () => {
         instance = mount(BasicDemo);
 
         dispatchEvent(instance.element.firstChild, 'mouseenter');
@@ -68,13 +68,11 @@ describe('Dropdown', () => {
 
         dispatchEvent(instance.element.firstChild, 'mouseleave');
         dispatchEvent(dropdown, 'mouseenter');
-        setTimeout(() => {
-            expect(dropdown.parentNode).to.exist;
-            done();
-        }, 500)
+        await wait(500);
+        expect(dropdown.parentNode).to.exist;
     });
 
-    it('nested dropdown', (done) => {
+    it('nested dropdown', async () => {
         instance = mount(NestedDemo);
 
         instance.element.firstChild.click();
@@ -87,25 +85,21 @@ describe('Dropdown', () => {
 
         // should hide last sub-dropdown and show next
         dispatchEvent(hoverItem, 'mouseenter');
-        setTimeout(() => {
-            expect(getElement('.k-dropdown-menu').innerHTML).to.matchSnapshot();
-            done();
-        }, 500);
+        await wait(500);
+        expect(getElement('.k-dropdown-menu').innerHTML).to.matchSnapshot();
     });
 
-    it('hide on click document', (done) => {
+    it('hide on click document', async () => {
         instance = mount(BasicDemo);
 
         dispatchEvent(instance.element.firstChild, 'mouseenter');
         dispatchEvent(document, 'click');
 
-        setTimeout(() => {
-            expect(getElement('.k-dropdown-menu')).not.exist;
-            done();
-        }, 500);
+        await wait(500);
+        expect(getElement('.k-dropdown-menu')).not.exist;
     });
 
-    it('operate by keyboard', (done) => {
+    it('operate by keyboard', async () => {
         instance = mount(NestedDemo);
 
         dispatchEvent(instance.element.firstChild, 'click');
@@ -132,20 +126,17 @@ describe('Dropdown', () => {
 
         // left
         dispatchEvent(document, 'keydown', {keyCode: 37});
-        setTimeout(() => {
-            expect(subDropdown1.style.display).to.eql('none');
+        await wait(500);
+        expect(subDropdown1.style.display).to.eql('none');
 
-            // down in sub-menu
-            dispatchEvent(document, 'keydown', {keyCode: 40});
-            expect(subDropdown.innerHTML).to.matchSnapshot();
+        // down in sub-menu
+        dispatchEvent(document, 'keydown', {keyCode: 40});
+        expect(subDropdown.innerHTML).to.matchSnapshot();
 
-            // select and hide
-            dispatchEvent(document, 'keydown', {keyCode: 13});
-            setTimeout(() => {
-                expect(getElement('.k-dropdown-menu')).not.exist;
-                done();
-            }, 500);
-        }, 500);
+        // select and hide
+        dispatchEvent(document, 'keydown', {keyCode: 13});
+        await wait(500);
+        expect(getElement('.k-dropdown-menu')).not.exist;
     });
 
     it('context menu', () => {

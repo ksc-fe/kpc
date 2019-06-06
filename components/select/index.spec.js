@@ -3,7 +3,7 @@ import DisabledDemo from '~/components/select/demos/disabled';
 import ClearableDemo from '~/components/select/demos/clearable';
 import FilterDemo from '~/components/select/demos/filterable';
 import GroupDemo from '~/components/select/demos/group';
-import {mount, unmount, dispatchEvent, getElement} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 
 describe('Select', () => {
     let instance;
@@ -115,7 +115,7 @@ describe('Select', () => {
         expect(dropdown2.innerHTML).to.matchSnapshot();
     });
 
-    it('keyboard operations',(done) => {
+    it('keyboard operations', async () => {
         instance = mount(BasicDemo);
 
         const select = instance.element.querySelector('.k-select');
@@ -124,9 +124,7 @@ describe('Select', () => {
         expect(dropdown.innerHTML).to.matchSnapshot();
 
         dispatchEvent(select, 'keydown', {keyCode: 9});
-        setTimeout(() => {
-            expect(dropdown.style.display).to.eql('none');
-            done();
-        }, 500);
+        await wait(500);
+        expect(dropdown.style.display).to.eql('none');
     });
 });
