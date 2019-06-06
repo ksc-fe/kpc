@@ -7,6 +7,7 @@ import FixColumnDemo from '~/components/table/demos/fixColumn';
 import LoadingDemo from '~/components/table/demos/loading';
 import ExportDemo from '~/components/table/demos/export';
 import SelectedKeysDemo from '~/components/table/demos/selectedKeys';
+import ResizableDemo from '~/components/table/demos/resizable';
 import {mount, unmount, dispatchEvent, getElement} from 'test/utils';
 
 describe('Table', () => {
@@ -166,6 +167,23 @@ describe('Table', () => {
         const [head, body] = table.element.querySelectorAll('table');
         expect(head.innerHTML).to.matchSnapshot();
         expect(body.innerHTML).to.matchSnapshot();
+    });
+
+    it('store width on resizing', () => {
+        instance = mount(ResizableDemo);
+    
+        const table = instance.element.querySelector('.k-table');
+        const resize = table.querySelector('.k-resize');
+        dispatchEvent(resize, 'mousedown', {which: 1, clientX: 0});
+        dispatchEvent(document, 'mousemove', {clientX: 1});
+        dispatchEvent(document, 'mouseup');
+
+        // rerender
+        unmount(instance);
+        instance = mount(ResizableDemo);
+        const _table = instance.element.querySelector('.k-table');
+        expect(_table.innerHTML).to.matchSnapshot();
+        localStorage.removeItem('resizableTable');
     });
 
     it('loading', () => {

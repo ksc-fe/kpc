@@ -9,6 +9,7 @@ import ResizeObserver from 'resize-observer-polyfill';
 
 const slice = Array.prototype.slice;
 const each = Intact.utils.each;
+const hasLocalStorage = typeof localStorage !== 'undefined';
 
 export default class Table extends Intact {
     @Intact.template()
@@ -41,6 +42,9 @@ export default class Table extends Intact {
             stripe: false,
             rowSelectable: false,
             selectedKeys: [],
+            defaultWidthMap: {},
+            defaultWidth: undefined,
+            storeWidth: undefined,
 
             _padding: 0,
             _paddingBottom: 0,
@@ -82,6 +86,8 @@ export default class Table extends Intact {
         stripe: Boolean,
         rowSelectable: [Boolean, 'single', 'multiple'],
         selectedKeys: Array,
+        defaultWidthMap: Object,
+        storeWidth: String,
     };
 
     static events = {
@@ -90,8 +96,8 @@ export default class Table extends Intact {
 
     _init() {
         // save the width of header cell
-        this.headerWidthMap = {};
-        this.tableWidth = undefined;
+        this._initWidth();
+
         this.scrollLeft = 0;
 
         if (browser.isIE) {
@@ -139,6 +145,41 @@ export default class Table extends Intact {
             this.set('_isStickyScrollbar', v != null && v !== false);
         });
         this._updateDisabledAmount();
+    }
+
+    _initWidth() {
+        const {defaultWidthMap, defaultWidth} = this.get();
+        this.headerWidthMap = defaultWidthMap || {};
+        this.tableWidth = defaultWidth;
+
+        if (this.headerWidthMap && this.tableWidth) return;
+
+        // if exist storeWidth we get the width from localStorage
+        const storeWidth = this.get('storeWidth');
+        if (storeWidth && hasLocalStorage) {
+            let storage = localStorage.getItem(storeWidth);
+            if (storage) {
+                try {
+                    const {map, width} = JSON.parse(storage);
+                    if (map && !defaultWidth) {
+                        this.headerWidthMap = map;
+                    }
+                    if (width && !defaultWidth) {
+                        this.tableWidth = width; 
+                    }
+                } catch (e) {  }
+            }
+        }
+    }
+
+    _storeWidth() {
+        const storeWidth = this.get('storeWidth');
+        if (storeWidth && hasLocalStorage) {
+            localStorage.setItem(storeWidth, JSON.stringify({
+                map: this.headerWidthMap,
+                width: this.tableWidth
+            }));
+        }
     }
 
     _mount() {
@@ -680,6 +721,9 @@ export default class Table extends Intact {
             this._resizing = false;
             document.removeEventListener('mousemove', this._move);
             document.removeEventListener('mouseup', this._dragEnd);
+
+            this._storeWidth();
+            this.trigger('changeWidth', this.headerWidthMap, this.tableWidth);
         }
     }
 

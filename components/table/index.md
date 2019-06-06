@@ -36,6 +36,9 @@ sidebar: doc
 | stripe | 相邻行是否展示不同的背景色 | `Boolean` | `false` |
 | rowSelectable | 是否点击行时高亮改行，取值为`multiple`时，可以同时高亮多行 | `Boolean` &#124; `"single"` &#124 `"multiple"` | `false` |
 | selectedKeys | 当`rowSelectable`取值为非`false`时，指定哪些行高亮 | `Array` | `[]` |
+| defaultWidth | 指定表格初始化宽度，可以指定百分比，像素值必须带上单位`px` | `String` | `undefined` |
+| defaultWidthMap | 指定表格初始化每列列宽，该值为`Object`，`key`对应为每列的`key`，`value`为每列列宽像素值，不带单位`px`，不能指定百分比。它的优先级高于`TableColumn`中的`width`定义 | `Object` | `{}` |
+| storeWidth | 如果要保存表格拖动后的列宽信息，可以通过该属性设置保存到`localStorage`中的`key` | `String` | `undefined` |
 
 ## TableColumn
 
@@ -99,3 +102,4 @@ sidebar: doc
 | 事件名 | 说明 | 参数 |
 | --- | --- | --- |
 | $change:checked | 选中的数据变化会触发的事件 | `instance, newValue, oldValue` |
+| changeWidth | 当列宽拖动发生变化后触发 | `widthMap, tableWidth` |
