@@ -16,14 +16,14 @@ describe('Collapse', () => {
         title2.click();
         await wait(700);
         // the innerHTML is different on travis and local environment
-        expect(instance.element.innerHTML.replace(' style=""', '')).to.matchSnapshot();
+        expect(instance.element.innerHTML.replace(/ style=""/g, '')).to.matchSnapshot();
 
         title1.click();
         await wait(700);
-        expect(instance.element.innerHTML).to.matchSnapshot();
+        expect(instance.element.innerHTML.replace(/ style=""/g, '')).to.matchSnapshot();
 
         title3.click();
-        expect(instance.element.innerHTML).to.matchSnapshot();
+        expect(instance.element.innerHTML.replace(/ style=""/g, '')).to.matchSnapshot();
     });
 
     it('should expand only one panel', async () => {
@@ -32,11 +32,11 @@ describe('Collapse', () => {
         const [title1, title2] = instance.element.querySelectorAll('.k-title');
         title2.click();
         await wait(700);
-        expect(instance.element.innerHTML).to.matchSnapshot();
+        expect(instance.element.innerHTML.replace(/ style=""/g, '')).to.matchSnapshot();
 
         title2.click();
         await wait(700);
-        expect(instance.element.innerHTML).to.matchSnapshot();
+        expect(instance.element.innerHTML.replace(/ style=""/g, '')).to.matchSnapshot();
     });
 
     it('should trigger end even if height is 0', () => {
