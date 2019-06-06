@@ -73,7 +73,7 @@ const TheadCreator = ({onlyLeft, onlyRight, refContainer, style}) => {
                 colSpan++;
                 keys[key] = true;
 
-                if (!__u.isObject(item) || item.type) {
+                if (!__u.isObject(item) || item.type /* is vNode */) {
                     item = {title: item};
                 }
 
