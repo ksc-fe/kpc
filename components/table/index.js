@@ -92,6 +92,7 @@ export default class Table extends Intact {
 
     static events = {
         'click:row': true,
+        changeWidth : true,
     };
 
     _init() {

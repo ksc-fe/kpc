@@ -6,7 +6,8 @@ import {normalize} from 'intact';
 
 let {
     title, key, group, multiple, ignore,
-    sortable, $parent, _show, className, align
+    sortable, $parent, _show, className, align,
+    cols, rows
 } = self.get();
 
 const width = self.width;
@@ -26,6 +27,8 @@ title = normalize ? normalize(title) : title;
     } }}
     ev-click={{ self.onClick }}
     data-ignore={{ ignore ? '' : undefined }}
+    colspan={{ cols && cols > 1 && cols || undefined }}
+    rowspan={{ rows && rows > 1 && rows || undefined }}
 >
     <div v-if={{ resizable }} class="k-resize" 
         ev-mousedown={{ self.onDragStart }}

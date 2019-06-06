@@ -16,6 +16,7 @@ const {
 } = self.get();
 
 let colSpan = checkType === 'checkbox' || checkType === 'radio' ? 1 : 0;
+let columns = 0;
 const _scheme = {};
 
 let prevItem = checkType === 'checkbox' || checkType === 'radio' ? 
@@ -33,6 +34,9 @@ const isInvisible = (onlyLeft, onlyRight, props) => {
 let cols;
 let currentVNode;
 
+let maxRows = 0;
+let maxCols = 0;
+
 const TheadCreator = ({onlyLeft, onlyRight, refContainer, style}) => {
     const keys = {};
     const refLeftElement = (i) => i && self.leftColumns.push(i);
@@ -40,141 +44,252 @@ const TheadCreator = ({onlyLeft, onlyRight, refContainer, style}) => {
     const refRight = (i) => i && self.rightColumns.push(i.element);
     const ref = onlyLeft ? refLeft : onlyRight ? refRight : undefined;
     cols = [];
-    const thead = <thead>
-        <tr>
-            {{ do {
-                if (checkType === 'checkbox') {
-                    cols.push(<col class="k-th-check" 
-                        style={{ {width: self._getHeaderWidth('_$checked')} }} 
-                    />);
-                    currentVNode = <th class={{ {'k-invisible': onlyRight} }}
-                        ref={{ onlyLeft ? refLeftElement : undefined }} 
-                        key="_$checked"
-                        minWidth={{ 40 }}
-                    >
-                        <Checkbox value={{ self.isCheckAll() }}
-                            ev-click={{ self._toggleCheckAll }}
-                        />
-                    </th>
-                    currentVNode;
-                } else if (checkType === 'radio') {
-                    cols.push(<col class="k-th-check"
-                        style={{ {width: self._getHeaderWidth('_$checked')} }} 
-                    />);
-                    currentVNode = <th class={{ {"k-invisible": onlyRight} }}
-                        ref={{ onlyLeft ? refLeftElement : undefined }} 
-                        key="_$checked"
-                        minWidth={{ 40 }}
-                    ></th>
-                    currentVNode;
-                }
-            } }}
-            {{ __u.map(scheme, (item, key) => {
-                colSpan++;
+
+    const tableColumns = [];
+
+    let checkVNode;
+    if (checkType === 'checkbox' || checkType === 'radio') {
+        maxCols++;
+        cols.push(<col class="k-th-check" 
+            style={{ {width: self._getHeaderWidth('_$checked')} }} 
+        />);
+        checkVNode = currentVNode = <th class={{ {'k-invisible': onlyRight} }}
+            ref={{ onlyLeft ? refLeftElement : undefined }} 
+            key="_$checked"
+            minWidth={{ 40 }}
+        >
+            <Checkbox value={{ self.isCheckAll() }}
+                ev-click={{ self._toggleCheckAll }}
+                v-if={{ checkType === 'checkbox' }}
+            />
+        </th>
+        tableColumns[0] = [checkVNode];
+    }
+    
+    const loopScheme = (scheme, parent, layer, fixed) => {
+        if (layer + 1 > maxRows) maxRows = layer + 1;
+        if (!tableColumns[layer]) tableColumns[layer] = [];
+
+        __u.map(scheme, (item, key) => {
+            if (!__u.isObject(item) || item.type /* is vNode */) {
+                item = {title: item};
+            }
+            // if parent fixed, fix children
+            if (fixed) {
+                item.fixed = fixed;
+            }
+
+            // because we use the last resize handle to controll the previous column
+            // so we bind prevItem here
+            /* const _prevItem = prevItem; */
+            const dragStart = self._dragStart; //.bind(self, prevItem);
+            /* prevItem = item; */
+
+            if (item.fixed === 'left') {
+                hasFixedLeft = true;
+            } else if (item.fixed === 'right') {
+                hasFixedRight = true;
+            }
+
+            const invisible = isInvisible(onlyLeft, onlyRight, item);
+            currentVNode = <Column {{ ...item }}
+                key={{ key }}
+                $parent={{ self }} 
+                ev-click={{ item.sortable ? self._sort.bind(self, key, item) : undefined }}
+                ev-dragStart={{ dragStart }}
+                v-model={{ `group.${key}` }}
+                className={{ {
+                    [item.className]: item.className,
+                    'k-invisible': invisible, 
+                } }}
+                ref={{ !invisible ? ref : undefined }}
+                prevVNode={{ currentVNode }}
+                cols={{ 1 }}
+            />
+
+            tableColumns[layer].push(currentVNode);
+
+            const props = currentVNode.props;
+
+            if (item.scheme) {
+                props.cols = 0;
+                props.rows = 1;
+                loopScheme(item.scheme, props, layer + 1, item.fixed);
+            } else {
+                // is leaf
                 keys[key] = true;
-
-                if (!__u.isObject(item) || item.type /* is vNode */) {
-                    item = {title: item};
-                }
-
-                // because we use the last resize handle to controll the previous column
-                // so we bind prevItem here
-                /* const _prevItem = prevItem; */
-                const dragStart = self._dragStart; //.bind(self, prevItem);
-                /* prevItem = item; */
-
-                if (item.fixed === 'left') {
-                    hasFixedLeft = true;
-                } else if (item.fixed === 'right') {
-                    hasFixedRight = true;
-                }
 
                 cols.push(<col width={{ item.width }}
                     style={{ {width: self._getHeaderWidth(key)} }} 
                     class={{ {[item.className]: item.className} }}
                 />);
 
-                const invisible = isInvisible(onlyLeft, onlyRight, item);
-                currentVNode = <Column {{ ...item }}
-                    key={{ key }}
-                    $parent={{ self }} 
-                    ev-click={{ item.sortable ? self._sort.bind(self, key, item) : undefined }}
-                    ev-dragStart={{ dragStart }}
-                    v-model={{ `group.${key}` }}
-                    className={{ {
-                        [item.className]: item.className,
-                        'k-invisible': invisible, 
-                    } }}
-                    ref={{ !invisible ? ref : undefined }}
-                    prevVNode={{ currentVNode }}
-                />
-                return currentVNode;
-            }) }}
-            {{  // for using TableColumn as children
-                __u.map(children ? (Array.isArray(children) ? children : [children]) : children, vNode => {
-                    if (vNode.tag === Column) {
-                        colSpan++;
-                        const props = {...vNode.props, $parent: self};
+                props.cols = 1;
+                maxCols++;
+                Object.defineProperty(props, 'rows', {
+                    get() {
+                        return maxRows - layer;
+                    },
+                    enumerable: true
+                });
+            }
+            if (parent) {
+                parent.cols += props.cols;
+            }
+        });
+    };
+    loopScheme(scheme, null, 0);
+
+    // set checkVNode's rowspan
+    if (maxRows > 1 && checkVNode) {
+        checkVNode.props.rowspan = maxRows;
+    } 
+    
+    console.log(maxRows, maxCols, tableColumns)
+
+    const thead = (
+        <thead>
+            <tr v-for={{ tableColumns }}>{{ value }}</tr>
+        </thead>
+    );
+    /* const thead = <thead> */
+        /* <tr> */
+            /* {{ do { */
+                /* if (checkType === 'checkbox') { */
+                    /* maxCols++; */
+                    /* cols.push(<col class="k-th-check"  */
+                        /* style={{ {width: self._getHeaderWidth('_$checked')} }}  */
+                    /* />); */
+                    /* currentVNode = <th class={{ {'k-invisible': onlyRight} }} */
+                        /* ref={{ onlyLeft ? refLeftElement : undefined }}  */
+                        /* key="_$checked" */
+                        /* minWidth={{ 40 }} */
+                    /* > */
+                        /* <Checkbox value={{ self.isCheckAll() }} */
+                            /* ev-click={{ self._toggleCheckAll }} */
+                        /* /> */
+                    /* </th> */
+                    /* currentVNode; */
+                /* } else if (checkType === 'radio') { */
+                    /* maxCols++; */
+                    /* cols.push(<col class="k-th-check" */
+                        /* style={{ {width: self._getHeaderWidth('_$checked')} }}  */
+                    /* />); */
+                    /* currentVNode = <th class={{ {"k-invisible": onlyRight} }} */
+                        /* ref={{ onlyLeft ? refLeftElement : undefined }}  */
+                        /* key="_$checked" */
+                        /* minWidth={{ 40 }} */
+                    /* ></th> */
+                    /* currentVNode; */
+                /* } */
+            /* } }} */
+            /* {{ __u.map(scheme, (item, key) => { */
+                /* colSpan++; */
+                /* columns++; */
+                /* keys[key] = true; */
+
+                /* if (!__u.isObject(item) || item.type [> is vNode <]) { */
+                    /* item = {title: item}; */
+                /* } */
+
+                /* // because we use the last resize handle to controll the previous column */
+                /* // so we bind prevItem here */
+                /* [> const _prevItem = prevItem; <] */
+                /* const dragStart = self._dragStart; //.bind(self, prevItem); */
+                /* [> prevItem = item; <] */
+
+                /* if (item.fixed === 'left') { */
+                    /* hasFixedLeft = true; */
+                /* } else if (item.fixed === 'right') { */
+                    /* hasFixedRight = true; */
+                /* } */
+
+                /* cols.push(<col width={{ item.width }} */
+                    /* style={{ {width: self._getHeaderWidth(key)} }}  */
+                    /* class={{ {[item.className]: item.className} }} */
+                /* />); */
+
+                /* const invisible = isInvisible(onlyLeft, onlyRight, item); */
+                /* currentVNode = <Column {{ ...item }} */
+                    /* key={{ key }} */
+                    /* $parent={{ self }}  */
+                    /* ev-click={{ item.sortable ? self._sort.bind(self, key, item) : undefined }} */
+                    /* ev-dragStart={{ dragStart }} */
+                    /* v-model={{ `group.${key}` }} */
+                    /* className={{ { */
+                        /* [item.className]: item.className, */
+                        /* 'k-invisible': invisible,  */
+                    /* } }} */
+                    /* ref={{ !invisible ? ref : undefined }} */
+                    /* prevVNode={{ currentVNode }} */
+                /* /> */
+                /* return currentVNode; */
+            /* }) }} */
+            /* {{  // for using TableColumn as children */
+                /* __u.map(children ? (Array.isArray(children) ? children : [children]) : children, vNode => { */
+                    /* if (vNode.tag === Column) { */
+                        /* colSpan++; */
+                        /* const props = {...vNode.props, $parent: self}; */
                         
-                        if (props.key == null) {
-                            _e(new Error('key for TableColumn must be specified.'));
-                        } else if (/^\d+$/.test(props.key)) {
-                            // avoid digital key
-                            _e(new Error('don\'t use digits as key.'));
-                        } else if (keys[props.key]) {
-                            _e(new Error(`Reduplicated key: ${props.key}`));
-                        }
+                        /* if (props.key == null) { */
+                            /* _e(new Error('key for TableColumn must be specified.')); */
+                        /* } else if (/^\d+$/.test(props.key)) { */
+                            /* // avoid digital key */
+                            /* _e(new Error('don\'t use digits as key.')); */
+                        /* } else if (keys[props.key]) { */
+                            /* _e(new Error(`Reduplicated key: ${props.key}`)); */
+                        /* } */
 
-                        keys[props.key] = true;
-                        props.value = group[props.key];
+                        /* keys[props.key] = true; */
+                        /* props.value = group[props.key]; */
 
-                        const blockFn = props._blocks && (props._blocks.default || props._blocks.template);
-                        _scheme[props.key] = {
-                            ...props,
-                            template: props.template || 
-                                blockFn && ((...args) => blockFn.call(this, noop, ...args))
-                        };
+                        /* const blockFn = props._blocks && (props._blocks.default || props._blocks.template); */
+                        /* _scheme[props.key] = { */
+                            /* ...props, */
+                            /* template: props.template ||  */
+                                /* blockFn && ((...args) => blockFn.call(this, noop, ...args)) */
+                        /* }; */
 
-                        const dragStart = self._dragStart;
-                        /* .bind(self, prevItem); */
-                        /* props.prevColumn = prevItem; */
-                        /* prevItem = props; */
+                        /* const dragStart = self._dragStart; */
+                        /* [> .bind(self, prevItem); <] */
+                        /* [> props.prevColumn = prevItem; <] */
+                        /* [> prevItem = props; <] */
 
-                        props['ev-$change:value'] = (c, v) => self.set(`group.${props.key}`, v);
-                        props['ev-click'] = props.sortable ? self._sort.bind(self, props.key, props) : undefined;
-                        props['ev-dragStart'] = dragStart;
+                        /* props['ev-$change:value'] = (c, v) => self.set(`group.${props.key}`, v); */
+                        /* props['ev-click'] = props.sortable ? self._sort.bind(self, props.key, props) : undefined; */
+                        /* props['ev-dragStart'] = dragStart; */
 
-                        const invisible = isInvisible(onlyLeft, onlyRight, props);
-                        const className = props.className;
-                        props.className = _className({
-                            [className]: className,
-                            'k-invisible': invisible, 
-                        });
+                        /* const invisible = isInvisible(onlyLeft, onlyRight, props); */
+                        /* const className = props.className; */
+                        /* props.className = _className({ */
+                            /* [className]: className, */
+                            /* 'k-invisible': invisible,  */
+                        /* }); */
 
-                        if (props.fixed === 'left') {
-                            hasFixedLeft = true;
-                        } else if (props.fixed === 'right') {
-                            hasFixedRight = true;
-                        }
+                        /* if (props.fixed === 'left') { */
+                            /* hasFixedLeft = true; */
+                        /* } else if (props.fixed === 'right') { */
+                            /* hasFixedRight = true; */
+                        /* } */
 
-                        if (!invisible) {
-                            props.ref = ref; 
-                        }
-                        props.prevVNode = currentVNode;
+                        /* if (!invisible) { */
+                            /* props.ref = ref;  */
+                        /* } */
+                        /* props.prevVNode = currentVNode; */
 
-                        cols.push(<col width={{ props.width }} 
-                            style={{ {width: self._getHeaderWidth(props.key)} }} 
-                            class={{ {[className]: className} }}
-                        />);
+                        /* cols.push(<col width={{ props.width }}  */
+                            /* style={{ {width: self._getHeaderWidth(props.key)} }}  */
+                            /* class={{ {[className]: className} }} */
+                        /* />); */
 
-                        // clone vNode
-                        currentVNode = h(Column, props);
-                        return currentVNode;
-                    }
-                }) 
-            }}
-        </tr>
-    </thead>
+                        /* // clone vNode */
+                        /* currentVNode = h(Column, props); */
+                        /* return currentVNode; */
+                    /* } */
+                /* })  */
+            /* }} */
+        /* </tr> */
+    /* </thead> */
 
     return (
         <div class="k-thead"
