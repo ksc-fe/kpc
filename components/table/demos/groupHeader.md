@@ -75,11 +75,14 @@ export default class extends Intact {
     defaults() {
         const weekdays = ['Monday', 'Tuesday', 'Wendesday', 'Thursday', 'Friday'];
         const classes = ['English', 'Mathematics', 'Chinese', 'History', 'Geopraghy'];
+        let index = 0;
         const randomClasses = () => {
             const ret = {};
             for (let i = 0; i < 7; i++) {
-                ret[`class${i + 1}`] = classes[Math.floor(Math.random() * classes.length)];
+                // ret[`class${i + 1}`] = classes[Math.floor(Math.random() * classes.length)];
+                ret[`class${i + 1}`] = classes[(i + index) % classes.length];
             }
+            index++;
             return ret;
         };
         return {
