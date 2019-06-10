@@ -3,7 +3,7 @@ import Radio from '../radio';
 import Row from './row';
 import {normalize} from 'intact';
 import Column from './column';
-import {noop, isStringOrNumber, getTextByChildren, getRestProps} from '../utils';
+import {noop, isStringOrNumber, getTextByChildren, getRestProps, mapChildren} from '../utils';
 import Spin from '../spin';
 
 const {
@@ -15,27 +15,20 @@ const {
     _paddingBottom, _isStickyScrollbar, loading, _isShowLeftRightMiddle
 } = self.get();
 
-let colSpan = checkType === 'checkbox' || checkType === 'radio' ? 1 : 0;
-let columns = 0;
-const _scheme = {};
-
-let prevItem = checkType === 'checkbox' || checkType === 'radio' ? 
-    {minWidth: 40, key: '_$check'} : {};
-
-let hasFixedLeft;
-let hasFixedRight;
-self.leftColumns = [];
-self.rightColumns = [];
-
 const isInvisible = (onlyLeft, onlyRight, props) => {
     return props.fixed !== 'left' && onlyLeft || props.fixed !== 'right' && onlyRight;
 }
 
 let cols;
 let currentVNode;
-
+let _scheme;
 let maxRows = 0;
 let maxCols = 0;
+let hasFixedLeft;
+let hasFixedRight;
+
+self.leftColumns = [];
+self.rightColumns = [];
 
 const TheadCreator = ({onlyLeft, onlyRight, refContainer, style}) => {
     const keys = {};
@@ -43,9 +36,10 @@ const TheadCreator = ({onlyLeft, onlyRight, refContainer, style}) => {
     const refLeft = (i) => i && self.leftColumns.push(i.element);
     const refRight = (i) => i && self.rightColumns.push(i.element);
     const ref = onlyLeft ? refLeft : onlyRight ? refRight : undefined;
-    cols = [];
-
     const tableColumns = [];
+
+    cols = [];
+    _scheme = {};
 
     let checkVNode;
     if (checkType === 'checkbox' || checkType === 'radio') {
@@ -66,230 +60,132 @@ const TheadCreator = ({onlyLeft, onlyRight, refContainer, style}) => {
         tableColumns[0] = [checkVNode];
     }
     
-    const loopScheme = (scheme, parent, layer, fixed) => {
+    const beforeLoop = (layer) => {
         if (layer + 1 > maxRows) maxRows = layer + 1;
         if (!tableColumns[layer]) tableColumns[layer] = [];
+    };
+    const loop = (item, key, parent, layer, fixed, loopRecursiveCallback) => {
+        if (!__u.isObject(item) || item.type /* is vNode */) {
+            item = {title: item};
+        }
+        // if parent fixed, fix children
+        if (fixed) {
+            item.fixed = fixed;
+        }
 
+        const dragStart = self._dragStart;
+
+        if (item.fixed === 'left') {
+            hasFixedLeft = true;
+        } else if (item.fixed === 'right') {
+            hasFixedRight = true;
+        }
+
+        const invisible = isInvisible(onlyLeft, onlyRight, item);
+        currentVNode = <Column {{ ...item }}
+            key={{ key }}
+            $parent={{ self }} 
+            ev-click={{ item.sortable ? self._sort.bind(self, key, item) : undefined }}
+            ev-dragStart={{ dragStart }}
+            v-model={{ `group.${key}` }}
+            className={{ {
+                [item.className]: item.className,
+                'k-invisible': invisible, 
+            } }}
+            ref={{ !invisible ? ref : undefined }}
+            prevVNode={{ currentVNode }}
+            cols={{ 0 }}
+        />
+
+        tableColumns[layer].push(currentVNode);
+
+        const props = currentVNode.props;
+
+        if (loopRecursiveCallback(item, props, layer + 1, item.fixed)) {
+            props.rows = 1;
+        } else {
+            if (/^\d+$/.test(key)) {
+                // avoid digital key
+                _e(new Error(`don't use digits as key: ${key}.`));
+            } else if (_scheme[key]) {
+                _e(new Error(`reduplicated key: ${key}`));
+            }
+
+            cols.push(<col width={{ item.width }}
+                style={{ {width: self._getHeaderWidth(key)} }} 
+                class={{ {[item.className]: item.className} }}
+            />);
+
+            props.cols = 1;
+            maxCols++;
+            Object.defineProperty(props, 'rows', {
+                get() {
+                    return maxRows - layer;
+                },
+                enumerable: true
+            });
+
+            // add leaf node to _scheme
+            _scheme[key] = props;
+        }
+        if (parent) {
+            parent.cols += props.cols;
+        }
+
+    };
+    const loopScheme = (scheme, parent, layer, fixed) => {
+        let ret = false;
+        beforeLoop(layer);
         __u.map(scheme, (item, key) => {
-            if (!__u.isObject(item) || item.type /* is vNode */) {
-                item = {title: item};
-            }
-            // if parent fixed, fix children
-            if (fixed) {
-                item.fixed = fixed;
-            }
-
-            // because we use the last resize handle to controll the previous column
-            // so we bind prevItem here
-            /* const _prevItem = prevItem; */
-            const dragStart = self._dragStart; //.bind(self, prevItem);
-            /* prevItem = item; */
-
-            if (item.fixed === 'left') {
-                hasFixedLeft = true;
-            } else if (item.fixed === 'right') {
-                hasFixedRight = true;
-            }
-
-            const invisible = isInvisible(onlyLeft, onlyRight, item);
-            currentVNode = <Column {{ ...item }}
-                key={{ key }}
-                $parent={{ self }} 
-                ev-click={{ item.sortable ? self._sort.bind(self, key, item) : undefined }}
-                ev-dragStart={{ dragStart }}
-                v-model={{ `group.${key}` }}
-                className={{ {
-                    [item.className]: item.className,
-                    'k-invisible': invisible, 
-                } }}
-                ref={{ !invisible ? ref : undefined }}
-                prevVNode={{ currentVNode }}
-                cols={{ 1 }}
-            />
-
-            tableColumns[layer].push(currentVNode);
-
-            const props = currentVNode.props;
-
-            if (item.scheme) {
-                props.cols = 0;
-                props.rows = 1;
-                loopScheme(item.scheme, props, layer + 1, item.fixed);
-            } else {
-                // is leaf
-                keys[key] = true;
-
-                cols.push(<col width={{ item.width }}
-                    style={{ {width: self._getHeaderWidth(key)} }} 
-                    class={{ {[item.className]: item.className} }}
-                />);
-
-                props.cols = 1;
-                maxCols++;
-                Object.defineProperty(props, 'rows', {
-                    get() {
-                        return maxRows - layer;
-                    },
-                    enumerable: true
+            ret = true;
+            loop(item, key, parent, layer, fixed, (item, props, layer, fixed) => {
+                if (item.scheme) {
+                    return loopScheme(item.scheme, props, layer, fixed);
+                }
+                return false;
+            });
+        });
+        return ret;
+    };
+    const loopColumn = (children, parent, layer, fixed) => {
+        // add a flag, when we enter to the map callback set it to true
+        // because it may have children but is not Column
+        let ret = false;
+        beforeLoop(layer);
+        mapChildren(children, vNode => {
+            if (vNode.tag === Column) {
+                ret = true;
+                const props = vNode.props;
+                const blockFn = props._blocks && (props._blocks.default || props._blocks.template);
+                const _props = {
+                    ...props,
+                    template: props.template || 
+                        blockFn && ((...args) => blockFn.call(this, noop, ...args))
+                };
+                loop(_props, props.key, parent, layer, fixed, (item, props, layer, fixed) => {
+                    if (item.children) {
+                        return loopColumn(item.children, props, layer, fixed);
+                    }
+                    return false;
                 });
             }
-            if (parent) {
-                parent.cols += props.cols;
-            }
         });
+        return ret;
     };
     loopScheme(scheme, null, 0);
+    // for using TableColumn as children
+    loopColumn(children, null, 0);
 
     // set checkVNode's rowspan
     if (maxRows > 1 && checkVNode) {
         checkVNode.props.rowspan = maxRows;
     } 
     
-    console.log(maxRows, maxCols, tableColumns)
-
     const thead = (
         <thead>
             <tr v-for={{ tableColumns }}>{{ value }}</tr>
         </thead>
     );
-    /* const thead = <thead> */
-        /* <tr> */
-            /* {{ do { */
-                /* if (checkType === 'checkbox') { */
-                    /* maxCols++; */
-                    /* cols.push(<col class="k-th-check"  */
-                        /* style={{ {width: self._getHeaderWidth('_$checked')} }}  */
-                    /* />); */
-                    /* currentVNode = <th class={{ {'k-invisible': onlyRight} }} */
-                        /* ref={{ onlyLeft ? refLeftElement : undefined }}  */
-                        /* key="_$checked" */
-                        /* minWidth={{ 40 }} */
-                    /* > */
-                        /* <Checkbox value={{ self.isCheckAll() }} */
-                            /* ev-click={{ self._toggleCheckAll }} */
-                        /* /> */
-                    /* </th> */
-                    /* currentVNode; */
-                /* } else if (checkType === 'radio') { */
-                    /* maxCols++; */
-                    /* cols.push(<col class="k-th-check" */
-                        /* style={{ {width: self._getHeaderWidth('_$checked')} }}  */
-                    /* />); */
-                    /* currentVNode = <th class={{ {"k-invisible": onlyRight} }} */
-                        /* ref={{ onlyLeft ? refLeftElement : undefined }}  */
-                        /* key="_$checked" */
-                        /* minWidth={{ 40 }} */
-                    /* ></th> */
-                    /* currentVNode; */
-                /* } */
-            /* } }} */
-            /* {{ __u.map(scheme, (item, key) => { */
-                /* colSpan++; */
-                /* columns++; */
-                /* keys[key] = true; */
-
-                /* if (!__u.isObject(item) || item.type [> is vNode <]) { */
-                    /* item = {title: item}; */
-                /* } */
-
-                /* // because we use the last resize handle to controll the previous column */
-                /* // so we bind prevItem here */
-                /* [> const _prevItem = prevItem; <] */
-                /* const dragStart = self._dragStart; //.bind(self, prevItem); */
-                /* [> prevItem = item; <] */
-
-                /* if (item.fixed === 'left') { */
-                    /* hasFixedLeft = true; */
-                /* } else if (item.fixed === 'right') { */
-                    /* hasFixedRight = true; */
-                /* } */
-
-                /* cols.push(<col width={{ item.width }} */
-                    /* style={{ {width: self._getHeaderWidth(key)} }}  */
-                    /* class={{ {[item.className]: item.className} }} */
-                /* />); */
-
-                /* const invisible = isInvisible(onlyLeft, onlyRight, item); */
-                /* currentVNode = <Column {{ ...item }} */
-                    /* key={{ key }} */
-                    /* $parent={{ self }}  */
-                    /* ev-click={{ item.sortable ? self._sort.bind(self, key, item) : undefined }} */
-                    /* ev-dragStart={{ dragStart }} */
-                    /* v-model={{ `group.${key}` }} */
-                    /* className={{ { */
-                        /* [item.className]: item.className, */
-                        /* 'k-invisible': invisible,  */
-                    /* } }} */
-                    /* ref={{ !invisible ? ref : undefined }} */
-                    /* prevVNode={{ currentVNode }} */
-                /* /> */
-                /* return currentVNode; */
-            /* }) }} */
-            /* {{  // for using TableColumn as children */
-                /* __u.map(children ? (Array.isArray(children) ? children : [children]) : children, vNode => { */
-                    /* if (vNode.tag === Column) { */
-                        /* colSpan++; */
-                        /* const props = {...vNode.props, $parent: self}; */
-                        
-                        /* if (props.key == null) { */
-                            /* _e(new Error('key for TableColumn must be specified.')); */
-                        /* } else if (/^\d+$/.test(props.key)) { */
-                            /* // avoid digital key */
-                            /* _e(new Error('don\'t use digits as key.')); */
-                        /* } else if (keys[props.key]) { */
-                            /* _e(new Error(`Reduplicated key: ${props.key}`)); */
-                        /* } */
-
-                        /* keys[props.key] = true; */
-                        /* props.value = group[props.key]; */
-
-                        /* const blockFn = props._blocks && (props._blocks.default || props._blocks.template); */
-                        /* _scheme[props.key] = { */
-                            /* ...props, */
-                            /* template: props.template ||  */
-                                /* blockFn && ((...args) => blockFn.call(this, noop, ...args)) */
-                        /* }; */
-
-                        /* const dragStart = self._dragStart; */
-                        /* [> .bind(self, prevItem); <] */
-                        /* [> props.prevColumn = prevItem; <] */
-                        /* [> prevItem = props; <] */
-
-                        /* props['ev-$change:value'] = (c, v) => self.set(`group.${props.key}`, v); */
-                        /* props['ev-click'] = props.sortable ? self._sort.bind(self, props.key, props) : undefined; */
-                        /* props['ev-dragStart'] = dragStart; */
-
-                        /* const invisible = isInvisible(onlyLeft, onlyRight, props); */
-                        /* const className = props.className; */
-                        /* props.className = _className({ */
-                            /* [className]: className, */
-                            /* 'k-invisible': invisible,  */
-                        /* }); */
-
-                        /* if (props.fixed === 'left') { */
-                            /* hasFixedLeft = true; */
-                        /* } else if (props.fixed === 'right') { */
-                            /* hasFixedRight = true; */
-                        /* } */
-
-                        /* if (!invisible) { */
-                            /* props.ref = ref;  */
-                        /* } */
-                        /* props.prevVNode = currentVNode; */
-
-                        /* cols.push(<col width={{ props.width }}  */
-                            /* style={{ {width: self._getHeaderWidth(props.key)} }}  */
-                            /* class={{ {[className]: className} }} */
-                        /* />); */
-
-                        /* // clone vNode */
-                        /* currentVNode = h(Column, props); */
-                        /* return currentVNode; */
-                    /* } */
-                /* })  */
-            /* }} */
-        /* </tr> */
-    /* </thead> */
 
     return (
         <div class="k-thead"
@@ -354,7 +250,7 @@ const TbodyCreator = ({onlyLeft, onlyRight, refContainer, refTable, style}) => {
                             disabled={{ disabled }}
                         />
                     </td>
-                    {{ __u.map(__u.extend({}, scheme, _scheme), (item, key) => {
+                    {{ __u.map(_scheme, (item, key) => {
                         let td;
                         if (__u.isObject(item) && item.template) {
                             if (typeof item.template === 'function') {
@@ -404,7 +300,7 @@ const TbodyCreator = ({onlyLeft, onlyRight, refContainer, refTable, style}) => {
                 }
             }) :
             <tr key="table_no_data">
-                <td colspan={{ colSpan }} class="k-no-data">
+                <td colspan={{ maxCols }} class="k-no-data">
                     <b:no-data>{{ normalize ? normalize(noDataTemplate) : noDataTemplate }}</b:no-data>
                 </td>
             </tr>
