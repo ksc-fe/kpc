@@ -7,7 +7,7 @@ import {normalize} from 'intact';
 let {
     title, key, group, multiple, ignore,
     sortable, $parent, _show, className, align,
-    cols, rows
+    cols, rows, invisible,
 } = self.get();
 
 const width = self.width;
@@ -24,6 +24,7 @@ title = normalize ? normalize(title) : title;
         'k-sortable': sortable,
         [className]: className,
         [`k-${align}`]: align,
+        'k-invisible': invisible,
     } }}
     ev-click={{ self.onClick }}
     data-ignore={{ ignore ? '' : undefined }}

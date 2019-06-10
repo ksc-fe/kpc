@@ -15,6 +15,9 @@ const {
     _paddingBottom, _isStickyScrollbar, loading, _isShowLeftRightMiddle
 } = self.get();
 
+/**
+ * we must render the children of invisible cell, because it may change the height
+ */
 const isInvisible = (onlyLeft, onlyRight, props) => {
     return props.fixed !== 'left' && onlyLeft || props.fixed !== 'right' && onlyRight;
 }
@@ -88,10 +91,8 @@ const TheadCreator = ({onlyLeft, onlyRight, refContainer, style}) => {
             ev-click={{ item.sortable ? self._sort.bind(self, key, item) : undefined }}
             ev-dragStart={{ dragStart }}
             v-model={{ `group.${key}` }}
-            className={{ {
-                [item.className]: item.className,
-                'k-invisible': invisible, 
-            } }}
+            invisible={{ invisible }}
+            class={{ item.className }}
             ref={{ !invisible ? ref : undefined }}
             prevVNode={{ currentVNode }}
             cols={{ 0 }}
@@ -129,10 +130,15 @@ const TheadCreator = ({onlyLeft, onlyRight, refContainer, style}) => {
             // add leaf node to _scheme
             _scheme[key] = props;
         }
+
         if (parent) {
             parent.cols += props.cols;
+            // if child fixed and it will not be invisible
+            // parent must not be invisible too
+            if (!props.invisible) {
+                parent.invisible = false;
+            }
         }
-
     };
     const loopScheme = (scheme, parent, layer, fixed) => {
         let ret = false;

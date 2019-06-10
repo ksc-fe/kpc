@@ -42,9 +42,9 @@ import {Table, TableColumn} from 'kpc/components/table';
         } }}
     />
     <Table data={{ self.get('data') }} checkType="none" type="grid" resizable>
-        <TableColumn title="Weekday" key='weekday' />
+        <TableColumn title="Weekday" key='weekday' fixed="left"/>
         <TableColumn title="Forenoon" key="forenoon">
-            <TableColumn title="time" key="forenoonTime" />
+            <TableColumn title="time" key="forenoonTime" fixed="left" />
             <TableColumn title="Classes" key="classes">
                 <TableColumn title="Class 1" key='class1' />
                 <TableColumn title="Class 2" key='class2' />
@@ -56,7 +56,7 @@ import {Table, TableColumn} from 'kpc/components/table';
             <TableColumn title="time" key="afternoonTime" />
             <TableColumn title="class 5" key='class5' />
             <TableColumn title="class 6" key='class6' />
-            <TableColumn title="class 7" key='class7' />
+            <TableColumn title="class 7" key='class7' fixed="right" />
         </TableColumn>
     </Table>
 </div>

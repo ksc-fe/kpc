@@ -21,6 +21,7 @@ export default class TableColumn extends Intact {
         align: ['left', 'center', 'right'],
         rows: Number,
         cols: Number,
+        invisible: Boolean,
     };
 
     static events = {
@@ -44,6 +45,7 @@ export default class TableColumn extends Intact {
             align: undefined,
             rows: undefined,
             cols: undefined,
+            invisible: false,
 
             // passed by parent
             $parent: undefined,

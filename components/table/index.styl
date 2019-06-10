@@ -180,6 +180,16 @@
         td:not(:last-of-type)
         th:not(:last-of-type)
             border-right $table-border-right 
+    .k-fixed-left
+        .k-thead
+        .k-tbody
+            // border-right-color transparent
+            border-right none
+    .k-fixed-right
+        .k-thead
+        .k-tbody
+            // border-left-color transparent
+            border-left none
 
     // sticky
     &.k-sticky
