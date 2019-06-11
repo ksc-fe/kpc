@@ -12,7 +12,7 @@ order: 8.2
 import {Table, TableColumn} from 'kpc/components/table';
 
 <div>
-    <Table data={{ self.get('data') }}  type="grid"
+    <Table data={{ self.get('data') }} type="grid"
         scheme={{ {
             weekday: {title: 'Weekday'},
             forenoon: {
@@ -41,22 +41,22 @@ import {Table, TableColumn} from 'kpc/components/table';
             }
         } }}
     />
-    <Table data={{ self.get('data') }} checkType="none" type="grid" resizable>
+    <Table data={{ self.get('data') }} checkType="none" type="grid" resizable stickHeader="87">
         <TableColumn title="Weekday" key='weekday' fixed="left"/>
         <TableColumn title="Forenoon" key="forenoon">
-            <TableColumn title="time" key="forenoonTime" fixed="left" />
+            <TableColumn title="Time" key="forenoonTime" fixed="left" />
             <TableColumn title="Classes" key="classes">
                 <TableColumn title="Class 1" key='class1' />
                 <TableColumn title="Class 2" key='class2' />
-                <TableColumn title="class 3" key='class3' />
-                <TableColumn title="class 4" key='class4' />
+                <TableColumn title="Class 3" key='class3' />
+                <TableColumn title="Class 4" key='class4' />
             </TableColumn>
         </TableColumn>
         <TableColumn title="Afternoon" key="afternoon">
-            <TableColumn title="time" key="afternoonTime" />
-            <TableColumn title="class 5" key='class5' />
-            <TableColumn title="class 6" key='class6' />
-            <TableColumn title="class 7" key='class7' fixed="right" />
+            <TableColumn title="Time" key="afternoonTime" />
+            <TableColumn title="Class 5" key='class5' />
+            <TableColumn title="Class 6" key='class6' />
+            <TableColumn title="Class 7" key='class7' fixed="right" />
         </TableColumn>
     </Table>
 </div>

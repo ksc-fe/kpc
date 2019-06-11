@@ -45,6 +45,7 @@ export default class Table extends Intact {
             defaultWidthMap: {},
             defaultWidth: undefined,
             storeWidth: undefined,
+            merge: undefined,
 
             _padding: 0,
             _paddingBottom: 0,
@@ -88,6 +89,7 @@ export default class Table extends Intact {
         selectedKeys: Array,
         defaultWidthMap: Object,
         storeWidth: String,
+        merge: Function,
     };
 
     static events = {
