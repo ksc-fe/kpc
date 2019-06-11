@@ -181,12 +181,15 @@ export default class Table extends Intact {
                 width: this.tableWidth
             }));
         }
+
+        this.trigger('changeWidth', this.headerWidthMap, this.tableWidth);
     }
 
     _mount() {
         this.set('_scrollBarWidth', scrollbarWidth(), {silent: true});
 
         this._calcHeaderPadding();
+        this._checkTableWidth();
         window.addEventListener('resize', this._onWindowResize);
 
         this._setFixedColumnWidth();
@@ -201,6 +204,7 @@ export default class Table extends Intact {
 
         const ro = this.ro = new ResizeObserver(() => {
             this._calcHeaderPadding();
+            this._checkTableWidth();
         });
         ro.observe(this.element);
     }
@@ -422,6 +426,19 @@ export default class Table extends Intact {
             const tableHeight = this.table.offsetHeight;
             const containerHeight = this.scroll.offsetHeight;
             this.set('_padding', tableHeight > containerHeight ? this.get('_scrollBarWidth') : 0);
+        }
+    }
+
+	_checkTableWidth() {
+        if (this.get('resizable')) {
+            const tableWidth = this.table.offsetWidth;
+            const containerWidth = this.scroll.clientWidth;
+            if (tableWidth < containerWidth) {
+                this.tableWidth = containerWidth + 'px';
+                this.update();
+
+                this._storeWidth();
+            }
         }
     }
 
@@ -704,8 +721,8 @@ export default class Table extends Intact {
                 // } else {
                     this.headerWidthMap[currentKey] = currentWidth;
                 // }
-            } else if (this._containerWidth === tableWidth + _padding) {
-                this.tableWidth = '100%';
+            // } else if (this._containerWidth === tableWidth + _padding) {
+                // this.tableWidth = '100%';
             } else {
                 this.tableWidth = tableWidth + 'px';
             }
@@ -724,7 +741,6 @@ export default class Table extends Intact {
             document.removeEventListener('mouseup', this._dragEnd);
 
             this._storeWidth();
-            this.trigger('changeWidth', this.headerWidthMap, this.tableWidth);
         }
     }
 
