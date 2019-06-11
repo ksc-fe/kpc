@@ -655,7 +655,7 @@ export default class Table extends Intact {
         if (e.which !== 1) return;
 
         this._resizing = true;
-        this._containerWidth = this.element.offsetWidth;
+        this._containerWidth = this.scroll.clientWidth; // element.offsetWidth;
         this._x = e.clientX;
 
         const prevVNode = vNode.props.prevVNode;
@@ -669,7 +669,7 @@ export default class Table extends Intact {
         this._currentVNode = vNode;
         this._prevVNode = prevVNode;
 
-        this._isLastTh = !currentTh.nextElementSibling;
+        // this._isLastTh = !currentTh.nextElementSibling;
 
         document.addEventListener('mousemove', this._move);
         document.addEventListener('mouseup', this._dragEnd);
@@ -699,11 +699,11 @@ export default class Table extends Intact {
             this._x = e.clientX;
 
             if (this._containerWidth > tableWidth + _padding) {
-                if (this._isLastTh) {
-                    this.headerWidthMap[currentKey] = 'auto';
-                } else {
+                // if (this._isLastTh) {
+                    // this.headerWidthMap[currentKey] = 'auto';
+                // } else {
                     this.headerWidthMap[currentKey] = currentWidth;
-                }
+                // }
             } else if (this._containerWidth === tableWidth + _padding) {
                 this.tableWidth = '100%';
             } else {
