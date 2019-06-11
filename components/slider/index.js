@@ -52,7 +52,7 @@ export default class Slider extends Intact {
     _init() {
         this.on("$change:_inputValue", (c, val) => {
             if (!this.get('_isDragging')) {
-                this._setFixedValue(val);
+                this._setFixedValue(val, true);
             }
         });
         // make sure the min/max/step is valid
@@ -75,11 +75,11 @@ export default class Slider extends Intact {
         });
     }
 
-    _setFixedValue(value) {
+    _setFixedValue(value, isFromSpinner) {
         const fixedValue = this._getFixedValue(value);
         this.set({
             value: fixedValue,
-            _inputValue: fixedValue,
+            _inputValue: isFromSpinner ? value : fixedValue,
             _sliderValue: fixedValue,
         });
     }
@@ -340,6 +340,11 @@ export default class Slider extends Intact {
                 this.$sliderFirstBtn.focus();
             }
         }
+    }
+
+    // only change the input value after change event tiggered, #294
+    _onChange() {
+        this.set('_inputValue', this.get('value'));
     }
 
     _setOneValue(v) {

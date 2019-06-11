@@ -1,6 +1,7 @@
 import BasicDemo from '~/components/slider/demos/basic';
 import RangeDemo from '~/components/slider/demos/range';
 import DisabledDemo from '~/components/slider/demos/disabled';
+import StepDemo from '~/components/slider/demos/step';
 import {mount, unmount, dispatchEvent} from 'test/utils';
 import Slider from 'kpc/components/slider';
 import Intact from 'intact';
@@ -178,5 +179,20 @@ describe('Slider', () => {
         }
         instance = mount(Component);
         expect(instance.element.innerHTML).to.matchSnapshot();
+    });
+
+    it('should input any value even if it has step', () => {
+        instance = mount(StepDemo);
+
+        const input = instance.element.querySelector('input');
+        input.value = 1;
+        dispatchEvent(input, 'input');
+        expect(input.value).to.eql('1');
+        input.value = 11;
+        dispatchEvent(input, 'input');
+        expect(input.value).to.eql('11');
+        expect(instance.get('value1')).to.eql(10);
+        dispatchEvent(input, 'change');
+        expect(input.value).to.eql('10');
     });
 });

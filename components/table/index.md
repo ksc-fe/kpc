@@ -34,7 +34,7 @@ sidebar: doc
 | loading | 是否展示加载状态 | `Boolean` | `false` |
 | container | 指定`group`弹出菜单追加的位置，默认：`Dialog`类型的组件会追加到`Dialog`中，其他会追加到`body`中。你可以传入函数返回一个DOM用来作为插入的容器，或者传入字符串用来给`querySelector`进行查询 | `Function` &#124; `String` | `undefined` |
 | stripe | 相邻行是否展示不同的背景色 | `Boolean` | `false` |
-| rowSelectable | 是否点击行时高亮改行，取值为`multiple`时，可以同时高亮多行 | `Boolean` &#124; `"single"` &#124 `"multiple"` | `false` |
+| rowSelectable | 是否点击行时高亮改行，取值为`multiple`时，可以同时高亮多行 | `Boolean` &#124; `"single"` &#124; `"multiple"` | `false` |
 | selectedKeys | 当`rowSelectable`取值为非`false`时，指定哪些行高亮 | `Array` | `[]` |
 | defaultWidth | 指定表格初始化宽度，可以指定百分比，像素值必须带上单位`px` | `String` | `undefined` |
 | defaultWidthMap | 指定表格初始化每列列宽，该值为`Object`，`key`对应为每列的`key`，`value`为每列列宽像素值，不带单位`px`，不能指定百分比。它的优先级高于`TableColumn`中的`width`定义 | `Object` | `{}` |
@@ -56,7 +56,7 @@ sidebar: doc
 | group | 指定分组数组，每一项格式为`{value: '选中后的值', label: '展示的文案'}` | `Array<Object>` | `undefined` |
 | multiple | 分组是否支持多选 | `Boolean` | `false` |
 | minWidth | 指定当前列拖动时的最小宽度，优先级高于`Table`的`minColWidth` | `Number` | `40` |
-| fix | 是否将列固定，`"left"`固定在左侧；`"right"`固定在右侧 | `"left"` &#124; `"right"` | `undefined` |
+| fixed | 是否将列固定，`"left"`固定在左侧；`"right"`固定在右侧 | `"left"` &#124; `"right"` | `undefined` |
 | className | 给当前列添加className | `String` &#124; `Object` | `undefined` |
 | ignore | 是否忽略当前列的导出 | `Boolean` | `false` |
 | align | 当前列对齐方式 | `"left"` &#124; `"center"` &#124; `"right"` | `undefined` |

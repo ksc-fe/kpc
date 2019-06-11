@@ -123,6 +123,7 @@ const sliderWidth = max - min;
             step={{ step }} 
             ref="spinner"
             vertical
+            ev-change={{ self._onChange }}
         />
     </div>
 </div>
