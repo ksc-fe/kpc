@@ -181,6 +181,21 @@ describe('Table', () => {
         localStorage.removeItem('resizableTable');
     });
 
+    it('should set the width of table equal to container after resizing and expanding container', async () => {
+        instance = mount(BasicDemo);
+
+        const table = instance.element.querySelector('.k-table');
+        const resize = table.querySelector('.k-resize');
+        dispatchEvent(resize, 'mousedown', {which: 1, clientX: 0});
+        dispatchEvent(document, 'mousemove', {clientX: 1});
+        dispatchEvent(document, 'mouseup');
+
+        const container = instance.element.parentNode;
+        container.style.width = '1000px';
+        await wait(100);
+        expect(table.innerHTML).to.matchSnapshot();
+    });
+
     it('loading', () => {
         instance = mount(LoadingDemo); 
 
