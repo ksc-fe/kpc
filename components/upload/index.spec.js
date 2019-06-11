@@ -6,9 +6,9 @@ import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 import Upload from 'kpc/components/upload';
 import Intact from 'intact';
 
-function getDataTransfer(names, options = {}) {
+function getDataTransfer(names, options = {}, type = '') {
     const data = names.map(item => {
-        const file = new File([item], `${options.name || item}.${options.type || 'png'}`);
+        const file = new File([item], `${options.name || item}.${options.type || 'png'}`, {type});
         return file;
     });
     const dt = new DataTransfer();
@@ -220,5 +220,25 @@ describe('Upload', () => {
             expect(instance.element.innerHTML).to.matchSnapshot();
             done();
         });
+    });
+
+    it('should check file type', (done) => {
+        const i = new Upload({accept: '.jpg, image/png', 'video/*'});
+        expect(!!i._isValidType('image/gif')).to.be.false;
+        expect(!!i._isValidType('image/jpg')).to.be.true;
+        expect(!!i._isValidType('image/png')).to.be.true;
+        expect(!!i._isValidType('video/avi')).to.be.true;
+        
+        instance = mount(BasicDemo);
+
+        const upload = instance.vdt.vNode.children;
+        upload.on('error', (e) => {
+            expect(e.message).to.matchSnapshot();
+            done();
+        });
+
+        const input = instance.element.querySelector('input');
+        fixInputChange(input);
+        input.files = getDataTransfer(['a'], {type: 'avi'}, 'video/avi').files;
     });
 });

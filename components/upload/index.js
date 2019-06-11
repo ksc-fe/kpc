@@ -84,6 +84,40 @@ export default class Upload extends Intact {
             });
             this.set('files', _files);
         }
+
+        this.on('$receive:accept', this._parseAccept);
+    }
+
+    _parseAccept(c, v) {
+        this.extensions = [];
+        this.mimeTypes = [];
+        this.groupTypes = [];
+        if (v) {
+            v.split(',').forEach(item => {
+                item = item.trim().toLowerCase();
+                if (item[0] === '.') {
+                    this.extensions.push(item.substring(1));
+                } else {
+                    const [type, extension] = item.split('/');
+                    if (extension === '*') {
+                        this.groupTypes.push(type);
+                    } else {
+                        this.mimeTypes.push(item);
+                    }
+                }
+            });
+        }
+    }
+
+    _isValidType(value) {
+        if (this.mimeTypes.find(item => item === value)) return true;
+
+        const [type, extension] = value.split('/');
+        return this.extensions.find(item => {
+            return item === extension;
+        }) || this.groupTypes.find(item => {
+            return item === type;
+        });
     }
 
     submit() {
@@ -110,7 +144,7 @@ export default class Upload extends Intact {
     _addFiles(fileList) {
         const files = this.get('files').slice(0);
         const _files = Array.from(fileList);
-        const {maxSize, limit, autoUpload} = this.get();
+        const {maxSize, limit, autoUpload, accept} = this.get();
 
         if (limit && (files.length + _files.length > limit)) {
             const error =  new Error(_$('超出文件数量最大限制：{limit}', {limit}));
@@ -124,6 +158,10 @@ export default class Upload extends Intact {
                 const error = new Error(
                     _$('"{name}" 超出文件最大限制：{maxSize}kb', {name: file.name, maxSize})
                 );
+                return this.trigger('error', error, file, files);
+            }
+            if (accept && file.type && !this._isValidType(file.type)) {
+                const error = new Error(_$('"{name}" 文件类型不合法', {name: file.name}));
                 return this.trigger('error', error, file, files);
             }
             const obj = {

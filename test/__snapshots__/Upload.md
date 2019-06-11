@@ -82,3 +82,9 @@
 "<input class=\"c-hidden\" type=\"file\"><div class=\"k-handle\"><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>点击上传</span></button></div><div class=\"k-files\"></div><!--placeholder-->"
 ```
 
+#### `should check file type`
+
+```
+"\"a.avi\" 文件类型不合法"
+```
+
