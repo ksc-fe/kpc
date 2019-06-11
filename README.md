@@ -8,13 +8,11 @@
 
 [![Build Status](https://travis-ci.org/ksc-fe/kpc.svg?branch=master)](https://travis-ci.org/ksc-fe/kpc)
 [![Codecov](https://codecov.io/gh/ksc-fe/kpc/branch/master/graphs/badge.svg)](https://codecov.io/gh/ksc-fe/kpc/branch/master)
-[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/ksc-fe/kpc.svg)](http://isitmaintained.com/project/ksc-fe/kpc "Average time to resolve an issue")
-[![Percentage of issues still open](http://isitmaintained.com/badge/open/ksc-fe/kpc.svg)](http://isitmaintained.com/project/ksc-fe/kpc "Percentage of issues still open")
+[![gzip size: js](http://img.badgesize.io/https://cdn.jsdelivr.net/npm/kpc/dist/kpc.min.js?compression=gzip&label=gzip%20size:%20js)](https://cdn.jsdelivr.net/npm/kpc/dist/)
+[![gzip size: css](http://img.badgesize.io/https://cdn.jsdelivr.net/npm/kpc/dist/kpc.css?compression=gzip&label=gzip%20size:%20css)](https://cdn.jsdelivr.net/npm/kpc/dist/)
 
 [![npm](https://img.shields.io/npm/dm/kpc.svg)](https://www.npmjs.com/package/kpc)
 [![npm](https://img.shields.io/npm/v/kpc.svg)](https://www.npmjs.com/package/kpc)
-[![gzip size: js](http://img.badgesize.io/https://cdn.jsdelivr.net/npm/kpc/dist/kpc.min.js?compression=gzip&label=gzip%20size:%20js)](https://cdn.jsdelivr.net/npm/kpc/dist/)
-[![gzip size: css](http://img.badgesize.io/https://cdn.jsdelivr.net/npm/kpc/dist/kpc.css?compression=gzip&label=gzip%20size:%20css)](https://cdn.jsdelivr.net/npm/kpc/dist/)
 
 </div>
 
