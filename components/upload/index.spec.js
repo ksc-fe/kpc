@@ -223,7 +223,7 @@ describe('Upload', () => {
     });
 
     it('should check file type', (done) => {
-        const i = new Upload({accept: '.jpg, image/png', 'video/*'});
+        const i = new Upload({accept: '.jpg, image/png, video/*'});
         expect(!!i._isValidType('image/gif')).to.be.false;
         expect(!!i._isValidType('image/jpg')).to.be.true;
         expect(!!i._isValidType('image/png')).to.be.true;
