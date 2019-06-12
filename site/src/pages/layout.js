@@ -4,7 +4,7 @@ import './layout.styl';
 
 let theme;
 function changeTheme(newTheme, oldTheme) {
-    const link = document.querySelector('link[rel=stylesheet]');
+    const link = document.querySelector('head link[rel=stylesheet]');
     if (!link) return;
 
     link.href = link.href.replace(`theme-${oldTheme}`, `theme-${newTheme}`);
@@ -35,6 +35,7 @@ export default class extends Intact {
 
     _init() {
         this.on('$change:theme', (c, v, o) => {
+            console.log(v, o)
             changeTheme(v, o);
         });
     }
