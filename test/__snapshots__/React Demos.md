@@ -166,6 +166,26 @@
 "<div><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span><span class=\"k-text\">默认值: </span></label><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"checked\"></span><span class=\"k-text\">指定选中时取值为\"checked\": </span></label><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"0\"></span><span class=\"k-text\">指定非选中时取值为对象：</span></label></div>"
 ```
 
+## `code`
+
+####   `Code basic`
+
+```
+"<div class=\"k-editor\" style=\"height: 200px;\"><div class=\"k-spin k-small k-overlay\"><div class=\"k-wrapper\"><div class=\"k-canvas\"><svg viewBox=\"0 0 120 120\"><circle class=\"k-circle\" cx=\"60\" cy=\"60\" r=\"57\"></circle></svg></div></div></div></div>"
+```
+
+####   `Code readonly`
+
+```
+"<div class=\"k-editor\" style=\"height: 200px;\"><div class=\"k-spin k-small k-overlay\"><div class=\"k-wrapper\"><div class=\"k-canvas\"><svg viewBox=\"0 0 120 120\"><circle class=\"k-circle\" cx=\"60\" cy=\"60\" r=\"57\"></circle></svg></div></div></div></div>"
+```
+
+####   `Code theme`
+
+```
+"<div>主题：<div class=\"k-btns\"><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">vs<input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">vs-dark<input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">hc-black<input type=\"radio\" tabindex=\"-1\"></button></div><div class=\"k-editor\" style=\"height: 200px;\"><div class=\"k-spin k-small k-overlay\"><div class=\"k-wrapper\"><div class=\"k-canvas\"><svg viewBox=\"0 0 120 120\"><circle class=\"k-circle\" cx=\"60\" cy=\"60\" r=\"57\"></circle></svg></div></div></div></div></div>"
+```
+
 ## `collapse`
 
 ####   `Collapse accordion`

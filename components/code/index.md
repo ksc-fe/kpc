@@ -17,3 +17,11 @@ sidebar: doc
 | readonly | 是否只读 | `Boolean` | `false` |
 | loading | 是否正在加载 | `Boolean` | `false` |
 | options | 其它可选的配置，会传给`monaco.editor.create()`方法，可选值参考[options](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.ieditorconstructionoptions.html) | `Object` | `{}` |
+
+> 例如：通过`options`可以隐藏右侧代码的缩影(minimap): `options = {minimap: {enabled: false}}`
+
+# 事件
+
+| 事件名 | 说明 | 参数 |
+| --- | --- | --- |
+| ready | 组件加载并实例化完成触发 | `Code` |

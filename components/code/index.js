@@ -7,6 +7,10 @@ export default class Code extends Intact {
     @Intact.template()
     static template = template;
 
+    static events = {
+        ready: true,
+    };
+
     static propTypes = {
         value: String,
         language: String,
@@ -40,7 +44,15 @@ export default class Code extends Intact {
     }
 
     _mount() {
-        require(['monaco-editor'], monaco => {
+        new Promise(resolve => {
+            require.ensure([], require => {
+                let monaco = require('monaco-editor');
+                if (monaco.default) {
+                    monaco = monaco.default;
+                }
+                resolve(monaco);
+            });
+        }).then(monaco => {
             if (this.destroyed) return;
 
             const {value, language, theme, options, readonly} = this.get();
@@ -55,6 +67,8 @@ export default class Code extends Intact {
 
             this.set('loading', false);
             this._watch();
+
+            this.trigger('ready', this);
         });
     }
 
