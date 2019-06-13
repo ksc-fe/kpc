@@ -18,6 +18,7 @@ import {Breadcrumb, BreadcrumbItem} from './components/breadcrumb';
 import {Button, ButtonGroup} from './components/button';
 import {Cascader} from './components/cascader';
 import {Checkbox} from './components/checkbox';
+import {Code} from './components/code';
 import {Collapse, CollapseItem} from './components/collapse';
 import {Datepicker} from './components/datepicker';
 import {Dialog} from './components/dialog';
@@ -67,6 +68,7 @@ export {
     ButtonGroup,
     Cascader,
     Checkbox,
+    Code,
     Col,
     Collapse,
     CollapseItem,
@@ -132,6 +134,7 @@ const components = {
     ButtonGroup,
     Cascader,
     Checkbox,
+    Code,
     Col,
     Collapse,
     CollapseItem,

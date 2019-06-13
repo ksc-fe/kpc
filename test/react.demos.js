@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {mount, unmount, testDemos} from './utils';
+import {mount, unmount, testDemos, wait} from './utils';
 import {matchSnapshot} from 'chai-karma-snapshot';
 import '../styles/kpc.styl';
 import './test.styl';
@@ -36,11 +36,9 @@ describe('React Demos', () => {
             }
         }
     }
-    testDemos(reactReq, (Demo, done) => {
+    testDemos(reactReq, async (Demo) => {
         demo = mount(wrap(Demo));
-        setTimeout(() => {
-            expect(demo.element.innerHTML).to.matchSnapshot();
-            done();
-        });
+        await wait(0);
+        expect(demo.element.innerHTML).to.matchSnapshot();
     });
 });

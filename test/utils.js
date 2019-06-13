@@ -79,8 +79,8 @@ export function testDemos(req, test) {
         const value = groups[key];
         describe(key, () => {
             value.forEach(value => {
-                it(value.title, (done) => {
-                    test(value.Demo, done);
+                it(value.title, async () => {
+                    await test(value.Demo);
                 });
             });
         });
