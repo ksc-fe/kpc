@@ -41,13 +41,21 @@ module.exports = function(theme) {
                     ]
                 },
                 {
-                    test: /\.(styl|css)$/,
+                    test: /\.styl$/,
                     use: !process.env.THEME && theme !== '__nouse' ?
                         ['css-hot-loader'].concat(ExtractTextPlugin.extract({
                             // the third rule is a stylus rule
                             use: commonConfig.module.rules[2].use,
                         })) :
                         ['style-loader'].concat(commonConfig.module.rules[2].use),
+                },
+                {
+                    test: /\.css$/,
+                    use: !process.env.THEME && theme !== '__nouse' ?
+                        ['css-hot-loader'].concat(ExtractTextPlugin.extract({
+                            use: commonConfig.module.rules[3].use,
+                        })) :
+                        ['style-loader'].concat(commonConfig.module.rules[3].use),
                 },
             ]
         },

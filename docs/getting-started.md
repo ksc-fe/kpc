@@ -179,7 +179,7 @@ module.export = {
             ...
             // 编译stylus
             {
-                test: /\.(styl|css)$/,
+                test: /\.styl$/,
                 use: [
                     {
                         loader: 'style-loader'

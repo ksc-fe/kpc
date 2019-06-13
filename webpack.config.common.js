@@ -46,7 +46,7 @@ module.exports = {
             },
             // don't change the order of the stylus loader
             {
-                test: /\.(styl|css)$/,
+                test: /\.styl$/,
                 use: [
                     {
                         loader: 'css-loader', 
@@ -71,6 +71,25 @@ module.exports = {
                             // 'import': path.resolve(__dirname, 'styles/themes/ksyun/index.styl'),
                         }
                     }
+                ]
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: 'css-loader', 
+                        options: {
+                            url: true,
+                            minimize: isProduction,
+                            // sourceMap: !isProduction,
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        // options: {
+                            // sourceMap: !isProduction,
+                        // }
+                    },
                 ]
             },
             {

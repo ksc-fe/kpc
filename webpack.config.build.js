@@ -36,10 +36,17 @@ module.exports = function(theme) {
         module: {
             rules: [
                 {
-                    test: /\.(styl|css)$/,
+                    test: /\.styl$/,
                     use: ExtractTextPlugin.extract({
                         // the third rule is a stylus rule
                         use: commonConfig.module.rules[2].use,
+                    }),
+                },
+                {
+                    test: /\.css$/,
+                    use: ExtractTextPlugin.extract({
+                        // the fourth rule is a css rule
+                        use: commonConfig.module.rules[3].use,
                     }),
                 },
             ]
