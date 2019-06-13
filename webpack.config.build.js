@@ -2,6 +2,7 @@ const webpack = require('webpack'); const path = require('path');
 const webpackConfig = require('./webpack.config.common');
 const merge = require('webpack-merge');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 module.exports = function(theme) {
     // add theme
@@ -54,6 +55,7 @@ module.exports = function(theme) {
             'process.browser': true
         }),
         new ExtractTextPlugin(theme ? `${theme}.css` : 'kpc.css'),
+        new MonacoWebpackPlugin(),
     ];
 
     return config;

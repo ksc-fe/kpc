@@ -1,4 +1,4 @@
-const {addStyle, getRestProps} = require('../utils');
+import {addStyle, getRestProps} from '../utils';
 
 let {
     className, style, children,

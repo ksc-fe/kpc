@@ -1,0 +1,5 @@
+import Code from 'kpc/components/code';
+
+<Code language="javascript" theme="vs-dark" 
+    v-model="test"
+/>

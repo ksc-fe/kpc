@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -119,5 +120,6 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.ssr': true,
         }),
+        new MonacoWebpackPlugin(),
     ],
 };

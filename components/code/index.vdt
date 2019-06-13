@@ -1,0 +1,27 @@
+import {addStyle, getRestProps} from '../utils';
+import Spin from '../spin';
+
+let {width, height, className, style, loading} = self.get();
+
+const classNameObj = {
+    'k-editor': true,
+    [className]: className,
+};
+
+if (width || height) {
+    const _style = {};
+    if (width) {
+        _style.width = width;
+    }
+    if (height) {
+        _style.height = height;
+    }
+    style = addStyle(style, _style);
+}
+
+<div class={{ classNameObj }} 
+    {{ ...getRestProps(self) }}
+    style={{ style }}
+>
+    <Spin center overlay size="small" v-if={{ loading }} />
+</div>

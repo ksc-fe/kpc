@@ -12,7 +12,8 @@ module.exports = merge.smartStrategy({
             './app/client.js',
         ],
     },
-    devtool: '#inline-source-map',
+    // devtool: '#inline-source-map',
+    devtool: 'eval',
     output: {
         chunkFilename: 'static/chunk/[chunkhash].js'
     },

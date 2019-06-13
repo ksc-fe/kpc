@@ -3,6 +3,7 @@ const webpackConfig = require('../webpack.config.common');
 const merge = require('webpack-merge');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const packageJson = require('../package.json');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
 // process.URL_PREFIX = isDev ? '' : '/kpc';
@@ -67,6 +68,7 @@ module.exports = function(theme) {
         new webpack.DefinePlugin({
             'process.version': JSON.stringify(packageJson.version),
         }),
+        new MonacoWebpackPlugin(),
     ];
 
     if (!process.env.THEME && theme !== '__nouse') {
