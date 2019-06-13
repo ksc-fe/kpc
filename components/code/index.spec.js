@@ -8,7 +8,7 @@ describe('Code', () => {
 
     afterEach(() => unmount(instance));
 
-    it('should toggle expand', async function() {
+    it('should update status', async function() {
         this.enableTimeouts(false);
         instance = mount(BasicDemo);
 
