@@ -164,6 +164,8 @@ module.exports = {
 }
 ```
 
+> 如果主题没有生效，请检查`resolve.alias.kpc`是否指向了`kpc/@stylus`
+
 如果采用链式写法，不要直接修改`stylus-loader`配置，可以采用`css`配置项来配置，如下所示：
 
 ```js

@@ -145,6 +145,8 @@ npm install stylus stylus-loader -D
              // In production, they would get copied to the `build` folder.
 ```
 
+> 如果主题没有生效，请检查`resolve.alias.kpc`是否指向了`kpc/@stylus`
+
 # 使用
 
 ```js
