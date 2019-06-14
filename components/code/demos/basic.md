@@ -32,6 +32,7 @@ order: 0
 > // @code
 > npm install string-replace-loader -D
 >```
+>
 > ```js
 > // @code
 > {
