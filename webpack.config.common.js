@@ -115,6 +115,24 @@ module.exports = {
                     }
                 ]
             },
+            // monaco-editor exists es6 syntax: `const`
+            {
+                test: /\.js$/,
+                include: [
+                    path.resolve(__dirname, './node_modules/monaco-editor/esm/vs/language/typescript/lib/typescriptServices.js'),
+                    path.resolve(__dirname, './node_modules/monaco-editor/esm/vs/language/html/_deps/vscode-html-languageservice/beautify/beautify-css.js'),
+                ],
+                use: [
+                    {
+                        loader: 'string-replace-loader',
+                        options: {
+                            search: 'export const ',
+                            replace: 'export var ',
+                            flags: 'g',
+                        }
+                    }
+                ]
+            },
         ]
     },
     resolve: {

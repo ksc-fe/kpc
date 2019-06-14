@@ -12,7 +12,7 @@ order: 0
 > 
 > ```shell
 > // @code
-> npm install monaco-editor-webpack-plugin
+> npm install monaco-editor-webpack-plugin -D
 > ```
 > `webpack.config.js`
 > ```js
@@ -26,6 +26,35 @@ order: 0
 > }
 > ```
 
+> `monaco-editor`源码中有一些变量使用了`const`声明，所以会导致`uglify-js`报错，你可以将它通过
+> `string-replace-loader`处理，（当然你也可以通过`babel-loader`处理，但是这会非常耗时）
+> ```shell
+> // @code
+> npm install string-replace-loader -D
+>```
+> ```js
+> // @code
+> {
+>     test: /\.js$/,
+>     include: [
+>         path.resolve(__dirname, './node_modules/monaco-editor/esm/vs/language/typescript/lib/typescriptServices.js'),
+>         path.resolve(__dirname, './node_modules/monaco-editor/esm/vs/language/html/_deps/vscode-html-languageservice/beautify/beautify-css.js'),
+>     ],
+>     use: [
+>         {
+>             loader: 'string-replace-loader',
+>             options: {
+>                 search: 'export const ',
+>                 replace: 'export var ',
+>                 flags: 'g',
+>             }
+>         }
+>     ]
+> },
+> ```
+> 或者不考虑浏览器的话，也可以使用`uglify-es`进行压缩
+>
+> （该问题已提pull request，如果被合并的话，就不需要这么处理了）
 
 ```vdt
 import Code from 'kpc/components/code';

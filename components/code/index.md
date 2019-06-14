@@ -5,6 +5,9 @@ order: 99
 sidebar: doc
 ---
 
+> 如果你不是通过webpack引入该该组件，你需要定义`__webpack_public_path__`来指定`worker`的加载路径，
+> 例如：`__webpack__public_path__ = '/dist/'`
+
 # 属性
 
 | 属性 | 说明 | 类型 | 默认值 |

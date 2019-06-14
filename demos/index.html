@@ -19,8 +19,9 @@
 
 	<script type="text/javascript">
         Kpc.install();
+        __webpack_public_path__ = '/dist/';
         var Page = Intact.extend({
-            template: '<KButton ev-click={self.hello}>Hello World</KButton>',
+            template: '<div><KButton ev-click={self.hello}>Hello World</KButton><KCode height="200px"/></div>',
             hello: function() {
                 KMessage.success('Welcome to the world of kpc and intact!');
             }
@@ -28,6 +29,7 @@
         Intact.mount(Page, document.getElementById('app'));
     </script>
     <script type="text/javascript">
+        Kpc.install.installed = false;
         Vue.use(Kpc);
         new Vue({
             el: '#vue',
