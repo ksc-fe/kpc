@@ -3,15 +3,15 @@ title: 自定义label
 order: 3
 ---
 
-通过`label`扩展点，我们可以定义更复杂的`label`，而不仅仅只是文本
+通过`label`扩展点，我们可以定义更复杂的`label`，而不仅仅只是文本，当`Form`添加了`starOnRequired`属性时，
+必填的`FormItem`标签前面将自动添加`*`
 
 ```vdt
 import {Form, FormItem} from 'kpc/components/form';
 import {Input} from 'kpc/components/input';
 
-<Form>
-    <FormItem>
-        <b:label><i style="color: red">*</i> 姓名</b:label>
+<Form starOnRequired>
+    <FormItem rules={{ {required: true} }} label="姓名">
         <Input />
     </FormItem>
     <FormItem>

@@ -13,6 +13,7 @@ sidebar: doc
 | --- | --- | --- | --- |
 | labelWidth | 定义所有子孙`FormItem`组件的`label`宽度 | `String` &#124; `Number` | `undefined` |
 | layout | 指定表单布局方式 | `"horizontal"` &#124; `"vertical"` &#124; `"inline"` | `"horizontal"` |
+| starOnRequired | 当`FormItem`必填时，是否在`label`前面展示`*` | `Boolean` | `false` |
 
 ## FormItem
 

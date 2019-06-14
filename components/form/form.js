@@ -19,6 +19,7 @@ export default class Form extends Intact {
         rules: Object,
         labelWidth: [String, Number],
         layout: ['horizontal', 'vertical', 'inline'],
+        starOnRequired: Boolean,
     };
 
     static events = {
@@ -31,6 +32,7 @@ export default class Form extends Intact {
             rules: {},
             labelWidth: undefined,
             layout: 'horizontal',
+            starOnRequired: false,
         }
     }
 

@@ -3,7 +3,7 @@ import {getRestProps} from '../utils';
 const {
     className, children, label,
     isValid, isDirty, hideLabel, htmlFor,
-    errorClassName
+    errorClassName, rules
 } = self.get();
 
 const classNameObj = {
@@ -23,6 +23,8 @@ if (labelWidth != null) {
     }
 }
 
+const starOnRequired = self.form && self.form.get('starOnRequired');
+
 <div {{ ...getRestProps(self) }} class={{ classNameObj }}
     ev-change={{ self._onChange }}
     ev-focusout={{ self._onFocusout }}
@@ -30,6 +32,7 @@ if (labelWidth != null) {
     <label for={{ htmlFor }} class="k-label" v-if={{ !hideLabel }}
         style={{ labelStyle }}
     >
+        <span class="k-star" v-if={{ starOnRequired && rules && rules.required }}>*</span>
         <b:label>{{ label }}</b:label>
     </label>
     <div class="k-content">
