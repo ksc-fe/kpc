@@ -498,6 +498,7 @@ function exec(command) {
     });
 }
 
+// get the lines of all codes
 gulp.task('code', () => {
     const codes = [];
     return gulp.src([

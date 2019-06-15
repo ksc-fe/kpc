@@ -7,6 +7,7 @@ const webpack = require('webpack');
 const highlight = require('highlight.js');
 const intact2vue = require('./intact2vue');
 const intact2react = require('./intact2react');
+const fs = require('fs').promises;
 
 const languageMap = function(key) {
     const map = {
@@ -37,6 +38,19 @@ module.exports = function(isDev = true) {
     doc.use(KDoc.plugins.md);
 
     doc.use(function(ctx) {
+        // override ctx.fsWrite method, if the contents is equal to the last one, do nothing
+        const fsWrite = ctx.fsWrite;
+        ctx.fsWrite = async function(path, content) {
+            if (!path || !content) return;
+            let oldContent;
+            try {
+                oldContent = await fs.readFile(path, 'utf8');
+            } catch (e) {  }
+            if (Buffer.isBuffer(content)) content = content.toString();
+            if (content !== oldContent) {
+                return await fsWrite.call(ctx, path, content);
+            }
+        };
         Vdt.setDefaults({
             disableSplitText: true,
             skipWhitespace: false,
