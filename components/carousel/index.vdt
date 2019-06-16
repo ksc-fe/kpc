@@ -1,0 +1,26 @@
+import {getRestProps, mapChildren} from '../utils';
+import CarouselItem from './index';
+
+const {className, children} = self.get();
+
+const classNameObj = {
+    'k-carousel': true,
+    [className]: className,
+};
+
+let index = 0;
+const _children = mapChildren(children, vNode => {
+    if (vNode.tag === CarouselItem) {
+        const props = vNode.props;
+        const _props = {_parent: self};
+        if (props.value == null) {
+            _props.value = `$${index++}`;
+        }
+        vNode.props = {...props, ..._props};
+    }
+    return vNode;
+});
+
+<div class={{ classNameObj }} {{ ...getRestProps(self) }}>
+    {{ _children }}
+</div>

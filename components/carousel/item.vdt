@@ -1,0 +1,12 @@
+import {getRestProps} from '../utils';
+
+const {className, children} = self.get();
+
+const classNameObj = {
+    'k-carousel-item': true,
+    [className]: className,
+};
+
+<div class={{ classNameObj }} {{ ...getRestProps(self) }}>
+    {{ children }}
+</div>
