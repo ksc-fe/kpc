@@ -1,13 +1,16 @@
 import {getRestProps, mapChildren} from '../utils';
-import CarouselItem from './index';
+import CarouselItem from './item';
+import Button from '../button';
+import Icon from '../icon';
 
-const {className, children} = self.get();
+const {className, children, _translate} = self.get();
 
 const classNameObj = {
     'k-carousel': true,
     [className]: className,
 };
 
+self._values = [];
 let index = 0;
 const _children = mapChildren(children, vNode => {
     if (vNode.tag === CarouselItem) {
@@ -17,10 +20,29 @@ const _children = mapChildren(children, vNode => {
             _props.value = `$${index++}`;
         }
         vNode.props = {...props, ..._props};
+        self._values.push(vNode.props.value);
     }
     return vNode;
 });
 
 <div class={{ classNameObj }} {{ ...getRestProps(self) }}>
-    {{ _children }}
+    <div class="k-wrapper">
+        {{ _children }}
+    </div>
+    <Button icon circle type="none" size="large" class="k-prev"
+        ev-click={{ self._prev }}
+    >
+        <Icon class="ion-ios-arrow-left" />
+    </Button>
+    <Button icon circle type="none" size="large" class="k-next"
+        ev-click={{ self._next }}
+    >
+        <Icon class="ion-ios-arrow-right" />
+    </Button>
+    <div class="k-indicator c-clearfix">
+        <div v-for={{ self._values }}
+            class={{ {'k-dot': true, 'k-active': self._isActive(value)} }}
+            ev-click={{ self._changeValue.bind(self, value) }}
+        ></div>
+    </div>
 </div>

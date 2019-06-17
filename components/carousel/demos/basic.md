@@ -13,3 +13,12 @@ import {Carousel, CarouselItem} from 'kpc/components/carousel';
     <CarouselItem>4</CarouselItem>
 </Carousel>
 ```
+
+```styl
+.k-carousel-item
+    background #333 
+    color #fff
+    line-height 300px
+    text-align center
+    font-size 30px
+```

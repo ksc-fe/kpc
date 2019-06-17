@@ -2,7 +2,7 @@ import {expandAnimationCallbacks} from '../utils';
 /* import VShow from '../menu/vShow'; */
 
 const {
-    className, style, value, children,
+    className, value, children,
     title, _parent, disabled, key, ref, ...rest
 } = self.get();
 

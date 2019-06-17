@@ -1,1 +1,60 @@
 @require('./variables.styl')
+
+.k-carousel
+    height 300px
+    position relative
+    overflow hidden
+    .k-indicator
+        position absolute
+        left 50%
+        transform translateX(-50%)
+        bottom 8px
+        .k-dot
+            height 20px
+            float left
+            margin 0 2px
+            cursor pointer
+            padding-top 8px
+            &:before
+                content ''
+                display block
+                width 16px
+                height 3px
+                background #fff
+                opacity .3
+                transition width .5s ease
+            &.k-active:before
+                opacity 1
+                width 24px
+    > .k-btn
+        position absolute
+        background rgba(0, 0, 0, .5)
+        top 50%
+        margin-top -20px
+        color #fff
+        opacity .5
+        &:hover
+            color #fff
+            opacity 1
+            background rgba(0, 0, 0, .5)
+    > .k-prev
+        left 10px
+    > .k-next
+        right 10px
+
+.k-carousel-item
+    position absolute
+    width 100%
+    height 100%
+    &.k-left-leave-active
+    &.k-left-enter-active
+    &.k-right-leave-active
+    &.k-right-enter-active
+        transition transform .5s ease 
+    &.k-left-leave
+    &.k-right-enter
+        transform translateX(-100%)
+    &.k-left-enter
+    &.k-right-leave
+        transform translateX(100%) 
+

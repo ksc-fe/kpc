@@ -1,12 +1,21 @@
 import {getRestProps} from '../utils';
 
-const {className, children} = self.get();
+const {
+    className, children, value,
+    _parent
+} = self.get();
 
+const active = _parent._isActive(value);
 const classNameObj = {
     'k-carousel-item': true,
     [className]: className,
+    'k-active': active,
 };
 
-<div class={{ classNameObj }} {{ ...getRestProps(self) }}>
+<Animate class={{ classNameObj }}
+    a:show={{ active }}
+    a:transition={{ _parent.get('_transition') }}
+    {{ ...getRestProps(self) }}
+>
     {{ children }}
-</div>
+</Animate>
