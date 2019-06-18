@@ -19,7 +19,7 @@ export default class Carousel extends Intact {
     defaults() {
         return {
             value: '$0',
-            autoplay: defaultTimeout,
+            autoplay: false,
             arrow: 'hover',
             effect: 'slide',
 
@@ -29,7 +29,7 @@ export default class Carousel extends Intact {
 
     _init() {
         this._items = [];
-        this.on('$receieve:autoplay', (c, v) => {
+        this.on('$receive:autoplay', (c, v) => {
             if (v === true) {
                 this.set('autoplay', defaultTimeout, {silent: true});
             }

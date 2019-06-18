@@ -1,15 +1,14 @@
 ---
-title: 基础用法 
-order: 0
+title: 切换动画
+order: 1
 ---
 
-`Carousel`与`CarouselItem`嵌套使用即可，你可以通过`v-model`双向绑定当前展示的内容块，`CarouselItem`默认
-取值为`$0` `$1`的索引形式，你也可以通过`value`指定任意值
+组件目前支持两种切换动画：`slide`（默认），`fade`
 
 ```vdt
 import {Carousel, CarouselItem} from 'kpc/components/carousel';
 
-<Carousel>
+<Carousel autoplay effect="fade">
     <CarouselItem>1</CarouselItem>
     <CarouselItem>2</CarouselItem>
     <CarouselItem>3</CarouselItem>
