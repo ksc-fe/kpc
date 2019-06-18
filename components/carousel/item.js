@@ -11,7 +11,7 @@ export default class CarouselItem extends Intact {
     }
 
     _destroy() {
-        const items = this.get('_parent').items;
+        const items = this.get('_parent')._items;
         const index = items.indexOf(this);
         items.splice(index, 1);
     }

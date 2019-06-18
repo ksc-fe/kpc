@@ -90,6 +90,26 @@
 "<div><div class=\"k-btn k-primary\" tabindex=\"0\">div元素按钮</div><div class=\"k-btn k-default k-disabled\" tabindex=\"-1\">disabled div button</div><a class=\"k-btn k-default\" href=\"https://www.ksyun.com\" target=\"_blank\" tabindex=\"0\">超链接按钮</a></div>"
 ```
 
+## `carousel`
+
+####   `Carousel autoplay`
+
+```
+"<div class=\"k-carousel k-hover\"><div class=\"k-wrapper\"><div class=\"k-carousel-item k-active\">1</div><div class=\"k-carousel-item\" style=\"display: none;\">2</div><div class=\"k-carousel-item\" style=\"display: none;\">3</div><div class=\"k-carousel-item\" style=\"display: none;\">4</div></div><button class=\"k-btn k-none k-btn-icon k-prev k-circle k-large\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-arrow-left\"></i></button><button class=\"k-btn k-none k-btn-icon k-next k-circle k-large\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-arrow-right\"></i></button><div class=\"k-indicator c-clearfix\"><div class=\"k-dot k-active\"></div><div class=\"k-dot\"></div><div class=\"k-dot\"></div><div class=\"k-dot\"></div></div></div>"
+```
+
+####   `Carousel basic`
+
+```
+"<div class=\"k-carousel k-hover\"><div class=\"k-wrapper\"><div class=\"k-carousel-item k-active\">1</div><div class=\"k-carousel-item\" style=\"display: none;\">2</div><div class=\"k-carousel-item\" style=\"display: none;\">3</div><div class=\"k-carousel-item\" style=\"display: none;\">4</div></div><button class=\"k-btn k-none k-btn-icon k-prev k-circle k-large\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-arrow-left\"></i></button><button class=\"k-btn k-none k-btn-icon k-next k-circle k-large\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-arrow-right\"></i></button><div class=\"k-indicator c-clearfix\"><div class=\"k-dot k-active\"></div><div class=\"k-dot\"></div><div class=\"k-dot\"></div><div class=\"k-dot\"></div></div></div>"
+```
+
+####   `Carousel effect`
+
+```
+"<div class=\"k-carousel k-hover\"><div class=\"k-wrapper\"><div class=\"k-carousel-item k-active\">1</div><div class=\"k-carousel-item\" style=\"display: none;\">2</div><div class=\"k-carousel-item\" style=\"display: none;\">3</div><div class=\"k-carousel-item\" style=\"display: none;\">4</div></div><button class=\"k-btn k-none k-btn-icon k-prev k-circle k-large\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-arrow-left\"></i></button><button class=\"k-btn k-none k-btn-icon k-next k-circle k-large\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-arrow-right\"></i></button><div class=\"k-indicator c-clearfix\"><div class=\"k-dot k-active\"></div><div class=\"k-dot\"></div><div class=\"k-dot\"></div><div class=\"k-dot\"></div></div></div>"
+```
+
 ## `cascader`
 
 ####   `Cascader basic`
@@ -413,7 +433,7 @@
 ####   `Form label`
 
 ```
-"<form class=\"k-form k-horizontal\" novalidate=\"\"><div class=\"k-form-item\"><label class=\"k-label\"><i style=\"color: red;\">*</i><!-- react-mount-point-unstable --> 姓名</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div><div class=\"k-form-item\"><label class=\"k-label\"><i class=\"ion-person\"></i><!-- react-mount-point-unstable --> 姓名</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div></form>"
+"<form class=\"k-form k-horizontal\" novalidate=\"\"><div class=\"k-form-item\"><label class=\"k-label\"><span class=\"k-star\">*</span>姓名</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div><div class=\"k-form-item\"><label class=\"k-label\"><i class=\"ion-person\"></i><!-- react-mount-point-unstable --> 姓名</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div></form>"
 ```
 
 ####   `Form layout`
