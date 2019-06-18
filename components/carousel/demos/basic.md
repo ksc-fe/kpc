@@ -6,7 +6,7 @@ order: 0
 ```vdt
 import {Carousel, CarouselItem} from 'kpc/components/carousel';
 
-<Carousel>
+<Carousel effect="fade">
     <CarouselItem>1</CarouselItem>
     <CarouselItem>2</CarouselItem>
     <CarouselItem>3</CarouselItem>

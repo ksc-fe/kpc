@@ -13,8 +13,10 @@ const classNameObj = {
 };
 
 <Animate class={{ classNameObj }}
+    ref="animate"
     a:show={{ active }}
     a:transition={{ _parent.get('_transition') }}
+    a:continuity={{ false }}
     {{ ...getRestProps(self) }}
 >
     {{ children }}

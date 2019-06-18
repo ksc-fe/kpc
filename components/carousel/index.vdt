@@ -3,11 +3,12 @@ import CarouselItem from './item';
 import Button from '../button';
 import Icon from '../icon';
 
-const {className, children, _translate} = self.get();
+const {className, children, arrow} = self.get();
 
 const classNameObj = {
     'k-carousel': true,
     [className]: className,
+    [`k-${arrow}`]: true,
 };
 
 self._values = [];
