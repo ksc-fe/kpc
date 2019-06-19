@@ -14,7 +14,7 @@ export default class extends Intact {
             qs[key] = value;
         });
 
-        const Demo = (await req(`./components/${qs.component}/demos/${qs.demo}/index.js`)).default;
+        const Demo = await req(`./components/${qs.component}/demos/${qs.demo}/index.js`);
         this.set({Demo});
     }
 }
