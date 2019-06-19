@@ -37,18 +37,19 @@ export default class Carousel extends Intact {
     }
 
     _mount() {
+        /* it has weird bug, when the window blur, the animation will be unexpected */
         // when the value has changed
         // cancel all animation before updating
-        this.on('$change:value', () => {
-            this._items.forEach(item => {
-                const animate = item.refs.animate;
-                if (animate._leaving) {
-                    animate._leaveEnd(null, true);
-                } else if (animate._entering) {
-                    animate._enterEnd(null, true);
-                }
-            });
-        });
+        // this.on('$change:value', () => {
+            // this._items.forEach(item => {
+                // const animate = item.refs.animate;
+                // if (animate._leaving) {
+                    // animate._leaveEnd(null, true);
+                // } else if (animate._entering) {
+                    // animate._enterEnd(null, true);
+                // }
+            // });
+        // });
 
         this.on('$change:autoplay', (c, v) => {
             clearTimeout(this.timer);
