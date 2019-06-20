@@ -1,0 +1,18 @@
+import {getRestProps, addStyle} from '../utils';
+
+const {children, className, style, _style, _containerStyle} = self.get();
+
+const classNameObj = {
+    'k-affix': true,
+    'k-fixed': _style,
+    [className]: className,
+};
+
+<div class={{ classNameObj }}
+    {{ ...getRestProps(self) }}
+    style={{ addStyle(style, _containerStyle) }}
+>
+    <div style={{ _style }}>
+        {{ children }}
+    </div>
+</div>

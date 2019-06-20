@@ -21,6 +21,7 @@ export default class Carousel extends Intact {
             value: '$0',
             autoplay: false,
             arrow: 'hover',
+            // TODO: change the implemention of slide animation
             effect: 'slide',
 
             _transition: 'k-left',
