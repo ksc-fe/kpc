@@ -103,11 +103,6 @@ export default class Table extends Intact {
 
         this.scrollLeft = 0;
 
-        if (browser.isIE) {
-            this._setStickyHeaderStyle = throttle(this._setStickyHeaderStyle, 100);
-            this._setStickScrollbarStyle = throttle(this._setStickScrollbarStyle, 100);
-        }
-        
         // keep the event consistent
         this.on('$change:checkedKeys', (c, newValue, oldValue) => {
             this.trigger('$change:checked', c, newValue, oldValue);
@@ -127,22 +122,8 @@ export default class Table extends Intact {
         ['fixHeader', 'scheme', 'children'].forEach(item => {
             this.on(`$changed:${item}`, this._setFixedColumnWidth);
         });
-        this.on('$changed:_isSticky', (c, v) => {
-            if (v) {
-                this._onStickyHeaderMount();
-            } else {
-                this._onStickyHeaderUnmount();
-            }
-        });
         this.on('$receive:stickHeader', (c, v) => {
             this.set('_isSticky', v != null && v !== false);
-        });
-        this.on('$changed:_isStickyScrollbar', (c, v) => {
-            if (v) {
-                this._onStickyScrollbarMount();
-            } else {
-                this._onStickyScrollbarUnmount();
-            }
         });
         this.on('$receive:stickScrollbar', (c, v) => {
             this.set('_isStickyScrollbar', v != null && v !== false);
@@ -196,37 +177,11 @@ export default class Table extends Intact {
 
         this._setFixedColumnWidth();
 
-        if (this.get('_isSticky')) {
-            this._onStickyHeaderMount();
-        }
-
-        if (this.get('_isStickyScrollbar')) {
-            this._onStickyScrollbarMount();
-        }
-
         const ro = this.ro = new ResizeObserver(() => {
             this._calcHeaderPadding();
             this._checkTableWidth();
         });
         ro.observe(this.element);
-    }
-
-    _onStickyHeaderMount() {
-        this._setStickyHeaderStyle();
-        window.addEventListener('scroll', this._setStickyHeaderStyle);
-    }
-
-    _onStickyHeaderUnmount() {
-        window.removeEventListener('scroll', this._setStickyHeaderStyle);
-    }
-
-    _onStickyScrollbarMount() {
-        this._setStickScrollbarStyle();
-        window.addEventListener('scroll', this._setStickScrollbarStyle);
-    }
-
-    _onStickyScrollbarUnmount() {
-        window.removeEventListener('scroll', this._setStickScrollbarStyle);
     }
 
     get(key, defaultValue) {
@@ -444,58 +399,22 @@ export default class Table extends Intact {
         }
     }
 
-    _setStickyHeaderStyle() {
-        let stickHeader = this.get('stickHeader');
-        if (stickHeader === true) {
-            stickHeader = 0;
-        }
-
-        const {top, bottom} = this.element.getBoundingClientRect();
-        if (top <= +stickHeader && bottom > +stickHeader) {
-            const containerWidth = this.element.offsetWidth;
-            const headerHeight = this.header.offsetHeight;
-            this.set({
-                '_sticky': {
-                    'width': containerWidth + 'px',
-                    'position': 'fixed',
-                    'top': `${stickHeader}px`,
-                },
-                '_headerHeight': `${headerHeight}px`,
-            });
-        } else {
-            this.set({
-                '_sticky': undefined, 
-                '_headerHeight': 0,
-            });
-        }
+    _excludeStickHeader({offsetTop}) {
+        const {bottom} = this.element.getBoundingClientRect();
+        return bottom <= offsetTop;
     }
 
-    _setStickScrollbarStyle() {
-        let stickScrollbar = this.get('stickScrollbar');
-        if (stickScrollbar === true) {
-            stickScrollbar = 0;
-        }
+    _shouldStickScrollbar({offsetBottom, viewportHeight}) {
         const {top, bottom} = this.element.getBoundingClientRect();
-        const viewportHeight = document.documentElement.clientHeight; 
-        const p = viewportHeight - stickScrollbar;
+        const p = viewportHeight - offsetBottom;
         if (bottom >= p && top < p) {
-            // we must set the scrollLeft when it has sticked
-            // because it is hidden before
+            this.set('_stickyScrollbarStyle', undefined); 
+            // update scrollLeft, because it can not be updated when it is hidden
             this.refs.scrollbar.scrollLeft = this.get('_scrollLeft');
-            const containerWidth = this.element.offsetWidth;
-            this.set({
-                '_stickyScrollbarStyle': {
-                    'width': containerWidth + 'px',
-                    'position': 'fixed',
-                    'bottom': `${stickScrollbar}px`,
-                },
-            });
+            return true;
         } else {
-            this.set({
-                '_stickyScrollbarStyle': {
-                    'display': 'none',
-                },
-            });
+            this.set('_stickyScrollbarStyle', {display: 'none'});
+            return false;
         }
     }
 
@@ -749,14 +668,6 @@ export default class Table extends Intact {
     _onWindowResize() {
         // this._resizeTableWhenDragable();
 
-        // reset the sticky header's width
-        // maybe the top of table has changed too
-        if (this.get('_isSticky')) {
-            this._setStickyHeaderStyle();
-        }
-        if (this.get('_isStickyScrollbar')) {
-            this._setStickScrollbarStyle();
-        }
         this._setFixedColumnWidth();
     }
 
@@ -810,13 +721,6 @@ export default class Table extends Intact {
     _destroy() {
         this._dragEnd();
         window.removeEventListener('resize', this._onWindowResize);
-        window.removeEventListener('scroll', this._setStickyHeaderStyle);
-        if (this.get('_isSticky')) {
-            this._onStickyHeaderUnmount();
-        }
-        if (this.get('_isStickyScrollbar')) {
-            this._onStickyScrollbarUnmount();
-        }
         if (this.ro) {
             this.ro.disconnect();
         }

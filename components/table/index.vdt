@@ -5,14 +5,15 @@ import {normalize} from 'intact';
 import Column from './column';
 import {noop, isStringOrNumber, getTextByChildren, getRestProps, mapChildren} from '../utils';
 import Spin from '../spin';
+import Affix from '../affix';
 
 const {
     checkType, scheme, checkedKeys, data, rowKey, 
     className, fixHeader, noDataTemplate, disableRow,
-    resizable, expandedKeys, type, _isSticky, stripe,
+    resizable, expandedKeys, type, _isSticky, stickHeader, stripe,
     style, rowClassName, children, sort, group, _scrollBarWidth,
     _scrollLeft, _scrollTop, _hoverIndex, _scrollPosition, 
-    _paddingBottom, _isStickyScrollbar, loading,
+    _paddingBottom, _isStickyScrollbar, stickScrollbar, loading,
     _isShowLeftRightMiddle, merge
 } = self.get();
 
@@ -191,21 +192,12 @@ const TheadCreator = ({onlyLeft, onlyRight, refContainer, style}) => {
     } 
     
     const thead = (
-        <thead>
-            <tr v-for={{ tableColumns }}>{{ value }}</tr>
-        </thead>
-    );
-
-    return (
         <div class="k-thead"
             style={{ do {
-                const style = self.get('_sticky');
                 if (onlyLeft) {
-                    ({...style, width: self.get('_leftWidth') + 'px'});
+                    ({width: self.get('_leftWidth') + 'px'});
                 } else if (onlyRight) {
-                    ({...style, width: self.get('_rightWidth') + 'px'});
-                } else {
-                    style;
+                    ({width: self.get('_rightWidth') + 'px'});
                 }
             } }}
             ref={{ refContainer }}
@@ -216,11 +208,21 @@ const TheadCreator = ({onlyLeft, onlyRight, refContainer, style}) => {
             >
                 <table style={{ style }}>
                     <colgroup>{{ cols }}</colgroup>
-                    {{ thead }}
+                    <thead>
+                        <tr v-for={{ tableColumns }}>{{ value }}</tr>
+                    </thead>
                 </table>
             </div>
         </div>
     );
+
+    return _isSticky ? 
+        <Affix top={{ stickHeader === true ? 0 : +stickHeader }}
+            exclude={{ self._excludeStickHeader }}
+        >
+            {{ thead }}
+        </Affix> :
+        thead;
 };
 
 const TbodyCreator = ({onlyLeft, onlyRight, refContainer, refTable, style}) => {
@@ -359,15 +361,16 @@ const TbodyCreator = ({onlyLeft, onlyRight, refContainer, refTable, style}) => {
     return (
         <div class="k-tbody"
             style={{ do {
-                let style = {};
+                let style;
                 if (!_isSticky &&
                     (typeof fixHeader === 'number' || 
                     typeof fixHeader === 'string')
                 ) {
                     style = {maxHeight: `${fixHeader - (onlyLeft || onlyRight ? _paddingBottom : 0)}px`};
-                } else if (_isSticky && self.get('_sticky.position')) {
-                    style = {paddingTop: self.get('_headerHeight')};
-                }
+                } 
+                /* else if (_isSticky && self.get('_sticky.position')) { */
+                    /* style = {paddingTop: self.get('_headerHeight')}; */
+                /* } */
                 style;
             } }}
             ref={{ refContainer }}
@@ -424,15 +427,20 @@ const classNameObj = {
         <TheadCreator onlyRight style={{ {width: self.get('_tableWidth') + 'px'} }} />
         <TbodyCreator onlyRight style={{ {width: self.get('_tableWidth') + 'px'} }} />
     </div>
-    <div class="k-scrollbar" style={{ self.get('_stickyScrollbarStyle') }}
-        ev-scroll={{ self._onScrollbarScroll }}
-        scrollLeft={{ _scrollLeft }}
-        ref="scrollbar"
-        v-if={{ _isStickyScrollbar }}
+    <Affix v-if={{ _isStickyScrollbar }}
+        bottom={{ stickScrollbar === true ? 0 : +stickScrollbar }} 
+        shouldFix={{ self._shouldStickScrollbar }}
+        style={{ self.get('_stickyScrollbarStyle') }}
     >
-        <div style={{ {width: self.get('_tableWidth') + 'px'} }}
-            class="k-inner"
-        ></div>
-    </div>
+        <div class="k-scrollbar"
+            ev-scroll={{ self._onScrollbarScroll }}
+            scrollLeft={{ _scrollLeft }}
+            ref="scrollbar"
+        >
+            <div style={{ {width: self.get('_tableWidth') + 'px'} }}
+                class="k-inner"
+            ></div>
+        </div>
+    </Affix>
     <Spin overlay size="small" v-if={{ loading }} />
 </div>

@@ -1,4 +1,5 @@
 @require('./variables.styl');
+@require('../affix/variables.styl')
 
 .k-table
     position relative
@@ -16,7 +17,7 @@
     .k-thead
         font-size $table-thead-font-size
         color $table-thead-color
-        // border-top $table-th-border-top
+        border-top $table-th-border-top 
         background $table-thead-bg-color
         // -webkit-backface-visibility hidden
         z-index 1
@@ -141,11 +142,11 @@
         visibility hidden
     .k-fixed-left
     .k-fixed-right
-        border-top $table-th-border-top
+        // border-top $table-th-border-top
         position absolute
         top 0
         overflow hidden
-        z-index 1
+        z-index $affix-z-index
         .k-thead
             width auto
         .k-tbody
@@ -198,11 +199,11 @@
     // sticky scrollbar
     &.k-sticky-scrollbar
         .k-scrollbar
-            position fixed 
+            // position fixed 
             overflow-x auto
             overflow-y hidden
-            bottom 0
-            z-index $max-z-index
+            // bottom 0
+            // z-index $max-z-index
             > .k-inner
                 height 1px
     // loading
@@ -216,7 +217,7 @@
 .k-table-wrapper
     // overflow auto
     overflow hidden
-    border-top $table-th-border-top
+    // border-top $table-th-border-top
     background $table-bg-color
 
 // group

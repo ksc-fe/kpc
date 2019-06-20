@@ -15,12 +15,16 @@ export default class Affix extends Intact {
     static propTypes = {
         top: Number,
         bottom: Number,
+        exclude: Function,
+        shouldFix: Function,
     };
 
     defaults() {
         return {
             top: undefined,
             bottom: undefined,
+            exclude: undefined,
+            shouldFix: undefined,
 
             _style: undefined,
             _containerStyle: undefined,
@@ -46,6 +50,8 @@ export default class Affix extends Intact {
 
         this._setStyle();
         window.addEventListener('scroll', this._setStyle);
+        // when window resize the position may change
+        window.addEventListener('resize', this._setStyle);
     }
 
     /**
@@ -71,41 +77,59 @@ export default class Affix extends Intact {
     }
 
     _setStyle() {
-        let {top: offsetTop, bottom: offsetBottom} = this.get();
+        let {top: offsetTop, bottom: offsetBottom, exclude, shouldFix} = this.get();
         const {top, bottom, width, height} = this.element.getBoundingClientRect();
+
+        const resetStyle = () => {
+            this.set({'_style': undefined, '_containerStyle': undefined});
+        };
         const setStyle = (style) => {
-            this.set({
-                '_style': {
-                    position: 'fixed',
-                    width: `${width}px`,
-                    ...style,
-                },
-                '_containerStyle': {
-                    // width: `${width}px`,
-                    height: `${height}px`,
-                }
-            });
-        }
+            if (!exclude || exclude && !exclude.call(this, {
+                offsetTop, offsetBottom, top, bottom, width, height
+            })) {
+                this.set({
+                    '_style': {
+                        position: 'fixed',
+                        width: `${width}px`,
+                        ...style,
+                    },
+                    '_containerStyle': {
+                        // width: `${width}px`,
+                        height: `${height}px`,
+                    }
+                });
+            } else {
+                resetStyle();
+            }
+        };
 
         if (offsetTop == null && offsetBottom == null) {
             offsetTop = 0;
         }
+
         if (offsetTop != null) {
-            if (top <= offsetTop) {
+            if (
+                shouldFix && shouldFix.call(this, {offsetTop, offsetBottom}) || 
+                !shouldFix && top <= offsetTop
+            ) {
                 return setStyle({top: `${offsetTop}px`});
-            } 
+            }
         } else {
             const viewportHeight = document.documentElement.clientHeight;
-            if (viewportHeight - bottom <= offsetBottom) {
+            if (
+                shouldFix && shouldFix.call(this, {offsetTop, offsetBottom, viewportHeight}) || 
+                !shouldFix && viewportHeight - bottom <= offsetBottom
+            ) {
                 return setStyle({bottom: `${offsetBottom}px`});
             }
         }
 
-        return this.set({'_style': undefined, '_containerStyle': undefined});
+        return resetStyle();
     }
 
     _destroy() {
         window.removeEventListener('scroll', this._setStyle);
+        window.removeEventListener('resize', this._setStyle);
         this._disconnect();
     }
 }
