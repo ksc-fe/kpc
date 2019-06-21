@@ -7,9 +7,14 @@ export function render(Component, props) {
     return c;
 }
 
-export function mount(Component) {
+export function mount(Component, style) {
     const container = document.createElement('div');
     container.style = "width: 800px; height: 1080px; overflow: auto";
+    if (style) {
+        for (let key in style) {
+            container.style[key] = style[key];
+        }
+    }
     document.body.appendChild(container);
     const instance = Intact.mount(Component, container);
     // scroll to the view

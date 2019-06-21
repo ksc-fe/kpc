@@ -17,7 +17,7 @@ import Button from 'kpc/components/button';
     <Affix top={{ 150 }} shouldFix={{ self._shouldFix }}>
         <Button type="primary">fix at 150px from the top while scroll top 100px</Button>
     </Affix>
-    <Affix bottom={{ 0 }} exclude={{ self._exclude }}>
+    <Affix bottom={{ 0 }} exclude={{ self._exclude }} ref="__test">
         <Button type="primary">fix at the bottom only while this demo is in viewport</Button>
     </Affix>
 </div>
@@ -42,8 +42,7 @@ export default class extends Intact {
     _exclude() {
         // when this demo is not in the viewport
         // don't fix it
-        const example = this.refs.node.closest('.example');
-        const {top} = example.getBoundingClientRect();
+        const {top} = this.refs.node.getBoundingClientRect();
         const viewport = document.documentElement.clientHeight;
 
         return top > viewport; 

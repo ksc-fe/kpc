@@ -41,12 +41,16 @@ export default class Affix extends Intact {
                 this._disconnect();
             }
         });
-        const keys = ['top', 'bottom'];
-        this.on('$receive', (c, _keys) => {
-            if (keys.find(key => _keys.indexOf(key) > -1)) {
-                this._setStyle();
-            }
-        });
+        // for convenience of unit test
+        ['top', 'bottom'].forEach(item => {
+            this.on(`$change:${item}`, this._setStyle);
+        })
+        // const keys = ['top', 'bottom'];
+        // this.on('$receive', (c, _keys) => {
+            // if (keys.find(key => _keys.indexOf(key) > -1)) {
+                // this._setStyle();
+            // }
+        // });
 
         this._setStyle();
         window.addEventListener('scroll', this._setStyle);
@@ -76,7 +80,7 @@ export default class Affix extends Intact {
         }
     }
 
-    _setStyle() {
+    _setStyle(e) {
         let {top: offsetTop, bottom: offsetBottom, exclude, shouldFix} = this.get();
         const {top, bottom, width, height} = this.element.getBoundingClientRect();
 

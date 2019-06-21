@@ -1,8 +1,8 @@
 import {render, mount, testDemos, unmount, wait} from './utils';
 import Vue from 'vue';
 
-const req = require.context('~/components/', true, /demos\/.*index\.js$/);
-const vueReq = require.context('~/components/', true, /demos\/.*index\.vue$/);
+const req = require.context('~/components/', true, /^((?!affix).)*\/demos\/.*index\.js$/);
+const vueReq = require.context('~/components/', true, /^((?!affix).)*\/demos\/.*index\.vue$/);
 
 describe('Demos', () => {
     let demo;
