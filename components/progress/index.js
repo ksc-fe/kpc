@@ -21,7 +21,7 @@ export default class Progress extends Intact{
         size: ['default', 'small', 'mini'],
         isOuterText: Boolean,
         isInnerText: Boolean,
-        status: ['active', 'success', 'error', 'normal'],
+        status: ['active', 'success', 'error', 'normal', 'warning'],
         strokeWidth: Number,
     }
 
@@ -32,7 +32,7 @@ export default class Progress extends Intact{
             size: 'default', // small mini
             isOuterText: true,
             isInnerText: false,
-            status: 'active', // success | error | active | normal
+            status: 'active',
             strokeWidth: 4, 
         };
     }

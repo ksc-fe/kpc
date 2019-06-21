@@ -11,12 +11,12 @@ describe('Affix', () => {
         this.enableTimeouts(false);
         instance = mount(BasicDemo, {marginTop: '200px'});
 
-        await wait();
+        await wait(100);
         expect(instance.element.innerHTML).to.matchSnapshot();
 
         // scroll to the top
         window.scrollTo(0, 0);
-        await wait();
+        await wait(100);
         expect(instance.element.innerHTML).to.matchSnapshot();
         // change bottom
         instance.refs.__test.set('bottom', 900);
