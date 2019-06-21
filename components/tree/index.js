@@ -22,6 +22,7 @@ export default class Tree extends Intact {
         draggable: Boolean,
         allowDrag: Function,
         allowDrop: Function,
+        uncorrelated: Boolean,
     };
 
     static events = {
@@ -45,6 +46,7 @@ export default class Tree extends Intact {
             draggable: false,
             allowDrag: undefined,
             allowDrop: undefined,
+            uncorrelated: false,
         }
     }
 
@@ -66,6 +68,7 @@ export default class Tree extends Intact {
         this.on('$receive:selectedKeys', () => {
             this.selectedKeys = new Set(this.get('selectedKeys'));
         });
+        this.on('$receive:uncorrelated', this._mappingKeys);
 
         this._handleDragOver = debounce(this._handleDragOver, 100);
     }
@@ -215,7 +218,8 @@ export default class Tree extends Intact {
             // lastProps.data !== nextProps.data ||
             // lastProps.checkedKeys !== nextProps.checkedKeys ||
             lastProps.filter !== nextProps.filter ||
-            lastProps.expandedKeys !== nextProps.expandedKeys
+            lastProps.expandedKeys !== nextProps.expandedKeys ||
+            lastProps.uncorrelated !== nextProps.uncorrelated
         ) return;
 
         this._mappingKeys();

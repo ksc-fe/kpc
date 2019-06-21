@@ -65,6 +65,8 @@ export default class Node {
 
         this.tree._updateCheckedKeys(this);
         
+        if (this.tree.get('uncorrelated')) return;
+
         const children = this.children;
         if (children) {
             for (let i = 0; i < children.length; i++) {
@@ -77,6 +79,8 @@ export default class Node {
     }
 
     updateUpward() {
+        if (this.tree.get('uncorrelated')) return;
+
         const parent = this.parent;
         if (!parent || parent === this.tree.root) return;
 
