@@ -1464,6 +1464,12 @@
 "<div><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">get selected data</button><br><br><div class=\"k-tree\"><div class=\"k-node\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">First floor-1</span></div></div><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">First floor-2</span></div><div class=\"k-tree\"><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Second floor-2.1</span></div><div class=\"k-tree\"><div class=\"k-node k-expanded k-selected\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Third floor-2.1.1</span></div><div class=\"k-tree\"></div></div><div class=\"k-node\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Third floor-2.1.2</span></div></div></div></div><div class=\"k-node k-disabled\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Second floor-2.2</span></div></div></div></div></div></div>"
 ```
 
+####   `Tree uncorrelated`
+
+```
+"<div class=\"k-tree\"><div class=\"k-node\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label><span class=\"k-text\">First floor-1</span></div></div><div class=\"k-node\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label><span class=\"k-text\">First floor-2</span></div></div></div>"
+```
+
 ## `upload`
 
 ####   `Upload basic`
