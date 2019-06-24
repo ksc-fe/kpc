@@ -45,16 +45,12 @@ export default class Code extends Intact {
     }
 
     _mount() {
-        new Promise(resolve => {
-            require.ensure([], require => {
-                let monaco = require('monaco-editor');
-                if (monaco.default) {
-                    monaco = monaco.default;
-                }
-                resolve(monaco);
-            });
-        }).then(monaco => {
+        import('monaco-editor').then(monaco => {
             if (this.destroyed) return;
+
+            if (monaco.default) {
+                monaco = monaco.default;
+            }
 
             const {value, language, theme, options, readonly} = this.get();
             this.Editor = monaco.editor;

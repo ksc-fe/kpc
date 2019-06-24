@@ -307,21 +307,14 @@ export default class Table extends Intact {
             instance.init(null, this.vNode);
         }
 
-        let download = await new Promise(resolve => {
-            require.ensure([], require => {
-                let download = require('downloadjs');
-                if (download.default) {
-                    download = download.default;
-                }
-                resolve(download);
-            });
-        });
         // in webpack 1, it doesn't support dynamic import
-        // import('downloadjs');
+        // we must handle this file by babel-loader and sepcify plugin `dynamic-webpack-import`
+        // #304
+        let download = await import('downloadjs');
         // in webpack 4, we need to access the default property to get the value of module.exports
-        // if (download.default) {
-            // download = download.default;
-        // }
+        if (download.default) {
+            download = download.default;
+        }
         const collection = [];
         const ignoreCheck = instance.get('checkType') !== 'none';
         const push = (item) => {
