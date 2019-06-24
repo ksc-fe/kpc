@@ -28,6 +28,7 @@ sidebar: doc
 | hideLabel | 是否隐藏`label`，默认会展示`label`，即使该属性为空，也会展示占位元素 | `Boolean` | `false` |
 | isDirty | 组件是否被污染，组件只有被污染后，才会进行表单验证 | `Boolean` | `false` |
 | force | 如果组件被污染，让`FormItem`更新时，强制验证。你也可以配合`isDirty`属性，指定强制验证的时机 [#6][1] | `Boolean` | `false` |
+| fluid | `FormItem`的宽度默认是被子元素撑开的，添加该属性可以渲染`100%`的宽度 | `Boolean` | `false` |
 
 # 扩展点
 

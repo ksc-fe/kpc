@@ -20,6 +20,7 @@ export default class FormItem extends Intact {
         htmlFor: String,
         hideLabel: Boolean,
         force: Boolean,
+        fluid: Boolean,
     };
 
     static events = {
@@ -42,6 +43,7 @@ export default class FormItem extends Intact {
             htmlFor: undefined,
             hideLabel: false,
             force: false,
+            fluid: false,
         }
     }
 

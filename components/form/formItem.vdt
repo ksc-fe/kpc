@@ -3,7 +3,7 @@ import {getRestProps} from '../utils';
 const {
     className, children, label,
     isValid, isDirty, hideLabel, htmlFor,
-    errorClassName, rules
+    errorClassName, rules, fluid
 } = self.get();
 
 const classNameObj = {
@@ -11,6 +11,7 @@ const classNameObj = {
     'k-invalid': isDirty && isValid === false,
     'k-valid': isDirty && isValid === true,
     [className]: className,
+    'k-fluid': fluid,
 };
 
 const labelWidth = self.form && self.form.get('labelWidth');
