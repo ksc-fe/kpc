@@ -5,8 +5,14 @@ export default class CarouselItem extends Intact {
     @Intact.template()
     static template = template;
 
+    static propTypes = {
+        value: String,
+    };
+    
     defaults() {
         return {
+            value: undefined,
+
             _isCloned: false,
             _isFirst: false,
             _isLast: false,

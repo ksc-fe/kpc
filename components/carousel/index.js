@@ -13,9 +13,11 @@ export default class Carousel extends Intact {
     static template = template;
 
     static propTypes = {
+        value: String,
         autoplay: [Number, Boolean],
         arrow: ['hover', 'always', 'never'],
         effect: ['slide', 'fade'],
+        clonedAmount: Number,
     }
 
     static displayName = 'Carousel';
@@ -26,6 +28,7 @@ export default class Carousel extends Intact {
             autoplay: false,
             arrow: 'hover',
             effect: 'slide',
+            clonedAmount: 1,
             
             _width: undefined,
             _translate: 0,
@@ -48,6 +51,11 @@ export default class Carousel extends Intact {
                 this._initStatus();
             } else {
                 this._disconnect();
+            }
+        });
+        this.on('$change:clonedAmount', () => {
+            if (this._isSlide()) {
+                this._initStatus();
             }
         });
     }

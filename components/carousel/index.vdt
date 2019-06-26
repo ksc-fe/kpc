@@ -5,7 +5,7 @@ import Icon from '../icon';
 
 const {
     className, children, arrow, effect,
-    _translate, _stopTransition
+    _translate, _stopTransition, clonedAmount
 } = self.get();
 
 const classNameObj = {
@@ -39,23 +39,25 @@ mapChildren(children, vNode => {
 });
 
 const isSlide = self._isSlide();
-
-if (isSlide) {
+const l = _children.length;
+if (isSlide && l) {
     // clone first and last vNode for loop
-    const firstVNode = _children[0];
-    const lastVNode = _children[_children.length - 1];
-    _children.push(h(firstVNode.tag, {
-        ...firstVNode.props,
-        _isCloned: true,
-        _isFirst: true, 
-        key: `$cloned:${firstVNode.props.key}`
-    }));
-    _children.unshift(h(lastVNode.tag, {
-        ...lastVNode.props, 
-        _isCloned: true, 
-        _isLast: true,
-        key: `$cloned:${lastVNode.props.key}`
-    }));
+    const clone = (vNode, props, index) => {
+        return h(vNode.tag, {
+            ...vNode.props,
+            _isCloned: true,
+            key: `$cloned:${vNode.props.key}:${index}`,
+            ...props,
+        });
+    };
+    const firstVNodes = [];
+    const lastVNodes = [];
+    for (let i = 0; i < clonedAmount; i++) {
+        firstVNodes.push(clone(_children[i % l], {_isFirst: i === 0}, i));
+        lastVNodes.unshift(clone(_children[((l - i - 1) % l + l) % l], {_isLast: i === 0}, i));
+    }
+    _children.push(...firstVNodes);
+    _children.unshift(...lastVNodes);
 }
 
 <div class={{ classNameObj }} 
