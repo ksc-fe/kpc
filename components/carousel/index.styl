@@ -55,21 +55,23 @@
         > .k-btn
             display none
 
+
+    &.k-slide
+        > .k-wrapper
+            transition transform $carousel-transition
+            white-space nowrap
+    &.k-stop
+        > .k-wrapper
+            transition none
+
+    // fade
+    &.k-fade
+        .k-carousel-item
+            position absolute
 .k-carousel-item
-    position absolute
     width 100%
     height 100%
-    &.k-left-leave-active
-    &.k-left-enter-active
-    &.k-right-leave-active
-    &.k-right-enter-active
-        transition transform $carousel-transition
-    &.k-left-leave
-    &.k-right-enter
-        transform translateX(-100%)
-    &.k-left-enter
-    &.k-right-leave
-        transform translateX(100%) 
+    display inline-block
 
     // fade
     &.k-fade-enter-active

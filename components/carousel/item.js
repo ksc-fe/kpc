@@ -5,14 +5,39 @@ export default class CarouselItem extends Intact {
     @Intact.template()
     static template = template;
 
-    // _mount() {
-        // const {_parent} = this.get();
-        // _parent._items.push(this);
-    // }
+    defaults() {
+        return {
+            _isCloned: false,
+            _isFirst: false,
+            _isLast: false,
+        };
+    }
 
-    // _destroy() {
-        // const items = this.get('_parent')._items;
-        // const index = items.indexOf(this);
-        // items.splice(index, 1);
-    // }
+    _mount() {
+        const {_parent, _isCloned, _isFirst, _isLast} = this.get();
+        if (!_isCloned) {
+            _parent._items.push(this);
+        } else {
+            if (_isFirst) {
+                _parent._firstCloned = this;
+            } else if (_isLast) {
+                _parent._lastCloned = this;
+            }
+        }
+    }
+
+    _destroy() {
+        const {_parent, _isCloned, _isFirst, _isLast} = this.get();
+        if (!_isCloned) {
+            const items = _parent._items;
+            const index = items.indexOf(this);
+            items.splice(index, 1);
+        } else {
+            if (_isFirst) {
+                _parent._firstCloned = null;
+            } else if (_isLast) {
+                _parent._lastCloned = null;
+            }
+        }
+    }
 }

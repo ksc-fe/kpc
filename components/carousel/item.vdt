@@ -2,7 +2,7 @@ import {getRestProps} from '../utils';
 
 const {
     className, children, value,
-    _parent
+    _parent, _isCloned
 } = self.get();
 
 const active = _parent._isActive(value);
@@ -10,12 +10,14 @@ const classNameObj = {
     'k-carousel-item': true,
     [className]: className,
     'k-active': active,
+    'k-cloned': _isCloned,
 };
+const isSlide = _parent._isSlide();
 
 <Animate class={{ classNameObj }}
-    ref="animate"
-    a:show={{ active }}
-    a:transition={{ _parent.get('_transition') }}
+    a:show={{ isSlide || active }}
+    a:disabled={{ isSlide }}
+    a:transition="k-fade"
     a:continuity={{ false }}
     {{ ...getRestProps(self) }}
 >

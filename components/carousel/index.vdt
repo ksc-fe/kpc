@@ -3,17 +3,23 @@ import CarouselItem from './item';
 import Button from '../button';
 import Icon from '../icon';
 
-const {className, children, arrow} = self.get();
+const {
+    className, children, arrow, effect,
+    _translate, _stopTransition
+} = self.get();
 
 const classNameObj = {
     'k-carousel': true,
     [className]: className,
     [`k-${arrow}`]: true,
+    'k-stop': _stopTransition,
+    [`k-${effect}`]: true,
 };
 
 self._values = [];
 let index = 0;
-const _children = mapChildren(children, vNode => {
+const _children = [];
+mapChildren(children, vNode => {
     if (vNode.tag === CarouselItem) {
         const props = vNode.props;
         const _props = {_parent: self};
@@ -21,13 +27,45 @@ const _children = mapChildren(children, vNode => {
             _props.value = `$${index++}`;
         }
         vNode.props = {...props, ..._props};
-        self._values.push(vNode.props.value);
+        const value = vNode.props.value;
+        if (props.key == null) {
+            vNode.props.key = value;
+        }
+
+        self._values.push(value);
+
+        _children.push(vNode);
     }
-    return vNode;
 });
 
-<div class={{ classNameObj }} {{ ...getRestProps(self) }}>
-    <div class="k-wrapper">
+const isSlide = self._isSlide();
+
+if (isSlide) {
+    // clone first and last vNode for loop
+    const firstVNode = _children[0];
+    const lastVNode = _children[_children.length - 1];
+    _children.push(h(firstVNode.tag, {
+        ...firstVNode.props,
+        _isCloned: true,
+        _isFirst: true, 
+        key: `$cloned:${firstVNode.props.key}`
+    }));
+    _children.unshift(h(lastVNode.tag, {
+        ...lastVNode.props, 
+        _isCloned: true, 
+        _isLast: true,
+        key: `$cloned:${lastVNode.props.key}`
+    }));
+}
+
+<div class={{ classNameObj }} 
+    {{ ...getRestProps(self) }}
+>
+    <div class="k-wrapper"
+        style={{ {
+            transform: isSlide ? `translate3d(${_translate}px, 0, 0)` : undefined,
+        } }} 
+    >
         {{ _children }}
     </div>
     <Button icon circle type="none" size="large" class="k-prev"
@@ -43,7 +81,7 @@ const _children = mapChildren(children, vNode => {
     <div class="k-indicator c-clearfix">
         <div v-for={{ self._values }}
             class={{ {'k-dot': true, 'k-active': self._isActive(value)} }}
-            ev-click={{ self._changeValue.bind(self, value) }}
+            ev-click={{ self._setValue.bind(self, key, false) }}
         ></div>
     </div>
 </div>

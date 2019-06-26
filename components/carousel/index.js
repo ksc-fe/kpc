@@ -3,6 +3,8 @@ import template from './index.vdt';
 import CarouselItem from './item';
 import '../../styles/kpc.styl';
 import './index.styl';
+import {nextFrame} from '../utils';
+import ResizeObserver from 'resize-observer-polyfill'; 
 
 const defaultTimeout = 5000;
 
@@ -16,48 +18,93 @@ export default class Carousel extends Intact {
         effect: ['slide', 'fade'],
     }
 
+    static displayName = 'Carousel';
+
     defaults() {
         return {
             value: '$0',
             autoplay: false,
             arrow: 'hover',
-            // TODO: change the implemention of slide animation
             effect: 'slide',
-
-            _transition: 'k-left',
+            
+            _width: undefined,
+            _translate: 0,
+            _stopTransition: false,
         }
     }
 
     _init() {
         this._items = [];
+        this._firstCloned = null;
+        this._lastCloned = null;
+
         this.on('$receive:autoplay', (c, v) => {
             if (v === true) {
                 this.set('autoplay', defaultTimeout, {silent: true});
             }
         });
+        this.on('$change:effect', (c, v) => {
+            if (this._isSlide()) {
+                this._initStatus();
+            } else {
+                this._disconnect();
+            }
+        });
     }
 
-    _mount() {
-        /* it has weird bug, when the window blur, the animation will be unexpected */
-        // when the value has changed
-        // cancel all animation before updating
-        // this.on('$change:value', () => {
-            // this._items.forEach(item => {
-                // const animate = item.refs.animate;
-                // if (animate._leaving) {
-                    // animate._leaveEnd(null, true);
-                // } else if (animate._entering) {
-                    // animate._enterEnd(null, true);
-                // }
-            // });
-        // });
+    _mount(lastVNode, nextVNode) {
+        /* istanbul ignore if */
+        if (lastVNode && lastVNode.tag && lastVNode.tag.displayName === 'Carousel') {
+            // if use hot-reload, the tag is the same, but they are two different contructors
+            const lastInstance = lastVNode.children;
+            this._items = lastInstance._items;
+            this._firstCloned = lastInstance._firstCloned;
+            this._lastCloned = lastInstance._lastCloned;
+        }
 
         this.on('$change:autoplay', (c, v) => {
             clearTimeout(this.timer);
             this._autoplay();
         });
 
-        this._autoplay();
+        if (this._isSlide()) {
+            this._initStatus();
+        }
+    }
+
+    _initStatus() {
+        const init = () => {
+            this.containerWidth = this.element.offsetWidth;
+
+            this._stopTransition();
+            this._setValue(this._getIndex(), false);
+            this._startTransition();
+        }
+
+        const ro = this.ro = new ResizeObserver(init);
+        ro.observe(this.element);
+
+        init();
+    }
+
+    _disconnect() {
+        if (this.ro) {
+            this.ro.disconnect();
+            this.ro = null;
+        }
+    }
+
+    _stopTransition() {
+        this.set({_stopTransition: true});
+    }
+
+    _startTransition() {
+        return new Promise(resolve => {
+            nextFrame(() => {
+                this.set({_stopTransition: false});
+                resolve();
+            });
+        });
     }
 
     _autoplay() {
@@ -68,32 +115,59 @@ export default class Carousel extends Intact {
         }
     }
 
-    _setValue(value, _transition) {
-        this.set({value, _transition});
+    async _setValue(index, keepDirection) {
+        const values = this._values;
+        const value = values[index];
+
+        if (this._isSlide()) {
+            if (keepDirection) {
+                const oldValue = this.get('value');
+                const length = values.length;
+                if (oldValue === values[length - 1] && index === 0) {
+                    // the current value is the last one and the next value is the first one
+                    // we got back to the first cloned node
+                    this._stopTransition();
+                    this.set('_translate', this._getTranslate(this._lastCloned));
+                    await this._startTransition();
+                } else if (oldValue === values[0] && index === length - 1) {
+                    // contrary situation
+                    this._stopTransition();
+                    this.set('_translate', this._getTranslate(this._firstCloned));
+                    await this._startTransition();
+                }
+            }
+
+            const item = this._items[index];
+            const _translate = this._getTranslate(item);
+            this.set({value, _translate});
+        } else {
+            this.set({value});
+        }
 
         this._autoplay();
     }
 
-    _changeValue(value) {
-        this._setValue(value, this._getTransition(value));
+    _getTranslate(item) {
+        const el = item.element;
+        const offsetLeft = el.offsetLeft;
+        const width = el.offsetWidth; 
+        // let item position center
+        this.containerWidth = this.element.offsetWidth;
+        return -(offsetLeft - (this.containerWidth - width) / 2);
     }
 
     _next() {
         const values = this._values;
         const index = this._getIndex();
-        this._setValue(
-            values[(index + 1) % values.length],
-            this._getTransition(null, 'left')
-        );
+        const newIndex = (index + 1) % values.length;
+        this._setValue(newIndex, true);
     }
 
     _prev() {
         const values = this._values;
         const index = this._getIndex();
-        this._setValue(
-            values[(index + values.length - 1) % values.length],
-            this._getTransition(null, 'right')
-        );
+        const newIndex = (index + values.length - 1) % values.length;
+        this._setValue(newIndex, true);
     }
 
     _getIndex() {
@@ -106,26 +180,15 @@ export default class Carousel extends Intact {
         return this.get('value') === v;
     }
 
-    _getTransition(nextValue, arrow) {
-        const {value, effect} = this.get();
-
-        if (effect === 'fade') return 'k-fade';
-        if (arrow) return `k-${arrow}`;
-
-        const values = this._values; // this property is set in index.vdt
-        const lastIndex = values.indexOf(value);
-        const nextIndex = values.indexOf(nextValue);
-        if (lastIndex > nextIndex) {
-            return 'k-right';
-        } else {
-            return 'k-left';
-        }
+    _isSlide() {
+        return this.get('effect') === 'slide';
     }
 
     _destroy() {
         if (this.get('autoplay')) {
             clearTimeout(this.timer);
         }
+        this._disconnect();
     }
 }
 
