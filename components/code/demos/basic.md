@@ -54,8 +54,6 @@ order: 0
 > },
 > ```
 > 或者也可以使用[terser](https://github.com/terser-js/terser)(`uglify-es`不维护了)进行压缩
->
-> （该问题已提pull request，如果被合并的话，就不需要这么处理了）
 
 ```vdt
 import Code from 'kpc/components/code';

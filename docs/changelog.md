@@ -4,6 +4,10 @@ order: 99
 sidebar: doc
 ---
 
+## v0.8.11
+
+1. `Add` `Table`调整列宽后，支持持久化保存列宽信息 [#292](https://github.com/ksc-fe/kpc/issues/292)
+
 ## v0.8.10
 
 ### Core

@@ -46,18 +46,6 @@ export default class Carousel extends Intact {
                 this.set('autoplay', defaultTimeout, {silent: true});
             }
         });
-        this.on('$change:effect', (c, v) => {
-            if (this._isSlide()) {
-                this._initStatus();
-            } else {
-                this._disconnect();
-            }
-        });
-        this.on('$change:clonedAmount', () => {
-            if (this._isSlide()) {
-                this._initStatus();
-            }
-        });
     }
 
     _mount(lastVNode, nextVNode) {
@@ -74,6 +62,18 @@ export default class Carousel extends Intact {
             clearTimeout(this.timer);
             this._autoplay();
         });
+        this.on('$change:effect', (c, v) => {
+            if (this._isSlide()) {
+                this._initStatus();
+            } else {
+                this._disconnect();
+            }
+        });
+        this.on('$change:clonedAmount', () => {
+            if (this._isSlide()) {
+                this._initStatus();
+            }
+        });
 
         if (this._isSlide()) {
             this._initStatus();
@@ -85,7 +85,7 @@ export default class Carousel extends Intact {
             this.containerWidth = this.element.offsetWidth;
 
             this._stopTransition();
-            this._setValue(this._getIndex(), false);
+            this._setIndex(this._getIndex(), false);
             this._startTransition();
         }
 
@@ -123,7 +123,7 @@ export default class Carousel extends Intact {
         }
     }
 
-    async _setValue(index, keepDirection) {
+    async _setIndex(index, keepDirection) {
         const values = this._values;
         const value = values[index];
 
@@ -168,14 +168,14 @@ export default class Carousel extends Intact {
         const values = this._values;
         const index = this._getIndex();
         const newIndex = (index + 1) % values.length;
-        this._setValue(newIndex, true);
+        this._setIndex(newIndex, true);
     }
 
     _prev() {
         const values = this._values;
         const index = this._getIndex();
         const newIndex = (index + values.length - 1) % values.length;
-        this._setValue(newIndex, true);
+        this._setIndex(newIndex, true);
     }
 
     _getIndex() {

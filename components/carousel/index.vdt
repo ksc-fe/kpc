@@ -83,7 +83,7 @@ if (isSlide && l) {
     <div class="k-indicator c-clearfix">
         <div v-for={{ self._values }}
             class={{ {'k-dot': true, 'k-active': self._isActive(value)} }}
-            ev-click={{ self._setValue.bind(self, key, false) }}
+            ev-click={{ self._setIndex.bind(self, key, false) }}
         ></div>
     </div>
 </div>
