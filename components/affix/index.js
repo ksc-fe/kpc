@@ -137,3 +137,5 @@ export default class Affix extends Intact {
         this._disconnect();
     }
 }
+
+export {Affix};
