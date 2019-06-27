@@ -23,7 +23,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const pages = {
     '/': 'index',
-    'demo': 'demo',
 }; 
 const vdtFile = path.resolve(__dirname, './site/src/index.vdt');
 const isDev = process.env.NODE_ENV !== 'production';
@@ -94,6 +93,7 @@ gulp.task('webpack', () => {
 });
 
 gulp.task('dev:doc:server', async () => {
+    pages.demo = 'demo';
     await Promise.all(Object.keys(pages).map(async key => {
         await new Promise(resolve => {
             fs.writeFile(
