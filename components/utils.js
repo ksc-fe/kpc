@@ -272,8 +272,6 @@ if (typeof window !== 'undefined') {
 }
 export function nextFrame(fn) {
     raf(() => raf(fn));
-    // bellow does not work in firefox
-    // raf(fn);
 }
 
 export function debounce(fn, delay) {

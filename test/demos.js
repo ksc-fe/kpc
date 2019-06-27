@@ -1,4 +1,4 @@
-import {render, mount, testDemos, unmount, wait} from './utils';
+import {render, mount, testDemos, unmount, wait, nextFrame} from './utils';
 import Vue from 'vue';
 
 const req = require.context('~/components/', true, /^((?!affix).)*\/demos\/.*index\.js$/);
@@ -14,7 +14,7 @@ describe('Demos', () => {
     describe('Intact', () => {
         testDemos(req, async (Demo) => {
             demo = mount(Demo);
-            await wait(100);
+            await nextFrame();
             expect(demo.element.outerHTML).to.matchSnapshot();
         });
     });
@@ -41,7 +41,7 @@ describe('Demos', () => {
 
         testDemos(vueReq, async (Demo) => {
             demo = mount(wrap(Demo));
-            await wait(100);
+            await nextFrame();
             expect(demo.element.outerHTML).to.matchSnapshot();
         });
     });

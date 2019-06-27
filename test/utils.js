@@ -1,4 +1,5 @@
 import Intact from 'intact';
+import {nextFrame as _nextFrame} from '../components/utils';
 
 export function render(Component, props) {
     const c = new Component(props); 
@@ -95,5 +96,11 @@ export function testDemos(req, test) {
 export function wait(time) {
     return new Promise(resolve => {
         setTimeout(resolve, time);
+    });
+}
+
+export function nextFrame() {
+    return new Promise(resolve => {
+        _nextFrame(resolve);
     });
 }
