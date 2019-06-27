@@ -29,6 +29,7 @@ export default class extends Intact {
     defaults() {
         return {
             theme: theme,
+            version: 'v1.1.1'
         };
     }
 

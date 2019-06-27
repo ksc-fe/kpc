@@ -13,7 +13,7 @@ const labelObj = {
 };
 
 const Options = (props) => {
-    const data = props.data;
+    const data = props.data || [];
     const level = props.level;
     const ret = [];
 
@@ -55,7 +55,7 @@ const Options = (props) => {
                     of="parent"
                     disabled={{ item.disabled }}
                     trigger={{ trigger }}
-                    show={{ active }}
+                    value={{ active }}
                 >
                     <Item />
                     <DropdownMenu
@@ -83,7 +83,7 @@ if (!filterable || !keywords) {
                 "k-select-dropdown": true,
                 "k-cascader-dropdown": true,
             } }}
-            ev-$change:show={{ self._onChangeShow }}
+            ev-$change:value={{ self._onChangeShow }}
             key="cascader"
         >
             <Options data={{ data }} level={{ 0 }} />
@@ -91,13 +91,13 @@ if (!filterable || !keywords) {
     );
 } else {
     Menu = (
-        <DropdownMenu ev-$changed:show={{ self._position }}
+        <DropdownMenu ev-$changed:value={{ self._position }}
             ref="menu"
             class={{ {
                 "k-select-dropdown": true,
                 "k-cascader-filterable-dropdown": true, 
             } }}
-            ev-$change:show={{ self._onChangeShow }}
+            ev-$change:value={{ self._onChangeShow }}
             key="filterable"
         >
             <DropdownItem v-for={{ self._filter() }}
@@ -120,6 +120,10 @@ if (!filterable || !keywords) {
     )
 }
 
-labelObj.label = format.call(this, labelObj.values);
+labelObj.label = blocks.format ? 
+    <b:format args={{ [labelObj.values] }}>{{ do {
+        labelObj.values.map(value => value.label).join(' / ')
+    } }}</b:format> : 
+    format.call(this, labelObj.values);
 
 <t:parent Menu={{ Menu }} class="k-cascader" labelObj={{ labelObj }} />

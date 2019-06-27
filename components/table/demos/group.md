@@ -14,43 +14,47 @@ order: 11
 > `group`属性不会双向绑定，所以在改变时，你应该同步更新当前属性值(`sort`也一样)
 
 ```vdt
-import Table, {TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc/components/table';
 
 const scheme = {
-	name: '名称',
-	status: {
-		title: '状态',
+    name: '名称',
+    status: {
+        title: '状态',
         template(data) {
-            return data.status === 'active' ? '运行中' : '已关闭';
+            return <span>{{ data.status === 'active' ? '运行中' : '已关闭' }}</span>
         },
-		group: [
+        group: [
             {label: '全部', value: ''},
             {label: '运行中', value: 'active'},
             {label: '已关闭', value: 'stopped'},
         ]
-	}
+    }
 };
-
 
 <div class='no-data-template'>
     <Table scheme={{ scheme }} 
         data={{ self.get('data') }} 
-        group={{ self.get('group') }}
+        v-model:group="group"
         ev-$change:group={{ self._onChangeGroup }}
+        ref="__test1"
     />
-    <Table data={{ self.get('data') }} 
-        group={{ self.get('group') }}
-        ev-$change:group={{ self._onChangeGroup }}
+    <Table data={{ self.get('multipleData') }} 
+        v-model:group="multipleGroup"
+        ev-$change:group={{ self._onChangeMultipleGroup }}
+        ref="__test2"
     >
         <TableColumn title='名称' key='name' />
         <TableColumn title='状态' key='status' 
-            template={{ (data) => data.status === 'active' ? '运行中' : '已关闭' }}
             group={{ [ 
-                {label: '全部', value: ''},
                 {label: '运行中', value: 'active'},
                 {label: '已关闭', value: 'stopped'},
             ] }}
-        />
+            multiple
+        >
+            <b:template params="data">
+                <span>{{ data.status === 'active' ? '运行中' : '已关闭' }}</span>
+            </b:template>
+        </TableColumn>
     </Table>
 </div>
 ```
@@ -58,31 +62,41 @@ const scheme = {
 ```styl
 .no-data-template
     display: flex
+    .k-table
+        flex 1
     .k-table-wrapper
         margin-left: 10px
 ```
 
 ```js
-const oData = [
-    {name: '主机1', status: 'active'},
-    {name: '主机2', status: 'stopped'},
-    {name: '主机3', status: 'active'},
-];
-
 export default class extends Intact {
     @Intact.template()
     static template = template;
 
     defaults() {
         return {
-            data: oData, 
-            group: {status: ''}
+            data: [], 
+            group: {status: ''},
+            multipleData: [],
+            multipleGroup: {status: []},
         }
+    }
+
+    _init() {
+        this.oData = [
+            {name: '主机1', status: 'active'},
+            {name: '主机2', status: 'stopped'},
+            {name: '主机3', status: 'active'},
+        ];
+        this.set({
+            data: this.oData,
+            multipleData: this.oData,
+        });
     }
 
     _onChangeGroup(c, group) {
         console.log(group);
-        const data = oData.filter(item => {
+        const data = this.oData.filter(item => {
             let matched = true;
             for (let key in group) {
                 const value = group[key];
@@ -94,7 +108,83 @@ export default class extends Intact {
             return matched;
         });
 
-        this.set({data, group});
+        this.set('data', data);
     }
+
+    _onChangeMultipleGroup(c, group) {
+        console.log(group);
+        const data = this.oData.filter(item => {
+            let matched = true;
+            for (let key in group) {
+                const value = group[key];
+                if (value.length && value.indexOf(item[key]) === -1) {
+                    matched = false;
+                    break;
+                }
+            }
+            return matched;
+        });
+
+        this.set('multipleData', data);
+    }
+}
+```
+
+```vue-data
+data() {
+    return {
+        data: [], 
+        group: {status: ''},
+        multipleData: [],
+        multipleGroup: {status: []},
+        scheme: {
+            name: '名称',
+            status: {
+                title: '状态',
+                template: function(data) {
+                    return <span>{data.status === 'active' ? '运行中' : '已关闭'}</span>
+                },
+                group: [
+                    {label: '全部', value: ''},
+                    {label: '运行中', value: 'active'},
+                    {label: '已关闭', value: 'stopped'},
+                ]
+            }
+        },
+    }
+},
+```
+```vue-script
+created() {
+    this.oData = [
+        {name: '主机1', status: 'active'},
+        {name: '主机2', status: 'stopped'},
+        {name: '主机3', status: 'active'},
+    ];
+    this.data = this.oData;
+    this.multipleData = this.oData;
+},
+```
+
+```react-methods
+constructor(props) {
+    super(props);
+    this.oData = [
+        {name: '主机1', status: 'active'},
+        {name: '主机2', status: 'stopped'},
+        {name: '主机3', status: 'active'},
+    ];
+    this.state = {
+        "data": this.oData,
+        "group": {
+            "status": ""
+        },
+        "multipleData": this.oData,
+        "multipleGroup": {
+            "status": []
+        }
+    };
+    this._onChangeGroup = this._onChangeGroup.bind(this);
+    this._onChangeMultipleGroup = this._onChangeMultipleGroup.bind(this);
 }
 ```

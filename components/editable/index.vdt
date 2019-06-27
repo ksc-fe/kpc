@@ -1,9 +1,10 @@
 import Input from '../input';
+import {getRestProps} from '../utils';
 
 const {
     editing, value, validate,
     disabled, style, tip,
-    children, invalid, className,
+    children, invalid, className
 } = self.get();
 
 const classNameObj = {
@@ -14,12 +15,12 @@ const classNameObj = {
     [className]: className,
 };
 
-<div class={{ classNameObj }} style={{ style }}>
+<div {{ ...getRestProps(self) }} class={{ classNameObj }}>
     <i class="ion-edit k-edit" title={{ tip }}
         v-if={{ !disabled && !editing }}
         ev-click={{ self._edit }}
     ></i>
-    <div class="c-ellipsis" v-if={{ value || editing }}>
+    <div class="c-ellipsis">
         {{ !editing ? children :
             <Input size="small" defaultValue={{ value }} 
                 ev-blur={{ self._onBlur }}

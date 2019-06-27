@@ -1,15 +1,17 @@
 import Input from '../input';
 import Dropdown, {DropdownItem, DropdownMenu} from '../dropdown';
-import {isStringOrNumber, getTextByChildren, addStyle, _$} from '../utils';
+import {isStringOrNumber, getTextByChildren, addStyle, _$, getRestProps} from '../utils';
 import Option from './option';
 import OptionGroup from './group';
 import {Tabs, Tab} from '../tabs';
+import Icon from '../icon';
 
 const {
     className, clearable, data, value, multiple,
     disabled, filterable, keywords, _show,
     placeholder, size, style, name, children,
-    fluid, width, allowUnmatch, card,
+    fluid, width, allowUnmatch, card, hideIcon,
+    container, inline, loading
 } = self.get();
 
 let _activeLabel = self.get('_activeLabel');
@@ -27,6 +29,9 @@ const classNameObj = {
     'k-clearable': clearable,
     [`k-${size}`]: size !== 'default',
     'k-fluid': fluid,
+    'k-with-prefix': blocks.prefix,
+    'k-with-suffix': !hideIcon || loading,
+    'k-inline': inline,
 };
 
 let hasValue = value != null && (!multiple && value !== '' || multiple && value.length);
@@ -128,13 +133,13 @@ const OptionsVNodes = ({children}) => {
 const labelList = [];
 
 const Menu = scope.Menu || (
-    <DropdownMenu ev-$changed:show={{ self._position }}
+    <DropdownMenu ev-$changed:value={{ self._position }}
         ref="menu"
         class={{ {
             "k-select-dropdown": true,
             "k-card": card,
         } }}
-        ev-$change:show={{ self._onChangeShow }}
+        ev-$change:value={{ self._onChangeShow }}
     >{{ do {
         const _children = [];
         if (!isGroup) {
@@ -202,7 +207,7 @@ const Menu = scope.Menu || (
 );
 
 // if the value is not in options, then set hasValue to false
-if (hasValue && !labelObj.label && !labelObj.labels.length) {
+if (hasValue && labelObj.label == null && !labelObj.labels.length) {
     hasValue = false;
     // if this is a value, but the value does not exist in options
     // we set it to empty, #41
@@ -210,6 +215,7 @@ if (hasValue && !labelObj.label && !labelObj.labels.length) {
 }
 
 <div class={{ {...classNameObj, 'k-has-value': hasValue} }}
+    {{ ...getRestProps(self) }}
     style={{ width != null ? addStyle(style, {width: `${width}px`}) : style }} 
     tabindex={{ disabled ? "-1" : "0" }}
     ev-keypress={{ self._onKeypress }}
@@ -220,53 +226,60 @@ if (hasValue && !labelObj.label && !labelObj.labels.length) {
         trigger="click"
         disabled={{ disabled }}
         ref="dropdown"
+        container={{ container }}
     >
         <div class="k-wrapper" ev-click={{ self._focusInput }} tabindex="-1" ref="wrapper">
-            <input type="hidden" value={{ value }} name={{ name }} />
-            <Input v-if={{ !multiple && filterable }}
-                value={{ keywords == null ? labelObj.label : keywords }}
-                ev-input={{ self._onSearch }}
-                ev-blur={{ self._onBlur }}
-                ev-focus={{ self._selectInput }}
-                disabled={{ disabled }}
-                placeholder={{ _placeholder }}
-                ref="input"
-                size={{ size }}
-                fluid
-            />
-            <span class="k-placeholder c-ellipsis" v-else-if={{ !filterable && !hasValue }}>{{ _placeholder }}</span>
-            <span class="k-value c-ellipsis" v-else-if={{ !multiple }}>{{ labelObj.label }}</span>
-            <Animate a:tag="span" a:disabled class="k-values" v-else>
-                <Animate a:tag="span" class="k-select-tag" 
-                    v-for={{ labelObj.labels }} 
-                    v-for-value="item"
-                    v-for-key="index"
-                    key={{ value[index] }}
-                    a:transition="fade"
-                >
-                    <span class="k-text">{{ item }}</span>
-                    <i class="k-icon ion-ios-close-empty"
-                        ev-click={{ self._delete.bind(self, value[index]) }}
-                    ></i>
-                </Animate>
-                <Input v-if={{ filterable }}
-                    value={{ keywords }}
+            <div class="k-prefix" v-if={{ blocks.prefix }}>
+                <b:prefix />
+            </div>
+            <div class="k-main">
+                <input type="hidden" value={{ value }} name={{ name }} />
+                <Input v-if={{ !multiple && filterable }}
+                    value={{ keywords == null ? labelObj.label : keywords }}
                     ev-input={{ self._onSearch }}
                     ev-blur={{ self._onBlur }}
-                    ev-focus={{ self._onFocus }}
+                    ev-focus={{ self._selectInput }}
                     disabled={{ disabled }}
-                    placeholder={{ !hasValue ? _placeholder : '' }}
+                    placeholder={{ _placeholder }}
                     ref="input"
-                    autoWidth
                     size={{ size }}
+                    fluid
                 />
-            </Animate>
-            <span class="k-suffix">
+                <span class="k-placeholder c-ellipsis" v-else-if={{ !filterable && !hasValue }}>{{ _placeholder }}</span>
+                <span class="k-value c-ellipsis" v-else-if={{ !multiple }}>{{ labelObj.label }}</span>
+                <Animate a:tag="span" a:disabled class="k-values" v-else>
+                    <Animate a:tag="span" class="k-select-tag" 
+                        v-for={{ labelObj.labels }} 
+                        v-for-value="item"
+                        v-for-key="index"
+                        key={{ value[index] }}
+                        a:transition="c-fade"
+                    >
+                        <span class="k-text">{{ item }}</span>
+                        <Icon class="ion-ios-close-empty"
+                            ev-click={{ self._delete.bind(self, value[index]) }}
+                        />
+                    </Animate>
+                    <Input v-if={{ filterable }}
+                        value={{ keywords }}
+                        ev-input={{ self._onSearch }}
+                        ev-blur={{ self._onBlur }}
+                        ev-focus={{ self._onFocus }}
+                        disabled={{ disabled }}
+                        placeholder={{ !hasValue ? _placeholder : '' }}
+                        ref="input"
+                        autoWidth
+                        size={{ size }}
+                    />
+                </Animate>
+            </div>
+            <span class="k-suffix" v-if={{ !hideIcon || clearable || loading }}>
                 <i v-if={{ clearable }}
                     class={{ {"k-clear ion-ios-close": true, "k-show": hasValue} }}
                     ev-click={{ self._onClear }}
                 ></i>
-                <i class="k-arrow ion-arrow-down-b"></i>
+                <Icon class="ion-load-c icon-loading" v-if={{ loading }} />
+                <i class="k-arrow ion-arrow-down-b" v-else-if={{ !hideIcon }}></i>
             </span>
         </div>{{ 
         Menu 

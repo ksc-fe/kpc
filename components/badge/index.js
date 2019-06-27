@@ -9,7 +9,7 @@ export default class Badge extends Intact {
 
     static propTypes = {
         disabled: Boolean,
-        text: [String, Number],
+        text: [String, Number, Intact.VNode, Object],
         max: Number,
     };
 

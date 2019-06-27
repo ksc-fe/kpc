@@ -1,6 +1,6 @@
 import Router from 'universal-router';
 
-const context = require.context('../pages/', true, /index\.js$/);
+const context = require.context('../demos/', true, /index\.js$/);
 const routes = context.keys().map(key => {
     return {
         path: `/components/${key.slice(2, -9)}`,
@@ -12,100 +12,100 @@ export default new Router([
     {
         path: '/', 
         action: async () => {
-            const Page = await import('pages/index');
+            const Page = await import('demos/index');
             return {Page};
         }
     },
     {
         path: '/components/button',
         action: async () => {
-            const Page = await import('pages/button');
+            const Page = await import('demos/button');
             return {Page};
         }
     },
     {
         path: '/components/dialog',
         action: async () => {
-            return {Page: await import('pages/dialog')};
+            return {Page: await import('demos/dialog')};
         }
     },
     {
         path: '/components/table',
         action: async () => {
-            return {Page: await import('pages/table')};
+            return {Page: await import('demos/table')};
         }
     },
     {
         path: '/components/checkbox',
         action: async () => {
-            return {Page: await import('pages/checkbox')};
+            return {Page: await import('demos/checkbox')};
         }
     },
     {
         path: '/components/progress',
         action: async () => {
-            return {Page: await import('pages/progress')};
+            return {Page: await import('demos/progress')};
         }
     },
     {
         path: '/components/radio',
         action: async () => {
-            return {Page: await import('pages/radio')};
+            return {Page: await import('demos/radio')};
         }
     },
     {
         path: '/components/select',
         action: async () => {
-            return {Page: await import('pages/select')}
+            return {Page: await import('demos/select')}
         }
     },        
     {
         path: '/components/slider',
         action: async () => {
-            return {Page: await import('pages/slider')}
+            return {Page: await import('demos/slider')}
         }
     },
     {
         path: '/components/spinner',
         action: async () => {
-            return {Page: await import('pages/spinner')}
+            return {Page: await import('demos/spinner')}
         }
     },
     {
 
         path: '/components/tooltip',
         action: async () => {
-            return {Page: await import('pages/tooltip')}
+            return {Page: await import('demos/tooltip')}
         }
     },
     {
         path: '/components/form',
         action: async () => {
-            return {Page: await import('pages/form')};
+            return {Page: await import('demos/form')};
         }
     },
     {
         path: '/components/grid',
         action: async () => {
-            return {Page: await import('pages/grid')};
+            return {Page: await import('demos/grid')};
         }
     },
     {
         path: '/components/switch',
         action: async () => {
-            return {Page: await import('pages/switch')};
+            return {Page: await import('demos/switch')};
         }
     },
     {
         path: '/components/editable',
         action: async () => {
-            return {Page: await import('pages/editable')};
+            return {Page: await import('demos/editable')};
         }
     },
     {
         path: '/components/tabs',
         action: async () => {
-            return {Page: await import('pages/tabs')};
+            return {Page: await import('demos/tabs')};
         }
     },
     ...routes

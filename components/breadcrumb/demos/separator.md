@@ -3,15 +3,15 @@ title: 指定分隔符
 order: 1
 ---
 
-通过`separator`属性可以指定分隔符，该属性值会使用`innerHTML`写入，所以可以使用任意
-html字符串。
-
-> 使用`innerHTML`存在XSS风险，需要自行规避
+通过`separator`属性或者`separator`扩展点可以指定分隔符
 
 ```vdt
 import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
 
-<Breadcrumb separator="<b class='separator'>=></b>">
+<Breadcrumb>
+    <b:separator>
+        <b class="separator">=></b>
+    </b:separator>
     <BreadcrumbItem to="/">
         <i class="ion-home" /> item 1
     </BreadcrumbItem>

@@ -1,5 +1,7 @@
+import {getRestProps} from '../utils';
+
 const {
-    value, _list, disabled,
+    value, _list, disabled, disable,
     _translate, _marginTop, _dragging
 } = self.get();
 
@@ -9,7 +11,7 @@ const classNameObj = {
     "k-disabled": disabled,
 }
 
-<div class={{ classNameObj }}>
+<div {{ ...getRestProps(self) }} class={{ classNameObj }}>
     <div class="k-wrapper"
         style={{ {
             transform: `translateY(${_translate}px)`,
@@ -21,8 +23,9 @@ const classNameObj = {
     >
         <div
             class={{ {
-                "k-item": true,
+                "k-scroll-item": true,
                 "k-active": item.value === value,
+                "k-disabled": disabled || disable && disable.call(self, item.value), 
             } }}
             v-for={{ _list }}
             v-for-value="item"
@@ -34,4 +37,5 @@ const classNameObj = {
     <div class="k-append" v-if={{ blocks.append }}>
         <b:append />
     </div>
+    <div class="k-border"></div>
 </div>

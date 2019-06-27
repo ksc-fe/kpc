@@ -4,6 +4,7 @@ import '../../styles/kpc.styl';
 import './index.styl';
 import {position} from '../moveWrapper/position';
 import {_$} from '../utils';
+import addStaticMethods from './methods';
 
 export default class Dialog extends Intact {
     @Intact.template()
@@ -19,6 +20,15 @@ export default class Dialog extends Intact {
         cancelText: String,
         ok: Function,
         cancel: Function,
+        container: [String, Function],
+        hideClose: Boolean,
+    };
+
+    static events = {
+        open: true,
+        close: true,
+        ok: true,
+        cancel: true,
     };
 
     defaults() {
@@ -32,6 +42,8 @@ export default class Dialog extends Intact {
             cancelText: _$('取消'),
             ok: undefined,
             cancel: undefined,
+            container: () => document.body,
+            hideClose: false,
 
             _dragging: false,
         }
@@ -40,10 +52,9 @@ export default class Dialog extends Intact {
     _init() {
         this.on('$changed:value', (c, isShow) => {
             if (isShow) {
-                this.trigger('open');
-                this._center();
+                this._onOpen();
             } else {
-                this.trigger('close');
+                this._onClose();
             }
         }); 
     }
@@ -58,10 +69,27 @@ export default class Dialog extends Intact {
     _mount(lastVNode, nextVNode) {
         // for debug
         window.__dialog = this;
+    }
 
+    _onAppended() {
+        // if appear, it has animate-appear className and this will effect the dialog
+        // so we can not call _center after it
+        // in this case we center dialog as soon as it has been appended to container
+        if (this.get('value')) {
+            this.mounted = true;
+            this._onOpen();
+        }
+    }
+
+    _onOpen() {
+        this.trigger('open');
         this._center();
-
         document.addEventListener('keydown', this._escClose);
+    }
+
+    _onClose() {
+        this.trigger('close');
+        document.removeEventListener('keydown', this._escClose);
     }
 
     showLoading() {
@@ -155,7 +183,10 @@ export default class Dialog extends Intact {
                 if (height > outerHeight) {
                     position.top = scrollTop;
                 }    
-            }
+            },
+            // let dialog padding top half of padding bottom
+            my: 'center center+16%',
+            at: 'center center-16%'
         });
     }
 
@@ -202,7 +233,6 @@ export default class Dialog extends Intact {
     }
 
     _destroy(...args) {
-        document.removeEventListener('keydown', this._escClose);
         if (this.get('value')) {
             this.close();
         } else {
@@ -211,5 +241,7 @@ export default class Dialog extends Intact {
         this._dragEnd();
     }
 }
+
+addStaticMethods(Dialog);
 
 export {Dialog};

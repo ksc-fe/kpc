@@ -12,11 +12,12 @@ order: 0
 ```vdt
 import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
 import Button from 'kpc/components/button';
+import Icon from 'kpc/components/icon';
 
 <div>
     <Dropdown>
         <Button type="primary">
-            hover <i class="k-icon ion-arrow-down-b"></i>
+            hover <Icon class="ion-ios-arrow-down" />
         </Button>
         <DropdownMenu>
             <DropdownItem>item 1</DropdownItem>
@@ -25,4 +26,13 @@ import Button from 'kpc/components/button';
         </DropdownMenu>
     </Dropdown>
 </div>
+```
+
+```styl
+.k-icon
+    display inline-block
+    transition transform .25s ease-in-out
+.k-dropdown-open
+    .k-icon
+        transform rotate(180deg)
 ```

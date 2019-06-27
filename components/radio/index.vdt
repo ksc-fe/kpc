@@ -1,3 +1,4 @@
+import {getRestProps} from '../utils';
 const {
     className, disabled, trueValue, style,
     children, value, ref, key, ...rest
@@ -10,16 +11,29 @@ const classNameObj = {
     [className]: className,
 };
 
+const events = [
+    // do not bind click to label, otherwise it will trigger click event twice
+    /* 'ev-click', */
+    'ev-mouseenter', 'ev-mouseleave'
+].reduce((memo, name) => {
+    if (rest[name]) {
+        memo[name] = rest[name];
+        delete rest[name];
+    }
+    return memo;
+}, {});
+
 <label class={{ classNameObj }} style={{ style }}
     tabindex={{ disabled ? "-1" : "0" }}
     ev-keypress={{ self._onKeypress }}
+    {{ ...events }}
 >
     <span class="k-wrapper">
         <input type="radio" disabled={{ disabled }}
             v-model="value"
             value={{ trueValue }}
             tabindex="-1"
-            {{ ...rest }}
+            {{ ...getRestProps(self, rest) }}
             ref="input"
         />
     </span>

@@ -12,7 +12,7 @@ import {Form, FormItem} from 'kpc/components/form';
 import {Input} from 'kpc/components/input';
 import {Row, Col} from 'kpc/components/grid';
 
-<Form>
+<Form ref="form">
     <FormItem label="姓名">
         <Row gutter="16">
             <Col span="12">
@@ -34,4 +34,25 @@ import {Row, Col} from 'kpc/components/grid';
         </Row>
     </FormItem>
 </Form>
+```
+
+```styl
+@media (max-width: 768px)
+    .k-form-item
+        width 100%
+        .k-input
+            width 100%
+```
+
+```react-methods
+// 注入_context上下文
+static childContextTypes = {
+    _context: () => {}
+}
+
+getChildContext() {
+    return {
+        _context: this
+    }
+}
 ```

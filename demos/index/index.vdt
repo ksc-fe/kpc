@@ -1,0 +1,24 @@
+import Link from 'components/link';
+/* import * as KPC from 'components'; */
+
+const list = [
+    'button', 'dialog', 'checkbox',
+    'radio', 'table', 'progress',
+    'slider','spinner','select',
+    'form', 'grid', 'switch',
+    'input', 'message', 'dropdown',
+    'tooltip', 'pagination', 'datepicker',
+    'scrollSelect', 'steps', 'tabs',
+    'editable', 'test', 'transfer',
+    'demo', 'drawer', 'menu', 'collapse',
+    'split',
+];
+
+<ul>
+    <li v-for={{ list }}>
+        <Link href={{ `/components/${value}` }}>{{ value }}</Link>
+    </li>
+    <li v-for={{ list }}>
+        <Link href={{ `/components/vue/${value}` }}>Vue: {{ value }}</Link>
+    </li>
+</ul>

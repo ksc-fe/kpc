@@ -5,6 +5,7 @@
     margin $form-item-margin
 .k-form-item
     display table 
+    position relative
     // width 100%
     > .k-label
         display table-cell
@@ -28,6 +29,7 @@
         color $form-item-error-color 
         font-size $form-item-error-font-size 
         margin $form-item-error-margin
+        white-space nowrap
     &.k-invalid
         // input
         :not(.k-select) .k-input
@@ -47,7 +49,28 @@
     > .k-append
         display table-cell
         padding $form-item-append-padding
+        vertical-align middle
 
-    
+.k-form
+    // layout: inline
+    &.k-inline
+        .k-form-item
+            display inline-block
+            vertical-align top
+            margin-right $form-item-inline-margin-right 
+            > .k-label
+                width auto
+    // layout: vertical
+    &.k-vertical
+        .k-form-item
+        .k-form-item > .k-label
+        .k-form-item > .k-content
+            display block
+        .k-form-item > .k-label
+            width auto
+            text-align left
+            line-height inherit
+            margin-bottom $form-item-vertical-label-margin-bottom 
 
-@import $theme-dir + '/form.styl' if exists($theme-dir + '/form.styl') 
+
+requireTheme('form')

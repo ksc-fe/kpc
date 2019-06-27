@@ -62,3 +62,18 @@ export default class extends Intact {
     }
 }
 ```
+
+```vue-methods
+_onSelectAndPreventDefault(c, e) {
+    e.preventDefault();
+    console.log('preventDefault', e);
+
+    const checked = this.checked;
+    const index = checked.indexOf('2');
+    if (index > -1) {
+        checked.splice(index, 1);
+    } else {
+        checked.push('2');
+    }
+}
+```

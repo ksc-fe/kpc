@@ -9,9 +9,13 @@ export default class Link extends Intact {
 
     static propTypes = {
         href: String,
-        name: String,
+        name: [String, Array],
         isReplace: Boolean,
-    }
+    };
+
+    static events = {
+        click: true,
+    };
 
     defaults() {
         return {

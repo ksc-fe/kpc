@@ -12,6 +12,8 @@ input
     -webkit-appearance none
     -moz-appearance none
     color $text-color
+::-ms-clear
+    display none
 
 ul, ol, li
     list-style none
@@ -33,10 +35,11 @@ html
 body
 #app
     height 100%
-    line-height 1.15
+    line-height $line-height
 html
-    font-size $font-size 
+    font-size unit($rem, px)
 body
+    font-size $font-size 
     font-family $font-family
     margin 0
     padding 0
@@ -53,7 +56,7 @@ h1, h2, h3, h4, h5
     font-weight $header-font-weight
     padding 0
 h1
-    min-height 1rem
+    min-height unit(14 / $rem, rem)
 for type in 1 2 3 4 5
     h{type}
         font-size lookup('$h' + type)
@@ -91,4 +94,4 @@ code, kbd, pre, samp
 label
     -webkit-tap-highlight-color rgba(0, 0, 0, 0)
 
-@import $theme-dir + '/reset.styl' if exists($theme-dir + '/reset.styl') 
+requireTheme('reset')

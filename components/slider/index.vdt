@@ -1,12 +1,13 @@
 import Spinner from '../spinner';
+import {getRestProps} from '../utils';
 
 const {
     value, min, max, className,
     disabled, isRange, isInnerText,
     isShowInput, isShowEnd, unit,
     step, _isDragging, _isFirst, _inputValue,
-    _isSecond, _sliderValue, style,
-    isShowStop, marks,
+    _isSecond, _sliderValue, 
+    isShowStop, marks
 } = self.get();
 
 const classNameObj = {
@@ -20,7 +21,7 @@ const classNameObj = {
 
 const sliderWidth = max - min;
 
-<div class={{ classNameObj }} style={{ style }}>
+<div class={{ classNameObj }} {{ ...getRestProps(self) }}>
     <div class="k-slider-wrapper">
         <div class="k-wrapper" 
             ev-click={{ self._clickWrapper }} 
@@ -84,7 +85,7 @@ const sliderWidth = max - min;
             >
                 <div v-if={{ isInnerText }}>{{ value[1] }}</div>
             </div>
-            {{ do {
+            {{ (() => {
                 if (isShowStop) {
                     const counts = Math.floor((max - min) / step);
                     const ret = [];
@@ -93,9 +94,9 @@ const sliderWidth = max - min;
                             style={{ {left: (i / counts * 100) + '%'} }}
                         ></i>)
                     }
-                    ret;
+                    return ret;
                 }
-            } }} 
+            })() }} 
         </div>
         <div class="k-box" v-if={{ isShowEnd && !marks }}>
             <span>{{ min + unit }} </span>

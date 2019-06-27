@@ -27,3 +27,11 @@ sidebar: doc
 | value | 选中的值 | `*` | `undefined` |
 | to | 点击标签的跳转地址 | `String` | `undefined` |
 | disabled | 是否禁用 | `Boolean` | `false` |
+
+# 事件
+
+## Tab
+
+| 事件名 | 说明 | 参数 |
+| --- | --- | --- |
+| click | `Tab`点击事件，发生在`value`改变之后，`disabled`状态不会触发 | `Event` |

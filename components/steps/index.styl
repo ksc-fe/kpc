@@ -15,6 +15,9 @@
     .k-content
         font-size $steps-main-content-font-size 
         white-space nowrap
+    .k-inner
+    .k-main
+        transition all $transition
 
     // default and line type
     &.k-default
@@ -66,6 +69,7 @@
     &.k-default
         text-align center
         height $steps-height 
+        overflow hidden
         line-height @height
         .k-head
         .k-main
@@ -74,13 +78,17 @@
         .k-head
             .k-inner
                 display inline-block
+        .k-step
+            white-space nowrap
+        .k-wrapper
+            overflow hidden
 
     // default
     &.k-default
         background $steps-bg-color
+        calcBorderWidth()
+            return $steps-height / 2 + $steps-gutter 
         .k-tail
-            calcBorderWidth()
-                return $steps-height / 2 + $steps-gutter 
             top 0
             right -(calcBorderWidth())
             width calcBorderWidth() 
@@ -104,12 +112,15 @@
             .k-inner
                 vertical-align middle
                 margin-top -2px
+        .k-step:not(:first-of-type)
+            padding-left calcBorderWidth()
     
     // line type
     &.k-line
         display flex
         .k-step
             flex 1
+            width auto !important
         .k-head
         .k-main
             float left
@@ -130,7 +141,7 @@
             height 1px
             background $steps-line-tail-bg-color 
         .k-step:last-of-type
-            flex 0
+            flex 0 0 auto
             .k-wrapper
                 display flex
             .k-title
@@ -171,4 +182,5 @@
         .k-done
             cursor pointer
 
-@import $theme-dir + '/steps.styl' if exists($theme-dir + '/steps.styl') 
+
+requireTheme('steps')

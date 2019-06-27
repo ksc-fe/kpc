@@ -3,6 +3,7 @@
 .k-spinner
     display inline-block
     vertical-align middle
+    line-height 1
     .k-btn
         vertical-align top
         &:hover
@@ -20,17 +21,19 @@
     .k-input
         width $spinner-input-width
         vertical-align top
-    .k-inner
-        text-align center
-        padding 0
+        .k-inner
+            text-align center
+            padding 0
     .k-icon
         font-size $spinner-icon-font-size
 
     // vertical
     &.k-vertical
         position relative
+        font-size 0
         .k-input
             margin-right -1px
+            font-size 0
         .k-left
         .k-right
             position absolute
@@ -65,4 +68,5 @@
             .k-input
                 width lookup('$spinner-' + size + '-input-width')
 
-@import $theme-dir + '/spinner.styl' if exists($theme-dir + '/spinner.styl') 
+
+requireTheme('spinner')

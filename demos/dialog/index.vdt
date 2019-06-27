@@ -1,0 +1,33 @@
+import Dialog from 'components/dialog';
+import Button from 'components/button';
+import {Table, TableColumn} from 'components/table';
+import {Select, Option} from 'components/select';
+
+<div class="wrapper">
+    <div v-if={{ self.get('test') }}>test</div>
+    <Button ev-click={{ self.showDialog.bind(self, 'isShow') }}>Show</Button>
+    <Button ev-click={{ self.showDialog.bind(self, 'isShowSmall') }}>Show small</Button>
+    <Button tagName="div" ev-click={{ self.showDialogInstance.bind(self) }}>Show Dialog Instance</Button>
+    <Dialog v-model="isShow" title="Dialog Demo" key="a">
+        <Table fixHeader="100" data={{ [{test: 1}] }}>
+            <TableColumn title="test" key="test">test</TableColumn>
+        </Table>
+    </Dialog>
+    <Dialog v-model="isShowSmall" size="small" key="b">
+        <b:header>
+            <span class="k-title">Custom Title</span>
+        </b:header>
+        
+        small dialog content
+        <Select>
+            <Option value="1">Option 1</Option>
+            <Option value="2">Option 2</Option>
+        </Select>
+
+        <b:footer>
+               
+            small dialog footer
+            {{ parent() }}
+        </b:footer>
+    </Dialog>
+</div>

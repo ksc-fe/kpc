@@ -1,4 +1,5 @@
 import Button from './';
+import {getRestProps} from '../utils';
 
 const {
     className, vertical, style, 
@@ -12,7 +13,7 @@ const classNameObj = {
     'k-fluid': fluid,
 };
 
-<div class={{ classNameObj }} style={{ style }}>{{ 
+<div {{ ...getRestProps(self) }} class={{ classNameObj }}>{{ 
     checkType !== 'none' ? __u.map(
         children ? 
             (Array.isArray(children) ? children : [children]) :

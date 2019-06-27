@@ -3,8 +3,9 @@ import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
 import Calendar from './calendar';
-import {getNowDate, isLT, isGT} from './utils';
+import {getNowDate, isLT, isGT, getDateString, dispatchEvent, createDate} from './utils';
 import {getTransition} from '../utils';
+import * as shortcuts from './shortcuts';
 
 const {isEqual} = Intact.utils;
 
@@ -12,13 +13,24 @@ export default class Datepicker extends Intact {
     @Intact.template()
     static template = template;
 
+    static getDateString = getDateString;
+
+    static createDate = createDate;
+
     static propTypes = {
+        value: [String, Array, Date, Number],
         clearable: Boolean,
         disabled: Boolean,
-        size: String,
-        type: String,
+        size: ['large', 'default', 'small', 'mini'],
+        type: ['date', 'datetime', 'year', 'month'],
         range: Boolean,
         transition: String,
+        shortcuts: Array,
+        container: [Function, String],
+        disabledHours: Boolean,
+        disabledMinutes: Boolean,
+        disabledSeconds: Boolean,
+        multiple: Boolean, 
     };
 
     defaults() {
@@ -30,7 +42,13 @@ export default class Datepicker extends Intact {
             size: 'default',
             type: 'date', // date | datetime
             range: false,
-            transition: 'slidedown',
+            transition: 'c-slidedown',
+            shortcuts: undefined, 
+            container: undefined,
+            disabledHours: false,
+            disabledMinutes: false,
+            disabledSeconds: false,
+            multiple: false,
 
             _value: undefined, // for range
             _rangeEndDate: undefined,
@@ -41,9 +59,9 @@ export default class Datepicker extends Intact {
     _init() {
         // proxy _value to value
         this.on('$change:_value', (c, v) => {
-            // if only select one date for range, set with undefined
+            // if only select one date for range, do not change value, #259
             if (v && v.length === 1) {
-                v = undefined;
+                return;
             }
             this.set('value', v);
         });
@@ -85,7 +103,7 @@ export default class Datepicker extends Intact {
             const endShowDate = end.getShowDate();
             endShowDate.setDate(1);
             if (v >= endShowDate) {
-                const endShowDate = new Date(v);
+                const endShowDate = createDate(v);
                 endShowDate.setMonth(endShowDate.getMonth() + 1);
                 end.setShowDate(endShowDate);
             }
@@ -93,7 +111,7 @@ export default class Datepicker extends Intact {
             const beginShowDate = begin.getShowDate();
             v.setDate(1);
             if (v <= beginShowDate) {
-                const beginShowDate = new Date(v);
+                const beginShowDate = createDate(v);
                 beginShowDate.setMonth(beginShowDate.getMonth() - 1);
                 begin.setShowDate(beginShowDate);
             }
@@ -102,7 +120,7 @@ export default class Datepicker extends Intact {
 
     _setBeginShowDate(c) {
         const [start] = this.get('_value') || [];
-        const date = start ? new Date(start) : getNowDate();
+        const date = start ? createDate(start) : getNowDate();
         c.set('_showDate', date, {silent: true})
     }
 
@@ -112,8 +130,8 @@ export default class Datepicker extends Intact {
         let date;
         // if in the same month, show next month
         if (start && end) {
-            start = new Date(start);
-            end = new Date(end);
+            start = createDate(start);
+            end = createDate(end);
             if (start.getFullYear() === end.getFullYear() &&
                 start.getMonth() === end.getMonth()
             ) {
@@ -133,12 +151,12 @@ export default class Datepicker extends Intact {
         const _rangeEndDate = this.get('_rangeEndDate');
 
         if (start) {
-            const _start = new Date(start);
+            const _start = createDate(start);
             if (end) {
                 return {
                     'k-in-range': !isOut && 
                         isGT(date, _start) && 
-                        isLT(date, new Date(end))
+                        isLT(date, createDate(end))
                 };
             } else if (_rangeEndDate) {
                 return {
@@ -156,60 +174,42 @@ export default class Datepicker extends Intact {
         if (isEqual(v, value)) return;
 
         const {begin, end} = this.refs;
-
-        if (c.isSelectTime) {
-            value = value.slice(0);
-            if (type === 'begin' && end.get('_isSelectTime')) {
-                value[0] = v[0];
-                c._index = 0;
-                end._index = 1;
-            } else if (type === 'end' && begin.get('_isSelectTime')) {
-                value[1] = v[1];
-                c._index = 1;
-                begin._index = 0;
+        // if cancel all selected value of range, the length of v is 0
+        if (v && v.length) {
+            const length = v.length;
+            if (length === 2) {
+                // select the first begin/end date
+                value = v.slice(0);
             } else {
-                value[c._index] = v[c._index];
+                // select or re-select
+                const last = v[length - 1];
+                value = [last];
             }
-            if (value.length === 2) {
-                if (value[1] < value[0]) {
-                    // reverse the index
-                    c._index = c._index === 0 ? 1 : 0;
-                }
-            }
-            value.sort();
-            this.set('_value', value);
-        } else if (!v.length) {
-            // calendar cancelled the selected value
-            this.set('_value', undefined);
-        } else if (!value || value.length === 0 || value.length === 2) {
-            value = [v[v.length - 1]];
-            if (type === 'end') {
-                begin.set('_isSelectTime', false);
-            } else {
-                end.set('_isSelectTime', false);
-            }
-            c._index = 0;
-            this.set('_value', value);
         } else {
-            value = value.slice(0);
-            value[1] = v[v.length - 1]; 
-            // set time
-            if (this.get('type') === 'datetime') {
-                const [date] = value[1].split(' ');
-                const [, time] = value[0].split(' '); value[1] = [date, time].join(' ');
-            }
-            if (value[1] < value[0]) {
-                c._index = 0;
-            } else {
-                c._index = 1;
-            }
-            value.sort();
-            this.set('_value', value);
+            this.set('value', undefined);
+        }
 
-            if (this.get('type') !== 'datetime') {
-                this.refs.calendar.hide();
+        // when the ScrollSelect changed, the refs may not exist
+        if (begin && end) {
+            // if we have selected two dates, change to time picker
+            if (value.length === 2) {
+                if (this.get('type') === 'datetime') {
+                    begin.set('_isSelectTime', true, {async: true});
+                    end.set('_isSelectTime', true, {async: true});
+                } else if (!c.isSelectTime) {
+                    this.refs.calendar.hide();
+                }
+            } else if (!c.isSelectTime) {
+                begin.set('_isSelectTime', false, {async: true});
+                end.set('_isSelectTime', false, {async: true});
             }
         }
+
+        if (!c.isSelectTime) {
+            value.sort();
+        }
+
+        this.set('_value', value);
     }
 
     _highlightRangeDays(date, isOut) {
@@ -266,12 +266,25 @@ export default class Datepicker extends Intact {
     }
 
     _onHide() {
-        const input = this.refs.input;
-        input.focus();
-        setTimeout(() => {
-            input.blur();
-        });
+        dispatchEvent(this.refs.input.refs.input, 'focusout');
+    }
+
+    _setValue(value) {
+        const type = this.get('type');
+        if (this.get('range')) {
+            this.set('_value', value.map(value => getDateString(value, type)));
+        } else {
+            this.set('value', getDateString(value, type));
+        }
+        this.refs.calendar.hide();
+    }
+
+    _format() {
+        const {value, range} = this.get();
+        return Array.isArray(value) ? range ? value.join(' ~ ') : value.join(', ') : value;
     }
 }
+
+Object.assign(Datepicker, shortcuts);
 
 export {Datepicker};

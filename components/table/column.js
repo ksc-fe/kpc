@@ -5,7 +5,7 @@ export default class TableColumn extends Intact {
     get template() { return template; }
 
     static propTypes = {
-        title: [String, Intact.VNode],
+        title: [String, Intact.VNode, Array, Object /* for vue vnode*/],
         template: Function,
         key: {
             type: String,
@@ -16,6 +16,14 @@ export default class TableColumn extends Intact {
         group: Array,
         multiple: Boolean,
         minWidth: [Number, String],
+        ignore: Boolean,
+        fixed: ['left', 'right'],
+        align: ['left', 'center', 'right'],
+    };
+
+    static events = {
+        click: true,
+        dragStart: true,
     };
 
     defaults() {
@@ -29,6 +37,9 @@ export default class TableColumn extends Intact {
             multiple: false,
             value: [],
             minWidth: undefined,
+            ignore: false,
+            fixed: undefined,
+            align: undefined,
 
             // passed by parent
             $parent: undefined,
@@ -36,12 +47,18 @@ export default class TableColumn extends Intact {
         }
     }
 
+    _init() {
+        this.on('$receive:width', (c, v) => {
+            this.width = v;
+        });
+    }
+
     onClick(e) {
         this.trigger('click', e);
     }
 
     onDragStart(e) {
-        this.trigger('dragStart', e);
+        this.trigger('dragStart', this.vNode, e);
     }
 
     _isChecked(v) {

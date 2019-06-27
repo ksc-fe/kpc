@@ -1,0 +1,85 @@
+@require('./variables.styl')
+
+.k-layout
+    display flex
+    flex-direction column
+    flex 1
+    &.k-has-aside
+        flex-direction row
+        .k-layout
+            > .k-header
+                background #fff
+                border-bottom 1px solid $border-color
+    > .k-header
+        height $layout-header-height 
+        line-height @height 
+        background $layout-header-bg-color
+        .k-menu
+            .k-menu-item
+                vertical-align top
+                > .k-title
+                    height auto
+                    line-height inherit
+        // fixed
+        &.k-fixed
+            position fixed
+            width 100%
+            z-index $mid-z-index - 1
+            left 0
+            & + .k-layout
+            & + .k-body
+            & + .k-layout > .k-aside.k-fixed
+                padding-top $layout-header-height
+            & + .k-layout > .k-aside.k-fixed
+                z-index $mid-z-index - 2 
+
+    > .k-aside
+        background $layout-header-bg-color
+        transition width $transition
+        width $layout-aside-width 
+        display flex
+        z-index $mid-z-index
+        flex-direction column
+        // fixed
+        &.k-fixed
+            position fixed
+            height 100vh
+            overflow hidden
+            top 0
+            > .k-wrapper
+                height 100%
+                overflow auto
+                margin-right -20px
+                > .k-menu
+                    min-height 100%
+            & + .k-layout
+            & + .k-body
+            & + .k-layout > .k-header.k-fixed
+                padding-left $layout-aside-width 
+                transition padding-left $transition
+            // collapse
+            &.k-collapsed
+                & + .k-layout
+                & + .k-body
+                & + .k-layout > .k-header.k-fixed
+                    padding-left $layout-aside-collapsed-width
+        // size
+        generate(size)
+            &.k-{size}
+                width lookup('$layout-aside-' + size + '-width')
+                & + .k-layout
+                & + .k-body
+                & + .k-layout > .k-header.k-fixed
+                    padding-left lookup('$layout-aside-' + size + '-width')
+        for size in large small
+            generate(size)
+        // collapse
+        &.k-collapsed
+            width $layout-aside-collapsed-width
+
+    > .k-footer
+        padding $layout-footer-padding
+
+    > .k-body
+        flex 1
+        margin $layout-body-margin

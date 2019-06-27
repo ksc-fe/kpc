@@ -1,3 +1,5 @@
+import {getRestProps} from '../utils';
+
 const {
     className, disabled, falseValue, 
     children, value, trueValue, style,
@@ -12,9 +14,22 @@ const classNameObj = {
     'k-indeterminate': indeterminate,
 };
 
+const events = [
+    // do not bind click to label, otherwise it will trigger click event twice
+    /* 'ev-click', */
+    'ev-mouseenter', 'ev-mouseleave'
+].reduce((memo, name) => {
+    if (rest[name]) {
+        memo[name] = rest[name];
+        delete rest[name];
+    }
+    return memo;
+}, {});
+
 <label class={{ classNameObj }} style={{ style }} 
     tabindex={{ disabled ? null : "0" }}
     ev-keypress={{ self._onKeypress }}
+    {{ ...events }}
 >
     <span class="k-wrapper">
         <input type="checkbox" disabled={{ disabled }}
@@ -23,7 +38,7 @@ const classNameObj = {
             v-model-true={{ trueValue }}
             v-model-false={{ falseValue }}
             tabindex="-1"
-            {{ ...rest }}
+            {{ ...getRestProps(self, rest) }}
             ref="input"
         />
     </span>

@@ -5,8 +5,8 @@ sizes = mini small
 @keyframes progress-bar-animation
     from
         opacity 0.2
-        width 1rem
-        margin-left -1rem
+        width unit(14 / $rem, rem)
+        margin-left -unit(14 / $rem, rem)
     to
         opacity 0
         width 100%
@@ -129,4 +129,5 @@ sizes = mini small
                 height lookup('$progress-circle-' + size + '-width')
                 font-size lookup('$progress-circle-' + size + '-font-size')
 
-@import $theme-dir + '/progress.styl' if exists($theme-dir + '/progress.styl') 
+
+requireTheme('progress')

@@ -1,1 +1,10 @@
-<tr {{ ...self.get() }}>{{ self.get('children') }}</tr>
+const props = {};
+const _props = self.get();
+for (let key in _props) {
+    if (key === 'ev-$destroyed') {
+        continue;
+    }
+    props[key] = _props[key];
+}
+
+<tr {{ ...props }}>{{ self.get('children') }}</tr>

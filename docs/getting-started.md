@@ -9,37 +9,15 @@ sidebar: doc
 在学习使用kpc之前，假设你已经掌握了以下知识：
 
 1. [webpack][1] + [babel][2]
-2. [vue][3]（如果将kpc用于vue项目）或者[intact][4]（如果将kpc用于intact项目）
-
-# 使用脚手架
-
-使用[Yeoman][5]以及generator-kscpm，可以快速初始化kpc项目
-
-1. 安装yo和generator-kscpm
-
-```shell
-npm install -g yo generator-kscpm
-```
-
-2. 初始化kpc项目
-
-kscpm提供了很多工程模板，用于初始化项目，页面以及组件等
-
-```shell
-yo kscpm # 列出所有可选工程模板
-yo kscpm:intact # 初始化基于intact的kpc项目
-yo kscpm:vue # 初始化基于vue的kpc项目
-
-...
-```
-
-3. 启动项目
-
-```shell
-npm run dev
-```
+2. [Vue][3]（如果将kpc用于Vue项目）或者[intact][4]（如果将kpc用于Intact项目）或者[React][7]（如果将kpc用于React项目）
 
 # 手动引入
+
+## 安装
+
+```js
+npm install kpc -S
+```
 
 ## 单文件构建版
 
@@ -49,19 +27,29 @@ npm run dev
 另外你也可以调用`Kpc.install()`方法将组件放到全局空间下，此时为了避免命名冲突，
 所有组件名前加上`K`作为前缀，例如`KButton` `KTable`等
 
+### CDN
+
+通过[cdn.jsdelivr.net/npm/kpc/dist/](https://cdn.jsdelivr.net/npm/kpc/dist/)可以直接引入最新版kpc，建议使用锁定版本地址，
+例如：[cdn.jsdelivr.net/npm/kpc@0.5.14/dist/](https://cdn.jsdelivr.net/npm/kpc@0.5.14/dist/)
+
 ```html
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <title>kpc-demo</title>
-    <link rel="stylesheet" type="text/css" href="node_modules/kpc/dist/kpc.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/kpc/dist/kpc.css" />
+    <!-- 将上述kpc.css替换成ksyun.css，可以使用ksyun主题 -->
+    <!-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/kpc/dist/ksyun.css" /> -->
 </head>
 <body>
     <div id="app"></div>
 
-    <script type="text/javascript" src="node_modules/intact/dist/intact.js"></script>
-    <script type="text/javascript" src="node_modules/kpc/dist/kpc.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/intact/dist/intact.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/kpc/dist/kpc.min.js"></script>
     <script type="text/javascript">
         Kpc.install();
         var Page = Intact.extend({
@@ -76,11 +64,9 @@ npm run dev
 </html>
 ```
 
-> kpc样式需要加载字体文件，默认字体文件放在目录`./fonts`下，你可能需要根据实际情况修改该路径
+## 多文件css构建版
 
-## 多文件构建版
-
-当项目使用webpack构建时，可以使用kpc的多文件构建版，此时可以做到按需加载，而非单文件全量引入。
+当项目使用webpack构建时，可以使用kpc的多文件css构建版，此时可以做到按需加载，而非单文件全量引入。
 多文件构建版样式css和字体，需要通过`css-loader & style-loader`和`file-loader`来引入
 
 > 此版本放在`@css`文件夹下，该文件名的意思是：所有的样式`stylus`文件都被编译成了`css`文件，并非只是
@@ -92,7 +78,7 @@ npm run dev
 1. 安装依赖
 
 ```shell
-npm install intact kpc --save
+npm install kpc --save
 
 npm install css-loader style-loader file-loader --save-dev
 ```
@@ -157,14 +143,14 @@ import {Button, ButtonGroup} from 'kpc/components/button';
 </ButtonGroup>
 ```
 
-## 多文件半构建版
+## 多文件stylus构建版
 
-所谓半构建版与构建版的区别是，样式使用的`stylus`而非编译后的css。当我们需要修改或者引入新主题时，
+所谓stylus构建版与css构建版的区别是，样式使用的`stylus`而非编译后的css。当我们需要修改或者引入新主题时，
 通过该版本，可以很方便地实现。详见[定制主题][6]
 
 由于使用`stylus`，所以与构建版在使用上唯一的区别是需要引入`stylus-loader`
 
-> 与多文件构建版类似，此版本放在`@stylus`目录下
+> 与多文件css构建版类似，此版本放在`@stylus`目录下
 
 1. 新增依赖
 
@@ -185,7 +171,7 @@ module.export = {
     ...
     resolve: {
         alias: {
-            'kpc': '/kpc/@stylus'
+            'kpc': 'kpc/@stylus'
         }
     },
     module: {
@@ -221,6 +207,7 @@ module.export = {
                         loader: 'stylus-loader', 
                         options: {
                             'include css': true,
+                            'resolve url': true, // @since v0.6.0
                             sourceMap: false,
                             // 使用import引入主题文件，详见定制主题
                             // 'import': path.resolve(__dirname, 'styles/themes/ksyun/index.styl'),
@@ -251,3 +238,4 @@ module.export = {
 [4]: http://javey.github.io/intact/
 [5]: http://yeoman.io/
 [6]: ../theme/
+[7]: https://reactjs.org/

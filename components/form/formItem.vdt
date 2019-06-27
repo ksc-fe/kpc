@@ -1,37 +1,42 @@
+import {getRestProps} from '../utils';
+
 const {
-    className, children, label, style, 
+    className, children, label,
     isValid, isDirty, hideLabel, htmlFor,
-    errorClassName,
+    errorClassName
 } = self.get();
 
 const classNameObj = {
     'k-form-item': true,
-    'k-invalid': isDirty && !isValid,
-    'k-valid': isDirty && isValid,
+    'k-invalid': isDirty && isValid === false,
+    'k-valid': isDirty && isValid === true,
     [className]: className,
 };
 
-// vdt does not support return `v-if & v-else` element in root,
-// like: 
-//     '<div v-if={{ true }}>true</div>'
-//     '<label v-else>false</label>'
-// so wrap it.
-// const Wrapper = (props) => {
-//     return h(props._tagName, props, props.children); 
-// }
+const labelWidth = self.form && self.form.get('labelWidth');
+let labelStyle;
+if (labelWidth != null) {
+    if (/^\d+$/.test(labelWidth)) {
+        labelStyle = {width: labelWidth + 'px'};
+    } else {
+        labelStyle = {width: labelWidth};
+    }
+}
 
-<div class={{ classNameObj }} style={{ style }}
-    ev-change={{ self._dirty }}
-    ev-focusout={{ self._dirty }}
+<div {{ ...getRestProps(self) }} class={{ classNameObj }}
+    ev-change={{ self._onChange }}
+    ev-focusout={{ self._onFocusout }}
 >
-    <label for={{ htmlFor }} class="k-label" v-if={{ !hideLabel }}>
+    <label for={{ htmlFor }} class="k-label" v-if={{ !hideLabel }}
+        style={{ labelStyle }}
+    >
         <b:label>{{ label }}</b:label>
     </label>
     <div class="k-content">
         <b:content>{{ children }}</b:content>
         <Animate v-if={{ self.get('isValid') === false }}
             class={{ {"k-error": true, [errorClassName]: errorClassName} }}
-            a:transition="fade"
+            a:transition="c-fade"
         >{{ self.get('message') }}</Animate>
     </div>
     <div class="k-append" v-if={{ blocks.append }}>

@@ -16,6 +16,12 @@ export default class Pagination extends Intact {
         showGoto: Boolean,
         size: ['large', 'default', 'small', 'mini'],
         noBorder: Boolean,
+        simple: Boolean,
+        showLimits: Boolean,
+    };
+
+    static events = {
+        change: true,
     };
 
     defaults() {
@@ -30,6 +36,8 @@ export default class Pagination extends Intact {
             showGoto: false,
             size: 'default',
             noBorder: false,
+            simple: false,
+            showLimits: true,
         };
     }
 
@@ -62,7 +70,12 @@ export default class Pagination extends Intact {
             page = 1;
         }
 
-        this.set('current', page);
+        if (this.get('current') !== page) {
+            this.set('current', page);
+        } else {
+            // force update to fix invalid input
+            this.update();
+        }
     }
 
     prev() {

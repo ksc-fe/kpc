@@ -12,14 +12,20 @@ import Datepicker from 'kpc/components/datepicker';
     <Datepicker v-model="from" placeholder="开始日期"
         maxDate={{ self.get('to') }}
         minDate={{ new Date() }}
-    />
+    /> ~
     <Datepicker v-model="to" placeholder="结束日期"
         minDate={{ self.get('from') }}
     />
+    <br />
+    <br />
+    <Datepicker v-model="fromTime" placeholder="开始时间"
+        type="datetime"
+        maxDate={{ self.get('toTime') || new Date() }}
+    /> ~
+    <Datepicker v-model="toTime" placeholder="结束时间"
+        type="datetime"
+        minDate={{ self.get('fromTime') }}
+        maxDate={{ new Date() }}
+    />
 </div>
-```
-
-```styl
-.k-datepicker
-    margin-right 10px
 ```

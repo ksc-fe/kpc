@@ -34,19 +34,19 @@ export default class Message extends Intact {
     }
 
     static info = (content, duration) => {
-        Message.notice(content, duration, 'info');
+        return Message.notice(content, duration, 'info');
     }
 
     static error = (content, duration) => {
-        Message.notice(content, duration, 'danger');
+        return Message.notice(content, duration, 'danger');
     }
 
     static success = (content, duration) => {
-        Message.notice(content, duration, 'success');
+        return Message.notice(content, duration, 'success');
     }
 
     static warning = (content, duration) => {
-        Message.notice(content, duration, 'warning');
+        return Message.notice(content, duration, 'warning');
     }
 
     static propTypes = {
@@ -152,17 +152,19 @@ export default class Message extends Intact {
         }
     }
 
-    onMouseEnter() {
+    onMouseEnter(e) {
+        this.trigger('mouseenter', e);
         clearTimeout(this.timer);
     }
 
-    onMouseLeave() {
+    onMouseLeave(e) {
+        this.trigger('mouseleave', e);
         clearTimeout(this.timer);
         this._mount();
     }
 
     destroy(vNode) {
-        if (this._isVue && !vNode) {
+        if ((this._isVue || this._isReact) && !vNode) {
             messages.delete(this);
         } else if (vNode.parentVNode.tag === MessageAnimate && !this.get('_isInstance')) {
             return;

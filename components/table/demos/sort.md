@@ -12,21 +12,10 @@ order: 10
 当排序方式改变时，可以监听默认事件`$change:sort`来执行自定义排序逻辑
 
 ```vdt
-import Table, {TableColumn} from 'kpc/components/table';
-
-const scheme = {
-	name: {
-		title: '姓名',
-		sortable: true
-	},
-	age: {
-		title: '年龄',
-		sortable: true
-	}
-};
+import {Table, TableColumn} from 'kpc/components/table';
 
 <div class='no-data-template'>
-    <Table scheme={{ scheme }} 
+    <Table scheme={{ self.get('scheme') }} 
         data={{ self.get('data') }} 
         sort={{ self.get('sort') }}
         ev-$change:sort={{ self._onSort }}
@@ -44,6 +33,8 @@ const scheme = {
 ```styl
 .no-data-template
     display: flex
+    .k-table
+        flex 1
     .k-table-wrapper
         margin-left: 10px
 ```
@@ -56,6 +47,16 @@ export default class extends Intact {
     defaults() {
         return {
             data: [{name: 'aa', age: 1}, {name: 'cc', age: 5}, {name: 'bb', age: 9}],
+            scheme: {
+                name: {
+                    title: '姓名',
+                    sortable: true
+                },
+                age: {
+                    title: '年龄',
+                    sortable: true
+                }
+            },
             sort: {}
         }
     }
@@ -70,5 +71,19 @@ export default class extends Intact {
         });
         this.set({data, sort});
     }
+}
+```
+
+```vue-methods
+_onSort(c, sort) {
+    console.log(sort);
+    const data = this.data.slice(0);
+    data.sort((a, b) => {
+        return sort.type === 'desc' ? 
+            (a[sort.key] > b[sort.key] ? -1 : 1) : 
+            (a[sort.key] > b[sort.key] ? 1 : -1);
+    });
+    this.data = data;
+    this.sort = sort;
 }
 ```

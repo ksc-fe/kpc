@@ -18,6 +18,8 @@ export default class Step extends Intact {
             selected: false,
             error: false,
             index: undefined,
+
+            width: undefined,
         }
     }
 }

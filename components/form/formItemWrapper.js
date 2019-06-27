@@ -13,7 +13,7 @@ function Wrapper(props) {
         ...(
             model ? {
                 'ev-$change:value': function(c, v) {
-                    _context.data.set(model, v);
+                    _context.data.set(model, v, {async: false});
                 },
                 value: _context.data.get(model),
             } : {}

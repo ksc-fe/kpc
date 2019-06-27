@@ -11,10 +11,12 @@ import {Switch} from 'kpc/components/switch';
 
 <div>
     <div style="margin-bottom: 20px">
-        <Switch v-model="value1" /> {{ JSON.stringify(self.get('value1')) }}
+        <Switch v-model="value1" />
+        {{ JSON.stringify(self.get('value1')) }}
     </div>
     <div>
-        <Switch v-model="value2" trueValue={{ 1 }} falseValue="1" /> {{ JSON.stringify(self.get('value2')) }}
+        <Switch v-model="value2" trueValue={{ 1 }} falseValue="1" />
+        {{ JSON.stringify(self.get('value2')) }}
     </div>
 </div>
 ```

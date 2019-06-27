@@ -1,4 +1,5 @@
 import Step from './step';
+import {getRestProps} from '../utils';
 
 const {
     children, value, style,
@@ -36,4 +37,4 @@ steps = steps.map(vNode => {
     return vNode;
 });
 
-<div class={{ classNameObj }} style={{ style }}>{{ steps }}</div>
+<div class={{ classNameObj }} {{ ...getRestProps(self) }}>{{ steps }}</div>

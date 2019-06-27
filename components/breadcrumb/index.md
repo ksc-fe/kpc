@@ -19,3 +19,17 @@ sidebar: doc
 | --- | --- | --- | --- |
 | to | 指定超链接地址 | `String` | `undefined` |
 | separator | 指定分隔符，会覆盖`Breadcrumb`中的定义 | `String` | `">"` |
+
+# 扩展点
+
+## Breadcrumb
+
+| 名称 | 说明 |
+| --- | --- |
+| separator | 扩展分隔符 |
+
+## BreadcrumbItem
+
+| 名称 | 说明 |
+| --- | --- |
+| separator | 扩展分隔符，优先级高于`Breadcrumb`中的定义 |

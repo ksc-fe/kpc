@@ -1,0 +1,108 @@
+import Menu from './menu';
+import {
+    mapChildren, expandAnimationCallbacks,
+    isStringOrNumberNotEmpty, getRestProps
+} from '../utils';
+import Dropdown from '../dropdown';
+import {Tooltip} from '../tooltip';
+import VShow from './vShow';
+import Icon from '../icon';
+
+const {
+    children, key, className, dot,
+    disabled, _root, _isFirstFloorChildren,
+    _isFocus, _show, _active, _highlighted,
+    _parentMenu
+} = self.get();
+
+let subMenuVNode;
+let tooltipContents = [];
+const titleVNodes = mapChildren(children, vNode => {
+    if (vNode.tag === Menu) {
+        // clone it
+        subMenuVNode = h(Menu, {
+            ...vNode.props, 
+            _isSubMenu: true,
+            _root,
+            _isFirstFloorChildren,
+            'ev-$change:value': self._onDropdownShowChange,
+            _parent: self,
+        });
+    } else if (vNode.type === 1 || isStringOrNumberNotEmpty(vNode)) {
+        tooltipContents.push(vNode);
+        return <span>{{ vNode }}</span>;
+    } else {
+        return vNode;
+    }
+});
+
+const isExpanded = subMenuVNode && _root.isExpanded(key);
+if (isExpanded) {
+    _parentMenu._expandedKeys.add(key);
+}
+const classNameObj = {
+    'k-menu-item': true,
+    'k-expanded': isExpanded, 
+    'k-active': _root.isSelected(key),
+    'k-disabled': disabled,
+    [className]: className,
+    'k-hover': _isFocus,
+    'k-show': _show,
+    'k-highlighted': _root.isHighlighted(key),
+};
+
+const title = (
+    <div class="k-title" ev-click={{ self._onClick.bind(self, subMenuVNode) }}>
+        <Icon class="k-dot ion-record" v-if={{ dot }} />
+        {{ titleVNodes }}
+        <i class="k-arrow ion-ios-arrow-down" v-if={{ subMenuVNode }}></i>
+        {{ /* 
+            do not rotate sub-menu arrow when show as dropdown
+            <template v-if={{ subMenuVNode }}>
+                <i class="k-arrow ion-ios-arrow-down"
+                    v-if={{ !self._isDropdownItem()  }}
+                ></i>
+                <i class="k-arrow ion-ios-arrow-right" v-else></i>
+            </template>
+        */ }}
+    </div>
+);
+
+<div {{ ...getRestProps(self) }} class={{ classNameObj }}
+    ev-mouseenter={{ self._onMouseEnter }}
+    ev-mouseleave={{ self._onMouseLeave }}
+>
+    <template v-if={{ !Menu.showAsDropdown(_root) }}>
+        {{ title }}
+        <VShow show={{ isExpanded }} v-if={{ subMenuVNode }}>
+            {{ subMenuVNode }}
+        </VShow>
+        {{ /*Animate v-if={{ isExpanded }}
+            a:move={{ false }}
+            {{ ...expandAnimationCallbacks }}
+            key="submenu"
+        >
+            {{ subMenuVNode }}
+        </Animate>*/ }}
+    </template>
+    <template v-else-if={{ !subMenuVNode }}>
+        <Tooltip v-if={{ _isFirstFloorChildren && _root.get('type') !== 'horizontal' }}
+            position="right"
+        >
+            {{ title }}
+            <b:content>{{ tooltipContents }}</b:content>
+        </Tooltip>
+        <template v-else>{{ title }}</template>
+    </template>
+    <Dropdown v-else 
+        position={{ 
+            _root.get('type') !== 'horizontal' || !_isFirstFloorChildren ? 
+                {my: 'left top', at: 'right+5 top'} :
+                {my: 'left top', at: 'left bottom+5'}
+        }} 
+        class={{ {"k-menu": true, [`k-${_root.get('theme') || 'dark'}`]: true} }}
+    >
+        <template>{{ title }}</template>
+        <template>{{ subMenuVNode }}</template>
+    </Dropdown>
+</div>

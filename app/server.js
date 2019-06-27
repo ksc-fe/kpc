@@ -9,12 +9,13 @@ function createRouterMiddleware(router, App) {
     return function(req, res, next) {
         router.resolve({pathname: req.path}).then(({Page, data}) => {
             const $app = new App();
-            return $app.render(Page, data).then((content) => {
+            return $app.render(Page.default, data).then((content) => {
                 res.render('index', {
                     content,
                     style: collectInitial()
                 });
             }).catch(e => {
+                console.log(e.stack);
                 res.render('index');
             });
         }).catch(e => {
@@ -63,7 +64,7 @@ app.listen(port, () => {
 
 if (module.hot) {
     module.hot.accept(['./router'], () => {
-        const router = require('./router');
+        const router = require('./router').default;
         // const App = require('components/app').default;
         routerMiddleware = createRouterMiddleware(router, App);
     });

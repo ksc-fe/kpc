@@ -14,6 +14,12 @@ sidebar: doc
 | loading | 展示或隐藏loading动画 | `Boolean` | `false` |
 | ssr | 当前应用是否进行了服务器端渲染，如果为`true`，则首次加载时，前端会进行混合`hydrate` | `Boolean` | `false` |
 
+# 扩展点
+
+| 名称 | 说明|
+| --- | --- |
+| loading | 自定义页面加载动画，可以通过继承`App`组件扩展 |
+
 # 方法
 
 | 方法名 | 说明 | 参数 | 返回值 |
@@ -22,4 +28,3 @@ sidebar: doc
 | hideLoading | 隐藏loading动画 | - | `undefined` |
 | load | 加载页面组件 | `Page`, `data` | `Promise` |
 | render | 服务器端渲染，将组件渲染成字符串 | `Page`, `data` | `Promise[String]` |
-

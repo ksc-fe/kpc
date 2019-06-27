@@ -8,6 +8,11 @@ export default class Tab extends Intact {
     static propTypes = {
         disabled: Boolean,
         to: String,
+        closable: Boolean,
+    };
+
+    static events = {
+        click: true,
     };
 
     defaults() {
@@ -15,6 +20,7 @@ export default class Tab extends Intact {
             value: undefined,
             to: undefined,
             disabled: false,
+            closable: undefined,
 
             // passed by parent
             _value: undefined,
@@ -22,16 +28,23 @@ export default class Tab extends Intact {
         }
     }
 
-    _isActive() {
-        const value = this.get('value');
-        return value !== undefined && value === this.get('_value');
-    }
+    // _isActive() {
+        // const value = this.get('value');
+        // return value !== undefined && value === this.get('_value');
+    // }
 
     _changeTab(e) {
         if (this.get('disabled')) {
-            return e.preventDefault();
+            e.preventDefault();
+        } else {
+            this.get('_parent')._changeTab(this.get());
+            this.trigger('click', e);
         }
+    }
 
-        this.get('_parent')._changeTab(this.get());
+    _remove(e) {
+        e.stopPropagation();
+        const {_parent} = this.get();
+        _parent._remove(this);
     }
 }

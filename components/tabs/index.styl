@@ -4,6 +4,7 @@ sizes = large small mini
 .k-tabs
     border-bottom $tabs-border
     position relative
+    line-height 1
     .k-tab
         if $tabs-height != auto
             height $tabs-height 
@@ -16,6 +17,14 @@ sizes = large small mini
         color $tabs-color 
         position relative
         vertical-align middle
+        // close
+        .k-close
+            margin-right unit(-($mini-height / 2 / $rem), rem)
+            margin-left -(@margin-right)
+            position relative
+            top -2px
+            .k-icon
+                font-size $tabs-close-font-size
         &:hover
         &.k-active
             color $tabs-active-color 
@@ -23,7 +32,7 @@ sizes = large small mini
         &.k-disabled
             color $disabled-color
             cursor not-allowed
-
+            
     // active-bar
     .k-active-bar
         transition all $transition
@@ -126,12 +135,42 @@ sizes = large small mini
             &.k-active
                 background #fff
                 border-color transparent 
+                &:after
+                    display none
         // vertical
         &.k-vertical
             border-right none
             .k-tab
                 margin-top $tabs-no-border-card-gutter
 
+    // scroll
+    &:not(.k-vertical)
+        .k-scroll
+            overflow hidden
+            position relative
+            // @referece https://stackoverflow.com/questions/6421966/css-overflow-x-visible-and-overflow-y-hidden-causing-scrollbar-issue
+            padding-bottom 1px
+            margin-bottom -1px
+        &.k-border-card
+        &.k-no-border-card
+            .k-scroll
+                padding-bottom 0
+                margin-bottom 0
+        .k-wrapper
+            white-space nowrap
+            float left
+            transition transform $transition
+        .k-prev
+        .k-next
+            position absolute
+            top 0
+            width $tabs-navigator-width
+        .k-prev
+            left 0
+        .k-next
+            right 0
+        &.k-is-scroll
+            padding 0 $tabs-navigator-width
 
     // size
     for size in sizes 
@@ -141,6 +180,10 @@ sizes = large small mini
                 height lookup('$tabs-' + size + '-height')
                 line-height s('calc(%s - 2px)', @height)
                 padding lookup('$tabs-' + size + '-padding')
+                .k-close
+                    if (lookup('$tabs-' + size + '-close-font-size') != null)
+                        .k-icon
+                            font-size lookup('$tabs-' + size + '-close-font-size')
 
-$dir = $theme-dir + '/tabs.styl';
-@import $dir if exists($dir) 
+
+requireTheme('tabs')

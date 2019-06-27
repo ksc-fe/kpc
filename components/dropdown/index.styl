@@ -10,7 +10,7 @@
     border-radius $dropdown-border-radius 
     box-shadow $box-shadow
     font-size $dropdown-font-size 
-    z-index $max-z-index
+    z-index $dropdown-menu-z-index
     top 0
     left 0
 
@@ -51,11 +51,11 @@
             padding 0
 
     // tooltip
-    > .k-tooltip
+    .k-tooltip
         display block
     .k-dropdown
         > .k-tooltip
             display block
 
 
-@import $theme-dir + '/dropdown.styl' if exists($theme-dir + '/dropdown.styl') 
+requireTheme('dropdown')

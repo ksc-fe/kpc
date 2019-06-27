@@ -8,6 +8,7 @@ export default class MoveWrapper extends Intact {
 
     static propTypes = {
         autoDestroy: Boolean,
+        container: [Function, String],
     }
 
     defaults() {
@@ -18,11 +19,14 @@ export default class MoveWrapper extends Intact {
     }
 
     init(...args) {
+        // we must append the element before _mount lifecycles of children are called
+        this.mountedQueue.push(this._appendElement);
         super.init(...args);
         return this.placeholder = document.createComment("placeholder");
     }
 
     hydrate(...args) {
+        this.mountedQueue.push(this._appendElement);
         super.hydrate(...args);
         return this.placeholder = document.createComment('placeholder');
     }
@@ -38,7 +42,6 @@ export default class MoveWrapper extends Intact {
         }
     }
 
-    
     /**
      * @brief override super destroy 
      *
@@ -70,15 +73,29 @@ export default class MoveWrapper extends Intact {
         this.off();
     }
 
-    _mount(lastVNode, nextVNode) {
+    _appendElement() {
         const container = this.get('container');
         if (container) {
-            this.container = document.querySelector(container);
+            if (typeof container === 'string') {
+                this.container = document.querySelector(container);
+            } else {
+                this.container = container(this.placeholder);
+            }
         }
         if (!this.container) {
-            this.container = document.body;
+            // find the closest dialog if exists
+            let dom = this.placeholder;
+            let found;
+            while ((dom = dom.parentNode) && dom.nodeType === 1) {
+                if (dom.className && dom.className.split(' ').indexOf('k-dialog') > -1) {
+                    found = dom;
+                    break;
+                }
+            }
+            this.container = found || document.body;
         }
         this.container.appendChild(this.element);
+        this.trigger('appended');
     }
 }
 

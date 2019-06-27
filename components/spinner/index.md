@@ -16,3 +16,4 @@ sidebar: doc
 | disabled | 是否禁用 | `Boolean` | `false` |
 | size | 尺寸 | `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
 | vertical | 控制按钮是否竖直排列 | `Boolean` | `false` |
+| precision | 控制展示精度，该值必须为正整数或0 | `Number` | `undefined` |

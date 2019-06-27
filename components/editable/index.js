@@ -32,6 +32,11 @@ export default class Editable extends Intact {
         invalid: Boolean,
     }
 
+    static events = {
+        change: true,
+        error: true,
+    };
+
     _init() {
         this.initValue = this.get('value');
     }

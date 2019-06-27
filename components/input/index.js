@@ -3,16 +3,17 @@ import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
 import {selectInput} from '../utils';
+import Search from './search';
 
 export default class Input extends Intact {
-    @Intact.template
+    @Intact.template()
     static template = template;
 
     static propTypes = {
         type: String,
         name: String,
         value: [String, Number],
-        defaultValue: String,
+        defaultValue: [String, Number],
         placeholder: String,
         readonly: Boolean,
         clearable: Boolean,
@@ -25,6 +26,7 @@ export default class Input extends Intact {
         width: [Number, String],
         tabindex: [Number, String],
         autocomplete: String,
+        nativeProps: Object,
     };
 
     defaults() {
@@ -45,6 +47,9 @@ export default class Input extends Intact {
             width: undefined,
             tabindex: undefined,
             autocomplete: undefined,
+            nativeProps: undefined,
+
+            _width: 1,
         }
     }
 
@@ -61,7 +66,7 @@ export default class Input extends Intact {
     _adjustWidth() {
         if (this.get('autoWidth')) {
             const width = this.refs.fake.offsetWidth || 1;
-            this.refs.input.style.width = `${width + 1}px`;
+            this.set('_width', width);
         }
     }
 
@@ -91,12 +96,6 @@ export default class Input extends Intact {
     _proxyEvent(name, e) {
         this.trigger(name, e);
     }
-
-    _destroy() {
-        if (this.get('autoWidth')) {
-            this.input.style.width = '';
-        }
-    }
 }
 
-export {Input};
+export {Input, Search};

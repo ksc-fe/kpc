@@ -1,18 +1,30 @@
+@import '../../styles/variables';
+
 .blog-page
-    padding-bottom 15px
-    padding-top 95px
+    padding-bottom 10px
+    padding-top headerHeight + 15px
+    background #f1f1f5
     .content-wrapper
         box-shadow none
         flex-direction row-reverse
-        width 1280px
+        width 1080px
         aside
-            width 350px
+            width 250px
             border none
-            background #eee
+            background #f1f1f5
         article
             box-shadow 0 1px 1px rgba(0, 0, 0, 0.08)
         .aside-wrapper
             margin 30px
+            a
+                height 30px
+                line-height @height
+                &:hover
+                    color $primary-color
+            .active
+                a
+                    color $primary-color !important
+                    background-color transparent
         &.fixed
             .aside-wrapper
                 margin-right -999px
@@ -22,3 +34,10 @@
                 height s("calc(100% - 125px)")
         .aside-border
             height 30px
+
+@media (max-width: 768px) 
+    .blog-page
+        .content-wrapper
+            width 100%
+            aside
+                display none

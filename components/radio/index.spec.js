@@ -1,14 +1,13 @@
 import GroupDemo from '~/components/radio/demos/group';
 import ValueDemo from '~/components/radio/demos/value';
 import BasicDemo from '~/components/radio/demos/basic';
-import {mount, dispatchEvent} from 'test/utils';
+import {mount, unmount, dispatchEvent} from 'test/utils';
 
 describe('Radio', () => {
     let instance;
 
     afterEach(() => {
-        instance.destroy();
-        document.body.removeChild(instance.element);
+        unmount(instance);
     });
 
     it('should get value correctly of group radios', () => {

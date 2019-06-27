@@ -1,14 +1,12 @@
-import Intact from 'intact';
-import Button from './index';
-import {dispatchEvent, mount} from 'test/utils';
+import Button from 'kpc/components/button';
+import {dispatchEvent, mount, unmount} from 'test/utils';
 import GroupDemo from '~/components/button/demos/group';
 
 describe('Button', () => {
     let instance;
 
     afterEach(() => {
-        instance.destroy();
-        document.body.removeChild(instance.element);
+        unmount(instance);
     });
 
     it('should change value when click radio buttons', () => {

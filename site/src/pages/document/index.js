@@ -14,26 +14,27 @@ export default class extends Layout {
         return {
             ...super.defaults(),
             hasRead: true,
+            expanded: false,
         };
     }
 
     async _init() {
         super._init();
 
-        let path = this.get('path').replace('index.html', '');
+        let path = this.get('path').replace('index.html', '').replace('\\', '/');
         path = path.slice(0, -1).replace(process.URL_PREFIX, '');
 
         this.path = path;
 
-        const Article = await req(`.${path}/index.js`);
+        const Article = (await req(`.${path}/index.js`)).default;
         this.set({Article});
     }
 
     _create() {
-        this.set('hasRead', localStorage.getItem('v0.5.0'));
+        this.set('hasRead', localStorage.getItem(process.version));
         if (this.path === '/docs/changelog') {
             this.set('hasRead', true);
-            localStorage.setItem('v0.5.0', 1);
+            localStorage.setItem(process.version, 1);
         }
         this.examples = this.element.querySelectorAll('.example');
     }
@@ -59,7 +60,7 @@ export default class extends Layout {
         if (active) {
             this.set('borderStyle', {
                 height: active.offsetHeight + 'px',
-                top: active.offsetTop + 'px',
+                top: active.offsetTop + 8 + 'px', // fix top +8px
             });
         } else {
             this.set('borderStyle', undefined);
@@ -73,7 +74,7 @@ export default class extends Layout {
             const h = hs[i];
             const top = h.getBoundingClientRect().top + scrollTop;
 
-            if (top > minTop && top - 80 <= scrollTop) {
+            if (top > minTop && top - 88 <= scrollTop) {
                 return {header: h.id, top: top, elem: h};
             }
         }
@@ -85,7 +86,7 @@ export default class extends Layout {
         const index = demo.data.index;
         const dom = this.element.querySelector(`.index-${index}`);
         const top = dom.getBoundingClientRect().top + window.pageYOffset;
-        window.scrollTo(0, top - 80);
+        window.scrollTo(0, top - 87);
     }
 
     _destroy() {

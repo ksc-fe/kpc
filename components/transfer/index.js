@@ -39,6 +39,10 @@ export default class Transfer extends Intact {
             placeholder: _$('请输入'),
             leftTitle: _$('请选择'),
             rightTitle: _$('已选择'),
+
+            selectedKeys: [],
+            leftCheckedKeys: [],
+            rightCheckedKeys: [],
         };
     }
 
@@ -49,103 +53,141 @@ export default class Transfer extends Intact {
             }
         };
         this.on('$receive:value', (c, v) => fixValue(v));
-    }
 
-    _mount() {
-        document.addEventListener('keydown', this._onKeydown);
-        document.addEventListener('keyup', this._onKeyup);
-    }
-
-    _onKeydown(e) {
-        if (e.keyCode === 16) {
-            this.shiftKey = true;
-        }
-    }
-
-    _onKeyup(e) {
-        if (e.keyCode === 16) {
-            this.shiftKey = false;
-        }
+        // keep the keys consistence with the conresponding value
+        const setKeys = (key, value) => {
+            const keyName = this.get('keyName');
+            this.set(key, value.map(item => {
+                return item[keyName];
+            }));
+        };
+        const setValues = (key, value, list) => {
+            const keyName = this.get('keyName');
+            this.set(key, list.filter(item => {
+                return ~value.indexOf(item[keyName]);
+            }));
+        };
+        // maybe the value is undefined, but above $receive:value is called after this
+        fixValue(this.get('value'));
+        setKeys('selectedKeys', this.get('value'));
+        this.on('$change:value', (c, v) => setKeys('selectedKeys', v));
+        [
+            ['leftCheckedKeys', 'leftChecked', 'data'],
+            ['rightCheckedKeys', 'rightChecked', 'value']
+        ].forEach(([key, value, list]) => {
+            this.on(`$receive:${value}`, (c, v) => setKeys(key, v));
+            this.on(`$change:${key}`, (c, v) => setValues(value, v, this.get(list)));
+        });
+        
+        // only change the left status, reserve the right status
+        this.on('$receive:data', (c, v) => {
+            if (!v || !v.length) {
+                this.set({
+                    leftCheckedKeys: []
+                });
+            } else {
+                const {leftCheckedKeys, keyName} = this.get();
+                const allKeys = v.reduce((memo, item) => {
+                    memo[item[keyName]] = true;
+                    return memo;
+                }, {});
+                const fix = (keys) => {
+                    const ret = [];
+                    if (keys) {
+                        keys.forEach(key => {
+                            if (allKeys[key]) {
+                                ret.push(key);
+                            }
+                        });
+                    }
+                    return ret;
+                };
+                this.set({
+                    leftCheckedKeys: fix(leftCheckedKeys),
+                });
+            }
+        });
     }
 
     _add() {
-        const value = this.get('value').concat(this.get('leftChecked'));
+        let {data, value, leftCheckedKeys, keyName} = this.get();
+        value = value.concat(data.filter(item => {
+            return ~leftCheckedKeys.indexOf(item[keyName]);
+        })); 
         this.set({
-            leftChecked: [],
+            leftCheckedKeys: [],
             value: value,
         });
     }
 
     _remove() {
-        const value = this.get('value').slice(0);
-        this.get('rightChecked').forEach(item => {
-            const index = value.indexOf(item);
-            value.splice(index, 1);
+        let {value, rightCheckedKeys, keyName} = this.get();
+        value = value.filter(item => {
+            return !~rightCheckedKeys.indexOf(item[keyName]);
         });
         this.set({
-            rightChecked: [],
+            rightCheckedKeys: [],
             value: value,
         });
     }
 
     _onCheckboxChange(type, index, e) {
-        const keywords = this.get(`${type}Keywords`);
-        const data = type === 'left' ? this.get('data') : this.get('value');
-        const filter = this.get('filter');
-
-        if (this.startIndex === undefined || !this.shiftKey) {
+        if (this.startIndex === undefined || !e.shiftKey) {
             this.startIndex = index;
+            this.endIndex = undefined;
             this.checked = e.target.checked;
-        } else if (this.shiftKey) {
-            let values = data;
-            if (this.get('filterable') && keywords) {
-                values = data.filter(item => filter(item, keywords));
-            }
-            if (index > this.startIndex) {
-                values = values.slice(this.startIndex, index + 1);
-            } else if (index < this.startIndex) {
-                values = values.slice(index, this.startIndex + 1);
-            }
-            values = values.filter(item => !item.disabled);
-            const checkedValues = this.get(`${type}Checked`);
-            const _values = [];
-
-            if (this.checked) {
-                checkedValues.forEach(item => {
-                    if (!~values.indexOf(item)) {
-                        _values.push(item);
-                    }
-                });
-                this.set(`${type}Checked`, values.concat(_values));
-            } else {
-                checkedValues.forEach(item => {
-                    if (!~values.indexOf(item)) {
-                        _values.push(item);
-                    }
-                });
-                this.set(`${type}Checked`, _values);
-            }
-        }
-    }
-
-    _onClickLabel(e) {
-        if (e.shiftKey && e.target.tagName !== 'INPUT') {
+        } else if (e.shiftKey) {
             e.preventDefault();
-            e.target.click();
+
+            const values = this._getShowedData(type);
+            const checkedKeys = this.get(`${type}CheckedKeys`).slice(0);
+            const lastEndIndex = this.endIndex;
+            const keyName = this.get('keyName');
+            this.endIndex = index;
+            const update = (data, isCheck) => {
+                data.forEach(item => {
+                    if (!item.disabled) {
+                        const key = item[keyName];
+                        const index = checkedKeys.indexOf(key);
+                        if (isCheck) {
+                            if (!~index) {
+                                checkedKeys.push(key);
+                            }
+                        } else {
+                            if (~index) {
+                                checkedKeys.splice(index, 1);
+                            }
+                        }
+                    }
+                });
+            };
+
+            if (lastEndIndex !== undefined) {
+                // if exists lastEndIndex, we reset the last result
+                // and set it again
+                update(
+                    values.slice(
+                        Math.min(index, lastEndIndex),
+                        Math.max(index, lastEndIndex) + 1
+                    ),
+                    !this.checked
+                ); 
+            }
+            update(
+                values.slice(
+                    Math.min(index, this.startIndex),
+                    Math.max(index, this.startIndex) + 1
+                ), 
+                this.checked
+            );
+
+            this.set(`${type}CheckedKeys`, checkedKeys);
         }
     }
 
     _isCheckAll(model) {
         const checked = this.get(`${model}Checked`);
-        let data = this.get('value');
-
-        if (model === 'left') {
-            data = this.get('data').filter(item => {
-                return !~data.indexOf(item) && !item.disabled;
-            });
-        } else {
-            data = data.filter(item => !item.disabled);
-        }
+        const data = this._getEnabledData(model);
 
         return data.length && checked.length >= data.length;
     }
@@ -154,18 +196,30 @@ export default class Transfer extends Intact {
         if (e.target.checked) {
             this._selectAll(model);
         }  else {
-            this.set(`${model}Checked`, []);
+            this.set(`${model}CheckedKeys`, []);
         }
     }
 
     _selectAll(model) {
-        let data = this.get('value');
+        const keyName = this.get('keyName');
+        this.set(`${model}CheckedKeys`, this._getEnabledData(model).map(item => item[keyName]));
+    }
+
+    _getEnabledData(model) {
+        return this._getShowedData(model).filter(item => {
+            return !item.disabled;
+        });
+    }
+
+    _getShowedData(model) {
+        let data;
         if (model === 'left') {
+            const {selectedKeys, keyName} = this.get();
             data = this.get('data').filter(item => {
-                return !~data.indexOf(item) && !item.disabled;
+                return !~selectedKeys.indexOf(item[keyName]);
             });
         } else {
-            data = data.filter(item => !item.disabled);
+            data = this.get('value');
         }
 
         let keywords = this.get(`${model}Keywords`);
@@ -174,12 +228,7 @@ export default class Transfer extends Intact {
             data = data.filter(item => filter(item, keywords));
         }
 
-        this.set(`${model}Checked`, data);
-    }
-
-    _destroy() {
-        document.removeEventListener('keydown', this._onKeydown);
-        document.removeEventListener('keyup', this._onKeyup);
+        return data;
     }
 }
 

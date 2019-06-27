@@ -10,11 +10,20 @@ import Button from 'kpc/components/button';
 import Dialog from 'kpc/components/dialog';
 
 <div>
-    <Button ev-click={{ self.set.bind(self, 'show', true) }}
-        type="primary"
-    >Show Dialog</Button>
+    <Button ev-click={{ self.onClick }} type="primary">Show Dialog</Button>
     <Dialog v-model="show" title="Dialog Title" ref="__demo">
         Dialog Body 
     </Dialog>
 </div>
+```
+
+```js
+export default class extends Intact {
+    @Intact.template()
+    static template = template;
+
+    onClick() {
+        this.set('show', true);
+    }
+}
 ```

@@ -1,0 +1,17 @@
+import ScrollSelect from 'components/scrollSelect';
+
+<div>
+    <ScrollSelect data={{ [
+        {value: 'Monday', label: '星期一'},
+        {value: 'Tuesday', label: '星期二'},
+        {value: 'Wedensday', label: '星期三'},
+        {value: 'Thursday', label: '星期四'},
+        {value: 'Friday', label: '星期五'},
+        {value: 'Saturday', label: '星期六'},
+        {value: 'Sunday', label: '星期天'},
+    ] }} />
+
+    <ScrollSelect data={{ (value) => {
+        return Array.apply(null, {length: 10}).map((v, i) => i + value - 5);
+    } }} value={{ 2018 }}  count={{ 19 }}/>
+</div>

@@ -7,6 +7,13 @@ sidebar: doc
 
 # 属性
 
+## Form
+
+| 属性 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| labelWidth | 定义所有子孙`FormItem`组件的`label`宽度 | `String` &#124; `Number` | `undefined` |
+| layout | 指定表单布局方式 | `"horizontal"` &#124; `"vertical"` &#124; `"inline"` | `"horizontal"` |
+
 ## FormItem
 
 | 属性 | 说明 | 类型 | 默认值 |
@@ -18,7 +25,8 @@ sidebar: doc
 | label | 指定表单每一项前面展示的标题 | `String` | `undefined` |
 | htmlFor | 指定`label`的`for`属性 | `String` | `undefined` | 
 | hideLabel | 是否隐藏`label`，默认会展示`label`，即使该属性为空，也会展示占位元素 | `Boolean` | `false` |
-| force | 让`FormItem`更新时，强制验证, [#6][1] | `Boolean` | `false` |
+| isDirty | 组件是否被污染，组件只有被污染后，才会进行表单验证 | `Boolean` | `false` |
+| force | 如果组件被污染，让`FormItem`更新时，强制验证。你也可以配合`isDirty`属性，指定强制验证的时机 [#6][1] | `Boolean` | `false` |
 
 # 扩展点
 
@@ -46,6 +54,7 @@ sidebar: doc
 | --- | --- | --- | --- |
 | validate | 验证表单所有规则 | - | `Promise`: `.then(valid => {})`，`valid`为`true`验证成功，否则失败 |
 | reset | 重置表单 | - | `undefined` |
+| getFirstInvalidFormItem | 获取第一条出错的`FormItem` | - | `FormItem` |
 
 # 静态方法
 

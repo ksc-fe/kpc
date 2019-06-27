@@ -55,3 +55,15 @@ export default class extends Intact {
     }
 }
 ```
+
+```vue-methods
+add() {
+    if (this.percent >= 100) return;
+    this.percent += 10;
+}
+
+minus() {
+    if (this.percent <= 0) return;
+    this.percent -= 10;
+}
+```

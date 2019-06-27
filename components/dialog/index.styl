@@ -5,8 +5,9 @@
     z-index $max-z-index 
     top 0
     left 0
+    width 100%
     // overlay
-    .k-overlay
+    > .k-overlay
         position fixed
         top 0
         left 0
@@ -14,11 +15,6 @@
         height 100%
         background #000
         opacity 0.5 
-        transition opacity $transition 
-        // overlay animation
-        &.animate-enter
-        &.animate-leave
-            opacity 0
 
 .k-dialog
     position absolute 
@@ -27,9 +23,10 @@
     background $dialog-bg-color 
     font-size $dialog-font-size
     color $dialog-color
+    max-width 100%
 
     // header
-    > .k-header
+    .k-header
         padding 0 $dialog-padding
         border-bottom $dialog-title-border 
         position relative
@@ -38,6 +35,7 @@
             line-height $dialog-title-height
             font-size $dialog-title-font-size
             color $dialog-title-color
+            display inline-block
         .k-close
             position absolute
             right $dialog-close-right 
@@ -47,11 +45,11 @@
                     font-size $dialog-close-icon-font-size
 
     // body
-    > .k-body
+    .k-body
         padding $dialog-body-padding
 
     // footer
-    > .k-footer
+    .k-footer
         text-align right
         padding $dialog-footer-padding
         .k-btn
@@ -59,15 +57,17 @@
 
     // drag
     &.k-dragging
-        cursor default
+        cursor move 
         user-select none
 
     // animation
     &.animate-enter-active
     &.animate-leave-active
+    &.animate-appear-active
         transition all $transition
     &.animate-enter
     &.animate-leave
+    &.animate-appear
         transform $dialog-transform 
         opacity 0
 
@@ -76,4 +76,26 @@
         &.k-{size}
             width lookup('$dialog-' + size + '-width')
 
-@import $theme-dir + '/dialog.styl' if exists($theme-dir + '/dialog.styl') 
+// alert dialog
+.k-alert-dialog
+    .k-dialog
+        > .k-body
+            padding $dialog-alert-padding 
+            text-align center
+        > .k-header
+        > .k-footer
+            border none
+    .k-tip-icon
+        text-align center
+        margin $dialog-alert-tip-icon-margin
+        .k-icon
+            font-size $dialog-alert-tip-icon-font-size
+            line-height $dialog-alert-tip-icon-line-height 
+    for type in 'success' 'warning' 'error' 'confirm'
+        // error is a built-in function, we must use string
+        &.k-{type}
+            .k-tip-icon
+                color lookup('$dialog-alert-' + type + '-tip-icon-color')
+
+
+requireTheme('dialog')

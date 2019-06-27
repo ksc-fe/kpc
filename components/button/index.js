@@ -23,6 +23,7 @@ export default class Button extends Intact {
             value: undefined,
             name: undefined,
             tabindex: '0',
+            ghost: false,
 
             _value: undefined,
             _checkType: 'none',
@@ -42,6 +43,12 @@ export default class Button extends Intact {
         tagProps: Object,
         name: String,
         tabindex: [String, Number],
+        ghost: Boolean,
+    }
+
+    static events = {
+        click: true,
+        mouseup: true,
     }
 
     _mount() {
@@ -116,9 +123,10 @@ export default class Button extends Intact {
         this.trigger('click', e);
     }
 
-    _blur() {
+    _onMouseUp(e) {
         // when click, blur it to remove the focus style
         this.element.blur();
+        this.trigger('mouseup', e);
     }
 }
 

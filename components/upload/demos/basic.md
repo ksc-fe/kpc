@@ -13,6 +13,9 @@ import Upload from 'kpc/components/upload';
 <Upload multiple
     beforeRemove={{ self._beforeRemove }}
     action="//jsonplaceholder.typicode.com/posts/"
+    accept=".jpg, .png"
+    maxSize={{ 500 }}
+    ev-error={{ self._showError }}
 >
     <b:tip>只能上传JPG/PNG格式文件，且不超过500kb</b:tip>
 </Upload>
@@ -25,6 +28,7 @@ import Upload from 'kpc/components/upload';
 
 ```js
 import Dialog from 'kpc/components/dialog';
+import Message from 'kpc/components/message';
 
 export default class extends Intact {
     @Intact.template()
@@ -41,6 +45,10 @@ export default class extends Intact {
             dialog.on('ok', resolve);
             dialog.on('cancel', reject);
         });
+    }
+
+    _showError(e) {
+        Message.error(e.message);
     }
 }
 ```

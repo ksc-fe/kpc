@@ -1,12 +1,11 @@
 import ChildrenDemo from '~/components/progress/demos/children';
-import {mount, dispatchEvent} from 'test/utils';
+import {mount, unmount, dispatchEvent} from 'test/utils';
 
 describe('Progress', () => {
     let instance;
 
     afterEach(() => {
-        instance.destroy();
-        document.body.removeChild(instance.element);
+        unmount(instance);
     });
 
     it('change percent', () => {

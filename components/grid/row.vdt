@@ -1,7 +1,14 @@
-const gutterStyle = require('./utils');
+import Col from './col';
+import {mapChildren, getRestProps} from '../utils';
+import gutterStyle from './utils';
 
-let {children, className, style, gutter} = self.get();
+let {
+    children, className, style,
+    justify, align
+} = self.get();
+const useFlex = self.useFlex;
 
+let gutter = self._getGutter();
 let hasGutter = gutter > 0;
 if (hasGutter) {
     style = gutterStyle(gutter, style);
@@ -11,14 +18,24 @@ const classNameObj = {
     'k-row': true,
     [className]: className,
     'k-gutter': hasGutter,
+    'k-flex': useFlex,
+    [`k-justify-${justify}`]: justify,
+    [`k-align-${align}`]: align,
 };
 
-<div class={{ classNameObj }} style={{ style }}>{{ hasGutter ? 
-    children.map(vNode => {
-        if (vNode) {
-            vNode.props.gutter = gutter;
-            return vNode;
+/* if (Array.isArray(children)) { */
+    /* // order the children by order property like flex's order */
+    /* children.sort((a, b) => { */
+        /* return (a && a.props && a.props.order || 0) -  */
+            /* (b && b.props && b.props.order || 0); */
+    /* }); */
+/* } */
+
+<div {{ ...getRestProps(self) }} class={{ classNameObj }} style={{ style }}>{{
+    mapChildren(children, vNode => {
+        if (vNode && vNode.tag === Col) {
+            vNode.props = {...vNode.props, gutter};
         }
-    }) :
-    children 
+        return vNode;
+    }) 
 }}</div>

@@ -1,14 +1,15 @@
 import BasicDemo from '~/components/slider/demos/basic';
 import RangeDemo from '~/components/slider/demos/range';
 import DisabledDemo from '~/components/slider/demos/disabled';
-import {mount, dispatchEvent} from 'test/utils';
+import {mount, unmount, dispatchEvent} from 'test/utils';
+import Slider from 'kpc/components/slider';
+import Intact from 'intact';
 
 describe('Slider', () => {
     let instance;
 
     afterEach(() => {
-        instance.destroy();
-        document.body.removeChild(instance.element);
+        unmount(instance);
     });
 
     it('basic test', () => {
@@ -47,7 +48,7 @@ describe('Slider', () => {
     it('range test', () => {
         instance = mount(RangeDemo);
 
-        const windowWidth = document.documentElement.clientWidth;
+        const windowWidth = 800; //document.documentElement.clientWidth;
         const [first, second] = instance.element.querySelectorAll('.k-handle');
 
         // drag
@@ -144,5 +145,38 @@ describe('Slider', () => {
         const wrapper = slider.querySelector('.k-slider-wrapper .k-wrapper');
         dispatchEvent(wrapper, 'click', {clientX: 0});
         expect(slider.innerHTML).to.matchSnapshot();
+    });
+
+    it('min/max/step is undefined', () => {
+        class Component extends Intact {
+            @Intact.template()
+            static template = `<Slider min={{ undefined }}
+                max={{ undefined }}
+                step={{ undefined }}
+                value={{ 1 }}
+            />`;
+            _init() {
+                this.Slider = Slider;
+            }
+        }
+        instance = mount(Component);
+
+        expect(instance.element.innerHTML).to.matchSnapshot();
+    });
+
+    it('should log error when max < min', () => {
+         class Component extends Intact {
+            @Intact.template()
+            static template = `<Slider min={{ 20 }}
+                max={{ 0 }}
+                step={{ undefined }}
+                value={{ 1 }}
+            />`;
+            _init() {
+                this.Slider = Slider;
+            }
+        }
+        instance = mount(Component);
+        expect(instance.element.innerHTML).to.matchSnapshot();
     });
 });

@@ -1,0 +1,80 @@
+@require('./variables.styl')
+
+.k-tree
+    if $tree-font-size != inherit
+        font-size $tree-font-size
+    line-height $tree-line-height 
+    position relative
+    .k-label
+        position relative
+        > .k-text
+            vertical-align middle
+            transition background $transition
+            padding $tree-text-padding 
+        // dragging
+        &.k-insert-before
+        &.k-insert-after
+            &:before
+                content ''
+                display block
+                position absolute
+                border-top $tree-dragging-over-border
+                width 100%
+                left 0
+        &.k-insert-before
+            &:before
+                top 0
+        &.k-insert-after
+            &:before
+                bottom 0
+        &.k-insert-inner
+            background $tree-selected-text-bg-color
+            border-radius $tree-selected-text-border-radius
+    .k-leaf
+        padding-left $tree-leaf-padding-left
+        .k-checkbox
+            margin-left $tree-leaf-checkbox-margin-left
+    .k-icon
+        display inline-block
+        width $tree-icon-width
+        text-align center
+        vertical-align middle
+        color $tree-icon-color 
+        transform rotate(-90deg)
+        transition transform $transition
+    .k-node
+        cursor pointer
+        &:not(.k-disabled)
+            > .k-label
+                .k-text:hover
+                    color $tree-hover-color 
+        .k-node
+            padding-left $tree-node-node-padding-left
+            overflow hidden
+        // expaned
+        &.k-expanded
+            > .k-label .k-icon
+                transform rotate(0)
+        // disabled
+        &.k-disabled
+            cursor not-allowed
+            .k-label
+            .k-icon
+                color $tree-disabled-color 
+        // selected
+        &.k-selected
+            > .k-label .k-text
+                background $tree-selected-text-bg-color
+                border-radius $tree-selected-text-border-radius
+        // dragging
+        &.k-dragging
+            background $tree-dragging-bg-color
+        &.c-expand-leave
+            width 100%
+
+    // checkbox
+    .k-checkbox
+        margin-right $tree-checkbox-margin-right
+
+
+requireTheme('tree')

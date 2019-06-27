@@ -5,13 +5,19 @@ console.log(
     '\x1b[33m%s\x1b[0m', 
     `If the documents of components has not been built
 please run:
-	npm run build:doc
+	npx gulp doc
 `
 );
 
 module.exports = function (config) {
     config.set({
-        browsers: process.env.UPDATE ? ['ChromeHeadless'] : undefined,
+        browsers: process.env.UPDATE || process.env.CI ? ['MyChromeHeadless'] : undefined,
+        customLaunchers: {
+            'MyChromeHeadless': {
+                base: 'ChromeHeadless',
+                flags: ['--window-size=1920,1080'],
+            }
+        },
         frameworks: ['mocha', 'sinon-chai', 'snapshot', 'mocha-snapshot'],
         reporters: ['mocha', 'coverage-istanbul'],
         files: [
@@ -42,7 +48,7 @@ module.exports = function (config) {
         },
         autoWatch: true,
         coverageIstanbulReporter: {
-            reports: [ 'html', 'text-summary' ],
+            reports: [ 'html', 'lcovonly', 'text-summary' ],
             dir: path.join(__dirname, 'coverage'),
             fixWebpackSourcePaths: true
         },
@@ -57,6 +63,7 @@ module.exports = function (config) {
         },
         snapshot: {
             update: process.env.UPDATE === '1',
+            prune: process.env.UPDATE === '3',
         },
         logLevel: config.LOG_INFO,
         singleRun: true,

@@ -1,6 +1,6 @@
 import Intact from 'intact';
-import Dialog from './';
-import {getElement, render, mount, dispatchEvent} from 'test/utils';
+import Dialog from 'kpc/components/dialog';
+import {getElement, render, mount, unmount, dispatchEvent} from 'test/utils';
 import BasicDemo from '~/components/dialog/demos/basic'; 
 import AsyncCloseDemo from '~/components/dialog/demos/asyncClose';
 import AsyncOpenDemo from '~/components/dialog/demos/asyncOpen';
@@ -14,8 +14,7 @@ describe('Dialog', () => {
         component = null;
 
         if (instance) {
-            instance.destroy();
-            document.body.removeChild(instance.element);
+            unmount(instance);
             instance = null;
         }
     });
@@ -48,6 +47,17 @@ describe('Dialog', () => {
         component.set('show', true);
         const element = component.refs.dialog.$element;
         expect(element.children[1].children[1].innerHTML).to.equal('test');
+    });
+
+    it('should show correctly when render with value is true', () => {
+        class Component extends Intact {
+            @Intact.template()
+            static template = `<Dialog value={{ true }}>test</Dialog>`;
+            _init() { this.Dialog = Dialog; }
+        }
+        component = render(Component);
+        const element = getElement('.k-dialog-wrapper');
+        expect(element.innerHTML.replace(/[\d\.]+px/g, '')).to.matchSnapshot();
     });
 
     it('show dialog as instance', () => {
@@ -102,8 +112,7 @@ describe('Dialog', () => {
 
         component = render(Component);
         const footer = component.refs.dialog.$element.querySelector('.k-footer');
-        expect(footer.childNodes[0].textContent.trim()).be.equal('dialog footer');
-        expect(footer.childNodes.length).be.equal(4);
+        expect(footer.innerHTML).to.matchSnapshot();
     });
 
     it('basic test', () => {
@@ -129,7 +138,7 @@ describe('Dialog', () => {
         expect(instance.get('show')).be.false;
     });
 
-    it('should remove when parent destoried for using as component', function(done) {
+    it('should remove when parent destoryed for using as component', function(done) {
         this.enableTimeouts(false);
 
         let wrapper;
@@ -140,7 +149,7 @@ describe('Dialog', () => {
             _leaveEnd.call(this);
             expect(wrapper.parentNode).be.null;
 
-            document.body.removeChild(i.element);
+            document.body.removeChild(i.element.parentElement);
             Dialog.prototype._leaveEnd = _leaveEnd;
             done();
         };
@@ -175,13 +184,13 @@ describe('Dialog', () => {
     it('demos test', () => {
         const req = require.context('~/components/dialog/demos', true, /^((?!async).)*index\.js$/i);
         req.keys().forEach(item => {
+            if (/static/.test(item)) return;
             const Demo = req(item).default;
             const i = mount(Demo);
 
             dispatchEvent(i.element.firstChild, 'click');
             expect(getElement('.k-dialog').innerHTML).to.matchSnapshot();
-            i.destroy();
-            document.body.removeChild(i.element);
+            unmount(i);
         });
     });
 
@@ -226,4 +235,30 @@ describe('Dialog', () => {
         // should add style
         expect(dialog.getAttribute('style')).include('left');
     });
+
+    it('static methods', (done) => {
+        let cb = sinon.spy();
+        Dialog.success({content: 'test'}).then(cb);
+
+        let dialog = getElement('.k-dialog');
+        expect(dialog.innerHTML).to.matchSnapshot();
+        dialog.querySelector('.k-btn').click();
+        // remove immediately for next test
+        document.body.removeChild(dialog.parentElement);
+        setTimeout(() => {
+            expect(cb.callCount).to.eql(1);
+
+            let cb1 = sinon.spy();
+            Dialog.confirm({content: 'test', hideIcon: true, showClose: true}).then(cb, cb1)
+            dialog = getElement('.k-dialog');
+            expect(dialog.innerHTML).to.matchSnapshot();
+            dialog.querySelector('.k-footer .k-btn').click();
+            document.body.removeChild(dialog.parentElement);
+            setTimeout(() => {
+                expect(cb1.callCount).to.eql(1);
+
+                done();
+            });
+        });
+    })
 });

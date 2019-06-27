@@ -4,7 +4,7 @@
 import Intact from 'intact';
 import template from './index.vdt'
 import '../../styles/kpc.styl';
-import './index.styl'
+import './index.styl';
 
 export default class Slider extends Intact {
     get template() { return template; }
@@ -21,6 +21,7 @@ export default class Slider extends Intact {
             step: 1,
             isShowStop: false,
             marks: undefined,
+            disabled: false,
 
             _sliderValue: 0,
             _inputValue:0,
@@ -41,7 +42,12 @@ export default class Slider extends Intact {
         step: Number,
         isShowStop: Boolean,
         marks: Object,
-    }
+        disabled: Boolean,
+    };
+
+    static events = {
+        stop: true,
+    };
 
     _init() {
         this.on("$change:_inputValue", (c, val) => {
@@ -49,12 +55,23 @@ export default class Slider extends Intact {
                 this._setFixedValue(val);
             }
         });
-        ['min', 'max', 'step', 'value'].forEach(item => {
-            this.on(`$receive:${item}`, () => {
-                if (!this.get('_isDragging')) {
-                    this._setFixedValue(this.get('value'));
+        // make sure the min/max/step is valid
+        const defaults = this.defaults();
+        ['min', 'max', 'step'].forEach(item => {
+            this.on(`$receive:${item}`, (c, v) => {
+                if (typeof v !== 'number') {
+                    this.set(item, defaults[item], {async: true});
                 }
             });
+        });
+        const needFixedKeys = ['min', 'max', 'step', 'value'];
+        this.on('$receive', (c, keys) => {
+            if (
+                !this.get('_isDragging') &&
+                needFixedKeys.find(key => keys.indexOf(key) > -1)
+            ) {
+                this._setFixedValue(this.get('value'));
+            }
         });
     }
 
@@ -86,6 +103,11 @@ export default class Slider extends Intact {
 
     _fix(v) {
         let {step, max, min} = this.get();
+
+        if (min > max) {
+            Intact.utils.error(new Error(`[Slider] min must less than or equal to max, but got min: ${min} max: ${max}`));
+            return 0;
+        }
 
         if (Number.isNaN(Number(v))) {
             return min;

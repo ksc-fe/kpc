@@ -1,16 +1,16 @@
 @import '../../styles/variables';
 // @import '../../node_modules/highlight.js/styles/default.css';
 
-$aside-width = 300px
+$aside-width = 260px
 
 .document-page
     box-sizing border-box
-    background #efefef
+    //background #efefef
     .content-wrapper.fixed
         margin-bottom 0
         .aside-wrapper
             position fixed
-            top headerHeight 
+            //top headerHeight
             background #fff
             height "calc(100% - %s)" % headerHeight
             overflow auto
@@ -24,12 +24,15 @@ $aside-width = 300px
         border-radius 5px
         box-shadow 0 1px 1px rgba(0, 0, 0, .08)
         min-height calc(100vh - 15px)
-        aside
+        > aside
             width $aside-width
             border-right 1px solid #eee
+            .k-btn
+                display none
         .aside-wrapper
             position relative
-            padding-bottom 20px
+            padding-bottom 40px
+            font-size 14px
             .catalog-section
                 margin-top 25px
             h5
@@ -42,8 +45,8 @@ $aside-width = 300px
                 padding 0
             a
                 display block
-                height 30px
-                line-height 30px
+                height 40px
+                line-height 40px
                 padding-left 25px
                 color #333
                 &:hover
@@ -54,7 +57,9 @@ $aside-width = 300px
                     font-size 12px
             .active 
                 & > a, & span
-                    color linkColor !important
+                    color #ffffff !important
+                    background-color $primary-color
+                    //color linkColor !important
                     // border-right 2px solid linkColor
                         
             .sub-catalogs
@@ -70,7 +75,7 @@ $aside-width = 300px
             top 0
         article
             flex 1
-            padding 10px 20px
+            padding 10px 2.8%
             overflow auto
             // margin-right 150px
         .article-head
@@ -101,18 +106,50 @@ $aside-width = 300px
                 padding 20px
                 border 1px solid #eee
                 margin 20px 0
+            .browser-mockup
+                border-top 30px solid #eee
+                position relative
+                border-radius $border-radius
+                box-shadow $box-shadow
+                &:before
+                    display block
+                    content ''
+                    box-shadow 0 0 0 2px $danger-color, 21px 0 0 2px $success-color, 42px 0 0 2px $warning-color
+                    background $danger-color
+                    position absolute
+                    width 7px
+                    height 7px
+                    border-radius 50%
+                    top -19px
+                    left 19px
+                &:after
+                    content ''
+                    display block
+                    height 20px
+                    background #fff
+                    position absolute
+                    top -26px
+                    left 85px
+                    width calc(100% - 90px)
+                    border-radius $border-radius
+            iframe
+                width 100%
+                border none
+                display block
     .api
         .k-table-wrapper
-            thead
-                th:first-of-type
-                    width 150px
-                th:nth-child(2)
-                    width 50%
+            th:first-of-type
+            td:first-of-type
+                width 150px
+            th:nth-child(2)
+            td:nth-child(2)
+                width 40%
 
     .example
-        border 1px solid #eee
+        // border 1px solid #ccc
         padding 0 20px 20px 20px
         margin-bottom 20px
+        background #fff
     .example-opera
         padding 30px 0
     .example-desc
@@ -122,7 +159,7 @@ $aside-width = 300px
         position relative
         .title
             position absolute
-            top -9px
+            top -13px
             left 15px
             background #fff
             padding 0 10px
@@ -141,11 +178,12 @@ $aside-width = 300px
     .table-of-contents
         position fixed
         right 0
-        top 100px
+        //top 70px
+        padding-top 15px
         width 150px
         font-size 12px
         li
-            padding 5px 10px
+            padding 3px 10px 3px 15px
             cursor pointer
             &:hover
             &.active
@@ -155,11 +193,69 @@ $aside-width = 300px
     .content-wrapper
         .aside-wrapper
             position fixed
-            top headerHeight 
+            //top headerHeight
             background #fff
             height "calc(100% - %s)" % headerHeight
             overflow auto
             box-sizing border-box
             width $aside-width - 1px
         article
-            padding 10px 150px 10px 20px
+            background-color #f1f1f5
+            padding 24px 200px 10px 40px
+
+.aside-border-nav
+    height 100%
+    position absolute
+    border-left 1px solid #B2B2B2
+
+.aside-dot
+    height 8px !important
+    width 8px
+    border 1px solid #0091ea
+    border-radius 8px
+    left -3px
+    position absolute
+    background-color #0091ea // #CCCCCC
+
+.c-ellipsis-dot:before
+    content ''
+    position absolute
+    width 8px
+    height 8px
+    border-radius 8px
+    margin-top 5px
+    border 1px solid #CCCCCC
+    left -3px
+    background-color #CCCCCC
+
+@media (max-width: 768px) 
+    .document-page
+        .table-of-contents
+            display none
+        .content-wrapper
+            aside
+                position fixed
+                z-index $max-z-index
+                height 100%
+                transform translateX(unit(-($aside-width + 1), px))
+                transition transform $transition
+                &.expanded
+                    transform translateX(0)
+                    box-shadow 0 4px 4px 0 rgba(0,0,0,0.3)
+                .k-btn
+                    display block
+                    position absolute
+                    top 50px
+                    right 0
+                    transform translateX(100%)
+                    border none
+                    box-shadow 3px 0 4px 0 rgba(0,0,0,0.3)
+            article
+                padding 15px
+        .aside-wrapper
+            transition left $transition
+    .document-page .api .k-table-wrapper th:first-of-type,
+    .document-page .api .k-table-wrapper td:first-of-type
+    .document-page .api .k-table-wrapper th:nth-child(2), 
+    .document-page .api .k-table-wrapper td:nth-child(2)
+        width auto

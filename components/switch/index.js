@@ -32,12 +32,12 @@ export default class Switch extends Intact {
         height: [Number, String],
         size: ['large', 'default', 'small', 'mini'],
         disabled: Boolean,
-    }
+    };
 
-    _init() {
-        this._move = this._move.bind(this);
-        this._dragEnd = this._dragEnd.bind(this);
-    }
+    static events = {
+        click: true,
+        keypress: true,
+    };
 
     _dragStart(e) {
         if (this.get('disabled') || e.which !== 1) return;
@@ -63,8 +63,6 @@ export default class Switch extends Intact {
     }
 
     _dragEnd(e) {
-        this.set('_dragging', false);
-
         this.element.blur();
         const bar = this.refs.bar;
 
@@ -73,6 +71,7 @@ export default class Switch extends Intact {
             bar.style.width = '';
             this._toggle();
         } else {
+            // cancel this operation if the distance less than half of width
             const percent = (bar.clientWidth - this._height / 2) / this._maxWidth;
             
             if (!this.isChecked()) {
@@ -90,8 +89,15 @@ export default class Switch extends Intact {
             }
         }
 
+        this.set('_dragging', false);
+
         document.removeEventListener('mousemove', this._move);
         document.removeEventListener('mouseup', this._dragEnd);
+    }
+
+    _onClick(e) {
+        this.trigger('click', e);
+        this._toggle(e, false);
     }
 
     _toggle(e, isKeypress) {
@@ -110,7 +116,7 @@ export default class Switch extends Intact {
     }
 
     _onKeypress(e) {
-
+        this.trigger('keypress', e);
         if (e.keyCode === 13) {
             this._toggle(e, true);
         }

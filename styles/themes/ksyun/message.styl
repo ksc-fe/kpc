@@ -2,17 +2,19 @@
     font-size 12px
     color $ghost-text-color
     > .k-container
-        width 400px
+        min-width 400px
+        max-width 700px
         position relative
         > .k-close
             position absolute
             right 0
             top 0
-            height 33px
-            width 33px
-            line-height 31px
     for type in danger success warning
         &.k-{type}
             > .k-container
                 color lookup('$' + type + '-color')
                 background palette(lookup('$' + type + '-color'), -4)
+                > .k-close
+                    color lookup('$' + type + '-color')
+                    &:hover
+                        color palette(lookup('$' + type + '-color'), 1)

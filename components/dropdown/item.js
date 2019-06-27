@@ -34,11 +34,17 @@ export default class DropdownItem extends Intact {
 
     _mount() {
         const parent = this.parent = this._findAncestorDropdownMenu(true);
-        parent.items.push(this);
+        if (parent) {
+            parent.items.push(this);
+        }
     }
 
     _onClick(e) {
         if (this.get('disabled')) return;
+
+        // in IE, if the event has not call stopImmediatePropagation,
+        // the document click will also be called after it has been removed
+        e.stopPropagation();
 
         this.trigger('click', e);
 
@@ -58,6 +64,7 @@ export default class DropdownItem extends Intact {
 
     _onMouseLeave(e) {
         this.trigger('mouseleave', e);
+        this.parent.unFocusLastItem();
         // if (this.get('disabled')) return;
     }
 
@@ -122,7 +129,9 @@ export default class DropdownItem extends Intact {
     }
 
     _destroy() {
-        const items = this.parent.items;
-        items.splice(items.indexOf(this), 1);
+        if (this.parent) {
+            const items = this.parent.items;
+            items.splice(items.indexOf(this), 1);
+        }
     }
 }

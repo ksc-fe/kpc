@@ -1,9 +1,10 @@
-import {addStyle, isTextVNode} from '../utils';
+import Icon from '../icon';
+import {addStyle, isTextChildren, getRestProps} from '../utils';
 
 const {
     type, name, value, placeholder, tabindex,
-    readonly, clearable, disabled, size, 
-    rows, spellcheck, defaultValue, style,
+    readonly, clearable, disabled, size, nativeProps,
+    rows, spellcheck, defaultValue, style, _width,
     className, autoWidth, fluid, width, autocomplete,
 } = self.get();
 
@@ -47,7 +48,7 @@ const wrapperEvents = [
             const children = blocks.prepend.call(this, () => {});
             <div class={{ {
                 "k-prepend": true, 
-                "k-padding": isTextVNode(children)
+                "k-padding": isTextChildren(children)
             } }}>{{ children }}</div>
         }
     } }}
@@ -56,6 +57,7 @@ const wrapperEvents = [
             <b:prefix />
         </div>
         <input v-if={{ type !== 'textarea' }}
+            {{ ...(nativeProps || {}) }}
             class="k-inner" 
             type={{ type }}
             name={{ name }}
@@ -68,9 +70,11 @@ const wrapperEvents = [
             ref="input"
             tabindex={{ tabindex }}
             autocomplete={{ autocomplete }}
-            {{ ...events }}
+            {{ ...getRestProps(self, events) }}
+            style={{ autoWidth ? {width: _width + 'px'} : undefined }}
         />
         <textarea v-else 
+            {{ ...(nativeProps || {}) }}
             class="k-inner k-textarea"
             value={{ value }}
             ev-input={{ self._onInput }}
@@ -83,16 +87,16 @@ const wrapperEvents = [
             rows={{ rows }}
             spellcheck={{ spellcheck }}
             tabindex={{ tabindex }}
-            {{ ...events }}
+            {{ ...getRestProps(self, events) }}
         ></textarea>
         <div class="k-suffix" v-if={{ blocks.suffix || clearable }}>
-            <i v-if={{ clearable }}
+            <Icon v-if={{ clearable }}
                 class={{ {
-                    "k-clear k-icon ion-ios-close": true, 
+                    "k-clear ion-ios-close": true, 
                     "k-show": value,
                 } }}
                 ev-click={{ self.clear }}
-            ></i>{{ ' ' }}
+            />{{ ' ' }}
             <b:suffix />
         </div>
         <div v-if={{ autoWidth }} class="k-fake"
@@ -104,7 +108,7 @@ const wrapperEvents = [
             const children = blocks.append.call(this, () => {});
             <div class={{ {
                 "k-append": true, 
-                "k-padding": isTextVNode(children)
+                "k-padding": isTextChildren(children)
             } }}>{{ children }}</div>
         }
     } }}

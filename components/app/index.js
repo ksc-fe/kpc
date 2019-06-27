@@ -21,11 +21,11 @@ export default class App extends Intact {
     }
 
     showLoading() {
-        this.set('loading', true);
+        this.set('loading', true, {async: true});
     }
 
     hideLoading() {
-        this.set('loading', false);
+        this.set('loading', false, {async: true});
     }
 
     _init() {
@@ -67,11 +67,13 @@ export default class App extends Intact {
     }
 
     load(Page, data, cleanup) {
+        this.showLoading();
         return this._render(Page, data, false).then(() => {
             if (this.get('ssr') && !this.rendered) {
                 Intact.hydrate(this, this.get('container'));
                 cleanup && cleanup();
             }
+            this.hideLoading();
         });
     }
 }

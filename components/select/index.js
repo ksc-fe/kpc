@@ -4,7 +4,7 @@ import '../../styles/kpc.styl';
 import './index.styl';
 import Option from './option';
 import Group from './group';
-import {selectInput, _$, isStringOrNumber} from '../utils';
+import {selectInput, _$, isStringOrNumber, toggleArray} from '../utils';
 
 export default class Select extends Intact {
     @Intact.template()
@@ -24,6 +24,15 @@ export default class Select extends Intact {
         width: [Number, String],
         allowUnmatch: Boolean,
         card: Boolean,
+        container: [Function, String],
+        inline: Boolean,
+        loading: Boolean,
+        hideIcon: Boolean,
+    };
+
+    static events = {
+        keypress: true,
+        keydown: true,
     };
 
     defaults() {
@@ -60,6 +69,10 @@ export default class Select extends Intact {
             width: undefined,
             allowUnmatch: false,
             card: false, // 卡片式分组
+            container: undefined,
+            inline: false,
+            loading: false,
+            hideIcon: false,
 
             _show: false,
             _activeLabel: undefined,
@@ -84,18 +97,7 @@ export default class Select extends Intact {
             this.set('value', value, {async: true});
         } else {
             let values = this.get('value');
-            if (!Array.isArray(values)) {
-                values = [];
-            } else {
-                values = values.slice(0);
-            }
-            const index = values.indexOf(value);
-            if (~index) {
-                // if find, delete it
-                values.splice(index, 1); 
-            } else {
-                values.push(value);
-            }
+            values = toggleArray(values, value);
             this.set('value', values, {async: true});
             this._focusInput();
         }
@@ -123,8 +125,8 @@ export default class Select extends Intact {
     }
 
     /**
-     * @brief let the blur method called after select
-     * if we selected the option, then the keywords has been set to undefind
+     * @brief let the blur method be called after select
+     * if we have selected the option, then the keywords have been set to undefined
      * in this case, we do nothing, otherwise we reset it
      */
     _onBlur() {
@@ -179,12 +181,14 @@ export default class Select extends Intact {
     }
 
     _onKeypress(e) {
+        this.trigger('keypress', e);
         if (e.keyCode === 13) {
             this.refs.wrapper.click();
         }
     }
 
     _onKeydown(e) {
+        this.trigger('keydown', e);
         if (e.keyCode === 9) { // tab
             this.refs.dropdown.hide();
         }

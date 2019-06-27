@@ -1,7 +1,8 @@
-import {_$} from '../utils';
+import {_$, isNumber} from '../utils';
 
 function decimalPlaces(num) {
     var match = ("" + num).match(/(?:\.(\d+))?$/);
+    /* istanbul ignore if */
     if (!match) {
         return 0;
     }
@@ -41,14 +42,17 @@ export const methods = {
     },
 
     minLength(value, item, param) {
+        if (isNumber(value)) value = String(value);
         return value.length >= Number(param);
     },
 
     maxLength(value, item, param) {
+        if (isNumber(value)) value = String(value);
         return value.length <= Number(param);
     },
 
     rangeLength(value, item, param) {
+        if (isNumber(value)) value = String(value);
         const length = value.length;
         return length >= Number(param[0]) && length <= Number(param[1]);
     },

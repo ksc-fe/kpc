@@ -1,22 +1,22 @@
 @require('../../styles/themes/default.styl')
 
-$slider-height := unit(7 / 14, rem)
+$slider-height := unit(7 / $rem, rem)
 
 // define slider
 $slider-bg-color := #eaeef2
 $slider-bar-color := $primary-color
 
 _$unit = unit($slider-height)
-if _$unit == 'em' || _$unit == 'em'
-    _$margin = unit(($default-height - $slider-height * 14) / 2 / 14, rem)
+if _$unit == 'em' || _$unit == 'rem'
+    _$margin = unit(($default-height - $slider-height * $rem) / 2 / $rem, rem)
 else
-    _$margin = unit(($default-height - $slider-height) / 2 / 14, rem)
+    _$margin = unit(($default-height - $slider-height) / 2 / $rem, rem)
 $slider-margin :=  _$margin 0
 
-// $slider-padding := 1rem
+// $slider-padding := unit(14 / $rem, rem)
 $slider-border-radius := $slider-height
 
-$slider-handle-height := 1rem
+$slider-handle-height := unit(14 / $rem, rem)
 $slider-handle-width := $slider-handle-height
 $slider-handle-border := 2px solid $slider-bar-color
 $slider-handle-border-radius := 50%
@@ -25,10 +25,10 @@ $slider-handle-hover-transform := scale(1.5)
 $slider-handle-hover-bg-color := $slider-bar-color
 $slider-handle-disabled-bg-color := #fff
 
-$slider-box-padding := unit(10 / 14, rem) unit(2 / 14, rem) 0
+$slider-box-padding := unit(10 / $rem, rem) unit(2 / $rem, rem) 0
 $slider-disabled-color = $disabled-color
 $slider-disabled-bg-color = $disabled-bg-color
-$slider-spinner-width := unit(135 / 14, rem)
+$slider-spinner-width := unit(135 / $rem, rem)
 // $slider-spinner-top := -(_$margin)
 
 // stop point
@@ -37,4 +37,4 @@ $slider-stop-point-height := $slider-stop-point-width
 $slider-stop-point-bg-color := #fff
 
 // marks
-$slider-marks-height := unit(26 / 14, rem)
+$slider-marks-height := unit(26 / $rem, rem)

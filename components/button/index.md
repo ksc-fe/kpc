@@ -23,6 +23,7 @@ sidebar: doc
 | tagProps | 当指定`tagName`时，该属性将传给`tagName`指定的元素 | `Object` | `undefind` |
 | value | 对于`radio`类型的按钮组，我们可以给每个按钮指定一个选中时的值 | `*` | `undefined` |
 | name | 对于`radio`类型的按钮组，我们给`radio`指定`name`属性 | `String` | `undefined` |
+| ghost | 展示透明背景的按钮 | `Boolean` | `false` |
 
 ## ButtonGroup
 

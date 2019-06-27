@@ -11,7 +11,7 @@ order: 0
 import Pagination from 'kpc/components/pagination';
 
 <div>
-    <Pagination total={{ 200 }} ref="__test" ev-change={{ (v) => console.log(v) }}/>
+    <Pagination total={{ 200 }} ref="__test" ev-change={{ self._onChange }}/>
     <Pagination total={{ 200 }} limit={{ 20 }} />
     <Pagination total={{ 200 }} limit={{ 20 }} limits={{ [10, 20, 50, 100] }}/>
 </div>
@@ -20,4 +20,15 @@ import Pagination from 'kpc/components/pagination';
 ```styl
 .k-pagination
     margin-bottom 20px 
+```
+
+```js
+export default class extends Intact {
+    @Intact.template()
+    static template = template;
+
+    _onChange(v) {
+        console.log(v);
+    }
+}
 ```

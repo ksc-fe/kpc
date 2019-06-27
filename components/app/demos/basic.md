@@ -77,11 +77,9 @@ export default class extends Intact {
         // 模拟路由切换
         switch (name) {
             case 'a':
-                this.app.load(PageA);
-                break;
+                return this.app.load(PageA);
             case 'b':
-                this.app.load(PageB, {title: 'Detail'});
-                break;
+                return this.app.load(PageB, {title: 'Detail'});
         }
     }
 }

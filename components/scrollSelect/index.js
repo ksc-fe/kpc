@@ -10,8 +10,9 @@ export default class ScrollSelect extends Intact {
 
     static propTypes = {
         count: Number,
-        data: Array,
+        data: [Array, Function],
         disabled: Boolean,
+        disable: Function,
     }
 
     defaults() {
@@ -20,23 +21,34 @@ export default class ScrollSelect extends Intact {
             count: 19,
             data: [],
             disabled: false,
+            disable: undefined,
 
             _list: [],
             _translate: 0,
             _marginTop: 0,
             _dragging: false,
+            _value: '',
         };
     }
 
     _init() {
-        this._setList();
+        // maybe the receive event of data or count is triggered before value
+        // fix #186
+        this.set('_value', this.get('value'), {silent: true});
 
-        ['data', 'value', 'count'].forEach(item => {
-            this.on(`$change:${item}`, this._setList);
+        this.on('$receive:value', (c, v) => {
+            this.set('_value', v);
         });
-
-        this._move = this._move.bind(this);
-        this._dragEnd = this._dragEnd.bind(this);
+        ['data', 'count'].forEach(item => {
+            this.on(`$receive:${item}`, this._setList);
+        });
+        this.on('$change:_value', (c, v) => {
+            const disable = this.get('disable');
+            if (!disable || !disable.call(this, v)) {
+                this.set('value', v);
+            }
+            this._setList();
+        });
 
         // throttle onWheel
         let lock = false;
@@ -54,15 +66,21 @@ export default class ScrollSelect extends Intact {
     }
 
     _mount() {
+        const count = this.get('count');
         const height = this.element.offsetHeight;
-        const totalHeight = this.refs.wrapper.offsetHeight; 
-        this._deltaY = -Math.floor((totalHeight - height) / 2);
+        const itemHeight = this.refs.item.offsetHeight;
+        // const totalHeight = this.refs.wrapper.offsetHeight; 
+        // for even count, #211
+        this._deltaY = -(Math.floor(count / 2) * itemHeight - (height - itemHeight) / 2);
         this.set({
             _translate: this._deltaY 
         });
     }
 
     _select(item, index) {
+        // if _dragged, do not trigger click event, #123
+        if (this._dragged) return;
+
         const {count, _translate, _marginTop} = this.get();
         const half = Math.floor(count / 2);
         const itemHeight = this.refs.item.offsetHeight;
@@ -70,15 +88,15 @@ export default class ScrollSelect extends Intact {
         this.set({
             _translate: _translate - itemHeight * (index - half),
             _marginTop: _marginTop + itemHeight * (index - half),
-            value: item.value,
+            _value: item.value,
         });
     }
 
     _setList() {
-        let {data, value, count} = this.get();
+        let {data, _value, count} = this.get();
 
         if (typeof data === 'function') {
-            data = data(value); 
+            data = data(_value); 
         }
 
         let index = -1;
@@ -86,7 +104,7 @@ export default class ScrollSelect extends Intact {
             if (isStringOrNumber(item)) {
                 item = {value: item, label: item};
             }
-            if (item.value === value) {
+            if (item.value === _value) {
                 index = i;
             }
             return item;
@@ -94,7 +112,7 @@ export default class ScrollSelect extends Intact {
 
         if (!~index) {
             index = 0;
-            this.set('value', data[0].value, {silent: true});
+            this.set('_value', data[0].value);
         }
 
         const length = data.length;
@@ -110,6 +128,7 @@ export default class ScrollSelect extends Intact {
         if (e.which !== 1) return;
 
         this.set('_dragging', true);
+        this._dragged = false;
         this._y = e.clientY;
         this._initY = e.clientY;
         this._itemHeight = this.refs.item.offsetHeight;
@@ -121,6 +140,7 @@ export default class ScrollSelect extends Intact {
     _move(e) {
         if (this.get('_dragging')) {
             const deltaY = e.clientY - this._y;
+            this._dragged = !!deltaY;
             this._y = e.clientY;
             const {_translate} = this.get();
 
@@ -138,13 +158,14 @@ export default class ScrollSelect extends Intact {
     }
 
     _setByRelativeIndex(index, deltaY, isSetTranslate) {
-        const {_list, value, _marginTop}  = this.get();
+        const {_list, _value: value, _marginTop}  = this.get();
 
         const i = _list.findIndex(v => v.value === value);
         const l = _list.length;
         const itemHeight = this._itemHeight;
+        let newValue = _list[(l + i + index) % l].value;
         const props = {
-            'value': _list[(l + i + index) % l].value,
+            '_value': newValue,
             _marginTop: _marginTop + (deltaY || index * itemHeight),
         };
         if (isSetTranslate) {

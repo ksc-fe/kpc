@@ -1,6 +1,6 @@
 const gulp = require('gulp'); 
 const through = require('through2');
-const doc = require('./doc');
+const doc = require('./scripts/doc');
 const webpack = require('webpack');
 const webpackConfig = require('./site/webpack.config.client');
 const webpackBuildConfig = require('./webpack.config.build');
@@ -18,24 +18,37 @@ const rimraf = require('rimraf');
 const fs = require('fs');
 const packageJson = require('./package.json');
 const childProcess = require('child_process');
+const uglifyjs = require('gulp-uglify');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const pages = {
     '/': 'index',
+    'demo': 'demo',
 }; 
 const vdtFile = path.resolve(__dirname, './site/src/index.vdt');
 const isDev = process.env.NODE_ENV !== 'production';
 
+let globalIframes;
+
 gulp.task('doc', () => {
     console.log('build markdown');
-    return doc(true);
+    return doc(true).then(({iframes}) => {
+        globalIframes = iframes;
+    });
 });
 gulp.task('doc:production', () => {
     console.log('build markdown');
-    return doc(false);
+    return doc(false).then(({iframes}) => {
+        globalIframes = iframes;
+    });
 });
 
 function webpackWatch(theme) {
     const config = webpackConfig(theme);
+    return webpackBuild(config);
+}
+
+function webpackBuild(config) {
     const compiler = webpack(config);
     return [
         compiler, 
@@ -56,6 +69,15 @@ function webpackWatch(theme) {
         })
     ];
 }
+
+gulp.task('build:iframes', async () => {
+    await Promise.all(globalIframes.map(iframe => {
+        const config = webpackConfig('__nouse');
+        config.entry = iframe;
+        const [, p] = webpackBuild(config);
+        return p;
+    }));
+});
 
 gulp.task('build:themes:css', async () => {
     const themes = ['ksyun'];
@@ -85,10 +107,9 @@ gulp.task('dev:doc:server', async () => {
 
 gulp.task('server', () => {
     const [compiler] = webpackWatch(process.env.THEME);
-
     const webpackHotMiddleware = require('webpack-hot-middleware');
     return connect.server({
-        root: 'site/.dist',
+        root: ['site/.dist', 'site/src'],
         livereload: false,
         port: 4567,
         host: '0.0.0.0',
@@ -108,10 +129,11 @@ gulp.task('watch', gulp.series(
     'clean:doc:dev', 
     'doc', 
     gulp.parallel(
-        'server', 
+        'server',
+        'build:iframes',
         process.env.THEME ? 'noop' : 'build:themes:css', 
         'dev:doc:server', 
-        /* 'webpack', */ 
+        // 'webpack',
         () => {
             gulp.watch(
                 './@(components|docs)/**/*.md', 
@@ -129,20 +151,21 @@ const rm = (path) => {
 };
 gulp.task('clean:doc', () => {
     return exec(`rm -rf ./site/dist; REPO=\`git config remote.origin.url\`; echo $REPO;
-        git clone -b gh-pages --single-branch $REPO ./site/dist &&
+        git clone -b gh-pages --single-branch $REPO ./site/dist --depth=1 &&
         cd ./site/dist &&
         rm -rf ./* && cd ../../`
     );
 });
 gulp.task('build:doc:server', () => {
-    return doc(false).then(async render => {
+    return doc(false).then(async ({render, iframes}) => {
+        globalIframes = iframes;
         await Promise.all(Object.keys(pages).map(async key => {
             const data = await render(key);
             await new Promise(resolve => {
                 fs.writeFile(
                     path.resolve(__dirname, `./site/dist/${pages[key]}.html`),
                     Vdt.renderFile(vdtFile, {
-                        title: 'Kpc',
+                        title: 'KPC',
                         content: data.content,
                         style: data.style,
                     }),
@@ -158,7 +181,7 @@ gulp.task('build:doc:client', (done) => {
     // };
     webpack(webpackConfig(), (err, stats) => {
         console.log(stats.toString({
-            colors: true    // 在控制台展示颜色
+            colors: true
         }));
         done();
     });
@@ -167,12 +190,22 @@ gulp.task('push:doc', () => {
     return exec(`cd ./site/dist && 
         git add -A;
         TIME=\`date +"%Y-%m-%d %H:%M:%S"\`;
-        git commit -am "build: \${TIME}";
+        git commit -m "build: \${TIME}";
         git push origin gh-pages`
     );
 });
 
-gulp.task('build:doc', gulp.series('clean:doc', 'build:doc:server', 'build:doc:client', 'build:themes:css'));
+gulp.task('copy:imgs', () => {
+    return gulp.src(['./site/src/imgs/design/*', './site/src/imgs/favicon.ico'], {base: './site/src'})
+        .pipe(gulp.dest('./site/dist/'));
+});
+
+gulp.task('copy:cname', () => {
+    return gulp.src('./site/CNAME')
+        .pipe(gulp.dest('./site/dist'));
+});
+
+gulp.task('build:doc', gulp.series('clean:doc', 'build:doc:server', 'build:doc:client', 'build:themes:css', 'build:iframes', 'copy:imgs', 'copy:cname'));
 gulp.task('deploy:doc', gulp.series('build:doc', 'push:doc'));
 gulp.task('watch:doc', gulp.series('doc:production', gulp.parallel('webpack', () => {
     gulp.watch('./@(components|docs)/**/*.md', {ignored: /node_modules/}, gulp.parallel('doc:production'));
@@ -199,7 +232,7 @@ function buildVdt(destPath) {
 }
 
 function buildFont(destPath) {
-    return gulp.src('./styles/fonts/*.@(eot|svg|ttf|woff)', {base: './'})
+    return gulp.src(['./styles/fonts/*.@(eot|svg|ttf|woff)'], {base: './'})
         .pipe(gulp.dest(destPath));
 }
 
@@ -214,7 +247,7 @@ gulp.task('index', () => {
     const components = [];
     return gulp.src('./components/*/index.js')
         .pipe(tap((file) => {
-            const paths = file.path.split('/');
+            const paths = file.path.split(/[\/\\]/);
             const contents = file.contents.toString('utf-8').split('\n');
             let i = contents.length - 1;
             let lastLine;
@@ -226,6 +259,7 @@ gulp.task('index', () => {
                 i--;
             }
             const matches = lastLine.match(/\{(.*?)\}/);
+            if (!matches) throw new Error('Do not forget export Component at last line!');
             const names = matches[1].split(',').map(name => {
                 name = name.split(' as ');
                 return name[name.length - 1].trim();
@@ -243,9 +277,14 @@ gulp.task('index', () => {
             components.sort((a, b) => a > b ? 1 : -1);
 
             codes.push('', `export {\n    ${components.join(',\n    ')}\n};`);
+            codes.push('', `const components = {\n    ${components.join(',\n    ')}\n};`);
             codes.push('', `export const version = '${packageJson.version}';`);
             const path = './index.js';
-            const contents = fs.readFileSync(path, 'utf-8');
+            let contents = fs.readFileSync(path, 'utf-8');
+
+            // update version in copyright
+            contents = contents.replace(/\* kpc v.*/, `* kpc v${packageJson.version}`);
+
             const startComment = '/* generate start */';
             const startIndex = contents.indexOf(startComment) + startComment.length;
             const endIndex = contents.indexOf('/* generate end */');
@@ -259,20 +298,24 @@ gulp.task('clean@single', (done) => {
     rimraf('./dist', done);
 });
 
-gulp.task('build:js@single', (done) => {
-    webpack(webpackBuildConfig(), (err, stats) => {
-        console.log(stats.toString({
-            colors: true    // 在控制台展示颜色
-        }));
-        done();
+gulp.task('build:js@single', () => {
+    const p1 = new Promise(resolve => {
+        webpack(webpackBuildConfig(), (err, stats) => {
+            console.log(stats.toString({
+                colors: true    // 在控制台展示颜色
+            }));
+            resolve();
+        });
     });
-    // build ksyun theme
-    webpack(webpackBuildConfig('ksyun'), (err, stats) => {
-        console.log(stats.toString({
-            colors: true    // 在控制台展示颜色
-        }));
-        done();
+    const p2 = new Promise(resolve => {
+        webpack(webpackBuildConfig('ksyun'), (err, stats) => {
+            console.log(stats.toString({
+                colors: true    // 在控制台展示颜色
+            }));
+            resolve();
+        });
     });
+    return Promise.all([p1, p2]);
 });
 
 gulp.task('build:i18n@single', () => {
@@ -312,12 +355,22 @@ gulp.task('build:i18n@single', () => {
         }));
 });
 
+gulp.task('uglify@single', () => {
+    return gulp.src('./dist/**/*.js')
+        .pipe(tap((file) => {
+            file.path = file.path.replace('.js', '.min.js');
+        }))
+        .pipe(uglifyjs())
+        .pipe(gulp.dest('./dist'));
+});
+
 gulp.task('build@single', gulp.series(
     'clean@single',
-    gulp.parallel('build:js@single', 'build:i18n@single')
+    gulp.parallel('build:js@single', 'build:i18n@single'),
+    'uglify@single'
 ));
 
-const destPath = './@css'
+const destPath = './@css';
 
 gulp.task('clean@css', (done) => {
     rimraf(destPath, done);
@@ -329,6 +382,8 @@ gulp.task('build:js', () => {
         .pipe(tap(function(file) {
             let contents = file.contents.toString('utf-8');
             contents = contents.replace(/\.styl(['"])/g, '.css$1');
+            // replace inheritsLoose for IE compatibilty
+            contents = contents.replace('@babel/runtime-corejs2/helpers/inheritsLoose', '../../../inheritsLoose');
             file.contents = Buffer.from(contents);
         }))
         .pipe(gulp.dest(destPath));
@@ -338,16 +393,16 @@ gulp.task('build:vdt', () => {
     return buildVdt(destPath);
 });
 
-gulp.task('build:stylus', () => {
-    return gulp.src(['./components/**/*.styl'], {base: './'})
-        .pipe(stylus({'include css': true}))
-        .pipe(postcss())
-        .pipe(gulp.dest(destPath));
-});
+// gulp.task('build:stylus', () => {
+    // return gulp.src(['./components/**/*.styl'], {base: './'})
+        // .pipe(stylus({'include css': true, 'resolve url': true}))
+        // .pipe(postcss())
+        // .pipe(gulp.dest(destPath));
+// });
 
 gulp.task('build:style', () => {
-    return gulp.src('./styles/kpc.styl', {base: './'})
-        .pipe(stylus({'include css': true}))
+    return gulp.src(['./styles/kpc.styl', './components/**/*.styl'], {base: './'})
+        .pipe(stylus({'include css': true, define: {url: require('stylus').resolver()}}))
         .pipe(postcss())
         .pipe(gulp.dest(destPath));
 });
@@ -363,7 +418,7 @@ gulp.task('build:i18n', () => {
 gulp.task('build@css', gulp.series(
     'clean@css', 
     gulp.parallel(
-        'build:js', 'build:vdt', 'build:stylus', 
+        'build:js', 'build:vdt',
         'build:style', 'build:font', 'build:i18n'
     )
 ));
@@ -382,6 +437,12 @@ gulp.task('clean@stylus', (done) => {
 gulp.task('build:js@stylus', () => {
     return gulp.src(['./components/**/*.js', '!./components/**/*.spec.js', './index.js'], {base: './'})
         .pipe(babel())
+        .pipe(tap(function(file) {
+            let contents = file.contents.toString('utf-8');
+            // replace inheritsLoose for IE compatibilty
+            contents = contents.replace('@babel/runtime-corejs2/helpers/inheritsLoose', '../../../inheritsLoose');
+            file.contents = Buffer.from(contents);
+        }))
         .pipe(gulp.dest(destPathStylus));
 });
 
@@ -424,7 +485,7 @@ gulp.task('build', gulp.series(
 
 function exec(command) {
     return new Promise(function(resolve, reject) {
-        var cmd = childProcess.exec(command, {maxBuffer: 50000 * 1024}, function(err, stdout) {
+        var cmd = childProcess.exec(`sh -c '${command}'`, {maxBuffer: 50000 * 1024}, function(err, stdout) {
             if (err) {
                 reject(err);
             } else {
@@ -435,3 +496,19 @@ function exec(command) {
         cmd.stderr.pipe(process.stderr);
     });
 }
+
+gulp.task('code', () => {
+    const codes = [];
+    return gulp.src([
+        './components/**/@(index|variables).@(styl|vdt|js)',
+        './styles/**/*.styl'
+    ])
+        .pipe(tap((file) => {
+            codes.push(`// @file ${path.relative(file._cwd, file.path)}`);
+            codes.push(file.contents.toString('utf-8'));
+        }))
+        .on('end', () => {
+            const path = './dist/code.js';
+            fs.writeFileSync(path,  codes.join('\n'));
+        });
+})

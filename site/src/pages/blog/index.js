@@ -14,6 +14,8 @@ export default class extends Document {
     _mount() {
         super._mount();
 
+        this.headerHeight = this.refs.header.clientHeight;
+
         this.h1s = this.element.querySelectorAll('h1');
         this.h2s = this.element.querySelectorAll('h2');
         this.h3s = this.element.querySelectorAll('h3');
@@ -24,7 +26,7 @@ export default class extends Document {
     scrollTo(id) {
         const header = document.getElementById(id);
         if (header) {
-            const top = header.getBoundingClientRect().top + window.pageYOffset - 80;
+            const top = header.getBoundingClientRect().top + window.pageYOffset - this.headerHeight;
 
             window.scrollTo(0, top);
         }
@@ -38,12 +40,12 @@ export default class extends Document {
             this.refs.wrapper.classList.remove('fixed');
         }
         
-        function findActive(hs, minTop = 0) {
+        const findActive = (hs, minTop = 0) => {
             for (let i = hs.length - 1; i >= 0; i--) {
                 const h = hs[i];
                 const top = h.getBoundingClientRect().top + window.pageYOffset;
 
-                if (top > minTop && top - 80 <= scrollTop) {
+                if (top > minTop && top - this.headerHeight <= scrollTop) {
                     return {header: h.id, top: top};
                 }
             }
