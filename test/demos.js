@@ -14,7 +14,7 @@ describe('Demos', () => {
     describe('Intact', () => {
         testDemos(req, async (Demo) => {
             demo = mount(Demo);
-            await wait(0);
+            await wait(100);
             expect(demo.element.outerHTML).to.matchSnapshot();
         });
     });
