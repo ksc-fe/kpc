@@ -15,6 +15,8 @@ describe('Demos', () => {
         testDemos(req, async (Demo) => {
             demo = mount(Demo);
             await wait(0);
+            // force relayout
+            document.body.offsetWidth;
             expect(demo.element.outerHTML).to.matchSnapshot();
         });
     });
@@ -42,6 +44,7 @@ describe('Demos', () => {
         testDemos(vueReq, async (Demo) => {
             demo = mount(wrap(Demo));
             await wait(0);
+            document.body.offsetWidth;
             expect(demo.element.outerHTML).to.matchSnapshot();
         });
     });

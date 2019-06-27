@@ -39,6 +39,7 @@ describe('React Demos', () => {
     testDemos(reactReq, async (Demo) => {
         demo = mount(wrap(Demo));
         await wait(0);
+        document.body.offsetWidth;
         expect(demo.element.innerHTML).to.matchSnapshot();
     });
 });
