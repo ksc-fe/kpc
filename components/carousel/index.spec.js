@@ -36,6 +36,7 @@ describe('Carousel', () => {
 
         // change clonedAmount
         carousel.set('clonedAmount', 2);
+        await wait();
         expect(instance.element.innerHTML).to.matchSnapshot();
 
         // change autoplay
