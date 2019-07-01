@@ -41,7 +41,9 @@ export default class App extends Intact {
             page.$app = this;
 
             // for debug
-            globalThis.__page = page;
+            if (typeof window !== undefined) {
+                window.__page = page;
+            }
 
             const done = () => {
                 if (this._current === Page) {
