@@ -1,6 +1,6 @@
 import BasicDemo from '~/components/carousel/demos/basic';
 import EffectDemo from '~/components/carousel/demos/effect';
-import {mount, unmount, wait} from 'test/utils';
+import {mount, unmount, wait, nextFrame} from 'test/utils';
 
 describe('Carousel', () => {
     let instance;
@@ -16,27 +16,27 @@ describe('Carousel', () => {
         // should change to next item
         expect(instance.element.innerHTML).to.matchSnapshot();
         carousel._next();
-        await wait();
+        await nextFrame();
         expect(instance.element.innerHTML).to.matchSnapshot();
         carousel._prev();
-        await wait();
+        await nextFrame();
         expect(instance.element.innerHTML).to.matchSnapshot();
         carousel._setIndex(3);
-        await wait();
+        await nextFrame();
         expect(instance.element.innerHTML).to.matchSnapshot();
         carousel._setIndex(0);
-        await wait();
+        await nextFrame();
         expect(instance.element.innerHTML).to.matchSnapshot();
         carousel._prev();
-        await wait();
+        await nextFrame();
         expect(instance.element.innerHTML).to.matchSnapshot();
         carousel._next();
-        await wait();
+        await nextFrame();
         expect(instance.element.innerHTML).to.matchSnapshot();
 
         // change clonedAmount
         carousel.set('clonedAmount', 2);
-        await wait();
+        await nextFrame();
         expect(instance.element.innerHTML).to.matchSnapshot();
 
         // change autoplay
