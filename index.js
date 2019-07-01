@@ -1,5 +1,5 @@
 /*!
- * kpc v1.0.0-beta.1
+ * kpc v1.0.0-beta.2
  *
  * Copyright (c) Kingsoft Cloud
  * Released under the MIT License
@@ -17,6 +17,7 @@ import {App} from './components/app';
 import {Badge} from './components/badge';
 import {Breadcrumb, BreadcrumbItem} from './components/breadcrumb';
 import {Button, ButtonGroup} from './components/button';
+import {Card, CardColumn} from './components/card';
 import {Carousel, CarouselItem} from './components/carousel';
 import {Cascader} from './components/cascader';
 import {Checkbox} from './components/checkbox';
@@ -69,6 +70,8 @@ export {
     BreadcrumbItem,
     Button,
     ButtonGroup,
+    Card,
+    CardColumn,
     Carousel,
     CarouselItem,
     Cascader,
@@ -138,6 +141,8 @@ const components = {
     BreadcrumbItem,
     Button,
     ButtonGroup,
+    Card,
+    CardColumn,
     Carousel,
     CarouselItem,
     Cascader,
@@ -197,7 +202,7 @@ const components = {
     Upload
 };
 
-export const version = '1.0.0-beta.1';
+export const version = '1.0.0-beta.2';
 
 /* generate end */
 
