@@ -97,7 +97,9 @@ export default class Switch extends Intact {
 
     _onClick(e) {
         this.trigger('click', e);
-        this._toggle(e, false);
+        if (!e._switchIgnore) {
+            this._toggle(e, false);
+        }
     }
 
     _toggle(e, isKeypress) {
@@ -135,7 +137,9 @@ export default class Switch extends Intact {
     }
 
     _handleClick(e) {
-        e.stopPropagation();
+        // we can not stop propagation, otherwise the click can not be listen at outer
+        e._switchIgnore = true;
+        // e.stopPropagation();
     }
 }
 

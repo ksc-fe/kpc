@@ -1,6 +1,6 @@
 <template>
     <div style="margin: 10px;">
-        <KSwitch />
+        <KSwitch @click="click" />
         <KSwitch :value="true"/>
         <br />
         <KSwitch on="开" off="关" v-model="status1" />
@@ -40,5 +40,11 @@ export default {
         // switch is a reserved svg tagname
         KSwitch: Switch
     },
+
+    methods: {
+        click() {
+            console.log('click')
+        }
+    }
 }
 </script>

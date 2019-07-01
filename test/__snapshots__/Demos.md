@@ -111,6 +111,14 @@
 "<div><div class=\"k-btn k-primary\" tabindex=\"0\"><span>div元素按钮</span></div><div class=\"k-btn k-default k-disabled\" tabindex=\"-1\"><span>disabled div button</span></div><a class=\"k-btn k-default\" href=\"https://www.ksyun.com\" target=\"_blank\" tabindex=\"0\"><span>超链接按钮</span></a></div>"
 ```
 
+##   `card`
+
+####     `Card basic`
+
+```
+"<div class=\"k-card\"></div>"
+```
+
 ##   `carousel`
 
 ####     `Carousel autoplay`
@@ -1739,6 +1747,14 @@
 
 ```
 "<div><div><div class=\"k-btn k-primary\" tabindex=\"0\"><span>div元素按钮</span></div><div class=\"k-btn k-default k-disabled\" tabindex=\"-1\"><span>disabled div button</span></div><a class=\"k-btn k-default\" href=\"https://www.ksyun.com\" target=\"_blank\" tabindex=\"0\"><span>超链接按钮</span></a></div></div>"
+```
+
+##   `card`
+
+####     `Card basic`
+
+```
+"<div><div class=\"k-card\"></div></div>"
 ```
 
 ##   `carousel`

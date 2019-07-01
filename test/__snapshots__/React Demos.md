@@ -104,6 +104,14 @@
 "<div><div class=\"k-btn k-primary\" tabindex=\"0\">div元素按钮</div><div class=\"k-btn k-default k-disabled\" tabindex=\"-1\">disabled div button</div><a class=\"k-btn k-default\" href=\"https://www.ksyun.com\" target=\"_blank\" tabindex=\"0\">超链接按钮</a></div>"
 ```
 
+## `card`
+
+####   `Card basic`
+
+```
+"<div class=\"k-card\"></div>"
+```
+
 ## `carousel`
 
 ####   `Carousel autoplay`
