@@ -116,7 +116,25 @@
 ####     `Card basic`
 
 ```
-"<div class=\"k-card\"></div>"
+"<div><div class=\"k-card k-shadow\"><div class=\"k-header c-clearfix\"><div class=\"k-title\">用户信息</div></div><div class=\"k-body\"><div class=\"k-row\"><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div></div></div></div><div class=\"k-card k-border\"><div class=\"k-header c-clearfix\"><div class=\"k-title\">用户信息</div></div><div class=\"k-body\"><div class=\"k-row\"><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div></div></div></div></div>"
+```
+
+####     `Card extra`
+
+```
+"<div><div class=\"k-card k-shadow\"><div class=\"k-header c-clearfix\"><div class=\"k-title\">用户信息</div><div class=\"k-extra\"><div class=\"k-tabs k-small\"><div class=\"k-scroll c-clearfix\"><div class=\"k-wrapper\" style=\"transform: translateX(0px);\"><div class=\"k-tab k-active\">数据集成</div><div class=\"k-tab\">数据采集</div><div class=\"k-active-bar\" style=\"left: 10px; width: 120px;\"></div></div></div></div></div></div><div class=\"k-body\"><div class=\"k-row\"><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div></div></div></div><div class=\"k-card k-border\"><div class=\"k-header c-clearfix\"><div class=\"k-title\">用户信息</div><div class=\"k-extra\"><div class=\"k-tabs k-small\"><div class=\"k-scroll c-clearfix\"><div class=\"k-wrapper\" style=\"transform: translateX(0px);\"><div class=\"k-tab k-active\">数据集成</div><div class=\"k-tab\">数据采集</div><div class=\"k-active-bar\" style=\"left: 10px; width: 120px;\"></div></div></div></div></div></div><div class=\"k-body\"><div class=\"k-row\"><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div></div></div></div></div>"
+```
+
+####     `Card grid`
+
+```
+"<div><div class=\"k-card k-shadow k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-with-width\" style=\"width: 100px;\"><i class=\"k-icon ion-person\"></i></div><div class=\"k-column\">用户名：test</div></div></div></div>"
+```
+
+####     `Card noHeader`
+
+```
+"<div><div class=\"k-card k-shadow k-no-header\"><div class=\"k-body\"><div class=\"k-row\"><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div></div></div></div><div class=\"k-card k-border k-no-header\"><div class=\"k-body\"><div class=\"k-row\"><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div></div></div></div></div>"
 ```
 
 ##   `carousel`
@@ -1754,7 +1772,25 @@
 ####     `Card basic`
 
 ```
-"<div><div class=\"k-card\"></div></div>"
+"<div><div><div class=\"k-card k-shadow\"><div class=\"k-header c-clearfix\"><div class=\"k-title\">用户信息</div></div><div class=\"k-body\"><div class=\"k-row\"><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div></div></div></div><div class=\"k-card\"><div class=\"k-header c-clearfix\"><div class=\"k-title\">用户信息</div></div><div class=\"k-body\"><div class=\"k-row\"><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div></div></div></div></div></div>"
+```
+
+####     `Card extra`
+
+```
+"<div><div><div class=\"k-card k-shadow\"><div class=\"k-header c-clearfix\"><div class=\"k-title\">用户信息</div><div class=\"k-extra\"><div class=\"k-tabs k-small\"><div class=\"k-scroll c-clearfix\"><div class=\"k-wrapper\" style=\"transform: translateX(0px);\"><div class=\"k-tab k-active\">数据集成</div><div class=\"k-tab\">数据采集</div><div class=\"k-active-bar\" style=\"left: 10px; width: 120px;\"></div></div></div></div></div></div><div class=\"k-body\"><div class=\"k-row\"><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div></div></div></div><div class=\"k-card\"><div class=\"k-header c-clearfix\"><div class=\"k-title\">用户信息</div><div class=\"k-extra\"><div class=\"k-tabs k-small\"><div class=\"k-scroll c-clearfix\"><div class=\"k-wrapper\" style=\"transform: translateX(0px);\"><div class=\"k-tab k-active\">数据集成</div><div class=\"k-tab\">数据采集</div><div class=\"k-active-bar\" style=\"left: 10px; width: 120px;\"></div></div></div></div></div></div><div class=\"k-body\"><div class=\"k-row\"><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div></div></div></div></div></div>"
+```
+
+####     `Card grid`
+
+```
+"<div><div><div class=\"k-card k-shadow k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-with-width\" style=\"width: 100px;\"><i class=\"k-icon ion-person\"></i></div><div class=\"k-column\">用户名：test</div></div></div></div></div>"
+```
+
+####     `Card noHeader`
+
+```
+"<div><div><div class=\"k-card k-shadow k-no-header\"><div class=\"k-body\"><div class=\"k-row\"><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div></div></div></div><div class=\"k-card k-no-header\"><div class=\"k-body\"><div class=\"k-row\"><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div></div></div></div></div></div>"
 ```
 
 ##   `carousel`

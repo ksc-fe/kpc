@@ -21,6 +21,10 @@ describe('Switch', () => {
         expect(instance.element.outerHTML).to.matchSnapshot();
         expect(instance.get('value')).to.be.false;
 
+        const handle = instance.element.querySelector('.k-handle');
+        handle.click();
+        expect(instance.get('value')).to.be.false;
+
         disabledEl.click();
         expect(instance.element.outerHTML).to.matchSnapshot();
     });
