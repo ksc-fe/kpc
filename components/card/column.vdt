@@ -1,0 +1,19 @@
+import {addStyle, getRestProps} from '../utils';
+
+const {children, className, width, style} = self.get();
+
+let _style = style;
+if (width) {
+    _style = addStyle(style, {width})
+}
+
+const classNameObj = {
+    'k-column': true,
+    'k-with-width': width,
+    [className]: className,
+}
+
+<div class={{ classNameObj }}
+    style={{ _style }}
+    {{ ...getRestProps(self) }}
+>{{ children }}</div>

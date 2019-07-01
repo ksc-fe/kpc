@@ -1,0 +1,38 @@
+@require('./variables.styl')
+
+.k-card
+    border-radius $border-radius
+    > .k-header
+        height 48px
+        line-height @height
+        padding 0 16px
+        > .k-title
+            font-size 14px
+            display inline-block
+        > .k-extra
+            float right
+            height 100%
+            display flex
+            align-items center
+    > .k-body
+        padding 0 16px 16px
+
+    &.k-shadow
+        box-shadow 0 0 20px 0 rgba(0, 0, 0, .06)
+    &.k-border
+        border $card-border
+        > .k-header
+            border-bottom $card-border
+        > .k-body
+        /.k-no-header > .k-body
+            padding-top 16px
+
+    // grid
+    &.k-card-grid
+        > .k-body
+            display flex
+    .k-column
+        display flex
+        align-items center
+        flex 1
+

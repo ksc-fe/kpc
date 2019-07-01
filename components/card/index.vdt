@@ -1,0 +1,44 @@
+import {getRestProps} from '../utils';
+import Column from './column';
+
+const {
+    children, className, title,
+    shadow, border
+} = self.get();
+
+const hasHeader = blocks.header || blocks.title || title || blocks.extra;
+let hasColumn = false;
+if (children && children.length) {
+    for (let i = 0; i < children.length; i++) {
+        const vNode = children[i];
+        if (vNode && vNode.tag === Column) {
+            hasColumn = true;
+            break;
+        }
+    }
+}
+const classNameObj = {
+    'k-card': true,
+    'k-shadow': shadow,
+    'k-border': border,
+    'k-no-header': !hasHeader,
+    'k-card-grid': hasColumn,
+    [className]: className,
+};
+
+<div class={{ classNameObj }} {{ ...getRestProps(self) }}>
+    <div class="k-header c-clearfix" v-if={{ hasHeader }}>
+        <b:header>
+            <div class="k-title"><b:title>{{ title }}</b:title></div>
+            <div class="k-extra" v-if={{ blocks.extra }}>
+                <b:extra />
+            </div>
+        </b:header>
+    </div>
+    <div class="k-body">
+        {{ children }}
+    </div>
+    <div class="k-footer" v-if={{ blocks.footer }}>
+        <b:footer />
+    </div>
+</div>
