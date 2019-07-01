@@ -41,7 +41,7 @@ export default class App extends Intact {
             page.$app = this;
 
             // for debug
-            global.__page = page;
+            globalThis.__page = page;
 
             const done = () => {
                 if (this._current === Page) {

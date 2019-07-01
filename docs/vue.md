@@ -84,6 +84,46 @@ export default {
 > `Table`组件的`scheme`属性中`template`字段返回的vNode无需`normalize`，因为组件内部做了兼容，
 > 不过多次调用`normalize`也没有问题。
 
+# CDN
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>kpc-demo</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/kpc/dist/kpc.css" />
+    <!-- 将上述kpc.css替换成ksyun.css，可以使用ksyun主题 -->
+    <!-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/kpc/dist/ksyun.css" /> -->
+</head>
+<body>
+    <div id="app">
+        <k-button @click="hello">Hello world</k-button>
+    </div>
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/vue"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/intact/dist/intact.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/intact-vue/dist/intact.vue.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/kpc/dist/kpc.min.js"></script>
+    <script type="text/javascript">
+        Vue.use(Kpc);
+        new Vue({
+            el: '#app',
+            methods: {
+                hello: function() {
+                    this.$message.success('Welcome to kpc world!');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+```
+
+
 # Vue CLI 3 
 
 推荐使用`@vue/cli@3.3.0`及以上的版本进行项目初始化
