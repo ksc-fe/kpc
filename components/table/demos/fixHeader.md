@@ -5,7 +5,7 @@ order: 8
 
 `fixHeader`：设置表头固定，类型`Boolean` | `Number`，默认：`false`
 
-1. 如果取值为`Boolean`，`false`表示不固定表头，`true`表示固定高度，但需要自己定义表格高度
+1. 如果取值为`Boolean`，`false`表示不固定表头，`true`表示固定高度，`tbody`的高度自适应，但需要自己定义表格高度
 2. 如果取值为`Number`，则表示，当表格超出该高度时即展示滚动条，并固定表头
 
 ```vdt

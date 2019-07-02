@@ -80,12 +80,6 @@ import Icon from 'kpc/components/icon';
         flex-direction column
     .k-table
         flex 1
-    .k-table-wrapper
-        height 100%
-        display flex
-        flex-direction column
-    .k-tbody
-        flex 1
     .k-pagination
         padding 10px
         border-top 1px solid $table-border-color

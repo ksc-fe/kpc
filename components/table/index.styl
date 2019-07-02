@@ -218,6 +218,15 @@
     tr.k-expand
         background $table-expanded-tr-bg-color
 
+    // fluid height
+    &.k-fluid-height
+        .k-table-wrapper
+            height 100%
+            display flex
+            flex-direction column
+        .k-tbody
+            flex 1
+
 .k-table-wrapper
     // overflow auto
     overflow hidden

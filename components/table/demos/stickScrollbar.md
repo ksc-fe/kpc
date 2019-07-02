@@ -8,6 +8,8 @@ order: 8.2
 1. 如果取值为`Boolean`，`false`表示不吸底，`true`表示吸底，此时等价于`0`，表示固定的位置的`bottom`为`0`
 2. 如果取值为`Number`，用来指定固定位置距离视窗底部的距离
 
+> 滚动条吸底后会`fixed`，此时`document.body`不要出现横向滚动条，否则横向滚动后，表格位置而滚动条位置不会变
+
 ```vdt
 import {Table, TableColumn} from 'kpc/components/table';
 

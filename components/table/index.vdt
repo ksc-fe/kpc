@@ -411,6 +411,7 @@ const classNameObj = {
     [`k-scroll-${_scrollPosition}`]: _isShowLeftRightMiddle,
     'k-sticky-scrollbar': _isStickyScrollbar,
     'k-stripe': stripe,
+    'k-fluid-height': fixHeader === true,
 };
 
 <div class={{ classNameObj }} {{ ...getRestProps(self) }}>

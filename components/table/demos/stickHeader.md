@@ -8,6 +8,8 @@ order: 8.1
 1. 如果取值为`Boolean`，`false`表示不吸顶，`true`表示吸顶，此时等价于`0`，表示固定的位置的`top`为`0`
 2. 如果取值为`Number`，用来指定固定的位置距离视窗顶部的距离，例如本例中，固定在`top = 50px`的地方
 
+> 表头吸顶后会`fixed`，此时`document.body`不要出现横向滚动条，否则横向滚动后，表格体位置而表头位置不会变
+
 ```vdt
 import {Table, TableColumn} from 'kpc/components/table';
 

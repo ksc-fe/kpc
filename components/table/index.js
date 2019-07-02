@@ -172,15 +172,15 @@ export default class Table extends Intact {
         this.set('_scrollBarWidth', scrollbarWidth(), {silent: true});
 
         this._calcHeaderPadding();
-        this._checkTableWidth();
+        this._checkTableWidth(true);
         window.addEventListener('resize', this._onWindowResize);
 
         this._setFixedColumnWidth();
 
-        const ro = this.ro = new ResizeObserver(() => {
+        const ro = this.ro = new ResizeObserver(throttle(() => {
             this._calcHeaderPadding();
             this._checkTableWidth();
-        });
+        }, 100));
         ro.observe(this.element);
     }
 
@@ -379,12 +379,13 @@ export default class Table extends Intact {
         }
     }
 
-	_checkTableWidth() {
+	_checkTableWidth(isMount) {
         if (this.get('resizable')) {
             const tableWidth = this.table.offsetWidth;
             const containerWidth = this.scroll.clientWidth;
             if (tableWidth < containerWidth) {
-                this.tableWidth = containerWidth + 'px';
+                // this.tableWidth = containerWidth + 'px';
+                this.tableWidth = isMount ? '100%' : containerWidth + 'px';
                 this.update();
 
                 this._storeWidth();
