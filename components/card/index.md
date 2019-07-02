@@ -20,3 +20,13 @@ sidebar: doc
 | --- | --- | --- | --- |
 | width | 列宽，必须带单位 | `String` | `undefined` |
 | center | 该列内容是否居中 | `Boolean` | `false` |
+
+# 扩展点
+
+## Card
+
+| 名称 | 说明 |
+| --- | --- |
+| header | 扩展整个头部内容 |
+| title | 扩展头部标题内容 |
+| extra | 扩展头部附加内容 |

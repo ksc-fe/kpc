@@ -82,6 +82,7 @@ export default class Table extends Intact {
         fixHeader: [Boolean, String, Number],
         minColWidth: Number,
         stickHeader: [Boolean, String, Number],
+        stickScrollbar: [Boolean, String, Number],
         loading: Boolean,
         container: [Function, String],
         stripe: Boolean,
