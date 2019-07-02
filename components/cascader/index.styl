@@ -1,11 +1,12 @@
 @require('./variables.styl')
 
 .k-cascader-dropdown
-    width $cascader-width
+    min-width $cascader-width
     height $cascader-height
     .k-arrow
         float right
         height 100%
+        margin-left $cascader-arrow-margin-left 
         &:before
             font-size 16px
 
