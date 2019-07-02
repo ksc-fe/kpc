@@ -121,7 +121,7 @@
 ####   `Card grid`
 
 ```
-"<div><div class=\"k-card k-shadow k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-with-width\" style=\"width: 100px;\"><i class=\"k-icon ion-person\"></i></div><div class=\"k-column\">用户名：test</div></div></div></div>"
+"<div><div class=\"k-row k-gutter\" style=\"margin-left: -8px; margin-right: -8px;\"><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-shadow k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-shadow k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-shadow k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-shadow k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div></div><div class=\"k-row k-gutter\" style=\"margin-left: -8px; margin-right: -8px;\"><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-border k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-border k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-border k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-border k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div></div></div>"
 ```
 
 ####   `Card noHeader`
@@ -237,19 +237,19 @@
 ####   `Code basic`
 
 ```
-"<div class=\"k-editor\" style=\"height: 200px;\"><div class=\"k-spin k-small k-overlay\"><div class=\"k-wrapper\"><div class=\"k-canvas\"><svg viewBox=\"0 0 120 120\"><circle class=\"k-circle\" cx=\"60\" cy=\"60\" r=\"57\"></circle></svg></div></div></div></div>"
+"<div class=\"k-code\" style=\"height: 200px;\"><div class=\"k-spin k-small k-overlay\"><div class=\"k-wrapper\"><div class=\"k-canvas\"><svg viewBox=\"0 0 120 120\"><circle class=\"k-circle\" cx=\"60\" cy=\"60\" r=\"57\"></circle></svg></div></div></div></div>"
 ```
 
 ####   `Code readonly`
 
 ```
-"<div class=\"k-editor\" style=\"height: 200px;\"><div class=\"k-spin k-small k-overlay\"><div class=\"k-wrapper\"><div class=\"k-canvas\"><svg viewBox=\"0 0 120 120\"><circle class=\"k-circle\" cx=\"60\" cy=\"60\" r=\"57\"></circle></svg></div></div></div></div>"
+"<div class=\"k-code\" style=\"height: 200px;\"><div class=\"k-spin k-small k-overlay\"><div class=\"k-wrapper\"><div class=\"k-canvas\"><svg viewBox=\"0 0 120 120\"><circle class=\"k-circle\" cx=\"60\" cy=\"60\" r=\"57\"></circle></svg></div></div></div></div>"
 ```
 
 ####   `Code theme`
 
 ```
-"<div>主题：<div class=\"k-btns\"><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">vs<input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">vs-dark<input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">hc-black<input type=\"radio\" tabindex=\"-1\"></button></div><div class=\"k-editor\" style=\"height: 200px;\"><div class=\"k-spin k-small k-overlay\"><div class=\"k-wrapper\"><div class=\"k-canvas\"><svg viewBox=\"0 0 120 120\"><circle class=\"k-circle\" cx=\"60\" cy=\"60\" r=\"57\"></circle></svg></div></div></div></div></div>"
+"<div>主题：<div class=\"k-btns\"><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">vs<input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">vs-dark<input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">hc-black<input type=\"radio\" tabindex=\"-1\"></button></div><div class=\"k-code\" style=\"height: 200px;\"><div class=\"k-spin k-small k-overlay\"><div class=\"k-wrapper\"><div class=\"k-canvas\"><svg viewBox=\"0 0 120 120\"><circle class=\"k-circle\" cx=\"60\" cy=\"60\" r=\"57\"></circle></svg></div></div></div></div></div>"
 ```
 
 ## `collapse`
