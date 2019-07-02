@@ -111,11 +111,10 @@ export default class Table extends Intact {
         this.on('$change:checkedKey', (c, newValue, oldValue) => {
             this.trigger('$change:checked', c, [newValue], [oldValue]);
         });
-        // use ResizeObserver instead of
         // calculate padding of header when some props have changed
-        // ['data', 'fixHeader'].forEach(item => {
-            // this.on(`$changed:${item}`, this._calcHeaderPadding);
-        // });
+        // #310
+        this.on('$changed:data', this._calcHeaderPadding);
+
         // update disabled amount when some props have changed
         ['data', 'disableRow'].forEach(item => {
             this.on(`$change:${item}`, this._updateDisabledAmount);
