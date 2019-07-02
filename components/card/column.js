@@ -9,6 +9,7 @@ export default class CardColumn extends Intact {
         return {
             width: undefined,
             style: undefined,
+            center: false,
         }
     }
 }

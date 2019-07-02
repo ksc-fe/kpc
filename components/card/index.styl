@@ -3,11 +3,11 @@
 .k-card
     border-radius $border-radius
     > .k-header
-        height 48px
+        height $card-header-height 
         line-height @height
-        padding 0 16px
+        padding 0 $card-padding 
         > .k-title
-            font-size 14px
+            font-size $card-header-font-size
             display inline-block
         > .k-extra
             float right
@@ -15,24 +15,37 @@
             display flex
             align-items center
     > .k-body
-        padding 0 16px 16px
+        padding 0 $card-padding $card-padding
 
+    // type
     &.k-shadow
-        box-shadow 0 0 20px 0 rgba(0, 0, 0, .06)
+        box-shadow $card-box-shadow
+    &.k-none
+        box-shadow none
     &.k-border
         border $card-border
         > .k-header
             border-bottom $card-border
         > .k-body
         /.k-no-header > .k-body
-            padding-top 16px
+            padding-top $card-padding 
 
     // grid
     &.k-card-grid
         > .k-body
             display flex
+            padding 0
+        &.k-border
+            .k-column:not(:last-of-type)
+                border-right $card-border
     .k-column
         display flex
         align-items center
-        flex 1
+        padding $card-padding 
+        &.k-fluid
+            flex 1
+        &.k-center
+            justify-content center
 
+
+requireTheme('card')

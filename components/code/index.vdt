@@ -4,7 +4,7 @@ import Spin from '../spin';
 let {width, height, className, style, loading} = self.get();
 
 const classNameObj = {
-    'k-editor': true,
+    'k-code': true,
     [className]: className,
 };
 

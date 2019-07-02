@@ -1,6 +1,6 @@
 import {addStyle, getRestProps} from '../utils';
 
-const {children, className, width, style} = self.get();
+const {children, className, width, style, center} = self.get();
 
 let _style = style;
 if (width) {
@@ -9,7 +9,8 @@ if (width) {
 
 const classNameObj = {
     'k-column': true,
-    'k-with-width': width,
+    'k-fluid': !width,
+    'k-center': center,
     [className]: className,
 }
 

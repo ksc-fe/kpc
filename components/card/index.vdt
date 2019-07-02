@@ -3,7 +3,7 @@ import Column from './column';
 
 const {
     children, className, title,
-    shadow, border
+    type
 } = self.get();
 
 const hasHeader = blocks.header || blocks.title || title || blocks.extra;
@@ -19,8 +19,9 @@ if (children && children.length) {
 }
 const classNameObj = {
     'k-card': true,
-    'k-shadow': shadow,
-    'k-border': border,
+    'k-shadow': type === 'shadow',
+    'k-border': type === 'border',
+    'k-none': type === 'none',
     'k-no-header': !hasHeader,
     'k-card-grid': hasColumn,
     [className]: className,
@@ -37,8 +38,5 @@ const classNameObj = {
     </div>
     <div class="k-body">
         {{ children }}
-    </div>
-    <div class="k-footer" v-if={{ blocks.footer }}>
-        <b:footer />
     </div>
 </div>

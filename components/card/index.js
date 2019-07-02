@@ -8,11 +8,14 @@ export default class Card extends Intact {
     @Intact.template()
     static template = template;
 
+    static propTypes = {
+        type: ['shadow', 'none', 'border']
+    };
+
     defaults() {
         return {
             title: undefined,
-            shadow: true,
-            border: false,
+            type: 'shadow',
         }
     }
 }
