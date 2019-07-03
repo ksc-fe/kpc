@@ -19,7 +19,7 @@ import Table from 'kpc/components/table';
 
 ```styl
 .k-disabled
-   background-color: #d9d9d9
+   background-color: #d9d9d9 !important
 ```
 
 
