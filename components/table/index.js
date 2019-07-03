@@ -6,6 +6,7 @@ import Column from './column';
 import {_$, throttle, browser} from '../utils';
 import {scrollbarWidth} from '../moveWrapper/position';
 import ResizeObserver from 'resize-observer-polyfill'; 
+import {addClass, removeClass} from './utils';
 
 const slice = Array.prototype.slice;
 const each = Intact.utils.each;
@@ -55,10 +56,7 @@ export default class Table extends Intact {
             _leftWidth: 0,
             _rightWidth: 0,
             _scrollBarWidth: 0,
-            _scrollTop: 0,
-            _scrollLeft: 0,
             _scrollPosition: 'left',
-            _hoverIndex: undefined,
         }
     }
 
@@ -404,17 +402,12 @@ export default class Table extends Intact {
         if (bottom >= p && top < p) {
             this.set('_stickyScrollbarStyle', undefined); 
             // update scrollLeft, because it can not be updated when it is hidden
-            this.refs.scrollbar.scrollLeft = this.get('_scrollLeft');
+            this.refs.scrollbar.scrollLeft = this.scrollLeft;
             return true;
         } else {
             this.set('_stickyScrollbarStyle', {display: 'none'});
             return false;
         }
-    }
-
-    _onScrollbarScroll(e) {
-        const target = e.target;
-        this.set('_scrollLeft', target.scrollLeft);
     }
 
     _setFixedColumnWidth() {
@@ -690,25 +683,76 @@ export default class Table extends Intact {
 
     _onTBodyScroll(e) {
         const target = e.target;
-        if (target === this.scroll) {
+        const hasFixed = this.hasFixedLeft || this.hasFixedRight;
+        let isScroll;
+        let isScrollbar;
+        if ((isScroll = target === this.scroll) || (isScrollbar = target === this.refs.scrollbar)) {
             const oldScrollLeft = this.scrollLeft;
             const newScrollLeft = target.scrollLeft;
             if (newScrollLeft !== oldScrollLeft) {
-                // this.header.scrollLeft = newScrollLeft;
                 this.scrollLeft = newScrollLeft;
+
+                // handle the header scrollLeft directly for performace
+                this.header.scrollLeft = newScrollLeft;
+                if (isScroll) {
+                    if (this.refs.scrollbar) {
+                        this.refs.scrollbar.scrollLeft = newScrollLeft;
+                    }
+                } else {
+                    this.scroll.scrollLeft = newScrollLeft;
+                }
+
+                if (!hasFixed) return;
+
                 const maxScroll = target.scrollWidth - target.offsetWidth; 
-                this.set({
-                    '_scrollLeft': newScrollLeft,
+                return this.set({
                     '_scrollPosition': newScrollLeft === 0 ? 
                         'left' : 
                         newScrollLeft >= maxScroll ? 
                             'right' : 'middle',
                 });
-            } else {
-                this.set('_scrollTop', target.scrollTop);
             }
-        } else {
-            this.set('_scrollTop', target.scrollTop);
+        }
+
+        if (!hasFixed) return;
+
+        const oldScrollTop = this.scrollTop;
+        const newScrollTop = target.scrollTop;
+        if (oldScrollTop !== newScrollTop) {
+            this.scrollTop = newScrollTop;
+
+            const tables = [this.scroll];
+            if (this.hasFixedLeft) {
+                tables.push(this.leftFixedScroll);
+            }
+            if (this.hasFixedRight) {
+                tables.push(this.rightFixedScroll);
+            }
+            tables.forEach(table => {
+                if (table !== target) {
+                    table.scrollTop = newScrollTop;
+                }
+            });
+        }
+    }
+
+    /**
+     * handle dom directly for performance, #310
+     */
+    _onRowEnter(index, e) {
+        this._hoverIndex = index;
+        addClass(e.target, 'k-hover');
+        // if has fixed columns, we must update the view
+        if (this.hasFixedLeft || this.hasFixedRight) {
+            this.update();
+        }
+    }
+
+    _onRowLeave(e) {
+        this._hoverIndex = undefined;
+        removeClass(e.target, 'k-hover');
+        if (this.hasFixedLeft || this.hasFixedRight) {
+            this.update();
         }
     }
 
