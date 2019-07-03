@@ -5,19 +5,23 @@
     outline none
     display inline-block
     width 100%
+    .k-bar-wrapper
+        cursor pointer
+        padding $slider-margin
     .k-slider-wrapper
-        margin $slider-margin
+        // margin $slider-margin
         .k-wrapper
             height $slider-height
             background-color $slider-bg-color
             border-radius $slider-border-radius
-            cursor pointer
             position relative
             user-select none
         .k-box
-            padding $slider-box-padding
+            // padding $slider-box-padding
             :last-child
                 float right
+            span
+                cursor pointer
         .k-bar
             background-color $slider-bar-color
             position absolute
@@ -94,7 +98,7 @@
             position absolute
             transform translateX(-50%) 
             white-space nowrap
-            padding $slider-box-padding 
+            // padding $slider-box-padding 
             cursor pointer
             &:first-child
                 transform none

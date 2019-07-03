@@ -23,84 +23,87 @@ const sliderWidth = max - min;
 
 <div class={{ classNameObj }} {{ ...getRestProps(self) }}>
     <div class="k-slider-wrapper">
-        <div class="k-wrapper" 
+        <div class="k-bar-wrapper"
             ev-click={{ self._clickWrapper }} 
-            ref={{ dom => self.$slider = dom }}
         >
-            <div class="k-bar"
-                style={{ isRange ?
-                    {
-                        width: Math.abs(_sliderValue[1] - _sliderValue[0]) / sliderWidth * 100 + '%',
-                        left: (Math.min(_sliderValue[0], _sliderValue[1]) - min) / sliderWidth * 100 + '%'
-                    } :
-                    {
-                        width: (_sliderValue - min) / sliderWidth * 100 + '%'
-                    }
-                }}
-            ></div>
-            <div
-                class={{ {
-                    "k-handle": true, 
-                    "k-active": (_isFirst && _sliderValue[1] === self._max) || 
-                        (_isSecond && value[0] !== self._min)
-                } }}
-                style={{ { 
-                    left: isRange ?
-                        (_sliderValue[0] - min) / sliderWidth * 100 + '%' :
-                        (_sliderValue - min) / sliderWidth * 100 + '%'
-                } }}
-                ref={{ dom => self.$sliderFirstBtn = dom }}
-                ev-mousedown={{ isRange ? 
-                    self._onDrag.bind(self, '_isFirst') : 
-                    self._onDrag.bind(self, undefined)
-                }}
-                ev-click={{ self._stopPropagation }}
-                tabindex={{ disabled ? "-1" : "0" }}
-                ev-keydown={{ isRange ? 
-                    self._onKeydown.bind(self, '_isFirst') :
-                    self._onKeydown.bind(self, undefined)
-                }}
-                ev-focusin={{ self._onFocusin.bind(self, '_isFirst') }}
-                ev-focusout={{ self._onFocusout.bind(self, '_isFirst') }}
+            <div class="k-wrapper" 
+                ref={{ dom => self.$slider = dom }}
             >
-                <div v-if={{ isInnerText }}>{{ isRange ? value : value[0]}}</div>
-            </div>
-            <div
-                class={{ {
-                    "k-handle": true,
-                    "k-active": (_isSecond && _sliderValue[0] === self._min) || 
-                        (_isFirst && _sliderValue[1] !== self._max)
-                } }}
-                v-if={{ isRange }}
-                ref={{ dom => self.$sliderSecondBtn = dom }}
-                ev-mousedown={{ self._onDrag.bind(self, "_isSecond") }}
-                style={{ {
-                    left: (_sliderValue[1] - min) / sliderWidth * 100 + '%'
-                } }}
-                tabindex={{ disabled ? "-1" : "0" }}
-                ev-keydown={{ self._onKeydown.bind(self, '_isSecond') }}
-                ev-focusin={{ self._onFocusin.bind(self, '_isSecond') }}
-                ev-focusout={{ self._onFocusout.bind(self, '_isSecond') }}
-                ev-click={{ self._stopPropagation }}
-            >
-                <div v-if={{ isInnerText }}>{{ value[1] }}</div>
-            </div>
-            {{ (() => {
-                if (isShowStop) {
-                    const counts = Math.floor((max - min) / step);
-                    const ret = [];
-                    for (let i = 1; i < counts; i++) {
-                        ret.push(<i class="k-point" 
-                            style={{ {left: (i / counts * 100) + '%'} }}
-                        ></i>)
+                <div class="k-bar"
+                    style={{ isRange ?
+                        {
+                            width: Math.abs(_sliderValue[1] - _sliderValue[0]) / sliderWidth * 100 + '%',
+                            left: (Math.min(_sliderValue[0], _sliderValue[1]) - min) / sliderWidth * 100 + '%'
+                        } :
+                        {
+                            width: (_sliderValue - min) / sliderWidth * 100 + '%'
+                        }
+                    }}
+                ></div>
+                <div
+                    class={{ {
+                        "k-handle": true, 
+                        "k-active": (_isFirst && _sliderValue[1] === self._max) || 
+                            (_isSecond && value[0] !== self._min)
+                    } }}
+                    style={{ { 
+                        left: isRange ?
+                            (_sliderValue[0] - min) / sliderWidth * 100 + '%' :
+                            (_sliderValue - min) / sliderWidth * 100 + '%'
+                    } }}
+                    ref={{ dom => self.$sliderFirstBtn = dom }}
+                    ev-mousedown={{ isRange ? 
+                        self._onDrag.bind(self, '_isFirst') : 
+                        self._onDrag.bind(self, undefined)
+                    }}
+                    ev-click={{ self._stopPropagation }}
+                    tabindex={{ disabled ? "-1" : "0" }}
+                    ev-keydown={{ isRange ? 
+                        self._onKeydown.bind(self, '_isFirst') :
+                        self._onKeydown.bind(self, undefined)
+                    }}
+                    ev-focusin={{ self._onFocusin.bind(self, '_isFirst') }}
+                    ev-focusout={{ self._onFocusout.bind(self, '_isFirst') }}
+                >
+                    <div v-if={{ isInnerText }}>{{ isRange ? value : value[0]}}</div>
+                </div>
+                <div
+                    class={{ {
+                        "k-handle": true,
+                        "k-active": (_isSecond && _sliderValue[0] === self._min) || 
+                            (_isFirst && _sliderValue[1] !== self._max)
+                    } }}
+                    v-if={{ isRange }}
+                    ref={{ dom => self.$sliderSecondBtn = dom }}
+                    ev-mousedown={{ self._onDrag.bind(self, "_isSecond") }}
+                    style={{ {
+                        left: (_sliderValue[1] - min) / sliderWidth * 100 + '%'
+                    } }}
+                    tabindex={{ disabled ? "-1" : "0" }}
+                    ev-keydown={{ self._onKeydown.bind(self, '_isSecond') }}
+                    ev-focusin={{ self._onFocusin.bind(self, '_isSecond') }}
+                    ev-focusout={{ self._onFocusout.bind(self, '_isSecond') }}
+                    ev-click={{ self._stopPropagation }}
+                >
+                    <div v-if={{ isInnerText }}>{{ value[1] }}</div>
+                </div>
+                {{ (() => {
+                    if (isShowStop) {
+                        const counts = Math.floor((max - min) / step);
+                        const ret = [];
+                        for (let i = 1; i < counts; i++) {
+                            ret.push(<i class="k-point" 
+                                style={{ {left: (i / counts * 100) + '%'} }}
+                            ></i>)
+                        }
+                        return ret;
                     }
-                    return ret;
-                }
-            })() }} 
+                })() }} 
+            </div>
         </div>
         <div class="k-box" v-if={{ isShowEnd && !marks }}>
-            <span>{{ min + unit }} </span>
-            <span>{{ max + unit }}</span>
+            <span ev-click={{ self._setOneValue.bind(self, min) }}>{{ min + unit }} </span>
+            <span ev-click={{ self._setOneValue.bind(self, max) }}>{{ max + unit }}</span>
         </div>
         <div class="k-marks" v-if={{ marks }}>{{ do {
             const counts = Math.floor((max - min) / step);
