@@ -9,7 +9,8 @@ describe('Collapse', () => {
 
     afterEach(() => unmount(instance));
 
-    it('should toggle expand', async () => {
+    it('should toggle expand', async function() {
+        this.enableTimeouts(false);
         instance = mount(BasicDemo);
 
         const [title1, title2, title3] = instance.element.querySelectorAll('.k-title');

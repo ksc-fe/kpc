@@ -176,6 +176,8 @@ export default class Table extends Intact {
         this._setFixedColumnWidth();
 
         const ro = this.ro = new ResizeObserver(throttle(() => {
+            if (this.destroyed) return;
+
             this._calcHeaderPadding();
             this._checkTableWidth();
         }, 100));

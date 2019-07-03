@@ -192,7 +192,7 @@ describe('Table', () => {
 
         const container = instance.element.parentNode;
         container.style.width = '1000px';
-        await wait(100);
+        await wait(200);
         expect(table.innerHTML).to.matchSnapshot();
     });
 
