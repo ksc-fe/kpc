@@ -219,8 +219,8 @@ gulp.task('watch:doc', gulp.series('doc:production', gulp.parallel('webpack', ()
 function buildVdt(destPath) {
     return gulp.src(['./components/**/*.vdt'], {base: './'})
         .pipe(vdt({
-            // format: 'module',
-            format: 'cjs',
+            format: 'module',
+            // format: 'cjs',
             delimiters: ['{{', '}}'],
             noWith: true,
             skipWhitespace: true,

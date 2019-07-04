@@ -2,6 +2,8 @@ import Intact from 'intact';
 import template from './col.vdt';
 import {isStringOrNumber} from '../utils';
 import {breakpoints} from './utils';
+import '../../styles/kpc.styl';
+import './index.styl';
 
 export default class Col extends Intact {
     @Intact.template()
