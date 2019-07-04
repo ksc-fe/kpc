@@ -1,4 +1,5 @@
 const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
 
 module.exports = {
     plugins: [
@@ -7,6 +8,7 @@ module.exports = {
                 'last 2 versions',
                 'ie >= 9'
             ]
-        })
+        }),
+        cssnano(),
     ]
 };

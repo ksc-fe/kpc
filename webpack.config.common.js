@@ -9,8 +9,6 @@ module.exports = {
         path: path.resolve(__dirname, './.dev'),
         filename: '[name].js',
         publicPath: '/',
-        // hotUpdateChunkFilename: 'hot/hot-update.js',
-        // hotUpdateMainFilename: 'hot/hot-update.json',
     },
     module: {
         rules: [
@@ -52,7 +50,6 @@ module.exports = {
                         loader: 'css-loader', 
                         options: {
                             url: true,
-                            minimize: isProduction,
                             // sourceMap: !isProduction,
                         }
                     },
@@ -80,7 +77,7 @@ module.exports = {
                         loader: 'css-loader', 
                         options: {
                             url: true,
-                            minimize: isProduction,
+                            // minimize: isProduction,
                             // sourceMap: !isProduction,
                         }
                     },
