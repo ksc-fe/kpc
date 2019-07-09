@@ -356,10 +356,39 @@ gulp.task('build:i18n@single', () => {
         }));
 });
 
+// 
+gulp.task('inject@single', () => {
+    let contents;
+    return gulp.src('./dist/kpc.js')
+        .pipe(tap(file => {
+            contents = file.contents.toString('utf-8');
+            contents = contents.replace(
+                `return (pathPrefix ? stripTrailingSlash(pathPrefix) + '/' : '') + paths[label];`,
+                `return 'data:text/javascript;charset=utf-8,' + encodeURIComponent('importScripts("' + (pathPrefix ? stripTrailingSlash(pathPrefix) + '/' : '') + paths[label] + '")')`
+            );
+            contents = [
+                `// get the url for this script file to init crossdomain webworker #312`,
+                `(function() {`,
+                `    var scripts = document.getElementsByTagName('script');`,
+                `    var index = scripts.length - 1;`,
+                `    var src = scripts[index].src;`,
+                `    window.__webpack_public_path__ = src.substring(0, src.lastIndexOf('/'));`,
+                `})();`,
+                ``
+            ].join('\n') + contents;
+        }))
+        .on('end', () => {
+            fs.writeFileSync('./dist/kpc.js',  contents);
+        });
+});
+
 gulp.task('uglify@single', () => {
     return gulp.src('./dist/**/*.js')
         .pipe(tap((file) => {
             file.path = file.path.replace('.js', '.min.js');
+            contents = file.contents.toString('utf-8');
+            contents = contents.replace(/"([^\.]*)\.worker\.js"/g, '"$1.worker.min.js"');
+            file.contents = Buffer.from(contents);
         }))
         .pipe(uglifyjs())
         .pipe(gulp.dest('./dist'));
@@ -368,6 +397,7 @@ gulp.task('uglify@single', () => {
 gulp.task('build@single', gulp.series(
     'clean@single',
     gulp.parallel('build:js@single', 'build:i18n@single'),
+    'inject@single',
     'uglify@single'
 ));
 

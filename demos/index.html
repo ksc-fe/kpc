@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
-    <link rel="stylesheet" type="text/css" href="/dist/kpc.css" /> 
+    <!-- <link rel="stylesheet" type="text/css" href="/dist/kpc.css" />  -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/kpc@1.0.0-beta.4/dist/kpc.css" /> 
 </head>
 <body>
 	<div id="app">
@@ -15,17 +16,18 @@
     <script src="/node_modules/intact/dist/intact.js"></script>
     <script src="/node_modules/vue/dist/vue.js"></script>
     <script src="/node_modules/intact-vue/dist/intact.vue.js"></script>
-    <script src="/dist/kpc.js"></script>
+    <script src="/dist/kpc.min.js"></script>
+    <!-- <script src="//cdn.jsdelivr.net/npm/kpc@1.0.0-beta.4/dist/kpc.js"></script> -->
 
 	<script type="text/javascript">
         Kpc.install();
-        __webpack_public_path__ = '/dist/';
         var Page = Intact.extend({
             template: '<div><KButton ev-click={self.hello}>Hello World</KButton><KCode height="200px"/></div>',
             hello: function() {
                 KMessage.success('Welcome to the world of kpc and intact!');
             }
         });
+
         Intact.mount(Page, document.getElementById('app'));
     </script>
     <script type="text/javascript">
