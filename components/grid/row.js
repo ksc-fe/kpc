@@ -1,7 +1,7 @@
 import Intact from 'intact';
 import template from './row.vdt';
 import mediaQuery from './mediaQuery';
-import {isObject} from '../utils';
+import {isObject, hasWindow} from '../utils';
 import Col from './col';
 import {breakpoints} from './utils';
 import matchMedia from './mediaMatch';
@@ -9,7 +9,7 @@ import '../../styles/kpc.styl';
 import './index.styl';
 
 let enquire;
-if (typeof window !== 'undefined') {
+if (hasWindow) {
     window.matchMedia = matchMedia();
     enquire = require('enquire.js');
 }

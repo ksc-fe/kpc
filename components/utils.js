@@ -265,8 +265,10 @@ export function isNumber(n) {
     return typeof n === 'number';
 }
 
+export const hasWindow = typeof window !== 'undefined';
+
 let raf;
-if (typeof window !== 'undefined') {
+if (hasWindow) {
     raf = window.requestAnimationFrame ? 
         window.requestAnimationFrame.bind(window) : setTimeout;
 }

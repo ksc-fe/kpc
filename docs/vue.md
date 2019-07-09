@@ -146,9 +146,11 @@ module.exports = {
     configureWebpack: {
         resolve: {
             alias: {
-                // 如果需要引入主题，需要指向kpc/@stylus
-                'kpc': 'kpc/@css',
-                'intact$': 'intact-vue',
+                // @since 1.0 推荐直接指向vue编译包
+                kpc: 'kpc/@vue/@css',
+                // @before 1.0
+                // kpc: 'kpc/@css',
+                // intact$: 'intact-vue',
             }
         },
     }
@@ -179,8 +181,12 @@ module.exports = {
     configureWebpack: {
         resolve: {
             alias: {
-                'kpc': 'kpc/@stylus',
-                'intact$': 'intact-vue',
+                // @since 1.0 推荐直接指向vue编译包
+                kpc: 'kpc/@vue/@stylus',
+
+                // @before 1.0
+                // kpc: 'kpc/@stylus',
+                // intact$: 'intact-vue',
             }
         },
         module: {
@@ -204,7 +210,7 @@ module.exports = {
 }
 ```
 
-> 如果主题没有生效，请检查`resolve.alias.kpc`是否指向了`kpc/@stylus`
+> 如果主题没有生效，请检查`resolve.alias.kpc`是否指向了`kpc/@vue/@stylus`
 
 如果采用链式写法，不要直接修改`stylus-loader`配置，可以采用`css`配置项来配置，如下所示：
 
@@ -212,8 +218,7 @@ module.exports = {
 module.exports = {
     chainWebpack: config => {
         config.resolve.alias
-            .set('kpc', 'kpc/@stylus')
-            .set('intact$', 'intact-vue');
+            .set('kpc', 'kpc/@vue/@stylus')
     },
     css: {
         loaderOptions: {
@@ -251,8 +256,7 @@ npm install kpc -S
      alias: {
        'vue$': 'vue/dist/vue.esm.js',
        '@': resolve('src'),
-+      'kpc': 'kpc/@css',
-+      'intact$': 'intact-vue',
++      'kpc': 'kpc/@vue/@css',
      }
    },
 ```
@@ -274,9 +278,8 @@ npm install stylus stylus-loader -D
      alias: {
        'vue$': 'vue/dist/vue.esm.js',
        '@': resolve('src'),
--      'kpc': 'kpc/@css',
-+      'kpc': 'kpc/@stylus',
-       'intact$': 'intact-vue',
+-      'kpc': 'kpc/@vue/@css',
++      'kpc': 'kpc/@vue/@stylus',
      }
    },
 ```

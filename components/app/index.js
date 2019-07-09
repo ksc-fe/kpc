@@ -1,5 +1,6 @@
 import Intact from 'intact';
 import template from './index.vdt';
+import {hasWindow} from '../utils';
 import '../../styles/kpc.styl';
 import './index.styl';
 
@@ -41,7 +42,7 @@ export default class App extends Intact {
             page.$app = this;
 
             // for debug
-            if (typeof window !== undefined) {
+            if (hasWindow) {
                 window.__page = page;
             }
 

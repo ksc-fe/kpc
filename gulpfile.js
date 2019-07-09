@@ -408,13 +408,13 @@ gulp.task('clean@css', (done) => {
 });
 
 gulp.task('build:js', () => {
-    return gulp.src(['./components/**/*.js', '!./components/**/*.spec.js', './index.js'], {base: './'})
+    return gulp.src(['./components/**/*.js', '!./components/**/*.spec.js', './index.js', './inheritsLoose.js'], {base: './'})
         .pipe(babel())
         .pipe(tap(function(file) {
             let contents = file.contents.toString('utf-8');
             contents = contents.replace(/\.styl(['"])/g, '.css$1');
             // replace inheritsLoose for IE compatibilty
-            contents = contents.replace('@babel/runtime-corejs2/helpers/inheritsLoose', '../../../inheritsLoose');
+            contents = contents.replace('@babel/runtime-corejs2/helpers/inheritsLoose', '../../inheritsLoose');
             file.contents = Buffer.from(contents);
         }))
         .pipe(gulp.dest(destPath));
@@ -466,12 +466,12 @@ gulp.task('clean@stylus', (done) => {
 });
 
 gulp.task('build:js@stylus', () => {
-    return gulp.src(['./components/**/*.js', '!./components/**/*.spec.js', './index.js'], {base: './'})
+    return gulp.src(['./components/**/*.js', '!./components/**/*.spec.js', './index.js', './inheritsLoose.js'], {base: './'})
         .pipe(babel())
         .pipe(tap(function(file) {
             let contents = file.contents.toString('utf-8');
             // replace inheritsLoose for IE compatibilty
-            contents = contents.replace('@babel/runtime-corejs2/helpers/inheritsLoose', '../../../inheritsLoose');
+            contents = contents.replace('@babel/runtime-corejs2/helpers/inheritsLoose', '../../inheritsLoose');
             file.contents = Buffer.from(contents);
         }))
         .pipe(gulp.dest(destPathStylus));
@@ -509,9 +509,32 @@ gulp.task('build@stylus', gulp.series(
     )
 )); 
 
+// build for Vue and React 
+function generateTask(type) {
+    const dest= `./@${type}`;
+    gulp.task(`clean@${type}`, (done) => {
+        rimraf(dest, done);
+    });
+    gulp.task(`copy@${type}`, () => {
+        return gulp.src(['./@css/**/*', './@stylus/**/*'], {base: './'})   
+            .pipe(tap(file => {
+                if (path.extname(file.path) === '.js') {
+                    file.contents = Buffer.from(file.contents.toString('utf-8').replace(/['"]intact["']/, `'intact-${type}'`));
+                }
+            }))
+            .pipe(gulp.dest(dest));
+    });
+    gulp.task(`build@${type}`, gulp.series(`clean@${type}`, `copy@${type}`));
+}
+
+generateTask('vue');
+generateTask('react');
+
+// build
 gulp.task('build', gulp.series(
     'index',
-    gulp.parallel('build@css', 'build@stylus', 'build@single')
+    gulp.parallel('build@css', 'build@stylus', 'build@single'),
+    gulp.parallel('build@vue', 'build@react')
 ));
 
 function exec(command) {
@@ -543,4 +566,4 @@ gulp.task('code', () => {
             const path = './dist/code.js';
             fs.writeFileSync(path,  codes.join('\n'));
         });
-})
+});

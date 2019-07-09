@@ -74,8 +74,11 @@ npm run eject
          // Support React Native Web
          // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
          'react-native': 'react-native-web',
-+        'kpc': 'kpc/@css',
-+        'intact$': 'intact-react',
++        // @since 1.0 推荐直接指向react编译包
++        'kpc': 'kpc/@react/@css',
++        // @before 1.0
++        // 'kpc': 'kpc/@css',
++        // 'intact$': 'intact-react',
        },
        plugins: [
          // Adds support for installing with Plug'n'Play, leading to faster installs and adding
@@ -115,9 +118,14 @@ npm install stylus stylus-loader -D
          // Support React Native Web
          // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
          'react-native': 'react-native-web',
--        'kpc': 'kpc/@css',
-+        'kpc': 'kpc/@stylus',
-         'intact$': 'intact-react',
+         // @since 1.0 推荐直接指向react编译包
+-        'kpc': 'kpc/@react/@css',
++        'kpc': 'kpc/@react/@stylus',
+         // @before 1.0
+-        // 'kpc': 'kpc/@css',
++        // 'kpc': 'kpc/@stylus',
+         // 'intact$': 'intact-react',
+
        },
        plugins: [
 @@ -448,6 +450,22 @@ module.exports = function(webpackEnv) {

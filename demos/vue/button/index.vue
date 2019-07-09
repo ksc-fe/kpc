@@ -15,8 +15,8 @@
 </style>
 
 <script>
-import Button from 'components/button';
-import ButtonGroup from 'components/button/group';
+import Button from 'kpc/@vue/@stylus/components/button';
+import ButtonGroup from 'kpc/@vue/@stylus/components/button/group';
 import Vue from 'vue';
 import A from './a.vue';
 
