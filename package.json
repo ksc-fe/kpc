@@ -42,6 +42,8 @@
     "components",
     "@css",
     "@stylus",
+    "@vue",
+    "@react",
     "styles",
     "dist",
     "i18n",
