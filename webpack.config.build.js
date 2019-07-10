@@ -4,7 +4,7 @@ const merge = require('webpack-merge');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
-module.exports = function(theme) {
+module.exports = function(theme, type = 'intact') {
     // add theme
     const commonConfig = merge.smartStrategy()(webpackConfig);
     if (theme) {
@@ -16,7 +16,7 @@ module.exports = function(theme) {
         'module.rules.use': 'replace'
     })(webpackConfig, {
         entry: {
-            kpc: './index.js',
+            [`kpc${type !== 'intact' ? '-' + type : ''}`]: './index.js',
         },
         output: {
             path: path.resolve(__dirname, './dist'),
@@ -25,14 +25,14 @@ module.exports = function(theme) {
             libraryTarget: 'umd',
             publicPath: '',
         },
-        externals: {
+        externals: type === 'intact' ? {
             intact: {
                 root: 'Intact', 
                 commonjs2: 'intact',
                 commonjs: 'intact',
                 amd: 'intact',
             }
-        },
+        } : undefined,
         module: {
             rules: [
                 {

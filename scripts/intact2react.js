@@ -1,14 +1,17 @@
 const {indent, dedent, getDefaults} = require('./utils');
 
-module.exports = function(vdt, js, reactMethods, jsHead) {
+module.exports = function(vdt, js, reactMethods, jsHead, hasStylus) {
     const obj = parse(vdt, js, reactMethods);
     const result = [
         `import React from 'react';`,
-        obj.head + (jsHead ? '\n' + jsHead + '\n' : ''),
+        obj.head.trim(),
+        jsHead,
+        hasStylus ? 'import "./index.styl"' : undefined,
+        '',
         'export default class extends React.Component {',
         obj.js,
         '}',
-    ];
+    ].filter(item => item !== undefined);
 
     return result.join('\n');
 }

@@ -1,4 +1,7 @@
 import {Tabs, Tab} from 'kpc/components/tabs';
+import {Icon} from 'kpc/components/icon';
+import {Button} from 'kpc/components/button';
+import {Tooltip} from 'kpc/components/tooltip';
 
 <div class="contents">
     <div key="demos" v-if={{ self.get('demos').length }}>
@@ -16,7 +19,7 @@ import {Tabs, Tab} from 'kpc/components/tabs';
                     <div class="desc" innerHTML={{ Demo.data.contents }}></div>
                 </div>
                 <div class="example-code">
-                    <Tabs v-model={{  `file${Demo.data.index}` }}>
+                    <Tabs v-model={{ `file${Demo.data.index}` }}>
                         <Tab v-for={{ Demo.data.highlighted }} 
                             value={{ value.file ? value.file : `index.${value.language}` }}
                         >
@@ -36,6 +39,15 @@ import {Tabs, Tab} from 'kpc/components/tabs';
                         const file = item.file ? item.file : `index.${item.language}`;
                         return file === self.get('file' + Demo.data.index);
                     }) || {}).content }}></div>
+                    <Tooltip content="Open in CodeSandbox"
+                        v-if={{ ['index.vue', 'index.jsx'].indexOf(self.get(`file${Demo.data.index}`)) > -1 }}
+                    >
+                        <Button icon type="none" class="open" 
+                            ev-click={{ self._open.bind(self, Demo) }}
+                        >
+                            <Icon class="ion-android-open" />
+                        </Button>
+                    </Tooltip>
                 </div>
             </div>
         }) }}

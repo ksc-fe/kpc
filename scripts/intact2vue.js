@@ -2,7 +2,7 @@ const Intact = require('intact');
 const Vdt = Intact.Vdt;
 const {indent, dedent, getDefaults} = require('./utils');
 
-module.exports = function(vdt, js, vueScript, vueTemplate, vueMethods, vueData, jsHead) {
+module.exports = function(vdt, js, vueScript, vueTemplate, vueMethods, vueData, jsHead, hasStylus) {
     // console.log(vdt, js, vueScript);
     const obj = parse(vdt, js, vueScript, vueTemplate, vueMethods, vueData);
     const result = [
@@ -16,6 +16,9 @@ module.exports = function(vdt, js, vueScript, vueTemplate, vueMethods, vueData, 
         `}`,
         `</script>`,
     ];
+    if (hasStylus) {
+        result.push('<style lang="stylus" src="./index.styl"></style>');
+    }
 
     return result.join('\n');
 }

@@ -230,7 +230,7 @@ module.exports = function(isDev = true) {
                         if (!hasVue) {
                             const code = {
                                 language: 'vue',
-                                content: intact2vue(vdt, js, vueScript, vueTemplate, vueMethods, vueData, jsHead)
+                                content: intact2vue(vdt, js, vueScript, vueTemplate, vueMethods, vueData, jsHead, hasStylus)
                             };
                             if (!hasReact) {
                                 codes.push(code);
@@ -242,7 +242,7 @@ module.exports = function(isDev = true) {
                         if (!hasReact) {
                             codes.push({
                                 language: 'jsx',
-                                content: intact2react(vdt, js, reactMethods, jsHead), 
+                                content: intact2react(vdt, js, reactMethods, jsHead, hasStylus), 
                             });
                         }
                     }
