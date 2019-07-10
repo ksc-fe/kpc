@@ -1,5 +1,5 @@
 /*!
- * kpc v1.0.0-beta.5
+ * kpc v1.0.0-beta.6
  *
  * Copyright (c) Kingsoft Cloud
  * Released under the MIT License
@@ -202,7 +202,7 @@ const components = {
     Upload
 };
 
-export const version = '1.0.0-beta.5';
+export const version = '1.0.0-beta.6';
 
 /* generate end */
 
