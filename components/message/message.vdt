@@ -26,7 +26,7 @@ const {type, content, children, closable, hideIcon} = self.get();
             type="none" icon class="k-close"
             ev-click={{ self.close }}
         >
-            <Icon class="ion-ios-close-empty" />
+            <Icon class="ion-ios-close-empty k-message-icon" />
         </Button>
     </div>
 </div>
