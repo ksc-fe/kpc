@@ -15,7 +15,7 @@
     "snapshot:prune": "cross-env UPDATE=3 npm run test",
     "cover": "cross-env UPDATE=2 npm run test",
     "start": "node server.js",
-    "build": "cross-env NODE_ENV=production BUILD=1 gulp build",
+    "build": "cross-env NODE_ENV=production BUILD=1 gulp build && gulp uglify@single",
     "dev:doc": "cross-env THEME=ksyun gulp watch",
     "dev:doc:default": "cross-env THEME=default gulp watch",
     "preview:doc": "gulp watch",

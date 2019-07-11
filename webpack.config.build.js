@@ -16,7 +16,7 @@ module.exports = function(theme, type = 'intact') {
         'module.rules.use': 'replace'
     })(webpackConfig, {
         entry: {
-            [`kpc${type !== 'intact' ? '-' + type : ''}`]: './index.js',
+            [`kpc${type !== 'intact' ? '.' + type : ''}`]: './index.js',
         },
         output: {
             path: path.resolve(__dirname, './dist'),

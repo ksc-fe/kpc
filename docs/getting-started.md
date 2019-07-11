@@ -19,7 +19,7 @@ sidebar: doc
 npm install kpc -S
 ```
 
-## 单文件构建版
+## 单文件引入
 
 如果你的项目没有使用webpack来构建，可以引入单文件构建版。将`kpc.css`和`kpc.js`在html文件中引入。
 此时所有组件都在`Kpc`命名空间下，例如`Kpc.Button` `Kpc.Table`等。

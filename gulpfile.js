@@ -299,28 +299,32 @@ gulp.task('clean@single', (done) => {
     rimraf('./dist', done);
 });
 
-gulp.task('build:js@single', () => {
+function buildSingleFile(type) {
     const p1 = new Promise(resolve => {
-        webpack(webpackBuildConfig(), (err, stats) => {
-            console.log(stats.toString({
-                colors: true    // 在控制台展示颜色
-            }));
+        webpack(webpackBuildConfig(null, type), (err, stats) => {
             resolve();
         });
     });
     const p2 = new Promise(resolve => {
-        webpack(webpackBuildConfig('ksyun'), (err, stats) => {
-            console.log(stats.toString({
-                colors: true    // 在控制台展示颜色
-            }));
+        webpack(webpackBuildConfig('ksyun', type), (err, stats) => {
             resolve();
         });
     });
-    return Promise.all([p1, p2]);
+
+    return [p1, p2];
+}
+gulp.task('build:js@single', () => {
+    return Promise.all(buildSingleFile());
+});
+gulp.task('build:vue@single', () => {
+    return Promise.all(buildSingleFile('vue'));
+});
+gulp.task('build:react@single', () => {
+    return Promise.all(buildSingleFile('react'));
 });
 
-gulp.task('build:i18n@single', () => {
-    return gulp.src('./i18n/**/*.js', {base: './'})
+gulp.task('build:i18n@single', (done) => {
+    gulp.src('./i18n/**/*.js', {base: './'})
         .pipe(tap((file, t) => {
             webpack({
                 entry: {
@@ -349,19 +353,15 @@ gulp.task('build:i18n@single', () => {
                     ]
                 }
             }, (err, stats) => {
-                console.log(stats.toString({
-                    colors: true
-                }));
+                done();
             });
         }));
 });
 
-// 
 gulp.task('inject@single', () => {
-    let contents;
-    return gulp.src('./dist/kpc.js')
+    return gulp.src(['./dist/kpc.js', './dist/kpc.vue.js', './dist/kpc.react.js'], {base: './'})
         .pipe(tap(file => {
-            contents = file.contents.toString('utf-8');
+            let contents = file.contents.toString('utf-8');
             contents = contents.replace(
                 `return (pathPrefix ? stripTrailingSlash(pathPrefix) + '/' : '') + paths[label];`,
                 `return 'data:text/javascript;charset=utf-8,' + encodeURIComponent('importScripts("' + (pathPrefix ? stripTrailingSlash(pathPrefix) + '/' : '') + paths[label] + '")')`
@@ -376,19 +376,20 @@ gulp.task('inject@single', () => {
                 `})();`,
                 ``
             ].join('\n') + contents;
-        }))
-        .on('end', () => {
-            fs.writeFileSync('./dist/kpc.js',  contents);
-        });
+            fs.writeFileSync(file.path,  contents);
+        }));
 });
 
 gulp.task('uglify@single', () => {
     return gulp.src('./dist/**/*.js')
         .pipe(tap((file) => {
             file.path = file.path.replace('.js', '.min.js');
-            contents = file.contents.toString('utf-8');
-            contents = contents.replace(/"([^\.]*)\.worker\.js"/g, '"$1.worker.min.js"');
-            file.contents = Buffer.from(contents);
+            const filename = path.basename(file.path);
+            if (/^kpc/.test(filename)) {
+                contents = file.contents.toString('utf-8');
+                contents = contents.replace(/"([^\.]*)\.worker\.js"/g, '"$1.worker.min.js"');
+                file.contents = Buffer.from(contents);
+            }
         }))
         .pipe(uglifyjs())
         .pipe(gulp.dest('./dist'));
@@ -396,9 +397,9 @@ gulp.task('uglify@single', () => {
 
 gulp.task('build@single', gulp.series(
     'clean@single',
-    gulp.parallel('build:js@single', 'build:i18n@single'),
-    'inject@single',
-    'uglify@single'
+    gulp.parallel('build:js@single', 'build:vue@single', 'build:react@single', 'build:i18n@single'),
+    'inject@single'
+    // 'uglify@single'
 ));
 
 const destPath = './@css';
