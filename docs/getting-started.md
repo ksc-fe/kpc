@@ -1,5 +1,5 @@
 ---
-title: 快速开始
+title: Intact中使用
 order: 0
 sidebar: doc
 ---

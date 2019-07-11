@@ -4,7 +4,60 @@ order: 1.1
 sidebar: doc
 ---
 
-使kpc运行在Vue框架中，我们只需要引入Vue兼容层[intact-vue][1]即可
+# 准备工作
+
+在学习使用kpc之前，假设你已经掌握了以下知识：
+
+1. [webpack][1] + [babel][2]
+2. [Vue][3]
+
+# 安装
+
+```js
+npm install kpc -S
+```
+
+# CDN
+
+通过[cdn.jsdelivr.net/npm/kpc/dist/](https://cdn.jsdelivr.net/npm/kpc/dist/)可以直接引入最新版kpc，建议使用锁定版本地址，
+例如：[cdn.jsdelivr.net/npm/kpc@0.5.14/dist/](https://cdn.jsdelivr.net/npm/kpc@1.0.0/dist/)
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>kpc-demo</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/kpc/dist/kpc.css" />
+    <!-- 将上述kpc.css替换成ksyun.css，可以使用ksyun主题 -->
+    <!-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/kpc/dist/ksyun.css" /> -->
+</head>
+<body>
+    <div id="app">
+        <k-button @click="hello">Hello world</k-button>
+    </div>
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/vue"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/intact/dist/intact.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/intact-vue/dist/intact.vue.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/kpc/dist/kpc.min.js"></script>
+    <script type="text/javascript">
+        Vue.use(Kpc);
+        new Vue({
+            el: '#app',
+            methods: {
+                hello: function() {
+                    this.$message.success('Welcome to kpc world!');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+```
 
 # 语法说明
 
