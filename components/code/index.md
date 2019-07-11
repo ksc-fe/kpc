@@ -5,8 +5,8 @@ order: 99
 sidebar: doc
 ---
 
-> 如果你不是通过webpack引入该该组件，你需要定义`__webpack_public_path__`来指定`worker`的加载路径，
-> 例如：`__webpack__public_path__ = '/dist/'`
+> 由于Monaco-Editor太大，该组件不会打包进入单文件，所以你不能通过CDN引入组件的方式使用该组件，而必须通过webpack
+> 进行构建
 
 # 属性
 

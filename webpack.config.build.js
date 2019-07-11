@@ -2,7 +2,8 @@ const webpack = require('webpack'); const path = require('path');
 const webpackConfig = require('./webpack.config.common');
 const merge = require('webpack-merge');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
+// don't build monaco to buddle file, it's too big 
+// const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 module.exports = function(theme, type = 'intact') {
     // add theme
@@ -24,6 +25,11 @@ module.exports = function(theme, type = 'intact') {
             library: 'Kpc',
             libraryTarget: 'umd',
             publicPath: '',
+        },
+        resolve: {
+            alias: {
+                './components/code': './empty',
+            },
         },
         externals: type === 'intact' ? {
             intact: {
@@ -62,7 +68,7 @@ module.exports = function(theme, type = 'intact') {
             'process.browser': true
         }),
         new ExtractTextPlugin(theme ? `${theme}.css` : 'kpc.css'),
-        new MonacoWebpackPlugin(),
+        // new MonacoWebpackPlugin(),
     ];
 
     return config;

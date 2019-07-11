@@ -398,8 +398,8 @@ gulp.task('uglify@single', () => {
 gulp.task('build@single', gulp.series(
     'clean@single',
     gulp.parallel('build:js@single', 'build:vue@single', 'build:react@single', 'build:i18n@single'),
-    'inject@single'
-    // 'uglify@single'
+    'inject@single',
+    'uglify@single'
 ));
 
 const destPath = './@css';
