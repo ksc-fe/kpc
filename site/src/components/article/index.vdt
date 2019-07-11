@@ -1,6 +1,4 @@
 import {Tabs, Tab} from 'kpc/components/tabs';
-import {Icon} from 'kpc/components/icon';
-import {Button} from 'kpc/components/button';
 import {Tooltip} from 'kpc/components/tooltip';
 
 <div class="contents">
@@ -42,11 +40,9 @@ import {Tooltip} from 'kpc/components/tooltip';
                     <Tooltip content="Open in CodeSandbox"
                         v-if={{ ['index.vue', 'index.jsx'].indexOf(self.get(`file${Demo.data.index}`)) > -1 }}
                     >
-                        <Button icon type="none" class="open" 
+                        <i class="ion-android-open open"
                             ev-click={{ self._open.bind(self, Demo) }}
-                        >
-                            <Icon class="ion-android-open" />
-                        </Button>
+                        ></i>
                     </Tooltip>
                 </div>
             </div>

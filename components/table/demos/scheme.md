@@ -96,7 +96,7 @@ data() {
 import React from 'react';
 import {Table, TableColumn} from 'kpc/components/table';
 
-export default class extends React.Component {
+export default Demo class extends React.Component {
     render() {
         const data = [{a: '虚拟DOM', b: '获取到了item.b', c: {c1: 'item.c.c1'}}];
         const scheme = {

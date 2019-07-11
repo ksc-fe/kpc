@@ -8,7 +8,7 @@ module.exports = function(vdt, js, reactMethods, jsHead, hasStylus) {
         jsHead,
         hasStylus ? 'import "./index.styl"' : undefined,
         '',
-        'export default class extends React.Component {',
+        'export default class Demo extends React.Component {',
         obj.js,
         '}',
     ].filter(item => item !== undefined);
