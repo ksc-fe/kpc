@@ -13,23 +13,23 @@
 	<div id="app">
         <div id="vue"></div>
     </div>
-    <script src="/node_modules/intact/dist/intact.js"></script>
+    <!-- <script src="/node_modules/intact/dist/intact.js"></script> -->
     <script src="/node_modules/vue/dist/vue.js"></script>
-    <script src="/node_modules/intact-vue/dist/intact.vue.js"></script>
-    <script src="/dist/kpc.min.js"></script>
+    <!-- <script src="/node_modules/intact-vue/dist/intact.vue.js"></script> -->
+    <script src="/dist/kpc.vue.min.js"></script>
     <!-- <script src="//cdn.jsdelivr.net/npm/kpc@1.0.0-beta.4/dist/kpc.js"></script> -->
 
-	<script type="text/javascript">
-        Kpc.install();
-        var Page = Intact.extend({
-            template: '<div><KButton ev-click={self.hello}>Hello World</KButton><KCode height="200px"/></div>',
-            hello: function() {
-                KMessage.success('Welcome to the world of kpc and intact!');
-            }
-        });
+	<!-- <script type="text/javascript"> -->
+        <!-- Kpc.install(); -->
+        <!-- var Page = Intact.extend({ -->
+            <!-- template: '<div><KButton ev-click={self.hello}>Hello World</KButton><KCode height="200px"/></div>', -->
+            <!-- hello: function() { -->
+                <!-- KMessage.success('Welcome to the world of kpc and intact!'); -->
+            <!-- } -->
+        <!-- }); -->
 
-        Intact.mount(Page, document.getElementById('app'));
-    </script>
+        <!-- Intact.mount(Page, document.getElementById('app')); -->
+    <!-- </script> -->
     <script type="text/javascript">
         Kpc.install.installed = false;
         Vue.use(Kpc);
