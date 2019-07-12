@@ -4,9 +4,12 @@
     font-size $breadcrumb-font-size
     .k-item
         display inline-block
-        if $breadcrumb-active-font-weight != normal
-            &:last-of-type
-                font-weight $breadcrumb-active-font-weight
+        if $breadcrumb-active-font-weight != normal || $breadcrumb-active-color != $breadcrumb-color 
+            &:last-of-type .k-item-link
+                if $breadcrumb-active-font-weight != normal
+                    font-weight $breadcrumb-active-font-weight
+                if $breadcrumb-active-color != $breadcrumb-color 
+                    color $breadcrumb-active-color
     .k-item-link
     .k-item-link a
         color $breadcrumb-color

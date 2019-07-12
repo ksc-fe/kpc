@@ -10,7 +10,7 @@ export default class Button extends Intact {
 
     defaults() {
         return {
-            type: 'default', // primary | warning | danger
+            type: 'default', // primary | warning | danger | success | none | secondary | link
             size: 'default', // small | mini
             icon: false,
             circle: false,

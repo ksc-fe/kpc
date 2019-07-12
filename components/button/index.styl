@@ -42,6 +42,15 @@ sizes = large small mini
             &:active
                 background-color palette(@background-color, 1)
                 border-color palette(@border-color, 1) 
+    // secodary type
+    &.k-secondary
+        color $btn-secondary-color
+        border-color $btn-secondary-border-color
+        &:hover
+        &:focus
+            background-color $btn-secondary-hover-bg-color
+        &:active
+            background-color $btn-secondary-active-bg-color
     // disabled
     &.k-disabled
         &, &:hover
@@ -50,13 +59,19 @@ sizes = large small mini
             border-color $btn-disabled-border-color 
             cursor not-allowed
 
-    // none
+    // none & link
     &.k-none
+    &.k-link
         &, &:hover
             border none
             background-color transparent
         &.k-active
             color $primary-color
+    &.k-link
+        color $link-color
+        &:hover
+            color $link-hover-color
+
 
     // size
     for size in sizes 

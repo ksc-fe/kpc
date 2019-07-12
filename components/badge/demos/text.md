@@ -12,6 +12,9 @@ import Button from 'kpc/components/button';
 
 <div>
     <Badge text="new">Message</Badge>
+    <Badge text={{ 6 }}>
+        <Button>Message</Button>
+    </Badge>
     <Badge text={{ 19 }}>
         <Button>Message</Button>
     </Badge>

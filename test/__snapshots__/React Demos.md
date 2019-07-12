@@ -37,7 +37,7 @@
 ####   `Badge text`
 
 ```
-"<div><div class=\"k-badge k-has-text\">Message<sup class=\"k-text\">new</sup></div><div class=\"k-badge k-has-text\"><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">Message</button><sup class=\"k-text\">19</sup></div><div class=\"k-badge k-has-text\"><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">Message</button><sup class=\"k-text\">99+</sup></div></div>"
+"<div><div class=\"k-badge k-has-text\">Message<sup class=\"k-text\">new</sup></div><div class=\"k-badge k-has-text\"><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">Message</button><sup class=\"k-text\">6</sup></div><div class=\"k-badge k-has-text\"><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">Message</button><sup class=\"k-text\">19</sup></div><div class=\"k-badge k-has-text\"><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">Message</button><sup class=\"k-text\">99+</sup></div></div>"
 ```
 
 ## `breadcrumb`
@@ -59,7 +59,7 @@
 ####   `Button basic`
 
 ```
-"<div><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">default</button><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\">primay</button><button class=\"k-btn k-warning\" tabindex=\"0\" type=\"button\">warning</button><button class=\"k-btn k-danger\" tabindex=\"0\" type=\"button\">danger</button><button class=\"k-btn k-success\" tabindex=\"0\" type=\"button\">success</button><button class=\"k-btn k-none\" tabindex=\"0\" type=\"button\">none</button></div>"
+"<div><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">default</button><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\">primay</button><button class=\"k-btn k-secondary\" tabindex=\"0\" type=\"button\">secondary</button><button class=\"k-btn k-warning\" tabindex=\"0\" type=\"button\">warning</button><button class=\"k-btn k-danger\" tabindex=\"0\" type=\"button\">danger</button><button class=\"k-btn k-success\" tabindex=\"0\" type=\"button\">success</button><button class=\"k-btn k-none\" tabindex=\"0\" type=\"button\">none</button><button class=\"k-btn k-link\" tabindex=\"0\" type=\"button\">link</button></div>"
 ```
 
 ####   `Button disabled`
@@ -83,7 +83,7 @@
 ####   `Button icon`
 
 ```
-"<div><button class=\"k-btn k-default k-btn-icon\" tabindex=\"0\" type=\"button\"><i class=\"ion-ios-search\"></i><!-- react-mount-point-unstable --></button><button class=\"k-btn k-default k-btn-icon k-circle\" tabindex=\"0\" type=\"button\"><i class=\"ion-ios-search\"></i><!-- react-mount-point-unstable --></button><button class=\"k-btn k-primary k-icon-left\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i><!-- react-mount-point-unstable --><span>搜索</span></button><button class=\"k-btn k-primary k-circle k-icon-left\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i><!-- react-mount-point-unstable --><span>搜索</span></button></div>"
+"<div><button class=\"k-btn k-default k-btn-icon\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i></button><button class=\"k-btn k-default k-btn-icon k-circle\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i></button><button class=\"k-btn k-primary k-icon-left\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search k-small\"></i><span>搜索</span></button><button class=\"k-btn k-primary k-circle k-icon-left\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search k-small\"></i><span>搜索</span></button></div>"
 ```
 
 ####   `Button loading`
@@ -95,7 +95,7 @@
 ####   `Button size`
 
 ```
-"<div><button class=\"k-btn k-default k-large\" tabindex=\"0\" type=\"button\">large</button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">default</button><button class=\"k-btn k-default k-small\" tabindex=\"0\" type=\"button\">small</button><button class=\"k-btn k-default k-mini\" tabindex=\"0\" type=\"button\">mini</button><br><br><button class=\"k-btn k-default k-btn-icon k-circle k-large\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i><!-- react-mount-point-unstable --></button><button class=\"k-btn k-default k-btn-icon k-circle\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i><!-- react-mount-point-unstable --></button><button class=\"k-btn k-default k-btn-icon k-circle k-small\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i><!-- react-mount-point-unstable --></button><button class=\"k-btn k-default k-btn-icon k-circle k-mini\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i><!-- react-mount-point-unstable --></button></div>"
+"<div><button class=\"k-btn k-default k-large\" tabindex=\"0\" type=\"button\">large</button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">default</button><button class=\"k-btn k-default k-small\" tabindex=\"0\" type=\"button\">small</button><button class=\"k-btn k-default k-mini\" tabindex=\"0\" type=\"button\">mini</button><br><br><button class=\"k-btn k-default k-btn-icon k-circle k-large\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search k-large\"></i></button><button class=\"k-btn k-default k-btn-icon k-circle\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i></button><button class=\"k-btn k-default k-btn-icon k-circle k-small\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search k-small\"></i></button><button class=\"k-btn k-default k-btn-icon k-circle k-mini\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-search k-mini\"></i></button></div>"
 ```
 
 ####   `Button tagName`
