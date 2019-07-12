@@ -384,12 +384,12 @@ gulp.task('uglify@single', () => {
     return gulp.src('./dist/**/*.js')
         .pipe(tap((file) => {
             file.path = file.path.replace('.js', '.min.js');
-            const filename = path.basename(file.path);
-            if (/^kpc/.test(filename)) {
-                contents = file.contents.toString('utf-8');
-                contents = contents.replace(/"([^\.]*)\.worker\.js"/g, '"$1.worker.min.js"');
-                file.contents = Buffer.from(contents);
-            }
+            // const filename = path.basename(file.path);
+            // if (/^kpc/.test(filename)) {
+                // contents = file.contents.toString('utf-8');
+                // contents = contents.replace(/"([^\.]*)\.worker\.js"/g, '"$1.worker.min.js"');
+                // file.contents = Buffer.from(contents);
+            // }
         }))
         .pipe(uglifyjs())
         .pipe(gulp.dest('./dist'));
@@ -398,7 +398,7 @@ gulp.task('uglify@single', () => {
 gulp.task('build@single', gulp.series(
     'clean@single',
     gulp.parallel('build:js@single', 'build:vue@single', 'build:react@single', 'build:i18n@single'),
-    'inject@single',
+    // 'inject@single',
     'uglify@single'
 ));
 

@@ -49,7 +49,7 @@ export default class extends Intact {
             params = this._getParamsForReact(code, stylusContent);
         }
 
-        params.files['src/index.css'] = {
+        params.files['src/kpc.css'] = {
             content: [
                 `@import url("https://cdn.jsdelivr.net/npm/kpc@${version}/dist/kpc.css");`,
                 ``,
@@ -68,7 +68,14 @@ export default class extends Intact {
                     `$table-border-color = #f0f0f0`,
                 ].join('\n') + stylusContent;
             }
-            params.files['src/index.styl'] = {content: stylusContent};
+            if (file === 'index.vue') {
+                params.files['src/index.styl'] = {content: stylusContent};
+            } else {
+                window.stylus(stylusContent).render((err, content) => {
+                    if (err) return console.error(err);
+                    params.files['src/index.css'] = {content};
+                });
+            }
         }
 
         axios.post('https://codesandbox.io/api/v1/sandboxes/define?json=1', params)
@@ -90,7 +97,7 @@ export default class extends Intact {
             'src/index.vue': {
                 content: [
                     `<!-- FIXME: font file is missing in CodeSandbox so we must import kpc.css -->`,
-                    '<style src="./index.css"></style>',
+                    '<style src="./kpc.css"></style>',
                     code.replace(/kpc\/components/g, 'kpc/@vue/@css/components'),
                 ].join('\n')
             },
@@ -109,7 +116,7 @@ export default class extends Intact {
         return {files};
     }
 
-    _getParamsForReact(code) {
+    _getParamsForReact(code, stylus) {
         const files = {
             'package.json': {
                 content: {
@@ -117,49 +124,22 @@ export default class extends Intact {
                         kpc: version,
                         react: '^16.8.6',
                         'react-dom': '^16.8.6',
-                        stylus: '^0.54.5',
                     },
-                    main: 'index.html',
-                    scripts: {
-                        start: "parcel index.html --open",
-                        build: "parcel build index.html"
-                    },
-                    "devDependencies": {
-                        "@babel/core": "7.2.0",
-                        "parcel-bundler": "^1.6.1"
-                    } 
                 }
             },
             'src/index.js': {
                 content: [
                     `// FIXME: font file is missing in CodeSandbox so we must import kpc.css`,
-                    `import './index.css';`,
+                    `import './kpc.css';`,
                     `import ReactDOM from 'react-dom';`,
-                    code.replace(/kpc\/components/g, 'kpc/@react/@css/components'),
+                    do {
+                        let content = code.replace(/kpc\/components/g, 'kpc/@react/@css/components');
+                        stylus ? content.replace('./index.styl', './index.css') : content;
+                    },
                     ``,
-                    `ReactDOM.render(<Demo />, document.getElementById('app'));`,
+                    `ReactDOM.render(<Demo />, document.getElementById('root'));`,
                 ].join('\n')
             },
-            'sandbox.config.json': {
-                content: {
-                    template: 'parcel',
-                }
-            },
-            'index.html': {
-                content: [
-                    `<DOCTYPE html>`,
-                    `<html>`,
-                    `<head>`,
-                    `    <title>KPC Demo</Title>`,
-                    `    <meta charset="UTF-8" />`,
-                    `</head>`,
-                    `<body>`,
-                    `    <div id="app"></div>`,
-                    `    <script src="src/index.js"></script>`,
-                    `</body>`,
-                    `</html>`,
-                ].join('\n')
-            }
         };
 
         return {files};

@@ -95,6 +95,7 @@ data() {
 ```jsx
 import React from 'react';
 import {Table, TableColumn} from 'kpc/components/table';
+import './index.styl';
 
 export default Demo class extends React.Component {
     render() {

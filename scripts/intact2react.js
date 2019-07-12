@@ -1,12 +1,11 @@
 const {indent, dedent, getDefaults} = require('./utils');
 
 module.exports = function(vdt, js, reactMethods, jsHead, hasStylus) {
-    const obj = parse(vdt, js, reactMethods);
+    const obj = parse(vdt, js, reactMethods, hasStylus);
     const result = [
         `import React from 'react';`,
         obj.head.trim(),
         jsHead,
-        hasStylus ? 'import "./index.styl"' : undefined,
         '',
         'export default class Demo extends React.Component {',
         obj.js,
@@ -17,7 +16,7 @@ module.exports = function(vdt, js, reactMethods, jsHead, hasStylus) {
 }
 
 const importRegExp = /import \{?(.*?)\}? from .*/g
-function parse(vdt, js, reactMethods) {
+function parse(vdt, js, reactMethods, hasStylus) {
     const components = [];
     let head = '';
     let template = vdt.replace(importRegExp, (match, name) => {
@@ -55,12 +54,18 @@ function parse(vdt, js, reactMethods) {
     if (js) {
         const lines = js.split('\n');
         const _head = [];
+        let hasAdded = false;
         for (let i = 0; i < lines.length; i++) {
             const line = lines[i];
             if (line.startsWith('import')) {
                 const matches = line.match(/import \{?(.*?)\}? from .*/);
-                const names = matches[1].split(', ').map(item => item === 'Switch' ? 'KSwitch' : item)
-                if (names.find(name => components.indexOf(name) > -1)) continue;
+                if (matches) {
+                    const names = matches[1].split(', ').map(item => item === 'Switch' ? 'KSwitch' : item)
+                    if (names.find(name => components.indexOf(name) > -1)) continue;
+                }
+            } else if (!hasAdded && hasStylus) {
+                head += `import './index.styl';`;
+                hasAdded = true;
             }
             if (line.startsWith('export default')) {
                 js = lines.slice(i).join('\n');
@@ -68,6 +73,7 @@ function parse(vdt, js, reactMethods) {
             }
             _head.push(line);
         }
+        
         head += _head.join('\n');
 
         const defaults = getDefaults(js);
@@ -75,11 +81,8 @@ function parse(vdt, js, reactMethods) {
             properties.state = defaults;
         }
         Object.assign(methodsObj, getMethods(js));
-        js.replace(importRegExp, (match, name) => {
-            if (components.indexOf(name) > -1) return;
-            if (name === 'Intact' || name === 'template') return;
-            head += match + '\n'
-        });
+    } else if (hasStylus) {
+        head += `import './index.styl';`;
     }
 
     if (reactMethods) {
@@ -354,20 +357,20 @@ function parseBlock(template) {
                                 const codes = block.codes;
                                 if (!block.params) {
                                     if (codes.length === 1) {
-                                        return indent(`b-${block.name}={<>${block.codes[0].trim()}</>}`, indentCount);
+                                        return indent(`b-${block.name}={<React.Fragment>${block.codes[0].trim()}</React.Fragment>}`, indentCount);
                                     } else {
                                         return [
-                                            indent(`b-${block.name}={<>`, indentCount),
+                                            indent(`b-${block.name}={<React.Fragment>`, indentCount),
                                             block.codes,
-                                            indent(`</>}`, indentCount)
+                                            indent(`</React.Fragment>}`, indentCount)
                                         ];
                                     }
                                 } else {
                                     return [
                                         indent(`b-${block.name}={(${block.params}) => {`, indentCount),
-                                        indent(`    return <>`, indentCount),
+                                        indent(`    return <React.Fragment>`, indentCount),
                                         indent(block.codes, 1),
-                                        indent(`    </>`, indentCount),
+                                        indent(`    </React.Fragment>`, indentCount),
                                         indent(`}}`, indentCount),
                                     ];
                                 }
@@ -629,7 +632,7 @@ function parseGet(template, properties = {}) {
 }
 
 function parseTemplate(template) {
-    return template.replace(/(<|<\/)template>/g, '$1>');
+    return template.replace(/(<|<\/)template>/g, '$1React.Fragment>');
 }
 
 function getMethods(js) {
