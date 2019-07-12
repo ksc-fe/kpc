@@ -17,6 +17,51 @@ sidebar: doc
 npm install kpc -S
 ```
 
+# CDN
+
+通过[cdn.jsdelivr.net/npm/kpc/dist/](https://cdn.jsdelivr.net/npm/kpc/dist/)可以直接引入最新版kpc，建议使用锁定版本地址，
+例如：[cdn.jsdelivr.net/npm/kpc@0.5.14/dist/](https://cdn.jsdelivr.net/npm/kpc@1.0.0/dist/)
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>kpc-demo</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/kpc/dist/kpc.css" />
+    <!-- 将上述kpc.css替换成ksyun.css，可以使用ksyun主题 -->
+    <!-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/kpc/dist/ksyun.css" /> -->
+</head>
+<body>
+    <div id="app"></div>
+
+    <script src="//cdn.jsdelivr.net/npm/react/umd/react.development.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/react-dom/umd/react-dom.development.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/babel-standalone/babel.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/kpc/dist/kpc.react.js"></script>
+
+    <script type="text/babel">
+        const {Button, Message} = Kpc;
+
+        class Demo extends React.Component {
+            hello() {
+                Message.success('Welcome to the world of Kpc and React!');
+            }
+
+            render() {
+                return <Button onClick={this.hello.bind(this)}>test</Button>
+            }
+        }
+
+        ReactDOM.render(<Demo />, document.getElementById('app'));
+    </script>
+</body>
+</html>
+```
+
 # Create React App
 
 > 示例版本为`create-react-app@2.1.3`，不同版本可能存在些许差异
