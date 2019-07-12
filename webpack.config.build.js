@@ -32,14 +32,37 @@ module.exports = function(theme, type = 'intact') {
                 'intact$': type === 'vue' ? 'intact-vue' : type === 'react' ? 'intact-react' : undefined,
             },
         },
-        externals: type === 'intact' ? {
-            intact: {
-                root: 'Intact', 
-                commonjs2: 'intact',
-                commonjs: 'intact',
-                amd: 'intact',
-            }
-        } : undefined,
+        externals: type === 'intact' ? 
+            {
+                intact: {
+                    root: 'Intact', 
+                    commonjs2: 'intact',
+                    commonjs: 'intact',
+                    amd: 'intact',
+                }
+            } : type === 'vue' ? 
+            {
+                vue: {
+                    root: 'Vue',
+                    commonjs2: 'vue',
+                    commonjs: 'vue',
+                    amd: 'vue',
+                }
+            } : 
+            {
+                react: {
+                    root: 'React',
+                    commonjs2: 'react',
+                    commonjs: 'react',
+                    amd: 'react',
+                },
+                'react-dom': {
+                    root: 'ReactDOM',
+                    commonjs2: 'react-dom',
+                    commonjs: 'react-dom',
+                    amd: 'react-dom',
+                }
+            },
         module: {
             rules: [
                 {
