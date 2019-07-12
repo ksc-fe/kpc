@@ -22,6 +22,8 @@ export default class Dialog extends Intact {
         cancel: Function,
         container: [String, Function],
         hideClose: Boolean,
+        overlay: Boolean,
+        closable: Boolean,
     };
 
     static events = {
@@ -44,6 +46,8 @@ export default class Dialog extends Intact {
             cancel: undefined,
             container: () => document.body,
             hideClose: false,
+            overlay: true,
+            closable: true,
 
             _dragging: false,
         }
@@ -231,6 +235,12 @@ export default class Dialog extends Intact {
             this.set('_dragging', false);
             document.removeEventListener('mousemove', this._move);
             document.removeEventListener('mouseup', this._dragEnd);
+        }
+    }
+
+    _onClickOverlay() {
+        if (this.get('closable')) {
+            this.close();
         }
     }
 
