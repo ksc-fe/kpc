@@ -50,7 +50,7 @@ const i18n = {
 
     // dialog
     '提示': 'Tip',
-    '确认': 'OK',
+    '确定': 'OK',
     '取消': 'Cancel',
     '关闭': 'Close',
 

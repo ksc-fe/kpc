@@ -51,8 +51,8 @@ const {size, container, hideClose} = self.get();
                     <b:footer-wrapper>
                         <div class="k-footer c-clearfix">
                             <b:footer>
-                                <Button ev-click={{ self.cancel }}>{{ self.get('cancelText') }}</Button>
-                                <Button type="primary" ev-click={{ self.ok }} 
+                                <Button class="k-cancel" ev-click={{ self.cancel }}>{{ self.get('cancelText') }}</Button>
+                                <Button class="k-ok" type="primary" ev-click={{ self.ok }} 
                                     loading={{ self.get('loading') }}
                                     disabled={{ self.get('disabledOk') }}
                                 >{{ self.get('okText') }}</Button>

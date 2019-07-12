@@ -1,3 +1,5 @@
+@require('../../../components/button/variables.styl')
+
 .k-dialog
     box-shadow $box-shadow
     .k-header
@@ -8,8 +10,16 @@
             line-height unit($default-height, px)
     .k-footer
         border-top $dialog-title-border
-        .k-btn:first-of-type
+        .k-cancel
             float right
+            color $btn-secondary-color
+            border-color $btn-secondary-border-color
+            &:hover
+            &:focus
+                background-color $btn-secondary-hover-bg-color
+            &:active
+                background-color $btn-secondary-active-bg-color
+
 .k-alert-dialog
     .k-dialog
         > .k-body

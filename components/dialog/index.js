@@ -38,7 +38,7 @@ export default class Dialog extends Intact {
             size: 'default', // large | default | small | mini
             loading: false,
             disabledOk: false,
-            okText: _$('确认'),
+            okText: _$('确定'),
             cancelText: _$('取消'),
             ok: undefined,
             cancel: undefined,

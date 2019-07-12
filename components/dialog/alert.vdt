@@ -22,10 +22,10 @@ if (normalize) {
         {{ content }}
     </b:body>
     <b:footer>
-        <Button ev-click={{ self.cancel }}
+        <Button class="k-cancel" ev-click={{ self.cancel }}
             v-if={{ type === 'confirm' && !hideFooter }}
         >{{ self.get('cancelText') }}</Button>
-        <Button type="primary" ev-click={{ self.ok }} 
+        <Button class="k-ok" type="primary" ev-click={{ self.ok }} 
             loading={{ self.get('loading') }}
             disabled={{ self.get('disabledOk') }}
             v-if={{ !hideFooter }}
