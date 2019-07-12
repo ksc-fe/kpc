@@ -24,7 +24,7 @@ describe('Drawer', () => {
         
         await wait(400);
         //hide
-        dispatchEvent(document, 'click');
+        getElement('.k-drawer .k-overlay').click();
         await wait(400);
         expect(getElement('.k-drawer .k-dialog')).to.be.undefined;
     });
@@ -38,28 +38,28 @@ describe('Drawer', () => {
         let className1 = getElement('.k-drawer').className;
         expect(className1).to.include('k-top');
         await wait(200);
-        dispatchEvent(document, 'click');
+        getElement('.k-drawer .k-overlay').click();
         await wait(500);
         expect(getElement('.k-drawer .k-dialog')).to.be.undefined;
         dispatchEvent(bottom, 'click');
         let className2 = getElement('.k-drawer').className;
         expect(className2).to.include('k-bottom');
         await wait(200);
-        dispatchEvent(document, 'click');
+        getElement('.k-drawer .k-overlay').click();
         await wait(500);
         expect(getElement('.k-drawer .k-dialog')).to.be.undefined;
         dispatchEvent(left, 'click');
         let className3 = getElement('.k-drawer').className;
         expect(className3).to.include('k-left');
         await wait(200);
-        dispatchEvent(document, 'click');
+        getElement('.k-drawer .k-overlay').click();
         await wait(500);
         expect(getElement('.k-drawer .k-dialog')).to.be.undefined;
         dispatchEvent(right, 'click');
         let className4 = getElement('.k-drawer').className;
         expect(className4).to.include('k-right');
         await wait(200);
-        dispatchEvent(document, 'click');
+        getElement('.k-drawer .k-overlay').click();
         await wait(500);
         expect(getElement('.k-drawer .k-dialog')).to.be.undefined;
     });
