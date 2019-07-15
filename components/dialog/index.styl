@@ -80,6 +80,7 @@
 .k-alert-dialog
     .k-dialog
         > .k-body
+            margin-top $dialog-alert-body-margin-top
             padding $dialog-alert-padding 
             text-align center
         > .k-header
@@ -87,7 +88,7 @@
             border none
     .k-tip-icon
         text-align center
-        margin $dialog-alert-tip-icon-margin
+        margin-bottom $dialog-alert-tip-icon-margin-bottom
         .k-icon
             font-size $dialog-alert-tip-icon-font-size
             line-height $dialog-alert-tip-icon-line-height 
@@ -96,6 +97,19 @@
         &.k-{type}
             .k-tip-icon
                 color lookup('$dialog-alert-' + type + '-tip-icon-color')
+    // with title
+    &.k-with-title
+        .k-dialog
+            > .k-body
+                text-align left
+        .k-tip-icon
+            float left
+        .k-content-wrapper
+            overflow hidden
+            padding-left $dialog-alert-wrapper-padding-left
+            > .k-title
+                line-height $dialog-alert-tip-icon-line-height
+                font-size $dialog-alert-title-font-size 
 
 
 requireTheme('dialog')

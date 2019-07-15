@@ -58,7 +58,7 @@ sidebar: doc
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| title | 弹窗标题 | `String` | `"提示"` |
+| title | 弹窗标题，如果传入标题，则展示样式会有所不同 | `String` | `undefined` |
 | content | 弹窗内容 | `String` &#124; `Number` &#124; `VNode` &#124; `Array<String Number VNode>` | `undefined` |
 | size | 弹窗尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
 | okText | “确定”按钮文案 | `String` | `"确定"` |

@@ -255,5 +255,11 @@ describe('Dialog', () => {
         dialog.querySelector('.k-footer .k-btn').click();
         await wait(0);
         expect(cb1.callCount).to.eql(1);
+
+        // with title
+        Dialog.error({title: 'error', content: 'test'});
+        dialog = getElement('.k-dialog');
+        expect(dialog.innerHTML).to.matchSnapshot();
+        dialog.querySelector('.k-btn').click();
     });
 });
