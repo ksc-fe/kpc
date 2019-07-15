@@ -17,6 +17,17 @@
     &.k-range
         width $datepicker-range-width 
 
+    // clearable
+    .k-clear
+        position absolute
+        z-index 1
+        right 0
+    .k-clear.k-show + i
+        transition opacity $transition
+    &:hover
+        .k-clear.k-show + i
+            opacity 0
+
 .k-datepicker-content
     color $datepicker-color
     max-width none

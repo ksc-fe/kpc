@@ -109,7 +109,7 @@ const content = <b:content>
     </div>
 </b:content>
 
-const prefix = <b:prefix><i class="ion-ios-calendar-outline"></i></b:prefix>
+const suffix = <b:suffix><i class="ion-ios-calendar-outline"></i></b:suffix>
 
 <div {{ ...getRestProps(self, _events) }} class={{ classNameObj }} style={{ style }}
     tabindex={{ disabled ? '-1' : '0' }}
@@ -145,7 +145,7 @@ const prefix = <b:prefix><i class="ion-ios-calendar-outline"></i></b:prefix>
             tabindex="-1"
             ev-blur={{ self.onInputFocusOut }}
         >
-            <b:prefix>{{ prefix }}</b:prefix>
+            <b:suffix>{{ suffix }}</b:suffix>
         </Input>
         <b:content>{{ content }}</b:content>
     </Tooltip>

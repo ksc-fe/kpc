@@ -44,9 +44,12 @@
         .k-clear.k-show
             opacity 1
             pointer-events all
+    .k-suffix-icon
+        display inline-block
+        transition opacity $transition
     &.k-clearable
         &:hover
-            .k-clear.k-show + .k-arrow
+            .k-clear.k-show + .k-suffix-icon
                 opacity 0
 
 
@@ -70,7 +73,7 @@
     // arrow
     .k-arrow
         display inline-block
-        transition all $transition
+        transition transform $transition
 
     // show
     &.k-show

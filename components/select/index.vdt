@@ -30,7 +30,7 @@ const classNameObj = {
     [`k-${size}`]: size !== 'default',
     'k-fluid': fluid,
     'k-with-prefix': blocks.prefix,
-    'k-with-suffix': !hideIcon || loading,
+    'k-with-suffix': !hideIcon || loading || blocks.suffix,
     'k-inline': inline,
 };
 
@@ -279,13 +279,17 @@ if (hasValue && labelObj.label == null && !labelObj.labels.length) {
                     />
                 </Animate>
             </div>
-            <span class="k-suffix" v-if={{ !hideIcon || clearable || loading }}>
+            <span class="k-suffix" v-if={{ !hideIcon || clearable || loading || blocks.suffix }}>
                 <Icon v-if={{ clearable }}
                     class={{ {"k-clear ion-ios-close": true, "k-show": hasValue} }}
                     ev-click={{ self._onClear }}
                 />
-                <Icon class="ion-load-c icon-loading" v-if={{ loading }} />
-                <i class="k-arrow ion-arrow-down-b" v-else-if={{ !hideIcon }}></i>
+                <span class="k-suffix-icon">
+                    <b:suffix>
+                        <Icon class="ion-load-c icon-loading" v-if={{ loading }} />
+                        <i class="k-arrow ion-arrow-down-b" v-else-if={{ !hideIcon }}></i>
+                    </b:suffix>
+                </span>
             </span>
         </div>{{ 
         Menu 

@@ -21,7 +21,7 @@ const _placeholder = range ?
         } }}
         Panel={{ TimePanel }}
     >
-        <b:prefix><i class="ion-ios-clock-outline"></i></b:prefix>
+        <b:suffix><i class="ion-ios-clock-outline"></i></b:suffix>
         <b:singe-panel>
             <TimePanel
                 value={{ _value }}
@@ -50,6 +50,6 @@ const _placeholder = range ?
         container={{ container }}
     >
         <Option v-for={{ _options }} value={{ value }}>{{ value }}</Option>
-        <b:prefix><i class="ion-ios-clock-outline"></i></b:prefix>
+        <b:suffix><i class="ion-ios-clock-outline"></i></b:suffix>
     </Select>
 </template>
