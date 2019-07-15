@@ -36,6 +36,8 @@
 
     // clearable
     .k-clear
+        display inline-block
+        vertical-align top
         cursor pointer
         opacity 0
         transition opacity $transition
@@ -43,6 +45,8 @@
         color $input-clear-icon-color
         &:hover
             color $primary-color
+        + *
+            margin-left $input-suffix-clear-margin-right 
     .k-inner:focus + .k-suffix .k-clear.k-show
     &:hover .k-clear.k-show
         opacity 1
