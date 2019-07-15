@@ -294,6 +294,10 @@ export default class Datepicker extends Intact {
         const {value, range} = this.get();
         return Array.isArray(value) ? range ? value.join(' ~ ') : value.join(', ') : value;
     }
+
+    _confirm() {
+        this.refs.calendar.hide();
+    }
 }
 
 Object.assign(Datepicker, shortcuts);

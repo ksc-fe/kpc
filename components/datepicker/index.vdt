@@ -2,6 +2,7 @@ import Input from '../input';
 import Tooltip from '../tooltip';
 import {_$, isFunction, getRestProps} from '../utils';
 import Calendar from './calendar';
+import Button from '../button';
 
 const {
     value, clearable, className, style, _isShow,
@@ -106,6 +107,12 @@ const content = <b:content>
             _index={{ 1 }}
             _id="1"
         />
+    </div>
+    <div v-if={{ type === 'datetime' || type === 'year' || type === 'month' }} class="k-footer">
+        <Button type="primary" size="small"
+            disabled={{ !value }}
+            ev-click={{ self._confirm }}
+        >确定</Button>
     </div>
 </b:content>
 
