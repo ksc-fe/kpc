@@ -83,6 +83,8 @@
             margin-top $dialog-alert-body-margin-top
             padding $dialog-alert-padding 
             text-align center
+            position relative
+            z-index 1
         > .k-header
         > .k-footer
             border none
@@ -101,9 +103,12 @@
     &.k-with-title
         .k-dialog
             > .k-body
+                margin-top $dialog-alert-title-body-margin-top
                 text-align left
         .k-tip-icon
             float left
+            .k-icon
+                font-size $dialog-alert-title-tip-icon-font-size
         .k-content-wrapper
             overflow hidden
             padding-left $dialog-alert-wrapper-padding-left
