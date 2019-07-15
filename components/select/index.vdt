@@ -1,6 +1,6 @@
 import Input from '../input';
 import Dropdown, {DropdownItem, DropdownMenu} from '../dropdown';
-import {isStringOrNumber, getTextByChildren, addStyle, _$, getRestProps} from '../utils';
+import {isStringOrNumber, getTextByChildren, addStyle, _$, getRestProps, noop} from '../utils';
 import Option from './option';
 import OptionGroup from './group';
 import {Tabs, Tab} from '../tabs';
@@ -43,6 +43,7 @@ const labelObj = scope.labelObj || {
     labels: [],
 };
 let groupIndex = 0;
+let hasData = isGroup;
 
 const Options = props => {
     const data = props.data;
@@ -70,6 +71,7 @@ const Options = props => {
                     self._setActiveLabelSilent(_activeLabel);
                 }
             }
+            hasData = true;
         }
     });
 
@@ -95,6 +97,7 @@ const OptionsVNodes = ({children}) => {
                     [props.className]: props.className,
                     'k-active': active,
                 });
+                hasData = true;
             }
 
             // for card type groups, we need to highlight the parent label
@@ -117,6 +120,7 @@ const OptionsVNodes = ({children}) => {
             // return the cloned vNode
             return h(Option, props);
         } else if (vNode.tag === OptionGroup) {
+            hasData = true;
             let props = vNode.props;
             props = {
                 ...props,
@@ -140,8 +144,8 @@ const Menu = scope.Menu || (
             "k-card": card,
         } }}
         ev-$change:value={{ self._onChangeShow }}
-    >{{ do {
-        const _children = [];
+    >{{ (() => {
+        let _children = [];
         if (!isGroup) {
             _children.push(<Options data={{ data }} />);
         } else {
@@ -157,10 +161,10 @@ const Menu = scope.Menu || (
         if (card) {
             const vNodes = [];
             let index = 0;
-            function flatten(children) {
+            function flattenEach(children) {
                 children.forEach(vNode => {
                     if (Array.isArray(vNode)) {
-                        flatten(vNode);
+                        flattenEach(vNode);
                     } else if (vNode) {
                         if (vNode.tag === OptionGroup) {
                             const props = vNode.props;
@@ -186,13 +190,13 @@ const Menu = scope.Menu || (
                     }
                 });
             }
-            flatten(_children);
-            [ 
+            flattenEach(_children);
+            _children = [ 
                 <Tabs vertical type="border-card" v-model="_activeLabel">
                     <Tab v-for={{ labelList }} value={{ key }}>
                         {{ typeof value.label === 'function' ? 
                             // pass by block
-                            value.label(() => {}) :
+                            value.label(noop) :
                             // pass by property
                             value.label
                         }}
@@ -200,10 +204,12 @@ const Menu = scope.Menu || (
                 </Tabs>,
                 <div class="k-groups">{{ vNodes }}</div>
             ];
-        } else {
-            _children;
         }
-    } }}</DropdownMenu>
+        if (!hasData) {
+            return <div class="k-no-data">无数据</div>;
+        }
+        return _children;
+    })() }}</DropdownMenu>
 );
 
 // if the value is not in options, then set hasValue to false

@@ -24,6 +24,7 @@ sidebar: doc
 | fluid | 是否宽度100% | `Boolean` | `false` |
 | width | 指定宽度 | `Number` | `undefined` | 
 | placeholder | 占位文案 | `String` | `"请选择"` |
+| loading | 数据加载状态 | `Boolean` | `false` |
 
 # 扩展点
 

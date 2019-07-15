@@ -13,6 +13,8 @@ const labelObj = {
     values: [],
 };
 
+let hasData = false;
+
 const Options = (props) => {
     const data = props.data || [];
     const level = props.level;
@@ -89,7 +91,8 @@ if (!filterable || !keywords) {
             ev-$change:value={{ self._onChangeShow }}
             key="cascader"
         >
-            <Options data={{ data }} level={{ 0 }} parentShowed={{ _show }} />
+            <Options v-if={{ data && data.length }} data={{ data }} level={{ 0 }} parentShowed={{ _show }} />
+            <div v-else class="k-no-data">无数据</div>
         </DropdownMenu>
     );
 } else {
@@ -103,22 +106,26 @@ if (!filterable || !keywords) {
             ev-$change:value={{ self._onChangeShow }}
             key="filterable"
         >
-            <DropdownItem v-for={{ self._filter() }}
-                ev-select={{ self._selectByFilter.bind(self, value) }}
-                disabled={{ value.disabled }}
-            >{{ do {
-                // highlight keywords
-                const label = value.map(item => item.label).join(' / ');
-                const labels = label.split(keywords);
-                const length = labels.length; 
-                labels.map((item, index) => {
-                    const ret = [item];
-                    if (index !== length - 1) {
-                        ret.push(<em>{{ keywords }}</em>);
-                    }
-                    return ret;
-                });
-            } }}</DropdownItem>
+            {{ (() => {
+                const items = self._filter();
+                if (!items.length) return <div class="k-no-data">无匹配数据</div>
+                return <DropdownItem v-for={{ items }}
+                    ev-select={{ self._selectByFilter.bind(self, value) }}
+                    disabled={{ value.disabled }}
+                >{{ do {
+                    // highlight keywords
+                    const label = value.map(item => item.label).join(' / ');
+                    const labels = label.split(keywords);
+                    const length = labels.length; 
+                    labels.map((item, index) => {
+                        const ret = [item];
+                        if (index !== length - 1) {
+                            ret.push(<em>{{ keywords }}</em>);
+                        }
+                        return ret;
+                    });
+                } }}</DropdownItem>
+            })() }}
         </DropdownMenu>
     )
 }

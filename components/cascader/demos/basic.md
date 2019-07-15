@@ -16,6 +16,9 @@ import Cascader from 'kpc/components/cascader';
 <div>
     <Cascader data={{ self.get('data') }} v-model="value" />
     You selected: {{ JSON.stringify(self.get('value')) }}
+    <br />
+    <br />
+    <Cascader loading />
 </div>
 ```
 
