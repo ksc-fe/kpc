@@ -9,7 +9,7 @@ sidebar: doc
 在学习使用kpc之前，假设你已经掌握了以下知识：
 
 1. [webpack][1] + [babel][2]
-2. [Vue][3]（如果将kpc用于Vue项目）或者[intact][4]（如果将kpc用于Intact项目）或者[React][7]（如果将kpc用于React项目）
+2. [intact][4]
 
 # 手动引入
 
