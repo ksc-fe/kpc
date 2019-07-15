@@ -88,11 +88,25 @@ describe('Cascader', () => {
         const dropdown1 = getElement('.k-cascader-filterable-dropdown');
         expect(dropdown1.innerHTML).to.matchSnapshot();
 
+        // should show no-data layer
+        input.value = 'xxx';
+        dispatchEvent(input, 'input');
+        expect(dropdown1.innerHTML).to.matchSnapshot();
+
         input.value = '岳阳';
         dispatchEvent(input, 'input');
         expect(dropdown1.innerHTML).to.matchSnapshot();
 
         dropdown1.querySelector('.k-item').click();
         expect(instance.element.innerHTML).to.matchSnapshot();
+    });
+
+    it('no data for init data', () => {
+        instance = mount(BasicDemo);
+
+        const [, select] = instance.element.querySelectorAll('.k-wrapper');
+        dispatchEvent(select, 'click');
+        const dropdown = getElement('.k-cascader-dropdown');
+        expect(dropdown.innerHTML).to.matchSnapshot();
     });
 });

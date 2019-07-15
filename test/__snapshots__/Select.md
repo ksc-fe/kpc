@@ -29,7 +29,7 @@
 #### `clearable`
 
 ```
-"<div><div class=\"k-select k-clearable k-with-suffix k-has-value\" style=\"margin-right: 10px\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\" value=\"Monday\"><span class=\"k-value c-ellipsis\">星期一</span></div><span class=\"k-suffix\"><i class=\"k-clear ion-ios-close k-show\"></i><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div><div class=\"k-select k-clearable k-with-suffix k-has-value\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\" value=\"Monday,Tuesday\"><span class=\"k-values\"><span class=\"k-select-tag\"><span class=\"k-text\">星期一</span><i class=\"k-icon ion-ios-close-empty\"></i></span><span class=\"k-select-tag\"><span class=\"k-text\">星期二</span><i class=\"k-icon ion-ios-close-empty\"></i></span></span></div><span class=\"k-suffix\"><i class=\"k-clear ion-ios-close k-show\"></i><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div></div>"
+"<div><div class=\"k-select k-clearable k-with-suffix k-has-value\" style=\"margin-right: 10px\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\" value=\"Monday\"><span class=\"k-value c-ellipsis\">星期一</span></div><span class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close k-show\"></i><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div><div class=\"k-select k-clearable k-with-suffix k-has-value\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\" value=\"Monday,Tuesday\"><span class=\"k-values\"><span class=\"k-select-tag\"><span class=\"k-text\">星期一</span><i class=\"k-icon ion-ios-close-empty\"></i></span><span class=\"k-select-tag\"><span class=\"k-text\">星期二</span><i class=\"k-icon ion-ios-close-empty\"></i></span></span></div><span class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close k-show\"></i><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div></div>"
 ```
 
 #### `multiple`
@@ -49,7 +49,7 @@
 ```
 
 ```
-"<!----><!----><!----><!----><!----><!----><!---->"
+"<div class=\"k-no-data\">无数据</div>"
 ```
 
 #### `group`
@@ -66,5 +66,11 @@
 
 ```
 "<div class=\"k-item\">星期一</div><div class=\"k-item\">星期二</div><div class=\"k-item\">星期三</div><div class=\"k-item\">星期四</div><div class=\"k-item\">星期五</div><div class=\"k-item\">星期六</div><div class=\"k-item\">星期天</div>"
+```
+
+#### `no data`
+
+```
+"<div class=\"k-no-data\">无数据</div>"
 ```
 

@@ -161,7 +161,7 @@
 ####   `Cascader basic`
 
 ```
-"<div><div class=\"k-select k-cascader k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div>You selected: </div>"
+"<div><div class=\"k-select k-cascader k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div>You selected: <br><br><div class=\"k-select k-cascader k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><i class=\"k-icon ion-load-c icon-loading\"></i></span></div><!--placeholder--></div></div>"
 ```
 
 ####   `Cascader changeOnSelect`
@@ -173,7 +173,7 @@
 ####   `Cascader custom`
 
 ```
-"<div class=\"k-select k-cascader k-clearable k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><i class=\"k-clear ion-ios-close\"></i><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div>"
+"<div class=\"k-select k-cascader k-clearable k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div>"
 ```
 
 ####   `Cascader disabled`
@@ -879,7 +879,7 @@
 ####   `Select clearable`
 
 ```
-"<div><div class=\"k-select k-clearable k-with-suffix\" tabindex=\"0\" style=\"margin-right: 10px;\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><i class=\"k-clear ion-ios-close\"></i><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div><div class=\"k-select k-clearable k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><i class=\"k-clear ion-ios-close\"></i><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div></div>"
+"<div><div class=\"k-select k-clearable k-with-suffix\" tabindex=\"0\" style=\"margin-right: 10px;\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div><div class=\"k-select k-clearable k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div></div>"
 ```
 
 ####   `Select custom`
@@ -1351,7 +1351,7 @@
 ####   `Timepicker step`
 
 ```
-"<div><div class=\"k-select k-datepicker time k-with-prefix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-prefix\"><i class=\"ion-ios-clock-outline\"></i></div><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择时间</span></div></div><!--placeholder--></div>You selected: <br><br><div class=\"k-select k-datepicker k-clearable k-with-prefix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-prefix\"><i class=\"ion-ios-clock-outline\"></i></div><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择时间</span></div><span class=\"k-suffix\"><i class=\"k-clear ion-ios-close\"></i></span></div><!--placeholder--></div>You selected: </div>"
+"<div><div class=\"k-select k-datepicker time k-with-prefix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-prefix\"><i class=\"ion-ios-clock-outline\"></i></div><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择时间</span></div></div><!--placeholder--></div>You selected: <br><br><div class=\"k-select k-datepicker k-clearable k-with-prefix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-prefix\"><i class=\"ion-ios-clock-outline\"></i></div><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择时间</span></div><span class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i></span></div><!--placeholder--></div>You selected: </div>"
 ```
 
 ####   `Timepicker stepRange`

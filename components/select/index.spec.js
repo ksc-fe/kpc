@@ -3,6 +3,7 @@ import DisabledDemo from '~/components/select/demos/disabled';
 import ClearableDemo from '~/components/select/demos/clearable';
 import FilterDemo from '~/components/select/demos/filterable';
 import GroupDemo from '~/components/select/demos/group';
+import AllowUnmatchDemo from '~/components/select/demos/allowUnmatch';
 import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 
 describe('Select', () => {
@@ -126,5 +127,15 @@ describe('Select', () => {
         dispatchEvent(select, 'keydown', {keyCode: 9});
         await wait(500);
         expect(dropdown.style.display).to.eql('none');
+    });
+
+    it('no data', async () => {
+        instance = mount(AllowUnmatchDemo);
+
+        const input = instance.element.querySelector('.k-inner');
+        input.value = 'xxx';
+        dispatchEvent(input, 'input');
+        const dropdown = getElement('.k-select-dropdown');
+        expect(dropdown.innerHTML).to.matchSnapshot();
     });
 });
