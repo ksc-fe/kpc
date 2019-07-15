@@ -29,7 +29,7 @@ describe('Datepicker', () => {
         expect(instance.get('date')).to.be.string;
     });
 
-    it('year and month picker', () => {
+    it('year and month picker', async () => {
         instance = mount(YearMonthDemo);
 
         const now = new Date();
@@ -57,6 +57,12 @@ describe('Datepicker', () => {
         const [_year, _month] = instance.get('month').split('-');
         expect(_year - 1).eql(year);
         expect(_month - 1).eql((month + 1) % 12);
+
+        // click confirm button
+        const btn = content.querySelector('.k-footer .k-btn');
+        btn.click();
+        await wait(500);
+        expect(getElement('.k-datepicker-content')).to.be.undefined;
     });
 
     it('should change year and month', () => {
