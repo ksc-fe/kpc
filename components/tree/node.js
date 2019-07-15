@@ -55,7 +55,7 @@ export default class Node {
         this.key = key;
         this.children = undefined;
         this.tree = tree;
-        this.loaded = data.loaded;
+        this.loaded = data.loaded === undefined && data.children && data.children.length ? true : data.loaded;
         this.filter = true;
     }
 
