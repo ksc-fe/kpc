@@ -13,7 +13,7 @@ import Cascader from 'kpc/components/cascader';
 <Cascader data={{ self.get('data') }} clearable>
     <b:format params="values">
         <div v-if={{ values.length }}>
-            <i class="ion-ios-location" style="line-height: 1; margin-right: 8px;"></i>
+            <i class="ion-ios-location" style="line-height: 1; margin-right: 8px; vertical-align: middle;"></i>
             {{ values[values.length - 1].label }}
         </div>
     </b:format>

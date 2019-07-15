@@ -19,6 +19,7 @@
         position absolute
         top 50%
         transform translateY(-50%)
+        color $select-icon-color
         // line-height 1
 
     // fluid
@@ -30,17 +31,24 @@
         opacity 0
         transition opacity $transition
         pointer-events none
+        position absolute
+        z-index 1
         &:hover
             color $primary-color
-    &.k-with-suffix
-        .k-clear
-            margin-right $select-clear-margin-right
+    // &.k-with-suffix
+    //     .k-clear
+    //         margin-right $select-clear-margin-right
     &:hover
         > .k-wrapper
             border $select-hover-border
         .k-clear.k-show
             opacity 1
             pointer-events all
+    &.k-clearable
+        &:hover
+            .k-clear.k-show + .k-arrow
+                opacity 0
+
 
     // filterable
     .k-input
@@ -62,7 +70,7 @@
     // arrow
     .k-arrow
         display inline-block
-        transition transform $transition
+        transition all $transition
 
     // show
     &.k-show
@@ -140,9 +148,9 @@
             &.k-clearable
                 .k-main
                     padding-right lookup('$select-' + size + '-suffix-padding-right') 
-            &.k-with-suffix.k-clearable
-                .k-main
-                    padding-right lookup('$select-' + size + '-clearable-suffix-padding-right')
+            // &.k-with-suffix.k-clearable
+            //     .k-main
+            //         padding-right lookup('$select-' + size + '-clearable-suffix-padding-right')
         if lookup('$select-' + size + '-padding-left')
             &.k-clearable
                 > .k-wrapper

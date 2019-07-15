@@ -1,7 +1,8 @@
 import Intact from 'intact';
 import template from './index.vdt';
 import axios from 'axios';
-import {version} from '../../../../package.json';
+
+const version = process.version;
 
 export default class extends Intact {
     @Intact.template()

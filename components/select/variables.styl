@@ -1,5 +1,6 @@
 @require('../../styles/themes/default.styl')
 @require('../../styles/mixin.styl')
+@require('../input/variables.styl')
 
 $select-width := unit(300 / $rem, rem)
 $select-height := unit($default-height / $rem, rem)
@@ -9,6 +10,7 @@ $select-font-size := $default-font-size
 $select-padding-left-right := unit($mini-padding / $rem, rem)
 $select-focus-border := 1px solid $primary-color
 $select-hover-border := 1px solid $dark-border-color
+$select-icon-color := $input-clear-icon-color
 
 // for calculate
 $select-icon-width = 10
