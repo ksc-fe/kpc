@@ -66,9 +66,14 @@ export default class Timepicker extends Datepicker {
             const maxValue = this._parseTime(max || '23:59:59');
             const stepValue = this._parseTime(step);
             let value = this._parseTime(min || '00:00:00');
+            const stepAccuracy = step.split(':').length;
 
             for (; value <= maxValue; value += stepValue) {
-                ret.push(this._stringifyTime(value));
+                const timeArr = this._stringifyTime(value);
+                ret.push({
+                    value: timeArr.join(':'),
+                    label: timeArr.slice(0, stepAccuracy).join(':'),
+                });
             }
 
             this.set('_options', ret);
@@ -88,7 +93,8 @@ export default class Timepicker extends Datepicker {
         const minutes = Math.floor((time - hours * 3600) / 60);
         const seconds = Math.floor(time - hours * 3600 - minutes * 60);
 
-        return `${strPad(hours, 2)}:${strPad(minutes, 2)}:${strPad(seconds, 2)}`;
+        // return `${strPad(hours, 2)}:${strPad(minutes, 2)}:${strPad(seconds, 2)}`;
+        return [strPad(hours, 2), strPad(minutes, 2), strPad(seconds, 2)];
     }
 
     _onChangeValue(c, v) {

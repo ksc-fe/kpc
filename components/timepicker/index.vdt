@@ -49,8 +49,8 @@ const _placeholder = range ?
             [className]: className
         } }}
         container={{ container }}
+        data={{ _options }}
     >
-        <Option v-for={{ _options }} value={{ value }}>{{ value }}</Option>
         <b:suffix><i class="ion-ios-clock-outline"></i></b:suffix>
     </Select>
 </template>
