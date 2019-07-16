@@ -7,8 +7,8 @@
 ```
 
 ```
-"<div class=\"k-select k-cascader k-with-suffix k-has-value\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\" value=\"hunan,yueyang,yueyangxian\"><span class=\"k-value c-ellipsis\">湖南 / 岳阳市 / 岳阳县</span></div><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div>
-    You selected: [\"hunan\",\"yueyang\",\"yueyangxian\"]<br><br><div class=\"k-select k-cascader k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><i class=\"k-icon ion-load-c icon-loading\"></i></span></div><!--placeholder--></div>"
+"<div class=\"k-select k-cascader k-with-suffix k-has-value\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\" value=\"hunan,yueyang,yueyangxian\"><span class=\"k-value c-ellipsis\">湖南 / 岳阳市 / 岳阳县</span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder--></div>
+    You selected: [\"hunan\",\"yueyang\",\"yueyangxian\"]<br><br><div class=\"k-select k-cascader k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-icon ion-load-c icon-loading\"></i></span></span></div><!--placeholder--></div>"
 ```
 
 ```
@@ -26,11 +26,11 @@
 #### `custom label`
 
 ```
-"<div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\" value=\"beijing,haidian\"><span class=\"k-value c-ellipsis\"><div><i class=\"ion-ios-location\" style=\"line-height: 1; margin-right: 8px; vertical-align: middle;\"></i>海淀区</div></span></div><span class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close k-show\"></i><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder-->"
+"<div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\" value=\"beijing,haidian\"><span class=\"k-value c-ellipsis\"><div><i class=\"ion-ios-location\" style=\"line-height: 1; margin-right: 8px; vertical-align: middle;\"></i>海淀区</div></span></div><span class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close k-show\"></i><span class=\"k-suffix-icon\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder-->"
 ```
 
 ```
-"<div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\" value=\"hunan,yueyang,yueyangxian\"><span class=\"k-value c-ellipsis\"><div><i class=\"ion-ios-location\" style=\"line-height: 1; margin-right: 8px; vertical-align: middle;\"></i>岳阳县</div></span></div><span class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close k-show\"></i><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder-->"
+"<div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\" value=\"hunan,yueyang,yueyangxian\"><span class=\"k-value c-ellipsis\"><div><i class=\"ion-ios-location\" style=\"line-height: 1; margin-right: 8px; vertical-align: middle;\"></i>岳阳县</div></span></div><span class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close k-show\"></i><span class=\"k-suffix-icon\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder-->"
 ```
 
 #### `change on select`
@@ -61,9 +61,13 @@
       <span
         class="k-suffix"
       >
-        <i
-          class="k-arrow ion-arrow-down-b"
-        />
+        <span
+          class="k-suffix-icon"
+        >
+          <i
+            class="k-arrow ion-arrow-down-b"
+          />
+        </span>
       </span>
     </div>
     <!-- placeholder -->
@@ -102,7 +106,7 @@
 ```
 
 ```
-"<div class=\"k-select k-cascader k-with-suffix k-has-value\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\" value=\"hunan,yueyang,yueyanglou\"><div class=\"k-input k-fluid\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请选择\"></div></div></div><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div>"
+"<div class=\"k-select k-cascader k-with-suffix k-has-value\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\" value=\"hunan,yueyang,yueyanglou\"><div class=\"k-input k-fluid\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请选择\"></div></div></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder--></div>"
 ```
 
 #### `no data for init data`

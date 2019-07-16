@@ -3,8 +3,8 @@
 #### `should select value correctly`
 
 ```
-"<div><div style=\"margin-bottom: 16px;\"><div class=\"k-select k-show k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper k-dropdown-open\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div>
-        You selected: </div><div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><i class=\"k-icon ion-load-c icon-loading\"></i></span></div><!--placeholder--></div></div>"
+"<div><div style=\"margin-bottom: 16px;\"><div class=\"k-select k-show k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper k-dropdown-open\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder--></div>
+        You selected: </div><div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-icon ion-load-c icon-loading\"></i></span></span></div><!--placeholder--></div></div>"
 ```
 
 ```
@@ -12,8 +12,8 @@
 ```
 
 ```
-"<div><div style=\"margin-bottom: 16px;\"><div class=\"k-select k-with-suffix k-has-value\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\" value=\"Monday\"><span class=\"k-value c-ellipsis\">星期一</span></div><span class=\"k-suffix\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div>
-        You selected: Monday</div><div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><i class=\"k-icon ion-load-c icon-loading\"></i></span></div><!--placeholder--></div></div>"
+"<div><div style=\"margin-bottom: 16px;\"><div class=\"k-select k-with-suffix k-has-value\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\" value=\"Monday\"><span class=\"k-value c-ellipsis\">星期一</span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder--></div>
+        You selected: Monday</div><div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-icon ion-load-c icon-loading\"></i></span></span></div><!--placeholder--></div></div>"
 ```
 
 ```
@@ -29,7 +29,7 @@
 #### `clearable`
 
 ```
-"<div><div class=\"k-select k-clearable k-with-suffix k-has-value\" style=\"margin-right: 10px\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\" value=\"Monday\"><span class=\"k-value c-ellipsis\">星期一</span></div><span class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close k-show\"></i><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div><div class=\"k-select k-clearable k-with-suffix k-has-value\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\" value=\"Monday,Tuesday\"><span class=\"k-values\"><span class=\"k-select-tag\"><span class=\"k-text\">星期一</span><i class=\"k-icon ion-ios-close-empty\"></i></span><span class=\"k-select-tag\"><span class=\"k-text\">星期二</span><i class=\"k-icon ion-ios-close-empty\"></i></span></span></div><span class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close k-show\"></i><i class=\"k-arrow ion-arrow-down-b\"></i></span></div><!--placeholder--></div></div>"
+"<div><div class=\"k-select k-clearable k-with-suffix k-has-value\" style=\"margin-right: 10px\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\" value=\"Monday\"><span class=\"k-value c-ellipsis\">星期一</span></div><span class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close k-show\"></i><span class=\"k-suffix-icon\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder--></div><div class=\"k-select k-clearable k-with-suffix k-has-value\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\" value=\"Monday,Tuesday\"><span class=\"k-values\"><span class=\"k-select-tag\"><span class=\"k-text\">星期一</span><i class=\"k-icon ion-ios-close-empty\"></i></span><span class=\"k-select-tag\"><span class=\"k-text\">星期二</span><i class=\"k-icon ion-ios-close-empty\"></i></span></span></div><span class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close k-show\"></i><span class=\"k-suffix-icon\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder--></div></div>"
 ```
 
 #### `multiple`
