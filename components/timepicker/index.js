@@ -117,6 +117,20 @@ export default class Timepicker extends Datepicker {
             super._confirm();
         }
     }
+
+    _format() {
+        const {step, value, range} = this.get();
+        if (step && range && value) {
+            const stepAccuracy = step.split(':').length;
+            if (stepAccuracy < 3) {
+                // show 01:00 ~ 02:30
+                const valueFixed = value.map(item => item.split(':').slice(0, stepAccuracy).join(':'));
+                return valueFixed.join(' ~ ');
+            }
+        } else {
+            super._format();
+        }
+    }
 }
 
 export {Timepicker};

@@ -40,6 +40,13 @@ describe('Timepicker', () => {
         dropdown = getElement('.k-dropdown-menu.k-time-picker');
         dropdown.querySelector('.k-scroll-item:nth-child(12)').click();
         expect(instance.get('timeArray')).to.eql(['01:00:00', '02:00:00']);
+        // click confirm button
+        const btn = dropdown.querySelector('.k-footer .k-btn');
+        btn.click();
+        dropdown.querySelector('.k-scroll-item:nth-child(13)').click();
+        expect(instance.get('timeArray')).to.eql(['01:00:00', '02:00:00', '03:00:00']);
+
+        // set value
         instance.set('timeArray', ['03:03:03', '03:03:04']);
         expect(dropdown.innerHTML).to.matchSnapshot();
     });
