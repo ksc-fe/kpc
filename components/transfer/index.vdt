@@ -7,7 +7,7 @@ const {
     data, className, value, keyName,
     leftChecked, rightChecked, filterable, batchable,
     filter, label, placeholder, leftTitle, rightTitle,
-    selectedKeys
+    selectedKeys, enableAdd, enableRemove
 } = self.get();
 
 const classNameObj = {
@@ -22,14 +22,16 @@ const Panel = props => {
         props.data;
     return <div class="k-panel">
         <div class="k-title">
-            <div class="k-count">
-                {{ self.get(`${props.model}Checked.length`) }} /
-                {{ data.length }}
-            </div>
-            <Checkbox class="c-ellipsis" 
-                value={{ self._isCheckAll(props.model) }}
-                ev-click={{ self._toggleCheckAll.bind(self, props.model) }}
-            >{{ props.title }}</Checkbox>
+            <b:header args={{ [props.model] }}>
+                <div class="k-count">
+                    {{ self.get(`${props.model}Checked.length`) }} /
+                    {{ data.length }}
+                </div>
+                <Checkbox class="c-ellipsis" 
+                    value={{ self._isCheckAll(props.model) }}
+                    ev-click={{ self._toggleCheckAll.bind(self, props.model) }}
+                >{{ props.title }}</Checkbox>
+            </b:header>
         </div>
         <b:filter args={{ [props.model] }} v-if={{ filterable }}>
             <Input placeholder={{ placeholder }}
@@ -42,25 +44,29 @@ const Panel = props => {
                 </b:prefix>
             </Input>
         </b:filter>
-        <Animate class="k-list">
-            <Animate 
-                v-for={{ data }} 
-                class={{ {"k-item": true, "k-disabled": value.disabled} }}
-                key={{ value[keyName] || value.label || value }}
-                a:transition="c-fade"
-            >
-                <Checkbox v-model={{ `${props.model}CheckedKeys` }} name={{ props.model }}
-                    trueValue={{ value[keyName] }}
-                    disabled={{ value.disabled }}
-                    ev-click={{ self._onCheckboxChange.bind(self, props.model, key) }}
-                >
-                    <template>
-                        <b:label args={{ [value, key, props.model] }}>
-                            {{ label.call(self, value, key, props.model) }}
-                        </b:label>
-                    </template>
-                </Checkbox>
-            </Animate>
+        <Animate class="k-list" disabled>
+            <template>
+                <b:list args={{ [props.model] }}>
+                    <Animate 
+                        v-for={{ data }} 
+                        class={{ {"k-item": true, "k-disabled": value.disabled} }}
+                        key={{ value[keyName] || value.label || value }}
+                        a:transition="c-fade"
+                    >
+                        <Checkbox v-model={{ `${props.model}CheckedKeys` }} name={{ props.model }}
+                            trueValue={{ value[keyName] }}
+                            disabled={{ value.disabled }}
+                            ev-click={{ self._onCheckboxChange.bind(self, props.model, key) }}
+                        >
+                            <template>
+                                <b:label args={{ [value, key, props.model] }}>
+                                    {{ label.call(self, value, key, props.model) }}
+                                </b:label>
+                            </template>
+                        </Checkbox>
+                    </Animate>
+                </b:list>
+            </template>
         </Animate>
     </div>
 };
@@ -71,14 +77,14 @@ const Panel = props => {
         title={{ leftTitle }}
     />
     <div class="k-arrows">
-        <Button circle icon disabled={{ !rightChecked.length }}
+        <Button circle icon disabled={{ !enableRemove() }}
             ev-click={{ self._remove }}
             type="primary"
             size="large"
         >
             <i class="k-icon ion-ios-arrow-left" />
         </Button>
-        <Button circle icon disabled={{ !leftChecked.length }}
+        <Button circle icon disabled={{ !enableAdd() }}
             ev-click={{ self._add }}
             type="primary"
             size="large"

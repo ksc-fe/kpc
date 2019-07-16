@@ -39,6 +39,8 @@ export default class Transfer extends Intact {
             placeholder: _$('请输入'),
             leftTitle: _$('请选择'),
             rightTitle: _$('已选择'),
+            enableAdd: () => this.get('leftChecked').length,
+            enableRemove: () => this.get('rightChecked').length,
 
             selectedKeys: [],
             leftCheckedKeys: [],
@@ -118,6 +120,8 @@ export default class Transfer extends Intact {
             leftCheckedKeys: [],
             value: value,
         });
+
+        this.trigger('add');
     }
 
     _remove() {
@@ -129,6 +133,8 @@ export default class Transfer extends Intact {
             rightCheckedKeys: [],
             value: value,
         });
+        
+        this.trigger('remove');
     }
 
     _onCheckboxChange(type, index, e) {

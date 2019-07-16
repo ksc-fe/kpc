@@ -20,6 +20,8 @@ sidebar: doc
 | leftTitle | 左边顶部展示的标题 | `String` | `"请选择"` |
 | rightTitle | 右边顶部展示的标题 | `String` | `"已选择"` |
 | keyName | 指定每一行数据的哪个属性当做列表的`key`属性，默认会取`key`或者`label`当做`key` | `String` | `"key"` |
+| enableAdd | 指定右箭头按钮的可用状态 | `Function` | `() => this.get('leftChecked').length` |
+| enableRemove | 指定左箭头按钮的可用状态 | `Function` | `() => this.get('rightChecked').length` |
 
 # 扩展点
 
@@ -27,4 +29,12 @@ sidebar: doc
 | --- | --- |
 | label | 自定义每一项的渲染函数，类似于`label`属性 | `data, index, type` |
 | filter | 自定义检索内容 | `type` | 
+| header | 自定义整个头部内容 | `type` |
+| list | 自定义整个列表内容 | `type` |
 
+# 事件
+
+| 事件名 | 说明 | 参数 |
+| --- | --- | --- |
+| add | 右箭头按钮点击事件 | `-` |
+| remove | 左箭头按钮点击事件 | `-` |
