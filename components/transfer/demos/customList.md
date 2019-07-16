@@ -134,5 +134,5 @@ onAdd() {
 
     this.checkedUsers = [];
     this.checkedRooms = [];
-},
+}
 ```
