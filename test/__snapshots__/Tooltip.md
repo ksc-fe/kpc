@@ -21,6 +21,6 @@
 #### `should handle confirm tooltip corectly`
 
 ```
-"<div class=\"k-buttons\"><button class=\"k-btn k-default k-small\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-small\" tabindex=\"0\" type=\"button\"><span>确认</span></button></div>"
+"<div class=\"k-buttons\"><button class=\"k-btn k-default k-small\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-small\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div>"
 ```
 

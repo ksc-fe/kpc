@@ -28,12 +28,12 @@ import Tooltip from 'kpc/components/tooltip';
         hover the text
     </Tooltip>
     <br /><br />
-    <Tooltip content="hello" theme="light">
-        light theme 
-    </Tooltip>
-    <br /><br />
     <Tooltip>
         don't show anything if content is empty 
+    </Tooltip>
+    <br /><br />
+    <Tooltip content="hello" theme="light">
+        light theme 
     </Tooltip>
 </div>
 ```

@@ -1385,7 +1385,7 @@
 ####   `Tooltip basic`
 
 ```
-"<div><span class=\"k-tooltip\">hover the text</span><!--placeholder--><br> <br><span class=\"k-tooltip\">don't show anything if content is empty</span><!--placeholder--></div>"
+"<div><span class=\"k-tooltip\">hover the text</span><!--placeholder--><br><br><span class=\"k-tooltip\">don't show anything if content is empty</span><!--placeholder--><br><br><span class=\"k-tooltip\" theme=\"light\">light theme</span><!--placeholder--></div>"
 ```
 
 ####   `Tooltip confirm`
