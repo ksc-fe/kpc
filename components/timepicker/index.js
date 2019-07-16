@@ -128,7 +128,7 @@ export default class Timepicker extends Datepicker {
                 return valueFixed.join(' ~ ');
             }
         } else {
-            super._format();
+            return super._format();
         }
     }
 }
