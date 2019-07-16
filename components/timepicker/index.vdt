@@ -20,6 +20,7 @@ const _placeholder = range ?
             "k-time-picker": true,
         } }}
         Panel={{ TimePanel }}
+        showFooter
     >
         <b:suffix><i class="ion-ios-clock-outline"></i></b:suffix>
         <b:singe-panel>

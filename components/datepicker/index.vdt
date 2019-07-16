@@ -108,7 +108,9 @@ const content = <b:content>
             _id="1"
         />
     </div>
-    <div v-if={{ type === 'datetime' || type === 'year' || type === 'month' }} class="k-footer">
+    <div v-if={{ type === 'datetime' || type === 'year' || type === 'month' || scope.showFooter }}
+        class="k-footer"
+    >
         <Button type="primary" size="small"
             disabled={{ !value }}
             ev-click={{ self._confirm }}

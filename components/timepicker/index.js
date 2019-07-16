@@ -100,6 +100,17 @@ export default class Timepicker extends Datepicker {
         e.stopPropagation();
         this.set('_value', undefined);
     }
+
+    _confirm() {
+        if (this.get('multiple')) {
+            this.refs.begin.initState();
+            const _value = this.get('_value').slice(0);
+            _value.push(PREFIX + '00:00:00');
+            this.set('_value', _value);
+        } else {
+            super._confirm();
+        }
+    }
 }
 
 export {Timepicker};
