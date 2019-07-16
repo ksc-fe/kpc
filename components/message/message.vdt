@@ -14,7 +14,8 @@ const {type, content, children, closable, hideIcon} = self.get();
             <Icon v-if={{ !hideIcon }} class={{ {
                 "ion-ios-information": type === 'info' || type === 'warning',
                 "ion-ios-checkmark": type === 'success',
-                "ion-ios-close": type === 'danger'
+                "ion-ios-close": type === 'danger',
+                "k-message-icon": true,
             } }} />
             <div v-if={{ typeof content === 'string' || typeof content === 'number' }}
                 class="k-content" innerHTML={{ content }}
@@ -26,7 +27,7 @@ const {type, content, children, closable, hideIcon} = self.get();
             type="none" icon class="k-close"
             ev-click={{ self.close }}
         >
-            <Icon class="ion-ios-close-empty k-message-icon" />
+            <Icon class="ion-ios-close-empty" />
         </Button>
     </div>
 </div>
