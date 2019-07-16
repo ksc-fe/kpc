@@ -31,7 +31,7 @@ module.exports = function(isDev = true) {
 
     const doc = new KDoc(
         './@(docs|components)/**/*.md',
-        // './@(docs|components)/dropdown/demos/basic.md',
+        // './@(docs|components)/transfer/demos/customList.md',
         root
     );
 

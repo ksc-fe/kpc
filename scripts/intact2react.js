@@ -590,6 +590,16 @@ function parseVIf(template) {
                 }
                 results.push(`${spaces}}`);
                 code = results.join('\n');
+
+                const _last = stacks[stacks.length - 1];
+                if (_last) {
+                    // nested v-if
+                    const {codes} = _last;
+                    const _code = indent(code);
+                    _code[0] = dedent(_code[0]);
+                    codes.push(_code.join('\n'));
+                    continue;
+                }
                 // console.log(stack);
             } else {
                 const {spaces, codesStacks} = last;
