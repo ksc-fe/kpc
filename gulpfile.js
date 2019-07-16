@@ -233,7 +233,9 @@ function buildVdt(destPath) {
 }
 
 function buildFont(destPath) {
-    return gulp.src(['./styles/fonts/*.@(eot|svg|ttf|woff)'], {base: './'})
+    return gulp.src([
+        './styles/fonts/*.@(eot|svg|ttf|woff)',
+    ], {base: './'})
         .pipe(gulp.dest(destPath));
 }
 
@@ -409,7 +411,13 @@ gulp.task('clean@css', (done) => {
 });
 
 gulp.task('build:js', () => {
-    return gulp.src(['./components/**/*.js', '!./components/**/*.spec.js', './index.js', './inheritsLoose.js'], {base: './'})
+    return gulp.src([
+        './components/**/*.js', 
+        '!./components/**/*.spec.js', 
+        './index.js', 
+        './inheritsLoose.js',
+        '!./components/grid/mediaQueryForStylus.js',
+    ], {base: './'})
         .pipe(babel())
         .pipe(tap(function(file) {
             let contents = file.contents.toString('utf-8');
@@ -467,7 +475,13 @@ gulp.task('clean@stylus', (done) => {
 });
 
 gulp.task('build:js@stylus', () => {
-    return gulp.src(['./components/**/*.js', '!./components/**/*.spec.js', './index.js', './inheritsLoose.js'], {base: './'})
+    return gulp.src([
+        './components/**/*.js', 
+        '!./components/**/*.spec.js', 
+        './index.js', 
+        './inheritsLoose.js',
+        '!./components/grid/mediaQueryForStylus.js',
+    ], {base: './'})
         .pipe(babel())
         .pipe(tap(function(file) {
             let contents = file.contents.toString('utf-8');
@@ -486,7 +500,8 @@ gulp.task('build:style@stylus', () => {
     return gulp.src(
             [
                 './styles/*', './styles/themes/**/*', 
-                './styles/fonts/*.styl', './components/**/*.styl'
+                './styles/fonts/*.styl', './components/**/*.styl',
+                './components/grid/mediaQueryForStylus.js',
             ],
             {base: './'}
         ) 
