@@ -8,9 +8,7 @@ arrow-short = $tooltip-arrow-width - 2px
 .k-tooltip-content
     max-width $tooltip-max-width
     min-width 0
-    background-color $tooltip-bg-color 
     padding $tooltip-padding
-    color $tooltip-color
     line-height $tooltip-line-height
     word-wrap break-word
     
@@ -34,15 +32,11 @@ arrow-short = $tooltip-arrow-width - 2px
                 left -(arrow-short)
         &.k-top
             top -(2 * arrow-long) 
-            border-bottom-color $tooltip-arrow-border-color
             &:before
-                border-bottom-color $tooltip-bg-color 
                 top -(arrow-long - 1px)
         &.k-bottom
             bottom -(2 * arrow-long)
-            border-top-color $tooltip-arrow-border-color
             &:before
-                border-top-color $tooltip-bg-color
                 bottom -(arrow-long - 1px)
         &.k-middle
             top 50%
@@ -55,15 +49,11 @@ arrow-short = $tooltip-arrow-width - 2px
                 top -(arrow-short)
         &.k-left
             left -(2 * arrow-long)
-            border-right-color $tooltip-arrow-border-color
             &:before
-                border-right-color $tooltip-bg-color
                 left -(arrow-long - 1px)
         &.k-right
             right -(2 * arrow-long)
-            border-left-color $tooltip-arrow-border-color
             &:before
-                border-left-color $tooltip-bg-color
                 right -(arrow-long - 1px) 
 
 
@@ -76,5 +66,38 @@ arrow-short = $tooltip-arrow-width - 2px
         .k-btn:last-of-type
             margin-left $tooltip-confirm-buttons-gutter
 
+    // theme 
+    generate(theme)
+        if theme == 'dark'
+            $border-color = $tooltip-dark-arrow-border-color
+            $bg-color = $tooltip-dark-bg-color
+            $color = $tooltip-dark-color
+        else
+            $border-color = $tooltip-arrow-border-color
+            $bg-color = $tooltip-bg-color
+            $color = $tooltip-color
+        &.k-{theme}
+            background $bg-color 
+            color $color
+            > .k-arrow
+                &.k-top
+                    border-bottom-color $border-color
+                    &:before
+                        border-bottom-color $bg-color 
+                &.k-bottom
+                    border-top-color $border-color
+                    &:before
+                        border-top-color $bg-color
+                &.k-left
+                    border-right-color $border-color
+                    &:before
+                        border-right-color $bg-color
+                &.k-right
+                    border-left-color $border-color
+                    &:before
+                        border-left-color $bg-color
+    generate('dark')
+    generate('light')
+    
 
 requireTheme('tooltip')

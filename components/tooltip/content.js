@@ -18,6 +18,7 @@ export default class TooltipContent extends DropdownMenu {
         confirm: Boolean,
         okText: String,
         cancelText: String,
+        theme: ['dark', 'light'],
     };
 
     static events = {
@@ -35,8 +36,9 @@ export default class TooltipContent extends DropdownMenu {
             showArrow: true,
             transition: 'c-fade',
             confirm: false,
-            okText: _$('确认'),
+            okText: _$('确定'),
             cancelText: _$('取消'),
+            theme: 'dark',
 
             _feedback: {},
         };

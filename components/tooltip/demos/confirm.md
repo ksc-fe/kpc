@@ -13,6 +13,7 @@ import Button from 'kpc/components/button';
 <div>
     <Tooltip content="确定删除？"
         confirm
+        theme="light"
         trigger="click"
         ev-ok={{ self.ok  }}
         ev-cancel={{ self.cancel }}
