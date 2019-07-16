@@ -140,6 +140,7 @@ const suffix = <b:suffix><i class="ion-ios-calendar-outline"></i></b:suffix>
         ev-hide={{ self._onHide }}
         ev-$changed:value={{ self._onChangeShow }}
         container={{ container }}
+        theme="light"
     >
         <Input
             placeholder={{ _placeholder }}
