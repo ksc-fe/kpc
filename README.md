@@ -70,8 +70,7 @@ module.exports = {
     ...
     resolve: {
         alias: {
-            'kpc': 'kpc/@css',
-            'intact$': 'intact-vue',
+            'kpc': 'kpc/@vue/@css',
         }
     }
 }
@@ -84,8 +83,7 @@ module.exports = {
     ...
     resolve: {
         alias: {
-            'kpc': 'kpc/@css',
-            'intact$': 'intact-react',
+            'kpc': 'kpc/@react/@css',
         }
     }
 }
@@ -141,7 +139,7 @@ class App extends React.Component {
 
 ## 链接
 
-* [官方文档](https://ksc-fe.github.io/kpc/)
+* [官方文档](https://design.ksyun.com)
 * [Intact MVVM框架][1]
 * [Vdt 模板引擎](http://javey.github.io/vdt.js/)
 * [Intact-Vue 兼容层](https://github.com/Javey/intact-vue)
