@@ -20,6 +20,11 @@ export default class Transfer extends Intact {
         placeholder: String,
         leftTitle: [String, Intact.VNode],
         rightTitle: [String, Intact.VNode],
+        enableAdd: Function,
+        enableRemove: Function,
+        selectedKeys: Array,
+        leftCheckedKeys: Array,
+        rightCheckedKeys: Array,
     };
 
     defaults() {
