@@ -1,4 +1,211 @@
 {
+    "组件": [
+        {
+            "title": "按钮",
+            "order": 0,
+            "category": "组件",
+            "sidebar": "design",
+            "disabled": true,
+            "path": "docs/design/button.md",
+            "children": [
+                {
+                    "children": [
+                        {
+                            "title": "应用规则",
+                            "path": "#header-%E5%BA%94%E7%94%A8%E8%A7%84%E5%88%99",
+                            "level": 2,
+                            "content": "<h2 id='header-%E5%BA%94%E7%94%A8%E8%A7%84%E5%88%99'>应用规则</h2>",
+                            "text": "应用规则",
+                            "children": []
+                        },
+                        {
+                            "title": "按钮状态",
+                            "path": "#header-%E6%8C%89%E9%92%AE%E7%8A%B6%E6%80%81",
+                            "level": 2,
+                            "content": "<h2 id='header-%E6%8C%89%E9%92%AE%E7%8A%B6%E6%80%81'>按钮状态</h2>",
+                            "text": "按钮状态",
+                            "children": []
+                        },
+                        {
+                            "title": "按钮类型",
+                            "path": "#header-%E6%8C%89%E9%92%AE%E7%B1%BB%E5%9E%8B",
+                            "level": 2,
+                            "content": "<h2 id='header-%E6%8C%89%E9%92%AE%E7%B1%BB%E5%9E%8B'>按钮类型</h2>",
+                            "text": "按钮类型",
+                            "children": []
+                        },
+                        {
+                            "title": "按钮生成器",
+                            "path": "#header-%E6%8C%89%E9%92%AE%E7%94%9F%E6%88%90%E5%99%A8",
+                            "level": 2,
+                            "content": "<h2 id='header-%E6%8C%89%E9%92%AE%E7%94%9F%E6%88%90%E5%99%A8'>按钮生成器</h2>",
+                            "text": "按钮生成器",
+                            "children": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "对话框",
+            "order": 2,
+            "category": "组件",
+            "sidebar": "design",
+            "disabled": true,
+            "path": "docs/design/dialog.md",
+            "children": [
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "title": "无标题对话框",
+                                    "path": "#header-%E6%97%A0%E6%A0%87%E9%A2%98%E5%AF%B9%E8%AF%9D%E6%A1%86",
+                                    "level": 3,
+                                    "content": "<h3 id='header-%E6%97%A0%E6%A0%87%E9%A2%98%E5%AF%B9%E8%AF%9D%E6%A1%86'>无标题对话框</h3>",
+                                    "text": "无标题对话框",
+                                    "children": []
+                                },
+                                {
+                                    "title": "带标题对话框",
+                                    "path": "#header-%E5%B8%A6%E6%A0%87%E9%A2%98%E5%AF%B9%E8%AF%9D%E6%A1%86",
+                                    "level": 3,
+                                    "content": "<h3 id='header-%E5%B8%A6%E6%A0%87%E9%A2%98%E5%AF%B9%E8%AF%9D%E6%A1%86'>带标题对话框</h3>",
+                                    "text": "带标题对话框",
+                                    "children": []
+                                },
+                                {
+                                    "title": "复杂操作对话框",
+                                    "path": "#header-%E5%A4%8D%E6%9D%82%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%AF%9D%E6%A1%86",
+                                    "level": 3,
+                                    "content": "<h3 id='header-%E5%A4%8D%E6%9D%82%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%AF%9D%E6%A1%86'>复杂操作对话框</h3>",
+                                    "text": "复杂操作对话框",
+                                    "children": []
+                                },
+                                {
+                                    "title": "长内容对话框",
+                                    "path": "#header-%E9%95%BF%E5%86%85%E5%AE%B9%E5%AF%B9%E8%AF%9D%E6%A1%86",
+                                    "level": 3,
+                                    "content": "<h3 id='header-%E9%95%BF%E5%86%85%E5%AE%B9%E5%AF%B9%E8%AF%9D%E6%A1%86'>长内容对话框</h3>",
+                                    "text": "长内容对话框",
+                                    "children": []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "导航",
+            "order": 2,
+            "category": "组件",
+            "sidebar": "design",
+            "disabled": true,
+            "path": "docs/design/navigator.md",
+            "children": [
+                {
+                    "children": [
+                        {
+                            "title": "面包屑导航",
+                            "path": "#header-%E9%9D%A2%E5%8C%85%E5%B1%91%E5%AF%BC%E8%88%AA",
+                            "level": 2,
+                            "content": "<h2 id='header-%E9%9D%A2%E5%8C%85%E5%B1%91%E5%AF%BC%E8%88%AA'>面包屑导航</h2>",
+                            "text": "面包屑导航",
+                            "children": []
+                        },
+                        {
+                            "title": "页签",
+                            "path": "#header-%E9%A1%B5%E7%AD%BE",
+                            "level": 2,
+                            "content": "<h2 id='header-%E9%A1%B5%E7%AD%BE'>页签</h2>",
+                            "text": "页签",
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "title": "标签页",
+                                            "path": "#header-%E6%A0%87%E7%AD%BE%E9%A1%B5",
+                                            "level": 4,
+                                            "content": "<h4 id='header-%E6%A0%87%E7%AD%BE%E9%A1%B5'>标签页</h4>",
+                                            "text": "标签页",
+                                            "children": []
+                                        },
+                                        {
+                                            "title": "选项卡",
+                                            "path": "#header-%E9%80%89%E9%A1%B9%E5%8D%A1",
+                                            "level": 4,
+                                            "content": "<h4 id='header-%E9%80%89%E9%A1%B9%E5%8D%A1'>选项卡</h4>",
+                                            "text": "选项卡",
+                                            "children": []
+                                        },
+                                        {
+                                            "title": "导航按钮",
+                                            "path": "#header-%E5%AF%BC%E8%88%AA%E6%8C%89%E9%92%AE",
+                                            "level": 4,
+                                            "content": "<h4 id='header-%E5%AF%BC%E8%88%AA%E6%8C%89%E9%92%AE'>导航按钮</h4>",
+                                            "text": "导航按钮",
+                                            "children": []
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "提示",
+            "order": 3,
+            "category": "组件",
+            "sidebar": "design",
+            "disabled": true,
+            "path": "docs/design/tip.md",
+            "children": [
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "title": "警告提示",
+                                    "path": "#header-%E8%AD%A6%E5%91%8A%E6%8F%90%E7%A4%BA",
+                                    "level": 3,
+                                    "content": "<h3 id='header-%E8%AD%A6%E5%91%8A%E6%8F%90%E7%A4%BA'>警告提示</h3>",
+                                    "text": "警告提示",
+                                    "children": []
+                                },
+                                {
+                                    "title": "全局提示",
+                                    "path": "#header-%E5%85%A8%E5%B1%80%E6%8F%90%E7%A4%BA",
+                                    "level": 3,
+                                    "content": "<h3 id='header-%E5%85%A8%E5%B1%80%E6%8F%90%E7%A4%BA'>全局提示</h3>",
+                                    "text": "全局提示",
+                                    "children": []
+                                },
+                                {
+                                    "title": "帮助气泡",
+                                    "path": "#header-%E5%B8%AE%E5%8A%A9%E6%B0%94%E6%B3%A1",
+                                    "level": 3,
+                                    "content": "<h3 id='header-%E5%B8%AE%E5%8A%A9%E6%B0%94%E6%B3%A1'>帮助气泡</h3>",
+                                    "text": "帮助气泡",
+                                    "children": []
+                                },
+                                {
+                                    "title": "文字提示",
+                                    "path": "#header-%E6%96%87%E5%AD%97%E6%8F%90%E7%A4%BA",
+                                    "level": 3,
+                                    "content": "<h3 id='header-%E6%96%87%E5%AD%97%E6%8F%90%E7%A4%BA'>文字提示</h3>",
+                                    "text": "文字提示",
+                                    "children": []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
     "undefined": [
         {
             "title": "设计语言",
@@ -78,43 +285,6 @@
             ]
         },
         {
-            "title": "间距",
-            "order": 2,
-            "sidebar": "design",
-            "disabled": true,
-            "path": "docs/design/gutter.md",
-            "children": [
-                {
-                    "children": [
-                        {
-                            "title": "遵循8像素规则",
-                            "path": "#header-%E9%81%B5%E5%BE%AA8%E5%83%8F%E7%B4%A0%E8%A7%84%E5%88%99",
-                            "level": 2,
-                            "content": "<h2 id='header-%E9%81%B5%E5%BE%AA8%E5%83%8F%E7%B4%A0%E8%A7%84%E5%88%99'>遵循8像素规则</h2>",
-                            "text": "遵循8像素规则",
-                            "children": []
-                        },
-                        {
-                            "title": "纵向间距",
-                            "path": "#header-%E7%BA%B5%E5%90%91%E9%97%B4%E8%B7%9D",
-                            "level": 2,
-                            "content": "<h2 id='header-%E7%BA%B5%E5%90%91%E9%97%B4%E8%B7%9D'>纵向间距</h2>",
-                            "text": "纵向间距",
-                            "children": []
-                        },
-                        {
-                            "title": "横向间距",
-                            "path": "#header-%E6%A8%AA%E5%90%91%E9%97%B4%E8%B7%9D",
-                            "level": 2,
-                            "content": "<h2 id='header-%E6%A8%AA%E5%90%91%E9%97%B4%E8%B7%9D'>横向间距</h2>",
-                            "text": "横向间距",
-                            "children": []
-                        }
-                    ]
-                }
-            ]
-        },
-        {
             "title": "字体",
             "order": 2,
             "sidebar": "design",
@@ -153,6 +323,43 @@
                             "level": 2,
                             "content": "<h2 id='header-%E5%AF%B9%E6%AF%94%E5%BA%A6'>对比度</h2>",
                             "text": "对比度",
+                            "children": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "间距",
+            "order": 2,
+            "sidebar": "design",
+            "disabled": true,
+            "path": "docs/design/gutter.md",
+            "children": [
+                {
+                    "children": [
+                        {
+                            "title": "遵循8像素规则",
+                            "path": "#header-%E9%81%B5%E5%BE%AA8%E5%83%8F%E7%B4%A0%E8%A7%84%E5%88%99",
+                            "level": 2,
+                            "content": "<h2 id='header-%E9%81%B5%E5%BE%AA8%E5%83%8F%E7%B4%A0%E8%A7%84%E5%88%99'>遵循8像素规则</h2>",
+                            "text": "遵循8像素规则",
+                            "children": []
+                        },
+                        {
+                            "title": "纵向间距",
+                            "path": "#header-%E7%BA%B5%E5%90%91%E9%97%B4%E8%B7%9D",
+                            "level": 2,
+                            "content": "<h2 id='header-%E7%BA%B5%E5%90%91%E9%97%B4%E8%B7%9D'>纵向间距</h2>",
+                            "text": "纵向间距",
+                            "children": []
+                        },
+                        {
+                            "title": "横向间距",
+                            "path": "#header-%E6%A8%AA%E5%90%91%E9%97%B4%E8%B7%9D",
+                            "level": 2,
+                            "content": "<h2 id='header-%E6%A8%AA%E5%90%91%E9%97%B4%E8%B7%9D'>横向间距</h2>",
+                            "text": "横向间距",
                             "children": []
                         }
                     ]
@@ -265,213 +472,6 @@
                             "content": "<h2 id='header-%E5%88%87%E4%B8%AD%E8%A6%81%E5%AE%B3%EF%BC%8C%E5%8F%AF%E6%84%9F%E7%9F%A5'>切中要害，可感知</h2>",
                             "text": "切中要害，可感知",
                             "children": []
-                        }
-                    ]
-                }
-            ]
-        }
-    ],
-    "组件": [
-        {
-            "title": "按钮",
-            "order": 0,
-            "category": "组件",
-            "sidebar": "design",
-            "disabled": true,
-            "path": "docs/design/button.md",
-            "children": [
-                {
-                    "children": [
-                        {
-                            "title": "应用规则",
-                            "path": "#header-%E5%BA%94%E7%94%A8%E8%A7%84%E5%88%99",
-                            "level": 2,
-                            "content": "<h2 id='header-%E5%BA%94%E7%94%A8%E8%A7%84%E5%88%99'>应用规则</h2>",
-                            "text": "应用规则",
-                            "children": []
-                        },
-                        {
-                            "title": "按钮状态",
-                            "path": "#header-%E6%8C%89%E9%92%AE%E7%8A%B6%E6%80%81",
-                            "level": 2,
-                            "content": "<h2 id='header-%E6%8C%89%E9%92%AE%E7%8A%B6%E6%80%81'>按钮状态</h2>",
-                            "text": "按钮状态",
-                            "children": []
-                        },
-                        {
-                            "title": "按钮类型",
-                            "path": "#header-%E6%8C%89%E9%92%AE%E7%B1%BB%E5%9E%8B",
-                            "level": 2,
-                            "content": "<h2 id='header-%E6%8C%89%E9%92%AE%E7%B1%BB%E5%9E%8B'>按钮类型</h2>",
-                            "text": "按钮类型",
-                            "children": []
-                        },
-                        {
-                            "title": "按钮生成器",
-                            "path": "#header-%E6%8C%89%E9%92%AE%E7%94%9F%E6%88%90%E5%99%A8",
-                            "level": 2,
-                            "content": "<h2 id='header-%E6%8C%89%E9%92%AE%E7%94%9F%E6%88%90%E5%99%A8'>按钮生成器</h2>",
-                            "text": "按钮生成器",
-                            "children": []
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "title": "导航",
-            "order": 2,
-            "category": "组件",
-            "sidebar": "design",
-            "disabled": true,
-            "path": "docs/design/navigator.md",
-            "children": [
-                {
-                    "children": [
-                        {
-                            "title": "面包屑导航",
-                            "path": "#header-%E9%9D%A2%E5%8C%85%E5%B1%91%E5%AF%BC%E8%88%AA",
-                            "level": 2,
-                            "content": "<h2 id='header-%E9%9D%A2%E5%8C%85%E5%B1%91%E5%AF%BC%E8%88%AA'>面包屑导航</h2>",
-                            "text": "面包屑导航",
-                            "children": []
-                        },
-                        {
-                            "title": "页签",
-                            "path": "#header-%E9%A1%B5%E7%AD%BE",
-                            "level": 2,
-                            "content": "<h2 id='header-%E9%A1%B5%E7%AD%BE'>页签</h2>",
-                            "text": "页签",
-                            "children": [
-                                {
-                                    "children": [
-                                        {
-                                            "title": "标签页",
-                                            "path": "#header-%E6%A0%87%E7%AD%BE%E9%A1%B5",
-                                            "level": 4,
-                                            "content": "<h4 id='header-%E6%A0%87%E7%AD%BE%E9%A1%B5'>标签页</h4>",
-                                            "text": "标签页",
-                                            "children": []
-                                        },
-                                        {
-                                            "title": "选项卡",
-                                            "path": "#header-%E9%80%89%E9%A1%B9%E5%8D%A1",
-                                            "level": 4,
-                                            "content": "<h4 id='header-%E9%80%89%E9%A1%B9%E5%8D%A1'>选项卡</h4>",
-                                            "text": "选项卡",
-                                            "children": []
-                                        },
-                                        {
-                                            "title": "导航按钮",
-                                            "path": "#header-%E5%AF%BC%E8%88%AA%E6%8C%89%E9%92%AE",
-                                            "level": 4,
-                                            "content": "<h4 id='header-%E5%AF%BC%E8%88%AA%E6%8C%89%E9%92%AE'>导航按钮</h4>",
-                                            "text": "导航按钮",
-                                            "children": []
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "title": "对话框",
-            "order": 2,
-            "category": "组件",
-            "sidebar": "design",
-            "disabled": true,
-            "path": "docs/design/dialog.md",
-            "children": [
-                {
-                    "children": [
-                        {
-                            "children": [
-                                {
-                                    "title": "无标题对话框",
-                                    "path": "#header-%E6%97%A0%E6%A0%87%E9%A2%98%E5%AF%B9%E8%AF%9D%E6%A1%86",
-                                    "level": 3,
-                                    "content": "<h3 id='header-%E6%97%A0%E6%A0%87%E9%A2%98%E5%AF%B9%E8%AF%9D%E6%A1%86'>无标题对话框</h3>",
-                                    "text": "无标题对话框",
-                                    "children": []
-                                },
-                                {
-                                    "title": "带标题对话框",
-                                    "path": "#header-%E5%B8%A6%E6%A0%87%E9%A2%98%E5%AF%B9%E8%AF%9D%E6%A1%86",
-                                    "level": 3,
-                                    "content": "<h3 id='header-%E5%B8%A6%E6%A0%87%E9%A2%98%E5%AF%B9%E8%AF%9D%E6%A1%86'>带标题对话框</h3>",
-                                    "text": "带标题对话框",
-                                    "children": []
-                                },
-                                {
-                                    "title": "复杂操作对话框",
-                                    "path": "#header-%E5%A4%8D%E6%9D%82%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%AF%9D%E6%A1%86",
-                                    "level": 3,
-                                    "content": "<h3 id='header-%E5%A4%8D%E6%9D%82%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%AF%9D%E6%A1%86'>复杂操作对话框</h3>",
-                                    "text": "复杂操作对话框",
-                                    "children": []
-                                },
-                                {
-                                    "title": "长内容对话框",
-                                    "path": "#header-%E9%95%BF%E5%86%85%E5%AE%B9%E5%AF%B9%E8%AF%9D%E6%A1%86",
-                                    "level": 3,
-                                    "content": "<h3 id='header-%E9%95%BF%E5%86%85%E5%AE%B9%E5%AF%B9%E8%AF%9D%E6%A1%86'>长内容对话框</h3>",
-                                    "text": "长内容对话框",
-                                    "children": []
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "title": "提示",
-            "order": 3,
-            "category": "组件",
-            "sidebar": "design",
-            "disabled": true,
-            "path": "docs/design/tip.md",
-            "children": [
-                {
-                    "children": [
-                        {
-                            "children": [
-                                {
-                                    "title": "警告提示",
-                                    "path": "#header-%E8%AD%A6%E5%91%8A%E6%8F%90%E7%A4%BA",
-                                    "level": 3,
-                                    "content": "<h3 id='header-%E8%AD%A6%E5%91%8A%E6%8F%90%E7%A4%BA'>警告提示</h3>",
-                                    "text": "警告提示",
-                                    "children": []
-                                },
-                                {
-                                    "title": "全局提示",
-                                    "path": "#header-%E5%85%A8%E5%B1%80%E6%8F%90%E7%A4%BA",
-                                    "level": 3,
-                                    "content": "<h3 id='header-%E5%85%A8%E5%B1%80%E6%8F%90%E7%A4%BA'>全局提示</h3>",
-                                    "text": "全局提示",
-                                    "children": []
-                                },
-                                {
-                                    "title": "帮助气泡",
-                                    "path": "#header-%E5%B8%AE%E5%8A%A9%E6%B0%94%E6%B3%A1",
-                                    "level": 3,
-                                    "content": "<h3 id='header-%E5%B8%AE%E5%8A%A9%E6%B0%94%E6%B3%A1'>帮助气泡</h3>",
-                                    "text": "帮助气泡",
-                                    "children": []
-                                },
-                                {
-                                    "title": "文字提示",
-                                    "path": "#header-%E6%96%87%E5%AD%97%E6%8F%90%E7%A4%BA",
-                                    "level": 3,
-                                    "content": "<h3 id='header-%E6%96%87%E5%AD%97%E6%8F%90%E7%A4%BA'>文字提示</h3>",
-                                    "text": "文字提示",
-                                    "children": []
-                                }
-                            ]
                         }
                     ]
                 }

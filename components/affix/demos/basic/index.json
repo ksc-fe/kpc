@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>top</code>可以指定元素固定在顶部的位置，通过<code>bottom</code>可以指定元素固定在底部的位置，都不指定时，默认固定在最顶部</p>\n<blockquote>\n<p>可以通过缩放浏览器查看效果</p>\n</blockquote>\n",
-    "index": 2,
+    "index": 1,
     "highlighted": [
         {
             "language": "vdt",

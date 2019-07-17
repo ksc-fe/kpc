@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>将数据生成函数传给<code>data</code>属性，可以实现无限长度数据的滚动，本例中：可以无限滚动选择年份</p>\n",
-    "index": 80,
+    "index": 89,
     "highlighted": [
         {
             "language": "vdt",

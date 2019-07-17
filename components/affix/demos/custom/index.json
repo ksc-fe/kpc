@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>shouldFix</code>可以自定义元素固定的规则，此时设置的<code>top</code> <code>bottom</code>属性，仅仅用来设置固定的位置，并不用于固定规则的判断，当<code>shouldFix</code>返回<code>true</code>时，元素就会固定，否则不固定。本例中：只要滚动超过<code>100px</code>就会固定</p>\n<p>通过<code>exclude</code>可以在内部判断元素应该固定时，排除某些情况，让它不固定。本例中：当当前示例容器超出视野（viewport）之外时，不启用固定</p>\n",
-    "index": 89,
+    "index": 61,
     "highlighted": [
         {
             "language": "vdt",

@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>指定<code>isRange</code>使组件支持范围选择，此时<code>v-model</code>绑定的数据为数组，并且不会展示<code>input</code>输入框。</p>\n",
-    "index": 181,
+    "index": 191,
     "highlighted": [
         {
             "language": "vdt",

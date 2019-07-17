@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>标签类型：<code>default</code>, <code>primary</code>, <code>success</code>, <code>warning</code> <code>danger</code>；添加<code>disabled</code>属性，可以禁用标签</p>\n",
-    "index": 26,
+    "index": 41,
     "highlighted": [
         {
             "language": "vdt",

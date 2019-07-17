@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>字体采用开源字体库：<a href=\"http://ionicons.com/v2/\">ionicons</a></p>\n<p>使用<code>size</code>属性可以定义图标尺寸，组件内置了4中尺寸: <code>large</code> <code>default</code> <code>small</code> <code>mini</code>。你可以通过数字或这数字字符串自定义图标的大小</p>\n",
-    "index": 33,
+    "index": 22,
     "highlighted": [
         {
             "language": "vdt",

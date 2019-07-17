@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>使用<code>CollapseItem</code>定义每一项，<code>CollapseItem</code>的<code>title</code>属性是要展示的标题，<code>disabled</code>属性用来禁用该项，<code>value</code>属性是选中该项的取值，如果没有提供<code>value</code>属性，则默认会使用形如<code>$0</code>的索引字符串当作<code>value</code>。给<code>Collapse</code>添加<code>value</code>可以展开指定的<code>CollapseItem</code>，<code>Collapse</code>的<code>value</code>是<code>Array</code>类型，可以使用<code>v-model</code>进行双向绑定</p>\n",
-    "index": 27,
+    "index": 13,
     "highlighted": [
         {
             "language": "vdt",
