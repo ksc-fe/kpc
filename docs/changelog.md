@@ -4,6 +4,67 @@ order: 99
 sidebar: doc
 ---
 
+# v1.0.0
+
+### 新增组件
+
+1. `Add` 新增图钉组件`Affix`，用于滚动页面固定某些内容 [#300](https://github.com/ksc-fe/kpc/issues/300)
+1. `Add` 新增走马灯（轮播图）组件`Carousel` [#299](https://github.com/ksc-fe/kpc/issues/299)
+1. `Add` 新增代码编辑器组件`Code`，基于`Monaco Editor`(VSCode)封装而来 [#288](https://github.com/ksc-fe/kpc/issues/288)
+1. `Add` 新增卡片组件`Card` [#241](https://github.com/ksc-fe/kpc/issues/241)
+
+### 新增特性
+
+1. `Add` 新增全局配置方法`configure`，使用`configure({useWrapper: true})`可以开启`Dropdown/Tooltip`兼容模式 [#291](https://github.com/ksc-fe/kpc/issues/291)
+1. `Add` `Tree`如果初始化数据中包含`children`，当异步加载时，不会再次调用`loadData`函数去加载数据 [#290](https://github.com/ksc-fe/kpc/issues/290)
+1. `Add` `Table`支持保存调整列宽后的列宽信息 [#292](https://github.com/ksc-fe/kpc/issues/292)
+1. `Add` `Table`新增表头分组功能 [#265](https://github.com/ksc-fe/kpc/issues/265)
+1. `Add` `Table`新增合并单元格功能 [#265](https://github.com/ksc-fe/kpc/issues/265)
+1. `Add` `Upload`支持文件类型强检测，不合法是抛出`error`事件，因为浏览器`accept`属性仅仅只是建议类型，并不能限制类型 [#271](https://github.com/ksc-fe/kpc/issues/271)
+1. `Add` `Progress`新增`warning`状态 [#301](https://github.com/ksc-fe/kpc/issues/301)
+1. `Add` `Tree`支持父子`Checkbox`非关联模式，该模式下父子的选中状态单独控制，互不影响 [#302](https://github.com/ksc-fe/kpc/issues/302)
+1. `Add` `FormItem`新增`fluid`属性，展示`100%`宽度的表单项 [#303](https://github.com/ksc-fe/kpc/issues/303)
+1. `Add` 新增`Vue/React`编译包，减少`webpack` `alias`配置项 [#308](https://github.com/ksc-fe/kpc/issues/308)
+1. `Add` `Button`组件新增`secondary`和`link`类型 [#320](https://github.com/ksc-fe/kpc/issues/320)
+1. `Add` `Dialog`支持点击遮罩层关闭弹窗 [#324](https://github.com/ksc-fe/kpc/issues/324)
+1. `Add` `Dialog`静态方法支持展示带标题`title`的弹窗 [#324](https://github.com/ksc-fe/kpc/issues/324)
+1. `Add` `Select`和`Cascader`在无内容时，展示“无内容”的提示层 [#321](https://github.com/ksc-fe/kpc/issues/321)
+1. `Add` `Datepicker`和`Timepicker`新增“确定”按钮，以方便用户关闭弹层 [#322](https://github.com/ksc-fe/kpc/issues/322)
+1. `Add` `Timepicker`支持设置`step`时，隐藏“分钟”或/和“秒钟”的展示 [#323](https://github.com/ksc-fe/kpc/issues/323)
+1. `Add` `Tooltip`新增主题支持，默认展示为`dark`主题 [#326](https://github.com/ksc-fe/kpc/issues/326)
+1. `Add` `Transfer`新增`list` `header`扩展点，以及左右箭头按钮的控制，使之可以更灵活地定义穿梭框逻辑 [#314](https://github.com/ksc-fe/kpc/issues/314)
+1. `Add` 当`Table` `fixHeader`设为`true`时，表格高度自动设为`100%`，然后根据父容器高度确定表格体的高度来展示滚动条 [#310](https://github.com/ksc-fe/kpc/issues/310)
+
+### 组件优化
+
+1. `Refactor` 优化`Table` `hover`以及滚动的性能 [#310](https://github.com/ksc-fe/kpc/issues/310) 
+1. `Refactor` 优化`Slider`滚动条热区，更容易点击 [#307](https://github.com/ksc-fe/kpc/issues/307)
+1. `Refactor` 优化弹出元素动画，使用`show/hide`动画替代`create/remove`动画，使动画更流畅 [#278](https://github.com/ksc-fe/kpc/issues/278)
+
+### Bug修复
+
+1. `Fix` 修复错误地引入`babel-types`导致可能不存在该模块而编译报错的问题 [#283](https://github.com/ksc-fe/kpc/issues/283)
+1. `Fix` 修复`Pagination`当页码过长时溢出的问题 [#286](https://github.com/ksc-fe/kpc/issues/286)
+1. `Fix` 修复`Timepicker`范围选择时，首次弹出如果先选择结束时间，时间取值不对的问题 [#289](https://github.com/ksc-fe/kpc/issues/289)
+1. `Fix` 修复`Table`调整列宽后，如果表格容器宽度变大，会出现表格宽度小于容器宽度的情况 [#293](https://github.com/ksc-fe/kpc/issues/293)
+1. `Fix` 修复`Slider`有`Spinner`输入框时，在设置了`step`的情况下，输入的过程中也会修正值，导致无法输入想要的值的问题 [#294](https://github.com/ksc-fe/kpc/issues/294)
+1. `Fix` 修复`webpack`配置可能禁用了`require.ensure`（如：新版Create React App）导致有些异步加载的模块报错的问题 [#304](https://github.com/ksc-fe/kpc/issues/304)
+1. `Fix` 修复`Switch`点击滑块，由于`click`事件被`stopPropagation`而在外部监听不到`click`事件的问题 [#309](https://github.com/ksc-fe/kpc/issues/309)
+1. `Fix` 修复`Table`当表格高度固定时，`data`改变导致出现滚动条，固定表头和表格体没对齐的问题 [#310](https://github.com/ksc-fe/kpc/issues/310)
+1. `Fix` 修复默认主题下`Message` icon颜色丢失的问题 [#317](https://github.com/ksc-fe/kpc/issues/317)
+
+### 破坏性变更 
+
+1. `Change` `Drawer`由之前的点击抽屉外任何区域关闭抽屉，改为点击遮罩层才关闭
+1. `Change` `Datepicker`在选择时间时，去掉无用的年月展示信息
+1. `Change` 使用`es6 module`进行构建，例如代码编译优化 [#297](https://github.com/ksc-fe/kpc/issues/297)
+
+### 文档
+
+1. `Add` 支持`Vue/React`示例代码，在CodeSandbox中打开 [#267](https://github.com/ksc-fe/kpc/issues/267)
+2. `Vue/React`开始文档补充CDN用法
+
+
 ## v0.8.11
 
 1. `Add` `Table`调整列宽后，支持持久化保存列宽信息 [#292](https://github.com/ksc-fe/kpc/issues/292)
