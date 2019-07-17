@@ -1,7 +1,7 @@
 import React from 'react';
 import Transfer from 'kpc/components/transfer';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -47,12 +47,12 @@ export default class extends React.Component {
         return (
             <Transfer data={this.state.data}
                 b-label={(data, index, type) => {
-                    return <>
+                    return <React.Fragment>
                         <div>
                             <div>{data.name}</div>
                             <p>{data.desc} | {data.ip}</p>
                         </div>
-                    </>
+                    </React.Fragment>
                 }}
                 filter={this.filter}
                 filterable

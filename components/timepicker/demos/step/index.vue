@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Timepicker class="time" v-model="time" step="00:30:00"/>
+        <Timepicker class="time" v-model="time" step="00:30"/>
         You selected: {{ stringify(time) }}
         <br /><br />
         <Timepicker v-model="timeArray" multiple clearable

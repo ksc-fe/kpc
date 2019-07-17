@@ -17,4 +17,15 @@ export default class extends Intact {
             console.log('clicked cancel button');
         });
     }
+
+    showDialogWithTitle(type) {
+        Dialog[type]({
+            title: type[0].toUpperCase() + type.substring(1),
+            content: type + ' dialog',
+        }).then(() => {
+            console.log('clicked ok button');
+        }, () => {
+            console.log('clicked cancel button');
+        });
+    }
 }

@@ -1,15 +1,15 @@
 <template>
     <div>
-        <Editable v-model="value" :validate="value => /\d+/.test(value)"
+        <Editable v-model="value" :validate="value => /\\d+/.test(value)"
             ref="__test1"
             @change="_onChange"
         >{{ value }}</Editable>
         <br />
-        <Editable v-model="value" :validate="/\d+/"
+        <Editable v-model="value" :validate="/\\d+/"
             ref="__test2"
         >{{ value }}</Editable>
         <br />
-        <Editable v-model="value" validate="\d+"
+        <Editable v-model="value" validate="\\d+"
             @error="_showErrorTip"
             ref="__test3"
         >{{ value }}</Editable>

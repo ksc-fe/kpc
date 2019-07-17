@@ -2,8 +2,9 @@ import React from 'react';
 import {Form, FormItem} from 'kpc/components/form';
 import {Input} from 'kpc/components/input';
 import {Row, Col} from 'kpc/components/grid';
+import './index.styl';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};

@@ -16,7 +16,17 @@ export default {
             "data": [
                 {
                     "label": "parent",
-                    "children": []
+                    "children": [
+                        {
+                            "label": "first child",
+                            "children": []
+                        },
+                        {
+                            "label": "last child",
+                            "children": [],
+                            "loaded": true
+                        }
+                    ]
                 }
             ]
         }

@@ -1,9 +1,8 @@
 import {Form, FormItem} from 'kpc/components/form';
 import {Input} from 'kpc/components/input';
 
-<Form>
-    <FormItem>
-        <b:label><i style="color: red">*</i> 姓名</b:label>
+<Form starOnRequired>
+    <FormItem rules={{ {required: true} }} label="姓名">
         <Input />
     </FormItem>
     <FormItem>

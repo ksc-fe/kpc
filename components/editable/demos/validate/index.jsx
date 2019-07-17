@@ -3,7 +3,7 @@ import Editable from 'kpc/components/editable';
 
 import Message from 'kpc/components/message';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -33,7 +33,7 @@ export default class extends React.Component {
                     ref={i => this.__test2 = i}
                 >{this.state.value}</Editable>
                 <br />
-                <Editable value={this.state.value} on$change-value={(c, value) => this.setState({value})} validate="\d+"
+                <Editable value={this.state.value} on$change-value={(c, value) => this.setState({value})} validate="\\d+"
                     onError={this._showErrorTip}
                     ref={i => this.__test3 = i}
                 >{this.state.value}</Editable>

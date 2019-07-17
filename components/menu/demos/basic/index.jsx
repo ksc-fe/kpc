@@ -2,7 +2,7 @@ import React from 'react';
 import {Menu, MenuItem} from 'kpc/components/menu';
 import Icon from 'kpc/components/icon';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

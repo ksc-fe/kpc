@@ -1,8 +1,9 @@
 import React from 'react';
 import {Form, FormItem} from 'kpc/components/form';
 import {Input} from 'kpc/components/input';
+import './index.styl';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -20,14 +21,12 @@ export default class extends React.Component {
     
     render() {
         return (
-            <Form>
-                <FormItem
-                    b-label={<><i style={{"color":"red"}}>*</i> 姓名</>}
-                >
+            <Form starOnRequired>
+                <FormItem rules={{required: true}} label="姓名">
                     <Input />
                 </FormItem>
                 <FormItem
-                    b-label={<><i className="ion-person"/> 姓名</>}
+                    b-label={<React.Fragment><i className="ion-person"/> 姓名</React.Fragment>}
                 >
                     <Input />
                 </FormItem>

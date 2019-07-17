@@ -2,14 +2,14 @@ import React from 'react';
 import {Form, FormItem} from 'kpc/components/form';
 import {Input} from 'kpc/components/input';
 import {Button} from 'kpc/components/button';
-
+import './index.styl';
 
 // 添加全局规则
 Form.addMethod('letter', (value, item, param) => {
     return /^[a-z|A-Z]+$/.test(value);
 }, '只能输入字母');
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -57,7 +57,7 @@ export default class extends React.Component {
                     {this.state.descriptions.map((value, key) => {
                         return (
                             <FormItem
-                                b-append={<><Button onClick={this.remove.bind(this, key)}>删除</Button></>}
+                                b-append={<React.Fragment><Button onClick={this.remove.bind(this, key)}>删除</Button></React.Fragment>}
                                 model={`descriptions[${key}]`}
                                 hideLabel
                                 rules={{

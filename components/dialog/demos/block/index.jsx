@@ -1,8 +1,9 @@
 import React from 'react';
 import Button from 'kpc/components/button';
 import Dialog from 'kpc/components/dialog';
+import './index.styl';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     state = {}
 
     render() {
@@ -23,11 +24,11 @@ export default class extends React.Component {
                         </div>
                     }
                     b-footer={
-                        <>
+                        <React.Fragment>
                             Custom Footer
                             <Button onClick={() => this.setState({show: false})}>取消</Button>
                             <Button type="primary" onClick={() => this.setState({show: false})}>确认</Button>
-                        </>
+                        </React.Fragment>
                     }
                 >
                     Dialog Body 

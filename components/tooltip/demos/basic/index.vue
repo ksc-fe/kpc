@@ -3,9 +3,13 @@
         <Tooltip content="hello">
             hover the text
         </Tooltip>
-        <br /> <br />
+        <br /><br />
         <Tooltip>
             don't show anything if content is empty 
+        </Tooltip>
+        <br /><br />
+        <Tooltip content="hello" theme="light">
+            light theme 
         </Tooltip>
     </div>
 </template>

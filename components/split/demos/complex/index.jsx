@@ -6,10 +6,10 @@ import {Tabs, Tab} from 'kpc/components/tabs';
 import {FormItem} from 'kpc/components/form';
 import Button from 'kpc/components/button';
 import Icon from 'kpc/components/icon';
-
+import './index.styl';
 import {range} from 'kpc/components/utils';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -78,7 +78,7 @@ export default class extends React.Component {
         return (
             <div className="split-container">
                 <Split mode="vertical"
-                    b-first={<>
+                    b-first={<React.Fragment>
                         <Table data={this.state.data}
                             fixHeader
                             ref={i => this.table = i}
@@ -92,16 +92,16 @@ export default class extends React.Component {
                             <TableColumn title="网段" key="ip" />
                             <TableColumn title="操作" key="op"
                                 b-template={(data) => {
-                                    return <>
+                                    return <React.Fragment>
                                         <a>删除</a> 
-                                    </>
+                                    </React.Fragment>
                                 }}
                             >
                             </TableColumn>
                         </Table>
                         <Pagination total={100} size="small" />
-                    </>}
-                    b-last={<>
+                    </React.Fragment>}
+                    b-last={<React.Fragment>
                         <Button type="none" icon className="close"
                             onClick={this._close}
                         >
@@ -120,8 +120,8 @@ export default class extends React.Component {
                             </div> :
                             undefined
                         }
-                    </>}
-                    b-drag={<><Icon className="ion-drag" /></>}
+                    </React.Fragment>}
+                    b-drag={<React.Fragment><Icon className="ion-drag" /></React.Fragment>}
                     lastSize={this.state.size}
                     on$change-lastSize={(c, size) => this.setState({size})}
                     className={this._classNames({closed: this.state.size === '0px'})}

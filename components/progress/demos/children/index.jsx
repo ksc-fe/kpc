@@ -1,8 +1,9 @@
 import React from 'react';
 import Progress from 'kpc/components/progress';
 import {ButtonGroup, Button} from 'kpc/components/button';
+import './index.styl';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

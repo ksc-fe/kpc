@@ -1,7 +1,7 @@
 import React from 'react';
 import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     render() {
         return (
             <Breadcrumb>

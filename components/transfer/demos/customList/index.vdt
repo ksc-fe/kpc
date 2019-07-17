@@ -1,0 +1,39 @@
+import Transfer from 'kpc/components/transfer';
+import Checkbox from 'kpc/components/checkbox';
+
+<div>
+    <Transfer 
+        enableAdd={{ self.enableAdd }}
+        enableRemove={{ self.enableRemove }}
+        ev-add={{ self.onAdd }}
+        ev-remove={{ self.onRemove }}
+    >
+        <b:header params="type">
+            <div v-if={{ type === 'left' }}>未分配</div>
+            <div v-else>标准双人间</div>
+        </b:header>
+        <b:list params="type">
+            <template v-if={{ type === 'left' }}>
+                <div class="k-item" v-for={{ self.get('users') }}>
+                    <Checkbox v-model="checkedUsers" 
+                        trueValue={{ value }} 
+                        disabled={{ !!value.room }}
+                    >
+                        {{ value.name }}
+                        <span v-if={{ value.room }}>（{{ value.room.name }}）</span>
+                    </Checkbox>
+                </div>
+            </template>
+            <template v-else>
+                <div class="k-item" v-for={{ self.get('rooms') }}>
+                    <Checkbox v-model="checkedRooms" 
+                        trueValue={{ value }}
+                    >
+                        {{ value.name }}
+                        <span>（当前人数：{{ value.users.length }}）</span>
+                    </Checkbox>
+                </div>
+            </template>
+        </b:list>
+    </Transfer>
+</div>

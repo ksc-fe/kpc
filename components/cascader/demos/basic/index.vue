@@ -2,6 +2,9 @@
     <div>
         <Cascader :data="data" v-model="value" />
         You selected: {{ stringify(value) }}
+        <br />
+        <br />
+        <Cascader loading />
     </div>
 </template>
 <script>

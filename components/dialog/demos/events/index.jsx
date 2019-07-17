@@ -4,7 +4,7 @@ import Dialog from 'kpc/components/dialog';
 
 import Message from 'kpc/components/message';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};

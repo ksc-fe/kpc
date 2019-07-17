@@ -1,7 +1,7 @@
 import React from 'react';
 import {Table, TableColumn} from 'kpc/components/table';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     render() {
         const data = [
             {name: 'John'},
@@ -23,9 +23,9 @@ export default class extends React.Component {
                 <TableColumn key="column4" title="Column4" width="300" />
                 <TableColumn key="action" title="Action" width="200"
                     b-template={(data) => {
-                        return <>
+                        return <React.Fragment>
                             <a>action</a>
-                        </>
+                        </React.Fragment>
                     }}
                 >
                 </TableColumn>

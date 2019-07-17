@@ -1,7 +1,8 @@
 import React from 'react';
 import Tip from 'kpc/components/tip';
+import './index.styl';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     render() {
         return (
             <div>
@@ -15,7 +16,7 @@ export default class extends React.Component {
                     )
                 })}
                 <Tip closable
-                    b-close={<>No longer show</>}
+                    b-close={<React.Fragment>No longer show</React.Fragment>}
                 >
                     custom closing content
                 </Tip>

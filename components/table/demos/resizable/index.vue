@@ -20,6 +20,7 @@
             resizable
             :minColWidth="100"
             type="grid"
+            storeWidth="resizableTable"
         />
         <Form style="margin-top: 20px;">
             <FormItem style="width: 100%">

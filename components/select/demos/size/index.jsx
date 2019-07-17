@@ -1,7 +1,8 @@
 import React from 'react';
 import {Select, Option} from 'kpc/components/select';
+import './index.styl';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};

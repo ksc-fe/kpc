@@ -7,7 +7,6 @@
             title="Drawer Title"
             ref="__demoOne"
             :overlay="false"
-            :closable="false"
         >
             Drawer Without Overlay
         </Drawer>

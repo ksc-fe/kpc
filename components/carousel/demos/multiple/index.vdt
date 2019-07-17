@@ -1,0 +1,8 @@
+import {Carousel, CarouselItem} from 'kpc/components/carousel';
+
+<Carousel clonedAmount={{ 2 }}>
+    <CarouselItem class="one">1</CarouselItem>
+    <CarouselItem class="two">2</CarouselItem>
+    <CarouselItem class="three">3</CarouselItem>
+    <CarouselItem class="four">4</CarouselItem>
+</Carousel>

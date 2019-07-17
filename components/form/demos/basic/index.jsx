@@ -8,10 +8,10 @@ import {ButtonGroup, Button} from 'kpc/components/button';
 import {Switch} from 'kpc/components/switch';
 import {Slider} from 'kpc/components/slider';
 import {Datepicker} from 'kpc/components/datepicker';
-
+import './index.styl';
 import Message from 'kpc/components/message';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

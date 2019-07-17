@@ -1,7 +1,8 @@
 import React from 'react';
 import {Table, TableColumn} from 'kpc/components/table';
+import './index.styl';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

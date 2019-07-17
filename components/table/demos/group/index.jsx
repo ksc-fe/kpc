@@ -1,7 +1,8 @@
 import React from 'react';
 import {Table, TableColumn} from 'kpc/components/table';
+import './index.styl';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.oData = [
@@ -91,9 +92,9 @@ export default class extends React.Component {
                     <TableColumn title='名称' key='name' />
                     <TableColumn title='状态' key='status'
                         b-template={(data) => {
-                            return <>
+                            return <React.Fragment>
                                 <span>{data.status === 'active' ? '运行中' : '已关闭'}</span>
-                            </>
+                            </React.Fragment>
                         }}
                         group={[ 
                             {label: '运行中', value: 'active'},

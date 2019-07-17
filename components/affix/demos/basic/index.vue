@@ -1,0 +1,21 @@
+<template>
+    <div>
+        <Affix :top="87">
+            <Button>fix at 87px from the top</Button>
+        </Affix>
+        <Affix :bottom="0" ref="__test">
+            <Button>fix at the bottom</Button>
+        </Affix>
+    </div>
+</template>
+<script>
+import Affix from 'kpc/components/affix';
+import Button from 'kpc/components/button';
+
+export default {
+    components: {
+        Affix, Button
+    },
+}
+</script>
+<style lang="stylus" src="./index.styl"></style>

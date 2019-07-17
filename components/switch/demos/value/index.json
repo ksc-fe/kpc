@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>Switch</code>默认选中的值为<code>true</code>，非选中的值为<code>false</code>，通过<code>trueValue</code>和<code>falseValue</code>属性，我们可以指定选中和非选中的值。</p>\n",
-    "index": 224,
+    "index": 228,
     "highlighted": [
         {
             "language": "vdt",
@@ -21,7 +21,7 @@
         },
         {
             "language": "jsx",
-            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>;\n<span class=\"hljs-keyword\">import</span> {Switch} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/switch'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">React</span>.<span class=\"hljs-title\">Component</span> </span>{\n    <span class=\"hljs-keyword\">constructor</span>(props) {\n        <span class=\"hljs-keyword\">super</span>(props);\n        <span class=\"hljs-keyword\">this</span>.state = {};\n    }\n\n    render() {\n        <span class=\"hljs-keyword\">return</span> (\n            &lt;div&gt;\n                &lt;div style={{\"marginBottom\":\"20px\"}}&gt;\n                    &lt;Switch value={this.state.value1} on$change-value={(c, value1) =&gt; this.setState({value1})} /&gt;\n                    {JSON.stringify(this.state.value1)}\n                &lt;/div&gt;\n                &lt;div&gt;\n                    &lt;Switch value={this.state.value2} on$change-value={(c, value2) =&gt; this.setState({value2})} trueValue={1} falseValue=\"1\" /&gt;\n                    {JSON.stringify(this.state.value2)}\n                &lt;/div&gt;\n            &lt;/div&gt;\n        )\n    }\n}</code></pre>"
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>;\n<span class=\"hljs-keyword\">import</span> {Switch} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/switch'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-title\">Demo</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">React</span>.<span class=\"hljs-title\">Component</span> </span>{\n    <span class=\"hljs-keyword\">constructor</span>(props) {\n        <span class=\"hljs-keyword\">super</span>(props);\n        <span class=\"hljs-keyword\">this</span>.state = {};\n    }\n\n    render() {\n        <span class=\"hljs-keyword\">return</span> (\n            &lt;div&gt;\n                &lt;div style={{\"marginBottom\":\"20px\"}}&gt;\n                    &lt;Switch value={this.state.value1} on$change-value={(c, value1) =&gt; this.setState({value1})} /&gt;\n                    {JSON.stringify(this.state.value1)}\n                &lt;/div&gt;\n                &lt;div&gt;\n                    &lt;Switch value={this.state.value2} on$change-value={(c, value2) =&gt; this.setState({value2})} trueValue={1} falseValue=\"1\" /&gt;\n                    {JSON.stringify(this.state.value2)}\n                &lt;/div&gt;\n            &lt;/div&gt;\n        )\n    }\n}</code></pre>"
         }
     ]
 }

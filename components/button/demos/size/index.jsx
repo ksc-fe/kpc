@@ -1,7 +1,9 @@
 import React from 'react';
 import Button from 'kpc/components/button';
+import Icon from 'kpc/components/icon';
+import './index.styl';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     render() {
         return (
             <div>
@@ -10,10 +12,10 @@ export default class extends React.Component {
                 <Button size="small">small</Button>
                 <Button size="mini">mini</Button>
                 <br /><br />
-                <Button icon circle size="large"><i className="k-icon ion-ios-search"></i></Button>
-                <Button icon circle><i className="k-icon ion-ios-search"></i></Button>
-                <Button icon circle size="small"><i className="k-icon ion-ios-search"></i></Button>
-                <Button icon circle size="mini"><i className="k-icon ion-ios-search"></i></Button>
+                <Button icon circle size="large"><Icon className="ion-ios-search" size="large" /></Button>
+                <Button icon circle><Icon className="ion-ios-search" /></Button>
+                <Button icon circle size="small"><Icon className="ion-ios-search" size="small" /></Button>
+                <Button icon circle size="mini"><Icon className="ion-ios-search" size="mini" /></Button>
             </div>
         )
     }

@@ -39,7 +39,7 @@ module.exports =
 /******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
 /******/ 		// "0" is the signal for "already loaded"
 /******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("./chunk/" + {"0":"648fb4e7b8225e7d7f96","1":"60a0895b21c39dfe5031","2":"d35624a17b45803a3594","3":"6677db51a6e3625d42b6","4":"3ddbfd20b9a412c6926b"}[chunkId] + ".js");
+/******/ 			var chunk = require("./chunk/" + {"0":"4812e2f2f860654bc98f","1":"f611a42e27dcdeb9745e","2":"b1e1452fabf757f0398d","3":"5dd15c154edf4e6aa219","4":"ae150a1352a99e1e496c"}[chunkId] + ".js");
 /******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				modules[moduleId] = moreModules[moduleId];
@@ -126,6 +126,8 @@ var _intact = _interopRequireDefault(__webpack_require__("intact"));
 
 var _index = _interopRequireDefault(__webpack_require__("./components/app/index.vdt"));
 
+var _utils = __webpack_require__("./components/utils.js");
+
 __webpack_require__("./styles/kpc.styl");
 
 __webpack_require__("./components/app/index.styl");
@@ -178,7 +180,9 @@ function (_Intact) {
       var page = new Page(data);
       page.$app = _this; // for debug
 
-      global.__page = page;
+      if (_utils.hasWindow) {
+        window.__page = page;
+      }
 
       var done = function done() {
         if (_this._current === Page) {
@@ -238,7 +242,7 @@ exports.App = exports.default = App;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1557900064908
+      // 1563348547052
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -393,7 +397,7 @@ exports.Spin = exports.default = Spin;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1557900067901
+      // 1563348551202
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -545,7 +549,8 @@ exports.debounce = debounce;
 exports.throttle = throttle;
 exports.isExternalLink = isExternalLink;
 exports.getRestProps = getRestProps;
-exports.browser = exports.expandAnimationCallbacks = exports.noop = exports.isFunction = exports.isObject = exports.isNullOrUndefined = exports.get = void 0;
+exports.configure = configure;
+exports.config = exports.browser = exports.hasWindow = exports.expandAnimationCallbacks = exports.noop = exports.isFunction = exports.isObject = exports.isNullOrUndefined = exports.get = void 0;
 
 var _parseInt2 = _interopRequireDefault(__webpack_require__("@babel/runtime-corejs2/core-js/parse-int"));
 
@@ -567,14 +572,13 @@ var _keys = _interopRequireDefault(__webpack_require__("@babel/runtime-corejs2/c
 
 var _intact = _interopRequireDefault(__webpack_require__("intact"));
 
-var _babelTypes = __webpack_require__("babel-types");
-
 var utils = _intact.default.utils;
 var get = utils.get,
     isNullOrUndefined = utils.isNullOrUndefined,
     isObject = utils.isObject,
     isFunction = utils.isFunction,
-    noop = utils.noop;
+    noop = utils.noop,
+    extend = utils.extend;
 exports.noop = noop;
 exports.isFunction = isFunction;
 exports.isObject = isObject;
@@ -822,20 +826,33 @@ function mapChildren(children, callback) {
 var expandAnimationCallbacks = {
   'a:transition': 'c-expand',
   'ev-a:leaveStart': function evALeaveStart(el) {
-    return el.style.height = el.clientHeight + 'px';
+    el._height || (el._height = el.clientHeight + 'px');
+    el.style.height = el._height;
   },
   'ev-a:leave': function evALeave(el) {
     return el.style.height = 0;
   },
+  'ev-a:leaveEnd': function evALeaveEnd(el, isCancel) {
+    // 保持动画的连贯性，可能在leave动画被enter动画cancel
+    // 此时el._height存在，不要在start中去获取，否则会重绘
+    // 导致多个动画时，动画时长不一致
+    if (!isCancel) {
+      el.style.height = '';
+      el._height = null;
+    }
+  },
   'ev-a:enterStart': function evAEnterStart(el) {
-    el._height = el.clientHeight + 'px';
+    el._height || (el._height = el.clientHeight + 'px');
     el.style.height = 0;
   },
   'ev-a:enter': function evAEnter(el) {
     return el.style.height = el._height;
   },
-  'ev-a:enterEnd': function evAEnterEnd(el) {
-    return el.style.height = '';
+  'ev-a:enterEnd': function evAEnterEnd(el, isCancel) {
+    if (!isCancel) {
+      el.style.height = '';
+      el._height = null;
+    }
   }
 };
 exports.expandAnimationCallbacks = expandAnimationCallbacks;
@@ -861,17 +878,18 @@ function isNumber(n) {
   return typeof n === 'number';
 }
 
+var hasWindow = typeof window !== 'undefined';
+exports.hasWindow = hasWindow;
 var raf;
 
-if (typeof window !== 'undefined') {
+if (hasWindow) {
   raf = window.requestAnimationFrame ? window.requestAnimationFrame.bind(window) : setTimeout;
 }
 
 function nextFrame(fn) {
   raf(function () {
     return raf(fn);
-  }); // bellow does not work in firefox
-  // raf(fn);
+  });
 }
 
 function debounce(fn, delay) {
@@ -950,6 +968,15 @@ function getRestProps(instance, props) {
   }
 
   return ret;
+}
+
+var config = {
+  useWrapper: false
+};
+exports.config = config;
+
+function configure(options) {
+  extend(config, options);
 }
 
 /***/ }),
@@ -1507,7 +1534,7 @@ exports.default = _default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1557900070398
+      // 1563348551281
       var cssReload = require("!../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1670,10 +1697,10 @@ module.exports = require("@babel/runtime-corejs2/regenerator");
 
 /***/ }),
 
-/***/ "babel-types":
+/***/ "axios":
 /***/ (function(module, exports) {
 
-module.exports = require("babel-types");
+module.exports = require("axios");
 
 /***/ }),
 
@@ -1842,6 +1869,13 @@ module.exports = require("intact");
 /***/ (function(module, exports) {
 
 module.exports = require("mermaid");
+
+/***/ }),
+
+/***/ "monaco-editor":
+/***/ (function(module, exports) {
+
+module.exports = require("monaco-editor");
 
 /***/ }),
 

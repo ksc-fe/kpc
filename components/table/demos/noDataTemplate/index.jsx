@@ -1,7 +1,8 @@
 import React from 'react';
 import Table from 'kpc/components/table';
+import './index.styl';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     render() {
         const scheme = {a: '表头1', b: '表头2'};
         const data = [];
@@ -12,7 +13,7 @@ export default class extends React.Component {
                 <Table scheme={scheme} data={data} />
                 <Table scheme={scheme} data={data} noDataTemplate={tip} />
                 <Table scheme={scheme} data={data}
-                    b-no-data={<><div style={{"color":"red"}}>没有数据</div></>}
+                    b-no-data={<React.Fragment><div style={{"color":"red"}}>没有数据</div></React.Fragment>}
                 >
                 </Table>
             </div>

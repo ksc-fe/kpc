@@ -1,7 +1,7 @@
 import React from 'react';
 import Datepicker from 'kpc/components/datepicker';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     render() {
         return (
             <Datepicker disabledDate={(date) => {

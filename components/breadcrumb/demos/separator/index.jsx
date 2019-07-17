@@ -1,11 +1,12 @@
 import React from 'react';
 import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
+import './index.styl';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     render() {
         return (
             <Breadcrumb
-                b-separator={<><b className="separator">=></b></>}
+                b-separator={<React.Fragment><b className="separator">=></b></React.Fragment>}
             >
                 <BreadcrumbItem to="/">
                     <i className="ion-home" /> item 1

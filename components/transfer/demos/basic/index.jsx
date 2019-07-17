@@ -8,7 +8,8 @@ const data = [
     {label: '主机名3', key: 3, disabled: true},
     {label: '主机名4', key: 4},
 ];
-export default class extends React.Component {
+
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

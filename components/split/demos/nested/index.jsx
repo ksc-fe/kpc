@@ -1,19 +1,20 @@
 import React from 'react';
 import Split from 'kpc/components/split';
+import './index.styl';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     render() {
         return (
             <div className="wrapper">
                 <Split
-                    b-first={<><div className="panel">left</div></>}
-                    b-last={<>
+                    b-first={<React.Fragment><div className="panel">left</div></React.Fragment>}
+                    b-last={<React.Fragment>
                         <Split mode="vertical"
-                            b-first={<><div className="panel">right top</div></>}
-                            b-last={<><div className="panel">right bottom</div></>}
+                            b-first={<React.Fragment><div className="panel">right top</div></React.Fragment>}
+                            b-last={<React.Fragment><div className="panel">right bottom</div></React.Fragment>}
                         >
                         </Split>
-                    </>}
+                    </React.Fragment>}
                 >
                 </Split>
             </div>

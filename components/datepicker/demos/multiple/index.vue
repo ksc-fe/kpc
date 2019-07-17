@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Datepicker multiple v-model="date" />
+        <Datepicker multiple v-model="date" clearable />
         You selected: {{ stringify(date) }}
         <br /><br />
         <Datepicker multiple v-model="datetime" type="datetime" />

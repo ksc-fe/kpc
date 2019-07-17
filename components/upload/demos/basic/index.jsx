@@ -1,10 +1,10 @@
 import React from 'react';
 import Upload from 'kpc/components/upload';
-
+import './index.styl';
 import Dialog from 'kpc/components/dialog';
 import Message from 'kpc/components/message';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this._beforeRemove = this._beforeRemove.bind(this);
@@ -31,7 +31,7 @@ export default class extends React.Component {
     render() {
         return (
             <Upload multiple
-                b-tip={<>只能上传JPG/PNG格式文件，且不超过500kb</>}
+                b-tip={<React.Fragment>只能上传JPG/PNG格式文件，且不超过500kb</React.Fragment>}
                 beforeRemove={this._beforeRemove}
                 action="//jsonplaceholder.typicode.com/posts/"
                 accept=".jpg, .png"

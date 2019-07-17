@@ -1,8 +1,9 @@
 import React from 'react';
 import Button from 'kpc/components/button';
 import Icon from 'kpc/components/icon';
+import './index.styl';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};

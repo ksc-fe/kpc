@@ -1,7 +1,7 @@
 import React from 'react';
 import {Steps, Step} from 'kpc/components/steps';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     render() {
         return (
             <Steps value="1" status="error">

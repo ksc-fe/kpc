@@ -11,7 +11,10 @@ export default class extends Intact {
             data: [
                 {
                     label: 'parent',
-                    children: []
+                    children: [
+                        {label: 'first child', children: []},
+                        {label: 'last child', children: [], loaded: true},
+                    ],
                 },
             ],
         }

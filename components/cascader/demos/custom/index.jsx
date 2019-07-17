@@ -1,7 +1,7 @@
 import React from 'react';
 import Cascader from 'kpc/components/cascader';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -62,15 +62,15 @@ export default class extends React.Component {
         return (
             <Cascader data={this.state.data} clearable
                 b-format={(values) => {
-                    return <>
+                    return <React.Fragment>
                         {values.length ?
                             <div>
-                                <i className="ion-ios-location" style={{"lineHeight":"1","marginRight":"8px"}}></i>
+                                <i className="ion-ios-location" style={{"lineHeight":"1","marginRight":"8px","verticalAlign":"middle"}}></i>
                                 {values[values.length - 1].label}
                             </div> :
                             undefined
                         }
-                    </>
+                    </React.Fragment>
                 }}
             >
             </Cascader>

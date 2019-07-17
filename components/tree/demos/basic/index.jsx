@@ -1,7 +1,7 @@
 import React from 'react';
 import Tree from 'kpc/components/tree';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     render() {
         return (
             <Tree

@@ -69,3 +69,4 @@ export default {
     },
 }
 </script>
+<style lang="stylus" src="./index.styl"></style>

@@ -1,7 +1,8 @@
 import React from 'react';
 import {Table, TableColumn} from 'kpc/components/table';
+import './index.styl';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -48,9 +49,9 @@ export default class extends React.Component {
             <div className='no-data-template'>
                 <Table
                     b-expand={(data, index) => {
-                        return <>
+                        return <React.Fragment>
                             <div>Email: {data.email}</div>
-                        </>
+                        </React.Fragment>
                     }}
                     data={this.state.data} 
                     checkType="none"
@@ -61,9 +62,9 @@ export default class extends React.Component {
             
                 <Table
                     b-expand={(data, index) => {
-                        return <>
+                        return <React.Fragment>
                             <div>Email: {data.email}</div>
-                        </>
+                        </React.Fragment>
                     }}
                     data={this.state.data} 
                     checkType="none"
@@ -73,7 +74,7 @@ export default class extends React.Component {
                 >
                     <TableColumn title="点击+，展开内容" key="name"
                         b-template={(data, index) => {
-                            return <>
+                            return <React.Fragment>
                                 <div>
                                     <i 
                                         className={this._classNames({
@@ -85,7 +86,7 @@ export default class extends React.Component {
                                     ></i>
                                     {data.name}
                                 </div>
-                            </>
+                            </React.Fragment>
                         }}
                     >
                     </TableColumn>

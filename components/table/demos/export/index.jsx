@@ -1,8 +1,9 @@
 import React from 'react';
 import {Table, TableColumn} from 'kpc/components/table';
 import {Button} from 'kpc/components/button';
+import './index.styl';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -43,28 +44,28 @@ export default class extends React.Component {
                 <Table data={this.state.data} ref={i => this.table = i}>
                     <TableColumn title="定义该列单元格内容" key="a"
                         b-template={(data) => {
-                            return <>
+                            return <React.Fragment>
                                 <a>{data.a}</a>
-                            </>
+                            </React.Fragment>
                         }}
                     >
                     </TableColumn>
                     <TableColumn title="普通文本" key="b" />
                     <TableColumn title="自定义导出文本" key="c"
                         b-template={(data) => {
-                            return <>
+                            return <React.Fragment>
                                 <div data-text={'自定义导出文本:' + data.c}>
                                     {data.c}
                                 </div>
-                            </>
+                            </React.Fragment>
                         }}
                     >
                     </TableColumn>
                     <TableColumn title="操作" key="op" ignore align="right"
                         b-template={(data) => {
-                            return <>
+                            return <React.Fragment>
                                 <a>删除</a> 
-                            </>
+                            </React.Fragment>
                         }}
                     >
                     </TableColumn>

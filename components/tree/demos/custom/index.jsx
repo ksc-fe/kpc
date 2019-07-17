@@ -1,8 +1,9 @@
 import React from 'react';
 import Tree from 'kpc/components/tree';
 import {Button, ButtonGroup} from 'kpc/components/button';
+import './index.styl';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -81,7 +82,7 @@ export default class extends React.Component {
                 </div>
                 <Tree data={data} ref={i => this.tree = i} checkbox
                     b-label={(data, node) => {
-                        return <>
+                        return <React.Fragment>
                             <span className="k-text">{data.label}</span>
                             {!data.disabled ?
                                 <ButtonGroup>
@@ -90,7 +91,7 @@ export default class extends React.Component {
                                 </ButtonGroup> :
                                 undefined
                             }
-                        </>
+                        </React.Fragment>
                     }}
                 >
                 </Tree>

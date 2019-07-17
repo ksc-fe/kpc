@@ -1,18 +1,19 @@
 import React from 'react';
 import {Table, TableColumn} from 'kpc/components/table';
 import {Tooltip} from 'kpc/components/tooltip';
+import './index.styl';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     render() {
         const scheme = {
             a: {
                 title: (
-                    <>
+                    <React.Fragment>
                         <span title="自定义表头内容" className="c-middle title">自定义表头内容</span>
                         <Tooltip content="tooltip content">
                             <i className="ion-ios-help-outline c-middle"></i>
                         </Tooltip>
-                    </>
+                    </React.Fragment>
                 ), 
                 group: [{label: 'test', value: ''}],
                 sortable: true,
@@ -26,12 +27,12 @@ export default class extends React.Component {
                 <Table scheme={scheme} data={data} />
                 <Table data={data}>
                     <TableColumn key="a"
-                        b-title={<>
+                        b-title={<React.Fragment>
                             <span title="自定义表头内容" className="c-middle title">自定义表头内容</span>
                             <Tooltip content="tooltip content">
                                 <i className="ion-ios-help-outline c-middle"></i>
                             </Tooltip>
-                        </>}
+                        </React.Fragment>}
                         group={[{label: 'test', value: ''}]}
                         sortable
                     >

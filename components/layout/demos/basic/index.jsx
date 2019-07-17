@@ -3,8 +3,9 @@ import {Layout, Header, Aside, Body, Footer} from 'kpc/components/layout';
 import {Menu, MenuItem} from 'kpc/components/menu';
 import Icon from 'kpc/components/icon';
 import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
+import './index.styl';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

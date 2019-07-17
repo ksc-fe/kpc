@@ -1,14 +1,16 @@
 import React from 'react';
 import Button from 'kpc/components/button';
+import Icon from 'kpc/components/icon';
+import './index.styl';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     render() {
         return (
             <div>
-                <Button icon><i className="ion-ios-search"></i></Button>
-                <Button icon circle><i className="ion-ios-search"></i></Button>
-                <Button type="primary"><i className="k-icon ion-ios-search"></i>搜索</Button>
-                <Button circle type='primary'><i className="k-icon ion-ios-search"></i>搜索</Button>
+                <Button icon><Icon className="ion-ios-search" /></Button>
+                <Button icon circle><Icon className="ion-ios-search" /></Button>
+                <Button type="primary"><Icon className="ion-ios-search" size="small" />搜索</Button>
+                <Button circle type='primary'><Icon className="ion-ios-search" size="small" />搜索</Button>
             </div>
         )
     }

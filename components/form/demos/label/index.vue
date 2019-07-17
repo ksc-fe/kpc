@@ -1,7 +1,6 @@
 <template>
-    <Form>
-        <FormItem>
-            <template slot="label"><i style="color: red">*</i> 姓名</template>
+    <Form starOnRequired>
+        <FormItem :rules="{required: true}" label="姓名">
             <Input />
         </FormItem>
         <FormItem>
@@ -20,3 +19,4 @@ export default {
     },
 }
 </script>
+<style lang="stylus" src="./index.styl"></style>

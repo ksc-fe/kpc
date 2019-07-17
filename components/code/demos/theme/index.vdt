@@ -1,0 +1,11 @@
+import Code from 'kpc/components/code';
+import {ButtonGroup, Button} from 'kpc/components/button';
+
+<div>
+    主题：<ButtonGroup v-model="theme" checkType="radio">
+        <Button v-for={{ ['vs', 'vs-dark', 'hc-black'] }}
+            value={{ value }}
+        >{{ value }}</Button>
+    </ButtonGroup>
+    <Code v-model="value" height="200px" theme={{ self.get('theme') }} />
+</div>

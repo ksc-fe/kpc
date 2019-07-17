@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>组件库提供了<code>Search</code>组件，用于定义点击后展开的搜索框，该组件有两种类型，通过<code>type</code>属性指定，绑定<code>submit</code>事件用于提交搜索结果</p>\n<blockquote>\n<p>不要将该组件用于表单中，因为它本身就会渲染成独立的表单</p>\n</blockquote>\n",
-    "index": 241,
+    "index": 254,
     "highlighted": [
         {
             "language": "vdt",
@@ -21,7 +21,7 @@
         },
         {
             "language": "jsx",
-            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>;\n<span class=\"hljs-keyword\">import</span> {Search} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/input'</span>;\n\n<span class=\"hljs-keyword\">import</span> Message <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/message'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">React</span>.<span class=\"hljs-title\">Component</span> </span>{\n    <span class=\"hljs-keyword\">constructor</span>(props) {\n        <span class=\"hljs-keyword\">super</span>(props);\n        <span class=\"hljs-keyword\">this</span>._search = <span class=\"hljs-keyword\">this</span>._search.bind(<span class=\"hljs-keyword\">this</span>);\n    }\n\n    _search(keywords) {\n        Message.success(<span class=\"hljs-string\">'Search by keywords: '</span> + keywords);\n    }\n    \n    render() {\n        <span class=\"hljs-keyword\">return</span> (\n            &lt;div&gt;\n                &lt;Search onSubmit={this._search} /&gt;\n                &lt;br /&gt;\n                &lt;Search type=\"line\" onSubmit={this._search} /&gt;\n            &lt;/div&gt;\n        )\n    }\n}</code></pre>"
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>;\n<span class=\"hljs-keyword\">import</span> {Search} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/input'</span>;\n\n<span class=\"hljs-keyword\">import</span> Message <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/message'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-title\">Demo</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">React</span>.<span class=\"hljs-title\">Component</span> </span>{\n    <span class=\"hljs-keyword\">constructor</span>(props) {\n        <span class=\"hljs-keyword\">super</span>(props);\n        <span class=\"hljs-keyword\">this</span>._search = <span class=\"hljs-keyword\">this</span>._search.bind(<span class=\"hljs-keyword\">this</span>);\n    }\n\n    _search(keywords) {\n        Message.success(<span class=\"hljs-string\">'Search by keywords: '</span> + keywords);\n    }\n    \n    render() {\n        <span class=\"hljs-keyword\">return</span> (\n            &lt;div&gt;\n                &lt;Search onSubmit={this._search} /&gt;\n                &lt;br /&gt;\n                &lt;Search type=\"line\" onSubmit={this._search} /&gt;\n            &lt;/div&gt;\n        )\n    }\n}</code></pre>"
         }
     ]
 }

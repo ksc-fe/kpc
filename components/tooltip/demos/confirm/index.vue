@@ -2,6 +2,7 @@
     <div>
         <Tooltip content="确定删除？"
             confirm
+            theme="light"
             trigger="click"
             @ok="ok"
             @cancel="cancel"

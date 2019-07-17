@@ -2,7 +2,7 @@ import React from 'react';
 import Table from 'kpc/components/table';
 import {Form, FormItem} from 'kpc/components/form';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -46,10 +46,11 @@ export default class extends React.Component {
                     resizable
                     minColWidth={100}
                     type="grid"
+                    storeWidth="resizableTable"
                 />
                 <Form style={{"marginTop":"20px"}}>
                     <FormItem style={{"width":"100%"}}
-                        b-label={<><div style={{"width":"140px"}}>table in table-cell</div></>}
+                        b-label={<React.Fragment><div style={{"width":"140px"}}>table in table-cell</div></React.Fragment>}
                     >
                         <Table 
                             fixHeader

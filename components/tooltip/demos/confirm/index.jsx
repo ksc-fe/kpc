@@ -4,7 +4,7 @@ import Button from 'kpc/components/button';
 
 import Message from 'kpc/components/message';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.ok = this.ok.bind(this);
@@ -24,6 +24,7 @@ export default class extends React.Component {
             <div>
                 <Tooltip content="确定删除？"
                     confirm
+                    theme="light"
                     trigger="click"
                     onOk={this.ok}
                     onCancel={this.cancel}

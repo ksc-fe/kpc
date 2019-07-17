@@ -3,8 +3,9 @@ import {Menu, MenuItem} from 'kpc/components/menu';
 import {Switch} from 'kpc/components/switch';
 import {ButtonGroup, Button} from 'kpc/components/button';
 import Icon from 'kpc/components/icon';
+import './index.styl';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -28,7 +29,7 @@ export default class extends React.Component {
                 </ButtonGroup>
                 <br /><br />
                 <Menu expandedKeys={this.state.expandedKeys}
-                    b-header={<><Icon className="ion-star" />Header</>}
+                    b-header={<React.Fragment><Icon className="ion-star" />Header</React.Fragment>}
                     on$change-expandedKeys={(c, expandedKeys) => this.setState({expandedKeys})} 
                     collapse={this.state.isCollapse}
                     theme={this.state.theme}

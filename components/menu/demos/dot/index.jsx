@@ -2,7 +2,7 @@ import React from 'react';
 import {Menu, MenuItem} from 'kpc/components/menu';
 import Icon from 'kpc/components/icon';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -21,7 +21,7 @@ export default class extends React.Component {
     render() {
         return (
             <Menu
-                b-header={<><Icon className="ion-star" />Header</>}
+                b-header={<React.Fragment><Icon className="ion-star" />Header</React.Fragment>}
                 expandedKeys={this.state.expandedKeys}
                 on$change-expandedKeys={(c, expandedKeys) => this.setState({expandedKeys})}
                 selectedKey={this.state.selectedKey}

@@ -2,7 +2,7 @@ import React from 'react';
 import Drawer from 'kpc/components/drawer';
 import {Button, ButtonGroup} from 'kpc/components/button';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -22,7 +22,6 @@ export default class extends React.Component {
                     title="Drawer Title"
                     ref={i => this.__demoOne = i}
                     overlay={false}
-                    closable={false}
                 >
                     Drawer Without Overlay
                 </Drawer>

@@ -3,7 +3,7 @@
         <Timepicker v-model="time" min="01:34:56" max="15:02:59" />
         You selected: {{ time }}
         <br /><br />
-        <Timepicker v-model="timeArray" multiple />
+        <Timepicker v-model="timeArray" multiple clearable />
         You selected: {{ stringify(timeArray) }}
     </div>
 </template>

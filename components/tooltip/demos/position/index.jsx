@@ -2,7 +2,7 @@ import React from 'react';
 import Tooltip from 'kpc/components/tooltip';
 import {ButtonGroup, Button} from 'kpc/components/button';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     render() {
         return (
             <ButtonGroup>

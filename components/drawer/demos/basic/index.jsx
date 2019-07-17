@@ -3,7 +3,7 @@ import Drawer from 'kpc/components/drawer';
 import {Button, ButtonGroup} from 'kpc/components/button';
 import {Select, Option} from 'kpc/components/select';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};

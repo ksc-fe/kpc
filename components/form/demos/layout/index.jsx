@@ -4,7 +4,7 @@ import {Input} from 'kpc/components/input';
 import {Select, Option} from 'kpc/components/select';
 import {ButtonGroup, Button} from 'kpc/components/button';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

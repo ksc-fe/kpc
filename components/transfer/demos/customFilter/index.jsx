@@ -3,7 +3,7 @@ import Transfer from 'kpc/components/transfer';
 import Input from 'kpc/components/input';
 import {Select, Option} from 'kpc/components/select';
 import Tag from 'kpc/components/tag';
-
+import './index.styl';
 function mockApi(policy) {
     const data = [
         {name: 'AdministratorAccess', policy: 'system', 'members': 11, desc: '管理所有资源的权限'},
@@ -22,7 +22,7 @@ function mockApi(policy) {
     });
 }
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -71,16 +71,16 @@ export default class extends React.Component {
             <div>
                 <Transfer data={this.state.data}
                     b-filter={(type) => {
-                        return <>
+                        return <React.Fragment>
                             {type === 'left' ?
                                 <Input size="small"
-                                    b-prepend={<>
+                                    b-prepend={<React.Fragment>
                                         <Select value={this.state.policy} on$change-value={(c, policy) => this.setState({policy})} width="100" size="small">
                                             <Option value="all">全部策略</Option>
                                             <Option value="system">系统策略</Option>
                                             <Option value="common">通用策略</Option>
                                         </Select>
-                                    </>}
+                                    </React.Fragment>}
                                     placeholder="请输入"
                                     clearable
                                     value={this.state.keywords}
@@ -89,10 +89,10 @@ export default class extends React.Component {
                                 </Input> :
                                 undefined
                             }
-                        </>
+                        </React.Fragment>
                     }}
                     b-label={(data, index, type) => {
-                        return <>
+                        return <React.Fragment>
                             <div>
                                 <div>
                                     {data.name}
@@ -103,7 +103,7 @@ export default class extends React.Component {
                                 </div>
                                 <p>{data.members}人 / {data.desc}</p>
                             </div>
-                        </>
+                        </React.Fragment>
                     }}
                     filterable
                     keyName="name"

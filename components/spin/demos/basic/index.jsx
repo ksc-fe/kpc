@@ -1,7 +1,8 @@
 import React from 'react';
 import Spin from 'kpc/components/spin';
+import './index.styl';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     render() {
         return (
             <div>

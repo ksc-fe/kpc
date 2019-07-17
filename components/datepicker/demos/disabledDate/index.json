@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>disabledDate</code>属性，可以定义个方法，来指定哪些日期被禁止选择。组件会将一个日期字符串作为方法的参数，如果方法返回“真”则禁用掉该日期，否则不禁用。</p>\n",
-    "index": 186,
+    "index": 201,
     "highlighted": [
         {
             "language": "vdt",
@@ -21,7 +21,7 @@
         },
         {
             "language": "jsx",
-            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>;\n<span class=\"hljs-keyword\">import</span> Datepicker <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/datepicker'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">React</span>.<span class=\"hljs-title\">Component</span> </span>{\n    render() {\n        <span class=\"hljs-keyword\">return</span> (\n            <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Datepicker</span> <span class=\"hljs-attr\">disabledDate</span>=<span class=\"hljs-string\">{(date)</span> =&gt;</span> {\n                // 禁用掉2018-02-05和2018-03-05\n                return ~['2018-02-05', '2018-03-05'].indexOf(date);\n            }} /&gt;\n        )\n    }\n}</span></code></pre>"
+            "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>;\n<span class=\"hljs-keyword\">import</span> Datepicker <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/datepicker'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-title\">Demo</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">React</span>.<span class=\"hljs-title\">Component</span> </span>{\n    render() {\n        <span class=\"hljs-keyword\">return</span> (\n            <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Datepicker</span> <span class=\"hljs-attr\">disabledDate</span>=<span class=\"hljs-string\">{(date)</span> =&gt;</span> {\n                // 禁用掉2018-02-05和2018-03-05\n                return ~['2018-02-05', '2018-03-05'].indexOf(date);\n            }} /&gt;\n        )\n    }\n}</span></code></pre>"
         }
     ]
 }

@@ -1,7 +1,8 @@
 import React from 'react';
 import Pagination from 'kpc/components/pagination';
+import './index.styl';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this._onChange = this._onChange.bind(this);

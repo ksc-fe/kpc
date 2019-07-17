@@ -1,7 +1,7 @@
 <template>
     <div>
         <Table :scheme="scheme" :data="data" resizable ref="__test" />
-        <Table :data="data" resizable >
+        <Table :data="data" resizable>
             <TableColumn key="a" title="表头1" />
             <TableColumn key="b" title="表头2" />
         </Table>
@@ -22,3 +22,4 @@ export default {
     },
 }
 </script>
+<style lang="stylus" src="./index.styl"></style>

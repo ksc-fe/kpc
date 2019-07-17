@@ -2,10 +2,12 @@
     <div>
         <Button>default</Button>
         <Button type="primary">primay</Button>
+        <Button type="secondary">secondary</Button>
         <Button type="warning">warning</Button>
         <Button type="danger">danger</Button>
         <Button type="success">success</Button>
         <Button type="none">none</Button>
+        <Button type="link">link</Button>
     </div>
 </template>
 <script>
@@ -17,3 +19,4 @@ export default {
     },
 }
 </script>
+<style lang="stylus" src="./index.styl"></style>

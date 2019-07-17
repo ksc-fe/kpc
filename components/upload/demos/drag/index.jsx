@@ -1,9 +1,9 @@
 import React from 'react';
 import Upload from 'kpc/components/upload';
-
+import './index.styl';
 import Dialog from 'kpc/components/dialog';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this._beforeRemove = this._beforeRemove.bind(this);

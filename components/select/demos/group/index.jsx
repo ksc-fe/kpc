@@ -1,7 +1,8 @@
 import React from 'react';
 import {Select, Option, OptionGroup} from 'kpc/components/select';
+import './index.styl';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -32,7 +33,7 @@ export default class extends React.Component {
                         <Option value="Friday">星期五</Option>
                     </OptionGroup>
                     <OptionGroup
-                        b-label={<><i className="ion-wineglass"></i>休息日</>}
+                        b-label={<React.Fragment><i className="ion-wineglass"></i>休息日</React.Fragment>}
                     >
                         <Option value="Saturday">星期六</Option>
                         <Option value="Sunday">星期天</Option>

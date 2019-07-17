@@ -1,7 +1,7 @@
 import React from 'react';
 import {Switch} from 'kpc/components/switch';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};

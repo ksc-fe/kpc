@@ -4,8 +4,9 @@ import {Menu, MenuItem} from 'kpc/components/menu';
 import Icon from 'kpc/components/icon';
 import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
 import {Button} from 'kpc/components/button';
+import './index.styl';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

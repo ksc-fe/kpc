@@ -1,14 +1,15 @@
 import React from 'react';
 import Tip from 'kpc/components/tip';
+import './index.styl';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     render() {
         return (
             <div>
                 {['default', 'primary', 'success', 'warning', 'danger'].map((value, key) => {
                     return (
                         <Tip
-                            b-title={<>{value}</>}
+                            b-title={<React.Fragment>{value}</React.Fragment>}
                             key={value}
                             type={value}
                             closable

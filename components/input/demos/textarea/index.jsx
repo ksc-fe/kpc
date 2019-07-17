@@ -1,7 +1,7 @@
 import React from 'react';
 import Input from 'kpc/components/input';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     render() {
         return (
             <div>

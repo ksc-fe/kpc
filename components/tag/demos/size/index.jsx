@@ -1,7 +1,8 @@
 import React from 'react';
 import Tag from 'kpc/components/tag';
+import './index.styl';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     render() {
         return (
             <div>

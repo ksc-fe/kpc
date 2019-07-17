@@ -3,7 +3,7 @@ import {Search} from 'kpc/components/input';
 
 import Message from 'kpc/components/message';
 
-export default class extends React.Component {
+export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this._search = this._search.bind(this);
