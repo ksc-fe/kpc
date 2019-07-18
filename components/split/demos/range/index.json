@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>我们可以通过<code>min</code>和<code>max</code>分别指定面板的最小和最大尺寸，默认是针对第一个面板而言，当我们使用<code>lastSize</code>来指定面板的大小，则针对是第二个面板。最小最大值不用带单位，默认为<code>px</code>，支持百分比<code>%</code>，我们还可以使用计算属性，例如<code>100%-10</code> <code>50%+10</code></p>\n",
-    "index": 116,
+    "index": 114,
     "highlighted": [
         {
             "language": "vdt",

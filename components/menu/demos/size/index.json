@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>size</code>属性，可以定义菜单的尺寸：<code>large</code> <code>default</code> <code>small</code></p>\n",
-    "index": 215,
+    "index": 210,
     "highlighted": [
         {
             "language": "vdt",

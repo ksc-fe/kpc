@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>添加<code>checkbox</code>属性即可支持但复选框的树形控件；你也可以通过<code>checkedKeys</code>指定哪些节点选中，与<code>expandedKeys</code>不同的是，你无需指定父节点也选中，组件会自动判断父节点的选中和取消选中状态。</p>\n<p>通过<code>getCheckedData([onlyLeaf])</code>方法可以获取选中的节点的数据，当<code>onlyLeaf</code>为<code>true</code>时，仅返回选中的叶子节点</p>\n",
-    "index": 105,
+    "index": 68,
     "highlighted": [
         {
             "language": "vdt",

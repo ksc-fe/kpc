@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>提示默认会在5s后关闭，我们可以指定<code>duration</code>来自定义时长（单位ms）。当指定为<code>0</code>时，提示不会自动关闭。</p>\n",
-    "index": 84,
+    "index": 98,
     "highlighted": [
         {
             "language": "vdt",

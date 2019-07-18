@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过添加<code>to</code>属性，来展示超链接</p>\n<blockquote>\n<p><code>to</code>属性支持<code>vue-router</code>或者<code>react-router</code> <code>push</code>方法参数用法</p>\n</blockquote>\n",
-    "index": 5,
+    "index": 7,
     "highlighted": [
         {
             "language": "vdt",

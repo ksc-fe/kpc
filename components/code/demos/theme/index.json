@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>theme</code>属性可以指定主题，可选主题为：<code>vs</code>（默认） <code>vs-dark</code> <code>hc-black</code></p>\n<blockquote>\n<p>切换主题会引入相应的css文件，所以它是全局生效的，并不能对单个实例引用不同主题</p>\n</blockquote>\n",
-    "index": 130,
+    "index": 160,
     "highlighted": [
         {
             "language": "vdt",

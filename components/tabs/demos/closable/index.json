@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>给<code>Tabs</code>添加<code>closable</code>属性，可以使所有标签可以关闭，当然你也可以通过<code>Tab</code>的<code>closable</code>属性单独控制该<code>Tab</code>是否可关闭。当点击关闭按钮时，<code>Tabs</code>会触发<code>remove</code>事件，并且将关闭的<code>Tab</code>的<code>value</code>作为参数传给事件回调函数</p>\n",
-    "index": 256,
+    "index": 257,
     "highlighted": [
         {
             "language": "vdt",

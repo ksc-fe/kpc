@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>组件提供了三种样式，可用<code>type</code>属性指定：<code>shadow</code> (带阴影，默认) <code>border</code> (带边框) <code>none</code> (无边框和阴影，可用于深色背景下)</p>\n",
-    "index": 8,
+    "index": 15,
     "highlighted": [
         {
             "language": "vdt",

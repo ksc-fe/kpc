@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>添加<code>loading</code>属性，可以将按钮设为加载状态，此时按钮不可点。</p>\n<blockquote>\n<p>请给图标元素添加<code>k-icon</code>类名，或者使用<code>Icon</code>组件，用于定位图标元素，以便按钮变为<code>loading</code>状态时能够将它替换为loading图标</p>\n</blockquote>\n",
-    "index": 126,
+    "index": 143,
     "highlighted": [
         {
             "language": "vdt",
