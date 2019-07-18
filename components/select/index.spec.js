@@ -5,6 +5,9 @@ import FilterDemo from '~/components/select/demos/filterable';
 import GroupDemo from '~/components/select/demos/group';
 import AllowUnmatchDemo from '~/components/select/demos/allowUnmatch';
 import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
+import Tooltip from 'kpc/components/tooltip';
+import Intact from 'intact';
+import {Select, Option} from 'kpc/components/select';
 
 describe('Select', () => {
     let instance;
@@ -137,5 +140,27 @@ describe('Select', () => {
         dispatchEvent(input, 'input');
         const dropdown = getElement('.k-select-dropdown');
         expect(dropdown.innerHTML).to.matchSnapshot();
+    });
+
+    it('Tooltip with Select', async () => {
+        class Demo extends Intact {
+            @Intact.template()
+            static template = `<div><Tooltip content="hello">
+                <Select><Option value="1">option 1</Option></Select> 
+            </Tooltip></div>`
+            _init() {
+                this.Tooltip = Tooltip;
+                this.Select = Select;
+                this.Option = Option;
+            }
+        }
+
+        instance = mount(Demo);
+        const wrapper = instance.element.querySelector('.k-wrapper');
+        wrapper.click();
+        wrapper.click();
+
+        expect(getElement('.k-select-dropdown')).to.be.undefined;
+        expect(getElement('.k-tooltip-content')).to.be.undefined;
     });
 });
