@@ -4,7 +4,7 @@ import './layout.styl';
 
 let theme;
 function changeTheme(newTheme, oldTheme) {
-    const link = document.querySelector('link[href^=http]');
+    const link = document.getElementById('theme_css');
     if (!link) return;
 
     link.href = link.href.replace(`theme-${oldTheme}`, `theme-${newTheme}`);

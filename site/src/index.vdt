@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>{{ self.title  }}</title>
     <link rel="shortcut icon" href="/imgs/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href={{ process.URL_PREFIX + "/theme-kpc.css" }}
+    <link rel="stylesheet" id="theme_css" href={{ process.URL_PREFIX + "/theme-kpc.css" }}
         v-if={{ !process.env.THEME }}
     />
 </head>
