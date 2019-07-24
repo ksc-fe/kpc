@@ -2158,6 +2158,14 @@
             "path": "docs/changelog.md",
             "children": [
                 {
+                    "title": "v1.0.1",
+                    "path": "#header-v1.0.1",
+                    "level": 1,
+                    "content": "<h1 id='header-v1.0.1'>v1.0.1</h1>",
+                    "text": "v1.0.1",
+                    "children": []
+                },
+                {
                     "title": "v1.0.0",
                     "path": "#header-v1.0.0",
                     "level": 1,
