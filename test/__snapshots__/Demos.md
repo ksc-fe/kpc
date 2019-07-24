@@ -587,7 +587,7 @@
 ####     `Grid gutter`
 
 ```
-"<div><div class=\"k-row k-gutter\" style=\"margin-left: -8px; margin-right: -8px;\"><div class=\"k-col k-12\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div>col-12</div></div></div><div class=\"k-col k-12\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div>col-12</div></div></div></div><div class=\"k-row k-gutter\" style=\"margin-left: -8px; margin-right: -8px;\"><div class=\"k-col k-4\"><div>col-4</div></div><div class=\"k-col k-6\"><div>col-6</div></div><div class=\"k-col k-8\"><div>col-8</div></div><div class=\"k-col k-6\"><div>col-6</div></div></div></div>"
+"<div><div class=\"k-row k-gutter\" style=\"margin-left: -8px; margin-right: -8px;\"><div class=\"k-col k-12\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div>col-12</div></div></div><div class=\"k-col k-12\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div>col-12</div></div></div></div><div class=\"k-row k-gutter\" style=\"margin-left: -8px; margin-right: -8px;\"><div class=\"k-col k-4\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div>col-4</div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div>col-6</div></div></div><div class=\"k-col k-8\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div>col-8</div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div>col-6</div></div></div></div></div>"
 ```
 
 ####     `Grid offset`
@@ -2289,7 +2289,7 @@
 ####     `Grid gutter`
 
 ```
-"<div><div><div class=\"k-row k-gutter\" style=\"margin-left: -8px; margin-right: -8px;\"><div class=\"k-col k-12\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div>col-12</div></div></div><div class=\"k-col k-12\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div>col-12</div></div></div></div><div class=\"k-row k-gutter\" style=\"margin-left: -8px; margin-right: -8px;\"><div class=\"k-col k-4\"><div>col-4</div></div><div class=\"k-col k-6\"><div>col-6</div></div><div class=\"k-col k-8\"><div>col-8</div></div><div class=\"k-col k-6\"><div>col-6</div></div></div></div></div>"
+"<div><div><div class=\"k-row k-gutter\" style=\"margin-left: -8px; margin-right: -8px;\"><div class=\"k-col k-12\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div>col-12</div></div></div><div class=\"k-col k-12\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div>col-12</div></div></div></div><div class=\"k-row k-gutter\" style=\"margin-left: -8px; margin-right: -8px;\"><div class=\"k-col k-4\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div>col-4</div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div>col-6</div></div></div><div class=\"k-col k-8\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div>col-8</div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div>col-6</div></div></div></div></div></div>"
 ```
 
 ####     `Grid offset`
