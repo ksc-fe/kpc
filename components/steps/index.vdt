@@ -26,6 +26,7 @@ let steps = (Array.isArray(children) ? children : [children]).filter(vNode => {
             props['ev-click'] = self._changeIndex.bind(self, stepIndex);
         }
         stepIndex++;
+        vNode.$ = true;
         return true;
     }
     return false;

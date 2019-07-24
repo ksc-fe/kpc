@@ -25,6 +25,7 @@ const classNameObj = {
                     _value: value,
                     _checkType: checkType,
                 }
+                vNode.$ = true;
             }
             return vNode;
         }) : 

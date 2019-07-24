@@ -118,7 +118,8 @@ const OptionsVNodes = ({children}) => {
             }
 
             // return the cloned vNode
-            return h(Option, props);
+            vNode = _Vdt.miss.clone(vNode);
+            vNode.props = props;
         } else if (vNode.tag === OptionGroup) {
             hasData = true;
             let props = vNode.props;
@@ -126,8 +127,9 @@ const OptionsVNodes = ({children}) => {
                 ...props,
                 children: <OptionsVNodes>{{ props.children }}</OptionsVNodes>
             };
+            vNode = _Vdt.miss.clone(vNode);
+            vNode.props = props;
             groupIndex++;
-            return h(OptionGroup, props);
         }
 
         return vNode;

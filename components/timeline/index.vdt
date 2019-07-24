@@ -8,7 +8,5 @@ const classNameObj = {
 };
 
 <div class={{ classNameObj }} {{ ...getRestProps(self) }}>
-    {{ mapChildren(children, vNode => {
-        return vNode;
-    }) }}
+    {{ children }}
 </div>

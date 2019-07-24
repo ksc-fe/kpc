@@ -33,6 +33,7 @@ mapChildren(children, vNode => {
         }
 
         self._values.push(value);
+        vNode.$ = true;
 
         _children.push(vNode);
     }
@@ -43,8 +44,7 @@ const l = _children.length;
 if (isSlide && l) {
     // clone first and last vNode for loop
     const clone = (vNode, props, index) => {
-        return h(vNode.tag, {
-            ...vNode.props,
+        return _Vdt.miss.clone(vNode, {
             _isCloned: true,
             key: `$cloned:${vNode.props.key}:${index}`,
             ...props,

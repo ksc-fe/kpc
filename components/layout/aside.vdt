@@ -8,7 +8,7 @@ const {
 
 const vNodes = mapChildren(children, vNode => {
     if (vNode.tag === Menu) {
-        vNode.props = {...vNode.props, collapse, size}
+        vNode = _Vdt.miss.clone(vNode, {collapse, size});
         return <div class="k-wrapper">{{ vNode }}</div>
     }
     return vNode

@@ -15,13 +15,14 @@ const _separator = <b:separator>{{ separator }}</b:separator>
 <div class={{ classNameObj }} {{ ...getRestProps(self) }}>
     {{ __u.map(_children, (vNode, index) => {
         if (vNode.tag === BreadcrumbItem) {
-            vNode.props = {...vNode.props};
+            let props;
             if (_separator != null && vNode.props.separator == null) {
-                vNode.props.separator = _separator;
+                props = {separator: _separator};
             }
             if (index === _children.length - 1) {
-                vNode.props.separator = null;
+                props = {separator: null};
             }
+            return _Vdt.miss.clone(vNode, props);
         }
         return vNode;
     }) }} 

@@ -4,7 +4,7 @@ import {getRestProps} from '../utils';
 
 const {
     className, disabled, max, min, step,
-    children, style, size, vertical, _value
+    style, size, vertical, _value
 } = self.get();
 
 const classNameObj = {

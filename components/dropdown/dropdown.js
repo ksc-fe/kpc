@@ -4,7 +4,7 @@ import DropdownMenu from './menu';
 import '../../styles/kpc.styl';
 import './index.styl';
 
-const {h, Types} = Intact.Vdt.miss;
+const {clone, Types, h} = Intact.Vdt.miss;
 const _className = Intact.Vdt.utils.className;
 
 export default class Dropdown extends Intact {
@@ -12,23 +12,13 @@ export default class Dropdown extends Intact {
     static template(data) {
         const vNode = data.get('children');
         const isShow = data.get('_isShow');
-        let props = vNode.props;
-        const className = vNode.className || props.className;
+        const className = vNode.className || vNode.props.className;
         const classNames = _className({
             [className]: className,
             'k-dropdown-open': isShow, 
         });
-        if (vNode.type & Types.ComponentClassOrInstance) {
-            props = {...props, className: classNames};
-        }
-        return h(
-            vNode.tag, 
-            props, 
-            vNode.children,
-            classNames,
-            vNode.key, 
-            vNode.ref
-        );
+
+        return clone(vNode, {className: classNames});
     }
 
     static propTypes = {
