@@ -4,6 +4,12 @@ order: 99
 sidebar: doc
 ---
 
+# v1.0.1
+
+1. `Fix` 修复`Table`在表头吸顶`stickHeader`的情况下，调整列宽`resizable`报错的问题 [#330](https://github.com/ksc-fe/kpc/issues/330)
+2. `Fix` 修复`Tooltip`作用于`Select`上面，点击空白处，弹出菜单只能依次消失的问题 [#331](https://github.com/ksc-fe/kpc/issues/331)
+3. `Fix` 修复`Grid`响应式情况下，断点都变成了`1600px`的问题 [#332](https://github.com/ksc-fe/kpc/issues/332)
+
 # v1.0.0
 
 ### 新增组件
