@@ -20,6 +20,7 @@ order: 5
 
 ```js
 // @file dialog.js
+import Intact from 'intact';
 import Dialog from 'kpc/components/dialog';
 import template from './dialog.vdt';
 
