@@ -27,7 +27,7 @@ const tip = <div>这里没有数据(自定义版本)</div>;
 ```styl
 .no-data-template
     display: flex
-    .k-table-wrapper
+    .k-table
         margin-left: 10px
 ```
 

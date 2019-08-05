@@ -26,6 +26,6 @@ import Table from 'kpc/components/table';
 ```styl
 .wrapper
     display flex
-.k-table-wrapper
+.k-table
     margin-left: 20px
 ```

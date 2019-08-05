@@ -16,7 +16,7 @@ import Table from 'kpc/components/table';
 ```
 
 ```styl
-.k-table-wrapper
+.k-table
     margin-bottom 20px
 ```
 
