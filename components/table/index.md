@@ -104,3 +104,4 @@ sidebar: doc
 | --- | --- | --- |
 | $change:checked | 选中的数据变化会触发的事件 | `instance, newValue, oldValue` |
 | changeWidth | 当列宽拖动发生变化后触发 | `widthMap, tableWidth` |
+| click:row | 点击某行触发 | `data, index, key, event` |
