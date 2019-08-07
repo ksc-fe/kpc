@@ -13,7 +13,7 @@
         },
         {
             "language": "styl",
-            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-table-wrapper</span>\n    <span class=\"hljs-attribute\">margin-bottom</span> <span class=\"hljs-number\">20px</span>\n    <span class=\"hljs-selector-class\">.title</span>\n        <span class=\"hljs-attribute\">margin-right</span> <span class=\"hljs-number\">8px</span>\n    <span class=\"hljs-selector-class\">.ion-ios-help-outline</span>\n        <span class=\"hljs-attribute\">line-height</span> <span class=\"hljs-number\">14px</span></code></pre>"
+            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-table</span>\n    <span class=\"hljs-attribute\">margin-bottom</span> <span class=\"hljs-number\">20px</span>\n    <span class=\"hljs-selector-class\">.title</span>\n        <span class=\"hljs-attribute\">margin-right</span> <span class=\"hljs-number\">8px</span>\n    <span class=\"hljs-selector-class\">.ion-ios-help-outline</span>\n        <span class=\"hljs-attribute\">line-height</span> <span class=\"hljs-number\">14px</span></code></pre>"
         },
         {
             "language": "js",

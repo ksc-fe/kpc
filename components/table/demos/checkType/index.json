@@ -13,7 +13,7 @@
         },
         {
             "language": "styl",
-            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-table-wrapper</span>\n    <span class=\"hljs-attribute\">margin-bottom</span> <span class=\"hljs-number\">20px</span></code></pre>"
+            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-table</span>\n    <span class=\"hljs-attribute\">margin-bottom</span> <span class=\"hljs-number\">20px</span></code></pre>"
         },
         {
             "language": "js",
