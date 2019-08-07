@@ -100,7 +100,8 @@ export const methods = {
 };
 
 function count(num) {
-    return num === 2 ? _$('两') : num;
+    return num;
+    // return num === 2 ? _$('两') : num;
 }
 
 export const messages = {
