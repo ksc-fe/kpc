@@ -16,7 +16,7 @@ describe('Tooltip', () => {
     it('should show and hide content correctly', async () => {
         instance = mount(BasicDemo);
 
-        const [first, second] = instance.element.querySelectorAll('.k-tooltip');
+        const [first, second, , disabled] = instance.element.querySelectorAll('.k-tooltip');
         dispatchEvent(first, 'mouseenter');
         let content = getElement('.k-tooltip-content');
         expect(content.textContent).eql('hello');
@@ -25,6 +25,11 @@ describe('Tooltip', () => {
         dispatchEvent(second, 'mouseenter');
         let content1 = getElement('.k-tooltip-content');
         expect(content1).eql(content);
+
+        // should not show if disabled
+        dispatchEvent(disabled, 'mouseenter');
+        let content2 = getElement('.k-tooltip-content');
+        expect(content2).eql(content);
 
         // should hide
         dispatchEvent(first, 'mouseleave');
