@@ -19,6 +19,7 @@ export default class TooltipContent extends DropdownMenu {
         okText: String,
         cancelText: String,
         theme: ['dark', 'light'],
+        disabled: Boolean,
     };
 
     static events = {
@@ -39,6 +40,7 @@ export default class TooltipContent extends DropdownMenu {
             okText: _$('确定'),
             cancelText: _$('取消'),
             theme: 'dark',
+            disabled: false,
 
             _feedback: {},
         };
@@ -62,7 +64,7 @@ export default class TooltipContent extends DropdownMenu {
 
     show() {
         // don't show if content is empty
-        if (!this.get('children')) return;
+        if (!this.get('children') || this.get('disabled')) return;
 
         clearTimeout(this.timer);
         this.set('value', true); 
@@ -137,5 +139,3 @@ export default class TooltipContent extends DropdownMenu {
         this.hide(true);
     }
 }
-
-
