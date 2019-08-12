@@ -48,6 +48,8 @@ export default class Code extends Intact {
         import('monaco-editor').then(monaco => {
             if (this.destroyed) return;
 
+            this._crossDomainWorker();
+
             if (monaco.default) {
                 monaco = monaco.default;
             }
@@ -67,6 +69,44 @@ export default class Code extends Intact {
 
             this.trigger('ready', this);
         });
+    }
+
+    _crossDomainWorker() {
+        const oldGetWorkerUrl = window.MonacoEnvironment.getWorkerUrl;
+
+        if (oldGetWorkerUrl.$) return;
+        oldGetWorkerUrl.$ = true;
+
+        const isSameOrigin = (url) => {
+            const loc = window.location;
+            const a = document.createElement('a');
+            a.href = url;
+
+            return {
+                isSame: a.hostname === loc.hostname && a.port === loc.port && a.protocol === loc.protocol,
+                // maybe the protocol is relative
+                url: a.href,
+            };
+        };
+
+        window.MonacoEnvironment.getWorkerUrl = function(moduleId, label) {
+            const workerUrl = oldGetWorkerUrl(moduleId, label);
+            const {isSame, url} = isSameOrigin(workerUrl);
+
+            if (isSame) return workerUrl;
+
+            let blob;
+            try {
+                blob = new Blob([`importScripts('${url}');`], { type: 'application/javascript' });
+            } catch (e) {
+                const blobBuilder = new (window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder)();
+                blobBuilder.append(`importScripts('${url}');`);
+                blob = blobBuilder.getBlob('application/javascript');
+            }
+            const URL = window.URL || window.webkitURL;
+            const blobUrl = URL.createObjectURL(blob);
+            return blobUrl;
+        }
     }
 
     _watch() {
