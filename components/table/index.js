@@ -7,9 +7,10 @@ import {_$, throttle, browser} from '../utils';
 import {scrollbarWidth} from '../moveWrapper/position';
 import ResizeObserver from 'resize-observer-polyfill'; 
 import {addClass, removeClass} from './utils';
+import TooltipContent from '../tooltip/content';
 
 const slice = Array.prototype.slice;
-const each = Intact.utils.each;
+const {each, className} = Intact.Vdt.utils;
 const hasLocalStorage = typeof localStorage !== 'undefined';
 
 export default class Table extends Intact {
@@ -47,6 +48,7 @@ export default class Table extends Intact {
             defaultWidth: undefined,
             storeWidth: undefined,
             merge: undefined,
+            tooltipPosition: 'top',
 
             _padding: 0,
             _paddingBottom: 0,
@@ -57,6 +59,7 @@ export default class Table extends Intact {
             _rightWidth: 0,
             _scrollBarWidth: 0,
             _scrollPosition: 'left',
+            _hoverIndex: undefined,
         }
     }
 
@@ -89,6 +92,7 @@ export default class Table extends Intact {
         defaultWidthMap: Object,
         storeWidth: String,
         merge: Function,
+        tooltipPosition: TooltipContent.propTypes.position, 
     };
 
     static events = {
@@ -740,22 +744,38 @@ export default class Table extends Intact {
 
     /**
      * handle dom directly for performance, #310
+     * 
+     * @modify
+     * We can not handle dom directly, because it may be wrapped with Tooltip
+     * and it will modify className when the tip layer shows or hides. This will
+     * overwrite the className
      */
     _onRowEnter(index, e) {
-        this._hoverIndex = index;
-        addClass(e.target, 'k-hover');
-        // if has fixed columns, we must update the view
-        if (this.hasFixedLeft || this.hasFixedRight) {
-            this.update();
-        }
+        this.set('_hoverIndex', index);
+        // this._hoverIndex = index;
+        // addClass(e.target, 'k-hover');
+        // const _class = vNode.props.className;
+        // const _className = className({
+            // [_class]: _class,
+            // 'k-hover': true,
+        // });
+        // vNode.className = _className;
+        // vNode.props.className = _className;
+        // // if has fixed columns, we must update the view
+        // if (this.hasFixedLeft || this.hasFixedRight) {
+            // this.update();
+        // }
     }
 
     _onRowLeave(e) {
-        this._hoverIndex = undefined;
-        removeClass(e.target, 'k-hover');
-        if (this.hasFixedLeft || this.hasFixedRight) {
-            this.update();
-        }
+        this.set('_hoverIndex', undefined);
+        // const vNode = e._vNode;
+        // this._hoverIndex = undefined;
+        // removeClass(e.target, 'k-hover');
+        // vNode.className = vNode.props.className = vNode.props.className.replace('k-hover', '');
+        // if (this.hasFixedLeft || this.hasFixedRight) {
+            // this.update();
+        // }
     }
 
     _destroy() {

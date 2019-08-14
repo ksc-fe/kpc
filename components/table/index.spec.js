@@ -8,6 +8,7 @@ import LoadingDemo from '~/components/table/demos/loading';
 import ExportDemo from '~/components/table/demos/export';
 import SelectedKeysDemo from '~/components/table/demos/selectedKeys';
 import ResizableDemo from '~/components/table/demos/resizable';
+import TooltipDemo from '~/components/table/demos/tooltip';
 import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 
 describe('Table', () => {
@@ -240,5 +241,14 @@ describe('Table', () => {
         tr22.click();
         expect(table2.innerHTML).to.matchSnapshot();
         expect(instance.refs.__test2.getSelectedData()).to.have.lengthOf(1);
+    });
+
+    it('tooltip', () => {
+        instance = mount(TooltipDemo);
+
+        const tr = instance.element.querySelector('tbody tr');
+        dispatchEvent(tr, 'mouseenter');
+        const content = getElement('.k-tooltip-content');
+        expect(content.innerHTML).to.matchSnapshot();
     });
 });
