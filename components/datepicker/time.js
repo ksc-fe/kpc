@@ -1,6 +1,7 @@
 import Intact from 'intact';
 import template from './time.vdt';
 import {createDate} from './utils';
+import dayjs from 'dayjs/esm';
 
 export default class DatepickerTime extends Intact {
     @Intact.template()
@@ -9,11 +10,11 @@ export default class DatepickerTime extends Intact {
     static propTypes = {
         data: Array,
         value: Array,
-        min: [String, Date],
-        max: [String, Date],
+        min: dayjs,
+        max: dayjs,
         date: {
             required: true,
-            type: String
+            type: dayjs 
         },
         disabledItems: Array,
     };
@@ -61,15 +62,9 @@ export default class DatepickerTime extends Intact {
 
         const {min, max, date} = this.get();
 
-        value = createDate(`${date} ${value.join(':')}`);
+        value = date.hour(+value[0]).minute(+value[1]).second(+value[2]);
 
-        if (min && max) {
-            return value < createDate(min) || value > createDate(max);
-        } else if (min) {
-            return value < createDate(min);
-        } else if (max) {
-            return value > createDate(max);
-        }
+        return min && value.isBefore(min) || max && value.isAfter(max);
     }
 
     _beforeUpdate(vNode) {

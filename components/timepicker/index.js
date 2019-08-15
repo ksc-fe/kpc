@@ -1,9 +1,10 @@
-import Intact from 'intact'; import Datepicker from '../datepicker';
+import Intact from 'intact'; 
+import Datepicker from '../datepicker';
 import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
 import {range, strPad} from '../utils';
-import {getTimeString, createDate} from '../datepicker/utils';
+import {getTimeString, createDate, FORMATS} from '../datepicker/utils';
 import {PREFIX} from './panel';
 
 export default class Timepicker extends Datepicker {

@@ -1,3 +1,4 @@
+import dayjs from 'dayjs/esm';
 import {strPad, range, _$} from '../utils';
 
 export function getNowDate() {
@@ -7,42 +8,18 @@ export function getNowDate() {
     now.setMinutes(0);
     now.setSeconds(0);
     
-    return now;
+    return dayjs(now);
 }
 export function isEqual(a, b) {
     if (a && b) {
-        return a.getFullYear() === b.getFullYear() &&
-            a.getMonth() === b.getMonth() &&
-            a.getDate() === b.getDate()
+        return a.isSame(b, 'date');
     }
     return false;
 }
 
 export function isLT(a, b) {
     if (a && b) {
-        const aYear = a.getFullYear();
-        const bYear = b.getFullYear();
-        if (aYear < bYear) {
-            return true;
-        } else if (aYear > bYear) {
-            return false;
-        }
-
-        const aMonth = a.getMonth();
-        const bMonth = b.getMonth();
-        if (aMonth < bMonth) {
-            return true;
-        } else if (aMonth > bMonth) {
-            return false;
-        }
-
-        const aDay = a.getDate();
-        const bDay = b.getDate();
-        if (aDay < bDay) {
-            return true;
-        } else if (aDay > bDay) {
-            return false;
-        }
+        return a.isBefore(b, 'date');
     }
 
     return false;
@@ -114,3 +91,10 @@ export const monthArray = range(0, 11).map(i => {
 export const yearArray = (value) => {
     return range(value - 5, value + 5);
 };
+
+export const FORMATS = {
+    date: 'YYYY-MM-DD',
+    datetime: 'YYYY-MM-DD HH:mm:ss',
+    year: 'YYYY',
+    month: 'YYYY-MM',
+}
