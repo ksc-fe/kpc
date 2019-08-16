@@ -4,9 +4,11 @@ import MultipleDemo from '~/components/datepicker/demos/multiple';
 import DatetimeDemo from '~/components/datepicker/demos/datetime';
 import YearMonthDemo from '~/components/datepicker/demos/yearMonth';
 import RangeDemo from '~/components/datepicker/demos/range';
+import FormatDemo from '~/components/datepicker/demos/format';
 import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 import Intact from 'intact';
 import Datepicker from 'kpc/components/datepicker';
+import dayjs from 'dayjs/esm';
 
 describe('Datepicker', () => {
     let instance;
@@ -46,7 +48,7 @@ describe('Datepicker', () => {
         nextYearDom.click();
         expect(instance.get('year') - 1).eql(year);
         prevYearDom.click();
-        expect(instance.get('year') + 0).eql(year);
+        expect(+instance.get('year')).eql(year);
 
         // month
         monthInput.click();
@@ -330,5 +332,28 @@ describe('Datepicker', () => {
         expect(fn.callCount).to.eql(0);
         second.click();
         expect(fn.callCount).to.eql(1);
+    });
+
+    it('format', () => {
+        instance = mount(FormatDemo);
+
+        const [input1, input2, input3] = instance.element.querySelectorAll('.k-input');
+        input1.click();
+        let content = getElement('.k-datepicker-content');
+        content.querySelector('.k-today').click();
+        expect(instance.get('date1')).to.eql(dayjs().format('MM/DD/YYYY'));
+        expect(input1.innerHTML).to.matchSnapshot();
+
+        input2.click();
+        content = getElement('.k-datepicker-content');
+        content.querySelector('.k-today').click();
+        expect(instance.get('date2')).to.eql(dayjs().format('YYYY-MM-DD'));
+        expect(input2.innerHTML).to.matchSnapshot();
+
+        input3.click();
+        content = getElement('.k-datepicker-content');
+        content.querySelector('.k-today').click();
+        expect(instance.get('date3')).to.eql(dayjs().format('YYYY-MM-DD') + 'T00:00:00.000Z');
+        expect(input2.innerHTML).to.matchSnapshot();
     });
 });

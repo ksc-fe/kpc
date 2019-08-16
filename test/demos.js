@@ -7,9 +7,9 @@ const vueReq = require.context('~/components/', true, /^((?!affix).)*\/demos\/.*
 describe('Demos', () => {
     let demo;
 
-    // afterEach(() => {
-        // unmount(demo);
-    // });
+    afterEach(() => {
+        unmount(demo);
+    });
 
     describe('Intact', () => {
         testDemos(req, async (Demo) => {
