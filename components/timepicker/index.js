@@ -4,8 +4,12 @@ import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
 import {range, strPad} from '../utils';
-import {getTimeString, createDate, FORMATS} from '../datepicker/utils';
-import {PREFIX} from './panel';
+import {getDateString} from '../datepicker/utils';
+import dayjs from 'dayjs/esm';
+
+const PREFIX = getDateString(new Date()) + ' ';
+const YEAR_FORMAT = 'YYYY-MM-DD ';
+const TIME_FORMAT = 'HH:mm:ss';
 
 export default class Timepicker extends Datepicker {
     @Intact.template()
@@ -28,52 +32,51 @@ export default class Timepicker extends Datepicker {
     }
 
     _init() {
-        // proxy _value to value
-        this.on('$change:_value', (c, v) => {
-            if (this.get('range')) {
-                // if only select one date for range, do not set it, #259
-                if (Array.isArray(v) && v.length === 1) {
-                    return;
+        super._init();
+
+        ['min', 'max'].forEach(item => {
+            this.on(`$receive:${item}`, (c, v) => {
+                if (v) {
+                    v = this._createDate(v);
                 }
-            }
-            if (Array.isArray(v)) {
-                v = v.map(item => getTimeString(createDate(item)));
-            } else if (v) {
-                v = getTimeString(createDate(v));
-            }
-            this.set('value', v);
+                this.set(`${item}Date`, v, {silent: true});
+            });
         });
-
-        // add date to the time string, let it can be converted to Date
-        this.on('$receive:value', (c, v) => {
-            if (Array.isArray(v) && v.length) {
-                v = v.map(item => PREFIX + item);
-            } else if (v) {
-                v = PREFIX + v;
-            }
-            this.set('_value', v);
-        });
-
-        ['step', 'min', 'max'].forEach(item => {
-            this.on(`$receive:${item}`, this._options);
+        const keys = ['step', 'min', 'max'];
+        this.on('$receive', (c, receivedKeys) => {
+            if (keys.find(key => receivedKeys.indexOf(key) > -1)) {
+                this._options();
+            } 
         });
     }
 
+    _createDate(value, useDefaultFormat) {
+        return dayjs(PREFIX + value, YEAR_FORMAT + (useDefaultFormat ? TIME_FORMAT : this._getValueFormat()));
+    }
+
+    _getValueFormat() {
+        const {format, valueFormat} = this.get();
+        return valueFormat || format || TIME_FORMAT;
+    }
+
+    _getShowFormat() {
+        const {format, showFormat} = this.get();
+        return showFormat || format || TIME_FORMAT;
+    }
+
     _options() {
-        const {step, min, max} = this.get();
+        const {step, minDate, maxDate} = this.get();
         const ret = [];
 
         if (step) {
-            const maxValue = this._parseTime(max || '23:59:59');
+            const maxValue = maxDate || this._createDate('23:59:59', true);
             const stepValue = this._parseTime(step);
-            let value = this._parseTime(min || '00:00:00');
-            const stepAccuracy = step.split(':').length;
+            let value = minDate || this._createDate('00:00:00', true);
 
-            for (; value <= maxValue; value += stepValue) {
-                const timeArr = this._stringifyTime(value);
+            for (; value <= maxValue; value = value.add(stepValue, 'second')) {
                 ret.push({
-                    value: timeArr.join(':'),
-                    label: timeArr.slice(0, stepAccuracy).join(':'),
+                    value: value.format(this._getValueFormat()),
+                    label: this._dateToString(value),
                 });
             }
 
@@ -87,15 +90,6 @@ export default class Timepicker extends Datepicker {
         });
     
         return (hours * 60 + (minutes || 0)) * 60 + (seconds || 0);
-    }
-
-    _stringifyTime(time) {
-        const hours = Math.floor(time / 3600);
-        const minutes = Math.floor((time - hours * 3600) / 60);
-        const seconds = Math.floor(time - hours * 3600 - minutes * 60);
-
-        // return `${strPad(hours, 2)}:${strPad(minutes, 2)}:${strPad(seconds, 2)}`;
-        return [strPad(hours, 2), strPad(minutes, 2), strPad(seconds, 2)];
     }
 
     _onChangeValue(c, v) {
@@ -112,26 +106,26 @@ export default class Timepicker extends Datepicker {
         if (this.get('multiple')) {
             this.refs.begin.initState();
             const _value = this.get('_value').slice(0);
-            _value.push(PREFIX + '00:00:00');
+            _value.push(dayjs(this._createDate('00:00:00', true)));
             this.set('_value', _value);
         } else {
             super._confirm();
         }
     }
 
-    _format() {
-        const {step, value, range} = this.get();
-        if (step && range && value) {
-            const stepAccuracy = step.split(':').length;
-            if (stepAccuracy < 3) {
-                // show 01:00 ~ 02:30
-                const valueFixed = value.map(item => item.split(':').slice(0, stepAccuracy).join(':'));
-                return valueFixed.join(' ~ ');
-            }
-        } else {
-            return super._format();
-        }
-    }
+    // _format() {
+        // const {step, value, range} = this.get();
+        // if (step && range && value) {
+            // const stepAccuracy = step.split(':').length;
+            // if (stepAccuracy < 3) {
+                // // show 01:00 ~ 02:30
+                // const valueFixed = value.map(item => item.split(':').slice(0, stepAccuracy).join(':'));
+                // return valueFixed.join(' ~ ');
+            // }
+        // } else {
+            // return super._format();
+        // }
+    // }
 }
 
 export {Timepicker};

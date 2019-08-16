@@ -96,6 +96,7 @@ const content = <b:content>
             _id="0"
             maxDate={{ _maxDate }}
             minDate={{ _minDate }}
+            _parent={{ self }}
         />
         <Panel
             {{ ..._rest }} 
@@ -114,6 +115,7 @@ const content = <b:content>
             _id="1"
             maxDate={{ _maxDate }}
             minDate={{ _minDate }}
+            _parent={{ self }}
         />
     </div>
     <div v-if={{ type === 'datetime' || type === 'year' || type === 'month' || scope.showFooter }}

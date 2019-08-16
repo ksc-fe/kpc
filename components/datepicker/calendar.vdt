@@ -22,7 +22,6 @@ const {
 } = self.get();
 
 const values = value ? multiple ? value : [value] : [];
-
 const valueDate = values[self._index] || _now;
 const showDate = _showDate || valueDate;
 
@@ -210,7 +209,7 @@ const isYearOrMonth = self._isYearOrMonth();
                         ['', '', '']
                 }}
                 disabledItems={{ [disabledHours, disabledMinutes, disabledSeconds] }}
-                ev-$change:value={{ self.onChangeTime }}
+                ev-change={{ self.onChangeTime }}
                 min={{ self._getMinDate() }}
                 max={{ self._getMaxDate() }}
                 date={{ scope.date || valueDate }}

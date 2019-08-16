@@ -1,6 +1,5 @@
 import Intact from 'intact';
 import template from './time.vdt';
-import {createDate} from './utils';
 import dayjs from 'dayjs/esm';
 
 export default class DatepickerTime extends Intact {
@@ -34,11 +33,18 @@ export default class DatepickerTime extends Intact {
 
     _init() {
         this.on('$receive:value', (c, v) => {
-            this.set('_value', v);
+            this.set('_value', v, {silent: true});
         });
         this.on('$change:_value', (c, v) => {
             if (!this._isDisabled(v)) {
-                this.set('value', v);
+                this._shouldTriggerChange = true;
+                this.set('value', v, {async: true});
+                this._shouldTriggerChange = false;
+            }
+        });
+        this.on('$change:value', (c, v) => {
+            if (this._shouldTriggerChange) {
+                this.trigger('change', this, v);
             }
         });
     }
@@ -74,7 +80,9 @@ export default class DatepickerTime extends Intact {
         if (vNode) {
             const {_value} = this.get();
             if (!this._isDisabled(_value)) {
-                this.set('value', _value);
+                this._shouldTriggerChange = true;
+                this.set('value', _value, {async: true});
+                this._shouldTriggerChange = false;
             }
         }
     }

@@ -9,7 +9,7 @@ order: 3
 import Timepicker from 'kpc/components/timepicker';
 
 <div>
-    <Timepicker v-model="time" step="00:30" range clearable />
+    <Timepicker v-model="time" step="00:30:00" range clearable />
     You selected: {{ JSON.stringify(self.get('time')) }}
 </div>
 ```
