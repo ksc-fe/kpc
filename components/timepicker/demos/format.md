@@ -22,13 +22,13 @@ import Timepicker from 'kpc/components/timepicker';
         max="03:02 pm" 
         format="hh:mm a"
     />
-    You selected: {{ self.get('time1') }}
+    <span>You selected: {{ self.get('time1') }}</span>
     <br /><br />
     <Timepicker v-model="time2"
         step="00:30:00"
         showFormat="HH:mm"
     />
-    You selected: {{ self.get('time2') }}
+    <span>You selected: {{ self.get('time2') }}</span>
     <br /><br />
     <Timepicker
         v-model="time3"
@@ -38,6 +38,8 @@ import Timepicker from 'kpc/components/timepicker';
         valueFormat="HH:mm:ss.SSS"
         showFormat="HH:mm"
     />
-    You selected: {{ JSON.stringify(self.get('time3')) }}
+    <span>You selected: {{ JSON.stringify(self.get('time3')) }}</span>
 </div>
 ```
+
+[1]: https://github.com/iamkun/dayjs/blob/dev/docs/en/API-reference.md#list-of-all-available-formats

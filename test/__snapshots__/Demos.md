@@ -339,6 +339,15 @@
 "<div class=\"k-datepicker\" tabindex=\"0\"><div class=\"k-input k-with-suffix\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择日期\" tabindex=\"-1\"><div class=\"k-suffix\"> <i class=\"ion-ios-calendar-outline\"></i></div></div></div><!--placeholder--></div>"
 ```
 
+####     `Datepicker format`
+
+```
+"<div><div><div class=\"k-datepicker\" tabindex=\"0\"><div class=\"k-input k-with-suffix\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择日期\" tabindex=\"-1\"><div class=\"k-suffix\"> <i class=\"ion-ios-calendar-outline\"></i></div></div></div><!--placeholder--></div>
+        value: </div><div><div class=\"k-datepicker\" tabindex=\"0\"><div class=\"k-input k-with-suffix\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择日期\" tabindex=\"-1\"><div class=\"k-suffix\"> <i class=\"ion-ios-calendar-outline\"></i></div></div></div><!--placeholder--></div>
+        value: </div><div><div class=\"k-datepicker\" tabindex=\"0\"><div class=\"k-input k-with-suffix\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择日期和时间\" tabindex=\"-1\"><div class=\"k-suffix\"> <i class=\"ion-ios-calendar-outline\"></i></div></div></div><!--placeholder--></div>
+        value: </div></div>"
+```
+
 ####     `Datepicker maxMin`
 
 ```
@@ -1498,6 +1507,12 @@
     You selected: </div>"
 ```
 
+####     `Timepicker format`
+
+```
+"<div><div class=\"k-datepicker k-time-picker\" tabindex=\"0\"><div class=\"k-input k-with-suffix\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择时间\" tabindex=\"-1\"><div class=\"k-suffix\"> <i class=\"ion-ios-clock-outline\"></i></div></div></div><!--placeholder--></div><span>You selected: </span><br><br><div class=\"k-select k-datepicker k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择时间</span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"ion-ios-clock-outline\"></i></span></span></div><!--placeholder--></div><span>You selected: </span><br><br><div class=\"k-datepicker k-range k-time-picker\" tabindex=\"0\"><div class=\"k-input k-with-suffix k-clearable\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"开始时间 ~ 结束时间\" tabindex=\"-1\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> <i class=\"ion-ios-clock-outline\"></i></div></div></div><!--placeholder--></div><span>You selected: </span></div>"
+```
+
 ####     `Timepicker range`
 
 ```
@@ -2055,6 +2070,18 @@
 
 ```
 "<div><div class=\"k-datepicker\" tabindex=\"0\"><div class=\"k-input k-with-suffix\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择日期\" tabindex=\"-1\"><div class=\"k-suffix\"> <i class=\"ion-ios-calendar-outline\"></i></div></div></div><!--placeholder--></div></div>"
+```
+
+####     `Datepicker format`
+
+```
+"<div><div><div><div class=\"k-datepicker\" tabindex=\"0\"><div class=\"k-input k-with-suffix\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择日期\" tabindex=\"-1\"><div class=\"k-suffix\"> <i class=\"ion-ios-calendar-outline\"></i></div></div></div><!--placeholder--></div>
+        value: 
+    </div><div><div class=\"k-datepicker\" tabindex=\"0\"><div class=\"k-input k-with-suffix\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择日期\" tabindex=\"-1\"><div class=\"k-suffix\"> <i class=\"ion-ios-calendar-outline\"></i></div></div></div><!--placeholder--></div>
+        value: 
+    </div><div><div class=\"k-datepicker\" tabindex=\"0\"><div class=\"k-input k-with-suffix\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择日期和时间\" tabindex=\"-1\"><div class=\"k-suffix\"> <i class=\"ion-ios-calendar-outline\"></i></div></div></div><!--placeholder--></div>
+        value: 
+    </div></div></div>"
 ```
 
 ####     `Datepicker maxMin`
@@ -3202,6 +3229,12 @@
     <br><br><div class=\"k-datepicker k-time-picker\" tabindex=\"0\"><div class=\"k-input k-with-suffix k-clearable\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择时间\" tabindex=\"-1\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> <i class=\"ion-ios-clock-outline\"></i></div></div></div><!--placeholder--></div>
     You selected: null
 </div></div>"
+```
+
+####     `Timepicker format`
+
+```
+"<div><div><div class=\"k-datepicker k-time-picker\" tabindex=\"0\"><div class=\"k-input k-with-suffix\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择时间\" tabindex=\"-1\"><div class=\"k-suffix\"> <i class=\"ion-ios-clock-outline\"></i></div></div></div><!--placeholder--></div><span>You selected: </span><br><br><div class=\"k-select k-datepicker k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择时间</span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"ion-ios-clock-outline\"></i></span></span></div><!--placeholder--></div><span>You selected: </span><br><br><div class=\"k-datepicker k-range k-time-picker\" tabindex=\"0\"><div class=\"k-input k-with-suffix k-clearable\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"开始时间 ~ 结束时间\" tabindex=\"-1\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> <i class=\"ion-ios-clock-outline\"></i></div></div></div><!--placeholder--></div><span>You selected: null</span></div></div>"
 ```
 
 ####     `Timepicker range`

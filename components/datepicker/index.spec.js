@@ -354,6 +354,6 @@ describe('Datepicker', () => {
         content = getElement('.k-datepicker-content');
         content.querySelector('.k-today').click();
         expect(instance.get('date3')).to.eql(dayjs().format('YYYY-MM-DD') + 'T00:00:00.000Z');
-        expect(input2.innerHTML).to.matchSnapshot();
+        expect(input3.innerHTML).to.matchSnapshot();
     });
 });
