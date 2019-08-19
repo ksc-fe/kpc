@@ -76,7 +76,7 @@ export default class Timepicker extends Datepicker {
             for (; value <= maxValue; value = value.add(stepValue, 'second')) {
                 ret.push({
                     value: value.format(this._getValueFormat()),
-                    label: this._dateToString(value),
+                    label: value.format(this._getShowFormat()),
                 });
             }
 

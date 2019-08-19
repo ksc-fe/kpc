@@ -15,6 +15,7 @@ export default class TimePanel extends Calendar {
 
             _isSelectTime: true,
             _id: undefined,
+            _parent: undefined,
         };
     }
 
