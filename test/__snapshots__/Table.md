@@ -158,6 +158,6 @@
 #### `tooltip`
 
 ```
-"<i class=\"k-arrow k-bottom k-center\" style=\"left: 28px\"></i><div>第一行</div>"
+"第一行"
 ```
 

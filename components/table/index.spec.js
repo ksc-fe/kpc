@@ -249,6 +249,6 @@ describe('Table', () => {
         const tr = instance.element.querySelector('tbody tr');
         dispatchEvent(tr, 'mouseenter');
         const content = getElement('.k-tooltip-content');
-        expect(content.innerHTML).to.matchSnapshot();
+        expect(content.textContent).to.matchSnapshot();
     });
 });
