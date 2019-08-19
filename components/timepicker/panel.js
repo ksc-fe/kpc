@@ -68,4 +68,12 @@ export default class TimePanel extends Calendar {
         // always set this flag to true
         this.isSelectTime = true;
     }
+
+    getShowDate() {
+        // we can not set the date to 1, otherwise we can disable the begin time
+        // when we select end time firstly
+        // we always return now date for time picker
+        // #339
+        return this.get('_now');
+    }
 }
