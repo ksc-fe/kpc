@@ -227,6 +227,17 @@
         .k-tbody
             flex 1
 
+    // tree arrow
+    .k-table-arrow
+        vertical-align $table-arrow-vertical-align 
+        margin-right $table-arrow-margin-right 
+        transition transform $transition
+    tr.k-spread
+        .k-table-arrow
+            transform rotate(90deg)
+    tr.k-hidden
+        display none
+
 .k-table-wrapper
     // overflow auto
     overflow hidden

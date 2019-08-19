@@ -3,7 +3,7 @@ import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
 import Column from './column';
-import {_$, throttle, browser} from '../utils';
+import {_$, throttle, browser, toggleArray} from '../utils';
 import {scrollbarWidth} from '../moveWrapper/position';
 import ResizeObserver from 'resize-observer-polyfill'; 
 import {addClass, removeClass} from './utils';
@@ -49,6 +49,9 @@ export default class Table extends Intact {
             storeWidth: undefined,
             merge: undefined,
             tooltipPosition: 'top',
+            childrenKey: 'children',
+            indent: 32,
+            spreadKeys: [],            
 
             _padding: 0,
             _paddingBottom: 0,
@@ -60,6 +63,7 @@ export default class Table extends Intact {
             _scrollBarWidth: 0,
             _scrollPosition: 'left',
             _hoverIndex: undefined,
+            _amount: 0,
         }
     }
 
@@ -93,6 +97,9 @@ export default class Table extends Intact {
         storeWidth: String,
         merge: Function,
         tooltipPosition: TooltipContent.propTypes.position, 
+        childrenKey: String,
+        indent: Number,
+        spreadKeys: Array,
     };
 
     static events = {
@@ -201,7 +208,7 @@ export default class Table extends Intact {
 
     isCheckAll() {
         const checkedKeys = this.get('checkedKeys');
-        const dataLength = this.get('data').length;
+        const dataLength = this.get('_amount');
         const disabledAmount = this.get("_disabledAmount");
         const amount = dataLength - disabledAmount;
         return amount && checkedKeys.length >= amount; 
@@ -225,11 +232,16 @@ export default class Table extends Intact {
         return false;
     }
 
+    isSpreaded(key) {
+        const {spreadKeys} = this.get();
+        return ~spreadKeys.indexOf(key);
+    }
+
     checkAll() {
         const rowKey = this.get('rowKey');
         const disableRow = this.get('disableRow');
         const checkedKeys = [];
-        this.get('data').forEach((value, index) => {
+        this._breakForEach((value, index) => {
             if (!disableRow.call(this, value, index)) {
                 checkedKeys.push(rowKey.call(this, value, index));
             }
@@ -272,36 +284,47 @@ export default class Table extends Intact {
     getCheckedData() {
         const rowKey = this.get('rowKey');
         const checkType = this.get('checkType');
+
+        let ret = [];
         if (checkType === 'checkbox') {
             const checkedKeys = this.get('checkedKeys');
             const checkedKeysMap = {};
             checkedKeys.forEach((item) => {
                 checkedKeysMap[item] = true;
             });
-            return this.get('data').filter((value, index) => {
+            this._breakForEach((value, index) => {
                 const key = rowKey.call(this, value, index);
-                return checkedKeysMap[key];
+                if (checkedKeysMap[key]) {
+                    ret.push(value);
+                }
             });
         } else if (checkType === 'radio') {
             const checkedKey = this.get('checkedKey');
-            return this.get('data').filter((value, index) => {
-                return rowKey.call(this, value, index) === checkedKey;
+            this._breakForEach((value, index) => {
+                const key = rowKey.call(this, value, index);
+                if (key === checkedKey) {
+                    ret.push(value);
+                    return true;
+                }
             });
-        } else {
-            return [];
         }
+
+        return ret;
     }
 
     getSelectedData() {
         const {rowKey, rowSelectable, selectedKeys} = this.get();
+        let ret = [];
         if (rowSelectable) {
             const map = {};
             selectedKeys.forEach(key => map[key] = true);
-            return this.get('data').filter((value, index) => {
-                return map[rowKey.call(this, value, index)];
+            this._breakForEach((value, index) => {
+                if (map[rowKey.call(this, value, index)]) {
+                    ret.push(value);
+                }
             });
         }
-        return [];
+        return ret;
     }
 
     async exportTable(data, filename = 'table') {
@@ -373,6 +396,34 @@ export default class Table extends Intact {
 
     _escapeCSV(str) {
         return '"' + String(str).replace(/"/g, '""') + '"';
+    }
+
+    _breakForEach(cb) {
+        const childrenKey = this.get('childrenKey');
+        const data = this.get('data');
+
+        if (!childrenKey) {
+            return data.find(cb);
+        } 
+
+        let index = -1;
+        const loop = (data) => {
+            data.find(value => {
+                index++;
+                const ret = cb(value, index);
+                if (ret === true) return true;
+                if (Array.isArray(value[childrenKey])) {
+                    loop(value[childrenKey]);
+                }
+            });
+        };
+        loop(data);
+    }
+
+    _toggleSpreadRow(key, e) {
+        e.stopPropagation();
+        const spreadKeys = toggleArray(this.get('spreadKeys'), key);
+        this.set({spreadKeys});
     }
 
     _calcHeaderPadding() {
@@ -463,15 +514,19 @@ export default class Table extends Intact {
 
     _updateDisabledAmount() {
         let disabledAmount = 0;
-        const data = this.get('data');
+        let amount = 0;
         const disableRow = this.get('disableRow');
 
-        data.forEach((item, index) => {
+        this._breakForEach((item, index) => {
             if (disableRow.call(this, item, index)) {
                 disabledAmount++;
             }
+            amount++;
         });
-        this.set('_disabledAmount', disabledAmount);
+        this.set({
+            _disabledAmount: disabledAmount,
+            _amount: amount,
+        });
     }
 
     _toggleCheckAll(e) {

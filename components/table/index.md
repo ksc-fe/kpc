@@ -41,6 +41,9 @@ sidebar: doc
 | storeWidth | 如果要保存表格拖动后的列宽信息，可以通过该属性设置保存到`localStorage`中的`key` | `String` | `undefined` |
 | merge | 指定表格单元格合并逻辑 | `Function` | `undefined` |
 | tooltipPosition | 行提示的位置 | `"left"` &#124; `"bottom"` &#124; `"right"` &#124; `"top"` &#124; `Object` | `"top"` |
+| childrenKey | 树形表格指定子元素键名 | `String` | `"children"` |
+| indent | 树形表格指定子元素缩进宽度 | `Number` | `32` |
+| spreadKeys | 树形表格指定展开的行 | `Array` | `[]` |
 
 ## TableColumn
 
