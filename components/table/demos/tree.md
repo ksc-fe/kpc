@@ -11,6 +11,8 @@ order: 16
 
 树形表格下，必须通过`rowKey`指定每行的`key`
 
+> 如果数据中恰好存在`children`字段，但是你又不想展示树形表格，将`childrenKey`设为`false`即可
+
 ```vdt
 import {Table, TableColumn} from 'kpc/components/table';
 

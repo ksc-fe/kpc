@@ -9,12 +9,13 @@ import ExportDemo from '~/components/table/demos/export';
 import SelectedKeysDemo from '~/components/table/demos/selectedKeys';
 import ResizableDemo from '~/components/table/demos/resizable';
 import TooltipDemo from '~/components/table/demos/tooltip';
+import TreeDemo from '~/components/table/demos/tree';
 import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 
 describe('Table', () => {
     let instance;
 
-    afterEach(() => unmount(instance));
+    // afterEach(() => unmount(instance));
 
     it('check & uncheck', () => {
         instance = mount(BasicDemo);
@@ -250,5 +251,20 @@ describe('Table', () => {
         dispatchEvent(tr, 'mouseenter');
         const content = getElement('.k-tooltip-content');
         expect(content.textContent).to.matchSnapshot();
+    });
+
+    it('tree', () => {
+        instance = mount(TreeDemo);
+
+        // check all
+        const checkbox = instance.element.querySelector('.k-checkbox');
+        checkbox.click();
+        expect(instance.innerHTML).to.matchSnapshot();
+
+        const arrow = instance.element.querySelector('.k-table-arrow');
+        arrow.click();
+        expect(instance.innerHTML).to.matchSnapshot();
+        arrow.click();
+        expect(instance.innerHTML).to.matchSnapshot();
     });
 });
