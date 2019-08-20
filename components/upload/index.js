@@ -109,10 +109,16 @@ export default class Upload extends Intact {
         }
     }
 
-    _isValidType(value) {
+    _isValidType(value, name) {
         if (this.mimeTypes.find(item => item === value)) return true;
 
-        const [type, extension] = value.split('/');
+        const type = value.split('/')[0];
+        const index = name.lastIndexOf('.');
+        let extension;
+        if (index > -1) {
+            extension = name.substring(index + 1);
+        }
+
         return this.extensions.find(item => {
             return item === extension;
         }) || this.groupTypes.find(item => {
@@ -160,7 +166,7 @@ export default class Upload extends Intact {
                 );
                 return this.trigger('error', error, file, files);
             }
-            if (accept && file.type && !this._isValidType(file.type)) {
+            if (accept && file.type && !this._isValidType(file.type, file.name)) {
                 const error = new Error(_$('"{name}" 文件类型不合法', {name: file.name}));
                 return this.trigger('error', error, file, files);
             }

@@ -223,11 +223,12 @@ describe('Upload', () => {
     });
 
     it('should check file type', (done) => {
-        const i = new Upload({accept: '.jpg, image/png, video/*'});
-        expect(!!i._isValidType('image/gif')).to.be.false;
-        expect(!!i._isValidType('image/jpg')).to.be.true;
-        expect(!!i._isValidType('image/png')).to.be.true;
-        expect(!!i._isValidType('video/avi')).to.be.true;
+        const i = new Upload({accept: '.jpg, image/png, video/*, .tar'});
+        expect(!!i._isValidType('image/gif', '')).to.be.false;
+        expect(!!i._isValidType('image/jpg', 'a.jpg')).to.be.true;
+        expect(!!i._isValidType('image/png', '')).to.be.true;
+        expect(!!i._isValidType('video/avi', '')).to.be.true;
+        expect(!!i._isValidType('application/x-tar', 'a.tar')).to.be.true;
         
         instance = mount(BasicDemo);
 
