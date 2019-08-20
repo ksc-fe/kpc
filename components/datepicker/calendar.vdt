@@ -10,7 +10,7 @@ import {
 } from './utils';
 import {Tabs, Tab} from '../tabs';
 import Icon from '../icon';
-import dayjs from 'dayjs/esm';
+import dayjs from 'dayjs';
 
 const {
     value, maxDate, minDate, dayClassNames,

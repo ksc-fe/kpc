@@ -1,4 +1,4 @@
-import dayjs from 'dayjs/esm';
+import dayjs from 'dayjs';
 import {strPad, range, _$} from '../utils';
 
 export function getNowDate() {

@@ -4,7 +4,7 @@ import {
     getNowDate, getDateString, getTimeString, 
     isEqual, createDate, isGT, isLT
 } from './utils';
-import dayjs from 'dayjs/esm';
+import dayjs from 'dayjs';
 
 export default class Calendar extends Intact {
     @Intact.template()

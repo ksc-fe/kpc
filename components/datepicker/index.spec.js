@@ -8,7 +8,7 @@ import FormatDemo from '~/components/datepicker/demos/format';
 import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 import Intact from 'intact';
 import Datepicker from 'kpc/components/datepicker';
-import dayjs from 'dayjs/esm';
+import dayjs from 'dayjs';
 
 describe('Datepicker', () => {
     let instance;

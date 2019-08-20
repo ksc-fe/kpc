@@ -1,6 +1,6 @@
 import Intact from 'intact';
 import template from './time.vdt';
-import dayjs from 'dayjs/esm';
+import dayjs from 'dayjs';
 
 export default class DatepickerTime extends Intact {
     @Intact.template()

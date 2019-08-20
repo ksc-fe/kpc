@@ -9,8 +9,8 @@ import {
 } from './utils';
 import {getTransition} from '../utils';
 import * as shortcuts from './shortcuts';
-import dayjs from 'dayjs/esm';
-import customParseFormat from 'dayjs/esm/plugin/customParseFormat';
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 dayjs.extend(customParseFormat);
 
 export default class Datepicker extends Intact {

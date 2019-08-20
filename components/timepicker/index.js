@@ -5,7 +5,7 @@ import '../../styles/kpc.styl';
 import './index.styl';
 import {range, strPad} from '../utils';
 import {getDateString} from '../datepicker/utils';
-import dayjs from 'dayjs/esm';
+import dayjs from 'dayjs';
 
 const PREFIX = getDateString(new Date()) + ' ';
 const YEAR_FORMAT = 'YYYY-MM-DD ';
