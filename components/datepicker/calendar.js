@@ -381,7 +381,7 @@ export default class Calendar extends Intact {
         return maxDate && isGT(date, maxDate) ||
             minDate && isLT(date, minDate) ||
             disabledDate && disabledDate.call(
-                self, 
+                this, 
                 getDateString(date.toDate(), type), // for compatibility
                 date.clone()
             );
