@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>组件默认会展示7个翻页按钮（包括省略号...)，通过<code>counts</code>属性我们可以指定按钮个数。</p>\n<blockquote>\n<p>最好不要小于7个，否则影响体验。使用奇数可以使页码对称分布</p>\n</blockquote>\n",
-    "index": 134,
+    "index": 135,
     "highlighted": [
         {
             "language": "vdt",

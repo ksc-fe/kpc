@@ -10,7 +10,7 @@ export default class Demo extends React.Component {
     render() {
         return (
             <div>
-                <Timepicker value={this.state.time} on$change-value={(c, time) => this.setState({time})} step="00:30" range clearable />
+                <Timepicker value={this.state.time} on$change-value={(c, time) => this.setState({time})} step="00:30:00" range clearable />
                 You selected: {JSON.stringify(this.state.time)}
             </div>
         )

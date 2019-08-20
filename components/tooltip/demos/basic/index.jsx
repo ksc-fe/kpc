@@ -16,6 +16,10 @@ export default class Demo extends React.Component {
                 <Tooltip content="hello" theme="light">
                     light theme 
                 </Tooltip>
+                <br /><br />
+                <Tooltip content="hello" disabled>
+                    disabled
+                </Tooltip>
             </div>
         )
     }

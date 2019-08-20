@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>使用<code>trigger</code>指定触发方式，<code>click</code>点击触发，<code>hover</code>悬浮触发，默认为<code>hover</code>，在悬浮触发情况下，鼠标离开触发器，弹层就会消失，如果我们需要鼠标能离开触发器并悬浮在弹层上，需要添加<code>canHover</code>属性</p>\n",
-    "index": 153,
+    "index": 154,
     "highlighted": [
         {
             "language": "vdt",

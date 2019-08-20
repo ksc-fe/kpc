@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>size</code>属性可以指定组件尺寸: <code>large</code> <code>default</code> <code>small</code> <code>mini</code></p>\n",
-    "index": 45,
+    "index": 44,
     "highlighted": [
         {
             "language": "vdt",

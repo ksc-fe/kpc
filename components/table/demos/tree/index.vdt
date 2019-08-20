@@ -1,0 +1,10 @@
+import {Table, TableColumn} from 'kpc/components/table';
+
+<Table data={{ self.get('data') }} rowKey={{ data => data.name }}>
+    <TableColumn key="name" title="Name" />
+    <TableColumn key="size" title="Size">
+        <b:template params="data">
+            {{ data.size }}MB
+        </b:template>
+    </TableColumn>
+</Table>

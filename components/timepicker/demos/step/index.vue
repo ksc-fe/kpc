@@ -1,12 +1,12 @@
 <template>
     <div>
-        <Timepicker class="time" v-model="time" step="00:30"/>
+        <Timepicker class="time" v-model="time" step="00:30:00"/>
         You selected: {{ stringify(time) }}
         <br /><br />
         <Timepicker v-model="timeArray" multiple clearable
             step="00:30:00" 
             min="09:00:00"
-            max="18:00"
+            max="18:00:00"
         />
         You selected: {{ stringify(timeArray) }}
     </div>

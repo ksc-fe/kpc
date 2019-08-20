@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>添加<code>changeOnSelect</code>属性，即可使组件选择即改变<code>value</code>，这样可以只选中父级</p>\n",
-    "index": 171,
+    "index": 172,
     "highlighted": [
         {
             "language": "vdt",

@@ -11,6 +11,10 @@
         <Tooltip content="hello" theme="light">
             light theme 
         </Tooltip>
+        <br /><br />
+        <Tooltip content="hello" disabled>
+            disabled
+        </Tooltip>
     </div>
 </template>
 <script>
