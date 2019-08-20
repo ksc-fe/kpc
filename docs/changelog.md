@@ -4,6 +4,15 @@ order: 99
 sidebar: doc
 ---
 
+## v1.1.0
+
+1. `Add` `Code`代码编辑器worker支持跨域加载 [#312](https://github.com/ksc-fe/kpc/issues/312)
+2. `Add` `Tooltip`支持`disabled`禁用提示 [#337](https://github.com/ksc-fe/kpc/issues/337)
+3. `Add` `Table`支持行提示 [#335](https://github.com/ksc-fe/kpc/issues/335)
+4. `Add` `Table`支持树形表格展示 [#260](https://github.com/ksc-fe/kpc/issues/260)
+5. `Add` `Datepicker`和`Timepicker`支持格式化日期字符串 [#336](https://github.com/ksc-fe/kpc/issues/336)
+6. `Fix` 修复`Form`在webpack tree-shaking下样式丢失的问题 [#338](https://github.com/ksc-fe/kpc/issues/338)
+
 ## v1.0.1
 
 1. `Fix` 修复`Table`在表头吸顶`stickHeader`的情况下，调整列宽`resizable`报错的问题 [#330](https://github.com/ksc-fe/kpc/issues/330)
