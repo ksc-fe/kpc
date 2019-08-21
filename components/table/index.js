@@ -3,7 +3,7 @@ import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
 import Column from './column';
-import {_$, throttle, browser, toggleArray} from '../utils';
+import {_$, debounce, browser, toggleArray} from '../utils';
 import {scrollbarWidth} from '../moveWrapper/position';
 import ResizeObserver from 'resize-observer-polyfill'; 
 import {addClass, removeClass} from './utils';
@@ -186,7 +186,10 @@ export default class Table extends Intact {
 
         this._setFixedColumnWidth();
 
-        const ro = this.ro = new ResizeObserver(throttle(() => {
+        // use debounce instead of throttle, because if there is
+        // transition on parent container, the width is weired
+        // #342
+        const ro = this.ro = new ResizeObserver(debounce(() => {
             if (this.destroyed) return;
 
             this._calcHeaderPadding();
