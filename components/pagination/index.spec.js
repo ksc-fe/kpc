@@ -1,5 +1,6 @@
 import BasicDemo from '~/components/pagination/demos/basic';
 import GotoDemo from '~/components/pagination/demos/goto';
+import CurrentDemo from '~/components/pagination/demos/current';
 import {mount, unmount, dispatchEvent} from 'test/utils';
 
 describe('Pagination', () => {
@@ -47,5 +48,18 @@ describe('Pagination', () => {
         input.value = '-10';
         dispatchEvent(input, 'change');
         expect(instance.element.innerHTML).to.matchSnapshot();
+    });
+
+    it('should trigger change event once', () => {
+        const fn = CurrentDemo.prototype._fetch2 = sinon.spy(function() {
+            this.update();
+        });
+        instance = mount(CurrentDemo);
+
+        instance.set('current2', 2);
+        expect(fn.callCount).to.eql(1);
+        instance.set('limit', 50);
+        expect(fn.callCount).to.eql(2);
+        expect(fn.lastCall.lastArg).to.eql({current: 1, limit: 50});
     });
 });
