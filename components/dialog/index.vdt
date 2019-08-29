@@ -7,11 +7,14 @@ const {size, container, hideClose, overlay, value} = self.get();
 <MoveWrapper autoDestroy={{ false }} ev-appended={{ self._onAppended }}
     container={{ container }}
 >
-    <div class={{ {
-        "k-dialog-wrapper": true,
-        [self.get('className')]: self.get('className'),
-        [scope.className]: scope.className,
-    } }} ref={{ dom => self.$element = dom }}>
+    <div 
+        class={{ {
+            "k-dialog-wrapper": true,
+            [self.get('className')]: self.get('className'),
+            [scope.className]: scope.className,
+        } }} 
+        ref={{ dom => self.$element = dom }}
+    >
         <b:overlay>
             <Animate class="k-overlay"
                 v-if={{ overlay ? value : false }} 
@@ -42,7 +45,7 @@ const {size, container, hideClose, overlay, value} = self.get();
                             <span class="k-title">{{ self.get('title') }}</span>
                         </b:header>
                         <Button type="none" icon title={{ _$("关闭") }} class="k-close"
-                            ev-click={{ self.close }}
+                            ev-click={{ self._terminate }}
                             v-if={{ !hideClose && !scope.hideClose }}
                         >
                             <i class="k-icon ion-ios-close-empty"></i>

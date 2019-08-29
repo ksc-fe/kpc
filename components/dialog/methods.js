@@ -32,6 +32,10 @@ export default function addStaticMethods(Dialog) {
             dialog.on('cancel', () => {
                 reject();
             });
+            // if press esc, treat it as cancel too
+            dialog.on('terminate', () => {
+                reject();
+            });
         });
     }
 
@@ -42,6 +46,7 @@ export default function addStaticMethods(Dialog) {
                 options._title = options.title;
                 delete options.title;
             }
+            options.escClosable = type === 'confirm'
             return show(options);
         }
     });
