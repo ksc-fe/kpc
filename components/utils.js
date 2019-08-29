@@ -82,9 +82,19 @@ export function findParentComponent(Component, instance, isUntil) {
     return ret;
 }
 
-// find the router instance
-// in React, find the history of history
-// in Vue, find the $router
+/**
+ * @brief find the router instance
+ * 
+ * in React, find the history of router 
+ * for react-router@5, we need get the history from providers
+ * as it use the new context api of React
+ *
+ * in Vue, find the $router
+ *
+ * @param instance
+ *
+ * @return 
+ */
 export function findRouter(instance) {
     const Component = instance.constructor;
     if (Component.$$cid === 'IntactReact') {
@@ -94,10 +104,20 @@ export function findRouter(instance) {
             let i;
             if (
                 parentVNode.type === Types.ComponentClass && 
-                (i = parentVNode.children.context) &&
-                (i = i.router)
+                (i = parentVNode.children.context)
             ) {
-                return i.history;
+                if (i = i.router) {
+                    return i.history;
+                } else if (i = parentVNode.children.__providers) {
+                    // for react-router@5 
+                    const iter = i.entries();
+                    while (i = iter.next().value) {
+                        if (i[0]._context.displayName === 'Router' && (i = i[1]).history) {
+                            return i.history;
+                        }
+                    }
+                }
+                break;
             }
             parentVNode = parentVNode.parentVNode;
         }
