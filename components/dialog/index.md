@@ -22,6 +22,8 @@ sidebar: doc
 | cancel | “取消”按钮点击后自定义回调函数 | `Function` | `undefined` |
 | container | 指定弹层插入的容器，默认会追加到`body`中。你可以传入函数返回一个DOM用来作为插入的容器，或者传入字符串用来给`querySelector`进行查询 | `Function` &#124; `String` | `undefined` |
 | hideClose | 是否隐藏右上角关闭按钮 | `Boolean` | `false` |
+| escClosable | 是否按ESC时关闭弹窗 | `Boolean` | `true` |
+| terminate | 指定在用户点击“关闭”按钮，点击遮罩层或者按ESC键时的回调函数 | `Function` | `undefined` |
 
 # 扩展点
 
@@ -80,4 +82,5 @@ sidebar: doc
 | cancel | 点击取消按钮时触发 | - |
 | ok | 点击确定按钮时触发 | - |
 | open | 弹窗打开后触发 | - |
-| close | 弹窗关闭后触发 | - |
+| close | 弹窗关闭后触发，不管是什么原因导致的关闭 | - |
+| terminate | 用户强行关闭弹窗时触发，即：点击“关闭”按钮，点击遮罩层，按ESC键 | - |
