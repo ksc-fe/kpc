@@ -6,6 +6,12 @@ import {position} from '../moveWrapper/position';
 import {_$} from '../utils';
 import addStaticMethods from './methods';
 
+// only close the top dialog when press ESC 
+const dialogs = [];
+const escClose = (e) => {
+    dialogs[dialogs.length - 1]._escClose(e);
+}
+
 export default class Dialog extends Intact {
     @Intact.template()
     static template = template;
@@ -24,6 +30,8 @@ export default class Dialog extends Intact {
         hideClose: Boolean,
         overlay: Boolean,
         closable: Boolean,
+        terminate: Function,
+        escClosable: Boolean,
     };
 
     static events = {
@@ -48,6 +56,8 @@ export default class Dialog extends Intact {
             hideClose: false,
             overlay: true,
             closable: true,
+            terminate: undefined,
+            escClosable: true,
 
             _dragging: false,
         }
@@ -88,12 +98,18 @@ export default class Dialog extends Intact {
     _onOpen() {
         this.trigger('open');
         this._center();
-        document.addEventListener('keydown', this._escClose);
+        if (!dialogs.length) {
+            document.addEventListener('keydown', escClose);
+        }
+        dialogs.push(this);
     }
 
     _onClose() {
         this.trigger('close');
-        document.removeEventListener('keydown', this._escClose);
+        dialogs.pop();
+        if (!dialogs.length) {
+            document.removeEventListener('keydown', escClose);
+        }
     }
 
     showLoading() {
@@ -164,7 +180,9 @@ export default class Dialog extends Intact {
 
     _escClose(e) {
         // Esc
-        if (e.keyCode === 27) this.close();
+        if (this.get('escClosable') && e.keyCode === 27) {
+            this._terminate();
+        }
     }
 
     _leaveEnd() {
@@ -240,6 +258,21 @@ export default class Dialog extends Intact {
 
     _onClickOverlay() {
         if (this.get('closable')) {
+            this._terminate();
+        }
+    }
+
+    /**
+     * @brief 
+     * only be called by self when user clicks close button,
+     * presses ESC or clicks overlay 
+     */
+    _terminate() {
+        const terminate = this.get('terminate');
+        if (terminate) {
+            terminate.call(this, this);
+        } else {
+            this.trigger('terminate');
             this.close();
         }
     }
