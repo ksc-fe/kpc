@@ -4,6 +4,25 @@ order: 99
 sidebar: doc
 ---
 
+## v1.1.2
+
+1. `Add` `Dialog`新增强制关闭事件`terminate`和回调方法`terminate`属性 [#347](https://github.com/ksc-fe/kpc/issues/347)
+2. `Add` `Dialog`新增`escClosable`属性，用于指定是否可以按ESC键关闭弹窗，非`confirm`类型的快捷弹窗现在不允许ESC关闭
+3. `Change` 在多`Dialog`情况下，按ESC键一个一个地关闭弹窗，而非一次性全部关闭 [#348](https://github.com/ksc-fe/kpc/issues/348)
+4. `Fix` 修复`Checkbox/Radio`在Mac版Firefox下，文本不对齐的问题 [#343](https://github.com/ksc-fe/kpc/issues/343)
+5. `Fix` 修复宽度`100%`的`Table`，宽度由大变小时，会展示横向滚动条的问题 [#342](https://github.com/ksc-fe/kpc/issues/342)
+6. `Fix` 修复`Pagination`某些情况下，会触发两次`change`事件的问题 [#341](https://github.com/ksc-fe/kpc/issues/341)
+7. `Fix` 修复`Upload`文件类型检测有可能会误报的问题，如：`tar`文件 [#340](https://github.com/ksc-fe/kpc/issues/340)
+
+### React
+
+1. `Add` 新增React 16 New Context Api的支持，同时支持React-Router V5 [#344](https://github.com/ksc-fe/kpc/issues/344)
+2. `Fix` 修复`Table`单元格中使用`Tooltip`，插入新行时会报错的问题 [#345](https://github.com/ksc-fe/kpc/issues/345)
+
+## v1.1.1
+
+1. `Fix` 修复`Datepicker`一处报错`self is undefined`
+
 ## v1.1.0
 
 1. `Add` `Code`代码编辑器worker支持跨域加载 [#312](https://github.com/ksc-fe/kpc/issues/312)
