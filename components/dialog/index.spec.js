@@ -4,6 +4,7 @@ import {getElement, render, mount, unmount, dispatchEvent, wait} from 'test/util
 import BasicDemo from '~/components/dialog/demos/basic'; 
 import AsyncCloseDemo from '~/components/dialog/demos/asyncClose';
 import AsyncOpenDemo from '~/components/dialog/demos/asyncOpen';
+import TerminateDemo from '~/components/dialog/demos/terminate';
 
 describe('Dialog', () => {
     let component;
@@ -261,5 +262,19 @@ describe('Dialog', () => {
         dialog = getElement('.k-dialog');
         expect(dialog.innerHTML).to.matchSnapshot();
         dialog.querySelector('.k-btn').click();
+    });
+
+    it('should double check for closing dialog', async () => {
+        instance = mount(TerminateDemo);
+
+        instance.element.firstChild.click();
+        const dialog = getElement('.k-dialog');
+        dialog.querySelector('.k-close').click();
+        await wait(500);
+        expect(dialog.parentNode).not.be.null;
+        const confirm = getElement('.k-alert-dialog');
+        confirm.querySelector('.k-ok').click();
+        await wait(500);
+        expect(dialog.parentNode).be.null;
     });
 });

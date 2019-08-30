@@ -46,7 +46,7 @@ export default function addStaticMethods(Dialog) {
                 options._title = options.title;
                 delete options.title;
             }
-            options.escClosable = type === 'confirm'
+            options.closable = options.escClosable = type === 'confirm';
             return show(options);
         }
     });
