@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>组件内部使用<a href=\"https://github.com/iamkun/dayjs/blob/dev/docs/en/API-reference.md#list-of-all-available-formats\">dayjs</a>处理日期对象，通过<code>format</code>属性，可以指定日期格式化字符串，默认的格式为：<code>HH:mm:ss</code></p>\n<p><code>format</code>会同时格式化展示的字符串和最终的<code>value</code>值，如果你想分别对它们格式化，可以通过<code>showFormat</code>格式化展示的日期，通过<code>valueFormat</code>格式化<code>value</code>值，并且它们的优先级比<code>format</code>高</p>\n<blockquote>\n<p>如果你想给组件传入初始<code>value</code>值，但是该字符串不是默认格式，则必须指定<code>format</code>或者<code>valueFormat</code>。同时该属性也可以作用于<code>max</code> <code>min</code>属性</p>\n</blockquote>\n",
-    "index": 210,
+    "index": 212,
     "highlighted": [
         {
             "language": "vdt",

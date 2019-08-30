@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>使用<code>Message</code>提供的静态方法，展示提示。包括：<code>info</code>, <code>error</code>, <code>warning</code>, <code>success</code>。提示默认会在5s后自动关闭</p>\n",
-    "index": 10,
+    "index": 33,
     "highlighted": [
         {
             "language": "vdt",

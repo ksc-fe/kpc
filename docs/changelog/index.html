@@ -14,7 +14,23 @@
                     如果你发现文档有问题，请帮忙在
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/docs/changelog.md">github</a>
                     上修正该文档
-                </div></div><div class="contents"><div class="api"><div><h2 id='header-v1.1.0'>v1.1.0</h2><ol>
+                </div></div><div class="contents"><div class="api"><div><h2 id='header-v1.1.2'>v1.1.2</h2><ol>
+<li><code>Add</code> <code>Dialog</code>新增强制关闭事件<code>terminate</code>和回调方法<code>terminate</code>属性 <a href="https://github.com/ksc-fe/kpc/issues/347">#347</a></li>
+<li><code>Add</code> <code>Dialog</code>新增<code>escClosable</code>属性，用于指定是否可以按ESC键关闭弹窗，非<code>confirm</code>类型的快捷弹窗现在不允许ESC关闭</li>
+<li><code>Change</code> 在多<code>Dialog</code>情况下，按ESC键一个一个地关闭弹窗，而非一次性全部关闭 <a href="https://github.com/ksc-fe/kpc/issues/348">#348</a></li>
+<li><code>Fix</code> 修复<code>Checkbox/Radio</code>在Mac版Firefox下，文本不对齐的问题 <a href="https://github.com/ksc-fe/kpc/issues/343">#343</a></li>
+<li><code>Fix</code> 修复宽度<code>100%</code>的<code>Table</code>，宽度由大变小时，会展示横向滚动条的问题 <a href="https://github.com/ksc-fe/kpc/issues/342">#342</a></li>
+<li><code>Fix</code> 修复<code>Pagination</code>某些情况下，会触发两次<code>change</code>事件的问题 <a href="https://github.com/ksc-fe/kpc/issues/341">#341</a></li>
+<li><code>Fix</code> 修复<code>Upload</code>文件类型检测有可能会误报的问题，如：<code>tar</code>文件 <a href="https://github.com/ksc-fe/kpc/issues/340">#340</a></li>
+</ol>
+<h3 id='header-React'>React</h3><ol>
+<li><code>Add</code> 新增React 16 New Context Api的支持，同时支持React-Router V5 <a href="https://github.com/ksc-fe/kpc/issues/344">#344</a></li>
+<li><code>Fix</code> 修复<code>Table</code>单元格中使用<code>Tooltip</code>，插入新行时会报错的问题 <a href="https://github.com/ksc-fe/kpc/issues/345">#345</a></li>
+</ol>
+<h2 id='header-v1.1.1'>v1.1.1</h2><ol>
+<li><code>Fix</code> 修复<code>Datepicker</code>一处报错<code>self is undefined</code></li>
+</ol>
+<h2 id='header-v1.1.0'>v1.1.0</h2><ol>
 <li><code>Add</code> <code>Code</code>代码编辑器worker支持跨域加载 <a href="https://github.com/ksc-fe/kpc/issues/312">#312</a></li>
 <li><code>Add</code> <code>Tooltip</code>支持<code>disabled</code>禁用提示 <a href="https://github.com/ksc-fe/kpc/issues/337">#337</a></li>
 <li><code>Add</code> <code>Table</code>支持行提示 <a href="https://github.com/ksc-fe/kpc/issues/335">#335</a></li>

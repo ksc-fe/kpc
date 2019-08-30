@@ -7,5 +7,5 @@
     },
     "catalogs": [],
     "contents": "<h2 id='header-%E5%B1%82%E7%BA%A7%E9%98%B4%E5%BD%B1'>层级阴影</h2><p>当内容需要突出显示时，可以使用层级阴影，帮助用户提高对相关内容的注意力。</p>\n<p><img src=\"/imgs/design/cengji01.png\" alt=\"cengji01\"></p>\n<p>阴影层级还可以表达页面关系，帮助用户理解页面间的逻辑结构。</p>\n<p><img src=\"/imgs/design/cengji02.png\" alt=\"cengji02\"></p>\n",
-    "index": 220
+    "index": 225
 }

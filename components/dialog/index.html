@@ -45,26 +45,31 @@
                             </div><div class="k-tab">index.js<!---->
                             </div><div class="k-tab">index.vue<!---->
                             <!---->(Vue)</div><div class="k-tab">index.jsx<!---->
-                            <!---->(React)</div><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div><div class="example index-163" id="163"><div class="example-opera"><div><button class="k-btn k-primary" tabindex="0" type="button"><span>Show Dialog</span></button><div class="k-dialog-wrapper"></div></div></div><div class="example-desc"><div class="title">事件回调</div><div class="desc"><p>弹窗点击“确认”和“取消”时，分别会派发出<code>ok</code>和<code>cancel</code>事件，通过它们可以执行相应的回调逻辑。此时弹窗会自动立即关闭，如果需要控制更多细节，可以使用<code>ok</code>和<code>cancel</code>属性，详见异步关闭。</p>
+                            <!---->(React)</div><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div><div class="example index-168" id="168"><div class="example-opera"><div><button class="k-btn k-primary" tabindex="0" type="button"><span>Show Dialog</span></button><div class="k-dialog-wrapper"></div></div></div><div class="example-desc"><div class="title">事件回调</div><div class="desc"><p>弹窗点击“确认”和“取消”时，分别会派发出<code>ok</code>和<code>cancel</code>事件，通过它们可以执行相应的回调逻辑。此时弹窗会自动立即关闭，如果需要控制更多细节，可以使用<code>ok</code>和<code>cancel</code>属性，详见异步关闭。</p>
 </div></div><div class="example-code"><div class="k-tabs"><div class="k-scroll c-clearfix"><div class="k-wrapper" style="transform:translateX(0px);"><div class="k-tab">index.vdt<!---->
                             </div><div class="k-tab">index.js<!---->
                             </div><div class="k-tab">index.vue<!---->
                             <!---->(Vue)</div><div class="k-tab">index.jsx<!---->
-                            <!---->(React)</div><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div><div class="example index-189" id="189"><div class="example-opera"><button class="k-btn k-primary" tabindex="0" type="button"><span>Show Dialog</span></button></div><div class="example-desc"><div class="title">继承弹窗</div><div class="desc"><p>在实际应用中，弹窗的逻辑一般都很复杂，通过继承，我们可以将所有弹窗里的逻辑进行分装，形成一个新的弹窗组件。例如：点击确定时进行表单验证，发送请求，延迟关闭等等。将这些业务逻辑封装在单独的模块中，是推荐的做法。</p>
+                            <!---->(React)</div><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div><div class="example index-185" id="185"><div class="example-opera"><button class="k-btn k-primary" tabindex="0" type="button"><span>Show Dialog</span></button></div><div class="example-desc"><div class="title">继承弹窗</div><div class="desc"><p>在实际应用中，弹窗的逻辑一般都很复杂，通过继承，我们可以将所有弹窗里的逻辑进行分装，形成一个新的弹窗组件。例如：点击确定时进行表单验证，发送请求，延迟关闭等等。将这些业务逻辑封装在单独的模块中，是推荐的做法。</p>
 </div></div><div class="example-code"><div class="k-tabs"><div class="k-scroll c-clearfix"><div class="k-wrapper" style="transform:translateX(0px);"><div class="k-tab">dialog.vdt<!---->
                             </div><div class="k-tab">dialog.js<!---->
                             </div><div class="k-tab">index.vdt<!---->
                             </div><div class="k-tab">index.js<!---->
                             </div><div class="k-tab">index.vue<!---->
                             <!---->(Vue)</div><div class="k-tab">index.jsx<!---->
-                            <!---->(React)</div><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div><div class="example index-231" id="231"><div class="example-opera"><button class="k-btn k-primary" tabindex="0" type="button"><span>Show Dialog Asynchronously</span></button></div><div class="example-desc"><div class="title">异步打开</div><div class="desc"><p>当弹窗很复杂时，我们可以通过继承<code>Dialog</code>的方式，将所有业务逻辑封装成一个新弹窗组件。经常地，我们需要在弹窗打开时获取数据，一种方式是，弹窗同步打开，然后使用loading动画来过渡数据加载过程，另一种方式，我们还可以在弹窗数据加载完成后再打开弹窗。这种方式只需要在继承的弹窗的<code>_init</code>生命周期函数中返回<code>Promise</code>对象即可。另外我们还可以通过<code>open</code>, <code>close</code>来处理打开关闭后的逻辑。</p>
+                            <!---->(React)</div><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div><div class="example index-243" id="243"><div class="example-opera"><button class="k-btn k-primary" tabindex="0" type="button"><span>Show Dialog Asynchronously</span></button></div><div class="example-desc"><div class="title">异步打开</div><div class="desc"><p>当弹窗很复杂时，我们可以通过继承<code>Dialog</code>的方式，将所有业务逻辑封装成一个新弹窗组件。经常地，我们需要在弹窗打开时获取数据，一种方式是，弹窗同步打开，然后使用loading动画来过渡数据加载过程，另一种方式，我们还可以在弹窗数据加载完成后再打开弹窗。这种方式只需要在继承的弹窗的<code>_init</code>生命周期函数中返回<code>Promise</code>对象即可。另外我们还可以通过<code>open</code>, <code>close</code>来处理打开关闭后的逻辑。</p>
 </div></div><div class="example-code"><div class="k-tabs"><div class="k-scroll c-clearfix"><div class="k-wrapper" style="transform:translateX(0px);"><div class="k-tab">dialog.vdt<!---->
                             </div><div class="k-tab">dialog.js<!---->
                             </div><div class="k-tab">index.vdt<!---->
                             </div><div class="k-tab">index.js<!---->
                             </div><div class="k-tab">index.vue<!---->
                             <!---->(Vue)</div><div class="k-tab">index.jsx<!---->
-                            <!---->(React)</div><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div><div class="example index-252" id="252"><div class="example-opera"><div><button class="k-btn k-primary" tabindex="0" type="button"><span>Close Dialog Asynchronously</span></button><div class="k-dialog-wrapper"></div></div></div><div class="example-desc"><div class="title">异步关闭</div><div class="desc"><p><code>Dialog</code>默认点击确定按钮会立即关闭弹窗并触发<code>ok</code>事件，我们可以给<code>ok</code>属性（并非<code>ok</code>事件）指定一个函数来去掉默认函数行为，此时你可以自己控制弹窗的关闭情况。<code>cancel</code>属性同理。</p>
+                            <!---->(React)</div><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div><div class="example index-248" id="248"><div class="example-opera"><div><button class="k-btn k-primary" tabindex="0" type="button"><span>Close Dialog Asynchronously</span></button><div class="k-dialog-wrapper"></div></div></div><div class="example-desc"><div class="title">异步关闭</div><div class="desc"><p><code>Dialog</code>默认点击确定按钮会立即关闭弹窗并触发<code>ok</code>事件，我们可以给<code>ok</code>属性（并非<code>ok</code>事件）指定一个函数来去掉默认函数行为，此时你可以自己控制弹窗的关闭情况。<code>cancel</code>属性同理。</p>
+</div></div><div class="example-code"><div class="k-tabs"><div class="k-scroll c-clearfix"><div class="k-wrapper" style="transform:translateX(0px);"><div class="k-tab">index.vdt<!---->
+                            </div><div class="k-tab">index.js<!---->
+                            </div><div class="k-tab">index.vue<!---->
+                            <!---->(Vue)</div><div class="k-tab">index.jsx<!---->
+                            <!---->(React)</div><div class="k-active-bar" style=""></div></div></div></div><div class="code"></div></div></div><div class="example index-266" id="266"><div class="example-opera"><div><button class="k-btn k-primary" tabindex="0" type="button"><span>Show Dialog</span></button><div class="k-dialog-wrapper"></div></div></div><div class="example-desc"><div class="title">二次确认关闭</div><div class="desc"><p>如果你想在用户强行关闭弹窗（点击“关闭”按钮，点击遮罩层，按ESC键）提示用户进行二次确认，可以通过<code>terminate</code>属性来自定义处理逻辑，他们会在上述行为发生时调用。另外，如果你想在用户点击“取消”按钮时，也进行相同的操作，则还可以同时指定<code>cancel</code>属性为同一函数</p>
 </div></div><div class="example-code"><div class="k-tabs"><div class="k-scroll c-clearfix"><div class="k-wrapper" style="transform:translateX(0px);"><div class="k-tab">index.vdt<!---->
                             </div><div class="k-tab">index.js<!---->
                             </div><div class="k-tab">index.vue<!---->
@@ -161,6 +166,18 @@
 <td>是否隐藏右上角关闭按钮</td>
 <td><code>Boolean</code></td>
 <td><code>false</code></td>
+</tr>
+<tr>
+<td>escClosable</td>
+<td>是否按ESC时关闭弹窗</td>
+<td><code>Boolean</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td>terminate</td>
+<td>指定在用户点击“关闭”按钮，点击遮罩层或者按ESC键时的回调函数</td>
+<td><code>Function</code></td>
+<td><code>undefined</code></td>
 </tr>
 </tbody>
                             </table>
@@ -412,7 +429,12 @@
 </tr>
 <tr>
 <td>close</td>
-<td>弹窗关闭后触发</td>
+<td>弹窗关闭后触发，不管是什么原因导致的关闭</td>
+<td>-</td>
+</tr>
+<tr>
+<td>terminate</td>
+<td>用户强行关闭弹窗时触发，即：点击“关闭”按钮，点击遮罩层，按ESC键</td>
 <td>-</td>
 </tr>
 </tbody>

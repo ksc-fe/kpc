@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>merge</code>属性指定一个函数来定义合并单元格的逻辑，函数返回的结果<code>{colspan, rowspan}</code>用来定义单元格占用的行列数。组件传入函数的参数如下：</p>\n<ol>\n<li><code>row</code> 当前行数据</li>\n<li><code>column</code> 当前列数据</li>\n<li><code>rowIndex</code> 当前行索引</li>\n<li><code>columnIndex</code> 当前列索引</li>\n</ol>\n",
-    "index": 276,
+    "index": 277,
     "highlighted": [
         {
             "language": "vdt",

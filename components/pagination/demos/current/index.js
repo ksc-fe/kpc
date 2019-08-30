@@ -9,12 +9,20 @@ export default class extends Intact {
     static template = template;
 
     defaults() {
-        return {current: 1}
+        return {
+            current1: 1, 
+            current2: 1,
+            limit: 20
+        }
     };
 
-    _fetch(c, current) {
+    _fetch1(c, current) {
         // fetch data
-        this.set('current', current);
+        this.set('current1', current);
         Message.info(`current page: ${current}`);
+    }
+
+    _fetch2({current, limit}) {
+        Message.info(`current page: ${current}, limit: ${limit}`);
     }
 }

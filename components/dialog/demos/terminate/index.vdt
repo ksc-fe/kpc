@@ -1,0 +1,12 @@
+import Button from 'kpc/components/button';
+import Dialog from 'kpc/components/dialog';
+
+<div>
+    <Button ev-click={{ self.onClick }} type="primary">Show Dialog</Button>
+    <Dialog v-model="show" title="Dialog Title" ref="__demo"
+        terminate={{ self._terminate }}
+        cancel={{ self._terminate }}
+    >
+        Dialog Body 
+    </Dialog>
+</div>

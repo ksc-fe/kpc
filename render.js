@@ -39,7 +39,7 @@ module.exports =
 /******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
 /******/ 		// "0" is the signal for "already loaded"
 /******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("./chunk/" + {"0":"d367bfc3a6222651cd89","1":"639791fe5a5548e5da89","2":"2ede953c7fe6e57d4a7e","3":"bcc4c5755f69735ef19c","4":"7e3639df7e77842edbf5"}[chunkId] + ".js");
+/******/ 			var chunk = require("./chunk/" + {"0":"d978aa86c66c4b705a90","1":"b3987a5d0f299a78fc47","2":"a894619ea15527997f65","3":"44448fa75d92196ce9e1","4":"0b871dbdbd93b23b61f4"}[chunkId] + ".js");
 /******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				modules[moduleId] = moreModules[moduleId];
@@ -242,7 +242,7 @@ exports.App = exports.default = App;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1566357886195
+      // 1567146205765
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -397,7 +397,7 @@ exports.Spin = exports.default = Spin;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1566357886777
+      // 1567146206440
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -560,6 +560,8 @@ __webpack_require__("core-js/modules/es6.regexp.to-string");
 
 __webpack_require__("core-js/modules/es6.date.to-string");
 
+__webpack_require__("core-js/modules/es6.array.iterator");
+
 __webpack_require__("core-js/modules/web.dom.iterable");
 
 var _isArray = _interopRequireDefault(__webpack_require__("@babel/runtime-corejs2/core-js/array/is-array"));
@@ -671,9 +673,20 @@ function findParentComponent(Component, instance, isUntil) {
   }
 
   return ret;
-} // find the router instance
-// in React, find the history of history
-// in Vue, find the $router
+}
+/**
+ * @brief find the router instance
+ * 
+ * in React, find the history of router 
+ * for react-router@5, we need get the history from providers
+ * as it use the new context api of React
+ *
+ * in Vue, find the $router
+ *
+ * @param instance
+ *
+ * @return 
+ */
 
 
 function findRouter(instance) {
@@ -686,8 +699,21 @@ function findRouter(instance) {
     while (parentVNode) {
       var i = void 0;
 
-      if (parentVNode.type === Types.ComponentClass && (i = parentVNode.children.context) && (i = i.router)) {
-        return i.history;
+      if (parentVNode.type === Types.ComponentClass && (i = parentVNode.children.context)) {
+        if (i = i.router) {
+          return i.history;
+        } else if (i = parentVNode.children.__providers) {
+          // for react-router@5 
+          var iter = i.entries();
+
+          while (i = iter.next().value) {
+            if (i[0]._context.displayName === 'Router' && (i = i[1]).history) {
+              return i.history;
+            }
+          }
+        }
+
+        break;
       }
 
       parentVNode = parentVNode.parentVNode;
@@ -1534,7 +1560,7 @@ exports.default = _default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1566357887952
+      // 1567146207642
       var cssReload = require("!../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
