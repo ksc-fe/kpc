@@ -384,6 +384,12 @@
 "<div><div class=\"k-btns\"><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>Show </span><span>Success</span><span> Dialog</span></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>Show </span><span>Warning</span><span> Dialog</span></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>Show </span><span>Error</span><span> Dialog</span></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>Show </span><span>Confirm</span><span> Dialog</span></button></div><br><br><div class=\"k-btns\"><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>Show </span><span>Success</span><span> Dialog with Title</span></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>Show </span><span>Warning</span><span> Dialog with Title</span></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>Show </span><span>Error</span><span> Dialog with Title</span></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>Show </span><span>Confirm</span><span> Dialog with Title</span></button></div></div>"
 ```
 
+####   `Dialog terminate`
+
+```
+"<div><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\">Show Dialog</button><!--placeholder--></div>"
+```
+
 ## `drawer`
 
 ####   `Drawer basic`
