@@ -110,11 +110,7 @@ export default class Datepicker extends Intact {
 
     onClear(e) {
         e.stopPropagation();
-        if (this.get('range')) {
-            this.set('_value', undefined);
-        } else {
-            this.set('value', undefined);
-        }
+        this.set('_value', undefined);
     }
 
     _hide() {
