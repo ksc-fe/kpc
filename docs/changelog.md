@@ -4,6 +4,10 @@ order: 99
 sidebar: doc
 ---
 
+## v1.1.3
+
+1. `Fix` 修复`Datepicker`点击清空按钮，`value`被清空，但是依然会展示原生日期的问题 [#349](https://github.com/ksc-fe/kpc/issues/349)
+
 ## v1.1.2
 
 1. `Add` `Dialog`新增强制关闭事件`terminate`和回调方法`terminate`属性 [#347](https://github.com/ksc-fe/kpc/issues/347)
