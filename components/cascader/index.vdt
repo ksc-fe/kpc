@@ -51,6 +51,9 @@ const Options = (props) => {
             );
         };
 
+        // for performance, don't render children if they are hidden
+        if (!parentShowed) return;
+
         const show = parentShowed && active;
         ret.push(
             !item.children ? 
@@ -70,7 +73,11 @@ const Options = (props) => {
                         } }}
                         ev-show={{ self._onSubMenuShow.bind(self, item) }}
                     >
-                        <Options data={{ item.children }} level={{ level + 1 }} parentShowed={{ show }}/>
+                        <Options
+                            data={{ item.children }} 
+                            level={{ level + 1 }} 
+                            parentShowed={{ show }}
+                        />
                     </DropdownMenu>
                 </Dropdown>
         );
