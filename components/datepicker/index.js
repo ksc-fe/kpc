@@ -91,7 +91,7 @@ export default class Datepicker extends Intact {
     }
 
     _createDate(value) {
-        return dayjs(value, this._getValueFormat());
+        return dayjs(value, typeof value === 'string' ? this._getValueFormat() : undefined);
     }
 
     _dateToString(value) {

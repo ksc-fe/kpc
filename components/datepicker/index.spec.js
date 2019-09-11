@@ -5,6 +5,7 @@ import DatetimeDemo from '~/components/datepicker/demos/datetime';
 import YearMonthDemo from '~/components/datepicker/demos/yearMonth';
 import RangeDemo from '~/components/datepicker/demos/range';
 import FormatDemo from '~/components/datepicker/demos/format';
+import MaxMinDemo from '~/components/datepicker/demos/maxMin';
 import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 import Intact from 'intact';
 import Datepicker from 'kpc/components/datepicker';
@@ -355,5 +356,18 @@ describe('Datepicker', () => {
         content.querySelector('.k-today').click();
         expect(instance.get('date3')).to.eql(dayjs().format('YYYY-MM-DD') + 'T00:00:00.000Z');
         expect(input3.innerHTML).to.matchSnapshot();
+    });
+
+    it('sepcify max/min date', () => {
+        instance = mount(MaxMinDemo);
+
+        const now = dayjs().format('YYYY-MM-DD');
+        instance.set('to', now);
+        const element = instance.element.querySelector('.k-inner');
+        element.click();
+        const content = getElement('.k-datepicker-content');
+        const dateDoms = content.querySelectorAll('.k-day:not(.k-disabled)');
+        expect(dateDoms.length).to.eql(1);
+        expect(+dateDoms[0].textContent).to.eql(+now.split('-')[2]);
     });
 });
