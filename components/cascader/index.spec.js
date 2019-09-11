@@ -12,7 +12,7 @@ describe('Cascader', () => {
         // unmount(instance);
     });
 
-    it('basic test', () => {
+    it('basic test', async () => {
         instance = mount(BasicDemo);
 
         const select = instance.element.querySelector('.k-wrapper');
@@ -20,13 +20,16 @@ describe('Cascader', () => {
         const dropdown1 = getElement('.k-cascader-dropdown');
         const [item1, item2] = dropdown1.querySelectorAll('.k-item');
         item2.click();
+        await wait(1);
         expect(dropdown1.innerHTML).to.matchSnapshot();
         const dropdown2 = getElement('.k-cascader-dropdown');
         const [item11, item12] = dropdown2.querySelectorAll('.k-item');
         item12.click();
+        await wait(1);
         const dropdown3 = getElement('.k-cascader-dropdown');
         const [item21, item22] = dropdown3.querySelectorAll('.k-item');
         item22.click();
+        await wait(1);
         expect(instance.element.innerHTML).to.matchSnapshot();
 
         select.click();
@@ -65,6 +68,7 @@ describe('Cascader', () => {
         const dropdown1 = getElement('.k-cascader-dropdown');
         const [item1, item2] = dropdown1.querySelectorAll('.k-item');
         item2.click();
+        await wait(1);
         const dropdown2 = getElement('.k-cascader-dropdown');
         expect(dropdown2.innerHTML).to.matchSnapshot();
 
