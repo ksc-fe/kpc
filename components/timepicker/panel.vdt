@@ -1,11 +1,10 @@
-import Time from '../datepicker/time';
-import {getTimeString, getDateString, createDate} from '../datepicker/utils';
+import Time from './time';
 import {_$} from '../utils';
 
-const {_id, _options, multiple, value, _now} = self.get();
+const {_id, _options, multiple, value, _now, _parent} = self.get();
 
-const values = multiple ? value || [] : [value];
-const valueDate = createDate(values[self._index] || _now);
+const values = value ? multiple ? value : [value] : [];
+const valueDate = values[self._index] || _now;
 
 <t:parent>
     <b:time-head />
@@ -16,11 +15,12 @@ const valueDate = createDate(values[self._index] || _now);
     <b:time-body v-if={{ _options }}>
         <Time
             data={{ [_options] }}
-            value={{ [getTimeString(valueDate)] }}
-            ev-$change:value={{ self.changeTimeByStep }}
+            value={{ [_parent._dateToString(valueDate)] }}
+            ev-change={{ self.changeTimeByStep }}
             min={{ self._getMinDate() }}
             max={{ self._getMaxDate() }}
-            date={{ getDateString(valueDate) }}
+            date={{ valueDate }}
+            _parent={{ _parent }}
         />
     </b:time-body>
 </t:parent>

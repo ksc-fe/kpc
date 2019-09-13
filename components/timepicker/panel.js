@@ -5,8 +5,6 @@ import '../../styles/kpc.styl';
 import './index.styl';
 import {getDateString, createDate, getTimeString} from '../datepicker/utils';
 
-export const PREFIX = getDateString(new Date()) + ' ';
-
 export default class TimePanel extends Calendar {
     @Intact.template()
     static template = template;
@@ -17,7 +15,7 @@ export default class TimePanel extends Calendar {
 
             _isSelectTime: true,
             _id: undefined,
-            _prefix: PREFIX.trim(),
+            _parent: undefined,
         };
     }
 
@@ -28,16 +26,6 @@ export default class TimePanel extends Calendar {
 
         this.on('$receive:value', this.initIndex);
         this.on('$receive:multiple', this.initIndex);
-        this.on('$receive:min', (c, v) => {
-            if (v) {
-                this.set('minDate', PREFIX + v);
-            }
-        });
-        this.on('$receive:max', (c, v) => {
-            if (v) {
-                this.set('maxDate', PREFIX + v);
-            }
-        });
     }
 
     initState() {
@@ -56,46 +44,36 @@ export default class TimePanel extends Calendar {
         }
     }
 
-    _format(date) {
-        return getDateString(date, 'datetime');
-    }
-
     changeTimeByStep(c, v) {
         // the function is only called in range step,
         // so detecting multiple is unnecessary
         this.isSelectTime = true;
 
-        const {value, _now} = this.get();
-        const originalValue = value && value[this._index];
+        const {_parent, value} = this.get();
+        const valueDate = _parent._createDate(v[0]);
 
-        let valueDate = createDate(originalValue || _now);
+        let _value;
+        if (value) {
+            _value = value.slice(0);
+            _value[this._index] = valueDate;
+        } else {
+            _value = [valueDate];
+        }
 
-        // does not trigger change again
-        // otherwise it can not be cleared
-        if (getTimeString(valueDate) === v[0]) return;
-
-        valueDate = getDateString(valueDate, 'date') + ' ' + v[0];
-
-        // if (!multiple) {
-            // this.set('value', valueDate);
-        // } else {
-            let _value;
-            if (value) {
-                _value = value.slice(0);
-                _value[this._index] = valueDate;
-            } else {
-                _value = [valueDate];
-            }
-
-            this.set('value', _value);
-        // }
-
-        // this.isSelectTime = false;
+        this.set('value', _value);
     }
 
     onChangeTime(...args) {
         super.onChangeTime(...args);
         // always set this flag to true
         this.isSelectTime = true;
+    }
+
+    getShowDate() {
+        // we can not set the date to 1, otherwise we can disable the begin time
+        // when we select end time firstly
+        // we always return now date for time picker
+        // #339
+        return this.get('_now');
     }
 }

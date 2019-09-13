@@ -3,7 +3,7 @@
 #### `basic test`
 
 ```
-"<div class=\"k-item\">北京<i class=\"k-arrow ion-ios-arrow-right\"></i></div><!--placeholder--><div class=\"k-item k-dropdown-open\">湖南<i class=\"k-arrow ion-ios-arrow-right\"></i></div><!--placeholder-->"
+"<div class=\"k-item\">北京<i class=\"k-arrow ion-ios-arrow-right\"></i></div><!--placeholder--><div class=\"k-item k-active k-dropdown-open\">湖南<i class=\"k-arrow ion-ios-arrow-right\"></i></div><!--placeholder-->"
 ```
 
 ```

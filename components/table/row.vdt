@@ -1,10 +1,7 @@
-const props = {};
-const _props = self.get();
-for (let key in _props) {
-    if (key === 'ev-$destroyed') {
-        continue;
-    }
-    props[key] = _props[key];
-}
+const {className} = self.get();
 
-<tr {{ ...props }}>{{ self.get('children') }}</tr>
+<tr class={{ className }}
+    ev-click={{ self._onClick }}
+    ev-mouseenter={{ self._onMouseEnter }}
+    ev-mouseleave={{ self._onMouseLeave }}
+>{{ self.get('children') }}</tr>

@@ -8,7 +8,7 @@ const {
     value, clearable, className, style, _isShow,
     name, disabled, placeholder, size, transition,
     _value, range, type, ref, key, shortcuts, container,
-    ...rest
+    maxDate, minDate, ...rest
 } = self.get();
 
 // pass the rest props to Calendar, except events
@@ -54,6 +54,8 @@ if (_placeholder == null) {
 }
 
 const Panel = scope.Panel || Calendar;
+const _maxDate = maxDate && self._createDate(maxDate);
+const _minDate = minDate && self._createDate(minDate);
 
 const content = <b:content>
     <div class="k-shortcuts" v-if={{ hasShortcuts }}>
@@ -65,12 +67,14 @@ const content = <b:content>
     <template v-if={{ !range }}>
         <b:singe-panel>
             <Panel
-                v-model="value" 
+                v-model="_value" 
                 {{ ..._rest }} 
                 ev-hide={{ self._hide }}
                 type={{ type }}
                 ref="begin"
                 ev-enter:select={{ self._focus }}
+                maxDate={{ _maxDate }}
+                minDate={{ _minDate }}
             />
         </b:singe-panel>
     </template>
@@ -90,6 +94,9 @@ const content = <b:content>
             autoChangeToTimePicker={{ false }}
             _index={{ 0 }}
             _id="0"
+            maxDate={{ _maxDate }}
+            minDate={{ _minDate }}
+            _parent={{ self }}
         />
         <Panel
             {{ ..._rest }} 
@@ -106,6 +113,9 @@ const content = <b:content>
             autoChangeToTimePicker={{ false }}
             _index={{ 1 }}
             _id="1"
+            maxDate={{ _maxDate }}
+            minDate={{ _minDate }}
+            _parent={{ self }}
         />
     </div>
     <div v-if={{ type === 'datetime' || type === 'year' || type === 'month' || scope.showFooter }}

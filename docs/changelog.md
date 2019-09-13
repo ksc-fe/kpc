@@ -4,6 +4,44 @@ order: 99
 sidebar: doc
 ---
 
+## v1.1.3
+
+1. `Fix` 修复`Datepicker`点击清空按钮，`value`被清空，但是依然会展示原生日期的问题 [#349](https://github.com/ksc-fe/kpc/issues/349)
+
+## v1.1.2
+
+1. `Add` `Dialog`新增强制关闭事件`terminate`和回调方法`terminate`属性 [#347](https://github.com/ksc-fe/kpc/issues/347)
+2. `Add` `Dialog`新增`escClosable`属性，用于指定是否可以按ESC键关闭弹窗，非`confirm`类型的快捷弹窗现在不允许ESC关闭
+3. `Change` 在多`Dialog`情况下，按ESC键一个一个地关闭弹窗，而非一次性全部关闭 [#348](https://github.com/ksc-fe/kpc/issues/348)
+4. `Fix` 修复`Checkbox/Radio`在Mac版Firefox下，文本不对齐的问题 [#343](https://github.com/ksc-fe/kpc/issues/343)
+5. `Fix` 修复宽度`100%`的`Table`，宽度由大变小时，会展示横向滚动条的问题 [#342](https://github.com/ksc-fe/kpc/issues/342)
+6. `Fix` 修复`Pagination`某些情况下，会触发两次`change`事件的问题 [#341](https://github.com/ksc-fe/kpc/issues/341)
+7. `Fix` 修复`Upload`文件类型检测有可能会误报的问题，如：`tar`文件 [#340](https://github.com/ksc-fe/kpc/issues/340)
+
+### React
+
+1. `Add` 新增React 16 New Context Api的支持，同时支持React-Router V5 [#344](https://github.com/ksc-fe/kpc/issues/344)
+2. `Fix` 修复`Table`单元格中使用`Tooltip`，插入新行时会报错的问题 [#345](https://github.com/ksc-fe/kpc/issues/345)
+
+## v1.1.1
+
+1. `Fix` 修复`Datepicker`一处报错`self is undefined`
+
+## v1.1.0
+
+1. `Add` `Code`代码编辑器worker支持跨域加载 [#312](https://github.com/ksc-fe/kpc/issues/312)
+2. `Add` `Tooltip`支持`disabled`禁用提示 [#337](https://github.com/ksc-fe/kpc/issues/337)
+3. `Add` `Table`支持行提示 [#335](https://github.com/ksc-fe/kpc/issues/335)
+4. `Add` `Table`支持树形表格展示 [#260](https://github.com/ksc-fe/kpc/issues/260)
+5. `Add` `Datepicker`和`Timepicker`支持格式化日期字符串 [#336](https://github.com/ksc-fe/kpc/issues/336)
+6. `Fix` 修复`Form`在webpack tree-shaking下样式丢失的问题 [#338](https://github.com/ksc-fe/kpc/issues/338)
+
+## v1.0.1
+
+1. `Fix` 修复`Table`在表头吸顶`stickHeader`的情况下，调整列宽`resizable`报错的问题 [#330](https://github.com/ksc-fe/kpc/issues/330)
+2. `Fix` 修复`Tooltip`作用于`Select`上面，点击空白处，弹出菜单只能依次消失的问题 [#331](https://github.com/ksc-fe/kpc/issues/331)
+3. `Fix` 修复`Grid`响应式情况下，断点都变成了`1600px`的问题 [#332](https://github.com/ksc-fe/kpc/issues/332)
+
 # v1.0.0
 
 ### 新增组件

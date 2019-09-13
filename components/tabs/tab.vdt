@@ -16,7 +16,7 @@ const {
     {{ ...getRestProps(self) }}
     ev-click={{ self._changeTab }}
 >
-    {{ self.get('children') }}
+    {{ children }}
     <Button type="none"
         icon
         disabled={{ disabled }} 

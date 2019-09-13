@@ -10,6 +10,7 @@ import {
 } from './utils';
 import {Tabs, Tab} from '../tabs';
 import Icon from '../icon';
+import dayjs from 'dayjs';
 
 const {
     value, maxDate, minDate, dayClassNames,
@@ -20,10 +21,9 @@ const {
     _focusDate, _id,
 } = self.get();
 
-const values = multiple ? value || [] : [value];
-
-const valueDate = createDate(values[self._index] || _now);
-const showDate = createDate(_showDate || valueDate);
+const values = value ? multiple ? value : [value] : [];
+const valueDate = values[self._index] || _now;
+const showDate = _showDate || valueDate;
 
 let yearMonthFormat = _$('yearMonthFormat');
 if (yearMonthFormat === 'yearMonthFormat') {
@@ -31,8 +31,8 @@ if (yearMonthFormat === 'yearMonthFormat') {
 }
 const format = yearMonthFormat.split(' ');
 const map = {
-    'MM': <span class="k-text">{{ _$(`${showDate.getMonth() + 1}月`) }}</span>,
-    'YYYY': <span class="k-text">{{ _$(`{n}年`, {n: showDate.getFullYear()}) }}</span>
+    'MM': <span class="k-text">{{ _$(`${showDate.get('month') + 1}月`) }}</span>,
+    'YYYY': <span class="k-text">{{ _$(`{n}年`, {n: showDate.get('year')}) }}</span>
 };
 const panel = type === 'year' ? map.YYYY : format.map(item => map[item]);
 const isYearOrMonth = self._isYearOrMonth();
@@ -50,8 +50,8 @@ const isYearOrMonth = self._isYearOrMonth();
         value={{ _isSelectTime ? "time" : "date" }}
         ev-$change:value={{ self._onChangeTab }}
     >
-        <Tab value="date">{{ values[self._index] ? getDateString(valueDate) : '0000-00-00' }}</Tab>
-        <Tab value="time">{{ values[self._index] ? getTimeString(valueDate) : '00:00:00' }}</Tab>
+        <Tab value="date">{{ values[self._index] ? getDateString(valueDate.toDate()) : '0000-00-00' }}</Tab>
+        <Tab value="time">{{ values[self._index] ? getTimeString(valueDate.toDate()) : '00:00:00' }}</Tab>
     </Tabs>
     <div v-if={{ !_isSelectTime }} class="k-date-picker">
         <div class="k-month c-clearfix">
@@ -109,7 +109,8 @@ const isYearOrMonth = self._isYearOrMonth();
         >
             {{ function() {
                 const ret = [];
-                const start = createDate(showDate);
+                // dayjs is immutable, so we use js Date
+                const start = showDate.toDate();
                 const month = start.getMonth();
                 start.setDate(1);
                 start.setHours(0);
@@ -118,18 +119,14 @@ const isYearOrMonth = self._isYearOrMonth();
                 const startWeekday = start.getDay(); 
                 start.setDate(1 - startWeekday);
 
-                const _maxDate = maxDate && createDate(maxDate);
-                const _minDate = minDate && createDate(minDate);
-
                 for (let i = 0; i < 42; i++) {
+                    const dayjsDate = dayjs(start);
                     const _date = start.getDate();
                     const _month = start.getMonth();
-                    const disabled = _maxDate && isGT(start, _maxDate) ||
-                        _minDate && isLT(start, _minDate) ||
-                        disabledDate.call(self, getDateString(start, type));
+                    const disabled = self._isDisabledDate(dayjsDate); 
                     const isOut = _month !== month;
                     const classNames = dayClassNames ? 
-                        dayClassNames.call(self, createDate(start), isOut) : 
+                        dayClassNames.call(self, dayjsDate, isOut) : 
                         null;
                     ret.push(
                         <div 
@@ -137,15 +134,15 @@ const isYearOrMonth = self._isYearOrMonth();
                                 "k-day": true,
                                 "k-out": isOut,
                                 "k-active": !isOut && values.find(value => {
-                                    return isEqual(createDate(value), start);
+                                    return isEqual(value, dayjsDate);
                                 }),
-                                "k-today": isEqual(_now, start),
+                                "k-today": isEqual(_now, dayjsDate),
                                 "k-disabled": disabled, 
-                                "k-hover": isEqual(start, _focusDate),
+                                "k-hover": isEqual(_focusDate, dayjsDate),
                                 ...classNames
                             } }}
-                            ev-click={{ !disabled && self.select.bind(self, createDate(start)) }}
-                            ev-mouseenter={{ self._onMouseEnter.bind(self, createDate(start), isOut) }}
+                            ev-click={{ !disabled && self.select.bind(self, dayjsDate) }}
+                            ev-mouseenter={{ self._onMouseEnter.bind(self, dayjsDate, isOut) }}
                         >{{ _date }}</div>
                     );
                     start.setDate(start.getDate() + 1);
@@ -166,7 +163,7 @@ const isYearOrMonth = self._isYearOrMonth();
                         <Col span={{ span }}>
                             <ScrollSelect 
                                 data={{ monthArray }}
-                                value={{ showDate.getMonth() }}
+                                value={{ showDate.month() }}
                                 ev-$change:value={{ self.onChangeMonth }}
                             />
                         </Col>
@@ -175,7 +172,7 @@ const isYearOrMonth = self._isYearOrMonth();
                         <Col span={{ span }}>
                             <ScrollSelect 
                                 data={{ yearArray }}
-                                value={{ showDate.getFullYear() }}
+                                value={{ showDate.year() }}
                                 ev-$change:value={{ self.onChangeYear }}
                             />
                         </Col>
@@ -205,17 +202,17 @@ const isYearOrMonth = self._isYearOrMonth();
                     // #119
                     self.get('_id') ? 
                         [
-                            strPad(valueDate.getHours(), 2),
-                            strPad(valueDate.getMinutes(), 2),
-                            strPad(valueDate.getSeconds(), 2),
+                            strPad(valueDate.hour(), 2),
+                            strPad(valueDate.minute(), 2),
+                            strPad(valueDate.second(), 2),
                         ] : 
                         ['', '', '']
                 }}
                 disabledItems={{ [disabledHours, disabledMinutes, disabledSeconds] }}
-                ev-$change:value={{ self.onChangeTime }}
+                ev-change={{ self.onChangeTime }}
                 min={{ self._getMinDate() }}
                 max={{ self._getMaxDate() }}
-                date={{ scope.date || getDateString(valueDate) }}
+                date={{ scope.date || valueDate }}
             >
                 <b:append>:</b:append>
             </Time>

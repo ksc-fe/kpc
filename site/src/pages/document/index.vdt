@@ -105,8 +105,8 @@ if (sidebar) {
         <div class="table-of-contents" v-if={{ demos }}
             ref="tableContents"
         >
-            <div v-if={{ demos.length > 0 }} class="aside-border-nav"></div>
             <ul>
+                <li v-if={{ demos.length > 0 }} class="aside-border-nav"></li>
                 <li v-for={{ demos }}
                     class={{ {
                         "c-ellipsis-dot": true,

@@ -1,8 +1,10 @@
 @require('./variables.styl');
 
 .k-radio
-    display inline-block
+    display inline-flex
+    align-items center
     cursor pointer
+    vertical-align middle
     .k-wrapper
         display inline-block
         width $radio-width
@@ -39,6 +41,7 @@
         vertical-align middle
         display inline-block
         margin-left $radio-text-margin-left
+        flex 1
 
     // checked
     &.k-checked

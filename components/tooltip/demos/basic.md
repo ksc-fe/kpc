@@ -4,7 +4,7 @@ order: 0
 ---
 
 使用`Tooltip`包裹需要展示提示的元素，使用`content`属性指定提示文本即可，组件默认为深色主题`dark`，你可以通过
-`theme`指定浅色主题`light`
+`theme`指定浅色主题`light`，通过`disabled`属性可以禁用提示
 
 > 由于`Tooltip`是一个宏函数，Intact下，会返回两个元素，所以不要当做模板的顶级元素，
 > 因为Intact模板只能返回一个元素，此时应该用一个元素将它包起来
@@ -34,6 +34,10 @@ import Tooltip from 'kpc/components/tooltip';
     <br /><br />
     <Tooltip content="hello" theme="light">
         light theme 
+    </Tooltip>
+    <br /><br />
+    <Tooltip content="hello" disabled>
+        disabled
     </Tooltip>
 </div>
 ```

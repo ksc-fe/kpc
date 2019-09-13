@@ -1,8 +1,10 @@
 @require('./variables.styl');
 
 .k-checkbox
-    display inline-block
+    display inline-flex
+    align-items center
     cursor pointer
+    vertical-align middle
     .k-wrapper
         display inline-block
         width $checkbox-width
@@ -40,6 +42,7 @@
         vertical-align middle
         margin-left $checkbox-text-margin-left
         display inline-block
+        flex 1
 
     // indeterminate
     // checked

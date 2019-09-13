@@ -271,7 +271,10 @@ export default class DropdownMenu extends Intact {
         // and we get cancelBubble is true even if we stopPropagation
         // some action like clear in datepicker will prevent this menu hiding
         // we call this handler as soon as the event bubble to docuemnt
-        e._handler = () => this.hide(true);
+        // 
+        // use Array, #331
+        if (!e._handler) e._handler = [];
+        e._handler.push(() => this.hide(true));
         // const handler = () => {
             // if (!e._cancelBubble) {
                 // this.hide(true);
@@ -281,7 +284,7 @@ export default class DropdownMenu extends Intact {
     }
 
     _documentClickHandler(e) {
-        e._handler && e._handler();
+        e._handler && e._handler.forEach(fn => fn());
     }
 
     _onKeydown(e) {

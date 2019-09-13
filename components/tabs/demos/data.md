@@ -6,7 +6,7 @@ order: 1
 还可以使用`data`，定义`Tab`内容
 
 ```vdt
-import {Tabs, Tab} from 'components/tabs';
+import {Tabs, Tab} from 'kpc/components/tabs';
 
 <div>
     <Tabs 

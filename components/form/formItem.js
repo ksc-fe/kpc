@@ -1,6 +1,8 @@
 import Intact from 'intact';
 import template from './formItem.vdt';
 import Form from './form';
+import '../../styles/kpc.styl';
+import './index.styl';
 
 const warn = Intact.utils.warn;
 

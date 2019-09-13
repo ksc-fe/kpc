@@ -35,7 +35,6 @@ import {Table, TableColumn} from 'kpc/components/table';
     display: flex
     .k-table
         flex 1
-    .k-table-wrapper
         margin-left: 10px
 ```
 

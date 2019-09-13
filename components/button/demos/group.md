@@ -16,9 +16,9 @@ import {Button, ButtonGroup} from 'kpc/components/button';
         <Button>重启</Button>
     </ButtonGroup>
     <ButtonGroup>
-        <Button type="primary">开机</Button>
-        <Button type="primary">关机</Button>
-        <Button type="primary">重启</Button>
+        <Button type="danger">开机</Button>
+        <Button type="danger">关机</Button>
+        <Button type="danger">重启</Button>
     </ButtonGroup>
     <ButtonGroup>
         <Button type="primary">

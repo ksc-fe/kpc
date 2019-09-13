@@ -35,6 +35,9 @@ const classNameObj = {
     mapChildren(children, vNode => {
         if (vNode && vNode.tag === Col) {
             vNode.props = {...vNode.props, gutter};
+            // make it clone
+            vNode.$ = true;
+            /* return _Vdt.miss.clone(vNode, {gutter}); */
         }
         return vNode;
     }) 

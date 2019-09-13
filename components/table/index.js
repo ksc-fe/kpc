@@ -3,13 +3,14 @@ import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
 import Column from './column';
-import {_$, throttle, browser} from '../utils';
+import {_$, debounce, browser, toggleArray} from '../utils';
 import {scrollbarWidth} from '../moveWrapper/position';
 import ResizeObserver from 'resize-observer-polyfill'; 
 import {addClass, removeClass} from './utils';
+import TooltipContent from '../tooltip/content';
 
 const slice = Array.prototype.slice;
-const each = Intact.utils.each;
+const {each, className} = Intact.Vdt.utils;
 const hasLocalStorage = typeof localStorage !== 'undefined';
 
 export default class Table extends Intact {
@@ -47,6 +48,10 @@ export default class Table extends Intact {
             defaultWidth: undefined,
             storeWidth: undefined,
             merge: undefined,
+            tooltipPosition: 'top',
+            childrenKey: 'children',
+            indent: 32,
+            spreadKeys: [],            
 
             _padding: 0,
             _paddingBottom: 0,
@@ -57,6 +62,8 @@ export default class Table extends Intact {
             _rightWidth: 0,
             _scrollBarWidth: 0,
             _scrollPosition: 'left',
+            _hoverIndex: undefined,
+            _amount: 0,
         }
     }
 
@@ -89,6 +96,10 @@ export default class Table extends Intact {
         defaultWidthMap: Object,
         storeWidth: String,
         merge: Function,
+        tooltipPosition: TooltipContent.propTypes.position, 
+        childrenKey: String,
+        indent: Number,
+        spreadKeys: Array,
     };
 
     static events = {
@@ -175,7 +186,10 @@ export default class Table extends Intact {
 
         this._setFixedColumnWidth();
 
-        const ro = this.ro = new ResizeObserver(throttle(() => {
+        // use debounce instead of throttle, because if there is
+        // transition on parent container, the width is weired
+        // #342
+        const ro = this.ro = new ResizeObserver(debounce(() => {
             if (this.destroyed) return;
 
             this._calcHeaderPadding();
@@ -197,7 +211,7 @@ export default class Table extends Intact {
 
     isCheckAll() {
         const checkedKeys = this.get('checkedKeys');
-        const dataLength = this.get('data').length;
+        const dataLength = this.get('_amount');
         const disabledAmount = this.get("_disabledAmount");
         const amount = dataLength - disabledAmount;
         return amount && checkedKeys.length >= amount; 
@@ -221,11 +235,16 @@ export default class Table extends Intact {
         return false;
     }
 
+    isSpreaded(key) {
+        const {spreadKeys} = this.get();
+        return ~spreadKeys.indexOf(key);
+    }
+
     checkAll() {
         const rowKey = this.get('rowKey');
         const disableRow = this.get('disableRow');
         const checkedKeys = [];
-        this.get('data').forEach((value, index) => {
+        this._breakForEach((value, index) => {
             if (!disableRow.call(this, value, index)) {
                 checkedKeys.push(rowKey.call(this, value, index));
             }
@@ -268,36 +287,47 @@ export default class Table extends Intact {
     getCheckedData() {
         const rowKey = this.get('rowKey');
         const checkType = this.get('checkType');
+
+        let ret = [];
         if (checkType === 'checkbox') {
             const checkedKeys = this.get('checkedKeys');
             const checkedKeysMap = {};
             checkedKeys.forEach((item) => {
                 checkedKeysMap[item] = true;
             });
-            return this.get('data').filter((value, index) => {
+            this._breakForEach((value, index) => {
                 const key = rowKey.call(this, value, index);
-                return checkedKeysMap[key];
+                if (checkedKeysMap[key]) {
+                    ret.push(value);
+                }
             });
         } else if (checkType === 'radio') {
             const checkedKey = this.get('checkedKey');
-            return this.get('data').filter((value, index) => {
-                return rowKey.call(this, value, index) === checkedKey;
+            this._breakForEach((value, index) => {
+                const key = rowKey.call(this, value, index);
+                if (key === checkedKey) {
+                    ret.push(value);
+                    return true;
+                }
             });
-        } else {
-            return [];
         }
+
+        return ret;
     }
 
     getSelectedData() {
         const {rowKey, rowSelectable, selectedKeys} = this.get();
+        let ret = [];
         if (rowSelectable) {
             const map = {};
             selectedKeys.forEach(key => map[key] = true);
-            return this.get('data').filter((value, index) => {
-                return map[rowKey.call(this, value, index)];
+            this._breakForEach((value, index) => {
+                if (map[rowKey.call(this, value, index)]) {
+                    ret.push(value);
+                }
             });
         }
-        return [];
+        return ret;
     }
 
     async exportTable(data, filename = 'table') {
@@ -369,6 +399,34 @@ export default class Table extends Intact {
 
     _escapeCSV(str) {
         return '"' + String(str).replace(/"/g, '""') + '"';
+    }
+
+    _breakForEach(cb) {
+        const childrenKey = this.get('childrenKey');
+        const data = this.get('data');
+
+        if (!childrenKey) {
+            return data.find(cb);
+        } 
+
+        let index = -1;
+        const loop = (data) => {
+            data.find(value => {
+                index++;
+                const ret = cb(value, index);
+                if (ret === true) return true;
+                if (Array.isArray(value[childrenKey])) {
+                    loop(value[childrenKey]);
+                }
+            });
+        };
+        loop(data);
+    }
+
+    _toggleSpreadRow(key, e) {
+        e.stopPropagation();
+        const spreadKeys = toggleArray(this.get('spreadKeys'), key);
+        this.set({spreadKeys});
     }
 
     _calcHeaderPadding() {
@@ -459,15 +517,19 @@ export default class Table extends Intact {
 
     _updateDisabledAmount() {
         let disabledAmount = 0;
-        const data = this.get('data');
+        let amount = 0;
         const disableRow = this.get('disableRow');
 
-        data.forEach((item, index) => {
+        this._breakForEach((item, index) => {
             if (disableRow.call(this, item, index)) {
                 disabledAmount++;
             }
+            amount++;
         });
-        this.set('_disabledAmount', disabledAmount);
+        this.set({
+            _disabledAmount: disabledAmount,
+            _amount: amount,
+        });
     }
 
     _toggleCheckAll(e) {
@@ -740,22 +802,38 @@ export default class Table extends Intact {
 
     /**
      * handle dom directly for performance, #310
+     * 
+     * @modify
+     * We can not handle dom directly, because it may be wrapped with Tooltip
+     * and it will modify className when the tip layer shows or hides. This will
+     * overwrite the className
      */
     _onRowEnter(index, e) {
-        this._hoverIndex = index;
-        addClass(e.target, 'k-hover');
-        // if has fixed columns, we must update the view
-        if (this.hasFixedLeft || this.hasFixedRight) {
-            this.update();
-        }
+        this.set('_hoverIndex', index);
+        // this._hoverIndex = index;
+        // addClass(e.target, 'k-hover');
+        // const _class = vNode.props.className;
+        // const _className = className({
+            // [_class]: _class,
+            // 'k-hover': true,
+        // });
+        // vNode.className = _className;
+        // vNode.props.className = _className;
+        // // if has fixed columns, we must update the view
+        // if (this.hasFixedLeft || this.hasFixedRight) {
+            // this.update();
+        // }
     }
 
     _onRowLeave(e) {
-        this._hoverIndex = undefined;
-        removeClass(e.target, 'k-hover');
-        if (this.hasFixedLeft || this.hasFixedRight) {
-            this.update();
-        }
+        this.set('_hoverIndex', undefined);
+        // const vNode = e._vNode;
+        // this._hoverIndex = undefined;
+        // removeClass(e.target, 'k-hover');
+        // vNode.className = vNode.props.className = vNode.props.className.replace('k-hover', '');
+        // if (this.hasFixedLeft || this.hasFixedRight) {
+            // this.update();
+        // }
     }
 
     _destroy() {

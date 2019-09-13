@@ -23,7 +23,7 @@ import Table from 'kpc/components/table';
 ```
 
 ```styl
-.k-table-wrapper
+.k-table
     margin-bottom 20px
     .k-checked
         background-color #f4f8fb

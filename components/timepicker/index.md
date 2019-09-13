@@ -20,3 +20,6 @@ sidebar: doc
 | size | 组件尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
 | range | 是否选择时间范围 | `Boolean` | `false` |
 | container | 指定弹出选择层追加的位置，默认：`Dialog`类型的组件会追加到`Dialog`中，其他会追加到`body`中。你可以传入函数返回一个DOM用来作为插入的容器，或者传入字符串用来给`querySelector`进行查询 | `Function` &#124; `String` | `undefined` |
+| format | 指定时间格式化字符串 | `String` | `HH:mm:ss` |
+| valueFormat | 指定`value`值时间格式化字符串 | `String` | `undefined` |
+| showFormat | 指定展示的时间格式化字符串 | `String` | `undefined` |

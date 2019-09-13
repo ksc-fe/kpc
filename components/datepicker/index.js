@@ -3,11 +3,15 @@ import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
 import Calendar from './calendar';
-import {getNowDate, isLT, isGT, getDateString, dispatchEvent, createDate} from './utils';
+import {
+    getNowDate, isLT, isGT, getDateString,
+    dispatchEvent, createDate, FORMATS
+} from './utils';
 import {getTransition} from '../utils';
 import * as shortcuts from './shortcuts';
-
-const {isEqual} = Intact.utils;
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+dayjs.extend(customParseFormat);
 
 export default class Datepicker extends Intact {
     @Intact.template()
@@ -31,6 +35,9 @@ export default class Datepicker extends Intact {
         disabledMinutes: Boolean,
         disabledSeconds: Boolean,
         multiple: Boolean, 
+        format: String,
+        valueFormat: String,
+        showFormat: String,
     };
 
     defaults() {
@@ -49,6 +56,9 @@ export default class Datepicker extends Intact {
             disabledMinutes: false,
             disabledSeconds: false,
             multiple: false,
+            format: undefined,
+            valueFormat: undefined,
+            showFormat: undefined,
 
             _value: undefined, // for range
             _rangeEndDate: undefined,
@@ -59,25 +69,48 @@ export default class Datepicker extends Intact {
     _init() {
         // proxy _value to value
         this.on('$change:_value', (c, v) => {
-            // if only select one date for range, do not change value, #259
-            if (v && v.length === 1) {
-                return;
+            if (Array.isArray(v)) {
+                // if only select one date for range, do not change value, #259
+                if (v.length === 1 && this.get('range')) return;
+                v = v.map(v => this._dateToString(v));
+            } else if (v) {
+                v = this._dateToString(v);
             }
             this.set('value', v);
         });
 
         this.on('$receive:value', (c, v) => {
+            // conver to dayjs instance
+            if (Array.isArray(v)) {
+                v = v.map(v => this._createDate(v));
+            } else if (v) {
+                v = this._createDate(v);
+            }
             this.set('_value', v);
         });
     }
 
+    _createDate(value) {
+        return dayjs(value, typeof value === 'string' ? this._getValueFormat() : undefined);
+    }
+
+    _dateToString(value) {
+        return value.format(this._getValueFormat());
+    }
+
+    _getValueFormat() {
+        const {format, valueFormat, type} = this.get();
+        return valueFormat || format || FORMATS[type];
+    }
+
+    _getShowFormat() {
+        const {format, showFormat, type} = this.get();
+        return showFormat || format || FORMATS[type];
+    }
+
     onClear(e) {
         e.stopPropagation();
-        if (this.get('range')) {
-            this.set('_value', undefined);
-        } else {
-            this.set('value', undefined);
-        }
+        this.set('_value', undefined);
     }
 
     _hide() {
@@ -105,19 +138,15 @@ export default class Datepicker extends Intact {
         const begin = this.refs.begin;
         const end = this.refs.end;
         if (type === 'begin') {
-            const endShowDate = end.getShowDate();
-            endShowDate.setDate(1);
+            const endShowDate = end.getShowDate().date(1);
             if (v >= endShowDate) {
-                const endShowDate = createDate(v);
-                endShowDate.setMonth(endShowDate.getMonth() + 1);
+                const endShowDate = v.add(1, 'month');
                 end.setShowDate(endShowDate);
             }
         } else {
-            const beginShowDate = begin.getShowDate();
-            v.setDate(1);
+            const beginShowDate = begin.getShowDate().date(1);
             if (v <= beginShowDate) {
-                const beginShowDate = createDate(v);
-                beginShowDate.setMonth(beginShowDate.getMonth() - 1);
+                const beginShowDate = v.subtract(1, 'momth');
                 begin.setShowDate(beginShowDate);
             }
         }
@@ -125,7 +154,7 @@ export default class Datepicker extends Intact {
 
     _setBeginShowDate(c) {
         const [start] = this.get('_value') || [];
-        const date = start ? createDate(start) : getNowDate();
+        const date = start || getNowDate();
         c.set('_showDate', date, {silent: true})
     }
 
@@ -135,17 +164,12 @@ export default class Datepicker extends Intact {
         let date;
         // if in the same month, show next month
         if (start && end) {
-            start = createDate(start);
-            end = createDate(end);
-            if (start.getFullYear() === end.getFullYear() &&
-                start.getMonth() === end.getMonth()
-            ) {
-                end.setMonth(end.getMonth() + 1);
+            if (start.isSame(end, 'month')) {
+                end = end.add(1, 'month');
             }
             date = end;
         } else {
-            date = getNowDate();
-            date.setMonth(date.getMonth() + 1);
+            date = getNowDate().add(1, 'month');
         }
 
         c.set('_showDate', date, {silent: true})
@@ -156,18 +180,17 @@ export default class Datepicker extends Intact {
         const _rangeEndDate = this.get('_rangeEndDate');
 
         if (start) {
-            const _start = createDate(start);
             if (end) {
                 return {
                     'k-in-range': !isOut && 
-                        isGT(date, _start) && 
-                        isLT(date, createDate(end))
+                        isGT(date, start) && 
+                        isLT(date, end)
                 };
             } else if (_rangeEndDate) {
                 return {
                     'k-in-range': !isOut &&
-                        isGT(date, _start >= _rangeEndDate ? _rangeEndDate : _start) &&
-                        isLT(date, _start <= _rangeEndDate ? _rangeEndDate : _start)
+                        isGT(date, start >= _rangeEndDate ? _rangeEndDate : start) &&
+                        isLT(date, start <= _rangeEndDate ? _rangeEndDate : start)
                 };
             }
         }
@@ -176,7 +199,10 @@ export default class Datepicker extends Intact {
     _onChangeValueForRange(type, c, v) {
         let value = this.get('_value');
 
-        if (isEqual(v, value)) return;
+        if (v && value && v.length === value.length && 
+            v.every((v, index) => v.isSame([value.index])) ||
+            v === value
+        ) return;
 
         const {begin, end} = this.refs;
         // if cancel all selected value of range, the length of v is 0
@@ -191,7 +217,7 @@ export default class Datepicker extends Intact {
                 // if we select the end time firstly
                 // we should set the begin time automatically
                 if (c.isSelectTime && type === 'end') {
-                    value = [c._format(begin.getShowDate()), last];
+                    value = [begin.getShowDate(), last];
                 } else {
                     value = [last];
                 }
@@ -217,7 +243,7 @@ export default class Datepicker extends Intact {
         }
 
         if (!c.isSelectTime) {
-            value.sort();
+            value.sort((a, b) => a > b ? 1 : -1);
         }
 
         this.set('_value', value);
@@ -283,16 +309,23 @@ export default class Datepicker extends Intact {
     _setValue(value) {
         const type = this.get('type');
         if (this.get('range')) {
-            this.set('_value', value.map(value => getDateString(value, type)));
+            this.set('_value', value.map(value => dayjs(value)));
         } else {
-            this.set('value', getDateString(value, type));
+            this.set('_value', dayjs(value));
         }
         this.refs.calendar.hide();
     }
 
     _format() {
-        const {value, range} = this.get();
-        return Array.isArray(value) ? range ? value.join(' ~ ') : value.join(', ') : value;
+        let {_value, range} = this.get();
+        if (Array.isArray(_value)) {
+            // do not show if has not selected
+            if (range && _value.length !== 2) return;
+            _value = _value.map(v => v.format(this._getShowFormat()));
+        } else if (_value) {
+            _value = _value.format(this._getShowFormat());
+        }
+        return Array.isArray(_value) ? range ? _value.join(' ~ ') : _value.join(', ') : _value;
     }
 
     _confirm() {

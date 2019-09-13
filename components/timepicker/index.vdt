@@ -5,7 +5,8 @@ import {Select, Option} from '../select';
 const {
     range, multiple, _options, size,
     clearable, placeholder, disabled,
-    className, container, _value
+    className, container, _value,
+    maxDate, minDate
 } = self.get(); 
 
 const _placeholder = range ?
@@ -30,8 +31,8 @@ const _placeholder = range ?
                 ev-hide={{ self._hide }}
                 ref="begin"
                 multiple={{ multiple }}
-                max={{ self.get('max') }}
-                min={{ self.get('min') }}
+                maxDate={{ maxDate }}
+                minDate={{ minDate }}
             />
         </b:singe-panel>
     </t:parent>

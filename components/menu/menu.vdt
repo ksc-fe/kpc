@@ -17,14 +17,15 @@ const classNameObj = {
 
 const _children = mapChildren(children, vNode => {
     if (vNode.tag === Item) {
-        return h(Item, {
+        vNode = _Vdt.miss.clone(vNode);
+        vNode.props = {
             dot: dot,
             ...vNode.props, 
             _root: _root || self,
             _isFirstFloorChildren: !_root,
             _parentItem: _parent,
             _parentMenu: self,
-        });
+        };
     }
     return vNode;
 });

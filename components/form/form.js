@@ -1,6 +1,8 @@
 import Intact from 'intact';
 import template from './form.vdt';
 import {methods, messages, classNames, addMethod} from './methods';
+import '../../styles/kpc.styl';
+import './index.styl';
 
 export default class Form extends Intact {
     static methods = methods; 

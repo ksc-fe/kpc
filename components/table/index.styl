@@ -9,9 +9,9 @@
         width 100%
         border-collapse collapse
         border-spacing 0
-        color $table-color
     .k-tbody
         font-size $table-font-size
+        color $table-color
 
     // thead
     .k-thead
@@ -226,6 +226,21 @@
             flex-direction column
         .k-tbody
             flex 1
+
+    // tree arrow
+    .k-table-arrow.k-mini
+        vertical-align $table-arrow-vertical-align 
+        margin-right $table-arrow-margin-right 
+        transition transform $transition
+        width $table-arrow-width 
+        height $table-arrow-height 
+        .k-icon
+            line-height 1
+    tr.k-spread
+        .k-table-arrow
+            transform rotate(90deg)
+    tr.k-hidden
+        display none
 
 .k-table-wrapper
     // overflow auto

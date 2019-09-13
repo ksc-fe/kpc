@@ -21,8 +21,7 @@ let tooltipContents = [];
 const titleVNodes = mapChildren(children, vNode => {
     if (vNode.tag === Menu) {
         // clone it
-        subMenuVNode = h(Menu, {
-            ...vNode.props, 
+        subMenuVNode = _Vdt.miss.clone(vNode, {
             _isSubMenu: true,
             _root,
             _isFirstFloorChildren,

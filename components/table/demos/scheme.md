@@ -52,7 +52,7 @@ const scheme = {
 ```
 
 ```styl
-.k-table-wrapper
+.k-table
     margin-bottom 20px
 ```
 

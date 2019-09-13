@@ -1,7 +1,7 @@
 import {addStyle, getRestProps} from '../utils';
 
 let {
-    className, style, children,
+    className, style,
     name, on, off, value,
     trueValue, falseValue, width,
     height, size, disabled, _dragging

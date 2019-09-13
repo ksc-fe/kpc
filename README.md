@@ -161,6 +161,8 @@ class App extends React.Component {
 
 ## 开发
 
+> 需要`node@10`以及`npm@6.9`以上
+
 ```shell
 git clone https://github.com/ksc-fe/kpc.git
 cd kpc

@@ -27,7 +27,7 @@ const Options = (props) => {
     }
 
     data.forEach((item, index) => {
-        const {active} = self.handleProps(item, labelObj, level);
+        const {active, selected} = self.handleProps(item, labelObj, level);
 
         const Item = () => {
             const events = {};
@@ -70,7 +70,14 @@ const Options = (props) => {
                         } }}
                         ev-show={{ self._onSubMenuShow.bind(self, item) }}
                     >
-                        <Options data={{ item.children }} level={{ level + 1 }} parentShowed={{ show }}/>
+                        <Options
+                            data={{ item.children }} 
+                            level={{ level + 1 }} 
+                            parentShowed={{ show }}
+                            v-if={{ // for performance, don't render children if they are hidden or unselected
+                                show || selected
+                            }}
+                        />
                     </DropdownMenu>
                 </Dropdown>
         );

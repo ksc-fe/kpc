@@ -7,6 +7,8 @@ order: 0
 可供选择的条数。可以通过`change`事件来监听组件`current`和`limit`的变化，组件会将`current`和`limit`
 以对象的方式传给事件回调函数。
 
+> 如果总条数`total`为`0`，则该组件不会渲染
+
 ```vdt
 import Pagination from 'kpc/components/pagination';
 

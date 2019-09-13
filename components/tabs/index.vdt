@@ -42,6 +42,7 @@ const classNameObj = {
             {{ __u.map(children ? (Array.isArray(children) ? children : [children]) : children, vNode => {
                 if (vNode.tag === Tab) {
                     vNode.props = {...vNode.props, _value: value, _parent: self};
+                    vNode.$ = true;
                 }
                 return vNode;
             }) }}

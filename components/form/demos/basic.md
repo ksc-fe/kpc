@@ -32,7 +32,28 @@ order: 0
 另外，验证失败时，可以通过`Form`的`getFirstInvalidFormItem()`方法来获取第一条出错的`FormItem`
 
 > 验证的字段名必须是当前上下文对象上的直接属性名，在循环中我们必须通过索引来拼接取值路径字符串，
-> 例如：`"users.0.phone"`
+> 例如：`"item.0.value"`
+> ```vue
+> // @code
+> <!-- 错误的model定义 -->
+> <FormItem v-for="(item, index) in data"
+>     model="item.value"
+>     :rules="{required: true}" 
+>     :key="index"
+> >
+>     <Input v-model="item.value" />
+> </FormItem>
+> 
+> <!-- 正确的model定义 -->
+> <FormItem v-for="(item, index) in data"
+>     :model="`data.${index}.value`"
+>     :rules="{required: true}" 
+>     :key="index"
+> >
+>     <Input v-model="item.value" />
+> </FormItem>
+> 
+> ```
 
 > React下，需要往子组件注入当前上下文`_context`，因为`FormItem`需要从当前上下文获取待验证的值，
 > 详见下面`index.jsx`示例文件
