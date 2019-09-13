@@ -1,6 +1,8 @@
 import Icon from '../icon';
 import Button from '../button';
-import {normalize} from 'intact';
+import Intact from 'intact';
+
+const normalize = Intact.normalize;
 
 let {
     type, content, hideIcon, 

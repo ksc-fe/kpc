@@ -1,11 +1,13 @@
 import Checkbox from '../checkbox';
 import Radio from '../radio';
 import Row from './row';
-import {normalize} from 'intact';
+import Intact from 'intact';
 import Column from './column';
 import {noop, isStringOrNumber, getTextByChildren, getRestProps, mapChildren} from '../utils';
 import Spin from '../spin';
 import Affix from '../affix';
+
+const normalize = Intact.normalize;
 
 const {
     checkType, scheme, checkedKeys, data, rowKey, 

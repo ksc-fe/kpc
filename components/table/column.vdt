@@ -2,7 +2,9 @@ import {Dropdown, DropdownMenu, DropdownItem} from '../dropdown';
 import {Checkbox} from '../checkbox';
 import {Radio} from '../radio';
 import {isStringOrNumber, getRestProps} from '../utils';
-import {normalize} from 'intact';
+import Intact from 'intact';
+
+const normalize = Intact.normalize;
 
 let {
     title, key, group, multiple, ignore,
