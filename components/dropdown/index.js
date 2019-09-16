@@ -6,7 +6,7 @@ import {config} from '../utils';
 
 const {h} = Intact.Vdt.miss;
 
-function Wrapper(props, inVue) {
+function Wrapper(props, flag) {
     let {
         children, position, key,
         ref, ...rest
@@ -29,7 +29,9 @@ function Wrapper(props, inVue) {
     };
     menu.key = key == null ? menu.key : `${key}.menu`;
 
-    if (!inVue || !config.useWrapper) {
+    const useWrapper = flag === 'angular' || flag && config.useWrapper;
+
+    if (!useWrapper) {
         return [dropdown, menu];
     }
     return h(DropdownVueWrapper, {

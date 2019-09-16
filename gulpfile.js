@@ -20,6 +20,9 @@ const packageJson = require('./package.json');
 const childProcess = require('child_process');
 const uglifyjs = require('gulp-uglify');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const fsExtra = require('fs-extra');
+
+const fsPromises = fs.promises;
 
 const pages = {
     '/': 'index',
@@ -245,6 +248,7 @@ function buildI18n(destPath) {
         .pipe(gulp.dest(destPath));
 }
 
+const metadata = {};
 gulp.task('index', () => {
     const codes = [];
     const components = [];
@@ -269,6 +273,7 @@ gulp.task('index', () => {
             });
             components.push(...names);
             codes.push(`import {${names.join(', ')}} from './components/${paths[paths.length - 2]}';`);
+            metadata[paths[paths.length - 2]] = names;
         }))
         .on('end', () => {
             // add position.js
@@ -525,9 +530,9 @@ gulp.task('build@stylus', gulp.series(
     )
 )); 
 
-// build for Vue and React 
-function generateTask(type) {
-    const dest= `./@${type}`;
+// build for Vue, React and Angular
+function generateTask(type, dest) {
+    dest= dest || `./@${type}`;
     gulp.task(`clean@${type}`, (done) => {
         rimraf(dest, done);
     });
@@ -545,6 +550,99 @@ function generateTask(type) {
 
 generateTask('vue');
 generateTask('react');
+generateTask('angular', './packages/angular/kpc');
+
+// generate components for Angular
+const angularComponentsPath = `./packages/angular/components`;
+const generateAngular = async (type) => {
+    await rm(angularComponentsPath);
+
+    for (let key in metadata) {
+        const path = `${angularComponentsPath}/${key}`;
+        const components = metadata[key];
+        const filenames = [];
+        for (let i = 0; i < components.length; i++) {
+            const name = components[i];
+            const filename = name.replace(/[A-Z]/g, (char, index) => {
+                if (index) return `-${char.toLowerCase()}`;
+                else return char.toLowerCase();
+            });
+            filenames.push(filename);
+            const filePath = `${path}/${filename}.component.ts`;
+            const content = [
+                `import Intact from 'intact-angular';`,
+                `import {${name}} from '../../kpc/@${type}/components/${key}';`,
+                ``,
+                `export const ${name}Component = Intact.decorate(${name}, 'k-${filename}');`
+            ].join('\n');
+            await fsExtra.ensureFile(filePath);
+            await fsPromises.writeFile(filePath, content);
+        }
+        // generate module.ts
+        const content = [
+            `import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';`,
+            ...filenames.map((filename, index) => {
+                return `import {${components[index]}Component} from './${filename}.component';`;
+            }),
+            ``,
+            `const components = [${components.map(name => `${name}Component`).join(', ')}];`,
+            ``,
+            `@NgModule({`,
+            `    declarations: components,`,
+            `    exports: components,`,
+            `    schemas: [NO_ERRORS_SCHEMA]`,
+            `})`,
+            `export class ${key[0].toUpperCase() + key.substring(1)}Module {}`,
+        ].join('\n');
+        await fsPromises.writeFile(`${path}/${key}.module.ts`, content);
+
+        // generate public-api.ts
+        await fsPromises.writeFile(`${path}/public-api.ts`, [
+            ...filenames.map((filename, index) => {
+                return `export * from './${filename}.component';`;
+            }),
+            `export * from './${key}.module';`,
+        ].join('\n'));
+
+        // generate index.ts
+        await fsPromises.writeFile(`${path}/index.ts`, `export * from './public-api';`);
+    } 
+}
+
+const generateAngularIndex = async () => {
+    const imports = [];
+    const exports = [];
+    const modules = [];
+    for (let key in metadata) {
+        const moduleName = `${key[0].toUpperCase() + key.substring(1)}Module`;
+        imports.push(`import {${moduleName}} from './${key}';`);
+        exports.push(`export * from './${key}';`);
+        modules.push(moduleName);
+    }
+
+    const contents = [
+        `import {NgModule} from '@angular/core';`,
+        ``,
+        ...imports,
+        ``,
+        ...exports,
+        ``,
+        `@NgModule({`,
+        `    exports: [`,
+                modules.map(item => `        ${item},`).join('\n'),
+        `    ]`,
+        `})`,
+        `export class KpcModule {}`,
+    ].join('\n');
+
+    await fsPromises.writeFile(`${angularComponentsPath}/index.ts`, contents);
+}
+gulp.task('_generate:angular', async () => {
+    // await generateAngular('css');
+    await generateAngular('stylus');
+    await generateAngularIndex();
+});
+gulp.task('generate:angular', gulp.series('index', '_generate:angular'));
 
 // build
 gulp.task('build', gulp.series(
@@ -580,6 +678,6 @@ gulp.task('code', () => {
         }))
         .on('end', () => {
             const path = './dist/code.js';
-            fs.writeFileSync(path,  codes.join('\n'));
+            fs.writeFileSync(path, codes.join('\n'));
         });
 });

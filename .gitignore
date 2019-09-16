@@ -15,3 +15,8 @@ out/
 site/dist/
 dist/
 .vscode/
+
+packages/angular/@css
+packages/angular/@stylus
+packages/angular/kpc
+packages/angular/node_modules

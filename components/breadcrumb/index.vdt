@@ -12,18 +12,23 @@ const _children = children ? (Array.isArray(children) ? children : [children]) :
 
 const _separator = <b:separator>{{ separator }}</b:separator>
 
-<div class={{ classNameObj }} {{ ...getRestProps(self) }}>
-    {{ __u.map(_children, (vNode, index) => {
-        if (vNode.tag === BreadcrumbItem) {
-            let props;
-            if (_separator != null && vNode.props.separator == null) {
-                props = {separator: _separator};
-            }
-            if (index === _children.length - 1) {
-                props = {separator: null};
-            }
-            return _Vdt.miss.clone(vNode, props);
+// maybe the last BreadcrumbItem is not the last vNode
+let lastItem;
+const vNodes = __u.map(_children, (vNode, index) => {
+    if (vNode.tag === BreadcrumbItem) {
+        let props;
+        if (_separator != null && vNode.props.separator == null) {
+            props = {separator: _separator};
         }
-        return vNode;
-    }) }} 
+        lastItem = _Vdt.miss.clone(vNode, props);
+        return lastItem; 
+    }
+    return vNode;
+});
+if (lastItem) {
+    lastItem.props = {...lastItem.props, separator: null};
+}
+
+<div class={{ classNameObj }} {{ ...getRestProps(self) }}>
+    {{ vNodes }} 
 </div>

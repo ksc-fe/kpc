@@ -8,7 +8,7 @@ export default class Cascader extends Select {
     @Intact.template()
     static template = template;
 
-    static blocks = [...Select.blocks, 'format'];
+    static blocks = [...Select.blocks, 'format'].filter(Boolean);
 
     defaults() {
         return {
