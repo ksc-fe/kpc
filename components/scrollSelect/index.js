@@ -8,6 +8,8 @@ export default class ScrollSelect extends Intact {
     @Intact.template()
     static template = template;
 
+    static blocks = ['append'];
+
     static propTypes = {
         count: Number,
         data: [Array, Function],

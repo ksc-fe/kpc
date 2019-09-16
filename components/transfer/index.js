@@ -8,6 +8,8 @@ export default class Transfer extends Intact {
     @Intact.template()
     static template = template;
 
+    static blocks = ['label', 'filter', 'header', 'list'];
+
     static propTypes = {
         data: Array,
         value: Array,

@@ -7,6 +7,8 @@ import './index.styl';
 export default class Timeline extends Intact {
     @Intact.template()
     static template = template;
+
+    static blocks = ['dot'];
 }
 
 export {Timeline, TimelineItem};

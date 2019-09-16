@@ -13,6 +13,8 @@ export default class Upload extends Intact {
 
     static request = request;
 
+    static blocks = ['content', 'tip'];
+
     defaults() {
         return {
             accept: undefined,

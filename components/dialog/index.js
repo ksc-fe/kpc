@@ -16,6 +16,8 @@ export default class Dialog extends Intact {
     @Intact.template()
     static template = template;
 
+    static blocks = ['header', 'body', 'footer', 'footer-wrapper'];
+
     static propTypes = {
         title: String,
         value: Boolean,

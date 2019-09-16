@@ -9,6 +9,8 @@ export default class Input extends Intact {
     @Intact.template()
     static template = template;
 
+    static blocks = ['prepend', 'append', 'prefix', 'suffix'];
+
     static propTypes = {
         type: String,
         name: String,

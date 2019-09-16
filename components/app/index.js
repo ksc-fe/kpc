@@ -12,6 +12,8 @@ export default class App extends Intact {
         loading: Boolean,
     };
 
+    static blocks = ['loading'];
+
     defaults() {
         return {
             view: undefined,

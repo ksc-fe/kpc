@@ -10,6 +10,8 @@ export default class Tree extends Intact {
     @Intact.template()
     static template = template;
 
+    static blocks = ['label'];
+
     static propTypes = {
         data: Array,
         expandedKeys: Array,

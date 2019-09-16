@@ -22,6 +22,8 @@ function Wrapper(props) {
     });
 }
 
+Wrapper.blocks = FormItem.blocks;
+
 export default Intact.functionalWrapper ?
     Intact.functionalWrapper(Wrapper) : Wrapper;
 

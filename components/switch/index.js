@@ -7,6 +7,8 @@ export default class Switch extends Intact {
     @Intact.template()
     get template() { return template; }
 
+    static blocks = ['off', 'on'];
+
     defaults() {
         return {
             name: undefined,

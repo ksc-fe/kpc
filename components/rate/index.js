@@ -7,6 +7,8 @@ export default class Rate extends Intact {
     @Intact.template()
     static template = template;
 
+    static blocks = ['icon'];
+
     static propTypes = {
         value: Number,
         count: Number,

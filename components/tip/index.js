@@ -7,6 +7,8 @@ import './index.styl';
 export default class Tip extends Tag {
     @Intact.template()
     static template = template;
+
+    static blocks = ['title', 'close'];
 }
 
 export {Tip};

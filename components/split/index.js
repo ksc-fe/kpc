@@ -7,6 +7,8 @@ export default class Split extends Intact {
     @Intact.template()
     static template = template;
 
+    static blocks = ['first', 'last', 'drag'];
+
     static propTypes = {
         mode: ['horizontal', 'vertical'],
         firstSize: String,

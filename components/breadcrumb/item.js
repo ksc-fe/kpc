@@ -11,6 +11,8 @@ export default class BreadcrumbItem extends Intact {
         separator: [String, Intact.VNode, Array]
     };
 
+    static blocks = ['separator'];
+
     defaults() {
         return {
             to: undefined,

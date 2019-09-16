@@ -10,6 +10,8 @@ export default class FormItem extends Intact {
     @Intact.template()
     get template() { return template; }
 
+    static blocks = ['label', 'content', 'append'];
+
     static propTypes = {
         model: String,
         rules: Object,

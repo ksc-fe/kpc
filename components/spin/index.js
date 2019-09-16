@@ -7,6 +7,8 @@ export default class Spin extends Intact {
     @Intact.template()
     static template = template;
 
+    static blocks = ['canvas'];
+
     static propTypes = {
         size: ['large', 'default', 'small', 'mini'],
         center: Boolean,

@@ -8,6 +8,8 @@ export default class Menu extends DropdownMenu {
     @Intact.template()
     static template = template;
 
+    static blocks = ['header'];
+
     static showAsDropdown = (_root) => {
         return _root.get('collapse') || _root.get('type') === 'horizontal';
     };

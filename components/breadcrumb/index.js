@@ -12,6 +12,8 @@ export default class Breadcrumb extends Intact {
         separator: String
     };
 
+    static blocks = ['separator'];
+
     defaults() {
         return {
             separator: undefined,

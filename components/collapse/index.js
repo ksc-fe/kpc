@@ -9,6 +9,8 @@ export default class Collapse extends Intact {
     @Intact.template()
     static template = template;
 
+    static blocks = ['title'];
+
     static propTypes = {
         accordion: Boolean,
         noBorder: Boolean,

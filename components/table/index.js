@@ -17,6 +17,8 @@ export default class Table extends Intact {
     @Intact.template()
     get template() { return template; }
 
+    static blocks = ['no-data', 'expand', 'tooltip'];
+
     defaults() {
         return {
             data: [],

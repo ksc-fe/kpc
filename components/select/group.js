@@ -5,6 +5,8 @@ export default class OptionGroup extends Intact {
     @Intact.template()
     static template = template;
 
+    static blocks = ['label'];
+
     static propTypes = {
         label: [String, Number, Intact.VNode],
     }

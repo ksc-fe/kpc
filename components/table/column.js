@@ -4,6 +4,8 @@ import template from './column.vdt';
 export default class TableColumn extends Intact {
     get template() { return template; }
 
+    static blocks = ['title', 'template', 'default'];
+
     static propTypes = {
         title: [String, Intact.VNode, Array, Object /* for vue vnode*/],
         template: Function,

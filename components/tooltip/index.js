@@ -8,7 +8,7 @@ import {config} from '../utils';
 
 const h = Intact.Vdt.miss.h;
 
-function Wrapper(props, inVue) {
+function Wrapper(props, flag) {
     let {children, content, _blocks, _context, ref, ...rest} = props;
 
     if (_blocks && _blocks.content) {
@@ -23,7 +23,9 @@ function Wrapper(props, inVue) {
         ...rest
     });
 
-    if (!inVue || !config.useWrapper) {
+    const useWrapper = flag === 'angular' || flag && config.useWrapper;
+
+    if (!useWrapper) {
         return [h(Tooltip, {
             _context,
             children,
@@ -40,6 +42,9 @@ function Wrapper(props, inVue) {
         ...rest
     });
 }
+
+// add blocks declaration for Angular
+Wrapper.blocks = ['content'];
 
 // for vue Boolean cast
 Wrapper.propTypes = TooltipContent.propTypes;
