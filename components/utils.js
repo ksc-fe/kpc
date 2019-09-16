@@ -121,7 +121,7 @@ export function findRouter(instance) {
             }
             parentVNode = parentVNode.parentVNode;
         }
-    } else if (Component.cid = 'IntactVue') {
+    } else if (Component.cid === 'IntactVue') {
         return instance.get('_context').data.$router;
     }
 }
