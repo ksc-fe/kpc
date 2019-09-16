@@ -558,32 +558,24 @@ const generateAngular = async (type) => {
     await rm(angularComponentsPath);
 
     for (let key in metadata) {
-        const path = `${angularComponentsPath}/${key}`;
+        const path = `${angularComponentsPath}/${key}.ts`;
         const components = metadata[key];
         const filenames = [];
+        const codes = [
+            `import Intact from 'intact-angular';`,
+            `import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';`,
+        ];
+        codes.push(`import {${components.join(', ')}} from 'kpc/components/${key}'`, ``);
         for (let i = 0; i < components.length; i++) {
             const name = components[i];
-            const filename = name.replace(/[A-Z]/g, (char, index) => {
+            const selector = name.replace(/[A-Z]/g, (char, index) => {
                 if (index) return `-${char.toLowerCase()}`;
                 else return char.toLowerCase();
             });
-            filenames.push(filename);
-            const filePath = `${path}/${filename}.component.ts`;
-            const content = [
-                `import Intact from 'intact-angular';`,
-                `import {${name}} from '../../kpc/@${type}/components/${key}';`,
-                ``,
-                `export const ${name}Component = Intact.decorate(${name}, 'k-${filename}');`
-            ].join('\n');
-            await fsExtra.ensureFile(filePath);
-            await fsPromises.writeFile(filePath, content);
+            codes.push(`export const ${name}Component = Intact.decorate(${name}, 'k-${selector}');`);
         }
-        // generate module.ts
-        const content = [
-            `import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';`,
-            ...filenames.map((filename, index) => {
-                return `import {${components[index]}Component} from './${filename}.component';`;
-            }),
+        // generate module
+        codes.push(
             ``,
             `const components = [${components.map(name => `${name}Component`).join(', ')}];`,
             ``,
@@ -593,19 +585,10 @@ const generateAngular = async (type) => {
             `    schemas: [NO_ERRORS_SCHEMA]`,
             `})`,
             `export class ${key[0].toUpperCase() + key.substring(1)}Module {}`,
-        ].join('\n');
-        await fsPromises.writeFile(`${path}/${key}.module.ts`, content);
-
-        // generate public-api.ts
-        await fsPromises.writeFile(`${path}/public-api.ts`, [
-            ...filenames.map((filename, index) => {
-                return `export * from './${filename}.component';`;
-            }),
-            `export * from './${key}.module';`,
-        ].join('\n'));
-
-        // generate index.ts
-        await fsPromises.writeFile(`${path}/index.ts`, `export * from './public-api';`);
+        );
+        
+        await fsExtra.ensureFile(path);
+        await fsPromises.writeFile(path, codes.join('\n'));
     } 
 }
 
