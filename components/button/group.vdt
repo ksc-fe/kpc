@@ -1,4 +1,4 @@
-import Button from './';
+import Button from './button';
 import {getRestProps} from '../utils';
 
 const {
