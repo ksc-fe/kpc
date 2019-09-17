@@ -14,7 +14,15 @@
                     如果你发现文档有问题，请帮忙在
                     <a target="_blank" href="https://github.com/ksc-fe/kpc/blob/master/docs/changelog.md">github</a>
                     上修正该文档
-                </div></div><div class="contents"><div class="api"><div><h2 id='header-v1.1.2'>v1.1.2</h2><ol>
+                </div></div><div class="contents"><div class="api"><div><h2 id='header-v1.1.4'>v1.1.4</h2><ol>
+<li><code>Fix</code> 修复<code>Datepicker</code>不能通过<code>Date</code>对象设置最大/小(<code>maxDate/minDate</code>)日期的问题 <a href="https://github.com/ksc-fe/kpc/issues/352">#352</a></li>
+<li><code>Fix</code> 修复<code>Checkbox</code>文本过长时，折行没有对齐的问题 <a href="https://github.com/ksc-fe/kpc/issues/350">#350</a></li>
+<li><code>Refactor</code> 优化级联选择<code>Cascader</code>在大数据下的性能 <a href="https://github.com/ksc-fe/kpc/issues/351">#351</a></li>
+</ol>
+<h2 id='header-v1.1.3'>v1.1.3</h2><ol>
+<li><code>Fix</code> 修复<code>Datepicker</code>点击清空按钮，<code>value</code>被清空，但是依然会展示原始日期的问题 <a href="https://github.com/ksc-fe/kpc/issues/349">#349</a></li>
+</ol>
+<h2 id='header-v1.1.2'>v1.1.2</h2><ol>
 <li><code>Add</code> <code>Dialog</code>新增强制关闭事件<code>terminate</code>和回调方法<code>terminate</code>属性 <a href="https://github.com/ksc-fe/kpc/issues/347">#347</a></li>
 <li><code>Add</code> <code>Dialog</code>新增<code>escClosable</code>属性，用于指定是否可以按ESC键关闭弹窗，非<code>confirm</code>类型的快捷弹窗现在不允许ESC关闭</li>
 <li><code>Change</code> 在多<code>Dialog</code>情况下，按ESC键一个一个地关闭弹窗，而非一次性全部关闭 <a href="https://github.com/ksc-fe/kpc/issues/348">#348</a></li>
