@@ -4,9 +4,15 @@ order: 99
 sidebar: doc
 ---
 
+## v1.1.4
+
+1. `Fix` 修复`Datepicker`不能通过`Date`对象设置最大/小(`maxDate/minDate`)日期的问题 [#352](https://github.com/ksc-fe/kpc/issues/352)
+2. `Fix` 修复`Checkbox`文本过长时，折行没有对齐的问题 [#350](https://github.com/ksc-fe/kpc/issues/350)
+3. `Refactor` 优化级联选择`Cascader`在大数据下的性能 [#351](https://github.com/ksc-fe/kpc/issues/351)
+
 ## v1.1.3
 
-1. `Fix` 修复`Datepicker`点击清空按钮，`value`被清空，但是依然会展示原生日期的问题 [#349](https://github.com/ksc-fe/kpc/issues/349)
+1. `Fix` 修复`Datepicker`点击清空按钮，`value`被清空，但是依然会展示原始日期的问题 [#349](https://github.com/ksc-fe/kpc/issues/349)
 
 ## v1.1.2
 
