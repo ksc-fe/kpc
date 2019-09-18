@@ -203,7 +203,10 @@ function parseJS(js, refs, angularMethods) {
         }
         _head.push(line);
     }
-    const head = _head.join('\n') || undefined;
+    let head = _head.join('\n') || undefined;
+    if (head) {
+        head = '\n' + head;
+    }
 
     const defaults = getDefaults(js);
     const methodsObj = getMethods(js, refs);
