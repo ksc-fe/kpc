@@ -652,7 +652,7 @@ function getMethods(js) {
     const lines = js.split('\n');
     let spaces = '';
     lines.forEach((code, index) => {
-        const matches = code.match(/^(\s*)((?:async )?\w+)\(.*?\) {$/);
+        const matches = code.match(/^(\s*)(?:(?:get|set|async) )?(\w+)\(.*?\) {$/);
         if (matches) {
             start = index;
             name = matches[2];

@@ -17,6 +17,7 @@ exports.dedent = function dedent(scripts, number = 1) {
 }
 
 exports.indent = function indent(scripts, number = 1) {
+    if (!scripts) return [];
     if (typeof scripts === 'string') {
         scripts = scripts.split('\n');
     }

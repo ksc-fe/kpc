@@ -7,6 +7,7 @@ const webpack = require('webpack');
 const highlight = require('highlight.js');
 const intact2vue = require('./intact2vue');
 const intact2react = require('./intact2react');
+const intact2angular = require('./intact2angular');
 const fs = require('fs').promises;
 
 const languageMap = function(key) {
@@ -30,8 +31,8 @@ module.exports = function(isDev = true) {
         path.resolve(__dirname, `../site/dist`);
 
     const doc = new KDoc(
-        './@(docs|components)/**/*.md',
-        // './@(docs|components)/transfer/demos/customList.md',
+        // './@(docs|components)/**/*.md',
+        './@(docs|components)/code/demos/*.md',
         root
     );
 
@@ -139,6 +140,9 @@ module.exports = function(isDev = true) {
                 // for react
                 let reactMethods;
 
+                // for angular
+                let angularMethods;
+
                 let jsHead;
 
                 const codes = file.md.codes = file.md.codes.filter((item, index) => {
@@ -179,6 +183,10 @@ module.exports = function(isDev = true) {
                     }
                     if (item.language === 'react-methods') {
                         reactMethods = item.content;
+                        return false;
+                    }
+                    if (item.language === 'angular-methods') {
+                        angularMethods = item.content;
                         return false;
                     }
                     if (item.language === 'js-head') {
@@ -245,6 +253,12 @@ module.exports = function(isDev = true) {
                                 content: intact2react(vdt, js, reactMethods, jsHead, hasStylus), 
                             });
                         }
+
+                        // compile to angular
+                        codes.push({
+                            language: 'ts',
+                            content: intact2angular(vdt, js, angularMethods, hasStylus),
+                        });
                     }
 
                     data.highlighted = codes.map(item => {
