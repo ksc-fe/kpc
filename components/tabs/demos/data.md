@@ -28,8 +28,8 @@ import {Tabs, Tab} from 'kpc/components/tabs';
     />
 
     <div class="content">
-        <div v-if={{ self.get('tab') == 'rulein' }}>入站规则</div>
-        <div v-else-if={{ self.get('tab') == 'ruleout' }}>出站规则</div>
+        <div v-if={{ self.get('tab') === 'rulein' }}>入站规则</div>
+        <div v-else-if={{ self.get('tab') === 'ruleout' }}>出站规则</div>
         <div v-else>关联云主机</div> 
     </div>
 </div>

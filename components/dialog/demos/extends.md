@@ -76,3 +76,7 @@ Vue不支持继承的用法，请使用Dialog组件用法
 ```react-ignore
 React不支持继承的用法，请使用Dialog组件用法
 ```
+
+```angular-ignore
+Angular不支持继承用法，请使用Dialog组件用法
+```

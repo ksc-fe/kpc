@@ -1,6 +1,6 @@
 const {indent, dedent, getDefaults} = require('./utils');
 
-module.exports = (vdt, js, angularMethods, hasStylus) => {
+module.exports = (vdt, js, angularMethods, angularProperties, hasStylus) => {
     const obj = parse(vdt, js, angularMethods);
     const refs = Object.keys(obj.refs);
     let result = [
@@ -23,13 +23,13 @@ module.exports = (vdt, js, angularMethods, hasStylus) => {
         ...indent(refs.map(ref => {
             return `@ViewChild('${ref}', {static: false}) ${ref};`;
         })),
-        refs.length && (obj.defaults || obj.methods) ? `` : undefined,
-        ...indent(obj.defaults ? Object.keys(obj.defaults).map(key => {
+        refs.length && (angularProperties || obj.defaults || obj.methods) ? `` : undefined,
+        ...indent(angularProperties || (obj.defaults ? Object.keys(obj.defaults).map(key => {
             const value = obj.defaults[key];
             if (value === undefined) return indent(`private ${key};`);
             return indent(`private ${key} = ${JSON.stringify(value, null, 4)};`);
-        }) : undefined, 0),
-        obj.defaults && obj.methods ? `` : undefined,
+        }) : undefined), angularProperties ? 1 : 0),
+        (angularProperties || obj.defaults) && obj.methods ? `` : undefined,
         ...indent(obj.methods),
     ].filter(item => item !== undefined);
 
@@ -57,23 +57,30 @@ function parse(template, js, angularMethods) {
     });
 
     const properties = {};
-    template = parseProperty(template, properties);
+    const methodsObj = {};
+    template = parseProperty(template, properties, methodsObj);
     template = parseBooleanProperty(template);
     const refs = {};
     template = parseRef(template, refs);
     template = parseBlock(template);
     template = parseVModel(template, properties);
     template = parseInterpolation(template, properties);
+    template = parseTemplate(template);
+    template = parseVIf(template);
+    // TODO v-else
 
     let {head, methods, defaults} = parseJS(js, refs, angularMethods); 
     defaults = {...properties, ...defaults};
+
+    Object.assign(methodsObj, methods);
+    methods = Object.values(methodsObj).join('\n\n');
 
     return {template, head, methods, refs, defaults: Object.keys(defaults).length ? defaults: null};
 }
 
 const delimitersRegExp = /\b([^\s]*?)=\{\{\s+([\s\S]*?)\s+}}/g;
 const getRegExp = /self\.get\(['"](.*?)['"]\)/g;
-function parseProperty(template, properties) {
+function parseProperty(template, properties, methods) {
     return template
         .replace(getRegExp, (nouse, name) => {
             properties[name] = undefined;
@@ -87,19 +94,20 @@ function parseProperty(template, properties) {
                 if (matches) {
                     if (matches[2]) {
                         if (matches[1] === 'set') {
-                            // TODO 
-                            // methods.set = `set(key, value) { this[key] = value },`;
+                            methods.set = `set(key, value) { this[key] = value }`;
                         }
                         value = `${matches[1]}(${matches[3]})`;
                     } else {
                         value = `${matches[1]}()`;
                     }
                 }
+            } else if (name === 'class') {
+                name = '[ngClass]';
             } else if (name === 'v-for') {
                 name = `*ngFor`;
                 value = `let value of ${value}; index as key`;
             } else if (name === 'v-if' || name === 'v-else-if') {
-                name = `*ngIf`;
+                // name = `*ngIf`;
             } else if (name === 'v-model') {
                 name = `[(value)]`;
             } else {
@@ -115,7 +123,7 @@ function parseProperty(template, properties) {
 
 function parseBooleanProperty(template) {
     return template.replace(/(<[\w\-]+)( [^>]+>)/g, (nouse, start, properties) => {
-        return start + properties.replace(/ \b(\w+)(?=[> \/])\b/g, (whole, name, index) => {
+        return start + properties.replace(/ \b(\w+)(?=[> \/\n])\b/g, (whole, name, index) => {
             // is not in quotes
             for (let i = index; i >= 0; i--) {
                 const char = properties[i];
@@ -169,9 +177,10 @@ function parseBlock(template) {
 }
 
 function parseVModel(template, properties) {
-    return template.replace(/v-model="(\w+)"/g, (nouse, value) => {
+    return template.replace(/v\-model(:(.*?))?=['"]([^"']+)["']/g, (match, nouse, name, value) => {
         properties[value] = undefined;
-        return `[(value)]="${value}"`;
+        if (!name) name = 'value';
+        return `[(${name})]="${value}"`;
     });
 }
 
@@ -187,6 +196,54 @@ function parseInterpolation(template, properties) {
         });
         return `{{ ${value} }}`;
     });
+}
+
+function parseTemplate(template) {
+    return template.replace(/(<|<\/)template>/g, '$1ng-container>');
+}
+
+const vIfRegExp = / v-if="([\s\S]*?)"/;
+const vElseIfRegExp = / v-else-if="([\s\S]*?)"/;
+const vElseRegExp = / v-else/;
+function parseVIf(template) {
+    const lines = template.split('\n');
+    const stacks = [];
+
+    for (let index = 0; index < lines.length; index++) {
+        let code = lines[index];
+
+        let matches;
+        const last = stacks[stacks.length - 1];
+        if (matches = code.match(vIfRegExp)) {
+            const value = matches[1];
+            lines[index] = code.replace(vIfRegExp, () => {
+                return ` *ngIf="${value}"`;
+            }); 
+            stacks.push({
+                conditions: [`(${value})`],
+            });
+
+            continue;
+        } else if (matches = code.match(vElseIfRegExp)) {
+            const value = matches[1];
+            last.conditions.push(`(${value})`);
+            lines[index] = code.replace(vElseIfRegExp, () => {
+                return ` *ngIf="${value}"`;
+            });
+
+            continue;
+        } else if (matches = code.match(vElseRegExp)) {
+            lines[index] = code.replace(vElseRegExp, () => {
+                return ` *ngIf="!(${last.conditions.join(' && ')})"`;
+            });
+
+            stacks.pop();
+
+            continue;
+        }
+    }
+
+    return lines.join('\n');
 }
 
 function parseJS(js, refs, angularMethods) {
@@ -209,14 +266,13 @@ function parseJS(js, refs, angularMethods) {
     }
 
     const defaults = getDefaults(js);
-    const methodsObj = getMethods(js, refs);
+    const methods = getMethods(js, refs);
 
     if (angularMethods) {
         const extraMethods = getMethods(angularMethods, refs);
-        Object.assign(methodsObj, extraMethods);
+        Object.assign(methods, extraMethods);
     }
 
-    const methods = Object.values(methodsObj).join('\n\n')
 
     return {head, methods, defaults};
 }

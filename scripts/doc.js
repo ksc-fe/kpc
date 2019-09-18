@@ -32,7 +32,7 @@ module.exports = function(isDev = true) {
 
     const doc = new KDoc(
         // './@(docs|components)/**/*.md',
-        './@(docs|components)/code/demos/*.md',
+        './@(docs|components)/transfer/demos/*.md',
         root
     );
 
@@ -130,6 +130,7 @@ module.exports = function(isDev = true) {
                 let hasStylus = false;
                 let hasVue = false;
                 let hasReact = false;
+                let hasAngular = false;
 
                 // for vue
                 let vueScript;
@@ -142,6 +143,7 @@ module.exports = function(isDev = true) {
 
                 // for angular
                 let angularMethods;
+                let angularProperties;
 
                 let jsHead;
 
@@ -193,6 +195,10 @@ module.exports = function(isDev = true) {
                         jsHead = item.content;
                         return false;
                     }
+                    if (item.language === 'angular-properties') {
+                        angularProperties = item.content;
+                        return false;
+                    }
                     if (item.language === 'vue-ignore') {
                         item.language = 'vue';
                         item.ignored = true;
@@ -202,6 +208,11 @@ module.exports = function(isDev = true) {
                         item.language = 'jsx';
                         item.ignored = true;
                         hasReact = true;
+                    }
+                    if (item.language === 'angular-ignore') {
+                        item.language = 'ts';
+                        item.ignored = true;
+                        hasAngular = true;
                     }
                     return true;
                 });
@@ -254,11 +265,13 @@ module.exports = function(isDev = true) {
                             });
                         }
 
-                        // compile to angular
-                        codes.push({
-                            language: 'ts',
-                            content: intact2angular(vdt, js, angularMethods, hasStylus),
-                        });
+                        if (!hasAngular) {
+                            // compile to angular
+                            codes.push({
+                                language: 'ts',
+                                content: intact2angular(vdt, js, angularMethods, angularProperties, hasStylus),
+                            });
+                        }
                     }
 
                     data.highlighted = codes.map(item => {
