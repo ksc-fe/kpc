@@ -565,7 +565,7 @@ const generateAngular = async (type) => {
             `import Intact from 'intact-angular';`,
             `import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';`,
         ];
-        codes.push(`import {${components.join(', ')}} from 'kpc/components/${key}';`, ``);
+        codes.push(`import {${components.join(', ')}} from '../../../@stylus/components/${key}';`, ``);
         for (let i = 0; i < components.length; i++) {
             const name = components[i];
             const selector = name.replace(/[A-Z]/g, (char, index) => {

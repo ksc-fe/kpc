@@ -1,6 +1,6 @@
 import Intact from 'intact-angular';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
-import {MoveWrapper} from 'kpc/components/moveWrapper'
+import {MoveWrapper} from '../../../@stylus/components/moveWrapper';
 
 export const MoveWrapperComponent = Intact.decorate(MoveWrapper, 'k-move-wrapper');
 

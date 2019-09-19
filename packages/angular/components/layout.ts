@@ -1,6 +1,6 @@
 import Intact from 'intact-angular';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
-import {Layout, Aside, Header, Body, Footer} from 'kpc/components/layout'
+import {Layout, Aside, Header, Body, Footer} from '../../../@stylus/components/layout';
 
 export const LayoutComponent = Intact.decorate(Layout, 'k-layout');
 export const AsideComponent = Intact.decorate(Aside, 'k-aside');

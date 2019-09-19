@@ -8,8 +8,8 @@ import {ButtonModule} from './button';
 import {CardModule} from './card';
 import {CarouselModule} from './carousel';
 import {CascaderModule} from './cascader';
-import {CodeModule} from './code';
 import {CheckboxModule} from './checkbox';
+import {CodeModule} from './code';
 import {CollapseModule} from './collapse';
 import {DatepickerModule} from './datepicker';
 import {DialogModule} from './dialog';
@@ -17,8 +17,8 @@ import {DrawerModule} from './drawer';
 import {DropdownModule} from './dropdown';
 import {EditableModule} from './editable';
 import {FormModule} from './form';
-import {IconModule} from './icon';
 import {GridModule} from './grid';
+import {IconModule} from './icon';
 import {InputModule} from './input';
 import {LayoutModule} from './layout';
 import {LinkModule} from './link';
@@ -56,8 +56,8 @@ export * from './button';
 export * from './card';
 export * from './carousel';
 export * from './cascader';
-export * from './code';
 export * from './checkbox';
+export * from './code';
 export * from './collapse';
 export * from './datepicker';
 export * from './dialog';
@@ -65,8 +65,8 @@ export * from './drawer';
 export * from './dropdown';
 export * from './editable';
 export * from './form';
-export * from './icon';
 export * from './grid';
+export * from './icon';
 export * from './input';
 export * from './layout';
 export * from './link';
@@ -106,8 +106,8 @@ export * from './upload';
         CardModule,
         CarouselModule,
         CascaderModule,
-        CodeModule,
         CheckboxModule,
+        CodeModule,
         CollapseModule,
         DatepickerModule,
         DialogModule,
@@ -115,8 +115,8 @@ export * from './upload';
         DropdownModule,
         EditableModule,
         FormModule,
-        IconModule,
         GridModule,
+        IconModule,
         InputModule,
         LayoutModule,
         LinkModule,

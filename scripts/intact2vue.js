@@ -199,7 +199,9 @@ function parseInterpolation(template, properties, methods) {
 function parseVModel(template, properties) {
     return template.replace(/v\-model(:(.*?))?=['"]([^"']+)["']/g, (match, nouse, name, value) => {
         if (/\$data/.test(value)) return match;
-        properties[value] = null;
+        if (/^\w+$/.test(value)) {
+            properties[value] = null;
+        }
         if (!nouse) {
             return match;
         } else {

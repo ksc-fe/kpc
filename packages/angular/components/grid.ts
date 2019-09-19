@@ -1,6 +1,6 @@
 import Intact from 'intact-angular';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
-import {Row, Col} from 'kpc/components/grid'
+import {Row, Col} from '../../../@stylus/components/grid';
 
 export const RowComponent = Intact.decorate(Row, 'k-row');
 export const ColComponent = Intact.decorate(Col, 'k-col');

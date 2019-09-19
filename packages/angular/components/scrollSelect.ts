@@ -1,6 +1,6 @@
 import Intact from 'intact-angular';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
-import {ScrollSelect} from 'kpc/components/scrollSelect'
+import {ScrollSelect} from '../../../@stylus/components/scrollSelect';
 
 export const ScrollSelectComponent = Intact.decorate(ScrollSelect, 'k-scroll-select');
 

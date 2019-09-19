@@ -1,6 +1,6 @@
 import Intact from 'intact-angular';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
-import {Icon} from 'kpc/components/icon'
+import {Icon} from '../../../@stylus/components/icon';
 
 export const IconComponent = Intact.decorate(Icon, 'k-icon');
 

@@ -1,6 +1,6 @@
 import Intact from 'intact-angular';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
-import {App} from 'kpc/components/app'
+import {App} from '../../../@stylus/components/app';
 
 export const AppComponent = Intact.decorate(App, 'k-app');
 

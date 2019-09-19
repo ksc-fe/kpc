@@ -1,6 +1,6 @@
 import Intact from 'intact-angular';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
-import {Input, Search} from 'kpc/components/input'
+import {Input, Search} from '../../../@stylus/components/input';
 
 export const InputComponent = Intact.decorate(Input, 'k-input');
 export const SearchComponent = Intact.decorate(Search, 'k-search');

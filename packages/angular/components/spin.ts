@@ -1,6 +1,6 @@
 import Intact from 'intact-angular';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
-import {Spin} from 'kpc/components/spin'
+import {Spin} from '../../../@stylus/components/spin';
 
 export const SpinComponent = Intact.decorate(Spin, 'k-spin');
 

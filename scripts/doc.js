@@ -31,8 +31,8 @@ module.exports = function(isDev = true) {
         path.resolve(__dirname, `../site/dist`);
 
     const doc = new KDoc(
-        // './@(docs|components)/**/*.md',
-        './@(docs|components)/transfer/demos/*.md',
+        './@(docs|components)/**/*.md',
+        // './@(docs|components)/progress/demos/children.md',
         root
     );
 
@@ -267,6 +267,7 @@ module.exports = function(isDev = true) {
 
                         if (!hasAngular) {
                             // compile to angular
+                            // console.log(file.path);
                             codes.push({
                                 language: 'ts',
                                 content: intact2angular(vdt, js, angularMethods, angularProperties, hasStylus),

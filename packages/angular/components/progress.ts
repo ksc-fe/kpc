@@ -1,6 +1,6 @@
 import Intact from 'intact-angular';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
-import {Progress} from 'kpc/components/progress'
+import {Progress} from '../../../@stylus/components/progress';
 
 export const ProgressComponent = Intact.decorate(Progress, 'k-progress');
 

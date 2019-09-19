@@ -16,7 +16,7 @@ module.exports = (vdt, js, angularMethods, angularProperties, hasStylus) => {
                 hasStylus ? `styleUrls: ['./index.styl'],` : undefined,
             ]),
         `})`,
-        `class AppDemoComponent {`,
+        `export class AppDemoComponent {`,
     ].filter(item => item !== undefined);
 
     const classBody = [
@@ -67,7 +67,7 @@ function parse(template, js, angularMethods) {
     template = parseInterpolation(template, properties);
     template = parseTemplate(template);
     template = parseVIf(template);
-    // TODO v-else
+    template = parseSelfClosedTag(template);
 
     let {head, methods, defaults} = parseJS(js, refs, angularMethods); 
     defaults = {...properties, ...defaults};
@@ -86,6 +86,11 @@ function parseProperty(template, properties, methods) {
             properties[name] = undefined;
             return name
         })
+        .replace(/`([^`]+)`/g, (nouse, expression) => {
+            return `'` + expression.replace(/\${(.+)}/g, (nouse, variable) => {
+                return `' + ${variable} + '`;
+            }) + `'`;
+        })
         .replace(delimitersRegExp, (match, name, value) => {
             if (name.substring(0, 3) === 'ev-') {
                 // event
@@ -94,7 +99,7 @@ function parseProperty(template, properties, methods) {
                 if (matches) {
                     if (matches[2]) {
                         if (matches[1] === 'set') {
-                            methods.set = `set(key, value) { this[key] = value }`;
+                            methods.set = `set(key, value) { this[key] = value; }`;
                         }
                         value = `${matches[1]}(${matches[3]})`;
                     } else {
@@ -109,7 +114,7 @@ function parseProperty(template, properties, methods) {
             } else if (name === 'v-if' || name === 'v-else-if') {
                 // name = `*ngIf`;
             } else if (name === 'v-model') {
-                name = `[(value)]`;
+                // name = `[(value)]`;
             } else {
                 name = `[${name}]`;
                 if (value.substring(0, 5) === 'self.') {
@@ -177,8 +182,10 @@ function parseBlock(template) {
 }
 
 function parseVModel(template, properties) {
-    return template.replace(/v\-model(:(.*?))?=['"]([^"']+)["']/g, (match, nouse, name, value) => {
-        properties[value] = undefined;
+    return template.replace(/v\-model(:(.*?))?="([^"]+)"/g, (match, nouse, name, value) => {
+        if (/^\w+$/.test(value)) {
+            properties[value] = undefined;
+        }
         if (!name) name = 'value';
         return `[(${name})]="${value}"`;
     });
@@ -214,37 +221,60 @@ function parseVIf(template) {
 
         let matches;
         const last = stacks[stacks.length - 1];
+
+        const getMeta = (regexp) => {
+            let startCode = code;
+            let _matches;
+            let backLines = 0;
+            while (!(_matches = startCode.match(/^(\s+)</))) {
+                backLines++;
+                startCode = lines[index - backLines];
+            }
+
+            return {spaces: _matches[1], value: matches[1]};
+        };
+
         if (matches = code.match(vIfRegExp)) {
-            const value = matches[1];
+            const {spaces, value} = getMeta(vIfRegExp);
             lines[index] = code.replace(vIfRegExp, () => {
                 return ` *ngIf="${value}"`;
             }); 
             stacks.push({
                 conditions: [`(${value})`],
+                spaces,
             });
-
-            continue;
         } else if (matches = code.match(vElseIfRegExp)) {
             const value = matches[1];
             last.conditions.push(`(${value})`);
             lines[index] = code.replace(vElseIfRegExp, () => {
                 return ` *ngIf="${value}"`;
             });
-
-            continue;
         } else if (matches = code.match(vElseRegExp)) {
             lines[index] = code.replace(vElseRegExp, () => {
                 return ` *ngIf="!(${last.conditions.join(' && ')})"`;
             });
 
             stacks.pop();
-
-            continue;
+        } else if (last) {
+            const matches = code.match(/^(\s+)</);
+            if (matches) {
+                const spaces = matches[1];
+                if (last.spaces.length > spaces.length) {
+                    stacks.pop();
+                }
+            }
         }
     }
 
     return lines.join('\n');
 }
+
+function parseSelfClosedTag(template) {
+    return template.replace(/<(k-\w+)(((?!<\w+).)*)\/>/g, (nouse, tag, attrs) => {
+        return `<${tag}${attrs.trimRight()}></${tag}>`;
+    });
+}
+
 
 function parseJS(js, refs, angularMethods) {
     if (!js) return {}; 

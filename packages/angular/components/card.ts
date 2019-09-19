@@ -1,6 +1,6 @@
 import Intact from 'intact-angular';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
-import {Card, CardColumn} from 'kpc/components/card'
+import {Card, CardColumn} from '../../../@stylus/components/card';
 
 export const CardComponent = Intact.decorate(Card, 'k-card');
 export const CardColumnComponent = Intact.decorate(CardColumn, 'k-card-column');

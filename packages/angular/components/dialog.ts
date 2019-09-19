@@ -1,6 +1,6 @@
 import Intact from 'intact-angular';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
-import {Dialog} from 'kpc/components/dialog'
+import {Dialog} from '../../../@stylus/components/dialog';
 
 export const DialogComponent = Intact.decorate(Dialog, 'k-dialog');
 

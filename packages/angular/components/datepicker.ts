@@ -1,6 +1,6 @@
 import Intact from 'intact-angular';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
-import {Datepicker} from 'kpc/components/datepicker'
+import {Datepicker} from '../../../@stylus/components/datepicker';
 
 export const DatepickerComponent = Intact.decorate(Datepicker, 'k-datepicker');
 
