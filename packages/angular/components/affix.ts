@@ -1,6 +1,6 @@
 import Intact from 'intact-angular';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
-import {Affix} from '../../../@stylus/components/affix';
+import {Affix} from '../../../components/affix';
 
 export const AffixComponent = Intact.decorate(Affix, 'k-affix');
 

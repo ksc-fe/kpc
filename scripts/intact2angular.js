@@ -69,7 +69,7 @@ function parse(template, js, angularMethods) {
     template = parseVIf(template);
     template = parseSelfClosedTag(template);
 
-    let {head, methods, defaults} = parseJS(js, refs, angularMethods); 
+    let {head, methods, defaults} = parseJS(js, refs, angularMethods, methodsObj); 
     defaults = {...properties, ...defaults};
 
     Object.assign(methodsObj, methods);
@@ -94,6 +94,7 @@ function parseProperty(template, properties, methods) {
         .replace(delimitersRegExp, (match, name, value) => {
             if (name.substring(0, 3) === 'ev-') {
                 // event
+                name = name.replace(':', '-');
                 name = `(${name.substring(3)})`;
                 const matches = value.match(/self\.(\w+)(\.bind\(self, (.*?)\))?/);
                 if (matches) {
@@ -270,13 +271,14 @@ function parseVIf(template) {
 }
 
 function parseSelfClosedTag(template) {
-    return template.replace(/<(k-\w+)(((?!<\w+).)*)\/>/g, (nouse, tag, attrs) => {
-        return `<${tag}${attrs.trimRight()}></${tag}>`;
+    return template.replace(/<(k-\w+)(((?!<\w+)[\s\S])*)\/>/g, (nouse, tag, attrs) => {
+        if (!/\n/.test(attrs)) attrs = attrs.trimRight();
+        return `<${tag}${attrs}></${tag}>`;
     });
 }
 
 
-function parseJS(js, refs, angularMethods) {
+function parseJS(js, refs, angularMethods, methodsObj) {
     if (!js) return {}; 
 
     js = js.trim();
@@ -296,7 +298,7 @@ function parseJS(js, refs, angularMethods) {
     }
 
     const defaults = getDefaults(js);
-    const methods = getMethods(js, refs);
+    const methods = getMethods(js, refs, methodsObj);
 
     if (angularMethods) {
         const extraMethods = getMethods(angularMethods, refs);
@@ -307,7 +309,7 @@ function parseJS(js, refs, angularMethods) {
     return {head, methods, defaults};
 }
 
-function getMethods(js, refs) {
+function getMethods(js, refs, methodsObj) {
     const methods = {};
     let start = 0;
     let name;
@@ -361,7 +363,17 @@ function getMethods(js, refs) {
                             return `this.${name}`;
                         }
                     }
-                );
+                )
+                .replace(/this\.set/, (match) => {
+                    // if there is `this.set`, we need add set method
+                    if (methodsObj) {
+                        methodsObj.set = [
+                            `    // helper function`,
+                            `    set(obj) { Object.keys(obj).forEach(key => this[key] = obj[key]); }`,
+                        ].join('\n');
+                    }
+                    return match;
+                });
         }
     });
 

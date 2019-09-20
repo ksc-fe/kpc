@@ -1,6 +1,6 @@
 import Intact from 'intact-angular';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
-import {Message} from '../../../@stylus/components/message';
+import {Message} from '../../../components/message';
 
 export const MessageComponent = Intact.decorate(Message, 'k-message');
 

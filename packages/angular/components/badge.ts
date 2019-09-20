@@ -1,6 +1,6 @@
 import Intact from 'intact-angular';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
-import {Badge} from '../../../@stylus/components/badge';
+import {Badge} from '../../../components/badge';
 
 export const BadgeComponent = Intact.decorate(Badge, 'k-badge');
 

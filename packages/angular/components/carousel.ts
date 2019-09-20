@@ -1,6 +1,6 @@
 import Intact from 'intact-angular';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
-import {Carousel, CarouselItem} from '../../../@stylus/components/carousel';
+import {Carousel, CarouselItem} from '../../../components/carousel';
 
 export const CarouselComponent = Intact.decorate(Carousel, 'k-carousel');
 export const CarouselItemComponent = Intact.decorate(CarouselItem, 'k-carousel-item');

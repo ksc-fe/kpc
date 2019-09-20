@@ -1,6 +1,6 @@
 import Intact from 'intact-angular';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
-import {Editable} from '../../../@stylus/components/editable';
+import {Editable} from '../../../components/editable';
 
 export const EditableComponent = Intact.decorate(Editable, 'k-editable');
 

@@ -1,6 +1,6 @@
 import Intact from 'intact-angular';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
-import {Switch} from '../../../@stylus/components/switch';
+import {Switch} from '../../../components/switch';
 
 export const SwitchComponent = Intact.decorate(Switch, 'k-switch');
 

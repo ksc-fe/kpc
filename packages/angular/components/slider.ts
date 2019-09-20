@@ -1,6 +1,6 @@
 import Intact from 'intact-angular';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
-import {Slider} from '../../../@stylus/components/slider';
+import {Slider} from '../../../components/slider';
 
 export const SliderComponent = Intact.decorate(Slider, 'k-slider');
 

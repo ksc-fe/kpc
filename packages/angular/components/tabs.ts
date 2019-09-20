@@ -1,6 +1,6 @@
 import Intact from 'intact-angular';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
-import {Tabs, Tab} from '../../../@stylus/components/tabs';
+import {Tabs, Tab} from '../../../components/tabs';
 
 export const TabsComponent = Intact.decorate(Tabs, 'k-tabs');
 export const TabComponent = Intact.decorate(Tab, 'k-tab');

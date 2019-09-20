@@ -23,7 +23,7 @@ getTestBed().initTestEnvironment(
     platformBrowserDynamicTesting()
 );
 // Then we find all the tests.
-const context = require.context('../../../site/.dist/components', true, /\.ts$/);
+const context = require.context('../../../site/.dist/components', true, /^\.\/[c].*\/demos\/.*\.ts$/);
 // And load the modules.
 context.keys().map(context);
 
@@ -49,12 +49,42 @@ function getFixture<T>(components: Array<any>): ComponentFixture<T> {
 })
 class AppComponent {}
 
-describe('Demos', () => {
-    context.keys().forEach(item => {
-        it(item, () => {
-            const {AppDemoComponent} = context(item);
-            const fixture = getFixture([AppComponent, AppDemoComponent]);
-            // expect(fixture).toMatchSnapshot();
+function testDemos(req, test) {
+    const groups = {};
+    req.keys().forEach(item => {
+        const paths = item.split('/');
+        const name = paths[1];
+        const type = paths[3];
+        const {AppDemoComponent} = req(item);
+
+        if (!groups[name]) {
+            groups[name] = [];
+        }
+        groups[name].push({
+            title: `${name[0].toUpperCase()}${name.substring(1)} ${type}`,
+            Demo: AppDemoComponent,
         });
     });
+    Object.keys(groups).forEach(key => {
+        const value = groups[key];
+        describe(key, () => {
+            value.forEach(value => {
+                it(value.title, async () => {
+                    await test(value.Demo);
+                });
+            });
+        });
+    });
+}
+
+describe('Demos', () => {
+    testDemos(context, (AppDemoComponent) => {
+        const fixture = getFixture([AppComponent, AppDemoComponent]);
+    });
+    // context.keys().forEach(item => {
+        // it(item, () => {
+            // const {AppDemoComponent} = context(item);
+            // // expect(fixture).toMatchSnapshot();
+        // });
+    // });
 });

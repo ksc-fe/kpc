@@ -68,34 +68,27 @@ const scheme = {
 ```
 
 ```js
+const oData = [
+    {name: '主机1', status: 'active'},
+    {name: '主机2', status: 'stopped'},
+    {name: '主机3', status: 'active'},
+];
 export default class extends Intact {
     @Intact.template()
     static template = template;
 
     defaults() {
         return {
-            data: [], 
+            data: oData, 
             group: {status: ''},
-            multipleData: [],
+            multipleData: oData,
             multipleGroup: {status: []},
         }
     }
 
-    _init() {
-        this.oData = [
-            {name: '主机1', status: 'active'},
-            {name: '主机2', status: 'stopped'},
-            {name: '主机3', status: 'active'},
-        ];
-        this.set({
-            data: this.oData,
-            multipleData: this.oData,
-        });
-    }
-
     _onChangeGroup(c, group) {
         console.log(group);
-        const data = this.oData.filter(item => {
+        const data = oData.filter(item => {
             let matched = true;
             for (let key in group) {
                 const value = group[key];
@@ -112,7 +105,7 @@ export default class extends Intact {
 
     _onChangeMultipleGroup(c, group) {
         console.log(group);
-        const data = this.oData.filter(item => {
+        const data = oData.filter(item => {
             let matched = true;
             for (let key in group) {
                 const value = group[key];
@@ -132,9 +125,9 @@ export default class extends Intact {
 ```vue-data
 data() {
     return {
-        data: [], 
+        data: oData, 
         group: {status: ''},
-        multipleData: [],
+        multipleData: oData,
         multipleGroup: {status: []},
         scheme: {
             name: '名称',
@@ -153,32 +146,16 @@ data() {
     }
 },
 ```
-```vue-script
-created() {
-    this.oData = [
-        {name: '主机1', status: 'active'},
-        {name: '主机2', status: 'stopped'},
-        {name: '主机3', status: 'active'},
-    ];
-    this.data = this.oData;
-    this.multipleData = this.oData;
-},
-```
 
 ```react-methods
 constructor(props) {
     super(props);
-    this.oData = [
-        {name: '主机1', status: 'active'},
-        {name: '主机2', status: 'stopped'},
-        {name: '主机3', status: 'active'},
-    ];
     this.state = {
-        "data": this.oData,
+        "data": oData,
         "group": {
             "status": ""
         },
-        "multipleData": this.oData,
+        "multipleData": oData,
         "multipleGroup": {
             "status": []
         }
@@ -186,4 +163,11 @@ constructor(props) {
     this._onChangeGroup = this._onChangeGroup.bind(this);
     this._onChangeMultipleGroup = this._onChangeMultipleGroup.bind(this);
 }
+```
+
+```angular-properties
+private data = oData;
+private group = {status: ''};
+private multipleData = oData;
+private multipleGroup = {status: []};
 ```

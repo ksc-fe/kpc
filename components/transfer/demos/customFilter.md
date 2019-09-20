@@ -138,3 +138,17 @@ setState(state, cb) {
     }
 }
 ```
+
+```angular-properties
+private data = [];
+private value;
+private keywords;
+private policy = "all";
+private originData;
+```
+
+```angular-methods
+ngOnChanges(changes) {
+    console.log(changes);
+}
+```
