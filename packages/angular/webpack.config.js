@@ -1,16 +1,18 @@
 const path = require('path');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 module.exports = function(config) {
     // alias intact
     config.resolve.alias.intact$ = path.resolve(__dirname, './node_modules/intact-angular/dist/index.js');
     config.resolve.alias.kpc = path.resolve(__dirname, '../../');
+    // config.plugins.push(new MonacoWebpackPlugin());
     // add loader for style
-    // config.module.rules.find(rule => {
-        // if (rule.test.toString() === '/\\.css$/') {
-            // rule.exclude.push(path.resolve(__dirname, 'node_modules/kpc'));
-            // return true;
-        // }
-    // });
+    config.module.rules.find(rule => {
+        if (rule.test.toString() === '/\\.css$/') {
+            rule.exclude.push(path.resolve(__dirname, '../../node_modules'));
+            return true;
+        }
+    });
     config.module.rules.find(rule => {
         if (rule.test.toString() === '/\\.styl$/') {
             rule.exclude.push(

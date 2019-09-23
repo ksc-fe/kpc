@@ -68,6 +68,8 @@ function parse(template, js, angularMethods) {
     template = parseTemplate(template);
     template = parseVIf(template);
     template = parseSelfClosedTag(template);
+    // special for CarouselIem
+    template = parseSpecial(template);
 
     let {head, methods, defaults} = parseJS(js, refs, angularMethods, methodsObj); 
     defaults = {...properties, ...defaults};
@@ -82,14 +84,19 @@ const delimitersRegExp = /\b([^\s]*?)=\{\{\s+([\s\S]*?)\s+}}/g;
 const getRegExp = /self\.get\(['"](.*?)['"]\)/g;
 function parseProperty(template, properties, methods) {
     return template
+        .replace(/`([^`]+)`/g, (match, expression, index) => {
+            const name = `'` + expression.replace(/\${(.+)}/g, (nouse, variable) => {
+                return `' + ${variable} + '`;
+            }) + `'`;
+            if (template[index + match.length] === ',') {
+                return name;
+            } else {
+                return `this[${name}]`;
+            }
+        })
         .replace(getRegExp, (nouse, name) => {
             properties[name] = undefined;
             return name
-        })
-        .replace(/`([^`]+)`/g, (nouse, expression) => {
-            return `'` + expression.replace(/\${(.+)}/g, (nouse, variable) => {
-                return `' + ${variable} + '`;
-            }) + `'`;
         })
         .replace(delimitersRegExp, (match, name, value) => {
             if (name.substring(0, 3) === 'ev-') {
@@ -178,7 +185,7 @@ function parseBlock(template) {
                 scopes.push(`let-${param}="args[${index}]"`);
             });
         }
-        return `<ng-template #${name}` + (scopes.length ? ` ${scopes.join(' ')}` : '');
+        return `<ng-template #${name.replace(/-/g, '_')}` + (scopes.length ? ` ${scopes.join(' ')}` : '');
     }).replace(/<\/b:[\w\-]+>/g, '</ng-template>');;
 }
 
@@ -207,7 +214,7 @@ function parseInterpolation(template, properties) {
 }
 
 function parseTemplate(template) {
-    return template.replace(/(<|<\/)template>/g, '$1ng-container>');
+    return template.replace(/(<|<\/)template/g, '$1ng-container');
 }
 
 const vIfRegExp = / v-if="([\s\S]*?)"/;
@@ -277,6 +284,12 @@ function parseSelfClosedTag(template) {
     });
 }
 
+function parseSpecial(template) {
+    return template.replace(/(<k-carousel-item.*?>)(.*?)(<\/k-carousel-item>)/g, (nouse, start, children, end) => {
+        return `${start}<ng-template #children>${children}</ng-template>${end}`;
+    });
+}
+
 
 function parseJS(js, refs, angularMethods, methodsObj) {
     if (!js) return {}; 
@@ -309,6 +322,7 @@ function parseJS(js, refs, angularMethods, methodsObj) {
     return {head, methods, defaults};
 }
 
+const functionNameRegExp = /^(\s*)(?:(get|set|async) )?(\w+)\((.*?)\) {$/;
 function getMethods(js, refs, methodsObj) {
     const methods = {};
     let start = 0;
@@ -318,12 +332,17 @@ function getMethods(js, refs, methodsObj) {
     let entered = false;
     lines.forEach((code, index) => {
         if (!entered && !code) return;
-        const matches = code.match(/^(\s*)(?:(?:get|set|async) )?(\w+)\(.*?\) {$/);
+        const matches = code.match(functionNameRegExp);
         if (matches) {
             entered = true;
             start = index;
-            name = matches[2];
+            name = matches[3];
             spaces = matches[1];
+            // bind this
+            lines[index] = code.replace(functionNameRegExp, (match, spaces, keywords, name, params) => {
+                if (keywords !== 'async') return match;
+                return `${spaces}${name} = ${keywords ? 'async ' : ''}(${params}) => {`;
+            });
         } else if (code === `${spaces}}`) {
             entered = false;
             if (['defaults', '_init'].indexOf(name) > -1) return;

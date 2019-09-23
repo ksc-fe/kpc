@@ -5,6 +5,8 @@ import {Button, ButtonGroup} from '../../../components/button';
 export const ButtonComponent = Intact.decorate(Button, 'k-button');
 export const ButtonGroupComponent = Intact.decorate(ButtonGroup, 'k-button-group');
 
+(<any>window).ButtonGroupComponent = ButtonGroupComponent;
+
 const components = [ButtonComponent, ButtonGroupComponent];
 
 @NgModule({

@@ -31,8 +31,8 @@ module.exports = function(isDev = true) {
         path.resolve(__dirname, `../site/dist`);
 
     const doc = new KDoc(
-        './@(docs|components)/**/*.md',
-        // './@(docs|components)/cascader/demos/*.md',
+        // './@(docs|components)/**/*.md',
+        './@(docs|components)/dialog/demos/*.md',
         root
     );
 
@@ -164,9 +164,10 @@ module.exports = function(isDev = true) {
                             item.content,
                         ].join('\n');
                     }
-                    if (item.language === 'styl') hasStylus = true;
-                    if (item.language === 'vue') hasVue = true;
-                    if (item.language === 'jsx') hasReact = true;
+                    if (item.language === 'styl') return (hasStylus = true);
+                    if (item.language === 'vue') return (hasVue = true);
+                    if (item.language === 'jsx') return (hasReact = true);
+                    if (item.language === 'ts') return (hasAngular = true);
                     if (item.language === 'vue-script') {
                         vueScript = item.content;
                         return false;
