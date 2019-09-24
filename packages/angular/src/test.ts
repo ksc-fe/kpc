@@ -23,7 +23,7 @@ getTestBed().initTestEnvironment(
     platformBrowserDynamicTesting()
 );
 // Then we find all the tests.
-const context = require.context('../../../site/.dist/components', true, /^\.\/[d].*\/demos\/.*\.ts$/);
+const context = require.context('../../../site/.dist/components', true, /^\.\/dropdown.*\/demos\/.*\.ts$/);
 // And load the modules.
 context.keys().map(context);
 

@@ -27,7 +27,7 @@ module.exports = (vdt, js, angularMethods, angularProperties, hasStylus) => {
         ...indent(angularProperties || (obj.defaults ? Object.keys(obj.defaults).map(key => {
             const value = obj.defaults[key];
             if (value === undefined) return indent(`private ${key};`);
-            return indent(`private ${key} = ${JSON.stringify(value, null, 4)};`);
+            return indent(`private ${key} = ${value && value.exp ? value.exp : JSON.stringify(value, null, 4)};`);
         }) : undefined), angularProperties ? 1 : 0),
         (angularProperties || obj.defaults) && obj.methods ? `` : undefined,
         ...indent(obj.methods),
@@ -58,7 +58,9 @@ function parse(template, js, angularMethods) {
 
     const properties = {};
     const methodsObj = {};
-    template = parseProperty(template, properties, methodsObj);
+    const imports = {};
+    const eventCallbacks = {};
+    template = parseProperty(template, properties, methodsObj, eventCallbacks);
     template = parseBooleanProperty(template);
     const refs = {};
     template = parseRef(template, refs);
@@ -69,10 +71,14 @@ function parse(template, js, angularMethods) {
     template = parseVIf(template);
     template = parseSelfClosedTag(template);
     // special for CarouselIem
-    template = parseSpecial(template);
+    template = parseSpecial(template, properties, imports);
 
-    let {head, methods, defaults} = parseJS(js, refs, angularMethods, methodsObj); 
+    let {head, methods, defaults} = parseJS(js, refs, angularMethods, methodsObj, eventCallbacks); 
     defaults = {...properties, ...defaults};
+
+    Object.keys(imports).forEach(key => {
+        head = (head ? head + '\n' : '') + imports[key];
+    });
 
     Object.assign(methodsObj, methods);
     methods = Object.values(methodsObj).join('\n\n');
@@ -82,7 +88,7 @@ function parse(template, js, angularMethods) {
 
 const delimitersRegExp = /\b([^\s]*?)=\{\{\s+([\s\S]*?)\s+}}/g;
 const getRegExp = /self\.get\(['"](.*?)['"]\)/g;
-function parseProperty(template, properties, methods) {
+function parseProperty(template, properties, methods, eventCallbacks) {
     return template
         .replace(/`([^`]+)`/g, (match, expression, index) => {
             const name = `'` + expression.replace(/\${(.+)}/g, (nouse, variable) => {
@@ -111,7 +117,8 @@ function parseProperty(template, properties, methods) {
                         }
                         value = `${matches[1]}(${matches[3]})`;
                     } else {
-                        value = `${matches[1]}()`;
+                        value = `${matches[1]}($event)`;
+                        eventCallbacks[matches[1]] = true;
                     }
                 }
             } else if (name === 'class') {
@@ -284,14 +291,28 @@ function parseSelfClosedTag(template) {
     });
 }
 
-function parseSpecial(template) {
-    return template.replace(/(<k-carousel-item.*?>)(.*?)(<\/k-carousel-item>)/g, (nouse, start, children, end) => {
-        return `${start}<ng-template #children>${children}</ng-template>${end}`;
-    });
+function parseSpecial(template, properties, imports) {
+    return template
+        .replace(/(<k-carousel-item.*?>)(.*?)(<\/k-carousel-item>)/g, (nouse, start, children, end) => {
+            return `${start}<ng-template #children>${children}</ng-template>${end}`;
+        })
+        .replace(/new Date\(\)/g, () => {
+            properties.now = {
+                exp: 'new Date()',
+            };
+            return 'now';
+        })
+        .replace(/Datepicker/, (match) => {
+            properties.Datepicker = {
+                exp: 'Datepicker'
+            };
+            imports.Datepicker = `import {Datepicker} from 'kpc/components/datepicker';`;
+            return match;
+        });
 }
 
 
-function parseJS(js, refs, angularMethods, methodsObj) {
+function parseJS(js, refs, angularMethods, methodsObj, eventCallbacks) {
     if (!js) return {}; 
 
     js = js.trim();
@@ -311,7 +332,7 @@ function parseJS(js, refs, angularMethods, methodsObj) {
     }
 
     const defaults = getDefaults(js);
-    const methods = getMethods(js, refs, methodsObj);
+    const methods = getMethods(js, refs, methodsObj, eventCallbacks);
 
     if (angularMethods) {
         const extraMethods = getMethods(angularMethods, refs);
@@ -323,7 +344,7 @@ function parseJS(js, refs, angularMethods, methodsObj) {
 }
 
 const functionNameRegExp = /^(\s*)(?:(get|set|async) )?(\w+)\((.*?)\) {$/;
-function getMethods(js, refs, methodsObj) {
+function getMethods(js, refs, methodsObj, eventCallbacks) {
     const methods = {};
     let start = 0;
     let name;
@@ -340,7 +361,10 @@ function getMethods(js, refs, methodsObj) {
             spaces = matches[1];
             // bind this
             lines[index] = code.replace(functionNameRegExp, (match, spaces, keywords, name, params) => {
-                if (keywords !== 'async') return match;
+                if (eventCallbacks[name]) {
+                    params = `[${params}]`;
+                }
+                if (keywords !== 'async') return `${spaces}${keywords || ''}${name}(${params}) {`;
                 return `${spaces}${name} = ${keywords ? 'async ' : ''}(${params}) => {`;
             });
         } else if (code === `${spaces}}`) {
