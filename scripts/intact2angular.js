@@ -89,7 +89,7 @@ function parse(template, js, angularMethods) {
 const delimitersRegExp = /\b([^\s]*?)=\{\{\s+([\s\S]*?)\s+}}/g;
 const getRegExp = /self\.get\(['"](.*?)['"]\)/g;
 function parseProperty(template, properties, methods, eventCallbacks) {
-    return template
+      template = template
         .replace(/`([^`]+)`/g, (match, expression, index) => {
             const name = `'` + expression.replace(/\${(.+)}/g, (nouse, variable) => {
                 return `' + ${variable} + '`;
@@ -103,8 +103,9 @@ function parseProperty(template, properties, methods, eventCallbacks) {
         .replace(getRegExp, (nouse, name) => {
             properties[name] = undefined;
             return name
-        })
-        .replace(delimitersRegExp, (match, name, value) => {
+        });
+
+        return template.replace(delimitersRegExp, (match, name, value, index) => {
             if (name.substring(0, 3) === 'ev-') {
                 // event
                 name = name.replace(':', '-');
@@ -118,7 +119,15 @@ function parseProperty(template, properties, methods, eventCallbacks) {
                         value = `${matches[1]}(${matches[3]})`;
                     } else {
                         value = `${matches[1]}($event)`;
-                        eventCallbacks[matches[1]] = true;
+                        // detect if it is html element
+                        while (--index) {
+                            if (template[index] === '<' && template[index + 1] !== ' ') {
+                                if (/[A-Z]/.test(template[index + 1])) {
+                                    eventCallbacks[matches[1]] = true;
+                                }
+                                break;
+                            }
+                        }
                     }
                 }
             } else if (name === 'class') {
@@ -361,7 +370,7 @@ function getMethods(js, refs, methodsObj, eventCallbacks) {
             spaces = matches[1];
             // bind this
             lines[index] = code.replace(functionNameRegExp, (match, spaces, keywords, name, params) => {
-                if (eventCallbacks[name]) {
+                if (eventCallbacks && eventCallbacks[name]) {
                     params = `[${params}]`;
                 }
                 if (keywords !== 'async') return `${spaces}${keywords || ''}${name}(${params}) {`;
@@ -411,8 +420,8 @@ function getMethods(js, refs, methodsObj, eventCallbacks) {
                     // if there is `this.set`, we need add set method
                     if (methodsObj) {
                         methodsObj.set = [
-                            `    // helper function`,
-                            `    set(obj) { Object.keys(obj).forEach(key => this[key] = obj[key]); }`,
+                            `// helper function`,
+                            `set(obj) { Object.keys(obj).forEach(key => this[key] = obj[key]); }`,
                         ].join('\n');
                     }
                     return match;
