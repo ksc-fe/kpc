@@ -91,7 +91,7 @@ const OptionsVNodes = ({children}) => {
             };
             const {active, valid} = self.handleProps(props, labelObj);
             if (!valid) {
-                return <!---->;
+                return hc('', vNode.key);
             } else {
                 props.className = _className({
                     [props.className]: props.className,
