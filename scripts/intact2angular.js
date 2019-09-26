@@ -55,6 +55,8 @@ function parse(template, js, angularMethods) {
         tail = tail.replace(/[A-Z]/g, (match) => `-` + match.toLowerCase());
         return `${start}k-${head.toLowerCase()}${tail}`;
     });
+    // remove commments
+    template = template.replace(/\s*\/\/.*/g, '');
 
     const properties = {};
     const methodsObj = {};
@@ -71,7 +73,7 @@ function parse(template, js, angularMethods) {
     template = parseVIf(template);
     template = parseSelfClosedTag(template);
     // special for CarouselIem
-    template = parseSpecial(template, properties, imports);
+    template = parseSpecial(template, properties, imports, methodsObj);
 
     let {head, methods, defaults} = parseJS(js, refs, angularMethods, methodsObj, eventCallbacks); 
     defaults = {...properties, ...defaults};
@@ -141,9 +143,7 @@ function parseProperty(template, properties, methods, eventCallbacks) {
                 // name = `[(value)]`;
             } else {
                 name = `[${name}]`;
-                if (value.substring(0, 5) === 'self.') {
-                    value = value.substring(5);
-                }
+                value = value.replace(/self\./g, '');
             }
 
             return `${name}="${value}"`;
@@ -300,7 +300,7 @@ function parseSelfClosedTag(template) {
     });
 }
 
-function parseSpecial(template, properties, imports) {
+function parseSpecial(template, properties, imports, methodsObj) {
     return template
         .replace(/(<k-carousel-item.*?>)(.*?)(<\/k-carousel-item>)/g, (nouse, start, children, end) => {
             return `${start}<ng-template #children>${children}</ng-template>${end}`;
@@ -317,6 +317,10 @@ function parseSpecial(template, properties, imports) {
             };
             imports.Datepicker = `import {Datepicker} from 'kpc/components/datepicker';`;
             return match;
+        })
+        .replace(/\[(\w+?)\]="([^\"]+?=>[^\"]+?)"/g, (nouse, name, fn) => {
+            methodsObj[name] = `${name} = ${fn};`;
+            return `[${name}]="${name}"`;
         });
 }
 

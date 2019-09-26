@@ -32,7 +32,7 @@ module.exports = function(isDev = true) {
 
     const doc = new KDoc(
         // './@(docs|components)/**/*.md',
-        './@(docs|components)/editable/demos/*.md',
+        './@(docs|components)/select/demos/*.md',
         root
     );
 
