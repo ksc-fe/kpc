@@ -255,7 +255,10 @@ export default class Table extends Intact {
     }
 
     uncheckAll() {
-        this.set('checkedKeys', []);
+        this.set({
+            checkedKeys: [],
+            checkedKey: undefined,
+        });
     }
 
     checkRow(key) {
