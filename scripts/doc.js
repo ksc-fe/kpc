@@ -32,7 +32,7 @@ module.exports = function(isDev = true) {
 
     const doc = new KDoc(
         // './@(docs|components)/**/*.md',
-        './@(docs|components)/select/demos/*.md',
+        './@(docs|components)/form/demos/*.md',
         root
     );
 

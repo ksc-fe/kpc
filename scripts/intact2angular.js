@@ -122,9 +122,9 @@ function parseProperty(template, properties, methods, eventCallbacks) {
                     } else {
                         value = `${matches[1]}($event)`;
                         // detect if it is html element
-                        while (--index) {
+                        while (--index > -1) {
                             if (template[index] === '<' && template[index + 1] !== ' ') {
-                                if (/[A-Z]/.test(template[index + 1])) {
+                                if (template[index + 1] === 'k' && template[index + 2] === '-') {
                                     eventCallbacks[matches[1]] = true;
                                 }
                                 break;
