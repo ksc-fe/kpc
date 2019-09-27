@@ -47,6 +47,11 @@ export function isTextVNode(o) {
     return o && o.type === Types.Text;
 }
 
+// for detect if it is a text node in Angular
+export function isTextBlock(o) {
+    return isTextChildren(o) || o && o.tag.$id === 'AngularBlockWrapper' && o.props.isText;
+}
+
 export function isStringOrNumberNotEmpty(o) {
     const type = typeof o;
     return type === 'string' && !/^\s+$/.test(o) || type === 'number';

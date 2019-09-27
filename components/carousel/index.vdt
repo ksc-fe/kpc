@@ -48,7 +48,7 @@ if (isSlide && l) {
             _isCloned: true,
             key: `$cloned:${vNode.props.key}:${index}`,
             ...props,
-        });
+        }, true);
     };
     const firstVNodes = [];
     const lastVNodes = [];
