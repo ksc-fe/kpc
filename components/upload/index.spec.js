@@ -242,4 +242,36 @@ describe('Upload', () => {
         fixInputChange(input);
         input.files = getDataTransfer(['a'], {type: 'avi'}, 'video/avi').files;
     });
+
+    it('should not add file if beforeUpload returns false', (done) => {
+        class Demo extends Intact {
+            @Intact.template()
+            static template = `
+                <Upload
+                    action="//jsonplaceholder.typicode.com/posts/"
+                    ref="upload"
+                    beforeUpload={{ self.beforeUpload }}
+                    type="gallery"
+                    limit={{ 1 }}
+                />
+            `;
+            _init() {
+                this.Upload = Upload;
+            }
+            beforeUpload(file) {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        const files = this.refs.upload.get('files');
+                        expect(files.length).to.eql(0);
+                        reject();
+                        done();
+                    }, 100);
+                });
+            }
+        }
+        instance = mount(Demo);
+        const input = instance.element.querySelector('input');
+        fixInputChange(input);
+        input.files = getDataTransfer(['a'.repeat(1024 * 512)], {name: 'a'}).files;
+    });
 });
