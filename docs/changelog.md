@@ -4,6 +4,14 @@ order: 99
 sidebar: doc
 ---
 
+## v1.1.5
+
+1. `Change` `Form`表单验证规则`required`针对空白字符会当做空字符处理 [#355](https://github.com/ksc-fe/kpc/issues/355)
+2. `Fix` 修复`Upload`在IE下，当`beforeUpload`返回`false`时，`gallery`上传类型图片会闪动的问题 [#361](https://github.com/ksc-fe/kpc/issues/361)
+3. `Fix` 修复`Dialog`在继承的使用情况下，`mount`生命周期拿不到`refs`的问题 [#356](https://github.com/ksc-fe/kpc/issues/356)
+4. `Fix` 修复`Checkbox/Radio`在IE11下，文案展示问题 [#350](https://github.com/ksc-fe/kpc/issues/350)
+5. `Doc` 修复`Tabs`文档示例报错的问题 [#354](https://github.com/ksc-fe/kpc/issues/354)
+
 ## v1.1.4
 
 1. `Fix` 修复`Datepicker`不能通过`Date`对象设置最大/小(`maxDate/minDate`)日期的问题 [#352](https://github.com/ksc-fe/kpc/issues/352)
