@@ -185,7 +185,7 @@ export {
 </ol>
 <p><code>js</code>文件需要通过<code>babel</code>编译，但是这里需要进行额外的一步替换操作。因为<code>js</code>源码中的样式加载代码为：</p>
 <pre><code class="hljs js"><span class="hljs-keyword">import</span> Intact <span class="hljs-keyword">from</span> <span class="hljs-string">'intact'</span>;
-<span class="hljs-keyword">import</span> template <span class="hljs-keyword">from</span> <span class="hljs-string">'./index.vdt'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-keyword">template</span> <span class="hljs-keyword">from</span> <span class="hljs-string">'./index.vdt'</span>;
 <span class="hljs-keyword">import</span> <span class="hljs-string">'../../styles/kpc.styl'</span>;
 <span class="hljs-keyword">import</span> <span class="hljs-string">'./index.styl'</span>;
 </code></pre>
@@ -280,34 +280,34 @@ graph TB
 <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"page"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/static/client.js"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/static/client.js"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
 </code></pre>
 <p>对于demo文件<code>demos/basic.md</code></p>
-<pre><code class="hljs markdown">---
-title: 按钮类型
-order: <span class="hljs-number">0</span>
----
+<pre><code class="hljs markdown"><span class="hljs-meta">---</span>
+<span class="hljs-attr">title:</span> <span class="hljs-string">按钮类型</span>
+<span class="hljs-attr">order:</span> <span class="hljs-number">0</span>
+<span class="hljs-meta">---</span>
 
-有如下几种类型：默认按钮，主按钮，警告按钮，危险按钮，文字按钮。
+<span class="hljs-string">有如下几种类型：默认按钮，主按钮，警告按钮，危险按钮，文字按钮。</span>
 
-```<span class="javascript">vdt
-<span class="hljs-keyword">import</span> Button <span class="hljs-keyword">from</span> <span class="hljs-string">'kpc/components/button'</span>;
+<span class="hljs-string">```vdt</span>
+<span class="hljs-string">import</span> <span class="hljs-string">Button</span> <span class="hljs-string">from</span> <span class="hljs-string">'kpc/components/button'</span><span class="hljs-string">;</span>
 
-<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">Button</span>&gt;</span>default<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"primary"</span>&gt;</span>primay<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"warning"</span>&gt;</span>warning<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"danger"</span>&gt;</span>danger<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"none"</span>&gt;</span>none<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
-</span>```
+<span class="hljs-string">&lt;div&gt;</span>
+    <span class="hljs-string">&lt;Button&gt;default&lt;/Button&gt;</span>
+    <span class="hljs-string">&lt;Button</span> <span class="hljs-string">type="primary"&gt;primay&lt;/Button&gt;</span>
+    <span class="hljs-string">&lt;Button</span> <span class="hljs-string">type="warning"&gt;warning&lt;/Button&gt;</span>
+    <span class="hljs-string">&lt;Button</span> <span class="hljs-string">type="danger"&gt;danger&lt;/Button&gt;</span>
+    <span class="hljs-string">&lt;Button</span> <span class="hljs-string">type="none"&gt;none&lt;/Button&gt;</span>
+<span class="hljs-string">&lt;/div&gt;</span>
+<span class="hljs-string">```</span>
 
-```<span class="javascript">styl
-.k-btn
-    margin-right <span class="hljs-number">20</span>px
-</span>```
+<span class="hljs-string">```styl</span>
+<span class="hljs-string">.k-btn</span>
+    <span class="hljs-string">margin-right</span> <span class="hljs-number">20</span><span class="hljs-string">px</span>
+<span class="hljs-string">```</span>
 </code></pre>
 <p>demo文件最终生成如下文件：</p>
 <p><code>demos/basic/index.js</code></p>
@@ -393,7 +393,7 @@ describe(<span class="hljs-string">'Demos'</span>, <span class="hljs-function"><
         <span class="hljs-keyword">const</span> <span class="hljs-keyword">type</span> = paths[<span class="hljs-number">3</span>];
         <span class="hljs-keyword">const</span> Demo = req(item).default;
 
-        it(<span class="hljs-string">`<span class="hljs-subst">${name[0].toUpperCase()}</span><span class="hljs-subst">${name.substring(1)}</span> <span class="hljs-subst">${type}</span>`</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        it(<span class="hljs-string">`<span class="hljs-subst">${name[<span class="hljs-number">0</span>].toUpperCase()}</span><span class="hljs-subst">${name.substring(<span class="hljs-number">1</span>)}</span> <span class="hljs-subst">${<span class="hljs-keyword">type</span>}</span>`</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
             demo = render(Demo);
             <span class="hljs-comment">// 比较快照和渲染结果</span>
             expect(demo.element.outerHTML).to.matchSnapshot();
@@ -403,27 +403,27 @@ describe(<span class="hljs-string">'Demos'</span>, <span class="hljs-function"><
 </code></pre>
 <h3 id='header-%E4%BA%A4%E4%BA%92%E6%B5%8B%E8%AF%95'>交互测试</h3><p>demo测试仅仅能够测试首次渲染的结果，不能测试交互后组件的表现。所以需要单独为每个组件编写测试代码，来测试交互逻辑。这里我们依然可以利用示例组件这一现成的组件来进行测试。</p>
 <p>例如：<code>ButtonGroup</code>的交互逻辑时</p>
-<pre><code class="hljs js"><span class="hljs-keyword">import</span> {dispatchEvent, mount} <span class="hljs-keyword">from</span> <span class="hljs-string">'test/utils'</span>;
-<span class="hljs-comment">// 利用示例组件</span>
-<span class="hljs-keyword">import</span> GroupDemo <span class="hljs-keyword">from</span> <span class="hljs-string">'~/components/button/demos/group'</span>;
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> {dispatchEvent, mount} from <span class="hljs-string">'test/utils'</span>;
+// 利用示例组件
+<span class="hljs-keyword">import</span> GroupDemo from <span class="hljs-string">'~/components/button/demos/group'</span>;
 
 describe(<span class="hljs-string">'Button'</span>, () =&gt; {
     <span class="hljs-keyword">let</span> <span class="hljs-keyword">instance</span>;
 
     afterEach(() =&gt; {
         <span class="hljs-keyword">instance</span>.destroy();
-        document.body.removeChild(<span class="hljs-keyword">instance</span>.element);
+       <span class="hljs-built_in"> document</span>.body.removeChild(<span class="hljs-keyword">instance</span>.<span class="hljs-type">element</span>);
     });
 
     it(<span class="hljs-string">'should change value when click radio buttons'</span>, () =&gt; {
         <span class="hljs-keyword">instance</span> = mount(GroupDemo);
 
-        dispatchEvent(<span class="hljs-keyword">instance</span>.refs.__radioShanghai.element, <span class="hljs-string">'click'</span>);
-        expect(<span class="hljs-keyword">instance</span>.get(<span class="hljs-string">'city'</span>)).to.eql(<span class="hljs-string">'shanghai'</span>);
-        dispatchEvent(<span class="hljs-keyword">instance</span>.refs.__checkboxShanghai.element, <span class="hljs-string">'click'</span>);
-        expect(<span class="hljs-keyword">instance</span>.get(<span class="hljs-string">'cities'</span>)).to.eql([<span class="hljs-string">'shanghai'</span>]);
-        dispatchEvent(<span class="hljs-keyword">instance</span>.refs.__checkboxShanghai.element, <span class="hljs-string">'click'</span>);
-        expect(<span class="hljs-keyword">instance</span>.get(<span class="hljs-string">'cities'</span>)).to.eql([]);
+        dispatchEvent(<span class="hljs-keyword">instance</span>.refs.__radioShanghai.<span class="hljs-type">element</span>, <span class="hljs-string">'click'</span>);
+        expect(<span class="hljs-keyword">instance</span>.get(<span class="hljs-string">'city'</span>)).<span class="hljs-keyword">to</span>.eql(<span class="hljs-string">'shanghai'</span>);
+        dispatchEvent(<span class="hljs-keyword">instance</span>.refs.__checkboxShanghai.<span class="hljs-type">element</span>, <span class="hljs-string">'click'</span>);
+        expect(<span class="hljs-keyword">instance</span>.get(<span class="hljs-string">'cities'</span>)).<span class="hljs-keyword">to</span>.eql([<span class="hljs-string">'shanghai'</span>]);
+        dispatchEvent(<span class="hljs-keyword">instance</span>.refs.__checkboxShanghai.<span class="hljs-type">element</span>, <span class="hljs-string">'click'</span>);
+        expect(<span class="hljs-keyword">instance</span>.get(<span class="hljs-string">'cities'</span>)).<span class="hljs-keyword">to</span>.eql([]);
     });
 });
 </code></pre>

@@ -32,30 +32,30 @@
 </code></pre>
 </li>
 <li><p>Vue</p>
-<pre><code class="hljs vue"> <span class="hljs-tag">&lt;<span class="hljs-name">Select</span> @$<span class="hljs-attr">change:value</span>=<span class="hljs-string">"onChange"</span>&gt;</span>
-     <span class="hljs-tag">&lt;<span class="hljs-name">Option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"1"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">Option</span>&gt;</span>
-     <span class="hljs-tag">&lt;<span class="hljs-name">Option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"2"</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">Option</span>&gt;</span>
- <span class="hljs-tag">&lt;/<span class="hljs-name">Select</span>&gt;</span>
+<pre><code class="hljs vue"> &lt;<span class="hljs-keyword">Select</span> @$change:<span class="hljs-keyword">value</span>="onChange"&gt;
+     &lt;<span class="hljs-keyword">Option</span> <span class="hljs-keyword">value</span>="1"&gt;<span class="hljs-number">1</span>&lt;/<span class="hljs-keyword">Option</span>&gt;
+     &lt;<span class="hljs-keyword">Option</span> <span class="hljs-keyword">value</span>="2"&gt;<span class="hljs-number">2</span>&lt;/<span class="hljs-keyword">Option</span>&gt;
+ &lt;/<span class="hljs-keyword">Select</span>&gt;
 </code></pre>
 <blockquote>
 <p>vue支持<code>sync</code>修饰符，借用该默认事件，我们可以实现任意属性的<code>.sync</code>修饰进行双向绑定，所以我们甚至可以使用<code>.sync</code>实现<code>v-model</code>的功能</p>
-<pre><code class="hljs vue"> <span class="hljs-tag">&lt;<span class="hljs-name">Select</span> <span class="hljs-attr">value.sync</span>=<span class="hljs-string">"value"</span>&gt;</span>
-     <span class="hljs-tag">&lt;<span class="hljs-name">Option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"1"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">Option</span>&gt;</span>
-     <span class="hljs-tag">&lt;<span class="hljs-name">Option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"2"</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">Option</span>&gt;</span>
- <span class="hljs-tag">&lt;/<span class="hljs-name">Select</span>&gt;</span>
+<pre><code class="hljs vue"> &lt;<span class="hljs-keyword">Select</span> <span class="hljs-keyword">value</span>.sync="value"&gt;
+     &lt;<span class="hljs-keyword">Option</span> <span class="hljs-keyword">value</span>="1"&gt;<span class="hljs-number">1</span>&lt;/<span class="hljs-keyword">Option</span>&gt;
+     &lt;<span class="hljs-keyword">Option</span> <span class="hljs-keyword">value</span>="2"&gt;<span class="hljs-number">2</span>&lt;/<span class="hljs-keyword">Option</span>&gt;
+ &lt;/<span class="hljs-keyword">Select</span>&gt;
 </code></pre>
 </blockquote>
 <p> 如果要实现回调函数传参，可以借助vue的<code>arguments</code>写法</p>
-<pre><code class="hljs vue"> <span class="hljs-tag">&lt;<span class="hljs-name">Select</span> @$<span class="hljs-attr">change:value</span>=<span class="hljs-string">"onChange('test', ...arguments)"</span>&gt;</span>
-     <span class="hljs-tag">&lt;<span class="hljs-name">Option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"1"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">Option</span>&gt;</span>
-     <span class="hljs-tag">&lt;<span class="hljs-name">Option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"2"</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">Option</span>&gt;</span>
- <span class="hljs-tag">&lt;/<span class="hljs-name">Select</span>&gt;</span>
+<pre><code class="hljs vue"> &lt;<span class="hljs-keyword">Select</span> @$change:<span class="hljs-keyword">value</span>="onChange('test', ...arguments)"&gt;
+     &lt;<span class="hljs-keyword">Option</span> <span class="hljs-keyword">value</span>="1"&gt;<span class="hljs-number">1</span>&lt;/<span class="hljs-keyword">Option</span>&gt;
+     &lt;<span class="hljs-keyword">Option</span> <span class="hljs-keyword">value</span>="2"&gt;<span class="hljs-number">2</span>&lt;/<span class="hljs-keyword">Option</span>&gt;
+ &lt;/<span class="hljs-keyword">Select</span>&gt;
 </code></pre>
 </li>
 <li><p>React React支持使用<code>:</code>当做属性名，所以将<code>:</code>改为<code>-</code>即可</p>
 <pre><code class="hljs jsx"> &lt;<span class="hljs-keyword">Select</span> <span class="hljs-keyword">on</span>$change-<span class="hljs-keyword">value</span>={this.onChange.bind(this)}&gt;
-     &lt;<span class="hljs-keyword">Option</span> <span class="hljs-keyword">value</span>=<span class="hljs-string">"1"</span>&gt;<span class="hljs-number">1</span>&lt;/<span class="hljs-keyword">Option</span>&gt;
-     &lt;<span class="hljs-keyword">Option</span> <span class="hljs-keyword">value</span>=<span class="hljs-string">"2"</span>&gt;<span class="hljs-number">2</span>&lt;/<span class="hljs-keyword">Option</span>&gt;
+     &lt;<span class="hljs-keyword">Option</span> <span class="hljs-keyword">value</span>="1"&gt;<span class="hljs-number">1</span>&lt;/<span class="hljs-keyword">Option</span>&gt;
+     &lt;<span class="hljs-keyword">Option</span> <span class="hljs-keyword">value</span>="2"&gt;<span class="hljs-number">2</span>&lt;/<span class="hljs-keyword">Option</span>&gt;
  &lt;/<span class="hljs-keyword">Select</span>&gt;
 </code></pre>
 </li>

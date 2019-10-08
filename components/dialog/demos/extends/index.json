@@ -9,7 +9,7 @@
     "highlighted": [
         {
             "language": "vdt",
-            "content": "<pre><code class=\"hljs jsx\">&lt;t:parent&gt;\n    <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">b:body</span>&gt;</span>\n        Hello\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">b:body</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">t:parent</span>&gt;</span></span></code></pre>",
+            "content": "<pre><code class=\"hljs jsx\">&lt;t:parent&gt;\n    <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">b:body</span>&gt;</span>\n        Hello\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">b:body</span>&gt;</span></span>\n<span class=\"xml\"><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">t:parent</span>&gt;</span></span></code></pre>",
             "file": "dialog.vdt"
         },
         {

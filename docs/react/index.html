@@ -37,10 +37,10 @@
 <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"//cdn.jsdelivr.net/npm/react/umd/react.development.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"//cdn.jsdelivr.net/npm/react-dom/umd/react-dom.development.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"//cdn.jsdelivr.net/npm/babel-standalone/babel.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"//cdn.jsdelivr.net/npm/kpc/dist/kpc.react.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"//cdn.jsdelivr.net/npm/react/umd/react.development.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"//cdn.jsdelivr.net/npm/react-dom/umd/react-dom.development.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"//cdn.jsdelivr.net/npm/babel-standalone/babel.min.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"//cdn.jsdelivr.net/npm/kpc/dist/kpc.react.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
     <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/babel"</span>&gt;</span><span class="javascript">
         <span class="hljs-keyword">const</span> {Button, Message} = Kpc;
@@ -235,17 +235,17 @@
 <blockquote>
 <p>如果是作为子元素<code>children</code>，则没有必要<code>normalize</code>，因为兼容层默认会normalize子元素</p>
 </blockquote>
-<pre><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-type">React</span> from <span class="hljs-symbol">'reac</span>t';
-<span class="hljs-keyword">import</span> <span class="hljs-type">Intact</span> from <span class="hljs-symbol">'intac</span>t';
-<span class="hljs-keyword">import</span> <span class="hljs-type">Badge</span> from <span class="hljs-symbol">'kpc</span>/components/badge';
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> Intact <span class="hljs-keyword">from</span> <span class="hljs-string">'intact'</span>;
+<span class="hljs-keyword">import</span> Badge <span class="hljs-keyword">from</span> <span class="hljs-string">'kpc/components/badge'</span>;
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
     render() {
         <span class="hljs-keyword">return</span> (
             <span class="hljs-comment">// 作为属性，需要normalize</span>
-            &lt;<span class="hljs-type">Badge</span> text={<span class="hljs-type">Intact</span>.normalize(&lt;i&gt;test&lt;/i&gt;)}&gt;
-                &lt;div&gt;test&lt;/div&gt;
-            &lt;/<span class="hljs-type">Badge</span>&gt;
+            <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Badge</span> <span class="hljs-attr">text</span>=<span class="hljs-string">{Intact.normalize(</span>&lt;<span class="hljs-attr">i</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>)}&gt;
+                <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">Badge</span>&gt;</span></span>
         )
     }
 }
