@@ -149,7 +149,7 @@ export default class Upload extends Intact {
         this._addFiles(e.target.files);
     }
 
-    _addFiles(fileList) {
+    async _addFiles(fileList) {
         const files = this.get('files').slice(0);
         const _files = Array.from(fileList);
         const {maxSize, limit, autoUpload, accept} = this.get();
@@ -161,16 +161,20 @@ export default class Upload extends Intact {
 
         const status = autoUpload ? 'ready' : 'notReady';
 
-       _files.forEach(file => {
+        for (let i = 0; i < _files.length; i++) {
+            const file = _files[i];
+
             if (maxSize && file.size > maxSize * 1024) {
                 const error = new Error(
                     _$('"{name}" 超出文件最大限制：{maxSize}kb', {name: file.name, maxSize})
                 );
-                return this.trigger('error', error, file, files);
+                this.trigger('error', error, file, files);
+                continue;
             }
             if (accept && file.type && !this._isValidType(file.type, file.name)) {
                 const error = new Error(_$('"{name}" 文件类型不合法', {name: file.name}));
-                return this.trigger('error', error, file, files);
+                this.trigger('error', error, file, files);
+                continue;
             }
             const obj = {
                 status: status, 
@@ -184,9 +188,10 @@ export default class Upload extends Intact {
             if (URL && URL.createObjectURL) {
                 obj.url = URL.createObjectURL(file);
             }
-            files.push(obj);
-            if (autoUpload) this._upload(obj);
-        });
+            if (!autoUpload || (await this._upload(obj))) {
+                files.push(obj);
+            }
+        }
 
         this.set('files', files);
     }
@@ -227,8 +232,11 @@ export default class Upload extends Intact {
         if (!ret) {
             const files = this.get('files').slice(0);
             const index = files.indexOf(file);
-            files.splice(index, 1);
-            return this.set({files});
+            if (index > -1) {
+                files.splice(index, 1);
+                this.set({files});
+            }
+            return false;
         }
 
         const data = this.get('data');
@@ -252,6 +260,7 @@ export default class Upload extends Intact {
         };
 
         file.request = request(options);
+        return true;
     }
 
     _onProgress(e, file) {

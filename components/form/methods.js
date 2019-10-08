@@ -13,8 +13,14 @@ function decimalPlaces(num) {
 
 export const methods = {
     required(value) {
-        return value != null && 
-            ((typeof value === 'string' || Array.isArray(value)) ? value.length > 0 : true);
+        if (value == null) return false;
+        if (typeof value === 'string') {
+            return value.trim().length > 0;
+        }
+        if (Array.isArray(value)) {
+            return value.length > 0;
+        }
+        return true;
     },
 
     digits(value) {
