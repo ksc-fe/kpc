@@ -374,7 +374,7 @@ function getMethods(js, refs, methodsObj, eventCallbacks) {
             spaces = matches[1];
             // bind this
             lines[index] = code.replace(functionNameRegExp, (match, spaces, keywords, name, params) => {
-                if (eventCallbacks && eventCallbacks[name]) {
+                if (eventCallbacks && eventCallbacks[name] && params) {
                     params = `[${params}]`;
                 }
                 if (keywords !== 'async') return `${spaces}${keywords || ''}${name}(${params}) {`;
