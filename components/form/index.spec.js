@@ -134,6 +134,17 @@ describe('Form', () => {
         const el = form.element;
         await form.validate();
 
+        // required
+        instance.set({rules: {required: true}, value: ''});
+        instance.set('value', '  ');
+        expect(await form.validate()).to.be.false;
+        instance.set('value', ' 1 ');
+        expect(await form.validate()).to.be.true;
+        instance.set('value', []);
+        expect(await form.validate()).to.be.false;
+        instance.set('value', ['']);
+        expect(await form.validate()).to.be.true;
+
         // digits
         instance.set({rules: {digits: true}, value: ''});
         instance.set('value', 'a');

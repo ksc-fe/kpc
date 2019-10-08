@@ -68,7 +68,7 @@ export default class extends Intact {
         // 如果删除当前tab，则切换至下一个
         let tab = this.get('tab');
         if (value === tab) {
-            tab = (tabs[index] || tabs[index - 1]).value
+            tab = (tabs[index] || tabs[index - 1] || {}).value
         }
 
         this.set({tabs, tab});
