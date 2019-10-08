@@ -166,9 +166,9 @@ export default class Dialog extends Intact {
                 this.set('value', true);
             } else {
                 const show = () => {
+                    this.set('value', true);
                     this.init(); 
                     this.mount();
-                    this.set('value', true);
                     resolve();
                 }
                 if (this.inited) {
