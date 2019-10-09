@@ -294,7 +294,7 @@ function parseVIf(template) {
 }
 
 function parseSelfClosedTag(template) {
-    return template.replace(/<(k-\w+)(((?!<\w+)[\s\S])*)\/>/g, (nouse, tag, attrs) => {
+    return template.replace(/<(k-[\w\-]+)(((?!<\w+)[\s\S])*)\/>/g, (nouse, tag, attrs) => {
         if (!/\n/.test(attrs)) attrs = attrs.trimRight();
         return `<${tag}${attrs}></${tag}>`;
     });

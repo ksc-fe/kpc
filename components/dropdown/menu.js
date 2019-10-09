@@ -131,6 +131,7 @@ export default class DropdownMenu extends Intact {
     }
 
     hide(immediately) {
+        if (!this.get('value')) return;
         if (!immediately) {
             this.timer = setTimeout(() => {
                 this._hide();
