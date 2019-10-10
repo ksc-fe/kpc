@@ -132,3 +132,7 @@ export default class Demo extends React.Component {
     }
 }
 ```
+
+```angular-ignore
+不建议Angular下使用这种方式
+```

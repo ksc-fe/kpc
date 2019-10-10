@@ -47,7 +47,7 @@ const scheme = {
         <TableColumn title='状态' key='status' 
             group={{ [ 
                 {label: '运行中', value: 'active'},
-                {label: '已关闭', value: 'stopped'},
+                {label: '已关闭', value: 'stopped'}
             ] }}
             multiple
         >
@@ -170,4 +170,18 @@ private data = oData;
 private group = {status: ''};
 private multipleData = oData;
 private multipleGroup = {status: []};
+private scheme = {
+    name: '名称',
+    status: {
+        title: '状态',
+        template: function(data) {
+            return data.status === 'active' ? '运行中' : '已关闭';
+        },
+        group: [
+            {label: '全部', value: ''},
+            {label: '运行中', value: 'active'},
+            {label: '已关闭', value: 'stopped'},
+        ]
+    }
+};
 ```

@@ -62,7 +62,8 @@ function parse(template, js, angularMethods) {
     const methodsObj = {};
     const imports = {};
     const eventCallbacks = {};
-    template = parseProperty(template, properties, methodsObj, eventCallbacks);
+    const needBindThis = {};
+    template = parseProperty(template, properties, methodsObj, eventCallbacks, needBindThis);
     template = parseBooleanProperty(template);
     const refs = {};
     template = parseRef(template, refs);
@@ -75,7 +76,7 @@ function parse(template, js, angularMethods) {
     // special for CarouselIem
     template = parseSpecial(template, properties, imports, methodsObj);
 
-    let {head, methods, defaults} = parseJS(js, refs, angularMethods, methodsObj, eventCallbacks); 
+    let {head, methods, defaults} = parseJS(js, refs, angularMethods, methodsObj, eventCallbacks, needBindThis); 
     defaults = {...properties, ...defaults};
 
     Object.keys(imports).forEach(key => {
@@ -90,7 +91,7 @@ function parse(template, js, angularMethods) {
 
 const delimitersRegExp = /\b([^\s]*?)=\{\{\s+([\s\S]*?)\s+}}/g;
 const getRegExp = /self\.get\(['"](.*?)['"]\)/g;
-function parseProperty(template, properties, methods, eventCallbacks) {
+function parseProperty(template, properties, methods, eventCallbacks, needBindThis) {
       template = template
         .replace(/`([^`]+)`/g, (match, expression, index) => {
             const name = `'` + expression.replace(/\${(.+)}/g, (nouse, variable) => {
@@ -116,7 +117,7 @@ function parseProperty(template, properties, methods, eventCallbacks) {
                 if (matches) {
                     if (matches[2]) {
                         if (matches[1] === 'set') {
-                            methods.set = `set(key, value) { this[key] = value; }`;
+                            methods.set = `// helper function\nset(key, value) { this[key] = value; }`;
                         }
                         value = `${matches[1]}(${matches[3]})`;
                     } else {
@@ -144,6 +145,7 @@ function parseProperty(template, properties, methods, eventCallbacks) {
             } else {
                 name = `[${name}]`;
                 value = value.replace(/self\./g, '');
+                needBindThis[value] = true;
             }
 
             return `${name}="${value}"`;
@@ -321,11 +323,14 @@ function parseSpecial(template, properties, imports, methodsObj) {
         .replace(/\[(\w+?)\]="([^\"]+?=>[^\"]+?)"/g, (nouse, name, fn) => {
             methodsObj[name] = `${name} = ${fn};`;
             return `[${name}]="${name}"`;
+        })
+        .replace(/\[(data\-\w+)\]/g, (nouse, name) => {
+            return `[attr.${name}]`;
         });
 }
 
 
-function parseJS(js, refs, angularMethods, methodsObj, eventCallbacks) {
+function parseJS(js, refs, angularMethods, methodsObj, eventCallbacks, needBindThis) {
     if (!js) return {}; 
 
     js = js.trim();
@@ -345,7 +350,7 @@ function parseJS(js, refs, angularMethods, methodsObj, eventCallbacks) {
     }
 
     const defaults = getDefaults(js);
-    const methods = getMethods(js, refs, methodsObj, eventCallbacks);
+    const methods = getMethods(js, refs, methodsObj, eventCallbacks, needBindThis);
 
     if (angularMethods) {
         const extraMethods = getMethods(angularMethods, refs);
@@ -357,7 +362,7 @@ function parseJS(js, refs, angularMethods, methodsObj, eventCallbacks) {
 }
 
 const functionNameRegExp = /^(\s*)(?:(get|set|async) )?(\w+)\((.*?)\) {$/;
-function getMethods(js, refs, methodsObj, eventCallbacks) {
+function getMethods(js, refs, methodsObj, eventCallbacks, needBindThis = {}) {
     const methods = {};
     let start = 0;
     let name;
@@ -377,7 +382,7 @@ function getMethods(js, refs, methodsObj, eventCallbacks) {
                 if (eventCallbacks && eventCallbacks[name] && params) {
                     params = `[${params}]`;
                 }
-                if (keywords !== 'async') return `${spaces}${keywords || ''}${name}(${params}) {`;
+                if (!needBindThis[name]) return `${spaces}${keywords || ''}${name}(${params}) {`;
                 return `${spaces}${name} = ${keywords ? 'async ' : ''}(${params}) => {`;
             });
         } else if (code === `${spaces}}`) {

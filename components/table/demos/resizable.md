@@ -19,7 +19,7 @@ const {data} = self.get();
         scheme={{ {
             a: {
                 title: '通过minColWidth控制最小宽度100px',
-                width: '50%',
+                width: '50%'
             },
             b: {
                 title: '单独设置最小宽度300px',
@@ -28,7 +28,7 @@ const {data} = self.get();
             },
             c: {
                 title: '标题',
-                width: '40%',
+                width: '40%'
             }
         } }} 
         data={{ data }}
@@ -45,7 +45,7 @@ const {data} = self.get();
                 scheme={{ {
                     a: {
                         title: '通过minColWidth控制最小宽度100px',
-                        width: '50%',
+                        width: '50%'
                     },
                     b: {
                         title: '单独设置最小宽度300px',
@@ -54,7 +54,7 @@ const {data} = self.get();
                     },
                     c: {
                         title: '标题',
-                        width: '40%',
+                        width: '40%'
                     }
                 } }} 
                 data={{ data }}

@@ -25,7 +25,7 @@ import {Table, TableColumn} from 'kpc/components/table';
                             class1: {title: 'Class 1'},
                             class2: {title: 'Class 2'},
                             class3: {title: 'Class 3'},
-                            class4: {title: 'Class 4'},
+                            class4: {title: 'Class 4'}
                         }
                     }
                 } 
@@ -36,7 +36,7 @@ import {Table, TableColumn} from 'kpc/components/table';
                     afternoonTime: {title: 'Time'},
                     class5: {title: 'Class 5'},
                     class6: {title: 'Class 6'},
-                    class7: {title: 'Class 7'},
+                    class7: {title: 'Class 7'}
                 } 
             }
         } }}
@@ -68,33 +68,50 @@ import {Table, TableColumn} from 'kpc/components/table';
 ```
 
 ```js
+const weekdays = ['Monday', 'Tuesday', 'Wendesday', 'Thursday', 'Friday'];
+const classes = ['English', 'Mathematics', 'Chinese', 'History', 'Geopraghy'];
+let index = 0;
+const randomClasses = () => {
+    const ret = {};
+    for (let i = 0; i < 7; i++) {
+        // ret[`class${i + 1}`] = classes[Math.floor(Math.random() * classes.length)];
+        ret[`class${i + 1}`] = classes[(i + index) % classes.length];
+    }
+    index++;
+    return ret;
+};
+const data = weekdays.map(weekday => {
+    return {
+        weekday, 
+        ...randomClasses(), 
+        forenoonTime: '08:00 ~ 12:00',
+        afternoonTime: '14:00 ~ 17:00',
+    };
+});
+
 export default class extends Intact {
     @Intact.template()
     static template = template;
 
     defaults() {
-        const weekdays = ['Monday', 'Tuesday', 'Wendesday', 'Thursday', 'Friday'];
-        const classes = ['English', 'Mathematics', 'Chinese', 'History', 'Geopraghy'];
-        let index = 0;
-        const randomClasses = () => {
-            const ret = {};
-            for (let i = 0; i < 7; i++) {
-                // ret[`class${i + 1}`] = classes[Math.floor(Math.random() * classes.length)];
-                ret[`class${i + 1}`] = classes[(i + index) % classes.length];
-            }
-            index++;
-            return ret;
-        };
-        return {
-            data: weekdays.map(weekday => {
-                return {
-                    weekday, 
-                    ...randomClasses(), 
-                    forenoonTime: '08:00 ~ 12:00',
-                    afternoonTime: '14:00 ~ 17:00',
-                };
-            })
-        };
+        return {data};
     }
 }
+```
+
+```vue-data
+data() {
+    return {data};
+}
+```
+
+```react-methods
+constructor(props) {
+    super(props);
+    this.state = {data};
+}
+```
+
+```angular-properties
+private data = data;
 ```
