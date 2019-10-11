@@ -68,3 +68,7 @@ constructor(props) {
     };
 }
 ```
+
+```angular-properties
+private data = data;
+```

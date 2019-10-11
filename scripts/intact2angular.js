@@ -56,7 +56,7 @@ function parse(template, js, angularMethods) {
         return `${start}k-${head.toLowerCase()}${tail}`;
     });
     // remove commments
-    template = template.replace(/\s*\/\/.*/g, '');
+    template = template.replace(/(?<!["':])\s*\/\/.*/g, '');
 
     const properties = {};
     const methodsObj = {};
@@ -92,7 +92,7 @@ function parse(template, js, angularMethods) {
 const delimitersRegExp = /\b([^\s]*?)=\{\{\s+([\s\S]*?)\s+}}/g;
 const getRegExp = /self\.get\(['"](.*?)['"]\)/g;
 function parseProperty(template, properties, methods, eventCallbacks, needBindThis) {
-      template = template
+    template = template
         .replace(/`([^`]+)`/g, (match, expression, index) => {
             const name = `'` + expression.replace(/\${(.+)}/g, (nouse, variable) => {
                 return `' + ${variable} + '`;
@@ -153,7 +153,7 @@ function parseProperty(template, properties, methods, eventCallbacks, needBindTh
 }
 
 function parseBooleanProperty(template) {
-    return template.replace(/(<[\w\-]+)( [^>]+>)/g, (nouse, start, properties) => {
+    return template.replace(/(<[\w\-]+)(\s+[^>]+>)/g, (nouse, start, properties) => {
         return start + properties.replace(/ \b(\w+)(?=[> \/\n])\b/g, (whole, name, index) => {
             // is not in quotes
             for (let i = index; i >= 0; i--) {
@@ -378,12 +378,15 @@ function getMethods(js, refs, methodsObj, eventCallbacks, needBindThis = {}) {
             name = matches[3];
             spaces = matches[1];
             // bind this
-            lines[index] = code.replace(functionNameRegExp, (match, spaces, keywords, name, params) => {
-                if (eventCallbacks && eventCallbacks[name] && params) {
+            lines[index] = code.replace(functionNameRegExp, (match, spaces, keywords, _name, params) => {
+                if (eventCallbacks && eventCallbacks[_name] && params) {
                     params = `[${params}]`;
                 }
-                if (!needBindThis[name]) return `${spaces}${keywords || ''}${name}(${params}) {`;
-                return `${spaces}${name} = ${keywords ? 'async ' : ''}(${params}) => {`;
+                if (!needBindThis[_name]) {
+                    name = (keywords ? keywords + ' ' : '') + _name;
+                    return `${spaces}${name}(${params}) {`;
+                }
+                return `${spaces}${_name} = ${keywords ? 'async ' : ''}(${params}) => {`;
             });
         } else if (code === `${spaces}}`) {
             entered = false;

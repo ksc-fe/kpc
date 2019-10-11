@@ -10,6 +10,8 @@ export default class TimelineItem extends Intact {
         size: ['default', 'large', 'small', 'mini']
     };
 
+    static blocks = ['dot'];
+
     defaults() {
         return {
             type: 'primary',

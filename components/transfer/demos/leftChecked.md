@@ -12,7 +12,7 @@ import Transfer from 'kpc/components/transfer';
 
 <div>
     <Transfer data={{ self.get('data') }} 
-        v-model:leftChecked='checked'
+        v-model:leftChecked="checked"
     />
     <p>You checked left side: {{ JSON.stringify(self.get('checked')) }}</p>
 </div>
@@ -56,4 +56,9 @@ constructor(props) {
         checked: [data[0], data[2]]
     };
 }
+```
+
+```angular-properties
+private data = data;
+private checked = [data[0], data[2]];
 ```

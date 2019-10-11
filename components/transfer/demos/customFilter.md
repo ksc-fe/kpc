@@ -142,13 +142,22 @@ setState(state, cb) {
 ```angular-properties
 private data = [];
 private value;
-private keywords;
+private _keywords;
 private policy = "all";
 private originData;
 ```
 
 ```angular-methods
-ngOnChanges(changes) {
-    console.log(changes);
+set keywords(v) {
+    this._keywords = v;
+    this._filter();
+}
+
+get keywords() {
+    return this._keywords;
+}
+
+ngOnInit() {
+    this._fetch();
 }
 ```
