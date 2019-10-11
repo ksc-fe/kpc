@@ -17,7 +17,7 @@ const classNameObj = {
 
 const _children = mapChildren(children, vNode => {
     if (vNode.tag === Item) {
-        vNode = _Vdt.miss.clone(vNode);
+        vNode = _Vdt.miss.clone(vNode, null, true);
         vNode.props = {
             dot: dot,
             ...vNode.props, 

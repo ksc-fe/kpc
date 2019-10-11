@@ -21,15 +21,13 @@ let tooltipContents = [];
 const titleVNodes = mapChildren(children, vNode => {
     if (vNode.tag === Menu) {
         // clone it
-        subMenuVNode = _Vdt.miss.clone(vNode);
-        subMenuVNode.props = {
-            ...subMenuVNode.props,
+        subMenuVNode = _Vdt.miss.clone(vNode, {
             _isSubMenu: true,
             _root,
             _isFirstFloorChildren,
             'ev-$change:value': self._onDropdownShowChange,
             _parent: self,
-        };
+        }, true);
     } else if (vNode.type === 1 || isStringOrNumberNotEmpty(vNode)) {
         tooltipContents.push(vNode);
         return <span>{{ vNode }}</span>;
