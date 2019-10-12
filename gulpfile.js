@@ -603,12 +603,16 @@ const generateAngularIndex = async () => {
     const modules = [];
     exports.push(`export {_$, localize} from './components/utils';`, '');
     for (let key in metadata) {
+        // ignore App and Code
+        if (key === 'app' || key === 'code') continue;
+
         const moduleName = `${key[0].toUpperCase() + key.substring(1)}Module`;
         imports.push(`import {${moduleName}} from './components/${key}';`);
         exports.push(`export * from './components/${key}';`);
         modules.push(moduleName);
     }
     exports.push('', `export const version = '${packageJson.version}';`);
+    exports.push(`export {IntactAngularBrowserModule as KpcBrowserModule} from 'intact-angular';`);
 
     const contents = [
 `/*!
