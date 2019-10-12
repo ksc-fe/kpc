@@ -20,3 +20,5 @@ packages/angular/@css
 packages/angular/@stylus
 packages/angular/kpc
 packages/angular/node_modules
+packages/angular/index.ts
+packages/angular/components
