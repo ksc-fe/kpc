@@ -21,6 +21,7 @@ const childProcess = require('child_process');
 const uglifyjs = require('gulp-uglify');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const fsExtra = require('fs-extra');
+const ts = require('gulp-typescript');
 
 const fsPromises = fs.promises;
 
@@ -550,11 +551,11 @@ function generateTask(type, dest) {
 
 generateTask('vue');
 generateTask('react');
-generateTask('angular', './packages/angular/kpc');
+generateTask('angular', './packages/angular');
 
 // generate components for Angular
 const angularComponentsPath = `./packages/angular/components`;
-const generateAngular = async (type) => {
+const generateAngular = async () => {
     await rm(angularComponentsPath);
 
     for (let key in metadata) {
@@ -565,7 +566,7 @@ const generateAngular = async (type) => {
             `import Intact from 'intact-angular';`,
             `import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';`,
         ];
-        codes.push(`import {${components.join(', ')}} from '../../../components/${key}';`, ``);
+        codes.push(`import {${components.join(', ')}} from 'kpc/components/${key}';`, ``);
         for (let i = 0; i < components.length; i++) {
             const name = components[i];
             const selector = name.replace(/[A-Z]/g, (char, index) => {
@@ -596,14 +597,26 @@ const generateAngularIndex = async () => {
     const imports = [];
     const exports = [];
     const modules = [];
+    exports.push(`export {_$, localize} from './components/utils';`, '');
     for (let key in metadata) {
         const moduleName = `${key[0].toUpperCase() + key.substring(1)}Module`;
-        imports.push(`import {${moduleName}} from './${key}';`);
-        exports.push(`export * from './${key}';`);
+        imports.push(`import {${moduleName}} from './components/${key}';`);
+        exports.push(`export * from './components/${key}';`);
         modules.push(moduleName);
     }
+    exports.push('', `export const version = '${packageJson.version}';`);
 
     const contents = [
+`/*!
+ * kpc ${packageJson.version}
+ *
+ * Copyright (c) Kingsoft Cloud
+ * Released under the MIT License
+ * 
+ * Documentation available at
+ * https://ksc-fe.github.io/kpc/
+ */
+`,
         `import {NgModule} from '@angular/core';`,
         ``,
         ...imports,
@@ -618,20 +631,43 @@ const generateAngularIndex = async () => {
         `export class KpcModule {}`,
     ].join('\n');
 
-    await fsPromises.writeFile(`${angularComponentsPath}/index.ts`, contents);
+    await fsPromises.writeFile(`${angularComponentsPath}/../index.ts`, contents);
 }
 gulp.task('_generate:angular', async () => {
-    // await generateAngular('css');
-    await generateAngular('stylus');
+    await generateAngular();
     await generateAngularIndex();
+    const tsconfig = {
+        "experimentalDecorators": true,
+        "module": "esnext",
+        "isolatedModules": true,
+        "importHelpers": true,
+    };
+    await gulp.src(`${angularComponentsPath}/**/*.ts`)
+        .pipe(ts(tsconfig))
+        .pipe(tap(function(file) {
+            let contents = file.contents.toString('utf-8');
+            contents = contents.replace(/kpc\/components\/(\w+)/g, './$1/index');
+            file.contents = Buffer.from(contents);
+        }))
+        .pipe(gulp.dest('./packages/angular/@css/components'))
+        .pipe(gulp.dest('./packages/angular/@stylus/components'));
+
+    await gulp.src('./packages/angular/index.ts')
+        .pipe(ts(tsconfig))
+        .pipe(gulp.dest('./packages/angular/@css'))
+        .pipe(gulp.dest('./packages/angular/@stylus'));
 });
 gulp.task('generate:angular', gulp.series('index', '_generate:angular'));
+
+// overwrite build@angular
+gulp.task('build@angular', gulp.series('clean@angular', 'copy@angular', 'generate:angular'));
+gulp.task('_build@angular', gulp.series('clean@angular', 'copy@angular', '_generate:angular'));
 
 // build
 gulp.task('build', gulp.series(
     'index',
     gulp.parallel('build@css', 'build@stylus', 'build@single'),
-    gulp.parallel('build@vue', 'build@react')
+    gulp.parallel('build@vue', 'build@react', '_build@angular')
 ));
 
 function exec(command) {
