@@ -159,6 +159,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.2.0",
+    "core-js": "^2.6.9",
     "dayjs": "^1.8.15",
     "downloadjs": "^1.4.7",
     "enquire.js": "^2.1.6",

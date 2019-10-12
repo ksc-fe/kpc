@@ -607,8 +607,8 @@ const generateAngularIndex = async () => {
         if (key === 'app' || key === 'code') continue;
 
         const moduleName = `${key[0].toUpperCase() + key.substring(1)}Module`;
-        imports.push(`import {${moduleName}} from './components/${key}';`);
-        exports.push(`export * from './components/${key}';`);
+        imports.push(`import {${moduleName}} from './${key}';`);
+        exports.push(`export * from './${key}';`);
         modules.push(moduleName);
     }
     exports.push('', `export const version = '${packageJson.version}';`);
@@ -639,7 +639,7 @@ const generateAngularIndex = async () => {
         `export class KpcModule {}`,
     ].join('\n');
 
-    await fsPromises.writeFile(`${angularComponentsPath}/../index.ts`, contents);
+    await fsPromises.writeFile(`${angularComponentsPath}/index.ts`, contents);
 }
 gulp.task('_generate:angular', async () => {
     await generateAngular();
@@ -654,13 +654,13 @@ gulp.task('_generate:angular', async () => {
         .pipe(ts(tsconfig))
         .pipe(tap(function(file) {
             let contents = file.contents.toString('utf-8');
-            contents = contents.replace(/kpc\/components\/(\w+)/g, './$1/index');
+            contents = contents.replace(/kpc\/components/g, './components');
             file.contents = Buffer.from(contents);
         }))
-        .pipe(gulp.dest(`${packageAngularPath}/@css/components`))
-        .pipe(gulp.dest(`${packageAngularPath}/@stylus/components`));
+        .pipe(gulp.dest(`${packageAngularPath}/@css`))
+        .pipe(gulp.dest(`${packageAngularPath}/@stylus`));
 
-    await gulp.src(`${packageAngularPath}/index.ts`)
+    await gulp.src(`${angularComponentsPath}/index.ts`)
         .pipe(ts(tsconfig))
         .pipe(gulp.dest(`${packageAngularPath}/@css`))
         .pipe(gulp.dest(`${packageAngularPath}/@stylus`));
