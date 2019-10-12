@@ -1,7 +1,7 @@
 {
   "name": "kpc",
   "version": "1.1.5",
-  "description": "A component library written in intact for intact and vue",
+  "description": "A component library written in Intact for Intact, Vue, React and Angular",
   "browser": "@css/index.js",
   "main": "dist/kpc.js",
   "module": "index.js",
@@ -23,6 +23,7 @@
     "watch:doc": "cross-env NODE_ENV=production gulp watch:doc",
     "deploy:doc": "cross-env NODE_ENV=production gulp deploy:doc",
     "prepublishOnly": "npm run build && (git commit -am'chore: build' || echo 'has not files to commit') && git push",
+    "_publish": "npm run _prepublishOnly && npm publish && lerna publish from-git",
     "release": "npm run release-patch",
     "prelease": "lerna publish preminor --preid beta --dist-tag beta",
     "release-patch": "lerna publish patch",
@@ -36,7 +37,15 @@
   "keywords": [
     "component",
     "intact",
-    "vue"
+    "vue",
+    "ui",
+    "components",
+    "library",
+    "intact",
+    "angular",
+    "react",
+    "king-design",
+    "kpc"
   ],
   "files": [
     "components",
@@ -51,6 +60,7 @@
     "inheritsLoose.js"
   ],
   "author": "ksc-fe",
+  "homepage": "https://design.ksyun.com/",
   "license": "MIT",
   "devDependencies": {
     "@angular/core": "^8.2.7",
