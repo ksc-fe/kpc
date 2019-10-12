@@ -1,6 +1,6 @@
 {
   "name": "kpc",
-  "version": "1.1.5",
+  "version": "1.2.0-beta.0",
   "description": "A component library written in Intact for Intact, Vue, React and Angular",
   "browser": "@css/index.js",
   "main": "dist/kpc.js",
@@ -25,10 +25,13 @@
     "prepublishOnly": "npm run build && (git commit -am'chore: build' || echo 'has not files to commit') && git push",
     "_publish": "npm run _prepublishOnly && npm publish && lerna publish from-git",
     "release": "npm run release-patch",
-    "prelease": "lerna publish preminor --preid beta --dist-tag beta",
+    "prelease": "npm run prelease-patch",
     "release-patch": "lerna publish patch",
     "release-minor": "lerna publish minor",
-    "release-major": "lerna publish major"
+    "release-major": "lerna publish major",
+    "prelease-patch": "lerna publish prepatch --preid beta --dist-tag beta",
+    "prelease-minor": "lerna publish preminor --preid beta --dist-tag beta",
+    "prelease-major": "lerna publish premajor --preid beta --dist-tag beta"
   },
   "repository": {
     "type": "git",
