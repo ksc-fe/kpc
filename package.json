@@ -170,5 +170,6 @@
   "sideEffects": [
     "*.css",
     "*.styl"
-  ]
+  ],
+  "gitHead": "b638b30c8580710965f528e47f7dad74f84536ed"
 }
