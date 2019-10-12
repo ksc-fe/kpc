@@ -534,8 +534,11 @@ gulp.task('build@stylus', gulp.series(
 // build for Vue, React and Angular
 function generateTask(type, dest) {
     dest= dest || `./@${type}`;
-    gulp.task(`clean@${type}`, (done) => {
-        rimraf(dest, done);
+    gulp.task(`clean@${type}`, async () => {
+        await Promise.all([
+            rm(`${dest}/@css`),
+            rm(`${dest}/@stylus`),
+        ]);
     });
     gulp.task(`copy@${type}`, () => {
         return gulp.src(['./@css/**/*', './@stylus/**/*'], {base: './'})   

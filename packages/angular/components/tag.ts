@@ -1,6 +1,6 @@
 import Intact from 'intact-angular';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
-import {Tag} from '../../../components/tag';
+import {Tag} from 'kpc/components/tag';
 
 export const TagComponent = Intact.decorate(Tag, 'k-tag');
 

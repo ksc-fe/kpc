@@ -1,6 +1,6 @@
 import Intact from 'intact-angular';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
-import {Tooltip} from '../../../components/tooltip';
+import {Tooltip} from 'kpc/components/tooltip';
 
 export const TooltipComponent = Intact.decorate(Tooltip, 'k-tooltip');
 

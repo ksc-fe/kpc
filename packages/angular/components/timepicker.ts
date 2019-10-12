@@ -1,6 +1,6 @@
 import Intact from 'intact-angular';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
-import {Timepicker} from '../../../components/timepicker';
+import {Timepicker} from 'kpc/components/timepicker';
 
 export const TimepickerComponent = Intact.decorate(Timepicker, 'k-timepicker');
 

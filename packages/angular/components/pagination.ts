@@ -1,6 +1,6 @@
 import Intact from 'intact-angular';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
-import {Pagination} from '../../../components/pagination';
+import {Pagination} from 'kpc/components/pagination';
 
 export const PaginationComponent = Intact.decorate(Pagination, 'k-pagination');
 

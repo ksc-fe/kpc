@@ -1,6 +1,6 @@
 import Intact from 'intact-angular';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
-import {Checkbox} from '../../../components/checkbox';
+import {Checkbox} from 'kpc/components/checkbox';
 
 export const CheckboxComponent = Intact.decorate(Checkbox, 'k-checkbox');
 

@@ -1,6 +1,6 @@
 import Intact from 'intact-angular';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
-import {Spinner} from '../../../components/spinner';
+import {Spinner} from 'kpc/components/spinner';
 
 export const SpinnerComponent = Intact.decorate(Spinner, 'k-spinner');
 

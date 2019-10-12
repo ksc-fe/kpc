@@ -1,6 +1,6 @@
 import Intact from 'intact-angular';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
-import {Timeline, TimelineItem} from '../../../components/timeline';
+import {Timeline, TimelineItem} from 'kpc/components/timeline';
 
 export const TimelineComponent = Intact.decorate(Timeline, 'k-timeline');
 export const TimelineItemComponent = Intact.decorate(TimelineItem, 'k-timeline-item');

@@ -1,6 +1,6 @@
 import Intact from 'intact-angular';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
-import {Drawer} from '../../../components/drawer';
+import {Drawer} from 'kpc/components/drawer';
 
 export const DrawerComponent = Intact.decorate(Drawer, 'k-drawer');
 
