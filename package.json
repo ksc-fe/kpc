@@ -25,7 +25,7 @@
     "deploy:doc": "cross-env NODE_ENV=production gulp deploy:doc",
     "prepublishOnly": "npm run build && (git commit -am'chore: build' || echo 'has not files to commit') && git push",
     "release": "npm run release-patch",
-    "prelease": "npm run prelease-patch",
+    "prelease": "lerna publish prerelease --preid beta --dist-tag beta",
     "release-patch": "lerna publish patch",
     "release-minor": "lerna publish minor",
     "release-major": "lerna publish major",
