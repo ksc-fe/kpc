@@ -55,7 +55,7 @@ import {Button} from 'kpc/components/button';
                 <BreadcrumbItem>Home</BreadcrumbItem>
                 <BreadcrumbItem>Detail</BreadcrumbItem>
             </Breadcrumb>
-            <div v-for={{ Array.apply(null, {length: 100}) }}>content</div>
+            <div v-for={{ self.get('data') }}>content</div>
         </Body>
     </Layout>
 </Layout>
@@ -87,6 +87,7 @@ export default class Demo extends Intact {
             expandedKeys: [],
             selectedKey: '3-1',
             collapse: false,
+            data: Array.apply(null, {length: 100}),
         };
     }
 
@@ -94,4 +95,35 @@ export default class Demo extends Intact {
         this.set('collapse', !this.get('collapse'));
     }
 }
+```
+
+```vue-data
+data() {
+    return {
+        expandedKeys: [],
+        selectedKey: '3-1',
+        collapse: false,
+        data: Array.apply(null, {length: 100}),
+    };
+}
+```
+
+```react-methods
+constructor(props) {
+    super(props);
+    this.state = {
+        expandedKeys: [],
+        selectedKey: '3-1',
+        collapse: false,
+        data: Array.apply(null, {length: 100}),
+    };
+    this._toggle = this._toggle.bind(this);
+}
+```
+
+```angular-properties
+private expandedKeys = [];
+private selectedKey = '3-1';
+private collapse = false;
+private data = Array.apply(null, {length: 100});
 ```

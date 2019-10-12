@@ -146,6 +146,8 @@ export default class MenuItem extends DropdownItem {
     }
 
     _destroy() {
+        // because we cloned this vNode, the original instance need not to be destroyed
+        if (this._isAngular) return;
         this.get('_root').off('$change:selectedKey', this._updateStatus);
         super._destroy();
     }

@@ -47,7 +47,6 @@ import Table from 'kpc/components/table';
 ```
 
 ```js
-
 export default class extends Intact {
     @Intact.template()
     static template = template;
