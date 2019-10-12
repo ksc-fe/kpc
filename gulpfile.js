@@ -552,12 +552,13 @@ function generateTask(type, dest) {
     gulp.task(`build@${type}`, gulp.series(`clean@${type}`, `copy@${type}`));
 }
 
+const packageAngularPath = './packages/kpc-angular';
 generateTask('vue');
 generateTask('react');
-generateTask('angular', './packages/angular');
+generateTask('angular', packageAngularPath);
 
 // generate components for Angular
-const angularComponentsPath = `./packages/angular/components`;
+const angularComponentsPath = `${packageAngularPath}/components`;
 const generateAngular = async () => {
     await rm(angularComponentsPath);
 
@@ -652,13 +653,13 @@ gulp.task('_generate:angular', async () => {
             contents = contents.replace(/kpc\/components\/(\w+)/g, './$1/index');
             file.contents = Buffer.from(contents);
         }))
-        .pipe(gulp.dest('./packages/angular/@css/components'))
-        .pipe(gulp.dest('./packages/angular/@stylus/components'));
+        .pipe(gulp.dest(`${packageAngularPath}/@css/components`))
+        .pipe(gulp.dest(`${packageAngularPath}/@stylus/components`));
 
-    await gulp.src('./packages/angular/index.ts')
+    await gulp.src(`${packageAngularPath}/index.ts`)
         .pipe(ts(tsconfig))
-        .pipe(gulp.dest('./packages/angular/@css'))
-        .pipe(gulp.dest('./packages/angular/@stylus'));
+        .pipe(gulp.dest(`${packageAngularPath}/@css`))
+        .pipe(gulp.dest(`${packageAngularPath}/@stylus`));
 });
 gulp.task('generate:angular', gulp.series('index', '_generate:angular'));
 
