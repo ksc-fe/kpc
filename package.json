@@ -1,6 +1,6 @@
 {
   "name": "kpc",
-  "version": "1.2.2-beta.3",
+  "version": "1.2.2-beta.4",
   "description": "A component library written in Intact for Intact, Vue, React and Angular",
   "browser": "@css/index.js",
   "main": "dist/kpc.js",
