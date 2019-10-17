@@ -3,7 +3,7 @@
 #### `basic`
 
 ```
-"<input class=\"c-hidden\" type=\"file\" accept=\".jpg, .png\" multiple=\"\"><div class=\"k-handle\"><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>点击上传</span></button></div><div class=\"k-tip\">只能上传JPG/PNG格式文件，且不超过500kb</div><div class=\"k-files\"><div class=\"k-file c-expand-enter\" style=\"height: 0px;\"><div class=\"k-wrapper\"><div class=\"k-name c-ellipsis\"><i class=\"k-file-icon ion-document\"></i>a.png<div class=\"k-icons\"><button class=\"k-btn k-none k-btn-icon k-close k-mini\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div></div><div><div class=\"k-progress k-bar k-active k-mini\"><div class=\"k-container\"><div class=\"k-content\"><div class=\"k-bg\" style=\"width: 0%;\"></div></div></div><div class=\"k-text\"><span>0%</span></div></div></div></div></div></div><!--placeholder-->"
+"<input class=\"c-hidden\" type=\"file\" accept=\".jpg, .png\" multiple=\"\"><div class=\"k-handle\"><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>点击上传</span></button></div><div class=\"k-tip\">只能上传JPG/PNG格式文件，且不超过500kb</div><div class=\"k-files\"></div><!--placeholder-->"
 ```
 
 ```
@@ -29,7 +29,7 @@
 ```
 
 ```
-"<input class=\"c-hidden\" type=\"file\" multiple=\"\"><div class=\"k-handle\"><div class=\"k-area\"><i class=\"k-icon ion-upload\"></i><div>将文件拖到此处，或点击上传</div></div></div><div class=\"k-files\"><div class=\"k-file c-expand-enter\" style=\"height: 0px;\"><div class=\"k-wrapper\"><div class=\"k-name c-ellipsis\"><i class=\"k-file-icon ion-document\"></i>a.png<div class=\"k-icons\"><button class=\"k-btn k-none k-btn-icon k-close k-mini\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div></div><div><div class=\"k-progress k-bar k-active k-mini\"><div class=\"k-container\"><div class=\"k-content\"><div class=\"k-bg\" style=\"width: 0%;\"></div></div></div><div class=\"k-text\"><span>0%</span></div></div></div></div></div></div><!--placeholder-->"
+"<input class=\"c-hidden\" type=\"file\" multiple=\"\"><div class=\"k-handle\"><div class=\"k-area\"><i class=\"k-icon ion-upload\"></i><div>将文件拖到此处，或点击上传</div></div></div><div class=\"k-files\"></div><!--placeholder-->"
 ```
 
 ```
@@ -39,7 +39,7 @@
 #### `gallery`
 
 ```
-"<input class=\"c-hidden\" type=\"file\" accept=\".jpg, .png\" multiple=\"\"><div class=\"k-pictures\"><div class=\"k-picture k-picture-card c-dropdown-enter\"><img src=\"\"><div class=\"k-overlap\"><div class=\"k-progress k-bar k-active k-mini\"><div class=\"k-container\"><div class=\"k-content\"><div class=\"k-bg\" style=\"width: 0%;\"></div></div></div><div class=\"k-text\"><span>0%</span></div></div></div><button class=\"k-btn k-none k-btn-icon k-close k-mini\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close\"></i></button></div><div class=\"c-middle c-dropdown-move\" style=\"position: relative; left: -108px; top: 0px; transform: translate(108px, 0px);\"><div class=\"k-handle\"><i class=\"k-picture-card k-add ion-ios-plus-empty\"></i></div></div></div><!--placeholder-->"
+"<input class=\"c-hidden\" type=\"file\" accept=\".jpg, .png\" multiple=\"\"><div class=\"k-pictures\"><div class=\"c-middle\"><div class=\"k-handle\"><i class=\"k-picture-card k-add ion-ios-plus-empty\"></i></div></div></div><!--placeholder-->"
 ```
 
 ```
