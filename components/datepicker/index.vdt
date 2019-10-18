@@ -164,6 +164,7 @@ const suffix = <b:suffix><i class="ion-ios-calendar-outline"></i></b:suffix>
             ref="input"
             tabindex="-1"
             ev-blur={{ self.onInputFocusOut }}
+            stackClearIcon
         >
             <b:suffix>{{ suffix }}</b:suffix>
         </Input>

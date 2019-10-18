@@ -14,6 +14,10 @@ import Input from 'kpc/components/input';
     <Input clearable placeholder="please enter">
         <b:suffix><i class="ion-ios-search"></i></b:suffix>
     </Input>
+    <br />
+    <Input clearable stackClearIcon placeholder="please enter">
+        <b:suffix><i class="ion-ios-search"></i></b:suffix>
+    </Input>
 </div>
 ```
 

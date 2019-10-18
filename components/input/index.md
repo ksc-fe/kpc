@@ -28,6 +28,7 @@ sidebar: doc
 | tabindex | 原生`tabindex`属性 | `String` | `undefined` |
 | autocomplete | 原生`autocomplete`属性 | `String` | `undefined` |
 | nativeProps | 原生`input`或`textarea`上的属性 | `Object` | `undefined` |
+| stackClearIcon | 是否将清空按钮覆盖在`suffix`按钮上展示来节省空间 | `Boolean` | `false` |
 
 
 ## Search
