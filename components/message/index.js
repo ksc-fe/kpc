@@ -101,9 +101,13 @@ export default class Message extends Intact {
         // update the original dom, but return the placeholder,
         // otherwise return the original dom which has been updated
         if (
-            !lastVNode || 
-            // it may have not parentVNode in vue
-            (lastVNode.parentVNode && lastVNode.parentVNode.tag === MessageAnimate)
+            // always update in angular
+            !this._isAngular &&
+            (
+                !lastVNode || 
+                // it may have not parentVNode in vue
+                (lastVNode.parentVNode && lastVNode.parentVNode.tag === MessageAnimate)
+            )
         ) {
             return this.element;
         }

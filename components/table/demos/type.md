@@ -10,11 +10,11 @@ import Table from 'kpc/components/table';
 
 <div>
     <Table scheme={{ {a: '类型', b: '属性'} }}
-        data={{ [{a: 'border类型', b: 'type="border"'}] }}
+        data={{ self.get('data1') }}
         type="border" 
     />
     <Table scheme={{ {a: '类型', b: '属性'} }}
-        data={{ [{a: 'grid类型', b: 'type="grid"'}] }}
+        data={{ self.get('data2') }}
         type="grid" 
     />
 </div>
@@ -23,4 +23,18 @@ import Table from 'kpc/components/table';
 ```styl
 .k-table
     margin-bottom 20px
+```
+
+```js
+export default class extends Intact {
+    @Intact.template()
+    static template = template;
+
+    defaults() {
+        return {
+            data1: [{a: 'border类型', b: 'type="border"'}],
+            data2: [{a: 'grid类型', b: 'type="grid"'}] 
+        }
+    }
+}
 ```

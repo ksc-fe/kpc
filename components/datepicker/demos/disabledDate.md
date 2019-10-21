@@ -11,9 +11,18 @@ order: 3
 ```vdt
 import Datepicker from 'kpc/components/datepicker';
 
-<Datepicker disabledDate={{ (date, dateObject) => {
-    // 禁用掉每月的5号和15号
-    const d = dateObject.date();
-    return d === 5 || d === 15;
-} }} />
+<Datepicker disabledDate={{ self.disabledDate }} />
+```
+
+```js
+export default class extends Intact {
+    @Intact.template()
+    static template = template;
+
+    disabledDate(date, dateObject) {
+        // 禁用掉每月的5号和15号
+        const d = dateObject.date();
+        return d === 5 || d === 15;
+    }
+}
 ```

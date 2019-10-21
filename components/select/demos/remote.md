@@ -61,3 +61,8 @@ constructor(props) {
     this.lastFetchId = 0;
 }
 ```
+
+```angular-properties
+private users = [];
+private lastFetchId = 0;
+```

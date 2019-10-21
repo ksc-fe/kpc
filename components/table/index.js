@@ -255,7 +255,10 @@ export default class Table extends Intact {
     }
 
     uncheckAll() {
-        this.set('checkedKeys', []);
+        this.set({
+            checkedKeys: [],
+            checkedKey: undefined,
+        });
     }
 
     checkRow(key) {
@@ -368,12 +371,16 @@ export default class Table extends Intact {
                 let text;
                 // find the firstChild's dataset.text as text
                 let firstChild = child.firstChild;
+                if (firstChild && firstChild.tagName === 'INTACT-CONTENT') {
+                    // for angular
+                    firstChild = firstChild.firstChild;
+                }
                 while (firstChild) {
                     if (firstChild.nodeType === 1) break;
                     firstChild = firstChild.nextSibling;
                 }
                 if (firstChild) {
-                    text = child.firstChild.dataset.text;
+                    text = firstChild.dataset.text;
                 }
                 if (!text) {
                     text = child.textContent.trim();

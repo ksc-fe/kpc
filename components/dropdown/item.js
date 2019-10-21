@@ -73,7 +73,7 @@ export default class DropdownItem extends Intact {
         const dropdown = this._isSubMenu();
         this.trigger('click', e);
         if (!dropdown) {
-            this.trigger('select', this);
+            this.trigger('select', this, e);
         } else {
             dropdown.show(null, null, isFocus);
         }

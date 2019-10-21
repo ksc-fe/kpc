@@ -7,6 +7,7 @@ const webpack = require('webpack');
 const highlight = require('highlight.js');
 const intact2vue = require('./intact2vue');
 const intact2react = require('./intact2react');
+const intact2angular = require('./intact2angular');
 const fs = require('fs').promises;
 
 const languageMap = function(key) {
@@ -31,7 +32,7 @@ module.exports = function(isDev = true) {
 
     const doc = new KDoc(
         './@(docs|components)/**/*.md',
-        // './@(docs|components)/transfer/demos/customList.md',
+        // './@(docs|components)/upload/demos/*.md',
         root
     );
 
@@ -129,6 +130,7 @@ module.exports = function(isDev = true) {
                 let hasStylus = false;
                 let hasVue = false;
                 let hasReact = false;
+                let hasAngular = false;
 
                 // for vue
                 let vueScript;
@@ -138,6 +140,10 @@ module.exports = function(isDev = true) {
 
                 // for react
                 let reactMethods;
+
+                // for angular
+                let angularMethods;
+                let angularProperties;
 
                 let jsHead;
 
@@ -158,9 +164,10 @@ module.exports = function(isDev = true) {
                             item.content,
                         ].join('\n');
                     }
-                    if (item.language === 'styl') hasStylus = true;
-                    if (item.language === 'vue') hasVue = true;
-                    if (item.language === 'jsx') hasReact = true;
+                    if (item.language === 'styl') return (hasStylus = true);
+                    if (item.language === 'vue') return (hasVue = true);
+                    if (item.language === 'jsx') return (hasReact = true);
+                    if (item.language === 'ts') return (hasAngular = true);
                     if (item.language === 'vue-script') {
                         vueScript = item.content;
                         return false;
@@ -181,8 +188,16 @@ module.exports = function(isDev = true) {
                         reactMethods = item.content;
                         return false;
                     }
+                    if (item.language === 'angular-methods') {
+                        angularMethods = item.content;
+                        return false;
+                    }
                     if (item.language === 'js-head') {
                         jsHead = item.content;
+                        return false;
+                    }
+                    if (item.language === 'angular-properties') {
+                        angularProperties = item.content;
                         return false;
                     }
                     if (item.language === 'vue-ignore') {
@@ -194,6 +209,11 @@ module.exports = function(isDev = true) {
                         item.language = 'jsx';
                         item.ignored = true;
                         hasReact = true;
+                    }
+                    if (item.language === 'angular-ignore') {
+                        item.language = 'ts';
+                        item.ignored = true;
+                        hasAngular = true;
                     }
                     return true;
                 });
@@ -243,6 +263,15 @@ module.exports = function(isDev = true) {
                             codes.push({
                                 language: 'jsx',
                                 content: intact2react(vdt, js, reactMethods, jsHead, hasStylus), 
+                            });
+                        }
+
+                        if (!hasAngular) {
+                            // compile to angular
+                            // console.log(file.path);
+                            codes.push({
+                                language: 'ts',
+                                content: intact2angular(vdt, js, angularMethods, angularProperties, hasStylus),
                             });
                         }
                     }

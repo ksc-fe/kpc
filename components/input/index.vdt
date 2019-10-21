@@ -1,5 +1,5 @@
 import Icon from '../icon';
-import {addStyle, isTextChildren, getRestProps} from '../utils';
+import {addStyle, isTextBlock, getRestProps} from '../utils';
 
 const {
     type, name, value, placeholder, tabindex,
@@ -50,7 +50,7 @@ const wrapperEvents = [
             const children = blocks.prepend.call(this, () => {});
             <div class={{ {
                 "k-prepend": true, 
-                "k-padding": isTextChildren(children)
+                "k-padding": isTextBlock(children)
             } }}>{{ children }}</div>
         }
     } }}
@@ -110,7 +110,7 @@ const wrapperEvents = [
             const children = blocks.append.call(this, () => {});
             <div class={{ {
                 "k-append": true, 
-                "k-padding": isTextChildren(children)
+                "k-padding": isTextBlock(children)
             } }}>{{ children }}</div>
         }
     } }}

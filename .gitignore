@@ -16,7 +16,10 @@ site/dist/
 dist/
 .vscode/
 
-packages/angular/@css
-packages/angular/@stylus
-packages/angular/kpc
-packages/angular/node_modules
+packages/kpc-angular/@css
+packages/kpc-angular/@stylus
+packages/kpc-angular/kpc
+packages/kpc-angular/node_modules
+packages/kpc-angular/index.ts
+packages/kpc-angular/components
+~*

@@ -1,8 +1,8 @@
 {
-  "name": "angular",
-  "version": "1.2.0",
+  "name": "kpc-angular",
+  "version": "1.2.2-beta.5",
   "description": "KPC components for Angular",
-  "main": "index.js",
+  "main": "@css/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ksc-fe/kpc.git"
@@ -11,6 +11,10 @@
     "component",
     "angular",
     "kpc"
+  ],
+  "files": [
+    "@css",
+    "@stylus"
   ],
   "author": "Javey",
   "license": "MIT",
@@ -26,7 +30,16 @@
     "lint": "ng lint"
   },
   "dependencies": {
-    "intact-angular": "^0.1.0"
+    "@babel/runtime-corejs2": "^7.2.0",
+    "core-js": "^2.6.9",
+    "dayjs": "^1.8.15",
+    "downloadjs": "^1.4.7",
+    "enquire.js": "^2.1.6",
+    "intact": "^2.5.6",
+    "intact-angular": "^0.1.1",
+    "monaco-editor": "^0.17.0",
+    "resize-observer-polyfill": "^1.5.0",
+    "tslib": "^1.10.0"
   },
   "devDependencies": {
     "@angular-builders/custom-webpack": "^8.2.0",
@@ -57,9 +70,9 @@
     "protractor": "~5.4.0",
     "rxjs": "~6.4.0",
     "ts-node": "~7.0.0",
-    "tslib": "^1.10.0",
     "tslint": "~5.15.0",
     "typescript": "~3.5.3",
     "zone.js": "~0.9.1"
-  }
+  },
+  "gitHead": "b415b3a0320cb6f4174627bc10f363d344a31391"
 }

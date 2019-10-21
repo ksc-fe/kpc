@@ -14,9 +14,9 @@ import {Progress} from 'kpc/components/progress';
 <div>
     <Button ev-click={{ self.set.bind(self, 'show', true) }}>custom message</Button>
     <Message v-model="show" key="message" 
+        hideIcon
         duration={{ 0 }} 
         type={{ self.get('percent') >= 100 ? 'success' : 'info' }}
-        hideIcon
     >
         <Progress style="width: 200px" 
             percent={{ self.get('percent') }}

@@ -17,7 +17,10 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+        "kpc/*": ["../../*"]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

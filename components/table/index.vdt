@@ -168,9 +168,13 @@ const TheadCreator = ({onlyLeft, onlyRight, refContainer, style}) => {
         // add a flag, when we enter to the map callback set it to true
         // because it may have children but is not Column
         let ret = false;
-        beforeLoop(layer);
+        let beforeLoopDone = false;
         mapChildren(children, vNode => {
             if (vNode.tag === Column) {
+                if (!beforeLoopDone) {
+                    beforeLoop(layer);
+                    beforeLoopDone = true;
+                }
                 ret = true;
                 const props = vNode.props;
                 const blockFn = props._blocks && (props._blocks.default || props._blocks.template);

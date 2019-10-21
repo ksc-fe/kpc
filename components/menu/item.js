@@ -67,6 +67,10 @@ export default class MenuItem extends DropdownItem {
                 ancestor.hide(true);
             }
         });
+    }
+
+    _beforeCreate() {
+        // we must do this in _beforeCreate method for Angular
         const _root = this.get('_root');
         this._updateStatus(_root, _root.get('selectedKey'));
         _root.on('$change:selectedKey', this._updateStatus);
@@ -142,6 +146,8 @@ export default class MenuItem extends DropdownItem {
     }
 
     _destroy() {
+        // because we cloned this vNode, the original instance need not to be destroyed
+        if (this._isAngular) return;
         this.get('_root').off('$change:selectedKey', this._updateStatus);
         super._destroy();
     }

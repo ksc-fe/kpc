@@ -71,7 +71,7 @@ import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
                 <BreadcrumbItem>Home</BreadcrumbItem>
                 <BreadcrumbItem>Detail</BreadcrumbItem>
             </Breadcrumb>
-            <div v-for={{ Array.apply(null, {length: 100}) }}>content</div>
+            <div v-for={{ self.get('data') }}>content</div>
         </Body>
     </Layout>
 </Layout>
@@ -100,7 +100,35 @@ export default class Demo extends Intact {
         return {
             expandedKeys: [],
             selectedKey: '3-1',
+            data: Array.apply(null, {length: 100}),
         };
     }
 }
+```
+
+```vue-data
+data() {
+    return {
+        expandedKeys: [],
+        selectedKey: '3-1',
+        data: Array.apply(null, {length: 100}),
+    };
+}
+```
+
+```react-methods
+constructor(props) {
+    super(props);
+    this.state = {
+        expandedKeys: [],
+        selectedKey: '3-1',
+        data: Array.apply(null, {length: 100}),
+    };
+}
+```
+
+```angular-properties
+private expandedKeys = [];
+private selectedKey = '3-1';
+private data = Array.apply(null, {length: 100});
 ```

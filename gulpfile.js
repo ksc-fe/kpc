@@ -21,6 +21,7 @@ const childProcess = require('child_process');
 const uglifyjs = require('gulp-uglify');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const fsExtra = require('fs-extra');
+const ts = require('gulp-typescript');
 
 const fsPromises = fs.promises;
 
@@ -533,8 +534,11 @@ gulp.task('build@stylus', gulp.series(
 // build for Vue, React and Angular
 function generateTask(type, dest) {
     dest= dest || `./@${type}`;
-    gulp.task(`clean@${type}`, (done) => {
-        rimraf(dest, done);
+    gulp.task(`clean@${type}`, async () => {
+        await Promise.all([
+            rm(`${dest}/@css`),
+            rm(`${dest}/@stylus`),
+        ]);
     });
     gulp.task(`copy@${type}`, () => {
         return gulp.src(['./@css/**/*', './@stylus/**/*'], {base: './'})   
@@ -548,13 +552,14 @@ function generateTask(type, dest) {
     gulp.task(`build@${type}`, gulp.series(`clean@${type}`, `copy@${type}`));
 }
 
+const packageAngularPath = './packages/kpc-angular';
 generateTask('vue');
 generateTask('react');
-generateTask('angular', './packages/angular/kpc');
+generateTask('angular', packageAngularPath);
 
 // generate components for Angular
-const angularComponentsPath = `./packages/angular/components`;
-const generateAngular = async (type) => {
+const angularComponentsPath = `${packageAngularPath}/components`;
+const generateAngular = async () => {
     await rm(angularComponentsPath);
 
     for (let key in metadata) {
@@ -596,14 +601,30 @@ const generateAngularIndex = async () => {
     const imports = [];
     const exports = [];
     const modules = [];
+    exports.push(`export {_$, localize} from './components/utils';`, '');
     for (let key in metadata) {
+        // ignore App and Code
+        if (key === 'app' || key === 'code') continue;
+
         const moduleName = `${key[0].toUpperCase() + key.substring(1)}Module`;
         imports.push(`import {${moduleName}} from './${key}';`);
         exports.push(`export * from './${key}';`);
         modules.push(moduleName);
     }
+    exports.push('', `export const version = '${packageJson.version}';`);
+    exports.push(`export {IntactAngularBrowserModule as KpcBrowserModule} from 'intact-angular';`);
 
     const contents = [
+`/*!
+ * kpc ${packageJson.version}
+ *
+ * Copyright (c) Kingsoft Cloud
+ * Released under the MIT License
+ * 
+ * Documentation available at
+ * https://ksc-fe.github.io/kpc/
+ */
+`,
         `import {NgModule} from '@angular/core';`,
         ``,
         ...imports,
@@ -621,17 +642,40 @@ const generateAngularIndex = async () => {
     await fsPromises.writeFile(`${angularComponentsPath}/index.ts`, contents);
 }
 gulp.task('_generate:angular', async () => {
-    // await generateAngular('css');
-    await generateAngular('stylus');
+    await generateAngular();
     await generateAngularIndex();
+    const tsconfig = {
+        "experimentalDecorators": true,
+        "module": "esnext",
+        "isolatedModules": true,
+        "importHelpers": true,
+    };
+    await gulp.src(`${angularComponentsPath}/**/*.ts`)
+        .pipe(ts(tsconfig))
+        .pipe(tap(function(file) {
+            let contents = file.contents.toString('utf-8');
+            contents = contents.replace(/kpc\/components/g, './components');
+            file.contents = Buffer.from(contents);
+        }))
+        .pipe(gulp.dest(`${packageAngularPath}/@css`))
+        .pipe(gulp.dest(`${packageAngularPath}/@stylus`));
+
+    await gulp.src(`${angularComponentsPath}/index.ts`)
+        .pipe(ts(tsconfig))
+        .pipe(gulp.dest(`${packageAngularPath}/@css`))
+        .pipe(gulp.dest(`${packageAngularPath}/@stylus`));
 });
 gulp.task('generate:angular', gulp.series('index', '_generate:angular'));
+
+// overwrite build@angular
+gulp.task('build@angular', gulp.series('clean@angular', 'copy@angular', 'generate:angular'));
+gulp.task('_build@angular', gulp.series('clean@angular', 'copy@angular', '_generate:angular'));
 
 // build
 gulp.task('build', gulp.series(
     'index',
     gulp.parallel('build@css', 'build@stylus', 'build@single'),
-    gulp.parallel('build@vue', 'build@react')
+    gulp.parallel('build@vue', 'build@react', '_build@angular')
 ));
 
 function exec(command) {

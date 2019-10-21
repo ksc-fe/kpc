@@ -194,3 +194,16 @@ constructor(props) {
     this._togglePanel = this._togglePanel.bind(this);
 }
 ```
+
+```angular-properties
+private data = range(0, 10).map(item => {
+    return {
+        name: 'name ' + item,
+        ip: '127.0.0.' + item
+    };
+});
+private tab = 'detail';
+private size = '0px';
+private selectedData = {};
+private checkedKeys = [];
+```

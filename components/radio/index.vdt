@@ -11,13 +11,18 @@ const classNameObj = {
     [className]: className,
 };
 
+let evClick;
 const events = [
-    // do not bind click to label, otherwise it will trigger click event twice
-    /* 'ev-click', */
+    'ev-click',
     'ev-mouseenter', 'ev-mouseleave'
 ].reduce((memo, name) => {
     if (rest[name]) {
-        memo[name] = rest[name];
+        if (name === 'ev-click') {
+            // do not bind click to label, otherwise it will trigger click event twice
+            evClick = rest[name];
+        } else {
+            memo[name] = rest[name];
+        }
         delete rest[name];
     }
     return memo;
@@ -30,11 +35,15 @@ const events = [
 >
     <span class="k-wrapper">
         <input type="radio" disabled={{ disabled }}
-            v-model="value"
             value={{ trueValue }}
             tabindex="-1"
             {{ ...getRestProps(self, rest) }}
             ref="input"
+            checked={{ value === trueValue }}
+            ev-click={{ (e) => {
+                _setCheckboxModel(self, 'value', trueValue, false, e, $this);
+                evClick && evClick(e);
+            } }}
         />
     </span>
     <span class="k-text" v-if={{ children }}>{{ children }}</span>

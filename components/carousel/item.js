@@ -5,6 +5,8 @@ export default class CarouselItem extends Intact {
     @Intact.template()
     static template = template;
 
+    static blocks = ['children'];
+
     static propTypes = {
         value: String,
     };

@@ -27,7 +27,7 @@ const titleVNodes = mapChildren(children, vNode => {
             _isFirstFloorChildren,
             'ev-$change:value': self._onDropdownShowChange,
             _parent: self,
-        });
+        }, true);
     } else if (vNode.type === 1 || isStringOrNumberNotEmpty(vNode)) {
         tooltipContents.push(vNode);
         return <span>{{ vNode }}</span>;

@@ -72,6 +72,8 @@ export default class Code extends Intact {
     }
 
     _crossDomainWorker() {
+        if (!window.MonacoEnvironment) return;
+
         const oldGetWorkerUrl = window.MonacoEnvironment.getWorkerUrl;
 
         if (oldGetWorkerUrl.$) return;

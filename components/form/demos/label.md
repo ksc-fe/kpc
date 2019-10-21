@@ -15,7 +15,7 @@ import {Input} from 'kpc/components/input';
         <Input />
     </FormItem>
     <FormItem>
-        <b:label><i class="ion-person"/> 姓名</b:label>
+        <b:label><i class="ion-person"></i> 姓名</b:label>
         <Input />
     </FormItem>
 </Form>

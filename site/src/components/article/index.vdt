@@ -28,6 +28,8 @@ import {Tooltip} from 'kpc/components/tooltip';
                                         '(Vue)'
                                     } else if (value.language === 'jsx') {
                                         '(React)'
+                                    } else if (value.language === 'ts') {
+                                        '(Angular)'
                                     }
                                 }
                             } }}
