@@ -23,3 +23,9 @@ sidebar: doc
 | format | 指定时间格式化字符串 | `String` | `HH:mm:ss` |
 | valueFormat | 指定`value`值时间格式化字符串 | `String` | `undefined` |
 | showFormat | 指定展示的时间格式化字符串 | `String` | `undefined` |
+
+# 事件
+
+| 事件名 | 说明 | 参数 |
+| --- | --- | --- |
+| selectStart | 该事件尽在范围选择(`range`)，并且只选择了第一个值时触发 | `timeString` |

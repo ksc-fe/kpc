@@ -71,7 +71,11 @@ export default class Datepicker extends Intact {
         this.on('$change:_value', (c, v) => {
             if (Array.isArray(v)) {
                 // if only select one date for range, do not change value, #259
-                if (v.length === 1 && this.get('range')) return;
+                if (v.length === 1 && this.get('range')) {
+                    // trigger select start event for use to custom min/max date, #371
+                    this.trigger('selectStart', this._dateToString(v[0]));
+                    return;
+                }
                 v = v.map(v => this._dateToString(v));
             } else if (v) {
                 v = this._dateToString(v);
