@@ -40,7 +40,11 @@ export function isStringOrNumber(o) {
 }
 
 export function isTextChildren(o) {
-    return isStringOrNumber(o) || isTextVNode(o);
+    if (isStringOrNumber(o)) return true;
+    if (Array.isArray(o)) {
+        return o.every(item => isTextChildren(item));
+    }
+    return isTextVNode(o);
 }
 
 export function isTextVNode(o) {
@@ -49,7 +53,7 @@ export function isTextVNode(o) {
 
 // for detect if it is a text node in Angular
 export function isTextBlock(o) {
-    return isTextChildren(o) || o && o.tag.$id === 'AngularBlockWrapper' && o.props.isText;
+    return isTextChildren(o) || o && o.tag && o.tag.$id === 'AngularBlockWrapper' && o.props.isText;
 }
 
 export function isStringOrNumberNotEmpty(o) {

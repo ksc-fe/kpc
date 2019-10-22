@@ -105,7 +105,7 @@ data() {
         collapse: false,
         data: Array.apply(null, {length: 100}),
     };
-}
+},
 ```
 
 ```react-methods
