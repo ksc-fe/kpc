@@ -3,11 +3,15 @@ node_js:
     - 10
 before_install:
     - npm install -g codecov
+install:
+    - npx lerna bootstrap
 addons:
     chrome: stable
 before_script:
     - npx gulp doc
+    - npm run build:angular
 script:
     - npm run test
     - codecov
     - npm run test:react
+    - npm run test:angular

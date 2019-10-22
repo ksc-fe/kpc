@@ -317,7 +317,7 @@ function parseSpecial(template, properties, imports, methodsObj) {
             properties.Datepicker = {
                 exp: 'Datepicker'
             };
-            imports.Datepicker = `import {Datepicker} from 'kpc/components/datepicker';`;
+            imports.Datepicker = `import {DatepickerComponent as Datepicker} from 'kpc-angular';`;
             return match;
         })
         .replace(/\[(\w+?)\]="([^\"]+?=>[^\"]+?)"/g, (nouse, name, fn) => {
@@ -337,7 +337,7 @@ function parseJS(js, refs, angularMethods, methodsObj, eventCallbacks, needBindT
     const lines = js.split('\n');
     const _head = [];
     for (let i = 0; i < lines.length; i++) {
-        const line = lines[i];
+        const line = lines[i].replace('kpc/components', 'kpc-angular/components');
         if (line.startsWith('export default')) {
             js = lines.slice(i).join('\n');
             break;

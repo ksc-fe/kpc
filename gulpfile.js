@@ -597,11 +597,12 @@ const generateAngular = async () => {
     } 
 }
 
+const utilsPath = '../../../components/utils';
 const generateAngularIndex = async () => {
     const imports = [];
     const exports = [];
     const modules = [];
-    exports.push(`export {_$, localize} from './components/utils';`, '');
+    exports.push(`export {_$, localize} from '${utilsPath}';`, '');
     for (let key in metadata) {
         // ignore App and Code
         if (key === 'app' || key === 'code') continue;
@@ -641,29 +642,36 @@ const generateAngularIndex = async () => {
 
     await fsPromises.writeFile(`${angularComponentsPath}/index.ts`, contents);
 }
+const tsconfig = {
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "isolatedModules": true,
+    "importHelpers": true,
+};
 gulp.task('_generate:angular', async () => {
     await generateAngular();
     await generateAngularIndex();
-    const tsconfig = {
-        "experimentalDecorators": true,
-        "module": "esnext",
-        "isolatedModules": true,
-        "importHelpers": true,
-    };
     await gulp.src(`${angularComponentsPath}/**/*.ts`)
         .pipe(ts(tsconfig))
         .pipe(tap(function(file) {
             let contents = file.contents.toString('utf-8');
             contents = contents.replace(/kpc\/components/g, './components');
+            contents = contents.replace(utilsPath, './components/utils');
             file.contents = Buffer.from(contents);
         }))
         .pipe(gulp.dest(`${packageAngularPath}/@css`))
         .pipe(gulp.dest(`${packageAngularPath}/@stylus`));
 
-    await gulp.src(`${angularComponentsPath}/index.ts`)
-        .pipe(ts(tsconfig))
-        .pipe(gulp.dest(`${packageAngularPath}/@css`))
-        .pipe(gulp.dest(`${packageAngularPath}/@stylus`));
+    // await gulp.src(`${angularComponentsPath}/index.ts`)
+        // .pipe(ts(tsconfig))
+        // .pipe(tap(function(file) {
+            // let contents = file.contents.toString('utf-8');
+            // contents = contents.replace(utilsPath, './components/utils');
+            // file.contents = Buffer.from(contents);
+            // console.log(contents);
+        // }))
+        // .pipe(gulp.dest(`${packageAngularPath}/@css`))
+        // .pipe(gulp.dest(`${packageAngularPath}/@stylus`));
 });
 gulp.task('generate:angular', gulp.series('index', '_generate:angular'));
 

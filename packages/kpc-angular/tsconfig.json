@@ -19,7 +19,9 @@
       "dom"
     ],
     "paths": {
-        "kpc/*": ["../../*"]
+        "kpc/*": ["../../*"],
+        "kpc-angular/*": ["../../*"],
+        "kpc-angular": ["./components/index.ts"]
     }
   },
   "angularCompilerOptions": {
