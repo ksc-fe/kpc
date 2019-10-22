@@ -46,9 +46,7 @@ const classNameObj = {
                 }
                 return vNode;
             }) }}
-            <div class="k-active-bar" v-if={{ type === 'default' }}
-                style={{ _activeBarStyle }}
-            ></div>
+            <div class="k-active-bar" style={{ _activeBarStyle }}></div>
         </div>
     </div>
     <Button class="k-next" type="none" icon

@@ -110,8 +110,6 @@ export default class Tabs extends Intact {
     }
 
     _setActiveBarStyle() {
-        if (this.get('type') !== 'default') return;
-
         const vertical = this.get('vertical');
         const activeTab = this.element.querySelector('.k-tab.k-active');
 
