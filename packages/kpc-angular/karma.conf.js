@@ -25,7 +25,7 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+    browsers: [process.env.CI ? 'ChromeHeadless' : 'Chrome'],
     singleRun: false,
     restartOnFileChange: true
   });
