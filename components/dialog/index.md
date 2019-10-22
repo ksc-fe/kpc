@@ -24,6 +24,7 @@ sidebar: doc
 | hideClose | 是否隐藏右上角关闭按钮 | `Boolean` | `false` |
 | escClosable | 是否按ESC时关闭弹窗 | `Boolean` | `true` |
 | terminate | 指定在用户点击“关闭”按钮，点击遮罩层或者按ESC键时的回调函数 | `Function` | `undefined` |
+| width | 指定弹窗宽度，`Number`类型时，单位为`px`；`String`类型时，需要指定单位 | `Number` &#124; `String` | `undefined` |
 
 # 扩展点
 

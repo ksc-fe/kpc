@@ -2,7 +2,7 @@ import Button from '../button';
 import MoveWrapper from '../moveWrapper';
 import {_$} from '../utils';
 
-const {size, container, hideClose, overlay, value} = self.get();
+const {size, container, hideClose, overlay, value, width} = self.get();
 
 <MoveWrapper autoDestroy={{ false }} ev-appended={{ self._onAppended }}
     container={{ container }}
@@ -35,6 +35,7 @@ const {size, container, hideClose, overlay, value} = self.get();
             ev-a:leaveEnd={{ self._leaveEnd }}
             a:appear
             key="dialog"
+            style={{ {width: typeof width === 'number' ? `${width}px` : width} }}
         >
             <template>
                 <b:content>
