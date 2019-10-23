@@ -6,6 +6,17 @@ import '../../styles/kpc.styl';
 import './index.styl';
 import {findParentComponent, _$} from '../utils';
 
+const Types = Intact.Vdt.miss.Types;
+const isEmptyChildren = (vNodes) => {
+    if (!vNodes) return true;
+    if (Array.isArray(vNodes)) {
+        return vNodes.every(vNode => isEmptyChildren(vNode));
+    }
+    if (vNodes.type === Types.Text) {
+        return !vNodes.children;
+    }
+};
+
 export default class TooltipContent extends DropdownMenu {
     @Intact.template()
     static template = template;
@@ -54,6 +65,9 @@ export default class TooltipContent extends DropdownMenu {
         this.on('$change:value', (c, value) => {
             this.trigger(value ? 'beforeShow' : 'beforeHide', this);
         });
+        this.on('$receive:children', (c, vNodes) => {
+            this.isEmptyChildren = isEmptyChildren(vNodes);
+        });
     }
 
     _mount() {
@@ -67,7 +81,7 @@ export default class TooltipContent extends DropdownMenu {
 
     show() {
         // don't show if content is empty
-        if (!this.get('children') || this.get('disabled')) return;
+        if (this.get('disabled') || this.isEmptyChildren) return;
 
         clearTimeout(this.timer);
         this.set('value', true); 

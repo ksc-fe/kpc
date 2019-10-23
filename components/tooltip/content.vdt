@@ -22,7 +22,7 @@ const classNameObj = {
 };
 
 <MoveWrapper container={{ container }}>
-    <Animate a:show={{ value && children && !disabled }}
+    <Animate a:show={{ value && !disabled && !self.isEmptyChildren }}
         class={{ classNameObj }}
         a:transition={{ transition }}
         ref="menu"
