@@ -195,6 +195,25 @@ export default class Slider extends Intact {
             _inputValue: fixedValue,
             _sliderValue: tempValue,
         });
+        this._positionTooltip();
+    }
+
+    _positionTooltip() {
+        const {tooltip1, tooltip2} = this.refs;
+        tooltip1.show();
+        tooltip1.position();
+        if (tooltip2) {
+            tooltip2.show();
+            tooltip2.position();
+        }
+    }
+
+    _hideTooltip() {
+        const {tooltip1, tooltip2} = this.refs;
+        tooltip1.hide();
+        if (tooltip2) {
+            tooltip2.hide();
+        }
     }
 
     _getTempValue(value, isRange, min, max, isFirst) {
@@ -283,6 +302,7 @@ export default class Slider extends Intact {
         } else {
             this.set('_isDragging', true);
         }
+        this._positionTooltip();
     }
 
     _onFocusout(indexFlag) {
@@ -297,6 +317,7 @@ export default class Slider extends Intact {
         }
 
         this.set('_isDragging', false, {async: true});
+        this._hideTooltip();
     }
 
     _onKeydown(indexFlag, e) {
@@ -314,32 +335,33 @@ export default class Slider extends Intact {
         const value = this.get('value');
 
         if (!this.get('isRange')) {
-            return this._setFixedValue(value + step);
-        }
+            this._setFixedValue(value + step);
+        } else {
+            this._initValue += step;
+            this._initValue = this._fix(this._initValue);
+            
+            let _value = this._getTempValue(
+                this._initValue, indexFlag, 
+                this._min, this._max,
+                indexFlag === '_isFirst'
+            );
 
-        this._initValue += step;
-        this._initValue = this._fix(this._initValue);
-        
-        let _value = this._getTempValue(
-            this._initValue, indexFlag, 
-            this._min, this._max,
-            indexFlag === '_isFirst'
-        );
+            this._setFixedValue(_value);
 
-        this._setFixedValue(_value);
-
-        // if overstep the boundary, reverse it
-        if (indexFlag === '_isFirst') {
-            if (this._initValue > this._max) {
-                this.$sliderFirstBtn.blur();
-                this.$sliderSecondBtn.focus();
+            // if overstep the boundary, reverse it
+            if (indexFlag === '_isFirst') {
+                if (this._initValue > this._max) {
+                    this.$sliderFirstBtn.blur();
+                    this.$sliderSecondBtn.focus();
+                }
+            } else if (indexFlag === '_isSecond') {
+                if (this._initValue < this._min) {
+                    this.$sliderSecondBtn.blur();
+                    this.$sliderFirstBtn.focus();
+                }
             }
-        } else if (indexFlag === '_isSecond') {
-            if (this._initValue < this._min) {
-                this.$sliderSecondBtn.blur();
-                this.$sliderFirstBtn.focus();
-            }
         }
+        this._positionTooltip();
     }
 
     // only change the input value after change event tiggered, #294
