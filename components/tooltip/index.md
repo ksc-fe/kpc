@@ -22,6 +22,7 @@ sidebar: doc
 | container | 指定弹出提示内容追加的位置，默认：`Dialog`类型的组件会追加到`Dialog`中，其他会追加到`body`中。你可以传入函数返回一个DOM用来作为插入的容器，或者传入字符串用来给`querySelector`进行查询 | `Function` &#124; `String` | `undefined` |
 | theme | 指定主题 | `"dark"` &#124; `"light"` | `"dark"` |
 | disabled | 是否禁用提示 | `Boolean` | `false` |
+| always | 是否一直保持当前展示/隐藏状态 | `Boolean` | `false` |
 
 # 事件
 

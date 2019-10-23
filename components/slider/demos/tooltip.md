@@ -5,6 +5,8 @@ order: 6
 
 给组件添加`showTooltip`可以在滑块上展示气泡提示，默认展示当前值，我们也可以通过`tooltip`扩展点自定义展示内容
 
+> `tooltip`扩展点和`Tooltip`组件的`content`扩展点行为一样，如果你传入空的内容，则不会展示气泡
+
 ```vdt
 import Slider from 'kpc/components/slider';
 

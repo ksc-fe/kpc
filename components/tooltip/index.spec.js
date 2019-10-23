@@ -3,6 +3,7 @@ import PositionDemo from '~/components/tooltip/demos/position';
 import TriggerDemo from '~/components/tooltip/demos/trigger';
 import ContentDemo from '~/components/tooltip/demos/content';
 import ConfirmDemo from '~/components/tooltip/demos/confirm';
+import AlwaysDemo from '~/components/tooltip/demos/always';
 import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 
 describe('Tooltip', () => {
@@ -132,5 +133,18 @@ describe('Tooltip', () => {
         expect(content.style.display).eql('none');
         expect(cancelCb.callCount).eql(1);
         expect(okCb.callCount).eql(1);
+    });
+
+    it('should always show tooltip', async () => {
+        instance = mount(AlwaysDemo);
+
+        const content = getElement('.k-tooltip-content');
+        expect(content.textContent).eql('hello');
+
+        document.body.click();
+        expect(getElement('.k-tooltip-content')).eql(content);
+
+        instance.element.querySelector('.k-tooltip').click();
+        expect(getElement('.k-tooltip-content')).eql(content);
     });
 });

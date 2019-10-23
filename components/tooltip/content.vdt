@@ -4,7 +4,7 @@ import Button from '../button';
 const {
     children, value, trigger, showArrow, confirm,
     canHover, className, _feedback, transition,
-    container, theme
+    container, theme, disabled
 } = self.get();
 
 const events = {};
@@ -22,7 +22,7 @@ const classNameObj = {
 };
 
 <MoveWrapper container={{ container }}>
-    <Animate a:show={{ value }}
+    <Animate a:show={{ value && children && !disabled }}
         class={{ classNameObj }}
         a:transition={{ transition }}
         ref="menu"

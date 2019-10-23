@@ -20,7 +20,7 @@ export default class TooltipContent extends DropdownMenu {
         cancelText: String,
         theme: ['dark', 'light'],
         disabled: Boolean,
-        showAlways: Boolean,
+        always: Boolean,
     };
 
     static events = {
@@ -42,7 +42,7 @@ export default class TooltipContent extends DropdownMenu {
             cancelText: _$('取消'),
             theme: 'dark',
             disabled: false,
-            showAlways: false,
+            always: false,
 
             _feedback: {},
         };
@@ -60,7 +60,8 @@ export default class TooltipContent extends DropdownMenu {
         super._mount();
 
         if (this.get('value')) {
-            this._addDocumentClick();
+            this.position('none');
+            this._addDocumentEvents();
         }
     }
 
@@ -82,7 +83,7 @@ export default class TooltipContent extends DropdownMenu {
         }
     }
 
-    position() {
+    position(collision = 'flipfit') {
         let pos = this.get('position');
         if (typeof pos === 'string') {
             switch (pos) {
@@ -105,7 +106,7 @@ export default class TooltipContent extends DropdownMenu {
             my: 'center bottom-10', 
             at: 'center top', 
             of: this.dropdown.element,
-            collision: 'flipfit',
+            collision,
             using: (feedback) => {
                 this.set('_feedback', feedback);
 
@@ -139,5 +140,10 @@ export default class TooltipContent extends DropdownMenu {
     _ok() {
         this.trigger('ok', this);
         this.hide(true);
+    }
+
+    _onDocumentClick(e) {
+        if (this.get('always')) return;
+        super._onDocumentClick(e);
     }
 }
