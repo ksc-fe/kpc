@@ -7,7 +7,7 @@ const {
     disabled, isRange,
     isShowInput, isShowEnd, unit,
     step, _isDragging, _isFirst, _inputValue,
-    _isSecond, _sliderValue, 
+    _isSecond, _sliderValue, always,
     isShowStop, marks, showTooltip, tooltipContainer,
 } = self.get();
 
@@ -25,6 +25,7 @@ const sliderWidth = max - min;
 const tooltip = (value) => {
     return <b:tooltip args={{ [value] }}>{{ value }}</b:tooltip>;
 };
+const tooltipProps = always ? {always, value: true} : {always: false};
 
 <div class={{ classNameObj }} {{ ...getRestProps(self) }}>
     <div class="k-slider-wrapper">
@@ -45,61 +46,66 @@ const tooltip = (value) => {
                         }
                     }}
                 ></div>
-                <Tooltip ref="tooltip1"
-                    disabled={{ !showTooltip }}
-                    container={{ tooltipContainer }}
+                <div class="k-handle-wrapper" style={{ {
+                    left: isRange ?
+                        (_sliderValue[0] - min) / sliderWidth * 100 + '%' :
+                        (_sliderValue - min) / sliderWidth * 100 + '%'
+                } }}>
+                    <Tooltip ref="tooltip1"
+                        disabled={{ !showTooltip }}
+                        {{ ...tooltipProps }}
+                        container={{ dom => dom.parentElement }}
+                    >
+                        <div
+                            class={{ {
+                                "k-handle": true, 
+                                "k-active": (_isFirst && _sliderValue[1] === self._max) || 
+                                    (_isSecond && value[0] !== self._min)
+                            } }}
+                            ref={{ dom => self.$sliderFirstBtn = dom }}
+                            ev-mousedown={{ isRange ? 
+                                self._onDrag.bind(self, '_isFirst') : 
+                                self._onDrag.bind(self, undefined)
+                            }}
+                            ev-click={{ self._stopPropagation }}
+                            tabindex={{ disabled ? "-1" : "0" }}
+                            ev-keydown={{ isRange ? 
+                                self._onKeydown.bind(self, '_isFirst') :
+                                self._onKeydown.bind(self, undefined)
+                            }}
+                            ev-focusin={{ self._onFocusin.bind(self, '_isFirst') }}
+                            ev-focusout={{ self._onFocusout.bind(self, '_isFirst') }}
+                        ></div>
+                        <b:content>{{ tooltip(isRange ? value[0] : value) }}</b:content>
+                    </Tooltip>
+                </div>
+                <div class="k-handle-wrapper" v-if={{ isRange }}
+                    style={{ {
+                        left: (_sliderValue[1] - min) / sliderWidth * 100 + '%'
+                    } }}
                 >
-                    <div
-                        class={{ {
-                            "k-handle": true, 
-                            "k-active": (_isFirst && _sliderValue[1] === self._max) || 
-                                (_isSecond && value[0] !== self._min)
-                        } }}
-                        style={{ { 
-                            left: isRange ?
-                                (_sliderValue[0] - min) / sliderWidth * 100 + '%' :
-                                (_sliderValue - min) / sliderWidth * 100 + '%'
-                        } }}
-                        ref={{ dom => self.$sliderFirstBtn = dom }}
-                        ev-mousedown={{ isRange ? 
-                            self._onDrag.bind(self, '_isFirst') : 
-                            self._onDrag.bind(self, undefined)
-                        }}
-                        ev-click={{ self._stopPropagation }}
-                        tabindex={{ disabled ? "-1" : "0" }}
-                        ev-keydown={{ isRange ? 
-                            self._onKeydown.bind(self, '_isFirst') :
-                            self._onKeydown.bind(self, undefined)
-                        }}
-                        ev-focusin={{ self._onFocusin.bind(self, '_isFirst') }}
-                        ev-focusout={{ self._onFocusout.bind(self, '_isFirst') }}
-                    ></div>
-                    <b:content>{{ tooltip(isRange ? value[0] : value) }}</b:content>
-                </Tooltip>
-                <Tooltip v-if={{ isRange }}
-                    ref="tooltip2" 
-                    disabled={{ !showTooltip }}
-                    container={{ tooltipContainer }}
-                >
-                    <div
-                        class={{ {
-                            "k-handle": true,
-                            "k-active": (_isSecond && _sliderValue[0] === self._min) || 
-                                (_isFirst && _sliderValue[1] !== self._max)
-                        } }}
-                        ref={{ dom => self.$sliderSecondBtn = dom }}
-                        ev-mousedown={{ self._onDrag.bind(self, "_isSecond") }}
-                        style={{ {
-                            left: (_sliderValue[1] - min) / sliderWidth * 100 + '%'
-                        } }}
-                        tabindex={{ disabled ? "-1" : "0" }}
-                        ev-keydown={{ self._onKeydown.bind(self, '_isSecond') }}
-                        ev-focusin={{ self._onFocusin.bind(self, '_isSecond') }}
-                        ev-focusout={{ self._onFocusout.bind(self, '_isSecond') }}
-                        ev-click={{ self._stopPropagation }}
-                    ></div>
-                    <b:content>{{ tooltip(value[1]) }}</b:content>
-                </Tooltip>
+                    <Tooltip ref="tooltip2" 
+                        disabled={{ !showTooltip }}
+                        {{ ...tooltipProps }}
+                        container={{ dom => dom.parentElement }}
+                    >
+                        <div
+                            class={{ {
+                                "k-handle": true,
+                                "k-active": (_isSecond && _sliderValue[0] === self._min) || 
+                                    (_isFirst && _sliderValue[1] !== self._max)
+                            } }}
+                            ref={{ dom => self.$sliderSecondBtn = dom }}
+                            ev-mousedown={{ self._onDrag.bind(self, "_isSecond") }}
+                            tabindex={{ disabled ? "-1" : "0" }}
+                            ev-keydown={{ self._onKeydown.bind(self, '_isSecond') }}
+                            ev-focusin={{ self._onFocusin.bind(self, '_isSecond') }}
+                            ev-focusout={{ self._onFocusout.bind(self, '_isSecond') }}
+                            ev-click={{ self._stopPropagation }}
+                        ></div>
+                        <b:content>{{ tooltip(value[1]) }}</b:content>
+                    </Tooltip>
+                </div>
                 {{ (() => {
                     if (isShowStop) {
                         const counts = Math.floor((max - min) / step);

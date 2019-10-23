@@ -2,7 +2,8 @@ import BasicDemo from '~/components/slider/demos/basic';
 import RangeDemo from '~/components/slider/demos/range';
 import DisabledDemo from '~/components/slider/demos/disabled';
 import StepDemo from '~/components/slider/demos/step';
-import {mount, unmount, dispatchEvent} from 'test/utils';
+import TooltipDemo from '~/components/slider/demos/tooltip';
+import {mount, unmount, dispatchEvent, getElement} from 'test/utils';
 import Slider from 'kpc/components/slider';
 import Intact from 'intact';
 
@@ -194,5 +195,16 @@ describe('Slider', () => {
         expect(instance.get('value1')).to.eql(10);
         dispatchEvent(input, 'change');
         expect(input.value).to.eql('10');
+    });
+
+    it('should show tooltip', () => {
+        instance = mount(TooltipDemo);
+
+        let content = getElement('.k-tooltip-content');
+        expect(content).to.be.undefined;
+
+        instance.set('value2', 11);
+        content = getElement('.k-tooltip-content');
+        expect(content.textContent).to.matchSnapshot();
     });
 });

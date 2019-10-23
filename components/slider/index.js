@@ -23,7 +23,7 @@ export default class Slider extends Intact {
             marks: undefined,
             disabled: false,
             showTooltip: false,
-            tooltipContainer: undefined,
+            always: false,
 
             _sliderValue: 0,
             _inputValue:0,
@@ -46,7 +46,7 @@ export default class Slider extends Intact {
         marks: Object,
         disabled: Boolean,
         showTooltip: Boolean,
-        tooltipContainer: [String, Function],
+        always: Boolean,
     };
 
     // static events = {
@@ -77,6 +77,13 @@ export default class Slider extends Intact {
                 needFixedKeys.find(key => keys.indexOf(key) > -1)
             ) {
                 this._setFixedValue(this.get('value'));
+            }
+        });
+
+        // position the tooltip after value changed
+        this.on('$changed:value', () => {
+            if (this.get('always')) {
+                this._showTooltip();
             }
         });
     }
@@ -201,10 +208,10 @@ export default class Slider extends Intact {
             _inputValue: fixedValue,
             _sliderValue: tempValue,
         });
-        this._positionTooltip();
+        this._showTooltip();
     }
 
-    _positionTooltip() {
+    _showTooltip() {
         const {tooltip1, tooltip2} = this.refs;
         tooltip1.show();
         tooltip1.position();
@@ -308,7 +315,7 @@ export default class Slider extends Intact {
         } else {
             this.set('_isDragging', true);
         }
-        this._positionTooltip();
+        this._showTooltip();
     }
 
     _onFocusout(indexFlag) {
@@ -367,7 +374,7 @@ export default class Slider extends Intact {
                 }
             }
         }
-        this._positionTooltip();
+        this._showTooltip();
     }
 
     // only change the input value after change event tiggered, #294

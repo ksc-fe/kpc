@@ -3,7 +3,8 @@ title: 展示提示气泡
 order: 6
 ---
 
-给组件添加`showTooltip`可以在滑块上展示气泡提示，默认展示当前值，我们也可以通过`tooltip`扩展点自定义展示内容
+给组件添加`showTooltip`可以在滑块上展示气泡提示，默认展示当前值，我们也可以通过`tooltip`扩展点自定义展示内容；
+当添加`always`属性时，将一直展示提示气泡
 
 > `tooltip`扩展点和`Tooltip`组件的`content`扩展点行为一样，如果你传入空的内容，则不会展示气泡
 
@@ -17,6 +18,7 @@ import Slider from 'kpc/components/slider';
         isShowInput={{ false }}
         marks={{ self.get('marks') }}
         showTooltip
+        always
     >
         <b:tooltip params="value">
             <span v-if={{ value > 9 }}>满{{ value - 9 }}年，优惠{{ (value - 9) * 2 }}个月</span>
