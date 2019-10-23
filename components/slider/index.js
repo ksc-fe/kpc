@@ -23,6 +23,7 @@ export default class Slider extends Intact {
             marks: undefined,
             disabled: false,
             showTooltip: false,
+            tooltipContainer: undefined,
 
             _sliderValue: 0,
             _inputValue:0,
@@ -45,11 +46,14 @@ export default class Slider extends Intact {
         marks: Object,
         disabled: Boolean,
         showTooltip: Boolean,
+        tooltipContainer: [String, Function],
     };
 
-    static events = {
-        stop: true,
-    };
+    // static events = {
+        // stop: true,
+    // };
+
+    static blocks = ['tooltip'];
 
     _init() {
         this.on("$change:_inputValue", (c, val) => {
@@ -263,7 +267,7 @@ export default class Slider extends Intact {
 
             this._setFixedValue(newValue);
 
-            this.trigger('stop', this.get('value'));
+            // this.trigger('stop', this.get('value'));
 
             window.removeEventListener('mousemove', this.__onRangeSliding);
             window.removeEventListener('mouseup', this.__onRangeSlideEnd);

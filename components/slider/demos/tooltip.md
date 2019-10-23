@@ -17,8 +17,7 @@ import Slider from 'kpc/components/slider';
         showTooltip
     >
         <b:tooltip params="value">
-            <span v-if={{ value <= 9 }}>{{ value }}个月</span>
-            <span v-else>满{{ value - 9 }}年，优惠{{ (value - 9) * 2 }}个月</span>
+            <span v-if={{ value > 9 }}>满{{ value - 9 }}年，优惠{{ (value - 9) * 2 }}个月</span>
         </b:tooltip>
     </Slider>
 </div>

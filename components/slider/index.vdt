@@ -8,7 +8,7 @@ const {
     isShowInput, isShowEnd, unit,
     step, _isDragging, _isFirst, _inputValue,
     _isSecond, _sliderValue, 
-    isShowStop, marks, showTooltip,
+    isShowStop, marks, showTooltip, tooltipContainer,
 } = self.get();
 
 const classNameObj = {
@@ -45,7 +45,10 @@ const tooltip = (value) => {
                         }
                     }}
                 ></div>
-                <Tooltip ref="tooltip1" disabled={{ !showTooltip }}>
+                <Tooltip ref="tooltip1"
+                    disabled={{ !showTooltip }}
+                    container={{ tooltipContainer }}
+                >
                     <div
                         class={{ {
                             "k-handle": true, 
@@ -73,7 +76,11 @@ const tooltip = (value) => {
                     ></div>
                     <b:content>{{ tooltip(isRange ? value[0] : value) }}</b:content>
                 </Tooltip>
-                <Tooltip v-if={{ isRange }} ref="tooltip2" disabled={{ !showTooltip }}>
+                <Tooltip v-if={{ isRange }}
+                    ref="tooltip2" 
+                    disabled={{ !showTooltip }}
+                    container={{ tooltipContainer }}
+                >
                     <div
                         class={{ {
                             "k-handle": true,

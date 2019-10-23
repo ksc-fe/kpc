@@ -20,6 +20,7 @@ export default class TooltipContent extends DropdownMenu {
         cancelText: String,
         theme: ['dark', 'light'],
         disabled: Boolean,
+        showAlways: Boolean,
     };
 
     static events = {
@@ -41,6 +42,7 @@ export default class TooltipContent extends DropdownMenu {
             cancelText: _$('取消'),
             theme: 'dark',
             disabled: false,
+            showAlways: false,
 
             _feedback: {},
         };

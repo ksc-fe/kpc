@@ -18,4 +18,11 @@ sidebar: doc
 | step | 步长 | `Number` | `1` |
 | isShowStop | 是否展示间隔点 | `Boolean` | `false` |
 | marks | 标注刻度 | `Object` | `undefined` |
+| showTooltip | 是否展示提示气泡，默认不展示 | `Boolean` | `false` |
+| tooltipContainer | 指定弹出气泡的位置，默认：`Dialog`类型的组件会追加到`Dialog`中，其他会追加到`body`中。你可以传入函数返回一个DOM用来作为插入的容器，或者传入字符串用来给`querySelector`进行查询 | `Function` &#124; `String` | `undefined` |
 
+# 扩展点
+
+| 名称 | 说明 | 参数 |
+| --- | --- | --- |
+| tooltip | 当展示提示气泡，定义气泡的内容，和`Tooltip`组件行为一样，如果你传入空的内容，则不会展示气泡 | 当前组件取值`value` |
