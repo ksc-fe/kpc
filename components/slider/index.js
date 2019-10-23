@@ -22,6 +22,7 @@ export default class Slider extends Intact {
             isShowStop: false,
             marks: undefined,
             disabled: false,
+            showTooltip: false,
 
             _sliderValue: 0,
             _inputValue:0,
@@ -43,6 +44,7 @@ export default class Slider extends Intact {
         isShowStop: Boolean,
         marks: Object,
         disabled: Boolean,
+        showTooltip: Boolean,
     };
 
     static events = {
