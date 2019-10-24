@@ -28,12 +28,12 @@
     "_publish": "npm run _prepublishOnly && lerna exec -- npm publish",
     "release": "npm run release-patch",
     "prelease": "lerna version prerelease --preid beta && npm run _publish -- --tag=beta",
-    "release-patch": "lerna publish patch",
-    "release-minor": "lerna publish minor",
-    "release-major": "lerna publish major",
-    "prelease-patch": "lerna publish prepatch --preid beta --dist-tag beta",
-    "prelease-minor": "lerna publish preminor --preid beta --dist-tag beta",
-    "prelease-major": "lerna publish premajor --preid beta --dist-tag beta"
+    "release-patch": "lerna version patch && npm run _publish",
+    "release-minor": "lerna version minor && npm run _publish",
+    "release-major": "lerna version major && npm run _publish",
+    "prelease-patch": "lerna version prepatch --preid beta && npm run _publish -- --tag=beta",
+    "prelease-minor": "lerna version preminor --preid beta && npm run _publish -- --tag=beta",
+    "prelease-major": "lerna version premajor --preid beta && npm run _publish -- --tag=beta"
   },
   "repository": {
     "type": "git",
