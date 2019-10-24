@@ -2,7 +2,9 @@ import Button from '../button';
 import MoveWrapper from '../moveWrapper';
 import {_$} from '../utils';
 
-const {size, container, hideClose, overlay, value, width} = self.get();
+const {size, container, hideClose, overlay, value, width, mode} = self.get();
+
+const isHide = mode === 'hide';
 
 <MoveWrapper autoDestroy={{ false }} ev-appended={{ self._onAppended }}
     container={{ container }}
@@ -17,7 +19,8 @@ const {size, container, hideClose, overlay, value, width} = self.get();
     >
         <b:overlay>
             <Animate class="k-overlay"
-                v-if={{ overlay ? value : false }} 
+                a:show={{ overlay ? value : false }} 
+                v-if={{ isHide ? true : overlay ? value : false }}
                 key="overlay"
                 a:appear
                 a:transition="c-fade"
@@ -31,7 +34,8 @@ const {size, container, hideClose, overlay, value, width} = self.get();
                 [`k-${size}`]: size !== 'default',
             } }}
             ref={{ i => self.dialog = i ? i.element : null }}
-            v-if={{ value }}
+            a:show={{ value }}
+            v-if={{ isHide ? true : overlay ? value : false }}
             ev-a:leaveEnd={{ self._leaveEnd }}
             a:appear
             key="dialog"

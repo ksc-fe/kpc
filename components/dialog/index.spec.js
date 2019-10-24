@@ -5,21 +5,22 @@ import BasicDemo from '~/components/dialog/demos/basic';
 import AsyncCloseDemo from '~/components/dialog/demos/asyncClose';
 import AsyncOpenDemo from '~/components/dialog/demos/asyncOpen';
 import TerminateDemo from '~/components/dialog/demos/terminate';
+import HideDemo from '~/components/dialog/demos/hide';
 
 describe('Dialog', () => {
     let component;
     let instance;
 
-    afterEach((done) => {
-        component && component.destroy();
-        component = null;
+    // afterEach((done) => {
+        // component && component.destroy();
+        // component = null;
 
-        if (instance) {
-            unmount(instance);
-            instance = null;
-        }
-        setTimeout(done, 400);
-    });
+        // if (instance) {
+            // unmount(instance);
+            // instance = null;
+        // }
+        // setTimeout(done, 400);
+    // });
 
     it('should render dialog correctly', () => {
         component = render(Dialog);
@@ -276,5 +277,19 @@ describe('Dialog', () => {
         confirm.querySelector('.k-ok').click();
         await wait(500);
         expect(dialog.parentNode).be.null;
+    });
+
+    it('should only hide body', async () => {
+        instance = mount(HideDemo);
+
+        expect(instance.refs.__demo.$element.innerHTML).to.matchSnapshot();
+        instance.set('show', true);
+        await wait(500);
+        const dialog = getElement('.k-dialog');
+        expect(dialog.innerHTML).to.matchSnapshot();
+
+        instance.set('show', false);
+        await wait(500);
+        expect(instance.refs.__demo.$element.innerHTML).to.matchSnapshot();
     });
 });

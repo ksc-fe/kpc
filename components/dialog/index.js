@@ -35,6 +35,7 @@ export default class Dialog extends Intact {
         terminate: Function,
         escClosable: Boolean,
         width: [String, Number],
+        mode: ['destroy', 'hide'],
     };
 
     static events = {
@@ -62,6 +63,7 @@ export default class Dialog extends Intact {
             terminate: undefined,
             escClosable: true,
             width: undefined,
+            mode: 'destroy',
 
             _dragging: false,
         }
