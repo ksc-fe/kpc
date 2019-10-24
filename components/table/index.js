@@ -110,6 +110,8 @@ export default class Table extends Intact {
     };
 
     _init() {
+        this._columns = {};
+
         // save the width of header cell
         this._initWidth();
 
@@ -447,6 +449,8 @@ export default class Table extends Intact {
     }
 
 	_checkTableWidth(isMount) {
+        this._checkTableColumnMinWidth();
+
         if (this.get('resizable')) {
             const tableWidth = this.table.offsetWidth;
             const containerWidth = this.scroll.clientWidth;
@@ -457,6 +461,27 @@ export default class Table extends Intact {
 
                 this._storeWidth();
             }
+        }
+    }
+
+    _checkTableColumnMinWidth() {
+        // TODO: check width when table expands
+        let shouldUpdate = false;
+        for (let key in this._columns) {
+            const column = this._columns[key];
+            const minWidth = column.get('minWidth');
+            if (minWidth) {
+                const width = column.element.offsetWidth;
+                if (width < minWidth) {
+                    this.headerWidthMap[key] = minWidth; 
+                    shouldUpdate = true;
+                }
+            }
+        }
+        if (shouldUpdate) {
+            this.update();
+            // check again because it may affect other columns
+            this._checkTableColumnMinWidth();
         }
     }
 

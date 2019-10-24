@@ -139,6 +139,17 @@ const TheadCreator = ({onlyLeft, onlyRight, refContainer, style}) => {
 
             // add leaf node to _scheme
             _scheme[key] = props;
+
+            // add to _columns to check width of column
+            const oRef = vNode.ref;
+            vNode.ref = (i) => {
+                if (i) {
+                    self._columns[key] = i;
+                } else {
+                    delete self._columns[key];
+                }
+                oRef && oRef(i);
+            };
         }
 
         if (parent) {
