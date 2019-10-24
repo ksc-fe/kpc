@@ -37,9 +37,9 @@ const {data} = self.get();
         type="grid"
         storeWidth="resizableTable"
     />
-    <Form style="margin-top: 20px;">
+    <Form style="margin-top: 20px;" labelWidth="140">
         <FormItem style="width: 100%">
-            <b:label><div style="width: 140px">table in table-cell</div></b:label>
+            <b:label>table in table-cell</b:label>
             <Table 
                 fixHeader
                 scheme={{ {
