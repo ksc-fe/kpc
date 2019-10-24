@@ -85,6 +85,10 @@
 ```
 
 ```
+"<div class=\"k-header\"><span class=\"k-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div><div class=\"k-footer c-clearfix\"><button class=\"k-btn k-default k-cancel\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-ok\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div>"
+```
+
+```
 "<div class=\"k-header\"><span class=\"k-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body\">
                 Size: large</div><div class=\"k-footer c-clearfix\"><button class=\"k-btn k-default k-cancel\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-ok\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div>"
 ```
@@ -120,5 +124,19 @@
 
 ```
 "<div class=\"k-header\"><span class=\"k-title\"></span></div><div class=\"k-body\"><div class=\"k-tip-icon\"><i class=\"k-icon ion-ios-close\"></i></div><div class=\"k-content-wrapper\"><div class=\"k-title\">error</div>test</div></div><div class=\"k-footer c-clearfix\"><button class=\"k-btn k-primary k-ok\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div>"
+```
+
+#### `should only hide body`
+
+```
+"<div class=\"k-overlay\" style=\"display: none;\"></div><div class=\"k-dialog\" style=\"display: none;\"><div class=\"k-header\"><span class=\"k-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div><div class=\"k-footer c-clearfix\"><button class=\"k-btn k-default k-cancel\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-ok\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div></div>"
+```
+
+```
+"<div class=\"k-header\"><span class=\"k-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div><div class=\"k-footer c-clearfix\"><button class=\"k-btn k-default k-cancel\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-ok\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div>"
+```
+
+```
+"<div class=\"k-overlay\" style=\"display: none;\"></div><div class=\"k-dialog\" style=\"display: none;\"><div class=\"k-header\"><span class=\"k-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div><div class=\"k-footer c-clearfix\"><button class=\"k-btn k-default k-cancel\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-ok\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div></div>"
 ```
 

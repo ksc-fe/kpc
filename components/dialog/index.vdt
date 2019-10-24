@@ -35,7 +35,7 @@ const isHide = mode === 'hide';
             } }}
             ref={{ i => self.dialog = i ? i.element : null }}
             a:show={{ value }}
-            v-if={{ isHide ? true : overlay ? value : false }}
+            v-if={{ isHide ? true : value }}
             ev-a:leaveEnd={{ self._leaveEnd }}
             a:appear
             key="dialog"

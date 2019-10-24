@@ -372,6 +372,12 @@
 "<div><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\">Show Dialog</button><!--placeholder--></div>"
 ```
 
+####   `Dialog hide`
+
+```
+"<div><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\">Show Dialog</button><!--placeholder--></div>"
+```
+
 ####   `Dialog size`
 
 ```
@@ -1430,12 +1436,6 @@
 "<div><span class=\"k-tooltip\">hover the text</span><!--placeholder--><br><br><span class=\"k-tooltip\">don't show anything if content is empty</span><!--placeholder--><br><br><span class=\"k-tooltip\" theme=\"light\">light theme</span><!--placeholder--><br><br><span class=\"k-tooltip\">disabled</span><!--placeholder--></div>"
 ```
 
-####   `Tooltip closable`
-
-```
-"<div><span class=\"k-tooltip\" always=\"true\">always show this tootip</span><!--placeholder--><br><br><span class=\"k-tooltip\" always=\"true\">don't show if content is empty</span><!--placeholder--></div>"
-```
-
 ####   `Tooltip confirm`
 
 ```
@@ -1458,6 +1458,12 @@
 
 ```
 "<div class=\"k-btns\"><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">hover</button><!--placeholder--><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">click</button><!--placeholder--><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">can hover</button><!--placeholder--></div>"
+```
+
+####   `Tooltip closable`
+
+```
+"<div><span class=\"k-tooltip\" always=\"true\">always show this tootip</span><!--placeholder--><br><br><span class=\"k-tooltip\" always=\"true\">don't show if content is empty</span><!--placeholder--></div>"
 ```
 
 ## `transfer`
