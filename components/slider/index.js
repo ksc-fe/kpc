@@ -212,6 +212,8 @@ export default class Slider extends Intact {
     }
 
     _showTooltip() {
+        if (!this.get('showTooltip')) return;
+
         const {tooltip1, tooltip2} = this.refs;
         tooltip1.show();
         tooltip1.position();
