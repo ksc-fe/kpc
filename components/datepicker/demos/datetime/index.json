@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>将<code>type</code>属性指定为<code>datetime</code>，即可让日期支持选择时间。通过<code>disabledHours &amp; disabledMinutes &amp; disabledSeconds</code>可以禁用时分秒的选择。</p>\n",
-    "index": 244,
+    "index": 231,
     "highlighted": [
         {
             "language": "vdt",
@@ -26,6 +26,10 @@
         {
             "language": "jsx",
             "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>;\n<span class=\"hljs-keyword\">import</span> Datepicker <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/datepicker'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-title\">Demo</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">React</span>.<span class=\"hljs-title\">Component</span> </span>{\n    <span class=\"hljs-keyword\">constructor</span>(props) {\n        <span class=\"hljs-keyword\">super</span>(props);\n        <span class=\"hljs-keyword\">this</span>.state = {};\n    }\n\n    render() {\n        <span class=\"hljs-keyword\">return</span> (\n            &lt;div&gt;\n                &lt;Datepicker type=\"datetime\" value={this.state.datetime1} on$change-value={(c, datetime1) =&gt; this.setState({datetime1})} /&gt;\n                &lt;Datepicker type=\"datetime\" value={this.state.datetime2}\n                    on$change-value={(c, datetime2) =&gt; this.setState({datetime2})} \n                    placeholder=\"时间精确到小时\"\n                    disabledMinutes\n                    disabledSeconds\n                /&gt;\n            &lt;/div&gt;\n        )\n    }\n}</code></pre>"
+        },
+        {
+            "language": "ts",
+            "content": "<pre><code class=\"hljs ts\"><span class=\"hljs-keyword\">import</span> {Component} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/core'</span>;\n\n<span class=\"hljs-meta\">@Component</span>({\n    selector: <span class=\"hljs-string\">'app-demo'</span>,\n    template: <span class=\"hljs-string\">`\n        &lt;div&gt;\n            &lt;k-datepicker type=\"datetime\" [(value)]=\"datetime1\"&gt;&lt;/k-datepicker&gt;\n            &lt;k-datepicker type=\"datetime\" [(value)]=\"datetime2\" \n                placeholder=\"时间精确到小时\"\n                [disabledMinutes]=\"true\"\n                [disabledSeconds]=\"true\"\n            &gt;&lt;/k-datepicker&gt;\n        &lt;/div&gt;\n    `</span>,\n    styleUrls: [<span class=\"hljs-string\">'./index.styl'</span>],\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> AppDemoComponent {\n    <span class=\"hljs-keyword\">private</span> datetime1;\n    <span class=\"hljs-keyword\">private</span> datetime2;\n}</code></pre>"
         }
     ]
 }

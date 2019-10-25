@@ -4,7 +4,7 @@
             :scheme="{
                 a: {
                     title: '通过minColWidth控制最小宽度100px',
-                    width: '50%',
+                    width: '50%'
                 },
                 b: {
                     title: '单独设置最小宽度300px',
@@ -13,7 +13,7 @@
                 },
                 c: {
                     title: '标题',
-                    width: '40%',
+                    width: '40%'
                 }
             }" 
             :data="data"
@@ -22,15 +22,15 @@
             type="grid"
             storeWidth="resizableTable"
         />
-        <Form style="margin-top: 20px;">
+        <Form style="margin-top: 20px;" labelWidth="140">
             <FormItem style="width: 100%">
-                <template slot="label"><div style="width: 140px">table in table-cell</div></template>
+                <template slot="label">table in table-cell</template>
                 <Table 
                     fixHeader
                     :scheme="{
                         a: {
                             title: '通过minColWidth控制最小宽度100px',
-                            width: '50%',
+                            width: '50%'
                         },
                         b: {
                             title: '单独设置最小宽度300px',
@@ -39,7 +39,7 @@
                         },
                         c: {
                             title: '标题',
-                            width: '40%',
+                            width: '40%'
                         }
                     }" 
                     :data="data"

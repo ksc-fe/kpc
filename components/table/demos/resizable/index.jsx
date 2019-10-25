@@ -30,7 +30,7 @@ export default class Demo extends React.Component {
                     scheme={{
                         a: {
                             title: '通过minColWidth控制最小宽度100px',
-                            width: '50%',
+                            width: '50%'
                         },
                         b: {
                             title: '单独设置最小宽度300px',
@@ -39,7 +39,7 @@ export default class Demo extends React.Component {
                         },
                         c: {
                             title: '标题',
-                            width: '40%',
+                            width: '40%'
                         }
                     }} 
                     data={data}
@@ -48,16 +48,16 @@ export default class Demo extends React.Component {
                     type="grid"
                     storeWidth="resizableTable"
                 />
-                <Form style={{"marginTop":"20px"}}>
+                <Form style={{"marginTop":"20px"}} labelWidth="140">
                     <FormItem style={{"width":"100%"}}
-                        b-label={<React.Fragment><div style={{"width":"140px"}}>table in table-cell</div></React.Fragment>}
+                        b-label={<React.Fragment>table in table-cell</React.Fragment>}
                     >
                         <Table 
                             fixHeader
                             scheme={{
                                 a: {
                                     title: '通过minColWidth控制最小宽度100px',
-                                    width: '50%',
+                                    width: '50%'
                                 },
                                 b: {
                                     title: '单独设置最小宽度300px',
@@ -66,7 +66,7 @@ export default class Demo extends React.Component {
                                 },
                                 c: {
                                     title: '标题',
-                                    width: '40%',
+                                    width: '40%'
                                 }
                             }} 
                             data={data}

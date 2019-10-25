@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>指定<code>type</code>为<code>gallery</code>可以展示照片墙风格的上传组件；我们还可以通过<code>limit</code>限制最大上传数量，当超过该数量时，组件会抛出<code>error</code>事件；通过<code>accept</code>可以指定上传的文件类型：<a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-accept\">accept</a></p>\n",
-    "index": 139,
+    "index": 142,
     "highlighted": [
         {
             "language": "vdt",
@@ -22,6 +22,10 @@
         {
             "language": "jsx",
             "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>;\n<span class=\"hljs-keyword\">import</span> Upload <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/upload'</span>;\n\n<span class=\"hljs-keyword\">import</span> Dialog <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/dialog'</span>;\n<span class=\"hljs-keyword\">import</span> Message <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/message'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-title\">Demo</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">React</span>.<span class=\"hljs-title\">Component</span> </span>{\n    <span class=\"hljs-keyword\">constructor</span>(props) {\n        <span class=\"hljs-keyword\">super</span>(props);\n        <span class=\"hljs-keyword\">this</span>._onError = <span class=\"hljs-keyword\">this</span>._onError.bind(<span class=\"hljs-keyword\">this</span>);\n    }\n\n    _onError(err) {\n        Message.error(err.message);\n    }\n    \n    render() {\n        <span class=\"hljs-keyword\">return</span> (\n            <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Upload</span> <span class=\"hljs-attr\">multiple</span>\n                <span class=\"hljs-attr\">action</span>=<span class=\"hljs-string\">\"//jsonplaceholder.typicode.com/posts/\"</span>\n                <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"gallery\"</span>\n                <span class=\"hljs-attr\">limit</span>=<span class=\"hljs-string\">{3}</span>\n                <span class=\"hljs-attr\">accept</span>=<span class=\"hljs-string\">\".jpg, .png\"</span>\n                <span class=\"hljs-attr\">onError</span>=<span class=\"hljs-string\">{this._onError}</span>\n            /&gt;</span>\n        )\n    }\n}</span></code></pre>"
+        },
+        {
+            "language": "ts",
+            "content": "<pre><code class=\"hljs ts\"><span class=\"hljs-keyword\">import</span> {Component} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/core'</span>;\n\n<span class=\"hljs-keyword\">import</span> Dialog <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc-angular/components/dialog'</span>;\n<span class=\"hljs-keyword\">import</span> Message <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc-angular/components/message'</span>;\n\n\n<span class=\"hljs-meta\">@Component</span>({\n    selector: <span class=\"hljs-string\">'app-demo'</span>,\n    template: <span class=\"hljs-string\">`\n        &lt;k-upload [multiple]=\"true\"\n            action=\"//jsonplaceholder.typicode.com/posts/\"\n            type=\"gallery\"\n            [limit]=\"3\"\n            accept=\".jpg, .png\"\n            (error)=\"_onError($event)\"\n        &gt;&lt;/k-upload&gt;\n    `</span>,\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> AppDemoComponent {\n    _onError([err]) {\n        Message.error(err.message);\n    }\n}</code></pre>"
         }
     ]
 }

@@ -3,7 +3,7 @@
         :data="[
             {a: '第一行', b: '哈哈1'}, 
             {a: '第二行', b: '哈哈2'},
-            {a: '第三行', b: '哈哈3'},
+            {a: '第三行', b: '哈哈3'}
         ]"
     >
         <template slot="tooltip" slot-scope="data, index">

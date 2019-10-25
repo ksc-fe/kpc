@@ -37,7 +37,8 @@ export default class Demo extends React.Component {
         // 如果删除当前tab，则切换至下一个
         let tab = this.state.tab;
         if (value === tab) {
-            tab = (tabs[index] || tabs[index - 1] || {}).value
+            const item = tabs[index] || tabs[index - 1];
+            tab = item ? item.value : null;
         }
     
         this.setState({tabs, tab});

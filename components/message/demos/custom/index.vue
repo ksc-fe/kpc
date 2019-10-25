@@ -2,9 +2,9 @@
     <div>
         <Button @click="set('show', true)">custom message</Button>
         <Message v-model="show" key="message" 
+            hideIcon
             :duration="0" 
             :type="percent >= 100 ? 'success' : 'info'"
-            hideIcon
         >
             <Progress style="width: 200px" 
                 :percent="percent"

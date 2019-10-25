@@ -1,11 +1,11 @@
 <template>
     <div>
         <Table :scheme="{a: '类型', b: '属性'}"
-            :data="[{a: 'border类型', b: 'type="border"'}]"
+            :data="data1"
             type="border" 
         />
         <Table :scheme="{a: '类型', b: '属性'}"
-            :data="[{a: 'grid类型', b: 'type="grid"'}]"
+            :data="data2"
             type="grid" 
         />
     </div>
@@ -16,6 +16,22 @@ import Table from 'kpc/components/table';
 export default {
     components: {
         Table
+    },
+    data() {
+        return {
+            "data1": [
+                {
+                    "a": "border类型",
+                    "b": "type=\"border\""
+                }
+            ],
+            "data2": [
+                {
+                    "a": "grid类型",
+                    "b": "type=\"grid\""
+                }
+            ]
+        }
     },
 }
 </script>

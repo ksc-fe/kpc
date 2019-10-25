@@ -20,7 +20,7 @@ export default class Demo extends React.Component {
                     Datepicker.afterThreeMonths,
                     Datepicker.beforeOneWeek,
                     Datepicker.beforeOneMonth,
-                    Datepicker.beforeThreeMonths,
+                    Datepicker.beforeThreeMonths
                 ]}/>
                 <Datepicker range type="datetime" 
                     shortcuts={[
@@ -29,7 +29,7 @@ export default class Demo extends React.Component {
                         Datepicker.lastThreeMonths,
                         Datepicker.nextWeek,
                         Datepicker.nextMonth,
-                        Datepicker.nextThreeMonths,
+                        Datepicker.nextThreeMonths
                     ]}
                 />
             </div>

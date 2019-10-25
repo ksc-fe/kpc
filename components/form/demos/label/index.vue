@@ -4,7 +4,7 @@
             <Input />
         </FormItem>
         <FormItem>
-            <template slot="label"><i class="ion-person"/> 姓名</template>
+            <template slot="label"><i class="ion-person"></i> 姓名</template>
             <Input />
         </FormItem>
     </Form>

@@ -10,13 +10,14 @@ export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            "expandedKeys": [],
-            "selectedKey": "3-1",
-            "collapse": false
+            expandedKeys: [],
+            selectedKey: '3-1',
+            collapse: false,
+            data: Array.apply(null, {length: 100}),
         };
         this._toggle = this._toggle.bind(this);
     }
-
+    
     _toggle() {
         this.setState({collapse: !this.state.collapse});
     }
@@ -65,7 +66,7 @@ export default class Demo extends React.Component {
                             <BreadcrumbItem>Home</BreadcrumbItem>
                             <BreadcrumbItem>Detail</BreadcrumbItem>
                         </Breadcrumb>
-                        <div v-for={Array.apply(null, {length: 100})}>content</div>
+                        <div v-for={this.state.data}>content</div>
                     </Body>
                 </Layout>
             </Layout>

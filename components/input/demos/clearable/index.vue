@@ -5,6 +5,10 @@
         <Input clearable placeholder="please enter">
             <template slot="suffix"><i class="ion-ios-search"></i></template>
         </Input>
+        <br />
+        <Input clearable stackClearIcon placeholder="please enter">
+            <template slot="suffix"><i class="ion-ios-search"></i></template>
+        </Input>
     </div>
 </template>
 <script>

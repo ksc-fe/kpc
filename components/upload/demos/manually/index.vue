@@ -1,6 +1,6 @@
 <template>
     <Upload 
-        ref="upload"
+        ref="instance"
         multiple 
         action="//jsonplaceholder.typicode.com/posts/"
         :autoUpload="false"
@@ -21,7 +21,7 @@ export default {
     },
     methods: {
         upload(e) {
-            this.$refs.upload.submit();
+            this.$refs.instance.submit();
         },
     },
 }

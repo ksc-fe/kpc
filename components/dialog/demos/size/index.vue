@@ -8,6 +8,11 @@
                 </Dialog>
             </template>
         </ButtonGroup>
+        <br /><br />
+        <Button @click="set('customSize', true)">Show 300px wide dialog</Button>
+        <Dialog v-model="customSize" title="Dialog Title" :width="300">
+            width: 300px
+        </Dialog>
     </div>
 </template>
 <script>
@@ -23,7 +28,8 @@ export default {
             showlarge: false,
             showdefault: false,
             showsmall: false,
-            showmini: false
+            showmini: false,
+            customSize: false,
         }
     },
     methods: {

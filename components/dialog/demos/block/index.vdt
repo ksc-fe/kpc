@@ -25,6 +25,6 @@ import Dialog from 'kpc/components/dialog';
     </Dialog>
     <Dialog v-model="show1" title="No Footer">
         <b:body>body</b:body>
-        <b:footer-wrapper />
+        <b:footer-wrapper></b:footer-wrapper>
     </Dialog>
 </div>

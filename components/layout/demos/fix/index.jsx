@@ -9,11 +9,12 @@ export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            "expandedKeys": [],
-            "selectedKey": "3-1"
+            expandedKeys: [],
+            selectedKey: '3-1',
+            data: Array.apply(null, {length: 100}),
         };
     }
-
+    
     render() {
         return (
             <Layout className="layout">
@@ -76,7 +77,7 @@ export default class Demo extends React.Component {
                             <BreadcrumbItem>Home</BreadcrumbItem>
                             <BreadcrumbItem>Detail</BreadcrumbItem>
                         </Breadcrumb>
-                        <div v-for={Array.apply(null, {length: 100})}>content</div>
+                        <div v-for={this.state.data}>content</div>
                     </Body>
                 </Layout>
             </Layout>

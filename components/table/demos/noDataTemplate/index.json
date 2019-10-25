@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>当<code>data</code>为空数组<code>[]</code>时, 可设置<code>noDataTemplate</code>来展示提示信息（默认为： /(ㄒoㄒ)/~~ 没有找到亲要的数据哦~）。或者你也可以通过<code>no-data</code>扩展点，来定义内容</p>\n",
-    "index": 280,
+    "index": 283,
     "highlighted": [
         {
             "language": "vdt",
@@ -18,6 +18,10 @@
         {
             "language": "js",
             "content": "<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> Intact <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'intact'</span>;\n<span class=\"hljs-keyword\">import</span> template <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./index.vdt'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>; \n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">Intact</span> </span>{\n    @Intact.template()\n    <span class=\"hljs-keyword\">static</span> template = template;\n}</code></pre>"
+        },
+        {
+            "language": "ts",
+            "content": "<pre><code class=\"hljs ts\"><span class=\"hljs-keyword\">import</span> {Component} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/core'</span>;\n\n<span class=\"hljs-meta\">@Component</span>({\n    selector: <span class=\"hljs-string\">'app-demo'</span>,\n    template: <span class=\"hljs-string\">`\n        &lt;div class='no-data-template'&gt;\n            &lt;k-table [scheme]=\"scheme\" [data]=\"data\"&gt;&lt;/k-table&gt;\n            &lt;k-table [scheme]=\"scheme\" [data]=\"data\" [noDataTemplate]=\"tip\"&gt;&lt;/k-table&gt;\n            &lt;k-table [scheme]=\"scheme\" [data]=\"data\"&gt;\n                &lt;ng-template #no_data&gt;\n                    &lt;div style=\"color: red\"&gt;没有数据&lt;/div&gt;\n                &lt;/ng-template&gt;\n            &lt;/k-table&gt;\n            &lt;ng-template #tip&gt;\n                &lt;div&gt;这里没有数据(自定义版本)&lt;/div&gt;\n            &lt;/ng-template&gt;\n        &lt;/div&gt;\n    `</span>,\n    styleUrls: [<span class=\"hljs-string\">'./index.styl'</span>],\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> AppDemoComponent {\n    <span class=\"hljs-keyword\">private</span> scheme = {a: <span class=\"hljs-string\">'表头1'</span>, b: <span class=\"hljs-string\">'表头2'</span>};\n    <span class=\"hljs-keyword\">private</span> data = [];\n}</code></pre>"
         },
         {
             "language": "vue",

@@ -28,7 +28,7 @@
                             :class="{
                                 'icon': true,
                                 'ion-ios-plus-outline': expandedKeys.indexOf(index) < 0,
-                                'ion-ios-minus-outline': expandedKeys.indexOf(index) > -1,
+                                'ion-ios-minus-outline': expandedKeys.indexOf(index) > -1
                             }"
                             @click="toggleExpand(data, index)"
                         ></i>

@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>当行可选时，默认点击该行的任意区域都可选中或取消选中，但我们可以通过将<code>rowCheckbable</code>设为<code>false</code>来关闭这一特性。</p>\n<blockquote>\n<p>选中的数据默认会在每一行的元素上有<code>k-checked</code>样式名</p>\n</blockquote>\n",
-    "index": 217,
+    "index": 227,
     "highlighted": [
         {
             "language": "vdt",
@@ -26,6 +26,10 @@
         {
             "language": "jsx",
             "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>;\n<span class=\"hljs-keyword\">import</span> Table <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-title\">Demo</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">React</span>.<span class=\"hljs-title\">Component</span> </span>{\n    render() {\n        <span class=\"hljs-keyword\">return</span> (\n            &lt;div className='no-data-template'&gt;\n                &lt;Table scheme={{a: '点击整行不选中', b: 'B'}}\n                    data={[{a: 'A', b: 'B'}, {a: 'A', b: '点我不会选中整行'}]}\n                    rowCheckable={false}\n                /&gt;\n                &lt;Table scheme={{a: '点击整行选中', b: 'B'}} \n                    data={[{a: 'A', b: '任何位置都可以哦～'}, {a: 'A', b: '点我会选中整行'}]}\n                /&gt;\n            &lt;/div&gt;\n        )\n    }\n}</code></pre>"
+        },
+        {
+            "language": "ts",
+            "content": "<pre><code class=\"hljs ts\"><span class=\"hljs-keyword\">import</span> {Component} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/core'</span>;\n\n<span class=\"hljs-meta\">@Component</span>({\n    selector: <span class=\"hljs-string\">'app-demo'</span>,\n    template: <span class=\"hljs-string\">`\n        &lt;div class='no-data-template'&gt;\n            &lt;k-table [scheme]=\"{a: '点击整行不选中', b: 'B'}\"\n                [data]=\"[{a: 'A', b: 'B'}, {a: 'A', b: '点我不会选中整行'}]\"\n                [rowCheckable]=\"false\"\n            &gt;&lt;/k-table&gt;\n            &lt;k-table [scheme]=\"{a: '点击整行选中', b: 'B'}\" \n                [data]=\"[{a: 'A', b: '任何位置都可以哦～'}, {a: 'A', b: '点我会选中整行'}]\"\n            &gt;&lt;/k-table&gt;\n        &lt;/div&gt;\n    `</span>,\n    styleUrls: [<span class=\"hljs-string\">'./index.styl'</span>],\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> AppDemoComponent { }</code></pre>"
         }
     ]
 }

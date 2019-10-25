@@ -15,7 +15,7 @@
             <TableColumn title='状态' key='status' 
                 :group="[ 
                     {label: '运行中', value: 'active'},
-                    {label: '已关闭', value: 'stopped'},
+                    {label: '已关闭', value: 'stopped'}
                 ]"
                 multiple
             >
@@ -29,15 +29,20 @@
 <script>
 import {Table, TableColumn} from 'kpc/components/table';
 
+const oData = [
+    {name: '主机1', status: 'active'},
+    {name: '主机2', status: 'stopped'},
+    {name: '主机3', status: 'active'},
+];
 export default {
     components: {
         Table, TableColumn
     },
     data() {
         return {
-            data: [], 
+            data: oData, 
             group: {status: ''},
-            multipleData: [],
+            multipleData: oData,
             multipleGroup: {status: []},
             scheme: {
                 name: '名称',
@@ -58,7 +63,7 @@ export default {
     methods: {
         _onChangeGroup(c, group) {
             console.log(group);
-            const data = this.oData.filter(item => {
+            const data = oData.filter(item => {
                 let matched = true;
                 for (let key in group) {
                     const value = group[key];
@@ -74,7 +79,7 @@ export default {
         },
         _onChangeMultipleGroup(c, group) {
             console.log(group);
-            const data = this.oData.filter(item => {
+            const data = oData.filter(item => {
                 let matched = true;
                 for (let key in group) {
                     const value = group[key];
@@ -88,15 +93,6 @@ export default {
         
             this.multipleData = data;
         },
-    },
-    created() {
-        this.oData = [
-            {name: '主机1', status: 'active'},
-            {name: '主机2', status: 'stopped'},
-            {name: '主机3', status: 'active'},
-        ];
-        this.data = this.oData;
-        this.multipleData = this.oData;
     },
 }
 </script>

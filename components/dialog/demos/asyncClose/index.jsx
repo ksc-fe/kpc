@@ -18,7 +18,8 @@ export default class Demo extends React.Component {
     
     async ok(dialog) {
         // validate the form firstly
-        if (await this.form.validate()) {
+        const valid = await this.form.validate();
+        if (valid) {
             // make the ok button show loading
             dialog.showLoading(); 
             // mock api

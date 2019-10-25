@@ -17,15 +17,15 @@ export default class Demo extends React.Component {
                     data={[
                         {
                             text: '入站规则',
-                            value: 'rulein',
+                            value: 'rulein'
                         },
                         {
                             text: '出站规则',
-                            value: 'ruleout',
+                            value: 'ruleout'
                         },
                         {
                             text: '关联云主机',
-                            value: 'relatedVM',
+                            value: 'relatedVM'
                         }
                     ]} 
                     value={this.state.tab}
@@ -33,9 +33,9 @@ export default class Demo extends React.Component {
                 />
             
                 <div className="content">
-                    {this.state.tab == 'rulein' ?
+                    {this.state.tab === 'rulein' ?
                         <div>入站规则</div> :
-                        this.state.tab == 'ruleout' ?
+                        this.state.tab === 'ruleout' ?
                             <div>出站规则</div> :
                             <div>关联云主机</div> 
                     }

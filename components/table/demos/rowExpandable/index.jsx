@@ -80,7 +80,7 @@ export default class Demo extends React.Component {
                                         className={this._classNames({
                                             'icon': true,
                                             'ion-ios-plus-outline': this.state.expandedKeys.indexOf(index) < 0,
-                                            'ion-ios-minus-outline': this.state.expandedKeys.indexOf(index) > -1,
+                                            'ion-ios-minus-outline': this.state.expandedKeys.indexOf(index) > -1
                                         })}
                                         onClick={this.toggleExpand.bind(this, data, index)}
                                     ></i>

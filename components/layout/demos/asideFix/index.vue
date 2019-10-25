@@ -39,7 +39,7 @@
                     <BreadcrumbItem>Home</BreadcrumbItem>
                     <BreadcrumbItem>Detail</BreadcrumbItem>
                 </Breadcrumb>
-                <div v-for="(value, key) in Array.apply(null, {length: 100})">content</div>
+                <div v-for="(value, key) in data">content</div>
             </Body>
         </Layout>
     </Layout>
@@ -57,10 +57,11 @@ export default {
     },
     data() {
         return {
-            "collapse": false,
-            "expandedKeys": [],
-            "selectedKey": "3-1"
-        }
+            expandedKeys: [],
+            selectedKey: '3-1',
+            collapse: false,
+            data: Array.apply(null, {length: 100}),
+        };
     },
     methods: {
         _toggle() {

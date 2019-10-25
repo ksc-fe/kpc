@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>将<code>type</code>属性指定为<code>year</code>或<code>month</code>可以只选择“年”或“月”</p>\n",
-    "index": 247,
+    "index": 248,
     "highlighted": [
         {
             "language": "vdt",
@@ -26,6 +26,10 @@
         {
             "language": "jsx",
             "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>;\n<span class=\"hljs-keyword\">import</span> Datepicker <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/datepicker'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-title\">Demo</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">React</span>.<span class=\"hljs-title\">Component</span> </span>{\n    <span class=\"hljs-keyword\">constructor</span>(props) {\n        <span class=\"hljs-keyword\">super</span>(props);\n        <span class=\"hljs-keyword\">this</span>.state = {};\n    }\n\n    render() {\n        <span class=\"hljs-keyword\">return</span> (\n            &lt;div&gt;\n                &lt;Datepicker type=\"year\" value={this.state.year} on$change-value={(c, year) =&gt; this.setState({year})} /&gt;\n                &lt;Datepicker type=\"month\" value={this.state.month} on$change-value={(c, month) =&gt; this.setState({month})} clearable /&gt;\n            &lt;/div&gt;\n        )\n    }\n}</code></pre>"
+        },
+        {
+            "language": "ts",
+            "content": "<pre><code class=\"hljs ts\"><span class=\"hljs-keyword\">import</span> {Component} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/core'</span>;\n\n<span class=\"hljs-meta\">@Component</span>({\n    selector: <span class=\"hljs-string\">'app-demo'</span>,\n    template: <span class=\"hljs-string\">`\n        &lt;div&gt;\n            &lt;k-datepicker type=\"year\" [(value)]=\"year\"&gt;&lt;/k-datepicker&gt;\n            &lt;k-datepicker type=\"month\" [(value)]=\"month\" [clearable]=\"true\"&gt;&lt;/k-datepicker&gt;\n        &lt;/div&gt;\n    `</span>,\n    styleUrls: [<span class=\"hljs-string\">'./index.styl'</span>],\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> AppDemoComponent {\n    <span class=\"hljs-keyword\">private</span> year;\n    <span class=\"hljs-keyword\">private</span> month;\n}</code></pre>"
         }
     ]
 }

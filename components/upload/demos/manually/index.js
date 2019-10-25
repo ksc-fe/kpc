@@ -8,6 +8,6 @@ export default class extends Intact {
     static template = template;
 
     upload(e) {
-        this.refs.upload.submit();
+        this.refs.instance.submit();
     }
 }

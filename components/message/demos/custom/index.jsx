@@ -25,9 +25,9 @@ export default class Demo extends React.Component {
             <div>
                 <Button onClick={this.set.bind(this, 'show', true)}>custom message</Button>
                 <Message value={this.state.show} on$change-value={(c, show) => this.setState({show})} key="message" 
+                    hideIcon
                     duration={0} 
                     type={this.state.percent >= 100 ? 'success' : 'info'}
-                    hideIcon
                 >
                     <Progress style={{"width":"200px"}} 
                         percent={this.state.percent}

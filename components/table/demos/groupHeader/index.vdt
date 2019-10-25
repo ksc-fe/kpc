@@ -14,7 +14,7 @@ import {Table, TableColumn} from 'kpc/components/table';
                             class1: {title: 'Class 1'},
                             class2: {title: 'Class 2'},
                             class3: {title: 'Class 3'},
-                            class4: {title: 'Class 4'},
+                            class4: {title: 'Class 4'}
                         }
                     }
                 } 
@@ -25,7 +25,7 @@ import {Table, TableColumn} from 'kpc/components/table';
                     afternoonTime: {title: 'Time'},
                     class5: {title: 'Class 5'},
                     class6: {title: 'Class 6'},
-                    class7: {title: 'Class 7'},
+                    class7: {title: 'Class 7'}
                 } 
             }
         } }}

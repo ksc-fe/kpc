@@ -12,6 +12,11 @@ export default class Demo extends React.Component {
                     b-suffix={<React.Fragment><i className="ion-ios-search"></i></React.Fragment>}
                 >
                 </Input>
+                <br />
+                <Input clearable stackClearIcon placeholder="please enter"
+                    b-suffix={<React.Fragment><i className="ion-ios-search"></i></React.Fragment>}
+                >
+                </Input>
             </div>
         )
     }

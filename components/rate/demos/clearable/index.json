@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>添加<code>clearable</code>属性可以使组件在再次点击后清空值</p>\n",
-    "index": 160,
+    "index": 149,
     "highlighted": [
         {
             "language": "vdt",
@@ -22,6 +22,10 @@
         {
             "language": "jsx",
             "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>;\n<span class=\"hljs-keyword\">import</span> Rate <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/rate'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-title\">Demo</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">React</span>.<span class=\"hljs-title\">Component</span> </span>{\n    <span class=\"hljs-keyword\">constructor</span>(props) {\n        <span class=\"hljs-keyword\">super</span>(props);\n        <span class=\"hljs-keyword\">this</span>.state = {\n            <span class=\"hljs-string\">\"value\"</span>: <span class=\"hljs-number\">2</span>\n        };\n    }\n\n    render() {\n        <span class=\"hljs-keyword\">return</span> (\n            <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Rate</span> <span class=\"hljs-attr\">value</span>=<span class=\"hljs-string\">{this.state.value}</span> <span class=\"hljs-attr\">on</span>$<span class=\"hljs-attr\">change-value</span>=<span class=\"hljs-string\">{(c,</span> <span class=\"hljs-attr\">value</span>) =&gt;</span> this.setState({value})} clearable /&gt;\n        )\n    }\n}</span></code></pre>"
+        },
+        {
+            "language": "ts",
+            "content": "<pre><code class=\"hljs ts\"><span class=\"hljs-keyword\">import</span> {Component} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/core'</span>;\n\n<span class=\"hljs-meta\">@Component</span>({\n    selector: <span class=\"hljs-string\">'app-demo'</span>,\n    template: <span class=\"hljs-string\">`\n        &lt;k-rate [(value)]=\"value\" [clearable]=\"true\"&gt;&lt;/k-rate&gt;\n    `</span>,\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> AppDemoComponent {\n    <span class=\"hljs-keyword\">private</span> value = <span class=\"hljs-number\">2</span>;\n}</code></pre>"
         }
     ]
 }

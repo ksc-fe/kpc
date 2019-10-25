@@ -2,11 +2,11 @@ import Table from 'kpc/components/table';
 
 <div>
     <Table scheme={{ {a: '类型', b: '属性'} }}
-        data={{ [{a: 'border类型', b: 'type="border"'}] }}
+        data={{ self.get('data1') }}
         type="border" 
     />
     <Table scheme={{ {a: '类型', b: '属性'} }}
-        data={{ [{a: 'grid类型', b: 'type="grid"'}] }}
+        data={{ self.get('data2') }}
         type="grid" 
     />
 </div>

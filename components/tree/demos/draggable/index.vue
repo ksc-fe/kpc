@@ -54,8 +54,8 @@
                     {
                         label: 'Second floor-2.3',
                         key: '2-3',
-                        disabled: true,
-                    },
+                        disabled: true
+                    }
                 ]
             }
         ]"

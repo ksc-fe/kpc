@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>组件默认会展示7个翻页按钮（包括省略号...)，通过<code>counts</code>属性我们可以指定按钮个数。</p>\n<blockquote>\n<p>最好不要小于7个，否则影响体验。使用奇数可以使页码对称分布</p>\n</blockquote>\n",
-    "index": 141,
+    "index": 136,
     "highlighted": [
         {
             "language": "vdt",
@@ -26,6 +26,10 @@
         {
             "language": "jsx",
             "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>;\n<span class=\"hljs-keyword\">import</span> Pagination <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/pagination'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-title\">Demo</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">React</span>.<span class=\"hljs-title\">Component</span> </span>{\n    render() {\n        <span class=\"hljs-keyword\">return</span> (\n            &lt;div&gt;\n                &lt;Pagination total={200} counts=\"10\" /&gt;\n                &lt;Pagination total={200} counts=\"9\" /&gt;\n            &lt;/div&gt;\n        )\n    }\n}</code></pre>"
+        },
+        {
+            "language": "ts",
+            "content": "<pre><code class=\"hljs ts\"><span class=\"hljs-keyword\">import</span> {Component} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/core'</span>;\n\n<span class=\"hljs-meta\">@Component</span>({\n    selector: <span class=\"hljs-string\">'app-demo'</span>,\n    template: <span class=\"hljs-string\">`\n        &lt;div&gt;\n            &lt;k-pagination [total]=\"200\" counts=\"10\"&gt;&lt;/k-pagination&gt;\n            &lt;k-pagination [total]=\"200\" counts=\"9\"&gt;&lt;/k-pagination&gt;\n        &lt;/div&gt;\n    `</span>,\n    styleUrls: [<span class=\"hljs-string\">'./index.styl'</span>],\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> AppDemoComponent { }</code></pre>"
         }
     ]
 }

@@ -20,9 +20,9 @@ export default class Demo extends React.Component {
                 </Tabs>
             
                 <div className="content">
-                    {this.state.tab == 'rulein' ?
+                    {this.state.tab === 'rulein' ?
                         <div>入站规则</div> :
-                        this.state.tab == 'ruleout' ?
+                        this.state.tab === 'ruleout' ?
                             <div>出站规则</div> :
                             <div>关联云主机</div> 
                     }

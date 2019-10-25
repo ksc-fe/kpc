@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>size</code>可以定义尺寸: <code>large</code> <code>default</code> <code>small</code> <code>mini</code></p>\n",
-    "index": 202,
+    "index": 201,
     "highlighted": [
         {
             "language": "vdt",
@@ -26,6 +26,10 @@
         {
             "language": "jsx",
             "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>;\n<span class=\"hljs-keyword\">import</span> {Switch} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/switch'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-title\">Demo</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">React</span>.<span class=\"hljs-title\">Component</span> </span>{\n    render() {\n        <span class=\"hljs-keyword\">return</span> (\n            &lt;div&gt;\n                large: &lt;Switch size=\"large\" /&gt;\n                default: &lt;Switch /&gt;\n                small: &lt;Switch size='small' /&gt;\n                mini: &lt;Switch size='mini' /&gt;\n            &lt;/div&gt;\n        )\n    }\n}</code></pre>"
+        },
+        {
+            "language": "ts",
+            "content": "<pre><code class=\"hljs ts\"><span class=\"hljs-keyword\">import</span> {Component} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/core'</span>;\n\n<span class=\"hljs-meta\">@Component</span>({\n    selector: <span class=\"hljs-string\">'app-demo'</span>,\n    template: <span class=\"hljs-string\">`\n        &lt;div&gt;\n            large: &lt;k-switch size=\"large\"&gt;&lt;/k-switch&gt;\n            default: &lt;k-switch&gt;&lt;/k-switch&gt;\n            small: &lt;k-switch size='small'&gt;&lt;/k-switch&gt;\n            mini: &lt;k-switch size='mini'&gt;&lt;/k-switch&gt;\n        &lt;/div&gt;\n    `</span>,\n    styleUrls: [<span class=\"hljs-string\">'./index.styl'</span>],\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> AppDemoComponent { }</code></pre>"
         }
     ]
 }

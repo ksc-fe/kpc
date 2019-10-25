@@ -1,21 +1,21 @@
 import React from 'react';
 import {Table, TableColumn} from 'kpc/components/table';
 import './index.styl';
+const oData = [
+    {name: '主机1', status: 'active'},
+    {name: '主机2', status: 'stopped'},
+    {name: '主机3', status: 'active'},
+];
 
 export default class Demo extends React.Component {
     constructor(props) {
         super(props);
-        this.oData = [
-            {name: '主机1', status: 'active'},
-            {name: '主机2', status: 'stopped'},
-            {name: '主机3', status: 'active'},
-        ];
         this.state = {
-            "data": this.oData,
+            "data": oData,
             "group": {
                 "status": ""
             },
-            "multipleData": this.oData,
+            "multipleData": oData,
             "multipleGroup": {
                 "status": []
             }
@@ -26,7 +26,7 @@ export default class Demo extends React.Component {
     
     _onChangeGroup(c, group) {
         console.log(group);
-        const data = this.oData.filter(item => {
+        const data = oData.filter(item => {
             let matched = true;
             for (let key in group) {
                 const value = group[key];
@@ -43,7 +43,7 @@ export default class Demo extends React.Component {
     
     _onChangeMultipleGroup(c, group) {
         console.log(group);
-        const data = this.oData.filter(item => {
+        const data = oData.filter(item => {
             let matched = true;
             for (let key in group) {
                 const value = group[key];
@@ -98,7 +98,7 @@ export default class Demo extends React.Component {
                         }}
                         group={[ 
                             {label: '运行中', value: 'active'},
-                            {label: '已关闭', value: 'stopped'},
+                            {label: '已关闭', value: 'stopped'}
                         ]}
                         multiple
                     >

@@ -9,7 +9,7 @@
             Datepicker.afterThreeMonths,
             Datepicker.beforeOneWeek,
             Datepicker.beforeOneMonth,
-            Datepicker.beforeThreeMonths,
+            Datepicker.beforeThreeMonths
         ]"/>
         <Datepicker range type="datetime" 
             :shortcuts="[
@@ -18,7 +18,7 @@
                 Datepicker.lastThreeMonths,
                 Datepicker.nextWeek,
                 Datepicker.nextMonth,
-                Datepicker.nextThreeMonths,
+                Datepicker.nextThreeMonths
             ]"
         />
     </div>

@@ -10,14 +10,14 @@ export default class Demo extends React.Component {
     }
 
     upload(e) {
-        this.upload.submit();
+        this.instance.submit();
     }
     
     render() {
         return (
             <Upload
                 b-tip={<React.Fragment><Button onClick={this.upload}>开始上传</Button></React.Fragment>}
-                ref={i => this.upload = i}
+                ref={i => this.instance = i}
                 multiple 
                 action="//jsonplaceholder.typicode.com/posts/"
                 autoUpload={false}

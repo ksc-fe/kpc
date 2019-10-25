@@ -13,7 +13,7 @@
                                 class1: {title: 'Class 1'},
                                 class2: {title: 'Class 2'},
                                 class3: {title: 'Class 3'},
-                                class4: {title: 'Class 4'},
+                                class4: {title: 'Class 4'}
                             }
                         }
                     } 
@@ -24,7 +24,7 @@
                         afternoonTime: {title: 'Time'},
                         class5: {title: 'Class 5'},
                         class6: {title: 'Class 6'},
-                        class7: {title: 'Class 7'},
+                        class7: {title: 'Class 7'}
                     } 
                 }
             }"
@@ -52,15 +52,34 @@
 <script>
 import {Table, TableColumn} from 'kpc/components/table';
 
+const weekdays = ['Monday', 'Tuesday', 'Wendesday', 'Thursday', 'Friday'];
+const classes = ['English', 'Mathematics', 'Chinese', 'History', 'Geopraghy'];
+let index = 0;
+const randomClasses = () => {
+    const ret = {};
+    for (let i = 0; i < 7; i++) {
+        // ret[`class${i + 1}`] = classes[Math.floor(Math.random() * classes.length)];
+        ret[`class${i + 1}`] = classes[(i + index) % classes.length];
+    }
+    index++;
+    return ret;
+};
+const data = weekdays.map(weekday => {
+    return {
+        weekday, 
+        ...randomClasses(), 
+        forenoonTime: '08:00 ~ 12:00',
+        afternoonTime: '14:00 ~ 17:00',
+    };
+});
+
 export default {
     components: {
         Table, TableColumn
     },
     data() {
-        return {
-            "data": null
-        }
-    },
+        return {data};
+    }
 }
 </script>
 <style lang="stylus" src="./index.styl"></style>

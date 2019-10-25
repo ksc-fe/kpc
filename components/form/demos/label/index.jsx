@@ -26,7 +26,7 @@ export default class Demo extends React.Component {
                     <Input />
                 </FormItem>
                 <FormItem
-                    b-label={<React.Fragment><i className="ion-person"/> 姓名</React.Fragment>}
+                    b-label={<React.Fragment><i className="ion-person"></i> 姓名</React.Fragment>}
                 >
                     <Input />
                 </FormItem>

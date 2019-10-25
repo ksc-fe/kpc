@@ -11,6 +11,7 @@ export default class Demo extends Intact {
             expandedKeys: [],
             selectedKey: '3-1',
             collapse: false,
+            data: Array.apply(null, {length: 100}),
         };
     }
 

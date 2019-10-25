@@ -7,8 +7,8 @@
         </Tabs>
     
         <div class="content">
-            <div v-if="tab == 'rulein'">入站规则</div>
-            <div v-else-if="tab == 'ruleout'">出站规则</div>
+            <div v-if="tab === 'rulein'">入站规则</div>
+            <div v-else-if="tab === 'ruleout'">出站规则</div>
             <div v-else>关联云主机</div> 
         </div>
     </div>

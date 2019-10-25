@@ -31,7 +31,7 @@ const scheme = {
         <TableColumn title='状态' key='status' 
             group={{ [ 
                 {label: '运行中', value: 'active'},
-                {label: '已关闭', value: 'stopped'},
+                {label: '已关闭', value: 'stopped'}
             ] }}
             multiple
         >

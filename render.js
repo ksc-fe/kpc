@@ -39,7 +39,7 @@ module.exports =
 /******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
 /******/ 		// "0" is the signal for "already loaded"
 /******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("./chunk/" + {"0":"8f8841d2373a4f62e9f8","1":"f17db0b1c532d2729fbf","2":"59b6b1e3b3ee9e3e8cac","3":"8a9151bfc1f0f0eaf8d4","4":"c888d5331a150d69c75c"}[chunkId] + ".js");
+/******/ 			var chunk = require("./chunk/" + {"0":"3879100cf7e0acb02787","1":"8bccb84c85462c517041","2":"f489c7492ea13fabb4d5","3":"fcec4bcc71bf3da54867","4":"fcff8f2ee91558e1fc48"}[chunkId] + ".js");
 /******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				modules[moduleId] = moreModules[moduleId];
@@ -242,7 +242,7 @@ exports.App = exports.default = App;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1570526933061
+      // 1571987562256
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -397,7 +397,7 @@ exports.Spin = exports.default = Spin;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1570526933770
+      // 1571987563565
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -531,6 +531,7 @@ exports.proxyEvent = proxyEvent;
 exports.isStringOrNumber = isStringOrNumber;
 exports.isTextChildren = isTextChildren;
 exports.isTextVNode = isTextVNode;
+exports.isTextBlock = isTextBlock;
 exports.isStringOrNumberNotEmpty = isStringOrNumberNotEmpty;
 exports.getTextByChildren = getTextByChildren;
 exports.findParentComponent = findParentComponent;
@@ -629,11 +630,24 @@ function isStringOrNumber(o) {
 }
 
 function isTextChildren(o) {
-  return isStringOrNumber(o) || isTextVNode(o);
+  if (isStringOrNumber(o)) return true;
+
+  if ((0, _isArray.default)(o)) {
+    return o.every(function (item) {
+      return isTextChildren(item);
+    });
+  }
+
+  return isTextVNode(o);
 }
 
 function isTextVNode(o) {
   return o && o.type === Types.Text;
+} // for detect if it is a text node in Angular
+
+
+function isTextBlock(o) {
+  return isTextChildren(o) || o && o.tag && o.tag.$id === 'AngularBlockWrapper' && o.props.isText;
 }
 
 function isStringOrNumberNotEmpty(o) {
@@ -1560,7 +1574,7 @@ exports.default = _default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1570526935248
+      // 1571987564665
       var cssReload = require("!../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);

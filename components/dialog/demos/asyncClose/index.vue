@@ -36,7 +36,8 @@ export default {
         set(key, value) { this[key] = value },
         async ok(dialog) {
             // validate the form firstly
-            if (await this.$refs.form.validate()) {
+            const valid = await this.$refs.form.validate();
+            if (valid) {
                 // make the ok button show loading
                 dialog.showLoading(); 
                 // mock api

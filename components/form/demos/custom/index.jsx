@@ -71,7 +71,6 @@ export default class Demo extends React.Component {
                                             if (item === value) count++;
                                             return count > 1;
                                         });
-                    
                                         // 直接返回错误文案，或者也可以单独定义messages为{unique: '不能相同'}
                                         return count === 1 || '不能相同';
                                     }

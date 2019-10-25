@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>title</code>扩展点，可以自定义标题内容</p>\n",
-    "index": 148,
+    "index": 156,
     "highlighted": [
         {
             "language": "vdt",
@@ -26,6 +26,10 @@
         {
             "language": "jsx",
             "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>;\n<span class=\"hljs-keyword\">import</span> Tip <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/tip'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-title\">Demo</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">React</span>.<span class=\"hljs-title\">Component</span> </span>{\n    render() {\n        <span class=\"hljs-keyword\">return</span> (\n            <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n                {['default', 'primary', 'success', 'warning', 'danger'].map((value, key) =&gt; {\n                    return (\n                        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Tip</span>\n                            <span class=\"hljs-attr\">b-title</span>=<span class=\"hljs-string\">{</span>&lt;<span class=\"hljs-attr\">React.Fragment</span>&gt;</span>{value}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">React.Fragment</span>&gt;</span>}\n                            key={value}\n                            type={value}\n                            closable\n                        &gt;\n                            This is a {value} tip.\n                        <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Tip</span>&gt;</span>\n                    )\n                })}\n            <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span>\n        )\n    }\n}</code></pre>"
+        },
+        {
+            "language": "ts",
+            "content": "<pre><code class=\"hljs ts\"><span class=\"hljs-keyword\">import</span> {Component} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/core'</span>;\n\n<span class=\"hljs-meta\">@Component</span>({\n    selector: <span class=\"hljs-string\">'app-demo'</span>,\n    template: <span class=\"hljs-string\">`\n        &lt;div&gt;\n            &lt;k-tip *ngFor=\"let value of ['default', 'primary', 'success', 'warning', 'danger']; index as key\"\n                [key]=\"value\"\n                [type]=\"value\"\n                [closable]=\"true\"\n            &gt;\n                &lt;ng-template #title&gt;{{ value }}&lt;/ng-template&gt;\n                This is a {{ value }} tip.\n            &lt;/k-tip&gt;\n        &lt;/div&gt;\n    `</span>,\n    styleUrls: [<span class=\"hljs-string\">'./index.styl'</span>],\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> AppDemoComponent { }</code></pre>"
         }
     ]
 }

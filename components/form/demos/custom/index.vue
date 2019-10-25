@@ -50,8 +50,7 @@ export default {
             "descriptions": [
                 "",
                 ""
-            ],
-            "descriptions[key]": null
+            ]
         }
     },
     methods: {

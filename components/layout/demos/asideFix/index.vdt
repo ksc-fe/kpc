@@ -44,7 +44,7 @@ import {Button} from 'kpc/components/button';
                 <BreadcrumbItem>Home</BreadcrumbItem>
                 <BreadcrumbItem>Detail</BreadcrumbItem>
             </Breadcrumb>
-            <div v-for={{ Array.apply(null, {length: 100}) }}>content</div>
+            <div v-for={{ self.get('data') }}>content</div>
         </Body>
     </Layout>
 </Layout>

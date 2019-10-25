@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>rowClassName</code>：给行添加样式，类型<code>Function</code>，默认：<code>function(value, index) {  }</code>，该函数返回的字符串将被当做<code>className</code>添加到该行上</p>\n<p>你也可以直接添加<code>stripe</code>属性，使相邻行展示不同的背景色</p>\n",
-    "index": 239,
+    "index": 245,
     "highlighted": [
         {
             "language": "vdt",
@@ -26,6 +26,10 @@
         {
             "language": "jsx",
             "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>;\n<span class=\"hljs-keyword\">import</span> Table <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/table'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-title\">Demo</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">React</span>.<span class=\"hljs-title\">Component</span> </span>{\n    render() {\n        <span class=\"hljs-keyword\">return</span> (\n            &lt;div&gt;\n                &lt;Table scheme={{a: '偶数行背景变换'}} \n                    data={[{a: '1'}, {a: '2'}, {a: '3'}, {a: '4'}, {a: '5'}]} \n                    rowClassName={(value, index) =&gt; index % 2 === 0 ? 'odd' : 'even'}\n                /&gt;\n                &lt;Table scheme={{a: '偶数行背景变换'}} \n                    data={[{a: '1'}, {a: '2'}, {a: '3'}, {a: '4'}, {a: '5'}]} \n                    stripe\n                /&gt;\n            &lt;/div&gt;\n        )\n    }\n}</code></pre>"
+        },
+        {
+            "language": "ts",
+            "content": "<pre><code class=\"hljs ts\"><span class=\"hljs-keyword\">import</span> {Component} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/core'</span>;\n\n<span class=\"hljs-meta\">@Component</span>({\n    selector: <span class=\"hljs-string\">'app-demo'</span>,\n    template: <span class=\"hljs-string\">`\n        &lt;div&gt;\n            &lt;k-table [scheme]=\"{a: '偶数行背景变换'}\" \n                [data]=\"[{a: '1'}, {a: '2'}, {a: '3'}, {a: '4'}, {a: '5'}]\" \n                [rowClassName]=\"rowClassName\"\n            &gt;&lt;/k-table&gt;\n            &lt;k-table [scheme]=\"{a: '偶数行背景变换'}\" \n                [data]=\"[{a: '1'}, {a: '2'}, {a: '3'}, {a: '4'}, {a: '5'}]\" \n                [stripe]=\"true\"\n            &gt;&lt;/k-table&gt;\n        &lt;/div&gt;\n    `</span>,\n    styleUrls: [<span class=\"hljs-string\">'./index.styl'</span>],\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> AppDemoComponent {\n    rowClassName = <span class=\"hljs-function\">(<span class=\"hljs-params\">value, index</span>) =&gt;</span> index % <span class=\"hljs-number\">2</span> === <span class=\"hljs-number\">0</span> ? <span class=\"hljs-string\">'odd'</span> : <span class=\"hljs-string\">'even'</span>;\n}</code></pre>"
         }
     ]
 }

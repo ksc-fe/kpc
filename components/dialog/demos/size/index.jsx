@@ -26,6 +26,11 @@ export default class Demo extends React.Component {
                         )
                     })}
                 </ButtonGroup>
+                <br /><br />
+                <Button onClick={this.set.bind(this, 'customSize', true)}>Show 300px wide dialog</Button>
+                <Dialog value={this.state.customSize} on$change-value={(c, customSize) => this.setState({customSize})} title="Dialog Title" width={300}>
+                    width: 300px
+                </Dialog>
             </div>
         )
     }

@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>给<code>Col</code>添加<code>order</code>属性，即可自动启用<code>flex</code>布局来定义<code>Col</code>的顺序</p>\n",
-    "index": 245,
+    "index": 249,
     "highlighted": [
         {
             "language": "vdt",
@@ -26,6 +26,10 @@
         {
             "language": "jsx",
             "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>;\n<span class=\"hljs-keyword\">import</span> {Row, Col} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/grid'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-title\">Demo</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">React</span>.<span class=\"hljs-title\">Component</span> </span>{\n    render() {\n        <span class=\"hljs-keyword\">return</span> (\n            <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Row</span>&gt;</span> \n                <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Col</span> <span class=\"hljs-attr\">span</span>=<span class=\"hljs-string\">\"6\"</span> <span class=\"hljs-attr\">order</span>=<span class=\"hljs-string\">\"4\"</span>&gt;</span>1 col-6 order-4<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Col</span>&gt;</span>\n                <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Col</span> <span class=\"hljs-attr\">span</span>=<span class=\"hljs-string\">\"6\"</span> <span class=\"hljs-attr\">order</span>=<span class=\"hljs-string\">\"3\"</span>&gt;</span>2 col-6 order-3<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Col</span>&gt;</span>\n                <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Col</span> <span class=\"hljs-attr\">span</span>=<span class=\"hljs-string\">\"6\"</span> <span class=\"hljs-attr\">order</span>=<span class=\"hljs-string\">\"2\"</span>&gt;</span>3 col-6 order-2<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Col</span>&gt;</span>\n                <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Col</span> <span class=\"hljs-attr\">span</span>=<span class=\"hljs-string\">\"6\"</span> <span class=\"hljs-attr\">order</span>=<span class=\"hljs-string\">\"1\"</span>&gt;</span>4 col-6 order-1<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Col</span>&gt;</span>\n            <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Row</span>&gt;</span></span>\n        )\n    }\n}</code></pre>"
+        },
+        {
+            "language": "ts",
+            "content": "<pre><code class=\"hljs ts\"><span class=\"hljs-keyword\">import</span> {Component} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/core'</span>;\n\n<span class=\"hljs-meta\">@Component</span>({\n    selector: <span class=\"hljs-string\">'app-demo'</span>,\n    template: <span class=\"hljs-string\">`\n        &lt;k-row&gt; \n            &lt;k-col span=\"6\" order=\"4\"&gt;1 col-6 order-4&lt;/k-col&gt;\n            &lt;k-col span=\"6\" order=\"3\"&gt;2 col-6 order-3&lt;/k-col&gt;\n            &lt;k-col span=\"6\" order=\"2\"&gt;3 col-6 order-2&lt;/k-col&gt;\n            &lt;k-col span=\"6\" order=\"1\"&gt;4 col-6 order-1&lt;/k-col&gt;\n        &lt;/k-row&gt;\n    `</span>,\n    styleUrls: [<span class=\"hljs-string\">'./index.styl'</span>],\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> AppDemoComponent { }</code></pre>"
         }
     ]
 }

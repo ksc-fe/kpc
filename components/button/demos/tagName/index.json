@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>Button</code>默认渲染成<code>button</code>元素，通过<code>tagName</code>，我们可以渲染成任意元素或组件。此时，我们可以通过<code>tagProps</code>属性，给指定的<code>tagName</code>传递与<code>Button</code>属性名相冲突的属性。</p>\n<blockquote>\n<p>当给<code>Button</code>指定<code>href</code>属性时，则它会强制渲染成<code>a</code>标签</p>\n</blockquote>\n",
-    "index": 240,
+    "index": 232,
     "highlighted": [
         {
             "language": "vdt",
@@ -26,6 +26,10 @@
         {
             "language": "jsx",
             "content": "<pre><code class=\"hljs jsx\"><span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>;\n<span class=\"hljs-keyword\">import</span> Button <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/button'</span>;\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./index.styl'</span>;\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-class\"><span class=\"hljs-keyword\">class</span> <span class=\"hljs-title\">Demo</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title\">React</span>.<span class=\"hljs-title\">Component</span> </span>{\n    render() {\n        <span class=\"hljs-keyword\">return</span> (\n            <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n                <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span> <span class=\"hljs-attr\">tagName</span>=<span class=\"hljs-string\">\"div\"</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">\"primary\"</span>&gt;</span>div元素按钮<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n                <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span> <span class=\"hljs-attr\">tagName</span>=<span class=\"hljs-string\">\"div\"</span> <span class=\"hljs-attr\">disabled</span>&gt;</span>disabled div button<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n                <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Button</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"https://www.ksyun.com\"</span> <span class=\"hljs-attr\">target</span>=<span class=\"hljs-string\">\"_blank\"</span>&gt;</span>超链接按钮<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Button</span>&gt;</span>\n            <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span>\n        )\n    }\n}</code></pre>"
+        },
+        {
+            "language": "ts",
+            "content": "<pre><code class=\"hljs ts\"><span class=\"hljs-keyword\">import</span> {Component} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/core'</span>;\n\n<span class=\"hljs-meta\">@Component</span>({\n    selector: <span class=\"hljs-string\">'app-demo'</span>,\n    template: <span class=\"hljs-string\">`\n        &lt;div&gt;\n            &lt;k-button tagName=\"div\" type=\"primary\"&gt;div元素按钮&lt;/k-button&gt;\n            &lt;k-button tagName=\"div\" [disabled]=\"true\"&gt;disabled div button&lt;/k-button&gt;\n            &lt;k-button href=\"https://www.ksyun.com\" target=\"_blank\"&gt;超链接按钮&lt;/k-button&gt;\n        &lt;/div&gt;\n    `</span>,\n    styleUrls: [<span class=\"hljs-string\">'./index.styl'</span>],\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> AppDemoComponent { }</code></pre>"
         }
     ]
 }

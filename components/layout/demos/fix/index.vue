@@ -57,7 +57,7 @@
                     <BreadcrumbItem>Home</BreadcrumbItem>
                     <BreadcrumbItem>Detail</BreadcrumbItem>
                 </Breadcrumb>
-                <div v-for="(value, key) in Array.apply(null, {length: 100})">content</div>
+                <div v-for="(value, key) in data">content</div>
             </Body>
         </Layout>
     </Layout>
@@ -74,10 +74,11 @@ export default {
     },
     data() {
         return {
-            "expandedKeys": [],
-            "selectedKey": "3-1"
-        }
-    },
+            expandedKeys: [],
+            selectedKey: '3-1',
+            data: Array.apply(null, {length: 100}),
+        };
+    }
 }
 </script>
 <style lang="stylus" src="./index.styl"></style>
