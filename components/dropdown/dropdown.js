@@ -13,12 +13,18 @@ export default class Dropdown extends Intact {
         const vNode = data.get('children');
         const isShow = data.get('_isShow');
         const className = vNode.className || vNode.props.className;
-        const classNames = _className({
-            [className]: className,
-            'k-dropdown-open': isShow, 
-        });
+        const extraProps = {
+            className: _className({
+                [className]: className,
+                'k-dropdown-open': isShow, 
+            }),
+        };
+        const style = data.get('style');
+        if (style) {
+            extraProps.style = style;
+        }
 
-        return clone(vNode, {className: classNames});
+        return clone(vNode, extraProps);
     }
 
     static propTypes = {

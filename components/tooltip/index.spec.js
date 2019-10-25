@@ -4,6 +4,8 @@ import TriggerDemo from '~/components/tooltip/demos/trigger';
 import ContentDemo from '~/components/tooltip/demos/content';
 import ConfirmDemo from '~/components/tooltip/demos/confirm';
 import AlwaysDemo from '~/components/tooltip/demos/always';
+import Vue from 'vue';
+import Tooltip from 'kpc/components/tooltip';
 import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 
 describe('Tooltip', () => {
@@ -146,5 +148,44 @@ describe('Tooltip', () => {
 
         instance.element.querySelector('.k-tooltip').click();
         expect(getElement('.k-tooltip-content')).eql(content);
+    });
+
+    it('should hide tooltip when v-show is false in Vue', async () => {
+        const Test = {
+            template: `
+                <div>
+                    <Tooltip content="hello" v-show="show">
+                        <div style="font-size: 12px;">hover</div>
+                    </Tooltip>
+                </div>
+            `,
+            components: {
+                Tooltip
+            },
+            data() {
+                return {show: false};
+            }
+        };
+
+        const container = document.createElement('div');
+        document.body.appendChild(container);
+
+        const app = new Vue({
+            render: h => h('Test', {ref: 'test'}),
+            components: {Test},
+        }).$mount(container);
+
+        expect(app.$el.innerHTML).to.matchSnapshot();
+        
+        app.$refs.test.show = true;
+        await wait();
+        expect(app.$el.innerHTML).to.matchSnapshot();
+        
+
+        app.$refs.test.show = false;
+        await wait();
+        expect(app.$el.innerHTML).to.matchSnapshot();
+
+        document.body.removeChild(app.$el);
     });
 });
