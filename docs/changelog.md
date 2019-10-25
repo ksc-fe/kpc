@@ -4,6 +4,28 @@ order: 99
 sidebar: doc
 ---
 
+## v1.2.0
+
+1. #### `Add` 支持`Angular`框架
+2. `Add` `Input`在设置了`suffix`图标，同时支持清除`clearable`时，可以通过`stackClearIcon`属性来堆叠清除按钮在`suffix`图标上，而非并排展示，以此节省空间 [#366](https://github.com/ksc-fe/kpc/issues/366) 
+3. `Add` `Tabs`在卡片模式下，新增切换动画 [#369](https://github.com/ksc-fe/kpc/issues/369)
+4. `Add` `Dialog`新增`width`属性，来自定义弹窗宽度 [#372](https://github.com/ksc-fe/kpc/issues/372)
+5. `Add` `Datepicker`在范围选择下，在选择了第一个值时，会触发事件`selectStart`，开发者可以通过该事件动态改变组件的取值范围 [#371](https://github.com/ksc-fe/kpc/issues/371)
+6. `Add` `Tooltip`支持`always`属性，可以使弹层内容保持常开或常闭状态 [#373](https://github.com/ksc-fe/kpc/issues/373)
+7. `Add` `Slider`支持展示气泡提示，默认提示内容为当前取值，可以通过`tooltip`改变该内容；同时支持`always`属性，使气泡一直展示 [#367](https://github.com/ksc-fe/kpc/issues/367)
+8. `Add` `Dialog`新增`mode`属性，当该值为`hide`时，组件关闭不会销毁主体内容，而仅仅只是隐藏它 [#374](https://github.com/ksc-fe/kpc/issues/374)
+9. `Add` `TableColumn`的`minWidth`属性目前可以在渲染时就保证列宽不能小于`minWidth`指定的值，而非只是拖拽的时候 [#375](https://github.com/ksc-fe/kpc/issues/375)
+
+### Vue
+
+1. `Fix` 修复`Tooltip`在指定`v-show="false"`时不能隐藏的问题 [#363](https://github.com/ksc-fe/kpc/issues/363)
+2. `Fix` 修复`DropdownItem`嵌套`Checkbox`时，没有去掉`padding`的问题 [#357](https://github.com/ksc-fe/kpc/issues/357)
+
+### React
+
+1. `Fix` 修复某些情况下移除元素会报错的问题 [#364](https://github.com/ksc-fe/kpc/issues/364)
+2. `Fix` 修复`Tooltip`在`Redux Provider`下会报错的问题 [#365](https://github.com/ksc-fe/kpc/issues/365)
+
 ## v1.1.5
 
 1. `Change` `Form`表单验证规则`required`针对空白字符会当做空字符处理 [#355](https://github.com/ksc-fe/kpc/issues/355)
