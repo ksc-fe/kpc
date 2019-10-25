@@ -24,3 +24,17 @@
 "<div class=\"k-buttons\"><button class=\"k-btn k-default k-small\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-small\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div>"
 ```
 
+#### `should hide tooltip when v-show is false in Vue`
+
+```
+"<div class=\"\" style=\"font-size: 12px; display: none;\">hover</div><!--placeholder-->"
+```
+
+```
+"<div class=\"\" style=\"font-size: 12px;\">hover</div><!--placeholder-->"
+```
+
+```
+"<div class=\"\" style=\"font-size: 12px; display: none;\">hover</div><!--placeholder-->"
+```
+
