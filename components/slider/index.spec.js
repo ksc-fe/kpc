@@ -207,4 +207,19 @@ describe('Slider', () => {
         content = getElement('.k-tooltip-content');
         expect(content.textContent).to.matchSnapshot();
     });
+
+    it('should locate at the end if start value is equal to end value', () => {
+        class Component extends Intact {
+            @Intact.template()
+            static template = `<Slider min={{ 1 }}
+                max={{ 1 }}
+                value={{ 1 }}
+            />`;
+            _init() {
+                this.Slider = Slider;
+            }
+        }
+        instance = mount(Component);
+
+    });
 });
