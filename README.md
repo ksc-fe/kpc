@@ -29,7 +29,7 @@ React/Vue/Angular。如果不同框架维护一套自己的组件库，一方面
 
 ## 特性
 
-* 支持多框架 [Intact][1] / [Vue][2] / [React][3]
+* 支持多框架 [Intact][1] / [Vue][2] / [React][3] / [Angular][4]
 * 完全可自定义的主题系统
 * 360°全方位定位系统
 * 声明式表单验证
@@ -129,6 +129,83 @@ class App extends React.Component {
 }
 ```
 
+### Angular [详情][5]
+
+1. 安装
+
+```shell
+npm install kpc-angular -S
+```
+
+2. 配置`webpack.config.js`
+
+Angular CLI 初始化的项目必须使用`@angular-builders/custom-webapck`来配置webpack
+
+```js
+const path = require('path');
+
+module.exports = function(config) {
+  config.module.rules.find(rule => {
+    if (rule.test.toString() === '/\\.css$/') {
+      rule.exclude.push(path.resolve(__dirname, 'node_modules/kpc-angular'));
+      return true;
+    }
+  });
+
+  return config;
+};
+```
+
+3. 使用
+
+`src/app/app.module.ts`
+
+```ts
+import { KpcBrowserModule, KpcModule } from 'kpc-angular';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    KpcBrowserModule,
+    AppRoutingModule,
+    KpcModule,
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+})
+export class AppModule { }
+```
+
+```ts
+import { Component, ViewEncapsulation } from '@angular/core';
+import { MessageComponent } from 'kpc-angular';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <k-button type="primary" (click)="onClick()">Hello World</k-button>
+  `,
+  style: `
+    .k-button {
+      margin: 10px;
+    }
+  `,
+  encapsulation: ViewEncapsulation.None,
+})
+export class AppComponent {
+  onClick() {
+    MessageComponent.success('Welcome to kpc world!');
+  }
+}
+```
+
 ## 即时反馈
 
 欢迎加入QQ群反馈问题和获得即时帮助，QQ群：529739732 
@@ -187,3 +264,5 @@ MIT
 [1]: http://javey.github.io/intact/
 [2]: https://vuejs.org/
 [3]: https://reactjs.org/
+[4]: https://angular.io/
+[5]: https://design.ksyun.com/docs/angular/
