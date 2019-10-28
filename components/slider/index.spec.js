@@ -211,15 +211,15 @@ describe('Slider', () => {
     it('should locate at the end if start value is equal to end value', () => {
         class Component extends Intact {
             @Intact.template()
-            static template = `<Slider min={{ 1 }}
-                max={{ 1 }}
-                value={{ 1 }}
-            />`;
+            static template = `<div>
+                <Slider min={{ 1 }} max={{ 1 }} value={{ 1 }} />
+                <Slider min={{ 1 }} max={{ 1 }} isRange />
+            </div>`;
             _init() {
                 this.Slider = Slider;
             }
         }
         instance = mount(Component);
-
+        expect(instance.element.innerHTML).to.matchSnapshot();
     });
 });

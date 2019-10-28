@@ -21,6 +21,35 @@ const classNameObj = {
 };
 
 const sliderWidth = max - min;
+const toPercent = (value) => value / sliderWidth * 100 + '%';
+let barStyle;
+let handleStartStyle;
+let handleEndStyle;
+if (sliderWidth) {
+    if (isRange) {
+        barStyle = {
+            width: toPercent(Math.abs(_sliderValue[1] - _sliderValue[0])),
+            left: toPercent(Math.min(_sliderValue[0], _sliderValue[1]) - min),
+        };
+        handleStartStyle = {
+            left: toPercent(_sliderValue[0] - min),
+        };
+        handleEndStyle = {
+            left: toPercent(_sliderValue[1] - min),
+        };
+    } else {
+        barStyle = {
+            width: toPercent(_sliderValue - min),
+        };
+        handleStartStyle = {
+            left: toPercent(_sliderValue - min),
+        };
+    }
+} else {
+    barStyle = {width: '100%', left: '0'};
+    handleStartStyle = {left: '100%'};
+    handleEndStyle = {left: '0'};
+}
 
 const tooltip = (value) => {
     return <b:tooltip args={{ [value] }}>{{ value }}</b:tooltip>;
@@ -35,22 +64,8 @@ const tooltipProps = always ? {always, value: true} : {always: false};
             <div class="k-wrapper" 
                 ref={{ dom => self.$slider = dom }}
             >
-                <div class="k-bar"
-                    style={{ isRange ?
-                        {
-                            width: Math.abs(_sliderValue[1] - _sliderValue[0]) / sliderWidth * 100 + '%',
-                            left: (Math.min(_sliderValue[0], _sliderValue[1]) - min) / sliderWidth * 100 + '%'
-                        } :
-                        {
-                            width: (_sliderValue - min) / sliderWidth * 100 + '%'
-                        }
-                    }}
-                ></div>
-                <div class="k-handle-wrapper" style={{ {
-                    left: isRange ?
-                        (_sliderValue[0] - min) / sliderWidth * 100 + '%' :
-                        (_sliderValue - min) / sliderWidth * 100 + '%'
-                } }}>
+                <div class="k-bar" style={{ barStyle }}></div>
+                <div class="k-handle-wrapper" style={{ handleStartStyle }}>
                     <Tooltip ref="tooltip1"
                         disabled={{ !showTooltip }}
                         {{ ...tooltipProps }}
@@ -80,9 +95,7 @@ const tooltipProps = always ? {always, value: true} : {always: false};
                     </Tooltip>
                 </div>
                 <div class="k-handle-wrapper" v-if={{ isRange }}
-                    style={{ {
-                        left: (_sliderValue[1] - min) / sliderWidth * 100 + '%'
-                    } }}
+                    style={{ handleEndStyle }}
                 >
                     <Tooltip ref="tooltip2" 
                         disabled={{ !showTooltip }}
