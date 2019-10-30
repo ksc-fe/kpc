@@ -5,6 +5,8 @@ sidebar: doc
 ---
 
 > 目前KPC并没有TypeScript类型声明，所以你需要将KPC组件转为`any`类型
+> 
+> 所有组件都已在`Angular@8`下测试通过
 
 # 安装
 
