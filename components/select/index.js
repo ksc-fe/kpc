@@ -28,6 +28,7 @@ export default class Select extends Intact {
         inline: Boolean,
         loading: Boolean,
         hideIcon: Boolean,
+        position: Object,
     };
 
     static events = {
@@ -73,6 +74,7 @@ export default class Select extends Intact {
             inline: false,
             loading: false,
             hideIcon: false,
+            position: {my: 'left top+8', at: 'left bottom'},
 
             _show: false,
             _activeLabel: undefined,

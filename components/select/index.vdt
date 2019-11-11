@@ -11,7 +11,7 @@ const {
     disabled, filterable, keywords, _show,
     placeholder, size, style, name, children,
     fluid, width, allowUnmatch, card, hideIcon,
-    container, inline, loading
+    container, inline, loading, position
 } = self.get();
 
 let _activeLabel = self.get('_activeLabel');
@@ -230,7 +230,7 @@ if (hasValue && labelObj.label == null && !labelObj.labels.length) {
     ev-keydown={{ self._onKeydown }}
 >
     <Dropdown
-        position={{ {my: 'left top+8', at: 'left bottom'} }} 
+        position={{ position }} 
         trigger="click"
         disabled={{ disabled }}
         ref="dropdown"
