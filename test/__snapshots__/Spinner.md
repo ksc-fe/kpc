@@ -37,7 +37,7 @@
 ```
 
 ```
-"<button class=\"k-btn k-default k-btn-icon k-left\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-minus-empty\"></i></button><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><button class=\"k-btn k-default k-btn-icon k-right\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-plus-empty\"></i></button>"
+"<button class=\"k-btn k-default k-btn-icon k-left k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"k-icon ion-ios-minus-empty\"></i></button><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><button class=\"k-btn k-default k-btn-icon k-right\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-plus-empty\"></i></button>"
 ```
 
 #### `should log error when max < min`

@@ -92,6 +92,7 @@ export default class Spinner extends Intact {
         let _value = value;
         if (precision != null) {
             _value = value.toFixed(precision);
+            value = +_value;
         }
 
         _value = this._format(_value);

@@ -63,6 +63,7 @@ describe('Spinner', () => {
         dispatchEvent(input1, 'change');
         expect(spinner1.innerHTML).to.matchSnapshot();
         expect(input1.value).to.eql('1');
+        expect(instance.get('value1')).to.eql(1);
 
         const input2 = spinner2.querySelector('.k-inner');
         expect(input2.value).to.eql('0.0');
