@@ -17,3 +17,7 @@ sidebar: doc
 | size | 尺寸 | `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
 | vertical | 控制按钮是否竖直排列 | `Boolean` | `false` |
 | precision | 控制展示精度，该值必须为正整数或0 | `Number` | `undefined` |
+| formatter | 定义格式化展示值的函数 | `Function` | `undefined` |
+| parser | 与`formatter`结合使用，定义解析格式化的值的函数 | `Function` | `undefined` |
+| prefix | 定义展示的值的前缀，优先级低于`formatter` | `String` | `undefined` |
+| suffix | 定义展示的值的后缀，优先级低于`formatter` | `String` | `undefined` |

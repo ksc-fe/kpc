@@ -18,6 +18,10 @@ export default class Spinner extends Intact {
             size: 'default',
             vertical: false,
             precision: undefined,
+            formatter: undefined,
+            parser: undefined,
+            prefix: undefined,
+            suffix: undefined,
 
             _value: 0,
         };
@@ -32,6 +36,10 @@ export default class Spinner extends Intact {
         size: ['large', 'default', 'small', 'mini'],
         vertical: Boolean,
         precision: Number,
+        formatter: Function,
+        parser: Function,
+        prefix: String,
+        suffix: String,
     }
 
     _init() {
@@ -46,7 +54,11 @@ export default class Spinner extends Intact {
         });
 
         this.on('$receive', (c, keys) => {
-            if (['max', 'min', 'precision', 'value'].find(key => ~keys.indexOf(key))) {
+            if ([
+                'max', 'min', 'precision', 
+                'value', 'formatter', 'parser',
+                'prefix', 'suffix'
+            ].find(key => ~keys.indexOf(key))) {
                 this._fixValue();
             }
         });
@@ -57,12 +69,14 @@ export default class Spinner extends Intact {
     }
 
     _getFixedValue(value = this.get('value'), fallbackValue = 0) {
-        const {precision, max, min} = this.get();
+        let {precision, max, min} = this.get();
 
         if (min > max) {
             Intact.utils.error(new Error(`[Spinner] min must less than or equal to max, but got min: ${min} max: ${max}`));
-            return {_value: 0, value: 0};
+            return {_value: this._format(0), value: 0};
         }
+
+        value = this._parse(value);
 
         const originValue = this.get('value');
         if (value == null || !numberReg.test(value)) {
@@ -80,31 +94,60 @@ export default class Spinner extends Intact {
             _value = value.toFixed(precision);
         }
 
+        _value = this._format(_value);
+
         return {_value, value};
     }
 
-    _increase(e) {
-        const {_value, step} = this.get();
+    _parse(value) {
+        const {parser, prefix, suffix} = this.get();
+        value = String(value);
 
-        this._fixValue(Number((+_value + step).toFixed(10)));
+        if (!parser) {
+            if (prefix) {
+                value = value.replace(new RegExp(`^${prefix}`), '');
+            }
+            if (suffix) {
+                value = value.replace(new RegExp(`${suffix}$`), '');
+            }
+            return value;
+        }
+
+        return parser(value);
+    }
+
+    _format(value) {
+        const {formatter, prefix, suffix} = this.get();
+
+        if (!formatter) {
+            return `${prefix || ''}${value}${suffix || ''}`;
+        }
+
+        return formatter(value);
+    }
+
+    _increase(e) {
+        const {value, step} = this.get();
+
+        this._fixValue(Number((+value + step).toFixed(10)));
     }
 
     _decrease(e) {
-        const {_value, step} = this.get();
+        const {value, step} = this.get();
 
-        this._fixValue(Number((+_value - step).toFixed(10)));
+        this._fixValue(Number((+value - step).toFixed(10)));
     }
 
     _disableDecrease() {
-        const {_value, min, step, disabled} = this.get();
+        const {value, min, step, disabled} = this.get();
 
-        return disabled || +_value <= min || Number((min + step).toFixed(10)) > _value;
+        return disabled || +value <= min || Number((min + step).toFixed(10)) > value;
     }
 
     _disableIncrease() {
-        const {_value, max, step, disabled} = this.get();
+        const {value, max, step, disabled} = this.get();
 
-        return disabled || +_value >= max || Number((max - step).toFixed(10)) < _value;
+        return disabled || +value >= max || Number((max - step).toFixed(10)) < value;
     }
 
     _changeValue(e) {
@@ -113,12 +156,12 @@ export default class Spinner extends Intact {
 
     // we need change value as long as the input is valid, #213
     _onInput(e) {
-        const val = e.target.value.trim();
-        const {_value, value} = this._getFixedValue(val, this.get('value'));
-        const data = {_value: val};
-        if (Number(_value) === value) {
-            data.value = value;
-        }
+        const val = e.target.value;
+        const {value} = this._getFixedValue(val.trim(), this.get('value'));
+        const data = {_value: val, value};
+        // if (_value === val) {
+            // data.value = value;
+        // }
         this.set(data);
     }
 }

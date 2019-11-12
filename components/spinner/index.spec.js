@@ -3,6 +3,7 @@ import PrecisionDemo from '~/components/spinner/demos/precision';
 import {mount, unmount, dispatchEvent} from 'test/utils';
 import {Spinner} from 'kpc/components/spinner';
 import Intact from 'intact';
+import FormatterDemo from '~/components/spinner/demos/formatter';
 
 describe('Spinner', () => {
     let instance;
@@ -102,5 +103,34 @@ describe('Spinner', () => {
         }
         instance = mount(Component);
         expect(instance.element.innerHTML).to.matchSnapshot();
+    });
+
+    it('should format value', () => {
+        instance = mount(FormatterDemo);
+
+        const [input1, input2] = instance.element.querySelectorAll('input');
+        expect(input1.value).to.eql('￥1,000');
+        expect(input2.value).to.eql('增长率 78%');
+
+        // increase / decrease
+        const increase = instance.element.querySelector('.k-left');
+        increase.click();
+        expect(input1.value).to.eql('￥999');
+        const decrease = instance.element.querySelectorAll('.k-right')[1];
+        decrease.click();
+        expect(input2.value).to.eql('增长率 79%');
+
+        // input
+        input1.value = 9999
+        dispatchEvent(input1, 'input');
+        expect(input1.value).to.eql('￥9,999');
+        expect(instance.get('money')).to.eql(9999);
+
+        input2.value = 99
+        dispatchEvent(input2, 'input');
+        expect(input2.value).to.eql('99');
+        expect(instance.get('percent')).to.eql(99);
+        dispatchEvent(input2, 'change');
+        expect(input2.value).to.eql('增长率 99%');
     });
 });
