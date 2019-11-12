@@ -164,7 +164,8 @@ export default class FormItem extends Intact {
                 return [false, message, className];
             })
             .then(([isValid, message, className]) => {
-                if (p.cancelled) return;
+                // if cancelled, should return the last result
+                if (p.cancelled) return this.get('isValid');
                 this.set({
                     isDirty: true,
                     isValid: isValid,
