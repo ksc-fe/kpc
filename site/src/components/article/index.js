@@ -18,6 +18,16 @@ export default class extends Intact {
                 examples.push(item);
             } else {
                 _demos.push(item);
+                // sort highlighted code
+                const orderMap = {vue: 1, jsx: 2, ts: 3};
+                item.data.highlighted.sort((a, b) => {
+                    a.filename = a.file || `index.${a.language}`;
+                    b.filename = b.file || `index.${b.language}`;
+                    const order1 = orderMap[a.language] || 0;
+                    const order2 = orderMap[b.language] || 0;
+
+                    return order1 - order2;
+                });
             }
         });
         
