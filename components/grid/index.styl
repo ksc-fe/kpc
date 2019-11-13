@@ -3,7 +3,8 @@
 
 .k-row
     position relative
-    width 100%
+    // we can't set the width to 100%, otherwise it can't expand when we set gutter
+    // width 100%
     &:not(.k-flex)
         display block
         clearfix()
