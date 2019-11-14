@@ -6,8 +6,10 @@ const {
     readonly, clearable, disabled, size, nativeProps,
     rows, spellcheck, defaultValue, style, _width,
     className, autoWidth, fluid, width, autocomplete,
-    stackClearIcon,
+    stackClearIcon, frozenOnInput, _inputing, _originalValue
 } = self.get();
+
+const inputValue = frozenOnInput && _inputing ? _originalValue : value;
 
 const classNameObj = {
     'k-input': true,
@@ -25,7 +27,7 @@ const classNameObj = {
 
 const events = [
     'keydown', 'keyup', 'change',
-    'keypress', 'focus', 'blur', /* 'input' */
+    'keypress', /* 'focus', 'blur', */ /* 'input' */
 ].reduce((memo, name) => {
     memo[`ev-${name}`] = self._proxyEvent.bind(self, name);
     return memo;
@@ -63,7 +65,9 @@ const wrapperEvents = [
             class="k-inner" 
             type={{ type }}
             name={{ name }}
-            value={{ value }}
+            value={{ inputValue }}
+            ev-focus={{ self._startInput }}
+            ev-blur={{ self._endInput }}
             ev-input={{ self._onInput }}
             defaultValue={{ defaultValue }}
             readOnly={{ readonly }}
@@ -78,7 +82,9 @@ const wrapperEvents = [
         <textarea v-else 
             {{ ...(nativeProps || {}) }}
             class="k-inner k-textarea"
-            value={{ value }}
+            value={{ inputValue }}
+            ev-focus={{ self._startInput }}
+            ev-blur={{ self._endInput }}
             ev-input={{ self._onInput }}
             defaultValue={{ defaultValue }}
             name={{ name }}

@@ -1,6 +1,7 @@
 import BasicDemo from '~/components/input/demos/basic';
 import {mount, unmount, dispatchEvent} from 'test/utils';
 import SearchDemo from '~/components/input/demos/search';
+import FrozenDemo from '~/components/input/demos/frozen';
 
 describe('Input', () => {
     let instance;
@@ -48,5 +49,20 @@ describe('Input', () => {
 
         document.body.click();
         expect(instance.element.innerHTML).to.matchSnapshot();
+    });
+
+    it('should frozen value on input', () => {
+        instance = mount(FrozenDemo);
+
+        const [input1, input2] = instance.element.querySelectorAll('input');
+        dispatchEvent(input2, 'focusin');
+        input2.value = '#123';
+        dispatchEvent(input2, 'input');
+
+        expect(input1.value).to.eql('#112233');
+        expect(input2.value).to.eql('#123');
+
+        dispatchEvent(input2, 'focusout');
+        expect(input2.value).to.eql('#112233');
     });
 });

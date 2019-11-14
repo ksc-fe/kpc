@@ -30,6 +30,7 @@ export default class Input extends Intact {
         autocomplete: String,
         nativeProps: Object,
         stackClearIcon: Boolean,
+        frozenOnInput: Boolean,
     };
 
     defaults() {
@@ -52,8 +53,11 @@ export default class Input extends Intact {
             autocomplete: undefined,
             nativeProps: undefined,
             stackClearIcon: false,
+            frozenOnInput: false,
 
             _width: 1,
+            _inputing: false,
+            _originalValue: '',
         }
     }
 
@@ -92,8 +96,19 @@ export default class Input extends Intact {
         this.refs.input.blur();
     }
 
+    _startInput(e) {
+        this.set({_inputing: true, _originalValue: e.target.value});
+        this.trigger('focus', e);
+    }
+
+    _endInput(e) {
+        this.set({_inputing: false});
+        this.trigger('blur', e);
+    }
+
     _onInput(e) {
-        this.set('value', e.target.value);
+        const value = e.target.value;
+        this.set({value, _originalValue: value});
         this.trigger('input', e);
     }
 

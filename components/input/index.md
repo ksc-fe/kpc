@@ -29,6 +29,7 @@ sidebar: doc
 | autocomplete | 原生`autocomplete`属性 | `String` | `undefined` |
 | nativeProps | 原生`input`或`textarea`上的属性 | `Object` | `undefined` |
 | stackClearIcon | 是否将清空按钮覆盖在`suffix`按钮上展示来节省空间 | `Boolean` | `false` |
+| frozenOnInput | 是否在输入的过程中冻结`value`更新到视图 | `Boolean` | `false` |
 
 
 ## Search
