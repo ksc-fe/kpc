@@ -128,7 +128,7 @@ export default class Slider extends Intact {
             return min;
         } else if (v > max) {
             return max;
-        } else {
+        } else if (step) {
             // for the accuracy
             let fixedValue = Number((Math.round(v / step) * step).toFixed(10));
             if (fixedValue < min) {
@@ -139,6 +139,7 @@ export default class Slider extends Intact {
                 return fixedValue;
             }
         }
+        return v;
     }
 
     _clickWrapper(e) {

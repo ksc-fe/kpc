@@ -120,7 +120,7 @@ const tooltipProps = always ? {always, value: true} : {always: false};
                     </Tooltip>
                 </div>
                 {{ (() => {
-                    if (isShowStop) {
+                    if (isShowStop && step) {
                         const counts = Math.floor((max - min) / step);
                         const ret = [];
                         for (let i = 1; i < counts; i++) {
@@ -138,7 +138,7 @@ const tooltipProps = always ? {always, value: true} : {always: false};
             <span ev-click={{ self._setOneValue.bind(self, max) }}>{{ max + unit }}</span>
         </div>
         <div class="k-marks" v-if={{ marks }}>{{ do {
-            const counts = Math.floor((max - min) / step);
+            const counts = step ? Math.floor((max - min) / step) : (max - min);
             <span v-for={{ marks }}
                 style={{ {
                     left: ((key - min) / counts * 100) + '%'
@@ -155,7 +155,7 @@ const tooltipProps = always ? {always, value: true} : {always: false};
             max={{ max }} 
             min={{ min }}
             v-model="_inputValue"
-            step={{ step }} 
+            step={{ step || 0.01 }} 
             ref="spinner"
             vertical
             ev-change={{ self._onChange }}
