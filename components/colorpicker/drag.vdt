@@ -1,0 +1,5 @@
+const {children, className} = self.get();
+
+<div class={{ {'k-drag': true, [className]: className} }}
+    ev-mousedown={{ self._dragStart }}
+>{{ children }}</div>

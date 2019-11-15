@@ -4,7 +4,7 @@ import {getRestProps} from '../utils';
 
 const {
     value, min, max, className,
-    disabled, isRange,
+    disabled, isRange, animate,
     isShowInput, isShowEnd, unit,
     step, _isDragging, _isFirst, _inputValue,
     _isSecond, _sliderValue, always,
@@ -15,7 +15,7 @@ const classNameObj = {
     'k-slider': true,
     'k-disabled': disabled,
     [className]: className,
-    'k-dragging': _isDragging,
+    'k-dragging': _isDragging || !animate,
     'k-show-input': isShowInput && !isRange,
     'k-show-end': isShowEnd,
 };

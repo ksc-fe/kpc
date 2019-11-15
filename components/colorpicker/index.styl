@@ -1,0 +1,121 @@
+@require('../../styles/themes/default.styl')
+
+.k-colorpicker
+    .k-color
+        height unit($default-height / $rem, rem)
+        width 100px
+        border 1px solid $border-color
+        cursor pointer
+        border-radius $border-radius
+        background #fff
+        padding 4px
+        .k-inner
+            border-radius $border-radius
+            // background $primary-color
+            height 100%
+
+.k-colorpicker-content
+    padding 10px
+.k-color-panel
+    width 200px
+    .k-saturation
+        height 150px
+        // background $primary-color
+        position relative
+        overflow hidden
+        user-select none
+        .k-white
+        .k-black
+            position absolute
+            width 100%
+            height 100%
+        .k-white
+            background linear-gradient(90deg, #fff, rgba(255, 255, 255, 0))
+        .k-black
+            background linear-gradient(0, #000, rgba(0, 0, 0, 0))
+        .k-pointer
+            position absolute
+        .k-circle
+            width 4px
+            height 4px
+            box-shadow 0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0,0,0,.3), 0 0 1px 2px rgba(167, 41, 41, 0.4)
+            border-radius 50%
+            transform translate(-2px, -2px)
+    .k-controls
+        display flex
+    .k-sliders
+        flex 1
+    .k-slider
+        display block
+        margin-top 4px
+        .k-slider-wrapper
+            .k-bar
+                background transparent
+            .k-wrapper
+                height 10px
+                border-radius 0
+                margin 0 3px
+                background transparent
+            .k-handle-wrapper
+                margin-top -4px
+                margin-left -2px
+            .k-bar-wrapper
+                cursor default 
+                padding 0
+            .k-handle
+                height 8px
+                width 4px
+                border none
+                border-radius 1px
+                box-shadow rgba(0, 0, 0, .6) 0 0 2px
+                &:focus
+                &:hover
+                    transform none
+                    cursor default 
+        &.k-hue
+            .k-slider-wrapper
+                background linear-gradient(90deg, red 0, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, red)
+        &.k-alpha
+            .k-slider-wrapper
+                background-image url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVQ4T2N89uzZfwY8QFJSEp80A+OoAcMiDP7//483HTx//hx/Ohg1gIFx6IcBALl+VXknOCvFAAAAAElFTkSuQmCC")
+                background-size contain
+                .k-bar-wrapper
+                    background linear-gradient(to right, rgba(54, 48, 55, 0) 0%, rgb(54, 48, 55) 100%)
+    .k-color-wrapper
+        width 24px
+        height 24px
+        border-radius 3px
+        margin 4px 0 0 4px
+        background-image url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVQ4T2N89uzZfwY8QFJSEp80A+OoAcMiDP7//483HTx//hx/Ohg1gIFx6IcBALl+VXknOCvFAAAAAElFTkSuQmCC")
+        overflow hidden
+        .k-color
+            height 100%
+            background $primary-color
+            box-shadow inset 0 0 0 1px rgba(0, 0, 0, .15), inset 0 0 4px rgba(0, 0, 0, .25)
+    .k-row
+        margin-top 4px
+        .k-inner
+            height 20px
+            line-height 20px
+            padding 0 3px
+            font-size 11px
+        .k-text
+            text-align center
+            font-size 11px
+            padding-top 3px
+        .k-drag
+            cursor ew-resize
+            user-select none
+    .k-presets
+        border-top 1px solid #eee 
+        margin 4px -10px 0
+        overflow hidden
+        .k-color
+            width 16px
+            height 16px
+            margin 10px 0 0 10px
+            // background $primary-color
+            border-radius 3px
+            box-shadow inset 0 0 0 1px rgba(0, 0, 0, .15)
+            float left
+            cursor pointer

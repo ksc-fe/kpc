@@ -1,0 +1,28 @@
+import Tooltip from '../tooltip';
+import Panel from './panel';
+
+const {className, transition, presets, value} = self.get();
+
+const classNameObj = {
+    'k-colorpicker': true,
+    [className]: className,
+};
+
+<div class={{ classNameObj }}>
+    <Tooltip
+        class="k-colorpicker-content"
+        position={{ {my: 'left top+8', at: 'left bottom', collision: 'flip'} }}
+        trigger="click"
+        showArrow={{ false }}
+        theme="light"
+        transition={{ transition }}
+        ev-show={{ self._onShow }}
+    >
+        <div class="k-color">
+            <div class="k-inner" style={{ {backgroundColor: value} }}></div>
+        </div>
+        <b:content>
+            <Panel v-model="value" presets={{ presets }} />
+        </b:content>
+    </Tooltip>
+</div>

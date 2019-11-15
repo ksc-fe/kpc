@@ -1,0 +1,89 @@
+import {_$} from '../utils';
+import Slider from '../slider';
+import Input from '../input';
+import {Row, Col} from '../grid';
+import Drag from './drag';
+
+const {value, presets} = self.get();
+const {_hex: hex, _rgb: rgb, _hsv: hsv, _hsl: hsl} = self;
+const alpha = +(rgb.a * 100).toFixed(5); 
+
+<div class="k-color-panel">
+    <div class="k-saturation"
+        ev-mousedown={{ self._onMouseDown }}
+        ref="saturation"
+        style={{ {backgroundColor: `hsl(${hsl.h}, 100%, 50%)`} }}
+    >
+        <div class="k-white"></div>
+        <div class="k-black"></div>
+        <div class="k-pointer" style={{ {
+            left: `${hsv.s * 100}%`,
+            top: `${-hsv.v * 100 + 100}%`,
+        } }}>
+            <div class="k-circle"></div>
+        </div>
+    </div>
+    <div class="k-controls">
+        <div class="k-sliders">
+            <Slider class="k-hue" 
+                isShowInput={{ false }} 
+                isShowEnd={{ false }} 
+                value={{ hsl.h }}
+                ev-$change:value={{ self._onChangeHue }}
+                step={{ 0 }}
+                max={{ 360 }}
+                ref="hueSlider"
+            />
+            <Slider class="k-alpha" 
+                isShowInput={{ false }}
+                isShowEnd={{ false }} 
+                value={{ rgb.a }}
+                ev-$change:value={{ self._onChangeAlpha }}
+                step={{ 0 }}
+                max={{ 1 }}
+                ref="alphaSlider"
+            />
+        </div>
+        <div class="k-color-wrapper">
+            <div class="k-color" style={{ {backgroundColor: value} }}></div>
+        </div>
+    </div>
+    <Row gutter="6">
+        <Col span="8">
+            <Input fluid size="small" value={{ hex }}
+                ev-input={{ self._onInputHex }}
+                ev-change={{ self._forceUpdate }}
+                frozenOnInput
+            />
+            <div class="k-text">Hex</div>
+        </Col>
+        <Col span="4" v-for={{ ['r', 'g', 'b'] }}>
+            <Input fluid size="small" value={{ rgb[value] }} 
+                ev-input={{ self._changeRgb.bind(self, value) }} 
+                ev-change={{ self._forceUpdate }}
+            />
+            <Drag class="k-text" max={{ 255 }} value={{ rgb[value] }}
+                ev-dragStart={{ self._onDragStart }}
+                ev-$change:value={{ (c, v) => self._setValue(value, v) }}
+                ev-dragEnd={{ self._onDragEnd }}
+            >{{ value.toUpperCase() }}</Drag>
+        </Col>
+        <Col span="4">
+            <Input fluid size="small" value={{ alpha }} 
+                ev-input={{ self._changeAlpha }} 
+                ev-change={{ self._forceUpdate }}
+            />
+            <Drag class="k-text" max={{ 100 }} value={{ alpha }}
+                ev-dragStart={{ self._onDragStart }}
+                ev-$change:value={{ (c, v) => self._setValue('a', v / 100) }}
+                ev-dragEnd={{ self._onDragEnd }}
+            >A</Drag>
+        </Col>
+    </Row>
+    <div class="k-presets" v-if={{ presets && presets.length }}>
+        <div class="k-color" v-for={{ presets }} 
+            style={{ {backgroundColor: value} }}
+            ev-click={{ self.set.bind(self, 'value', value) }}
+        />
+    </div>
+</div>
