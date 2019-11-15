@@ -20,6 +20,7 @@ sidebar: doc
 | marks | 标注刻度 | `Object` | `undefined` |
 | showTooltip | 是否展示提示气泡，默认不展示 | `Boolean` | `false` |
 | always | 当展示气泡时，是否一直展示 | `Boolean` | `false` |
+| animate | 滑块的移动是否使用缓动动画 | `Boolean` | `true` |
 
 # 扩展点
 

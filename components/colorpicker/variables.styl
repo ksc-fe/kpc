@@ -1,0 +1,54 @@
+@require('../../styles/themes/default.styl')
+
+$colorpicker-height := unit($default-height / $rem, rem);
+$colorpicker-width := unit(100 / $rem, rem)
+$colorpicker-border := 1px solid $border-color
+$colorpicker-border-radius := $border-radius
+$colorpicker-cursor := pointer
+$colorpicker-bg-color := #fff
+$colorpicker-padding := unit(4 / $rem, rem)
+$colorpicker-inner-border-radius := $border-radius
+
+// panel
+$colorpicker-panel-padding := unit(10 / $rem, rem)
+$colorpicker-panel-width := unit(200 / $rem, rem)
+$colorpicker-panel-font-size := unit(11 / $rem, rem) 
+$colorpicker-panel-saturation-height := unit(150 / $rem, rem)
+$colorpicker-panel-circle-width := unit(4 / $rem, rem)
+$colorpicker-panel-circle-box-shadow := 0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0,0,0,.3), 0 0 1px 2px rgba(167, 41, 41, 0.4)
+$colorpicker-panel-item-gutter := unit(4 / $rem, rem)
+
+$colorpicker-panel-slider-height := unit(10 / $rem, rem)
+$colorpicker-panel-slider-border-radius := 0
+$colorpicker-panel-slider-wrapper-margin := 0 unit(3 / $rem, rem)
+$colorpicker-panel-slider-cursor := default
+$colorpicker-panel-slider-padding := 0
+$colorpicker-panel-handle-width := unit(4 / $rem, rem)
+$colorpicker-panel-handle-height := unit(8 / $rem, rem)
+$colorpicker-panel-handle-border := none
+$colorpicker-panel-handle-border-radius := unit(1 / $rem, rem)
+$colorpicker-panel-handle-box-shadow := rgba(0, 0, 0, .6) 0 0 2px
+$colorpicker-panel-handle-hover-transform := none
+$colorpicker-panel-handle-hover-cursor := default 
+
+$colorpicker-panel-color-width := unit(24 / $rem, rem)
+$colorpicker-panel-color-height := $colorpicker-panel-color-width
+$colorpicker-panel-color-border-radius := unit(3 / $rem, rem)
+$colorpicker-panel-color-margin := $colorpicker-panel-item-gutter 0 0 $colorpicker-panel-item-gutter 
+$colorpicker-panel-color-box-shadow := inset 0 0 0 1px rgba(0, 0, 0, .15), inset 0 0 4px rgba(0, 0, 0, .25)
+
+$colorpicker-panel-input-height := unit(20 / $rem, rem)
+$colorpicker-panel-input-padding := 0 unit(3 / $rem, rem)
+$colorpicker-panel-text-align := center
+$colorpicker-panel-text-font-size := $colorpicker-panel-font-size
+$colorpicker-panel-text-padding := unit(3 / $rem, rem) 0 0
+
+$colorpicker-panel-presets-border-top := 1px solid #eee
+$colorpicker-panel-presets-margin := $colorpicker-panel-item-gutter (-($colorpicker-panel-padding)) 0
+$colorpicker-panel-presets-color-width := unit(16 / $rem, rem)
+$colorpicker-panel-presets-color-height := $colorpicker-panel-presets-color-width
+$colorpicker-panel-presets-color-margin := $colorpicker-panel-padding 0 0 $colorpicker-panel-padding
+$colorpicker-panel-presets-color-border-radius := unit(3 / $rem, rem)
+$colorpicker-panel-presets-color-box-shadow := inset 0 0 0 1px rgba(0, 0, 0, .15)
+$colorpicker-panel-presets-color-float := left
+$colorpicker-panel-presets-color-cursor := pointer

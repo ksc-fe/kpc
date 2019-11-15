@@ -1,26 +1,24 @@
-@require('../../styles/themes/default.styl')
+@require('./variables.styl')
 
 .k-colorpicker
     .k-color
-        height unit($default-height / $rem, rem)
-        width 100px
-        border 1px solid $border-color
-        cursor pointer
-        border-radius $border-radius
-        background #fff
-        padding 4px
+        height $colorpicker-height 
+        width $colorpicker-width 
+        border $colorpicker-border 
+        cursor $colorpicker-cursor 
+        border-radius $colorpicker-border-radius 
+        background $colorpicker-bg-color 
+        padding $colorpicker-padding 
         .k-inner
-            border-radius $border-radius
-            // background $primary-color
+            border-radius $colorpicker-inner-border-radius 
             height 100%
 
 .k-colorpicker-content
-    padding 10px
+    padding $colorpicker-panel-padding 
 .k-color-panel
-    width 200px
+    width $colorpicker-panel-width 
     .k-saturation
-        height 150px
-        // background $primary-color
+        height $colorpicker-panel-saturation-height 
         position relative
         overflow hidden
         user-select none
@@ -36,42 +34,42 @@
         .k-pointer
             position absolute
         .k-circle
-            width 4px
-            height 4px
-            box-shadow 0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0,0,0,.3), 0 0 1px 2px rgba(167, 41, 41, 0.4)
+            width $colorpicker-panel-circle-width
+            height @width 
+            box-shadow $colorpicker-panel-circle-box-shadow 
             border-radius 50%
-            transform translate(-2px, -2px)
+            transform translate(-(@width / 2), -(@width / 2))
     .k-controls
         display flex
     .k-sliders
         flex 1
     .k-slider
         display block
-        margin-top 4px
+        margin-top $colorpicker-panel-item-gutter 
         .k-slider-wrapper
             .k-bar
                 background transparent
             .k-wrapper
-                height 10px
-                border-radius 0
-                margin 0 3px
+                height $colorpicker-panel-slider-height 
+                border-radius $colorpicker-panel-slider-border-radius 
+                margin $colorpicker-panel-slider-wrapper-margin 
                 background transparent
             .k-handle-wrapper
-                margin-top -4px
-                margin-left -2px
+                margin-top -($colorpicker-panel-handle-height / 2)
+                margin-left -($colorpicker-panel-handle-width / 2)
             .k-bar-wrapper
-                cursor default 
-                padding 0
+                cursor $colorpicker-panel-slider-cursor 
+                padding $colorpicker-panel-slider-padding 
             .k-handle
-                height 8px
-                width 4px
-                border none
-                border-radius 1px
-                box-shadow rgba(0, 0, 0, .6) 0 0 2px
+                height $colorpicker-panel-handle-height 
+                width $colorpicker-panel-handle-width
+                border $colorpicker-panel-handle-border 
+                border-radius $colorpicker-panel-handle-border-radius 
+                box-shadow $colorpicker-panel-handle-box-shadow 
                 &:focus
                 &:hover
-                    transform none
-                    cursor default 
+                    transform $colorpicker-panel-handle-hover-transform 
+                    cursor $colorpicker-panel-handle-hover-cursor 
         &.k-hue
             .k-slider-wrapper
                 background linear-gradient(90deg, red 0, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, red)
@@ -82,40 +80,41 @@
                 .k-bar-wrapper
                     background linear-gradient(to right, rgba(54, 48, 55, 0) 0%, rgb(54, 48, 55) 100%)
     .k-color-wrapper
-        width 24px
-        height 24px
-        border-radius 3px
-        margin 4px 0 0 4px
+        width $colorpicker-panel-color-width 
+        height $colorpicker-panel-color-height 
+        border-radius $colorpicker-panel-color-border-radius 
+        margin $colorpicker-panel-item-gutter 
         background-image url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVQ4T2N89uzZfwY8QFJSEp80A+OoAcMiDP7//483HTx//hx/Ohg1gIFx6IcBALl+VXknOCvFAAAAAElFTkSuQmCC")
         overflow hidden
         .k-color
             height 100%
-            background $primary-color
-            box-shadow inset 0 0 0 1px rgba(0, 0, 0, .15), inset 0 0 4px rgba(0, 0, 0, .25)
+            box-shadow $colorpicker-panel-color-box-shadow 
     .k-row
-        margin-top 4px
+        margin-top $colorpicker-panel-item-gutter 
         .k-inner
-            height 20px
-            line-height 20px
-            padding 0 3px
-            font-size 11px
+            height $colorpicker-panel-input-height 
+            line-height @height 
+            padding $colorpicker-panel-input-padding 
+            font-size $colorpicker-panel-font-size
         .k-text
-            text-align center
-            font-size 11px
-            padding-top 3px
+            text-align $colorpicker-panel-text-align 
+            font-size $colorpicker-panel-text-font-size 
+            padding-top $colorpicker-panel-text-padding 
         .k-drag
             cursor ew-resize
             user-select none
     .k-presets
-        border-top 1px solid #eee 
-        margin 4px -10px 0
+        border-top $colorpicker-panel-presets-border-top 
+        margin $colorpicker-panel-presets-margin 
         overflow hidden
         .k-color
-            width 16px
-            height 16px
-            margin 10px 0 0 10px
-            // background $primary-color
-            border-radius 3px
-            box-shadow inset 0 0 0 1px rgba(0, 0, 0, .15)
-            float left
-            cursor pointer
+            width $colorpicker-panel-presets-color-width 
+            height $colorpicker-panel-presets-color-height 
+            margin $colorpicker-panel-presets-color-margin 
+            border-radius $colorpicker-panel-presets-color-border-radius 
+            box-shadow $colorpicker-panel-presets-color-box-shadow 
+            float $colorpicker-panel-presets-color-float 
+            cursor $colorpicker-panel-presets-color-cursor 
+
+
+requireTheme('colorpicker')
