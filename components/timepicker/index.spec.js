@@ -3,14 +3,15 @@ import RangeDemo from '~/components/timepicker/demos/range';
 import StepDemo from '~/components/timepicker/demos/step';
 import StepRangeDemo from '~/components/timepicker/demos/stepRange';
 import FormatDemo from '~/components/timepicker/demos/format';
-import {mount, unmount, dispatchEvent, getElement} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 
 describe('Timepicker', () => {
     let instance;
 
-    afterEach((done) => {
+    afterEach(async () => {
+        await wait(100);
         unmount(instance);
-        setTimeout(done, 500);
+        await wait(300);
     });
 
     it('select time', () => {

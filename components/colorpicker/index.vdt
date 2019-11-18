@@ -1,7 +1,8 @@
 import Tooltip from '../tooltip';
 import Panel from './panel';
+import {getRestProps} from '../utils';
 
-const {className, transition, presets, value, size} = self.get();
+const {className, transition, presets, value, size, style} = self.get();
 
 const classNameObj = {
     'k-colorpicker': true,
@@ -9,7 +10,7 @@ const classNameObj = {
     [`k-${size}`]: size !== 'default'
 };
 
-<div class={{ classNameObj }}>
+<div class={{ classNameObj }} style={{ style }} {{ ...getRestProps(self) }}>
     <Tooltip
         class="k-colorpicker-content"
         position={{ {my: 'left top+8', at: 'left bottom', collision: 'flip'} }}

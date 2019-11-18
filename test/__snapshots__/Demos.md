@@ -313,6 +313,28 @@
     </div></div></div></div>"
 ```
 
+##   `colorpicker`
+
+####     `Colorpicker basic`
+
+```
+"<div><div class=\"k-colorpicker\"><div class=\"k-color\"><div class=\"k-inner\" style=\"background-color: rgb(217, 145, 35);\"></div></div><!--placeholder--></div><span style=\"color: rgb(217, 145, 35); margin-left: 10px; vertical-align: middle;\">
+        Hello, Colorpicker!
+    </span></div>"
+```
+
+####     `Colorpicker presets`
+
+```
+"<div><div class=\"k-colorpicker\"><div class=\"k-color\"><div class=\"k-inner\" style=\"background-color: rgb(54, 172, 239);\"></div></div><!--placeholder--></div><div class=\"k-colorpicker\"><div class=\"k-color\"><div class=\"k-inner\" style=\"background-color: rgb(217, 145, 35);\"></div></div><!--placeholder--></div></div>"
+```
+
+####     `Colorpicker size`
+
+```
+"<div><div class=\"k-colorpicker k-large\"><div class=\"k-color\"><div class=\"k-inner\" style=\"background-color: rgb(54, 172, 239);\"></div></div><!--placeholder--></div><div class=\"k-colorpicker\"><div class=\"k-color\"><div class=\"k-inner\" style=\"background-color: rgb(54, 172, 239);\"></div></div><!--placeholder--></div><div class=\"k-colorpicker k-small\"><div class=\"k-color\"><div class=\"k-inner\" style=\"background-color: rgb(54, 172, 239);\"></div></div><!--placeholder--></div><div class=\"k-colorpicker k-mini\"><div class=\"k-color\"><div class=\"k-inner\" style=\"background-color: rgb(54, 172, 239);\"></div></div><!--placeholder--></div></div>"
+```
+
 ##   `datepicker`
 
 ####     `Datepicker basic`
@@ -667,6 +689,12 @@
 
 ```
 "<div><div class=\"k-input k-clearable\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> </div></div></div><br><div class=\"k-input k-with-suffix k-clearable\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> <i class=\"ion-ios-search\"></i></div></div></div><br><div class=\"k-input k-with-suffix k-clearable k-stack-clear\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> <i class=\"ion-ios-search\"></i></div></div></div></div>"
+```
+
+####     `Input frozen`
+
+```
+"<div><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><br><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div>"
 ```
 
 ####     `Input search`
@@ -1079,7 +1107,7 @@
 ####     `Slider step`
 
 ```
-"<div><div class=\"k-slider k-show-input\"><div class=\"k-slider-wrapper\"><div class=\"k-bar-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 0%;\"></div><div class=\"k-handle-wrapper\" style=\"left: 0%;\"><div class=\"k-handle\" tabindex=\"0\"></div><!--placeholder--><div class=\"k-dropdown-menu k-tooltip-content k-cannot-hover k-dark\" style=\"display: none;\"><i class=\"k-arrow\"></i>0</div></div></div></div></div><div class=\"k-spinner-wrapper\"><div class=\"k-spinner k-vertical\"><button class=\"k-btn k-default k-btn-icon k-left k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"ion-ios-arrow-down\"></i></button><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><button class=\"k-btn k-default k-btn-icon k-right\" tabindex=\"0\" type=\"button\"><i class=\"ion-ios-arrow-up\"></i></button></div></div></div><div class=\"k-slider k-show-input k-show-end\"><div class=\"k-slider-wrapper\"><div class=\"k-bar-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 0%;\"></div><div class=\"k-handle-wrapper\" style=\"left: 0%;\"><div class=\"k-handle\" tabindex=\"0\"></div><!--placeholder--><div class=\"k-dropdown-menu k-tooltip-content k-cannot-hover k-dark\" style=\"display: none;\"><i class=\"k-arrow\"></i>50</div></div></div></div><div class=\"k-box\"><span>50</span><span>500</span></div></div><div class=\"k-spinner-wrapper\"><div class=\"k-spinner k-vertical\"><button class=\"k-btn k-default k-btn-icon k-left k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"ion-ios-arrow-down\"></i></button><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><button class=\"k-btn k-default k-btn-icon k-right\" tabindex=\"0\" type=\"button\"><i class=\"ion-ios-arrow-up\"></i></button></div></div></div></div>"
+"<div><div class=\"k-slider k-show-input\"><div class=\"k-slider-wrapper\"><div class=\"k-bar-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 0%;\"></div><div class=\"k-handle-wrapper\" style=\"left: 0%;\"><div class=\"k-handle\" tabindex=\"0\"></div><!--placeholder--><div class=\"k-dropdown-menu k-tooltip-content k-cannot-hover k-dark\" style=\"display: none;\"><i class=\"k-arrow\"></i>0</div></div></div></div></div><div class=\"k-spinner-wrapper\"><div class=\"k-spinner k-vertical\"><button class=\"k-btn k-default k-btn-icon k-left k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"ion-ios-arrow-down\"></i></button><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><button class=\"k-btn k-default k-btn-icon k-right\" tabindex=\"0\" type=\"button\"><i class=\"ion-ios-arrow-up\"></i></button></div></div></div><div class=\"k-slider k-show-input k-show-end\"><div class=\"k-slider-wrapper\"><div class=\"k-bar-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 0%;\"></div><div class=\"k-handle-wrapper\" style=\"left: 0%;\"><div class=\"k-handle\" tabindex=\"0\"></div><!--placeholder--><div class=\"k-dropdown-menu k-tooltip-content k-cannot-hover k-dark\" style=\"display: none;\"><i class=\"k-arrow\"></i>50</div></div></div></div><div class=\"k-box\"><span>50</span><span>500</span></div></div><div class=\"k-spinner-wrapper\"><div class=\"k-spinner k-vertical\"><button class=\"k-btn k-default k-btn-icon k-left k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"ion-ios-arrow-down\"></i></button><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><button class=\"k-btn k-default k-btn-icon k-right\" tabindex=\"0\" type=\"button\"><i class=\"ion-ios-arrow-up\"></i></button></div></div></div><div class=\"k-slider k-show-input k-show-end\"><div class=\"k-slider-wrapper\"><div class=\"k-bar-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 23.4234%;\"></div><div class=\"k-handle-wrapper\" style=\"left: 23.4234%;\"><div class=\"k-handle\" tabindex=\"0\"></div><!--placeholder--><div class=\"k-dropdown-menu k-tooltip-content k-cannot-hover k-dark\" style=\"display: none;\"><i class=\"k-arrow\"></i>0.234234</div></div></div></div><div class=\"k-box\"><span>0</span><span>1</span></div></div><div class=\"k-spinner-wrapper\"><div class=\"k-spinner k-vertical\"><button class=\"k-btn k-default k-btn-icon k-left\" tabindex=\"0\" type=\"button\"><i class=\"ion-ios-arrow-down\"></i></button><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><button class=\"k-btn k-default k-btn-icon k-right\" tabindex=\"0\" type=\"button\"><i class=\"ion-ios-arrow-up\"></i></button></div></div></div></div>"
 ```
 
 ####     `Slider stop`
@@ -2104,6 +2132,28 @@
     </div></div></div></div></div>"
 ```
 
+##   `colorpicker`
+
+####     `Colorpicker basic`
+
+```
+"<div><div><div class=\"k-colorpicker\"><div class=\"k-color\"><div class=\"k-inner\" style=\"background-color: rgb(217, 145, 35);\"></div></div><!--placeholder--></div><span style=\"color: rgb(217, 145, 35); margin-left: 10px; vertical-align: middle;\">
+        Hello, Colorpicker!
+    </span></div></div>"
+```
+
+####     `Colorpicker presets`
+
+```
+"<div><div><div class=\"k-colorpicker\"><div class=\"k-color\"><div class=\"k-inner\" style=\"background-color: rgb(54, 172, 239);\"></div></div><!--placeholder--></div><div class=\"k-colorpicker\"><div class=\"k-color\"><div class=\"k-inner\" style=\"background-color: rgb(217, 145, 35);\"></div></div><!--placeholder--></div></div></div>"
+```
+
+####     `Colorpicker size`
+
+```
+"<div><div><div class=\"k-colorpicker k-large\"><div class=\"k-color\"><div class=\"k-inner\" style=\"background-color: rgb(54, 172, 239);\"></div></div><!--placeholder--></div><div class=\"k-colorpicker\"><div class=\"k-color\"><div class=\"k-inner\" style=\"background-color: rgb(54, 172, 239);\"></div></div><!--placeholder--></div><div class=\"k-colorpicker k-small\"><div class=\"k-color\"><div class=\"k-inner\" style=\"background-color: rgb(54, 172, 239);\"></div></div><!--placeholder--></div><div class=\"k-colorpicker k-mini\"><div class=\"k-color\"><div class=\"k-inner\" style=\"background-color: rgb(54, 172, 239);\"></div></div><!--placeholder--></div></div></div>"
+```
+
 ##   `datepicker`
 
 ####     `Datepicker basic`
@@ -2454,6 +2504,12 @@
 
 ```
 "<div><div><div class=\"k-input k-clearable\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> </div></div></div><br><div class=\"k-input k-with-suffix k-clearable\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> <i class=\"ion-ios-search\"></i></div></div></div><br><div class=\"k-input k-with-suffix k-clearable k-stack-clear\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> <i class=\"ion-ios-search\"></i></div></div></div></div></div>"
+```
+
+####     `Input frozen`
+
+```
+"<div><div><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><br><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div>"
 ```
 
 ####     `Input search`
@@ -2873,7 +2929,7 @@
 ####     `Slider step`
 
 ```
-"<div><div><div class=\"k-slider k-show-input\"><div class=\"k-slider-wrapper\"><div class=\"k-bar-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 0%;\"></div><div class=\"k-handle-wrapper\" style=\"left: 0%;\"><div class=\"k-handle\" tabindex=\"0\"></div><!--placeholder--><div class=\"k-dropdown-menu k-tooltip-content k-cannot-hover k-dark\" style=\"display: none;\"><i class=\"k-arrow\"></i>0</div></div></div></div></div><div class=\"k-spinner-wrapper\"><div class=\"k-spinner k-vertical\"><button class=\"k-btn k-default k-btn-icon k-left k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"ion-ios-arrow-down\"></i></button><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><button class=\"k-btn k-default k-btn-icon k-right\" tabindex=\"0\" type=\"button\"><i class=\"ion-ios-arrow-up\"></i></button></div></div></div><div class=\"k-slider k-show-input k-show-end\"><div class=\"k-slider-wrapper\"><div class=\"k-bar-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 0%;\"></div><div class=\"k-handle-wrapper\" style=\"left: 0%;\"><div class=\"k-handle\" tabindex=\"0\"></div><!--placeholder--><div class=\"k-dropdown-menu k-tooltip-content k-cannot-hover k-dark\" style=\"display: none;\"><i class=\"k-arrow\"></i>50</div></div></div></div><div class=\"k-box\"><span>50</span><span>500</span></div></div><div class=\"k-spinner-wrapper\"><div class=\"k-spinner k-vertical\"><button class=\"k-btn k-default k-btn-icon k-left k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"ion-ios-arrow-down\"></i></button><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><button class=\"k-btn k-default k-btn-icon k-right\" tabindex=\"0\" type=\"button\"><i class=\"ion-ios-arrow-up\"></i></button></div></div></div></div></div>"
+"<div><div><div class=\"k-slider k-show-input\"><div class=\"k-slider-wrapper\"><div class=\"k-bar-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 0%;\"></div><div class=\"k-handle-wrapper\" style=\"left: 0%;\"><div class=\"k-handle\" tabindex=\"0\"></div><!--placeholder--><div class=\"k-dropdown-menu k-tooltip-content k-cannot-hover k-dark\" style=\"display: none;\"><i class=\"k-arrow\"></i>0</div></div></div></div></div><div class=\"k-spinner-wrapper\"><div class=\"k-spinner k-vertical\"><button class=\"k-btn k-default k-btn-icon k-left k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"ion-ios-arrow-down\"></i></button><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><button class=\"k-btn k-default k-btn-icon k-right\" tabindex=\"0\" type=\"button\"><i class=\"ion-ios-arrow-up\"></i></button></div></div></div><div class=\"k-slider k-show-input k-show-end\"><div class=\"k-slider-wrapper\"><div class=\"k-bar-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 0%;\"></div><div class=\"k-handle-wrapper\" style=\"left: 0%;\"><div class=\"k-handle\" tabindex=\"0\"></div><!--placeholder--><div class=\"k-dropdown-menu k-tooltip-content k-cannot-hover k-dark\" style=\"display: none;\"><i class=\"k-arrow\"></i>50</div></div></div></div><div class=\"k-box\"><span>50</span><span>500</span></div></div><div class=\"k-spinner-wrapper\"><div class=\"k-spinner k-vertical\"><button class=\"k-btn k-default k-btn-icon k-left k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"ion-ios-arrow-down\"></i></button><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><button class=\"k-btn k-default k-btn-icon k-right\" tabindex=\"0\" type=\"button\"><i class=\"ion-ios-arrow-up\"></i></button></div></div></div><div class=\"k-slider k-show-input k-show-end\"><div class=\"k-slider-wrapper\"><div class=\"k-bar-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 23.4234%;\"></div><div class=\"k-handle-wrapper\" style=\"left: 23.4234%;\"><div class=\"k-handle\" tabindex=\"0\"></div><!--placeholder--><div class=\"k-dropdown-menu k-tooltip-content k-cannot-hover k-dark\" style=\"display: none;\"><i class=\"k-arrow\"></i>0.234234</div></div></div></div><div class=\"k-box\"><span>0</span><span>1</span></div></div><div class=\"k-spinner-wrapper\"><div class=\"k-spinner k-vertical\"><button class=\"k-btn k-default k-btn-icon k-left\" tabindex=\"0\" type=\"button\"><i class=\"ion-ios-arrow-down\"></i></button><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><button class=\"k-btn k-default k-btn-icon k-right\" tabindex=\"0\" type=\"button\"><i class=\"ion-ios-arrow-up\"></i></button></div></div></div></div></div>"
 ```
 
 ####     `Slider stop`

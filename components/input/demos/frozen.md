@@ -38,7 +38,8 @@ export default class extends Intact {
         const value = e.target.value.trim();
         const color = tinycolor(value);
         if (color.isValid()) {
-            this.set('value', color.toHexString());
+            const newValue = color.toHexString();
+            this.set('value', newValue);
         }
     }
 }
