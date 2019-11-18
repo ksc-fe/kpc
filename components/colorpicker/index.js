@@ -30,3 +30,5 @@ export default class Colorpicker extends Intact {
         this.set('transition', getTransition(c.get('_feedback')));
     }
 }
+
+export {Colorpicker};
