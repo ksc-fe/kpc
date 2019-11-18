@@ -44,7 +44,7 @@ const alpha = +(rgb.a * 100).toFixed(5);
                 ref="alphaSlider"
             />
         </div>
-        <div class="k-color-wrapper">
+        <div class="k-color-wrapper k-alpha-bg">
             <div class="k-color" style={{ {backgroundColor: value} }}></div>
         </div>
     </div>
@@ -81,9 +81,10 @@ const alpha = +(rgb.a * 100).toFixed(5);
         </Col>
     </Row>
     <div class="k-presets" v-if={{ presets && presets.length }}>
-        <div class="k-color" v-for={{ presets }} 
-            style={{ {backgroundColor: value} }}
+        <div class="k-color k-alpha-bg" v-for={{ presets }} 
             ev-click={{ self.set.bind(self, 'value', value) }}
-        />
+        >
+            <div style={{ {backgroundColor: value} }} class="k-color-item"></div>
+        </div>
     </div>
 </div>

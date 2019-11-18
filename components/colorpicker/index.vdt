@@ -1,11 +1,12 @@
 import Tooltip from '../tooltip';
 import Panel from './panel';
 
-const {className, transition, presets, value} = self.get();
+const {className, transition, presets, value, size} = self.get();
 
 const classNameObj = {
     'k-colorpicker': true,
     [className]: className,
+    [`k-${size}`]: size !== 'default'
 };
 
 <div class={{ classNameObj }}>

@@ -1,6 +1,8 @@
 @require('./variables.styl')
 
 .k-colorpicker
+    display inline-block
+    vertical-align middle
     .k-color
         height $colorpicker-height 
         width $colorpicker-width 
@@ -12,6 +14,14 @@
         .k-inner
             border-radius $colorpicker-inner-border-radius 
             height 100%
+    // size
+    for size in large small mini
+        &.k-{size}
+            .k-color
+                height lookup('$colorpicker-' + size + '-height')
+                width lookup('$colorpicker-' + size + '-width')
+                if lookup('$colorpicker-' + size + '-padding')
+                    padding lookup('$colorpicker-' + size + '-padding')
 
 .k-colorpicker-content
     padding $colorpicker-panel-padding 
@@ -75,16 +85,17 @@
                 background linear-gradient(90deg, red 0, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, red)
         &.k-alpha
             .k-slider-wrapper
-                background-image url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVQ4T2N89uzZfwY8QFJSEp80A+OoAcMiDP7//483HTx//hx/Ohg1gIFx6IcBALl+VXknOCvFAAAAAElFTkSuQmCC")
                 background-size contain
                 .k-bar-wrapper
                     background linear-gradient(to right, rgba(54, 48, 55, 0) 0%, rgb(54, 48, 55) 100%)
+    .k-slider.k-alpha .k-slider-wrapper
+    .k-alpha-bg
+        background-image url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVQ4T2N89uzZfwY8QFJSEp80A+OoAcMiDP7//483HTx//hx/Ohg1gIFx6IcBALl+VXknOCvFAAAAAElFTkSuQmCC")
     .k-color-wrapper
         width $colorpicker-panel-color-width 
         height $colorpicker-panel-color-height 
         border-radius $colorpicker-panel-color-border-radius 
         margin $colorpicker-panel-item-gutter 
-        background-image url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVQ4T2N89uzZfwY8QFJSEp80A+OoAcMiDP7//483HTx//hx/Ohg1gIFx6IcBALl+VXknOCvFAAAAAElFTkSuQmCC")
         overflow hidden
         .k-color
             height 100%
@@ -108,13 +119,15 @@
         margin $colorpicker-panel-presets-margin 
         overflow hidden
         .k-color
-            width $colorpicker-panel-presets-color-width 
-            height $colorpicker-panel-presets-color-height 
             margin $colorpicker-panel-presets-color-margin 
             border-radius $colorpicker-panel-presets-color-border-radius 
-            box-shadow $colorpicker-panel-presets-color-box-shadow 
             float $colorpicker-panel-presets-color-float 
             cursor $colorpicker-panel-presets-color-cursor 
+            overflow hidden
+        .k-color-item
+            width $colorpicker-panel-presets-color-width 
+            height $colorpicker-panel-presets-color-height 
+            box-shadow $colorpicker-panel-presets-color-box-shadow 
 
 
 requireTheme('colorpicker')
