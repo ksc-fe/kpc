@@ -17,20 +17,18 @@ export default class Drag extends Intact {
 
     _dragStart(e) {
         if (e.which !== 1) return;
-        this._x = e.screenX;
+        this._x = e.clientX;
         document.addEventListener('mousemove', this._move);
         document.addEventListener('mouseup', this._dragEnd);
         this.trigger('dragStart');
     }
 
     _move(e) {
-        const deltaX = e.screenX - this._x;
-        this._x = e.screenX;
+        const deltaX = e.clientX - this._x;
+        this._x = e.clientX;
         const {value, min, max} = this.get();
         const newValue = value + deltaX;
-        if (newValue >= min && newValue <= max) {
-            this.set('value', newValue);
-        }
+        this.set('value', Math.min(max, Math.max(0, newValue)));
     }
 
     _dragEnd() {
