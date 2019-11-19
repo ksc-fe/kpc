@@ -73,11 +73,24 @@ export default class Timepicker extends Datepicker {
             const stepValue = this._parseTime(step);
             let value = minDate || this._createDate('00:00:00', true);
 
-            for (; value <= maxValue; value = value.add(stepValue, 'second')) {
-                ret.push({
-                    value: value.format(this._getValueFormat()),
-                    label: value.format(this._getShowFormat()),
-                });
+            for (; ; value = value.add(stepValue, 'second')) {
+                if (value <= maxValue) {
+                    ret.push({
+                        value: value.format(this._getValueFormat()),
+                        label: value.format(this._getShowFormat()),
+                    });
+                    if (+value === +maxValue) break;
+                } else if (ret.length) {
+                    // if the last value is less than maxValue
+                    // add the maxValue as the last one
+                    ret.push({
+                        value: maxValue.format(this._getValueFormat()),
+                        label: maxValue.format(this._getShowFormat()),
+                    });
+                    break;
+                } else {
+                    break;
+                }
             }
 
             this.set('_options', ret);
