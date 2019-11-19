@@ -14,8 +14,6 @@ describe('Colorpicker', () => {
     });
 
     afterEach(async function() {
-        this.enableTimeouts(false);
-        await wait(100); 
         unmount(instance);
         await wait(400);
     });
