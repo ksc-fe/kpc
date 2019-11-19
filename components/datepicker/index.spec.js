@@ -188,7 +188,6 @@ describe('Datepicker', () => {
     it('range', () => {
         instance = mount(RangeDemo);
 
-
         // date
         const [input1] = instance.element.querySelectorAll('.k-input');
         input1.click();
@@ -206,25 +205,27 @@ describe('Datepicker', () => {
         expect(value).have.lengthOf(2);
         expect(value[0] < value[1]).to.be.true;
 
-        // cancel one of the range value and re-select it
+        // select the same date
         input1.click();
         content = getElement('.k-datepicker-content');
         // select the middle date
         first = content.querySelectorAll('.k-day')[17];
         first.click();
         first.click();
-        expect(instance.get('date')).eql(value);
+        value = instance.get('date');
+        expect(value).have.lengthOf(2);
+        expect(value[0]).eql(value[1]);
 
         // cancel all of range values and re-select
-        input1.click();
-        content = getElement('.k-datepicker-content');
-        // select the middle date
-        first = content.querySelectorAll('.k-day')[17];
-        first.click();
-        first.previousElementSibling.previousElementSibling.click();
-        first.click();
-        first.previousElementSibling.previousElementSibling.click();
-        expect(instance.get('date')).eql(value);
+        // input1.click();
+        // content = getElement('.k-datepicker-content');
+        // // select the middle date
+        // first = content.querySelectorAll('.k-day')[17];
+        // first.click();
+        // first.previousElementSibling.previousElementSibling.click();
+        // first.click();
+        // first.previousElementSibling.previousElementSibling.click();
+        // expect(instance.get('date')).eql(value);
 
         // range cross months
         input1.click();
