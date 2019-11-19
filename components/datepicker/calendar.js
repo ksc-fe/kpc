@@ -23,6 +23,7 @@ export default class Calendar extends Intact {
         dayClassNames: Function,
         onMouseEnterDay: Function,
         autoChangeToTimePicker: Boolean,
+        range: Boolean,
     };
 
     defaults() {
@@ -42,6 +43,7 @@ export default class Calendar extends Intact {
             dayClassNames: undefined,
             onMouseEnterDay: undefined,
             autoChangeToTimePicker: true,
+            range: false,
 
             _showDate: undefined,
             _now: getNowDate(),
@@ -134,11 +136,16 @@ export default class Calendar extends Intact {
                 values = values.slice(0);
             }
             if (type !== 'datetime') {
-                const index = values.findIndex(v => isEqual(v, value));
-                if (~index) {
-                    values.splice(index, 1);
-                } else {
+                if (this.get('range')) {
+                    // support begin date is equal to end date for range, #390
                     values.push(value);
+                } else {
+                    const index = values.findIndex(v => isEqual(v, value));
+                    if (~index) {
+                        values.splice(index, 1);
+                    } else {
+                        values.push(value);
+                    }
                 }
             } else {
                 values.push(value);

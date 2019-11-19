@@ -91,6 +91,7 @@ const content = <b:content>
             dayClassNames={{ self._checkDateInRange }}
             onMouseEnterDay={{ self._highlightRangeDays }}
             multiple
+            range={{ true }}
             autoChangeToTimePicker={{ false }}
             _index={{ 0 }}
             _id="0"
@@ -110,6 +111,7 @@ const content = <b:content>
             dayClassNames={{ self._checkDateInRange }}
             onMouseEnterDay={{ self._highlightRangeDays }}
             multiple
+            range={{ true }}
             autoChangeToTimePicker={{ false }}
             _index={{ 1 }}
             _id="1"
