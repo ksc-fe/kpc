@@ -8,8 +8,9 @@ import {mount, unmount, dispatchEvent, getElement, getElements, wait} from 'test
 describe('Cascader', () => {
     let instance;
 
-    afterEach(() => {
-        // unmount(instance);
+    afterEach(async () => {
+        unmount(instance);
+        await wait(400);
     });
 
     it('basic test', async () => {

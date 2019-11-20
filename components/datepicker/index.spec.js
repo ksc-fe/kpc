@@ -14,12 +14,9 @@ import dayjs from 'dayjs';
 describe('Datepicker', () => {
     let instance;
 
-    afterEach(() => {
+    afterEach(async () => {
         unmount(instance);
-        const content = getElement('.k-datepicker-content')
-        if (content) {
-            content.parentNode.removeChild(content);
-        }
+        await wait(400);
     });
 
     it('should select date', () => {
@@ -306,7 +303,9 @@ describe('Datepicker', () => {
         dispatchEvent(input, 'keydown', {keyCode: 38});
         dispatchEvent(input, 'keydown', {keyCode: 13});
         dispatchEvent(input, 'keydown', {keyCode: 13});
-        expect(instance.get('date')).eql(value);
+        const _value = instance.get('date');
+        expect(_value[0]).eql(_value[1]);
+        expect(_value[0]).eql(value[0]);
     });
 
     it('should not trigger change event when select range value has not complete', () => {

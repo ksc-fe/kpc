@@ -9,9 +9,8 @@ describe('Timepicker', () => {
     let instance;
 
     afterEach(async () => {
-        await wait(100);
         unmount(instance);
-        await wait(300);
+        await wait(400);
     });
 
     it('select time', () => {
