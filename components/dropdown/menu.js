@@ -75,7 +75,7 @@ export default class DropdownMenu extends Intact {
         // the previous sibling is Dropdown
         let triggerElement = this.element.previousSibling;
         // in react, it may be a comment which value is ' react-mount-point-unstable ' 
-        // is may be a leaving animation element
+        // and it is may be a leaving animation element
         // so we must look up it until the header
         let dropdown;
         while (triggerElement) {
@@ -90,10 +90,10 @@ export default class DropdownMenu extends Intact {
         // when mount, the child animate element mount first
         // if we use appearStart to show this menu
         // the parent component can not be get correctly
-        // unless we find parent component in position method again
+        // unless we find parent component in `position` method again
         // so we do this at here instead of appearStart callback
         //
-        // find parent component in position method instead of
+        // find parent component in `position` method instead of
         // if (this.get('value')) {
             // this._onShow();
         // }
@@ -178,7 +178,7 @@ export default class DropdownMenu extends Intact {
             this.positioned = true;
             this.trigger('positioned', transition);
             using && using();
-        }
+        };
 
         let _of = this.get('of');
         if (_of === 'parent') {
