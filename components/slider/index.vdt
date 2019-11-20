@@ -6,7 +6,7 @@ const {
     value, min, max, className,
     disabled, isRange, animate,
     isShowInput, isShowEnd, unit,
-    step, _isDragging, _isFirst, _inputValue,
+    step, _isDragging, _isFirst,
     _isSecond, _sliderValue, always,
     isShowStop, marks, showTooltip, tooltipContainer,
 } = self.get();
@@ -88,6 +88,7 @@ const tooltipProps = always ? {always, value: true} : {always: false};
                                 self._onKeydown.bind(self, '_isFirst') :
                                 self._onKeydown.bind(self, undefined)
                             }}
+                            ev-keyup={{ self._onKeyUp }}
                             ev-focusin={{ self._onFocusin.bind(self, '_isFirst') }}
                             ev-focusout={{ self._onFocusout.bind(self, '_isFirst') }}
                         ></div>

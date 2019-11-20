@@ -6,6 +6,8 @@ import template from './index.vdt'
 import '../../styles/kpc.styl';
 import './index.styl';
 
+const {isEqual} = Intact.utils;
+
 export default class Slider extends Intact {
     get template() { return template; }
 
@@ -51,9 +53,9 @@ export default class Slider extends Intact {
         animate: Boolean,
     };
 
-    // static events = {
-        // stop: true,
-    // };
+    static events = {
+        change: true,
+    };
 
     static blocks = ['tooltip'];
 
@@ -79,6 +81,14 @@ export default class Slider extends Intact {
                 needFixedKeys.find(key => keys.indexOf(key) > -1)
             ) {
                 this._setFixedValue(this.get('value'));
+            }
+        });
+
+        // trigger change event expect dragging
+        // we will also trigger the event on keyup and dragend
+        this.on('$change:value', (c, v) => {
+            if (!this.get('_isDragging')) {
+                this.trigger('change', v);
             }
         });
 
@@ -280,6 +290,7 @@ export default class Slider extends Intact {
             this._setFixedValue(newValue);
 
             // this.trigger('stop', this.get('value'));
+            this._triggerChangeEvent();
 
             window.removeEventListener('mousemove', this.__onRangeSliding);
             window.removeEventListener('mouseup', this.__onRangeSlideEnd);
@@ -291,12 +302,16 @@ export default class Slider extends Intact {
     _onFocusin(indexFlag, e) {
         if (this.get('disabled')) return;
 
-        // if the focusin is invoked by dragging
-        // let the handle element blur
-        // because k-active will add focus style
+        // when mouse down the handle will focus too
+        // if the focusin is invoked by mousedown for dragging 
+        // let the handle element blur to ignore keyboard operations
+        // but we also need to set the states
         if (this._isDragging) {
             e.target.blur();
         }
+
+        // remain the old value to detect change to trigger change event
+        this._oldValue = this.get('value');
 
         if (this.get('isRange')) {
             const value = this.get('value');
@@ -346,6 +361,21 @@ export default class Slider extends Intact {
             this._setValue(indexFlag, -step);
         } else if (e.keyCode === 39) { // right
             this._setValue(indexFlag, step);
+        }
+    }
+
+    // trigger change event when keyup
+    _onKeyUp({keyCode}) {
+        if (keyCode === 37 || keyCode === 39) {
+            this._triggerChangeEvent();
+        }
+    }
+
+    _triggerChangeEvent() {
+        const {value} = this.get();
+        if (!isEqual(this._oldValue, value)) {
+            this._oldValue = value;
+            this.trigger('change', value);
         }
     }
 

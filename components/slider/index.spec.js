@@ -222,4 +222,71 @@ describe('Slider', () => {
         instance = mount(Component);
         expect(instance.element.innerHTML).to.matchSnapshot();
     });
+
+    it('should trigger change event correctly', () => {
+        const spy = sinon.spy();
+        class Component extends Intact {
+            @Intact.template()
+            static template = `<Slider ev-change={{ self._onChange }} />`;
+            _init() {
+                this.Slider = Slider;
+            }
+            _onChange(v) {
+                console.log('change', v);
+                spy(v);
+            }
+        }
+        instance = mount(Component);
+
+        const handle = instance.element.querySelector('.k-handle');
+        const bar = instance.element.querySelector('.k-bar-wrapper');
+
+        // keyboard
+        dispatchEvent(handle, 'focusin');
+        dispatchEvent(handle, 'keydown', {keyCode: 39});
+        expect(spy.callCount).to.eql(0);
+        dispatchEvent(handle, 'keydown', {keyCode: 39});
+        expect(spy.callCount).to.eql(0);
+        dispatchEvent(handle, 'keyup', {keyCode: 13});
+        expect(spy.callCount).to.eql(0);
+        dispatchEvent(handle, 'keyup', {keyCode: 39});
+        expect(spy.callCount).to.eql(1);
+        expect(spy.calledWith(2)).to.be.true;
+        dispatchEvent(handle, 'keydown', {keyCode: 39});
+        expect(spy.callCount).to.eql(1);
+        dispatchEvent(handle, 'keyup', {keyCode: 39});
+        expect(spy.callCount).to.eql(2);
+        expect(spy.calledWith(3)).to.be.true;
+
+        // drag
+        const width = bar.getBoundingClientRect().width;
+        dispatchEvent(handle, 'mousedown');
+        dispatchEvent(document, 'mousemove', {clientX: 0.1 * width});
+        expect(spy.callCount).to.eql(2);
+        dispatchEvent(document, 'mouseup', {clientX: 0.1 * width});
+        expect(spy.callCount).to.eql(3);
+        expect(spy.calledWith(10)).to.be.true;
+
+        // click
+        dispatchEvent(bar, 'click', {clientX: 0.2 * width});
+        expect(spy.callCount).to.eql(4);
+        expect(spy.calledWith(20)).to.be.true;
+
+        // click end
+        const start = instance.element.querySelector('.k-box span');
+        start.click();
+        expect(spy.callCount).to.eql(5);
+        expect(spy.calledWith(0)).to.be.true;
+
+        // spinner
+        const input = instance.element.querySelector('input');
+        input.value = 1;
+        dispatchEvent(input, 'input');
+        expect(spy.callCount).to.eql(6);
+        expect(spy.calledWith(1)).to.be.true;
+        const btn = instance.element.querySelector('.k-btn');
+        btn.click();
+        expect(spy.callCount).to.eql(7);
+        expect(spy.calledWith(0)).to.be.true;
+    });
 });
