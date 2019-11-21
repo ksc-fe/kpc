@@ -211,6 +211,22 @@ export default class DropdownMenu extends Intact {
         return this.position();
     }
 
+    /**
+     * let user mouse down and move outside and don't hide the dropdown, #392
+     * the order of events is mousedown -> mouseup -> click
+     */
+    _onMouseDown() {
+        this._mousedown = true;
+        document.addEventListener('mouseup', this._onMouseUp);
+    }
+
+    _onMouseUp() {
+        this._mousedownTimer = setTimeout(() => {
+            this._mousedown = false;
+        });
+        document.removeEventListener('mouseup', this._onMouseUp);
+    }
+
     _addDocumentEvents() {
         const parent = this.parent;
         if (!parent) {
@@ -225,6 +241,11 @@ export default class DropdownMenu extends Intact {
             // will not hide when click the other component. #221
             if (this.__event) this.__event._dropdown = this;
 
+            // we use mousedown event instead of click event,
+            // so that we can press down mouse and move it to outside 
+            // and don't hide the dropdown
+            // emm... we can't use this way, because it can't hide menu when click trigger element
+            // use mousedown -> mouseup and _mousedown flag instead
             document.addEventListener('click', this._onDocumentClick, true);
             document.addEventListener('click', this._documentClickHandler);
         } else {
@@ -255,6 +276,9 @@ export default class DropdownMenu extends Intact {
 
         const target = e.target;
         const menu = _menu.element;
+
+        // if we mousedown on the menu, ignore this click
+        if (this._mousedown) return;
 
         // is a dropdown menu
         if (menu === target || menu.contains(target)) return;
@@ -416,13 +440,18 @@ export default class DropdownMenu extends Intact {
     _isClickSubMenu(target, subMenus) {
         let ret = false;
         for (let i = 0; i < subMenus.length; i++) {
-            const subMenu = subMenus[i].refs.menu;
+            const subDropdownMenu = subMenus[i];
+            const subMenu = subDropdownMenu.refs.menu;
             if (subMenu) {
-                if (target === subMenu.element || subMenu.element.contains(target)) {
+                if (
+                    target === subMenu.element || 
+                    subMenu.element.contains(target) || 
+                    subDropdownMenu._mousedown
+                ) {
                     ret = true;
                     break;
                 } else {
-                    ret = this._isClickSubMenu(target, subMenus[i].subDropdowns);
+                    ret = this._isClickSubMenu(target, subDropdownMenu.subDropdowns);
                     if (ret) break;
                 }
             }
@@ -437,6 +466,12 @@ export default class DropdownMenu extends Intact {
             subDropdowns.splice(subDropdowns.indexOf(this), 1);
         } 
         clearTimeout(this.timer);
+
+        // clear _mousedown flag
+        clearTimeout(this._mousedownTimer);
+        this._mousedown = false;
+        document.removeEventListener('mouseup', this._onMouseUp);
+
         // clearTimeout(this.documentTimer);
         this._removeDocumentEvents();
     }

@@ -76,3 +76,13 @@
 "<div class=\"k-item\"><span>click</span><i class=\"ion-ios-arrow-right\"></i></div><!--placeholder--><div class=\"k-item k-hover\">item 1</div>"
 ```
 
+#### `click mouse and move outside should not hide menu`
+
+```
+"<div class=\"k-item\">item 1</div><div class=\"k-item\">item 2</div><div class=\"k-item\">item 3</div><div class=\"k-item\"><span>hover</span><i class=\"ion-ios-arrow-right\"></i></div><!--placeholder--><div class=\"k-item\"><span>click</span><i class=\"ion-ios-arrow-right\"></i></div><!--placeholder--><div class=\"k-item\">item 3</div>"
+```
+
+```
+"<div class=\"k-item\"><span>click</span><i class=\"ion-ios-arrow-right\"></i></div><!--placeholder--><div class=\"k-item\">item 1</div>"
+```
+

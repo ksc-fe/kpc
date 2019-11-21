@@ -149,4 +149,31 @@ describe('Dropdown', () => {
         dispatchEvent(area, 'contextmenu', {pageX: 11, pageY: 11});
         expect(dropdown.style.left).to.eql('12px');
     });
+
+    it('click mouse and move outside should not hide menu', async () => {
+        instance = mount(NestedDemo);
+
+        instance.element.firstChild.click();
+        const dropdown = getElement('.k-dropdown-menu');
+        dispatchEvent(dropdown, 'mousedown');
+        dispatchEvent(document, 'mouseup');
+        dispatchEvent(document, 'click');
+        await wait(500);
+        expect(getElement('.k-dropdown-menu').innerHTML).to.matchSnapshot();
+
+        // on submenu
+        const [,,,hoverItem, clickItem] = dropdown.querySelectorAll('.k-item');
+        clickItem.click();
+        const clickSubDropdown = getElement('.k-dropdown-menu');
+        dispatchEvent(clickSubDropdown, 'mousedown');
+        dispatchEvent(document, 'mouseup');
+        dispatchEvent(document, 'click');
+        await wait(500);
+        expect(getElement('.k-dropdown-menu').innerHTML).to.matchSnapshot();
+
+        // should hide on click document directly
+        dispatchEvent(document, 'click');
+        await wait(500);
+        expect(getElement('.k-dropdown-menu')).to.be.undefined;
+    });
 });

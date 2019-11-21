@@ -20,6 +20,7 @@ if (trigger === 'hover') {
         a:delayDestroy={{ false }}
         a:enterStart={{ self._onShow }}
         ev-a:leaveStart={{ self._removeDocumentEvents }}
+        ev-mousedown={{ self._onMouseDown }}
     >
         <template>
             <b:children>{{ children }}</b:children>

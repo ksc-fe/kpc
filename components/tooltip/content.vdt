@@ -30,6 +30,7 @@ const classNameObj = {
         a:delayDestroy={{ false }}
         a:enterStart={{ self._onShow }}
         ev-a:leaveStart={{ self._removeDocumentEvents }}
+        ev-mousedown={{ self._onMouseDown }}
     >
         <i v-if={{ showArrow }}
             class={{ {
