@@ -5,6 +5,8 @@
         min-width 400px
         max-width 700px
         position relative
+        text-align left
+        border 1px solid $border-color
         > .k-close
             position absolute
             right 0
@@ -14,6 +16,7 @@
             > .k-container
                 color lookup('$' + type + '-color')
                 background palette(lookup('$' + type + '-color'), -4)
+                border-color @color
                 > .k-close
                     color lookup('$' + type + '-color')
                     &:hover
