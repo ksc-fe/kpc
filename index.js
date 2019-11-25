@@ -1,5 +1,5 @@
 /*!
- * kpc v1.2.0
+ * kpc v1.2.1
  *
  * Copyright (c) Kingsoft Cloud
  * Released under the MIT License
@@ -23,6 +23,7 @@ import {Cascader} from './components/cascader';
 import {Checkbox} from './components/checkbox';
 import {Code} from './components/code';
 import {Collapse, CollapseItem} from './components/collapse';
+import {Colorpicker} from './components/colorpicker';
 import {Datepicker} from './components/datepicker';
 import {Dialog} from './components/dialog';
 import {Drawer} from './components/drawer';
@@ -80,6 +81,7 @@ export {
     Col,
     Collapse,
     CollapseItem,
+    Colorpicker,
     Datepicker,
     Dialog,
     Drawer,
@@ -151,6 +153,7 @@ const components = {
     Col,
     Collapse,
     CollapseItem,
+    Colorpicker,
     Datepicker,
     Dialog,
     Drawer,
@@ -202,7 +205,7 @@ const components = {
     Upload
 };
 
-export const version = '1.2.0';
+export const version = '1.2.1';
 
 /* generate end */
 
