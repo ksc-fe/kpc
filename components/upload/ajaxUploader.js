@@ -61,6 +61,7 @@ function getError(options, xhr) {
     err.status = xhr.status;
     err.method = 'post';
     err.url = options.action;
+    err.response = getBody(xhr);
 
     return err;
 }
