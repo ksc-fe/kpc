@@ -341,7 +341,9 @@ export default class Table extends Intact {
         let instance = this;
         if (data) {
             instance = new Table({...this.get(), data});
+            instance._initMountedQueue();
             instance.init(null, this.vNode);
+            instance._triggerMountedQueue();
         }
 
         // in webpack 1, it doesn't support dynamic import
