@@ -21,15 +21,7 @@ sidebar: doc
 13. `Fix` 修复`Spinner`在`Input`存在`border-radius`下的样式问题 [#384](https://github.com/ksc-fe/kpc/issues/384)
 14. `Fix` 修复kpc组件存在过渡动画时，如果该元素处于隐藏状态，元素不能正确添加/删除的问题 [#362](https://github.com/ksc-fe/kpc/issues/362)
 
-### Vue
-
-1. `Fix` 修复父元素阻止了`click`事件的冒泡，kpc组件的`click`便无法触发的问题 [#353](https://github.com/ksc-fe/kpc/issues/353)
-
-### React
-
-1. `Fix` 修复父元素阻止了`click`事件的冒泡，kpc组件的`click`便无法触发的问题 [#353](https://github.com/ksc-fe/kpc/issues/353)
-
-### Angular
+### Vue / React / Angular
 
 1. `Fix` 修复父元素阻止了`click`事件的冒泡，kpc组件的`click`便无法触发的问题 [#353](https://github.com/ksc-fe/kpc/issues/353)
 
