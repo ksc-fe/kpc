@@ -4,6 +4,36 @@ order: 99
 sidebar: doc
 ---
 
+## v1.2.1
+
+1. `Add` `Select`支持`position`属性来定义弹出菜单的位置 [#383](https://github.com/ksc-fe/kpc/issues/383) 
+2. `Add` `Spinner`支持格式化`value`，来展示前后缀，如：展示单位 [#385](https://github.com/ksc-fe/kpc/issues/385)
+3. `Add` `Slider`支持`step`设为`0`，来取消`step`的步长限制 [#388](https://github.com/ksc-fe/kpc/issues/388)
+4. `Add` `Input`支持`frozenOnInput`属性，用来在输入过程中冻结`value`值的变化，适用于需要纠正输入的情况，当输入完毕才更新`value` [#389](https://github.com/ksc-fe/kpc/issues/389)
+5. `Add` 新增拾色器组件`Colorpicker` [#386](https://github.com/ksc-fe/kpc/issues/386)
+6. `Add` `Datepicker`选择日期范围时，支持选择同一天 [#390](https://github.com/ksc-fe/kpc/issues/390)
+7. `Add` `Timepicker`在范围选择并且设置了步长的情况下，始终将最大值（默认：23:59:59）作为最后一项 [#391](https://github.com/ksc-fe/kpc/issues/391)
+8. `Add` `Slider`新增`change`事件，该事件不会在拖动的过程中触发，而是拖动结束后触发 [#387](https://github.com/ksc-fe/kpc/issues/387)
+9. `Add` `Dropdown/Tooltip`弹出组件，当鼠标点击弹层内容，然后拖动到弹层之外，不会关闭弹层了，这样可以在弹层之中展示`Slider`等拖动组件时，不会拖动调整取值时意外关闭弹层 [#392](https://github.com/ksc-fe/kpc/issues/392)
+10. `Add` `Upload`在`Error`对象中新增`response`字段，用来获取接口的报错信息 [#393](https://github.com/ksc-fe/kpc/issues/393)
+11. `Change` `Message` `ksyun`主题样式调整 [#380](https://github.com/ksc-fe/kpc/issues/380)
+12. `Fix` 修复`Slider`在开始值和结束值相等的情况下，滑块会处于中心位置的问题 [#377](https://github.com/ksc-fe/kpc/issues/377)
+13. `Fix` 修复`Spinner`在`Input`存在`border-radius`下的样式问题 [#384](https://github.com/ksc-fe/kpc/issues/384)
+14. `Fix` 修复kpc组件存在过渡动画时，如果该元素处于隐藏状态，元素不能正确添加/删除的问题 [#362](https://github.com/ksc-fe/kpc/issues/362)
+
+### Vue
+
+1. `Fix` 修复父元素阻止了`click`事件的冒泡，kpc组件的`click`便无法触发的问题 [#353](https://github.com/ksc-fe/kpc/issues/353)
+
+### React
+
+1. `Fix` 修复父元素阻止了`click`事件的冒泡，kpc组件的`click`便无法触发的问题 [#353](https://github.com/ksc-fe/kpc/issues/353)
+
+### Angular
+
+1. `Fix` 修复父元素阻止了`click`事件的冒泡，kpc组件的`click`便无法触发的问题 [#353](https://github.com/ksc-fe/kpc/issues/353)
+
+
 ## v1.2.0
 
 1. #### `Add` 支持`Angular`框架
