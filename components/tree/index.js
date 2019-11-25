@@ -270,10 +270,12 @@ export default class Tree extends Intact {
         this._clientX = clientX;
         this._clientY = clientY;
 
-        this._handleDragOver(node, event);
+        // when use debounce, the currentTarget will be missing when disable delegate
+        // so we pass it as parameter
+        this._handleDragOver(node, event, event.currentTarget);
     }
 
-    _handleDragOver(node, event) {
+    _handleDragOver(node, event, currentTarget) {
         const draggingNode = this.get('_draggingNode');
         // maybe it is end
         if (!draggingNode) return;
@@ -286,7 +288,7 @@ export default class Tree extends Intact {
         } while (parentNode = parentNode.parent)
 
         const {_node, _mode} = this;
-        const mode = this._calcInsertMode(event);
+        const mode = this._calcInsertMode(event, currentTarget);
 
         if (_mode !== mode || _node !== node) {
             this._mode = mode;
@@ -306,8 +308,8 @@ export default class Tree extends Intact {
         }
     }
 
-    _calcInsertMode(event) {
-        const {clientY, currentTarget} = event; 
+    _calcInsertMode(event, currentTarget) {
+        const {clientY} = event; 
         const {top, bottom, height} = currentTarget.getBoundingClientRect();
         const des = height * RANGE;
 
