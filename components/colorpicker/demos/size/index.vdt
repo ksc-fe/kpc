@@ -1,0 +1,8 @@
+import Colorpicker from 'kpc/components/colorpicker';
+
+<div>
+    <Colorpicker v-for={{ ['large', 'default', 'small', 'mini'] }}
+        size={{ value }}
+        value="#36acef"
+    />
+</div>

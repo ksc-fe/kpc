@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>使用<code>validate</code>属性，指定输入验证规则，改值可以是函数/正则/正则字符串。验证失败，输入框会添加className: <code>k-invalid</code>，用以改变样式。我们还可以绑定<code>error</code>事件弹出更多错误提示。</p>\n",
-    "index": 87,
+    "index": 97,
     "highlighted": [
         {
             "language": "vdt",

@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>使用<code>CardColumn</code>组件将<code>Card</code>分成若干栏，每栏可以通过<code>width</code>（需要指定单位）单独定义宽度，未定义的栏平分剩余宽度；另外你可以通过<code>center</code>属性来指定该栏内容是否居中展示</p>\n",
-    "index": 191,
+    "index": 179,
     "highlighted": [
         {
             "language": "vdt",

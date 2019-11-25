@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>当内置的验证规则不能满足需求时，我们还可以自定义验证规则。有如下两种方式添加规则：</p>\n<ol>\n<li>通过<code>Form.addMethod()</code>静态方法添加全局验证规则，由于是全局的，我们可以在任意地方的\n<code>FormItem</code>中使用该规则。使用方法见API说明</li>\n<li>通过<code>FormItem</code>的<code>rules</code>属性，定义局部规则，该规则只对该<code>FormItem</code>有效</li>\n</ol>\n<p>本例中，我们添加一条全局规则<code>letter</code>用来验证只能输入字母，同时添加一条局部规则<code>unique</code>来验证所有输入必须不同</p>\n<blockquote>\n<p>验证方法中<code>param</code>，即为使用该规则时传入的参数，例如本例中的<code>letter: true</code>，<code>true</code>会作为<code>param</code>参数传给验证方法。当然我们还可以指定任意值，只要不是<code>false</code>就行，因为<code>false</code>代表不验证</p>\n</blockquote>\n",
-    "index": 90,
+    "index": 100,
     "highlighted": [
         {
             "language": "vdt",

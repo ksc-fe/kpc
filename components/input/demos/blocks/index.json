@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>使用<code>append</code>，<code>prepend</code>，<code>suffix</code>，<code>prefix</code>扩展点，可以往组件追加内容</p>\n",
-    "index": 106,
+    "index": 103,
     "highlighted": [
         {
             "language": "vdt",

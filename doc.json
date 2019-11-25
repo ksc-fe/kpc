@@ -136,6 +136,40 @@
             ]
         },
         {
+            "title": "布局",
+            "category": "组件",
+            "order": 2,
+            "sidebar": "doc",
+            "path": "components/layout/index.md",
+            "children": [
+                {
+                    "title": "属性",
+                    "path": "#header-%E5%B1%9E%E6%80%A7",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                    "text": "属性",
+                    "children": [
+                        {
+                            "title": "Header",
+                            "path": "#header-Header",
+                            "level": 2,
+                            "content": "<h2 id='header-Header'>Header</h2>",
+                            "text": "Header",
+                            "children": []
+                        },
+                        {
+                            "title": "Aside",
+                            "path": "#header-Aside",
+                            "level": 2,
+                            "content": "<h2 id='header-Aside'>Aside</h2>",
+                            "text": "Aside",
+                            "children": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "title": "字体图标",
             "category": "组件",
             "order": 2,
@@ -214,40 +248,6 @@
                             "level": 2,
                             "content": "<h2 id='header-MenuItem'>MenuItem</h2>",
                             "text": "MenuItem",
-                            "children": []
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "title": "布局",
-            "category": "组件",
-            "order": 2,
-            "sidebar": "doc",
-            "path": "components/layout/index.md",
-            "children": [
-                {
-                    "title": "属性",
-                    "path": "#header-%E5%B1%9E%E6%80%A7",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                    "text": "属性",
-                    "children": [
-                        {
-                            "title": "Header",
-                            "path": "#header-Header",
-                            "level": 2,
-                            "content": "<h2 id='header-Header'>Header</h2>",
-                            "text": "Header",
-                            "children": []
-                        },
-                        {
-                            "title": "Aside",
-                            "path": "#header-Aside",
-                            "level": 2,
-                            "content": "<h2 id='header-Aside'>Aside</h2>",
-                            "text": "Aside",
                             "children": []
                         }
                     ]
@@ -356,23 +356,6 @@
             ]
         },
         {
-            "title": "单选框",
-            "category": "组件",
-            "order": 3,
-            "sidebar": "doc",
-            "path": "components/radio/index.md",
-            "children": [
-                {
-                    "title": "属性",
-                    "path": "#header-%E5%B1%9E%E6%80%A7",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                    "text": "属性",
-                    "children": []
-                }
-            ]
-        },
-        {
             "title": "滚动选择框",
             "category": "组件",
             "order": 3,
@@ -393,6 +376,23 @@
                     "level": 1,
                     "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
                     "text": "扩展点",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "title": "单选框",
+            "category": "组件",
+            "order": 3,
+            "sidebar": "doc",
+            "path": "components/radio/index.md",
+            "children": [
+                {
+                    "title": "属性",
+                    "path": "#header-%E5%B1%9E%E6%80%A7",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                    "text": "属性",
                     "children": []
                 }
             ]
@@ -541,6 +541,23 @@
             ]
         },
         {
+            "title": "拾色器",
+            "category": "组件",
+            "order": 7,
+            "sidebar": "doc",
+            "path": "components/colorpicker/index.md",
+            "children": [
+                {
+                    "title": "属性",
+                    "path": "#header-%E5%B1%9E%E6%80%A7",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                    "text": "属性",
+                    "children": []
+                }
+            ]
+        },
+        {
             "title": "日期选择",
             "category": "组件",
             "order": 7,
@@ -574,11 +591,11 @@
             ]
         },
         {
-            "title": "加载中",
+            "title": "滑块",
             "category": "组件",
             "order": 8,
             "sidebar": "doc",
-            "path": "components/spin/index.md",
+            "path": "components/slider/index.md",
             "children": [
                 {
                     "title": "属性",
@@ -595,15 +612,23 @@
                     "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
                     "text": "扩展点",
                     "children": []
+                },
+                {
+                    "title": "事件",
+                    "path": "#header-%E4%BA%8B%E4%BB%B6",
+                    "level": 1,
+                    "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
+                    "text": "事件",
+                    "children": []
                 }
             ]
         },
         {
-            "title": "滑块",
+            "title": "加载中",
             "category": "组件",
             "order": 8,
             "sidebar": "doc",
-            "path": "components/slider/index.md",
+            "path": "components/spin/index.md",
             "children": [
                 {
                     "title": "属性",
@@ -1411,6 +1436,64 @@
             ]
         },
         {
+            "title": "可编辑文本",
+            "category": "组件",
+            "order": 99,
+            "sidebar": "doc",
+            "path": "components/editable/index.md",
+            "children": [
+                {
+                    "title": "属性",
+                    "path": "#header-%E5%B1%9E%E6%80%A7",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                    "text": "属性",
+                    "children": []
+                },
+                {
+                    "title": "事件",
+                    "path": "#header-%E4%BA%8B%E4%BB%B6",
+                    "level": 1,
+                    "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
+                    "text": "事件",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "title": "穿梭框",
+            "category": "组件",
+            "order": 99,
+            "sidebar": "doc",
+            "path": "components/transfer/index.md",
+            "children": [
+                {
+                    "title": "属性",
+                    "path": "#header-%E5%B1%9E%E6%80%A7",
+                    "level": 1,
+                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
+                    "text": "属性",
+                    "children": []
+                },
+                {
+                    "title": "扩展点",
+                    "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
+                    "level": 1,
+                    "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
+                    "text": "扩展点",
+                    "children": []
+                },
+                {
+                    "title": "事件",
+                    "path": "#header-%E4%BA%8B%E4%BB%B6",
+                    "level": 1,
+                    "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
+                    "text": "事件",
+                    "children": []
+                }
+            ]
+        },
+        {
             "title": "代码编辑器",
             "category": "组件",
             "order": 99,
@@ -1466,114 +1549,6 @@
                             "children": []
                         }
                     ]
-                }
-            ]
-        },
-        {
-            "title": "树形控件",
-            "category": "组件",
-            "order": 99,
-            "sidebar": "doc",
-            "path": "components/tree/index.md",
-            "children": [
-                {
-                    "title": "属性",
-                    "path": "#header-%E5%B1%9E%E6%80%A7",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                    "text": "属性",
-                    "children": [
-                        {
-                            "title": "实例属性",
-                            "path": "#header-%E5%AE%9E%E4%BE%8B%E5%B1%9E%E6%80%A7",
-                            "level": 2,
-                            "content": "<h2 id='header-%E5%AE%9E%E4%BE%8B%E5%B1%9E%E6%80%A7'>实例属性</h2>",
-                            "text": "实例属性",
-                            "children": []
-                        },
-                        {
-                            "title": "Node对象",
-                            "path": "#header-Node%E5%AF%B9%E8%B1%A1",
-                            "level": 2,
-                            "content": "<h2 id='header-Node%E5%AF%B9%E8%B1%A1'>Node对象</h2>",
-                            "text": "Node对象",
-                            "children": [
-                                {
-                                    "title": "属性",
-                                    "path": "#header-%E5%B1%9E%E6%80%A7",
-                                    "level": 3,
-                                    "content": "<h3 id='header-%E5%B1%9E%E6%80%A7'>属性</h3>",
-                                    "text": "属性",
-                                    "children": []
-                                },
-                                {
-                                    "title": "方法",
-                                    "path": "#header-%E6%96%B9%E6%B3%95",
-                                    "level": 3,
-                                    "content": "<h3 id='header-%E6%96%B9%E6%B3%95'>方法</h3>",
-                                    "text": "方法",
-                                    "children": []
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "title": "扩展点",
-                    "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
-                    "level": 1,
-                    "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
-                    "text": "扩展点",
-                    "children": []
-                },
-                {
-                    "title": "方法",
-                    "path": "#header-%E6%96%B9%E6%B3%95",
-                    "level": 1,
-                    "content": "<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>",
-                    "text": "方法",
-                    "children": []
-                },
-                {
-                    "title": "事件",
-                    "path": "#header-%E4%BA%8B%E4%BB%B6",
-                    "level": 1,
-                    "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
-                    "text": "事件",
-                    "children": []
-                }
-            ]
-        },
-        {
-            "title": "穿梭框",
-            "category": "组件",
-            "order": 99,
-            "sidebar": "doc",
-            "path": "components/transfer/index.md",
-            "children": [
-                {
-                    "title": "属性",
-                    "path": "#header-%E5%B1%9E%E6%80%A7",
-                    "level": 1,
-                    "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
-                    "text": "属性",
-                    "children": []
-                },
-                {
-                    "title": "扩展点",
-                    "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
-                    "level": 1,
-                    "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
-                    "text": "扩展点",
-                    "children": []
-                },
-                {
-                    "title": "事件",
-                    "path": "#header-%E4%BA%8B%E4%BB%B6",
-                    "level": 1,
-                    "content": "<h1 id='header-%E4%BA%8B%E4%BB%B6'>事件</h1>",
-                    "text": "事件",
-                    "children": []
                 }
             ]
         },
@@ -1654,11 +1629,11 @@
             ]
         },
         {
-            "title": "可编辑文本",
+            "title": "树形控件",
             "category": "组件",
             "order": 99,
             "sidebar": "doc",
-            "path": "components/editable/index.md",
+            "path": "components/tree/index.md",
             "children": [
                 {
                     "title": "属性",
@@ -1666,6 +1641,56 @@
                     "level": 1,
                     "content": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1>",
                     "text": "属性",
+                    "children": [
+                        {
+                            "title": "实例属性",
+                            "path": "#header-%E5%AE%9E%E4%BE%8B%E5%B1%9E%E6%80%A7",
+                            "level": 2,
+                            "content": "<h2 id='header-%E5%AE%9E%E4%BE%8B%E5%B1%9E%E6%80%A7'>实例属性</h2>",
+                            "text": "实例属性",
+                            "children": []
+                        },
+                        {
+                            "title": "Node对象",
+                            "path": "#header-Node%E5%AF%B9%E8%B1%A1",
+                            "level": 2,
+                            "content": "<h2 id='header-Node%E5%AF%B9%E8%B1%A1'>Node对象</h2>",
+                            "text": "Node对象",
+                            "children": [
+                                {
+                                    "title": "属性",
+                                    "path": "#header-%E5%B1%9E%E6%80%A7",
+                                    "level": 3,
+                                    "content": "<h3 id='header-%E5%B1%9E%E6%80%A7'>属性</h3>",
+                                    "text": "属性",
+                                    "children": []
+                                },
+                                {
+                                    "title": "方法",
+                                    "path": "#header-%E6%96%B9%E6%B3%95",
+                                    "level": 3,
+                                    "content": "<h3 id='header-%E6%96%B9%E6%B3%95'>方法</h3>",
+                                    "text": "方法",
+                                    "children": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "扩展点",
+                    "path": "#header-%E6%89%A9%E5%B1%95%E7%82%B9",
+                    "level": 1,
+                    "content": "<h1 id='header-%E6%89%A9%E5%B1%95%E7%82%B9'>扩展点</h1>",
+                    "text": "扩展点",
+                    "children": []
+                },
+                {
+                    "title": "方法",
+                    "path": "#header-%E6%96%B9%E6%B3%95",
+                    "level": 1,
+                    "content": "<h1 id='header-%E6%96%B9%E6%B3%95'>方法</h1>",
+                    "text": "方法",
                     "children": []
                 },
                 {
@@ -2264,6 +2289,23 @@
             "children": [
                 {
                     "children": [
+                        {
+                            "title": "v1.2.1",
+                            "path": "#header-v1.2.1",
+                            "level": 2,
+                            "content": "<h2 id='header-v1.2.1'>v1.2.1</h2>",
+                            "text": "v1.2.1",
+                            "children": [
+                                {
+                                    "title": "Vue / React / Angular",
+                                    "path": "#header-Vue%20%2F%20React%20%2F%20Angular",
+                                    "level": 3,
+                                    "content": "<h3 id='header-Vue%20%2F%20React%20%2F%20Angular'>Vue / React / Angular</h3>",
+                                    "text": "Vue / React / Angular",
+                                    "children": []
+                                }
+                            ]
+                        },
                         {
                             "title": "v1.2.0",
                             "path": "#header-v1.2.0",

@@ -1,0 +1,8 @@
+import Colorpicker from 'kpc/components/colorpicker';
+
+<div>
+    <Colorpicker v-model="color" />
+    <span style={{ {color: self.get('color'), marginLeft: '10px', verticalAlign: 'middle'} }}>
+        Hello, Colorpicker!
+    </span>
+</div>

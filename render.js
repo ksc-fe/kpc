@@ -39,7 +39,7 @@ module.exports =
 /******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
 /******/ 		// "0" is the signal for "already loaded"
 /******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("./chunk/" + {"0":"7a40ff6bb1f0851c0976","1":"50be65a6981b8cf95ff2","2":"19e43d81a4418c5a053e","3":"b2b966be00e90d383459","4":"03edcd5070966f7c2382"}[chunkId] + ".js");
+/******/ 			var chunk = require("./chunk/" + {"0":"d78ee45e72b5cba34424","1":"ea35831d84902b02db53","2":"3f7db2af9e9d4b8b1839","3":"98106255ca56ef23c4a1","4":"bfb08a5fc621d0bb8fa0"}[chunkId] + ".js");
 /******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				modules[moduleId] = moreModules[moduleId];
@@ -242,7 +242,7 @@ exports.App = exports.default = App;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1573185489683
+      // 1574671141251
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -397,7 +397,7 @@ exports.Spin = exports.default = Spin;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1573185490540
+      // 1574671142483
       var cssReload = require("!../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1574,7 +1574,7 @@ exports.default = _default;
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1573185491920
+      // 1574671144138
       var cssReload = require("!../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1958,6 +1958,13 @@ module.exports = require("regenerator-runtime/runtime");
 /***/ (function(module, exports) {
 
 module.exports = require("resize-observer-polyfill");
+
+/***/ }),
+
+/***/ "tinycolor2":
+/***/ (function(module, exports) {
+
+module.exports = require("tinycolor2");
 
 /***/ })
 

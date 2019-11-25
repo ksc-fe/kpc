@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>侧边栏布局，导航条和侧边栏为左右关系，通常需要展开收起侧边栏，给<code>Aside</code>添加<code>collapse</code>属性即可控制侧边栏的展开收起状态。组件会自动给侧边栏下的菜单组件<code>Menu</code>应用相同的<code>collapse</code>属性</p>\n",
-    "index": 105,
+    "index": 102,
     "highlighted": [
         {
             "language": "vdt",

@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>本例展示如何利用<code>Transfer</code>自定义更复杂的应用场景，本例中我们通过<code>list</code>扩展点定义整个列表，并且根据扩展点参数区别左右列表，定义不同的内容；然后通过<code>enableAdd</code>和<code>enableRemove</code>定义箭头按钮的可用状态；最后通过<code>add</code>和<code>remove</code>事件定义左右穿梭的逻辑</p>\n",
-    "index": 205,
+    "index": 192,
     "highlighted": [
         {
             "language": "vdt",

@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>当指定了<code>step</code>属性时，组件将展示成<code>Select</code>样式，只能选择固定的几个时间点。通过<code>min</code>和<code>max</code>限定选择时间范围（默认：00:00:00 ~ 23:59:59），<code>step</code>指定步长，它们值类型都为时间字符串</p>\n<blockquote>\n<p><code>@since v1.1.0</code> <code>step</code>不能隐藏“秒”，可以通过<code>showFomart</code>或<code>format</code>来格式化时间字符串</p>\n</blockquote>\n",
-    "index": 157,
+    "index": 154,
     "highlighted": [
         {
             "language": "vdt",
