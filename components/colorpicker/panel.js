@@ -86,6 +86,8 @@ export default class ColorPanel extends Intact {
     _onChangeHue(c, v) {
         const hsl = this._hsl;
         hsl.h = v;
+        // we alos need update the hue of hsv, #395
+        this._hsv.h = v;
         const value = tinycolor(hsl).toString(this._format);
         // maybe r === g === b, the value is the same, even if we change the hue
         if (this.get('value') === value) {
