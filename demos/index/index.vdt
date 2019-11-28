@@ -11,7 +11,7 @@ const list = [
     'scrollSelect', 'steps', 'tabs',
     'editable', 'test', 'transfer',
     'demo', 'drawer', 'menu', 'collapse',
-    'split', 'code',
+    'split', 'code', 'diagram',
 ];
 
 <ul>

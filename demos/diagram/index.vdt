@@ -1,0 +1,27 @@
+import {Diagram, DRectangle, DCircle, DLine, DImage, DText} from 'kpc/components/diagram';
+import image from '../../site/src/imgs/logo.png';
+
+<div>
+    <Diagram>
+        <DLine from="1" to="2" type="sharp" />
+        <DRectangle html="<h1>hello</h1>" key="1" left="20" top="20" borderStyle="dashed" />
+        <DRectangle rounded key="2" left="20" top="120" />
+        <DCircle key="3" left="200" top="100" />
+        <DLine from="1" to="3" type="rounded" pattern="dashed" html="备份" />
+        <DLine from="3" to="1" type="curved" pattern="dotted" />
+        <DLine startPoint={{ [280, 140] }} endPoint={{ [380, 140] }} />
+        <DImage src={{ image }} />
+    </Diagram>
+    <Diagram>
+        <DRectangle key="1" left="300" top="20" borderStyle="dotted" width="200" height="150">
+            <DImage left="60" top="10" src={{ image }} />
+            <DText html="<span style='font-size: 14px;'>Application</span>" width="200" top="100" />
+            <DText html="<span style='color: #666;'>QPS: 0</span>" width="200" top="120" />
+        </DRectangle>
+        <DRectangle key="2" left="120" top="230" borderStyle="dotted" width="200" height="150" />
+        <DRectangle key="3" left="480" top="230" borderStyle="dotted" width="200" height="150" />
+        <DLine from="1" to="2" pattern="dashed" type="sharp" html="读写请求" />
+        <DLine from="1" to="3" pattern="dashed" type="sharp" html="只读请求" />
+        <DLine from="2" to="3" pattern="dotted" html="同步" />
+    </Diagram>
+</div>
