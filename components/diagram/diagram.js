@@ -4,8 +4,8 @@ import './index.styl';
 import mx from './mxgraph';
 import {createGraph} from './graph';
 import {mapChildren} from '../utils';
-import Shape from './shapes/shape';
-import Line from './shapes/line';
+import {DShape} from './shapes/shape';
+import {DLine} from './shapes/line';
 
 const {mxGraph, mxGraphModel} = mx;
 
@@ -26,29 +26,42 @@ export default class Diagram extends Intact {
         try {
             // we render lines at end
             const lines = [];
-            const render = (children, parent) => {
-                mapChildren(children, vNode => {
+            const render = (parentInstance, parent) => {
+                const shapes = [];
+                const elements = [];
+                mapChildren(parentInstance.get('children'), vNode => {
                     const props = vNode.props;
                     const Ctor = vNode.tag;
                     const instance = new Ctor(props); 
-                    if (Ctor.prototype instanceof Shape) {
-                        if (Ctor !== Line) {
+                    if (Ctor.prototype instanceof DShape) {
+                        if (Ctor !== DLine) {
                             const key = props.key;
-                            if (vertexes.get(key)) {
-                                Intact.utils.error(new Error(`The key: [${key}] of [D${Ctor.name}] is duplicate.`))  
-                            } else {
-                                vertexes.set(key, instance);
+                            if (key != null) {
+                                if (vertexes.get(key)) {
+                                    Intact.utils.error(new Error(`The key: [${key}] of [D${Ctor.name}] is duplicate.`))  
+                                } else {
+                                    vertexes.set(key, instance);
+                                }
                             }
-                            instance.render(graph, this, parent);
+                            shapes.push(() => {
+                                instance.render(graph, this, parent);
+                            });
                             // if there are children, group them
-                            render(instance.get('children'), instance.cell);
+                            render(instance, instance.cell);
                         } else {
                             lines.push(instance);
                         }
+                    } else {
+                        elements.push(vNode);
                     }
                 });
+                if (parent) {
+                    parentInstance.elements = elements;
+                    parentInstance.init();
+                }
+                shapes.forEach(shape => shape());
             };
-            render(this.get('children'), null);
+            render(this, null);
             lines.forEach(instance => instance.render(graph, this));
         } finally {
             model.endUpdate();

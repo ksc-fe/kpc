@@ -6,6 +6,7 @@ import './shape/mxShape';
 import './shape/mxRectangleShape';
 import './shape/mxEllipse';
 import './view/mxGraph';
+import './view/mxCellEditor';
 import './handler/mxConnectionHandler';
 import './handler/mxVertexHandler';
 import './handler/mxConstraintHandler';

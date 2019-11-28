@@ -1,13 +1,15 @@
 import Intact from 'intact';
 import {noop} from '../../utils';
 
-export default class Shape extends Intact {
-    static template = noop;
+export class DShape extends Intact {
+    static template = function(data, Vdt) {
+        return Vdt.miss.h('div', null, data.elements);
+    };
 
     static propTypes = {
-        key: {
-            required: true,
-        },
+        // key: {
+            // required: true,
+        // },
         borderStyle: ['solid', 'dashed', 'dotted'],
     }; 
 

@@ -1,9 +1,9 @@
-import Shape from './shape';
+import {DShape} from './shape';
 import mx from '../mxgraph';
 
 const {mxCell, mxGeometry} = mx;
 
-export default class Circle extends Shape {
+export class DCircle extends DShape {
     defaults() {
         return {
             ...super.defaults(),

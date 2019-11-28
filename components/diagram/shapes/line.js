@@ -1,9 +1,9 @@
-import Shape from './shape';
+import {DShape} from './shape';
 import mx from '../mxgraph';
 
 const {mxCell, mxGeometry, mxPoint} = mx;
 
-export default class Line extends Shape {
+export class DLine extends DShape {
     static propTypes = {
         type: ['rounded', 'sharp', 'curved', 'straight'],
         pattern: ['solid', 'dashed', 'dotted'],

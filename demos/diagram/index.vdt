@@ -1,4 +1,5 @@
 import {Diagram, DRectangle, DCircle, DLine, DImage, DText} from 'kpc/components/diagram';
+import {Button} from 'kpc/components/button';
 import image from '../../site/src/imgs/logo.png';
 
 <div>
@@ -18,7 +19,9 @@ import image from '../../site/src/imgs/logo.png';
             <DText html="<span style='font-size: 14px;'>Application</span>" width="200" top="100" />
             <DText html="<span style='color: #666;'>QPS: 0</span>" width="200" top="120" />
         </DRectangle>
-        <DRectangle key="2" left="120" top="230" borderStyle="dotted" width="200" height="150" />
+        <DRectangle key="2" left="120" top="230" borderStyle="dotted" width="200" height="150">
+            <Button>test</Button>
+        </DRectangle>
         <DRectangle key="3" left="480" top="230" borderStyle="dotted" width="200" height="150" />
         <DLine from="1" to="2" pattern="dashed" type="sharp" html="读写请求" />
         <DLine from="1" to="3" pattern="dashed" type="sharp" html="只读请求" />

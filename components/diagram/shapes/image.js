@@ -1,9 +1,9 @@
-import Shape from './shape';
+import {DShape} from './shape';
 import mx from '../mxgraph';
 
 const {mxCell, mxGeometry} = mx;
 
-export default class Image extends Shape {
+export class DImage extends DShape {
     defaults() {
         return {
             ...super.defaults(),
