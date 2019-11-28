@@ -1,7 +1,7 @@
 import {DShape} from './shape';
 import mx from '../mxgraph';
 
-const {mxCell, mxGeometry} = mx;
+const {mxGeometry} = mx;
 
 export class DCircle extends DShape {
     defaults() {
@@ -11,11 +11,12 @@ export class DCircle extends DShape {
         };
     }
 
-    _cell() {
-        const {html, width, left, top} = this.get();
-        const geo = new mxGeometry(+left, +top, +width, +width);
-        const stylesheet = 'ellipse;whiteSpace=wrap;html=1;aspect=fixed;';
+    _getGeometry() {
+        const {width, left, top} = this.get();
+        return new mxGeometry(+left, +top, +width, +width);
+    }
 
-        return new mxCell(html, geo, stylesheet);
+    _getStylesheet() {
+        return 'ellipse;whiteSpace=wrap;html=1;aspect=fixed;';
     }
 }

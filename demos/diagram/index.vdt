@@ -1,5 +1,6 @@
 import {Diagram, DRectangle, DCircle, DLine, DImage, DText} from 'kpc/components/diagram';
 import {Button} from 'kpc/components/button';
+import {Input} from 'kpc/components/input';
 import image from '../../site/src/imgs/logo.png';
 
 <div>
@@ -20,9 +21,11 @@ import image from '../../site/src/imgs/logo.png';
             <DText html="<span style='color: #666;'>QPS: 0</span>" width="200" top="120" />
         </DRectangle>
         <DRectangle key="2" left="120" top="230" borderStyle="dotted" width="200" height="150">
-            <Button>test</Button>
+            <Button ev-click={{ () => console.log('click') }}>test</Button>
         </DRectangle>
-        <DRectangle key="3" left="480" top="230" borderStyle="dotted" width="200" height="150" />
+        <DRectangle key="3" left="480" top="230" borderStyle="dotted" width="200" height="150">
+            <Input width="100" />
+        </DRectangle>
         <DLine from="1" to="2" pattern="dashed" type="sharp" html="读写请求" />
         <DLine from="1" to="3" pattern="dashed" type="sharp" html="只读请求" />
         <DLine from="2" to="3" pattern="dotted" html="同步" />

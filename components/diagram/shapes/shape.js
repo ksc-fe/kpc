@@ -1,9 +1,21 @@
 import Intact from 'intact';
-import {noop} from '../../utils';
+import {noop, mapChildren} from '../../utils';
+import mx from '../mxgraph';
+
+const {mxCell, mxGeometry} = mx;
 
 export class DShape extends Intact {
     static template = function(data, Vdt) {
-        return Vdt.miss.h('div', null, data.elements);
+        return Vdt.miss.h(data.constructor.name, null, mapChildren(data.get('children'), vNode => {
+            if (vNode.tag.prototype instanceof DShape) {
+                vNode.props = {
+                    ...vNode.props,
+                    _diagram: data.get('_diagram'),
+                    _parent: data,
+                };
+            }
+            return vNode;
+        }));
     };
 
     static propTypes = {
@@ -18,26 +30,52 @@ export class DShape extends Intact {
             html: undefined,
             left: 0,
             top: 0,
+            width: 0,
+            height: 0,
             border: 'solid',
+
+            _diagram: undefined,
+            _parent: undefined,
         };
     }
 
-    render(graph, diagram, parent) {
-        const cell = this.cell = this._cell();
+    _mount() {
+        this.cell = this._cell();
+        this.get('_diagram').addShape(this);
+    }
+
+    render() {
+        const diagram = this.get('_diagram');
+        const parent = this.get('_parent');
+        const graph = diagram.graph;
+        const cell = this.cell;
 
         cell.vertex = true;
 
         this._setStyle(graph, cell);
 
-        graph.addCell(cell, parent);
+        graph.addCell(cell, parent.cell);
     }
 
     /**
-     * @abstract
      * generate the cell
      */
     _cell() {
-        
+        return new mxCell(this._getValue(), this._getGeometry(), this._getStylesheet());        
+    }
+
+    _getValue() {
+        const {html} = this.get();
+        return html || this.element.firstChild && this.element;
+    }
+
+    _getStylesheet() {
+        return '';
+    }
+
+    _getGeometry() {
+        const {width, height, top, left} = this.get();
+        return new mxGeometry(+left, +top, +width, +height);
     }
 
     _setStyle(graph, cell) {

@@ -1,1 +1,20 @@
-<div class="k-diagram"></div>
+import {mapChildren} from '../utils';
+import {DShape} from './shapes/shape';
+
+const {children} = self.get();
+
+<div class="k-diagram">
+    <div class="k-scheme" key="scheme">
+        {{ mapChildren(children, vNode => {
+            if (vNode.tag.prototype instanceof DShape) {
+                vNode.props = {
+                    ...vNode.props, 
+                    _diagram: self,
+                    _parent: {},
+                };
+            }
+            return vNode;
+        }) }}
+    </div>
+    <div class="k-canvas" key="canvas" ref="canvas"></div>
+</div>

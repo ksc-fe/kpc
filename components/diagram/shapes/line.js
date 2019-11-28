@@ -21,12 +21,13 @@ export class DLine extends DShape {
         };
     }
 
-    _init() {
-
+    _mount() {
+        this.get('_diagram').addLine(this);
     }
 
-    render(graph, diagram) {
-        const {html, from, to, startPoint, endPoint} = this.get();
+    render() {
+        const {html, from, to, startPoint, endPoint, _diagram: diagram} = this.get();
+        const graph = diagram.graph;
         const geo = new mxGeometry(0, 0, 0, 0);
         const stylesheet = 'endArrow=classic;html=1;fontSize=12;';
         const cell = new mxCell(html, geo, stylesheet);
@@ -40,9 +41,9 @@ export class DLine extends DShape {
 
         this._setStyle(graph, cell);
 
-        const vertexes = diagram.vertexes;
-        const source = from ? vertexes.get(from).cell : null;
-        const target = to ? vertexes.get(to).cell : null;
+        const shapes = diagram.shapes;
+        const source = from ? shapes.get(from).cell : null;
+        const target = to ? shapes.get(to).cell : null;
 
         graph.addCell(cell, null, null, source, target); 
     }

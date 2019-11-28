@@ -1,7 +1,4 @@
 import {DShape} from './shape';
-import mx from '../mxgraph';
-
-const {mxCell, mxGeometry} = mx;
 
 export class DImage extends DShape {
     defaults() {
@@ -13,11 +10,9 @@ export class DImage extends DShape {
         };
     }
 
-    _cell() {
-        const {html, width, height, left, top, src} = this.get();
-        const geo = new mxGeometry(+left, +top, +width, +height);
-        const stylesheet = `image;html=1;labelBackgroundColor=#ffffff;image=${src};`;
+    _getStylesheet() {
+        const {src} = this.get();
 
-        return new mxCell(html, geo, stylesheet);
+        return `image;html=1;labelBackgroundColor=#ffffff;image=${src};`;
     }
 }
