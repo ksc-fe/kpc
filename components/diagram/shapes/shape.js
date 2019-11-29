@@ -6,16 +6,7 @@ const {mxCell, mxGeometry} = mx;
 
 export class DShape extends Intact {
     static template = function(data, Vdt) {
-        return Vdt.miss.h(data.constructor.name, null, mapChildren(data.get('children'), vNode => {
-            if (vNode.tag.prototype instanceof DShape) {
-                vNode.props = {
-                    ...vNode.props,
-                    _diagram: data.get('_diagram'),
-                    _parent: data,
-                };
-            }
-            return vNode;
-        }));
+        return Vdt.miss.h(data.constructor.name, null, data.children);
     };
 
     static propTypes = {
@@ -39,8 +30,28 @@ export class DShape extends Intact {
         };
     }
 
+    _init() {
+        this.on('$receive:children', (c, children) => {
+            let hasElement = false;
+            this.children = mapChildren(children, vNode => {
+                if (vNode.tag.prototype instanceof DShape) {
+                    vNode.props = {
+                        ...vNode.props,
+                        _diagram: this.get('_diagram'),
+                        _parent: this,
+                    };
+                } else {
+                    hasElement = true;
+                }
+                return vNode;
+            });
+            this.hasElement = hasElement;
+        });
+    }
+
     _mount() {
         this.cell = this._cell();
+
         this.get('_diagram').addShape(this);
     }
 
@@ -51,6 +62,9 @@ export class DShape extends Intact {
         const cell = this.cell;
 
         cell.vertex = true;
+
+        // if hasElement, disable edit
+        graph.setCellStyles('editable', this.hasElement ? 0 : 1, [cell]);
 
         this._setStyle(graph, cell);
 
@@ -66,7 +80,7 @@ export class DShape extends Intact {
 
     _getValue() {
         const {html} = this.get();
-        return html || this.element.firstChild && this.element;
+        return html || this.hasElement && this.element || null;
     }
 
     _getStylesheet() {
