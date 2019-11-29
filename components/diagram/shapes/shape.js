@@ -1,6 +1,7 @@
 import Intact from 'intact';
-import {noop, mapChildren} from '../../utils';
+import {mapChildren} from '../../utils';
 import mx from '../mxgraph';
+import {DLayout} from '../layout';
 
 const {mxCell, mxGeometry} = mx;
 
@@ -27,6 +28,7 @@ export class DShape extends Intact {
 
             _diagram: undefined,
             _parent: undefined,
+            _layout: undefined,
         };
     }
 
@@ -34,7 +36,7 @@ export class DShape extends Intact {
         this.on('$receive:children', (c, children) => {
             let hasElement = false;
             this.children = mapChildren(children, vNode => {
-                if (vNode.tag.prototype instanceof DShape) {
+                if (vNode.tag.prototype instanceof DShape || vNode.tag === DLayout) {
                     vNode.props = {
                         ...vNode.props,
                         _diagram: this.get('_diagram'),
@@ -50,9 +52,15 @@ export class DShape extends Intact {
     }
 
     _mount() {
+        const {_diagram, _layout} = this.get();
+
         this.cell = this._cell();
 
-        this.get('_diagram').addShape(this);
+        _diagram.addShape(this);
+
+        if (_layout) {
+            _layout.addShape(this);
+        }
     }
 
     render() {

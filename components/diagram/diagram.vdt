@@ -1,12 +1,13 @@
 import {mapChildren} from '../utils';
 import {DShape} from './shapes/shape';
+import {DLayout} from './layout';
 
 const {children} = self.get();
 
 <div class="k-diagram">
     <div class="k-scheme" key="scheme">
         {{ mapChildren(children, vNode => {
-            if (vNode.tag.prototype instanceof DShape) {
+            if (vNode.tag.prototype instanceof DShape || vNode.tag === DLayout) {
                 vNode.props = {
                     ...vNode.props, 
                     _diagram: self,

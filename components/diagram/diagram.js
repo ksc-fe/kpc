@@ -7,19 +7,34 @@ import {mapChildren} from '../utils';
 import {DShape} from './shapes/shape';
 import {DLine} from './shapes/line';
 
-const {mxGraph, mxGraphModel} = mx;
+const {mxGraph, mxGraphModel, mxHierarchicalLayout, mxConstants} = mx;
 
 export default class Diagram extends Intact {
     @Intact.template()
     static template = template;
 
+    static propTypes = {
+        disabled: Boolean,
+    };
+
+    defaults() {
+        return {
+            disabled: true,
+        };
+    }
+
     _init() {
         this.shapes = new Map();
         this.lines = [];
+        this.layouts = [];
     }
 
     _mount() {
-        const graph = this.graph = createGraph(this.element);
+        const graph = this.graph = createGraph(this.refs.canvas);
+        if (this.get('disabled')) {
+            graph.setEnabled(false);
+        }
+
         const model = graph.model;
 
         model.beginUpdate();
@@ -27,9 +42,14 @@ export default class Diagram extends Intact {
             this.shapes.forEach(shape => {
                 shape.render();
             });
-            // we render lines at end
+            // we render lines after all vertexes has rendered
             this.lines.forEach(line => {
                 line.render();
+            });
+
+            // render layout
+            this.layouts.forEach(layout => {
+                layout.render();
             });
         } finally {
             model.endUpdate();
@@ -52,5 +72,9 @@ export default class Diagram extends Intact {
 
     addLine(line) {
         this.lines.push(line);
+    }
+
+    addLayout(layout) {
+        this.layouts.push(layout);
     }
 }

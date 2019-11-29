@@ -1,24 +1,31 @@
-import {Diagram, DRectangle, DCircle, DLine, DImage, DText} from 'kpc/components/diagram';
+import {
+    Diagram, DRectangle, DSquare, DCircle,
+    DEllipse, DLine, DImage, DText, DLayout,
+} from 'kpc/components/diagram';
 import {Button} from 'kpc/components/button';
 import {Input} from 'kpc/components/input';
 import image from '../../site/src/imgs/logo.png';
 
 <div>
-    <Diagram>
-        <DLine from="1" to="2" type="sharp" />
-        <DRectangle html="<h1>hello</h1>" key="1" left="20" top="20" borderStyle="dashed" />
-        <DRectangle rounded key="2" left="20" top="120" />
-        <DCircle key="3" left="200" top="100" />
-        <DLine from="1" to="3" type="rounded" pattern="dashed" html="备份" />
-        <DLine from="3" to="1" type="curved" pattern="dotted" />
-        <DLine startPoint={{ [280, 140] }} endPoint={{ [380, 140] }} />
-        <DImage src={{ image }} />
+    <Diagram disabled={{ false }}>
+        <DLayout type="vertical">
+            <DLine from="1" to="2" type="sharp" />
+            <DRectangle html="<h1>hello</h1>" key="1" left="20" top="20" borderStyle="dashed" />
+            <DRectangle rounded key="2" left="20" top="120" />
+            <DCircle key="3" left="200" top="100" />
+            <DLine from="1" to="3" type="rounded" pattern="dashed" html="备份" />
+            <DLine from="3" to="1" type="curved" pattern="dotted" />
+            <DLine from="3" endPoint={{ [380, 140] }} />
+            <DImage src={{ image }} />
+        </DLayout>
     </Diagram>
-    <Diagram>
+    <Diagram disabled={{ false }}>
         <DRectangle key="1" left="300" top="20" borderStyle="dotted" width="200" height="150">
-            <DImage left="60" top="10" src={{ image }} />
-            <DText html="<span style='font-size: 14px;'>Application</span>" width="200" top="100" />
-            <DText html="<span style='color: #666;'>QPS: 0</span>" width="200" top="120" />
+            <DLayout marginBottom="6" top="10">
+                <DImage key="1-1" src={{ image }} width="200" />
+                <DText key="1-2" html="<span style='font-size: 14px;'>Application</span>" width="200" top="100" />
+                <DText html="<span style='color: #666;'>QPS: 0</span>" width="200" top="120" />
+            </DLayout>
         </DRectangle>
         <DRectangle key="2" left="120" top="230" borderStyle="dotted" width="200" height="150">
             <Button ev-click={{ () => console.log('click') }}>test</Button>
