@@ -30,6 +30,8 @@ export function createGraph(container) {
     graph.graphHandler.scrollOnMove = false;
     graph.graphHandler.scaleGrid = true;
 
+    graph.foldingEnabled = false;
+
     new mxRubberband(graph);
 
     return graph;

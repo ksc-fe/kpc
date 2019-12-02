@@ -1,7 +1,7 @@
 import {DLayout} from './layout';
 import mx from '../mxgraph';
 
-const {mxCompactTreeLayout, mxConstants} = mx;
+const {mxCompactTreeLayout, mxRadialTreeLayout} = mx;
 
 export class DTreeLayout extends DLayout {
     defaults() {
@@ -13,12 +13,29 @@ export class DTreeLayout extends DLayout {
         }
     }
 
+    _init() {
+        super._init();
+        this.on('$receive', (c, keys) => {
+            // adjust the default value of levelDistance by type
+            if (keys.indexOf('levelDistance') < 0) {
+                const type = this.get('type');
+                this.set('levelDistance', type === 'radial' ? 80 : 30);
+            }
+        });
+    }
+
     _getLayout(graph) {
         const {type, levelDistance, nodeDistance} = this.get();
-        const layout = new mxCompactTreeLayout(graph, type === 'horizontal');
+        let layout;
+        if (type === 'radial') {
+            layout = new mxRadialTreeLayout(graph);    
+            layout.autoRadius = true;
+        } else {
+            layout = new mxCompactTreeLayout(graph, type === 'horizontal');
+            layout.nodeDistance = nodeDistance;
+        }
 
         layout.levelDistance = levelDistance;
-        layout.nodeDistance = nodeDistance;
         // layout.useBoundingBox = false;
         layout.edgeRouting = false;
 
@@ -26,23 +43,20 @@ export class DTreeLayout extends DLayout {
     }
 
     _execute(layout, cells, parent, graph) {
-        let tmp = cells[0];
-        let roots;
+        if (!cells.length) return;
 
-        if (!tmp || !graph.getModel().getChildCount(tmp)) {
-            if (!graph.getModel().getEdgeCount(tmp)) {
-                roots = graph.findTreeRoots(graph.getDefaultParent());
-            }
-        } else {
-            roots = graph.findTreeRoots(tmp);
-        }
+        const roots = graph.findTreeRoots(parent.cell);
+        let tmp = cells[0];
 
         if (roots && roots.length) {
             tmp = roots[0];
         }
 
-        if (tmp) {
-            layout.execute(graph.getDefaultParent(), tmp);
+        layout.execute(parent.cell, tmp);
+
+        tmp = graph.getModel().getParent(tmp);
+        if (graph.getModel().isVertex(tmp)) {
+            graph.updateGroupBounds([tmp], graph.gridSize * 2, true);
         }
     }
 }

@@ -1,6 +1,8 @@
 import mx from '../mx';
+import expandedImage from 'mxgraph/javascript/src/images/expanded.gif';
+import collapsedImage from 'mxgraph/javascript/src/images/collapsed.gif';
 
-const {mxGraph, mxConstants, mxUtils, mxConnectionConstraint, mxPoint, mxRectangle} = mx;
+const {mxGraph, mxConstants, mxUtils, mxConnectionConstraint, mxPoint, mxRectangle, mxImage} = mx;
 
 // Adds support for HTML labels via style. Note: Currently, only the Java
 // backend supports HTML labels but CSS support is limited to the following:
@@ -136,3 +138,6 @@ mxGraph.prototype.getPageLayout = function() {
 mxGraph.prototype.getPageSize = function() {
 	return new mxRectangle(0, 0, this.pageFormat.width * this.pageScale, this.pageFormat.height * this.pageScale);
 };
+
+mxGraph.prototype.expandedImage = new mxImage(expandedImage, 9, 9);
+mxGraph.prototype.collapsedImage = new mxImage(collapsedImage, 9, 9);

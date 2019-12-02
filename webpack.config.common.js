@@ -102,6 +102,17 @@ module.exports = {
                 ]
             },
             {
+                test: /\.gif$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        // options: {
+                            // limit
+                        // }
+                    }
+                ]
+            },
+            {
                 test: /\.vue$/,
                 use: [
                     {

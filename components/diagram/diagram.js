@@ -37,6 +37,8 @@ export default class Diagram extends Intact {
         const graph = this.graph;
         const model = graph.model;
 
+        this.cell = graph.getDefaultParent();
+
         model.beginUpdate();
         try {
             this.shapes.forEach(shape => {

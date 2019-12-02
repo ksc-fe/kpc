@@ -10,3 +10,5 @@ export {DText} from './shapes/text';
 
 export {DFlowLayout} from './layouts/flow';
 export {DTreeLayout} from './layouts/tree';
+export {DOrganicLayout} from './layouts/organic';
+export {DCircleLayout} from './layouts/circle';

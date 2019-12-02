@@ -1,5 +1,8 @@
 import mx from 'mxgraph';
 
+global.mxLoadResources = false;
+global.mxLoadStylesheets = false;
+
 const doll = mx();
 const {mxImage} = doll;
 

@@ -12,7 +12,7 @@ const {children} = self.get();
                 vNode.props = {
                     ...vNode.props, 
                     _diagram: self,
-                    _parent: {},
+                    _parent: self,
                 };
             }
             return vNode;
