@@ -16,6 +16,8 @@ export class DLine extends DShape {
             ...super.defaults(),
             startPoint: [0, 0],
             endPoint: [50, 0],
+            exit: undefined,
+            entry: undefined,
             type: 'straight',
             pattern: 'solid',
         };
@@ -50,9 +52,28 @@ export class DLine extends DShape {
 
     _genStyles() {
         return {
+            ...this._genStylesForExitAndEntry(),
             ...this._genStylesForType(),
             ...this._genStylesForPattern(this.get('pattern')),
         };
+    }
+
+    _genStylesForExitAndEntry() {
+        const styles = {};
+        const {from, exit, to, entry} = this.get();
+
+        if (from && exit) {
+            styles.exitX = exit[0];
+            styles.exitY = exit[1];
+            styles.perimeter = 0;
+        }
+        if (to && entry) {
+            styles.entryX = entry[0];
+            styles.entryY = entry[1];
+            styles.perimeter = 0;
+        }
+
+        return styles;
     }
 
     _genStylesForType() {

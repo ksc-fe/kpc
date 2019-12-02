@@ -8,4 +8,5 @@ export {DLine} from './shapes/line';
 export {DImage} from './shapes/image';
 export {DText} from './shapes/text';
 
-export {DLayout} from './layout';
+export {DFlowLayout} from './layouts/flow';
+export {DTreeLayout} from './layouts/tree';

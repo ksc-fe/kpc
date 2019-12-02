@@ -14,12 +14,14 @@ export default class Diagram extends Intact {
     static template = template;
 
     static propTypes = {
-        disabled: Boolean,
+        enabled: Boolean,
     };
 
     defaults() {
         return {
-            disabled: true,
+            movable: false,
+            connectable: false,
+            resizable: false,
         };
     }
 
@@ -30,11 +32,9 @@ export default class Diagram extends Intact {
     }
 
     _mount() {
-        const graph = this.graph = createGraph(this.refs.canvas);
-        if (this.get('disabled')) {
-            graph.setEnabled(false);
-        }
+        this._initGraph();
 
+        const graph = this.graph;
         const model = graph.model;
 
         model.beginUpdate();
@@ -54,6 +54,15 @@ export default class Diagram extends Intact {
         } finally {
             model.endUpdate();
         }
+    }
+
+    _initGraph() {
+        const {movable, connectable, resizable} = this.get();
+        const graph = this.graph = createGraph(this.refs.canvas);
+        graph.setEnabled(movable || connectable || resizable);
+        graph.setCellsMovable(movable);
+        graph.setConnectable(connectable);
+        graph.isCellsResizable = () => resizable;
     }
 
     addShape(shape) {

@@ -15,7 +15,8 @@ export function createGraph(container) {
 
     initStylesheet(graph);
 
-    graph.setConnectable(true);
+    // graph.setEnabled(false);
+    // graph.setConnectable(true);
     graph.setDropEnabled(false);
     graph.setPanning(false);
     graph.setTooltips(false);

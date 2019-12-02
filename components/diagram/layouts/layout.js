@@ -1,9 +1,6 @@
 import Intact from 'intact';
-import {mapChildren} from '../utils';
-import {DShape} from './shapes/shape';
-import mx from './mxgraph';
-
-const {mxHierarchicalLayout, mxConstants} = mx;
+import {mapChildren} from '../../utils';
+import {DShape} from '../shapes/shape';
 
 export class DLayout extends Intact {
     static template = function(data, Vdt) {
@@ -26,9 +23,6 @@ export class DLayout extends Intact {
 
     defaults() {
         return {
-            type: 'vertical',
-            marginRight: 50,
-            marginBottom: 30,
             left: 0,
             top: 0,
 
@@ -52,17 +46,17 @@ export class DLayout extends Intact {
     render() {
         const {_diagram: diagram, _parent: parent, marginRight, marginBottom, left, top} = this.get();
         const graph = diagram.graph;
-        const layout = new mxHierarchicalLayout(graph, mxConstants.DIRECTION_WEST);
-
-        layout.interHierarchySpacing = +marginBottom;
-        layout.interRankCellSpacing = +marginRight;
-        layout.setVertexLocation(this.shapes[0].cell, 10, 10);
-
+        const layout = this._getLayout(graph);
         const cells = this.shapes.map(shape => shape.cell);
-
-        layout.execute(parent.cell, cells);
+        this._execute(layout, cells, parent, graph);
 
         // move cells totally
         graph.moveCells(cells, +left, +top);
+    }
+
+    _getLayout(graph) {  }
+
+    _execute(layout, cells, parent, graph) {
+        layout.execute(parent.cell, cells);
     }
 }

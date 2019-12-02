@@ -1,6 +1,7 @@
 import {
     Diagram, DRectangle, DSquare, DCircle,
-    DEllipse, DLine, DImage, DText, DLayout,
+    DEllipse, DLine, DImage, DText,
+    DFlowLayout, DTreeLayout,
 } from 'kpc/components/diagram';
 import {Button} from 'kpc/components/button';
 import {Input} from 'kpc/components/input';
@@ -8,7 +9,7 @@ import image from '../../site/src/imgs/logo.png';
 
 <div>
     <Diagram disabled={{ false }}>
-        <DLayout type="vertical">
+        <DFlowLayout type="vertical">
             <DLine from="1" to="2" type="sharp" />
             <DRectangle html="<h1>hello</h1>" key="1" left="20" top="20" borderStyle="dashed" />
             <DRectangle rounded key="2" left="20" top="120" />
@@ -17,24 +18,28 @@ import image from '../../site/src/imgs/logo.png';
             <DLine from="3" to="1" type="curved" pattern="dotted" />
             <DLine from="3" endPoint={{ [380, 140] }} />
             <DImage src={{ image }} />
-        </DLayout>
+        </DFlowLayout>
     </Diagram>
-    <Diagram disabled={{ false }}>
-        <DRectangle key="1" left="300" top="20" borderStyle="dotted" width="200" height="150">
-            <DLayout marginBottom="6" top="10">
-                <DImage key="1-1" src={{ image }} width="200" />
-                <DText key="1-2" html="<span style='font-size: 14px;'>Application</span>" width="200" top="100" />
-                <DText html="<span style='color: #666;'>QPS: 0</span>" width="200" top="120" />
-            </DLayout>
-        </DRectangle>
-        <DRectangle key="2" left="120" top="230" borderStyle="dotted" width="200" height="150">
-            <Button ev-click={{ () => console.log('click') }}>test</Button>
-        </DRectangle>
-        <DRectangle key="3" left="480" top="230" borderStyle="dotted" width="200" height="150">
-            <Input width="100" />
-        </DRectangle>
-        <DLine from="1" to="2" pattern="dashed" type="sharp" html="读写请求" />
-        <DLine from="1" to="3" pattern="dashed" type="sharp" html="只读请求" />
-        <DLine from="2" to="3" pattern="dotted" html="同步" />
+    <Diagram connectable movable resizable>
+        <DTreeLayout type="vertical">
+            <DRectangle key="1" left="300" top="20" borderStyle="dotted" width="200" height="150">
+                <DFlowLayout interHierarchySpacing="6" top="10">
+                    <DImage key="1-1" src={{ image }} width="200" />
+                    <DText key="1-2" html="<span style='font-size: 14px;'>Application</span>" width="200" top="100" />
+                    <DText html="<span style='color: #666;'>QPS: 0</span>" width="200" top="120" />
+                </DFlowLayout>
+            </DRectangle>
+            <DRectangle key="2" left="120" top="230" borderStyle="dotted" width="200" height="150">
+                <Button ev-click={{ () => console.log('click') }}>test</Button>
+            </DRectangle>
+            <DRectangle key="3" left="480" top="230" borderStyle="dotted" width="200" height="150">
+                <Input width="100" />
+            </DRectangle>
+            <DRectangle key="4" borderStyle="dotted" width="200" height="150">
+            </DRectangle>
+            <DLine from="1" to="2" exit={{ [0.5, 1] }} entry={{ [0.5, 0] }} pattern="dashed" type="rounded" html="读写请求" />
+            <DLine from="1" to="3" exit={{ [0.5, 1] }} entry={{ [0.5, 0] }} pattern="dashed" type="rounded" html="只读请求" />
+            <DLine from="1" to="4" exit={{ [0.5, 1] }} entry={{ [0.5, 0] }} pattern="dashed" type="rounded" html="只读请求" />
+        </DTreeLayout>
     </Diagram>
 </div>
