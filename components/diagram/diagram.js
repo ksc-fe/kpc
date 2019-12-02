@@ -22,6 +22,9 @@ export default class Diagram extends Intact {
             movable: false,
             connectable: false,
             resizable: false,
+            rotatable: false,
+            editable: false,
+            selectable: false,
         };
     }
 
@@ -59,12 +62,18 @@ export default class Diagram extends Intact {
     }
 
     _initGraph() {
-        const {movable, connectable, resizable} = this.get();
+        const {movable, connectable, resizable, rotatable, editable, selectable} = this.get();
         const graph = this.graph = createGraph(this.refs.canvas);
-        graph.setEnabled(movable || connectable || resizable);
+        graph.setEnabled(movable || connectable || resizable || rotatable || editable || selectable);
         graph.setCellsMovable(movable);
         graph.setConnectable(connectable);
         graph.isCellsResizable = () => resizable;
+
+        const isCellRotatable = graph.isCellRotatable;
+        graph.isCellRotatable = (cell) => rotatable && isCellRotatable.call(graph, cell);
+
+        graph.isCellsEditable = () => editable;
+        graph.cellsSelectable = selectable;
     }
 
     addShape(shape) {

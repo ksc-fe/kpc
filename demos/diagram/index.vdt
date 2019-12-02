@@ -20,8 +20,8 @@ import image from '../../site/src/imgs/logo.png';
             <DImage src={{ image }} />
         </DFlowLayout>
     </Diagram>
-    <Diagram connectable movable resizable>
-        <DCircleLayout type="radial">
+    <Diagram movable>
+        <DFlowLayout type="vertical">
             <DRectangle key="1" borderStyle="dotted" width="200" height="150">
                 <DFlowLayout interHierarchySpacing="6" top="10">
                     <DImage key="1-1" src={{ image }} width="200" />
@@ -40,6 +40,6 @@ import image from '../../site/src/imgs/logo.png';
             <DLine from="1" to="2" pattern="dashed" type="rounded" html="读写请求" />
             <DLine from="1" to="3" pattern="dashed" type="rounded" html="只读请求" />
             <DLine from="1" to="4" pattern="dashed" type="rounded" html="只读请求" />
-        </DCircleLayout>
+        </DFlowLayout>
     </Diagram>
 </div>
