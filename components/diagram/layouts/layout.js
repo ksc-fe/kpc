@@ -43,6 +43,10 @@ export class DLayout extends Intact {
         this.shapes.push(shape);
     }
 
+    deleteShape(shape) {
+        this.shapes.splice(this.shapes.indexOf(shape), 1);
+    }
+
     render() {
         const {_diagram: diagram, _parent: parent, marginRight, marginBottom, left, top} = this.get();
         const graph = diagram.graph;
@@ -58,5 +62,9 @@ export class DLayout extends Intact {
 
     _execute(layout, cells, parent, graph) {
         layout.execute(parent.cell, cells);
+    }
+
+    _destroy() {
+        this.get('_diagram').deleteLayout(this);
     }
 }

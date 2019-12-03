@@ -33,6 +33,8 @@ export class DShape extends Intact {
     }
 
     _init() {
+        this._isRendered = false;
+
         this.on('$receive:children', (c, children) => {
             let hasElement = false;
             this.children = mapChildren(children, vNode => {
@@ -65,6 +67,8 @@ export class DShape extends Intact {
     }
 
     render() {
+        if (this._isRendered) return;
+
         const diagram = this.get('_diagram');
         const parent = this.get('_parent');
         const graph = diagram.graph;
@@ -78,6 +82,8 @@ export class DShape extends Intact {
         this._setStyle(graph, cell);
 
         graph.addCell(cell, parent.cell);
+
+        this._isRendered = true;
     }
 
     /**
@@ -133,5 +139,17 @@ export class DShape extends Intact {
         }
 
         return styles;
+    }
+
+    _destroy() {
+        const {_diagram, _layout} = this.get();
+        const graph = _diagram.graph;
+
+        graph.removeCells([this.cell], false);
+        _diagram.deleteShape(this);
+
+        if (_layout) {
+            _layout.deleteShape(this);
+        }
     }
 }

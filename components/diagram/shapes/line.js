@@ -28,6 +28,8 @@ export class DLine extends DShape {
     }
 
     render() {
+        if (this._isRendered) return;
+
         const {html, from, to, startPoint, endPoint, _diagram: diagram} = this.get();
         const graph = diagram.graph;
         const geo = new mxGeometry(0, 0, 0, 0);
@@ -48,6 +50,8 @@ export class DLine extends DShape {
         const target = to ? shapes.get(to).cell : null;
 
         graph.addCell(cell, null, null, source, target); 
+
+        this._isRendered = true;
     }
 
     _genStyles() {
@@ -104,5 +108,13 @@ export class DLine extends DShape {
         }
 
         return styles;
+    }
+
+    _destroy() {
+        const diagram = this.get('_diagram');
+        const graph = diagram.graph;
+
+        graph.removeCells([this.cell], false);
+        diagram.deleteLine(this);
     }
 }

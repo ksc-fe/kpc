@@ -8,7 +8,7 @@ import {Input} from 'kpc/components/input';
 import image from '../../site/src/imgs/logo.png';
 
 <div>
-    <Diagram disabled={{ false }}>
+    <Diagram>
         <DFlowLayout type="vertical">
             <DLine from="1" to="2" type="sharp" />
             <DRectangle html="<h1>hello</h1>" key="1" left="20" top="20" borderStyle="dashed" />
@@ -20,7 +20,7 @@ import image from '../../site/src/imgs/logo.png';
             <DImage src={{ image }} />
         </DFlowLayout>
     </Diagram>
-    <Diagram movable>
+    <Diagram selectable>
         <DFlowLayout type="vertical">
             <DRectangle key="1" borderStyle="dotted" width="200" height="150">
                 <DFlowLayout interHierarchySpacing="6" top="10">
@@ -42,4 +42,11 @@ import image from '../../site/src/imgs/logo.png';
             <DLine from="1" to="4" pattern="dashed" type="rounded" html="只读请求" />
         </DFlowLayout>
     </Diagram>
+    <Diagram>
+        <DFlowLayout>
+            <DRectangle v-if={{ !self.get('removed') }} />
+            <DCircle />
+        </DFlowLayout>
+    </Diagram>
+    <Button ev-click={{ () => self.set('removed', !self.get('removed')) }}>toggle</Button>
 </div>

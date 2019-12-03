@@ -38,9 +38,19 @@ export default class Diagram extends Intact {
         this._initGraph();
 
         const graph = this.graph;
-        const model = graph.model;
 
         this.cell = graph.getDefaultParent();
+
+        this.render();
+    }
+
+    _update() {
+        this.render();
+    }
+
+    render() {
+        const graph = this.graph;
+        const model = graph.model;
 
         model.beginUpdate();
         try {
@@ -90,11 +100,29 @@ export default class Diagram extends Intact {
         }
     }
 
+    deleteShape(shape) {
+        const {key} = shape.get();
+        this.shapes.delete(key == null ? shape.uniqueId : key);
+    }
+
     addLine(line) {
         this.lines.push(line);
     }
 
+    deleteLine(line) {
+        this._deleteFromArray(this.lines, line);
+    }
+
     addLayout(layout) {
         this.layouts.push(layout);
+    }
+
+    deleteLayout(layout) {
+        this._deleteFromArray(this.layouts, layout);
+    }
+
+    _deleteFromArray(arr, item) {
+        const index = arr.indexOf(item);
+        arr.splice(item, 1);
     }
 }
