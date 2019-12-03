@@ -7,7 +7,7 @@ import {mapChildren} from '../utils';
 import {DShape} from './shapes/shape';
 import {DLine} from './shapes/line';
 
-const {mxGraph, mxGraphModel, mxHierarchicalLayout, mxConstants} = mx;
+const {mxGraph, mxGraphModel, mxHierarchicalLayout, mxConstants, mxRubberband} = mx;
 
 export default class Diagram extends Intact {
     @Intact.template()
@@ -74,6 +74,8 @@ export default class Diagram extends Intact {
     _initGraph() {
         const {movable, connectable, resizable, rotatable, editable, selectable} = this.get();
         const graph = this.graph = createGraph(this.refs.canvas);
+        const rubberband = new mxRubberband(graph);
+
         graph.setEnabled(movable || connectable || resizable || rotatable || editable || selectable);
         graph.setCellsMovable(movable);
         graph.setConnectable(connectable);
@@ -84,6 +86,7 @@ export default class Diagram extends Intact {
 
         graph.isCellsEditable = () => editable;
         graph.cellsSelectable = selectable;
+        rubberband.setEnabled(selectable);
     }
 
     addShape(shape) {

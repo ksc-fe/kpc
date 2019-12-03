@@ -18,7 +18,7 @@ export class DLayout extends Intact {
             return vNode;
         });
 
-        return Vdt.miss.h('dlayout', {type: data.get('type')}, children);
+        return Vdt.miss.h(data.constructor.name, null, children);
     };
 
     defaults() {
@@ -51,11 +51,17 @@ export class DLayout extends Intact {
         const {_diagram: diagram, _parent: parent, marginRight, marginBottom, left, top} = this.get();
         const graph = diagram.graph;
         const layout = this._getLayout(graph);
+
+        // Allows the layout to move cells even though cells
+        // aren't movable in the graph
+        layout.isVertexMovable = () => true;
+
         const cells = this.shapes.map(shape => shape.cell);
         this._execute(layout, cells, parent, graph);
 
         // move cells totally
         graph.moveCells(cells, +left, +top);
+        // this._execute(layout, cells, parent, graph);
     }
 
     _getLayout(graph) {  }

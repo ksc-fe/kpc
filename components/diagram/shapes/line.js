@@ -23,35 +23,62 @@ export class DLine extends DShape {
         };
     }
 
-    _mount() {
+    _addToDigram() {
         this.get('_diagram').addLine(this);
+    }
+
+    _updateProps(model, keys) {
+        super._updateProps(model, keys);
+        if (keys.find(key => ['from', 'to', 'startPoint', 'endPoint'].indexOf(key) > -1)) {
+            // update from and to
+            this._setTerminal(); 
+        }
     }
 
     render() {
         if (this._isRendered) return;
 
-        const {html, from, to, startPoint, endPoint, _diagram: diagram} = this.get();
+        const {_diagram: diagram} = this.get();
         const graph = diagram.graph;
-        const geo = new mxGeometry(0, 0, 0, 0);
-        const stylesheet = 'endArrow=classic;html=1;fontSize=12;';
-        const cell = new mxCell(html, geo, stylesheet);
+        const cell = this.cell;
         cell.edge = true;
-        geo.relative = true;
 
-        if (!from || !to) {
-            geo.setTerminalPoint(new mxPoint(...startPoint), true);
-            geo.setTerminalPoint(new mxPoint(...endPoint), false);
-        }
+        this._setStyle();
+        this._setTerminal();
 
-        this._setStyle(graph, cell);
-
-        const shapes = diagram.shapes;
-        const source = from ? shapes.get(from).cell : null;
-        const target = to ? shapes.get(to).cell : null;
-
-        graph.addCell(cell, null, null, source, target); 
+        graph.addCell(cell); 
 
         this._isRendered = true;
+    }
+
+    _setTerminal() {
+        const {from, to, startPoint, endPoint, _diagram: diagram} = this.get();
+        const graph = diagram.graph;
+        const shapes = diagram.shapes;
+        const cell = this.cell;
+        const geo = cell.getGeometry();
+
+        if (!from) {
+            geo.setTerminalPoint(new mxPoint(...startPoint), true);
+        } else {
+            cell.setTerminal(shapes.get(from).cell, true);
+        }
+        if (!to) {
+            geo.setTerminalPoint(new mxPoint(...endPoint), false);
+        } else {
+            cell.setTerminal(shapes.get(to).cell, false);
+        }
+    }
+
+    _getStylesheet() {
+        return 'endArrow=classic;html=1;fontSize=12;';
+    }
+
+    _getGeometry() {
+        const geo = new mxGeometry(0, 0, 0, 0);
+        geo.relative = true;
+
+        return geo;
     }
 
     _genStyles() {
@@ -110,11 +137,7 @@ export class DLine extends DShape {
         return styles;
     }
 
-    _destroy() {
-        const diagram = this.get('_diagram');
-        const graph = diagram.graph;
-
-        graph.removeCells([this.cell], false);
-        diagram.deleteLine(this);
+    _deleteFromDiagram() {
+        this.get('_diagram').deleteLine(this);
     }
 }

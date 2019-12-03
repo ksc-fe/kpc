@@ -11,9 +11,6 @@ export class DShape extends Intact {
     };
 
     static propTypes = {
-        // key: {
-            // required: true,
-        // },
         borderStyle: ['solid', 'dashed', 'dotted'],
     }; 
 
@@ -24,12 +21,30 @@ export class DShape extends Intact {
             top: 0,
             width: 0,
             height: 0,
-            border: 'solid',
+            borderStyle: 'solid',
 
             _diagram: undefined,
             _parent: undefined,
             _layout: undefined,
         };
+    }
+
+    init(...args) {
+        // set parentDom to null to avoid the dom being appended to the parent
+        this.parentDom = null;
+        super.init(...args);
+        return this.placeholder = document.createComment(this.constructor.name);
+    }
+
+    hydrate(...args) {
+        this.parentDom = null;
+        super.hydrate(...args);
+        return this.placeholder = document.createComment(this.constructor.name);
+    }
+
+    update(...args) {
+        super.update(...args);
+        return this.placeholder;
     }
 
     _init() {
@@ -55,15 +70,47 @@ export class DShape extends Intact {
     }
 
     _mount() {
-        const {_diagram, _layout} = this.get();
+        const {_layout} = this.get();
 
         this.cell = this._cell();
 
-        _diagram.addShape(this);
+        this._addToDigram();
 
         if (_layout) {
             _layout.addShape(this);
         }
+
+        this.on('$receive', this._onChangeProps);
+    }
+
+    _addToDigram() {
+        this.get('_diagram').addShape(this);
+    }
+
+    _onChangeProps(c, keys) {
+        const graph = this.get('_diagram').graph;
+        const model = graph.getModel();
+
+        model.beginUpdate();
+        this._updateProps(model, keys);
+        model.endUpdate();
+    }
+
+    _updateProps(model, keys) {
+        if (keys.find(key => ['left', 'top', 'width', 'height'].indexOf(key) > -1))  {
+            // update geometry 
+            const geo = this._getGeometry();
+            model.setGeometry(this.cell, geo);
+        }
+        if (keys.find(key => key === 'html')) {
+            // update value
+            const value = this._getValue();
+            model.setValue(this.cell, value);
+        }
+        // update style
+        const stylesheet = this._getStylesheet();
+        model.setStyle(this.cell, stylesheet);
+        this._setStyle();
     }
 
     render() {
@@ -76,10 +123,7 @@ export class DShape extends Intact {
 
         cell.vertex = true;
 
-        // if hasElement, disable edit
-        graph.setCellStyles('editable', this.hasElement ? 0 : 1, [cell]);
-
-        this._setStyle(graph, cell);
+        this._setStyle();
 
         graph.addCell(cell, parent.cell);
 
@@ -95,7 +139,7 @@ export class DShape extends Intact {
 
     _getValue() {
         const {html} = this.get();
-        return html || this.hasElement && this.element || null;
+        return html == null ? this.hasElement && this.element || null : String(html);
     }
 
     _getStylesheet() {
@@ -107,9 +151,16 @@ export class DShape extends Intact {
         return new mxGeometry(+left, +top, +width, +height);
     }
 
-    _setStyle(graph, cell) {
+    _setStyle() {
+        const diagram = this.get('_diagram');
+        const parent = this.get('_parent');
+        const graph = diagram.graph;
+        const cell = this.cell;
         const cells = [cell];
         const styles = this._genStyles();
+
+        // if hasElement, disable edit
+        graph.setCellStyles('editable', this.hasElement ? 0 : 1, [cell]);
 
         for (let key in styles) {
             graph.setCellStyles(key, styles[key], cells);
@@ -145,11 +196,15 @@ export class DShape extends Intact {
         const {_diagram, _layout} = this.get();
         const graph = _diagram.graph;
 
+        this._deleteFromDiagram();
         graph.removeCells([this.cell], false);
-        _diagram.deleteShape(this);
 
         if (_layout) {
             _layout.deleteShape(this);
         }
+    }
+
+    _deleteFromDiagram() {
+        this.get('_diagram').deleteShape(this);
     }
 }
