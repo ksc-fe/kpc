@@ -28,7 +28,6 @@ module.exports = function(theme, type = 'intact') {
         },
         resolve: {
             alias: {
-                './components/code': './empty',
                 'intact$': type === 'vue' ? 'intact-vue' : type === 'react' ? 'intact-react' : undefined,
             },
         },

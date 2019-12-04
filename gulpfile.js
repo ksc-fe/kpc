@@ -250,6 +250,9 @@ function buildI18n(destPath) {
 }
 
 const metadata = {};
+const isIgnoreComponents = (name) => {
+    return ['code', 'diagram'].indexOf(name) > -1;
+};
 gulp.task('index', () => {
     const codes = [];
     const components = [];
@@ -272,9 +275,12 @@ gulp.task('index', () => {
                 name = name.split(' as ');
                 return name[name.length - 1].trim();
             });
-            components.push(...names);
-            codes.push(`import {${names.join(', ')}} from './components/${paths[paths.length - 2]}';`);
-            metadata[paths[paths.length - 2]] = names;
+            const dirname = paths[paths.length - 2];
+            if (!isIgnoreComponents(dirname)) {
+                components.push(...names);
+                codes.push(`import {${names.join(', ')}} from './components/${dirname}';`);
+            }
+            metadata[dirname] = names;
         }))
         .on('end', () => {
             // add position.js
@@ -604,8 +610,8 @@ const generateAngularIndex = async () => {
     const modules = [];
     exports.push(`export {_$, localize} from '${utilsPath}';`, '');
     for (let key in metadata) {
-        // ignore App and Code
-        if (key === 'app' || key === 'code') continue;
+        // ignore App and Code...
+        if (key === 'app' || isIgnoreComponents(key)) continue;
 
         const moduleName = `${key[0].toUpperCase() + key.substring(1)}Module`;
         imports.push(`import {${moduleName}} from './${key}';`);

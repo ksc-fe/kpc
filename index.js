@@ -21,7 +21,6 @@ import {Card, CardColumn} from './components/card';
 import {Carousel, CarouselItem} from './components/carousel';
 import {Cascader} from './components/cascader';
 import {Checkbox} from './components/checkbox';
-import {Code} from './components/code';
 import {Collapse, CollapseItem} from './components/collapse';
 import {Colorpicker} from './components/colorpicker';
 import {Datepicker} from './components/datepicker';
@@ -77,7 +76,6 @@ export {
     CarouselItem,
     Cascader,
     Checkbox,
-    Code,
     Col,
     Collapse,
     CollapseItem,
@@ -149,7 +147,6 @@ const components = {
     CarouselItem,
     Cascader,
     Checkbox,
-    Code,
     Col,
     Collapse,
     CollapseItem,

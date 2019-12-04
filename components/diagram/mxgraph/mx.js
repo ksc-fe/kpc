@@ -1,7 +1,10 @@
 import mx from 'mxgraph';
+import {hasWindow} from '../../utils';
 
-global.mxLoadResources = false;
-global.mxLoadStylesheets = false;
+if (hasWindow) {
+    window.mxLoadResources = false;
+    window.mxLoadStylesheets = false;
+}
 
 const doll = mx();
 const {mxImage} = doll;
