@@ -7,14 +7,24 @@ import {mapChildren} from '../utils';
 import {DShape} from './shapes/shape';
 import {DLine} from './shapes/line';
 
-const {mxGraph, mxGraphModel, mxHierarchicalLayout, mxConstants, mxRubberband} = mx;
+const {mxGraph, mxGraphModel, mxHierarchicalLayout, mxConstants, mxRubberband, mxEvent} = mx;
 
 export default class Diagram extends Intact {
     @Intact.template()
     static template = template;
 
+    static events = {
+        selectionChange: true,
+        labelChange: true,
+    };
+
     static propTypes = {
-        enabled: Boolean,
+        movable: Boolean,
+        connectable: Boolean,
+        resizable: Boolean,
+        rotatable: Boolean,
+        editable: Boolean,
+        selectable: Boolean,
     };
 
     defaults() {
@@ -38,11 +48,20 @@ export default class Diagram extends Intact {
         const graph = this.graph = createGraph(this.refs.canvas);
         this.rubberband = new mxRubberband(graph);
         this.isCellRotatable = graph.isCellRotatable;
+
+        // add label changed event
+        graph.addListener(mxEvent.LABEL_CHANGED, (graph, evt) => {
+            const {cell, old, value} = evt.properties;
+            this.trigger('labelChange', cell, value, old);
+        });
+
         this._initGraph();
 
         this.cell = graph.getDefaultParent();
 
         this.draw();
+
+        this.on('$receive:selectable', this._toggleSelectionEvent);
     }
 
     _update() {
@@ -88,6 +107,19 @@ export default class Diagram extends Intact {
         graph.isCellsEditable = () => editable;
         graph.cellsSelectable = selectable;
         this.rubberband.setEnabled(selectable);
+    }
+
+    _toggleSelectionEvent() {
+        const selectionModel = this.graph.getSelectionModel();
+        if (this.get('selectable')) {
+            selectionModel.addListener(mxEvent.CHANGE, this._onSelectionChange);
+        } else {
+            selectionModel.removeListener(mxEvent.CHANGE, this._onSelectionChange);
+        }
+    }
+
+    _onSelectionChange() {
+        this.trigger('selectionChange', this.graph.getSelectionCells());
     }
 
     addShape(shape) {

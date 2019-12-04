@@ -22,6 +22,7 @@ export class DShape extends Intact {
             width: 0,
             height: 0,
             borderStyle: 'solid',
+            data: undefined,
 
             _diagram: undefined,
             _parent: undefined,
@@ -75,9 +76,11 @@ export class DShape extends Intact {
     }
 
     _mount() {
-        const {_layout} = this.get();
+        const {_layout, data} = this.get();
 
         this.cell = this._cell();
+        // add data to the cell, so that we can get it when select the cell
+        this.cell.data = data; 
 
         this._addToDigram();
 
@@ -116,6 +119,9 @@ export class DShape extends Intact {
         const stylesheet = this._getStylesheet();
         model.setStyle(this.cell, stylesheet);
         this._setStyle();
+
+        // add data to the cell, so that we can get it when select the cell
+        this.cell.data = data; 
     }
 
     draw() {

@@ -2,6 +2,8 @@ import mx from '../mx';
 
 const {mxCellEditor, mxUtils, mxClient} = mx;
 
+mxCellEditor.prototype.blurEnabled = true;
+
 /**
  * HTML in-place editor
  */
