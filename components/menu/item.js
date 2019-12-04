@@ -21,7 +21,7 @@ export default class MenuItem extends DropdownItem {
             type: String,
             required: true,
         },
-        to: String,
+        to: [String, Object],
         dot: Boolean,
     };
 

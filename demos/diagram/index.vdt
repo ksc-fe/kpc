@@ -1,0 +1,52 @@
+import {
+    Diagram, DRectangle, DSquare, DCircle,
+    DEllipse, DLine, DImage, DText,
+    DFlowLayout, DTreeLayout, DOrganicLayout, DCircleLayout,
+} from 'kpc/components/diagram';
+import {Button} from 'kpc/components/button';
+import {Input} from 'kpc/components/input';
+import image from '../../site/src/imgs/logo.png';
+
+<div>
+    <Diagram>
+        <DFlowLayout type="vertical">
+            <DLine from="1" to="2" type="sharp" />
+            <DRectangle html="<h1>hello</h1>" key="1" left="20" top="20" borderStyle="dashed" />
+            <DRectangle rounded key="2" left="20" top="120" />
+            <DCircle key="3" left="200" top="100" />
+            <DLine from="1" to="3" type="rounded" pattern="dashed" html="备份" />
+            <DLine from="3" to="1" type="curved" pattern="dotted" />
+            <DLine from="3" endPoint={{ [380, 140] }} />
+            <DImage src={{ image }} />
+        </DFlowLayout>
+    </Diagram>
+    <Diagram selectable>
+        <DFlowLayout type="vertical">
+            <DRectangle key="1" borderStyle="dotted" width="200" height="150">
+                <DFlowLayout interHierarchySpacing="6" top="10">
+                    <DImage key="1-1" src={{ image }} width="200" />
+                    <DText key="1-2" html="<span style='font-size: 14px;'>Application</span>" width="200" top="100" />
+                    <DText html="<span style='color: #666;'>QPS: 0</span>" width="200" top="120" />
+                </DFlowLayout>
+            </DRectangle>
+            <DRectangle key="2" borderStyle="dotted" width="200" height="150">
+                <Button ev-click={{ () => console.log('click') }}>test</Button>
+            </DRectangle>
+            <DRectangle key="3" borderStyle="dotted" width="200" height="150">
+                <Input width="100" />
+            </DRectangle>
+            <DRectangle key="4" borderStyle="dotted" width="200" height="150">
+            </DRectangle>
+            <DLine from="1" to="2" pattern="dashed" type="rounded" html="读写请求" />
+            <DLine from="1" to="3" pattern="dashed" type="rounded" html="只读请求" />
+            <DLine from="1" to="4" pattern="dashed" type="rounded" html="只读请求" />
+        </DFlowLayout>
+    </Diagram>
+    <Diagram>
+        <DFlowLayout>
+            <DRectangle v-if={{ !self.get('removed') }} />
+            <DCircle />
+        </DFlowLayout>
+    </Diagram>
+    <Button ev-click={{ () => self.set('removed', !self.get('removed')) }}>toggle</Button>
+</div>

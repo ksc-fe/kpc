@@ -7,7 +7,7 @@ export default class BreadcrumbItem extends Intact {
     static template = template;
 
     static propTypes = {
-        to: String,
+        to: [String, Object],
         separator: [String, Intact.VNode, Array]
     };
 
