@@ -435,7 +435,8 @@ gulp.task('build:js', () => {
             let contents = file.contents.toString('utf-8');
             contents = contents.replace(/\.styl(['"])/g, '.css$1');
             // replace inheritsLoose for IE compatibilty
-            contents = contents.replace('@babel/runtime-corejs2/helpers/inheritsLoose', '../../inheritsLoose');
+            const relativePath = path.relative(path.dirname(file.path), __dirname + '/inheritsLoose');
+            contents = contents.replace('@babel/runtime-corejs2/helpers/inheritsLoose', relativePath);
             file.contents = Buffer.from(contents);
         }))
         .pipe(gulp.dest(destPath));
@@ -498,7 +499,8 @@ gulp.task('build:js@stylus', () => {
         .pipe(tap(function(file) {
             let contents = file.contents.toString('utf-8');
             // replace inheritsLoose for IE compatibilty
-            contents = contents.replace('@babel/runtime-corejs2/helpers/inheritsLoose', '../../inheritsLoose');
+            const relativePath = path.relative(path.dirname(file.path), __dirname + '/inheritsLoose');
+            contents = contents.replace('@babel/runtime-corejs2/helpers/inheritsLoose', relativePath);
             file.contents = Buffer.from(contents);
         }))
         .pipe(gulp.dest(destPathStylus));
