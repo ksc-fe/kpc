@@ -8,6 +8,19 @@ export {DLine} from './shapes/line';
 export {DImage} from './shapes/image';
 export {DText} from './shapes/text';
 
+import shapes from './shapes/generateShapes';
+const {Diamond, Parallelogram, Hexagon, Triangle, Cylinder, Cloud, Document, Callout} = shapes;
+export {
+    Diamond as DDiamond,
+    Parallelogram as DParallelogram,
+    Hexagon as DHexagon, 
+    Triangle as DTriangle,
+    Cylinder as DCylinder, 
+    Cloud as DCloud,
+    Document as DDocument,
+    Callout as DCallout
+};
+
 export {DFlowLayout} from './layouts/flow';
 export {DTreeLayout} from './layouts/tree';
 export {DOrganicLayout} from './layouts/organic';

@@ -7,7 +7,7 @@ const {mxCell, mxGeometry} = mx;
 
 export class DShape extends Intact {
     static template = function(data, Vdt) {
-        return Vdt.miss.h(data.constructor.name, null, data.children);
+        return Vdt.miss.h(data._getName(), null, data.children);
     };
 
     static propTypes = {
@@ -33,18 +33,23 @@ export class DShape extends Intact {
         // set parentDom to null to avoid the dom being appended to the parent
         this.parentDom = null;
         super.init(...args);
-        return this.placeholder = document.createComment(this.constructor.name);
+        return this.placeholder = document.createComment(this._getName());
     }
 
     hydrate(...args) {
         this.parentDom = null;
         super.hydrate(...args);
-        return this.placeholder = document.createComment(this.constructor.name);
+        return this.placeholder = document.createComment(this._getName());
     }
 
     update(...args) {
         super.update(...args);
         return this.placeholder;
+    }
+
+    _getName() {
+        const Ctor = this.constructor;
+        return Ctor.displayName || Ctor.name;
     }
 
     _init() {

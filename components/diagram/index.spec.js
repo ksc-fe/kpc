@@ -1,7 +1,7 @@
 import Intact from 'intact';
 import {
     Diagram, DRectangle, DSquare, DCircle,
-    DEllipse, DLine, DImage, DText,
+    DEllipse, DLine, DImage, DText, DDiamond,
     DFlowLayout, DTreeLayout, DOrganicLayout, DCircleLayout,
 } from 'kpc/components/diagram';
 import {Button} from 'kpc/components/button';
@@ -16,6 +16,7 @@ class Demo extends Intact {
         this.DCircle = DCircle;
         this.DLine = DLine;
         this.Button = Button;
+        this.DDiamond = DDiamond;
     }
 }
 
@@ -32,7 +33,7 @@ describe('Diagram', () => {
             static template = `
                 <Diagram>
                     <DFlowLayout type={{ self.get('type') }}>
-                        <DRectangle key="1" />
+                        <DDiamond key="1" />
                         <DCircle key="2" />
                         <DLine from="1" to="2" />
                     </DFlowLayout>
