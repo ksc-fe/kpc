@@ -4,6 +4,13 @@ import mx from '../mxgraph';
 const {mxHierarchicalLayout, mxConstants} = mx;
 
 export class DFlowLayout extends DLayout {
+    static propTypes = {
+        ...DLayout.propTypes,
+        type: ['horizontal', 'vertical'],
+        interRankCellSpacing: [Number, String],
+        interHierarchySpacing: [Number, String],
+    };
+
     defaults() {
         return {
             ...super.defaults(),

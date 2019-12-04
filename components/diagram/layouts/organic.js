@@ -4,6 +4,11 @@ import mx from '../mxgraph';
 const {mxFastOrganicLayout} = mx;
 
 export class DOrganicLayout extends DLayout {
+    static propTypes = {
+        ...DLayout.propTypes,
+        spacing: [Number, String],
+    };
+
     defaults() {
         return {
             ...super.defaults(),
@@ -15,7 +20,7 @@ export class DOrganicLayout extends DLayout {
         const {spacing} = this.get();
         const layout = new mxFastOrganicLayout(graph);
 
-        layout.forceConstant = spacing;
+        layout.forceConstant = +spacing;
         
         return layout;
     }

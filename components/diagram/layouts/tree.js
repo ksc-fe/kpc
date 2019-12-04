@@ -4,6 +4,13 @@ import mx from '../mxgraph';
 const {mxCompactTreeLayout, mxRadialTreeLayout} = mx;
 
 export class DTreeLayout extends DLayout {
+    static propTypes = {
+        ...DLayout.propTypes,
+        type: ['horizontal', 'vertical', 'radial'],
+        levelDistance: [Number, String],
+        nodeDistance: [Number, String],
+    };
+
     defaults() {
         return {
             ...super.defaults(),
@@ -32,10 +39,10 @@ export class DTreeLayout extends DLayout {
             layout.autoRadius = true;
         } else {
             layout = new mxCompactTreeLayout(graph, type === 'horizontal');
-            layout.nodeDistance = nodeDistance;
+            layout.nodeDistance = +nodeDistance;
         }
 
-        layout.levelDistance = levelDistance;
+        layout.levelDistance = +levelDistance;
         // layout.useBoundingBox = false;
         layout.edgeRouting = false;
 

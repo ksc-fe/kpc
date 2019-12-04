@@ -1,6 +1,11 @@
 import {DShape} from './shape';
 
 export class DImage extends DShape {
+    static propTypes = {
+        ...DShape.propTypes,
+        src: String,
+    };
+
     defaults() {
         return {
             ...super.defaults(),

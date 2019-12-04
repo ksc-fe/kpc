@@ -21,6 +21,11 @@ export class DLayout extends Intact {
         return Vdt.miss.h(data.constructor.name, null, children);
     };
 
+    static propTypes = {
+        left: [Number, String],
+        top: [Number, String],
+    };
+
     defaults() {
         return {
             left: 0,

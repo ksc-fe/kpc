@@ -12,6 +12,12 @@ export class DShape extends Intact {
 
     static propTypes = {
         borderStyle: ['solid', 'dashed', 'dotted'],
+        html: [String, Number],
+        left: [String, Number],
+        top: [String, Number],
+        width: [String, Number],
+        height: [String, Number],
+        style: Object,
     }; 
 
     defaults() {
@@ -23,6 +29,7 @@ export class DShape extends Intact {
             height: 0,
             borderStyle: 'solid',
             data: undefined,
+            style: undefined,
 
             _diagram: undefined,
             _parent: undefined,
@@ -121,7 +128,7 @@ export class DShape extends Intact {
         this._setStyle();
 
         // add data to the cell, so that we can get it when select the cell
-        this.cell.data = data; 
+        this.cell.data = this.get('data'); 
     }
 
     draw() {
