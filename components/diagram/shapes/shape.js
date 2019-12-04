@@ -175,7 +175,7 @@ export class DShape extends Intact {
         const graph = diagram.graph;
         const cell = this.cell;
         const cells = [cell];
-        const styles = this._genStyles();
+        const styles = {...this.get('style'), ...this._genStyles()};
 
         // if hasElement, disable edit
         graph.setCellStyles('editable', this.hasElement ? 0 : 1, [cell]);

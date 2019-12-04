@@ -33,7 +33,7 @@ describe('Diagram', () => {
             static template = `
                 <Diagram>
                     <DFlowLayout type={{ self.get('type') }}>
-                        <DDiamond key="1" />
+                        <DDiamond key="1" style={{ {fillColor: 'red'} }} />
                         <DCircle key="2" />
                         <DLine from="1" to="2" />
                     </DFlowLayout>

@@ -1,10 +1,14 @@
 import {mapChildren} from '../utils';
 import {DShape} from './shapes/shape';
 import {DLayout} from './layouts/layout';
+import {getRestProps} from '../utils';
 
-const {children} = self.get();
+const {children, className, style} = self.get();
 
-<div class="k-diagram">
+<div class={{ {"k-diagram": true, [className]: className} }} 
+    style={{ style }} 
+    {{ ...getRestProps(self) }}
+>
     <div class="k-scheme" key="scheme">
         {{ mapChildren(children, vNode => {
             const proto = vNode.tag.prototype;
