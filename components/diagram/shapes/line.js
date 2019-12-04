@@ -35,7 +35,7 @@ export class DLine extends DShape {
         }
     }
 
-    render() {
+    draw() {
         if (this._isRendered) return;
 
         const {_diagram: diagram} = this.get();

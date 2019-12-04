@@ -47,7 +47,7 @@ export class DLayout extends Intact {
         this.shapes.splice(this.shapes.indexOf(shape), 1);
     }
 
-    render() {
+    draw() {
         const {_diagram: diagram, _parent: parent, marginRight, marginBottom, left, top} = this.get();
         const graph = diagram.graph;
         const layout = this._getLayout(graph);

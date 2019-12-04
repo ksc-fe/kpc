@@ -35,36 +35,39 @@ export default class Diagram extends Intact {
     }
 
     _mount() {
+        const graph = this.graph = createGraph(this.refs.canvas);
+        this.rubberband = new mxRubberband(graph);
+        this.isCellRotatable = graph.isCellRotatable;
         this._initGraph();
-
-        const graph = this.graph;
 
         this.cell = graph.getDefaultParent();
 
-        this.render();
+        this.draw();
     }
 
     _update() {
-        this.render();
+        // reset the state of graph
+        this._initGraph();
+        this.draw();
     }
 
-    render() {
+    draw() {
         const graph = this.graph;
         const model = graph.model;
 
         model.beginUpdate();
         try {
             this.shapes.forEach(shape => {
-                shape.render();
+                shape.draw();
             });
             // we render lines after all vertexes has rendered
             this.lines.forEach(line => {
-                line.render();
+                line.draw();
             });
 
             // render layout
             this.layouts.forEach(layout => {
-                layout.render();
+                layout.draw();
             });
         } finally {
             model.endUpdate();
@@ -73,20 +76,18 @@ export default class Diagram extends Intact {
 
     _initGraph() {
         const {movable, connectable, resizable, rotatable, editable, selectable} = this.get();
-        const graph = this.graph = createGraph(this.refs.canvas);
-        const rubberband = new mxRubberband(graph);
+        const graph = this.graph;
 
         graph.setEnabled(movable || connectable || resizable || rotatable || editable || selectable);
         graph.setCellsMovable(movable);
         graph.setConnectable(connectable);
         graph.isCellsResizable = () => resizable;
 
-        const isCellRotatable = graph.isCellRotatable;
-        graph.isCellRotatable = (cell) => rotatable && isCellRotatable.call(graph, cell);
+        graph.isCellRotatable = (cell) => rotatable && this.isCellRotatable.call(graph, cell);
 
         graph.isCellsEditable = () => editable;
         graph.cellsSelectable = selectable;
-        rubberband.setEnabled(selectable);
+        this.rubberband.setEnabled(selectable);
     }
 
     addShape(shape) {

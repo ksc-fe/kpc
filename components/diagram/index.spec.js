@@ -192,5 +192,33 @@ describe('Diagram', () => {
         instance.set({width: 200, borderStyle: 'dashed', rounded: true, invert: true});
         expect(instance.element.innerHTML).to.matchSnapshot();
     });
+
+    it('should update state of Diagram', () => {
+        class Component extends Demo {
+            @Intact.template()
+            static template = `
+                <Diagram selectable={{ self.get('selectable') }}>
+                    <DFlowLayout>
+                        <DDiamond key="1" />
+                        <DCircle key="2" />
+                        <DLine from="1" to="2" />
+                    </DFlowLayout>
+                </Diagram>
+            `;
+            defaults() {
+                return {selectable: false}
+            }
+        }
+        instance = mount(Component);
+
+        dispatchEvent(instance.element.querySelector('ellipse'), 'pointerdown');
+        expect(instance.element.innerHTML).to.matchSnapshot();
+        dispatchEvent(instance.element.querySelector('ellipse'), 'pointerup');
+
+        instance.set('selectable', true);
+        dispatchEvent(instance.element.querySelector('ellipse'), 'pointerdown');
+        expect(instance.element.innerHTML).to.matchSnapshot();
+        dispatchEvent(instance.element.querySelector('ellipse'), 'pointerup');
+    });
 });
 

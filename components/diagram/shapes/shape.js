@@ -118,7 +118,7 @@ export class DShape extends Intact {
         this._setStyle();
     }
 
-    render() {
+    draw() {
         if (this._isRendered) return;
 
         const diagram = this.get('_diagram');
