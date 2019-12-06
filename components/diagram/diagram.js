@@ -88,6 +88,7 @@ export default class Diagram extends Intact {
             this.layouts.forEach(layout => {
                 layout.draw();
             });
+            this.lines.forEach(line => line._setStyle());
         } finally {
             model.endUpdate();
         }
@@ -107,6 +108,8 @@ export default class Diagram extends Intact {
         graph.isCellsEditable = () => editable;
         graph.cellsSelectable = selectable;
         this.rubberband.setEnabled(selectable);
+
+        graph.resizeContainer = true;
     }
 
     _toggleSelectionEvent() {

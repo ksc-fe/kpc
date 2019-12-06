@@ -42,6 +42,8 @@ import {DFlowLayout} from './layouts/flow';
 import {DTreeLayout} from './layouts/tree';
 import {DOrganicLayout} from './layouts/organic';
 import {DCircleLayout} from './layouts/circle';
+import {DStackLayout} from './layouts/stack';
+import {DPartitionLayout} from './layouts/partition';
 
 const {
     Diamond: DDiamond,
@@ -56,4 +58,5 @@ const {
 
 export default Diagram;
 
-export {Diagram, DRectangle, DSquare, DCircle, DEllipse, DLine, DImage, DText, DDiamond, DParallelogram, DHexagon, DTriangle, DCylinder, DCloud, DDocument, DCallout, DFlowLayout, DTreeLayout, DOrganicLayout, DCircleLayout};
+// don't break line
+export {Diagram, DRectangle, DSquare, DCircle, DEllipse, DLine, DImage, DText, DDiamond, DParallelogram, DHexagon, DTriangle, DCylinder, DCloud, DDocument, DCallout, DFlowLayout, DTreeLayout, DOrganicLayout, DCircleLayout, DStackLayout, DPartitionLayout};

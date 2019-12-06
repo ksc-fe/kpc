@@ -17,6 +17,8 @@ export class DTreeLayout extends DLayout {
             type: 'horizontal',
             levelDistance: 30,
             nodeDistance: 16,
+            // If the parents should be resized to match the width/height of the children. 
+            resizeParent: true,
         }
     }
 
@@ -32,7 +34,7 @@ export class DTreeLayout extends DLayout {
     }
 
     _getLayout(graph) {
-        const {type, levelDistance, nodeDistance} = this.get();
+        const {type, levelDistance, nodeDistance, resizeParent} = this.get();
         let layout;
         if (type === 'radial') {
             layout = new mxRadialTreeLayout(graph);    
@@ -40,6 +42,7 @@ export class DTreeLayout extends DLayout {
         } else {
             layout = new mxCompactTreeLayout(graph, type === 'horizontal');
             layout.nodeDistance = +nodeDistance;
+            // layout.resizeParent = false;
         }
 
         layout.levelDistance = +levelDistance;

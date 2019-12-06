@@ -37,7 +37,7 @@ import image from '../../site/src/imgs/logo.png';
             </DRectangle>
             <DRectangle key="4" borderStyle="dotted" width="200" height="150">
             </DRectangle>
-            <DLine from="1" to="2" pattern="dashed" type="rounded" html="读写请求" />
+            <DLine from="1" to="2" pattern="dashed" type="straight" html="读写请求" />
             <DLine from="1" to="3" pattern="dashed" type="rounded" html="只读请求" />
             <DLine from="1" to="4" pattern="dashed" type="rounded" html="只读请求" />
         </DFlowLayout>
