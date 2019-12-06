@@ -52,15 +52,9 @@ export default class Button extends Intact {
     }
 
     _mount() {
-        let parentVNode = this.parentVNode;
+        this._findGroup();
 
-        while (parentVNode && parentVNode.tag !== Group) {
-            parentVNode = parentVNode.parentVNode;
-        }
-
-        if (parentVNode) {
-            this.group = parentVNode.children;
-
+        if (this.group) {
             this.set({
                 _checkType: this.group.get('checkType'),
                 _value: this.group.get('value')
@@ -69,12 +63,25 @@ export default class Button extends Intact {
     }
 
     _beforeUpdate() {
+        // we need recheck the group, #402
+        this._findGroup();
+
         if (this.group) {
             this.set({
                 _checkType: this.group.get('checkType'),
                 _value: this.group.get('value')
             }, {silent: true});
         } 
+    }
+
+    _findGroup() {
+        let parentVNode = this.parentVNode;
+
+        while (parentVNode && parentVNode.tag !== Group) {
+            parentVNode = parentVNode.parentVNode;
+        }
+
+        this.group = parentVNode ? parentVNode.children : null;
     }
 
     showLoading() {
