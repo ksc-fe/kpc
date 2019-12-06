@@ -9,6 +9,8 @@ export class DTreeLayout extends DLayout {
         type: ['horizontal', 'vertical', 'radial'],
         levelDistance: [Number, String],
         nodeDistance: [Number, String],
+        resizeParent: Boolean,
+        groupPadding: [Number, String],
     };
 
     defaults() {
@@ -19,22 +21,33 @@ export class DTreeLayout extends DLayout {
             nodeDistance: 16,
             // If the parents should be resized to match the width/height of the children. 
             resizeParent: true,
+            // Padding added to resized parents.
+            groupPadding: 10,
         }
     }
 
     _init() {
         super._init();
-        this.on('$receive', (c, keys) => {
-            // adjust the default value of levelDistance by type
-            if (keys.indexOf('levelDistance') < 0) {
-                const type = this.get('type');
-                this.set('levelDistance', type === 'radial' ? 80 : 30);
-            }
-        });
+        // this.on('$receive', (c, keys) => {
+            // // adjust the default value of levelDistance by type
+            // if (keys.indexOf('levelDistance') < 0) {
+                // debugger;
+                // const type = this.get('type');
+                // this.set('levelDistance', type === 'radial' ? 80 : 30);
+            // }
+        // });
+        // this.on('$changed:resizeParent', (c, v) => {
+            // if (!v) {
+                // const {_parent, _diagram} = this.get();
+                // if (_parent !== _diagram) {
+                    // _parent.updateGeometry();
+                // }
+            // }
+        // });
     }
 
     _getLayout(graph) {
-        const {type, levelDistance, nodeDistance, resizeParent} = this.get();
+        const {type, levelDistance, nodeDistance, resizeParent, groupPadding} = this.get();
         let layout;
         if (type === 'radial') {
             layout = new mxRadialTreeLayout(graph);    
@@ -42,7 +55,10 @@ export class DTreeLayout extends DLayout {
         } else {
             layout = new mxCompactTreeLayout(graph, type === 'horizontal');
             layout.nodeDistance = +nodeDistance;
-            // layout.resizeParent = false;
+            layout.groupPadding = +groupPadding;
+            // layout.moveTree = true;
+            layout.maintainParentLocation = true;
+            layout.resizeParent = resizeParent;
         }
 
         layout.levelDistance = +levelDistance;
@@ -64,9 +80,9 @@ export class DTreeLayout extends DLayout {
 
         layout.execute(parent.cell, tmp);
 
-        tmp = graph.getModel().getParent(tmp);
-        if (graph.getModel().isVertex(tmp)) {
-            graph.updateGroupBounds([tmp], graph.gridSize * 2, true);
-        }
+        // tmp = graph.getModel().getParent(tmp);
+        // if (graph.getModel().isVertex(tmp)) {
+            // graph.updateGroupBounds([tmp], graph.gridSize * 2, true);
+        // }
     }
 }

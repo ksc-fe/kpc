@@ -51,7 +51,7 @@ for (let key in shapes) {
 
         defaults() {
             return {
-                ...super.defaults,
+                ...super.defaults(),
                 width: value.width,
                 height: value.height,
             };

@@ -68,6 +68,7 @@ export default class Diagram extends Intact {
         // reset the state of graph
         this._initGraph();
         this.draw();
+        // this.graph.validateGraph();
     }
 
     draw() {
@@ -110,6 +111,7 @@ export default class Diagram extends Intact {
         this.rubberband.setEnabled(selectable);
 
         graph.resizeContainer = true;
+        // graph.gridSize = 0;
     }
 
     _toggleSelectionEvent() {

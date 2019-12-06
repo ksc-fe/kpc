@@ -88,7 +88,7 @@ export default class extends Intact {
                     Layout: DPartitionLayout,
                 },
                 tree: {
-                    props: {type: 'vertical', resizeParent: true, levelDistance: 30, nodeDistance: 16},
+                    props: {type: 'vertical', resizeParent: true, levelDistance: 30, nodeDistance: 16, groupPadding: 10},
                     Layout: DTreeLayout,
                 },
                 flow: {

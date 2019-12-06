@@ -65,7 +65,7 @@ export class DLayout extends Intact {
         this._execute(layout, cells, parent, graph);
 
         // move cells totally
-        graph.moveCells(cells, +left, +top);
+        // graph.moveCells(cells, +left, +top);
         // this._execute(layout, cells, parent, graph);
     }
 

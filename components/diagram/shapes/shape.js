@@ -88,6 +88,7 @@ export class DShape extends Intact {
         this.cell = this._cell();
         // add data to the cell, so that we can get it when select the cell
         this.cell.data = data; 
+        this.cell.instance = this;
 
         this._addToDigram();
 
@@ -112,11 +113,10 @@ export class DShape extends Intact {
     }
 
     _updateProps(model, keys) {
-        if (keys.find(key => ['left', 'top', 'width', 'height'].indexOf(key) > -1))  {
-            // update geometry 
-            const geo = this._getGeometry();
-            model.setGeometry(this.cell, geo);
-        }
+        // if (keys.find(key => ['left', 'top', 'width', 'height'].indexOf(key) > -1))  {
+            // // update geometry 
+            // this.updateGeometry();
+        // }
         if (keys.find(key => key === 'html')) {
             // update value
             const value = this._getValue();
@@ -129,6 +129,15 @@ export class DShape extends Intact {
 
         // add data to the cell, so that we can get it when select the cell
         this.cell.data = this.get('data'); 
+    }
+
+    /**
+     * because Layout may resize parent, we reset the geometry after update
+     */
+    _update() {
+        const model = this.get('_diagram').graph.model;
+        const geo = this._getGeometry();
+        model.setGeometry(this.cell, geo);
     }
 
     draw() {

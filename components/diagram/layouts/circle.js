@@ -17,8 +17,8 @@ export class DCircleLayout extends DLayout {
 
         layout.execute(tmp);
 
-        if (graph.getModel().isVertex(tmp)) {
-            graph.updateGroupBounds([tmp], graph.gridSize * 2, true);
-        }
+        // if (graph.getModel().isVertex(tmp)) {
+            // graph.updateGroupBounds([tmp], graph.gridSize * 2, true);
+        // }
     }
 }

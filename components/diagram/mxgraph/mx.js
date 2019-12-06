@@ -1,13 +1,10 @@
 import mx from 'mxgraph';
-import {hasWindow} from '../../utils';
 
-if (hasWindow) {
-    window.mxLoadResources = false;
-    window.mxLoadStylesheets = false;
-}
-
-const doll = mx();
-const {mxImage} = doll;
+const doll = mx({
+    mxLoadResources: false,
+    mxLoadStylesheets: false,
+});
+const {mxImage, mxLog} = doll;
 
 export default doll;
 
