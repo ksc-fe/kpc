@@ -1,12 +1,12 @@
 import {DLayout} from './layout';
 import mx from '../mxgraph';
 
-const {mxCompactTreeLayout, mxRadialTreeLayout} = mx;
+const {mxCompactTreeLayout} = mx;
 
 export class DTreeLayout extends DLayout {
     static propTypes = {
         ...DLayout.propTypes,
-        type: ['horizontal', 'vertical', 'radial'],
+        type: ['horizontal', 'vertical'],
         levelDistance: [Number, String],
         nodeDistance: [Number, String],
         resizeParent: Boolean,
@@ -26,41 +26,15 @@ export class DTreeLayout extends DLayout {
         }
     }
 
-    _init() {
-        super._init();
-        // this.on('$receive', (c, keys) => {
-            // // adjust the default value of levelDistance by type
-            // if (keys.indexOf('levelDistance') < 0) {
-                // debugger;
-                // const type = this.get('type');
-                // this.set('levelDistance', type === 'radial' ? 80 : 30);
-            // }
-        // });
-        // this.on('$changed:resizeParent', (c, v) => {
-            // if (!v) {
-                // const {_parent, _diagram} = this.get();
-                // if (_parent !== _diagram) {
-                    // _parent.updateGeometry();
-                // }
-            // }
-        // });
-    }
-
     _getLayout(graph) {
         const {type, levelDistance, nodeDistance, resizeParent, groupPadding} = this.get();
-        let layout;
-        if (type === 'radial') {
-            layout = new mxRadialTreeLayout(graph);    
-            layout.autoRadius = true;
-        } else {
-            layout = new mxCompactTreeLayout(graph, type === 'horizontal');
-            layout.nodeDistance = +nodeDistance;
-            layout.groupPadding = +groupPadding;
-            // layout.moveTree = true;
-            layout.maintainParentLocation = true;
-            layout.resizeParent = resizeParent;
-        }
+        const layout = new mxCompactTreeLayout(graph, type === 'horizontal');
 
+        layout.nodeDistance = +nodeDistance;
+        layout.groupPadding = +groupPadding;
+        // layout.moveTree = true;
+        layout.maintainParentLocation = true;
+        layout.resizeParent = resizeParent;
         layout.levelDistance = +levelDistance;
         // layout.useBoundingBox = false;
         layout.edgeRouting = false;

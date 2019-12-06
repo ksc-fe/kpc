@@ -69,7 +69,7 @@ const currentLayout = self.get('layouts')[self.get('layout')];
 ```
 
 ```js
-import {DFlowLayout, DTreeLayout, DStackLayout, DPartitionLayout, DCircleLayout, DOrganicLayout} from 'kpc/components/diagram';
+import {DFlowLayout, DTreeLayout, DRadialLayout, DStackLayout, DPartitionLayout, DCircleLayout, DOrganicLayout} from 'kpc/components/diagram';
 
 export default class extends Intact {
     @Intact.template()
@@ -90,6 +90,10 @@ export default class extends Intact {
                 tree: {
                     props: {type: 'vertical', resizeParent: true, levelDistance: 30, nodeDistance: 16, groupPadding: 10},
                     Layout: DTreeLayout,
+                },
+                radial: {
+                    props: {levelDistance: 60, nodeDistance: 16, rootx: 10, rooty: 150},
+                    Layout: DRadialLayout,
                 },
                 flow: {
                     props: {spacing: 20, fill: true, type: 'vertical', resizeParent: true, border: 10},

@@ -140,6 +140,17 @@ export class DShape extends Intact {
         model.setGeometry(this.cell, geo);
     }
 
+    // updateGeomery(options) {
+        // const geo = this.cell.getGeometry().clone();
+        // for (let key in options) {
+            // const value = options[key];
+            // if (value != null) {
+                // geo[key] = +value;
+            // }
+        // }
+        // this.get('_diagram').graph.model.setGeometry(this.cell, geo);
+    // }
+
     draw() {
         if (this._isRendered) return;
 
