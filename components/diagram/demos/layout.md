@@ -50,7 +50,7 @@ const currentLayout = self.get('layouts')[self.get('layout')];
                     <Layout layout={{ currentLayout.Layout }}
                         props={{ currentLayout.props }}
                     >
-                        <DRectangle key="1" />
+                        <DRectangle key="1" rounded="5" />
                         <DDiamond key="2" />
                         <DCircle key="3" />
                         <DCircle key="4" />

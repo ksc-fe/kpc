@@ -6,13 +6,13 @@ export class DRectangle extends DShape {
             ...super.defaults(),
             width: 120,
             height: 60,
-            rounded: false,
+            rounded: 0,
         };
     }
 
     _getStylesheet() {
         const {rounded} = this.get();
 
-        return `rounded=${rounded ? 1 : 0};whiteSpace=wrap;html=1;`;
+        return `rounded=${rounded ? 1 : 0};whiteSpace=wrap;html=1;arcSize=${rounded}`;
     }
 }
