@@ -16,11 +16,15 @@ export class DFlowLayout extends DLayout {
         return {
             ...super.defaults(),
             type: 'horizontal',
+            // The spacing buffer added between cells on the same layer.
             intraCellSpacing: 30,
+            // The spacing buffer between unconnected hierarchies.
             interHierarchySpacing: 30,
+            // The spacing buffer added between cell on adjacent layers.
             interRankCellSpacing: 50,
             // parallelEdgeSpacing: 10,
             resizeParent: false,
+            // The border to be added around the children if the parent is to be resized using resizeParent.
             parentBorder: 0,
         }
     }

@@ -12,6 +12,7 @@ export class DOrganicLayout extends DLayout {
     defaults() {
         return {
             ...super.defaults(),
+            // The force constant by which the attractive forces are divided and the replusive forces are multiple by the square of.  The value equates to the average radius there is of free space around each node. 
             forceConstant: 50,
         }
     }
