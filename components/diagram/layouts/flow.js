@@ -16,20 +16,32 @@ export class DFlowLayout extends DLayout {
         return {
             ...super.defaults(),
             type: 'horizontal',
+            intraCellSpacing: 30,
             interHierarchySpacing: 30,
             interRankCellSpacing: 50,
+            // parallelEdgeSpacing: 10,
             resizeParent: false,
+            parentBorder: 0,
         }
     }
 
     _getLayout(graph) {
-        const {type, interHierarchySpacing, interRankCellSpacing, resizeParent} = this.get();
+        const {
+            type, interHierarchySpacing, interRankCellSpacing, 
+            intraCellSpacing, resizeParent, parentBorder,
+            // parallelEdgeSpacing,
+        } = this.get();
         const direction = type === 'horizontal' ? mxConstants.DIRECTION_WEST : mxConstants.DIRECTION_NORTH;
         const layout = new mxHierarchicalLayout(graph, direction);
 
+        layout.intraCellSpacing = +intraCellSpacing;
         layout.interHierarchySpacing = +interHierarchySpacing;
         layout.interRankCellSpacing = +interRankCellSpacing;
         layout.resizeParent = resizeParent;
+        layout.parentBorder = +parentBorder;
+        layout.disableEdgeStyle = false;
+        layout.edgeStyle = 'orthogonalEdgeStyle';
+        layout.maintainParentLocation = true;
 
         return layout;
     }

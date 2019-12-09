@@ -12,15 +12,16 @@ export class DOrganicLayout extends DLayout {
     defaults() {
         return {
             ...super.defaults(),
-            spacing: 50,
+            forceConstant: 50,
         }
     }
 
     _getLayout(graph) {
-        const {spacing} = this.get();
+        const {forceConstant} = this.get();
         const layout = new mxFastOrganicLayout(graph);
 
-        layout.forceConstant = +spacing;
+        layout.forceConstant = +forceConstant;
+        layout.disableEdgeStyle = false;
         
         return layout;
     }

@@ -6,7 +6,7 @@ order: 1
 ```vdt
 import {Button, ButtonGroup} from 'kpc/components/button';
 import {Form, FormItem} from 'kpc/components/form';
-import {Diagram, DFlowLayout, DTreeLayout, DStackLayout, DRectangle, DCircle, DDiamond, DLine} from 'kpc/components/diagram';
+import {Diagram, DRectangle, DCircle, DDiamond, DHexagon, DLine} from 'kpc/components/diagram';
 import {Spinner} from 'kpc/components/spinner';
 import {Checkbox} from 'kpc/components/checkbox';
 
@@ -17,7 +17,7 @@ const Layout = ({layout, props, children}) => {
 const currentLayout = self.get('layouts')[self.get('layout')];
 
 <div>
-    <Form labelWidth="100">
+    <Form labelWidth="150">
         <FormItem label="Layout">
             <ButtonGroup v-model="layout" checkType="radio">
                 <Button v-for={{ self.get('layouts') }}
@@ -46,15 +46,17 @@ const currentLayout = self.get('layouts')[self.get('layout')];
         </FormItem>
         <FormItem>
             <Diagram>
-                <DRectangle width="300" height="200">
+                <DRectangle width="300" height="200" borderStyle="dotted">
                     <Layout layout={{ currentLayout.Layout }}
                         props={{ currentLayout.props }}
                     >
                         <DRectangle key="1" />
                         <DDiamond key="2" />
                         <DCircle key="3" />
-                        <DLine from="1" to="2" pattern="dashed" />
-                        <DLine from="1" to="3" pattern="dashed" />
+                        <DCircle key="4" />
+                        <DCircle key="5" />
+                        <DLine from="1" to="2" pattern="dashed" type="rounded" />
+                        <DLine from="1" to="3" pattern="dashed" type="rounded" />
                     </Layout>
                 </DRectangle>
             </Diagram>
@@ -96,15 +98,15 @@ export default class extends Intact {
                     Layout: DRadialLayout,
                 },
                 flow: {
-                    props: {spacing: 20, fill: true, type: 'vertical', resizeParent: true, border: 10},
+                    props: {intraCellSpacing: 20, interHierarchySpacing: 30, interRankCellSpacing: 50, parallelEdgeSpacing: 10, type: 'vertical', resizeParent: true, parentBorder: 10},
                     Layout: DFlowLayout,
                 },
                 circle: {
-                    props: {spacing: 20, fill: true, type: 'vertical', resizeParent: true, border: 10},
+                    props: {x0: 0, y0: 0}, 
                     Layout: DCircleLayout,
                 },
                 organic: {
-                    props: {spacing: 20, fill: true, type: 'vertical', resizeParent: true, border: 10},
+                    props: {forceConstant: 50},
                     Layout: DOrganicLayout,
                 },
             },
