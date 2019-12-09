@@ -6,7 +6,6 @@ const {mxCell, mxGeometry, mxPoint} = mx;
 export class DLine extends DShape {
     static propTypes = {
         type: ['rounded', 'sharp', 'curved', 'straight'],
-        pattern: ['solid', 'dashed', 'dotted'],
         startPoint: Array,
         endPoint: Array,
     };
@@ -19,7 +18,6 @@ export class DLine extends DShape {
             exit: undefined,
             entry: undefined,
             type: 'straight',
-            pattern: 'solid',
         };
     }
 
@@ -85,7 +83,7 @@ export class DLine extends DShape {
         return {
             ...this._genStylesForExitAndEntry(),
             ...this._genStylesForType(),
-            ...this._genStylesForPattern(this.get('pattern')),
+            ...this._genStylesForStrokeStyle(),
         };
     }
 

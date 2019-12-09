@@ -46,7 +46,7 @@ const currentLayout = self.get('layouts')[self.get('layout')];
         </FormItem>
         <FormItem>
             <Diagram>
-                <DRectangle width="300" height="200" borderStyle="dotted">
+                <DRectangle width="300" height="200" strokeStyle="dotted">
                     <Layout layout={{ currentLayout.Layout }}
                         props={{ currentLayout.props }}
                     >
@@ -55,8 +55,8 @@ const currentLayout = self.get('layouts')[self.get('layout')];
                         <DCircle key="3" />
                         <DCircle key="4" />
                         <DCircle key="5" />
-                        <DLine from="1" to="2" pattern="dashed" type="rounded" />
-                        <DLine from="1" to="3" pattern="dashed" type="rounded" />
+                        <DLine from="1" to="2" strokeStyle="dashed" type="rounded" />
+                        <DLine from="1" to="3" strokeStyle="dashed" type="rounded" />
                     </Layout>
                 </DRectangle>
             </Diagram>

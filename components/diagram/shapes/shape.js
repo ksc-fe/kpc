@@ -11,7 +11,7 @@ export class DShape extends Intact {
     };
 
     static propTypes = {
-        borderStyle: ['solid', 'dashed', 'dotted'],
+        strokeStyle: ['solid', 'dashed', 'dotted'],
         html: [String, Number],
         left: [String, Number],
         top: [String, Number],
@@ -27,7 +27,7 @@ export class DShape extends Intact {
             top: 0,
             width: 0,
             height: 0,
-            borderStyle: 'solid',
+            strokeStyle: 'solid',
             data: undefined,
             style: undefined,
 
@@ -206,13 +206,13 @@ export class DShape extends Intact {
     }
 
     _genStyles() {
-        return this._genStylesForPattern(this.get('borderStyle'));
+        return this._genStylesForStrokeStyle();
     }
 
-    _genStylesForPattern(pattern) {
+    _genStylesForStrokeStyle() {
         const styles = {};
 
-        switch (pattern) {
+        switch (this.get('strokeStyle')) {
             case 'dashed':
                 styles.dashed = 1;
                 styles.dashPattern = null;
