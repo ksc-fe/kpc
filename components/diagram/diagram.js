@@ -3,11 +3,8 @@ import template from './diagram.vdt';
 import './index.styl';
 import mx from './mxgraph';
 import {createGraph} from './graph';
-import {mapChildren} from '../utils';
-import {DShape} from './shapes/shape';
-import {DLine} from './shapes/line';
 
-const {mxGraph, mxGraphModel, mxHierarchicalLayout, mxConstants, mxRubberband, mxEvent} = mx;
+const {mxRubberband, mxEvent} = mx;
 
 export default class Diagram extends Intact {
     @Intact.template()
@@ -86,9 +83,13 @@ export default class Diagram extends Intact {
             });
 
             // render layout
-            this.layouts.forEach(layout => {
-                layout.draw();
-            });
+            // we must render parent firstly, because layouts may be nested
+            for (let i = this.layouts.length - 1; i >= 0; i--) {
+                this.layouts[i].draw();
+            }
+            // this.layouts.forEach(layout => {
+                // layout.draw();
+            // });
             this.lines.forEach(line => line._setStyle());
         } finally {
             model.endUpdate();

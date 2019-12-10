@@ -1,6 +1,11 @@
 import {DShape} from './shape';
 
 export class DRectangle extends DShape {
+    static propTypes = {
+        ...DShape.propTypes,
+        rounded: [Number, String],
+    };
+
     defaults() {
         return {
             ...super.defaults(),
@@ -13,6 +18,6 @@ export class DRectangle extends DShape {
     _getStylesheet() {
         const {rounded} = this.get();
 
-        return `rounded=${rounded ? 1 : 0};whiteSpace=wrap;html=1;arcSize=${rounded}`;
+        return `rounded=${+rounded ? 1 : 0};whiteSpace=wrap;html=1;arcSize=${rounded}`;
     }
 }

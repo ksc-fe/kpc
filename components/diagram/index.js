@@ -30,6 +30,7 @@
  * use import and export so that we can generate index.js by gulp
  */
 import Diagram from './diagram';
+
 import {DRectangle} from './shapes/rectangle';
 import {DSquare} from './shapes/square';
 import {DCircle} from './shapes/circle';
@@ -37,7 +38,12 @@ import {DEllipse} from './shapes/ellipse';
 import {DLine} from './shapes/line';
 import {DImage} from './shapes/image';
 import {DText} from './shapes/text';
+import {DDocument} from './shapes/document';
+import {DCallout} from './shapes/callout';
+import {DParallelogram} from './shapes/parallelogram';
+import {DHexagon} from './shapes/hexagon';
 import shapes from './shapes/generateShapes';
+
 import {DFlowLayout} from './layouts/flow';
 import {DTreeLayout} from './layouts/tree';
 import {DRadialLayout} from './layouts/radial';
@@ -48,13 +54,9 @@ import {DPartitionLayout} from './layouts/partition';
 
 const {
     Diamond: DDiamond,
-    Parallelogram: DParallelogram,
-    Hexagon: DHexagon,
     Triangle: DTriangle,
     Cylinder: DCylinder,
     Cloud: DCloud,
-    Document: DDocument,
-    Callout: DCallout,
 } = shapes;
 
 export default Diagram;

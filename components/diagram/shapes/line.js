@@ -5,9 +5,12 @@ const {mxCell, mxGeometry, mxPoint} = mx;
 
 export class DLine extends DShape {
     static propTypes = {
+        ...DShape.propTypes,
         type: ['rounded', 'sharp', 'curved', 'straight'],
         startPoint: Array,
         endPoint: Array,
+        exit: Array,
+        entry: Array,
     };
 
     defaults() {

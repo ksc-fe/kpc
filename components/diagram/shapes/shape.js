@@ -12,7 +12,7 @@ export class DShape extends Intact {
 
     static propTypes = {
         strokeStyle: ['solid', 'dashed', 'dotted'],
-        html: [String, Number],
+        label: [String, Number],
         left: [String, Number],
         top: [String, Number],
         width: [String, Number],
@@ -22,7 +22,7 @@ export class DShape extends Intact {
 
     defaults() {
         return {
-            html: undefined,
+            label: undefined,
             left: 0,
             top: 0,
             width: 0,
@@ -39,13 +39,14 @@ export class DShape extends Intact {
 
     init(...args) {
         // set parentDom to null to avoid the dom being appended to the parent
-        this.parentDom = null;
+        // we can not do this, because it may replace child
+        // this.parentDom = null;
         super.init(...args);
         return this.placeholder = document.createComment(this._getName());
     }
 
     hydrate(...args) {
-        this.parentDom = null;
+        // this.parentDom = null;
         super.hydrate(...args);
         return this.placeholder = document.createComment(this._getName());
     }
@@ -117,7 +118,7 @@ export class DShape extends Intact {
             // // update geometry 
             // this.updateGeometry();
         // }
-        if (keys.find(key => key === 'html')) {
+        if (keys.find(key => key === 'label')) {
             // update value
             const value = this._getValue();
             model.setValue(this.cell, value);
@@ -176,8 +177,8 @@ export class DShape extends Intact {
     }
 
     _getValue() {
-        const {html} = this.get();
-        return html == null ? this.hasElement && this.element || null : String(html);
+        const {label} = this.get();
+        return label == null ? this.hasElement && this.element || null : String(label);
     }
 
     _getStylesheet() {

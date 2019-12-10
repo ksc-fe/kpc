@@ -82,7 +82,7 @@ export default class extends Intact {
             layout: 'tree',
             layouts: {
                 stack: {
-                    props: {spacing: 20, fill: true, type: 'vertical', resizeParent: true, border: 10},
+                    props: {spacing: 20, fill: true, type: 'vertical', resizeParent: true, border: 10, wrap: 600},
                     Layout: DStackLayout,
                 },
                 partition: {
@@ -98,7 +98,7 @@ export default class extends Intact {
                     Layout: DRadialLayout,
                 },
                 flow: {
-                    props: {intraCellSpacing: 20, interHierarchySpacing: 30, interRankCellSpacing: 50, parallelEdgeSpacing: 10, type: 'vertical', resizeParent: true, parentBorder: 10},
+                    props: {intraCellSpacing: 20, interHierarchySpacing: 30, interRankCellSpacing: 50, type: 'vertical', resizeParent: true, parentBorder: 10},
                     Layout: DFlowLayout,
                 },
                 circle: {

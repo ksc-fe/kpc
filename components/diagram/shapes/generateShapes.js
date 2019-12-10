@@ -6,11 +6,6 @@ const shapes = {
         height: 80,
         stylesheet: 'rhombus;whiteSpace=wrap;html=1;'
     },
-    Parallelogram: {
-        width: 120,
-        height: 60,
-        stylesheet: 'shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;'
-    },
     Hexagon: {
         width: 120,
         height: 80,
@@ -31,16 +26,6 @@ const shapes = {
         height: 80,
         stylesheet: 'ellipse;shape=cloud;whiteSpace=wrap;html=1;'
     },
-    Document: {
-        width: 120,
-        height: 80,
-        stylesheet: 'shape=document;whiteSpace=wrap;html=1;boundedLbl=1;'
-    },
-    Callout: {
-        width: 120,
-        height: 80,
-        stylesheet: 'shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;'
-    }
 };
 
 const components = {};

@@ -7,8 +7,8 @@ import './test.styl';
 chai.use(matchSnapshot);
 
 // require all test files (files that ends with .spec.js)
-const testsContext = require.context('../components/', true, /index\.spec\.js/);
-// const testsContext = require.context('../components/affix/', true, /index\.spec\.js/);
+// const testsContext = require.context('../components/', true, /index\.spec\.js/);
+const testsContext = require.context('../components/diagram/', true, /index\.spec\.js/);
 testsContext.keys().forEach(testsContext);
 
 Intact.Vdt.configure('delimiters', ['{{', '}}']);

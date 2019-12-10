@@ -3,6 +3,7 @@ import {
     Diagram, DRectangle, DSquare, DCircle,
     DEllipse, DLine, DImage, DText, DDiamond,
     DFlowLayout, DTreeLayout, DOrganicLayout, DCircleLayout,
+    DPartitionLayout, DStackLayout,
 } from 'kpc/components/diagram';
 import {Button} from 'kpc/components/button';
 import {mount, unmount, dispatchEvent} from 'test/utils';
@@ -12,11 +13,14 @@ class Demo extends Intact {
         this.Diagram = Diagram;
         this.DFlowLayout = DFlowLayout;
         this.DTreeLayout = DTreeLayout;
+        this.DPartitionLayout = DPartitionLayout;
+        this.DStackLayout = DStackLayout;
         this.DRectangle = DRectangle;
         this.DCircle = DCircle;
         this.DLine = DLine;
         this.Button = Button;
         this.DDiamond = DDiamond;
+        this.DEllipse = DEllipse;
     }
 }
 
@@ -72,9 +76,6 @@ describe('Diagram', () => {
         expect(instance.element.innerHTML).to.matchSnapshot();
 
         instance.set('type', 'horizontal');
-        expect(instance.element.innerHTML).to.matchSnapshot();
-
-        instance.set('type', 'radial');
         expect(instance.element.innerHTML).to.matchSnapshot();
     });
 
@@ -183,13 +184,13 @@ describe('Diagram', () => {
                 </Diagram>
             `;
             defaults() {
-                return {width: 100, borderStyle: 'solid', rounded: false, invert: false};
+                return {width: 100, borderStyle: 'solid', rounded: 0, invert: false};
             }
         }
         instance = mount(Component);
         expect(instance.element.innerHTML).to.matchSnapshot();
 
-        instance.set({width: 200, borderStyle: 'dashed', rounded: true, invert: true});
+        instance.set({width: 200, borderStyle: 'dashed', rounded: 5, invert: true});
         expect(instance.element.innerHTML).to.matchSnapshot();
     });
 
@@ -223,12 +224,14 @@ describe('Diagram', () => {
         }
         instance = mount(Component);
 
-        const ellipse = instance.element.querySelector('ellipse');
+        let ellipse = instance.element.querySelector('ellipse');
         dispatchEvent(ellipse, 'pointerdown');
         expect(instance.element.innerHTML).to.matchSnapshot();
         dispatchEvent(ellipse, 'pointerup');
 
         instance.set('selectable', true);
+        // diagram has redrawn
+        ellipse = instance.element.querySelector('ellipse');
         dispatchEvent(ellipse, 'pointerdown');
         expect(instance.element.innerHTML).to.matchSnapshot();
         expect(onChange.callCount).to.eql(1);
@@ -241,6 +244,28 @@ describe('Diagram', () => {
         editor.innerHTML = 'test';
         dispatchEvent(instance.element.querySelector('.k-canvas'), 'pointerdown');
         expect(onLabelChange.callCount).to.eql(1);
+    });
+
+    it('should render nested layout correctly', () => {
+        class Component extends Demo {
+            @Intact.template()
+            static template = `
+                <Diagram>
+                    <DRectangle width="300" height="200">
+                        <DPartitionLayout type="vertical">
+                            <DRectangle>
+                                <DStackLayout fill>
+                                    <DCircle />
+                                    <DDiamond />
+                                </DStackLayout>
+                            </DRectangle>
+                            <DEllipse />
+                        </DPartitionLayout>
+                    </DRectangle>
+                </Diagram>
+            `;
+        }
+        instance = mount(Component);
     });
 });
 

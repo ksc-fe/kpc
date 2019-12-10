@@ -1,7 +1,8 @@
 import {
     Diagram, DRectangle, DSquare, DCircle,
-    DEllipse, DLine, DImage, DText,
-    DFlowLayout, DTreeLayout, DOrganicLayout, DCircleLayout,
+    DEllipse, DLine, DImage, DText, DDiamond,
+    DFlowLayout, DTreeLayout, DOrganicLayout,
+    DCircleLayout, DPartitionLayout, DStackLayout,
 } from 'kpc/components/diagram';
 import {Button} from 'kpc/components/button';
 import {Input} from 'kpc/components/input';
@@ -21,7 +22,7 @@ import image from '../../site/src/imgs/logo.png';
         </DFlowLayout>
     </Diagram>
     <Diagram selectable>
-        <DFlowLayout type="vertical">
+        <DTreeLayout type="vertical">
             <DRectangle key="1" borderStyle="dotted" width="200" height="150">
                 <DFlowLayout interHierarchySpacing="6" top="10">
                     <DImage key="1-1" src={{ image }} width="200" />
@@ -40,7 +41,8 @@ import image from '../../site/src/imgs/logo.png';
             <DLine from="1" to="2" pattern="dashed" type="straight" html="读写请求" />
             <DLine from="1" to="3" pattern="dashed" type="rounded" html="只读请求" />
             <DLine from="1" to="4" pattern="dashed" type="rounded" html="只读请求" />
-        </DFlowLayout>
+            <DLine from="2" to="3" pattern="dashed" type="rounded" html="只读请求" />
+        </DTreeLayout>
     </Diagram>
     <Diagram>
         <DFlowLayout>
@@ -49,4 +51,17 @@ import image from '../../site/src/imgs/logo.png';
         </DFlowLayout>
     </Diagram>
     <Button ev-click={{ () => self.set('removed', !self.get('removed')) }}>toggle</Button>
+    <Diagram>
+        <DRectangle width="300" height="200">
+            <DPartitionLayout type="vertical">
+                <DRectangle>
+                    <DStackLayout fill>
+                        <DCircle />
+                        <DDiamond />
+                    </DStackLayout>
+                </DRectangle>
+                <DEllipse />
+            </DPartitionLayout>
+        </DRectangle>
+    </Diagram>
 </div>
