@@ -24,7 +24,7 @@ export function createGraph(container) {
     graph.constrainChildren = false;
     graph.constrainRelativeChildren = true;
     
-    // // Do not scroll after moving cells
+    // Do not scroll after moving cells
     graph.graphHandler.scrollOnMove = false;
     graph.graphHandler.scaleGrid = true;
 

@@ -7,7 +7,12 @@ const {mxCell, mxGeometry} = mx;
 
 export class DShape extends Intact {
     static template = function(data, Vdt) {
-        return Vdt.miss.h(data._getName(), null, data.children);
+        const h = Vdt.miss.h;
+        let children = data.children;
+        if (children && children.length) {
+            children = h('div', {ref: i => data.wrapper = i}, children);
+        }
+        return h(data._getName(), null, children);
     };
 
     static propTypes = {
@@ -35,25 +40,6 @@ export class DShape extends Intact {
             _parent: undefined,
             _layout: undefined,
         };
-    }
-
-    init(...args) {
-        // set parentDom to null to avoid the dom being appended to the parent
-        // we can not do this, because it may replace child
-        // this.parentDom = null;
-        super.init(...args);
-        return this.placeholder = document.createComment(this._getName());
-    }
-
-    hydrate(...args) {
-        // this.parentDom = null;
-        super.hydrate(...args);
-        return this.placeholder = document.createComment(this._getName());
-    }
-
-    update(...args) {
-        super.update(...args);
-        return this.placeholder;
     }
 
     _getName() {
@@ -180,7 +166,7 @@ export class DShape extends Intact {
 
     _getValue() {
         const {label} = this.get();
-        return label == null ? this.hasElement && this.element || null : String(label);
+        return label == null ? this.hasElement && this.refs.wrapper || null : String(label);
     }
 
     _getStylesheet() {

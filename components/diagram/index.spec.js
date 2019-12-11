@@ -87,6 +87,7 @@ describe('Diagram', () => {
                     <DRectangle key="1" />,
                     <DCircle key="2" />,
                     <DCircle key="3" />,
+                    <DCircle />,
                     <DLine from="1" to="2" />,
                     <DLine from="1" to="3" />,
                 ];
@@ -160,6 +161,28 @@ describe('Diagram', () => {
         instance.set('show', false);
         expect(instance.element.innerHTML).to.matchSnapshot();
         expect(destroy.callCount).to.eql(1);
+    });
+
+    it('should replace shape correctly', () => {
+        class Component extends Demo {
+            @Intact.template()
+            static template = `
+                <Diagram>
+                    <DRectangle v-if={{ self.get('show') }}>
+                        <DCircle />
+                    </DRectangle>
+                    <DCircle v-else>
+                        <DRectangle />
+                    </DCircle>
+                </Diagram>
+            `;
+            defaults() {
+                return {show: true};
+            }
+        }
+        instance = mount(Component);
+        instance.set('show', false);
+        expect(instance.element.innerHTML).to.matchSnapshot();
     });
 
     it('should update shape when props changed', () => {
