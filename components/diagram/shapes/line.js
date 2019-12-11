@@ -3,10 +3,21 @@ import mx from '../mxgraph';
 
 const {mxCell, mxGeometry, mxPoint} = mx;
 
+const arrows = [
+    'none',
+    'classic', 'classicThin',
+    'block', 'blockThin',
+    'open', 'openThin',
+    'oval',
+    'diamond', 'diamondThin',
+];
+
 export class DLine extends DShape {
     static propTypes = {
         ...DShape.propTypes,
         type: ['rounded', 'sharp', 'curved', 'straight'],
+        startArrow: arrows,
+        endArrow: arrows,
         startPoint: Array,
         endPoint: Array,
         exit: Array,
@@ -16,16 +27,24 @@ export class DLine extends DShape {
     defaults() {
         return {
             ...super.defaults(),
+            startArrow: 'none',
+            endArrow: 'classic',
             startPoint: [0, 0],
             endPoint: [50, 0],
             exit: undefined,
             entry: undefined,
             type: 'straight',
+            from: undefined,
+            to: undefined,
         };
     }
 
     _addToDigram() {
         this.get('_diagram').addLine(this);
+    }
+
+    _update() {
+        // override super method, do nothing for line
     }
 
     _updateProps(model, keys) {
@@ -59,12 +78,14 @@ export class DLine extends DShape {
         const cell = this.cell;
         const geo = cell.getGeometry();
 
-        if (!from) {
+        if (from == null) {
+            cell.setTerminal(null, true);
             geo.setTerminalPoint(new mxPoint(...startPoint), true);
         } else {
             cell.setTerminal(shapes.get(from).cell, true);
         }
-        if (!to) {
+        if (to == null) {
+            cell.setTerminal(null, false);
             geo.setTerminalPoint(new mxPoint(...endPoint), false);
         } else {
             cell.setTerminal(shapes.get(to).cell, false);
@@ -72,7 +93,9 @@ export class DLine extends DShape {
     }
 
     _getStylesheet() {
-        return 'endArrow=classic;html=1;fontSize=12;';
+        const {startArrow, endArrow} = this.get();
+
+        return `startArrow=${startArrow};endArrow=${endArrow};html=1;fontSize=12;`;
     }
 
     _getGeometry() {
@@ -94,12 +117,12 @@ export class DLine extends DShape {
         const styles = {};
         const {from, exit, to, entry} = this.get();
 
-        if (from && exit) {
+        if (from != null && exit) {
             styles.exitX = exit[0];
             styles.exitY = exit[1];
             styles.perimeter = 0;
         }
-        if (to && entry) {
+        if (to != null && entry) {
             styles.entryX = entry[0];
             styles.entryY = entry[1];
             styles.perimeter = 0;

@@ -90,7 +90,7 @@ export default class Diagram extends Intact {
             // this.layouts.forEach(layout => {
                 // layout.draw();
             // });
-            this.lines.forEach(line => line._setStyle());
+            // this.lines.forEach(line => line._setStyle());
         } finally {
             model.endUpdate();
         }

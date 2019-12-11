@@ -266,6 +266,7 @@ describe('Diagram', () => {
             `;
         }
         instance = mount(Component);
+        expect(instance.element.innerHTML).to.matchSnapshot();
     });
 });
 

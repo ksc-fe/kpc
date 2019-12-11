@@ -67,15 +67,17 @@ export class DShape extends Intact {
         this.on('$receive:children', (c, children) => {
             let hasElement = false;
             this.children = mapChildren(children, vNode => {
-                const proto = vNode.tag.prototype;
-                if (proto instanceof DShape || proto instanceof DLayout) {
-                    vNode.props = {
-                        ...vNode.props,
-                        _diagram: this.get('_diagram'),
-                        _parent: this,
-                    };
-                } else {
-                    hasElement = true;
+                if (vNode.tag) {
+                    const proto = vNode.tag.prototype;
+                    if (proto instanceof DShape || proto instanceof DLayout) {
+                        vNode.props = {
+                            ...vNode.props,
+                            _diagram: this.get('_diagram'),
+                            _parent: this,
+                        };
+                    } else {
+                        hasElement = true;
+                    }
                 }
                 return vNode;
             });
