@@ -22,7 +22,7 @@ export class DTreeLayout extends DLayout {
             // If the parents should be resized to match the width/height of the children. 
             resizeParent: true,
             // Padding added to resized parents.
-            groupPadding: 10,
+            groupPadding: 0,
         }
     }
 

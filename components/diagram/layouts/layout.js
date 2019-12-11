@@ -5,7 +5,7 @@ import {DShape} from '../shapes/shape';
 export class DLayout extends Intact {
     static template = function(data, Vdt) {
         const children = mapChildren(data.get('children'), vNode => {
-            if (vNode.tag.prototype instanceof DShape) {
+            if (vNode.tag && vNode.tag.prototype instanceof DShape) {
                 vNode.props = {
                     ...vNode.props,
                     _diagram: data.get('_diagram'),

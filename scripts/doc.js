@@ -31,9 +31,9 @@ module.exports = function(isDev = true) {
         path.resolve(__dirname, `../site/dist`);
 
     const doc = new KDoc(
-        // './@(docs|components)/**/*.md',
+        './@(docs|components)/**/*.md',
         // './@(docs|components)/diagram/demos/*.md',
-        './@(docs|components)/@(transfer|diagram)/demos/*.md',
+        // './@(docs|components)/@(transfer|diagram)/demos/*.md',
         root
     );
 

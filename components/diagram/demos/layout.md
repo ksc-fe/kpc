@@ -1,7 +1,23 @@
 ---
 title: 布局
-order: 1
+order: 3
 ---
+
+`Diagram`封装了`mxGraph`大部分布局系统，并且保持与`mxGraph`的命名一致
+
+1. `DStackLayout`: 所有子元素横向`horizontal`或者纵向`vertical`排列，该布局对所有元素生效
+2. `DPartitionLayout`: 所有元素横向`horizontal`或者纵向`vertical`等分排列，注意所有子元素
+会等分以满足父容器的宽高，该布局对所有元素生效
+3. `DTreeLayout`: 所有连接元素横向`horizontal`或者纵向`vertical`排列，不要存在循环连接，该
+布局仅对连接元素生效，所有非连接元素，放在原始位置（默认：左上角）
+4. `DRadialLayout`: 所有连接元素辐射排列，不要存在循环连接，该布局仅对连接元素生效，所有非
+连接元素，放在原始位置（默认：左上角）
+5. `DFlowLayout`: 所有连接元素横向`horizontal`或者纵向`vertical`排列，非连接元素会纵向（如
+果`type="horizontal"`）或者横向（如果`type="vertical"`）排列，该布局对连接元素和非连接都生
+效，但是排列方式不同
+6. `DCircleLayout`: 所有元素圆形排列，该布局对所有元素生效
+7. `DOrganicLayout`: 所有连接元素根据力导向排列，该布局仅对连接元素生效，非连接元素放置在
+原始位置。（该布局具有随机性）
 
 ```vdt
 import {Button, ButtonGroup} from 'kpc/components/button';
