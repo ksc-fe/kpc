@@ -84,12 +84,12 @@ export default class Diagram extends Intact {
 
             // render layout
             // we must render parent firstly, because layouts may be nested
-            for (let i = this.layouts.length - 1; i >= 0; i--) {
-                this.layouts[i].draw();
-            }
-            // this.layouts.forEach(layout => {
-                // layout.draw();
-            // });
+            // for (let i = this.layouts.length - 1; i >= 0; i--) {
+                // this.layouts[i].draw();
+            // }
+            this.layouts.forEach(layout => {
+                layout.draw();
+            });
             // this.lines.forEach(line => line._setStyle());
         } finally {
             model.endUpdate();

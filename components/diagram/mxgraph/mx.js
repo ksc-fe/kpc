@@ -1,4 +1,4 @@
-import mx from 'mxgraph';
+import mx from 'mxgraphx';
 
 const doll = mx({
     mxLoadResources: false,
