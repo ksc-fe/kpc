@@ -7,17 +7,6 @@ sidebar: doc
 
 # 属性
 
-## Diagram
-
-| 属性 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| movable | 图形是否可拖动 | `Boolean` | `false` |
-| connectable | 图形是否可手动连接 | `Boolean` | `false` |
-| resizable | 图形是否可手动调整大小 | `Boolean` | `false` |
-| rotatable | 图形是否可旋转 | `Boolean` | `false` |
-| editable | 图形是否可编辑 | `Boolean` | `false` |
-| selectable | 图形是否可选择 | `Boolean` | `false` |
-
 ## DShape
 
 图形的通用属性
@@ -31,6 +20,13 @@ sidebar: doc
 | height | 图形高度 | `String` &#124; `Number` | `0` |
 | style | 指定图形的样式，该样式非`html`元素的样式，而是`svg`元素的样式，并且只支持`Object`的方式指定，不支持字符串。支持的属性可以查阅[mxGraph mxConstants][1]的文档（以`STYLE_`开头的属性) | `Object` | `undefined` |
 | strokeStyle | 定义线条样式 | `"solid"` &#124; `"dashed"` &#124; `"dotted"` | `"solid"` |
+| movable | 图形是否可拖动 | `Boolean` | `false` |
+| connectable | 图形是否可手动连接 | `Boolean` | `false` |
+| resizable | 图形是否可手动调整大小 | `Boolean` | `false` |
+| rotatable | 图形是否可旋转 | `Boolean` | `false` |
+| editable | 图形是否可编辑 | `Boolean` | `false` |
+| selectable | 图形是否可选择 | `Boolean` | `false` |
+| data | 附加到图形上的数据，可通过图形对象获取该数据 | `*` | `undefined` |
 
 ## DRectangle
 
@@ -131,6 +127,8 @@ sidebar: doc
 | forceConstant | 指定已连接图形之间的间隔 | `Number` &#124; `String` | `50` |
 
 # 事件
+
+## Diagram
 
 | 事件名 | 说明 | 参数 |
 | --- | --- | --- |
