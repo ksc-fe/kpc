@@ -166,7 +166,7 @@ export class DShape extends Intact {
 
     _getValue() {
         const {label} = this.get();
-        return label == null ? this.hasElement && this.refs.wrapper || null : String(label);
+        return label == null ? this.hasElement && this.wrapper || null : String(label);
     }
 
     _getStylesheet() {
