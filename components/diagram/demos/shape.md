@@ -20,7 +20,9 @@ import {Button, ButtonGroup} from 'kpc/components/button'
 const states = self.get('states');
 <div>
     <ButtonGroup checkType="checkbox" v-model="selectedStates">
-        <Button v-for={{ states }} value={{ key }}>{{ key }}</Button>
+        <Button v-for={{ states }} value={{ key }}>
+            {{ key }}
+        </Button>
     </ButtonGroup>
     <br />
     <Diagram>
