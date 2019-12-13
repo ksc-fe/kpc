@@ -53,7 +53,14 @@ export default class Diagram extends Intact {
 
         this.cell = graph.getDefaultParent();
 
-        this.draw();
+        if (this.$nextTick) {
+            // for vue
+            this.$nextTick(() => {
+                this.draw();
+            });
+        } else {
+            this.draw();
+        }
     }
 
     _update() {

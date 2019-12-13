@@ -29,7 +29,7 @@ describe('Diagram', () => {
     let instance;
 
     beforeEach(() => {
-        
+        unmount(instance); 
     });
 
     it('should update type of DFlowLayout', () => {

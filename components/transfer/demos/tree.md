@@ -154,7 +154,7 @@ export default class extends Intact {
                         newData = {...data, children: []};
                         to.push(newData);
                     }
-                    loop(node.children, from[index].children, newData.children);
+                    loop(node.children, from[index - deleteCount].children, newData.children);
                 }
             });
         };

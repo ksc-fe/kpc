@@ -20,7 +20,9 @@ const cities = self.get('cities');
             <div class="container">
                 <div>始发站</div>
                 <Select v-model="from" fluid>
-                    <Option v-for={{ cities }} value={{ key }}>{{ value }}</Option>
+                    <Option v-for={{ cities }} value={{ key }}>
+                        {{ value }}
+                    </Option>
                 </Select>
             </div>
         </DRectangle>
@@ -28,7 +30,9 @@ const cities = self.get('cities');
             <div class="container">
                 <div>终点站</div>
                 <Select v-model="to" fluid>
-                    <Option v-for={{ cities }} value={{ key }}>{{ value }}</Option>
+                    <Option v-for={{ cities }} value={{ key }}>
+                        {{ value }}
+                    </Option>
                 </Select>
             </div>
         </DRectangle>
