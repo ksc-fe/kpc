@@ -13,7 +13,7 @@ sidebar: doc
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| label | 图形标签，可以书写`html`字符串，但是一旦图形包含`dom`元素，该属性便不再生效 | `String` &#124; `Number` | `undefined` |
+| label | 图形标签，可以书写`html`字符串 | `String` &#124; `Number` | `undefined` |
 | left | 相对左上角横向偏移量 | `String` &#124; `Number` | `0` |
 | top | 相对左上角纵向偏移量 | `String` &#124; `Number` | `0` |
 | width | 图形宽度 | `String` &#124; `Number` | `0` |

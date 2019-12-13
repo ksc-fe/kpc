@@ -7,7 +7,7 @@ order: 4
 数组的形式传给事件回调函数，如果图形添加了`data`属性，则我们可以通过图形对象获取到该数据`shape.data`
 
 ```vdt
-import {Diagram, DTreeLayout, DCircle, DLine} from 'kpc/components/diagram';
+import {Diagram, DTreeLayout, DCircle, DLine, DText} from 'kpc/components/diagram';
 
 const Loop = ({children, parent, disabled}) => {
     const ret = [];
@@ -17,7 +17,13 @@ const Loop = ({children, parent, disabled}) => {
         // if parent is disabled, disable all children
         if (!disabled && data.disabled) disabled = true; 
 
-        ret.push(<DCircle key={{ data.key }} label={{ data.key }} selectable={{ !disabled }} data={{ data }} />);
+        ret.push(
+            <DCircle key={{ data.key }} 
+                label={{ data.key }} 
+                selectable={{ !disabled }}
+                data={{ data }}
+            />
+        );
 
         // add line if it has parent
         if (parent) {

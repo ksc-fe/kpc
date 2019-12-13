@@ -25,7 +25,7 @@ const states = self.get('states');
         >{{ key }}</Button>
     </ButtonGroup>
     <br />
-    <Diagram connectable selectable movable resizable>
+    <Diagram>
         <DStackLayout spacing="20" wrap="500" border="20">
             <DRectangle {{ ...states }} /> 
             <DSquare {{ ...states }} />
