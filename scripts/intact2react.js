@@ -15,12 +15,12 @@ module.exports = function(vdt, js, reactMethods, jsHead, hasStylus) {
     return result.join('\n');
 }
 
-const importRegExp = /import \{?(.*?)\}? from .*/g
+const importRegExp = /import \{?([\s\S]*?)\}? from .*/g
 function parse(vdt, js, reactMethods, hasStylus) {
     const components = [];
     let head = '';
     let template = vdt.replace(importRegExp, (match, name) => {
-        components.push(...(name.split(', ')));
+        components.push(...(name.split(',').map(item => item.trim())).filter(Boolean));
         head += match + '\n';
         return '';
     });

@@ -23,14 +23,17 @@ module.exports = function(vdt, js, vueScript, vueTemplate, vueMethods, vueData, 
     return result.join('\n');
 }
 
-const importRegExp = /import \{?(.*?)\}? from .*/g
+const importRegExp = /import \{?([\s\S]*?)\}? from .*/g
 function parse(vdt, js, vueScript, vueTemplate, vueMethods, vueData) {
     const components = [];
     let properties = {};
     let methods = {};
     let head = '';
     let template = vdt.replace(importRegExp, (match, name) => {
-        name = name.split(', ').map(item => item === 'Switch' ? 'KSwitch' : item);
+        name = name.split(',').map(item => {
+            item = item.trim();
+            return item === 'Switch' ? 'KSwitch' : item;
+        }).filter(Boolean);
         components.push(...name);
         head += match.replace('Switch', 'Switch as KSwitch') + '\n';
         return '';
