@@ -8,7 +8,7 @@ module.exports = merge.smartStrategy({
     module: {
         rules: [
             {
-                test: /^((?!spec).)*\.js$/,
+                test: /^((?!(spec|mxgraph)).)*\.js$/,
                 include: path.resolve(__dirname, '../components'),
                 enforce: 'post',
                 use: {

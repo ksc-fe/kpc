@@ -20,8 +20,8 @@ const cities = self.get('cities');
             <div class="container">
                 <div>始发站</div>
                 <Select v-model="from" fluid>
-                    <Option v-for={{ cities }} value={{ key }}>
-                        {{ value }}
+                    <Option v-for={{ cities }} value={{ value.value }}>
+                        {{ value.name }}
                     </Option>
                 </Select>
             </div>
@@ -30,8 +30,8 @@ const cities = self.get('cities');
             <div class="container">
                 <div>终点站</div>
                 <Select v-model="to" fluid>
-                    <Option v-for={{ cities }} value={{ key }}>
-                        {{ value }}
+                    <Option v-for={{ cities }} value={{ value.value }}>
+                        {{ value.name }}
                     </Option>
                 </Select>
             </div>
@@ -55,11 +55,11 @@ export default class extends Intact {
 
     defaults() {
         return {
-            cities: {
-                beijing: '北京',
-                shanghai: '上海',
-                shenzhen: '深圳'
-            },
+            cities: [
+                {name: '北京', value: 'beijing'},
+                {name: '上海', value: 'shanghai'},
+                {name: '深圳', value: 'shenzhen'},
+            ],
             from: '',
             to: '',
         };

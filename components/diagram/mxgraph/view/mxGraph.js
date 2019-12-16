@@ -1,6 +1,6 @@
 import mx from '../mx';
-import expandedImage from 'mxgraph/javascript/src/images/expanded.gif';
-import collapsedImage from 'mxgraph/javascript/src/images/collapsed.gif';
+import expandedImage from 'mxgraphx/javascript/src/images/expanded.gif';
+import collapsedImage from 'mxgraphx/javascript/src/images/collapsed.gif';
 
 const {
     mxGraph,

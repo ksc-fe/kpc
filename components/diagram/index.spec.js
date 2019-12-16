@@ -7,6 +7,7 @@ import {
 } from 'kpc/components/diagram';
 import {Button} from 'kpc/components/button';
 import {mount, unmount, dispatchEvent} from 'test/utils';
+import LayoutDemo from '~/components/diagram/demos/layout';
 
 class Demo extends Intact {
     _init() {
@@ -302,6 +303,20 @@ describe('Diagram', () => {
         expect(onLabelChange.callCount).to.eql(1);
         dispatchEvent(rect, 'dblclick');
         expect(instance.element.innerHTML).to.matchSnapshot();
+    });
+
+    it('test all layouts', () => {
+        instance = mount(LayoutDemo); 
+
+        const element = instance.element;
+
+        instance.set('layout', 'circle');
+        expect(element.innerHTML).to.matchSnapshot();
+
+        instance.set('layout', 'radial');
+        expect(element.innerHTML).to.matchSnapshot();
+
+        instance.set('layout', 'organic'); // the result is random
     });
 });
 
