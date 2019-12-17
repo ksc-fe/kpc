@@ -249,8 +249,8 @@ describe('Diagram', () => {
             @Intact.template()
             static template = `
                 <Diagram 
-                    ev-selectionChange={{ self._onChange }}
-                    ev-labelChange={{ self._onLabelChange }}
+                    ev-selectionChanged={{ self._onChange }}
+                    ev-labelChanged={{ self._onLabelChange }}
                 >
                     <DFlowLayout>
                         <DRectangle key="1" data={{ 1 }} selectable movable connectable />

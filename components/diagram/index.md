@@ -132,8 +132,8 @@ sidebar: doc
 
 | 事件名 | 说明 | 参数 |
 | --- | --- | --- |
-| selectionChange | 当`Diagram`可选择时`selectable`，选中的图形改变会触发该事件 | `cells`: 所有选中的图形 |
-| labelChange | 当`Diagram`可编辑时`editable`，`label`改变会触发该事件 | `cell`: 当前图形；`newValue`: 改变后的值；`oldValue`：改变前的值 |
+| selectionChanged | 当`Diagram`可选择时`selectable`，选中的图形改变会触发该事件 | `cells`: 所有选中的图形 |
+| labelChanged | 当`Diagram`可编辑时`editable`，`label`改变会触发该事件 | `cell`: 当前图形；`newValue`: 改变后的值；`oldValue`：改变前的值 |
 
 
 [1]: https://jgraph.github.io/mxgraph/docs/js-api/files/util/mxConstants-js.html

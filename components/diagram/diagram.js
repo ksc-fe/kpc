@@ -11,8 +11,8 @@ export default class Diagram extends Intact {
     static template = template;
 
     static events = {
-        selectionChange: true,
-        labelChange: true,
+        selectionChanged: true,
+        labelChanged: true,
     };
 
     // static propTypes = {
@@ -45,7 +45,7 @@ export default class Diagram extends Intact {
         // add label changed event
         graph.addListener(mxEvent.LABEL_CHANGED, (graph, evt) => {
             const {cell, old, value} = evt.properties;
-            this.trigger('labelChange', cell, value, old);
+            this.trigger('labelChanged', cell, value, old);
         });
         graph.getSelectionModel().addListener(mxEvent.CHANGE, this._onSelectionChange);
 
@@ -108,7 +108,7 @@ export default class Diagram extends Intact {
     }
 
     _onSelectionChange() {
-        this.trigger('selectionChange', this.graph.getSelectionCells());
+        this.trigger('selectionChanged', this.graph.getSelectionCells());
     }
 
     addShape(shape) {
