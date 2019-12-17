@@ -150,4 +150,10 @@ export default class Diagram extends Intact {
         const index = arr.indexOf(item);
         arr.splice(item, 1);
     }
+
+    destroy(...args) {
+        this.refs.canvas.style = '';
+        this.graph.destroy();
+        super.destroy(...args);
+    }
 }
