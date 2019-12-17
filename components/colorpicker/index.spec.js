@@ -77,4 +77,26 @@ describe('Colorpicker', () => {
         dispatchEvent(alpha, 'input');
         expect(instance.get('color')).to.eql('rgba(255, 51, 51, 0)');
     });
+
+    it('should change to hsv mode', () => {
+        const [first, second] = picker.querySelectorAll('.k-drag');
+        dispatchEvent(first, 'mousedown', {which: 1});
+        dispatchEvent(first, 'mouseup');
+
+        expect(picker.innerHTML).to.matchSnapshot();
+
+        dispatchEvent(first, 'mousedown', {clientX: 0, which: 1});
+        dispatchEvent(first, 'mousemove', {clientX: -1});
+        expect(instance.get('color')).to.eql('hsv(35, 84%, 85%)');
+        dispatchEvent(first, 'mousemove', {clientX: 1});
+        expect(instance.get('color')).to.eql('hsv(37, 84%, 85%)');
+        dispatchEvent(first, 'mouseup');
+
+        dispatchEvent(second, 'mousedown', {clientX: 0, which: 1});
+        dispatchEvent(second, 'mousemove', {clientX: -1});
+        expect(instance.get('color')).to.eql('hsv(37, 83%, 85%)');
+        dispatchEvent(second, 'mousemove', {clientX: 1});
+        expect(instance.get('color')).to.eql('hsv(37, 85%, 85%)');
+        dispatchEvent(first, 'mouseup');
+    });
 });

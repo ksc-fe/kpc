@@ -70,7 +70,7 @@
 ####     `Button disabled`
 
 ```
-"<div><button class=\"k-btn k-default k-disabled\" tabindex=\"-1\" type=\"button\"><span>disabled</span></button><button class=\"k-btn k-none k-disabled\" tabindex=\"-1\" type=\"button\"><span>disabled text</span></button><button class=\"k-btn k-default k-btn-icon k-circle k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i></button></div>"
+"<div><button class=\"k-btn k-default k-disabled\" tabindex=\"-1\" type=\"button\"><span>disabled</span></button><button class=\"k-btn k-none k-disabled\" tabindex=\"-1\" type=\"button\"><span>disabled text</span></button><button class=\"k-btn k-default k-btn-icon k-circle k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i></button><button class=\"k-btn k-link k-disabled\" tabindex=\"-1\" type=\"button\"><span>link</span></button></div>"
 ```
 
 ####     `Button ghost`
@@ -1927,7 +1927,7 @@
 ####     `Button disabled`
 
 ```
-"<div><div><button class=\"k-btn k-default k-disabled\" tabindex=\"-1\" type=\"button\"><span>disabled</span></button><button class=\"k-btn k-none k-disabled\" tabindex=\"-1\" type=\"button\"><span>disabled text</span></button><button class=\"k-btn k-default k-btn-icon k-circle k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i></button></div></div>"
+"<div><div><button class=\"k-btn k-default k-disabled\" tabindex=\"-1\" type=\"button\"><span>disabled</span></button><button class=\"k-btn k-none k-disabled\" tabindex=\"-1\" type=\"button\"><span>disabled text</span></button><button class=\"k-btn k-default k-btn-icon k-circle k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i></button><button class=\"k-btn k-link k-disabled\" tabindex=\"-1\" type=\"button\"><span>link</span></button></div></div>"
 ```
 
 ####     `Button ghost`

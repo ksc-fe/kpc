@@ -65,7 +65,7 @@
 ####   `Button disabled`
 
 ```
-"<div><button class=\"k-btn k-default k-disabled\" tabindex=\"-1\" type=\"button\">disabled</button><button class=\"k-btn k-none k-disabled\" tabindex=\"-1\" type=\"button\">disabled text</button><button class=\"k-btn k-default k-btn-icon k-circle k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i><!-- react-mount-point-unstable --></button></div>"
+"<div><button class=\"k-btn k-default k-disabled\" tabindex=\"-1\" type=\"button\">disabled</button><button class=\"k-btn k-none k-disabled\" tabindex=\"-1\" type=\"button\">disabled text</button><button class=\"k-btn k-default k-btn-icon k-circle k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i><!-- react-mount-point-unstable --></button><button class=\"k-btn k-link k-disabled\" tabindex=\"-1\" type=\"button\">link</button></div>"
 ```
 
 ####   `Button ghost`

@@ -4,7 +4,7 @@ import Input from '../input';
 import {Row, Col} from '../grid';
 import Drag from './drag';
 
-const {value, presets} = self.get();
+const {value, presets, _mode} = self.get();
 const {_hex: hex, _rgb: rgb, _hsv: hsv, _hsl: hsl} = self;
 const alpha = +(rgb.a * 100).toFixed(5); 
 
@@ -57,17 +57,42 @@ const alpha = +(rgb.a * 100).toFixed(5);
             />
             <div class="k-text">Hex</div>
         </Col>
-        <Col span="4" v-for={{ ['r', 'g', 'b'] }}>
-            <Input fluid size="small" value={{ rgb[value] }} 
-                ev-input={{ self._changeRgb.bind(self, value) }} 
-                ev-change={{ self._forceUpdate }}
-            />
-            <Drag class="k-text" max={{ 255 }} value={{ rgb[value] }}
-                ev-dragStart={{ self._onDragStart }}
-                ev-$change:value={{ (c, v) => self._setValue(value, v) }}
-                ev-dragEnd={{ self._onDragEnd }}
-            >{{ value.toUpperCase() }}</Drag>
-        </Col>
+        {{ (() => {
+            let params;
+            let color;
+            let method;
+            let max;
+            if (_mode === 'rgb') {
+                params = ['r', 'g', 'b'];
+                color = rgb;
+                method = self._changeRgb;
+                max = 255;
+            } else {
+                params = ['h', 's', 'v'];
+                color = {h: hsv.h, s: hsv.s * 100, v: hsv.v * 100};
+                method = self._changeHsv;
+                max = 100;
+            }
+            return params.map(value => {
+                const v = Math.round(color[value]);
+                return (
+                    <Col span="4">
+                        <Input fluid size="small" value={{ v }} 
+                            ev-input={{ method.bind(self, value) }} 
+                            ev-change={{ self._forceUpdate }}
+                        />
+                        <Drag class="k-text" max={{ value === 'h' ? 359 : max }} value={{ v }}
+                            ev-dragStart={{ self._onDragStart }}
+                            ev-$change:value={{ (c, v) => {
+                                self._setValue(value, _mode !== 'rgb' && value !== 'h' ? v / 100 : v);
+                            } }}
+                            ev-dragEnd={{ self._onDragEnd }}
+                            ev-click={{ self._changeMode }}
+                        >{{ value.toUpperCase() }}</Drag>
+                    </Col>
+                ); 
+            });
+        })() }}
         <Col span="4">
             <Input fluid size="small" value={{ alpha }} 
                 ev-input={{ self._changeAlpha }} 
