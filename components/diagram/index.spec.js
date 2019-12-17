@@ -3,7 +3,8 @@ import {
     Diagram, DRectangle, DSquare, DCircle,
     DEllipse, DLine, DImage, DText, DDiamond,
     DFlowLayout, DTreeLayout, DOrganicLayout, DCircleLayout,
-    DPartitionLayout, DStackLayout,
+    DPartitionLayout, DStackLayout, DDocument, DParallelogram,
+    DHexagon, DCallout,
 } from 'kpc/components/diagram';
 import {Button} from 'kpc/components/button';
 import {mount, unmount, dispatchEvent} from 'test/utils';
@@ -23,13 +24,17 @@ class Demo extends Intact {
         this.DDiamond = DDiamond;
         this.DEllipse = DEllipse;
         this.DSquare = DSquare;
+        this.DDocument = DDocument;
+        this.DParallelogram = DParallelogram;
+        this.DHexagon = DHexagon;
+        this.DCallout = DCallout;
     }
 }
 
 describe('Diagram', () => {
     let instance;
 
-    beforeEach(() => {
+    afterEach(() => {
         unmount(instance); 
     });
 
@@ -317,6 +322,57 @@ describe('Diagram', () => {
         expect(element.innerHTML).to.matchSnapshot();
 
         instance.set('layout', 'organic'); // the result is random
+    });
+
+    it('should generate connect points of shapes', () => {
+         class Component extends Demo {
+            @Intact.template()
+            static template = `
+                <Diagram>
+                    <DFlowLayout>
+                        <DParallelogram connectable />
+                        <DHexagon connectable />
+                        <DCallout connectable />
+                    </DFlowLayout>
+                </Diagram>
+            `;
+        }
+        instance = mount(Component);
+        
+        const [parallelogram, hexagon, callout] = instance.element.querySelectorAll('path');
+        dispatchEvent(parallelogram, 'pointermove');
+        expect(instance.element.innerHTML).to.matchSnapshot();
+        dispatchEvent(hexagon, 'pointermove');
+        expect(instance.element.innerHTML).to.matchSnapshot();
+        dispatchEvent(callout, 'pointermove');
+        expect(instance.element.innerHTML).to.matchSnapshot();
+    });
+
+    it('should fix points of line', () => {
+         class Component extends Demo {
+            @Intact.template()
+            static template = `
+                <Diagram>
+                    <DFlowLayout top="20">
+                        <DRectangle key="1" />
+                        <DRectangle key="2" />
+                        <DLine from="1" to="2" exit={{ [0.5, 0] }} entry={{ [0.5, 1] }}
+                            type={{ self.get('type') }}
+                            label={{ self.get('type') }}
+                        />
+                    </DFlowLayout>
+                </Diagram>
+            `;
+
+            defaults() {
+                return {type: 'curved'};
+            }
+        }
+        
+        instance = mount(Component);
+        expect(instance.element.innerHTML).to.matchSnapshot();
+        instance.set('type', 'sharp');
+        expect(instance.element.innerHTML).to.matchSnapshot();
     });
 });
 

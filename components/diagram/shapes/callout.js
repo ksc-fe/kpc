@@ -26,10 +26,12 @@ CalloutShape.prototype.size = 30;
 CalloutShape.prototype.position = 0.5;
 CalloutShape.prototype.position2 = 0.5;
 CalloutShape.prototype.base = 20;
+/* istanbul ignore next */
 CalloutShape.prototype.getLabelMargins = function() {
     return new mxRectangle(0, 0, 0, parseFloat(mxUtils.getValue(
         this.style, 'size', this.size)) * this.scale);
 };
+/* istanbul ignore next */
 CalloutShape.prototype.isRoundable = function() {
     return true;
 };

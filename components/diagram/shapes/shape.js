@@ -183,9 +183,7 @@ export class DShape extends Intact {
         return label == null ? this.hasElement && this.wrapper || null : String(label);
     }
 
-    _getStylesheet() {
-        return '';
-    }
+    _getStylesheet() {  }
 
     _getGeometry() {
         const {width, height, top, left} = this.get();

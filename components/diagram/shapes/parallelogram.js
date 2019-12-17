@@ -23,6 +23,7 @@ function ParallelogramShape() {
 };
 mxUtils.extend(ParallelogramShape, mxActor);
 ParallelogramShape.prototype.size = 0.2;
+/* istanbul ignore next */
 ParallelogramShape.prototype.isRoundable = function() {
     return true;
 };

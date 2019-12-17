@@ -13,6 +13,7 @@ export class DLayout extends Intact {
                     _layout: data,
                 };
             } else {
+                /* istanbul ignore next */
                 Intact.utils.error(new Error(`DLayout can only contains DShape, but ${vNode.tag} found.`));
             }
             return vNode;

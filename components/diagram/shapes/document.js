@@ -23,6 +23,7 @@ function DocumentShape() {
 };
 mxUtils.extend(DocumentShape, mxActor);
 DocumentShape.prototype.size = 0.3;
+/* istanbul ignore next */
 DocumentShape.prototype.getLabelMargins = function(rect) {
     if (mxUtils.getValue(this.style, 'boundedLbl', false)) {
         return new mxRectangle(0, 0, 0, parseFloat(mxUtils.getValue(

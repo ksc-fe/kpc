@@ -23,6 +23,7 @@ function HexagonShape() {
 };
 mxUtils.extend(HexagonShape, mxHexagon);
 HexagonShape.prototype.size = 0.25;
+/* istanbul ignore next */
 HexagonShape.prototype.isRoundable = function() {
     return true;
 };

@@ -6,11 +6,6 @@ const shapes = {
         height: 80,
         stylesheet: 'rhombus;whiteSpace=wrap;html=1;'
     },
-    Hexagon: {
-        width: 120,
-        height: 80,
-        stylesheet: 'shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;',
-    },
     Triangle: {
         width: 60,
         height: 80,
