@@ -3,7 +3,7 @@ import {getRestProps} from '../utils';
 const {
     className, disabled, falseValue, 
     children, value, trueValue, style,
-    ref, key, indeterminate, ...rest
+    ref, key, indeterminate, title, ...rest
 } = self.get();
 
 const classNameObj = {
@@ -35,6 +35,7 @@ const events = [
     tabindex={{ disabled ? null : "0" }}
     ev-keypress={{ self._onKeypress }}
     {{ ...events }}
+    title={{ title }}
 >
     <span class="k-wrapper">
         <input type="checkbox" disabled={{ disabled }}
