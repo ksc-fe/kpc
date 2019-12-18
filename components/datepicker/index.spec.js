@@ -15,7 +15,7 @@ describe('Datepicker', () => {
     let instance;
 
     afterEach(async () => {
-        unmount(instance);
+        // unmount(instance);
         await wait(400);
     });
 
@@ -369,5 +369,19 @@ describe('Datepicker', () => {
         const dateDoms = content.querySelectorAll('.k-day:not(.k-disabled)');
         expect(dateDoms.length).to.eql(1);
         expect(+dateDoms[0].textContent).to.eql(+now.split('-')[2]);
+    });
+
+    it('should auto select time of the minDate after selecting a date of datetime picker', () => {
+        instance = mount(MaxMinDemo); 
+
+        const date = dayjs().format('YYYY-MM-DD');
+        const time = '01:00:00';
+        const fromTime = `${date} ${time}`;
+        instance.set('fromTime', fromTime);
+        const endTimeTrigger = instance.element.querySelectorAll('.k-inner')[3];
+        endTimeTrigger.click();
+        const content = getElement('.k-datepicker-content');
+        content.querySelector('.k-day:not(.k-disabled)').click();
+        expect(instance.get('toTime')).to.eql(`${date} ${time}`);
     });
 });
