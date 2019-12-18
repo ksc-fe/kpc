@@ -5,7 +5,7 @@ import {mount, unmount, wait, nextFrame} from 'test/utils';
 describe('Carousel', () => {
     let instance;
 
-    // afterEach(() => unmount(instance));
+    afterEach(() => unmount(instance));
 
     it('basic test', async function() {
         this.enableTimeouts(false);
