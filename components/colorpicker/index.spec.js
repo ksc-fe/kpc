@@ -98,5 +98,15 @@ describe('Colorpicker', () => {
         dispatchEvent(second, 'mousemove', {clientX: 1});
         expect(instance.get('color')).to.eql('hsv(37, 85%, 85%)');
         dispatchEvent(first, 'mouseup');
+
+        // input
+        const [hex, h, s] = picker.querySelectorAll('input');
+        h.value = 1000;
+        dispatchEvent(h, 'input');
+        expect(instance.get('color')).to.eql('hsv(359, 85%, 85%)');
+
+        s.value = 10;
+        dispatchEvent(s, 'input');
+        expect(instance.get('color')).to.eql('hsv(359, 10%, 85%)');
     });
 });
