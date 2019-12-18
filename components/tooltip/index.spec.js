@@ -195,38 +195,37 @@ describe('Tooltip', () => {
         document.body.removeChild(app.$el);
     });
 
-    // if we run this unit test case, the snapshots is very weird
-    // I don't known why
-    // it('should change value on click when we use tooltip on radio in Vue', async () => {
-        // const container = document.createElement('div');
-        // document.body.appendChild(container);
+    it('should change value on click when we use tooltip on radio in Vue', async () => {
+        const container = document.createElement('div');
+        document.body.appendChild(container);
 
-        // const app = new Vue({
-            // template: `
-                // <div>
-                    // <Tooltip content="hello">
-                        // <Radio v-model="a" trueValue="1">test</Radio>
-                    // </Tooltip>
-                    // <Tooltip content="hello">
-                        // <Radio v-model="a" trueValue="2">test</Radio>
-                    // </Tooltip>
-                // </div>
-            // `,
-            // components: {
-                // Tooltip, Radio,
-            // },
-            // data: {
-                // a: '1',
-            // }
-        // }).$mount(container);
+        const app = new Vue({
+            template: `
+                <div>
+                    <Tooltip content="hello">
+                        <Radio v-model="a" trueValue="1">test</Radio>
+                    </Tooltip>
+                    <Tooltip content="hello">
+                        <Radio v-model="a" trueValue="2">test</Radio>
+                    </Tooltip>
+                </div>
+            `,
+            components: {
+                Tooltip, Radio,
+            },
+            data: {
+                a: '1',
+            }
+        }).$mount(container);
 
-        // const [radio1, radio2] = app.$el.querySelectorAll('.k-radio');
-        // radio2.click();
-        // expect(app.a).to.eql('2');
+        const [radio1, radio2] = app.$el.querySelectorAll('input');
+        // If we run call click on label, the snapshots of demos is very weird.
+        // I don't known why. So we call it on input.
+        radio2.click();
+        expect(app.a).to.eql('2');
 
-
-        // await wait();
-        // app.$destroy();
-        // document.body.removeChild(app.$el);
-    // });
+        await wait();
+        app.$destroy();
+        document.body.removeChild(app.$el);
+    });
 });
