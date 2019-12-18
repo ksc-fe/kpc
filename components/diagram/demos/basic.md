@@ -10,6 +10,10 @@ order: 0
 > 而不能直接通过`kpc`引入
 >
 > `import {Diagram, DRectangle} from 'kpc';`
+> 
+> Angular下，需要另外注入`DiagramModule`
+>
+> `import {DiagramModule} from 'kpc-angular/components/diagram';`
 
 `Diagram`组件暴露了3类组件
 

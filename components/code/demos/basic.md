@@ -10,6 +10,11 @@ order: 0
 > 而不能直接通过`kpc`引入
 >
 > `import {Code} from 'kpc';`
+>
+> Angular下，需要另外注入`CodeModule`
+>
+> `import {CodeModule} from 'kpc-angular/components/diagram';`
+
 
 
 组件可以通过`v-model`双向绑定编辑的代码，通过`height`指定组件的高度（需要带单位），默认`100%`；通过

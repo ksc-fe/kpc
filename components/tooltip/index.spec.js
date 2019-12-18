@@ -6,6 +6,8 @@ import ConfirmDemo from '~/components/tooltip/demos/confirm';
 import AlwaysDemo from '~/components/tooltip/demos/always';
 import Vue from 'vue';
 import Tooltip from 'kpc/components/tooltip';
+import Radio from 'kpc/components/radio';
+import Intact from 'intact';
 import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 
 describe('Tooltip', () => {
@@ -36,7 +38,7 @@ describe('Tooltip', () => {
 
         // should hide
         dispatchEvent(first, 'mouseleave');
-        await wait(1000);
+        await wait(500);
         content = getElement('.k-tooltip-content');
         expect(content).be.undefined;
     });
@@ -186,6 +188,37 @@ describe('Tooltip', () => {
         await wait();
         expect(app.$el.innerHTML).to.matchSnapshot();
 
+        document.body.removeChild(app.$el);
+    });
+
+    it('should change value on click when we use tooltip on radio in Vue', async () => {
+        const container = document.createElement('div');
+        document.body.appendChild(container);
+
+        const app = new Vue({
+            template: `
+                <div>
+                    <Tooltip content="hello">
+                        <Radio v-model="a" trueValue="1">test</Radio>
+                    </Tooltip>
+                    <Tooltip content="hello">
+                        <Radio v-model="a" trueValue="2">test</Radio>
+                    </Tooltip>
+                </div>
+            `,
+            components: {
+                Tooltip, Radio,
+            },
+            data: {
+                a: '1',
+            }
+        }).$mount(container);
+
+        const [radio1, radio2] = app.$el.querySelectorAll('.k-radio');
+        radio2.click();
+        expect(app.a).to.eql('2');
+
+        app.$destroy();
         document.body.removeChild(app.$el);
     });
 });

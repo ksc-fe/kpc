@@ -47,7 +47,8 @@ export default class DropdownMenu extends Intact {
         this.on('$change:value', (c, v) => {
             // contextmenu has not dropdown
             if (this.dropdown) {
-                this.dropdown.set('_isShow', v);
+                // update parent we must specify async, #408
+                this.dropdown.set('_isShow', v, {async: true});
             }
         });
 
