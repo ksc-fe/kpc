@@ -683,8 +683,10 @@ export default class Table extends Intact {
             } else if (rowSelectable) {
                 if ((!isSelect || isToggle) && i > -1) {
                     selectedKeys = [];
+                    shouldSet = true;
                 } else if (isSelect || isToggle) {
                     selectedKeys = [key];
+                    shouldSet = true;
                 }
             }
         });
