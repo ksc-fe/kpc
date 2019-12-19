@@ -106,9 +106,9 @@ module.exports = {
                 use: [
                     {
                         loader: 'url-loader',
-                        // options: {
-                            // limit
-                        // }
+                        options: {
+                            limit: 100000
+                        }
                     }
                 ]
             },
