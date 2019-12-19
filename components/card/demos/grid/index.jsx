@@ -1,7 +1,7 @@
 import React from 'react';
-import {Card, CardColumn} from 'kpc/components/card';
-import Icon from 'kpc/components/icon';
-import {Row, Col} from 'kpc/components/grid';
+import {Card, CardColumn} from 'kpc-react/components/card';
+import Icon from 'kpc-react/components/icon';
+import {Row, Col} from 'kpc-react/components/grid';
 import './index.styl';
 
 export default class Demo extends React.Component {

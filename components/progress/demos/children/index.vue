@@ -16,8 +16,8 @@
     </div>
 </template>
 <script>
-import Progress from 'kpc/components/progress';
-import {ButtonGroup, Button} from 'kpc/components/button';
+import Progress from 'kpc-vue/components/progress';
+import {ButtonGroup, Button} from 'kpc-vue/components/button';
 
 export default {
     components: {

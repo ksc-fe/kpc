@@ -7,7 +7,7 @@
     </div>
 </template>
 <script>
-import {Switch as KSwitch} from 'kpc/components/switch';
+import {Switch as KSwitch} from 'kpc-vue/components/switch';
 
 export default {
     components: {

@@ -6,9 +6,9 @@
     />
 </template>
 <script>
-import Upload from 'kpc/components/upload';
+import Upload from 'kpc-vue/components/upload';
 
-import Dialog from 'kpc/components/dialog';
+import Dialog from 'kpc-vue/components/dialog';
 
 export default {
     components: {

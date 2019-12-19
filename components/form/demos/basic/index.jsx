@@ -1,15 +1,15 @@
 import React from 'react';
-import {Form, FormItem} from 'kpc/components/form';
-import {Input} from 'kpc/components/input';
-import {Select, Option} from 'kpc/components/select';
-import {Checkbox} from 'kpc/components/checkbox';
-import {Radio} from 'kpc/components/radio';
-import {ButtonGroup, Button} from 'kpc/components/button';
-import {Switch} from 'kpc/components/switch';
-import {Slider} from 'kpc/components/slider';
-import {Datepicker} from 'kpc/components/datepicker';
+import {Form, FormItem} from 'kpc-react/components/form';
+import {Input} from 'kpc-react/components/input';
+import {Select, Option} from 'kpc-react/components/select';
+import {Checkbox} from 'kpc-react/components/checkbox';
+import {Radio} from 'kpc-react/components/radio';
+import {ButtonGroup, Button} from 'kpc-react/components/button';
+import {Switch} from 'kpc-react/components/switch';
+import {Slider} from 'kpc-react/components/slider';
+import {Datepicker} from 'kpc-react/components/datepicker';
 import './index.styl';
-import Message from 'kpc/components/message';
+import Message from 'kpc-react/components/message';
 
 export default class Demo extends React.Component {
     constructor(props) {

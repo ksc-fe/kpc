@@ -70,17 +70,17 @@
     </Form>
 </template>
 <script>
-import {Form, FormItem} from 'kpc/components/form';
-import {Input} from 'kpc/components/input';
-import {Select, Option} from 'kpc/components/select';
-import {Checkbox} from 'kpc/components/checkbox';
-import {Radio} from 'kpc/components/radio';
-import {ButtonGroup, Button} from 'kpc/components/button';
-import {Switch as KSwitch} from 'kpc/components/switch';
-import {Slider} from 'kpc/components/slider';
-import {Datepicker} from 'kpc/components/datepicker';
+import {Form, FormItem} from 'kpc-vue/components/form';
+import {Input} from 'kpc-vue/components/input';
+import {Select, Option} from 'kpc-vue/components/select';
+import {Checkbox} from 'kpc-vue/components/checkbox';
+import {Radio} from 'kpc-vue/components/radio';
+import {ButtonGroup, Button} from 'kpc-vue/components/button';
+import {Switch as KSwitch} from 'kpc-vue/components/switch';
+import {Slider} from 'kpc-vue/components/slider';
+import {Datepicker} from 'kpc-vue/components/datepicker';
 
-import Message from 'kpc/components/message';
+import Message from 'kpc-vue/components/message';
 
 export default {
     components: {

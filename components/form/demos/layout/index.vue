@@ -25,10 +25,10 @@
     </Form>
 </template>
 <script>
-import {Form, FormItem} from 'kpc/components/form';
-import {Input} from 'kpc/components/input';
-import {Select, Option} from 'kpc/components/select';
-import {ButtonGroup, Button} from 'kpc/components/button';
+import {Form, FormItem} from 'kpc-vue/components/form';
+import {Input} from 'kpc-vue/components/input';
+import {Select, Option} from 'kpc-vue/components/select';
+import {ButtonGroup, Button} from 'kpc-vue/components/button';
 
 export default {
     components: {

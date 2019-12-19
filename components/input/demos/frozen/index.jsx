@@ -1,5 +1,5 @@
 import React from 'react';
-import {Input} from 'kpc/components/input';
+import {Input} from 'kpc-react/components/input';
 import './index.styl';
 import tinycolor from 'tinycolor2';
 

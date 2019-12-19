@@ -6,9 +6,9 @@
     </div>
 </template>
 <script>
-import {Search} from 'kpc/components/input';
+import {Search} from 'kpc-vue/components/input';
 
-import Message from 'kpc/components/message';
+import Message from 'kpc-vue/components/message';
 
 export default {
     components: {

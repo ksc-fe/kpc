@@ -1,0 +1,30 @@
+import Transfer from 'kpc/components/transfer';
+import Tree from 'kpc/components/tree';
+
+<Transfer
+    enableAdd={{ self.enableAdd }}
+    enableRemove={{ self.enableRemove }}
+    ev-add={{ self.onAdd }}
+    ev-remove={{ self.onRemove }}
+>
+    <b:header params="type">
+        <div v-if={{ type === 'left' }}>请选择</div>
+        <div v-else>已选择</div>
+    </b:header>
+    <b:list params="type">
+        <Tree v-if={{ type === 'left' }}
+            data={{ self.get('leftData') }}
+            checkbox
+            v-model:checkedKeys="leftCheckedKeys"
+            v-model:expandedKeys="leftExpandedKeys"
+            ref="left"
+        />
+        <Tree v-else
+            data={{ self.get('rightData') }}
+            checkbox
+            v-model:checkedKeys="rightCheckedKeys"
+            v-model:expandedKeys="rightExpandedKeys"
+            ref="right"
+        />
+    </b:list>
+</Transfer>

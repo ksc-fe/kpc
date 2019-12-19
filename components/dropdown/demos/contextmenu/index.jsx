@@ -1,5 +1,5 @@
 import React from 'react';
-import {DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
+import {DropdownMenu, DropdownItem} from 'kpc-react/components/dropdown';
 import './index.styl';
 
 export default class Demo extends React.Component {

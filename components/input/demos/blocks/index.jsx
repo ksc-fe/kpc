@@ -1,6 +1,6 @@
 import React from 'react';
-import Input from 'kpc/components/input';
-import Button from 'kpc/components/button';
+import Input from 'kpc-react/components/input';
+import Button from 'kpc-react/components/button';
 import './index.styl';
 
 export default class Demo extends React.Component {

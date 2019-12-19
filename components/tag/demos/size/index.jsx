@@ -1,5 +1,5 @@
 import React from 'react';
-import Tag from 'kpc/components/tag';
+import Tag from 'kpc-react/components/tag';
 import './index.styl';
 
 export default class Demo extends React.Component {

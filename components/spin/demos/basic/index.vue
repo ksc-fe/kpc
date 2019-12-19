@@ -6,7 +6,7 @@
     </div>
 </template>
 <script>
-import Spin from 'kpc/components/spin';
+import Spin from 'kpc-vue/components/spin';
 
 export default {
     components: {

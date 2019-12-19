@@ -1,5 +1,5 @@
 import React from 'react';
-import Tooltip from 'kpc/components/tooltip';
+import Tooltip from 'kpc-react/components/tooltip';
 
 export default class Demo extends React.Component {
     render() {

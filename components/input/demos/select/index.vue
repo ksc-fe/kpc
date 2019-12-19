@@ -18,8 +18,8 @@
     </div>
 </template>
 <script>
-import Input from 'kpc/components/input';
-import {Select, Option} from 'kpc/components/select';
+import Input from 'kpc-vue/components/input';
+import {Select, Option} from 'kpc-vue/components/select';
 
 export default {
     components: {

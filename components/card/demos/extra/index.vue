@@ -33,9 +33,9 @@
     </div>
 </template>
 <script>
-import Card from 'kpc/components/card';
-import {Row, Col} from 'kpc/components/grid';
-import {Tabs, Tab} from 'kpc/components/tabs';
+import Card from 'kpc-vue/components/card';
+import {Row, Col} from 'kpc-vue/components/grid';
+import {Tabs, Tab} from 'kpc-vue/components/tabs';
 
 export default {
     components: {

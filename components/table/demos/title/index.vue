@@ -18,8 +18,8 @@
     </div>
 </template>
 <script>
-import {Table, TableColumn} from 'kpc/components/table';
-import {Tooltip} from 'kpc/components/tooltip';
+import {Table, TableColumn} from 'kpc-vue/components/table';
+import {Tooltip} from 'kpc-vue/components/tooltip';
 
 export default {
     components: {

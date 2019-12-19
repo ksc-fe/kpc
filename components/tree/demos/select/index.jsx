@@ -1,6 +1,6 @@
 import React from 'react';
-import Tree from 'kpc/components/tree';
-import Button from 'kpc/components/button';
+import Tree from 'kpc-react/components/tree';
+import Button from 'kpc-react/components/button';
 import './index.styl';
 
 export default class Demo extends React.Component {

@@ -12,8 +12,8 @@
     </Upload>
 </template>
 <script>
-import Upload from 'kpc/components/upload';
-import Button from 'kpc/components/button';
+import Upload from 'kpc-vue/components/upload';
+import Button from 'kpc-vue/components/button';
 
 export default {
     components: {

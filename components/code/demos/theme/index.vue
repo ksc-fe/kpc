@@ -9,8 +9,8 @@
     </div>
 </template>
 <script>
-import Code from 'kpc/components/code';
-import {ButtonGroup, Button} from 'kpc/components/button';
+import Code from 'kpc-vue/components/code';
+import {ButtonGroup, Button} from 'kpc-vue/components/button';
 
 const code = `function test() {
     console.log('hello world');

@@ -1,6 +1,6 @@
 import React from 'react';
-import Rate from 'kpc/components/rate';
-import Icon from 'kpc/components/icon';
+import Rate from 'kpc-react/components/rate';
+import Icon from 'kpc-react/components/icon';
 
 export default class Demo extends React.Component {
     constructor(props) {

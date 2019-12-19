@@ -7,7 +7,7 @@
     </Carousel>
 </template>
 <script>
-import {Carousel, CarouselItem} from 'kpc/components/carousel';
+import {Carousel, CarouselItem} from 'kpc-vue/components/carousel';
 
 export default {
     components: {

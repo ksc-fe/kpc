@@ -50,7 +50,7 @@
     </div>
 </template>
 <script>
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc-vue/components/table';
 
 const weekdays = ['Monday', 'Tuesday', 'Wendesday', 'Thursday', 'Friday'];
 const classes = ['English', 'Mathematics', 'Chinese', 'History', 'Geopraghy'];

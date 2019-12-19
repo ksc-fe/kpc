@@ -57,8 +57,8 @@
     </div>
 </template>
 <script>
-import Tree from 'kpc/components/tree';
-import Input from 'kpc/components/input';
+import Tree from 'kpc-vue/components/tree';
+import Input from 'kpc-vue/components/input';
 
 export default {
     components: {

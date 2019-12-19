@@ -14,9 +14,9 @@
     </div>
 </template>
 <script>
-import Drawer from 'kpc/components/drawer';
-import {Button, ButtonGroup} from 'kpc/components/button';
-import {Select, Option} from 'kpc/components/select';
+import Drawer from 'kpc-vue/components/drawer';
+import {Button, ButtonGroup} from 'kpc-vue/components/button';
+import {Select, Option} from 'kpc-vue/components/select';
 
 export default {
     components: {

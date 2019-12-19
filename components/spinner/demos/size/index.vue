@@ -7,7 +7,7 @@
     </div>
 </template>
 <script>
-import Spinner from 'kpc/components/spinner';
+import Spinner from 'kpc-vue/components/spinner';
 
 export default {
     components: {

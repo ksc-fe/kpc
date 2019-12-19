@@ -30,7 +30,7 @@
     </div>
 </template>
 <script>
-import {Select, Option, OptionGroup} from 'kpc/components/select';
+import {Select, Option, OptionGroup} from 'kpc-vue/components/select';
 
 export default {
     components: {

@@ -6,7 +6,7 @@
     </div>
 </template>
 <script>
-import Pagination from 'kpc/components/pagination';
+import Pagination from 'kpc-vue/components/pagination';
 
 export default {
     components: {

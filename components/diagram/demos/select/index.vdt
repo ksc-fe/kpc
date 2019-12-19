@@ -1,0 +1,34 @@
+import {Diagram, DTreeLayout, DCircle, DLine, DText} from 'kpc/components/diagram';
+
+const loop = (children, parent, disabled) => {
+    const ret = [];
+    for (let i = 0; i < children.length; i++) {
+        const data = children[i];
+
+        // if parent is disabled, disable all children
+        if (!disabled && data.disabled) disabled = true; 
+
+        ret.push(
+            <DCircle key={{ data.key }} 
+                label={{ data.key }} 
+                selectable={{ !disabled }}
+                data={{ data }}
+            />
+        );
+
+        // add line if it has parent
+        if (parent) {
+            ret.push(<DLine from={{ parent.key }} to={{ data.key }} type="rounded" />);
+        }
+        if (data.children) {
+            ret.push(...loop(data.children, data, disabled));
+        }
+    }
+    return ret;
+}
+
+<Diagram ev-selectionChanged={{ self._onSelect }}>
+    <DTreeLayout type="vertical">
+        {{ loop([self.get('data')]) }}
+    </DTreeLayout>
+</Diagram>

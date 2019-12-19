@@ -1,6 +1,6 @@
 import React from 'react';
-import {Table, TableColumn} from 'kpc/components/table';
-import {Switch} from 'kpc/components/switch';
+import {Table, TableColumn} from 'kpc-react/components/table';
+import {Switch} from 'kpc-react/components/switch';
 import './index.styl';
 
 export default class Demo extends React.Component {

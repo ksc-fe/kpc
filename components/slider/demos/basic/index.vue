@@ -6,8 +6,8 @@
     </div>
 </template>
 <script>
-import Slider from 'kpc/components/slider';
-import Button from 'kpc/components/button';
+import Slider from 'kpc-vue/components/slider';
+import Button from 'kpc-vue/components/button';
 
 export default {
     components: {

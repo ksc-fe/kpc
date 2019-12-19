@@ -1,5 +1,5 @@
 import React from 'react';
-import Code from 'kpc/components/code';
+import Code from 'kpc-react/components/code';
 
 const code = `function test() {
     console.log('hello world');

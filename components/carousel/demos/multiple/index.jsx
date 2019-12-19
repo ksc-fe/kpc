@@ -1,5 +1,5 @@
 import React from 'react';
-import {Carousel, CarouselItem} from 'kpc/components/carousel';
+import {Carousel, CarouselItem} from 'kpc-react/components/carousel';
 import './index.styl';
 
 export default class Demo extends React.Component {

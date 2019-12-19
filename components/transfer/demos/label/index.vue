@@ -14,7 +14,7 @@
     </Transfer>
 </template>
 <script>
-import Transfer from 'kpc/components/transfer';
+import Transfer from 'kpc-vue/components/transfer';
 
 export default {
     components: {

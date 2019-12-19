@@ -13,9 +13,9 @@
     </div>
 </template>
 <script>
-import Tooltip from 'kpc/components/tooltip';
-import {Slider} from 'kpc/components/slider';
-import {Button} from 'kpc/components/button';
+import Tooltip from 'kpc-vue/components/tooltip';
+import {Slider} from 'kpc-vue/components/slider';
+import {Button} from 'kpc-vue/components/button';
 
 export default {
     components: {

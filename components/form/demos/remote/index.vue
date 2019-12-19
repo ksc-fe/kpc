@@ -8,8 +8,8 @@
     </Form>
 </template>
 <script>
-import {Form, FormItem} from 'kpc/components/form';
-import {Input} from 'kpc/components/input';
+import {Form, FormItem} from 'kpc-vue/components/form';
+import {Input} from 'kpc-vue/components/input';
 
 
 export default {

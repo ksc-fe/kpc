@@ -1,5 +1,5 @@
 import React from 'react';
-import {Steps, Step} from 'kpc/components/steps';
+import {Steps, Step} from 'kpc-react/components/steps';
 
 export default class Demo extends React.Component {
     render() {

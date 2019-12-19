@@ -1,5 +1,5 @@
 import React from 'react';
-import Colorpicker from 'kpc/components/colorpicker';
+import Colorpicker from 'kpc-react/components/colorpicker';
 import './index.styl';
 
 export default class Demo extends React.Component {

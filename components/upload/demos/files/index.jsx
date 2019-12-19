@@ -1,5 +1,5 @@
 import React from 'react';
-import Upload from 'kpc/components/upload';
+import Upload from 'kpc-react/components/upload';
 import './index.styl';
 
 export default class Demo extends React.Component {

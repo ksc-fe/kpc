@@ -1,5 +1,5 @@
 import React from 'react';
-import Transfer from 'kpc/components/transfer';
+import Transfer from 'kpc-react/components/transfer';
 
 const data = [
     {label: '主机名0', key: 0},

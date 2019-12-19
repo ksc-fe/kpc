@@ -16,8 +16,8 @@
     </div>
 </template>
 <script>
-import {Button, ButtonGroup} from 'kpc/components/button';
-import Dialog from 'kpc/components/dialog';
+import {Button, ButtonGroup} from 'kpc-vue/components/button';
+import Dialog from 'kpc-vue/components/dialog';
 
 export default {
     components: {

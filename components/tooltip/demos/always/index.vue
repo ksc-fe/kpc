@@ -10,7 +10,7 @@
     </div>
 </template>
 <script>
-import Tooltip from 'kpc/components/tooltip';
+import Tooltip from 'kpc-vue/components/tooltip';
 
 export default {
     components: {

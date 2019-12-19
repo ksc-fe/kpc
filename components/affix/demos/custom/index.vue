@@ -9,8 +9,8 @@
     </div>
 </template>
 <script>
-import Affix from 'kpc/components/affix';
-import Button from 'kpc/components/button';
+import Affix from 'kpc-vue/components/affix';
+import Button from 'kpc-vue/components/button';
 
 export default {
     components: {

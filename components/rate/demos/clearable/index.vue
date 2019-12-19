@@ -2,7 +2,7 @@
     <Rate v-model="value" clearable />
 </template>
 <script>
-import Rate from 'kpc/components/rate';
+import Rate from 'kpc-vue/components/rate';
 
 export default {
     components: {

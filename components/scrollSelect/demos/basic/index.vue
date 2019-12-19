@@ -5,7 +5,7 @@
     />
 </template>
 <script>
-import ScrollSelect from 'kpc/components/scrollSelect';
+import ScrollSelect from 'kpc-vue/components/scrollSelect';
 
 export default {
     components: {

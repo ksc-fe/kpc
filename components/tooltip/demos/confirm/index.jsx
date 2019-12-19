@@ -1,8 +1,8 @@
 import React from 'react';
-import Tooltip from 'kpc/components/tooltip';
-import Button from 'kpc/components/button';
+import Tooltip from 'kpc-react/components/tooltip';
+import Button from 'kpc-react/components/button';
 
-import Message from 'kpc/components/message';
+import Message from 'kpc-react/components/message';
 
 export default class Demo extends React.Component {
     constructor(props) {

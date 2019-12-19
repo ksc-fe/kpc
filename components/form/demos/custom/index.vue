@@ -31,9 +31,9 @@
     </Form>
 </template>
 <script>
-import {Form, FormItem} from 'kpc/components/form';
-import {Input} from 'kpc/components/input';
-import {Button} from 'kpc/components/button';
+import {Form, FormItem} from 'kpc-vue/components/form';
+import {Input} from 'kpc-vue/components/input';
+import {Button} from 'kpc-vue/components/button';
 
 
 // 添加全局规则

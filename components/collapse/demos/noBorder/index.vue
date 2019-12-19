@@ -20,7 +20,7 @@
     </Collapse>
 </template>
 <script>
-import {Collapse, CollapseItem} from 'kpc/components/collapse';
+import {Collapse, CollapseItem} from 'kpc-vue/components/collapse';
 
 export default {
     components: {

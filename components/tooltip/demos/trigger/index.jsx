@@ -1,6 +1,6 @@
 import React from 'react';
-import {Tooltip} from 'kpc/components/tooltip';
-import {ButtonGroup, Button} from 'kpc/components/button';
+import {Tooltip} from 'kpc-react/components/tooltip';
+import {ButtonGroup, Button} from 'kpc-react/components/button';
 
 export default class Demo extends React.Component {
     render() {

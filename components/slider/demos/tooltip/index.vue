@@ -15,7 +15,7 @@
     </div>
 </template>
 <script>
-import Slider from 'kpc/components/slider';
+import Slider from 'kpc-vue/components/slider';
 
 export default {
     components: {

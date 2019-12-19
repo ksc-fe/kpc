@@ -6,7 +6,7 @@
     </div>
 </template>
 <script>
-import Tip from 'kpc/components/tip';
+import Tip from 'kpc-vue/components/tip';
 
 export default {
     components: {

@@ -1,7 +1,7 @@
 import React from 'react';
-import {ButtonGroup, Button} from 'kpc/components/button';
+import {ButtonGroup, Button} from 'kpc-react/components/button';
 
-import Message from 'kpc/components/message';
+import Message from 'kpc-react/components/message';
 
 export default class Demo extends React.Component {
     constructor(props) {

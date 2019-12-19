@@ -2,7 +2,7 @@
     <Input placeholder="auto width" autoWidth />
 </template>
 <script>
-import Input from 'kpc/components/input';
+import Input from 'kpc-vue/components/input';
 
 export default {
     components: {

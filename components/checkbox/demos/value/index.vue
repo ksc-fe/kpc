@@ -10,7 +10,7 @@
     </div>
 </template>
 <script>
-import Checkbox from 'kpc/components/checkbox';
+import Checkbox from 'kpc-vue/components/checkbox';
 
 export default {
     components: {

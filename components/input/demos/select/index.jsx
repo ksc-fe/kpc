@@ -1,6 +1,6 @@
 import React from 'react';
-import Input from 'kpc/components/input';
-import {Select, Option} from 'kpc/components/select';
+import Input from 'kpc-react/components/input';
+import {Select, Option} from 'kpc-react/components/select';
 
 export default class Demo extends React.Component {
     constructor(props) {

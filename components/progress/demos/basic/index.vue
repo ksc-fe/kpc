@@ -5,7 +5,7 @@
     </div>
 </template>
 <script>
-import Progress from 'kpc/components/progress';
+import Progress from 'kpc-vue/components/progress';
 
 export default {
     components: {

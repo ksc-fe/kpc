@@ -2,7 +2,7 @@
     <Slider isRange v-model="values" />
 </template>
 <script>
-import Slider from 'kpc/components/slider';
+import Slider from 'kpc-vue/components/slider';
 
 export default {
     components: {

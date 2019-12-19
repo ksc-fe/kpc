@@ -14,9 +14,9 @@
     </div>
 </template>
 <script>
-import Message from 'kpc/components/message';
-import {Button} from 'kpc/components/button';
-import {Progress} from 'kpc/components/progress';
+import Message from 'kpc-vue/components/message';
+import {Button} from 'kpc-vue/components/button';
+import {Progress} from 'kpc-vue/components/progress';
 
 export default {
     components: {

@@ -1,8 +1,8 @@
 import React from 'react';
-import {Layout, Header, Aside, Body, Footer} from 'kpc/components/layout';
-import {Menu, MenuItem} from 'kpc/components/menu';
-import Icon from 'kpc/components/icon';
-import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
+import {Layout, Header, Aside, Body, Footer} from 'kpc-react/components/layout';
+import {Menu, MenuItem} from 'kpc-react/components/menu';
+import Icon from 'kpc-react/components/icon';
+import {Breadcrumb, BreadcrumbItem} from 'kpc-react/components/breadcrumb';
 import './index.styl';
 
 export default class Demo extends React.Component {

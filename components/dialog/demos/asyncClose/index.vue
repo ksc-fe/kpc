@@ -15,12 +15,12 @@
     </div>
 </template>
 <script>
-import Dialog from 'kpc/components/dialog';
-import {Form, FormItem} from 'kpc/components/form';
-import {Input} from 'kpc/components/input';
-import {Button} from 'kpc/components/button';
+import Dialog from 'kpc-vue/components/dialog';
+import {Form, FormItem} from 'kpc-vue/components/form';
+import {Input} from 'kpc-vue/components/input';
+import {Button} from 'kpc-vue/components/button';
 
-import Message from 'kpc/components/message';
+import Message from 'kpc-vue/components/message';
 
 export default {
     components: {

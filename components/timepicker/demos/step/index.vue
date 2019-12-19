@@ -12,7 +12,7 @@
     </div>
 </template>
 <script>
-import Timepicker from 'kpc/components/timepicker';
+import Timepicker from 'kpc-vue/components/timepicker';
 
 export default {
     components: {

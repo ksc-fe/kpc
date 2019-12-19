@@ -1,7 +1,7 @@
 import React from 'react';
-import Editable from 'kpc/components/editable';
+import Editable from 'kpc-react/components/editable';
 
-import Message from 'kpc/components/message';
+import Message from 'kpc-react/components/message';
 
 export default class Demo extends React.Component {
     constructor(props) {

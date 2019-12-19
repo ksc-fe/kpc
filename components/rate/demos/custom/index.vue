@@ -4,8 +4,8 @@
     </Rate>
 </template>
 <script>
-import Rate from 'kpc/components/rate';
-import Icon from 'kpc/components/icon';
+import Rate from 'kpc-vue/components/rate';
+import Icon from 'kpc-vue/components/icon';
 
 export default {
     components: {

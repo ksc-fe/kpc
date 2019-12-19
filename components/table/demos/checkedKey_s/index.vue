@@ -27,7 +27,7 @@
     </div>
 </template>
 <script>
-import Table from 'kpc/components/table';
+import Table from 'kpc-vue/components/table';
 
 export default {
     components: {

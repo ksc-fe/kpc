@@ -12,8 +12,8 @@
     </div>
 </template>
 <script>
-import Tree from 'kpc/components/tree';
-import Button from 'kpc/components/button';
+import Tree from 'kpc-vue/components/tree';
+import Button from 'kpc-vue/components/button';
 
 export default {
     components: {

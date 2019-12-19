@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, ButtonGroup} from 'kpc/components/button';
+import {Button, ButtonGroup} from 'kpc-react/components/button';
 import './index.styl';
 
 export default class Demo extends React.Component {

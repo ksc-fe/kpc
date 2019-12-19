@@ -13,9 +13,9 @@
     </div>
 </template>
 <script>
-import Pagination from 'kpc/components/pagination';
+import Pagination from 'kpc-vue/components/pagination';
 
-import Message from 'kpc/components/message';
+import Message from 'kpc-vue/components/message';
 
 export default {
     components: {

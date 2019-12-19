@@ -46,7 +46,7 @@
     />
 </template>
 <script>
-import Tree from 'kpc/components/tree';
+import Tree from 'kpc-vue/components/tree';
 
 export default {
     components: {

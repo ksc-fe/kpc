@@ -1,6 +1,6 @@
 import React from 'react';
-import Table from 'kpc/components/table';
-import {Form, FormItem} from 'kpc/components/form';
+import Table from 'kpc-react/components/table';
+import {Form, FormItem} from 'kpc-react/components/form';
 
 export default class Demo extends React.Component {
     constructor(props) {

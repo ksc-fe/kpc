@@ -9,8 +9,8 @@
     </ButtonGroup>
 </template>
 <script>
-import Tooltip from 'kpc/components/tooltip';
-import {ButtonGroup, Button} from 'kpc/components/button';
+import Tooltip from 'kpc-vue/components/tooltip';
+import {ButtonGroup, Button} from 'kpc-vue/components/button';
 
 export default {
     components: {

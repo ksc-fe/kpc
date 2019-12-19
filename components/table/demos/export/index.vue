@@ -25,8 +25,8 @@
     </div>
 </template>
 <script>
-import {Table, TableColumn} from 'kpc/components/table';
-import {Button} from 'kpc/components/button';
+import {Table, TableColumn} from 'kpc-vue/components/table';
+import {Button} from 'kpc-vue/components/button';
 
 export default {
     components: {

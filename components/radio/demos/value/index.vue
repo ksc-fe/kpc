@@ -10,7 +10,7 @@
     </div>
 </template>
 <script>
-import Radio from 'kpc/components/radio';
+import Radio from 'kpc-vue/components/radio';
 
 export default {
     components: {

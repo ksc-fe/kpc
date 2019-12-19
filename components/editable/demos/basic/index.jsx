@@ -1,5 +1,5 @@
 import React from 'react';
-import Editable from 'kpc/components/editable';
+import Editable from 'kpc-react/components/editable';
 import './index.styl';
 
 export default class Demo extends React.Component {

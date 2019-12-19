@@ -1,6 +1,6 @@
 import React from 'react';
-import Tree from 'kpc/components/tree';
-import Input from 'kpc/components/input';
+import Tree from 'kpc-react/components/tree';
+import Input from 'kpc-react/components/input';
 
 export default class Demo extends React.Component {
     constructor(props) {

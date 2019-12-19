@@ -9,7 +9,7 @@
     </div>
 </template>
 <script>
-import Tag from 'kpc/components/tag';
+import Tag from 'kpc-vue/components/tag';
 
 export default {
     components: {

@@ -1,8 +1,8 @@
 import React from 'react';
-import Transfer from 'kpc/components/transfer';
-import Checkbox from 'kpc/components/checkbox';
+import Transfer from 'kpc-react/components/transfer';
+import Checkbox from 'kpc-react/components/checkbox';
 
-import Message from 'kpc/components/message';
+import Message from 'kpc-react/components/message';
 
 export default class Demo extends React.Component {
     constructor(props) {

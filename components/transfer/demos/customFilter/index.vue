@@ -35,10 +35,10 @@
     </div>
 </template>
 <script>
-import Transfer from 'kpc/components/transfer';
-import Input from 'kpc/components/input';
-import {Select, Option} from 'kpc/components/select';
-import Tag from 'kpc/components/tag';
+import Transfer from 'kpc-vue/components/transfer';
+import Input from 'kpc-vue/components/input';
+import {Select, Option} from 'kpc-vue/components/select';
+import Tag from 'kpc-vue/components/tag';
 
 function mockApi(policy) {
     const data = [

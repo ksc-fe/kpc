@@ -7,5 +7,5 @@
     },
     "catalogs": [],
     "contents": "<h1 id='header-%E5%B1%9E%E6%80%A7'>属性</h1><div class=\"k-table k-border\">\n                    <div class=\"k-table-wrapper\">\n                        <div class=\"k-thead\">\n                            <table>\n                                <thead><tr>\n<th>属性</th>\n<th>说明</th>\n<th>类型</th>\n<th>默认值</th>\n</tr>\n</thead>\n                            </table>\n                        </div>\n                        <div class=\"k-tbody\">\n                            <table>\n                                <tbody><tr>\n<td>size</td>\n<td>定义图标尺寸</td>\n<td><code>&quot;default&quot;</code> &#124; <code>&quot;large&quot;</code> &#124; <code>&quot;small&quot;</code> &#124; <code>&quot;mini&quot;</code> &#124; <code>String</code> &#124; <code>Number</code></td>\n<td><code>&quot;default&quot;</code></td>\n</tr>\n<tr>\n<td>color</td>\n<td>图标颜色</td>\n<td><code>&quot;default&quot;</code> &#124; <code>&quot;primary&quot;</code> &#124; <code>&quot;danger&quot;</code> &#124; <code>&quot;warning&quot;</code> &#124; <code>&quot;success&quot;</code> &#124; <code>String</code></td>\n<td><code>undefined</code></td>\n</tr>\n</tbody>\n                            </table>\n                        </div>\n                    </div>\n                </div>",
-    "index": 129
+    "index": 139
 }

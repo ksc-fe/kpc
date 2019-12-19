@@ -1,6 +1,6 @@
 import React from 'react';
-import Slider from 'kpc/components/slider';
-import Button from 'kpc/components/button';
+import Slider from 'kpc-react/components/slider';
+import Button from 'kpc-react/components/button';
 
 export default class Demo extends React.Component {
     constructor(props) {

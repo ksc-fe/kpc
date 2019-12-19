@@ -1,5 +1,5 @@
 import React from 'react';
-import Transfer from 'kpc/components/transfer';
+import Transfer from 'kpc-react/components/transfer';
 
 export default class Demo extends React.Component {
     constructor(props) {

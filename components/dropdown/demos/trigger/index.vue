@@ -24,9 +24,9 @@
     </div>
 </template>
 <script>
-import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
-import Button from 'kpc/components/button';
-import Icon from 'kpc/components/icon';
+import {Dropdown, DropdownMenu, DropdownItem} from 'kpc-vue/components/dropdown';
+import Button from 'kpc-vue/components/button';
+import Icon from 'kpc-vue/components/icon';
 
 export default {
     components: {

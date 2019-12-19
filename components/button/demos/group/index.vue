@@ -43,7 +43,7 @@
     </div>
 </template>
 <script>
-import {Button, ButtonGroup} from 'kpc/components/button';
+import {Button, ButtonGroup} from 'kpc-vue/components/button';
 
 export default {
     components: {

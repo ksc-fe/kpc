@@ -1,5 +1,5 @@
 import React from 'react';
-import Tip from 'kpc/components/tip';
+import Tip from 'kpc-react/components/tip';
 import './index.styl';
 
 export default class Demo extends React.Component {

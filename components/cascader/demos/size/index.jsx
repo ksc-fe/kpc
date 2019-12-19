@@ -1,5 +1,5 @@
 import React from 'react';
-import Cascader from 'kpc/components/cascader';
+import Cascader from 'kpc-react/components/cascader';
 import './index.styl';
 
 export default class Demo extends React.Component {

@@ -1,7 +1,7 @@
 import React from 'react';
-import Drawer from 'kpc/components/drawer';
-import {Button, ButtonGroup} from 'kpc/components/button';
-import {Select, Option} from 'kpc/components/select';
+import Drawer from 'kpc-react/components/drawer';
+import {Button, ButtonGroup} from 'kpc-react/components/button';
+import {Select, Option} from 'kpc-react/components/select';
 
 export default class Demo extends React.Component {
     constructor(props) {

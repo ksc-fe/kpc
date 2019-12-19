@@ -1,5 +1,5 @@
 import React from 'react';
-import Timepicker from 'kpc/components/timepicker';
+import Timepicker from 'kpc-react/components/timepicker';
 
 export default class Demo extends React.Component {
     constructor(props) {

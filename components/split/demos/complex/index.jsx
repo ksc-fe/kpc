@@ -1,13 +1,13 @@
 import React from 'react';
-import Split from 'kpc/components/split';
-import {Table, TableColumn} from 'kpc/components/table';
-import {Pagination} from 'kpc/components/pagination';
-import {Tabs, Tab} from 'kpc/components/tabs';
-import {FormItem} from 'kpc/components/form';
-import Button from 'kpc/components/button';
-import Icon from 'kpc/components/icon';
+import Split from 'kpc-react/components/split';
+import {Table, TableColumn} from 'kpc-react/components/table';
+import {Pagination} from 'kpc-react/components/pagination';
+import {Tabs, Tab} from 'kpc-react/components/tabs';
+import {FormItem} from 'kpc-react/components/form';
+import Button from 'kpc-react/components/button';
+import Icon from 'kpc-react/components/icon';
 import './index.styl';
-import {range} from 'kpc/components/utils';
+import {range} from 'kpc-react/components/utils';
 
 export default class Demo extends React.Component {
     constructor(props) {

@@ -7,7 +7,7 @@
     </div>
 </template>
 <script>
-import Colorpicker from 'kpc/components/colorpicker';
+import Colorpicker from 'kpc-vue/components/colorpicker';
 
 export default {
     components: {

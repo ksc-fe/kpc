@@ -1,5 +1,5 @@
 import React from 'react';
-import {Timeline, TimelineItem} from 'kpc/components/timeline';
+import {Timeline, TimelineItem} from 'kpc-react/components/timeline';
 
 export default class Demo extends React.Component {
     render() {

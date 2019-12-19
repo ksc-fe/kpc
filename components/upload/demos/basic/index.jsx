@@ -1,8 +1,8 @@
 import React from 'react';
-import Upload from 'kpc/components/upload';
+import Upload from 'kpc-react/components/upload';
 import './index.styl';
-import Dialog from 'kpc/components/dialog';
-import Message from 'kpc/components/message';
+import Dialog from 'kpc-react/components/dialog';
+import Message from 'kpc-react/components/message';
 
 export default class Demo extends React.Component {
     constructor(props) {

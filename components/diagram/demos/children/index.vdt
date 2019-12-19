@@ -1,0 +1,30 @@
+import {Diagram, DTreeLayout, DRectangle, DLine} from 'kpc/components/diagram';
+import {Select, Option} from 'kpc/components/select';
+
+const cities = self.get('cities');
+
+<Diagram>
+    <DTreeLayout>
+        <DRectangle key="from" strokeStyle="dashed" height="100">
+            <div class="container">
+                <div>始发站</div>
+                <Select v-model="from" fluid>
+                    <Option v-for={{ cities }} value={{ value.value }}>
+                        {{ value.name }}
+                    </Option>
+                </Select>
+            </div>
+        </DRectangle>
+        <DRectangle key="to" strokeStyle="dashed" height="100">
+            <div class="container">
+                <div>终点站</div>
+                <Select v-model="to" fluid>
+                    <Option v-for={{ cities }} value={{ value.value }}>
+                        {{ value.name }}
+                    </Option>
+                </Select>
+            </div>
+        </DRectangle>
+        <DLine from="from" to="to" />
+    </DTreeLayout>
+</Diagram>

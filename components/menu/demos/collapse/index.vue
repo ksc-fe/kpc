@@ -29,9 +29,9 @@
     </div>
 </template>
 <script>
-import {Menu, MenuItem} from 'kpc/components/menu';
-import {Switch as KSwitch} from 'kpc/components/switch';
-import Icon from 'kpc/components/icon';
+import {Menu, MenuItem} from 'kpc-vue/components/menu';
+import {Switch as KSwitch} from 'kpc-vue/components/switch';
+import Icon from 'kpc-vue/components/icon';
 
 export default {
     components: {

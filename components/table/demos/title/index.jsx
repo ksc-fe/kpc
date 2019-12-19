@@ -1,6 +1,6 @@
 import React from 'react';
-import {Table, TableColumn} from 'kpc/components/table';
-import {Tooltip} from 'kpc/components/tooltip';
+import {Table, TableColumn} from 'kpc-react/components/table';
+import {Tooltip} from 'kpc-react/components/tooltip';
 import './index.styl';
 
 export default class Demo extends React.Component {

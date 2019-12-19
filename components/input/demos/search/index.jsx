@@ -1,7 +1,7 @@
 import React from 'react';
-import {Search} from 'kpc/components/input';
+import {Search} from 'kpc-react/components/input';
 
-import Message from 'kpc/components/message';
+import Message from 'kpc-react/components/message';
 
 export default class Demo extends React.Component {
     constructor(props) {

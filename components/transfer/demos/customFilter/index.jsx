@@ -1,8 +1,8 @@
 import React from 'react';
-import Transfer from 'kpc/components/transfer';
-import Input from 'kpc/components/input';
-import {Select, Option} from 'kpc/components/select';
-import Tag from 'kpc/components/tag';
+import Transfer from 'kpc-react/components/transfer';
+import Input from 'kpc-react/components/input';
+import {Select, Option} from 'kpc-react/components/select';
+import Tag from 'kpc-react/components/tag';
 import './index.styl';
 function mockApi(policy) {
     const data = [

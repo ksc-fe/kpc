@@ -56,8 +56,8 @@
     </div>
 </template>
 <script>
-import Tree from 'kpc/components/tree';
-import {DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
+import Tree from 'kpc-vue/components/tree';
+import {DropdownMenu, DropdownItem} from 'kpc-vue/components/dropdown';
 
 export default {
     components: {

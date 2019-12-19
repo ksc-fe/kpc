@@ -13,10 +13,10 @@
     </div>
 </template>
 <script>
-import Tooltip from 'kpc/components/tooltip';
-import Button from 'kpc/components/button';
+import Tooltip from 'kpc-vue/components/tooltip';
+import Button from 'kpc-vue/components/button';
 
-import Message from 'kpc/components/message';
+import Message from 'kpc-vue/components/message';
 
 export default {
     components: {

@@ -1,5 +1,5 @@
 import React from 'react';
-import Datepicker from 'kpc/components/datepicker';
+import Datepicker from 'kpc-react/components/datepicker';
 import './index.styl';
 
 export default class Demo extends React.Component {

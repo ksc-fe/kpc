@@ -1,6 +1,6 @@
 import React from 'react';
-import {Menu, MenuItem} from 'kpc/components/menu';
-import Icon from 'kpc/components/icon';
+import {Menu, MenuItem} from 'kpc-react/components/menu';
+import Icon from 'kpc-react/components/icon';
 
 export default class Demo extends React.Component {
     constructor(props) {

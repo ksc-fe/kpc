@@ -1,5 +1,5 @@
 import React from 'react';
-import Radio from 'kpc/components/radio';
+import Radio from 'kpc-react/components/radio';
 import './index.styl';
 
 export default class Demo extends React.Component {

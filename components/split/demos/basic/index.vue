@@ -15,7 +15,7 @@
     </div>
 </template>
 <script>
-import Split from 'kpc/components/split';
+import Split from 'kpc-vue/components/split';
 
 export default {
     components: {

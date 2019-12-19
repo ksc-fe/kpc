@@ -1,5 +1,5 @@
 import React from 'react';
-import Checkbox from 'kpc/components/checkbox';
+import Checkbox from 'kpc-react/components/checkbox';
 import './index.styl';
 
 export default class Demo extends React.Component {

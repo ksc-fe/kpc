@@ -17,8 +17,8 @@
     </div>
 </template>
 <script>
-import Drawer from 'kpc/components/drawer';
-import {Button, ButtonGroup} from 'kpc/components/button';
+import Drawer from 'kpc-vue/components/drawer';
+import {Button, ButtonGroup} from 'kpc-vue/components/button';
 
 export default {
     components: {

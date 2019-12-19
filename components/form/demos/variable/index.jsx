@@ -1,7 +1,7 @@
 import React from 'react';
-import {Form, FormItem} from 'kpc/components/form';
-import {Input} from 'kpc/components/input';
-import {Row, Col} from 'kpc/components/grid';
+import {Form, FormItem} from 'kpc-react/components/form';
+import {Input} from 'kpc-react/components/input';
+import {Row, Col} from 'kpc-react/components/grid';
 import './index.styl';
 
 export default class Demo extends React.Component {

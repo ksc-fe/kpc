@@ -1,5 +1,5 @@
 import React from 'react';
-import {Collapse, CollapseItem} from 'kpc/components/collapse';
+import {Collapse, CollapseItem} from 'kpc-react/components/collapse';
 
 export default class Demo extends React.Component {
     constructor(props) {

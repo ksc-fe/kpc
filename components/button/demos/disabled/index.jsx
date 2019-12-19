@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from 'kpc/components/button';
+import Button from 'kpc-react/components/button';
 
 export default class Demo extends React.Component {
     render() {
@@ -8,6 +8,7 @@ export default class Demo extends React.Component {
                 <Button disabled>disabled</Button>
                 <Button disabled type="none">disabled text</Button>
                 <Button disabled icon circle><i className="k-icon ion-ios-search"></i></Button>
+                <Button disabled type="link">link</Button>
             </div>
         )
     }

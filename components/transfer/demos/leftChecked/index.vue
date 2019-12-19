@@ -7,7 +7,7 @@
     </div>
 </template>
 <script>
-import Transfer from 'kpc/components/transfer';
+import Transfer from 'kpc-vue/components/transfer';
 
 const data = [
     {label: '主机名0', key: 0},

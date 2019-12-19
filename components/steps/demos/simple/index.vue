@@ -21,8 +21,8 @@
     </div>
 </template>
 <script>
-import {Steps, Step} from 'kpc/components/steps';
-import Button from 'kpc/components/button';
+import {Steps, Step} from 'kpc-vue/components/steps';
+import Button from 'kpc-vue/components/button';
 
 export default {
     components: {

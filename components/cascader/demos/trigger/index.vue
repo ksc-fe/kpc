@@ -2,7 +2,7 @@
     <Cascader :data="data" trigger="hover" />
 </template>
 <script>
-import Cascader from 'kpc/components/cascader';
+import Cascader from 'kpc-vue/components/cascader';
 
 export default {
     components: {

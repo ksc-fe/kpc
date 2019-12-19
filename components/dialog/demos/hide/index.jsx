@@ -1,7 +1,7 @@
 import React from 'react';
-import Button from 'kpc/components/button';
-import Dialog from 'kpc/components/dialog';
-import Input from 'kpc/components/input';
+import Button from 'kpc-react/components/button';
+import Dialog from 'kpc-react/components/dialog';
+import Input from 'kpc-react/components/input';
 
 export default class Demo extends React.Component {
     constructor(props) {

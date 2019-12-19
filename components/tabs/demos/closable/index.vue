@@ -23,8 +23,8 @@
     </div>
 </template>
 <script>
-import {Tabs, Tab} from 'kpc/components/tabs';
-import {Button, ButtonGroup} from 'kpc/components/button';
+import {Tabs, Tab} from 'kpc-vue/components/tabs';
+import {Button, ButtonGroup} from 'kpc-vue/components/button';
 
 let id = 3;
 export default {

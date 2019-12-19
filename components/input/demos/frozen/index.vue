@@ -6,7 +6,7 @@
     </div>
 </template>
 <script>
-import {Input} from 'kpc/components/input';
+import {Input} from 'kpc-vue/components/input';
 
 import tinycolor from 'tinycolor2';
 

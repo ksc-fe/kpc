@@ -27,7 +27,7 @@
     </div>
 </template>
 <script>
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc-vue/components/table';
 
 const oData = [
     {name: '主机1', status: 'active'},

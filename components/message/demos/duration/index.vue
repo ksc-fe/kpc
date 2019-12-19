@@ -5,9 +5,9 @@
     </ButtonGroup>
 </template>
 <script>
-import {ButtonGroup, Button} from 'kpc/components/button';
+import {ButtonGroup, Button} from 'kpc-vue/components/button';
 
-import Message from 'kpc/components/message';
+import Message from 'kpc-vue/components/message';
 
 export default {
     components: {

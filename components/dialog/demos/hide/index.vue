@@ -7,9 +7,9 @@
     </div>
 </template>
 <script>
-import Button from 'kpc/components/button';
-import Dialog from 'kpc/components/dialog';
-import Input from 'kpc/components/input';
+import Button from 'kpc-vue/components/button';
+import Dialog from 'kpc-vue/components/dialog';
+import Input from 'kpc-vue/components/input';
 
 export default {
     components: {

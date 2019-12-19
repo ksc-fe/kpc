@@ -1,0 +1,36 @@
+import {
+    Diagram, DStackLayout,
+    DRectangle, DSquare, DCircle, DEllipse,
+    DImage, DText, DDiamond, DParallelogram,
+    DHexagon, DTriangle, DCylinder, DCloud,
+    DDocument, DCallout,
+} from 'kpc/components/diagram';
+import {Button, ButtonGroup} from 'kpc/components/button'
+
+const states = self.get('states');
+<div>
+    <ButtonGroup checkType="checkbox" v-model="selectedStates">
+        <Button v-for={{ states }} value={{ key }}>
+            {{ key }}
+        </Button>
+    </ButtonGroup>
+    <br />
+    <Diagram>
+        <DStackLayout spacing="20" wrap="500" border="20">
+            <DRectangle {{ ...states }} /> 
+            <DSquare {{ ...states }} />
+            <DCircle {{ ...states }} />
+            <DEllipse {{ ...states }} />
+            <DImage src="https://design.ksyun.com/fonts/logo.png" {{ ...states }} />
+            <DText label="text" {{ ...states }} />
+            <DDiamond {{ ...states }} />
+            <DParallelogram {{ ...states }} />
+            <DHexagon {{ ...states }} />
+            <DTriangle {{ ...states }} />
+            <DCylinder {{ ...states }} />
+            <DCloud {{ ...states }} />
+            <DDocument {{ ...states }} />
+            <DCallout {{ ...states }} />
+        </DStackLayout>
+    </Diagram>
+</div>

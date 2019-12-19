@@ -1,5 +1,5 @@
 import React from 'react';
-import Split from 'kpc/components/split';
+import Split from 'kpc-react/components/split';
 import './index.styl';
 
 export default class Demo extends React.Component {

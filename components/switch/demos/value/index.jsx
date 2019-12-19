@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch} from 'kpc/components/switch';
+import {Switch} from 'kpc-react/components/switch';
 
 export default class Demo extends React.Component {
     constructor(props) {

@@ -6,7 +6,7 @@
     </Breadcrumb>
 </template>
 <script>
-import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
+import {Breadcrumb, BreadcrumbItem} from 'kpc-vue/components/breadcrumb';
 
 export default {
     components: {

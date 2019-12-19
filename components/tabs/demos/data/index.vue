@@ -26,7 +26,7 @@
     </div>
 </template>
 <script>
-import {Tabs, Tab} from 'kpc/components/tabs';
+import {Tabs, Tab} from 'kpc-vue/components/tabs';
 
 export default {
     components: {

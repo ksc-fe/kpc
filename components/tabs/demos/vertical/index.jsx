@@ -1,5 +1,5 @@
 import React from 'react';
-import {Tabs, Tab} from 'kpc/components/tabs';
+import {Tabs, Tab} from 'kpc-react/components/tabs';
 import './index.styl';
 
 export default class Demo extends React.Component {

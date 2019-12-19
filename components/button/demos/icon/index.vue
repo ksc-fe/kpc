@@ -8,8 +8,8 @@
     </div>
 </template>
 <script>
-import Button from 'kpc/components/button';
-import Icon from 'kpc/components/icon';
+import Button from 'kpc-vue/components/button';
+import Icon from 'kpc-vue/components/icon';
 
 export default {
     components: {

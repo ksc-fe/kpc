@@ -21,8 +21,8 @@
     </div>
 </template>
 <script>
-import Card from 'kpc/components/card';
-import {Row, Col} from 'kpc/components/grid';
+import Card from 'kpc-vue/components/card';
+import {Row, Col} from 'kpc-vue/components/grid';
 
 export default {
     components: {

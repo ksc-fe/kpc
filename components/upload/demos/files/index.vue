@@ -8,7 +8,7 @@
     />
 </template>
 <script>
-import Upload from 'kpc/components/upload';
+import Upload from 'kpc-vue/components/upload';
 
 export default {
     components: {

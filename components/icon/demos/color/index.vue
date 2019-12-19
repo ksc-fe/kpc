@@ -9,7 +9,7 @@
     </div>
 </template>
 <script>
-import Icon from 'kpc/components/icon';
+import Icon from 'kpc-vue/components/icon';
 
 export default {
     components: {

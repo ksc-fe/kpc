@@ -1,5 +1,5 @@
 import React from 'react';
-import Tree from 'kpc/components/tree';
+import Tree from 'kpc-react/components/tree';
 
 export default class Demo extends React.Component {
     constructor(props) {

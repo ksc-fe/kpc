@@ -45,11 +45,11 @@
     </Layout>
 </template>
 <script>
-import {Layout, Header, Aside, Body, Footer} from 'kpc/components/layout';
-import {Menu, MenuItem} from 'kpc/components/menu';
-import Icon from 'kpc/components/icon';
-import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
-import {Button} from 'kpc/components/button';
+import {Layout, Header, Aside, Body, Footer} from 'kpc-vue/components/layout';
+import {Menu, MenuItem} from 'kpc-vue/components/menu';
+import Icon from 'kpc-vue/components/icon';
+import {Breadcrumb, BreadcrumbItem} from 'kpc-vue/components/breadcrumb';
+import {Button} from 'kpc-vue/components/button';
 
 export default {
     components: {

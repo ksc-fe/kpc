@@ -23,9 +23,9 @@
     </Form>
 </template>
 <script>
-import {Form, FormItem} from 'kpc/components/form';
-import {Input} from 'kpc/components/input';
-import {Row, Col} from 'kpc/components/grid';
+import {Form, FormItem} from 'kpc-vue/components/form';
+import {Input} from 'kpc-vue/components/input';
+import {Row, Col} from 'kpc-vue/components/grid';
 
 export default {
     components: {

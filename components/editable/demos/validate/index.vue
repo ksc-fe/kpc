@@ -16,9 +16,9 @@
     </div>
 </template>
 <script>
-import Editable from 'kpc/components/editable';
+import Editable from 'kpc-vue/components/editable';
 
-import Message from 'kpc/components/message';
+import Message from 'kpc-vue/components/message';
 
 export default {
     components: {

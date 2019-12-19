@@ -6,7 +6,7 @@
     </Steps>
 </template>
 <script>
-import {Steps, Step} from 'kpc/components/steps';
+import {Steps, Step} from 'kpc-vue/components/steps';
 
 export default {
     components: {

@@ -1,5 +1,5 @@
 import React from 'react';
-import Table from 'kpc/components/table';
+import Table from 'kpc-react/components/table';
 import './index.styl';
 
 export default class Demo extends React.Component {

@@ -1,7 +1,7 @@
 import React from 'react';
-import {Form, FormItem} from 'kpc/components/form';
-import {Input} from 'kpc/components/input';
-import {Button} from 'kpc/components/button';
+import {Form, FormItem} from 'kpc-react/components/form';
+import {Input} from 'kpc-react/components/input';
+import {Button} from 'kpc-react/components/button';
 import './index.styl';
 
 // 添加全局规则

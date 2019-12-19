@@ -72,9 +72,9 @@
     </div>
 </template>
 <script>
-import {Card, CardColumn} from 'kpc/components/card';
-import Icon from 'kpc/components/icon';
-import {Row, Col} from 'kpc/components/grid';
+import {Card, CardColumn} from 'kpc-vue/components/card';
+import Icon from 'kpc-vue/components/icon';
+import {Row, Col} from 'kpc-vue/components/grid';
 
 export default {
     components: {

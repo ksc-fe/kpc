@@ -48,15 +48,15 @@
     </div>
 </template>
 <script>
-import Split from 'kpc/components/split';
-import {Table, TableColumn} from 'kpc/components/table';
-import {Pagination} from 'kpc/components/pagination';
-import {Tabs, Tab} from 'kpc/components/tabs';
-import {FormItem} from 'kpc/components/form';
-import Button from 'kpc/components/button';
-import Icon from 'kpc/components/icon';
+import Split from 'kpc-vue/components/split';
+import {Table, TableColumn} from 'kpc-vue/components/table';
+import {Pagination} from 'kpc-vue/components/pagination';
+import {Tabs, Tab} from 'kpc-vue/components/tabs';
+import {FormItem} from 'kpc-vue/components/form';
+import Button from 'kpc-vue/components/button';
+import Icon from 'kpc-vue/components/icon';
 
-import {range} from 'kpc/components/utils';
+import {range} from 'kpc-vue/components/utils';
 
 export default {
     components: {

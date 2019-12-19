@@ -1,6 +1,6 @@
 import React from 'react';
-import {Tabs, Tab} from 'kpc/components/tabs';
-import {Button, ButtonGroup} from 'kpc/components/button';
+import {Tabs, Tab} from 'kpc-react/components/tabs';
+import {Button, ButtonGroup} from 'kpc-react/components/button';
 import './index.styl';
 let id = 3;
 

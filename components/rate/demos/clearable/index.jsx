@@ -1,5 +1,5 @@
 import React from 'react';
-import Rate from 'kpc/components/rate';
+import Rate from 'kpc-react/components/rate';
 
 export default class Demo extends React.Component {
     constructor(props) {

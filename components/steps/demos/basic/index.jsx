@@ -1,6 +1,6 @@
 import React from 'react';
-import {Steps, Step} from 'kpc/components/steps';
-import Button from 'kpc/components/button';
+import {Steps, Step} from 'kpc-react/components/steps';
+import Button from 'kpc-react/components/button';
 import './index.styl';
 
 export default class Demo extends React.Component {

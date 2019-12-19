@@ -15,8 +15,8 @@
     </div>
 </template>
 <script>
-import {Table, TableColumn} from 'kpc/components/table';
-import {Switch as KSwitch} from 'kpc/components/switch';
+import {Table, TableColumn} from 'kpc-vue/components/table';
+import {Switch as KSwitch} from 'kpc-vue/components/switch';
 
 export default {
     components: {

@@ -1,7 +1,7 @@
 import React from 'react';
-import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
-import Button from 'kpc/components/button';
-import Tooltip from 'kpc/components/tooltip';
+import {Dropdown, DropdownMenu, DropdownItem} from 'kpc-react/components/dropdown';
+import Button from 'kpc-react/components/button';
+import Tooltip from 'kpc-react/components/tooltip';
 
 export default class Demo extends React.Component {
     render() {

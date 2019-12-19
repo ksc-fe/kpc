@@ -1,7 +1,7 @@
 import React from 'react';
-import Pagination from 'kpc/components/pagination';
+import Pagination from 'kpc-react/components/pagination';
 
-import Message from 'kpc/components/message';
+import Message from 'kpc-react/components/message';
 
 export default class Demo extends React.Component {
     constructor(props) {

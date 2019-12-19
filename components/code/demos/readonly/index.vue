@@ -2,7 +2,7 @@
     <Code v-model="value" height="200px" readonly />
 </template>
 <script>
-import Code from 'kpc/components/code';
+import Code from 'kpc-vue/components/code';
 
 const code = `function test() {
     console.log('hello world');

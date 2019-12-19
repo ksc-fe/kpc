@@ -22,8 +22,8 @@
     </div>
 </template>
 <script>
-import Input from 'kpc/components/input';
-import Button from 'kpc/components/button';
+import Input from 'kpc-vue/components/input';
+import Button from 'kpc-vue/components/button';
 
 export default {
     components: {

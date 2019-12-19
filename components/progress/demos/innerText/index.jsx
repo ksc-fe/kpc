@@ -1,5 +1,5 @@
 import React from 'react';
-import Progress from 'kpc/components/progress';
+import Progress from 'kpc-react/components/progress';
 import './index.styl';
 
 export default class Demo extends React.Component {

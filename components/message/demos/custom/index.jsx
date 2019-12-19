@@ -1,7 +1,7 @@
 import React from 'react';
-import Message from 'kpc/components/message';
-import {Button} from 'kpc/components/button';
-import {Progress} from 'kpc/components/progress';
+import Message from 'kpc-react/components/message';
+import {Button} from 'kpc-react/components/button';
+import {Progress} from 'kpc-react/components/progress';
 
 export default class Demo extends React.Component {
     constructor(props) {

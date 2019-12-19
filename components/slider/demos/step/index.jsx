@@ -1,5 +1,5 @@
 import React from 'react';
-import Slider from 'kpc/components/slider';
+import Slider from 'kpc-react/components/slider';
 import './index.styl';
 
 export default class Demo extends React.Component {

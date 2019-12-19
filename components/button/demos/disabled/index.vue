@@ -3,10 +3,11 @@
         <Button disabled>disabled</Button>
         <Button disabled type="none">disabled text</Button>
         <Button disabled icon circle><i class="k-icon ion-ios-search"></i></Button>
+        <Button disabled type="link">link</Button>
     </div>
 </template>
 <script>
-import Button from 'kpc/components/button';
+import Button from 'kpc-vue/components/button';
 
 export default {
     components: {

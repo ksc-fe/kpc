@@ -16,7 +16,7 @@
     </Table>
 </template>
 <script>
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc-vue/components/table';
 
 export default {
     components: {

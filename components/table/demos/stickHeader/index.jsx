@@ -1,5 +1,5 @@
 import React from 'react';
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc-react/components/table';
 
 export default class Demo extends React.Component {
     render() {

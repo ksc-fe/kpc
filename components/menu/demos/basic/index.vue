@@ -33,8 +33,8 @@
     </Menu>
 </template>
 <script>
-import {Menu, MenuItem} from 'kpc/components/menu';
-import Icon from 'kpc/components/icon';
+import {Menu, MenuItem} from 'kpc-vue/components/menu';
+import Icon from 'kpc-vue/components/icon';
 
 export default {
     components: {

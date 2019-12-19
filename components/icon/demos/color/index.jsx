@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from 'kpc/components/icon';
+import Icon from 'kpc-react/components/icon';
 import './index.styl';
 
 export default class Demo extends React.Component {

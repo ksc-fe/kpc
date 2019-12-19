@@ -1,6 +1,6 @@
 import React from 'react';
-import Tree from 'kpc/components/tree';
-import {DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
+import Tree from 'kpc-react/components/tree';
+import {DropdownMenu, DropdownItem} from 'kpc-react/components/dropdown';
 
 export default class Demo extends React.Component {
     constructor(props) {

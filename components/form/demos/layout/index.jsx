@@ -1,8 +1,8 @@
 import React from 'react';
-import {Form, FormItem} from 'kpc/components/form';
-import {Input} from 'kpc/components/input';
-import {Select, Option} from 'kpc/components/select';
-import {ButtonGroup, Button} from 'kpc/components/button';
+import {Form, FormItem} from 'kpc-react/components/form';
+import {Input} from 'kpc-react/components/input';
+import {Select, Option} from 'kpc-react/components/select';
+import {ButtonGroup, Button} from 'kpc-react/components/button';
 
 export default class Demo extends React.Component {
     constructor(props) {

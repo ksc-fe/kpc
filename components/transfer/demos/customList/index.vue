@@ -37,10 +37,10 @@
     </div>
 </template>
 <script>
-import Transfer from 'kpc/components/transfer';
-import Checkbox from 'kpc/components/checkbox';
+import Transfer from 'kpc-vue/components/transfer';
+import Checkbox from 'kpc-vue/components/checkbox';
 
-import Message from 'kpc/components/message';
+import Message from 'kpc-vue/components/message';
 
 export default {
     components: {

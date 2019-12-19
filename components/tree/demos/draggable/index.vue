@@ -63,10 +63,10 @@
     />
 </template>
 <script>
-import Tree from 'kpc/components/tree';
-import Input from 'kpc/components/input';
+import Tree from 'kpc-vue/components/tree';
+import Input from 'kpc-vue/components/input';
 
-import Message from 'kpc/components/message';
+import Message from 'kpc-vue/components/message';
 
 export default {
     components: {

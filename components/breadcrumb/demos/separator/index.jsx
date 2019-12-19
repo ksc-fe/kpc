@@ -1,5 +1,5 @@
 import React from 'react';
-import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
+import {Breadcrumb, BreadcrumbItem} from 'kpc-react/components/breadcrumb';
 import './index.styl';
 
 export default class Demo extends React.Component {

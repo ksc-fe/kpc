@@ -12,7 +12,7 @@
     </div>
 </template>
 <script>
-import Editable from 'kpc/components/editable';
+import Editable from 'kpc-vue/components/editable';
 
 export default {
     components: {

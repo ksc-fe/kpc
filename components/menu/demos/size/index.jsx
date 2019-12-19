@@ -1,8 +1,8 @@
 import React from 'react';
-import {Menu, MenuItem} from 'kpc/components/menu';
-import {Switch} from 'kpc/components/switch';
-import {ButtonGroup, Button} from 'kpc/components/button';
-import Icon from 'kpc/components/icon';
+import {Menu, MenuItem} from 'kpc-react/components/menu';
+import {Switch} from 'kpc-react/components/switch';
+import {ButtonGroup, Button} from 'kpc-react/components/button';
+import Icon from 'kpc-react/components/icon';
 import './index.styl';
 
 export default class Demo extends React.Component {

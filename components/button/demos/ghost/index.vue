@@ -10,7 +10,7 @@
     </div>
 </template>
 <script>
-import Button from 'kpc/components/button';
+import Button from 'kpc-vue/components/button';
 
 export default {
     components: {

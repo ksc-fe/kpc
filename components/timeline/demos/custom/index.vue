@@ -10,7 +10,7 @@
     </Timeline>
 </template>
 <script>
-import {Timeline, TimelineItem} from 'kpc/components/timeline';
+import {Timeline, TimelineItem} from 'kpc-vue/components/timeline';
 
 export default {
     components: {

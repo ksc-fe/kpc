@@ -51,8 +51,8 @@
     </div>
 </template>
 <script>
-import Table from 'kpc/components/table';
-import {Form, FormItem} from 'kpc/components/form';
+import Table from 'kpc-vue/components/table';
+import {Form, FormItem} from 'kpc-vue/components/form';
 
 export default {
     components: {

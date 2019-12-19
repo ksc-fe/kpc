@@ -13,8 +13,8 @@
     </div>
 </template>
 <script>
-import Badge from 'kpc/components/badge';
-import Button from 'kpc/components/button';
+import Badge from 'kpc-vue/components/badge';
+import Button from 'kpc-vue/components/button';
 
 export default {
     components: {

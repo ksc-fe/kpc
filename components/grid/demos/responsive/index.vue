@@ -19,7 +19,7 @@
     </div>
 </template>
 <script>
-import {Row, Col} from 'kpc/components/grid';
+import {Row, Col} from 'kpc-vue/components/grid';
 
 export default {
     components: {

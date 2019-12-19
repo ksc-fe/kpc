@@ -1,6 +1,6 @@
 import React from 'react';
-import Affix from 'kpc/components/affix';
-import Button from 'kpc/components/button';
+import Affix from 'kpc-react/components/affix';
+import Button from 'kpc-react/components/button';
 import './index.styl';
 
 export default class Demo extends React.Component {

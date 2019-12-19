@@ -15,7 +15,7 @@
     </div>
 </template>
 <script>
-import Datepicker from 'kpc/components/datepicker';
+import Datepicker from 'kpc-vue/components/datepicker';
 
 export default {
     components: {

@@ -1,10 +1,10 @@
 import React from 'react';
-import Dialog from 'kpc/components/dialog';
-import {Form, FormItem} from 'kpc/components/form';
-import {Input} from 'kpc/components/input';
-import {Button} from 'kpc/components/button';
+import Dialog from 'kpc-react/components/dialog';
+import {Form, FormItem} from 'kpc-react/components/form';
+import {Input} from 'kpc-react/components/input';
+import {Button} from 'kpc-react/components/button';
 
-import Message from 'kpc/components/message';
+import Message from 'kpc-react/components/message';
 
 export default class Demo extends React.Component {
     constructor(props) {

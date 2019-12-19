@@ -1,7 +1,7 @@
 import React from 'react';
-import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
-import Checkbox from 'kpc/components/checkbox';
-import Button from 'kpc/components/button';
+import {Dropdown, DropdownMenu, DropdownItem} from 'kpc-react/components/dropdown';
+import Checkbox from 'kpc-react/components/checkbox';
+import Button from 'kpc-react/components/button';
 
 export default class Demo extends React.Component {
     constructor(props) {

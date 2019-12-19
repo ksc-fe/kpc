@@ -1,5 +1,5 @@
 import React from 'react';
-import {Select, Option} from 'kpc/components/select';
+import {Select, Option} from 'kpc-react/components/select';
 import './index.styl';
 
 export default class Demo extends React.Component {

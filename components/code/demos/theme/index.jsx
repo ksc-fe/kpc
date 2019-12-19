@@ -1,6 +1,6 @@
 import React from 'react';
-import Code from 'kpc/components/code';
-import {ButtonGroup, Button} from 'kpc/components/button';
+import Code from 'kpc-react/components/code';
+import {ButtonGroup, Button} from 'kpc-react/components/button';
 import './index.styl';
 const code = `function test() {
     console.log('hello world');
