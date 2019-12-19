@@ -1,7 +1,9 @@
 import mx from '../mx';
 
-const {mxShape} = mx;
+export default function() {
+    const {mxShape} = mx;
 
-mxShape.prototype.getConstraints = function() {
-    return null;
-};
+    mxShape.prototype.getConstraints = function() {
+        return null;
+    };
+}

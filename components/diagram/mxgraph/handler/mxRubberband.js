@@ -1,9 +1,12 @@
 import mx from '../mx';
 
-const {mxRubberband} = mx;
+export default function() {
+    const {mxRubberband} = mx;
 
-// Enables fading of rubberband
-mxRubberband.prototype.fadeOut = true;
+    // Enables fading of rubberband
+    mxRubberband.prototype.fadeOut = true;
 
-// Increases default rubberband opacity (default is 20)
-mxRubberband.prototype.defaultOpacity = 30;
+    // Increases default rubberband opacity (default is 20)
+    mxRubberband.prototype.defaultOpacity = 30;
+}
+
