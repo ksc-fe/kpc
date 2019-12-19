@@ -13,7 +13,7 @@ order: 0
 > 
 > Angular下，需要另外注入`DiagramModule`
 >
-> `import {DiagramModule} from 'kpc-angular/components/diagram';`
+> `import {DiagramModule} from 'kpc-angular/@css/components/diagram';`
 
 `Diagram`组件暴露了3类组件
 

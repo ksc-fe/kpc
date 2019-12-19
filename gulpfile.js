@@ -344,14 +344,16 @@ function copySingleFileToPackage(type) {
     });
 }
 gulp.task('build:vue@single', () => {
-    return Promise.all(buildSingleFile('vue')).then(() => {
-        return copySingleFileToPackage('vue');
-    });
+    return Promise.all(buildSingleFile('vue'));
+});
+gulp.task('copy:vue@single', () => {
+    return copySingleFileToPackage('vue');
 });
 gulp.task('build:react@single', () => {
-    return Promise.all(buildSingleFile('react')).then(() => {
-        return copySingleFileToPackage('react');
-    });
+    return Promise.all(buildSingleFile('react'));
+});
+gulp.task('copy:react@single', () => {
+    return copySingleFileToPackage('react');
 });
 
 gulp.task('build:i18n@single', (done) => {
@@ -430,7 +432,8 @@ gulp.task('build@single', gulp.series(
     'clean@single',
     gulp.parallel('build:js@single', 'build:vue@single', 'build:react@single', 'build:i18n@single'),
     // 'inject@single',
-    'uglify@single'
+    'uglify@single',
+    gulp.parallel('copy:vue@single', 'copy:react@single')
 ));
 
 const destPath = './@css';

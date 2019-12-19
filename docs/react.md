@@ -13,8 +13,8 @@ sidebar: doc
 
 # 安装
 
-```js
-npm install kpc -S
+```shell
+npm install kpc-react -S
 ```
 
 # CDN
@@ -71,45 +71,24 @@ npm install kpc -S
 ```shell
 npx create-react-app hello-world
 cd hello-world
-npm install kpc -S
+npm install kpc-react -S
 ```
 
-## 修改配置
+## 修改主题
 
-修改配置之前，我们需要弹出项目的配置文件
+如果你需要修改主题，修改主题之前，我们需要弹出项目的配置文件
 
 ```shell
 npm run eject
 ```
 
-然后修改配置文件`config/webpack.config.js`
-
-```diff
---- a/config/webpack.config.js
-+++ b/config/webpack.config.js
-@@ -265,6 +265,8 @@ module.exports = function(webpackEnv) {
-         // Support React Native Web
-         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
-         'react-native': 'react-native-web',
-+        // @since 1.0 推荐直接指向react编译包
-+        'kpc': 'kpc/@react/@css',
-+        // @before 1.0
-+        // 'kpc': 'kpc/@css',
-+        // 'intact$': 'intact-react',
-       },
-       plugins: [
-         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
-```
-
-## 修改主题
-
-如果要修改主题，需要安装`stylus`和`stylus-loader`
+并且需要安装`stylus`和`stylus-loader`
 
 ```shell
 npm install stylus stylus-loader -D
 ```
 
-然后修改配置文件`config/webpack.config.js`，让kpc指向`kpc/@stylus`目录，并且加入`stylus-loader`
+然后修改配置文件`config/webpack.config.js`，让kpc指向`kpc-react/@stylus`目录，并且加入`stylus-loader`
 
 ```diff
 --- a/config/webpack.config.js
@@ -135,14 +114,7 @@ npm install stylus stylus-loader -D
          // Support React Native Web
          // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
          'react-native': 'react-native-web',
-         // @since 1.0 推荐直接指向react编译包
--        'kpc': 'kpc/@react/@css',
-+        'kpc': 'kpc/@react/@stylus',
-         // @before 1.0
--        // 'kpc': 'kpc/@css',
-+        // 'kpc': 'kpc/@stylus',
-         // 'intact$': 'intact-react',
-
++        'kpc-react': 'kpc-react/@stylus',
        },
        plugins: [
 @@ -448,6 +450,22 @@ module.exports = function(webpackEnv) {
@@ -160,7 +132,7 @@ npm install stylus stylus-loader -D
 +                  options: {
 +                    'include css': true,
 +                    'resolve url': true,
-+                    'import': '~kpc/styles/themes/ksyun/index.styl',
++                    'import': '~kpc-react/@stylus/styles/themes/ksyun/index.styl',
 +                  },
 +                }
 +              ),
@@ -170,14 +142,13 @@ npm install stylus stylus-loader -D
              // In production, they would get copied to the `build` folder.
 ```
 
-> 如果主题没有生效，请检查`resolve.alias.kpc`是否指向了`kpc/@stylus`
+> 如果主题没有生效，请检查`resolve.alias['kpc-react']`是否指向了`kpc-react/@stylus`
 
 # 使用
 
 ```js
 import React from 'react';
-import {Button} from 'kpc/components/button';
-import {Message} from 'kpc/components/message';
+import {Button, Message} from 'kpc-react';
 
 class App extends React.Component {
     hello() {
@@ -211,7 +182,7 @@ class App extends React.Component {
 ```js
 import React from 'react';
 import Intact from 'intact';
-import Badge from 'kpc/components/badge';
+import {Badge} from 'kpc-react';
 
 class App extends React.Component {
     render() {
