@@ -25,8 +25,6 @@ describe('Table', () => {
         const spy = sinon.spy((c, v) => console.log(v));
         table.on('$change:checked', spy);
 
-        window.i = table;
-
         // click row
         const [tr1, tr2] = instance.element.querySelectorAll('.k-tbody tr');
         tr1.click();
