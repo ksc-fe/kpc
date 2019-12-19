@@ -703,6 +703,7 @@ export default class Table extends Intact {
     }
 
     _onRowDestroyed(key) {
+        if (this._willDestroy) return;
         this._allDestroyedRows.push(key);
     }
 
@@ -928,6 +929,11 @@ export default class Table extends Intact {
         if (this.ro) {
             this.ro.disconnect();
         }
+    }
+
+    destroy(...args) {
+        this._willDestroy = true;
+        super.destroy(...args);
     }
 }
 
