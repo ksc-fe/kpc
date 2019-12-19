@@ -5,7 +5,7 @@ before_install:
     - npm install -g codecov
 install:
     - npm ci
-    - cd ./packages/kpc-angular && npm ci
+    - cd ./packages/kpc-angular && npm ci && cd ../../
 addons:
     chrome: stable
 before_script:
