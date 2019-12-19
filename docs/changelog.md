@@ -4,6 +4,30 @@ order: 99
 sidebar: doc
 ---
 
+## v1.3.0
+
+1. `Add` 新增绘图组件`Diagram`，用于绘制流程图，拓扑图等 [#397](https://github.com/ksc-fe/kpc/issues/397)
+2. `Add` `Colorpicker`新增`hsv`颜色模式 [#396](https://github.com/ksc-fe/kpc/issues/396)
+3. `Add` 拆分`React/Vue`下的包单独(`kpc-react/kpc-vue`)发布，原有使用方式依然有效 [#378](https://github.com/ksc-fe/kpc/issues/378)
+4. `Change` 将`Code`组件从索引文件`index.js`中剔除，因为它比较庞大，影响开发编译速度 [#376](https://github.com/ksc-fe/kpc/issues/376)
+5. `Fix` 修复`Table`在`stickHeader`的情况下，传入自定义数据来导出表格会报错的问题 [#394](https://github.com/ksc-fe/kpc/issues/394)
+6. `Fix` 修复`Colorpicker`当`r === g === b`时，调整色相然后选择颜色，会回到上一个色相的问题 [#395](https://github.com/ksc-fe/kpc/issues/395)
+7. `Fix` 修复`Pagination`存在跳转页码时，文字不能垂直居中对齐的问题 [#398](https://github.com/ksc-fe/kpc/issues/398)
+8. `Fix` 修复`BreadcrumbItem`等组件`to`属性，针对`Object`类型验证错误的问题 [#401](https://github.com/ksc-fe/kpc/issues/401)
+9. `Fix` 修复`Spinner`替换成`ButtonGroup`组件，`checkType`失效的问题 [#402](https://github.com/ksc-fe/kpc/issues/402)
+10. `Fix` 修复`Message`展示的文案，会将英文单词截断换行的问题 [#403](https://github.com/ksc-fe/kpc/issues/403)
+11. `Fix` 修复`Radio/Checkbox`定义`title`属性时，`title`属性没有添加到正确的元素上的问题 [#404](https://github.com/ksc-fe/kpc/issues/404) 
+12. `Fix` 修复`Button`在`type="link"`的情况下，`disabled`样式不对的问题 [#400](https://github.com/ksc-fe/kpc/issues/400)
+13. `Fix` 修复`Datepicker`在`datetime`模式下，设置了`minDate`但时间依然会选择到比`minDate`小的值的问题 [#406](https://github.com/ksc-fe/kpc/issues/406)
+14. `Fix` 修复`Table`在全选了情况下，清空数据`data`，会触发多次`$change:checked`事件的问题 [#407](https://github.com/ksc-fe/kpc/issues/407)
+15. `Fix` 修复`Table`在选择了某些行的情况，`Table`被销毁掉时，依然会触发`$change:checked`事件的问题 [#129](https://github.com/ksc-fe/kpc/issues/129)
+
+### Vue
+
+1. `Fix` 修复`Tooltip`作用与`Radio`上时，无法切换`Radio`的问题 [#408](https://github.com/ksc-fe/kpc/issues/408)
+2. `Fix` 修复`Drawer`中存在`Select`，当在`mounted`生命周期中更新`Select`数据时，菜单无法弹出的问题 [#405](https://github.com/ksc-fe/kpc/issues/405)
+
+
 ## v1.2.1
 
 1. `Add` `Select`支持`position`属性来定义弹出菜单的位置 [#383](https://github.com/ksc-fe/kpc/issues/383) 
