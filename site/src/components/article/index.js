@@ -100,7 +100,7 @@ export default class extends Intact {
             'package.json': {
                 content: {
                     dependencies: {
-                        kpc: version,
+                        'kpc-vue': version,
                         vue: '^2.6.0',
                     }
                 }
@@ -109,7 +109,8 @@ export default class extends Intact {
                 content: [
                     `<!-- FIXME: font file is missing in CodeSandbox so we must import kpc.css -->`,
                     '<style src="./kpc.css"></style>',
-                    code.replace(/kpc\/components/g, 'kpc/@vue/@css/components'),
+                    code,
+                    // code.replace(/kpc\/components/g, 'kpc/@vue/@css/components'),
                 ].join('\n')
             },
             'src/main.js': {
@@ -132,7 +133,7 @@ export default class extends Intact {
             'package.json': {
                 content: {
                     dependencies: {
-                        kpc: version,
+                        'kpc-react': version,
                         react: '^16.8.6',
                         'react-dom': '^16.8.6',
                     },
@@ -144,7 +145,7 @@ export default class extends Intact {
                     `import './kpc.css';`,
                     `import ReactDOM from 'react-dom';`,
                     do {
-                        let content = code.replace(/kpc\/components/g, 'kpc/@react/@css/components');
+                        let content = code; // code.replace(/kpc\/components/g, 'kpc/@react/@css/components');
                         stylus ? content.replace('./index.styl', './index.css') : content;
                     },
                     ``,

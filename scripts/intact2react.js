@@ -21,7 +21,7 @@ function parse(vdt, js, reactMethods, hasStylus) {
     let head = '';
     let template = vdt.replace(importRegExp, (match, name) => {
         components.push(...(name.split(',').map(item => item.trim())).filter(Boolean));
-        head += match + '\n';
+        head += match.replace('kpc', 'kpc-react') + '\n';
         return '';
     });
 
@@ -56,12 +56,13 @@ function parse(vdt, js, reactMethods, hasStylus) {
         const _head = [];
         let hasAdded = false;
         for (let i = 0; i < lines.length; i++) {
-            const line = lines[i];
+            let line = lines[i];
             if (line.startsWith('import')) {
                 const matches = line.match(/import \{?(.*?)\}? from .*/);
                 if (matches) {
-                    const names = matches[1].split(', ').map(item => item === 'Switch' ? 'KSwitch' : item)
+                    const names = matches[1].split(',').map(item => item.trim());
                     if (names.find(name => components.indexOf(name) > -1)) continue;
+                    line = line.replace('kpc', 'kpc-react');
                 }
             } else if (!hasAdded && hasStylus) {
                 head += `import './index.styl';`;

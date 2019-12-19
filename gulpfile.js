@@ -562,14 +562,14 @@ gulp.task('build@stylus', gulp.series(
 // build for Vue, React and Angular
 function generateTask(name, dest, useCssAsRoot, type) {
     if (!type) type = name;
-    dest= dest || `./@${type}`;
-    gulp.task(`clean@${type}`, async () => {
+    dest= dest || `./@${name}`;
+    gulp.task(`clean@${name}`, async () => {
         await Promise.all([
             rm(`${dest}/@css`),
             rm(`${dest}/@stylus`),
         ]);
     });
-    gulp.task(`copy@${type}`, () => {
+    gulp.task(`copy@${name}`, () => {
         return gulp.src(['./@css/**/*', './@stylus/**/*'], {base: './'})   
             .pipe(tap(file => {
                 if (path.extname(file.path) === '.js') {
@@ -581,7 +581,7 @@ function generateTask(name, dest, useCssAsRoot, type) {
             }))
             .pipe(gulp.dest(dest));
     });
-    gulp.task(`build@${type}`, gulp.series(`clean@${type}`, `copy@${type}`));
+    gulp.task(`build@${name}`, gulp.series(`clean@${name}`, `copy@${name}`));
 }
 
 const packageAngularPath = './packages/kpc-angular';

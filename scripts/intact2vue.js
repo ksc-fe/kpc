@@ -35,7 +35,7 @@ function parse(vdt, js, vueScript, vueTemplate, vueMethods, vueData) {
             return item === 'Switch' ? 'KSwitch' : item;
         }).filter(Boolean);
         components.push(...name);
-        head += match.replace('Switch', 'Switch as KSwitch') + '\n';
+        head += match.replace('Switch', 'Switch as KSwitch').replace('kpc', 'kpc-vue') + '\n';
         return '';
     }).replace(/<(\/)?Switch/g, '<$1KSwitch');
     if (vueTemplate) {
@@ -63,11 +63,12 @@ function parse(vdt, js, vueScript, vueTemplate, vueMethods, vueData) {
         const lines = js.split('\n');
         const _head = [];
         for (let i = 0; i < lines.length; i++) {
-            const line = lines[i];
+            let line = lines[i];
             if (line.startsWith('import')) {
                 const matches = line.match(/import \{?(.*?)\}? from .*/);
                 const names = matches[1].split(', ').map(item => item === 'Switch' ? 'KSwitch' : item)
                 if (names.find(name => components.indexOf(name) > -1)) continue;
+                line = line.replace('kpc', 'kpc-vue');
             }
             if (line.startsWith('export default')) {
                 js = lines.slice(i).join('\n');
