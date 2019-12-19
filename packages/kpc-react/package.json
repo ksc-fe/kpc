@@ -15,7 +15,7 @@
   "author": "Javey <jiawei23716@sina.com>",
   "homepage": "https://design.ksyun.com",
   "license": "MIT",
-  "module": "@css/index.js",
+  "module": "index.js",
   "main": "dist/kpc.react.js",
   "repository": {
     "type": "git",

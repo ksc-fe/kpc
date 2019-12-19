@@ -16,6 +16,18 @@ site/dist/
 dist
 .vscode/
 
+packages/kpc-vue/components
+packages/kpc-vue/i18n
+packages/kpc-vue/styles
+packages/kpc-vue/index.js
+packages/kpc-vue/inheritsLoose.js
+
+packages/kpc-react/components
+packages/kpc-react/i18n
+packages/kpc-react/styles
+packages/kpc-react/index.js
+packages/kpc-react/inheritsLoose.js
+
 packages/kpc-angular/@css
 packages/kpc-angular/@stylus
 packages/kpc-angular/kpc

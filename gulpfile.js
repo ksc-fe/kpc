@@ -560,7 +560,7 @@ gulp.task('build@stylus', gulp.series(
 )); 
 
 // build for Vue, React and Angular
-function generateTask(type, dest) {
+function generateTask(type, dest, useCssAsRoot) {
     dest= dest || `./@${type}`;
     gulp.task(`clean@${type}`, async () => {
         await Promise.all([
@@ -574,6 +574,9 @@ function generateTask(type, dest) {
                 if (path.extname(file.path) === '.js') {
                     file.contents = Buffer.from(file.contents.toString('utf-8').replace(/['"]intact["']/, `'intact-${type}'`));
                 }
+                if (useCssAsRoot && /@css/.test(file.path)) {
+                    file._base = './@css';
+                }
             }))
             .pipe(gulp.dest(dest));
     });
@@ -585,8 +588,8 @@ generateTask('vue');
 generateTask('react');
 generateTask('angular', packageAngularPath);
 // generate to seperate package for react and vue
-generateTask('package:vue', './packages/kpc-vue');
-generateTask('package:react', './packages/kpc-react');
+generateTask('package:vue', './packages/kpc-vue', true);
+generateTask('package:react', './packages/kpc-react', true);
 
 // generate components for Angular
 const angularComponentsPath = `${packageAngularPath}/components`;
