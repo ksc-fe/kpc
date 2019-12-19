@@ -13,7 +13,7 @@ site/.dist/
 .cache
 out/
 site/dist/
-dist/
+dist
 .vscode/
 
 packages/kpc-angular/@css

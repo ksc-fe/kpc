@@ -33,6 +33,12 @@ const isDev = process.env.NODE_ENV !== 'production';
 
 let globalIframes;
 
+const rm = (path) => {
+    return new Promise(resolve => {
+        rimraf(path, resolve);
+    });
+};
+
 gulp.task('doc', () => {
     console.log('build markdown');
     return doc(true).then(({iframes}) => {
@@ -148,11 +154,6 @@ gulp.task('watch', gulp.series(
     )
 ));
 
-const rm = (path) => {
-    return new Promise(resolve => {
-        rimraf(path, resolve);
-    });
-};
 gulp.task('clean:doc', () => {
     return exec(`rm -rf ./site/dist; REPO=\`git config remote.origin.url\`; echo $REPO;
         git clone -b gh-pages --single-branch $REPO ./site/dist --depth=1 &&
@@ -330,11 +331,27 @@ function buildSingleFile(type) {
 gulp.task('build:js@single', () => {
     return Promise.all(buildSingleFile());
 });
+function copySingleFileToPackage(type) {
+    const path = `./packages/kpc-${type}`;
+    return rm(`${path}/dist`).then(() => {
+        return gulp.src([
+            './dist/fonts/**/*', 
+            './dist/i18n/**/*',
+            `./dist/kpc.${type}.*`,
+            './dist/*.css'
+        ], {base: './'})
+        .pipe(gulp.dest(path));
+    });
+}
 gulp.task('build:vue@single', () => {
-    return Promise.all(buildSingleFile('vue'));
+    return Promise.all(buildSingleFile('vue')).then(() => {
+        return copySingleFileToPackage('vue');
+    });
 });
 gulp.task('build:react@single', () => {
-    return Promise.all(buildSingleFile('react'));
+    return Promise.all(buildSingleFile('react')).then(() => {
+        return copySingleFileToPackage('react');
+    });
 });
 
 gulp.task('build:i18n@single', (done) => {
@@ -564,6 +581,9 @@ const packageAngularPath = './packages/kpc-angular';
 generateTask('vue');
 generateTask('react');
 generateTask('angular', packageAngularPath);
+// generate to seperate package for react and vue
+generateTask('package:vue', './packages/kpc-vue');
+generateTask('package:react', './packages/kpc-react');
 
 // generate components for Angular
 const angularComponentsPath = `${packageAngularPath}/components`;
@@ -691,7 +711,7 @@ gulp.task('_build@angular', gulp.series('clean@angular', 'copy@angular', '_gener
 gulp.task('build', gulp.series(
     'index',
     gulp.parallel('build@css', 'build@stylus', 'build@single'),
-    gulp.parallel('build@vue', 'build@react', '_build@angular')
+    gulp.parallel('build@vue', 'build@package:vue', 'build@react', 'build@package:react', '_build@angular')
 ));
 
 function exec(command) {
