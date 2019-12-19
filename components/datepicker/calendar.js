@@ -121,6 +121,7 @@ export default class Calendar extends Intact {
         // we click on drodown and don't hide it
         e && (e._rawEvent._dropdown = true);
 
+        // the datetime must be greater than minDate, #406
         const minDate = this._getMinDate();
         if (type === 'datetime' && minDate && value.isBefore(minDate)) {
             value = minDate.clone();

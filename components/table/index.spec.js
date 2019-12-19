@@ -15,11 +15,17 @@ import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 describe('Table', () => {
     let instance;
 
-    afterEach(() => unmount(instance));
+    // afterEach(() => unmount(instance));
 
     it('check & uncheck', () => {
         instance = mount(BasicDemo);
         const table = instance.refs.__test;
+
+        // bind $change:checked event
+        const spy = sinon.spy((c, v) => console.log(v));
+        table.on('$change:checked', spy);
+
+        window.i = table;
 
         // click row
         const [tr1, tr2] = instance.element.querySelectorAll('.k-tbody tr');
@@ -39,6 +45,12 @@ describe('Table', () => {
         all.click();
         expect(table.isCheckAll()).eql(false);
         expect(table.get('checkedKeys')).deep.eql([]);
+
+        expect(spy.callCount).to.eql(5);
+        // clear data of table should only trigger $change:checked event once, #407
+        all.click();
+        table.set('data', []);
+        expect(spy.callCount).to.eql(7);
     });
 
     it('click row of radio table', () => {
