@@ -42,7 +42,7 @@ export default class Drag extends Intact {
         this.trigger('dragEnd');
     }
 
-    _destory() {
+    _destroy() {
         this._dragEnd();
     }
 }

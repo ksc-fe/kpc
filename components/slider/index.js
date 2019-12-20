@@ -430,7 +430,7 @@ export default class Slider extends Intact {
         e.stopPropagation();
     }
 
-    _destory() {
+    _destroy() {
         this._onRangeSlideEnd()
     }
 }

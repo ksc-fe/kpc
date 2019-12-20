@@ -168,7 +168,7 @@ export default class ColorPanel extends Intact {
         this.update();
     }
 
-    _destory() {
+    _destroy() {
         this._onMouseUp();
     }
 }
