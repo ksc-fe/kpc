@@ -167,15 +167,15 @@ export default class Message extends Intact {
         this._mount();
     }
 
-    destroy(vNode) {
-        if ((this._isVue || this._isReact) && !vNode) {
+    destroy(vNode, ...args) {
+        if ((this._isVue || this._isReact || this._isAngular) && !vNode) {
             messages.delete(this);
         } else if (vNode.parentVNode.tag === MessageAnimate && !this.get('_isInstance')) {
             return;
         } else if (vNode.parentVNode.tag !== MessageAnimate) {
             messages.delete(this);
         } else {
-            super.destroy(vNode);
+            super.destroy(vNode, ...args);
         }
     }
 }
