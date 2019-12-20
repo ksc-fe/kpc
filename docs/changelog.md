@@ -8,11 +8,11 @@ sidebar: doc
 
 1. `Fix` 修复`Diagram`服务器端渲染(SSR)报错的问题 [#409](https://github.com/ksc-fe/kpc/issues/409)
 
-### Vue
+__Vue__
 
 1. `Fix` 修复`Table`在数据清空后，选中状态依然会保留的问题 [#411](https://github.com/ksc-fe/kpc/issues/411)
 
-### Angular
+__Angular__
 
 1. `Fix` 修复`Table`在销毁时报错的问题 [#410](https://github.com/ksc-fe/kpc/issues/410)
  
