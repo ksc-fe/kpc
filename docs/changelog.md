@@ -4,6 +4,18 @@ order: 99
 sidebar: doc
 ---
 
+## v1.3.1
+
+1. `Fix` 修复`Diagram`服务器端渲染(SSR)报错的问题 [#409](https://github.com/ksc-fe/kpc/issues/409)
+
+### Vue
+
+1. `Fix` 修复`Table`在数据清空后，选中状态依然会保留的问题 [#411](https://github.com/ksc-fe/kpc/issues/411)
+
+### Angular
+
+1. `Fix` 修复`Table`在销毁时报错的问题 [#410](https://github.com/ksc-fe/kpc/issues/410)
+ 
 ## v1.3.0
 
 1. `Add` 新增绘图组件`Diagram`，用于绘制流程图，拓扑图等 [#397](https://github.com/ksc-fe/kpc/issues/397)
