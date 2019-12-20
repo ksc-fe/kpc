@@ -114,6 +114,8 @@ export default class Table extends Intact {
 
         // save the width of header cell
         this._initWidth();
+        // save the destroyed rows
+        this._allDestroyedRows = [];
 
         this.scrollLeft = 0;
 
@@ -700,10 +702,6 @@ export default class Table extends Intact {
      * if update, the Row may be destroyed, and it will update table on each Row destroyed
      * so we collect all the Rows and do it once. #407
      */
-    _beforeUpdate() {
-        this._allDestroyedRows = [];
-    }
-
     _onRowDestroyed(key) {
         if (this._willDestroy) return;
         this._allDestroyedRows.push(key);
