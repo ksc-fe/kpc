@@ -50,6 +50,7 @@ export default class Code extends Intact {
 
             this._crossDomainWorker();
 
+            /* istanbul ignore if */
             if (monaco.default) {
                 monaco = monaco.default;
             }
@@ -79,21 +80,9 @@ export default class Code extends Intact {
         if (oldGetWorkerUrl.$) return;
         oldGetWorkerUrl.$ = true;
 
-        const isSameOrigin = (url) => {
-            const loc = window.location;
-            const a = document.createElement('a');
-            a.href = url;
-
-            return {
-                isSame: a.hostname === loc.hostname && a.port === loc.port && a.protocol === loc.protocol,
-                // maybe the protocol is relative
-                url: a.href,
-            };
-        };
-
-        window.MonacoEnvironment.getWorkerUrl = function(moduleId, label) {
+        window.MonacoEnvironment.getWorkerUrl = (moduleId, label) => {
             const workerUrl = oldGetWorkerUrl(moduleId, label);
-            const {isSame, url} = isSameOrigin(workerUrl);
+            const {isSame, url} = this._isSameOrigin(workerUrl);
 
             if (isSame) return workerUrl;
 
@@ -109,6 +98,18 @@ export default class Code extends Intact {
             const blobUrl = URL.createObjectURL(blob);
             return blobUrl;
         }
+    }
+
+    _isSameOrigin(url) {
+        const loc = window.location;
+        const a = document.createElement('a');
+        a.href = url;
+
+        return {
+            isSame: a.hostname === loc.hostname && a.port === loc.port && a.protocol === loc.protocol,
+            // maybe the protocol is relative
+            url: a.href,
+        };
     }
 
     _watch() {
