@@ -9,12 +9,12 @@ export default class extends Intact {
     defaults() {
         return {
             states: {
+                selectable: false,
                 movable: false,
                 connectable: false,
                 resizable: false,
                 rotatable: false,
                 editable: false,
-                selectable: false,
             },
             selectedStates: [],
         }
