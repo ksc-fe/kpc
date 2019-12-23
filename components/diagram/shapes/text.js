@@ -1,6 +1,8 @@
 import {DShape} from './shape';
 
 export class DText extends DShape {
+    static displayName = 'DText';
+
     defaults() {
         return {
             ...super.defaults(),

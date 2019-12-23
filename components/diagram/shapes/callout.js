@@ -5,6 +5,8 @@ import {hasWindow} from '../../utils';
 const {mxActor, mxUtils, mxRectangle, mxCellRenderer, mxHexagon, mxConstants, mxPoint, mxPerimeter, mxStyleRegistry} = mx;
 
 export class DCallout extends DShape {
+    static displayName = 'DCallout';
+
     defaults() {
         return {
             ...super.defaults(),

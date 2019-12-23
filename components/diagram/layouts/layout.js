@@ -19,7 +19,7 @@ export class DLayout extends Intact {
             return vNode;
         });
 
-        return Vdt.miss.h(data.constructor.name, null, children);
+        return Vdt.miss.h(data.constructor.displayName, null, children);
     };
 
     static propTypes = {

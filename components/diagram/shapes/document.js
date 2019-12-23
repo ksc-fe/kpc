@@ -5,6 +5,8 @@ import {hasWindow} from '../../utils';
 const {mxActor, mxUtils, mxRectangle, mxCellRenderer, mxConnectionConstraint, mxPoint} = mx;
 
 export class DDocument extends DShape {
+    static displayName = 'DDocument';
+
     defaults() {
         return {
             ...super.defaults(),

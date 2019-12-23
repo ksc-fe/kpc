@@ -5,7 +5,7 @@ order: 1
 
 该示例展示了所有内置的图形，并且开启了`Diagram`的一些功能，你可以拖动和连线它们，关于图形组件的属性，见API部分
 
-> `resizable`和`ratatable`功能需要同时开启`selectable`才能生效
+> `movable/resizable/ratatable`功能需要同时开启`selectable`才能生效
 
 ```vdt
 import {
@@ -54,12 +54,12 @@ export default class extends Intact {
     defaults() {
         return {
             states: {
+                selectable: false,
                 movable: false,
                 connectable: false,
                 resizable: false,
                 rotatable: false,
                 editable: false,
-                selectable: false,
             },
             selectedStates: [],
         }

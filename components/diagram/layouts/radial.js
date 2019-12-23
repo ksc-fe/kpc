@@ -4,6 +4,8 @@ import mx from '../mxgraph';
 const {mxRadialTreeLayout} = mx;
 
 export class DRadialLayout extends DLayout {
+    static displayName = 'DRadialLayout';
+
     static propTypes = {
         ...DLayout.propTypes,
         levelDistance: [Number, String],

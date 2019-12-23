@@ -4,6 +4,8 @@ import mx from '../mxgraph';
 const {mxPartitionLayout} = mx;
 
 export class DPartitionLayout extends DLayout {
+    static displayName = 'DPartitionLayout';
+
     static propTypes = {
         ...DLayout.propTypes,
         type: ['horizontal', 'vertical'],

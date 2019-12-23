@@ -5,6 +5,8 @@ import {hasWindow} from '../../utils';
 const {mxActor, mxUtils, mxCellRenderer, mxHexagon, mxConstants, mxPoint, mxPerimeter, mxStyleRegistry} = mx;
 
 export class DHexagon extends DShape {
+    static displayName = 'DHexagon';
+
     defaults() {
         return {
             ...super.defaults(),

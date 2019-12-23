@@ -38,7 +38,7 @@ const currentLayout = self.get('layouts')[self.get('layout')];
             <ButtonGroup v-model="layout" checkType="radio">
                 <Button v-for={{ self.get('layouts') }}
                     value={{ key }}
-                >{{ value.Layout.name }}</Button>
+                >{{ value.Layout.displayName }}</Button>
             </ButtonGroup>
         </FormItem>
         <FormItem v-for={{ currentLayout.props }} label={{ key }}>

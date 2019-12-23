@@ -4,6 +4,8 @@ import mx from '../mxgraph';
 const {mxCompactTreeLayout} = mx;
 
 export class DTreeLayout extends DLayout {
+    static displayName = 'DTreeLayout';
+
     static propTypes = {
         ...DLayout.propTypes,
         type: ['horizontal', 'vertical'],

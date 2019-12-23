@@ -4,6 +4,8 @@ import mx from '../mxgraph';
 const {mxStackLayout} = mx;
 
 export class DStackLayout extends DLayout {
+    static displayName = 'DStackLayout';
+
     static propTypes = {
         ...DLayout.propTypes,
         type: ['horizontal', 'vertical'],

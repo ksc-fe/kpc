@@ -4,6 +4,8 @@ import mx from '../mxgraph';
 const {mxGeometry} = mx;
 
 export class DSquare extends DRectangle {
+    static displayName = 'DSquare';
+
     defaults() {
         return {
             ...super.defaults(),

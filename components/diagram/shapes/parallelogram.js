@@ -5,6 +5,8 @@ import {hasWindow} from '../../utils';
 const {mxActor, mxUtils, mxCellRenderer, mxConstants, mxPoint, mxRectangleShape, mxPerimeter, mxStyleRegistry} = mx;
 
 export class DParallelogram extends DShape {
+    static displayName = 'DParallelogram';
+
     defaults() {
         return {
             ...super.defaults(),

@@ -4,6 +4,8 @@ import mx from '../mxgraph';
 const {mxHierarchicalLayout, mxConstants} = mx;
 
 export class DFlowLayout extends DLayout {
+    static displayName = 'DFlowLayout';
+
     static propTypes = {
         ...DLayout.propTypes,
         type: ['horizontal', 'vertical'],

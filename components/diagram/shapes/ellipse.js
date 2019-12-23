@@ -4,6 +4,8 @@ import mx from '../mxgraph';
 const {mxGeometry} = mx;
 
 export class DEllipse extends DShape {
+    static displayName = 'DEllipse';
+
     defaults() {
         return {
             ...super.defaults(),

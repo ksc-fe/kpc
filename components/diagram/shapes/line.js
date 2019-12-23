@@ -13,6 +13,8 @@ const arrows = [
 ];
 
 export class DLine extends DShape {
+    static displayName = 'DLine';
+
     static propTypes = {
         ...DShape.propTypes,
         type: ['rounded', 'sharp', 'curved', 'straight'],

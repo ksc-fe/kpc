@@ -1,6 +1,8 @@
 import {DShape} from './shape';
 
 export class DRectangle extends DShape {
+    static displayName = 'DRectangle';
+
     static propTypes = {
         ...DShape.propTypes,
         rounded: [Number, String],
