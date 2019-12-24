@@ -96,6 +96,7 @@ const i18n = {
 
     // select
     '请输入或选择': 'Please enter or select',
+    '无数据': 'No data',
 
     // upload
     '点击上传': 'Click to Upload',
