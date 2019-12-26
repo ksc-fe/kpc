@@ -4,6 +4,10 @@ order: 99
 sidebar: doc
 ---
 
+## v1.3.2
+
+1. `Fix` 修复`Tree`在非关联状态下`uncorrelated`，初始化`checkedKeys`依然会选中子元素的问题 [#412](https://github.com/ksc-fe/kpc/issues/412)
+
 ## v1.3.1
 
 1. `Fix` 修复`Diagram`服务器端渲染(SSR)报错的问题 [#409](https://github.com/ksc-fe/kpc/issues/409)
