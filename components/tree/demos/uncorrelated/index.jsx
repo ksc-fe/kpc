@@ -25,6 +25,7 @@ export default class Demo extends React.Component {
                     "children": [
                         {
                             "label": "Second floor-2.1",
+                            "key": "floor-2.1",
                             "children": [
                                 {
                                     "label": "Third floor-2.1.1",
@@ -48,7 +49,7 @@ export default class Demo extends React.Component {
                 }
             ],
             "checkedKeys": [
-                "floor-2.1.1"
+                "floor-2.1"
             ]
         };
     }

@@ -13,7 +13,7 @@ import {Component} from '@angular/core';
 })
 export class AppDemoComponent {
     private checkedKeys = [
-        "floor-2.1.1"
+        "floor-2.1"
     ];
     private data = [
         {
@@ -34,6 +34,7 @@ export class AppDemoComponent {
             "children": [
                 {
                     "label": "Second floor-2.1",
+                    "key": "floor-2.1",
                     "children": [
                         {
                             "label": "Third floor-2.1.1",

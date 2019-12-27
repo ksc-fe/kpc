@@ -15,7 +15,7 @@ export default {
     data() {
         return {
             "checkedKeys": [
-                "floor-2.1.1"
+                "floor-2.1"
             ],
             "data": [
                 {
@@ -36,6 +36,7 @@ export default {
                     "children": [
                         {
                             "label": "Second floor-2.1",
+                            "key": "floor-2.1",
                             "children": [
                                 {
                                     "label": "Third floor-2.1.1",
