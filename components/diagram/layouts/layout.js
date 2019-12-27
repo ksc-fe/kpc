@@ -13,12 +13,13 @@ export class DLayout extends Intact {
                     _layout: data,
                 };
             } else {
+                /* istanbul ignore next */
                 Intact.utils.error(new Error(`DLayout can only contains DShape, but ${vNode.tag} found.`));
             }
             return vNode;
         });
 
-        return Vdt.miss.h(data.constructor.name, null, children);
+        return Vdt.miss.h(data.constructor.displayName, null, children);
     };
 
     static propTypes = {

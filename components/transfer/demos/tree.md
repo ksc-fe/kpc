@@ -132,11 +132,15 @@ export default class extends Intact {
         from = this.deepClone(from);
         to = this.deepClone(to);
         const loop = (children, from, to) => {
+            let deleteCount = 0;
             children.forEach((node, index) => {
                 const data = node.data;
                 if (node.checked) {
                     // remove from `from` 
-                    from && from.splice(index, 1);
+                    if (from) {
+                        from.splice(index - deleteCount, 1);
+                        deleteCount++;
+                    }
                     // add to `to` 
                     let newData = to.find(item => item.key === data.key);
                     if (!newData) {
@@ -150,7 +154,7 @@ export default class extends Intact {
                         newData = {...data, children: []};
                         to.push(newData);
                     }
-                    loop(node.children, from[index].children, newData.children);
+                    loop(node.children, from[index - deleteCount].children, newData.children);
                 }
             });
         };

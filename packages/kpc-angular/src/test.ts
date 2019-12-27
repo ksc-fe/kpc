@@ -14,6 +14,8 @@ import {
 } from '@angular/core/testing';
 import {Component, NO_ERRORS_SCHEMA} from '@angular/core';
 import {KpcModule} from '../components/';
+import {CodeModule} from '../components/code';
+import {DiagramModule} from '../components/diagram';
 
 declare const require: any;
 
@@ -37,6 +39,8 @@ function getFixture<T>(components: Array<any>): ComponentFixture<T> {
         imports: [
             IntactAngularBrowserModule,
             KpcModule,
+            CodeModule,
+            DiagramModule,
         ],
         schemas: [NO_ERRORS_SCHEMA],
     });
@@ -81,6 +85,8 @@ function testDemos(req, test) {
 describe('Demos', () => {
     testDemos(context, (AppDemoComponent) => {
         const fixture = getFixture([AppComponent, AppDemoComponent]);
+        // dismiss warning
+        expect(true).toBe(true);
     });
     // context.keys().forEach(item => {
         // it(item, () => {

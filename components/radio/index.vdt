@@ -1,7 +1,7 @@
 import {getRestProps} from '../utils';
 const {
     className, disabled, trueValue, style,
-    children, value, ref, key, ...rest
+    children, value, ref, key, title, ...rest
 } = self.get();
 
 const classNameObj = {
@@ -32,6 +32,7 @@ const events = [
     tabindex={{ disabled ? "-1" : "0" }}
     ev-keypress={{ self._onKeypress }}
     {{ ...events }}
+    title={{ title }}
 >
     <span class="k-wrapper">
         <input type="radio" disabled={{ disabled }}

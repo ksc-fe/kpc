@@ -141,7 +141,7 @@ describe('Dialog', () => {
         expect(instance.get('show')).be.false;
     });
 
-    it('should remove when parent destoryed for using as component', function(done) {
+    it('should remove when parent destroyed for using as component', function(done) {
         this.enableTimeouts(false);
 
         let wrapper;

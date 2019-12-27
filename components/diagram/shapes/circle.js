@@ -4,6 +4,8 @@ import mx from '../mxgraph';
 const {mxGeometry} = mx;
 
 export class DCircle extends DShape {
+    static displayName = 'DCircle';
+
     defaults() {
         return {
             ...super.defaults(),

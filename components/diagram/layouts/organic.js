@@ -4,6 +4,8 @@ import mx from '../mxgraph';
 const {mxFastOrganicLayout} = mx;
 
 export class DOrganicLayout extends DLayout {
+    static displayName = 'DOrganicLayout';
+
     static propTypes = {
         ...DLayout.propTypes,
         spacing: [Number, String],

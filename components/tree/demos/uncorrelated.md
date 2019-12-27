@@ -49,6 +49,7 @@ export default class extends Intact {
                     children: [
                         {
                             label: 'Second floor-2.1',
+                            key: 'floor-2.1',
                             children: [
                                 {
                                     label: 'Third floor-2.1.1',
@@ -71,7 +72,7 @@ export default class extends Intact {
                     ]
                 }
             ],
-            checkedKeys: ['floor-2.1.1'],
+            checkedKeys: ['floor-2.1'],
         }
     }
 }

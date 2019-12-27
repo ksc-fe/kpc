@@ -87,9 +87,12 @@ export default class MoveWrapper extends Intact {
             let dom = this.placeholder;
             let found;
             while ((dom = dom.parentNode) && dom.nodeType === 1) {
-                if (dom.className && dom.className.split(' ').indexOf('k-dialog') > -1) {
-                    found = dom;
-                    break;
+                // dom maybe a foreignObject, and its className is an object
+                if (typeof dom.className === 'string') {
+                    if (dom.className.split(' ').indexOf('k-dialog') > -1) {
+                        found = dom;
+                        break;
+                    }
                 }
             }
             this.container = found || document.body;

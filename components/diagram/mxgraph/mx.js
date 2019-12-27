@@ -1,9 +1,11 @@
-import mx from 'mxgraph';
+import mx from 'mxgraphx';
+import {hasWindow} from '../../utils';
 
-const doll = mx({
+// only support running in browser
+const doll = hasWindow ? mx({
     mxLoadResources: false,
     mxLoadStylesheets: false,
-});
+}) : {};
 const {mxImage, mxLog} = doll;
 
 export default doll;

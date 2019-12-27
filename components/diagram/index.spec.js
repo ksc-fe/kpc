@@ -3,10 +3,12 @@ import {
     Diagram, DRectangle, DSquare, DCircle,
     DEllipse, DLine, DImage, DText, DDiamond,
     DFlowLayout, DTreeLayout, DOrganicLayout, DCircleLayout,
-    DPartitionLayout, DStackLayout,
+    DPartitionLayout, DStackLayout, DDocument, DParallelogram,
+    DHexagon, DCallout,
 } from 'kpc/components/diagram';
 import {Button} from 'kpc/components/button';
 import {mount, unmount, dispatchEvent} from 'test/utils';
+import LayoutDemo from '~/components/diagram/demos/layout';
 
 class Demo extends Intact {
     _init() {
@@ -21,14 +23,19 @@ class Demo extends Intact {
         this.Button = Button;
         this.DDiamond = DDiamond;
         this.DEllipse = DEllipse;
+        this.DSquare = DSquare;
+        this.DDocument = DDocument;
+        this.DParallelogram = DParallelogram;
+        this.DHexagon = DHexagon;
+        this.DCallout = DCallout;
     }
 }
 
 describe('Diagram', () => {
     let instance;
 
-    beforeEach(() => {
-        
+    afterEach(() => {
+        unmount(instance); 
     });
 
     it('should update type of DFlowLayout', () => {
@@ -217,58 +224,6 @@ describe('Diagram', () => {
         expect(instance.element.innerHTML).to.matchSnapshot();
     });
 
-    it('should update state of Diagram', () => {
-        const onChange = sinon.spy((cells) => console.log(cells));
-        const onLabelChange = sinon.spy((cell, newValue, oldValue) => console.log(cell, newValue, oldValue));
-        class Component extends Demo {
-            @Intact.template()
-            static template = `
-                <Diagram selectable={{ self.get('selectable') }}
-                    ev-selectionChange={{ self._onChange }}
-                    editable
-                    ev-labelChange={{ self._onLabelChange }}
-                >
-                    <DFlowLayout>
-                        <DDiamond key="1" data={{ 1 }} />
-                        <DCircle key="2" data="2" />
-                        <DLine from="1" to="2" />
-                    </DFlowLayout>
-                </Diagram>
-            `;
-            defaults() {
-                return {selectable: false}
-            }
-            _onChange(cells) {
-                onChange(cells);
-            }
-            _onLabelChange(cell, newValue, oldValue) {
-                onLabelChange(cell, newValue, oldValue);
-            }
-        }
-        instance = mount(Component);
-
-        let ellipse = instance.element.querySelector('ellipse');
-        dispatchEvent(ellipse, 'pointerdown');
-        expect(instance.element.innerHTML).to.matchSnapshot();
-        dispatchEvent(ellipse, 'pointerup');
-
-        instance.set('selectable', true);
-        // diagram has redrawn
-        ellipse = instance.element.querySelector('ellipse');
-        dispatchEvent(ellipse, 'pointerdown');
-        expect(instance.element.innerHTML).to.matchSnapshot();
-        expect(onChange.callCount).to.eql(1);
-        dispatchEvent(ellipse, 'pointerup');
-
-        // edit
-        dispatchEvent(ellipse, 'dblclick');
-        const editor = instance.element.querySelector('.mxCellEditor');
-        console.log(editor);
-        editor.innerHTML = 'test';
-        dispatchEvent(instance.element.querySelector('.k-canvas'), 'pointerdown');
-        expect(onLabelChange.callCount).to.eql(1);
-    });
-
     it('should render nested layout correctly', () => {
         class Component extends Demo {
             @Intact.template()
@@ -289,6 +244,134 @@ describe('Diagram', () => {
             `;
         }
         instance = mount(Component);
+        expect(instance.element.innerHTML).to.matchSnapshot();
+    });
+
+    it('should change state of shape correctly', () => {
+        const onChange = sinon.spy((cells) => console.log(cells));
+        const onLabelChange = sinon.spy((cell, newValue, oldValue) => console.log(cell, newValue, oldValue));
+        class Component extends Demo {
+            @Intact.template()
+            static template = `
+                <Diagram 
+                    ev-selectionChanged={{ self._onChange }}
+                    ev-labelChanged={{ self._onLabelChange }}
+                >
+                    <DFlowLayout>
+                        <DRectangle key="1" data={{ 1 }} selectable movable connectable />
+                        <DCircle key="2" data="2" editable />
+                        <DSquare selectable resizable rotatable connectable />
+                        <DLine from="1" to="2" />
+                    </DFlowLayout>
+                </Diagram>
+            `;
+            _onChange(cells) {
+                onChange(cells);
+            }
+            _onLabelChange(cell, newValue, oldValue) {
+                onLabelChange(cell, newValue, oldValue);
+            }
+        }
+        instance = mount(Component);
+
+        // selectable
+        let [rect, square] = instance.element.querySelectorAll('rect');
+        dispatchEvent(rect, 'pointerdown');
+        expect(instance.element.innerHTML).to.matchSnapshot();
+        dispatchEvent(rect, 'pointerup');
+        let ellipse = instance.element.querySelector('ellipse');
+        dispatchEvent(ellipse, 'pointerdown');
+        expect(instance.element.innerHTML).to.matchSnapshot();
+        dispatchEvent(ellipse, 'pointerup');
+        expect(onChange.callCount).to.eql(2);
+
+        // movable
+        dispatchEvent(rect, 'pointerdown', {clientX: 0, clientY: 0});
+        dispatchEvent(rect, 'pointermove', {clientX: 10, clientY: 10});
+        dispatchEvent(rect, 'pointerup', {clientX: 10, clientY: 10});
+        expect(instance.element.innerHTML).to.matchSnapshot();
+        dispatchEvent(ellipse, 'pointerdown', {clientX: 0, clientY: 0});
+        dispatchEvent(ellipse, 'pointermove', {clientX: 10, clientY: 10});
+        dispatchEvent(ellipse, 'pointerup', {clientX: 10, clientY: 10});
+        expect(instance.element.innerHTML).to.matchSnapshot();
+
+        // resizable & rotatable
+        dispatchEvent(square, 'pointerdown');
+        dispatchEvent(square, 'pointerup');
+        expect(instance.element.innerHTML).to.matchSnapshot();
+
+        // editable
+        dispatchEvent(ellipse, 'dblclick');
+        const editor = instance.element.querySelector('.mxCellEditor');
+        editor.innerHTML = 'test';
+        dispatchEvent(instance.element.querySelector('.k-canvas'), 'pointerdown');
+        expect(onLabelChange.callCount).to.eql(1);
+        dispatchEvent(rect, 'dblclick');
+        expect(instance.element.innerHTML).to.matchSnapshot();
+    });
+
+    it('test all layouts', () => {
+        instance = mount(LayoutDemo); 
+
+        const element = instance.element;
+
+        instance.set('layout', 'circle');
+        expect(element.innerHTML).to.matchSnapshot();
+
+        instance.set('layout', 'radial');
+        expect(element.innerHTML).to.matchSnapshot();
+
+        instance.set('layout', 'organic'); // the result is random
+    });
+
+    it('should generate connect points of shapes', () => {
+         class Component extends Demo {
+            @Intact.template()
+            static template = `
+                <Diagram>
+                    <DFlowLayout>
+                        <DParallelogram connectable />
+                        <DHexagon connectable />
+                        <DCallout connectable />
+                    </DFlowLayout>
+                </Diagram>
+            `;
+        }
+        instance = mount(Component);
+        
+        const [parallelogram, hexagon, callout] = instance.element.querySelectorAll('path');
+        dispatchEvent(parallelogram, 'pointermove');
+        expect(instance.element.innerHTML).to.matchSnapshot();
+        dispatchEvent(hexagon, 'pointermove');
+        expect(instance.element.innerHTML).to.matchSnapshot();
+        dispatchEvent(callout, 'pointermove');
+        expect(instance.element.innerHTML).to.matchSnapshot();
+    });
+
+    it('should fix points of line', () => {
+         class Component extends Demo {
+            @Intact.template()
+            static template = `
+                <Diagram>
+                    <DFlowLayout top="20">
+                        <DRectangle key="1" />
+                        <DRectangle key="2" />
+                        <DLine from="1" to="2" exit={{ [0.5, 0] }} entry={{ [0.5, 1] }}
+                            type={{ self.get('type') }}
+                            label={{ self.get('type') }}
+                        />
+                    </DFlowLayout>
+                </Diagram>
+            `;
+
+            defaults() {
+                return {type: 'curved'};
+            }
+        }
+        
+        instance = mount(Component);
+        expect(instance.element.innerHTML).to.matchSnapshot();
+        instance.set('type', 'sharp');
         expect(instance.element.innerHTML).to.matchSnapshot();
     });
 });

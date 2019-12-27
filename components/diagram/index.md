@@ -7,30 +7,26 @@ sidebar: doc
 
 # 属性
 
-## Diagram
-
-| 属性 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| movable | 图形是否可拖动 | `Boolean` | `false` |
-| connectable | 图形是否可手动连接 | `Boolean` | `false` |
-| resizable | 图形是否可手动调整大小 | `Boolean` | `false` |
-| rotatable | 图形是否可旋转 | `Boolean` | `false` |
-| editable | 图形是否可编辑 | `Boolean` | `false` |
-| selectable | 图形是否可选择 | `Boolean` | `false` |
-
 ## DShape
 
 图形的通用属性
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| label | 图形标签，可以书写`html`字符串，但是一旦图形包含`dom`元素，该属性便不再生效 | `String` &#124; `Number` | `undefined` |
+| label | 图形标签，可以书写`html`字符串 | `String` &#124; `Number` | `undefined` |
 | left | 相对左上角横向偏移量 | `String` &#124; `Number` | `0` |
 | top | 相对左上角纵向偏移量 | `String` &#124; `Number` | `0` |
 | width | 图形宽度 | `String` &#124; `Number` | `0` |
 | height | 图形高度 | `String` &#124; `Number` | `0` |
 | style | 指定图形的样式，该样式非`html`元素的样式，而是`svg`元素的样式，并且只支持`Object`的方式指定，不支持字符串。支持的属性可以查阅[mxGraph mxConstants][1]的文档（以`STYLE_`开头的属性) | `Object` | `undefined` |
 | strokeStyle | 定义线条样式 | `"solid"` &#124; `"dashed"` &#124; `"dotted"` | `"solid"` |
+| movable | 图形是否可拖动 | `Boolean` | `false` |
+| connectable | 图形是否可手动连接 | `Boolean` | `false` |
+| resizable | 图形是否可手动调整大小 | `Boolean` | `false` |
+| rotatable | 图形是否可旋转 | `Boolean` | `false` |
+| editable | 图形是否可编辑 | `Boolean` | `false` |
+| selectable | 图形是否可选择 | `Boolean` | `false` |
+| data | 附加到图形上的数据，可通过图形对象获取该数据 | `*` | `undefined` |
 
 ## DRectangle
 
@@ -132,10 +128,12 @@ sidebar: doc
 
 # 事件
 
+## Diagram
+
 | 事件名 | 说明 | 参数 |
 | --- | --- | --- |
-| selectionChange | 当`Diagram`可选择时`selectable`，选中的图形改变会触发该事件 | `cells`: 所有选中的图形 |
-| labelChange | 当`Diagram`可编辑时`editable`，`label`改变会触发该事件 | `cell`: 当前图形；`newValue`: 改变后的值；`oldValue`：改变前的值 |
+| selectionChanged | 当`Diagram`可选择时`selectable`，选中的图形改变会触发该事件 | `cells`: 所有选中的图形 |
+| labelChanged | 当`Diagram`可编辑时`editable`，`label`改变会触发该事件 | `cell`: 当前图形；`newValue`: 改变后的值；`oldValue`：改变前的值 |
 
 
 [1]: https://jgraph.github.io/mxgraph/docs/js-api/files/util/mxConstants-js.html

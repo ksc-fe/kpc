@@ -1,5 +1,6 @@
 import BasicDemo from '~/components/code/demos/basic';
 import {mount, unmount, dispatchEvent, wait} from 'test/utils';
+import {Code} from 'kpc/components/code';
 
 window.dispatchEvent = dispatchEvent;
 
@@ -33,5 +34,27 @@ describe('Code', () => {
         // change value
         code.editor.setValue('test');
         expect(instance.get('value')).to.eql('test');
+        instance.set('value', 'hello');
+        expect(code.editor.getValue()).to.eql('hello');
+
+        // change readonly
+        code.set('readonly', true);
     });
+
+    // it('should render correctly even if cross domain', async function() {
+        // this.enableTimeouts(false);
+
+        // instance = mount(BasicDemo);
+
+        // const code = instance.vdt.vNode.children; 
+        // const _isSameOrigin = Code.prototype._isSameOrigin;
+        // code._isSameOrigin = function(...args) {
+            // const ret = _isSameOrigin.call(this, ...args);
+            // ret.isSame = false;
+            // return ret;
+        // }
+        // await new Promise(resolve => {
+            // code.on('ready', resolve);
+        // }); 
+    // });
 });

@@ -14,7 +14,7 @@ sidebar: doc
 # 安装
 
 ```js
-npm install kpc -S
+npm install kpc-vue -S
 ```
 
 # CDN
@@ -67,30 +67,8 @@ npm install kpc -S
 npm install -g @vue/cli
 vue create hello-world
 cd hello-word
-npm install kpc -S
+npm install kpc-vue -S
 ```
-
-## 新增配置文件`vue.config.js`
-
-在项目根目录下创建`vue.config.js`文件，内容如下：
-
-```js
-module.exports = {
-    configureWebpack: {
-        resolve: {
-            alias: {
-                // @since 1.0 推荐直接指向vue编译包
-                kpc: 'kpc/@vue/@css',
-                // @before 1.0
-                // kpc: 'kpc/@css',
-                // intact$: 'intact-vue',
-            }
-        },
-    }
-}
-```
-
-然后就可以引入kpc组件使用了
 
 > `@vue/cli@3.5.0`如果浏览器运行报: `Cannot assign to read only property...`的错误，可以在
 > `babel.config.js`中添加`sourceType: "unambiguous"`解决，详见https://github.com/webpack/webpack/issues/4039
@@ -105,21 +83,18 @@ module.exports = {
 npm install stylus stylus-loader -D
 ```
 
-### 修改`vue.config.js`
+### 新增配置文件`vue.config.js`
 
-kpc需要指向`kpc/@stylus`，下面以内置的主题`ksyun`为例
+kpc-vue需要指向`kpc-vue/@stylus`，下面以内置的主题`ksyun`为例
+
+在项目根目录下创建`vue.config.js`文件，内容如下：
 
 ```js
 module.exports = {
     configureWebpack: {
         resolve: {
             alias: {
-                // @since 1.0 推荐直接指向vue编译包
-                kpc: 'kpc/@vue/@stylus',
-
-                // @before 1.0
-                // kpc: 'kpc/@stylus',
-                // intact$: 'intact-vue',
+                'kpc-vue': 'kpc-vue/@stylus',
             }
         },
         module: {
@@ -132,7 +107,7 @@ module.exports = {
                             options: {
                                 'include css': true,
                                 'resolve url': true,
-                                'import': '~kpc/styles/themes/ksyun/index.styl'
+                                'import': '~kpc-vue/@stylus/styles/themes/ksyun/index.styl'
                             }
                         }
                     ]
@@ -143,7 +118,7 @@ module.exports = {
 }
 ```
 
-> 如果主题没有生效，请检查`resolve.alias.kpc`是否指向了`kpc/@vue/@stylus`
+> 如果主题没有生效，请检查`resolve.alias['kpc-vue']`是否指向了`kpc-vue/@stylus`
 
 如果采用链式写法，不要直接修改`stylus-loader`配置，可以采用`css`配置项来配置，如下所示：
 
@@ -151,14 +126,14 @@ module.exports = {
 module.exports = {
     chainWebpack: config => {
         config.resolve.alias
-            .set('kpc', 'kpc/@vue/@stylus')
+            .set('kpc-vue', 'kpc-vue/@stylus')
     },
     css: {
         loaderOptions: {
             stylus: {
                 'include css': true,
                 'resolve url': true,
-                import: `~kpc/styles/themes/ksyun/index.styl`
+                import: `~kpc-vue/@stylus/styles/themes/ksyun/index.styl`
             }
         }
     }
@@ -175,23 +150,7 @@ module.exports = {
 npm install -g vue-cli
 vue init webpack hello-world
 cd hello-world
-npm install kpc -S
-```
-
-## 修改`build/webpack.base.conf.js`
-
-添加`alias`配置
-
-```diff
---- a/build/webpack.base.conf.js
-+++ b/build/webpack.base.conf.js
-@@ -27,6 +27,8 @@ module.exports = {
-     alias: {
-       'vue$': 'vue/dist/vue.esm.js',
-       '@': resolve('src'),
-+      'kpc': 'kpc/@vue/@css',
-     }
-   },
+npm install kpc-vue -S
 ```
 
 ## 引入主题文件
@@ -211,8 +170,7 @@ npm install stylus stylus-loader -D
      alias: {
        'vue$': 'vue/dist/vue.esm.js',
        '@': resolve('src'),
--      'kpc': 'kpc/@vue/@css',
-+      'kpc': 'kpc/@vue/@stylus',
++      'kpc-vue': 'kpc-vue/@stylus',
      }
    },
 ```
@@ -230,7 +188,7 @@ npm install stylus stylus-loader -D
 +    styl: generateLoaders('stylus', {
 +      'include css': true,
 +      'resolve url': true,
-+      'import': '~kpc/styles/themes/ksyun/index.styl',
++      'import': '~kpc-vue/@stylus/styles/themes/ksyun/index.styl',
 +    })
    }
  }
@@ -242,7 +200,7 @@ npm install stylus stylus-loader -D
 
 ```js
 import Vue from 'vue';
-import Kpc from 'kpc';
+import Kpc from 'kpc-vue';
 
 Vue.use(Kpc);
 ```
@@ -259,8 +217,7 @@ Vue.use(Kpc);
     <Button @click="hello">Hello World</Button>
 </template>
 <script>
-import Button from 'kpc/components/button';
-import Message from 'kpc/components/message';
+import {Button, Message} from 'kpc-vue';
 
 export default {
     components: {
@@ -332,7 +289,7 @@ intact-vue从底层vNode上做了intact到vue的兼容，文档中针对intact�
 </template>
 <script>
 import Intact from 'intact';
-import Badge from 'kpc/components/badge';
+import {Badge} from 'kpc-vue';
 
 export default {
     components: {
@@ -359,4 +316,3 @@ export default {
 [2]: https://webpack.js.org/
 [3]: https://babeljs.io/
 [4]: https://cn.vuejs.org/index.html
-

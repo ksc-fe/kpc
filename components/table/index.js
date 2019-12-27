@@ -114,6 +114,8 @@ export default class Table extends Intact {
 
         // save the width of header cell
         this._initWidth();
+        // save the destroyed rows
+        this._allDestroyedRows = [];
 
         this.scrollLeft = 0;
 
@@ -264,27 +266,39 @@ export default class Table extends Intact {
     }
 
     checkRow(key) {
-        this._checkUncheckRow(key, true, false);
+        this._checkUncheckRows([key], true, false);
     }
 
     uncheckRow(key) {
-        this._checkUncheckRow(key, false, false);
+        this._checkUncheckRows([key], false, false);
+    }
+
+    uncheckRows(keys) {
+        this._checkUncheckRows(keys, false, false);
     }
 
     shrinkRow(key) {
-        this._expandShrinkRow(key, false, false);
+        this._expandShrinkRows([key], false, false);
+    }
+
+    shrinkRows(keys) {
+        this._expandShrinkRows(keys, false, false);
     }
 
     expandRow(key) {
-        this._expandShrinkRow(key, true, false);
+        this._expandShrinkRows([key], true, false);
     }
 
     selectRow(key) {
-        this._selectUnselectRow(key, true, false);
+        this._selectUnselectRows([key], true, false);
     }
 
     unselectRow(key) {
-        this._selectUnselectRow(key, false, false);
+        this._selectUnselectRows([key], false, false);
+    }
+
+    unselectRows(keys) {
+        this._selectUnselectRows(keys, false, false);
     }
 
     /**
@@ -586,33 +600,40 @@ export default class Table extends Intact {
         if (this.get('disableRow').call(this, value, index)) return;
 
         if (this.get('rowCheckable')) {
-            this._checkUncheckRow(key);
+            this._checkUncheckRows([key]);
         }
 
         if (this.get('rowExpandable')) {
-            this._expandShrinkRow(key); 
+            this._expandShrinkRows([key]); 
         }
 
         if (this.get('rowSelectable')) {
-            this._selectUnselectRow(key);
+            this._selectUnselectRows([key]);
         }
 
         this.trigger('click:row', value, index, key, e);
     }
 
-    _checkUncheckRow(key, isCheck = false, isToggle = true) {
+    _checkUncheckRows(keys, isCheck = false, isToggle = true) {
         const checkType = this.get('checkType');
         if (checkType === 'checkbox') {
-            const checkedKeys = this.get('checkedKeys').slice(0);
-            const i = checkedKeys.indexOf(key);
-            if ((!isCheck || isToggle) && i > -1) {
-                checkedKeys.splice(i, 1);
-                this.set('checkedKeys', checkedKeys);
-            } else if (isCheck || isToggle) {
-                checkedKeys.push(key);
+            let checkedKeys = this.get('checkedKeys').slice(0);
+            let shouldSet = false;
+            keys.forEach(key => {
+                const i = checkedKeys.indexOf(key);
+                if ((!isCheck || isToggle) && i > -1) {
+                    checkedKeys.splice(i, 1);
+                    shouldSet = true;
+                } else if (isCheck || isToggle) {
+                    checkedKeys.push(key);
+                    shouldSet = true;
+                }
+            });
+            if (shouldSet) {
                 this.set('checkedKeys', checkedKeys);
             }
         } else if (checkType === 'radio') {
+            const key = keys[0];
             if (!isToggle) {
                 // isToggle is false means call this by checkRow & uncheckRow
                 if (isCheck) {
@@ -627,46 +648,76 @@ export default class Table extends Intact {
         }
     }
 
-    _expandShrinkRow(key, isExpand = false, isToggle = true) {
+    _expandShrinkRows(keys, isExpand = false, isToggle = true) {
         if (!this.get('_blocks.expand')) return;
 
-        const expandedKeys = this.get('expandedKeys').slice(0);
-        const i = expandedKeys.indexOf(key);
-        if ((!isExpand || isToggle) && i > -1) {
-            expandedKeys.splice(i, 1);
-            this.set('expandedKeys', expandedKeys);
-        } else if (isExpand || isToggle) {
-            expandedKeys.push(key);
+        let expandedKeys = this.get('expandedKeys').slice(0);
+        let shouldSet = false;
+        keys.forEach(key => {
+            const i = expandedKeys.indexOf(key);
+            if ((!isExpand || isToggle) && i > -1) {
+                expandedKeys.splice(i, 1);
+                shouldSet = true;
+            } else if (isExpand || isToggle) {
+                expandedKeys.push(key);
+                shouldSet = true;
+            }
+        });
+        if (shouldSet) {
             this.set('expandedKeys', expandedKeys);
         }
     }
 
-    _selectUnselectRow(key, isSelect = false, isToggle = true) {
-        const selectedKeys = this.get('selectedKeys').slice(0);
+    _selectUnselectRows(keys, isSelect = false, isToggle = true) {
+        let selectedKeys = this.get('selectedKeys').slice(0);
         const rowSelectable = this.get('rowSelectable');
-        const i = selectedKeys.indexOf(key);
-        if (rowSelectable === 'multiple') {
-            if ((!isSelect || isToggle) && i > -1) {
-                selectedKeys.splice(i, 1);
-                this.set({selectedKeys});
-            } else if (isSelect || isToggle) {
-                selectedKeys.push(key);
-                this.set({selectedKeys});
+        let shouldSet = false;
+        keys.forEach(key => {
+            const i = selectedKeys.indexOf(key);
+            if (rowSelectable === 'multiple') {
+                if ((!isSelect || isToggle) && i > -1) {
+                    selectedKeys.splice(i, 1);
+                    shouldSet = true;
+                } else if (isSelect || isToggle) {
+                    selectedKeys.push(key);
+                    shouldSet = true;
+                }
+            } else if (rowSelectable) {
+                if ((!isSelect || isToggle) && i > -1) {
+                    selectedKeys = [];
+                    shouldSet = true;
+                } else if (isSelect || isToggle) {
+                    selectedKeys = [key];
+                    shouldSet = true;
+                }
             }
-        } else if (rowSelectable) {
-            if ((!isSelect || isToggle) && i > -1) {
-                this.set('selectedKeys', []);
-            } else if (isSelect || isToggle) {
-                this.set('selectedKeys', [key]);
-            }
+        });
+        if (shouldSet) {
+            this.set({selectedKeys});
         }
     }
 
+    /**
+     * //-
+     * if update, the Row may be destroyed, and it will update table on each Row destroyed
+     * so we collect all the Rows and do it once. #407
+     */
     _onRowDestroyed(key) {
-        this.shrinkRow(key); 
-        this.uncheckRow(key);
-        this.unselectRow(key);
+        if (this._willDestroy) return;
+        this._allDestroyedRows.push(key);
     }
+
+    _update() {
+        const keys = this._allDestroyedRows;
+        if (keys.length) {
+            this.shrinkRows(keys); 
+            this.uncheckRows(keys);
+            this.unselectRows(keys);
+
+            this._allDestroyedRows = [];
+        }
+    }
+    /* -// */
 
     _sort(key, value) {
         const sort = Object.assign({}, this.get('sort'));
@@ -878,6 +929,11 @@ export default class Table extends Intact {
         if (this.ro) {
             this.ro.disconnect();
         }
+    }
+
+    destroy(...args) {
+        this._willDestroy = true;
+        super.destroy(...args);
     }
 }
 

@@ -23,6 +23,13 @@ export class DShape extends Intact {
         width: [String, Number],
         height: [String, Number],
         style: Object,
+
+        movable: Boolean,
+        selectable: Boolean,
+        resizable: Boolean,
+        rotatable: Boolean,
+        editable: Boolean,
+        connectable: Boolean,
     }; 
 
     defaults() {
@@ -35,6 +42,13 @@ export class DShape extends Intact {
             strokeStyle: 'solid',
             data: undefined,
             style: undefined,
+
+            movable: false,
+            selectable: false,
+            resizable: false,
+            rotatable: false,
+            editable: false,
+            connectable: false,
 
             _diagram: undefined,
             _parent: undefined,
@@ -166,12 +180,10 @@ export class DShape extends Intact {
 
     _getValue() {
         const {label} = this.get();
-        return label == null ? this.hasElement && this.refs.wrapper || null : String(label);
+        return label == null ? this.hasElement && this.wrapper || null : String(label);
     }
 
-    _getStylesheet() {
-        return '';
-    }
+    _getStylesheet() {  }
 
     _getGeometry() {
         const {width, height, top, left} = this.get();

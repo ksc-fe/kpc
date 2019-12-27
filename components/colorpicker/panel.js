@@ -20,6 +20,8 @@ export default class ColorPanel extends Intact {
         return {
             value: undefined,
             presets: [],
+
+            _mode: 'rgb',
         };
     }
 
@@ -119,6 +121,16 @@ export default class ColorPanel extends Intact {
         this._setInputValue('a', e, 100, (v) => v / 100);
     }
 
+    _changeHsv(type, e) {
+        this._setInputValue(type, e, type === 'h' ? 359 : 100, type === 'h' ? null : v => v / 100);
+    }
+
+    _changeMode() {
+        let mode = this.get('_mode');
+        mode = mode === 'rgb' ? 'hsv' : 'rgb';
+        this.set({_mode: mode});
+    }
+
     _setInputValue(type, e, maxValue, filter) {
         let value = e.target.value.trim();
         value = parseInt(value, 10);
@@ -131,11 +143,12 @@ export default class ColorPanel extends Intact {
     }
 
     _setValue(type, value) {
-        const rgb = this._rgb;
-        if (rgb[type] === value) return;
+        const mode = this.get('_mode');
+        const color = mode === 'rgb' ? this._rgb : this._hsv;
+        if (color[type] === value) return;
 
-        rgb[type] = value; 
-        this.set('value', tinycolor(rgb).toString('rgb'));
+        color[type] = value; 
+        this.set('value', tinycolor(color).toString(mode));
     }
 
     /**
@@ -155,7 +168,7 @@ export default class ColorPanel extends Intact {
         this.update();
     }
 
-    _destory() {
+    _destroy() {
         this._onMouseUp();
     }
 }

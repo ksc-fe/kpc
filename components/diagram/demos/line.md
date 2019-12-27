@@ -129,3 +129,15 @@ export default class extends Intact {
     }
 }
 ```
+
+```vue-ignore
+请参考index.vdt
+```
+
+```react-ignore
+请参考index.vdt
+```
+
+```angular-ignore
+请参考index.vdt
+```

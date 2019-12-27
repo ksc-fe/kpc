@@ -9,7 +9,7 @@ export default class Node {
         const checkedKeys = tree.checkedKeys;
         let checked = checkedKeys.has(key);
         let needRecheck = false;
-        if (parent) {
+        if (parent && !tree.get('uncorrelated')) {
             if (checked && !parent.checked) {
                 // need look back
                 needRecheck = true;

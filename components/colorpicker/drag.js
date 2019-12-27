@@ -17,6 +17,7 @@ export default class Drag extends Intact {
 
     _dragStart(e) {
         if (e.which !== 1) return;
+        this.mousedown = true;
         this._x = e.clientX;
         document.addEventListener('mousemove', this._move);
         document.addEventListener('mouseup', this._dragEnd);
@@ -24,6 +25,7 @@ export default class Drag extends Intact {
     }
 
     _move(e) {
+        this.mousemove = true;
         const deltaX = e.clientX - this._x;
         this._x = e.clientX;
         const {value, min, max} = this.get();
@@ -31,13 +33,18 @@ export default class Drag extends Intact {
         this.set('value', Math.min(max, Math.max(0, newValue)));
     }
 
-    _dragEnd() {
+    _dragEnd(fromDestroy) {
         document.removeEventListener('mousemove', this._move);
         document.removeEventListener('mouseup', this._dragEnd);
+        if (fromDestroy === true) return;
+
+        if (this.mousedown && !this.mousemove) this.trigger('click');
+        this.mousedown = false;
+        this.mousemove = false;
         this.trigger('dragEnd');
     }
 
-    _destory() {
-        this._dragEnd();
+    _destroy() {
+        this._dragEnd(true);
     }
 }

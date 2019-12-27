@@ -208,7 +208,7 @@ const Menu = scope.Menu || (
             ];
         }
         if (!hasData) {
-            return <div class="k-no-data">无数据</div>;
+            return <div class="k-no-data">{{ _$('无数据') }}</div>;
         }
         return _children;
     })() }}</DropdownMenu>

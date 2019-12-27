@@ -11,29 +11,19 @@ export default class Diagram extends Intact {
     static template = template;
 
     static events = {
-        selectionChange: true,
-        labelChange: true,
+        selectionChanged: true,
+        labelChanged: true,
     };
 
-    static propTypes = {
-        movable: Boolean,
-        connectable: Boolean,
-        resizable: Boolean,
-        rotatable: Boolean,
-        editable: Boolean,
-        selectable: Boolean,
-    };
+    // static propTypes = {
+        // disabled: Boolean,
+    // };
 
-    defaults() {
-        return {
-            movable: false,
-            connectable: false,
-            resizable: false,
-            rotatable: false,
-            editable: false,
-            selectable: false,
-        };
-    }
+    // defaults() {
+        // return {
+            // disabled: false,
+        // };
+    // }
 
     _init() {
         this.shapes = new Map();
@@ -43,27 +33,32 @@ export default class Diagram extends Intact {
 
     _mount() {
         const graph = this.graph = createGraph(this.refs.canvas);
-        this.rubberband = new mxRubberband(graph);
+        // this.rubberband = new mxRubberband(graph);
+
+        this.isCellSelectable = graph.isCellSelectable;
         this.isCellRotatable = graph.isCellRotatable;
+        this.isCellMovable = graph.isCellMovable;
+        this.isCellResizable = graph.isCellResizable;
+        this.isCellEditable = graph.isCellEditable;
+        this.isCellConnectable = graph.isCellConnectable;
 
         // add label changed event
         graph.addListener(mxEvent.LABEL_CHANGED, (graph, evt) => {
             const {cell, old, value} = evt.properties;
-            this.trigger('labelChange', cell, value, old);
+            this.trigger('labelChanged', cell, value, old);
         });
+        graph.getSelectionModel().addListener(mxEvent.CHANGE, this._onSelectionChange);
 
         this._initGraph();
 
         this.cell = graph.getDefaultParent();
 
         this.draw();
-
-        this.on('$receive:selectable', this._toggleSelectionEvent);
     }
 
     _update() {
         // reset the state of graph
-        this._initGraph();
+        // this._initGraph();
         this.draw();
         // this.graph.validateGraph();
     }
@@ -84,12 +79,12 @@ export default class Diagram extends Intact {
 
             // render layout
             // we must render parent firstly, because layouts may be nested
-            for (let i = this.layouts.length - 1; i >= 0; i--) {
-                this.layouts[i].draw();
-            }
-            // this.layouts.forEach(layout => {
-                // layout.draw();
-            // });
+            // for (let i = this.layouts.length - 1; i >= 0; i--) {
+                // this.layouts[i].draw();
+            // }
+            this.layouts.forEach(layout => {
+                layout.draw();
+            });
             // this.lines.forEach(line => line._setStyle());
         } finally {
             model.endUpdate();
@@ -97,35 +92,23 @@ export default class Diagram extends Intact {
     }
 
     _initGraph() {
-        const {movable, connectable, resizable, rotatable, editable, selectable} = this.get();
         const graph = this.graph;
 
-        graph.setEnabled(movable || connectable || resizable || rotatable || editable || selectable);
-        graph.setCellsMovable(movable);
-        graph.setConnectable(connectable);
-        graph.isCellsResizable = () => resizable;
-
-        graph.isCellRotatable = (cell) => rotatable && this.isCellRotatable.call(graph, cell);
-
-        graph.isCellsEditable = () => editable;
-        graph.cellsSelectable = selectable;
-        this.rubberband.setEnabled(selectable);
+        graph.setEnabled(true);
+        ['selectable', 'movable', 'resizable', 'rotatable', 'editable', 'connectable'].forEach(item => {
+            const name = `isCell${item[0].toUpperCase()}${item.substring(1)}`;
+            graph[name] = cell => {
+                return cell.instance && cell.instance.get(item) && this[name].call(graph, cell);
+            }
+        })
+        // this.rubberband.setEnabled(selectable);
 
         graph.resizeContainer = true;
         // graph.gridSize = 0;
     }
 
-    _toggleSelectionEvent() {
-        const selectionModel = this.graph.getSelectionModel();
-        if (this.get('selectable')) {
-            selectionModel.addListener(mxEvent.CHANGE, this._onSelectionChange);
-        } else {
-            selectionModel.removeListener(mxEvent.CHANGE, this._onSelectionChange);
-        }
-    }
-
     _onSelectionChange() {
-        this.trigger('selectionChange', this.graph.getSelectionCells());
+        this.trigger('selectionChanged', this.graph.getSelectionCells());
     }
 
     addShape(shape) {
@@ -166,5 +149,11 @@ export default class Diagram extends Intact {
     _deleteFromArray(arr, item) {
         const index = arr.indexOf(item);
         arr.splice(item, 1);
+    }
+
+    destroy(...args) {
+        this.refs.canvas.style = '';
+        this.graph.destroy();
+        super.destroy(...args);
     }
 }

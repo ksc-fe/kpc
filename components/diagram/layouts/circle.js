@@ -4,6 +4,8 @@ import mx from '../mxgraph';
 const {mxCircleLayout} = mx;
 
 export class DCircleLayout extends DLayout {
+    static displayName = 'DCircleLayout';
+
     defaults() {
         return {
             ...super.defaults(),
