@@ -1,7 +1,26 @@
-const {className} = self.get();
+import Checkbox from '../checkbox';
+
+const {className, checkType, key, disabled, onlyRight} = self.get();
 
 <tr class={{ className }}
     ev-click={{ self._onClick }}
     ev-mouseenter={{ self._onMouseEnter }}
     ev-mouseleave={{ self._onMouseLeave }}
->{{ self.get('children') }}</tr>
+>
+    <td v-if={{ checkType === 'checkbox' }}
+        class={{ {"k-th-check": true, 'k-invisible': onlyRight} }}
+    >
+        <Checkbox v-model="checkedKeys" name="k-table-checkbox"
+            trueValue={{ key }}
+            disabled={{ disabled }}
+        />
+    </td>
+    <td v-else-if={{ checkType === 'radio' }}
+        class={{ {"k-th-check": true, 'k-invisible': onlyRight} }}
+    >
+        <Radio v-model="checkedKey" name="k-table-radio"
+            trueValue={{ key }}
+            disabled={{ disabled }}
+        />
+    </td>
+</tr>

@@ -896,7 +896,9 @@ export default class Table extends Intact {
      * overwrite the className
      */
     _onRowEnter(index, e) {
+        const start = performance.now();
         this.set('_hoverIndex', index);
+        console.log('hover: ', performance.now() - start);
         // this._hoverIndex = index;
         // addClass(e.target, 'k-hover');
         // const _class = vNode.props.className;
