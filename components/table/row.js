@@ -1,3 +1,4 @@
+import Intact from 'intact';
 import template from './row.vdt';
 
 const PROPS = [
