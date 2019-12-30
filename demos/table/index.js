@@ -1,38 +1,68 @@
 import template from './index.vdt';
 import './index.styl';
+import {Store} from './store';
+
+var store = new Store();
+
+var startTime;
+var lastMeasure;
+var startMeasure = function(name) {
+    startTime = performance.now();
+    lastMeasure = name;
+}
+var stopMeasure = function() {
+    var last = lastMeasure;
+    if (lastMeasure) {
+        window.setTimeout(function () {
+            lastMeasure = null;
+            var stop = performance.now();
+            console.log(last+" took "+(stop-startTime));
+        }, 0);
+    }
+};
 
 export default class extends Intact {
     get template() { return template; }
 
     defaults() {
         return {
-            data: [
-                {test: 1, aa: 'aa'},
-                {test: 2, aa: 'bb'},
-            ],
-            group: {}
+            rows: store.data,
+            selected: null,
         }
     }
 
-    remove() {
-        const data = this.get('data').slice(0);
-        data.pop();
-        this.set('data', data);
-    }
-
     add() {
-        const data = this.get('data').slice(0);
-        data.push({test: 2, aa: 'bb'});
-        this.set('data', data);
+        startMeasure("add");
+        store.runLots();
+        // store.add();
+        this.sync();
+        stopMeasure();
     }
 
-    getCheckedData() {
-        console.log(this.table.getCheckedData());
-        console.log(this.radioTable.getCheckedData());
+    add1000() {
+        startMeasure("add1000");
+        store.add();
+        this.sync();
+        stopMeasure();
     }
 
-    _onChangeGroup(table, c) {
-        this.set('group', c);
-        console.log('group', c);        
+    remove(id) {
+        startMeasure("remove");
+        store.delete(id);
+        this.sync();
+        stopMeasure();
+    }
+
+    select(id) {
+        startMeasure("select");
+        store.select(id);
+        this.set('selected', id, {silent: true});
+        this.sync();
+        this.update();
+        stopMeasure();
+    }
+
+    sync() {
+        this.set('rows', Object.freeze(store.data));
     }
 }

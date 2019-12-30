@@ -9,6 +9,7 @@ import Affix from '../affix';
 import Tooltip from '../tooltip';
 import Icon from '../icon';
 import Button from '../button';
+import {isInvisible} from './utils';
 
 const normalize = Intact.normalize;
 
@@ -21,15 +22,6 @@ const {
     _paddingBottom, _isStickyScrollbar, stickScrollbar, loading,
     _isShowLeftRightMiddle, merge, childrenKey, indent
 } = self.get();
-
-/* const {_hoverIndex} = self; */
-
-/**
- * we must render the children of invisible cell, because it may change the height
- */
-const isInvisible = (onlyLeft, onlyRight, props) => {
-    return props.fixed !== 'left' && onlyLeft || props.fixed !== 'right' && onlyRight;
-}
 
 let cols;
 let currentVNode;
@@ -191,8 +183,8 @@ const TheadCreator = ({onlyLeft, onlyRight, refContainer, style}) => {
                 const blockFn = props._blocks && (props._blocks.default || props._blocks.template);
                 const _props = {
                     ...props,
-                    template: props.template || 
-                        blockFn && ((...args) => blockFn.call(this, noop, ...args))
+                    template: props.template,
+                    blockFn,
                 };
                 loop(_props, props.key, parent, layer, fixed, (item, props, layer, fixed) => {
                     if (item.children) {
@@ -263,123 +255,44 @@ const TbodyCreator = ({onlyLeft, onlyRight, refContainer, refTable, style}) => {
             data.forEach(value => {
                 const children = childrenKey && Array.isArray(value[childrenKey]) ? 
                     value[childrenKey] : null; 
-                let rowInGrid = [];
-                let columnIndex = -1;
-                if (merge) {
-                    grid.push(rowInGrid);
-                }
 
                 const key = rowKey.call(self, value, index);
                 const disabled = disableRow.call(self, value, index, key);
                 const className = rowClassName.call(self, value, index, key);
                 const spreaded = self.isSpreaded(key);
+                const checked = self.isChecked(key);
                 let tr = <Row key={{ key }}
-                    ev-click={{ self._clickRow.bind(self, value, index, key) }}
+                    value={{ value }}
+                    index={{ index }}
                     class={{ {
                         'k-disabled': disabled,
                         [className]: className,
-                        'k-checked': self.isChecked(key), 
+                        'k-checked': checked,
                         'k-hover': _hoverIndex === index, 
                         'k-selected': !disabled && self.isSelected(key),
                         'k-spread': spreaded, 
                         'k-hidden': hidden,
                     } }}
-                    ev-$destroyed={{ self._onRowDestroyed.bind(self, key) }}
-                    ev-mouseenter={{ self._onRowEnter.bind(self, index) }}
-                    ev-mouseleave={{ self._onRowLeave }}
-                >
-                    <td v-if={{ checkType === 'checkbox' }}
-                        class={{ {"k-th-check": true, 'k-invisible': onlyRight} }}
-                    >
-                        <Checkbox v-model="checkedKeys" name="k-table-checkbox"
-                            trueValue={{ key }}
-                            disabled={{ disabled }}
-                        />
-                    </td>
-                    <td v-else-if={{ checkType === 'radio' }}
-                        class={{ {"k-th-check": true, 'k-invisible': onlyRight} }}
-                    >
-                        <Radio v-model="checkedKey" name="k-table-radio"
-                            trueValue={{ key }}
-                            disabled={{ disabled }}
-                        />
-                    </td>
-                    {{ __u.map(_scheme, (item, schemeKey) => {
-                        columnIndex++;
-                        let spans;
-                        if (merge) {
-                            if (columnIndex > 0) {
-                                const prevCell = rowInGrid[columnIndex - 1];
-                                if (prevCell && prevCell.colspan > 1) {
-                                    const current = {
-                                        rowspan: prevCell.rowspan,
-                                        colspan: prevCell.colspan - 1,
-                                    };
-                                    rowInGrid.push(current);
-                                    return;
-                                }
-                            }
-                            if (index > 0) {
-                                const prevRow = grid[index - 1];
-                                const aboveCell = prevRow[columnIndex];
-                                if (aboveCell && aboveCell.rowspan > 1) {
-                                    const current = { 
-                                        rowspan: aboveCell.rowspan - 1,
-                                        colspan: aboveCell.colspan,
-                                    }
-                                    rowInGrid.push(current);
-                                    return;
-                                }
-                            }
 
-                            spans = merge.call(self, value, item, index, columnIndex);
-                            rowInGrid.push(spans);
-                        }
+                    onClick={{ self._clickRow }}
+                    onDestroy={{ self._onRowDestroyed }}
+                    onRowEnter={{ self._onRowEnter }}
+                    onRowLeave={{ self._onRowLeave }}
+                    onToggleSpreadRow={{ self._onToggleSpreadRow }}
+                    onChangeChecked={{ self._onChangeChecked }}
 
-                        let td;
-                        if (item.template) {
-                            if (typeof item.template === 'function') {
-                                td = item.template.call(self, value, index);
-                                // for Intact-Vue
-                                if (normalize) {
-                                    td = normalize(td);
-                                }
-                            } else {
-                                td = item.template;
-                            }
-                        } else if (value[schemeKey] !== undefined) {
-                            td = value[schemeKey];
-                        } else {
-                            let obj = value,
-                                keys = schemeKey.split('.'),
-                                i = 0;
-                            while (obj != null && i < keys.length) {
-                                obj = obj[keys[i++]];
-                            }
-                            td = (i && i === keys.length) ? obj : null;
-                        }
-                        return <td title={{ getTextByChildren(td) || undefined }}
-                            data-ignore={{ item.ignore ? '' : undefined }}
-                            className={{ {
-                                'k-invisible': isInvisible(onlyLeft, onlyRight, item),
-                                [`k-${item.align}`]: item.align,
-                                [item.className]: item.className,
-                            } }}
-                            key={{ schemeKey }}
-                            {{ ...spans }}
-                            style={{ {paddingLeft: columnIndex === 0 && level ? level * indent + 'px' : undefined } }}
-                        >
-                            <Button type="none" icon circle size="mini" 
-                                v-if={{ columnIndex === 0 && children }}
-                                class="k-table-arrow"
-                                ev-click={{ self._toggleSpreadRow.bind(self, key) }}
-                            >
-                                <Icon class="ion-ios-arrow-right" size="small" />
-                            </Button>
-                            {{ typeof td === 'boolean' ? String(td) : td }}
-                        </td>
-                    }) }}
-                </Row>;
+                    checkType={{ checkType }}
+                    onlyRight={{ onlyRight }}
+                    onlyLeft={{ onlyLeft }}
+                    disabled={{ disabled }}
+                    scheme={{ _scheme }}
+                    merge={{ merge }}
+                    level={{ level }}
+                    indent={{ indent }}
+                    children={{ children }}
+                    grid={{ grid }}
+                    checked={{ checked }}
+                />
 
                 // add tooltip
                 if (blocks.tooltip) {

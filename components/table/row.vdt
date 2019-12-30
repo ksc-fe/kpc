@@ -1,7 +1,124 @@
-const {className} = self.get();
+import Checkbox from '../checkbox';
+import Radio from '../radio';
+import Intact from 'intact';
+import {noop, isStringOrNumber, getTextByChildren, getRestProps, mapChildren} from '../utils';
+import {isInvisible} from './utils';
+import Button from '../button';
+import Icon from '../icon';
+
+const {
+    className, checkType, key,
+    disabled, onlyRight, scheme,
+    value, onlyLeft, index, merge,
+    level, indent, children, grid,
+    checked,
+} = self.get();
+const normalize = Intact.normalize;
+
+const rowInGrid = self.rowInGrid = [];
+if (merge) {
+    grid.push(rowInGrid);
+}
+
+let columnIndex = -1;
 
 <tr class={{ className }}
     ev-click={{ self._onClick }}
     ev-mouseenter={{ self._onMouseEnter }}
     ev-mouseleave={{ self._onMouseLeave }}
->{{ self.get('children') }}</tr>
+>
+    <td v-if={{ checkType === 'checkbox' }}
+        class={{ {"k-th-check": true, 'k-invisible': onlyRight} }}
+    >
+        <Checkbox name="k-table-checkbox"
+            value={{ checked }}
+            ev-$change:value={{ self._onChangeChecked }}
+            disabled={{ disabled }}
+        />
+    </td>
+    <td v-else-if={{ checkType === 'radio' }}
+        class={{ {"k-th-check": true, 'k-invisible': onlyRight} }}
+    >
+        <Radio name="k-table-radio"
+            value={{ checked }}
+            ev-$change:value={{ self._onChangeChecked }}
+            disabled={{ disabled }}
+        />
+    </td>
+    {{ __u.map(scheme, (item, schemeKey) => {
+        columnIndex++;
+        let spans;
+        if (merge) {
+            if (columnIndex > 0) {
+                const prevCell = rowInGrid[columnIndex - 1];
+                if (prevCell && prevCell.colspan > 1) {
+                    const current = {
+                        rowspan: prevCell.rowspan,
+                        colspan: prevCell.colspan - 1,
+                    };
+                    rowInGrid.push(current);
+                    return;
+                }
+            }
+            if (index > 0) {
+                const prevRow = grid[index - 1];
+                const aboveCell = prevRow[columnIndex];
+                if (aboveCell && aboveCell.rowspan > 1) {
+                    const current = { 
+                        rowspan: aboveCell.rowspan - 1,
+                        colspan: aboveCell.colspan,
+                    }
+                    rowInGrid.push(current);
+                    return;
+                }
+            }
+
+            spans = merge.call(self, value, item, index, columnIndex);
+            rowInGrid.push(spans);
+        }
+        let td;
+        if (item.template) {
+            if (typeof item.template === 'function') {
+                td = item.template.call(self, value, index);
+                // for Intact-Vue
+                if (normalize) {
+                    td = normalize(td);
+                }
+            } else {
+                td = item.template;
+            }
+        } else if (item.blockFn) {
+            td = item.blockFn.call(self, noop, value, index);
+        } else if (value[schemeKey] !== undefined) {
+            td = value[schemeKey];
+        } else {
+            let obj = value,
+                keys = schemeKey.split('.'),
+                i = 0;
+            while (obj != null && i < keys.length) {
+                obj = obj[keys[i++]];
+            }
+            td = (i && i === keys.length) ? obj : null;
+        }
+        return <td title={{ getTextByChildren(td) || undefined }}
+            data-ignore={{ item.ignore ? '' : undefined }}
+            className={{ {
+                'k-invisible': isInvisible(onlyLeft, onlyRight, item),
+                [`k-${item.align}`]: item.align,
+                [item.className]: item.className,
+            } }}
+            key={{ schemeKey }}
+            {{ ...spans }}
+            style={{ {paddingLeft: columnIndex === 0 && level ? level * indent + 'px' : undefined } }}
+        >
+            <Button type="none" icon circle size="mini" 
+                v-if={{ columnIndex === 0 && children }}
+                class="k-table-arrow"
+                ev-click={{ self._onToggleSpreadRow }}
+            >
+                <Icon class="ion-ios-arrow-right" size="small" />
+            </Button>
+            {{ typeof td === 'boolean' ? String(td) : td }}
+        </td>
+    }) }}
+</tr>
