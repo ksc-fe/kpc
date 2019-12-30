@@ -246,6 +246,8 @@ export default class Table extends Intact {
     }
 
     checkAll() {
+        // const start = performance.now();
+
         const rowKey = this.get('rowKey');
         const disableRow = this.get('disableRow');
         const checkedKeys = [];
@@ -255,6 +257,8 @@ export default class Table extends Intact {
             }
         });
         this.set('checkedKeys', checkedKeys);
+
+        // console.log('checkAll: ', performance.now() - start);
     }
 
     uncheckAll() {
@@ -616,14 +620,16 @@ export default class Table extends Intact {
     _checkUncheckRows(keys, isCheck = false, isToggle = true) {
         const checkType = this.get('checkType');
         if (checkType === 'checkbox') {
-            let checkedKeys = this.get('checkedKeys').slice(0);
+            let checkedKeys = this.get('checkedKeys'); // .slice(0);
             let shouldSet = false;
             keys.forEach(key => {
                 const i = checkedKeys.indexOf(key);
                 if ((!isCheck || isToggle) && i > -1) {
+                    if (!shouldSet) checkedKeys = checkedKeys.slice(0);
                     checkedKeys.splice(i, 1);
                     shouldSet = true;
                 } else if ((isCheck || isToggle) && i < 0) {
+                    if (!shouldSet) checkedKeys = checkedKeys.slice(0);
                     checkedKeys.push(key);
                     shouldSet = true;
                 }
@@ -895,9 +901,9 @@ export default class Table extends Intact {
      * overwrite the className
      */
     _onRowEnter(index, e) {
-        const start = performance.now();
+        // const start = performance.now();
         this.set('_hoverIndex', index);
-        console.log('hover: ', performance.now() - start);
+        // console.log('hover: ', performance.now() - start);
         // this._hoverIndex = index;
         // addClass(e.target, 'k-hover');
         // const _class = vNode.props.className;
@@ -925,9 +931,7 @@ export default class Table extends Intact {
     }
 
     _onChangeChecked(key, value) {
-        // const start = performance.now();
-        // this._checkUncheckRows([key], value, false);
-        // console.log('checked: ', performance.now() - start);
+        this._checkUncheckRows([key], value, false);
     }
 
     _destroy() {

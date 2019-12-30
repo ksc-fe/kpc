@@ -39,6 +39,13 @@ export default class extends Intact {
         stopMeasure();
     }
 
+    add1000() {
+        startMeasure("add1000");
+        store.add();
+        this.sync();
+        stopMeasure();
+    }
+
     remove(id) {
         startMeasure("remove");
         store.delete(id);

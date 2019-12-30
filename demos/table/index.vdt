@@ -3,7 +3,8 @@ import Button from 'kpc/components/button';
 
 <div>
     <Button ev-click={{ self.add }}>Add</Button>
-    <Table data={{ self.get('rows')}}>
+    <Button ev-click={{ self.add1000 }}>Add 1000</Button>
+    <Table data={{ self.get('rows')}} resizable>
         <TableColumn key="id" title="ID">
             <b:template params="data">{{ data.id }}</b:template>
         </TableColumn>

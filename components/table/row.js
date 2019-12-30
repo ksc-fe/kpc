@@ -33,8 +33,8 @@ export default class TableRow extends Intact {
     }
 
     _onChangeChecked(c, v) {
-        // const {onChangeChecked, key} = this.get();
-        // onChangeChecked(key, v);
+        const {onChangeChecked, key} = this.get();
+        onChangeChecked(key, v);
     }
 
     _destroy() {
