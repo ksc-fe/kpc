@@ -6,7 +6,6 @@ import Column from './column';
 import {_$, debounce, browser, toggleArray} from '../utils';
 import {scrollbarWidth} from '../moveWrapper/position';
 import ResizeObserver from 'resize-observer-polyfill'; 
-import {addClass, removeClass} from './utils';
 import TooltipContent from '../tooltip/content';
 
 const slice = Array.prototype.slice;
@@ -226,7 +225,7 @@ export default class Table extends Intact {
     isChecked(key) {
         const {checkType, checkedKey, checkedKeys} = this.get();
         if (checkType === 'checkbox') {
-            return ~checkedKeys.indexOf(key);
+            return !!~checkedKeys.indexOf(key);
         } else if (checkType === 'radio') {
             return checkedKey === key;
         }
@@ -624,7 +623,7 @@ export default class Table extends Intact {
                 if ((!isCheck || isToggle) && i > -1) {
                     checkedKeys.splice(i, 1);
                     shouldSet = true;
-                } else if (isCheck || isToggle) {
+                } else if ((isCheck || isToggle) && i < 0) {
                     checkedKeys.push(key);
                     shouldSet = true;
                 }
@@ -923,6 +922,12 @@ export default class Table extends Intact {
         // if (this.hasFixedLeft || this.hasFixedRight) {
             // this.update();
         // }
+    }
+
+    _onChangeChecked(key, value) {
+        // const start = performance.now();
+        // this._checkUncheckRows([key], value, false);
+        // console.log('checked: ', performance.now() - start);
     }
 
     _destroy() {

@@ -3,7 +3,7 @@ import Button from 'kpc/components/button';
 
 <div>
     <Button ev-click={{ self.add }}>Add</Button>
-    <Table data={{ self.get('rows')}} checkType="none">
+    <Table data={{ self.get('rows')}}>
         <TableColumn key="id" title="ID">
             <b:template params="data">{{ data.id }}</b:template>
         </TableColumn>
