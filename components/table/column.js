@@ -48,6 +48,8 @@ export default class TableColumn extends Intact {
             rows: undefined,
             cols: undefined,
             invisible: false,
+            // for omiting it by getRestProps
+            blockFn: undefined,
 
             // passed by parent
             $parent: undefined,
