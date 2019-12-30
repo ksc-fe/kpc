@@ -3,8 +3,7 @@ import template from './row.vdt';
 const PROPS = [
     'value', 'index', 'key', 'checkType', 'onlyRight', 'onlyLeft',
     'disabled', 'merge', 'level', 'indent', 'children', 'className',
-    'onClick', 'onDestroy', 'onRowEnter', 'onRowLeave', 'onToggleSpreadRow',
-    'onChangeChecked', 'checked',
+    'checked',
     // to make scheme compare at last
     'scheme'
 ];
@@ -14,17 +13,22 @@ export default class TableRow extends Intact {
     static template = template;
 
     _onClick(e) {
-        const {onClick, value, index, key} = this.get();
+        const {onClick, value, index, key, 'ev-click': click} = this.get();
         onClick(value, index, key, e);
+        click && click(e);
     }
 
     _onMouseEnter(e) {
-        const {onRowEnter, index} = this.get();
+        const {onRowEnter, index, 'ev-mouseenter': mouseEnter} = this.get();
         onRowEnter(index, e);
+        // for Tooltip
+        mouseEnter && mouseEnter(e);
     }
 
     _onMouseLeave(e) {
-        this.get('onRowLeave')(e);
+        const {onRowLeave, 'ev-mouseleave': mouseLeave} = this.get();
+        onRowLeave(e);
+        mouseLeave && mouseLeave(e);
     }
 
     _onToggleSpreadRow(e) {
@@ -65,12 +69,17 @@ export default class TableRow extends Intact {
                 if (merge) {
                     grid.push(this.rowInGrid);
                 }
+                // update events for Tooltip
+                this.set({
+                    'ev-mouseenter': nextProps['ev-mouseenter'],
+                    'ev-mouseleave': nextProps['ev-mouseleave'],
+                    'ev-click': nextProps['ev-click'],
+                }, {silent: true})
                 return this.element;
             }
         }
         return super.update(lastVNode, nextVNode, flag);
     }
-
 }
 
 const compareProps = ['template', 'blockFn', 'ignore', 'align', 'className', 'fixed'];
