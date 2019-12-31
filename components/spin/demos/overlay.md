@@ -4,7 +4,7 @@ order: 1
 ---
 
 添加`overlay`属性，即可展示带遮罩层的加载动画，此时包含`Spin`的容器必须是定位元素，动画元素默认
-会居中展示，所以`center`属性在该情况下无效
+会居中展示，`center`属性在该情况下将被忽略
 
 ```vdt
 import Spin from 'kpc/components/spin';
