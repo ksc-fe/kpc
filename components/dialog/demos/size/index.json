@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>添加<code>size</code>属性，定义如下尺寸：<code>large</code>, <code>default</code>，<code>small</code>，<code>mini</code>；另外你也可以通过<code>width</code>属性，给弹窗指定宽度，如果该值为<code>Number</code>类型，则默认单位为<code>px</code>，<code>String</code>类型时，你需要指定单位</p>\n<blockquote>\n<p><code>width</code>优先级高于<code>size</code></p>\n</blockquote>\n",
-    "index": 62,
+    "index": 61,
     "highlighted": [
         {
             "language": "vdt",

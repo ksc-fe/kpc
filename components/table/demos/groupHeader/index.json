@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>scheme</code>和<code>TableColumn</code>两种方式都可以定义分组的表头。<code>scheme</code>方式下，只需要嵌套定义<code>scheme</code>字段即可；<code>TableColumn</code>方式下，嵌套使用<code>TableColumn</code>即可</p>\n<blockquote>\n<p>不管那种方式定义分组表头，<code>key</code>必须在当前表格下唯一</p>\n</blockquote>\n",
-    "index": 292,
+    "index": 294,
     "highlighted": [
         {
             "language": "vdt",

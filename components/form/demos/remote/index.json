@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>要完成异步验证（例如：通过后端接口判断用户名是否重复），只需要在验证规则函数中返回<code>Promise</code>即可</p>\n",
-    "index": 229,
+    "index": 236,
     "highlighted": [
         {
             "language": "vdt",

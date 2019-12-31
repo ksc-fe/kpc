@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>一个完整的菜单需要用到<code>Dropdown</code>，<code>DropdownMenu</code>和<code>DropdownItem</code>三个组件。<code>Dropdown</code>会将第一个子元素作为触发器，第二个元素为菜单<code>DropdownMenu</code>。</p>\n<blockquote>\n<p>与<code>Tooltip</code>一样，在Intact下，<code>Dropdown</code>会返回两个元素（触发器和菜单），而不是将它们包裹起来，作为一个元素返回，所以不要将它作为模板的顶级元素，例如本例中，用<code>&lt;div&gt;</code>将之包裹起来才能作为模板元素返回。</p>\n</blockquote>\n<blockquote>\n<p><code>@since 0.9.0</code> <code>Dropdown</code>在<code>Vue/React</code>下渲染不会被元素包裹，这可能会影响你之前项目中定义的样式，如需渲染包裹元素，请做如下配置</p>\n<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> {configure} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/utils'</span>;\n\n<span class=\"hljs-comment\">// 该配置全局生效</span>\nconfigure({useWrapper: <span class=\"hljs-keyword\">true</span>});\n</code></pre>\n</blockquote>\n",
-    "index": 53,
+    "index": 25,
     "highlighted": [
         {
             "language": "vdt",

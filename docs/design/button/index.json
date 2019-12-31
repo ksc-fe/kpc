@@ -8,5 +8,5 @@
     },
     "catalogs": [],
     "contents": "<h2 id='header-%E5%BA%94%E7%94%A8%E8%A7%84%E5%88%99'>应用规则</h2><p><strong>实体按钮</strong></p>\n<p>点击按钮后，触发的业务逻辑出现在当前页面时，使用实体按钮。</p>\n<p><img src=\"/imgs/design/shitianniu.png\" alt=\"shitianniu\"></p>\n<p><strong>文字按钮</strong></p>\n<p>点击按钮后，触发的业务逻辑需要跳转到其他页面时，使用文字按钮。</p>\n<p><img src=\"/imgs/design/wenzianniu.png\" alt=\"wenzianniu\"></p>\n<p><strong>文字链接</strong></p>\n<p>仅表达路径跳转时，使用文字连接。通常使用在文本中。鼠标hover文字链接时显示下划线。</p>\n<p><img src=\"/imgs/design/wenzilianjie.png\" alt=\"wenzilianjie\"></p>\n<p><strong>幽灵按钮</strong></p>\n<p>仅有描边的实体按钮，通常应用在有填充的背景上</p>\n<p><img src=\"/imgs/design/youlinganniu.png\" alt=\"youlinganniu\"></p>\n<h2 id='header-%E6%8C%89%E9%92%AE%E7%8A%B6%E6%80%81'>按钮状态</h2><p><img src=\"/imgs/design/anniuzhuangtai.png\" alt=\"anniuzhuangtai\"></p>\n<h2 id='header-%E6%8C%89%E9%92%AE%E7%B1%BB%E5%9E%8B'>按钮类型</h2><p>主按钮、次按钮</p>\n<p>主按钮在同一区域只可以应用一次</p>\n<h2 id='header-%E6%8C%89%E9%92%AE%E7%94%9F%E6%88%90%E5%99%A8'>按钮生成器</h2><p>在确定按钮交互状态样式时，仅需确定长长状态下按钮颜色，即可通过工具自动生成按钮全部状态样式，设计者和前端编码无需记住每个状态的具体样式。</p>\n<p><img src=\"/imgs/design/anniushengchengqi.png\" alt=\"anniushengchengqi\"></p>\n",
-    "index": 9
+    "index": 12
 }

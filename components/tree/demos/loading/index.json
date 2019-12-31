@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>添加<code>load</code>数据加载函数即可实现异步加载子节点功能，组件会传入当前节点对象作为参数，函数可以返回数组或者异步返回数组作为当前异步加载的子节点。如果子节点还可以进一步展开，可以将<code>children</code>属性设为空数组<code>[]</code>，否则不指定<code>children</code>则表示该节点为叶子节点。</p>\n<p>组件默认遇到<code>children</code>为<code>[]</code>空数组的情况就会去进行异步加载，你可以通过<code>loaded</code>属性设为<code>true</code>来标识该子节点已经加载完成，无需再次加载</p>\n",
-    "index": 126,
+    "index": 128,
     "highlighted": [
         {
             "language": "vdt",

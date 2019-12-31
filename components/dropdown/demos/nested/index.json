@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>Dropdown</code>可以嵌套使用，实现级联菜单。子菜单需要指定展示的位置<code>position</code>。我们还可以通过<code>trigger</code>单独子菜单触发方式。</p>\n",
-    "index": 230,
+    "index": 232,
     "highlighted": [
         {
             "language": "vdt",

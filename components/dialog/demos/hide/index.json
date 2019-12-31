@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>Dialog</code>的主体内容在关闭状态下，默认会被销毁，如果你想使它在关闭状态下仅仅只是隐藏，可以指定<code>mode</code>属性为<code>hide</code>。例如本例中，你在<code>Input</code>中输入的内容，下次打开时依然存在</p>\n",
-    "index": 287,
+    "index": 291,
     "highlighted": [
         {
             "language": "vdt",

@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>组件默认为点击上传，并且会展示默认上传按钮；通过<code>action</code>指定上传的地址；如果要支持多选可以添加<code>multiple</code>属性；可以通过<code>tip</code>扩展点来添加提示信息；<code>beforeRemove</code>可以在删除文件之前进行确认，如果函数的返回值为<code>true</code>则删除文件，否则不删除，该函数可以是异步函数或者返回<code>Promise</code>对象</p>\n",
-    "index": 13,
+    "index": 20,
     "highlighted": [
         {
             "language": "vdt",

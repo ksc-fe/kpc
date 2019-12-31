@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>给组件添加<code>precision</code>属性可以指定输入值的小数位数，当指定为<code>0</code>时，则只能输入整数</p>\n",
-    "index": 113,
+    "index": 117,
     "highlighted": [
         {
             "language": "vdt",

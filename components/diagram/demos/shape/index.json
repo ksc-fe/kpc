@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>该示例展示了所有内置的图形，并且开启了<code>Diagram</code>的一些功能，你可以拖动和连线它们，关于图形组件的属性，见API部分</p>\n<blockquote>\n<p><code>movable/resizable/ratatable</code>功能需要同时开启<code>selectable</code>才能生效</p>\n</blockquote>\n",
-    "index": 77,
+    "index": 71,
     "highlighted": [
         {
             "language": "vdt",

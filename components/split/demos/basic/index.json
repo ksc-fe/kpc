@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>Split</code>组件默认会左右分割，我们可以通过<code>firstSize/lastSize</code>来指定左右面板的宽度，但不要同时指定，应该让其中一个面板根据父容器宽度自适应，例如本例中，当你调整浏览器窗口大小时，可以看到左右面板宽度自适应的不同情况。当不指定宽度时，默认<code>firstSize=50% lastSize=auto</code>即对半分开。通过<code>first</code> <code>last</code>扩展点分别定义第一个和第二个面板的内容</p>\n",
-    "index": 35,
+    "index": 43,
     "highlighted": [
         {
             "language": "vdt",

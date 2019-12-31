@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>使用<code>Tooltip</code>包裹需要展示提示的元素，使用<code>content</code>属性指定提示文本即可，组件默认为深色主题<code>dark</code>，你可以通过<code>theme</code>指定浅色主题<code>light</code>，通过<code>disabled</code>属性可以禁用提示</p>\n<blockquote>\n<p>由于<code>Tooltip</code>是一个宏函数，Intact下，会返回两个元素，所以不要当做模板的顶级元素，因为Intact模板只能返回一个元素，此时应该用一个元素将它包起来</p>\n</blockquote>\n<blockquote>\n<p><code>@since 1.0.0</code> <code>Tooltip</code>在<code>Vue/React</code>下渲染不会被元素包裹，这可能会影响你之前项目中定义的样式，如需渲染包裹元素，请做如下配置</p>\n<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">import</span> {configure} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'kpc/components/utils'</span>;\n\n<span class=\"hljs-comment\">// 该配置全局生效</span>\nconfigure({useWrapper: <span class=\"hljs-keyword\">true</span>});\n</code></pre>\n</blockquote>\n",
-    "index": 19,
+    "index": 35,
     "highlighted": [
         {
             "language": "vdt",

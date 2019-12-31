@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>我们可以通过<code>filter</code>扩展点自定义搜索内容，而且通过该扩展点的参数<code>type</code>，可以给左侧/右侧/两侧定义不同的内容</p>\n",
-    "index": 114,
+    "index": 124,
     "highlighted": [
         {
             "language": "vdt",

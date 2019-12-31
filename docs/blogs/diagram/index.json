@@ -1,0 +1,28 @@
+{
+    "setting": {
+        "title": "基于mxGraph的组件化开发思想",
+        "order": 1
+    },
+    "catalogs": [
+        {
+            "text": "图形",
+            "level": 2,
+            "id": "header-%E5%9B%BE%E5%BD%A2",
+            "content": "<h2 id='header-%E5%9B%BE%E5%BD%A2'>图形</h2>"
+        },
+        {
+            "text": "mxCell",
+            "level": 3,
+            "id": "header-mxCell",
+            "content": "<h3 id='header-mxCell'>mxCell</h3>"
+        },
+        {
+            "text": "画布",
+            "level": 2,
+            "id": "header-%E7%94%BB%E5%B8%83",
+            "content": "<h2 id='header-%E7%94%BB%E5%B8%83'>画布</h2>"
+        }
+    ],
+    "contents": "<p>最近在往KPC组件库添加绘图组件，用于绘制网络拓扑图或者流程图等，在调研了一些绘图工具库之后，发现mxGraph非常强大，可以满足各种图形绘制需求，官方还提供了一个基于它的在线图形编辑器。</p>\n<p>在基于mxGraph开发组件之前，我们需要先了解一下它的一些基本概念和使用方法。</p>\n<h2 id='header-%E5%9B%BE%E5%BD%A2'>图形</h2><p>mxGraph将图形分为两类：<code>vertex</code>（点：指的各种图形，如：矩形，三角形等）和<code>edge</code>（边：指连线，包括带箭头和不带箭头的各种线条），这两类图形统称为<code>cell</code>，分别通过<code>vertex</code>和<code>edge</code>属性标示</p>\n<pre><code class=\"hljs js\"><span class=\"hljs-comment\">// vertex</span>\ncell.<span class=\"hljs-built_in\">vertex</span> = <span class=\"hljs-keyword\">true</span>;\n\n<span class=\"hljs-comment\">// edge</span>\ncell.edge = <span class=\"hljs-keyword\">true</span>;\n</code></pre>\n<h3 id='header-mxCell'>mxCell</h3><p>mxGraph将所有元素统称为<code>cell</code>，该元素通过类<code>mxCell</code>创建，该类包含3个重要信息：</p>\n<ol>\n<li><code>value</code> 元素的标签<code>label</code>，对于图形<code>vertex</code>一般显示在图形中央的文案，对于线<code>edge</code>便是线条\n上的标签，该属性支持<code>html</code>字符串</li>\n<li><code>geometry</code> 通过<code>mxGeometry</code>创建，用来定义图形的位置和大小；对线条<code>edge</code>而言，可以用来定义\n线条的起始点和控制点</li>\n<li><code>style</code> 一个类似<code>dom</code>上<code>style</code>属性的样式字符串，只不过它支持的样式是针对<code>svg</code>的，跟<code>css</code>有\n差别</li>\n</ol>\n<pre><code class=\"hljs js\"><span class=\"hljs-keyword\">const</span> <span class=\"hljs-keyword\">value</span> = <span class=\"hljs-string\">'label'</span>;\n<span class=\"hljs-keyword\">const</span> geo = <span class=\"hljs-keyword\">new</span> mxGeometry(<span class=\"hljs-number\">10</span>, <span class=\"hljs-number\">10</span>, <span class=\"hljs-number\">100</span>, <span class=\"hljs-number\">100</span>); <span class=\"hljs-comment\">// 坐标(10, 10)，大小 100 * 100</span>\n<span class=\"hljs-keyword\">const</span> style = <span class=\"hljs-string\">'rounded=1;whiteSpace=wrap;html=1;arcSize=10'</span>; <span class=\"hljs-comment\">// 默认图形为矩形rectangle，rounded：圆角，圆角大小为arcSize：10</span>\n<span class=\"hljs-keyword\">const</span> cell = <span class=\"hljs-keyword\">new</span> mxCell(<span class=\"hljs-keyword\">value</span>, geo, style);\n</code></pre>\n<h2 id='header-%E7%94%BB%E5%B8%83'>画布</h2><p>有了图形，我们需要画布，以便将这些图形添加到画布上。mxGraph提供了<code>mxGraph</code>类来创建画布。</p>\n",
+    "index": 100
+}

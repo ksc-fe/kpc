@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>组件提供了4个静态方法，用于弹出4种不同类型的提示窗口：<code>success</code> <code>warning</code> <code>error</code> <code>confirm</code>，该方法会返回<code>Promise</code>对象，成功回调代表点击了“确认”按钮，失败回调代表点击了“取消”按钮</p>\n<p>如果传入<code>title</code>字段，弹窗样式会有所不同</p>\n<blockquote>\n<p>如果你在<code>Vue</code>中调用静态方式，不要尝试通过<code>scoped style</code>修改弹窗样式，因为它们不会添加<code>data-v-id</code>，你将选择不到弹窗元素</p>\n</blockquote>\n",
-    "index": 56,
+    "index": 57,
     "highlighted": [
         {
             "language": "vdt",

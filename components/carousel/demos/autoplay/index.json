@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>给<code>Carousel</code>添加<code>autoplay</code>属性，即可实现自动切换，默认切换间隔为<code>5000</code>(ms)，你可以给<code>autoplay</code>指定切换间隔（ms）如果间隔为<code>0</code>则不自动切换</p>\n",
-    "index": 92,
+    "index": 87,
     "highlighted": [
         {
             "language": "vdt",

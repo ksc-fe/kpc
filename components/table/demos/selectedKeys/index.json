@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>给<code>Table</code>添加<code>rowSelectable</code>属性，可以让表格点击行时高亮改行，你可以指定值为<code>multiple</code>来支持多行高亮。类似<code>checkedKeys</code>，我们可以通过<code>selectedKeys</code>来绑定高亮行的<code>key</code>，当高亮的行改变时，组件也会抛出<code>$change:selectedKeys</code>事件，我们可以通过<code>getSelectedData</code>来获取高亮行的数据</p>\n",
-    "index": 214,
+    "index": 215,
     "highlighted": [
         {
             "language": "vdt",
