@@ -139,10 +139,10 @@ const tooltipProps = always ? {always, value: true} : {always: false};
             <span ev-click={{ self._setOneValue.bind(self, max) }}>{{ max + unit }}</span>
         </div>
         <div class="k-marks" v-if={{ marks }}>{{ do {
-            const counts = step ? Math.floor((max - min) / step) : (max - min);
+            // const counts = step ? Math.floor((max - min) / step) : (max - min);
             <span v-for={{ marks }}
                 style={{ {
-                    left: ((key - min) / counts * 100) + '%'
+                    left: ((key - min) / (max - min) * 100) + '%'
                 } }}
                 ev-click={{ self._setOneValue.bind(self, key) }}
             >{{ value }}</span>
