@@ -4,6 +4,11 @@ order: 99
 sidebar: doc
 ---
 
+## v1.3.3
+
+1. `Refactor` 优化`Table`更新性能，去掉不必要的渲染，hover和check性能提升47到64倍 [#414](https://github.com/ksc-fe/kpc/issues/414)
+2. `Fix` 修复`Slider`在设置了步长`step`不为`1`的情况下，`marks`展示位置不对的问题 [#415](https://github.com/ksc-fe/kpc/issues/415)
+
 ## v1.3.2
 
 1. `Fix` 修复`Tree`在非关联状态下`uncorrelated`，初始化`checkedKeys`依然会选中子元素的问题 [#412](https://github.com/ksc-fe/kpc/issues/412)
