@@ -27,13 +27,13 @@
     "_prepublishOnly": "npm run build && (git commit -am'chore: build' || echo 'has not files to commit') && git push",
     "_publish": "npm run _prepublishOnly && lerna exec -- npm publish",
     "release": "npm run release-patch",
-    "prelease": "lerna version prerelease --preid beta && npm run _publish -- --tag=beta",
-    "release-patch": "lerna version patch && npm run _publish",
-    "release-minor": "lerna version minor && npm run _publish",
-    "release-major": "lerna version major && npm run _publish",
-    "prelease-patch": "lerna version prepatch --preid beta && npm run _publish -- --tag=beta",
-    "prelease-minor": "lerna version preminor --preid beta && npm run _publish -- --tag=beta",
-    "prelease-major": "lerna version premajor --preid beta && npm run _publish -- --tag=beta"
+    "prelease": "lerna version prerelease --preid beta --force-publish && npm run _publish -- --tag=beta",
+    "release-patch": "lerna version patch --force-publish && npm run _publish",
+    "release-minor": "lerna version minor --force-publish && npm run _publish",
+    "release-major": "lerna version major --force-publish && npm run _publish",
+    "prelease-patch": "lerna version prepatch --preid beta --force-publish && npm run _publish -- --tag=beta",
+    "prelease-minor": "lerna version preminor --preid beta --force-publish && npm run _publish -- --tag=beta",
+    "prelease-major": "lerna version premajor --preid beta --force-publish && npm run _publish -- --tag=beta"
   },
   "repository": {
     "type": "git",
