@@ -14,11 +14,11 @@ if (/^\d+$/.test(size)) {
 }
 if (self.colors.indexOf(color) > -1) {
     classNameObj[`k-color-${color}`] = color !== 'default';
-} else {
+} else if (color) {
     _style.color = color;
 }
 
 <i {{ ...getRestProps(self) }}
     class={{ classNameObj }}
-    style={{ addStyle(_style, style) }}
+    style={{ addStyle(style, _style) }}
 ></i>
