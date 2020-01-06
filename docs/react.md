@@ -162,7 +162,7 @@ class App extends React.Component {
 
 # 语法说明
 
-文档中针对intact的例子，我们只需要做以下写法上的转换即可
+文档中语法从`Vdt`到`React的转换规则如下：
 
 | 类别 | intact写法 | react写法 | 说明 |
 | --- | --- | --- | --- |
@@ -177,7 +177,7 @@ class App extends React.Component {
 
 另外当需要将vNode作为属性传给kpc组件时，需要使用`Intact.normalize()`方法处理vNode
 
-> 如果是作为子元素`children`，则没有必要`normalize`，因为兼容层默认会normalize子元素
+> 如果是作为子元素`children`，则没有必要`normalize`，因为组件默认会normalize子元素
 
 ```js
 import React from 'react';

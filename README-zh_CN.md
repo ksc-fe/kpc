@@ -16,29 +16,30 @@
 
 </div>
 
-## Features 
+## 特性
 
-* Support multiple frameworks: [Intact][1] / [Vue][2] / [React][3] / [Angular][4].
-* Complete custom theme system.
-* 360° locate popup layer.
-* Declarative form validation.
-* Excellent [documents](https://ksc-fe.github.io/kpc/) and unit tests.
+* 支持多框架 [Intact][1] / [Vue][2] / [React][3] / [Angular][4]
+* 完全可自定义的主题系统
+* 360°全方位定位系统
+* 声明式表单验证
+* 完善的文档和单元测试 [文档](https://ksc-fe.github.io/kpc/)
 
-## Browsers Support
+## 浏览器支持
 
 | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Opera |
 | --------- | --------- | --------- | --------- | --------- |
 | IE10, IE11, Edge| last 2 versions| last 2 versions| last 2 versions| last 2 versions
 
+
 ## Vue
 
-### Installation
+### 安装
 
 ```shell
 npm install kpc-vue --save
 ```
 
-### Usage 
+### 使用
 
 ```js
 <template>
@@ -57,13 +58,13 @@ export default {
 
 ## React
 
-### Installation 
+### 安装
 
 ```shell
 npm install kpc-react --save
 ```
 
-### Usage 
+### 使用
 
 ```jsx
 import React from 'react';
@@ -78,13 +79,13 @@ class App extends React.Component {
 
 ## Intact
 
-### Installation 
+### 安装
 
 ```shell
 npm install kpc-react --save
 ```
 
-### Usage 
+### 使用
 
 ```js
 import {Button} from 'kpc';
@@ -92,17 +93,17 @@ import {Button} from 'kpc';
 <Button>Hello</Button>
 ```
 
-## Angular [Details][5]
+## Angular [详情][5]
 
-### Installation 
+### 安装
 
 ```shell
 npm install kpc-angular -S
 ```
 
-### Configure `webpack.config.js`
+### 配置`webpack.config.js`
 
-You need use `@angular-builders/custom-webapck` to configure webpack, if your project initialized by Angular CLI.
+Angular CLI 初始化的项目必须使用`@angular-builders/custom-webapck`来配置webpack
 
 ```js
 const path = require('path');
@@ -119,7 +120,7 @@ module.exports = function(config) {
 };
 ```
 
-### Usage 
+### 使用
 
 `src/app/app.module.ts`
 
@@ -169,27 +170,26 @@ export class AppComponent {
 }
 ```
 
-## Immediate Feedback
+## 即时反馈
 
-Welcome to join us by QQ. Group Number: 529739732 
-
-[![KPC Official QQ Group](https://pub.idqqimg.com/wpa/images/group.png)](https://shang.qq.com/wpa/qunwpa?idkey=a9ef1aa7e7befbd3eaa61a3f2c3f7ab17436dbd317f6d02c9a643e0049e52cad)
+欢迎加入QQ群反馈问题和获得即时帮助，QQ群：529739732 
+[![KPC官方交流群](https://pub.idqqimg.com/wpa/images/group.png)](https://shang.qq.com/wpa/qunwpa?idkey=a9ef1aa7e7befbd3eaa61a3f2c3f7ab17436dbd317f6d02c9a643e0049e52cad)
 
 ![QQ](/site/src/imgs/qqqun.png)
 
 
-## Links 
+## 链接
 
-* [KPC Doc](https://design.ksyun.com)
-* [Intact MVVM Framework][1]
-* [Vdt Template Engine](http://javey.github.io/vdt.js/)
-* [Intact-Vue Compatibilty Layer](https://github.com/Javey/intact-vue)
-* [Intact-React Compatibilty Layer](https://github.com/ksc-fe/intact-react)
-* [Intact-Angular Compatibilty Layer](https://github.com/ksc-fe/intact-angular)
+* [KPC 官方文档](https://design.ksyun.com)
+* [Intact MVVM框架][1]
+* [Vdt 模板引擎](http://javey.github.io/vdt.js/)
+* [Intact-Vue 兼容层](https://github.com/Javey/intact-vue)
+* [Intact-React 兼容层](https://github.com/ksc-fe/intact-react)
+* [Intact-Angular 兼容层](https://github.com/ksc-fe/intact-angular)
 
-## Develop 
+## 开发
 
-> Require `node@10` and `npm@6.9` or above.
+> 需要`node@10`以及`npm@6.9`以上
 
 ```shell
 git clone https://github.com/ksc-fe/kpc.git
@@ -197,17 +197,17 @@ cd kpc
 npm install
 npm run dev:doc
 
-# test 
+# 测试
 npm run test
-# update snapshots 
+# 更新测试快照
 npm run snapshot
-# deploy documents
+# 部署文档
 npm run deploy:doc
-# release new version 
+# 发版
 npm run release
 ```
 
-## License 
+## 许可
 
 MIT
 

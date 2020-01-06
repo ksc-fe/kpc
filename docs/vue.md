@@ -235,8 +235,7 @@ export default {
 
 # 语法说明
 
-intact-vue从底层vNode上做了intact到vue的兼容，文档中针对intact的例子，
-我们只需要做以下写法上的转换即可
+对于文档中语法从`Vdt`到`Vue`的转换规则如下：
 
 | 类别 | intact写法 | vue写法 |
 | --- | --- | --- |
@@ -255,15 +254,11 @@ intact-vue从底层vNode上做了intact到vue的兼容，文档中针对intact�
     <Button @click.native="click">default</Button>
     ```
 2. 多余的属性不会被自动添加到组件渲染的DOM上，而是被直接忽略
-3. ~~不支持scoped style，因为KPC组件渲染不会添加data-v-id~~ `@since v0.8.0 支持`
-    ```vue
-    <style scoped> .k-btn { color: red;  } </style>
-    ```
-4. 不支持 [Multiple values](https://vuejs.org/v2/guide/class-and-style.html#Multiple-Values) style
+3. 不支持 [Multiple values](https://vuejs.org/v2/guide/class-and-style.html#Multiple-Values) style
     ```vue
     <Button v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></Button>
     ```
-5. 不要在KPC组件上直接做动画，如果要动画，可以包一层div
+4. 不要在KPC组件上直接做动画，如果要动画，可以包一层div
     ```vue
     <transition name="fade">
         <Button v-if="show">default</Button>
@@ -281,7 +276,7 @@ intact-vue从底层vNode上做了intact到vue的兼容，文档中针对intact�
 另外当需要在js中使用`h()`方法创建vNode，然后作为属性传给kpc组件时，需要使用`Intact.normalize()`
 方法将vNode包起来
 
-> 如果是作为子元素`children`，则没有必要`normalize`，因为兼容层默认会normalize子元素
+> 如果是作为子元素`children`，则没有必要`normalize`，因为组件默认会normalize子元素
 
 ```vue
 <template>
