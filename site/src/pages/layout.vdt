@@ -36,7 +36,7 @@ const nav = [
                             class={{ {
                                 active: value.index === scope.navIndex
                             } }}
-                            href={{ `${process.URL_PREFIX}${value.href}` }}
+                            href={{ `${value.href}` }}
                         >{{ value.title }}</Link>
                         <a href="https://kpc-theme.ksyun.com/" target="_blank">定制主题</a>
                         <div class="border"></div>

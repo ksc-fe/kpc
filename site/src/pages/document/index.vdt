@@ -26,7 +26,7 @@ function Catalog(props) {
             } }}
             v-if={{ !value.disabled }}
         >
-            <Link href={{ `${process.URL_PREFIX}/${value.path.replace('.md', '/').replace('index/', '')}` }}>
+            <Link href={{ `/${value.path.replace('.md', '/').replace('index/', '')}` }}>
                 {{ do {
                     const matches = value.path.match(/components\/([^\/]+)/);
                     if (matches) {

@@ -156,9 +156,8 @@ gulp.task('watch', gulp.series(
 ));
 
 gulp.task('clean:doc', () => {
-    // return exec(`rm -rf ./site/dist; REPO=\`git config remote.origin.url\`; echo $REPO;
-        // git clone -b gh-pages --single-branch $REPO ./site/dist --depth=1 &&
-    return exec(`
+    return exec(`rm -rf ./site/dist; REPO=\`git config remote.origin.url\`; echo $REPO;
+        git clone --reference ./ -b gh-pages --single-branch $REPO ./site/dist --depth=1 &&
         cd ./site/dist &&
         rm -rf ./* && cd ../../`
     );

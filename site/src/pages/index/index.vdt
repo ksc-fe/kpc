@@ -20,7 +20,7 @@ import image2 from '../../imgs/page2.png';
                         <div class="actions">
                             <Button tagName={{ Link }} type="primary"
                                 tagProps={{ {
-                                    href: `${process.URL_PREFIX}/docs/getting-started/`
+                                    href: `/docs/getting-started/`
                                 } }}
                                 class="button"
                             >开始使用</Button>
