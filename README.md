@@ -16,6 +16,8 @@
 
 </div>
 
+English | [简体中文](./README-zh_CN.md)
+
 ## Features 
 
 * Support multiple frameworks: [Intact][1] / [Vue][2] / [React][3] / [Angular][4].
@@ -81,7 +83,7 @@ class App extends React.Component {
 ### Installation 
 
 ```shell
-npm install kpc-react --save
+npm install kpc --save
 ```
 
 ### Usage 
@@ -92,7 +94,9 @@ import {Button} from 'kpc';
 <Button>Hello</Button>
 ```
 
-## Angular [Details][5]
+## Angular
+
+Read [more][5]
 
 ### Installation 
 
@@ -180,7 +184,7 @@ Welcome to join us by QQ. Group Number: 529739732
 
 ## Links 
 
-* [KPC Doc](https://design.ksyun.com)
+* [KPC Document](https://design.ksyun.com)
 * [Intact MVVM Framework][1]
 * [Vdt Template Engine](http://javey.github.io/vdt.js/)
 * [Intact-Vue Compatibilty Layer](https://github.com/Javey/intact-vue)

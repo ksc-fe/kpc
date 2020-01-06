@@ -16,6 +16,8 @@
 
 </div>
 
+[English](./README.md) | 简体中文
+
 ## 特性
 
 * 支持多框架 [Intact][1] / [Vue][2] / [React][3] / [Angular][4]
@@ -82,7 +84,7 @@ class App extends React.Component {
 ### 安装
 
 ```shell
-npm install kpc-react --save
+npm install kpc --save
 ```
 
 ### 使用
