@@ -5,8 +5,8 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
-// process.URL_PREFIX = isDev ? '' : '/kpc';
-process.URL_PREFIX = '';
+process.URL_PREFIX = isDev ? '' : '//damife.ks3-cn-beijing.ksyun.com/kpc';
+// process.URL_PREFIX = '';
 
 module.exports = function(theme) {
     const commonConfig = webpackConfig(theme);

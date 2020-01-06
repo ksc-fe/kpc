@@ -22,6 +22,7 @@ const uglifyjs = require('gulp-uglify');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const fsExtra = require('fs-extra');
 const ts = require('gulp-typescript');
+const KS3 = require('ks3');
 
 const fsPromises = fs.promises;
 
@@ -155,8 +156,9 @@ gulp.task('watch', gulp.series(
 ));
 
 gulp.task('clean:doc', () => {
-    return exec(`rm -rf ./site/dist; REPO=\`git config remote.origin.url\`; echo $REPO;
-        git clone -b gh-pages --single-branch $REPO ./site/dist --depth=1 &&
+    // return exec(`rm -rf ./site/dist; REPO=\`git config remote.origin.url\`; echo $REPO;
+        // git clone -b gh-pages --single-branch $REPO ./site/dist --depth=1 &&
+    return exec(`
         cd ./site/dist &&
         rm -rf ./* && cd ../../`
     );
@@ -191,6 +193,39 @@ gulp.task('build:doc:client', (done) => {
         done();
     });
 });
+gulp.task('upload:doc', (done) => {
+    const AK = process.env.KS3_AK;
+    const SK = process.env.KS3_SK;
+    const bucketName = 'damife';
+    const filePath = path.resolve(__dirname, './site/dist');
+    const key = 'kpc';
+    const region = 'BEIJING'; //BEIJING|SHANGHAI|HONGKONG|AMERICA
+
+    const ks3 = new KS3(AK, SK, bucketName, region);
+    console.log('Start upload files to ks3. Time:' + new Date());
+    console.log('Upload "' + filePath + '" to "' + key + '"');
+    ks3.upload.start({
+        Bucket: bucketName,
+        filePath: filePath,
+        region: region,
+        Key: key,
+        ACL: 'public-read',
+        fileSetting: {
+            isDeep: true,
+            ignore: /(.(swp|ds_store)$)/ig
+        }
+    }, (err, data, res) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(data);
+            console.log('Upload finished. Time:' + new Date());
+            done();
+        }
+    }, {
+        'Cache-Control': 'no-cache,max-age=0'
+    });
+});
 gulp.task('push:doc', () => {
     return exec(`cd ./site/dist && 
         git add -A;
@@ -211,7 +246,7 @@ gulp.task('copy:cname', () => {
 });
 
 gulp.task('build:doc', gulp.series('clean:doc', 'build:doc:server', 'build:doc:client', 'build:themes:css', 'build:iframes', 'copy:imgs', 'copy:cname'));
-gulp.task('deploy:doc', gulp.series('build:doc', 'push:doc'));
+gulp.task('deploy:doc', gulp.series('build:doc', 'upload:doc', 'push:doc'));
 gulp.task('watch:doc', gulp.series('doc:production', gulp.parallel('webpack', () => {
     gulp.watch('./@(components|docs)/**/*.md', {ignored: /node_modules/}, gulp.parallel('doc:production'));
 })));
