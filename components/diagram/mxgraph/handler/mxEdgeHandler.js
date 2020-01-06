@@ -1,6 +1,6 @@
 import mx, {createSvgImage} from '../mx';
 import '../util/mxConstants';
-import {mainHandle, secondaryHandle} from './mxVertexHandler';
+import {mainHandle} from './mxVertexHandler';
 
 export default function() {
     const {mxEdgeHandler, mxConstants, mxElbowEdgeHandler, mxImageShape, mxRectangleShape, mxRectangle} = mx;
