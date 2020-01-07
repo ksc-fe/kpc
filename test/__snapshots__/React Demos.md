@@ -321,7 +321,7 @@
 ####   `Datepicker datetime`
 
 ```
-"<div><div class=\"k-datepicker\" tabindex=\"0\"><div class=\"k-input k-with-suffix k-stack-clear\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择日期和时间\" tabindex=\"-1\"><div class=\"k-suffix\"> <i class=\"ion-ios-calendar-outline\"></i></div></div></div><!--placeholder--></div><div class=\"k-datepicker\" tabindex=\"0\"><div class=\"k-input k-with-suffix k-stack-clear\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"时间精确到小时\" tabindex=\"-1\"><div class=\"k-suffix\"> <i class=\"ion-ios-calendar-outline\"></i></div></div></div><!--placeholder--></div></div>"
+"<div><div class=\"k-datepicker\" tabindex=\"0\"><div class=\"k-input k-with-suffix k-clearable k-stack-clear\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"请选择日期和时间\" tabindex=\"-1\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> <i class=\"ion-ios-calendar-outline\"></i></div></div></div><!--placeholder--></div><div class=\"k-datepicker\" tabindex=\"0\"><div class=\"k-input k-with-suffix k-stack-clear\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"时间精确到小时\" tabindex=\"-1\"><div class=\"k-suffix\"> <i class=\"ion-ios-calendar-outline\"></i></div></div></div><!--placeholder--></div></div>"
 ```
 
 ####   `Datepicker disabledDate`
@@ -351,7 +351,7 @@
 ####   `Datepicker range`
 
 ```
-"<div><div class=\"k-datepicker k-range\" tabindex=\"0\"><div class=\"k-input k-with-suffix k-stack-clear\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"开始日期 ~ 结束日期\" tabindex=\"-1\"><div class=\"k-suffix\"> <i class=\"ion-ios-calendar-outline\"></i></div></div></div><!--placeholder--></div>You selected: <br><br><div class=\"k-datepicker k-range\" tabindex=\"0\"><div class=\"k-input k-with-suffix k-stack-clear\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"开始时间 ~ 结束时间\" tabindex=\"-1\"><div class=\"k-suffix\"> <i class=\"ion-ios-calendar-outline\"></i></div></div></div><!--placeholder--></div>You selected: </div>"
+"<div><div class=\"k-datepicker k-range\" tabindex=\"0\"><div class=\"k-input k-with-suffix k-clearable k-stack-clear\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"开始日期 ~ 结束日期\" tabindex=\"-1\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> <i class=\"ion-ios-calendar-outline\"></i></div></div></div><!--placeholder--></div>You selected: <br><br><div class=\"k-datepicker k-range\" tabindex=\"0\"><div class=\"k-input k-with-suffix k-clearable k-stack-clear\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" readonly=\"\" placeholder=\"开始时间 ~ 结束时间\" tabindex=\"-1\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> <i class=\"ion-ios-calendar-outline\"></i></div></div></div><!--placeholder--></div>You selected: </div>"
 ```
 
 ####   `Datepicker shortcuts`
