@@ -114,6 +114,11 @@ export default class Datepicker extends Intact {
 
     onClear(e) {
         e.stopPropagation();
+        // we should reset the flag to let user re-select date
+        // and it also destroys Time panel and avoids it triggering change event, #419
+        const {begin, end} = this.refs;
+        begin.set('_isSelectTime', false);
+        end && end.set('_isSelectTime', false);
         this.set('_value', undefined);
     }
 

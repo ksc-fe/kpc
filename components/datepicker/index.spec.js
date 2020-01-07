@@ -15,7 +15,7 @@ describe('Datepicker', () => {
     let instance;
 
     afterEach(async () => {
-        // unmount(instance);
+        unmount(instance);
         await wait(400);
     });
 
@@ -123,6 +123,19 @@ describe('Datepicker', () => {
         instance.set('date', '2018-03-04');
         dispatchEvent(instance.element.querySelector('.k-clear'), 'click');
         expect(instance.get('date') === undefined).be.true;
+    });
+
+    it('should clear datetime', () => {
+        instance = mount(DatetimeDemo);
+
+        const input = instance.element.querySelector('.k-input');
+        input.click();
+        const content = getElement('.k-datepicker-content');
+        // change to time panel
+        content.querySelector('.k-day').click();
+        // clear the value
+        dispatchEvent(instance.element.querySelector('.k-clear'), 'click');
+        expect(instance.get('datetime1') === undefined).be.true;
     });
 
     it('multiple select', async () => {
