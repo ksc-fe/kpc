@@ -4,10 +4,10 @@ import {Component} from '@angular/core';
     selector: 'app-demo',
     template: `
         <div>
-            <k-datepicker [range]="true" [(value)]="date"></k-datepicker>
+            <k-datepicker [range]="true" [(value)]="date" [clearable]="true"></k-datepicker>
             You selected: {{ date | json }}
             <br /><br />
-            <k-datepicker [range]="true" type="datetime" [(value)]="time"></k-datepicker>
+            <k-datepicker [range]="true" type="datetime" [(value)]="time" [clearable]="true"></k-datepicker>
             You selected: {{ time | json }}
         </div>
     `,

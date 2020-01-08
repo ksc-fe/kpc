@@ -183,7 +183,7 @@ Vue.use(Kpc);
 }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
-<h1 id='header-%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E'>语法说明</h1><p>intact-vue从底层vNode上做了intact到vue的兼容，文档中针对intact的例子，我们只需要做以下写法上的转换即可</p>
+<h1 id='header-%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E'>语法说明</h1><p>对于文档中语法从<code>Vdt</code>到<code>Vue</code>的转换规则如下：</p>
 <div class="k-table k-border">
                     <div class="k-table-wrapper">
                         <div class="k-thead">
@@ -237,14 +237,16 @@ Vue.use(Kpc);
                             </table>
                         </div>
                     </div>
-                </div><h2 id='header-%E4%B8%8D%E6%94%AF%E6%8C%81%E7%9A%84%E7%89%B9%E6%80%A7'>不支持的特性</h2><ol>
+                </div><blockquote>
+<p>对于属性名和事件名，KPC组件支持连字符的形式代替驼峰形式，如：</p>
+<p><code>checkType=&quot;none&quot; =&gt; check-type=&quot;none&quot;</code></p>
+<p><code>@$change:checkedKeys=&quot;handler&quot; =&gt; @change:checked-keys=&quot;handler&quot;</code></p>
+</blockquote>
+<h2 id='header-%E4%B8%8D%E6%94%AF%E6%8C%81%E7%9A%84%E7%89%B9%E6%80%A7'>不支持的特性</h2><ol>
 <li>不支持事件的.native修饰符<pre><code class="hljs vue"> &lt;<span class="hljs-selector-tag">Button</span> @<span class="hljs-keyword">click</span>.<span class="hljs-keyword">native</span>="<span class="hljs-keyword">click</span>"&gt;<span class="hljs-keyword">default</span>&lt;/<span class="hljs-keyword">Button</span>&gt;
 </code></pre>
 </li>
 <li>多余的属性不会被自动添加到组件渲染的DOM上，而是被直接忽略</li>
-<li><del>不支持scoped style，因为KPC组件渲染不会添加data-v-id</del> <code>@since v0.8.0 支持</code><pre><code class="hljs vue"> <span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">scoped</span>&gt;</span><span class="css"> <span class="hljs-selector-class">.k-btn</span> { <span class="hljs-attribute">color</span>: red;  } </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-</code></pre>
-</li>
 <li>不支持 <a href="https://vuejs.org/v2/guide/class-and-style.html#Multiple-Values">Multiple values</a> style<pre><code class="hljs vue"><span class="xml"> <span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">v-bind:style</span>=<span class="hljs-string">"</span></span></span><span class="hljs-template-variable">{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }</span><span class="xml"><span class="hljs-tag"><span class="hljs-string">"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span></span>
 </code></pre>
 </li>
@@ -262,7 +264,7 @@ Vue.use(Kpc);
 </ol>
 <p>另外当需要在js中使用<code>h()</code>方法创建vNode，然后作为属性传给kpc组件时，需要使用<code>Intact.normalize()</code>方法将vNode包起来</p>
 <blockquote>
-<p>如果是作为子元素<code>children</code>，则没有必要<code>normalize</code>，因为兼容层默认会normalize子元素</p>
+<p>如果是作为子元素<code>children</code>，则没有必要<code>normalize</code>，因为组件默认会normalize子元素</p>
 </blockquote>
 <pre><code class="hljs vue"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">Badge</span> <span class="hljs-attr">:text</span>=<span class="hljs-string">"text"</span>&gt;</span></span><span class="hljs-template-variable">{{ children }}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">Badge</span>&gt;</span>

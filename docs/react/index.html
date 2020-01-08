@@ -139,7 +139,7 @@
     }
 }
 </code></pre>
-<h1 id='header-%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E'>语法说明</h1><p>文档中针对intact的例子，我们只需要做以下写法上的转换即可</p>
+<h1 id='header-%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E'>语法说明</h1><p>文档中语法从<code>Vdt</code>到`React的转换规则如下：</p>
 <div class="k-table k-border">
                     <div class="k-table-wrapper">
                         <div class="k-thead">
@@ -209,7 +209,7 @@
                     </div>
                 </div><p>另外当需要将vNode作为属性传给kpc组件时，需要使用<code>Intact.normalize()</code>方法处理vNode</p>
 <blockquote>
-<p>如果是作为子元素<code>children</code>，则没有必要<code>normalize</code>，因为兼容层默认会normalize子元素</p>
+<p>如果是作为子元素<code>children</code>，则没有必要<code>normalize</code>，因为组件默认会normalize子元素</p>
 </blockquote>
 <pre><code class="hljs js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
 <span class="hljs-keyword">import</span> Intact <span class="hljs-keyword">from</span> <span class="hljs-string">'intact'</span>;

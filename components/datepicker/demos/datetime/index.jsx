@@ -11,7 +11,7 @@ export default class Demo extends React.Component {
     render() {
         return (
             <div>
-                <Datepicker type="datetime" value={this.state.datetime1} on$change-value={(c, datetime1) => this.setState({datetime1})} />
+                <Datepicker type="datetime" value={this.state.datetime1} on$change-value={(c, datetime1) => this.setState({datetime1})} clearable />
                 <Datepicker type="datetime" value={this.state.datetime2}
                     on$change-value={(c, datetime2) => this.setState({datetime2})} 
                     placeholder="时间精确到小时"

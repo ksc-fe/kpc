@@ -1,9 +1,9 @@
 <template>
     <div>
-        <Datepicker range v-model="date" />
+        <Datepicker range v-model="date" clearable />
         You selected: {{ stringify(date) }}
         <br /><br />
-        <Datepicker range type="datetime" v-model="time" />
+        <Datepicker range type="datetime" v-model="time" clearable />
         You selected: {{ stringify(time) }}
     </div>
 </template>

@@ -4,7 +4,7 @@ import {Component} from '@angular/core';
     selector: 'app-demo',
     template: `
         <div>
-            <k-datepicker type="datetime" [(value)]="datetime1"></k-datepicker>
+            <k-datepicker type="datetime" [(value)]="datetime1" [clearable]="true"></k-datepicker>
             <k-datepicker type="datetime" [(value)]="datetime2" 
                 placeholder="时间精确到小时"
                 [disabledMinutes]="true"
