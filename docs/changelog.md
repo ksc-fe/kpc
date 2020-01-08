@@ -4,6 +4,17 @@ order: 99
 sidebar: doc
 ---
 
+## v1.3.4
+
+1. `Fix` 修复`Icon`不能通过字符串设置`style`属性的问题 [#416](https://github.com/ksc-fe/kpc/issues/416)
+2. `Fix` 修复`Diagram` `import`了某个没有`export`的变量的报错 [#418](https://github.com/ksc-fe/kpc/issues/418) 
+3. `Fix` 修复`Datepicker`选择了时间时，便不能清除`value`的问题 [#419](https://github.com/ksc-fe/kpc/issues/419)
+4. `Doc` 发布静态资源到金山云`KS3`，提高文档网站访问速度 [#417](https://github.com/ksc-fe/kpc/issues/417)
+
+__Vue__
+
+1. `Fix` 修复组件属性名和事件名为驼峰形式时，便不能在`html`模板中使用的问题 [#420](https://github.com/ksc-fe/kpc/issues/420)
+
 ## v1.3.3
 
 1. `Refactor` 优化`Table`更新性能，去掉不必要的渲染，hover和check性能提升47到64倍 [#414](https://github.com/ksc-fe/kpc/issues/414)
