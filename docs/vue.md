@@ -247,6 +247,12 @@ export default {
 | 带参数的block | `<Transfer><b:label params="data"><div>{{ data.name }}</div></b:label></Transfer>` | `<Transfer><div slot="label" slot-scope="data">{{ data.name }}</div></Transfer>` |
 | 双向绑定任意属性 `@since intact-vue@0.3.7` | `v-model:name="name"` | `:name.sync="name"` |
 
+> 对于属性名和事件名，KPC组件支持连字符的形式代替驼峰形式，如：
+> 
+> `checkType="none" => check-type="none"`
+>
+> `@$change:checkedKeys="handler" => @change:checked-keys="handler"`
+
 ## 不支持的特性
 
 1. 不支持事件的.native修饰符

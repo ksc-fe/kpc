@@ -34,7 +34,7 @@
     "downloadjs": "^1.4.7",
     "enquire.js": "^2.1.6",
     "intact": "^2.5.9",
-    "intact-vue": "^0.5.3",
+    "intact-vue": "^0.5.4",
     "monaco-editor": "^0.17.0",
     "mxgraphx": "^4.0.7",
     "resize-observer-polyfill": "^1.5.0",
