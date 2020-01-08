@@ -24,7 +24,8 @@ English | [简体中文](./README-zh_CN.md)
 * Complete custom theme system.
 * 360° locate popup layer.
 * Declarative form validation.
-* Excellent [documents](https://ksc-fe.github.io/kpc/) and unit tests.
+* Excellent [documents](https://ksc-fe.github.io/kpc/) and design
+* 90% coverage unit tests.
 
 ## Browsers Support
 
