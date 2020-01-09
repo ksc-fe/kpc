@@ -21,3 +21,4 @@ sidebar: doc
 | parser | 与`formatter`结合使用，定义解析格式化的值的函数 | `Function` | `undefined` |
 | prefix | 定义展示的值的前缀，优先级低于`formatter` | `String` | `undefined` |
 | suffix | 定义展示的值的后缀，优先级低于`formatter` | `String` | `undefined` |
+| width | 指定`Input`输入框的宽度 | `String` &#124; `Number` | `undefined` |
