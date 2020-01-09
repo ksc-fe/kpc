@@ -45,10 +45,14 @@ sidebar: doc
 
 # 扩展点
 
+## Select
+
+| 名称 | 说明 | 参数 |
+| --- | --- | --- |
+| value | 自定义选择结果的展示 | `value, label` |
+
 ## OptionGroup
 
 | 名称 | 说明 |
 | --- | --- |
 | label | 定义复杂的分组标签名 |
-
-

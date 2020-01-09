@@ -14,6 +14,11 @@ const {
     container, inline, loading, position
 } = self.get();
 
+/* istanbul ignore if */
+if (filterable && blocks.value) {
+    _e(new Error(`You can't specify "value" extension point with 'filterable'.`));
+}
+
 let _activeLabel = self.get('_activeLabel');
 
 const _placeholder = placeholder == null ?
@@ -254,7 +259,11 @@ if (hasValue && labelObj.label == null && !labelObj.labels.length) {
                     fluid
                 />
                 <span class="k-placeholder c-ellipsis" v-else-if={{ !filterable && !hasValue }}>{{ _placeholder }}</span>
-                <span class="k-value c-ellipsis" v-else-if={{ !multiple }}>{{ labelObj.label }}</span>
+                <span class="k-value c-ellipsis" v-else-if={{ !multiple }}>
+                    <b:value args={{ [value, labelObj.label] }}>
+                        {{ labelObj.label }}
+                    </b:value>
+                </span>
                 <Animate a:tag="span" a:disabled class="k-values" v-else>
                     <Animate a:tag="span" class="k-select-tag" 
                         v-for={{ labelObj.labels }} 
@@ -263,8 +272,12 @@ if (hasValue && labelObj.label == null && !labelObj.labels.length) {
                         key={{ value[index] }}
                         a:transition="c-fade"
                     >
-                        <span class="k-text">{{ item }}</span>
-                        <Icon class="ion-ios-close-empty"
+                        <span class="k-text">
+                            <b:value args={{ [value[index], item] }}>
+                                {{ item }}
+                            </b:value>
+                        </span>
+                        <Icon class="ion-ios-close-empty k-close"
                             ev-click={{ self._delete.bind(self, value[index]) }}
                         />
                     </Animate>
