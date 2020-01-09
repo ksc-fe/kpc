@@ -126,7 +126,7 @@ const content = <b:content>
         <Button type="primary" size="small"
             disabled={{ !value }}
             ev-click={{ self._confirm }}
-        >确定</Button>
+        >{{ _$('确定') }}</Button>
     </div>
 </b:content>
 
