@@ -22,6 +22,7 @@ export default class Spinner extends Intact {
             parser: undefined,
             prefix: undefined,
             suffix: undefined,
+            width: undefined,
 
             _value: 0,
         };
@@ -40,6 +41,7 @@ export default class Spinner extends Intact {
         parser: Function,
         prefix: String,
         suffix: String,
+        width: [String, Number]
     }
 
     _init() {

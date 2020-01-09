@@ -4,7 +4,7 @@ import {getRestProps} from '../utils';
 
 const {
     className, disabled, max, min, step,
-    style, size, vertical, _value
+    style, size, vertical, _value, width,
 } = self.get();
 
 const classNameObj = {
@@ -29,6 +29,7 @@ const classNameObj = {
         value={{ _value }}
         ev-input={{ self._onInput }}
         size={{ size }}
+        width={{ width }}
     />
     <Button icon ev-click={{ self._increase }}
         disabled={{ self._disableIncrease() }}
