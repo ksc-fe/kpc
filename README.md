@@ -48,7 +48,7 @@ npm install kpc-vue --save
     <Button>Hello</Button>
 </template>
 <script>
-import {Button} from 'kpc';
+import {Button} from 'kpc-vue';
 
 export default {
     components: {
@@ -70,7 +70,7 @@ npm install kpc-react --save
 
 ```jsx
 import React from 'react';
-import {Button} from 'kpc';
+import {Button} from 'kpc-react';
 
 class App extends React.Component {
     render() {
