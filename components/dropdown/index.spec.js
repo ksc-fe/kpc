@@ -176,4 +176,28 @@ describe('Dropdown', () => {
         await wait(500);
         expect(getElement('.k-dropdown-menu')).to.be.undefined;
     });
+
+    it('should ignore whitespace between real elements', () => {
+        class Demo extends Intact {
+            @Intact.template({skipWhitespace: false})
+            static template = `
+                <div>
+                    <Dropdown>
+                        <div ref="trigger">hover</div>
+                        <DropdownMenu>
+                            <DropdownItem>test</DropdownItem>
+                        </DropdownMenu>
+                    </Dropdown>
+                </div>
+            `;
+            _init() {
+                this.Dropdown = Dropdown;
+                this.DropdownItem = DropdownItem;
+                this.DropdownMenu = DropdownMenu;
+            }
+        }
+        instance = mount(Demo);
+        dispatchEvent(instance.refs.trigger, 'click');
+        expect(getElement('.k-dropdown-menu').innerHTML.trim()).to.eql('<div class="k-item">test</div>');
+    });
 });

@@ -2,9 +2,15 @@ import Intact from 'intact';
 import Dropdown from './dropdown';
 import DropdownMenu from './menu';
 import DropdownItem from './item';
-import {config} from '../utils';
+import {config, isTextVNode} from '../utils';
 
 const {h} = Intact.Vdt.miss;
+const isEmptyString = (vNode) => {
+    const type = typeof vNode;
+    if (type === 'string') return vNode.trim() === '';
+    if (type === 'object') return isTextVNode(vNode) && vNode.children.trim() === '';
+    return false;
+}
 
 function Wrapper(props, flag) {
     let {
@@ -12,7 +18,24 @@ function Wrapper(props, flag) {
         ref, ...rest
     } = props;
 
-    const [element, menu] = children;
+    // const [element, menu] = children;
+    // ignore whitespaces
+    let element;
+    let menu;
+    let length = children.length;
+    let i = 0;
+    for (; i < length; i++) {
+        element = children[i];
+        if (!isEmptyString(element)) {
+            break;
+        } 
+    }
+    for (i = i + 1; i < length; i++) {
+        menu = children[i];
+        if (!isEmptyString(menu)) {
+            break;
+        }
+    }
 
     const dropdown = h(Dropdown, {
         key: key == null ? key : `${key}.trigger`,

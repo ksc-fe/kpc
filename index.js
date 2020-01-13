@@ -57,6 +57,7 @@ import {Timepicker} from './components/timepicker';
 import {Tip} from './components/tip';
 import {Tooltip} from './components/tooltip';
 import {Transfer} from './components/transfer';
+import {TreeSelect} from './components/treeSelect';
 import {Tree} from './components/tree';
 import {Upload} from './components/upload';
 
@@ -128,6 +129,7 @@ export {
     Tooltip,
     Transfer,
     Tree,
+    TreeSelect,
     Upload
 };
 
@@ -199,6 +201,7 @@ const components = {
     Tooltip,
     Transfer,
     Tree,
+    TreeSelect,
     Upload
 };
 
