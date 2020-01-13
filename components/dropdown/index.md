@@ -8,11 +8,6 @@ sidebar: doc
 > `kpc/component/dropdown`暴露出来的并非`Dropdown`组件本身，而是包装该组件的函数（vdt中称作宏函数）
 > 所以不要试图继承它。
 
-> 在`Vue`中使用时，如果出现类似下面的报错，请检查是否在`vue-loader`中关闭了保留空白字符的选项
-> `{ preserveWhitespace: false  }`
->
-> `TypeError: Cannot create property 'props' on string ' '`
-
 # 属性
 
 ## Dropdown
