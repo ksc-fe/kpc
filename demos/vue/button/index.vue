@@ -5,6 +5,9 @@
         <k-button>test</k-button>
         <test class="test">test</test>
         <ka><span>a</span></ka>
+        <transition name="c-fade">
+            <div v-if="show">hello</div>
+        </transition>
     </div>
 </template>
 
@@ -36,6 +39,7 @@ export default {
             loading0: false,
             loading1: false,
             city: 'beijing',
+            show: true,
         };
     },
 
@@ -48,6 +52,7 @@ export default {
     methods: {
         click() {
             console.log('click');
+            this.show = !this.show;
         },
         loading(name) {
             this[name] = true;
