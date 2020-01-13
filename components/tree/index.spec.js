@@ -125,11 +125,13 @@ describe('Tree', () => {
         instance = mount(SelectDemo);
 
         expect(instance.refs.tree.getSelectedData().length).to.eql(1);
-        const [, , text1, text2] = instance.element.querySelectorAll('.k-text');
+        const [, , text1, text2, , disabledText] = instance.element.querySelectorAll('.k-text');
         text1.click();
         expect(instance.refs.tree.getSelectedData().length).to.eql(2);
         text1.click();
         text2.click();
+        expect(instance.refs.tree.getSelectedData().length).to.eql(0);
+        disabledText.click();
         expect(instance.refs.tree.getSelectedData().length).to.eql(0);
     });
 

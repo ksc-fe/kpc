@@ -200,11 +200,13 @@ export default class Tree extends Intact {
     }
 
     _onClick(node, e) {
+        if (node.data.disabled) return;
         this.toggleSelect(node.key);
         this.trigger('click:node', node, e);
     }
 
     _onRightClick(node, e) {
+        if (node.data.disabled) return;
         this.trigger('rightclick:node', node, e);
     }
 
