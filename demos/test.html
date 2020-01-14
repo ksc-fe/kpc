@@ -12,14 +12,10 @@
 <body>
 	<div id="app">
         <div id="vue">
-            <k-dropdown>
-                <k-button type="primary">
-                    hover <k-icon class="ion-ios-arrow-down" />
-                </k-button>
-                <k-dropdown-menu>
-                    <k-dropdown-item>item 1</k-dropdown-item>
-                </k-dropdown-menu>
-            </k-dropdown>
+            <k-radio name="language" true-value="Javascript" v-model="language">Javascript</k-radio>
+            <k-radio name="language" true-value="C++" v-model="language">C++</k-radio>
+            <k-radio name="language" true-value="PHP" v-model="language">PHP</k-radio>
+            {{ language }}
         </div>
     </div>
     <script src="/node_modules/vue/dist/vue.js"></script>
@@ -30,7 +26,8 @@
         new Vue({
             el: '#vue',
             data: {
-                list: [{name: 'Javey'}]
+                list: [{name: 'Javey'}],
+                language: 'C++',
             },
             methods: {
                 change() {

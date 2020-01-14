@@ -16,6 +16,8 @@ export default class Radio extends Intact {
 
     static propTypes = {
         disabled: Boolean,
+        // declare for camelizing in Vue dom template
+        trueValue: undefined,
     }
 
     isChecked() {

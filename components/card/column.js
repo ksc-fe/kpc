@@ -5,6 +5,11 @@ export default class CardColumn extends Intact {
     @Intact.template()
     static template = template;
 
+    static propTypes = {
+        width: String,
+        center: Boolean,
+    };
+
     defaults() {
         return {
             width: undefined,

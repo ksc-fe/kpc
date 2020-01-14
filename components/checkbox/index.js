@@ -21,6 +21,9 @@ export default class Checkbox extends Intact {
     static propTypes = {
         disabled: Boolean,
         indeterminate: Boolean,
+        // declare for camelizing in Vue dom template
+        trueValue: undefined,
+        falseValue: undefined,
     }
 
     // set value to falseValue when destroy
