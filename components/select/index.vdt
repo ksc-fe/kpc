@@ -245,7 +245,7 @@ if (hasValue && labelObj.label == null && !labelObj.labels.length) {
             <div class="k-prefix" v-if={{ blocks.prefix }}>
                 <b:prefix />
             </div>
-            <div class="k-main">
+            <Animate a:disabled class="k-main">
                 <input type="hidden" value={{ value }} name={{ name }} />
                 <Input v-if={{ !multiple && filterable }}
                     value={{ keywords == null ? labelObj.label : keywords }}
@@ -264,7 +264,7 @@ if (hasValue && labelObj.label == null && !labelObj.labels.length) {
                         {{ labelObj.label }}
                     </b:value>
                 </span>
-                <Animate a:tag="span" a:disabled class="k-values" v-else>
+                <Animate a:tag="span" a:transition="c-fade" class="k-values" v-else>
                     <Animate a:tag="span" class="k-select-tag" 
                         v-for={{ labelObj.labels }} 
                         v-for-value="item"
@@ -293,7 +293,7 @@ if (hasValue && labelObj.label == null && !labelObj.labels.length) {
                         size={{ size }}
                     />
                 </Animate>
-            </div>
+            </Animate>
             <span class="k-suffix" v-if={{ !hideIcon || clearable || loading || blocks.suffix }}>
                 <Icon v-if={{ clearable }}
                     class={{ {"k-clear ion-ios-close": true, "k-show": hasValue} }}
