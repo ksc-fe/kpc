@@ -1,0 +1,29 @@
+import Tree from '../tree';
+import {DropdownMenu} from '../dropdown';
+
+const {data, value, multiple, checkbox} = self.get();
+const {label, labels} = self;
+
+const Menu = (
+    <DropdownMenu
+        ref="menu"
+        class={{ {
+            'k-select-dropdown': true,
+            'k-tree-select-dropdown': true,
+        } }}
+        ev-$changed:value={{ self._position }}
+        ev-$change:value={{ self._onChangeShow }}
+    >
+        <Tree data={{ data }}
+            v-model:selectedKeys="_selectedKeys"
+            v-model:checkedKeys="_checkedKeys"
+            ev-click:node={{ self._select }}
+            multiple={{ multiple }}
+            checkbox={{ checkbox }}
+            selectable={{ !checkbox }}
+            ev-transitionEnd={{ self._refreshPosition }}
+        />
+    </DropdownMenu>
+) 
+
+<t:parent Menu={{ Menu }} labelObj={{ {label, labels} }} />

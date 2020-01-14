@@ -85,10 +85,16 @@ export default class Select extends Intact {
 
     _init() {
         this.on('$changed:value', () => {
-            if (this.get('multiple') && this.get('_show')) {
-                this.refs.menu.position();
+            if (this.get('multiple')) {
+                this._refreshPosition();
             }
         });
+    }
+
+    _refreshPosition() {
+        if (this.get('_show')) {
+            this.refs.menu.position();
+        }
     }
 
     _onClear(e) {

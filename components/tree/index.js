@@ -3,7 +3,7 @@ import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
 import Node from './node';
-import {debounce} from '../utils';
+import {debounce, expandAnimationCallbacks} from '../utils';
 import {BEFORE, AFTER, INNER, RANGE} from './constants';
 
 export default class Tree extends Intact {
@@ -34,6 +34,7 @@ export default class Tree extends Intact {
         'denydrag': true,
         'denydrop': true,
         'dragend': true,
+        'transitionEnd': true,
     };
 
     defaults() {
@@ -75,6 +76,19 @@ export default class Tree extends Intact {
         this.on('$receive:uncorrelated', this._mappingKeys);
 
         this._handleDragOver = debounce(this._handleDragOver, 100);
+
+        // add transitionEnd event
+        this.expandAnimationCallbacks = {...expandAnimationCallbacks};
+        const leaveEnd = expandAnimationCallbacks['ev-a:leaveEnd'];
+        const enterEnd = expandAnimationCallbacks['ev-a:enterEnd'];
+        this.expandAnimationCallbacks['ev-a:leaveEnd'] = (el, isCancel) => {
+            this.trigger('transitionEnd');
+            leaveEnd(el, isCancel);
+        };
+        this.expandAnimationCallbacks['ev-a:enterEnd'] = (el, isCancel) => {
+            enterEnd(el, isCancel);
+            this.trigger('transitionEnd');
+        };
     }
 
     _mappingKeys() {
