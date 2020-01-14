@@ -21,6 +21,7 @@ sidebar: doc
 | allowDrag | 指定哪些节点可拖拽 | `Function` | `undefined` |
 | allowDrop | 指定哪些节点可以插入子节点 | `Function` | `undefined` |
 | uncorrelated | 是否让父子`checkbox`选中状态互不关联 | `Boolean` | `false` |
+| selectable | 节点是否可选中，默认为`true`可选中 | `Boolean` | `true` |
 
 ## 实例属性
 

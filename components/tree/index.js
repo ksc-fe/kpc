@@ -25,6 +25,7 @@ export default class Tree extends Intact {
         allowDrag: Function,
         allowDrop: Function,
         uncorrelated: Boolean,
+        selectable: Boolean,
     };
 
     static events = {
@@ -49,6 +50,7 @@ export default class Tree extends Intact {
             allowDrag: undefined,
             allowDrop: undefined,
             uncorrelated: false,
+            selectable: true,
         }
     }
 
@@ -201,7 +203,9 @@ export default class Tree extends Intact {
 
     _onClick(node, e) {
         if (node.data.disabled) return;
-        this.toggleSelect(node.key);
+        if (this.get('selectable')) {
+            this.toggleSelect(node.key);
+        }
         this.trigger('click:node', node, e);
     }
 

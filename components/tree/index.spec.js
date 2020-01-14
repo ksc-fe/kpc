@@ -133,6 +133,11 @@ describe('Tree', () => {
         expect(instance.refs.tree.getSelectedData().length).to.eql(0);
         disabledText.click();
         expect(instance.refs.tree.getSelectedData().length).to.eql(0);
+
+        // disable select
+        instance.refs.tree.set('selectable', false);
+        text1.click();
+        expect(instance.refs.tree.getSelectedData().length).to.eql(0);
     });
 
     it('draggable', function() {

@@ -21,6 +21,7 @@ const data = self.get('data');
     <br />
     <br />
     <Tree data={{ data }} 
+        selectable={{ false }}
         checkbox
         ref="tree"
         v-model:checkedKeys="checkedKeys"
