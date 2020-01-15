@@ -65,22 +65,24 @@ export default class Tree extends Intact {
 
         this.on('$receive:checkedKeys', () => {
             this.checkedKeys = new Set(this.get('checkedKeys'));
-            this._mappingKeys();
-        });
-        this.on('$receive:data', () => {
-            this._mappingKeys();
-            if (!this.rendered && this.get('defaultExpandAll')) {
-                this.expandAll();
-            }
         });
         this.on('$receive:expandedKeys', () => {
             this.expandedKeys = new Set(this.get('expandedKeys'));
         });
-        this.on('$receive:filter', this._mappingKeys);
         this.on('$receive:selectedKeys', () => {
             this.selectedKeys = new Set(this.get('selectedKeys'));
         });
-        this.on('$receive:uncorrelated', this._mappingKeys);
+
+        // re-mapping keys
+        const keys = ['checkedKeys', 'data', 'filter', 'uncorrelated'];
+        this.on('$receive', (c, changedKeys) => {
+            if (keys.find(key => changedKeys.indexOf(key) > -1)) {
+                this._mappingKeys();
+            }
+            if (!this.rendered && this.get('defaultExpandAll') && changedKeys.indexOf('data') > -1) {
+                this.expandAll();
+            }
+        });
 
         this._handleDragOver = debounce(this._handleDragOver, 100);
 
@@ -99,11 +101,14 @@ export default class Tree extends Intact {
     }
 
     expandAll() {
+        const {load} = this.get();
         const keys = [];
         const loop = (children) => {
             for (let i = 0; i < children.length; i++) {
                 const node = children[i];
-                keys.push(node.key);
+                if (!load || node.loaded) {
+                    keys.push(node.key);
+                }
                 if (node.children) {
                     loop(node.children);
                 }
