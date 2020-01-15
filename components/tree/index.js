@@ -61,7 +61,7 @@ export default class Tree extends Intact {
         this.checkedKeys = new Set();
         this.expandedKeys = new Set();
         this.selectedKeys = new Set();
-        this.root = Node.createNode({}, null, this);
+        this.root = Node.createNode({children: this.get('data')}, null, this);
 
         this.on('$receive:checkedKeys', () => {
             this.checkedKeys = new Set(this.get('checkedKeys'));

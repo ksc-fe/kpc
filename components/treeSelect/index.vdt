@@ -1,7 +1,7 @@
 import Tree from '../tree';
 import {DropdownMenu} from '../dropdown';
 
-const {data, value, multiple, checkbox, _checkedKeys} = self.get();
+const {data, value, multiple, checkbox, _checkedKeys, load} = self.get();
 const {label, labels} = self;
 
 const Menu = (
@@ -15,6 +15,7 @@ const Menu = (
         ev-$change:value={{ self._onChangeShow }}
     >
         <Tree data={{ data }}
+            defaultExpandAll
             v-model:selectedKeys="_selectedKeys"
             checkedKeys={{ _checkedKeys }}
             ev-$change:checkedKeys={{ self._onCheckedKeysChange }}
@@ -24,6 +25,7 @@ const Menu = (
             selectable={{ !checkbox }}
             ev-transitionEnd={{ self._refreshPosition }}
             ref="tree"
+            load={{ load }}
         />
     </DropdownMenu>
 ) 

@@ -93,6 +93,7 @@ describe('Tree', () => {
         const [btn1, btn2] = element.querySelectorAll('.k-btn');
         btn1.click();
         expect(element.outerHTML).to.matchSnapshot();
+        expect(instance.get('data')).to.matchSnapshot();
 
         btn2.click();
         expect(element.outerHTML).to.matchSnapshot();
@@ -107,6 +108,7 @@ describe('Tree', () => {
         checkbox1.click();
         checkbox1.parentNode.querySelector('.k-btn:nth-child(2)').click();
         expect(element.outerHTML).to.matchSnapshot();
+        expect(instance.get('data')).to.matchSnapshot();
     });
 
     it('filterable', async () => {
@@ -188,12 +190,15 @@ describe('Tree', () => {
         }).then(() => {
             expect(element.innerHTML).to.matchSnapshot();
             expect(onDragEnd.callCount).to.eql(1);
+            expect(instance.get('data')).to.matchSnapshot();
             return dragInsert(labels[6], labels[5], 'after');
         }).then(() => {
             expect(element.innerHTML).to.matchSnapshot();
+            expect(instance.get('data')).to.matchSnapshot();
             return dragInsert(labels[6], labels[5]);
         }).then(() => {
             expect(element.innerHTML).to.matchSnapshot();
+            expect(instance.get('data')).to.matchSnapshot();
         });
     });
 });

@@ -125,10 +125,12 @@ export default class Node {
             data = [data];
         }
         const children = this.children || (this.children = []);
+        const originChildren = this.data.children || (this.data.children = []);
         const needRecheckNodes = [];
         data.forEach(item => {
             const node = Node.createNode(item, this, this.tree, needRecheckNodes);
             children.push(node);
+            originChildren.push(item);
         });
 
         this.tree.expand(this.key, false);
@@ -137,12 +139,14 @@ export default class Node {
 
     remove(noUpdate) {
         const siblings = this.parent.children;
+        const originSiblings = this.parent.data.children;
         const index = siblings.indexOf(this);
 
         if (!~index) {
             return;
         }
         siblings.splice(index, 1);
+        originSiblings.splice(index, 1);
 
         if (noUpdate) return;
         this.updateUpward();
@@ -151,7 +155,10 @@ export default class Node {
 
     _insert(node, index) {
         const siblings = node.parent.children;
-        siblings.splice(siblings.indexOf(node) + index, 0, this);
+        const originSiblings = node.parent.data.children;
+        index = siblings.indexOf(node) + index;
+        siblings.splice(index, 0, this);
+        originSiblings.splice(index, 0, this.data);
         this.parent = node.parent;
         this.updateUpward();
         this.tree.update();
@@ -168,7 +175,9 @@ export default class Node {
     appendTo(node) {
         this.parent = node;
         const children = node.children || (node.children = []);
+        const originChildren = node.data.children || (node.data.children = []);
         children.push(this);
+        originChildren.push(this.data);
         this.tree.expand(node.key, false);
         this.tree.update();
     }

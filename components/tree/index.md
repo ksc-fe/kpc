@@ -52,7 +52,7 @@ sidebar: doc
 | 方法名 | 说明 | 参数 | 返回值 |
 | --- | --- | --- | --- |
 | append | 追加子节点 | 要追加的子节点数据，或子节点数据数组 | `undefined` |
-| remove | 删除档期节点 | - | `undefined` |
+| remove | 删除节点 | - | `undefined` |
 
 # 扩展点
 
