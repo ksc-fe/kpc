@@ -184,10 +184,11 @@ export default class Select extends Intact {
     _position() {
         const menuElement = this.refs.menu.vdt.vNode.children.element;
         const width = this.element.offsetWidth;
-        const menuWidth = menuElement.offsetWidth;
-        if (width > menuWidth) {
-            menuElement.style.width = `${width}px`;
-        }
+        // const menuWidth = menuElement.offsetWidth;
+        // if (width > menuWidth) {
+            // menuElement.style.width = `${width}px`;
+        // }
+        menuElement.style.minWidth = `${width}px`;
     }
 
     _onKeypress(e) {
