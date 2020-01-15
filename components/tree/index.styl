@@ -58,10 +58,11 @@
                 transform rotate(0)
         // disabled
         &.k-disabled
-            cursor not-allowed
-            .k-label
-            .k-icon
+            // cursor not-allowed
+            > .k-label
                 color $tree-disabled-color 
+                .k-text
+                    cursor not-allowed
         // selected
         &.k-selected
             > .k-label .k-text

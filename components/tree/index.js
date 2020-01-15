@@ -26,6 +26,7 @@ export default class Tree extends Intact {
         allowDrop: Function,
         uncorrelated: Boolean,
         selectable: Boolean,
+        defaultExpandAll: Boolean,
     };
 
     static events = {
@@ -52,6 +53,7 @@ export default class Tree extends Intact {
             allowDrop: undefined,
             uncorrelated: false,
             selectable: true,
+            defaultExpandAll: false,
         }
     }
 
@@ -65,7 +67,12 @@ export default class Tree extends Intact {
             this.checkedKeys = new Set(this.get('checkedKeys'));
             this._mappingKeys();
         });
-        this.on('$receive:data', this._mappingKeys);
+        this.on('$receive:data', () => {
+            this._mappingKeys();
+            if (!this.rendered && this.get('defaultExpandAll')) {
+                this.expandAll();
+            }
+        });
         this.on('$receive:expandedKeys', () => {
             this.expandedKeys = new Set(this.get('expandedKeys'));
         });
@@ -91,6 +98,22 @@ export default class Tree extends Intact {
         };
     }
 
+    expandAll() {
+        const keys = [];
+        const loop = (children) => {
+            for (let i = 0; i < children.length; i++) {
+                const node = children[i];
+                keys.push(node.key);
+                if (node.children) {
+                    loop(node.children);
+                }
+            }
+        };
+        loop(this.root.children);
+        this.set('expandedKeys', keys);
+        this.expandedKeys = new Set(keys);
+    }
+
     _mappingKeys() {
         const needRecheckNodes = [];
         this.root.children = Node.createNodes(
@@ -103,7 +126,8 @@ export default class Tree extends Intact {
     }
 
     async _toggleExpand(node, expanded, e) {
-        if (node.data.disabled) return;
+        // we can also expand or shrink disabled node
+        // if (node.data.disabled) return;
         
         const {load} = this.get();
         if (load && !expanded && !node.loaded) {
