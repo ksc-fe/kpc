@@ -30,11 +30,15 @@
     .k-weekday
         display inline-block
         height $datepicker-day-width 
-        width $datepicker-day-width 
         border 1px solid transparent
         line-height s('calc(%s - 2px)', $datepicker-day-width)
         text-align center
+    .k-day
+        width $datepicker-day-width 
         margin $datepicker-day-margin 
+    .k-weekday
+        width $datepicker-weekday-width
+        margin $datepicker-weekday-margin 
     .k-day
         border-radius 50%
         cursor pointer

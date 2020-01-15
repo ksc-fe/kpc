@@ -26,6 +26,8 @@ $datepicker-day-disabled-hover-bg-color := none
 
 // weekday
 $datepicker-weekday-color := inherit 
+$datepicker-weekday-width := $datepicker-day-width + getLeft($datepicker-day-margin) + getRight($datepicker-day-margin)
+$datepicker-weekday-margin := unit(7 / $rem, rem) 0
 
 // month
 $datepicker-month-padding := 0 unit(6 / $rem, rem) unit(12 / $rem, rem)
