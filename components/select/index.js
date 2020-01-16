@@ -85,10 +85,14 @@ export default class Select extends Intact {
 
     _init() {
         this.on('$changed:value', () => {
-            if (this.get('multiple')) {
+            if (this._isMultiple()) {
                 this._refreshPosition();
             }
         });
+    }
+
+    _isMultiple() {
+        return this.get('multiple');
     }
 
     _refreshPosition() {
@@ -103,7 +107,7 @@ export default class Select extends Intact {
     }
 
     _onSelect(value) {
-        if (!this.get('multiple')) {
+        if (!this._isMultiple()) {
             this.set('value', value, {async: true});
         } else {
             let values = this.get('value');
@@ -214,11 +218,11 @@ export default class Select extends Intact {
     }
 
     handleProps(props, labelObj) {
-        const {multiple, value, filterable, keywords, filter} = this.get();
+        const {value, filterable, keywords, filter} = this.get();
         let active = false;
         let valid = false;
 
-        if (!multiple) {
+        if (!this._isMultiple()) {
             if (props.value === value) {
                 // set label
                 labelObj.label = props.label;

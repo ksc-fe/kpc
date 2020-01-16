@@ -56,22 +56,8 @@ export default class TreeSelect extends Select {
     _init() {
         super._init();
 
-        this.on('$receive', (c, keys) => {
-            const {checkbox, multiple} = this.get();
-            if (keys.indexOf('checkbox') > -1) {
-                if (checkbox) {
-                    this.set('multiple', true, {silent: true});
-                } else if (keys.indexOf('multiple') < 0) {
-                    this.set('multiple', false, {silent: true});
-                }
-            } else {
-                if (keys.indexOf('multiple') < 0) {
-                    this.set('multiple', false, {silent: true});
-                }
-            }
-        });
         this.on('$change:value', (c, v) => {
-            if (!this.get('multiple')) {
+            if (!this._isMultiple()) {
                 v = [v];
             }
             this.set({
@@ -81,13 +67,19 @@ export default class TreeSelect extends Select {
         });
     }
 
+    _isMultiple() {
+        const {checkbox, multiple} = this.get();
+        return checkbox || multiple;
+    }
+
     _initLabels() {
-        const {data, value, multiple, checkbox} = this.get();
+        const {data, value, checkbox} = this.get();
         this.label = null;
         const labels = this.labels = [];
 
         if (!data || value === undefined) return;
 
+        const multiple = this._isMultiple();
         let counts = 0;
         const loop = (children) => {
             return children.find(item => {
@@ -116,12 +108,11 @@ export default class TreeSelect extends Select {
     }
 
     _select(node, e) {
-        const {multiple, checkbox, _checkedKeys} = this.get();
+        const {checkbox, _checkedKeys} = this.get();
         const key = node.key;
         if (!checkbox) {
             this._onSelect(key);
-            if (!multiple) {
-                // this.set({_selectedKeys: [key]}, {async: true});
+            if (!this._isMultiple()) {
                 this.refs.menu.hide(true);
             }
         } else {

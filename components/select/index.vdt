@@ -7,7 +7,7 @@ import {Tabs, Tab} from '../tabs';
 import Icon from '../icon';
 
 const {
-    className, clearable, data, value, multiple,
+    className, clearable, data, value,
     disabled, filterable, keywords, _show,
     placeholder, size, style, name, children,
     fluid, width, allowUnmatch, card, hideIcon,
@@ -18,6 +18,8 @@ const {
 if (filterable && blocks.value) {
     _e(new Error(`You can't specify "value" extension point with 'filterable'.`));
 }
+
+const multiple = self._isMultiple();
 
 let _activeLabel = self.get('_activeLabel');
 
