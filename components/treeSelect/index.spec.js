@@ -31,5 +31,10 @@ describe('TreeSelect', () => {
         node1.click();
         node2.click();
         expect(instance.get('values')).to.eql(['1', '1.1']);
+        node1.click();
+        expect(instance.get('values')).to.eql(['1.1']);
+
+        instance.set('values', ['1']);
+        expect(dropdown.innerHTML).to.matchSnapshot();
     });
 });

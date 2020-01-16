@@ -79,10 +79,6 @@ export default class TreeSelect extends Select {
                 '_checkedKeys': v,
             }, {async: true});
         });
-
-        // this._initLabels(this.get('value'));
-        // this.on('$receive:value', (c, v) => this._initLabels(v));
-        // this.on('_before:change:value', this._initLabels);
     }
 
     _initLabels() {
@@ -135,6 +131,8 @@ export default class TreeSelect extends Select {
     }
 
     _onCheckedKeysChange(tree, keys) {
+        if (!this.get('checkbox')) return;
+
         const value = this._getAllCheckedKeys(tree)
         // to make bellow do not update tree
         tree.set('checkedKeys', value, {silent: true});
