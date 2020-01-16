@@ -5,6 +5,8 @@ const {
     data, value, multiple, checkbox,
     _checkedKeys, load, filterable
 } = self.get();
+
+self._initLabels();
 const {label, labels} = self;
 
 const Menu = (
@@ -21,7 +23,7 @@ const Menu = (
             defaultExpandAll
             v-model:selectedKeys="_selectedKeys"
             checkedKeys={{ _checkedKeys }}
-            ev-$change:checkedKeys={{ self._onCheckedKeysChange }}
+            ev-$changed:checkedKeys={{ self._onCheckedKeysChange }}
             ev-click:node={{ self._select }}
             multiple={{ multiple }}
             checkbox={{ checkbox }}

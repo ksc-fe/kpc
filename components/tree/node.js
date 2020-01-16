@@ -13,7 +13,7 @@ export default class Node {
             if (checked && !parent.checked) {
                 // need look back
                 needRecheck = true;
-            } else {
+            } else if (!data.disabled) {
                 checked = parent.checked;
             }
         }

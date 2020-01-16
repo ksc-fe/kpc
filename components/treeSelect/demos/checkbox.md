@@ -12,6 +12,7 @@ order: 2
 import {TreeSelect} from 'kpc';
 
 <TreeSelect
+    v-model="values"
     checkbox
     data={{ [
         {

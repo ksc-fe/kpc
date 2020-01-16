@@ -70,9 +70,19 @@ export default class TreeSelect extends Select {
                 }
             }
         });
+        this.on('$change:value', (c, v) => {
+            if (!this.get('multiple')) {
+                v = [v];
+            }
+            this.set({
+                '_selectedKeys': v,
+                '_checkedKeys': v,
+            }, {async: true});
+        });
 
-        this._initLabels();
-        this.on('$change:value', this._initLabels);
+        // this._initLabels(this.get('value'));
+        // this.on('$receive:value', (c, v) => this._initLabels(v));
+        // this.on('_before:change:value', this._initLabels);
     }
 
     _initLabels() {
@@ -115,7 +125,7 @@ export default class TreeSelect extends Select {
         if (!checkbox) {
             this._onSelect(key);
             if (!multiple) {
-                this.set({_selectedKeys: [key]}, {async: true});
+                // this.set({_selectedKeys: [key]}, {async: true});
                 this.refs.menu.hide(true);
             }
         } else {
@@ -124,15 +134,17 @@ export default class TreeSelect extends Select {
         }
     }
 
-    _onCheckedKeysChange(c, keys) {
-        const value = this._getAllCheckedKeys();
+    _onCheckedKeysChange(tree, keys) {
+        const value = this._getAllCheckedKeys(tree)
+        // to make bellow do not update tree
+        tree.set('checkedKeys', value, {silent: true});
         this.set({
-            _checkedKeys: keys,
+            _checkedKeys: value,
             value,
         });
     }
 
-    _getAllCheckedKeys() {
+    _getAllCheckedKeys(tree) {
         const keys = [];
         const loop = (children) => {
             for (let i = 0; i < children.length; i++) {
@@ -146,7 +158,7 @@ export default class TreeSelect extends Select {
                 }
             }
         }
-        loop(this.refs.tree.root.children);
+        loop(tree.root.children);
 
         return keys;
     }

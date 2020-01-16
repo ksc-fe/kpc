@@ -10,6 +10,7 @@ order: 1
 import {TreeSelect} from 'kpc';
 
 <TreeSelect
+    v-model="values"
     multiple
     data={{ [
         {
