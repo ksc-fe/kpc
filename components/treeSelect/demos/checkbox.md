@@ -9,7 +9,7 @@ order: 2
 2. 如果父节点未勾选，则获取叶子节点取值
 
 ```vdt
-import {TreeSelect} from 'kpc';
+import {TreeSelect} from 'kpc/components/treeSelect';
 
 <TreeSelect
     v-model="values"

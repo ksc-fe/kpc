@@ -5,9 +5,8 @@ order: 4
 
 指定`filterable`支持筛选，组件会同时对节点的`label`和`key`进行筛选，你也可以通过`filter`属性来自定义筛选函数
 
-
 ```vdt
-import {TreeSelect} from 'kpc';
+import {TreeSelect} from 'kpc/components/treeSelect';
 
 <TreeSelect
     data={{ [

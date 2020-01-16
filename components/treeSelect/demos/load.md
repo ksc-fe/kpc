@@ -12,9 +12,8 @@ order: 3
 组件默认遇到`children`为`[]`空数组的情况就会去进行异步加载，你可以通过`loaded`属性设为`true`来
 标识该子节点已经加载完成，无需再次加载
 
-
 ```vdt
-import {TreeSelect} from 'kpc';
+import {TreeSelect} from 'kpc/components/treeSelect';
 
 <TreeSelect data={{ self.get('data') }} 
     load={{ self._loadData }}

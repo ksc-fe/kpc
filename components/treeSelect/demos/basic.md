@@ -14,7 +14,7 @@ order: 0
 5. `loaded` 节点的子节点是否已经加载完成，当节点做异步加载时，将不会对该节点调用`load`方法，详见“异步加载”
 
 ```vdt
-import {TreeSelect} from 'kpc';
+import {TreeSelect} from 'kpc/components/treeSelect';
 
 <TreeSelect
     v-model="value"

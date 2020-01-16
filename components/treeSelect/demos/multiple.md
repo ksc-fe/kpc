@@ -5,9 +5,8 @@ order: 1
 
 添加`multiple`属性支持多选
 
-
 ```vdt
-import {TreeSelect} from 'kpc';
+import {TreeSelect} from 'kpc/components/treeSelect';
 
 <TreeSelect
     v-model="values"
