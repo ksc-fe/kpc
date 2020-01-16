@@ -1,7 +1,10 @@
 import Tree from '../tree';
 import {DropdownMenu} from '../dropdown';
 
-const {data, value, multiple, checkbox, _checkedKeys, load} = self.get();
+const {
+    data, value, multiple, checkbox,
+    _checkedKeys, load, filterable
+} = self.get();
 const {label, labels} = self;
 
 const Menu = (
@@ -26,6 +29,7 @@ const Menu = (
             ev-transitionEnd={{ self._refreshPosition }}
             ref="tree"
             load={{ load }}
+            filter={{ filterable ? self._filter : undefined }}
         />
     </DropdownMenu>
 ) 

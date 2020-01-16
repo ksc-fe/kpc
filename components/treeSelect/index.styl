@@ -1,11 +1,14 @@
 @require('./variables.styl')
 
 .k-tree-select-dropdown
-    max-height 400px
-    padding 3px 6px
+    max-height $tree-select-dropdown-max-height
+    padding $tree-select-dropdown-padding 
     transition top $transition
     .k-label
-        display flex
-        margin 3px 0
+        display $tree-select-dropdown-label-display 
+        margin $tree-select-dropdown-margin 
     .k-text
-        flex 1
+        flex $tree-select-dropdown-text-flex
+
+
+requireTheme('treeSelect')

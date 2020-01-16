@@ -7,6 +7,9 @@
     position relative
     .k-label
         position relative
+        > .k-icon
+        > .k-text
+            cursor pointer
         > .k-text
             display inline-block
             vertical-align middle
@@ -44,7 +47,6 @@
         transform rotate(-90deg)
         transition transform $transition
     .k-node
-        cursor pointer
         &:not(.k-disabled)
             > .k-label
                 .k-text:hover

@@ -3,6 +3,8 @@ title: 多选
 order: 1
 ---
 
+添加`multiple`属性支持多选
+
 
 ```vdt
 import {TreeSelect} from 'kpc';

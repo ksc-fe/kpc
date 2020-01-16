@@ -3,7 +3,7 @@ import template from './index.vdt';
 import Select from '../select';
 import '../../styles/kpc.styl';
 import './index.styl';
-import {toggleArray} from '../utils';
+import {toggleArray, isStringOrNumber} from '../utils';
 
 export default class TreeSelect extends Select {
     @Intact.template()
@@ -46,6 +46,7 @@ export default class TreeSelect extends Select {
             data: [],
             checkbox: false,
             load: undefined,
+            filter: undefined,
 
             _selectedKeys: [],
             _checkedKeys: [],
@@ -54,14 +55,6 @@ export default class TreeSelect extends Select {
 
     _init() {
         super._init();
-
-        // const resetMultiple = () => {
-            // if (this.get('checkbox')) {
-                // this.set('multiple', true, {silent: true});
-            // }
-        // };
-        // resetMultiple();
-        // this.on('$change:checkbox', resetMultiple);
 
         this.on('$receive', (c, keys) => {
             const {checkbox, multiple} = this.get();
@@ -80,16 +73,6 @@ export default class TreeSelect extends Select {
 
         this._initLabels();
         this.on('$change:value', this._initLabels);
-        // this.on('$change:value', (c, v) => {
-            // const {multiple, checkbox} = this.get();
-            // if (!multiple && !checkbox) {
-                // v = [v];
-            // }
-            // this.set({
-                // '_selectedKeys': v,
-                // '_checkedKeys': v,
-            // }, {async: true});
-        // });
     }
 
     _initLabels() {
@@ -133,6 +116,7 @@ export default class TreeSelect extends Select {
             this._onSelect(key);
             if (!multiple) {
                 this.set({_selectedKeys: [key]}, {async: true});
+                this.refs.menu.hide(true);
             }
         } else {
             // check on click
@@ -165,6 +149,20 @@ export default class TreeSelect extends Select {
         loop(this.refs.tree.root.children);
 
         return keys;
+    }
+
+    _filter(data) {
+        let keywords = this.get('keywords');
+        if (!keywords || !(keywords = keywords.trim())) return true;
+
+        let filter = this.get('filter');
+        if (filter) return filter.call(this, keywords, data);
+
+        keywords = keywords.toLowerCase();
+
+        return data.label.toLowerCase().includes(keywords) ||
+            isStringOrNumber(data.key) && 
+            String(data.key).toLowerCase().includes(keywords);
     }
 }
 
