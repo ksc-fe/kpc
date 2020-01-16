@@ -83,7 +83,7 @@ export default class TreeSelect extends Select {
         let counts = 0;
         const loop = (children) => {
             return children.find(item => {
-                if (!multiple && !checkbox) {
+                if (!multiple) {
                     if (item.key === value) {
                         this.label = item.label;
                         return true;
