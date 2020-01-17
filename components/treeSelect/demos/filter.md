@@ -9,6 +9,7 @@ order: 4
 import {TreeSelect} from 'kpc/components/treeSelect';
 
 <TreeSelect
+    v-model="value"
     data={{ [
         {
             label: 'First floor-1',
