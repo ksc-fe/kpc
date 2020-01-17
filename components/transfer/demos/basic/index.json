@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>穿梭框基本用法，支持Shift进行多选。可以使用<code>v-model</code>来进行选择的值的双向绑定。</p>\n<blockquote>\n<p>你需要给每一行数据指定<code>key</code>，默认会取数据项中的<code>key</code>值，没有则会取<code>label</code>值。你也可以通过<code>keyName</code>属性来指定取哪个值当做<code>key</code></p>\n</blockquote>\n<blockquote>\n<p><code>value</code>选中的值为原始数据<code>data</code>数组中的同一引用。<code>@since v1.0.0</code> <code>value</code>中的数据不一定是<code>data</code>中的同一引用，而是通过<code>key</code>去判断是否是同一数据。</p>\n</blockquote>\n",
-    "index": 32,
+    "index": 35,
     "highlighted": [
         {
             "language": "vdt",

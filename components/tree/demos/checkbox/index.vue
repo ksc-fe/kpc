@@ -5,6 +5,7 @@
         <br />
         <br />
         <Tree :data="data" 
+            :selectable="false"
             checkbox
             ref="tree"
             :checkedKeys.sync="checkedKeys"

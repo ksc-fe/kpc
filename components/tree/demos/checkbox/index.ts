@@ -9,6 +9,7 @@ import {Component, ViewChild} from '@angular/core';
             <br />
             <br />
             <k-tree [data]="data" 
+                [selectable]="false"
                 [checkbox]="true"
                 #tree
                 [(checkedKeys)]="checkedKeys"

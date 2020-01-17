@@ -1,11 +1,11 @@
 {
     "setting": {
         "title": "加载状态",
-        "order": 13
+        "order": 21
     },
     "catalogs": [],
     "contents": "<p>给<code>Table</code>添加<code>loading</code>属性，即可展示加载状态</p>\n",
-    "index": 307,
+    "index": 321,
     "highlighted": [
         {
             "language": "vdt",

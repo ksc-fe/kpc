@@ -1,0 +1,5 @@
+import {TreeSelect} from 'kpc/components/treeSelect';
+
+<TreeSelect data={{ self.get('data') }} 
+    load={{ self._loadData }}
+/>

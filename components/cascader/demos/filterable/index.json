@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>添加<code>filterable</code>属性，即可实现搜索。默认会根据<code>label</code>进行搜索，你也可以通过<code>filter</code>属性，传入自定义的搜索逻辑，组件会将当前的搜索关键词和每一项数据作为参数传入</p>\n",
-    "index": 262,
+    "index": 276,
     "highlighted": [
         {
             "language": "vdt",

@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>格式化展示的值有两种方式：</p>\n<ol>\n<li>通过<code>formatter</code>和<code>parser</code>来定义格式化和解析的函数</li>\n<li>对于简单的添加单位的情况，组件提供了简单的使用方式，通过<code>prefix</code>定义前缀，<code>suffix</code>定义后缀</li>\n</ol>\n<blockquote>\n<p>当<code>formatter / parser</code>和<code>prefix / suffix</code>同时定义时，前者的优先级更高</p>\n</blockquote>\n",
-    "index": 218,
+    "index": 224,
     "highlighted": [
         {
             "language": "vdt",

@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>presets</code>定义组件的预选颜色，置为空数组时<code>[]</code>则不会展示预选颜色</p>\n",
-    "index": 105,
+    "index": 64,
     "highlighted": [
         {
             "language": "vdt",

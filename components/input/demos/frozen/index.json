@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>默认情况下<code>value</code>变化，就会更新视图的<code>value</code>值，但这会打断用户的输入，当添加<code>frozenOnInput</code>属性时，组件的<code>value</code>在输入的过程中被冻结，输入完成后，组件才会更新最新的<code>value</code>到视图。</p>\n<p>本例中，上面的<code>Input</code>你接着输入<code>d</code>，<code>value</code>会立即更新成<code>#dddddd</code>，但是下面的<code>Input</code>不会</p>\n",
-    "index": 279,
+    "index": 286,
     "highlighted": [
         {
             "language": "vdt",

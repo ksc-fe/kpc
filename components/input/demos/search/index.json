@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>组件库提供了<code>Search</code>组件，用于定义点击后展开的搜索框，该组件有两种类型，通过<code>type</code>属性指定，绑定<code>submit</code>事件用于提交搜索结果</p>\n<blockquote>\n<p>不要将该组件用于表单中，因为它本身就会渲染成独立的表单</p>\n</blockquote>\n",
-    "index": 263,
+    "index": 275,
     "highlighted": [
         {
             "language": "vdt",

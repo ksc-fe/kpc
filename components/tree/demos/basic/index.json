@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>data</code>属性指定渲染的数据，该属性的格式如下:</p>\n<ol>\n<li><code>label</code> 节点渲染的文案</li>\n<li><code>children</code> 节点的子节点，如果存在会在节点前面渲染展开箭头（空数组也会渲染），否则不会渲染箭头</li>\n<li><code>key</code> 节点的<code>key</code>，在整棵树中唯一。如果你需要操作节点的展开/选中情况，需要添加该属性，否则组件内部会分配一个\n唯一的id</li>\n<li><code>disabled</code> 是否禁用节点</li>\n<li><code>loaded</code> 节点的子节点是否已经加载完成，当节点做异步加载时，将不会对该节点调用<code>load</code>方法，详见“异步加载”</li>\n</ol>\n<p>你可以通过<code>expandedKeys</code>指定哪些节点展开，当你展开子节点时，需要指定父节点也展开</p>\n",
-    "index": 29,
+    "index": 32,
     "highlighted": [
         {
             "language": "vdt",

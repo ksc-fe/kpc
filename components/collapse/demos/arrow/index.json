@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>默认情况下箭头展示在标题右边，某些情况下，如：你需要在标题后面添加说明文字，我们可能需要将箭头展示在左边。指定<code>arrow</code>属性为<code>left</code>即可</p>\n",
-    "index": 194,
+    "index": 196,
     "highlighted": [
         {
             "language": "vdt",

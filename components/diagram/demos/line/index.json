@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>此示例展示线条的所有属性，需要说明的是：</p>\n<ol>\n<li><code>DLine</code>支持<code>startPoint</code>和<code>endPoint</code>来指定线条的起止点，但是一旦设置了线条的<code>from</code>和<code>to</code>属性，它们将不再生效；</li>\n<li><code>DLine</code>通过<code>from</code>和<code>to</code>指定连接的两个图形，但是线条具体的起止位置是根据图形的位置动态计算的，如果你需要固定\n起止位置为图形周长上的某个点，需要通过<code>exit</code>（起始位置）和<code>entry</code>（终止位置）来指定</li>\n</ol>\n",
-    "index": 167,
+    "index": 172,
     "highlighted": [
         {
             "language": "vdt",

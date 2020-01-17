@@ -74,6 +74,7 @@ export default class Demo extends React.Component {
                 <br />
                 <br />
                 <Tree data={data} 
+                    selectable={false}
                     checkbox
                     ref={i => this.tree = i}
                     checkedKeys={this.state.checkedKeys}
