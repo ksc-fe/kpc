@@ -42,6 +42,10 @@ export default class MoveWrapper extends Intact {
         }
     }
 
+    // toString() {
+        // return '<!--placeholder-->';
+    // }
+
     /**
      * @brief override super destroy 
      *
