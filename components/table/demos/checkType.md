@@ -1,6 +1,6 @@
 ---
 title: 选择框的类型
-order: 2
+order: 3
 ---
 
 通过`checkType`设置行选择类型，`checkbox`多选(默认) / `radio`单选 / `none`不可选

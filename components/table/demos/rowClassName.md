@@ -1,6 +1,6 @@
 ---
 title: 行样式
-order: 5
+order: 7
 ---
 
 `rowClassName`：给行添加样式，类型`Function`，默认：`function(value, index) {  }`，该函数返回的

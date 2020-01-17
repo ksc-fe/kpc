@@ -1,6 +1,6 @@
 ---
 title: 整行选中
-order: 4
+order: 6
 ---
 
 当行可选时，默认点击该行的任意区域都可选中或取消选中，但我们可以通过将`rowCheckable`设为`false`

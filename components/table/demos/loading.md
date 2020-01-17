@@ -1,6 +1,6 @@
 ---
 title: 加载状态 
-order: 13 
+order: 21
 ---
 
 给`Table`添加`loading`属性，即可展示加载状态

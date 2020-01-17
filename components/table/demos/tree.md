@@ -1,6 +1,6 @@
 ---
 title: 树形表格
-order: 16 
+order: 24
 ---
 
 如果`data`存在`children`属性，并且值为数组，则会展示树形表格

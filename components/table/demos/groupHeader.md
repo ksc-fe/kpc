@@ -1,6 +1,6 @@
 ---
 title: 表头分组
-order: 8.2
+order: 12
 ---
 
 `scheme`和`TableColumn`两种方式都可以定义分组的表头。`scheme`方式下，只需要嵌套定义`scheme`字段即可；

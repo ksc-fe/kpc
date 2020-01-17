@@ -1,6 +1,6 @@
 ---
 title: 导出表格
-order: 14 
+order: 22
 ---
 
 调用`Table`的`exportTable([data, [filename]])`方法，可以导出当前表格内容成`csv`格式。导出的文本

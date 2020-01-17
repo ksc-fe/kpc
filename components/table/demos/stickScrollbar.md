@@ -1,6 +1,6 @@
 ---
 title: 横向滚动条吸底
-order: 8.2
+order: 13
 ---
 
 `stickScrollbar`：当出现横向滚动条时，设置是否当表格底部没有滚动到视窗中时，将横向滚动条固定在页面底部，类型`Boolean` | `Number`，默认：`false`

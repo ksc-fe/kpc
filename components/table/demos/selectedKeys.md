@@ -1,6 +1,6 @@
 ---
 title: 行高亮
-order: 3.1
+order: 5
 ---
 
 给`Table`添加`rowSelectable`属性，可以让表格点击行时高亮改行，你可以指定值为`multiple`来支持多行

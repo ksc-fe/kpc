@@ -1,6 +1,6 @@
 ---
 title: 行选中
-order: 3
+order: 4
 ---
 
 通过`checkedKey`（radio类型）或者`checkedKeys`（checkbox类型）来控制哪些列被选中，默认他们的取值

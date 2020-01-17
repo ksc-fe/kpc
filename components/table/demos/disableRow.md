@@ -1,6 +1,6 @@
 ---
 title: 禁用行可选
-order: 7
+order: 9
 ---
 
 `disableRow`：禁用某一行可选状态，类型：`Function`，默认：`function(data, index) { return false }`，该函数

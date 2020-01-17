@@ -1,6 +1,6 @@
 ---
 title: 行提示 
-order: 15 
+order: 23
 ---
 
 通过`tooltip`扩展点，可以定义表格行的提示信息，通过`tooltipPosition`属性可以定义提示信息的弹出位置，组件会将

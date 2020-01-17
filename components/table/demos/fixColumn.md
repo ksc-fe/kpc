@@ -1,6 +1,6 @@
 ---
 title: 列固定
-order: 8.3
+order: 14
 ---
 
 给`TableColumn`或者`scheme`添加`fixed`属性，可以将列固定，其中`left`固定在左侧，`right`固定在右侧；

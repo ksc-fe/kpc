@@ -1,6 +1,6 @@
 ---
 title: 类型
-order: 11
+order: 19
 ---
 
 通过`type`设置表格的类型：`default` | `border` | `grid`

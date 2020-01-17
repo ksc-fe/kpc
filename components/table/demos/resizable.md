@@ -1,6 +1,6 @@
 ---
 title: 表头是否可拖动
-order: 12
+order: 20
 ---
 
 `resizable`：表头是否可拖动，类型`Boolean`，`false`(默认)。`Table`支持持久化存储列宽信息，只需要通过`storeWidth`
