@@ -14,10 +14,10 @@ import dayjs from 'dayjs';
 describe('Datepicker', () => {
     let instance;
 
-    afterEach(async () => {
-        unmount(instance);
-        await wait(400);
-    });
+    // afterEach(async () => {
+        // unmount(instance);
+        // await wait(400);
+    // });
 
     it('should select date', () => {
         instance = mount(BasicDemo);
@@ -136,6 +136,11 @@ describe('Datepicker', () => {
         // clear the value
         dispatchEvent(instance.element.querySelector('.k-clear'), 'click');
         expect(instance.get('datetime1') === undefined).be.true;
+
+        // set value to empty string should clear datetime
+        content.querySelector('.k-day').click();
+        instance.set('datetime1', '');
+        expect(instance.get('datetime1')).to.eql('');
     });
 
     it('multiple select', async () => {

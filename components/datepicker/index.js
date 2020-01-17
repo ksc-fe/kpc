@@ -85,11 +85,26 @@ export default class Datepicker extends Intact {
 
         this.on('$receive:value', (c, v) => {
             // conver to dayjs instance
+            let hasValue = true;
             if (Array.isArray(v)) {
-                v = v.map(v => this._createDate(v));
+                if (!v.length) hasValue = false;
+                v = v.map(v => {
+                    if (!v) hasValue = false;
+                    return this._createDate(v)
+                });
             } else if (v) {
                 v = this._createDate(v);
+            } else {
+                hasValue = false;
             }
+            // we should set to the date panel, otherwise it will change the value
+            // and set datetime to now, #436
+            if (!hasValue) {
+                const {begin, end} = this.refs;
+                begin && begin.set('_isSelectTime', false);
+                end && end.set('_isSelectTime', false);
+            }
+
             this.set('_value', v);
         });
     }
