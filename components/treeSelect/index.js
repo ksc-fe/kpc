@@ -12,28 +12,31 @@ export default class TreeSelect extends Select {
     static propTypes = {
         ...Select.propTypes,
         data: {
-            /* istanbul ignore next */
             validator(value) {
-                if (!Array.isArray(value)) return `"data" must be an Array.`;
-                let msg;
-                const loop = (children) => {
-                    if (!children) return true;
-                    for (let i = 0; i < children.length; i++) {
-                        const item = children[i];
-                        if (typeof item !== 'object') return (msg = `the item of "data" must be an object.`);
-                        if (item.key == null) return (msg = `each object in "data" must has "key" property.`);
+                /* istanbul ignore next */
+                if (!Array.isArray(value)) {
+                    return `"data" must be an Array.`;
+                } else {
+                    let msg;
+                    const loop = (children) => {
+                        if (!children) return true;
+                        for (let i = 0; i < children.length; i++) {
+                            const item = children[i];
+                            if (typeof item !== 'object') return (msg = `the item of "data" must be an object.`);
+                            if (item.key == null) return (msg = `each object in "data" must has "key" property.`);
 
-                        if (loop(item.children) !== true) {
-                            break;
+                            if (loop(item.children) !== true) {
+                                break;
+                            }
                         }
+                        return true;
+                    };
+                    loop(value);
+                    if (msg) {
+                        return msg;
                     }
                     return true;
-                };
-                loop(value);
-                if (msg) {
-                    return msg;
                 }
-                return true;
             },
         },
         checkbox: Boolean,
