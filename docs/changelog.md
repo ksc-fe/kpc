@@ -4,6 +4,27 @@ order: 99
 sidebar: doc
 ---
 
+## v1.3.5
+
+1. `Add` `Spinner`支持`width`属性，方便设置宽度 [#422](https://github.com/ksc-fe/kpc/issues/422)
+2. `Add` `Select`支持自定义`value`的展示内容 [#421](https://github.com/ksc-fe/kpc/issues/421)
+3. `Add` `Tree`支持关闭选中功能 [#432](https://github.com/ksc-fe/kpc/issues/432)
+4. `Add` `Tree`新增`defaultExpandAll`属性，可以默认展开所有节点 [#430](https://github.com/ksc-fe/kpc/issues/430)
+5. `Add` 新增下拉树选择组件`TreeSelect` [#423](https://github.com/ksc-fe/kpc/issues/423)
+6. `Fix` 修复`Tree` `disabled`状态的节点依然可以选中的问题 [#429](https://github.com/ksc-fe/kpc/issues/429)
+7. `Fix` 修复`Tree`调用`Node`的方法修改节点，原始数据没有修改的问题 [#434](https://github.com/ksc-fe/kpc/issues/434)
+8. `Fix` 修复`Datepicker`在英文下的样式问题 [#435](https://github.com/ksc-fe/kpc/issues/435)
+9. `Fix` 修复`Table` `disabled`的行，依然会被全选/反全选修改选中状态的问题 [#437](https://github.com/ksc-fe/kpc/issues/437)
+10. `Fix` 修复`Datepicker`在`datetime`模式下，设置`value`为空不能清除日期的问题 [#436](https://github.com/ksc-fe/kpc/issues/436)
+11. `Fix` 部分文案没有国际化的问题
+
+__Vue__
+
+1. `Add` 内置动画样式支持在`Vue`下使用
+2. `Fix` 修复`Dropdown`在`Vue`模板编译没有去掉空白字符时`{preserveWhitespace: false}`，报错的问题 [#425](https://github.com/ksc-fe/kpc/issues/425)
+3. `Fix` 修复`Checkbox/Radio`的`trueValue`使用连字符风格`true-value`失效的问题 [#433](https://github.com/ksc-fe/kpc/issues/433)
+4. `Fix` 修复`.sync`和`$change`类型事件同时作用于同一属性时报错的问题 [#428](https://github.com/ksc-fe/kpc/issues/428)
+
 ## v1.3.4
 
 1. `Fix` 修复`Icon`不能通过字符串设置`style`属性的问题 [#416](https://github.com/ksc-fe/kpc/issues/416)
