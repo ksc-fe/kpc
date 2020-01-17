@@ -57,14 +57,14 @@ export default class Table extends Intact {
             _padding: 0,
             _paddingBottom: 0,
             _isShowLeftRightMiddle: false,
-            _disabledAmount: 0,
+            _disabledKeys: [],
+            _enabledKeys: [],
             _isSticky: false,
             _leftWidth: 0,
             _rightWidth: 0,
             _scrollBarWidth: 0,
             _scrollPosition: 'left',
             _hoverIndex: undefined,
-            _amount: 0,
         }
     }
 
@@ -129,9 +129,9 @@ export default class Table extends Intact {
         // #310
         this.on('$changed:data', this._calcHeaderPadding);
 
-        // update disabled amount when some props have changed
+        // update disabled keys when some props have changed
         ['data', 'disableRow'].forEach(item => {
-            this.on(`$change:${item}`, this._updateDisabledAmount);
+            this.on(`$change:${item}`, this._updateDisabledKeys);
         });
         ['fixHeader', 'scheme', 'children'].forEach(item => {
             this.on(`$changed:${item}`, this._setFixedColumnWidth);
@@ -142,7 +142,7 @@ export default class Table extends Intact {
         this.on('$receive:stickScrollbar', (c, v) => {
             this.set('_isStickyScrollbar', v != null && v !== false);
         });
-        this._updateDisabledAmount();
+        this._updateDisabledKeys();
     }
 
     _initWidth() {
@@ -215,11 +215,13 @@ export default class Table extends Intact {
     }
 
     isCheckAll() {
-        const checkedKeys = this.get('checkedKeys');
-        const dataLength = this.get('_amount');
-        const disabledAmount = this.get("_disabledAmount");
-        const amount = dataLength - disabledAmount;
-        return amount && checkedKeys.length >= amount; 
+        const {checkedKeys, _disabledKeys, _enabledKeys} = this.get();
+        const checkedKeysWithoutDisabled = _disabledKeys.length ? 
+            checkedKeys.filter(key => _disabledKeys.indexOf(key) < 0) :
+            checkedKeys;
+        const amount = _enabledKeys.length;
+
+        return amount && checkedKeysWithoutDisabled.length >= amount; 
     }
 
     isChecked(key) {
@@ -247,25 +249,33 @@ export default class Table extends Intact {
 
     checkAll() {
         // const start = performance.now();
-
-        const rowKey = this.get('rowKey');
-        const disableRow = this.get('disableRow');
-        const checkedKeys = [];
-        this._breakForEach((value, index) => {
-            if (!disableRow.call(this, value, index)) {
-                checkedKeys.push(rowKey.call(this, value, index));
-            }
-        });
-        this.set('checkedKeys', checkedKeys);
-
+        this.set('checkedKeys', this._getCheckUnCheckAllkeys(true));
         // console.log('checkAll: ', performance.now() - start);
     }
 
     uncheckAll() {
         this.set({
-            checkedKeys: [],
+            checkedKeys: this._getCheckUnCheckAllkeys(false),
             checkedKey: undefined,
         });
+    }
+
+    _getCheckUnCheckAllkeys(isCheck) {
+        const {rowKey, disableRow, checkedKeys} = this.get();
+        const newCheckedKeys = [];
+        this._breakForEach((value, index) => {
+            const key = rowKey.call(this, value, index);
+            const disabled = disableRow.call(this, value, index);
+            // if the row is disabled, we should keep its checked status, #437
+            if (isCheck ? 
+                (!disabled || ~checkedKeys.indexOf(key)) : 
+                (disabled && ~checkedKeys.indexOf(key))
+            ) {
+                newCheckedKeys.push(key);
+            }
+        });
+        return newCheckedKeys;
+
     }
 
     checkRow(key) {
@@ -568,20 +578,22 @@ export default class Table extends Intact {
         }
     }
 
-    _updateDisabledAmount() {
-        let disabledAmount = 0;
-        let amount = 0;
-        const disableRow = this.get('disableRow');
+    _updateDisabledKeys() {
+        let disabledKeys = [];
+        let enabledKeys = [];
+        const {disableRow, rowKey} = this.get();
 
         this._breakForEach((item, index) => {
+            const key = rowKey.call(this, item, index); 
             if (disableRow.call(this, item, index)) {
-                disabledAmount++;
+                disabledKeys.push(key);
+            } else {
+                enabledKeys.push(key);
             }
-            amount++;
         });
         this.set({
-            _disabledAmount: disabledAmount,
-            _amount: amount,
+            _disabledKeys: disabledKeys,
+            _enabledKeys: enabledKeys,
         });
     }
 
