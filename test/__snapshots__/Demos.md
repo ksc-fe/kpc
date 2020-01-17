@@ -1817,6 +1817,12 @@
 "<div class=\"k-tree\" draggable=\"true\"><div class=\"k-node\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">First floor-1</span></div></div><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">First floor-2</span></div><div class=\"k-tree\"><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Second floor-2.1</span></div><div class=\"k-tree\"><div class=\"k-node\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Third floor-2.1.1</span></div></div><div class=\"k-node\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Third floor-2.1.2</span></div></div></div></div><div class=\"k-node\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Second floor-2.2</span></div></div><div class=\"k-node k-disabled\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Second floor-2.3</span></div></div></div></div></div>"
 ```
 
+####     `Tree expandAll`
+
+```
+"<div class=\"k-tree\"><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">First floor-1</span></div><div class=\"k-tree\"><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Second floor-1.1</span></div><div class=\"k-tree\"><div class=\"k-node k-expanded\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Third floor-1.1.1</span></div><div class=\"k-tree\"></div></div></div></div></div></div><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">First floor-2</span></div><div class=\"k-tree\"><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Second floor-2.1</span></div><div class=\"k-tree\"><div class=\"k-node k-expanded\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Third floor-2.1.1</span></div><div class=\"k-tree\"></div></div><div class=\"k-node k-expanded\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Third floor-2.1.2</span></div><div class=\"k-tree\"></div></div></div></div><div class=\"k-node k-expanded k-disabled\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Second floor-2.2</span></div><div class=\"k-tree\"><div class=\"k-node k-expanded\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Third floor-2.2.1</span></div><div class=\"k-tree\"></div></div></div></div></div></div></div>"
+```
+
 ####     `Tree filterable`
 
 ```
@@ -1839,6 +1845,38 @@
 
 ```
 "<div class=\"k-tree\"><div class=\"k-node\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label><span class=\"k-text\">First floor-1</span></div></div><div class=\"k-node\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label><span class=\"k-text\">First floor-2</span></div></div></div>"
+```
+
+##   `treeSelect`
+
+####     `TreeSelect basic`
+
+```
+"<div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder--></div>"
+```
+
+####     `TreeSelect checkbox`
+
+```
+"<div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder--></div>"
+```
+
+####     `TreeSelect filter`
+
+```
+"<div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><div class=\"k-input k-fluid\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请选择\"></div></div></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder--></div>"
+```
+
+####     `TreeSelect load`
+
+```
+"<div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder--></div>"
+```
+
+####     `TreeSelect multiple`
+
+```
+"<div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder--></div>"
 ```
 
 ##   `upload`
@@ -1993,7 +2031,7 @@
 ####     `Card grid`
 
 ```
-"<div><div><div class=\"k-row k-gutter\" style=\"margin-left: -8px; margin-right: -8px;\"><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-shadow k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-shadow k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-shadow k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-shadow k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div></div><div class=\"k-row k-gutter\" style=\"margin-left: -8px; margin-right: -8px;\"><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-border k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-border k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-border k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-border k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div></div></div></div>"
+"<div><div><div class=\"k-row k-gutter\" style=\"margin-left: -8px; margin-right: -8px;\"><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-shadow k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-shadow k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-shadow k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-shadow k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div></div><div class=\"k-row k-gutter\" style=\"margin-left: -8px; margin-right: -8px;\"><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-border k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-border k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-border k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-border k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div></div></div></div>"
 ```
 
 ####     `Card noHeader`
@@ -3703,6 +3741,12 @@
 "<div><div class=\"k-tree\" draggable=\"true\"><div class=\"k-node\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">First floor-1</span></div></div><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">First floor-2</span></div><div class=\"k-tree\"><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Second floor-2.1</span></div><div class=\"k-tree\"><div class=\"k-node\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Third floor-2.1.1</span></div></div><div class=\"k-node\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Third floor-2.1.2</span></div></div></div></div><div class=\"k-node\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Second floor-2.2</span></div></div><div class=\"k-node k-disabled\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Second floor-2.3</span></div></div></div></div></div></div>"
 ```
 
+####     `Tree expandAll`
+
+```
+"<div><div class=\"k-tree\"><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">First floor-1</span></div><div class=\"k-tree\"><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Second floor-1.1</span></div><div class=\"k-tree\"><div class=\"k-node k-expanded\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Third floor-1.1.1</span></div><div class=\"k-tree\"></div></div></div></div></div></div><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">First floor-2</span></div><div class=\"k-tree\"><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Second floor-2.1</span></div><div class=\"k-tree\"><div class=\"k-node k-expanded\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Third floor-2.1.1</span></div><div class=\"k-tree\"></div></div><div class=\"k-node k-expanded\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Third floor-2.1.2</span></div><div class=\"k-tree\"></div></div></div></div><div class=\"k-node k-expanded k-disabled\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Second floor-2.2</span></div><div class=\"k-tree\"><div class=\"k-node k-expanded\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Third floor-2.2.1</span></div><div class=\"k-tree\"></div></div></div></div></div></div></div></div>"
+```
+
 ####     `Tree filterable`
 
 ```
@@ -3725,6 +3769,38 @@
 
 ```
 "<div><div class=\"k-tree\"><div class=\"k-node\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label><span class=\"k-text\">First floor-1</span></div></div><div class=\"k-node\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label><span class=\"k-text\">First floor-2</span></div></div></div></div>"
+```
+
+##   `treeSelect`
+
+####     `TreeSelect basic`
+
+```
+"<div><div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder--></div></div>"
+```
+
+####     `TreeSelect checkbox`
+
+```
+"<div><div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder--></div></div>"
+```
+
+####     `TreeSelect filter`
+
+```
+"<div><div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><div class=\"k-input k-fluid\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请选择\"></div></div></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder--></div></div>"
+```
+
+####     `TreeSelect load`
+
+```
+"<div><div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder--></div></div>"
+```
+
+####     `TreeSelect multiple`
+
+```
+"<div><div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder--></div></div>"
 ```
 
 ##   `upload`
