@@ -23,7 +23,7 @@
     "preview:doc": "gulp watch",
     "build:doc": "cross-env NODE_ENV=production NODE_OPTIONS='--max-old-space-size=4096' gulp build:doc",
     "watch:doc": "cross-env NODE_ENV=production gulp watch:doc",
-    "deploy:doc": "cross-env NODE_ENV=production gulp deploy:doc",
+    "deploy:doc": "cross-env NODE_ENV=production NODE_OPTIONS='--max-old-space-size=4096' gulp deploy:doc",
     "_prepublishOnly": "npm run build && (git commit -am'chore: build' || echo 'has not files to commit') && git push",
     "_publish": "npm run _prepublishOnly && lerna exec -- npm publish",
     "release": "npm run release-patch",
