@@ -200,4 +200,40 @@ describe('Dropdown', () => {
         dispatchEvent(instance.refs.trigger, 'click');
         expect(getElement('.k-dropdown-menu').innerHTML.trim()).to.eql('<div class="k-item">test</div>');
     });
+
+    it('should hydrate dropdown correctly', () => {
+        class Demo extends Intact {
+            @Intact.template()
+            static template = `
+                <div>
+                    <Dropdown>
+                        <div ref="trigger">hover</div>
+                        <DropdownMenu>
+                            <DropdownItem>test</DropdownItem>
+                        </DropdownMenu>
+                    </Dropdown>
+                </div>
+            `;
+            _init() {
+                this.Dropdown = Dropdown;
+                this.DropdownItem = DropdownItem;
+                this.DropdownMenu = DropdownMenu;
+            }
+        }
+
+        const demo = new Demo();
+        const html = demo.toString();
+        expect(html).to.eql('<div><div _evHasSaved>hover</div><!--placeholder--></div>');
+
+        const container = document.createElement('div');
+        container.innerHTML = html;
+        document.body.appendChild(container);
+        Intact.hydrate(demo, container);
+
+        dispatchEvent(demo.refs.trigger, 'click');
+        expect(getElement('.k-dropdown-menu').innerHTML.trim()).to.eql('<div class="k-item">test</div>');
+
+        demo.destroy();
+        document.body.removeChild(container);
+    });
 });
