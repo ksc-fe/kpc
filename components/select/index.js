@@ -136,6 +136,9 @@ export default class Select extends Intact {
         this.set('_show', value);
         // reset the _activeLabel if show
         this._setActiveLabelSilent(undefined);
+        if (!value) {
+            this._onBlur();
+        }
     }
 
     /**
@@ -151,20 +154,20 @@ export default class Select extends Intact {
             });
         }
 
-        this.timer = setTimeout(() => {
+        // this.timer = setTimeout(() => {
             if (this.get('keywords') != null) {
                 this._resetSearch();
             }
-        }, 200);
+        // }, 200);
     }
 
     _selectInput(e) {
         selectInput(e.target); 
     }
 
-    _onFocus(e) {
-        clearTimeout(this.timer);
-    }
+    // _onFocus(e) {
+        // clearTimeout(this.timer);
+    // }
 
     _onFocusout() {
         this.refs.dropdown.hide();

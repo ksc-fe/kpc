@@ -252,7 +252,6 @@ if (hasValue && labelObj.label == null && !labelObj.labels.length) {
                 <Input v-if={{ !multiple && filterable }}
                     value={{ keywords == null ? labelObj.label : keywords }}
                     ev-input={{ self._onSearch }}
-                    ev-blur={{ self._onBlur }}
                     ev-focus={{ self._selectInput }}
                     disabled={{ disabled }}
                     placeholder={{ _placeholder }}
@@ -286,8 +285,6 @@ if (hasValue && labelObj.label == null && !labelObj.labels.length) {
                     <Input v-if={{ filterable }}
                         value={{ keywords }}
                         ev-input={{ self._onSearch }}
-                        ev-blur={{ self._onBlur }}
-                        ev-focus={{ self._onFocus }}
                         disabled={{ disabled }}
                         placeholder={{ !hasValue ? _placeholder : '' }}
                         ref="input"
