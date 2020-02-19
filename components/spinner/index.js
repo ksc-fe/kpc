@@ -44,6 +44,10 @@ export default class Spinner extends Intact {
         width: [String, Number]
     }
 
+    static events = {
+        change: true,
+    };
+
     _init() {
         // make sure the min/max/step is valid
         const defaults = this.defaults();
@@ -66,8 +70,12 @@ export default class Spinner extends Intact {
         });
     }
 
-    _fixValue(value = this.get('value'), fallbackValue = 0) {
+    _fixValue(value = this.get('value'), fallbackValue = 0, shouldTriggerChange) {
+        const ret = this._getFixedValue(value, fallbackValue);
         this.set(this._getFixedValue(value, fallbackValue));
+        if (shouldTriggerChange && ret.value !== this.oldValue) {
+            this.trigger('change', ret.value);
+        }
     }
 
     _getFixedValue(value = this.get('value'), fallbackValue = 0) {
@@ -132,13 +140,15 @@ export default class Spinner extends Intact {
     _increase(e) {
         const {value, step} = this.get();
 
-        this._fixValue(Number((+value + step).toFixed(10)));
+        this.oldValue = value;
+        this._fixValue(Number((+value + step).toFixed(10)), 0, true);
     }
 
     _decrease(e) {
         const {value, step} = this.get();
 
-        this._fixValue(Number((+value - step).toFixed(10)));
+        this.oldValue = value;
+        this._fixValue(Number((+value - step).toFixed(10)), 0, true);
     }
 
     _disableDecrease() {
@@ -154,7 +164,7 @@ export default class Spinner extends Intact {
     }
 
     _changeValue(e) {
-        this._fixValue(e.target.value.trim(), this.get('value'));
+        this._fixValue(e.target.value.trim(), this.get('value'), true);
     }
 
     // we need change value as long as the input is valid, #213
@@ -166,6 +176,11 @@ export default class Spinner extends Intact {
             // data.value = value;
         // }
         this.set(data);
+    }
+
+    // preserve old value on focus to detect we should trigger change event or not
+    _onFocus() {
+        this.oldValue = this.get('value');
     }
 }
 

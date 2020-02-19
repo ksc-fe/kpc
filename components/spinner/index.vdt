@@ -30,6 +30,7 @@ const classNameObj = {
         ev-input={{ self._onInput }}
         size={{ size }}
         width={{ width }}
+        ev-focus={{ self._onFocus }}
     />
     <Button icon ev-click={{ self._increase }}
         disabled={{ self._disableIncrease() }}

@@ -9,8 +9,8 @@ describe('Spinner', () => {
     let instance;
 
     afterEach(() => {
-        unmount(instance);
-        instance = null
+        // unmount(instance);
+        // instance = null
     });
 
     it('step/max/min test', () => {
@@ -133,5 +133,42 @@ describe('Spinner', () => {
         expect(instance.get('percent')).to.eql(99);
         dispatchEvent(input2, 'change');
         expect(input2.value).to.eql('增长率 99%');
+    });
+
+    it('should trigger change event correctly', () => {
+        const onChange = sinon.spy(v => console.log(v));
+         class Component extends Intact {
+            @Intact.template()
+            static template = `<Spinner
+                ev-change={{ self._onChange }}
+            />`;
+            _init() {
+                this.Spinner = Spinner;
+            }
+            _onChange(v) {
+                onChange(v);
+            }
+        }
+        instance = mount(Component);
+
+         // increase / decrease
+        const increase = instance.element.querySelector('.k-left');
+        increase.click();
+        expect(onChange.callCount).to.eql(1);
+        expect(onChange.calledWith(-1)).to.be.true;
+        const decrease = instance.element.querySelector('.k-right');
+        decrease.click();
+        expect(onChange.callCount).to.eql(2);
+        expect(onChange.calledWith(0)).to.be.true;
+
+        const input = instance.element.querySelector('input');
+        dispatchEvent(input, 'focus');
+        input.value = 1;
+        dispatchEvent(input, 'input');
+        input.value = 12;
+        dispatchEvent(input, 'input');
+        dispatchEvent(input, 'change');
+        expect(onChange.callCount).to.eql(3);
+        expect(onChange.calledWith(12)).to.be.true;
     });
 });
