@@ -18,5 +18,5 @@ import Colorpicker from 'kpc/components/colorpicker';
 
 ```styl
 .k-colorpicker
-    margin 16px
+    margin-right 16px
 ```
