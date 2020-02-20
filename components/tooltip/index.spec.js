@@ -228,4 +228,37 @@ describe('Tooltip', () => {
         app.$destroy();
         document.body.removeChild(app.$el);
     });
+
+    it('should hide layer when we have disabled Tooltip and also hide on next update', () => {
+        class Demo extends Intact {
+            @Intact.template()
+            static template = `
+                <div>
+                    <Tooltip disabled={{ self.get('disabled') }} 
+                        content="hello"
+                    >
+                        <div ref="test">test</div>
+                    </Tooltip>
+                </div>
+            `;
+            defaults() {
+                this.Tooltip = Tooltip;
+                return {disabled: false};
+            }
+        } 
+
+        instance = mount(Demo);
+
+        dispatchEvent(instance.refs.test, 'mouseenter');
+        let content = getElement('.k-tooltip-content');
+        expect(content.textContent).eql('hello');
+
+        instance.set('disabled', true);
+        content = getElement('.k-tooltip-content');
+        expect(content).eql(undefined);
+
+        instance.set('disabled', false);
+        content = getElement('.k-tooltip-content');
+        expect(content).eql(undefined);
+    });
 });
