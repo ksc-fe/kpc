@@ -51,6 +51,9 @@ sidebar: doc
 
 # 静态方法
 
+> 如果你在Vue下全局安装KPC，可以通过`this.$dialog`引用到`Dialog`组件，所以你可以这样调用它的
+> 静态方法：`this.$dialog.success()`
+
 | 方法名 | 说明 | 参数 | 返回值 |
 | --- | --- | --- | --- |
 | success | 成功提示窗口 | `Options` | `Promise` |

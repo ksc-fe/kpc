@@ -214,10 +214,13 @@ export default function install(Vue) {
 
     if (Vue) {
         for (let key in components) {
-            Vue.component(`K${key}`, components[key]);
+            const component = components[key];
+            Vue.component(`K${key}`, component);
             // support call method like this.$message.success('test'), #88
             if (key === 'Message') {
-                Vue.prototype.$message = components.Message;
+                Vue.prototype.$message = component;
+            } else if (key === 'Dialog') {
+                Vue.prototype.$dialog = component;
             }
         }
     } else {
