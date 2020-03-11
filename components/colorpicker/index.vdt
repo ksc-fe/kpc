@@ -2,12 +2,13 @@ import Tooltip from '../tooltip';
 import Panel from './panel';
 import {getRestProps} from '../utils';
 
-const {className, transition, presets, value, size, style} = self.get();
+const {className, transition, presets, value, size, style, disabled} = self.get();
 
 const classNameObj = {
     'k-colorpicker': true,
     [className]: className,
-    [`k-${size}`]: size !== 'default'
+    [`k-${size}`]: size !== 'default',
+    'k-disabled': disabled,
 };
 
 <div class={{ classNameObj }} style={{ style }} {{ ...getRestProps(self) }}>
@@ -19,6 +20,7 @@ const classNameObj = {
         theme="light"
         transition={{ transition }}
         ev-show={{ self._onShow }}
+        disabled={{ disabled }}
     >
         <div class="k-color">
             <div class="k-inner" style={{ {backgroundColor: value} }}></div>

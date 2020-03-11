@@ -22,6 +22,12 @@
                 width lookup('$colorpicker-' + size + '-width')
                 if lookup('$colorpicker-' + size + '-padding')
                     padding lookup('$colorpicker-' + size + '-padding')
+    // disabled
+    &.k-disabled
+        .k-color
+            background $colorpicker-disabled-bg-color
+            border-color $colorpicker-disabled-border-color
+            cursor $colorpicker-disabled-cursor 
 
 .k-colorpicker-content
     padding $colorpicker-panel-padding 

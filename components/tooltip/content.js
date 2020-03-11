@@ -160,4 +160,11 @@ export default class TooltipContent extends DropdownMenu {
         if (this.get('always')) return;
         super._onDocumentClick(e);
     }
+
+    _removeDocumentEvents() {
+        // because disabled property can hide layer, so we should set the value
+        // to false to let it hide also on next update with disabled is true, #443
+        this.set('value', false);
+        super._removeDocumentEvents();
+    }
 }

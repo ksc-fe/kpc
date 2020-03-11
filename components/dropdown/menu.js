@@ -213,7 +213,7 @@ export default class DropdownMenu extends Intact {
     }
 
     /**
-     * let user mouse down and move outside and don't hide the dropdown, #392
+     * don't hide the dropdown when user mouse down and move outside, #392
      * the order of events is mousedown -> mouseup -> click
      */
     _onMouseDown() {

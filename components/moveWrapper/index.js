@@ -25,10 +25,8 @@ export default class MoveWrapper extends Intact {
         return this.placeholder = document.createComment("placeholder");
     }
 
-    hydrate(...args) {
-        this.mountedQueue.push(this._appendElement);
-        super.hydrate(...args);
-        return this.placeholder = document.createComment('placeholder');
+    hydrate(vNode) {
+        return this.init(null, vNode);
     }
 
     update(lastVNode, nextVNode) {
@@ -42,9 +40,9 @@ export default class MoveWrapper extends Intact {
         }
     }
 
-    // toString() {
-        // return '<!--placeholder-->';
-    // }
+    toString() {
+        return '<!--placeholder-->';
+    }
 
     /**
      * @brief override super destroy 
