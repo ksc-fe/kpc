@@ -2,6 +2,9 @@ import BasicDemo from '~/components/treeSelect/demos/basic';
 import MultipleDemo from '~/components/treeSelect/demos/multiple';
 import CheckboxDemo from '~/components/treeSelect/demos/checkbox';
 import FilterDemo from '~/components/treeSelect/demos/filter';
+import TreeSelect from 'kpc/components/treeSelect';
+import {Form, FormItem} from 'kpc/components/form';
+import Intact from 'intact';
 import {mount, unmount, dispatchEvent, wait, getElement} from 'test/utils';
 
 describe('TreeSelect', () => {
@@ -73,5 +76,36 @@ describe('TreeSelect', () => {
         const [, text2] = dropdown.querySelectorAll('.k-text');
         text2.click();
         expect(instance.get('value')).to.eql('2');
+    });
+
+    it('should not validate when click arrow', async () => {
+        class Demo extends Intact {
+            @Intact.template()
+            static template = `
+                <Form>
+                    <FormItem rules={{ {required: true} }} model="value">
+                        <TreeSelect data={{ [{label: 'test', key: 'test'}] }} v-model="value" />
+                    </FormItem>
+                </Form>
+            `;
+
+            _init() {
+                this.Form = Form;
+                this.FormItem = FormItem;
+                this.TreeSelect = TreeSelect;
+            }
+        } 
+
+        instance = mount(Demo);
+        const element = instance.element.querySelector('.k-wrapper');
+        dispatchEvent(element, 'click');
+        dispatchEvent(element, 'focusout');
+
+        await wait(300);
+        expect(instance.element.querySelector('.k-error')).to.be.null;
+
+        dispatchEvent(element, 'click');
+        await wait(300);
+        expect(instance.element.querySelector('.k-error')).not.to.be.null;
     });
 });

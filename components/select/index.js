@@ -5,6 +5,7 @@ import './index.styl';
 import Option from './option';
 import Group from './group';
 import {selectInput, _$, isStringOrNumber, toggleArray} from '../utils';
+import {dispatchEvent} from '../datepicker/utils';
 
 export default class Select extends Intact {
     @Intact.template()
@@ -249,6 +250,21 @@ export default class Select extends Intact {
         }
 
         return {active, valid};
+    }
+
+    /**
+     * don't trigger focusout event when layer is showing
+     * trigger focusout when it hidden to make FormItem to validate it
+     * #449
+     */
+    _onInputFocusOut(e) {
+        if (this.get('_show')) {
+            e.stopPropagation();
+        }
+    }
+
+    _onHide() {
+        dispatchEvent(this.element, 'focusout');
     }
 }
 

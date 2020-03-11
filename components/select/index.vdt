@@ -235,6 +235,7 @@ if (hasValue && labelObj.label == null && !labelObj.labels.length) {
     tabindex={{ disabled ? "-1" : "0" }}
     ev-keypress={{ self._onKeypress }}
     ev-keydown={{ self._onKeydown }}
+    ev-focusout={{ self._onInputFocusOut }}
 >
     <Dropdown
         position={{ position }} 
@@ -242,6 +243,7 @@ if (hasValue && labelObj.label == null && !labelObj.labels.length) {
         disabled={{ disabled }}
         ref="dropdown"
         container={{ container }}
+        ev-hide={{ self._onHide }}
     >
         <div class="k-wrapper" ev-click={{ self._focusInput }} tabindex="-1" ref="wrapper">
             <div class="k-prefix" v-if={{ blocks.prefix }}>
