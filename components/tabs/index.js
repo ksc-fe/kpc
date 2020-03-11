@@ -18,6 +18,7 @@ export default class Tabs extends Intact {
             size: 'default',
             type: 'default',
             closable: false,
+            beforeChange: undefined,
 
             _activeBarStyle: undefined,
             _scroll: false,
@@ -33,13 +34,21 @@ export default class Tabs extends Intact {
         size: ['large', 'default', 'small', 'mini'],
         type: ['default', 'card', 'border-card', 'no-border-card'],
         closable: Boolean,
+        beforeChange: Function,
     };
 
     static events = {
         remove: true,
     };
 
-    _changeTab(item) {
+    async _changeTab(item) {
+        const {beforeChange} = this.get();
+        if (beforeChange) {
+            const ret = await beforeChange(item.value);
+            if (!ret) {
+                return;
+            }
+        }
         // if exits 'to', we don't change the value,
         // while let the page to change it by pass value prop
         if (!item.to) {

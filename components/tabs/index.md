@@ -19,6 +19,7 @@ sidebar: doc
 | vertical | 垂直排列 | `Boolean` | `undefined` |
 | size | 选项卡尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
 | type | 选项卡类型 | `"default"` &#124; `"card"` &#124; `"border-card"` &#124; `"no-border-card"` | `"default"` |
+| beforeChange | 切换选项卡之前的拦截函数，如果该函数返回`false`则阻止本次切换，支持异步函数，参数为当前`Tab` `value` | `Function` | `undefined` |
 
 ## Tab
 
