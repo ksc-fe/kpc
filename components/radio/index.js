@@ -36,6 +36,17 @@ export default class Radio extends Intact {
             this.refs.input.click();
         }
     }
+
+    _onClick(e) {
+        const {value, trueValue, disabled} = this.get();
+        if (!disabled && value !== trueValue) {
+            this.set('value', trueValue);
+            this.trigger('click', e);
+            this.trigger('change', trueValue, e);
+        } else {
+            this.trigger('click', e);
+        }
+    }
 }
 
 export {Radio};

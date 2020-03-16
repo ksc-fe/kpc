@@ -3,7 +3,7 @@ import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
 
-const {isArray} = Intact.Vdt.utils;
+const {isArray, setCheckboxModel} = Intact.Vdt.utils;
 
 export default class Checkbox extends Intact {
     get template() { return template; }
@@ -60,6 +60,17 @@ export default class Checkbox extends Intact {
     _onKeypress(e) {
         if (e.keyCode === 13) {
             this.refs.input.click();
+        }
+    }
+
+    _onClick(e) {
+        const {trueValue, falseValue, disabled} = this.get();
+        if (!disabled) {
+            setCheckboxModel(this, 'value', trueValue, falseValue, e, this.vdt);
+            this.trigger('click', e);
+            this.trigger('change', this.get('value'), e);
+        } else {
+            this.trigger('click', e);
         }
     }
 }

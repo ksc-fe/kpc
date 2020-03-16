@@ -14,15 +14,16 @@ const classNameObj = {
     'k-indeterminate': indeterminate,
 };
 
-let evClick;
+// let evClick;
 const events = [
-    'ev-click',
+    'ev-click', 'ev-change',
     'ev-mouseenter', 'ev-mouseleave'
 ].reduce((memo, name) => {
     if (rest[name]) {
-        if (name === 'ev-click') {
+        if (name === 'ev-click' || name === 'ev-change') {
             // do not bind click to label, otherwise it will trigger click event twice
-            evClick = rest[name];
+            // don't bind change to input, use click instead of, #448
+            // evClick = rest[name];
         } else {
             memo[name] = rest[name];
         }
@@ -45,10 +46,13 @@ const events = [
             v-model-false={{ falseValue }}
             tabindex="-1"
             {{ ...getRestProps(self, rest) }}
-            ev-click={{ (e) => {
-                _setCheckboxModel(self, 'value', trueValue, falseValue, e, $this);
-                evClick && evClick(e);
-            } }}
+            ev-click={{ 
+                // (e) => {
+                    // _setCheckboxModel(self, 'value', trueValue, falseValue, e, $this);
+                    // evClick && evClick(e);
+                // } 
+                self._onClick
+            }}
             ref="input"
         />
     </span>

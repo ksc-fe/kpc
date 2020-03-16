@@ -11,15 +11,16 @@ const classNameObj = {
     [className]: className,
 };
 
-let evClick;
+// let evClick;
 const events = [
-    'ev-click',
+    'ev-click', 'ev-change',
     'ev-mouseenter', 'ev-mouseleave'
 ].reduce((memo, name) => {
     if (rest[name]) {
-        if (name === 'ev-click') {
-            // do not bind click to label, otherwise it will trigger click event twice
-            evClick = rest[name];
+        if (name === 'ev-click' || name === 'ev-change') {
+            // don't bind click to label, otherwise it will trigger click event twice
+            // don't bind change to input, use click instead of, #448
+            // evClick = rest[name];
         } else {
             memo[name] = rest[name];
         }
@@ -41,10 +42,13 @@ const events = [
             {{ ...getRestProps(self, rest) }}
             ref="input"
             checked={{ value === trueValue }}
-            ev-click={{ (e) => {
-                _setCheckboxModel(self, 'value', trueValue, false, e, $this);
-                evClick && evClick(e);
-            } }}
+            ev-click={{ 
+                // (e) => {
+                    // _setCheckboxModel(self, 'value', trueValue, false, e, $this);
+                    // evClick && evClick(e);
+                // } 
+                self._onClick
+            }}
         />
     </span>
     <span class="k-text" v-if={{ children }}>{{ children }}</span>
