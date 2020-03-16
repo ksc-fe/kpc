@@ -37,12 +37,17 @@ module.exports = merge.smartStrategy({
             },
         ]
     },
+    optimization: {
+        splitChunks: {
+            
+        },
+    },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({
-            children: true,
-            async: true,
-            minChunks: 3
-        }),
+        // new webpack.optimize.CommonsChunkPlugin({
+            // children: true,
+            // async: true,
+            // minChunks: 3
+        // }),
         new webpack.DefinePlugin({
             'process.browser': true,
         }),

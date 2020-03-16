@@ -16,6 +16,7 @@ module.exports = function(theme, type = 'intact') {
     const config = merge.smartStrategy({
         'module.rules.use': 'replace'
     })(webpackConfig, {
+        mode: 'production',
         entry: {
             [`kpc${type !== 'intact' ? '.' + type : ''}`]: './index.js',
         },
