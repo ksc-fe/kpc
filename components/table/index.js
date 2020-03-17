@@ -437,6 +437,61 @@ export default class Table extends Intact {
         return content;
     }
 
+    /**
+     * @brief scroll to the row by index
+     *
+     * @param index
+     */
+    scrollToRowByIndex(index) {
+        const trs = this.element.querySelectorAll(`.k-tbody tr:nth-child(${index + 1})`);
+        if (trs.length) {
+            this._lockScrollEvent = true;
+            const promises = [];
+            for (let i = 0; i < trs.length; i++) {
+                promises.push(new Promise(resolve => {
+                    const elem = trs[i];
+                    const parent = elem.closest('.k-tbody');
+                    // we can not use scrollIntoView with smooth, because if can only operate one element
+                    // at the same time
+                    // elem.scrollIntoView({behavior: 'smooth'});
+                    let scrollTop = parent.scrollTop;
+                    const offsetTop = elem.offsetTop + 1;
+                    const top = offsetTop - scrollTop;
+                    const topOneFrame = top / 60 / (100 / 1000);
+                    const step = () => {
+                        scrollTop = Math[topOneFrame < 0 ? 'max' : 'min'](scrollTop + topOneFrame, offsetTop);
+                        parent.scrollTop = scrollTop;
+                        if (!this.destroyed && scrollTop !== offsetTop) {
+                            requestAnimationFrame(step);
+                        } else {
+                            resolve();
+                        }
+                    };
+
+                    requestAnimationFrame(step);
+                }));
+            }
+            Promise.all(promises).then(() => {
+                this._lockScrollEvent = false;
+            });
+        }
+    }
+
+    /**
+     * @brief scroll to the row by key
+     *
+     * @param key
+     */
+    scrollToRowByKey(key) {
+        const {rowKey} = this.get();
+        this._breakForEach((value, index) => {
+            if (rowKey.call(this, value, index) === key) {
+                this.scrollToRowByIndex(index);
+                return true;
+            } 
+        });
+    }
+
     _escapeCSV(str) {
         return '"' + String(str).replace(/"/g, '""') + '"';
     }
@@ -850,6 +905,8 @@ export default class Table extends Intact {
     }
 
     _onTBodyScroll(e) {
+        if (this._lockScrollEvent) return;
+
         const target = e.target;
         const hasFixed = this.hasFixedLeft || this.hasFixedRight;
         let isScroll;

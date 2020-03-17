@@ -100,6 +100,8 @@ sidebar: doc
 | uncheckRow | 取消选中某行 | `key` | `undefined` |
 | expandRow | 展开某行 | `key` | `undefined` |
 | shrinkRow | 收起某行 | `key` | `undefined` |
+| scrollToRowByIndex | 通过索引指定滚动的行 | `index` | `undefined` |
+| scrollToRowByKey | 通过key指定滚动的行 | `key` | `undefined` |
 
 # 事件
 

@@ -11,6 +11,7 @@ import ResizableDemo from '~/components/table/demos/resizable';
 import TooltipDemo from '~/components/table/demos/tooltip';
 import TreeDemo from '~/components/table/demos/tree';
 import DisabledDemo from '~/components/table/demos/disableRow';
+import ScrollToRowDemo from '~/components/table/demos/scrollToRow';
 import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 
 describe('Table', () => {
@@ -293,5 +294,30 @@ describe('Table', () => {
         expect(instance.refs.__test.isCheckAll()).to.be.false;
         checkbox4.click();
         expect(instance.refs.__test.isCheckAll()).to.be.true;
+    });
+
+    it('scroll to row', async () => {
+        instance = mount(ScrollToRowDemo);        
+
+        const table = instance.refs.table;
+        const elements = Array.from(instance.element.querySelectorAll('.k-tbody'));
+        const tr = instance.element.querySelector('.k-tbody tr');
+        const height = tr.offsetHeight;
+        const test = async (rows) => {
+            await wait(200);
+            elements.forEach(el => {
+                expect(el.scrollTop).to.eql(height * rows + rows);
+            });
+        };
+
+        table.scrollToRowByIndex(2);
+        await test(2);
+        table.scrollToRowByIndex(1);
+        await test(1);
+
+        table.scrollToRowByKey('name 3');
+        await test(2);
+        table.scrollToRowByKey('name 2');
+        await test(1);
     });
 });
