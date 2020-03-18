@@ -4,6 +4,23 @@ order: 99
 sidebar: doc
 ---
 
+## v1.3.6
+
+1. `Add` `Spinner` `Radio` `Checkbox`新增`change`事件，该事件只会通过用户点击或输入行为触发，有别于`$change:value` [#441](https://github.com/ksc-fe/kpc/issues/441) [#448](https://github.com/ksc-fe/kpc/issues/448)
+2. `Add` `Colorpicker`支持`disabled`状态 [#442](https://github.com/ksc-fe/kpc/issues/442)
+3. `Add` `Tabs`支持`beforeChange`属性，以便在切换标签时定义拦截逻辑 [#440](https://github.com/ksc-fe/kpc/issues/440)
+4. `Add` `Table`支持`scrollToRowByIndex`和`scrollToRowByKey`方法，可以通过索引和`key`滚动到指定的行 [#447](https://github.com/ksc-fe/kpc/issues/447)
+5. `Fix` 修复`Slider`在验证错误状态下边框样式问题 [#439](https://github.com/ksc-fe/kpc/issues/439)
+6. `Fix` 修复`TreeSelect`筛选时，点击展开收起箭头会清空关键字的问题 [#438](https://github.com/ksc-fe/kpc/issues/438)
+7. `Fix` 修复`TreeSelect`当`FormItem`必填时，点击箭头会立即触发不必要的验证的问题 [#449](https://github.com/ksc-fe/kpc/issues/449)
+8. `Fix` 修复`Tooltip` ssr渲染作用于`Table`的`tr`标签上，导致`html`不合法然后页面错乱的问题 [#431](https://github.com/ksc-fe/kpc/issues/431)
+9. `Fix` 修复`Tooltip`当`disabled`状态变更导致弹层关闭，可能会在下次更新重新打开弹层的问题 [#443](https://github.com/ksc-fe/kpc/issues/443)
+
+__Vue__
+
+1. `Add` `Dialog`组件全局安装KPC时，会添加到原型链，以便支持`this.$dialog`方式调用静态方法 [#444](https://github.com/ksc-fe/kpc/issues/444)
+
+
 ## v1.3.5
 
 1. `Add` `Spinner`支持`width`属性，方便设置宽度 [#422](https://github.com/ksc-fe/kpc/issues/422)

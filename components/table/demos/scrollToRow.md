@@ -6,6 +6,8 @@ order: 25
 `Table`提供了两个函数，用于滚动到指定的行：`scrollToRowByIndex`和`scrollToRowByKey`，分别通过索引或者`rowKey`
 指定滚动到的行
 
+> 需要`fixHeader`固定表头才能生效
+
 ```vdt
 import {Table, TableColumn} from 'kpc/components/table';
 import {Button, ButtonGroup} from 'kpc/components/button';
