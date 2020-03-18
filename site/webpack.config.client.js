@@ -2,7 +2,6 @@ const webpackConfig = require('./webpack.config.common');
 const merge = require('webpack-merge');
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
 process.URL_PREFIX = isDev ? '' : '//damife.ks3-cn-beijing.ksyun.com/kpc';

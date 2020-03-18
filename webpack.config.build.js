@@ -1,7 +1,8 @@
 const webpack = require('webpack'); const path = require('path');
 const webpackConfig = require('./webpack.config.common');
 const merge = require('webpack-merge');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // don't build monaco to buddle file, it's too big 
 // const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
@@ -67,17 +68,19 @@ module.exports = function(theme, type = 'intact') {
             rules: [
                 {
                     test: /\.styl$/,
-                    use: ExtractTextPlugin.extract({
-                        // the third rule is a stylus rule
-                        use: commonConfig.module.rules[2].use,
-                    }),
+                    use: [MiniCssExtractPlugin.loader].concat(commonConfig.module.rules[2].use),
+                    // use: ExtractTextPlugin.extract({
+                        // // the third rule is a stylus rule
+                        // use: commonConfig.module.rules[2].use,
+                    // }),
                 },
                 {
                     test: /\.css$/,
-                    use: ExtractTextPlugin.extract({
-                        // the fourth rule is a css rule
-                        use: commonConfig.module.rules[3].use,
-                    }),
+                    use: [MiniCssExtractPlugin.loader].concat(commonConfig.module.rules[3].use),
+                    // use: ExtractTextPlugin.extract({
+                        // // the fourth rule is a css rule
+                        // use: commonConfig.module.rules[3].use,
+                    // }),
                 },
             ]
         },
@@ -91,7 +94,8 @@ module.exports = function(theme, type = 'intact') {
         new webpack.DefinePlugin({
             'process.browser': true
         }),
-        new ExtractTextPlugin(theme ? `${theme}.css` : 'kpc.css'),
+        // new ExtractTextPlugin(theme ? `${theme}.css` : 'kpc.css'),
+        new MiniCssExtractPlugin({filename: theme ? `${theme}.css` : 'kpc.css'}),
         // new MonacoWebpackPlugin(),
     ];
 
