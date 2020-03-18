@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>给组件添加<code>ghost</code>属性，可以展示透明背景的按钮，常用于深色背景下</p>\n",
-    "index": 277,
+    "index": 273,
     "highlighted": [
         {
             "language": "vdt",

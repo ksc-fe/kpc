@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>该组件添加<code>checkbox</code>属性即可展示带复选框的下拉树，此时组件最终的取值规则为：</p>\n<ol>\n<li>如果父节点已勾选，则获取父节点的取值</li>\n<li>如果父节点未勾选，则获取叶子节点取值</li>\n</ol>\n",
-    "index": 170,
+    "index": 169,
     "highlighted": [
         {
             "language": "vdt",

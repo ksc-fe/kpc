@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>tooltip</code>扩展点，可以定义表格行的提示信息，通过<code>tooltipPosition</code>属性可以定义提示信息的弹出位置，组件会将当前行的数据和索引传入该扩展点</p>\n",
-    "index": 323,
+    "index": 325,
     "highlighted": [
         {
             "language": "vdt",

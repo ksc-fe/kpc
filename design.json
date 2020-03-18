@@ -319,56 +319,6 @@
             ]
         },
         {
-            "title": "对话框",
-            "order": 2,
-            "category": "组件",
-            "sidebar": "design",
-            "disabled": true,
-            "path": "docs/design/dialog.md",
-            "children": [
-                {
-                    "children": [
-                        {
-                            "children": [
-                                {
-                                    "title": "无标题对话框",
-                                    "path": "#header-%E6%97%A0%E6%A0%87%E9%A2%98%E5%AF%B9%E8%AF%9D%E6%A1%86",
-                                    "level": 3,
-                                    "content": "<h3 id='header-%E6%97%A0%E6%A0%87%E9%A2%98%E5%AF%B9%E8%AF%9D%E6%A1%86'>无标题对话框</h3>",
-                                    "text": "无标题对话框",
-                                    "children": []
-                                },
-                                {
-                                    "title": "带标题对话框",
-                                    "path": "#header-%E5%B8%A6%E6%A0%87%E9%A2%98%E5%AF%B9%E8%AF%9D%E6%A1%86",
-                                    "level": 3,
-                                    "content": "<h3 id='header-%E5%B8%A6%E6%A0%87%E9%A2%98%E5%AF%B9%E8%AF%9D%E6%A1%86'>带标题对话框</h3>",
-                                    "text": "带标题对话框",
-                                    "children": []
-                                },
-                                {
-                                    "title": "复杂操作对话框",
-                                    "path": "#header-%E5%A4%8D%E6%9D%82%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%AF%9D%E6%A1%86",
-                                    "level": 3,
-                                    "content": "<h3 id='header-%E5%A4%8D%E6%9D%82%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%AF%9D%E6%A1%86'>复杂操作对话框</h3>",
-                                    "text": "复杂操作对话框",
-                                    "children": []
-                                },
-                                {
-                                    "title": "长内容对话框",
-                                    "path": "#header-%E9%95%BF%E5%86%85%E5%AE%B9%E5%AF%B9%E8%AF%9D%E6%A1%86",
-                                    "level": 3,
-                                    "content": "<h3 id='header-%E9%95%BF%E5%86%85%E5%AE%B9%E5%AF%B9%E8%AF%9D%E6%A1%86'>长内容对话框</h3>",
-                                    "text": "长内容对话框",
-                                    "children": []
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
             "title": "导航",
             "order": 2,
             "category": "组件",
@@ -420,6 +370,56 @@
                                             "children": []
                                         }
                                     ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "对话框",
+            "order": 2,
+            "category": "组件",
+            "sidebar": "design",
+            "disabled": true,
+            "path": "docs/design/dialog.md",
+            "children": [
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "title": "无标题对话框",
+                                    "path": "#header-%E6%97%A0%E6%A0%87%E9%A2%98%E5%AF%B9%E8%AF%9D%E6%A1%86",
+                                    "level": 3,
+                                    "content": "<h3 id='header-%E6%97%A0%E6%A0%87%E9%A2%98%E5%AF%B9%E8%AF%9D%E6%A1%86'>无标题对话框</h3>",
+                                    "text": "无标题对话框",
+                                    "children": []
+                                },
+                                {
+                                    "title": "带标题对话框",
+                                    "path": "#header-%E5%B8%A6%E6%A0%87%E9%A2%98%E5%AF%B9%E8%AF%9D%E6%A1%86",
+                                    "level": 3,
+                                    "content": "<h3 id='header-%E5%B8%A6%E6%A0%87%E9%A2%98%E5%AF%B9%E8%AF%9D%E6%A1%86'>带标题对话框</h3>",
+                                    "text": "带标题对话框",
+                                    "children": []
+                                },
+                                {
+                                    "title": "复杂操作对话框",
+                                    "path": "#header-%E5%A4%8D%E6%9D%82%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%AF%9D%E6%A1%86",
+                                    "level": 3,
+                                    "content": "<h3 id='header-%E5%A4%8D%E6%9D%82%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%AF%9D%E6%A1%86'>复杂操作对话框</h3>",
+                                    "text": "复杂操作对话框",
+                                    "children": []
+                                },
+                                {
+                                    "title": "长内容对话框",
+                                    "path": "#header-%E9%95%BF%E5%86%85%E5%AE%B9%E5%AF%B9%E8%AF%9D%E6%A1%86",
+                                    "level": 3,
+                                    "content": "<h3 id='header-%E9%95%BF%E5%86%85%E5%AE%B9%E5%AF%B9%E8%AF%9D%E6%A1%86'>长内容对话框</h3>",
+                                    "text": "长内容对话框",
+                                    "children": []
                                 }
                             ]
                         }

@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>给组件添加<code>defaultExpandAll</code>属性，可以默认展开所有节点</p>\n<blockquote>\n<p>仅限首次渲染<code>Tree</code>时生效，后续添加节点不会默认展开</p>\n</blockquote>\n",
-    "index": 290,
+    "index": 287,
     "highlighted": [
         {
             "language": "vdt",

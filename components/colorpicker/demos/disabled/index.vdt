@@ -1,0 +1,3 @@
+import Colorpicker from 'kpc/components/colorpicker';
+
+<Colorpicker v-model="color" disabled />

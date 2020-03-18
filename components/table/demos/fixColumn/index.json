@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>给<code>TableColumn</code>或者<code>scheme</code>添加<code>fixed</code>属性，可以将列固定，其中<code>left</code>固定在左侧，<code>right</code>固定在右侧；固定的列依然支持<code>resizable</code>表头拖动，<code>stickHeader</code>表头吸顶，以及<code>fixHeader</code>表头固定</p>\n",
-    "index": 309,
+    "index": 310,
     "highlighted": [
         {
             "language": "vdt",

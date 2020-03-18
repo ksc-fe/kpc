@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>presets</code>定义组件的预选颜色，置为空数组时<code>[]</code>则不会展示预选颜色</p>\n",
-    "index": 64,
+    "index": 85,
     "highlighted": [
         {
             "language": "vdt",
@@ -13,7 +13,7 @@
         },
         {
             "language": "styl",
-            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-colorpicker</span>\n    <span class=\"hljs-attribute\">margin</span> <span class=\"hljs-number\">16px</span></code></pre>"
+            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-colorpicker</span>\n    <span class=\"hljs-attribute\">margin-right</span> <span class=\"hljs-number\">16px</span></code></pre>"
         },
         {
             "language": "js",

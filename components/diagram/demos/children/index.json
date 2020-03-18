@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>我们可以将任意组件或DOM元素传给图形进行渲染，不过此时图形即使开启<code>editable</code>也不能编辑，另外不要给图形指定<code>label</code>属性，因为图形会优先展示<code>label</code>属性</p>\n<p>所有子元素将居中显示，并且不会自动撑开父容器宽高</p>\n",
-    "index": 260,
+    "index": 257,
     "highlighted": [
         {
             "language": "vdt",

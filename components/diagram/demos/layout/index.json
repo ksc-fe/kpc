@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>Diagram</code>封装了<code>mxGraph</code>大部分布局系统，并且保持与<code>mxGraph</code>的命名一致</p>\n<ol>\n<li><code>DStackLayout</code>: 所有子元素横向<code>horizontal</code>或者纵向<code>vertical</code>排列，该布局对所有元素生效</li>\n<li><code>DPartitionLayout</code>: 所有元素横向<code>horizontal</code>或者纵向<code>vertical</code>等分排列，注意所有子元素\n会等分以满足父容器的宽高，该布局对所有元素生效</li>\n<li><code>DTreeLayout</code>: 所有连接元素横向<code>horizontal</code>或者纵向<code>vertical</code>排列，不要存在循环连接，该\n布局仅对连接元素生效，所有非连接元素，放在原始位置（默认：左上角）</li>\n<li><code>DRadialLayout</code>: 所有连接元素辐射排列，不要存在循环连接，该布局仅对连接元素生效，所有非\n连接元素，放在原始位置（默认：左上角）</li>\n<li><code>DFlowLayout</code>: 所有连接元素横向<code>horizontal</code>或者纵向<code>vertical</code>排列，非连接元素会纵向（如\n果<code>type=&quot;horizontal&quot;</code>）或者横向（如果<code>type=&quot;vertical&quot;</code>）排列，该布局对连接元素和非连接都生\n效，但是排列方式不同</li>\n<li><code>DCircleLayout</code>: 所有元素圆形排列，该布局对所有元素生效</li>\n<li><code>DOrganicLayout</code>: 所有连接元素根据力导向排列，该布局仅对连接元素生效，非连接元素放置在\n原始位置。（该布局具有随机性）</li>\n</ol>\n",
-    "index": 198,
+    "index": 197,
     "highlighted": [
         {
             "language": "vdt",

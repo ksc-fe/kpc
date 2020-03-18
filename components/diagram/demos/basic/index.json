@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<blockquote>\n<p><code>Diagram</code>及所有子组件，由于基于<code>mxGraph</code>这个庞大的库，所以没有放入索引文件<code>index.js</code>，你只能通过如下方式引入</p>\n<p><code>import {Diagram, DRectangle} from &#39;kpc/components/diagram&#39;;</code></p>\n<p>而不能直接通过<code>kpc</code>引入</p>\n<p><code>import {Diagram, DRectangle} from &#39;kpc&#39;;</code></p>\n<p>Angular下，需要另外注入<code>DiagramModule</code></p>\n<p><code>import {DiagramModule} from &#39;kpc-angular/@css/components/diagram&#39;;</code></p>\n</blockquote>\n<p><code>Diagram</code>组件暴露了3类组件</p>\n<ol>\n<li>根组件：<code>Diagram</code>，每张图都必须以<code>Diagram</code>作为根元素</li>\n<li>图形组件: 包括图形<code>DRectangle</code> <code>DCircle</code>等，以及线条<code>DLine</code></li>\n<li>布局组件：<code>DFlowLayout</code> <code>DTreeLayout</code>等以<code>Layout</code>作为后缀名的组件</li>\n</ol>\n<p>使用说明如下：</p>\n<ol>\n<li>图形组件作为<code>Diagram</code>下的子孙元素，可以任意嵌套，但所有非嵌套在布局组件中的图形组件，默认都放置在<code>(0, 0)</code>\n坐标位置，即左上角；</li>\n<li>图形组件下可以嵌套任意元素，例如：<code>Button</code> <code>div</code>，但是一旦嵌套了DOM元素，则该图形不能再设置标签<code>label</code>，\n也不能双击图形编辑标签；</li>\n<li>图形组件的<code>label</code>属性支持任意的<code>html</code>字符串，并且支持双击编辑该<code>html</code>，不过默认情况下该功能是关闭的，需要给\n图形添加<code>editable</code>属性打开编辑功能；</li>\n<li>线条<code>DLine</code>用于连接两个图形组件，此时你需要给图形指定一个全局唯一的<code>key</code>，然后通过<code>DLine</code>的<code>from</code>和<code>to</code>属性\n指定连接的起止位置；</li>\n<li>布局组件下面只能嵌套图形组件，否则组件会抛出错误；</li>\n</ol>\n",
-    "index": 43,
+    "index": 42,
     "highlighted": [
         {
             "language": "vdt",

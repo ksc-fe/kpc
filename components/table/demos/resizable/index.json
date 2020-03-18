@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>resizable</code>：表头是否可拖动，类型<code>Boolean</code>，<code>false</code>(默认)。<code>Table</code>支持持久化存储列宽信息，只需要通过<code>storeWidth</code>指定保存到<code>localStorage</code>中的<code>key</code>就可以了，这样下次渲染<code>Table</code>时会使用上次的列宽信息进行渲染</p>\n<blockquote>\n<p><code>storeWidth</code>必须在当前域名下唯一</p>\n</blockquote>\n",
-    "index": 320,
+    "index": 322,
     "highlighted": [
         {
             "language": "vdt",
