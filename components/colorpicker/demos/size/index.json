@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>size</code>指定尺寸：<code>large</code> <code>default</code> <code>small</code> <code>mini</code></p>\n",
-    "index": 142,
+    "index": 164,
     "highlighted": [
         {
             "language": "vdt",
@@ -13,7 +13,7 @@
         },
         {
             "language": "styl",
-            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-colorpicker</span>\n    <span class=\"hljs-attribute\">margin</span> <span class=\"hljs-number\">16px</span></code></pre>"
+            "content": "<pre><code class=\"hljs styl\"><span class=\"hljs-selector-class\">.k-colorpicker</span>\n    <span class=\"hljs-attribute\">margin-right</span> <span class=\"hljs-number\">16px</span></code></pre>"
         },
         {
             "language": "js",

@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>如果<code>data</code>存在<code>children</code>属性，并且值为数组，则会展示树形表格</p>\n<ol>\n<li>通过<code>childrenKey</code>属性指定子元素的键名</li>\n<li>通过<code>indent</code>指定子元素缩进的宽度，默认<code>32</code>(px)</li>\n<li>通过<code>spreadKeys</code>指定哪些行展开</li>\n</ol>\n<p>树形表格下，必须通过<code>rowKey</code>指定每行的<code>key</code></p>\n<blockquote>\n<p>如果数据中恰好存在<code>children</code>字段，但是你又不想展示树形表格，将<code>childrenKey</code>设为<code>false</code>即可</p>\n</blockquote>\n",
-    "index": 324,
+    "index": 326,
     "highlighted": [
         {
             "language": "vdt",
