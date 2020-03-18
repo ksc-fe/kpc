@@ -5,7 +5,6 @@ const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
-    mode: isProduction ? 'production' : 'development',
     output: {
         path: path.resolve(__dirname, './.dev'),
         filename: '[name].js',
@@ -15,8 +14,7 @@ module.exports = {
         rules: [
             {
                 test: /\.m?jsx?$/,
-                // exclude: [/node_modules(?!([\/\\]universal\-router)|([\/\\]graphlibrary))/],
-                exclude: [/node_modules(?!([\/\\]graphlibrary))/],
+                exclude: [/node_modules(?!([\/\\]universal\-router)|([\/\\]graphlibrary))/],
                 use: [
                     {
                         loader: 'babel-loader',

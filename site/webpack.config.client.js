@@ -30,11 +30,11 @@ module.exports = function(theme) {
         },
         plugins: (function() {
             const plugins = [
-                // new webpack.optimize.CommonsChunkPlugin({
-                    // children: true,
-                    // async: true,
-                    // minChunks: 3
-                // }),
+                new webpack.optimize.CommonsChunkPlugin({
+                    children: true,
+                    async: true,
+                    minChunks: 3
+                }),
                 new webpack.DefinePlugin({
                     'process.ssr': true,
                     'process.browser': true,
