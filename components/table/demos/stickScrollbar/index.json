@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>stickScrollbar</code>：当出现横向滚动条时，设置是否当表格底部没有滚动到视窗中时，将横向滚动条固定在页面底部，类型<code>Boolean</code> | <code>Number</code>，默认：<code>false</code></p>\n<ol>\n<li>如果取值为<code>Boolean</code>，<code>false</code>表示不吸底，<code>true</code>表示吸底，此时等价于<code>0</code>，表示固定的位置的<code>bottom</code>为<code>0</code></li>\n<li>如果取值为<code>Number</code>，用来指定固定位置距离视窗底部的距离</li>\n</ol>\n<blockquote>\n<p>滚动条吸底后会<code>fixed</code>，此时<code>document.body</code>不要出现横向滚动条，否则横向滚动后，表格位置而滚动条位置不会变</p>\n</blockquote>\n",
-    "index": 309,
+    "index": 306,
     "highlighted": [
         {
             "language": "vdt",

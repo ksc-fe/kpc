@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>type</code>设置表格的类型：<code>default</code> | <code>border</code> | <code>grid</code></p>\n",
-    "index": 321,
+    "index": 319,
     "highlighted": [
         {
             "language": "vdt",

@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>在<code>DropdownItem</code>中使用<code>Checkbox</code>，需要注意的是：</p>\n<p>如果给<code>DropdownItem</code>绑定<code>select</code>事件，该事件会触发两次，这是因为，<code>Checkbox</code>会使用<code>label</code>包裹<code>input</code>元素，两次事件，一次来源于<code>label</code>，另一次来源于<code>input</code>，所以当你需要自己在<code>select</code>中处理选中的值时，需要阻止<code>label</code> <code>click</code>事件的默认行为</p>\n<blockquote>\n<p><code>Radio</code>也类似</p>\n</blockquote>\n",
-    "index": 271,
+    "index": 279,
     "highlighted": [
         {
             "language": "vdt",

@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>手动上传需要通过指定<code>autoUpload</code>为<code>false</code>来关闭自动上传，然后调用组件的<code>submit</code>方法来手动上传</p>\n",
-    "index": 234,
+    "index": 233,
     "highlighted": [
         {
             "language": "vdt",

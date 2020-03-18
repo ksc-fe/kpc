@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>通过<code>value</code>扩展点，我们可以自定义选择结果的展示</p>\n<blockquote>\n<p>此时你不能指定<code>filterable</code>来筛选</p>\n</blockquote>\n",
-    "index": 266,
+    "index": 264,
     "highlighted": [
         {
             "language": "vdt",

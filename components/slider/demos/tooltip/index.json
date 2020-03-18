@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>给组件添加<code>showTooltip</code>可以在滑块上展示气泡提示，默认展示当前值，我们也可以通过<code>tooltip</code>扩展点自定义展示内容；当添加<code>always</code>属性时，将一直展示提示气泡</p>\n<blockquote>\n<p><code>tooltip</code>扩展点和<code>Tooltip</code>组件的<code>content</code>扩展点行为一样，如果你传入空的内容，则不会展示气泡</p>\n</blockquote>\n",
-    "index": 278,
+    "index": 267,
     "highlighted": [
         {
             "language": "vdt",

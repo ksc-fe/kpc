@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>这里是个复杂的与<code>Table</code>联动的例子，这里演示了怎么通过<code>drag</code>扩展点自定义分割线，以及如何动态调整面板的大小，来模拟显示和隐藏面板的效果</p>\n",
-    "index": 202,
+    "index": 201,
     "highlighted": [
         {
             "language": "vdt",

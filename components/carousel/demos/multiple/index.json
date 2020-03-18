@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p><code>CarouselItem</code>内容块默认宽度是<code>100%</code>，当你需要展示多个内容块时，只需要指定内容块的宽度即可。当它的宽度小于容器的宽度，即可展示多个内容块。为了保持前后可以无限滚动，此时你需要增大<code>clonedAmount</code>的值，它默认为<code>1</code>，该值代表前后克隆的内容块数量。你还可以通过<code>css</code>指定内容块的<code>margin</code></p>\n<blockquote>\n<p>该特性只对<code>effect=&quot;slide&quot;</code>有效</p>\n</blockquote>\n",
-    "index": 201,
+    "index": 203,
     "highlighted": [
         {
             "language": "vdt",

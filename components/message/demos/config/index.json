@@ -5,7 +5,7 @@
     },
     "catalogs": [],
     "contents": "<p>静态方法还可以使用对象作为参数，对象格式见API说明，通过该方式，我们可以做到隐藏关闭按钮或者隐藏前面的<code>Icon</code></p>\n",
-    "index": 122,
+    "index": 121,
     "highlighted": [
         {
             "language": "vdt",
