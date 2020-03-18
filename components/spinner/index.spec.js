@@ -9,8 +9,8 @@ describe('Spinner', () => {
     let instance;
 
     afterEach(() => {
-        unmount(instance);
-        instance = null
+        // unmount(instance);
+        // instance = null
     });
 
     it('step/max/min test', () => {
