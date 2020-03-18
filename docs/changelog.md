@@ -4,6 +4,10 @@ order: 99
 sidebar: doc
 ---
 
+## v1.3.7
+
+1. `Fix` 修复打包问题
+
 ## v1.3.6
 
 1. `Add` `Spinner` `Radio` `Checkbox`新增`change`事件，该事件只会通过用户点击或输入行为触发，有别于`$change:value` [#441](https://github.com/ksc-fe/kpc/issues/441) [#448](https://github.com/ksc-fe/kpc/issues/448)
