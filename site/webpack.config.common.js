@@ -1,8 +1,7 @@
 const webpack = require('webpack'); const path = require('path');
 const webpackConfig = require('../webpack.config.common');
 const merge = require('webpack-merge');
-// const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const packageJson = require('../package.json');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
@@ -44,18 +43,18 @@ module.exports = function(theme) {
                 {
                     test: /\.styl$/,
                     use: !process.env.THEME && theme !== '__nouse' ?
-                        ['css-hot-loader', MiniCssExtractPlugin.loader].concat(
+                        ['css-hot-loader'].concat(ExtractTextPlugin.extract({
                             // the third rule is a stylus rule
-                            commonConfig.module.rules[2].use,
-                        ) :
+                            use: commonConfig.module.rules[2].use,
+                        })) :
                         ['style-loader'].concat(commonConfig.module.rules[2].use),
                 },
                 {
                     test: /\.css$/,
                     use: !process.env.THEME && theme !== '__nouse' ?
-                        ['css-hot-loader', MiniCssExtractPlugin.loader].concat(
-                            commonConfig.module.rules[3].use,
-                        ) :
+                        ['css-hot-loader'].concat(ExtractTextPlugin.extract({
+                            use: commonConfig.module.rules[3].use,
+                        })) :
                         ['style-loader'].concat(commonConfig.module.rules[3].use),
                 },
             ]
@@ -82,13 +81,10 @@ module.exports = function(theme) {
 
     if (!process.env.THEME && theme !== '__nouse') {
         config.plugins.push(
-            new MiniCssExtractPlugin({
+            new ExtractTextPlugin({
                 filename: theme ? `theme-${theme}.css` : 'theme-kpc.css',
+                allChunks: true,
             })
-            // new ExtractTextPlugin({
-                // filename: theme ? `theme-${theme}.css` : 'theme-kpc.css',
-                // allChunks: true,
-            // })
         );
     }
 
