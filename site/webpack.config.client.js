@@ -45,7 +45,7 @@ module.exports = function(theme) {
             if (isDev && (!theme || process.env.THEME)) {
                 plugins.push(new webpack.HotModuleReplacementPlugin());
             } else {
-                plugins.push(new webpack.optimize.UglifyJsPlugin());
+                // plugins.push(new webpack.optimize.UglifyJsPlugin());
             }
 
             return plugins;
