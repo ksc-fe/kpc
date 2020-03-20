@@ -1,1 +1,1 @@
-require('./build/gulp/dist');
+require('./build/gulp');

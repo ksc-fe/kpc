@@ -1,10 +1,12 @@
 const path = require('path');
 const rimraf = require('rimraf');
 
+const resolve = (p) => {
+    return path.resolve(__dirname, '../', p);
+};
+
 module.exports = {
-    resolve(p) {
-        return path.resolve(__dirname, '../', p);
-    },
+    resolve,
 
     handleError(err, stats) {
         if (err) {
@@ -29,4 +31,10 @@ module.exports = {
             rimraf(path, resolve);
         });
     },
+
+    isIgnoreComponents(name) {
+        return ['code', 'diagram'].indexOf(name) > -1;
+    },
+
+    root: resolve('./'),
 };
