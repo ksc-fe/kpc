@@ -1,22 +1,42 @@
 const gulp = require('gulp'); 
 const genConfig = require('../webpack');
-const {resolve} = require('../utils');
+const {resolve, handleError, rm} = require('../utils');
 const webpack = require('webpack');
-const rimraf = require('rimraf');
 const gulpMultiProcess = require('gulp-multi-process');
+const {extractCss, ignoreCss, ignoreFile} = require('../webpack/extract');
+const path = require('path');
+const tap = require('gulp-tap');
+const uglifyjs = require('gulp-uglify');
 
 const outputPath = resolve('./dist');
 
 const frameworks = ['intact', 'vue', 'react'];
 const themes = ['default', 'ksyun'];
 
-gulp.task('clean@single', (done) => {
-    rimraf(outputPath, done);
+gulp.task('clean@single', () => {
+    return rm(outputPath);
 });
 
-const parallelTasks = [];
+gulp.task('build:i18n@single', (done) => {
+    gulp.src(resolve('./i18n/**/*.js'), {base: resolve('./')})
+        .pipe(tap((file, t) => {
+            const config = genConfig();
+            initConfig(config);
+            config.entry(path.basename(file.path, '.js')).add(file.path);
+            config.output.path(path.resolve(outputPath, './i18n')).library('i18n');
+            webpack(config.toConfig(), (err, stats) => {
+                handleError(err, stats);
+                uglify(stats).then(() => done());
+            });
+        }));
+});
+
+const parallelTasks = ['build:i18n@single'];
 frameworks.forEach(type => {
     themes.forEach(theme => {
+        // only build theme once for Intact
+        // it is unnecessary to build theme for other frameworks
+        if (type !== 'intact' && theme !== 'default') return;
         const task = `build:${type}:${theme}@single`;
         parallelTasks.push(task);
         gulp.task(task, () => {
@@ -29,14 +49,36 @@ gulp.task('_parallel@single', cb => {
     gulpMultiProcess(parallelTasks, cb);
 });
 
+const copyTasks = [];
+['vue', 'react'].forEach(type => {
+    const name = `copy:${type}@single`;
+    copyTasks.push(name);
+    gulp.task(name, () => {
+        return copySingleFileToPackage(type);
+    })
+});
+
 gulp.task('build@single', gulp.series(
     'clean@single',
-    '_parallel@single'
+    '_parallel@single',
+    gulp.parallel(...copyTasks)
 ));
+
+const tmpJsFile = 'kpc.tmp';
+// because we build file with multiple processes
+// it exists file race
+// rename the filename and delete it after building
+const shouldUseTmpFile = (type, theme) => type === 'intact' && theme !== 'default';
 
 function buildSingleFile(theme, type) {
     return new Promise(resolve => {
-        webpack(webpackConfig(theme, type), () => resolve());
+        webpack(webpackConfig(theme, type), (err, stats) => {
+            handleError(err, stats);
+            if (shouldUseTmpFile(type, theme)) {
+                return rm(path.resolve(outputPath, `${tmpJsFile}.js`)).then(resolve);
+            }
+            uglify(stats).then(resolve);
+        });
     });
 }
 
@@ -44,6 +86,17 @@ function webpackConfig(theme = 'default', type = 'intact') {
     const config = genConfig();
 
     initConfig(config);
+
+    // only extract css once when we build for Intact
+    if (type === 'intact') {
+        extractCss(config, theme === 'default' ? 'kpc.css' : `${theme}.css`);
+        if (theme !== 'default') {
+            ignoreFile(config);
+        }
+    } else {
+        ignoreCss(config);
+    }
+
 
     if (theme !== 'default') {
         // add theme
@@ -54,7 +107,11 @@ function webpackConfig(theme = 'default', type = 'intact') {
     } 
 
     // add entry
-    config.entry(`kpc${type !== 'intact' ? `.${type}` : ''}`).add(resolve('./index.js'));
+    if (!shouldUseTmpFile(type, theme)) {
+        config.entry(`kpc${type !== 'intact' ? `.${type}` : ''}`).add(resolve('./index.js'));
+    } else {
+        config.entry(tmpJsFile).add(resolve('./index.js'));
+    }
 
     // add alias
     const alias = type === 'vue' ? 'intact-vue' : type === 'react' ? 'intact-react' : 'intact'; 
@@ -97,7 +154,7 @@ function webpackConfig(theme = 'default', type = 'intact') {
     // console.dir(config.toConfig(), {depth: null});
 
     return config.toConfig();
-};
+}
 
 function initConfig(config) {
     config.output
@@ -115,4 +172,39 @@ function initConfig(config) {
         .plugin('limitChunk').use(webpack.optimize.LimitChunkCountPlugin, [{maxChunks: 1}]);
 
     return config;
+}
+
+function uglify(stats) {
+    const info = stats.toJson();
+    const {outputPath, assets} = info;
+
+    return Promise.all(assets.map(file => {
+        const name = file.name;
+        if (!/\.js$/.test(name)) return;
+
+        const filePath = path.resolve(outputPath, name);
+
+        return new Promise(resolve => {
+            gulp.src(filePath)
+                .pipe(tap((file) => {
+                    file.path = file.path.replace('.js', '.min.js');
+                }))
+                .pipe(uglifyjs())
+                .pipe(gulp.dest(outputPath))
+                .on('end', resolve);
+        });
+    }));
+}
+
+function copySingleFileToPackage(type) {
+    const path = `./packages/kpc-${type}`;
+    return rm(`${path}/dist`).then(() => {
+        return gulp.src([
+            './dist/fonts/**/*', 
+            './dist/i18n/**/*',
+            `./dist/kpc.${type}.*`,
+            './dist/*.css'
+        ], {base: './'})
+        .pipe(gulp.dest(path));
+    });
 }
