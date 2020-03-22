@@ -3,7 +3,7 @@ import template from './index.vdt';
 import Select from '../select';
 import '../../styles/kpc.styl';
 import './index.styl';
-import {toggleArray, isStringOrNumber} from '../utils';
+import {toggleArray, isStringOrNumber, isNullOrUndefined} from '../utils';
 
 export default class TreeSelect extends Select {
     @Intact.template()
@@ -59,15 +59,19 @@ export default class TreeSelect extends Select {
     _init() {
         super._init();
 
-        this.on('$change:value', (c, v) => {
+        const onChangeValue = (v) => {
             if (!this._isMultiple()) {
-                v = [v];
+                v = isNullOrUndefined(v) ? [] : [v];
             }
             this.set({
                 '_selectedKeys': v,
                 '_checkedKeys': v,
             }, {async: true});
+        };
+        this.on('$change:value', (c, v) => {
+            onChangeValue(v);
         });
+        onChangeValue(this.get('value'));
     }
 
     _isMultiple() {
