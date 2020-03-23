@@ -35,4 +35,11 @@ function parseMarkdown(contents) {
     });
 }
 
+process.on('message', files => {
+    process.send('hello')
+    // handleFiles(files).then(res => {
+        // process.send(res);
+    // });
+});
+
 exports.handleFiles = handleFiles;

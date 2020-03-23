@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const {resolve} = require('../utils');
 const glob = require('glob');
 const {handleFiles} = require('../doc/parse');
+const cp = require('child_process');
 
 const NUMS = 4;
 
@@ -14,7 +15,18 @@ function run(done) {
         }
 
         Promise.all(filesPerTask.map(files => {
-            return handleFiles(files);
+            const sp = cp.fork(resolve('./build/doc/parse.js'));
+            return new Promise(resolve => {
+                sp.send(files);
+                resolve();
+                sp.on('close', (code) => {
+                    console.log('code');
+                });
+                sp.on('exit', (code) => {
+                    console.log(code);
+                    resolve();
+                });
+            });
         })).then((...args) => {
             console.dir(args, {depth: null});
             done();
@@ -23,3 +35,8 @@ function run(done) {
 }
 
 gulp.task('test', run);
+
+process.on('message', (data) => {
+    console.log(data);
+});
+
