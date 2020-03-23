@@ -18,13 +18,9 @@ function run(done) {
             const sp = cp.fork(resolve('./build/doc/parse.js'));
             return new Promise(resolve => {
                 sp.send(files);
-                resolve();
-                sp.on('close', (code) => {
-                    console.log('code');
-                });
-                sp.on('exit', (code) => {
-                    console.log(code);
-                    resolve();
+                sp.on('message', (data) => {
+                    sp.kill();
+                    resolve(data);
                 });
             });
         })).then((...args) => {
@@ -35,8 +31,3 @@ function run(done) {
 }
 
 gulp.task('test', run);
-
-process.on('message', (data) => {
-    console.log(data);
-});
-
