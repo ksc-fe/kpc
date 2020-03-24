@@ -1,5 +1,6 @@
 const path = require('path');
 const rimraf = require('rimraf');
+const fs = require('fs-extra');
 
 const resolve = (p) => {
     return path.resolve(__dirname, '../', p);
@@ -37,4 +38,8 @@ module.exports = {
     },
 
     root: resolve('./'),
+
+    writeFile(file, content) {
+        return fs.ensureFile(file).then(() => fs.writeFile(file, content)); 
+    },
 };
