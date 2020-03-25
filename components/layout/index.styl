@@ -67,10 +67,11 @@
         generate(size)
             &.k-{size}
                 width lookup('$layout-aside-' + size + '-width')
-                & + .k-layout
-                & + .k-body
-                & + .k-layout > .k-header.k-fixed
-                    padding-left lookup('$layout-aside-' + size + '-width')
+                &.k-fixed
+                    & + .k-layout
+                    & + .k-body
+                    & + .k-layout > .k-header.k-fixed
+                        padding-left lookup('$layout-aside-' + size + '-width')
         for size in large small
             generate(size)
         // collapse
