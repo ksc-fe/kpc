@@ -32,57 +32,34 @@ renderer.paragraph = function(text) {
     return '<p>' + text.replace(/\n/g, '') + '</p>\n';
 };
 
-// get all codes
-const codes = [];
-const exampleReg = /^(example-?)/;
-renderer.code = function(code, language) {
-    // for rendering example to html
-    if (exampleReg.test(language)) {
-        language = language.replace(exampleReg, "") || 'js';
-        codes.push({
-            language,
-            content: code,
-            example: true,
-        });
-        return `<!-- example -->`;
-    }
-
-    let matches;
-    let ignore = false;
-    let filename;
-
-    if (matches = code.match(/@code/)) {
-        ignore = true;
-    } else if (matches = code.match(/@file ([^\s]+)/)) {
-        filename = matches[1];
-    }
-    if (matches) {
-        code = code.substring(code.indexOf('\n') + 1);
-    }
-
-
-    if (!ignore) {
-        codes.push({
-            language,
-            content: code,
-            filename,
-        });
-        return '';
-    }
-
-    return codeRenderer.call(this, code, language);
-};
-
 function handleFiles(files, dest) {
     if (!files.length) return;
 
     return Promise.all(files.map(async file => {
-        let {contents, metadata} = parseYaml(await fs.readFile(file, 'utf-8'));
-        contents = parseMarkdown(contents);
+        const {contents, metadata} = parseYaml(await fs.readFile(file, 'utf-8'));
 
-        await generateFiles(file, dest, codes);
+        if (!metadata) return;
 
-        // return {contents, metadata, path: file, codes};
+        const isDemo = /demos/.test(file);
+        const relativePath = path.relative(root, file);
+        let basename = path.basename(relativePath, '.md');
+        if (basename === 'index') {
+            basename = path.dirname(basename);
+        }
+        const relative = path.join(path.dirname(relativePath), basename);
+        const dir = path.join(dest, relative);
+        const fileObj = {
+            isDemo,
+            path: dir,
+            file,
+            relative,
+            id: relative.replace(/[\/\\]/g, '-'),
+        };
+        const {html, codes, catalogs} = parseMarkdown(fileObj, contents);
+
+        await generateFiles(fileObj, codes, html, metadata, catalogs);
+
+        return {metadata, file: fileObj, catalogs};
     }));
 }
 
@@ -96,61 +73,225 @@ function parseYaml(contents) {
     return {contents, metadata};
 }
 
-function parseMarkdown(contents) {
-    return marked(contents, {
+function parseMarkdown(file, contents) {
+    const codes = getAllCodes(file);
+    const catalogs = getAllCatalogs(file);
+
+    const html = marked(contents, {
         renderer,
         highlight(code) {
             return highlight.highlightAuto(code).value;
         }
     });
+
+    return {html, codes, catalogs};
 }
 
-function generateFiles(file, dest, codes) {
-    codes = parseCodes(codes);
-
-    return Promise.all(codes.map(code => {
-        if (code.ignored) return;
-
-        const filename = getFileName(file, dest, code);
-        let {content, language, filename: _filename} = code;
-
-        if (language === 'js' && !_filename) {
-            content = [
-                `export {default as data} from './index.json';`,
-                content,
-            ].join('\n');
-        } else if (language === 'styl' && !_filename) {
-            const requires = [];
-            content = [
-                `.example.${path.basename(file, '.md')}`,
-                ...content.split('\n').map(line => {
-                    if (line.startsWith('@require')) {
-                        requires.push(line);
-                        return '';
-                    }
-                    return `    ${line}`
-                })
-            ].join('\n');
-            if (requires.length) {
-                content = requires.join('\n') + '\n' + content;
-            }
+function getAllCodes(file) {
+    // get all codes
+    const codes = [];
+    const exampleReg = /^(example-?)/;
+    renderer.code = function(code, language) {
+        // for rendering example to html
+        if (exampleReg.test(language)) {
+            language = language.replace(exampleReg, "") || 'js';
+            codes.push({
+                language,
+                content: code,
+                example: true,
+            });
+            return `<!-- example -->`;
         }
 
-        return writeFile(filename, content);
-    }));
+        let matches;
+        let ignore = false;
+        let filename;
+
+        if (matches = code.match(/@code/)) {
+            ignore = true;
+        } else if (matches = code.match(/@file ([^\s]+)/)) {
+            filename = matches[1];
+        }
+        if (matches) {
+            code = code.substring(code.indexOf('\n') + 1);
+        }
+
+        if (file.isDemo && !ignore) {
+            codes.push({
+                language,
+                content: code,
+                filename,
+            });
+            return '';
+        }
+
+        return codeRenderer.call(this, code, language);
+    };
+
+    return codes;
 }
 
-function getFileName(file, dest, code) {
-    const relativePath = path.relative(root, file);
-    const dir = path.join(dest, path.dirname(relativePath), path.basename(relativePath, '.md'));
+function getAllCatalogs(file) {
+    let catalogs = [];
+    renderer.heading = function(text, level, raw) {
+        const id = encodeURIComponent(raw);
+        let result = `<h${level} id='${id}'>${text}</h${level}>`;
+        if (!file.isDemo && level < 4) {
+            catalogs.push({
+                text: text,
+                level: level,
+                id: id,
+            });
+        }
+        return result;
+    };
 
-    if (code.filename) {
-        return path.join(dir, code.filename);
+    return catalogs;
+}
+
+function generateFiles(file, codes, html, metadata, catalogs) {
+    codes = parseCodes(file, codes);
+
+    // only demo has codes
+    const promises = codes.map((code, index) => {
+        if (code.ignored) return;
+
+        if (!code.example) {
+            return generateDemoFiles(file, code);
+        } else {
+            return generateExampleFiles(file, code, index);
+        }
+    });
+
+    promises.push(writeJson(file, codes, html, metadata, catalogs));
+
+    if (!file.isDemo) {
+        promises.push(writeIndex(file, metadata));
     }
-    return path.join(dir, `index.${code.language}`);
+
+    if (metadata.iframe) {
+        promises.push(writeIframe(file, metadata.iframe));
+    }
+
+    return Promise.all(promises);
 }
 
-function parseCodes(codes) {
+function generateDemoFiles(file, code) {
+    const filename = getFileName(file, code);
+    let {content, language, filename: _filename} = code;
+
+    if (language === 'js' && !_filename) {
+        content = [
+            `export {default as data} from './index.json';`,
+            content,
+        ].join('\n');
+    } else if (language === 'styl' && !_filename) {
+        const requires = [];
+        content = [
+            `.example.${file.id}`,
+            ...content.split('\n').map(line => {
+                if (line.startsWith('@require')) {
+                    requires.push(line);
+                    return '';
+                }
+                return `    ${line}`
+            })
+        ].join('\n');
+        if (requires.length) {
+            content = requires.join('\n') + '\n' + content;
+        }
+    }
+
+    return writeFile(filename, content);
+}
+
+function generateExampleFiles(file, code, index) {
+    return writeFile(path.join(file.path, `demos/demos${index}/index.js`), code.content);
+}
+
+function writeJson(file, codes, html, metadata, catalogs) {
+    const data = {
+        setting: metadata,
+        contents: html,
+        index: file.id,
+    };
+
+    if (file.isDemo) {
+        data.highlighted = codes.map(item => {
+            return {
+                language: item.language,
+                content: `<pre><code class="hljs ${languageMap(item.language)}">` +
+                    highlight.highlight(languageMap(item.language), item.content).value +
+                `</code></pre>`,
+                file: item.filename,
+            };
+        });
+    } else {
+        data.catalogs = catalogs;
+    }
+
+    return writeFile(path.join(file.path, 'index.json'), JSON.stringify(data, null, 4));
+}
+
+function writeIndex(file, metadata) {
+    const sidebar = metadata.sidebar;
+    const content = [
+        `import Article from '~/../src/components/article';`,
+        `import data from './index.json';`,
+        sidebar ? `import sidebar from '~/${sidebar}.json';` : undefined,
+        ``,
+        `const r = require.context('./', true, /demos.*(index|demo).js$/);`,
+        `const keys = r.keys();`,
+        `const demos = [];`,
+        `for (let i = 0; i < keys.length; i++) {`,
+        `    const file = keys[i];`,
+        `    // if we found demo.js then ignore index.js`,
+        `    if (/demo\.js$/.test(file)) i++;`,
+        `    demos.push(r(file));`,
+        `}`,
+        ``,
+        `export default class extends Article {`,
+        sidebar ? `    static sidebar = sidebar;` : undefined,
+        `    static data = data;`,
+        `    defaults() {`,
+        `        return {...super.defaults(), ...data, demos};`,
+        `    }`,
+        `}`,
+    ].join('\n');
+
+    return writeFile(path.join(file.path, 'index.js'), content);
+}
+
+function writeIframe(file, height) {
+    return Promise.all([
+        writeFile(path.join(file.path, 'demo.js'), [
+            `export {default as data} from './index.json';`,
+            `import Intact from 'intact';`,
+            ``,
+            `export default class extends Intact {`,
+            `    @Intact.template()`,
+            `    static template = \`<div class="browser-mockup">`,
+            `        <iframe height="${height}" src="/${file.relative}/index.html"></iframe>`,
+            `    </div>\`;`,
+            `}`,
+        ].join('\n')),
+        writeFile(path.join(file.path, 'iframe.js'), [
+            `import Intact from 'intact';`,
+            `import Demo from './index.js';`,
+            `Intact.mount(Demo, document.getElementById('page'));`,
+        ].join('\n')),
+        // TODO: write index.html
+    ]);
+}
+
+function getFileName(file, code) {
+    if (code.filename) {
+        return path.join(file.path, code.filename);
+    }
+    return path.join(file.path, `index.${code.language}`);
+}
+
+function parseCodes(file, codes) {
     const hasMap = {
         hasJs: false,
         hasStylus: false,
@@ -234,24 +375,26 @@ function parseCodes(codes) {
         return true;
     });
 
-    if (!hasMap.hasJs) {
-        codes.splice(hasMap.hasStylus ? 2 : 1, 0, (jsCode = {
-            language: 'js',
-            content: [
-                `import Intact from 'intact';`,
-                `import template from './index.vdt';`,
-                hasMap.hasStylus ? `import './index.styl'; \n` : '',
-                `export default class extends Intact {`,
-                `    @Intact.template()`,
-                `    static template = template;`,
-                `}`,
-            ].join('\n')
-        }));
-    }
+    if (file.isDemo) {
+        if (!hasMap.hasJs) {
+            codes.splice(hasMap.hasStylus ? 2 : 1, 0, (jsCode = {
+                language: 'js',
+                content: [
+                    `import Intact from 'intact';`,
+                    `import template from './index.vdt';`,
+                    hasMap.hasStylus ? `import './index.styl'; \n` : '',
+                    `export default class extends Intact {`,
+                    `    @Intact.template()`,
+                    `    static template = template;`,
+                    `}`,
+                ].join('\n')
+            }));
+        }
 
-    const js = hasMap.hasJs ? jsCode.content.split('\n').slice(hasMap.hasStylus ? 3 : 2).join('\n') : null;
-    const vdt = codes[0].content;
-    generateOtherCodes(vdt, js, hasMap, codeSnippetMap, codes);
+        const js = hasMap.hasJs ? jsCode.content.split('\n').slice(hasMap.hasStylus ? 3 : 2).join('\n') : null;
+        const vdt = codes[0].content;
+        generateOtherCodes(vdt, js, hasMap, codeSnippetMap, codes);
+    }
 
     return codes;
 }
@@ -289,6 +432,15 @@ function generateOtherCodes(vdt, js, hasMap, codeSnippetMap, codes) {
         });
     }
 }
+
+function languageMap(key) {
+    const map = {
+        'vue': 'html',
+        'vdt': 'jsx',
+    };
+    return map[key] || key;
+};
+
 
 process.on('message', ({files, dest}) => {
     handleFiles(files, dest).then(res => {
