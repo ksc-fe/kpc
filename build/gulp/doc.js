@@ -1,5 +1,5 @@
 const gulp = require('gulp');
-const {resolve, writeFile} = require('../utils');
+const {resolve: resolvePath, writeFile} = require('../utils');
 const glob = require('glob');
 const {handleFiles} = require('../doc/parse');
 const cp = require('child_process');
@@ -7,15 +7,15 @@ const os = require('os');
 const path = require('path');
 
 const NUMS = os.cpus().length;
+// const NUMS = 2;
 
 // const globExp = './@(docs|components)/**/*.md';
 const globExp = './@(docs|components)/**/*.md';
-const dest = resolve('./site/.dist');
+const dest = resolvePath('./site/.dist');
 
 function run() {
-    const exp = resolve(globExp);
     return new Promise(resolve => {
-        glob(exp, null, (err, files) => {
+        glob(resolvePath(globExp), null, (err, files) => {
             const amount = Math.ceil(files.length / NUMS);
             const filesPerTask = [];
             for (let i = 0; i < NUMS; i++) {
@@ -23,16 +23,16 @@ function run() {
             }
 
             Promise.all(filesPerTask.map(files => {
-                // const sp = cp.fork(resolve('./build/doc/parse.js'));
-                // return new Promise(resolve => {
-                    // sp.send({files, dest});
-                    // sp.on('message', (data) => {
-                        // sp.kill();
-                        // resolve(data);
-                    // });
-                // });
-                const parse = require('../doc/parse');
-                return parse(files, dest);
+                const sp = cp.fork(resolvePath('./build/doc/parse.js'));
+                return new Promise(resolve => {
+                    sp.send({files, dest});
+                    sp.on('message', (data) => {
+                        sp.kill();
+                        resolve(data);
+                    });
+                });
+                // const parse = require('../doc/parse');
+                // return parse(files, dest);
             })).then((data) => {
                 return genereateSideBar(data);
             }).then(() => {
