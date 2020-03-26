@@ -79,6 +79,7 @@ function parseMarkdown(file, contents) {
 
     const html = marked(contents, {
         renderer,
+        langPrefix: 'hljs ',
         highlight(code) {
             return highlight.highlightAuto(code).value;
         }

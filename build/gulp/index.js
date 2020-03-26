@@ -5,7 +5,7 @@ require('./dist');
 require('./indexFile');
 require('./packages');
 require('./frameworks');
-require('./doc');
+require('../doc/doc');
 
 gulp.task('build', gulp.series(
     'index',

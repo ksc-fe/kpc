@@ -1,3 +1,11 @@
+const genConfig = require('../webpack');
+const {resolve: resolvePath} = require('../utils');
+const packageJson = require('../../package.json');
+const webpack = require('webpack');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {extractCss} = require('../webpack/extract');
+
 exports.dedent = function dedent(scripts, number = 1) {
     if (typeof scripts === 'string') {
         scripts = scripts.split('\n');
@@ -45,5 +53,32 @@ exports.getDefaults = function getDefaults(js) {
         } catch (e) {}
         return data; 
     }
+}
+
+exports.dest = resolvePath('./site/data');
+
+exports.webpackConfig = function webpackConfig() {
+    const config = genConfig();
+
+    config.entry(`static/client`).add(resolvePath('./site/src/client.js'));
+    config.output
+        .path(resolvePath('./site/dist'))
+        .publicPath('/')
+        .chunkFilename('static/chunk/[chunkhash].js');
+    config.resolve.alias
+        .set('~', exports.dest)
+        .set('@', resolvePath('./src'));
+    config
+        .plugin('defineVersion')
+            .use(webpack.DefinePlugin, [{'process.version': JSON.stringify(packageJson.version)}])
+            .end()
+        // .plugin('monaco')
+            // .use(MonacoWebpackPlugin)
+            // .end()
+        .plugin('html')
+            .use(HtmlWebpackPlugin, [{template: resolvePath('./site/src/index.html')}])
+            .end();
+
+    return config;
 }
 

@@ -23,6 +23,7 @@ order: 0
 
 ```js
 // @file pageA.js
+import Intact from 'intact';
 import template from './pageA.vdt';
 
 export default class PageA extends Intact {
@@ -38,6 +39,7 @@ export default class PageA extends Intact {
 
 ```js
 // @file pageB.js
+import Intact from 'intact';
 import template from './pageB.vdt';
 
 export default class PageB extends Intact {
