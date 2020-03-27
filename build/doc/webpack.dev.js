@@ -9,7 +9,11 @@ config.devServer
     .host('0.0.0.0')
     .stats('errors-only')
     .set('liveReload', false)
-    .set('historyApiFallback', true)
+    .set('historyApiFallback', {
+        rewrites: [
+            {from: '/demo.html', to: '/index.html'},
+        ]
+    })
     .contentBase([resolve('./site/src')]);
 
 const rules = config.module.rules;

@@ -1,7 +1,6 @@
 import Intact from 'intact';
 import template from './index.vdt';
-
-const req = require.context('~/', true, /^\.\/components\/.*index\.js$/);
+import {req} from '../document';
 
 export default class extends Intact {
     @Intact.template()
@@ -14,7 +13,7 @@ export default class extends Intact {
             qs[key] = value;
         });
 
-        const Demo = await req(`./components/${qs.component}/demos/${qs.demo}/index.js`);
+        const Demo = await req(`./${qs.path}/index.js`);
         this.set({Demo});
     }
 }

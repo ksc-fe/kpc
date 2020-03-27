@@ -272,15 +272,15 @@ function writeIframe(file, height) {
             `export default class extends Intact {`,
             `    @Intact.template()`,
             `    static template = \`<div class="browser-mockup">`,
-            `        <iframe height="${height}" src="/${file.relative}/index.html"></iframe>`,
+            `        <iframe height="${height}" src="/demo.html?path=${file.relative}"></iframe>`,
             `    </div>\`;`,
             `}`,
         ].join('\n')),
-        writeFile(path.join(file.path, 'iframe.js'), [
-            `import Intact from 'intact';`,
-            `import Demo from './index.js';`,
-            `Intact.mount(Demo, document.getElementById('page'));`,
-        ].join('\n')),
+        // writeFile(path.join(file.path, 'iframe.js'), [
+            // `import Intact from 'intact';`,
+            // `import Demo from './index.js';`,
+            // `Intact.mount(Demo, document.getElementById('page'));`,
+        // ].join('\n')),
         // TODO: write index.html
     ]);
 }
