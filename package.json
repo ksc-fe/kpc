@@ -18,7 +18,7 @@
     "start": "node server.js",
     "build": "cross-env NODE_ENV=production BUILD=1 gulp build",
     "build:angular": "gulp build@angular",
-    "dev:doc": "cross-env THEME=ksyun NODE_OPTIONS='--max-old-space-size=4096' gulp watch",
+    "dev:doc": "cross-env THEME=ksyun NODE_OPTIONS='--max-old-space-size=4096' gulp doc:dev",
     "dev:doc:default": "cross-env THEME=default gulp watch",
     "preview:doc": "gulp watch",
     "build:doc": "cross-env NODE_ENV=production NODE_OPTIONS='--max-old-space-size=4096' gulp build:doc",

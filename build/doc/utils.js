@@ -76,9 +76,9 @@ exports.webpackConfig = function webpackConfig() {
         .plugin('monaco')
             .use(MonacoWebpackPlugin)
             .end()
-        .plugin('progress')
-            .use(webpack.ProgressPlugin)
-            .end()
+        // .plugin('progress')
+            // .use(webpack.ProgressPlugin)
+            // .end()
         .plugin('html')
             .use(HtmlWebpackPlugin, [{template: resolvePath('./site/src/index.html')}])
             .end();

@@ -14,40 +14,46 @@ const {extractCss} = require('../webpack/extract');
 const connect = require('gulp-connect');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const {dest} = require('./utils');
+const parse = require('./parse');
 
 const NUMS = os.cpus().length;
 // const NUMS = 2;
 
 // const globExp = './@(docs|components)/**/*.md';
-const globExp = './@(docs|components)/**/*.md';
+const globExp = resolvePath('./@(docs|components)/**/*.md');
 
-function run() {
+function prepare() {
     return new Promise(resolve => {
-        glob(resolvePath(globExp), null, (err, files) => {
-            const amount = Math.ceil(files.length / NUMS);
-            const filesPerTask = [];
-            for (let i = 0; i < NUMS; i++) {
-                filesPerTask.push(files.slice(i * amount, i === NUMS - 1 ? undefined : (i + 1) * amount));
-            }
-
-            Promise.all(filesPerTask.map(files => {
-                const sp = cp.fork(resolvePath('./build/doc/parse.js'));
-                return new Promise(resolve => {
-                    sp.send({files, dest});
-                    sp.on('message', (data) => {
-                        sp.kill();
-                        resolve(data);
-                    });
-                });
-                // const parse = require('../doc/parse');
-                // return parse(files, dest);
-            })).then((data) => {
-                return genereateSideBar(data);
+        glob(globExp, null, (err, files) => {
+            parseFiles(files).then((datas) => {
+                return genereateSideBar(datas);
             }).then(() => {
                 resolve();
             });
         });
     });
+}
+
+function parseFiles(files) {
+    if (files.length < 8) {
+        return Promise.all([parse(files, dest)]);
+    }
+
+    const amount = Math.ceil(files.length / NUMS);
+    const filesPerTask = [];
+    for (let i = 0; i < NUMS; i++) {
+        filesPerTask.push(files.slice(i * amount, i === NUMS - 1 ? undefined : (i + 1) * amount));
+    }
+    return Promise.all(filesPerTask.map(files => {
+        const sp = cp.fork(resolvePath('./build/doc/parse.js'));
+        return new Promise(resolve => {
+            sp.send({files, dest});
+            sp.on('message', (data) => {
+                sp.kill();
+                resolve(data);
+            });
+        });
+    }));
 }
 
 function genereateSideBar(items) {
@@ -148,6 +154,8 @@ function webpackConfig() {
     return config;
 }
 
-gulp.task('doc:prepare', run);
-// gulp.task('test', run);
-gulp.task('doc:watch', watch);
+exports.prepare = prepare;
+exports.parseFiles = parseFiles;
+exports.watch = watch;
+exports.globExp = globExp;
+exports.dest = dest;

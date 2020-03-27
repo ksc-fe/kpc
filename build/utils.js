@@ -1,6 +1,7 @@
 const path = require('path');
 const rimraf = require('rimraf');
 const fs = require('fs-extra');
+const childProcess = require('child_process');
 
 const resolve = (p) => {
     return path.resolve(__dirname, '../', p);
@@ -41,5 +42,23 @@ module.exports = {
 
     writeFile(file, content) {
         return fs.ensureFile(file).then(() => fs.writeFile(file, content)); 
+    },
+
+    exec(command) {
+        return new Promise(function(resolve, reject) {
+            var cmd = childProcess.exec(
+                `sh -c '${command}'`,
+                {maxBuffer: 50000 * 1024},
+                (err, stdout) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(stdout);
+                    }
+                }
+            );
+            cmd.stdout.pipe(process.stdout);
+            cmd.stderr.pipe(process.stderr);
+        });
     },
 };
