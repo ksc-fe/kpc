@@ -10,6 +10,7 @@ require('../doc/doc');
 gulp.task('build', gulp.series(
     'index',
     parallel,
+    // gulp.parallel('build@dist', 'build@packages'),
     'build@frameworks'
 ));
 

@@ -22,6 +22,7 @@ config.output.pathinfo(false);
 
 // console.dir(config.toConfig(), {depth: null});
 
-const smp = new SpeedMeasurePlugin();
+// const smp = new SpeedMeasurePlugin();
+// module.exports =  smp.wrap(config.toConfig());
 
-module.exports =  smp.wrap(config.toConfig());
+module.exports = config.toConfig();

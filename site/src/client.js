@@ -1,12 +1,12 @@
 import 'core-js/es6/promise';
 import './main';
 import router from './router';
-import createHistory from 'history/createBrowserHistory';
+import {createBrowserHistory} from 'history';
 import App from 'kpc/components/app';
 import Link from 'kpc/components/link';
 import serverStyleCleanup from 'node-style-loader/clientCleanup';
 
-const history = createHistory();
+const history = createBrowserHistory();
 const $app = new App({container: document.getElementById('page'), ssr: true});
 
 $app.history = history;

@@ -1,28 +1,18 @@
-"use strict";
+var _Object$create = require("@babel/runtime-corejs3/core-js/object/create");
+var _Object$setPrototypeOf = require("@babel/runtime-corejs3/core-js/object/set-prototype-of");
+var _defaults = require("@babel/runtime-corejs3/helpers/defaults");
 
-var _interopRequireDefault = require("@babel/runtime-corejs2/helpers/interopRequireDefault");
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _setPrototypeOf = _interopRequireDefault(require("@babel/runtime-corejs2/core-js/object/set-prototype-of"));
-
-var _create = _interopRequireDefault(require("core-js/library/fn/object/create"));
-
-var _defaults2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/defaults"));
-
-var isSupportProto = _setPrototypeOf.default || {}.__proto__;
+var isSupportProto = _Object$setPrototypeOf || {}.__proto__;
 
 function _inheritsLoose(subClass, superClass) {
-  subClass.prototype = (0, _create.default)(superClass.prototype);
+  subClass.prototype = _Object$create(superClass.prototype);
   subClass.prototype.constructor = subClass;
 
   if (!isSupportProto) {
-    (0, _defaults2.default)(subClass, superClass);
+    _defaults(subClass, superClass); 
   }
 
   subClass.__proto__ = superClass;
 }
 
-var _default = _inheritsLoose;
-exports.default = _default;
+module.exports = _inheritsLoose;

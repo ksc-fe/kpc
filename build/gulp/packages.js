@@ -31,7 +31,7 @@ gulp.task('build:js', () => {
             let contents = file.contents.toString('utf-8');
             // replace inheritsLoose for IE compatibilty
             const relativePath = path.relative(path.dirname(file.path), resolve('./inheritsLoose'));
-            contents = contents.replace('@babel/runtime-corejs2/helpers/inheritsLoose', relativePath);
+            contents = contents.replace('@babel/runtime-corejs3/helpers/inheritsLoose', relativePath);
             file.contents = Buffer.from(contents);
         }))
         .pipe(gulp.dest(destStylus))

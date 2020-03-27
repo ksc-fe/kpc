@@ -46,6 +46,7 @@ frameworks.forEach(type => {
 });
 
 const parallelDist = (cb) => gulpMultiProcess(parallelTasks, cb);
+// const parallelDist = gulp.parallel(...parallelTasks);
 
 const copyTasks = [];
 ['vue', 'react'].forEach(type => {

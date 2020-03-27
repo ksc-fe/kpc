@@ -47,9 +47,6 @@ module.exports = (config) => {
             // .runtimeChunk(false)
             // .end()
         .devtool('source-map')
-        .plugin('progress')
-            .use(webpack.ProgressPlugin)
-            .end()
         // .plugin('clean')
             // .use(CleanWebpackPlugin)
             // .end();

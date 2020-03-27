@@ -5,6 +5,7 @@ const webpack = require('webpack');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {extractCss} = require('../webpack/extract');
+const addThreadLoader = require('../webpack/thread');
 
 exports.dedent = function dedent(scripts, number = 1) {
     if (typeof scripts === 'string') {
@@ -72,12 +73,17 @@ exports.webpackConfig = function webpackConfig() {
         .plugin('defineVersion')
             .use(webpack.DefinePlugin, [{'process.version': JSON.stringify(packageJson.version)}])
             .end()
-        // .plugin('monaco')
-            // .use(MonacoWebpackPlugin)
-            // .end()
+        .plugin('monaco')
+            .use(MonacoWebpackPlugin)
+            .end()
+        .plugin('progress')
+            .use(webpack.ProgressPlugin)
+            .end()
         .plugin('html')
             .use(HtmlWebpackPlugin, [{template: resolvePath('./site/src/index.html')}])
             .end();
+
+    addThreadLoader(config);
 
     return config;
 }
