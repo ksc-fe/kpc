@@ -1,5 +1,5 @@
 const {resolve: resolvePath, writeFile, handleError} = require('../utils');
-const {dest, destServer, webpackConfigServer, webpackConfigClient} = require('./utils');
+const {dest, destServer, webpackConfigServer, webpackConfigClient} = require('./webpack');
 const path = require('path');
 const webpack = require('webpack');
 const {prepare} = require('./generate');

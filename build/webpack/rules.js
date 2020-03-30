@@ -7,12 +7,6 @@ module.exports = (config) => {
         .rule('babel')
             .test(/\.jsx?$/)
             .exclude.add(/node_modules/).end()
-            // .use('thread')
-                // .loader('thread-loader')
-                // .options({
-                    // // workerParallelJobs: 50,
-                // })
-                // .end()
             .use('babel')
                 .loader('babel-loader')
                 .options({
@@ -22,9 +16,6 @@ module.exports = (config) => {
             .end()
         .rule('vdt')
             .test(/\.vdt$/)
-            // .use('thread')
-                // .merge(rules.get('babel').uses.get('thread').entries())
-                // .end()
             .use('babel')
                 .merge(rules.get('babel').uses.get('babel').entries())
                 .end()
@@ -38,9 +29,6 @@ module.exports = (config) => {
             .end()
         .rule('stylus')
             .test(/\.styl$/)
-            // .use('thread')
-                // .merge(rules.get('babel').uses.get('thread').entries())
-                // .end()
             .use('css')
                 .loader('css-loader')
                 .options({url: true})
@@ -59,9 +47,6 @@ module.exports = (config) => {
             .end()
         .rule('css')
             .test(/\.css$/)
-            // .use('thread')
-                // .merge(rules.get('babel').uses.get('thread').entries())
-                // .end()
             .use('css')
                 .merge(rules.get('stylus').uses.get('css').entries())
                 .end()
@@ -75,7 +60,7 @@ module.exports = (config) => {
                 .loader('file-loader')
                 .options({
                     outputPath: 'fonts/',
-                    name: '[name].[hash].[ext]',
+                    name: '[name].[ext]',
                 })
                 .end()
             .end()

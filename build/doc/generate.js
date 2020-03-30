@@ -3,7 +3,7 @@ const glob = require('glob');
 const cp = require('child_process');
 const os = require('os');
 const path = require('path');
-const {destData} = require('./utils');
+const {destData} = require('./webpack');
 const parse = require('./parse');
 
 const NUMS = os.cpus().length;

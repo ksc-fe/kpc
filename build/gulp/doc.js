@@ -1,9 +1,11 @@
 const {prepare, parseFiles, globExp} = require("../doc/generate");
-const {destData, destServer, dest} = require('../doc/utils');
+const {destData, destServer, dest, webpackConfigDevServer} = require('../doc/webpack');
 const {buildClient, buildServer, staticize, upload} = require("../doc/dist");
 const gulp = require('gulp');
 const {exec, rm, resolve} = require('../utils');
 const gulpMultiProcess = require('gulp-multi-process');
+const webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server');
 
 gulp.task('doc:clean:data', () => {
     return rm(destData);
@@ -15,7 +17,13 @@ gulp.task('doc:prepare', () => {
 });
 
 gulp.task('doc:server', () => {
-    return exec('npx webpack-dev-server --config build/doc/webpack.dev.js');
+    const config = webpackConfigDevServer().toConfig();
+    const compiler = webpack(config);
+    const server = new WebpackDevServer(compiler, config.devServer);
+    const {port, host} = config.devServer;
+    server.listen(port, host, () => {
+        console.log(`Starting server on http://${host}:${port}`);
+    });
 });
 
 gulp.task('doc:watch', () => {

@@ -7,6 +7,7 @@ const {extractCss, ignoreCss, ignoreFile} = require('../webpack/extract');
 const path = require('path');
 const tap = require('gulp-tap');
 const uglifyjs = require('gulp-uglify');
+const {addTheme} = require('../webpack/theme');
 
 const outputPath = resolve('./dist');
 
@@ -40,7 +41,7 @@ frameworks.forEach(type => {
         const task = `build:${type}:${theme}@dist`;
         parallelTasks.push(task);
         gulp.task(task, () => {
-            return builddistFile(theme, type);
+            return buildDistFile(theme, type);
         });
     });
 });
@@ -69,7 +70,7 @@ const tmpJsFile = 'kpc.tmp';
 // rename the filename and delete it after building
 const shouldUseTmpFile = (type, theme) => type === 'intact' && theme !== 'default';
 
-function builddistFile(theme, type) {
+function buildDistFile(theme, type) {
     return new Promise(resolve => {
         webpack(webpackConfig(theme, type), (err, stats) => {
             handleError(err, stats);
@@ -96,14 +97,7 @@ function webpackConfig(theme = 'default', type = 'intact') {
         ignoreCss(config);
     }
 
-
-    if (theme !== 'default') {
-        // add theme
-        config.module.rules.get('stylus').uses.get('stylus').tap(options => ({
-            ...options,
-            import: resolve(`./styles/themes/${theme}/index.styl`),
-        }));
-    } 
+    addTheme(config, theme);
 
     // add entry
     if (!shouldUseTmpFile(type, theme)) {
