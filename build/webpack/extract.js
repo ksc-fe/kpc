@@ -2,9 +2,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 exports.extractCss = (config, filename) => {
     const rules = config.module.rules;
+    const hasThread = rules.get('stylus').uses.get('thread');
+    const before = hasThread ? 'thread' : 'css';
 
-    rules.get('stylus').use('extract').loader(MiniCssExtractPlugin.loader).before('css');
-    rules.get('css').use('extract').loader(MiniCssExtractPlugin.loader).before('css');
+    rules.get('stylus').use('extract').loader(MiniCssExtractPlugin.loader).before(before);
+    rules.get('css').use('extract').loader(MiniCssExtractPlugin.loader).before(before);
 
     config.plugin('extract').use(MiniCssExtractPlugin, [{filename}]);
 

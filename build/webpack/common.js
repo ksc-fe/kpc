@@ -1,6 +1,5 @@
 const {resolve, root} = require('../utils');
 const TerserPlugin = require('terser-webpack-plugin');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = (config) => {

@@ -7,13 +7,17 @@ export default class extends Intact {
     static template = template;
 
     async _init() {
-        const qs = {};
-        location.search.substring(1).split('&').forEach(item => {
-            const [key, value] = item.split('=');
-            qs[key] = value;
-        });
+        let path = this.get('path');
+        if (!path) {
+            const qs = {};
+            location.search.substring(1).split('&').forEach(item => {
+                const [key, value] = item.split('=');
+                qs[key] = value;
+            });
+            path = qs.path;
+        }
 
-        const Demo = await req(`./${qs.path}/index.js`);
+        const Demo = await req(`./${path}/index.js`);
         this.set({Demo});
     }
 }

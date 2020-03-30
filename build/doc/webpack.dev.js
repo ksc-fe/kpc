@@ -1,8 +1,8 @@
-const {webpackConfig} = require('./utils');
+const {webpackConfigClient} = require('./utils');
 const {resolve} = require('../utils');
 const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
 
-const config = webpackConfig();
+const config = webpackConfigClient();
 config.devServer
     .hot(true)
     .port(4567)

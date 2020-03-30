@@ -272,7 +272,7 @@ function writeIframe(file, height) {
             `export default class extends Intact {`,
             `    @Intact.template()`,
             `    static template = \`<div class="browser-mockup">`,
-            `        <iframe height="${height}" src="/demo.html?path=${file.relative}"></iframe>`,
+            `        <iframe height="${height}" src="/iframe/${file.relative}/"></iframe>`,
             `    </div>\`;`,
             `}`,
         ].join('\n')),

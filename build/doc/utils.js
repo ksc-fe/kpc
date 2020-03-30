@@ -4,8 +4,9 @@ const packageJson = require('../../package.json');
 const webpack = require('webpack');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {extractCss} = require('../webpack/extract');
+const {extractCss, ignoreCss} = require('../webpack/extract');
 const addThreadLoader = require('../webpack/thread');
+const TerserPlugin = require('terser-webpack-plugin');
 
 exports.dedent = function dedent(scripts, number = 1) {
     if (typeof scripts === 'string') {
@@ -56,18 +57,19 @@ exports.getDefaults = function getDefaults(js) {
     }
 }
 
-exports.dest = resolvePath('./site/data');
+exports.destData = resolvePath('./site/data');
+exports.dest = resolvePath('./site/dist');
+exports.destServer = resolvePath('./site/.dist');
 
 exports.webpackConfig = function webpackConfig() {
     const config = genConfig();
 
-    config.entry(`static/client`).add(resolvePath('./site/src/client.js'));
     config.output
-        .path(resolvePath('./site/dist'))
+        .path(exports.dest)
         .publicPath('/')
         .chunkFilename('static/chunk/[chunkhash].js');
     config.resolve.alias
-        .set('~', exports.dest)
+        .set('~', exports.destData)
         .set('@', resolvePath('./src'));
     config
         .plugin('defineVersion')
@@ -78,13 +80,57 @@ exports.webpackConfig = function webpackConfig() {
             .end()
         // .plugin('progress')
             // .use(webpack.ProgressPlugin)
-            // .end()
-        .plugin('html')
-            .use(HtmlWebpackPlugin, [{template: resolvePath('./site/src/index.html')}])
-            .end();
+            // .end();
 
     addThreadLoader(config);
 
     return config;
-}
+};
 
+exports.webpackConfigClient = (production) => {
+    config = exports.webpackConfig();
+
+    config.entry(`static/client`).add(resolvePath('./site/src/client.js'));
+    config.plugin('html').use(HtmlWebpackPlugin, [{
+        template: resolvePath('./site/src/index.html'),
+    }]);
+
+    if (production) {
+        config.mode('production');
+        config.plugin('demo').use(HtmlWebpackPlugin, [{
+            template: resolvePath('./site/src/index.html'),
+            filename: 'demo.html',
+        }]);
+        config.output.filename('[name].[contenthash].js').chunkFilename('static/chunk/[contenthash].js');
+        config.devtool('none');
+        // if we set bellow settings, it will be slow and more memory used
+        // config.optimization.minimizer('uglify')
+            // .use(TerserPlugin, [{
+                // terserOptions: {
+                    // output: {
+                        // comments: false,
+                    // },
+                // }
+            // }]);
+
+        // console.dir(config.toConfig(), {depth: null});
+
+        extractCss(config, 'theme-kpc.[contenthash].css');
+    }
+
+    return config;
+};
+
+exports.webpackConfigServer = () => {
+    config = exports.webpackConfig();
+
+    config.entry(`render`).add(resolvePath('./site/src/render.js'));
+    config.devtool('none');
+    config.target('node');
+    config.output.chunkFilename('chunk/[chunkhash].js').libraryTarget('commonjs2');
+    config.output.path(exports.destServer);
+
+    ignoreCss(config);
+
+    return config;
+}
