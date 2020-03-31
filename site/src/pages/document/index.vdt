@@ -16,9 +16,7 @@ function Catalog(props) {
             class={{ {
                 active: (() => {
                     const path = self.path.slice(1);
-                    if (value.path.indexOf(path + '/') > -1 ||
-                        value.path.indexOf(path + '.md') > -1
-                    ) {
+                    if (path === value.path) {
                         currentNav = value;
                         return true;
                     }
@@ -26,7 +24,7 @@ function Catalog(props) {
             } }}
             v-if={{ !value.disabled }}
         >
-            <Link href={{ `/${value.path.replace('.md', '/').replace('index/', '')}` }}>
+            <Link href={{ `/${value.path}/` }}>
                 {{ do {
                     const matches = value.path.match(/components\/([^\/]+)/);
                     if (matches) {

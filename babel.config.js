@@ -1,18 +1,14 @@
 module.exports = function(api) {
     api.cache(true);
 
+    const corejs = {version: 3, proposals: true};
+
     const config = {
         "presets": [
             ["@babel/preset-env", {
                 "loose": true, 
-                "targets": {
-                    "browsers": [
-                        "ie >= 9",
-                        "> 1%",
-                        "last 2 versions"
-                    ]
-                },
                 "useBuiltIns": "usage",
+                "corejs": corejs,
                 "modules": process.env.BUILD ? false : "cjs",
                 // "modules": "cjs",
                 // "debug": true
@@ -20,7 +16,7 @@ module.exports = function(api) {
             "@babel/preset-react"
         ],
         "plugins": [
-            ["@babel/plugin-transform-runtime", {"corejs": 2}],
+            ["@babel/plugin-transform-runtime", {"corejs": corejs}],
             ["@babel/plugin-proposal-decorators", {"legacy": true}],
             "@babel/plugin-proposal-class-properties",
             "@babel/plugin-syntax-dynamic-import",

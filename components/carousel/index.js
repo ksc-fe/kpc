@@ -81,6 +81,7 @@ export default class Carousel extends Intact {
     }
 
     _initStatus() {
+        this._disconnect();
         const init = () => {
             this.containerWidth = this.element.offsetWidth;
 

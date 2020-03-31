@@ -1,4 +1,5 @@
 import template from './index.vdt';
+import Intact from 'intact';
 import Message from 'components/message';
 
 export default class extends Intact {

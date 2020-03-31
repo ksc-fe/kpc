@@ -4,7 +4,7 @@ import template from './index.vdt';
 import './index.styl';
 import 'kpc/components/table/index.styl';
 
-const req = require.context('~/', true, /^\.\/(components|docs)\/.*index\.js$/);
+export const req = require.context('~/', true, /^\.\/(components|docs)\/.*index\.js$/);
 
 export default class extends Layout {
     @Intact.template()
@@ -84,7 +84,7 @@ export default class extends Layout {
 
     _scrollToView(demo) {
         const index = demo.data.index;
-        const dom = this.element.querySelector(`.index-${index}`);
+        const dom = this.element.querySelector(`#${index}`);
         const top = dom.getBoundingClientRect().top + window.pageYOffset;
         window.scrollTo(0, top - 87);
     }

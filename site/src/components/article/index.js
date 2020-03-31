@@ -1,6 +1,7 @@
 import Intact from 'intact';
 import template from './index.vdt';
 import axios from 'axios';
+import '../../libs/stylus.min';
 
 const version = process.version;
 

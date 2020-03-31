@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Intact from 'intact';
 import {mount, unmount, testDemos, wait, nextFrame} from './utils';
 import {matchSnapshot} from 'chai-karma-snapshot';
 import '../styles/kpc.styl';

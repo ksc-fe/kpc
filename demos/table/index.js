@@ -1,4 +1,5 @@
 import template from './index.vdt';
+import Intact from 'intact';
 import './index.styl';
 import {Store} from './store';
 

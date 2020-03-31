@@ -13,6 +13,7 @@ site/.dist/
 .cache
 out/
 site/dist/
+site/data/
 dist
 .vscode/
 

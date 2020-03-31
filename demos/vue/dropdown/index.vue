@@ -100,18 +100,11 @@
     </div>
 </template>
 
-<style lang="stylus">
-.contextmenu-area
-    height 100px
-    background #f0f0f0
-    text-align center
-    line-height 100px
-</style>
-
 <script>
 import Dropdown, {DropdownMenu, DropdownItem} from 'components/dropdown';
 import Button, {ButtonGroup} from 'components/button';
 import Tooltip from 'components/tooltip';
+import './index.styl';
 
 export default {
     components: {

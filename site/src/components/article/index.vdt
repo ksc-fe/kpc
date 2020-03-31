@@ -7,7 +7,7 @@ import {Tooltip} from 'kpc/components/tooltip';
         {{ self.get('demos').map(Demo => {
             const highlighted = Demo.data.highlighted;
             highlighted.sort()
-            return <div class={{ `example index-${Demo.data.index}` }}
+            return <div class={{ `example ${Demo.data.index}` }}
                 key={{ Demo.data.index }}
                 id={{ Demo.data.index }}
             >

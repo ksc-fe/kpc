@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Kpc from '../../index.js';
+import Intact from 'intact';
 
 Vue.use(Kpc);
 global.Vue = Vue;

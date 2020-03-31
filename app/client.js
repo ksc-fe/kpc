@@ -1,10 +1,10 @@
 import router from './router';
-import createHistory from 'history/createBrowserHistory';
+import {createBrowserHistory} from 'history';
 import App from 'components/app';
 import Link from 'components/link';
 import serverStyleCleanup from 'node-style-loader/clientCleanup';
 
-const history = createHistory();
+const history = createBrowserHistory();
 const $app = new App({container: document.getElementById('app'), ssr: true});
 
 $app.history = history;

@@ -1,6 +1,7 @@
 import Document from '../document';
 import template from './index.vdt';
 import './index.styl';
+import Intact from 'intact';
 
 let mermaid;
 if (process.browser) {
