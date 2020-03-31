@@ -1,6 +1,8 @@
 const webpack = require('webpack');
-const webpackConfig = require('./webpack.config.server');
-const compiler = webpack(webpackConfig);
+const {webpackConfigServer} = require('./app/webpack');
+
+// console.dir(webpackConfigServer().toConfig(), {depth: null});
+const compiler = webpack(webpackConfigServer().toConfig());
 
 compiler.watch({
     aggregateTimeout: 300,

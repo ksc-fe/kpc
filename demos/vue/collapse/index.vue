@@ -8,13 +8,9 @@
     </Collapse>
 </template>
 
-<style lang='stylus'>
-.k-wrapper
-    padding 0 !important
-</style>
-
 <script>
 import {Collapse, CollapseItem} from 'kpc/components/collapse';
+import './index.styl';
 
 export default {
     data() {

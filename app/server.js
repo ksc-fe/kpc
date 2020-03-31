@@ -4,6 +4,7 @@ import path from 'path';
 import router from './router';
 import App from 'components/app';
 import {collectInitial} from 'node-style-loader/collect';
+import {webpackConfigClient} from './webpack';
 
 function createRouterMiddleware(router, App) {
     return function(req, res, next) {
@@ -41,10 +42,10 @@ const app = Advanced((app) => {
     });
 
     const webpack = require('webpack');
-    const webpackConfig = require('../webpack.config.client');
+    const webpackConfig = webpackConfigClient();
     const webpackDevMiddleware = require('webpack-dev-middleware');
     const webpackHotMiddleware = require('webpack-hot-middleware');
-    const compiler = webpack(webpackConfig);
+    const compiler = webpack(webpackConfig.toConfig());
 
     app.use(webpackDevMiddleware(compiler, {
         publicPath: '/',

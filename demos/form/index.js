@@ -1,4 +1,5 @@
 import template from './index.vdt';
+import Intact from 'intact';
 import {Form} from 'components/form';
 import './index.styl';
 

@@ -2,6 +2,7 @@
  * Created by sylvia on 2017/10/31.
  */
 import template from './index.vdt'
+import Intact from 'intact';
 import './index.styl'
 
 export default class extends Intact{

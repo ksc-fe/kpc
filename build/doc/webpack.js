@@ -8,6 +8,8 @@ const {extractCss, ignoreCss, ignoreFile} = require('../webpack/extract');
 const addThreadLoader = require('../webpack/thread');
 const TerserPlugin = require('terser-webpack-plugin');
 const {addTheme} = require('../webpack/theme');
+const {addStyle} = require('../webpack/style');
+const nodeExternal = require('webpack-node-externals');
 
 exports.destData = resolvePath('./site/data');
 exports.dest = resolvePath('./site/dist');
@@ -110,9 +112,7 @@ exports.webpackConfigDevServer = () => {
         })
         .contentBase([resolvePath('./site/src')]);
 
-    const rules = config.module.rules;
-    rules.get('stylus').use('style').loader('style-loader').before('css');
-    rules.get('css').use('style').loader('style-loader').before('css');
+    addStyle(config);
 
     // for performance
     config.optimization.removeEmptyChunks(false).splitChunks(false);
@@ -131,6 +131,7 @@ exports.webpackConfigServer = () => {
     config.target('node');
     config.output.chunkFilename('chunk/[chunkhash].js').libraryTarget('commonjs2');
     config.output.path(exports.destServer);
+    config.externals(nodeExternal());
 
     ignoreCss(config);
 

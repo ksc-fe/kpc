@@ -1,6 +1,7 @@
 const {resolve, root} = require('../utils');
 const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = (config) => {
     config
@@ -46,6 +47,9 @@ module.exports = (config) => {
             // .runtimeChunk(false)
             // .end()
         .devtool('source-map')
+        .plugin('vue')
+            .use(VueLoaderPlugin)
+            .end()
         // .plugin('clean')
             // .use(CleanWebpackPlugin)
             // .end();
