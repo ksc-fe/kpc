@@ -2,7 +2,7 @@ const {prepare, parseFiles, globExp} = require("../doc/generate");
 const {destData, destServer, dest, webpackConfigDevServer} = require('../doc/webpack');
 const {buildClient, buildServer, staticize, upload} = require("../doc/dist");
 const gulp = require('gulp');
-const {exec, rm, resolve} = require('../utils');
+const {exec, rm, resolve, themes} = require('../utils');
 const gulpMultiProcess = require('gulp-multi-process');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
@@ -59,11 +59,17 @@ gulp.task('doc:clean:dist', () => {
     ]);
 });
 
-gulp.task('doc:build:client', buildClient);
 gulp.task('doc:build:server', buildServer);
-function parallelBuild(cb) {
-    gulpMultiProcess(['doc:build:client', 'doc:build:server'], cb);
-}
+
+const parallelTasks = ['doc:build:server'];
+
+themes.forEach(theme => {
+    const task = `doc:build:client:${theme}`;
+    parallelTasks.push(task);
+    gulp.task(task, () => buildClient(theme));
+});
+
+gulp.task('doc:build:webpack', (cb) => gulpMultiProcess(parallelTasks, cb));
 
 function staticizeDoc() {
     return staticize(data);
@@ -85,7 +91,7 @@ gulp.task('copy:cname', () => {
 gulp.task('doc:build', gulp.series(
     gulp.parallel('doc:clean:dist', 'doc:clean:data'),
     'doc:prepare',
-    parallelBuild,
+    'doc:build:webpack',
     staticizeDoc,
     gulp.parallel('copy:imgs', 'copy:cname')
 ));

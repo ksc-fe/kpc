@@ -1,4 +1,4 @@
-const {resolve: resolvePath, writeFile, handleError} = require('../utils');
+const {resolve: resolvePath, writeFile, handleError, rm} = require('../utils');
 const {dest, destServer, webpackConfigServer, webpackConfigClient} = require('./webpack');
 const path = require('path');
 const webpack = require('webpack');
@@ -6,11 +6,19 @@ const {prepare} = require('./generate');
 const fs = require('fs-extra');
 const KS3 = require('ks3');
 
-function buildClient() {
+function buildClient(theme) {
     return new Promise(resolve => {
-        const config = webpackConfigClient(true);
+        const config = webpackConfigClient(true, theme);
+        const tmpJsFile = 'tmp.js';
+        const useTmp = theme !== 'default';
+        if (useTmp) {
+            config.output.filename(tmpJsFile);
+        }
         webpack(config.toConfig(), (err, stats) => {
             handleError(err, stats);
+            if (useTmp) {
+                return rm(path.resolve(dest, tmpJsFile)).then(resolve);
+            }
             resolve();
         });
     });

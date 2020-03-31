@@ -1,6 +1,6 @@
 const gulp = require('gulp'); 
 const genConfig = require('../webpack');
-const {resolve, handleError, rm} = require('../utils');
+const {resolve, handleError, rm, themes} = require('../utils');
 const webpack = require('webpack');
 const gulpMultiProcess = require('gulp-multi-process');
 const {extractCss, ignoreCss, ignoreFile} = require('../webpack/extract');
@@ -10,9 +10,7 @@ const uglifyjs = require('gulp-uglify');
 const {addTheme} = require('../webpack/theme');
 
 const outputPath = resolve('./dist');
-
 const frameworks = ['intact', 'vue', 'react'];
-const themes = ['default', 'ksyun'];
 
 gulp.task('clean@dist', () => {
     return rm(outputPath);
@@ -91,7 +89,8 @@ function webpackConfig(theme = 'default', type = 'intact') {
     if (type === 'intact') {
         extractCss(config, theme === 'default' ? 'kpc.css' : `${theme}.css`);
         if (theme !== 'default') {
-            ignoreFile(config);
+            // we can't ignore file, because css need import font
+            // ignoreFile(config);
         }
     } else {
         ignoreCss(config);

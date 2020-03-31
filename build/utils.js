@@ -61,4 +61,6 @@ module.exports = {
             cmd.stderr.pipe(process.stderr);
         });
     },
+
+    themes: ['default', 'ksyun'],
 };

@@ -1,10 +1,10 @@
 const genConfig = require('../webpack');
 const {resolve: resolvePath} = require('../utils');
-const packageJson = require('../../package.json');
+const {version} = require('../../package.json');
 const webpack = require('webpack');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {extractCss, ignoreCss} = require('../webpack/extract');
+const {extractCss, ignoreCss, ignoreFile} = require('../webpack/extract');
 const addThreadLoader = require('../webpack/thread');
 const TerserPlugin = require('terser-webpack-plugin');
 const {addTheme} = require('../webpack/theme');
@@ -25,7 +25,7 @@ exports.webpackConfig = () => {
         .set('@', resolvePath('./src'));
     config
         .plugin('defineVersion')
-            .use(webpack.DefinePlugin, [{'process.version': JSON.stringify(packageJson.version)}])
+            .use(webpack.DefinePlugin, [{'process.version': JSON.stringify(version)}])
             .end()
         .plugin('monaco')
             .use(MonacoWebpackPlugin)
@@ -39,7 +39,7 @@ exports.webpackConfig = () => {
     return config;
 };
 
-exports.webpackConfigClient = (production) => {
+exports.webpackConfigClient = (production, theme = 'default') => {
     config = exports.webpackConfig();
 
     config.entry(`static/client`).add(resolvePath('./site/src/client.js'));
@@ -75,7 +75,17 @@ exports.webpackConfigClient = (production) => {
                 // }
             // }]);
 
-        extractCss(config, 'theme-kpc.[contenthash].css');
+        if (theme === 'default') {
+            extractCss(config, `theme-kpc.${version}.css`);
+        } else {
+            extractCss(config, `theme-${theme}.${version}.css`);
+            addTheme(config, theme);
+            // ignoreFile(config);
+            config.plugins.delete('html').delete('demo');
+            config.optimization.minimize(false);
+            // disable code spliting
+            config.plugin('limitChunk').use(webpack.optimize.LimitChunkCountPlugin, [{maxChunks: 1}]);
+        }
     }
 
     return config;
