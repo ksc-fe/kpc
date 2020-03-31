@@ -81,7 +81,9 @@ module.exports = (config) => {
             .use('vue')
                 .loader('vue-loader')
                 .options({
-                    preserveWhitespace: false,
+                    compilerOptions: {
+                        preserveWhitespace: false,
+                    }
                 })
                 .end()
             .end()
