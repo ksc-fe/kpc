@@ -2,13 +2,13 @@ const genConfig = require('../webpack');
 const {resolve: resolvePath} = require('../utils');
 const {version} = require('../../package.json');
 const webpack = require('webpack');
-const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {extractCss, ignoreCss, ignoreFile} = require('../webpack/extract');
 const addThreadLoader = require('../webpack/thread');
 const TerserPlugin = require('terser-webpack-plugin');
 const {addTheme} = require('../webpack/theme');
 const {addStyle} = require('../webpack/style');
+const {addMonaco, removeMonaco} = require('../webpack/monaco');
 const nodeExternal = require('webpack-node-externals');
 
 exports.destData = resolvePath('./site/data');
@@ -29,13 +29,11 @@ exports.webpackConfig = () => {
         .plugin('defineVersion')
             .use(webpack.DefinePlugin, [{'process.version': JSON.stringify(version)}])
             .end()
-        .plugin('monaco')
-            .use(MonacoWebpackPlugin)
-            .end()
         // .plugin('progress')
             // .use(webpack.ProgressPlugin)
             // .end();
 
+    addMonaco(config);
     addThreadLoader(config);
 
     return config;
@@ -133,6 +131,7 @@ exports.webpackConfigServer = () => {
     config.output.path(exports.destServer);
     config.externals(nodeExternal());
 
+    removeMonaco(config);
     ignoreCss(config);
 
     return config;

@@ -1,4 +1,4 @@
-var webpackConfig = require('./webpack.react.config');
+const {webpackConfigReact} = require('./webpack');
 
 module.exports = function (config) {
     config.set({
@@ -33,7 +33,7 @@ module.exports = function (config) {
             './react.demos.js': ['webpack', 'sourcemap'],
             '**/__snapshots__/**/*.md': ['snapshot'],
         },
-        webpack: webpackConfig,
+        webpack: webpackConfigReact().toConfig(),
         webpackMiddleware: {
             // noInfo: true
         },

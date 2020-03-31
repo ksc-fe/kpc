@@ -1,5 +1,6 @@
 import {render, mount, testDemos, unmount, wait, nextFrame} from './utils';
 import Vue from 'vue';
+import Intact from 'intact';
 
 const req = require.context('~/components/', true, /^((?!(affix)).)*\/demos\/.*index\.js$/);
 const vueReq = require.context('~/components/', true, /^((?!(affix)).)*\/demos\/.*index\.vue$/);

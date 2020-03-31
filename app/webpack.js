@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const genConfig = require('../build/webpack');
 const addThread = require('../build/webpack/thread');
 const {addStyle} = require('../build/webpack/style');
+const {addMonaco} = require('../build/webpack/monaco');
 const {resolve} = require('../build/utils');
 const nodeExternal = require('webpack-node-externals');
 
@@ -34,6 +35,7 @@ exports.webpackConfigClient = () => {
 
     // addStyle(config, 'vue-style-loader');
     addStyle(config);
+    addMonaco(config);
 
     config
         .entry('static/client')

@@ -367,7 +367,7 @@ function parseCodes(file, codes) {
 
         if (ignoreMap[language]) {
             code.language = ignoreMap[language];
-            code.ignore = true;
+            code.ignored = true;
             hasMap['has' + language.split('-')[0].replace(/[a-z]/, c => c.toUpperCase())] = true;
 
             return true;
