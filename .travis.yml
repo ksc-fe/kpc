@@ -9,7 +9,7 @@ install:
 addons:
     chrome: stable
 before_script:
-    - npx gulp doc
+    - npx gulp doc:prepare
     - npm run build:angular
 script:
     - npm run test
