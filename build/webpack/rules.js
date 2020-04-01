@@ -7,7 +7,7 @@ const noParse = [
     'dayjs',
     'downloadjs',
     'mxgraphx',
-    'mermaid',
+    // 'mermaid',
 ].map(item => resolve(`./node_modules/${item}/`));
 
 module.exports = (config) => {

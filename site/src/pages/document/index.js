@@ -4,6 +4,7 @@ import template from './index.vdt';
 import './index.styl';
 import 'kpc/components/table/index.styl';
 
+// export const req = require.context('~/', true, /^\.\/(components|docs)\/.*index\.js$/, 'lazy');
 export const req = require.context('~/', true, /^\.\/(components|docs)\/.*index\.js$/);
 
 export default class extends Layout {
