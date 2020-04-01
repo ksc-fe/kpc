@@ -1,6 +1,6 @@
 const {prepare, parseFiles, globExp} = require("../doc/generate");
 const {destData, destServer, dest, webpackConfigDevServer} = require('../doc/webpack');
-const {buildClient, buildServer, staticize, upload} = require("../doc/dist");
+const {buildClient, buildServer, buildDll, staticize, upload} = require("../doc/dist");
 const gulp = require('gulp');
 const {exec, rm, resolve, themes} = require('../utils');
 const gulpMultiProcess = require('gulp-multi-process');
@@ -71,6 +71,8 @@ themes.forEach(theme => {
 
 gulp.task('doc:build:webpack', (cb) => gulpMultiProcess(parallelTasks, cb));
 
+gulp.task('doc:build:dll', buildDll);
+
 function staticizeDoc() {
     return staticize(data);
 }
@@ -106,7 +108,6 @@ gulp.task('doc:push', () => {
         git push origin gh-pages`
     );
 });
-
 
 gulp.task('doc:deploy', gulp.series(
     'doc:build',

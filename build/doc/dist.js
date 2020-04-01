@@ -1,5 +1,5 @@
 const {resolve: resolvePath, writeFile, handleError, rm} = require('../utils');
-const {dest, destServer, webpackConfigServer, webpackConfigClient} = require('./webpack');
+const {dest, destServer, webpackConfigServer, webpackConfigClient, webpackConfigDll} = require('./webpack');
 const path = require('path');
 const webpack = require('webpack');
 const {prepare} = require('./generate');
@@ -27,6 +27,16 @@ function buildClient(theme) {
 function buildServer() {
     return new Promise(resolve => {
         const config = webpackConfigServer();
+        webpack(config.toConfig(), (err, stats) => {
+            handleError(err, stats);
+            resolve();
+        });
+    });
+}
+
+function buildDll() {
+    return new Promise(resolve => {
+        const config = webpackConfigDll();
         webpack(config.toConfig(), (err, stats) => {
             handleError(err, stats);
             resolve();
@@ -92,5 +102,6 @@ function upload() {
 
 exports.buildClient = buildClient;
 exports.buildServer = buildServer;
+exports.buildDll = buildDll;
 exports.staticize = staticize;
 exports.upload = upload;

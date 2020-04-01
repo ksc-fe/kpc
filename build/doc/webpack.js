@@ -10,20 +10,21 @@ const {addTheme} = require('../webpack/theme');
 const {addStyle} = require('../webpack/style');
 const {addMonaco, removeMonaco} = require('../webpack/monaco');
 const nodeExternal = require('webpack-node-externals');
+const path = require('path');
 
-exports.destData = resolvePath('./site/data');
-exports.dest = resolvePath('./site/dist');
-exports.destServer = resolvePath('./site/.dist');
+const destData = exports.destData = resolvePath('./site/data');
+const dest = exports.dest = resolvePath('./site/dist');
+const destServer = exports.destServer = resolvePath('./site/.dist');
 
 exports.webpackConfig = () => {
     const config = genConfig();
 
     config.output
-        .path(exports.dest)
+        .path(dest)
         .publicPath('/')
         .chunkFilename('static/chunk/[chunkhash].js');
     config.resolve.alias
-        .set('~', exports.destData)
+        .set('~', destData)
         .set('@', resolvePath('./src'));
     config
         .plugin('defineVersion')
@@ -40,17 +41,25 @@ exports.webpackConfig = () => {
 };
 
 exports.webpackConfigClient = (production, theme = 'default') => {
-    config = exports.webpackConfig();
+    const config = exports.webpackConfig();
+    // const manifest = require(path.resolve(dest, 'dll-manifest.json'));
 
     config.entry(`static/client`).add(resolvePath('./site/src/client.js'));
     config.plugin('html').use(HtmlWebpackPlugin, [{
         template: resolvePath('./site/src/index.html'),
+        // dll: manifest.name,
     }]);
+    // config.plugin('dllRef').use(webpack.DllReferencePlugin, [{
+        // manifest
+    // }]);
+
+    // removeMonaco(config);
 
     if (production) {
         config.mode('production');
         config.plugin('demo').use(HtmlWebpackPlugin, [{
             template: resolvePath('./site/src/index.html'),
+            // dll: manifest.name,
             filename: 'demo.html',
         }]);
         config.output
@@ -108,7 +117,7 @@ exports.webpackConfigDevServer = () => {
                 {from: '/demo.html', to: '/index.html'},
             ]
         })
-        .contentBase([resolvePath('./site/src')]);
+        .contentBase([resolvePath('./site/src')/*, dest*/]);
 
     addStyle(config);
 
@@ -122,17 +131,48 @@ exports.webpackConfigDevServer = () => {
 };
 
 exports.webpackConfigServer = () => {
-    config = exports.webpackConfig();
+    const config = exports.webpackConfig();
 
     config.entry(`render`).add(resolvePath('./site/src/render.js'));
     config.devtool('none');
     config.target('node');
     config.output.chunkFilename('chunk/[chunkhash].js').libraryTarget('commonjs2');
-    config.output.path(exports.destServer);
+    config.output.path(destServer);
     config.externals(nodeExternal());
 
     removeMonaco(config);
     ignoreCss(config);
 
     return config;
-}
+};
+
+exports.webpackConfigDll = () => {
+    const config = exports.webpackConfig();
+
+    config
+        .entry(`dll`)
+            .add('intact')
+            .add('vue')
+            .add('tinycolor2')
+            .add('downloadjs')
+            .add('mxgraphx')
+            .add('mermaid')
+            .add('enquire.js')
+            .add('monaco-editor')
+            .add('resize-observer-polyfill')
+            .add('dayjs')
+            .end()
+        .output
+            .path(dest)
+            .filename('[name].[hash].js')
+            .library('[name]_[hash]')
+            .end()
+        .plugin('dll')
+            .use(webpack.DllPlugin, [{
+                path: path.resolve(dest, '[name]-manifest.json'),
+                name: '[name]_[hash]'
+            }])
+            .end()
+
+    return config;
+};

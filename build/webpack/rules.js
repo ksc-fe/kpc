@@ -1,9 +1,20 @@
 const {resolve} = require('../utils');
 
+const noParse = [
+    // 'intact',
+    'vue',
+    'tinycolor2', 
+    'dayjs',
+    'downloadjs',
+    'mxgraphx',
+    'mermaid',
+].map(item => resolve(`./node_modules/${item}/`));
+
 module.exports = (config) => {
     const rules = config.module.rules;
 
     config.module
+        .noParse(noParse)
         .rule('babel')
             .test(/\.jsx?$/)
             .exclude.add(/node_modules/).end()
