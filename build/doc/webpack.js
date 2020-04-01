@@ -55,6 +55,17 @@ exports.webpackConfigClient = (production, theme = 'default') => {
 
     // removeMonaco(config);
 
+    // config.optimization.splitChunks({
+        // cacheGroups: {
+            // vendor: {
+                // test: /node_modules/,
+                // name: 'vendor',
+                // chunks: 'initial',
+                // enforce: true,
+            // }
+        // }
+    // });
+
     if (production) {
         config.mode('production');
         config.plugin('demo').use(HtmlWebpackPlugin, [{

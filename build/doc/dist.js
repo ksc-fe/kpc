@@ -16,6 +16,11 @@ function buildClient(theme) {
         }
         webpack(config.toConfig(), (err, stats) => {
             handleError(err, stats);
+            // generate stats.json for visualizer
+            // return writeFile(
+                // path.resolve(dest, 'stats.json'),
+                // JSON.stringify(stats.toJson())
+            // ).then(resolve);
             if (useTmp) {
                 return rm(path.resolve(dest, tmpJsFile)).then(resolve);
             }
