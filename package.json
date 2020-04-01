@@ -17,7 +17,7 @@
     "cover": "cross-env UPDATE=2 npm run test",
     "start": "node server.js",
     "build": "cross-env NODE_ENV=production gulp build",
-    "build:angular": "gulp build@angular",
+    "build:angular": "gulp build:angular",
     "dev": "node server.js",
     "dev:doc": "cross-env THEME=ksyun NODE_OPTIONS='--max-old-space-size=4096' gulp doc:dev",
     "dev:doc:default": "cross-env THEME=default gulp doc:dev",

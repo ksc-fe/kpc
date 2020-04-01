@@ -392,9 +392,12 @@ function parseCodes(file, codes) {
             }));
         }
 
-        const js = hasMap.hasJs ? jsCode.content.split('\n').slice(hasMap.hasStylus ? 3 : 2).join('\n') : null;
-        const vdt = codes[0].content;
-        generateOtherCodes(vdt, js, hasMap, codeSnippetMap, codes);
+        // ignore App component
+        if (!/\/app\//.test(file.path)) {
+            const js = hasMap.hasJs ? jsCode.content.split('\n').slice(hasMap.hasStylus ? 3 : 2).join('\n') : null;
+            const vdt = codes[0].content;
+            generateOtherCodes(vdt, js, hasMap, codeSnippetMap, codes);
+        }
     }
 
     return codes;

@@ -14,6 +14,6 @@
   "include": [
     "src/**/*.spec.ts",
     "src/**/*.d.ts",
-    "../../site/.dist/components/**/*.ts"
+    "../../site/data/components/**/*.ts"
   ]
 }

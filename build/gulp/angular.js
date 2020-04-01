@@ -121,3 +121,5 @@ const buildAngular = async () => {
 };
 
 gulp.task('build@angular', buildAngular);
+// for build angular separately
+gulp.task('build:angular', gulp.series('index', buildAngular));
