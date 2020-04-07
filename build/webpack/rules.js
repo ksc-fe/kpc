@@ -14,7 +14,7 @@ module.exports = (config) => {
     const rules = config.module.rules;
 
     config.module
-        .noParse(noParse)
+        // .noParse(noParse)
         .rule('babel')
             .test(/\.jsx?$/)
             .exclude.add(/node_modules/).end()
