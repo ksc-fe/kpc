@@ -13,7 +13,7 @@ order: 0
 >
 > Angular下，需要另外注入`CodeModule`
 >
-> `import {CodeModule} from 'kpc-angular/@css/components/diagram';`
+> `import {CodeModule} from 'kpc-angular/@css/components/code';`
 
 
 
