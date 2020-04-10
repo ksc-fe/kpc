@@ -98,10 +98,10 @@ export default class Switch extends Intact {
     }
 
     _onClick(e) {
-        this.trigger('click', e);
         if (!e._switchIgnore) {
             this._toggle(e, false);
         }
+        this.trigger('click', e);
     }
 
     _toggle(e, isKeypress) {
