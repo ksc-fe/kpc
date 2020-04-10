@@ -66,7 +66,7 @@ if (!icon && Array.isArray(children)) {
             }
         }
     });
-} else if (isStringOrNumberNotEmpty(children)) {
+} else if (isStringOrNumberNotEmpty(children) || children && children.type === 1) {
     // wrap text node with span
     children = <span>{{ children }}</span>
 }

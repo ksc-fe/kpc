@@ -44,6 +44,7 @@ exports.webpackConfigReact = () => {
     const config = genConfig();
 
     config.resolve.alias.set('~', destData).set('intact$', 'intact-react');
+    config.devtool('#inline-source-map');
 
     addConfig(config);
 
