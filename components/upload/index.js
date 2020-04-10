@@ -118,7 +118,7 @@ export default class Upload extends Intact {
         const index = name.lastIndexOf('.');
         let extension;
         if (index > -1) {
-            extension = name.substring(index + 1);
+            extension = name.substring(index + 1).toLowerCase();
         }
 
         return this.extensions.find(item => {
