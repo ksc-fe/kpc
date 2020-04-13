@@ -28,21 +28,4 @@ describe('Button', () => {
         dispatchEvent(button, 'click');
         expect(click.callCount).to.eql(1);
     });
-
-    it('should show loading correctly when it has react element', () => {
-        class Demo extends React.Component {
-            state = {loading: false};
-
-            render() {
-                return <Button loading={this.state.loading}>
-                    <span>test</span>
-                </Button>
-            }
-        }
-
-        let ref;
-        ReactDOM.render(<Demo ref={i => ref = i}/>, container);
-
-        ref.setState({loading: true});
-    });
 });
