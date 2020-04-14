@@ -494,6 +494,12 @@
 "<div><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>Show Dialog</span></button><!--placeholder--></div>"
 ```
 
+####     `Dialog overlay`
+
+```
+"<div><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>Show Dialog</span></button><!--placeholder--></div>"
+```
+
 ####     `Dialog size`
 
 ```
@@ -1937,20 +1943,6 @@
 
 ## `Vue`
 
-##   `app`
-
-####     `App basic`
-
-```
-"<div><div>page a</div></div>"
-```
-
-####     `App ssr`
-
-```
-"<div><div>page a</div></div>"
-```
-
 ##   `badge`
 
 ####     `Badge alone`
@@ -2419,6 +2411,12 @@
 ```
 
 ####     `Dialog hide`
+
+```
+"<div><div><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>Show Dialog</span></button><!--placeholder--></div></div>"
+```
+
+####     `Dialog overlay`
 
 ```
 "<div><div><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>Show Dialog</span></button><!--placeholder--></div></div>"
@@ -3889,5 +3887,19 @@
 
 ```
 "<div><div class=\"k-upload\"><input class=\"c-hidden\" type=\"file\" multiple=\"\"><div class=\"k-handle\"><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>选择文件</span></button></div><div class=\"k-tip\"><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>开始上传</span></button></div><div class=\"k-files\"></div><!--placeholder--></div></div>"
+```
+
+##   `app`
+
+####     `App basic`
+
+```
+"<div><div>page a</div></div>"
+```
+
+####     `App ssr`
+
+```
+"<div><div>page a</div></div>"
 ```
 

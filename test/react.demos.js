@@ -17,7 +17,7 @@ describe('React Demos', () => {
     let demo;
 
     afterEach(() => {
-        // unmount(demo);
+        unmount(demo);
     });
 
     function wrap(Demo) {
