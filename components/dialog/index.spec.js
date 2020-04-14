@@ -22,19 +22,10 @@ describe('Dialog', () => {
         setTimeout(done, 400);
     });
 
-    it('should render dialog correctly', () => {
-        component = render(Dialog);
-        expect(component.$element.className).to.equal('k-dialog-wrapper');
-        expect(component.$element.children.length).to.equal(0);
-    });
-
     it('should show dialog correctly', () => {
         component = render(Dialog, {title: 'Dialog'});
         component.show();
         const element = component.$element;
-        expect(element.children.length).to.equal(2);
-        expect(element.children[0].classList.contains('k-overlay')).to.be.true;
-        expect(element.children[1].classList.contains('k-dialog')).to.be.true;
         expect(element.querySelector('.k-title').innerHTML).to.equal('Dialog');
     });
 
@@ -49,7 +40,7 @@ describe('Dialog', () => {
         component = render(Component);
         component.set('show', true);
         const element = component.refs.dialog.$element;
-        expect(element.children[1].children[1].innerHTML).to.equal('test');
+        expect(element.querySelector('.k-body').innerHTML).to.equal('test');
     });
 
     it('should show correctly when render with value is true', () => {
