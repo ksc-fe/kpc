@@ -5,6 +5,52 @@ import {_$} from '../utils';
 const {size, container, hideClose, overlay, value, width, mode} = self.get();
 
 const isHide = mode === 'hide';
+const dialog = (
+    <Animate 
+        class={{ {
+            "k-dialog": true, 
+            'k-dragging': self.get('_dragging'),
+            [`k-${size}`]: size !== 'default',
+        } }}
+        ref={{ i => self.dialog = i ? i.element : null }}
+        a:show={{ value }}
+        v-if={{ isHide ? true : value }}
+        a:appear
+        key="dialog"
+        style={{ {width: typeof width === 'number' ? `${width}px` : width} }}
+        ev-a:leaveEnd={{ self._leaveEnd }}
+    >
+        <template>
+            <b:content>
+                <div class="k-header k-dialog-header"
+                    ev-mousedown={{ self._dragStart }}
+                >
+                    <b:header>
+                        <span class="k-title">{{ self.get('title') }}</span>
+                    </b:header>
+                    <Button type="none" icon title={{ _$("关闭") }} class="k-close"
+                        ev-click={{ self._terminate }}
+                        v-if={{ !hideClose && !scope.hideClose }}
+                    >
+                        <i class="k-icon ion-ios-close-empty"></i>
+                    </Button>
+                </div>
+                <div class="k-body k-dialog-body"><b:body>{{ self.get('children') }}</b:body></div>
+                <b:footer-wrapper>
+                    <div class="k-footer c-clearfix k-dialog-footer">
+                        <b:footer>
+                            <Button class="k-cancel" ev-click={{ self.cancel }}>{{ self.get('cancelText') }}</Button>
+                            <Button class="k-ok" type="primary" ev-click={{ self.ok }} 
+                                loading={{ self.get('loading') }}
+                                disabled={{ self.get('disabledOk') }}
+                            >{{ self.get('okText') }}</Button>
+                        </b:footer>
+                    </div>
+                </b:footer-wrapper>
+            </b:content>
+        </template>
+    </Animate>
+);
 
 <MoveWrapper autoDestroy={{ false }} ev-appended={{ self._onAppended }}
     container={{ container }}
@@ -14,6 +60,7 @@ const isHide = mode === 'hide';
             "k-dialog-wrapper": true,
             [self.get('className')]: self.get('className'),
             [scope.className]: scope.className,
+            'k-open': value,
         } }} 
         ref={{ dom => self.$element = dom }}
     >
@@ -27,49 +74,12 @@ const isHide = mode === 'hide';
                 ev-click={{ self._onClickOverlay }}
             ></Animate>
         </b:overlay>
-        <Animate 
-            class={{ {
-                "k-dialog": true, 
-                'k-dragging': self.get('_dragging'),
-                [`k-${size}`]: size !== 'default',
-            } }}
-            ref={{ i => self.dialog = i ? i.element : null }}
-            a:show={{ value }}
-            v-if={{ isHide ? true : value }}
-            ev-a:leaveEnd={{ self._leaveEnd }}
-            a:appear
-            key="dialog"
-            style={{ {width: typeof width === 'number' ? `${width}px` : width} }}
-        >
-            <template>
-                <b:content>
-                    <div class="k-header"
-                        ev-mousedown={{ self._dragStart }}
-                    >
-                        <b:header>
-                            <span class="k-title">{{ self.get('title') }}</span>
-                        </b:header>
-                        <Button type="none" icon title={{ _$("关闭") }} class="k-close"
-                            ev-click={{ self._terminate }}
-                            v-if={{ !hideClose && !scope.hideClose }}
-                        >
-                            <i class="k-icon ion-ios-close-empty"></i>
-                        </Button>
-                    </div>
-                    <div class="k-body"><b:body>{{ self.get('children') }}</b:body></div>
-                    <b:footer-wrapper>
-                        <div class="k-footer c-clearfix">
-                            <b:footer>
-                                <Button class="k-cancel" ev-click={{ self.cancel }}>{{ self.get('cancelText') }}</Button>
-                                <Button class="k-ok" type="primary" ev-click={{ self.ok }} 
-                                    loading={{ self.get('loading') }}
-                                    disabled={{ self.get('disabledOk') }}
-                                >{{ self.get('okText') }}</Button>
-                            </b:footer>
-                        </div>
-                    </b:footer-wrapper>
-                </b:content>
-            </template>
-        </Animate>
+        <div class="k-wrapper"
+            key="wrapper" 
+            ref="wrapper"
+            ev-click={{ self._onClickWrapper }}
+            v-if={{ overlay }}
+        >{{ dialog }}</div>
+        <template v-else>{{ dialog }}</template>
     </div>
 </MoveWrapper>

@@ -384,8 +384,44 @@ export function getRestProps(instance, props = instance.get()) {
 }
 
 export const config = {
-    useWrapper: false
+    useWrapper: false,
+    onDialogOpen: null,
+    onDialogClose: null,
 };
 export function configure(options) {
     extend(config, options);   
 }
+
+// export function addClass(element, className) {
+    // if (className) {
+        // [> istanbul ignore else <]
+        // if (element.classList) {
+            // element.classList.add(className);
+        // } else if (!hasClass(element, className)) {
+            // element.className += ` ${className}`;
+        // }
+    // }
+    // return element;
+// }
+
+// [> istanbul ignore next <]
+// export function hasClass(element, className) {
+    // if (element.classList) {
+        // return !!className && element.className.contains(className);
+    // }
+    // return (` ${element.className} `).indexOf(` ${className} `) > -1;
+// }
+
+// export function removeClass(element, className) {
+    // if (className) {
+        // [> istanbul ignore else <]
+        // if (element.classList) {
+            // element.classList.remove(className);
+        // } else if (hasClass(element, className)) {
+            // element.className = element.className
+                // .replace(new RegExp(`(^|\\s)${className}(?:\\s|$)`, 'g'), '$1')
+                // .replace(/\s+/g, ' ') // multiple spaces to one
+                // .replace(/^\s*|\s*$/g, ''); // trim the ends
+        // }
+    // }
+// }

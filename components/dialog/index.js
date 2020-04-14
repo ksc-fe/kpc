@@ -2,8 +2,8 @@ import Intact from 'intact';
 import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
-import {position} from '../moveWrapper/position';
-import {_$} from '../utils';
+import {position, scrollbarWidth} from '../moveWrapper/position';
+import {_$, config} from '../utils';
 import addStaticMethods from './methods';
 
 // only close the top dialog when press ESC 
@@ -101,7 +101,37 @@ export default class Dialog extends Intact {
         }
     }
 
+    _shouldFixBody() {
+        if (document.body.scrollHeight > (window.innerHeight || document.documentElement.clientHeight)) {
+            return scrollbarWidth();
+        }
+    }
+
     _onOpen() {
+        if (this.get('overlay')) {
+            this.refs.wrapper.style.display = 'block';
+
+            const body = document.body;
+            if (!body.__dialogAmount) {
+                const bodyStyle = body.style;
+                this._originBodyStyle = body.getAttribute('style');
+                bodyStyle.overflow = 'hidden';
+
+                const scrollBarWidth = this._scrollBarWidth = this._shouldFixBody(); 
+                if (scrollBarWidth) {
+                    bodyStyle.paddingRight = `${scrollBarWidth}px`;
+
+                    if (config.onDialogOpen) {
+                        config.onDialogOpen(scrollBarWidth);
+                    }
+                }
+        
+                body.__dialogAmount = 1; 
+            } else {
+                body.__dialogAmount++;
+            }
+        }
+
         this.trigger('open');
         this._center();
         if (!dialogs.length) {
@@ -199,6 +229,25 @@ export default class Dialog extends Intact {
         if (!this._useAsComponent || this._useAsComponent && this._destroyed) {
             this.vdt.vNode.children._$destroy();
         }
+
+        if (this.get('overlay')) {
+            if (this._useAsComponent) {
+                const wrapper = this.refs.wrapper;
+                if (wrapper) {
+                    wrapper.style.display = 'none';
+                }
+            }
+
+            const body = document.body;
+            body.__dialogAmount--;
+            if (!body.__dialogAmount) {
+                body.setAttribute('style', this._originBodyStyle || '');
+            }
+
+            if (config.onDialogClose && this._scrollBarWidth) {
+                config.onDialogClose(this._scrollBarWidth);
+            }
+        }
     }
 
     _center() {
@@ -231,24 +280,43 @@ export default class Dialog extends Intact {
         this._width = dialog.offsetWidth;
         this._height = dialog.offsetHeight;
 
+        const body = document.body;
+        const html = document.documentElement;
+        if (!this.get('overlay')) {
+            this._areaWidth = Math.max(body.scrollWidth, html.scrollWidth);
+            this._areaHeight = Math.max(body.scrollHeight, html.scrollHeight);
+        } else {
+            this._areaWidth = body.offsetWidth;
+            this._areaHeight = body.offsetHeight;
+        }
+
         document.addEventListener('mousemove', this._move);
         document.addEventListener('mouseup', this._dragEnd);
     }
 
     _move(e) {
-        // TODO; drag out of screen
         if (this.get('_dragging')) {
             const style = this.dialog.style;
-            const body = document.body;
-            const html = document.documentElement;
+
+            let {_areaWidth, _areaHeight} = this;
+            if (this.get('overlay')) {
+                // detect the wrapper has scrollbar or not
+                const wrapper = this.refs.wrapper;
+                if (wrapper.scrollHeight > wrapper.offsetHeight) {
+                    const scrollBarWidth = scrollbarWidth();
+                    _areaWidth -= scrollBarWidth;
+                }
+            }
+
             const left = Math.min(
                 Math.max(this._x + e.clientX, 0),
-                Math.max(Math.max(body.scrollWidth, html.scrollWidth) - this._width, 0)
+                Math.max(_areaWidth - this._width, 0)
             );
             const top = Math.min(
                 Math.max(this._y + e.clientY, 0),
-                Math.max(Math.max(body.scrollHeight, html.scrollHeight) - this._height, 0)
+                Math.max(_areaHeight - this._height, 0)
             );
+
             style.left = `${left}px`;
             style.top = `${top}px`;
         }
@@ -265,6 +333,12 @@ export default class Dialog extends Intact {
     _onClickOverlay() {
         if (this.get('closable')) {
             this._terminate();
+        }
+    }
+
+    _onClickWrapper(e) {
+        if (e.target === this.refs.wrapper) {
+            this._onClickOverlay(e);
         }
     }
 

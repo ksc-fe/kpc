@@ -16,6 +16,15 @@
         background #000
         opacity 0.5 
 
+    > .k-wrapper
+        position fixed
+        top 0
+        left 0
+        width 100%
+        height 100%
+        overflow auto
+        display none
+
 .k-dialog
     position absolute 
     width $dialog-width 
@@ -26,7 +35,7 @@
     max-width 100%
 
     // header
-    > .k-header
+    .k-dialog-header
         padding 0 $dialog-padding
         border-bottom $dialog-title-border 
         position relative
@@ -45,11 +54,11 @@
                     font-size $dialog-close-icon-font-size
 
     // body
-    > .k-body
+    .k-dialog-body
         padding $dialog-body-padding
 
     // footer
-    > .k-footer
+    .k-dialog-footer
         text-align right
         padding $dialog-footer-padding
         .k-btn
