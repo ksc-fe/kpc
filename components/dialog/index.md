@@ -5,6 +5,41 @@ order: 10
 sidebar: doc
 ---
 
+> `Dialog`如果展示遮罩层，那么它会在弹出时给`body`添加`overflow: hidden`样式，以此来阻止`body`
+> 滚动，同时会添加`padding-right`来保证页面不闪动，但如果你页面存在`position: fixed`元素，则依然
+> 可能会在弹窗弹出时闪动。
+> 
+> 组件提供了两个全局配置，用来自定义元素的修正逻辑。例如：本文档网站的配置如下
+> ```js
+> // @code
+> import {configure} from 'kpc/components/utils';
+>
+> configure({
+>     onDialogOpen(scrollbarWidth) {
+>         document.body.style.backgroundColor = '#f1f1f5';
+>         const header = document.querySelector('.header-wrapper');
+>         if (header) {
+>             header.style.paddingRight = `${scrollbarWidth}px`;
+>         }
+>         const tableOfContents = document.querySelector('.table-of-contents');
+>         if (tableOfContents) {
+>             tableOfContents.style.right = `${scrollbarWidth}px`;
+>         }
+>     },
+> 
+>     onDialogClose() {
+>         const header = document.querySelector('.header-wrapper');
+>         if (header) {
+>             header.removeAttribute('style');
+>         }
+>         const tableOfContents = document.querySelector('.table-of-contents');
+>         if (tableOfContents) {
+>             tableOfContents.removeAttribute('style');
+>         }
+>     },
+> });
+> ```
+
 # 属性
 
 | 属性 | 说明 | 类型 | 默认值 |
