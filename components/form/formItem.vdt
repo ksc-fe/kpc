@@ -38,7 +38,9 @@ const starOnRequired = self.form && self.form.get('starOnRequired');
     </label>
     <div class="k-content">
         <b:content>{{ children }}</b:content>
-        <Animate v-if={{ self.get('isValid') === false }}
+        <Animate 
+            key="form-item-animate"
+            v-if={{ self.get('isValid') === false }}
             class={{ {"k-error": true, [errorClassName]: errorClassName} }}
             a:transition="c-fade"
         >{{ self.get('message') }}</Animate>
