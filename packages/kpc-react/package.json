@@ -33,7 +33,7 @@
     "dayjs": "^1.8.15",
     "downloadjs": "^1.4.7",
     "enquire.js": "^2.1.6",
-    "intact": "^2.5.10",
+    "intact": "^2.5.11",
     "intact-react": "^1.1.26",
     "monaco-editor": "^0.20.0",
     "mxgraphx": "^4.0.7",
