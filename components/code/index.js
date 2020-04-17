@@ -115,6 +115,7 @@ function crossDomainWorker() {
     oldGetWorkerUrl.$ = true;
 
     window.MonacoEnvironment.getWorkerUrl = (moduleId, label) => {
+        debugger;
         const workerUrl = oldGetWorkerUrl(moduleId, label);
         const {isSame, url} = isSameOrigin(workerUrl);
 

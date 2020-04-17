@@ -23,7 +23,7 @@ export default class TreeSelect extends Select {
                         for (let i = 0; i < children.length; i++) {
                             const item = children[i];
                             if (typeof item !== 'object') return (msg = `the item of "data" must be an object.`);
-                            if (item.key == null) return (msg = `each object in "data" must has "key" property.`);
+                            if (item.key == null) return (msg = `each object in "data" must have the "key" property.`);
 
                             if (loop(item.children) !== true) {
                                 break;

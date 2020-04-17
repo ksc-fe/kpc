@@ -10,7 +10,7 @@ import {mount, unmount, dispatchEvent, wait, getElement} from 'test/utils';
 describe('TreeSelect', () => {
     let instance;
 
-    // afterEach(() => unmount(instance));
+    afterEach(() => unmount(instance));
 
     it('should select value correctly', async () => {
         instance = mount(BasicDemo);
