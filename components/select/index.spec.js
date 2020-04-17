@@ -42,6 +42,10 @@ describe('Select', () => {
         trigger.click();
         const dropdown = getElement('.k-select-dropdown');
         expect(dropdown.innerHTML).to.matchSnapshot();
+
+        const close = instance.element.querySelector('.k-close');
+        close.click();
+        expect(instance.get('days').length).to.eql(2);
     });
 
     it('clearable', () => {

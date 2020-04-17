@@ -6,7 +6,7 @@ describe('Button', () => {
     let instance;
 
     afterEach(() => {
-        // unmount(instance);
+        unmount(instance);
     });
 
     it('should change value when click radio buttons', () => {

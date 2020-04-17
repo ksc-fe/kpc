@@ -175,6 +175,8 @@ export default class Select extends Intact {
     }
 
     _delete(value, e) {
+        if (this.get('disabled')) return;
+
         e.stopPropagation();
         const values = this.get('value').slice(0);
         const index = values.indexOf(value);

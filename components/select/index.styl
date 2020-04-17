@@ -97,6 +97,9 @@
             color $select-disabled-color
             background $select-disabled-bg-color
             cursor not-allowed
+        // multiple
+        .k-select-tag
+            background $select-multiple-disabled-tag-bg-color 
 
     // multiple
     .k-values
@@ -116,7 +119,9 @@
             margin-left $select-multiple-tag-delete-icon-margin-left 
             &:before
                 font-size $select-multiple-tag-delete-icon-font-size 
-            &:hover
+    &:not(.k-disabled)
+        .k-select-tag
+            .k-close:hover
                 color $select-multiple-tag-delete-icon-hover-color
     // size
     generate(size)
