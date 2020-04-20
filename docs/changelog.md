@@ -4,6 +4,24 @@ order: 99
 sidebar: doc
 ---
 
+## v1.3.8
+
+1. `Add` `Checkbox/Radio`新增表单验证错误的样式 [#465](https://github.com/ksc-fe/kpc/issues/465)
+2. `Change` 现在`Dialog`弹出的时候，会禁止页面滚动 [#461](https://github.com/ksc-fe/kpc/issues/461)
+3. `Change` 重构构建脚本，升级`webpack@4.0`， 升级`core-js@3.0` [#455](https://github.com/ksc-fe/kpc/issues/455) [#450](https://github.com/ksc-fe/kpc/issues/450)
+4. `Fix` 修复`TreeSelect`当存在初始化`value`时，下拉树没有高亮的问题 [#453](https://github.com/ksc-fe/kpc/issues/453)
+5. `Fix` 修复`Layout`当设置`small` `Aside`时，`Body`的`padding`值不对的问题 [#454](https://github.com/ksc-fe/kpc/issues/454)
+6. `Fix` 修复`Carousel`可能会多次绑定`ResizeObserver`，导致内存泄露的问题 [#458](https://github.com/ksc-fe/kpc/issues/458)
+7. `Fix` 修复`Upload`根据文件后缀判断文件类型时，不能忽略大小写的问题 [#457](https://github.com/ksc-fe/kpc/issues/457)
+8. `Fix` 修复`Switch`点击滑块和滑槽的时候，点击事件`click`触发的时机存在差异的问题 [#456](https://github.com/ksc-fe/kpc/issues/456)
+9. `Fix` 修复`FormItem`在某些情况下，不能正确销毁的问题 [#464](https://github.com/ksc-fe/kpc/issues/464)
+10. `Fix` 修复`Table`被其它`Table`更新时，`tbody` `scroll`事件没有解绑，导致内存泄露的问题 [#451](https://github.com/ksc-fe/kpc/issues/451)
+11. `Fix` 修复`Select`在多选情况下，`disabled`状态依然可以删除已选值的问题 [#463](https://github.com/ksc-fe/kpc/issues/463)
+
+__React__
+
+1. `Fix` 修复`Button`展示`loading`状态，`icon`展示错乱的问题 [#462](https://github.com/ksc-fe/kpc/issues/462)
+
 ## v1.3.7
 
 1. `Fix` 修复打包问题
