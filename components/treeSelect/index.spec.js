@@ -40,9 +40,8 @@ describe('TreeSelect', () => {
         expect(instance.get('values')).to.eql(['1.1']);
 
         instance.set('values', ['1']);
-        window.i = instance;
-        // expect(dropdown.innerHTML).to.matchSnapshot();
-        // expect(instance.element.innerHTML).to.matchSnapshot();
+        expect(dropdown.innerHTML).to.matchSnapshot();
+        expect(instance.element.innerHTML).to.matchSnapshot();
     });
 
     it('checkbox', () => {

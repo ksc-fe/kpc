@@ -87,6 +87,9 @@ export function testDemos(req, test) {
             value.forEach(value => {
                 it(value.title, async () => {
                     await test(value.Demo);
+                    // if (key === 'code') {
+                        // await wait(1000);
+                    // }
                 });
             });
         });

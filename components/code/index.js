@@ -68,6 +68,8 @@ export default class Code extends Intact {
             this.set('loading', false);
             this._watch();
 
+            window.i = this;
+
             this.trigger('ready', this);
         });
     }
@@ -115,7 +117,6 @@ function crossDomainWorker() {
     oldGetWorkerUrl.$ = true;
 
     window.MonacoEnvironment.getWorkerUrl = (moduleId, label) => {
-        debugger;
         const workerUrl = oldGetWorkerUrl(moduleId, label);
         const {isSame, url} = isSameOrigin(workerUrl);
 

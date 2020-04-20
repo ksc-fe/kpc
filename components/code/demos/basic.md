@@ -15,13 +15,11 @@ order: 0
 >
 > `import {CodeModule} from 'kpc-angular/@css/components/code';`
 
-
-
 组件可以通过`v-model`双向绑定编辑的代码，通过`height`指定组件的高度（需要带单位），默认`100%`；通过
 `language`可以指定编程语言，默认为`javasript`
 
-> `Code`组件基于[Monaco Editor](https://github.com/Microsoft/monaco-editor)，使用该组件之前，你需要
-> 安装[monaco-editor-webpack-plugin](https://github.com/Microsoft/monaco-editor-webpack-plugin)插件，
+> `Code`组件基于[Monaco Editor@0.17](https://github.com/Microsoft/monaco-editor)，使用该组件之前，你需要
+> 安装[monaco-editor-webpack-plugin@1.7](https://github.com/Microsoft/monaco-editor-webpack-plugin)插件，
 > 并加入`webpack`插件配置中
 > 
 > ```shell

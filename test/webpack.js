@@ -9,25 +9,29 @@ const {destData} = require('../build/doc/webpack');
 exports.webpackConfig = () => {
     const config = genConfig();
 
+    if (process.env.UPDATE || process.env.CI) {
+        config
+            .module
+                .rule('istanbulJs')
+                    .test(/^((?!(spec|mxgraph)).)*\.js$/)
+                    .include.add(resolve('./components')).end()
+                    .enforce('post')
+                    .use('istanbul')
+                        .loader('istanbul-instrumenter-loader')
+                        .options({esModules: true})
+                        .end()
+                    .end()
+                .rule('istanbulVdt')
+                    .test(/^((?!site).)*\.vdt$/)
+                    .enforce('post')
+                    .use('istanbul')
+                        .merge(config.module.rules.get('istanbulJs').uses.get('istanbul').entries())
+                        .end()
+                    .end()
+                .end()
+    }
+
     config
-        .module
-            .rule('istanbulJs')
-                .test(/^((?!(spec|mxgraph)).)*\.js$/)
-                .include.add(resolve('./components')).end()
-                .enforce('post')
-                .use('istanbul')
-                    .loader('istanbul-instrumenter-loader')
-                    .options({esModules: true})
-                    .end()
-                .end()
-            .rule('istanbulVdt')
-                .test(/^((?!site).)*\.vdt$/)
-                .enforce('post')
-                .use('istanbul')
-                    .merge(config.module.rules.get('istanbulJs').uses.get('istanbul').entries())
-                    .end()
-                .end()
-            .end()
         .resolve
             .alias
                 .set('~', destData)
