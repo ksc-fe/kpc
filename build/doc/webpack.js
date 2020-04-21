@@ -16,7 +16,7 @@ const destData = exports.destData = resolvePath('./site/data');
 const dest = exports.dest = resolvePath('./site/dist');
 const destServer = exports.destServer = resolvePath('./site/.dist');
 
-exports.webpackConfig = () => {
+exports.webpackConfig = (production) => {
     const config = genConfig();
 
     config.output
@@ -34,14 +34,14 @@ exports.webpackConfig = () => {
             // .use(webpack.ProgressPlugin)
             // .end();
 
-    addMonaco(config);
+    addMonaco(config, production);
     addThreadLoader(config);
 
     return config;
 };
 
 exports.webpackConfigClient = (production, theme = 'default') => {
-    const config = exports.webpackConfig();
+    const config = exports.webpackConfig(production);
     // const manifest = require(path.resolve(dest, 'dll-manifest.json'));
 
     config.entry(`static/client`).add(resolvePath('./site/src/client.js'));
