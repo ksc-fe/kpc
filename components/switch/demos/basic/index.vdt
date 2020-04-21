@@ -1,6 +1,0 @@
-import {Switch} from 'kpc/components/switch';
-
-<div>
-    <Switch v-model="value" />
-    <Switch disabled />
-</div>

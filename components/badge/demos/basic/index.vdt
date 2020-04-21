@@ -1,9 +1,0 @@
-import Badge from 'kpc/components/badge';
-import Button from 'kpc/components/button';
-
-<div>
-    <Badge>Message</Badge>
-    <Badge>
-        <Button>Message</Button>
-    </Badge>
-</div>

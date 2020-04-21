@@ -1,8 +1,0 @@
-import Icon from 'kpc/components/icon';
-
-<div>
-    <Icon v-for={{ ['36', 'large', 'default', 'small', 'mini'] }}
-         class="ion-happy-outline" 
-         size={{ value }}
-    />
-</div>

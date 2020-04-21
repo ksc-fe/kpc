@@ -1,3 +1,0 @@
-import Code from 'kpc/components/code';
-
-<Code v-model="value" height="200px" readonly />

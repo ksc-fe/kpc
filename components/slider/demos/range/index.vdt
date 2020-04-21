@@ -1,3 +1,0 @@
-import Slider from 'kpc/components/slider';
-
-<Slider isRange v-model="values" />

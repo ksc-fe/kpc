@@ -1,3 +1,0 @@
-import Rate from 'kpc/components/rate';
-
-<Rate value={{ 2 }} disabled />

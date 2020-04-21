@@ -1,7 +1,0 @@
-import Rate from 'kpc/components/rate';
-
-<div>
-    <Rate v-model="value1" />
-    <br />
-    <Rate v-model="value2" half />
-</div>

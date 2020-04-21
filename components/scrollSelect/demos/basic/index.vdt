@@ -1,6 +1,0 @@
-import ScrollSelect from 'kpc/components/scrollSelect';
-
-<ScrollSelect
-    data={{ self.get('data') }}
-    v-model="value"
-/>

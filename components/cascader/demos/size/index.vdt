@@ -1,8 +1,0 @@
-import Cascader from 'kpc/components/cascader';
-
-<div>
-    <Cascader v-for={{ ['large', 'default', 'small', 'mini'] }} 
-        size={{ value }}
-        data={{ self.get('data') }} 
-    />
-</div>

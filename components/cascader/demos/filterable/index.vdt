@@ -1,5 +1,0 @@
-import Cascader from 'kpc/components/cascader';
-
-<div>
-    <Cascader data={{ self.get('data') }} filterable />
-</div>

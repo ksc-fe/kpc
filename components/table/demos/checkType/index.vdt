@@ -1,7 +1,0 @@
-import Table from 'kpc/components/table';
-
-<div>
-    <Table scheme={{ self.get('scheme') }} data={{ self.get('data1') }} ref="__checkbox" />
-    <Table scheme={{ self.get('scheme') }} data={{ self.get('data2') }} checkType="radio" ref="__radio" />
-    <Table scheme={{ self.get('scheme') }} data={{ self.get('data3') }} checkType="none" />
-</div>
