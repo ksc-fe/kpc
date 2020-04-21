@@ -110,9 +110,9 @@ exports.webpackConfigClient = (production, theme = 'default') => {
             // ignoreFile(config);
             config.plugins.delete('html').delete('demo');
             config.optimization.minimize(false);
-            // disable code spliting
-            config.plugin('limitChunk').use(webpack.optimize.LimitChunkCountPlugin, [{maxChunks: 1}]);
         }
+        // disable code spliting
+        config.plugin('limitChunk').use(webpack.optimize.LimitChunkCountPlugin, [{maxChunks: 1}]);
     }
 
     return config;
