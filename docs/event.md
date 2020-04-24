@@ -57,7 +57,7 @@ sidebar: doc
     ```
 
 3. React
-    React支持使用`:`当做属性名，所以将`:`改为`-`即可
+    React不支持使用`:`当做属性名，所以将`:`改为`-`即可
 
     ```jsx
     <Select on$change-value={this.onChange.bind(this)}>
