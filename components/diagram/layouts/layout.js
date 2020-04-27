@@ -14,7 +14,7 @@ export class DLayout extends Intact {
                 };
             } else {
                 /* istanbul ignore next */
-                Intact.utils.error(new Error(`DLayout can only contains DShape, but ${vNode.tag} found.`));
+                Intact.utils.error(new Error(`DLayout can only contain DShape, but ${vNode.tag} found.`));
             }
             return vNode;
         });
@@ -54,7 +54,7 @@ export class DLayout extends Intact {
     }
 
     draw() {
-        const {_diagram: diagram, _parent: parent, marginRight, marginBottom, left, top} = this.get();
+        const {_diagram: diagram, _parent: parent, left, top} = this.get();
         const graph = diagram.graph;
         const layout = this._getLayout(graph);
 

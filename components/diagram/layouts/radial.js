@@ -25,7 +25,7 @@ export class DRadialLayout extends DLayout {
     }
 
     _getLayout(graph) {
-        const {type, levelDistance, nodeDistance} = this.get();
+        const {levelDistance, nodeDistance} = this.get();
         const layout = new mxRadialTreeLayout(graph);    
 
         layout.autoRadius = true;
