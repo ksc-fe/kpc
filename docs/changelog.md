@@ -4,6 +4,10 @@ order: 99
 sidebar: doc
 ---
 
+## v1.3.9
+
+1. `Add` `Select`支持`values`扩展点，用来自定义`multiple`模式下，整个结果的展示 [#468](https://github.com/ksc-fe/kpc/issues/468)
+
 ## v1.3.8
 
 1. `Add` `Checkbox/Radio`新增表单验证错误的样式 [#465](https://github.com/ksc-fe/kpc/issues/465)
