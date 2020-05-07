@@ -37,7 +37,7 @@ export default class Select extends Intact {
         keydown: true,
     };
 
-    static blocks = ['format'];
+    static blocks = ['format', 'value', 'values'];
 
     defaults() {
         return {

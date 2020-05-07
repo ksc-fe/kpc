@@ -268,22 +268,26 @@ if (hasValue && labelObj.label == null && !labelObj.labels.length) {
                     </b:value>
                 </span>
                 <Animate a:tag="span" a:transition="c-fade" class="k-values" v-else>
-                    <Animate a:tag="span" class="k-select-tag" 
-                        v-for={{ labelObj.labels }} 
-                        v-for-value="item"
-                        v-for-key="index"
-                        key={{ value[index] }}
-                        a:transition="c-fade"
-                    >
-                        <span class="k-text">
-                            <b:value args={{ [value[index], item] }}>
-                                {{ item }}
-                            </b:value>
-                        </span>
-                        <Icon class="ion-ios-close-empty k-close"
-                            ev-click={{ self._delete.bind(self, value[index]) }}
-                        />
-                    </Animate>
+                    <template>
+                        <b:values args={{ [value, labelObj.labels] }}>
+                            <Animate a:tag="span" class="k-select-tag" 
+                                v-for={{ labelObj.labels }} 
+                                v-for-value="item"
+                                v-for-key="index"
+                                key={{ value[index] }}
+                                a:transition="c-fade"
+                            >
+                                <span class="k-text">
+                                    <b:value args={{ [value[index], item] }}>
+                                        {{ item }}
+                                    </b:value>
+                                </span>
+                                <Icon class="ion-ios-close-empty k-close"
+                                    ev-click={{ self._delete.bind(self, value[index]) }}
+                                />
+                            </Animate>
+                        </b:values>
+                    </template>
                     <Input v-if={{ filterable }}
                         value={{ keywords }}
                         ev-input={{ self._onSearch }}

@@ -50,6 +50,7 @@ sidebar: doc
 | 名称 | 说明 | 参数 |
 | --- | --- | --- |
 | value | 自定义选择结果的展示 | `value, label` |
+| values | 自定义多选的选择结果的展示 | `values, labels` |
 
 ## OptionGroup
 
