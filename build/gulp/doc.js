@@ -95,7 +95,8 @@ gulp.task('doc:build', gulp.series(
     'doc:prepare',
     'doc:build:webpack',
     staticizeDoc,
-    gulp.parallel('copy:imgs', 'copy:cname')
+    // gulp.parallel('copy:imgs', 'copy:cname')
+    'copy:imgs'
 ));
 
 gulp.task('doc:upload', upload);
