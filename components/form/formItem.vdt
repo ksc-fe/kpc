@@ -1,4 +1,5 @@
 import {getRestProps} from '../utils';
+import Tooltip from '../tooltip';
 
 const {
     className, children, label,
@@ -43,7 +44,14 @@ const starOnRequired = self.form && self.form.get('starOnRequired');
             v-if={{ self.get('isValid') === false }}
             class={{ {"k-error": true, [errorClassName]: errorClassName} }}
             a:transition="c-fade"
-        >{{ self.get('message') }}</Animate>
+        >
+            <Tooltip canHover position="bottom">
+                <div class="k-error-message c-ellipsis">{{ self.get('message') }}</div>
+                <b:content>
+                    {{ self.get('message') }}
+                </b:content>
+            </Tooltip>
+        </Animate>
     </div>
     <div class="k-append" v-if={{ blocks.append }}>
         <b:append /> 

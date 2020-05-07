@@ -23,6 +23,7 @@
         display table-cell
         vertical-align middle
         line-height 1
+        position relative
 
     // slider
     .k-slider.k-show-end
@@ -35,7 +36,11 @@
         color $form-item-error-color 
         font-size $form-item-error-font-size 
         margin $form-item-error-margin
-        white-space nowrap
+        left 0
+        right 0
+    .k-error-message
+        display inline-block
+        max-width 100%
     &.k-invalid
         // input
         :not(.k-select) .k-input

@@ -151,7 +151,7 @@ export default class FormItem extends Intact {
                         return [false, values[index] || this.getMessage(keys[index]), this.getClassName(keys[index])];
                     }
                 }
-                return [true, '', null];
+                return [true, this.get('message'), null];
             }, err => {
                 let message;
                 let className;
