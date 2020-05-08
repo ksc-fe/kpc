@@ -4,6 +4,12 @@ order: 99
 sidebar: doc
 ---
 
+## v1.3.10
+
+1. `Add` `Select`支持`menu`扩展点，用来定义整个菜单内容 [#470](https://github.com/ksc-fe/kpc/issues/470)
+2. `Add` `FormItem`错误信息样式优化，并添加提示应对内容超长的情况 [#466](https://github.com/ksc-fe/kpc/issues/466)
+3. `Fix` 修复`Table`拖动列宽时，如果上一列为隐藏列，则不能正确拖动的问题 [#468](https://github.com/ksc-fe/kpc/issues/468)
+
 ## v1.3.9
 
 1. `Add` `Select`支持`values`扩展点，用来自定义`multiple`模式下，整个结果的展示 [#468](https://github.com/ksc-fe/kpc/issues/468)
