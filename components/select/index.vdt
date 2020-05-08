@@ -151,78 +151,85 @@ const Menu = scope.Menu || (
         class={{ {
             "k-select-dropdown": true,
             "k-card": card,
+            [className]: className,
         } }}
         ev-$change:value={{ self._onChangeShow }}
-    >{{ (() => {
-        let _children = [];
-        if (!isGroup) {
-            _children.push(<Options data={{ data }} />);
-        } else {
-            _children.push(
-                <OptionGroup v-for={{ data }} label={{ value.label }}>
-                    <Options data={{ value.data }} parentLabel={{ value.label }} />
-                </OptionGroup>
-            );
-        }
-        _children.push(<OptionsVNodes>{{ children }}</OptionsVNodes>);
-
-        // if it is card type group, we extract the label as navBar
-        if (card) {
-            const vNodes = [];
-            let index = 0;
-            function flattenEach(children) {
-                children.forEach(vNode => {
-                    if (Array.isArray(vNode)) {
-                        flattenEach(vNode);
-                    } else if (vNode) {
-                        if (vNode.tag === OptionGroup) {
-                            const props = vNode.props;
-                            const label = (props._blocks || {}).label || props.label;
-                            labelList.push({label});
-                            vNode.props = {...props, _card: true};
-
-                            // if the _activeLabel is undefined
-                            // we active the first label
-                            if (_activeLabel == null && _show) {
-                                _activeLabel = index;
-                                self._setActiveLabelSilent(index);
-                            }
-
-                            // only render the active options
-                            if (_activeLabel === index) {
-                                vNodes.push(vNode);
-                            }
-                            index++;
-                        } else {
-                            vNodes.push(vNode);
-                        }
+    >
+        <template>
+            <b:menu>
+                {{ (() => {
+                    let _children = [];
+                    if (!isGroup) {
+                        _children.push(<Options data={{ data }} />);
+                    } else {
+                        _children.push(
+                            <OptionGroup v-for={{ data }} label={{ value.label }}>
+                                <Options data={{ value.data }} parentLabel={{ value.label }} />
+                            </OptionGroup>
+                        );
                     }
-                });
-            }
-            flattenEach(_children);
-            _children = [ 
-                <Tabs vertical type="border-card" v-model="_activeLabel">
-                    <Tab v-for={{ labelList }} value={{ key }}>
-                        {{ typeof value.label === 'function' ? 
-                            // pass by block
-                            value.label(noop) :
-                            // pass by property
-                            value.label
-                        }}
-                    </Tab>
-                </Tabs>,
-                <div class="k-groups">{{ vNodes }}</div>
-            ];
-        }
-        if (!hasData) {
-            return <div class="k-no-data">{{ _$('无数据') }}</div>;
-        }
-        return _children;
-    })() }}</DropdownMenu>
+                    _children.push(<OptionsVNodes>{{ children }}</OptionsVNodes>);
+
+                    // if it is card type group, we extract the label as navBar
+                    if (card) {
+                        const vNodes = [];
+                        let index = 0;
+                        function flattenEach(children) {
+                            children.forEach(vNode => {
+                                if (Array.isArray(vNode)) {
+                                    flattenEach(vNode);
+                                } else if (vNode) {
+                                    if (vNode.tag === OptionGroup) {
+                                        const props = vNode.props;
+                                        const label = (props._blocks || {}).label || props.label;
+                                        labelList.push({label});
+                                        vNode.props = {...props, _card: true};
+
+                                        // if the _activeLabel is undefined
+                                        // we active the first label
+                                        if (_activeLabel == null && _show) {
+                                            _activeLabel = index;
+                                            self._setActiveLabelSilent(index);
+                                        }
+
+                                        // only render the active options
+                                        if (_activeLabel === index) {
+                                            vNodes.push(vNode);
+                                        }
+                                        index++;
+                                    } else {
+                                        vNodes.push(vNode);
+                                    }
+                                }
+                            });
+                        }
+                        flattenEach(_children);
+                        _children = [ 
+                            <Tabs vertical type="border-card" v-model="_activeLabel">
+                                <Tab v-for={{ labelList }} value={{ key }}>
+                                    {{ typeof value.label === 'function' ? 
+                                        // pass by block
+                                        value.label(noop) :
+                                        // pass by property
+                                        value.label
+                                    }}
+                                </Tab>
+                            </Tabs>,
+                            <div class="k-groups">{{ vNodes }}</div>
+                        ];
+                    }
+                    if (!hasData) {
+                        return <div class="k-no-data">{{ _$('无数据') }}</div>;
+                    }
+                    return _children;
+                })() }}
+            </b:menu>
+        </template>
+    </DropdownMenu>
 );
 
 // if the value is not in options, then set hasValue to false
-if (hasValue && labelObj.label == null && !labelObj.labels.length) {
+if (hasValue && (!allowUnmatch && labelObj.label == null && !labelObj.labels.length)) {
     hasValue = false;
     // if this is a value, but the value does not exist in options
     // we set it to empty, #41

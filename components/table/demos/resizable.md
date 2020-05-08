@@ -23,7 +23,7 @@ const {data} = self.get();
             },
             none: {
                 title: '隐藏列',
-                className: 'hidden',
+                className: 'hidden'
             },
             b: {
                 title: '单独设置最小宽度300px',

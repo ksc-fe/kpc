@@ -35,9 +35,11 @@ export default class Select extends Intact {
     static events = {
         keypress: true,
         keydown: true,
+        show: true,
+        hide: true,
     };
 
-    static blocks = ['format', 'value', 'values'];
+    static blocks = ['format', 'value', 'values', 'menu'];
 
     defaults() {
         return {
@@ -92,6 +94,10 @@ export default class Select extends Intact {
         });
     }
 
+    hide() {
+        this.refs.menu.hide(true);
+    }
+
     _isMultiple() {
         return this.get('multiple');
     }
@@ -140,6 +146,8 @@ export default class Select extends Intact {
         if (!value) {
             this._onBlur();
         }
+
+        this.trigger(value ? 'show' : 'hide');
     }
 
     /**
