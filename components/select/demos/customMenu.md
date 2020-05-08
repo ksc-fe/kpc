@@ -28,7 +28,7 @@ import {Icon} from 'kpc/components/icon';
             fixHeader="200" 
             ref="table"
             rowKey={{ i => i.name }}
-            checkedKeys={{ self.get('values').map(item => item.name) }}
+            checkedKeys={{ self.checkedKeys() }}
         >
             <TableColumn title="Name" key="name" />
             <TableColumn title="Domain" key="domain" />
@@ -79,7 +79,11 @@ export default class extends Intact {
         const valuesLength = this.get('values').length;
         const dataLength = this.get('data').length;
 
-        return valuesLength ? `已选择${valuesLength}项 / 共${dataLength}项` : null 
+        return valuesLength ? `已选择${valuesLength}项 / 共${dataLength}项` : null;
+    }
+
+    checkedKeys() {
+        return this.get('values').map(item => item.name);
     }
 
     filter() {
