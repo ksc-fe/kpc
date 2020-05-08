@@ -8,13 +8,16 @@ export function render(Component, props) {
     return c;
 }
 
-export function mount(Component, style) {
+export function mount(Component, style, data) {
     const container = document.createElement('div');
     container.style = "width: 800px; height: 1080px; overflow: auto";
     if (style) {
         for (let key in style) {
             container.style[key] = style[key];
         }
+    }
+    if (data) {
+        container.className = 'example ' + data.index;
     }
     document.body.appendChild(container);
     const instance = Intact.mount(Component, container);

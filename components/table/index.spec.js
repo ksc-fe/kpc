@@ -7,7 +7,7 @@ import FixColumnDemo from '~/components/table/demos/fixColumn';
 import LoadingDemo from '~/components/table/demos/loading';
 import ExportDemo from '~/components/table/demos/export';
 import SelectedKeysDemo from '~/components/table/demos/selectedKeys';
-import ResizableDemo from '~/components/table/demos/resizable';
+import ResizableDemo, {data as ResizableDemoData} from '~/components/table/demos/resizable';
 import TooltipDemo from '~/components/table/demos/tooltip';
 import TreeDemo from '~/components/table/demos/tree';
 import DisabledDemo from '~/components/table/demos/disableRow';
@@ -193,6 +193,18 @@ describe('Table', () => {
         const _table = instance.element.querySelector('.k-table');
         expect(_table.innerHTML).to.matchSnapshot();
         localStorage.removeItem('resizableTable');
+    });
+
+    it('resize column that its previous column is hidden', () => {
+        instance = mount(ResizableDemo, null, ResizableDemoData);
+    
+        const table = instance.element.querySelector('.k-table');
+        const [, , resize] = table.querySelectorAll('.k-resize');
+        dispatchEvent(resize, 'mousedown', {which: 1, clientX: 0});
+        dispatchEvent(document, 'mousemove', {clientX: 1});
+        dispatchEvent(document, 'mouseup');
+
+        expect(table.innerHTML).to.matchSnapshot();
     });
 
     it('should set the width of table equal to container after resizing and expanding container', async () => {

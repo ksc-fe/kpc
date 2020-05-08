@@ -21,6 +21,10 @@ const {data} = self.get();
                 title: '通过minColWidth控制最小宽度100px',
                 width: '50%'
             },
+            none: {
+                title: '隐藏列',
+                className: 'hidden',
+            },
             b: {
                 title: '单独设置最小宽度300px',
                 minWidth: 300,
@@ -64,6 +68,11 @@ const {data} = self.get();
         </FormItem>
     </Form>
 </div>
+```
+
+```styl
+.hidden
+    display none
 ```
 
 ```js

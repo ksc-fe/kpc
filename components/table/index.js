@@ -806,10 +806,15 @@ export default class Table extends Intact {
         this._containerWidth = this.scroll.clientWidth; // element.offsetWidth;
         this._x = e.clientX;
 
-        const prevVNode = vNode.props.prevVNode;
+        // find previous node but it is not hidden, #467
+        let prevVNode = vNode;
+        let prevTh;
+        do {
+            prevVNode = prevVNode.props.prevVNode;
+            prevTh = prevVNode.dom;
+        } while (window.getComputedStyle(prevTh).display === 'none');
         const prevProps = prevVNode.props;
         this._minWidth = prevProps.minWidth || this.get('minColWidth');
-        const prevTh = prevVNode.dom;
         const currentTh = vNode.dom;
 
         this._currentTh = currentTh;
