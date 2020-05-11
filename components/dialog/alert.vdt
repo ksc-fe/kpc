@@ -20,8 +20,9 @@ if (normalize) {
         <div class="k-tip-icon">
             <Icon class={{ {
                 "ion-ios-checkmark": type === 'success',
-                "ion-ios-information": type === 'warning' || type === 'confirm',
+                "ion-ios-information": type === 'warning',
                 "ion-ios-close": type === 'error',
+                "ion-ios-help": type === 'confirm',
             } }} v-if={{ !hideIcon }} />
         </div>
         <div class="k-content-wrapper">
