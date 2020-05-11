@@ -4,6 +4,11 @@ order: 99
 sidebar: doc
 ---
 
+## 1.3.11
+
+1. `Change` 优化`Dialog` `confirm`弹窗的图标
+2. `Fix` 修复`Dialog`静态方法，不能指定`closable`属性的问题 [#471](https://github.com/ksc-fe/kpc/issues/471)
+
 ## v1.3.10
 
 1. `Add` `Select`支持`menu`扩展点，用来定义整个菜单内容 [#470](https://github.com/ksc-fe/kpc/issues/470)
