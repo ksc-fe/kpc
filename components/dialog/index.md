@@ -96,7 +96,9 @@ sidebar: doc
 | error | 错误提示窗口 | `Options` | `Promise` |
 | confirm | 确定提示窗口 | `Options` | `Promise` |
 
-其中`Options`对象属性说明如下
+其中`Options`对象常用属性说明如下
+
+> `Dialog`属性大都支持
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |

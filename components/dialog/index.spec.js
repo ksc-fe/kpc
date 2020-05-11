@@ -254,6 +254,14 @@ describe('Dialog', () => {
         dialog = getElement('.k-dialog');
         expect(dialog.innerHTML).to.matchSnapshot();
         dialog.querySelector('.k-btn').click();
+
+        const cb2 = sinon.spy();
+        Dialog.confirm({content: 'test', closable: false}).then(() => {}, cb2);
+        const overlay = getElement('.k-overlay');
+        overlay.click();
+        await wait(0);
+        expect(cb2.callCount).to.eql(0);
+        getElement('.k-dialog').querySelector('.k-btn').click();
     });
 
     it('should double check for closing dialog', async () => {

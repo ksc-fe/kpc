@@ -41,12 +41,17 @@ export default function addStaticMethods(Dialog) {
 
     ['success', 'warning', 'error', 'confirm'].forEach(type => {
         Dialog[type] = (options = {}) => {
-            options = {...options, type};
+            const closable = type === 'confirm';
+            options = {
+                closable, 
+                escClosable: closable, 
+                ...options,
+                type
+            };
             if (options.title) {
                 options._title = options.title;
                 delete options.title;
             }
-            options.closable = options.escClosable = type === 'confirm';
             return show(options);
         }
     });
