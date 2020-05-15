@@ -3,6 +3,7 @@ import template from './menu.vdt';
 import position from '../moveWrapper/position';
 import {findParentComponent, getTransition} from '../utils';
 import Dropdown from './dropdown';
+import initMouseOutsidable from './mouseOutsidable';
 
 export default class DropdownMenu extends Intact {
     @Intact.template()
@@ -64,6 +65,8 @@ export default class DropdownMenu extends Intact {
                 this.position();
             }
         });
+
+        initMouseOutsidable(this);
     }
 
     _mount() {
@@ -75,7 +78,7 @@ export default class DropdownMenu extends Intact {
 
         // the previous sibling is Dropdown
         let triggerElement = this.element.previousSibling;
-        // in react, it may be a comment which value is ' react-mount-point-unstable ' 
+        // in react, it may be a comment which value is ' react-mount-point-unstable '
         // and it is may be a leaving animation element
         // so we must look up it until the header
         let dropdown;
@@ -160,15 +163,15 @@ export default class DropdownMenu extends Intact {
         const p = (_of, transition) => {
             let using;
             position(this.refs.menu.element, {
-                my: 'center top+8', 
-                at: 'center bottom', 
+                my: 'center top+8',
+                at: 'center bottom',
                 of: _of,
                 using: (feedback) => {
                     using = () => {
                         // let the child menu has the same transition with parent menu
                         this.set('transition', transition || getTransition(feedback));
                         using = null;
-                    } 
+                    }
                     // if it is the first menu, getTransition immediately
                     if (!transition) {
                         using();
@@ -212,22 +215,6 @@ export default class DropdownMenu extends Intact {
         return this.position();
     }
 
-    /**
-     * don't hide the dropdown when user mouse down and move outside, #392
-     * the order of events is mousedown -> mouseup -> click
-     */
-    _onMouseDown() {
-        this._mousedown = true;
-        document.addEventListener('mouseup', this._onMouseUp);
-    }
-
-    _onMouseUp() {
-        this._mousedownTimer = setTimeout(() => {
-            this._mousedown = false;
-        });
-        document.removeEventListener('mouseup', this._onMouseUp);
-    }
-
     _addDocumentEvents() {
         const parent = this.parent;
         if (!parent) {
@@ -238,12 +225,12 @@ export default class DropdownMenu extends Intact {
             // will propagate to document immediately
             // and this will lead close the layer. #209
             // we need to set this _dropdown to `this` to indentify
-            // which component has been clicked. Otherwise the menu 
+            // which component has been clicked. Otherwise the menu
             // will not hide when click the other component. #221
             if (this.__event) this.__event._dropdown = this;
 
             // we use mousedown event instead of click event,
-            // so that we can press down mouse and move it to outside 
+            // so that we can press down mouse and move it to outside
             // and don't hide the dropdown
             // emm... we can't use this way, because it can't hide menu when click trigger element
             // use mousedown -> mouseup and _mousedown flag instead
@@ -288,7 +275,7 @@ export default class DropdownMenu extends Intact {
         // custom flag to indicate that the event does not lead to close menu
         if (e._dropdown === true || e._dropdown === this) return;
 
-        // to indicate this click event will hide layer 
+        // to indicate this click event will hide layer
         // and don't show it again when the target is the trigger element
         e._hide = this.dropdown;
 
@@ -297,7 +284,7 @@ export default class DropdownMenu extends Intact {
         // and we get cancelBubble is true even if we stopPropagation
         // some action like clear in datepicker will prevent this menu hiding
         // we call this handler as soon as the event bubble to docuemnt
-        // 
+        //
         // use Array, #331
         if (!e._handler) e._handler = [];
         e._handler.push(() => this.hide(true));
@@ -320,11 +307,11 @@ export default class DropdownMenu extends Intact {
         switch (e.keyCode) {
             // down
             case 40:
-                this._focusNextItem(e); 
+                this._focusNextItem(e);
                 break;
             // up
             case 38:
-                this._focusPrevItem(e); 
+                this._focusPrevItem(e);
                 break;
             // right
             case 39:
@@ -445,8 +432,8 @@ export default class DropdownMenu extends Intact {
             const subMenu = subDropdownMenu.refs.menu;
             if (subMenu) {
                 if (
-                    target === subMenu.element || 
-                    subMenu.element.contains(target) || 
+                    target === subMenu.element ||
+                    subMenu.element.contains(target) ||
                     subDropdownMenu._mousedown
                 ) {
                     ret = true;
@@ -465,13 +452,8 @@ export default class DropdownMenu extends Intact {
         if (parent) {
             const subDropdowns = parent.subDropdowns;
             subDropdowns.splice(subDropdowns.indexOf(this), 1);
-        } 
+        }
         clearTimeout(this.timer);
-
-        // clear _mousedown flag
-        clearTimeout(this._mousedownTimer);
-        this._mousedown = false;
-        document.removeEventListener('mouseup', this._onMouseUp);
 
         // clearTimeout(this.documentTimer);
         this._removeDocumentEvents();

@@ -5,8 +5,9 @@ import './index.styl';
 import {position, scrollbarWidth} from '../moveWrapper/position';
 import {_$, config} from '../utils';
 import addStaticMethods from './methods';
+import initMouseOutsidable from '../dropdown/mouseOutsidable';
 
-// only close the top dialog when press ESC 
+// only close the top dialog when press ESC
 const dialogs = [];
 const escClose = (e) => {
     dialogs[dialogs.length - 1]._escClose(e);
@@ -76,7 +77,8 @@ export default class Dialog extends Intact {
             } else {
                 this._onClose();
             }
-        }); 
+        });
+        initMouseOutsidable(this);
     }
 
     _create() {
@@ -117,7 +119,7 @@ export default class Dialog extends Intact {
                 this._originBodyStyle = body.getAttribute('style');
                 bodyStyle.overflow = 'hidden';
 
-                const scrollBarWidth = this._scrollBarWidth = this._shouldFixBody(); 
+                const scrollBarWidth = this._scrollBarWidth = this._shouldFixBody();
                 if (scrollBarWidth) {
                     bodyStyle.paddingRight = `${scrollBarWidth}px`;
 
@@ -125,8 +127,8 @@ export default class Dialog extends Intact {
                         config.onDialogOpen(scrollBarWidth);
                     }
                 }
-        
-                body.__dialogAmount = 1; 
+
+                body.__dialogAmount = 1;
             } else {
                 body.__dialogAmount++;
             }
@@ -201,7 +203,7 @@ export default class Dialog extends Intact {
             } else {
                 const show = () => {
                     this.set('value', true);
-                    this.init(); 
+                    this.init();
                     this.mount();
                     resolve();
                 }
@@ -261,7 +263,7 @@ export default class Dialog extends Intact {
                 const outerHeight = window.document.documentElement.clientHeight;
                 if (height > outerHeight) {
                     position.top = scrollTop;
-                }    
+                }
             },
             // let dialog padding top half of padding bottom
             my: 'center center+16%',
@@ -331,7 +333,7 @@ export default class Dialog extends Intact {
     }
 
     _onClickOverlay() {
-        if (this.get('closable')) {
+        if (this.get('closable') && !this._mousedown) {
             this._terminate();
         }
     }
@@ -343,9 +345,9 @@ export default class Dialog extends Intact {
     }
 
     /**
-     * @brief 
+     * @brief
      * only be called by self when user clicks close button,
-     * presses ESC or clicks overlay 
+     * presses ESC or clicks overlay
      */
     _terminate() {
         const terminate = this.get('terminate');

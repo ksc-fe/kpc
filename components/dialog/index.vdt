@@ -19,6 +19,7 @@ const dialog = (
         key="dialog"
         style={{ {width: typeof width === 'number' ? `${width}px` : width} }}
         ev-a:leaveEnd={{ self._leaveEnd }}
+        ev-mousedown={{ self._onMouseDown }}
     >
         <template>
             <b:content>
