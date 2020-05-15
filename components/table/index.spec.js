@@ -1,5 +1,5 @@
 import BasicDemo from '~/components/table/demos/basic';
-import CheckTypeDemo from '~/components/table/demos/checkType'; 
+import CheckTypeDemo from '~/components/table/demos/checkType';
 import ExpandDemo from '~/components/table/demos/rowExpandable';
 import SortDemo from '~/components/table/demos/sort';
 import GroupDemo from '~/components/table/demos/group';
@@ -13,6 +13,8 @@ import TreeDemo from '~/components/table/demos/tree';
 import DisabledDemo from '~/components/table/demos/disableRow';
 import ScrollToRowDemo from '~/components/table/demos/scrollToRow';
 import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
+import Intact from 'intact';
+import {Table, TableColumn} from 'kpc/components/table';
 
 describe('Table', () => {
     let instance;
@@ -56,7 +58,7 @@ describe('Table', () => {
     it('click row of radio table', () => {
         instance = mount(CheckTypeDemo);
         const table = instance.refs.__radio;
-        
+
         // click row
         const [tr1, tr2] = table.element.querySelectorAll('.k-tbody tr');
         tr1.click();
@@ -84,7 +86,7 @@ describe('Table', () => {
 
     it('expand & shrink', () => {
         instance = mount(ExpandDemo);
-        const {__test1: rowExpandableTable, __test2: rowUnExpandableTable} = instance.refs; 
+        const {__test1: rowExpandableTable, __test2: rowUnExpandableTable} = instance.refs;
 
         const [tr] = rowExpandableTable.element.querySelectorAll('.k-tbody tr');
         tr.click();
@@ -105,7 +107,7 @@ describe('Table', () => {
 
     it('sort', () => {
         instance = mount(SortDemo);
-        
+
         const [, th1, th2] = instance.element.querySelectorAll('.k-thead th');
         th1.click();
         expect(instance.element.outerHTML).to.matchSnapshot();
@@ -143,7 +145,7 @@ describe('Table', () => {
         instance = mount(FixColumnDemo);
 
         const table = instance.refs.__test;
-        
+
         instance.element.style.width = "1000px";
         table._onWindowResize();
 
@@ -165,14 +167,14 @@ describe('Table', () => {
     });
 
     it('resize', () => {
-        instance = mount(BasicDemo); 
+        instance = mount(BasicDemo);
 
         const table = instance.refs.__test;
         const resize = table.element.querySelector('.k-resize');
         dispatchEvent(resize, 'mousedown', {which: 1, clientX: 0});
         dispatchEvent(document, 'mousemove', {clientX: 1});
         dispatchEvent(document, 'mouseup');
-        // ignore width property in table 
+        // ignore width property in table
         const [head, body] = table.element.querySelectorAll('table');
         expect(head.innerHTML).to.matchSnapshot();
         expect(body.innerHTML).to.matchSnapshot();
@@ -180,7 +182,7 @@ describe('Table', () => {
 
     it('store width on resizing', () => {
         instance = mount(ResizableDemo);
-    
+
         const table = instance.element.querySelector('.k-table');
         const resize = table.querySelector('.k-resize');
         dispatchEvent(resize, 'mousedown', {which: 1, clientX: 0});
@@ -197,7 +199,7 @@ describe('Table', () => {
 
     it('resize column that its previous column is hidden', () => {
         instance = mount(ResizableDemo, null, ResizableDemoData);
-    
+
         const table = instance.element.querySelector('.k-table');
         const [, , resize] = table.querySelectorAll('.k-resize');
         dispatchEvent(resize, 'mousedown', {which: 1, clientX: 0});
@@ -223,7 +225,7 @@ describe('Table', () => {
     });
 
     it('loading', () => {
-        instance = mount(LoadingDemo); 
+        instance = mount(LoadingDemo);
 
         instance.set('loading', true);
         expect(instance.element.innerHTML).to.matchSnapshot();
@@ -235,7 +237,7 @@ describe('Table', () => {
         this.enableTimeouts(false);
         instance = mount(ExportDemo);
 
-        const content = await instance.refs.table.exportTable(); 
+        const content = await instance.refs.table.exportTable();
         expect(content.replace(/\r\n|\r/g, '\n')).to.matchSnapshot();
         const content1 = await instance.refs.table.exportTable([
             {a: '1', b: 2, c: 3}
@@ -309,7 +311,7 @@ describe('Table', () => {
     });
 
     it('scroll to row', async () => {
-        instance = mount(ScrollToRowDemo);        
+        instance = mount(ScrollToRowDemo);
 
         const table = instance.refs.table;
         const elements = Array.from(instance.element.querySelectorAll('.k-tbody'));
@@ -331,5 +333,22 @@ describe('Table', () => {
         await test(2);
         table.scrollToRowByKey('name 2');
         await test(1);
+    });
+
+    it('render a hidden table with minWidth', () => {
+        class Demo extends Intact {
+            @Intact.template()
+            static template = `<div style="display: none;">
+                <Table>
+                    <TableColumn key="a" minWidth={{ 30 }} />
+                </Table>
+            </div>`
+            _init() {
+                this.Table = Table;
+                this.TableColumn = TableColumn;
+            }
+        }
+
+        instance = mount(Demo);
     });
 });

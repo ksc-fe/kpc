@@ -14,6 +14,7 @@ describe('Table', () => {
     });
 
     afterEach(() => {
+        // ReactDOM.render(null, container);
         document.body.removeChild(container);
     });
 
