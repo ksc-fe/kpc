@@ -31,9 +31,9 @@ export default class ColorPanel extends Intact {
     }
 
     _initValues() {
-        const color = tinycolor(this.get('value')); 
+        const color = tinycolor(this.get('value'));
         const oldHue = this._hsl ? this._hsl.h : null;
-        
+
         this._color = color;
         this._format = color.getFormat();
         this._rgb = color.toRgb();
@@ -62,7 +62,7 @@ export default class ColorPanel extends Intact {
         const bright = -top / height + 1;
 
         const hsv = this._hsv;
-        hsv.s = saturation; 
+        hsv.s = saturation;
         hsv.v = bright;
         const value = tinycolor(hsv).toString(this._format);
 
@@ -77,7 +77,7 @@ export default class ColorPanel extends Intact {
     }
 
     _onMouseMove(e) {
-        this._handleChange(e);        
+        this._handleChange(e);
     }
 
     _onMouseUp() {
@@ -147,12 +147,12 @@ export default class ColorPanel extends Intact {
         const color = mode === 'rgb' ? this._rgb : this._hsv;
         if (color[type] === value) return;
 
-        color[type] = value; 
+        color[type] = value;
         this.set('value', tinycolor(color).toString(mode));
     }
 
     /**
-     * disable animation of slider when we drag to change the value
+     * disable animation of slider when we are dragging to change the value
      */
     _onDragStart() {
         this.refs.hueSlider.set('animate', false);

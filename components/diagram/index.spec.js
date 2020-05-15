@@ -9,6 +9,12 @@ import {
 import {Button} from 'kpc/components/button';
 import {mount, unmount, dispatchEvent} from 'test/utils';
 import LayoutDemo from '~/components/diagram/demos/layout';
+import mx from './mxgraph';
+
+const {mxClient} = mx;
+const downName = mxClient.IS_POINTER ? 'pointerdown' : 'mousedown';
+const upName = mxClient.IS_POINTER ? 'pointerup' : 'mouseup';
+const moveName = mxClient.IS_POINTER ? 'pointermove' : 'mousemove';
 
 class Demo extends Intact {
     _init() {
@@ -35,7 +41,7 @@ describe('Diagram', () => {
     let instance;
 
     afterEach(() => {
-        unmount(instance); 
+        unmount(instance);
     });
 
     it('should update type of DFlowLayout', () => {
@@ -202,10 +208,10 @@ describe('Diagram', () => {
                 var invert = self.get('invert');
                 <Diagram>
                     <DFlowLayout left={{ width }}>
-                        <DRectangle key="1" 
-                            width={{ width }} 
+                        <DRectangle key="1"
+                            width={{ width }}
                             html={{ width }}
-                            borderStyle={{ border }} 
+                            borderStyle={{ border }}
                             rounded={{ rounded }}
                         />
                         <DCircle key="2" width={{ width }} borderStyle={{ border }}  />
@@ -253,7 +259,7 @@ describe('Diagram', () => {
         class Component extends Demo {
             @Intact.template()
             static template = `
-                <Diagram 
+                <Diagram
                     ev-selectionChanged={{ self._onChange }}
                     ev-labelChanged={{ self._onLabelChange }}
                 >
@@ -276,42 +282,42 @@ describe('Diagram', () => {
 
         // selectable
         let [rect, square] = instance.element.querySelectorAll('rect');
-        dispatchEvent(rect, 'pointerdown');
+        dispatchEvent(rect, downName);
         expect(instance.element.innerHTML).to.matchSnapshot();
-        dispatchEvent(rect, 'pointerup');
+        dispatchEvent(rect, upName);
         let ellipse = instance.element.querySelector('ellipse');
-        dispatchEvent(ellipse, 'pointerdown');
+        dispatchEvent(ellipse, downName);
         expect(instance.element.innerHTML).to.matchSnapshot();
-        dispatchEvent(ellipse, 'pointerup');
+        dispatchEvent(ellipse, upName);
         expect(onChange.callCount).to.eql(2);
 
         // movable
-        dispatchEvent(rect, 'pointerdown', {clientX: 0, clientY: 0});
-        dispatchEvent(rect, 'pointermove', {clientX: 10, clientY: 10});
-        dispatchEvent(rect, 'pointerup', {clientX: 10, clientY: 10});
+        dispatchEvent(rect, downName, {clientX: 0, clientY: 0});
+        dispatchEvent(rect, moveName, {clientX: 10, clientY: 10});
+        dispatchEvent(rect, upName, {clientX: 10, clientY: 10});
         expect(instance.element.innerHTML).to.matchSnapshot();
-        dispatchEvent(ellipse, 'pointerdown', {clientX: 0, clientY: 0});
-        dispatchEvent(ellipse, 'pointermove', {clientX: 10, clientY: 10});
-        dispatchEvent(ellipse, 'pointerup', {clientX: 10, clientY: 10});
+        dispatchEvent(ellipse, downName, {clientX: 0, clientY: 0});
+        dispatchEvent(ellipse, moveName, {clientX: 10, clientY: 10});
+        dispatchEvent(ellipse, upName, {clientX: 10, clientY: 10});
         expect(instance.element.innerHTML).to.matchSnapshot();
 
         // resizable & rotatable
-        dispatchEvent(square, 'pointerdown');
-        dispatchEvent(square, 'pointerup');
+        dispatchEvent(square, downName);
+        dispatchEvent(square, upName);
         expect(instance.element.innerHTML).to.matchSnapshot();
 
         // editable
         dispatchEvent(ellipse, 'dblclick');
         const editor = instance.element.querySelector('.mxCellEditor');
         editor.innerHTML = 'test';
-        dispatchEvent(instance.element.querySelector('.k-canvas'), 'pointerdown');
+        dispatchEvent(instance.element.querySelector('.k-canvas'), downName);
         expect(onLabelChange.callCount).to.eql(1);
         dispatchEvent(rect, 'dblclick');
         expect(instance.element.innerHTML).to.matchSnapshot();
     });
 
     it('test all layouts', () => {
-        instance = mount(LayoutDemo); 
+        instance = mount(LayoutDemo);
 
         const element = instance.element;
 
@@ -338,13 +344,13 @@ describe('Diagram', () => {
             `;
         }
         instance = mount(Component);
-        
+
         const [parallelogram, hexagon, callout] = instance.element.querySelectorAll('path');
-        dispatchEvent(parallelogram, 'pointermove');
+        dispatchEvent(parallelogram, moveName);
         expect(instance.element.innerHTML).to.matchSnapshot();
-        dispatchEvent(hexagon, 'pointermove');
+        dispatchEvent(hexagon, moveName);
         expect(instance.element.innerHTML).to.matchSnapshot();
-        dispatchEvent(callout, 'pointermove');
+        dispatchEvent(callout, moveName);
         expect(instance.element.innerHTML).to.matchSnapshot();
     });
 
@@ -368,7 +374,7 @@ describe('Diagram', () => {
                 return {type: 'curved'};
             }
         }
-        
+
         instance = mount(Component);
         expect(instance.element.innerHTML).to.matchSnapshot();
         instance.set('type', 'sharp');
