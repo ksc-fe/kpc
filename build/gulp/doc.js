@@ -51,7 +51,7 @@ gulp.task('doc:dev', gulp.series(
 gulp.task('doc:clean:dist', () => {
     return Promise.all([
         exec(`rm -rf ./site/dist; REPO=\`git config remote.origin.url\`; echo $REPO;
-            git clone --reference ./ -b gh-pages --single-branch $REPO ./site/dist --depth=1 &&
+            git clone -b gh-pages --single-branch $REPO ./site/dist --depth=1 &&
             cd ./site/dist &&
             rm -rf ./* && cd ../../`
         ),
@@ -102,7 +102,7 @@ gulp.task('doc:build', gulp.series(
 gulp.task('doc:upload', upload);
 
 gulp.task('doc:push', () => {
-    return exec(`cd ./site/dist && 
+    return exec(`cd ./site/dist &&
         git add -A;
         TIME=\`date +"%Y-%m-%d %H:%M:%S"\`;
         git commit -m "build: \${TIME}";
