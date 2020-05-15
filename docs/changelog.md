@@ -4,6 +4,12 @@ order: 99
 sidebar: doc
 ---
 
+## v1.3.12
+
+1. `Fix` 修复`font-family`设置没生效的问题 [#472](https://github.com/ksc-fe/kpc/issues/472)
+2. `Fix` 修复`Table`在`TableColumn`设置了`minWidth`的情况下，如果表格处于隐藏状态，则会一直更新列宽而导致死循环 [#473](https://github.com/ksc-fe/kpc/issues/473)
+3. `Fix` 修复`Dialog`当点击弹窗然后拖动鼠标到弹窗外，会关闭弹窗的问题 [#474](https://github.com/ksc-fe/kpc/issues/474)
+
 ## v1.3.11
 
 1. `Change` 优化`Dialog` `confirm`弹窗的图标
