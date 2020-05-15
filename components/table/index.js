@@ -5,7 +5,7 @@ import './index.styl';
 import Column from './column';
 import {_$, debounce, browser, toggleArray} from '../utils';
 import {scrollbarWidth} from '../moveWrapper/position';
-import ResizeObserver from 'resize-observer-polyfill'; 
+import ResizeObserver from 'resize-observer-polyfill';
 import TooltipContent from '../tooltip/content';
 
 const slice = Array.prototype.slice;
@@ -22,7 +22,7 @@ export default class Table extends Intact {
         return {
             data: [],
             scheme: {},
-            checkType: 'checkbox', // radio | none 
+            checkType: 'checkbox', // radio | none
             rowKey(value, index) { return index; },
             rowClassName(value, index) {  }, // add className for tr
             checkedKeys: [], // for checkbox
@@ -34,7 +34,7 @@ export default class Table extends Intact {
             sort: {},
             group: {},
             resizable: false,
-            expandedKeys: [], 
+            expandedKeys: [],
             type: 'default', // default border
             fixHeader: false,
             minColWidth: 40,
@@ -52,7 +52,7 @@ export default class Table extends Intact {
             tooltipPosition: 'top',
             childrenKey: 'children',
             indent: 32,
-            spreadKeys: [],            
+            spreadKeys: [],
 
             _padding: 0,
             _paddingBottom: 0,
@@ -97,7 +97,7 @@ export default class Table extends Intact {
         defaultWidthMap: Object,
         storeWidth: String,
         merge: Function,
-        tooltipPosition: TooltipContent.propTypes.position, 
+        tooltipPosition: TooltipContent.propTypes.position,
         childrenKey: String,
         indent: Number,
         spreadKeys: Array,
@@ -163,7 +163,7 @@ export default class Table extends Intact {
                         this.headerWidthMap = map;
                     }
                     if (width && !defaultWidth) {
-                        this.tableWidth = width; 
+                        this.tableWidth = width;
                     }
                 } catch (e) {  }
             }
@@ -216,12 +216,12 @@ export default class Table extends Intact {
 
     isCheckAll() {
         const {checkedKeys, _disabledKeys, _enabledKeys} = this.get();
-        const checkedKeysWithoutDisabled = _disabledKeys.length ? 
+        const checkedKeysWithoutDisabled = _disabledKeys.length ?
             checkedKeys.filter(key => _disabledKeys.indexOf(key) < 0) :
             checkedKeys;
         const amount = _enabledKeys.length;
 
-        return amount && checkedKeysWithoutDisabled.length >= amount; 
+        return amount && checkedKeysWithoutDisabled.length >= amount;
     }
 
     isChecked(key) {
@@ -267,8 +267,8 @@ export default class Table extends Intact {
             const key = rowKey.call(this, value, index);
             const disabled = disableRow.call(this, value, index);
             // if the row is disabled, we should keep its checked status, #437
-            if (isCheck ? 
-                (!disabled || ~checkedKeys.indexOf(key)) : 
+            if (isCheck ?
+                (!disabled || ~checkedKeys.indexOf(key)) :
                 (disabled && ~checkedKeys.indexOf(key))
             ) {
                 newCheckedKeys.push(key);
@@ -426,7 +426,7 @@ export default class Table extends Intact {
         const content = collection.join('\r\n');
         download(
             '\uFEFF' + content,
-            filename + '.csv', 
+            filename + '.csv',
             'text/comma-separated-values;charset=utf-8'
         );
 
@@ -488,7 +488,7 @@ export default class Table extends Intact {
             if (rowKey.call(this, value, index) === key) {
                 this.scrollToRowByIndex(index);
                 return true;
-            } 
+            }
         });
     }
 
@@ -502,7 +502,7 @@ export default class Table extends Intact {
 
         if (!childrenKey) {
             return data.find(cb);
-        } 
+        }
 
         let index = -1;
         const loop = (data) => {
@@ -548,7 +548,7 @@ export default class Table extends Intact {
         }
     }
 
-    _checkTableColumnMinWidth() {
+    _checkTableColumnMinWidth(isStop) {
         // TODO: check width when table expands
         let shouldUpdate = false;
         for (let key in this._columns) {
@@ -557,7 +557,7 @@ export default class Table extends Intact {
             if (minWidth) {
                 const width = column.element.offsetWidth;
                 if (width < minWidth) {
-                    this.headerWidthMap[key] = minWidth; 
+                    this.headerWidthMap[key] = minWidth;
                     shouldUpdate = true;
                 }
             }
@@ -565,7 +565,10 @@ export default class Table extends Intact {
         if (shouldUpdate) {
             this.update();
             // check again because it may affect other columns
-            this._checkTableColumnMinWidth();
+            if (!isStop) {
+                // only check one more time, because sometimes we can not fix the width of column, #473
+                this._checkTableColumnMinWidth(true);
+            }
         }
     }
 
@@ -578,7 +581,7 @@ export default class Table extends Intact {
         const {top, bottom} = this.element.getBoundingClientRect();
         const p = viewportHeight - offsetBottom;
         if (bottom >= p && top < p) {
-            this.set('_stickyScrollbarStyle', undefined); 
+            this.set('_stickyScrollbarStyle', undefined);
             // update scrollLeft, because it can not be updated when it is hidden
             this.refs.scrollbar.scrollLeft = this.scrollLeft;
             return true;
@@ -609,7 +612,7 @@ export default class Table extends Intact {
                         return memo + elem.offsetWidth + borderWidth;
                     }, 0);
                     data._leftWidth = width;
-                } 
+                }
 
                 if (this.hasFixedRight) {
                     const width = this.rightColumns.reduce((memo, elem) => {
@@ -639,7 +642,7 @@ export default class Table extends Intact {
         const {disableRow, rowKey} = this.get();
 
         this._breakForEach((item, index) => {
-            const key = rowKey.call(this, item, index); 
+            const key = rowKey.call(this, item, index);
             if (disableRow.call(this, item, index)) {
                 disabledKeys.push(key);
             } else {
@@ -674,7 +677,7 @@ export default class Table extends Intact {
         }
 
         if (this.get('rowExpandable')) {
-            this._expandShrinkRows([key]); 
+            this._expandShrinkRows([key]);
         }
 
         if (this.get('rowSelectable')) {
@@ -782,7 +785,7 @@ export default class Table extends Intact {
     _update() {
         const keys = this._allDestroyedRows;
         if (keys.length) {
-            this.shrinkRows(keys); 
+            this.shrinkRows(keys);
             this.uncheckRows(keys);
             this.unselectRows(keys);
 
@@ -893,7 +896,7 @@ export default class Table extends Intact {
         // this._tables = [this.table];
         // if (this.get('fixHeader')) {
             // this._tables = [this.header, this.scroll];
-        // } 
+        // }
 
         // const tableWidth = this._tables[0].offsetWidth;
         // if (this._containerWidth > tableWidth) {
@@ -934,11 +937,11 @@ export default class Table extends Intact {
 
                 if (!hasFixed) return;
 
-                const maxScroll = target.scrollWidth - target.offsetWidth; 
+                const maxScroll = target.scrollWidth - target.offsetWidth;
                 return this.set({
-                    '_scrollPosition': newScrollLeft === 0 ? 
-                        'left' : 
-                        newScrollLeft >= maxScroll ? 
+                    '_scrollPosition': newScrollLeft === 0 ?
+                        'left' :
+                        newScrollLeft >= maxScroll ?
                             'right' : 'middle',
                 });
             }
@@ -968,7 +971,7 @@ export default class Table extends Intact {
 
     /**
      * handle dom directly for performance, #310
-     * 
+     *
      * @modify
      * We can not handle dom directly, because it may be wrapped with Tooltip
      * and it will modify className when the tip layer shows or hides. This will
