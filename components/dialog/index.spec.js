@@ -1,7 +1,7 @@
 import Intact from 'intact';
 import Dialog from 'kpc/components/dialog';
 import {getElement, render, mount, unmount, dispatchEvent, wait} from 'test/utils';
-import BasicDemo from '~/components/dialog/demos/basic'; 
+import BasicDemo from '~/components/dialog/demos/basic';
 import AsyncCloseDemo from '~/components/dialog/demos/asyncClose';
 import AsyncOpenDemo from '~/components/dialog/demos/asyncOpen';
 import TerminateDemo from '~/components/dialog/demos/terminate';
@@ -31,8 +31,8 @@ describe('Dialog', () => {
 
     it('should render children correclty', () => {
         class Component extends Intact {
-            get template() { 
-                return `var Dialog = self.Dialog; 
+            get template() {
+                return `var Dialog = self.Dialog;
                     <Dialog v-model="show" ref="dialog">test</Dialog>`;
             }
             _init() { this.Dialog = Dialog; }
@@ -110,7 +110,7 @@ describe('Dialog', () => {
     });
 
     it('basic test', () => {
-        instance = mount(BasicDemo); 
+        instance = mount(BasicDemo);
 
         dispatchEvent(instance.element.children[0], 'click');
         let dialog = getElement('.k-dialog');
@@ -148,7 +148,7 @@ describe('Dialog', () => {
             done();
         };
 
-        i = mount(BasicDemo); 
+        i = mount(BasicDemo);
         dispatchEvent(i.element.children[0], 'click');
         wrapper = getElement('.k-dialog-wrapper');
         i.destroy();
@@ -161,7 +161,7 @@ describe('Dialog', () => {
         const dialog = getElement('.k-dialog');
 
         const demo = instance.refs.__demo;
-        demo.showLoading(); 
+        demo.showLoading();
         expect(dialog.innerHTML).to.matchSnapshot();
         demo.hideLoading();
         expect(dialog.innerHTML).to.matchSnapshot();
@@ -203,7 +203,7 @@ describe('Dialog', () => {
         this.enableTimeouts(false);
 
         instance = mount(AsyncOpenDemo);
-        
+
         dispatchEvent(instance.element.firstChild, 'click');
         expect(instance.dialog.element === undefined).to.be.true;
 
@@ -290,5 +290,19 @@ describe('Dialog', () => {
         instance.set('show', false);
         await wait(500);
         expect(instance.refs.__demo.$element.innerHTML).to.matchSnapshot();
+    });
+
+    it('should not close when click and move outside', async () => {
+        instance = mount(BasicDemo);
+
+        instance.element.firstChild.click();
+        const dialog = getElement('.k-dialog');
+        const wrapper = dialog.parentElement;
+        dispatchEvent(dialog, 'mousedown');
+        dispatchEvent(wrapper, 'mouseup');
+        dispatchEvent(wrapper, 'click');
+
+        await wait(500);
+        expect(getElement('.k-dialog')).not.to.be.undefined;
     });
 });
