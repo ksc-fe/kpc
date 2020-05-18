@@ -5,8 +5,11 @@ import {mount, unmount, testDemos, wait, nextFrame} from './utils';
 import {matchSnapshot} from 'chai-karma-snapshot';
 import '../styles/kpc.styl';
 import './test.styl';
+import mx from '../components/diagram/mxgraph/mx';
 
 chai.use(matchSnapshot);
+
+mx.mxClient.IS_POINTER = false;
 
 const testsContext = require.context('../components/', true, /index\.react\.spec\.js/);
 testsContext.keys().forEach(testsContext);
