@@ -27,7 +27,7 @@ describe('TreeSelect', () => {
         expect(getElement('.k-tree-select-dropdown')).to.be.undefined;
     });
 
-    it('multiple', () => {
+    it('multiple', async () => {
         instance = mount(MultipleDemo);
 
         instance.element.querySelector('.k-wrapper').click();
@@ -40,12 +40,13 @@ describe('TreeSelect', () => {
         expect(instance.get('values')).to.eql(['1.1']);
 
         instance.set('values', ['1']);
+        await wait(300)
         expect(dropdown.innerHTML).to.matchSnapshot();
         expect(instance.element.innerHTML).to.matchSnapshot();
     });
 
     it('checkbox', () => {
-        instance = mount(CheckboxDemo); 
+        instance = mount(CheckboxDemo);
 
         instance.element.querySelector('.k-wrapper').click();
         const dropdown = getElement('.k-tree-select-dropdown');
@@ -94,7 +95,7 @@ describe('TreeSelect', () => {
                 this.FormItem = FormItem;
                 this.TreeSelect = TreeSelect;
             }
-        } 
+        }
 
         instance = mount(Demo);
         const element = instance.element.querySelector('.k-wrapper');

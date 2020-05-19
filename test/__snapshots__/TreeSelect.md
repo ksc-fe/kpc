@@ -13,7 +13,7 @@
 ```
 
 ```
-"<div class=\"k-wrapper k-dropdown-open\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\" value=\"1\"><span class=\"k-values c-fade-enter\"><span class=\"k-select-tag c-fade-move\" style=\"position: relative; left: 0px; top: -10px; transform: translate(0px, 10px);\"><span class=\"k-text\">First floor-1</span><i class=\"k-icon ion-ios-close-empty k-close\"></i></span><span class=\"k-select-tag c-fade-leave-active\" style=\"position: absolute; left: 109px; top: 6px;\"><span class=\"k-text\">Second floor-1.1</span><i class=\"k-icon ion-ios-close-empty k-close\"></i></span></span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder-->"
+"<div class=\"k-wrapper k-dropdown-open\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\" value=\"1\"><span class=\"k-values\"><span class=\"k-select-tag\" style=\"\"><span class=\"k-text\">First floor-1</span><i class=\"k-icon ion-ios-close-empty k-close\"></i></span></span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder-->"
 ```
 
 #### `checkbox`
