@@ -34,6 +34,8 @@ export default class Switch extends Intact {
         height: [Number, String],
         size: ['large', 'default', 'small', 'mini'],
         disabled: Boolean,
+        trueValue: undefined,
+        falseValue: undefined,
     };
 
     static events = {
@@ -75,14 +77,14 @@ export default class Switch extends Intact {
         } else {
             // cancel this operation if the distance less than half of width
             const percent = (bar.clientWidth - this._height / 2) / this._maxWidth;
-            
+
             if (!this.isChecked()) {
                 if (percent >= 0.5) {
                     this.check();
-                } 
+                }
             } else if (percent < 0.5) {
                 this.uncheck();
-            } 
+            }
             if (!this.isChecked() && this.get('width') && this.get('height')) {
                 // if is set width and height
                 bar.style.width = this.get('height') + 'px';
