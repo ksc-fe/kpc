@@ -11,7 +11,7 @@ sidebar: doc
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| type | 在原生`input`标签的`type`取值的基础上扩展了`textarea`值,当我改值时渲染成`textarea` | `String` | `"text"` |
+| type | 在原生`input`标签的`type`取值的基础上扩展了`textarea`值,当取该值时渲染成`<textarea>` | `String` | `"text"` |
 | name | 原生`input`标签的`name`属性 | `String` | `undefined` |
 | value | 输入框的值,可用`v-model`进行双向绑定 | `String` | `undefined` |
 | defaultValue | `input`的`defaultValue`，首次渲染使用该值 | `String` | `undefined` |
