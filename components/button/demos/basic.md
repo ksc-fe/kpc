@@ -10,7 +10,7 @@ import Button from 'kpc/components/button';
 
 <div>
     <Button>default</Button>
-    <Button type="primary">primay</Button>
+    <Button type="primary">primary</Button>
     <Button type="secondary">secondary</Button>
     <Button type="warning">warning</Button>
     <Button type="danger">danger</Button>
