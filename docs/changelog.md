@@ -4,6 +4,14 @@ order: 99
 sidebar: doc
 ---
 
+## v1.3.13
+
+1. `Change` 优化`FormItem`在错误信息超长的情况下展示，仅超长时展示更多`Tooltip` [#477](https://github.com/ksc-fe/kpc/issues/477)
+
+__Vue__
+
+1. `Fix` 修复`Dialog`同时通过`v-if`和`v-model`控制时，关闭弹窗报错的问题 [#476](https://github.com/ksc-fe/kpc/issues/476)
+
 ## v1.3.12
 
 1. `Fix` 修复`font-family`设置没生效的问题 [#472](https://github.com/ksc-fe/kpc/issues/472)
