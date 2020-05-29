@@ -6,21 +6,22 @@ import AsyncCloseDemo from '~/components/dialog/demos/asyncClose';
 import AsyncOpenDemo from '~/components/dialog/demos/asyncOpen';
 import TerminateDemo from '~/components/dialog/demos/terminate';
 import HideDemo from '~/components/dialog/demos/hide';
+import Vue from 'vue';
 
 describe('Dialog', () => {
     let component;
     let instance;
 
-    afterEach((done) => {
-        component && component.destroy();
-        component = null;
+    // afterEach((done) => {
+        // component && component.destroy();
+        // component = null;
 
-        if (instance) {
-            unmount(instance);
-            instance = null;
-        }
-        setTimeout(done, 400);
-    });
+        // if (instance) {
+            // unmount(instance);
+            // instance = null;
+        // }
+        // setTimeout(done, 400);
+    // });
 
     it('should show dialog correctly', () => {
         component = render(Dialog, {title: 'Dialog'});
@@ -304,5 +305,42 @@ describe('Dialog', () => {
 
         await wait(500);
         expect(getElement('.k-dialog')).not.to.be.undefined;
+    });
+
+    it('should handle v-if and v-model at the same time correctly in Vue', async () => {
+        // class Component extends Intact {
+            // @Intact.template()
+            // static template = `<Dialog v-model="show" v-if={{ self.get('show') }}>test</Dialog>`
+            // _init() { this.Dialog = Dialog; }
+        // }
+        // instance = mount(Component);
+        // // instance.set('show', true);
+
+        // window.instance = instance;
+
+        const Test = {
+            template: `<Dialog v-model="show" v-if="show" ref="dialog">test</Dialog>`,
+            components: {
+                Dialog
+            },
+            data() {
+                return {
+                    show: false,
+                }
+            },
+        };
+        const container = document.createElement('div');
+        document.body.appendChild(container);
+        const app = new Vue({
+            render: h => h('Test', {ref: 'test'}),
+            components: {Test},
+        }).$mount(container);
+
+        app.$refs.test.show = true;
+        await wait();
+
+        // close dialog
+        app.$refs.test.$refs.dialog.close();
+        await wait();
     });
 });

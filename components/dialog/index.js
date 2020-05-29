@@ -167,7 +167,7 @@ export default class Dialog extends Intact {
     }
 
     close() {
-        this.set('value', false);
+        this.set('value', false, {async: false});
     }
 
     cancel() {
@@ -224,10 +224,18 @@ export default class Dialog extends Intact {
     }
 
     _leaveEnd() {
-        // use as instance or use as component but it has be destroyed
-        // then remove the element
-        // maybe the animation leaveEnd immediately when destroy it before enters
-        // so use `_destroyed` instead of `destroyed`
+        // use as instance or use as component but it has been destroyed
+        // (maybe this case casued by parent has destroyed)
+        // then remove the element.
+        //
+        // maybe the animation leaveEnd immediately when destroy it before entering
+        // so use `this._destroyed` instead of `this.destroyed`
+        //
+        // In Vue, if the Dialog has controlled by v-if and v-model, when we close
+        // the dialog, we set `value` to false and it will update self, and it also
+        // changes the owner component's value, but Vue updates view next tick.
+        // In this case, the leaveEnd triggers after the element has been removed
+        // by Vue, so if we destroy children, it can't remove element again. #476
         if (!this._useAsComponent || this._useAsComponent && this._destroyed) {
             this.vdt.vNode.children._$destroy();
         }
@@ -360,8 +368,9 @@ export default class Dialog extends Intact {
     }
 
     _destroy(...args) {
-        this._destroyed = true;
         if (this.get('value')) {
+            // only destroy on it indeed need destroy, #476
+            this._destroyed = true;
             this.close();
         } else {
             this.vdt.vNode.children._$destroy(...args);

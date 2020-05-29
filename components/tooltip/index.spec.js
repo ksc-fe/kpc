@@ -1,5 +1,5 @@
 import BasicDemo from '~/components/tooltip/demos/basic';
-import PositionDemo from '~/components/tooltip/demos/position'; 
+import PositionDemo from '~/components/tooltip/demos/position';
 import TriggerDemo from '~/components/tooltip/demos/trigger';
 import ContentDemo from '~/components/tooltip/demos/content';
 import ConfirmDemo from '~/components/tooltip/demos/confirm';
@@ -95,7 +95,7 @@ describe('Tooltip', () => {
         dispatchEvent(content, 'mouseenter');
         await wait(600);
         const content1 = getElement('.k-tooltip-content');
-        expect(content1).eql(content); 
+        expect(content1).eql(content);
 
         dispatchEvent(canHover, 'mouseenter');
         dispatchEvent(canHover, 'mouseleave');
@@ -181,11 +181,10 @@ describe('Tooltip', () => {
         }).$mount(container);
 
         expect(app.$el.innerHTML).to.matchSnapshot();
-        
+
         app.$refs.test.show = true;
         await wait();
         expect(app.$el.innerHTML).to.matchSnapshot();
-        
 
         app.$refs.test.show = false;
         await wait();
@@ -234,7 +233,7 @@ describe('Tooltip', () => {
             @Intact.template()
             static template = `
                 <div>
-                    <Tooltip disabled={{ self.get('disabled') }} 
+                    <Tooltip disabled={{ self.get('disabled') }}
                         content="hello"
                     >
                         <div ref="test">test</div>
@@ -245,7 +244,7 @@ describe('Tooltip', () => {
                 this.Tooltip = Tooltip;
                 return {disabled: false};
             }
-        } 
+        }
 
         instance = mount(Demo);
 
