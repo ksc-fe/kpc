@@ -242,7 +242,7 @@ export default class FormItem extends Intact {
     _checkEllipsis() {
         const error = this.refs.error;
         if (!error) return;
-        this.set('_ellipsis', error.offsetWidth < error.scrollWidth);
+        this.set('_ellipsis', error.offsetWidth <= error.scrollWidth);
     }
 
     _destroy() {
