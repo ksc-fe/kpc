@@ -5,6 +5,7 @@ import RemoteDemo from '~/components/form/demos/remote';
 import {mount, unmount, dispatchEvent, wait} from 'test/utils';
 import Intact from 'intact';
 import {Form, FormItem} from 'kpc/components/form';
+import Input from 'kpc/components/input';
 
 RemoteDemo.prototype.validateUserName = function(value) {
     // mock api
@@ -22,7 +23,7 @@ RemoteDemo.prototype.validateUserName = function(value) {
 describe('Form', () => {
     let instance;
 
-    afterEach(() => unmount(instance));
+    // afterEach(() => unmount(instance));
 
     it('validate', (done) => {
         instance = mount(BasicDemo);
@@ -69,7 +70,7 @@ describe('Form', () => {
     });
 
     it('validate when rules have changed', async () => {
-        instance = mount(VariableDemo); 
+        instance = mount(VariableDemo);
 
         const form = instance.refs.form;
 
@@ -330,5 +331,45 @@ describe('Form', () => {
         await eql();
         instance.set('value1', 2);
         await eql();
+    });
+
+    it('should show icon when text shows ellipsis', async () => {
+        class Demo extends Intact {
+            @Intact.template()
+            static template = `
+                <Form ref="form">
+                    <FormItem model="value"
+                        rules={{ {
+                            required: true,
+                            digits: true,
+                        } }}
+                        messages={{ {
+                            required: 'It is a very very very very very very very very very very very very very very very very very very long text.',
+                        } }}
+                        ref="formItem"
+                    >
+                        <Input v-model="value" />
+                    </FormItem>
+                </Form>
+            `
+            _init() {
+                this.Form = Form;
+                this.FormItem = FormItem;
+                this.Input = Input;
+            }
+        }
+        instance = mount(Demo);
+
+        const {form, formItem} = instance.refs;
+        await form.validate();
+        expect(formItem.refs.error.parentElement.classList.contains('k-ellipsis')).to.be.true;
+
+        instance.set('value', 'a');
+        await form.validate();
+        expect(formItem.refs.error.parentElement.classList.contains('k-ellipsis')).to.be.false;
+
+        instance.set('value', '');
+        await form.validate();
+        expect(formItem.refs.error.parentElement.classList.contains('k-ellipsis')).to.be.true;
     });
 });

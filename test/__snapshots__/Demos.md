@@ -64,7 +64,7 @@
 ####     `Button basic`
 
 ```
-"<div><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>default</span></button><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>primay</span></button><button class=\"k-btn k-secondary\" tabindex=\"0\" type=\"button\"><span>secondary</span></button><button class=\"k-btn k-warning\" tabindex=\"0\" type=\"button\"><span>warning</span></button><button class=\"k-btn k-danger\" tabindex=\"0\" type=\"button\"><span>danger</span></button><button class=\"k-btn k-success\" tabindex=\"0\" type=\"button\"><span>success</span></button><button class=\"k-btn k-none\" tabindex=\"0\" type=\"button\"><span>none</span></button><button class=\"k-btn k-link\" tabindex=\"0\" type=\"button\"><span>link</span></button></div>"
+"<div><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>default</span></button><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>primary</span></button><button class=\"k-btn k-secondary\" tabindex=\"0\" type=\"button\"><span>secondary</span></button><button class=\"k-btn k-warning\" tabindex=\"0\" type=\"button\"><span>warning</span></button><button class=\"k-btn k-danger\" tabindex=\"0\" type=\"button\"><span>danger</span></button><button class=\"k-btn k-success\" tabindex=\"0\" type=\"button\"><span>success</span></button><button class=\"k-btn k-none\" tabindex=\"0\" type=\"button\"><span>none</span></button><button class=\"k-btn k-link\" tabindex=\"0\" type=\"button\"><span>link</span></button></div>"
 ```
 
 ####     `Button disabled`
@@ -1997,7 +1997,7 @@
 ####     `Button basic`
 
 ```
-"<div><div><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>default</span></button><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>primay</span></button><button class=\"k-btn k-secondary\" tabindex=\"0\" type=\"button\"><span>secondary</span></button><button class=\"k-btn k-warning\" tabindex=\"0\" type=\"button\"><span>warning</span></button><button class=\"k-btn k-danger\" tabindex=\"0\" type=\"button\"><span>danger</span></button><button class=\"k-btn k-success\" tabindex=\"0\" type=\"button\"><span>success</span></button><button class=\"k-btn k-none\" tabindex=\"0\" type=\"button\"><span>none</span></button><button class=\"k-btn k-link\" tabindex=\"0\" type=\"button\"><span>link</span></button></div></div>"
+"<div><div><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>default</span></button><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>primary</span></button><button class=\"k-btn k-secondary\" tabindex=\"0\" type=\"button\"><span>secondary</span></button><button class=\"k-btn k-warning\" tabindex=\"0\" type=\"button\"><span>warning</span></button><button class=\"k-btn k-danger\" tabindex=\"0\" type=\"button\"><span>danger</span></button><button class=\"k-btn k-success\" tabindex=\"0\" type=\"button\"><span>success</span></button><button class=\"k-btn k-none\" tabindex=\"0\" type=\"button\"><span>none</span></button><button class=\"k-btn k-link\" tabindex=\"0\" type=\"button\"><span>link</span></button></div></div>"
 ```
 
 ####     `Button disabled`

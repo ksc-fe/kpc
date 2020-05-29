@@ -17,7 +17,7 @@ export default class FormItem extends Intact {
         rules: Object,
         // isValid: Boolean,
         isDirty: Boolean,
-        // message: String, 
+        // message: String,
         messages: Object,
         classNames: Object,
         label: String,
@@ -48,6 +48,8 @@ export default class FormItem extends Intact {
             hideLabel: false,
             force: false,
             fluid: false,
+
+            _ellipsis: false,
         }
     }
 
@@ -55,6 +57,7 @@ export default class FormItem extends Intact {
         this.initValue = this.get('value');
         this.on('$change:value', this.validateIfDirty);
         this.on('$change:rules', this.validateIfDirty);
+        this.on('$changed:message', this._checkEllipsis);
     }
 
     _beforeCreate() {
@@ -80,9 +83,9 @@ export default class FormItem extends Intact {
 
         return Object.assign({}, formRules, selfRules);
     }
-    
+
     getMessage(name) {
-        const defaultMessages = Form.messages; 
+        const defaultMessages = Form.messages;
         const customMessages = this.get('messages');
         const message = customMessages[name] || defaultMessages[name];
 
@@ -109,7 +112,7 @@ export default class FormItem extends Intact {
 
     validate() {
         if (!this.get('model') || !this.form) return;
-        
+
         this._cancel();
 
         const rules = this.getRules();
@@ -193,15 +196,16 @@ export default class FormItem extends Intact {
             this.validate();
         }
     }
-    
+
     reset() {
         this._cancel();
 
         this.set({
             isDirty: false,
             isValid: undefined,
+            message: '',
             value: Array.isArray(this.get('value')) ?
-                [].concat(this.initValue) : 
+                [].concat(this.initValue) :
                 this.initValue,
         });
     }
@@ -212,7 +216,7 @@ export default class FormItem extends Intact {
         if (this.get('isDirty')) return;
 
         // for select, the focusout event triggers before select
-        // so we put off validating it 
+        // so we put off validating it
         setTimeout(() => {
             this.validate()
         }, 100);
@@ -233,6 +237,12 @@ export default class FormItem extends Intact {
         if (this.promise) {
             this.promise.cancelled = true;
         }
+    }
+
+    _checkEllipsis() {
+        const error = this.refs.error;
+        if (!error) return;
+        this.set('_ellipsis', error.offsetWidth < error.scrollWidth);
     }
 
     _destroy() {

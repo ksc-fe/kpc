@@ -1,10 +1,11 @@
 import {getRestProps} from '../utils';
 import Tooltip from '../tooltip';
+import Icon from '../icon';
 
 const {
     className, children, label,
     isValid, isDirty, hideLabel, htmlFor,
-    errorClassName, rules, fluid
+    errorClassName, rules, fluid, _ellipsis,
 } = self.get();
 
 const classNameObj = {
@@ -42,11 +43,18 @@ const starOnRequired = self.form && self.form.get('starOnRequired');
         <Animate 
             key="form-item-animate"
             v-if={{ self.get('isValid') === false }}
-            class={{ {"k-error": true, [errorClassName]: errorClassName} }}
+            class={{ {
+                "k-error": true,
+                [errorClassName]: errorClassName,
+                'k-ellipsis': _ellipsis
+            } }}
             a:transition="c-fade"
         >
+            <div class="k-error-message c-ellipsis" ref="error">
+                {{ self.get('message') }}
+            </div>
             <Tooltip canHover position="bottom">
-                <div class="k-error-message c-ellipsis">{{ self.get('message') }}</div>
+                <Icon class="ion-ios-information-outline k-error-more" size="small" />
                 <b:content>
                     {{ self.get('message') }}
                 </b:content>

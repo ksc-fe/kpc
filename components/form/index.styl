@@ -38,9 +38,16 @@
         margin $form-item-error-margin
         left 0
         right 0
-    .k-error-message
-        display inline-block
-        max-width 100%
+        display flex
+        &.k-ellipsis
+            .k-error-more
+                display inline-block
+    // .k-error-message
+        // display inline-block
+        // max-width 100%
+    .k-error-more
+        line-height $form-item-error-font-size 
+        display none
     &.k-invalid
         // input
         :not(.k-select) .k-input
