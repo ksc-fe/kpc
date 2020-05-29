@@ -23,7 +23,7 @@ RemoteDemo.prototype.validateUserName = function(value) {
 describe('Form', () => {
     let instance;
 
-    // afterEach(() => unmount(instance));
+    afterEach(() => unmount(instance));
 
     it('validate', (done) => {
         instance = mount(BasicDemo);
@@ -91,10 +91,12 @@ describe('Form', () => {
         instance.set('userName', 'a');
         let res = await form.validate();
         expect(res).to.be.false;
+        await wait(300);
         expect(instance.element.innerHTML).to.matchSnapshot();
         instance.set('userName', 'b');
         res = await form.validate();
         expect(res).to.be.true;
+        await wait(300);
         expect(instance.element.innerHTML).to.matchSnapshot();
     });
 

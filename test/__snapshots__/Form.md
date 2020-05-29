@@ -52,7 +52,7 @@ Object {
 #### `validate asynchronously`
 
 ```
-"<div class=\"k-form-item k-invalid\"><label class=\"k-label\">用户名</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><div class=\"k-error c-fade-enter\"><div class=\"k-error-message c-ellipsis\">用户名 a 已被占用</div><i class=\"k-icon ion-ios-information-outline k-error-more k-small\"></i><!--placeholder--></div></div></div>"
+"<div class=\"k-form-item k-invalid\"><label class=\"k-label\">用户名</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><div class=\"k-error\"><div class=\"k-error-message c-ellipsis\">用户名 a 已被占用</div><i class=\"k-icon ion-ios-information-outline k-error-more k-small\"></i><!--placeholder--></div></div></div>"
 ```
 
 ```

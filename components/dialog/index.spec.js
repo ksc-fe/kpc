@@ -12,16 +12,16 @@ describe('Dialog', () => {
     let component;
     let instance;
 
-    // afterEach((done) => {
-        // component && component.destroy();
-        // component = null;
+    afterEach((done) => {
+        component && component.destroy();
+        component = null;
 
-        // if (instance) {
-            // unmount(instance);
-            // instance = null;
-        // }
-        // setTimeout(done, 400);
-    // });
+        if (instance) {
+            unmount(instance);
+            instance = null;
+        }
+        setTimeout(done, 400);
+    });
 
     it('should show dialog correctly', () => {
         component = render(Dialog, {title: 'Dialog'});
