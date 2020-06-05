@@ -60,6 +60,13 @@ sidebar: doc
 | 事件名 | 说明 | 参数 |
 | --- | --- | --- |
 | clear | 点击清除按钮时触发 | - |
+| change | 原生`change`事件，绑定在组件内部`input`元素上 | `Event` |
+| keydown | 原生`keydown`事件，绑定在组件内部`input`元素上 | `Event` |
+| keyup | 原生`keyup`事件，绑定在组件内部`input`元素上 | `Event` |
+| keypress | 原生`keypress`事件，绑定在组件内部`input`元素上 | `Event` |
+| click | 原生`click`事件，绑定在组件最外层元素上 | `Event` |
+| mouseenter | 原生`mouseenter`事件，绑定在组件最外层元素上 | `Event` |
+| mouseleave | 原生`mouseleave`事件，绑定在组件最外层元素上 | `Event` |
 
 ## Search
 
