@@ -37,6 +37,7 @@ const events = [
     ev-keypress={{ self._onKeypress }}
     {{ ...events }}
     title={{ title }}
+    ev-click={{ self._fixClick }}
 >
     <span class="k-wrapper">
         <input type="checkbox" disabled={{ disabled }}

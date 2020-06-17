@@ -47,6 +47,13 @@ export default class Radio extends Intact {
             this.trigger('click', e);
         }
     }
+
+    _fixClick(e) {
+        // ignore the click event from label, otherwise it will trigger click event twice
+        if (e.target !== this.refs.input) {
+            e.stopPropagation();
+        }
+    }
 }
 
 export {Radio};

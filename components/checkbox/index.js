@@ -52,8 +52,8 @@ export default class Checkbox extends Intact {
     isChecked() {
         const value = this.get('value');
         const trueValue = this.get('trueValue');
-        return isArray(value) ? 
-            value.indexOf(trueValue) > -1 : 
+        return isArray(value) ?
+            value.indexOf(trueValue) > -1 :
             value === trueValue;
     }
 
@@ -71,6 +71,13 @@ export default class Checkbox extends Intact {
             this.trigger('change', this.get('value'), e);
         } else {
             this.trigger('click', e);
+        }
+    }
+
+    _fixClick(e) {
+        // ignore the click event from label, otherwise it will trigger click event twice
+        if (e.target !== this.refs.input) {
+            e.stopPropagation();
         }
     }
 }
