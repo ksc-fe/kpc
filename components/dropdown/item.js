@@ -139,5 +139,5 @@ export default class DropdownItem extends Intact {
 
 function getScrollParent(node, breakEl) {
     if (node === breakEl || node.scrollHeight > node.clientHeight) return node;
-    return getScrollParent(node.parentNode);
+    return getScrollParent(node.parentNode, breakEl);
 }
