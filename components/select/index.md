@@ -27,6 +27,7 @@ sidebar: doc
 | inline | 展示内联模式，该模式下，组件没有边框，宽度和高度如同内联元素一样由内容撑开 | `Boolean` | `false` |
 | loading | 数据加载状态 | `Boolean` | `false` |
 | position | 定义弹层的位置 | `Object` | `{my: 'left top+8', at: 'left bottom'}` |
+| searchable | 是否将在弹出菜单中展示搜索框 | `Boolean` | `false` |
 
 ## Option
 

@@ -1,10 +1,12 @@
 ---
 title: 将搜索框内嵌到弹出菜单中
-order: 0
+order: 10
 ---
 
 给`Select`添加`searchable`属性即可在弹出菜单中展示搜索框，如果此时开启`multiple`支持多选，则还会展示`Checkbox`并添加“全选”，“反选”，
 “清空”操作按钮
+
+同样我们可以通过`values / value`扩展点定义展示的选择结果
 
 ```vdt
 import {Select, Option} from 'kpc/components/select';
