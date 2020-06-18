@@ -93,8 +93,8 @@ export function findParentComponent(Component, instance, isUntil) {
 
 /**
  * @brief find the router instance
- * 
- * in React, find the history of router 
+ *
+ * in React, find the history of router
  * for react-router@5, we need get the history from providers
  * as it use the new context api of React
  *
@@ -102,7 +102,7 @@ export function findParentComponent(Component, instance, isUntil) {
  *
  * @param instance
  *
- * @return 
+ * @return
  */
 export function findRouter(instance) {
     const Component = instance.constructor;
@@ -112,13 +112,13 @@ export function findRouter(instance) {
         while (parentVNode) {
             let i;
             if (
-                parentVNode.type === Types.ComponentClass && 
+                parentVNode.type === Types.ComponentClass &&
                 (i = parentVNode.children.context)
             ) {
                 if (i = i.router) {
                     return i.history;
                 } else if (i = parentVNode.children.__providers) {
-                    // for react-router@5 
+                    // for react-router@5
                     const iter = i.entries();
                     while (i = iter.next().value) {
                         if (i[0]._context.displayName === 'Router' && (i = i[1]).history) {
@@ -298,7 +298,7 @@ export const hasWindow = typeof window !== 'undefined';
 
 let raf;
 if (hasWindow) {
-    raf = window.requestAnimationFrame ? 
+    raf = window.requestAnimationFrame ?
         window.requestAnimationFrame.bind(window) : setTimeout;
 }
 export function nextFrame(fn) {
@@ -367,12 +367,12 @@ export function getRestProps(instance, props = instance.get()) {
     const ret = {};
     for (let key in props) {
         if (
-            key === 'key' || 
-            key === 'ref' || 
+            key === 'key' ||
+            key === 'ref' ||
             key === 'className' ||
             key === 'children' ||
             key === 'v-model' ||
-            key[0] === '_' || 
+            key[0] === '_' ||
             key in selfProps ||
             key.substring(3) in events ||
             // ev-$change / $destroy
@@ -389,5 +389,5 @@ export const config = {
     onDialogClose: null,
 };
 export function configure(options) {
-    extend(config, options);   
+    extend(config, options);
 }

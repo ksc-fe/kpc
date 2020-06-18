@@ -5,13 +5,16 @@ import Option from './option';
 import OptionGroup from './group';
 import {Tabs, Tab} from '../tabs';
 import Icon from '../icon';
+import Button from '../button';
+import Checkbox from '../checkbox';
 
 const {
     className, clearable, data, value,
     disabled, filterable, keywords, _show,
     placeholder, size, style, name, children,
     fluid, width, allowUnmatch, card, hideIcon,
-    container, inline, loading, position
+    container, inline, loading, position,
+    searchable
 } = self.get();
 
 /* istanbul ignore if */
@@ -52,6 +55,12 @@ const labelObj = scope.labelObj || {
 let groupIndex = 0;
 let hasData = isGroup;
 
+const allShowedValues = [];
+
+const WrapCheckbox = (props) => {
+    return <Checkbox v-model="_checkedKeys" trueValue={{ props.value }}>{{ props.children }}</Checkbox>
+};
+
 const Options = props => {
     const data = props.data;
     const ret = [];
@@ -62,13 +71,17 @@ const Options = props => {
         const {valid, active} = self.handleProps(item, labelObj);
 
         if (valid) {
+            let children = item.template ? item.template(item, index) : item.label;
+            if (searchable && multiple) {
+                children = <WrapCheckbox value={{ item.value }}>{{ children }}</WrapCheckbox>
+            }
             ret.push(
                 <DropdownItem 
                     ev-select={{ self._onSelect.bind(self, item.value) }}
                     disabled={{ item.disabled }}
                     class={{ {'k-active': active} }}
                     hideOnSelect={{ !multiple }}
-                >{{ item.template ? item.template(item, index) : item.label }}</DropdownItem>
+                >{{ children }}</DropdownItem>
             );
 
             // for card type groups, we need to highlight the parent label
@@ -79,6 +92,8 @@ const Options = props => {
                 }
             }
             hasData = true;
+
+            allShowedValues.push(item.value);
         }
     });
 
@@ -99,13 +114,14 @@ const OptionsVNodes = ({children}) => {
             const {active, valid} = self.handleProps(props, labelObj);
             if (!valid) {
                 return hc('', vNode.key);
-            } else {
-                props.className = _className({
-                    [props.className]: props.className,
-                    'k-active': active,
-                });
-                hasData = true;
             }
+            props.className = _className({
+                [props.className]: props.className,
+                'k-active': active,
+            });
+            hasData = true;
+
+            allShowedValues.push(props.value);
 
             // for card type groups, we need to highlight the parent label
             if (active && card) {
@@ -117,11 +133,16 @@ const OptionsVNodes = ({children}) => {
 
             // if the multiple select option is active
             // add a √ icon
-            if (active && multiple) {
+            if (active && multiple && !searchable) {
                 props.children = [
                     props.children,
                     <i class="k-checkmark ion-ios-checkmark-empty"></i>
                 ];
+            }
+
+            // if show search input in menu and support multiple selections, wrap Option by Checkbox
+            if (searchable && multiple) {
+                props.children = <WrapCheckbox value={{ props.value }}>{{ props.children }}</WrapCheckbox>
             }
 
             // return the cloned vNode
@@ -152,6 +173,7 @@ const Menu = scope.Menu || (
             "k-select-dropdown": true,
             "k-card": card,
             [className]: className,
+            'k-searchable': searchable,
         } }}
         ev-$change:value={{ self._onChangeShow }}
     >
@@ -219,8 +241,41 @@ const Menu = scope.Menu || (
                         ];
                     }
                     if (!hasData) {
-                        return <div class="k-no-data">{{ _$('无数据') }}</div>;
+                        _children = <div class="k-no-data">{{ _$('无数据') }}</div>;
                     }
+                    
+                    // if searchable, add a search input to menu
+                    if (searchable) {
+                        _children = <template>
+                            <div class="k-select-header">
+                                <Input fluid size="small" placeholder={{ _$('请输入关键字') }}
+                                    v-model="keywords"
+                                    clearable
+                                >
+                                    <b:suffix><Icon class="ion-ios-search" /></b:suffix>
+                                </Input>
+                                <div class="k-select-op" v-if={{ multiple }}>
+                                    <Button type="link" size="small"
+                                        ev-click={{ self._selectAll.bind(self, allShowedValues) }}
+                                    >{{ _$('全选') }}</Button>  
+                                    <Button type="link" size="small"
+                                        ev-click={{ self._toggleSelect.bind(self, allShowedValues) }}
+                                    >{{ _$('反选') }}</Button>  
+                                    <Button type="link" size="small"
+                                        ev-click={{ self._unselectAll.bind(self, allShowedValues) }}
+                                    >{{ _$('清空') }}</Button>  
+                                </div>
+                            </div>
+                            <div class="k-select-body">
+                                {{ _children }}
+                            </div>
+                            <div class="k-select-footer" v-if={{ multiple }}>
+                                <Button type="primary" size="small" ev-click={{ self._confirm }}>{{ _$('确定') }}</Button>
+                                <Button size="small" ev-click={{ self.hide }}>{{ _$('取消') }}</Button>
+                            </div>
+                        </template>
+                    }
+
                     return _children;
                 })() }}
             </b:menu>
@@ -274,7 +329,10 @@ if (hasValue && (!allowUnmatch && labelObj.label == null && !labelObj.labels.len
                         {{ labelObj.label }}
                     </b:value>
                 </span>
-                <Animate a:tag="span" a:transition="c-fade" class="k-values" v-else>
+                <Animate a:tag="span" a:transition="c-fade" class={{ {
+                    "k-values": true,
+                    "k-with-values": blocks.values,
+                } }} v-else>
                     <template>
                         <b:values args={{ [value, labelObj.labels] }}>
                             <Animate a:tag="span" class="k-select-tag" 

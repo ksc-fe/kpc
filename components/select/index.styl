@@ -105,6 +105,9 @@
     .k-values
         display inline-block
         line-height 1
+        // remove margin if we specified values extension point
+        &.k-with-values
+            margin 0
     .k-select-tag
         padding $select-multiple-tag-padding 
         background $select-multiple-tag-bg-color
@@ -181,6 +184,7 @@
         .k-value
             line-height inherit
 
+
 .k-select-dropdown
     min-width auto
     max-height $select-dropdown-max-height
@@ -224,5 +228,33 @@
         padding $select-no-data-padding
         color $select-no-data-color 
         text-align center
+
+    // searchable
+    &.k-searchable
+        max-height none
+        padding $select-searchable-padding
+        .k-select-header
+            padding-bottom $select-searchable-header-padding-bottom
+            border-bottom $select-searchable-border
+            display flex
+            margin-bottom $select-searchable-header-margin-bottom
+        .k-select-op
+            white-space nowrap
+            .k-btn
+                padding $select-searchable-header-btn-padding
+                margin-left $select-searchable-header-btn-margin-left
+        .k-select-body
+            max-height $select-dropdown-max-height
+            overflow auto
+            .k-checkbox
+            .k-item:not(.k-no-padding)
+                padding $select-searchable-item-padding
+        .k-select-footer
+            border-top $select-searchable-border
+            padding-top $select-searchable-footer-padding-top
+            text-align right
+            margin-top $select-searchable-footer-margin-top
+            .k-btn
+                margin-left $select-searchable-footer-btn-margin-left
 
 requireTheme('select')
