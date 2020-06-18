@@ -1,4 +1,4 @@
-const gulp = require('gulp'); 
+const gulp = require('gulp');
 const tap = require('gulp-tap');
 const {resolve, isIgnoreComponents} = require('../utils');
 const fs = require('fs');
@@ -23,7 +23,7 @@ gulp.task('index', () => {
                 i--;
             }
             const matches = lastLine.match(/\{(.*?)\}/);
-            if (!matches) throw new Error('Do not forget export Component at last line!');
+            if (!matches) throw new Error('Do not forget export Component at last line! ' + file.path);
             const names = matches[1].split(',').map(name => {
                 name = name.split(' as ');
                 return name[name.length - 1].trim();

@@ -322,8 +322,6 @@ export default class Select extends Intact {
     }
 }
 
-export {Select, Option, Group as OptionGroup};
-
 function addKeys(origin, keys) {
     return Array.from(new Set([...keys, ...(origin || [])]));
 }
@@ -331,3 +329,5 @@ function addKeys(origin, keys) {
 function removeKeys(origin, keys) {
     return (origin || []).filter(item => keys.indexOf(item) < 0);
 }
+
+export {Select, Option, Group as OptionGroup};
