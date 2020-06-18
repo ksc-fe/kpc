@@ -8,10 +8,10 @@ import FormatterDemo from '~/components/spinner/demos/formatter';
 describe('Spinner', () => {
     let instance;
 
-    afterEach(() => {
-        unmount(instance);
-        instance = null
-    });
+    // afterEach(() => {
+        // unmount(instance);
+        // instance = null
+    // });
 
     it('step/max/min test', () => {
         instance = mount(StepDemo);
@@ -49,13 +49,25 @@ describe('Spinner', () => {
         dispatchEvent(input, 'change');
         expect(instance.element.innerHTML).to.matchSnapshot();
         expect(input.value).to.eql('0');
+
+        // should not disable btns, when value is between min and max
+        input.value = '9.9';
+        dispatchEvent(input, 'change');
+        next.click();
+        expect(input.value).to.eql('10');
+        expect(instance.element.innerHTML).to.matchSnapshot();
+        input.value = '0.1';
+        dispatchEvent(input, 'change');
+        prev.click();
+        expect(input.value).to.eql('0');
+        expect(instance.element.innerHTML).to.matchSnapshot();
     });
 
     it('precision', () => {
         instance = mount(PrecisionDemo);
 
         expect(instance.element.innerHTML).to.matchSnapshot();
-        
+
         const [spinner1, spinner2] = instance.element.querySelectorAll('.k-spinner');
         const input1 = spinner1.querySelector('.k-inner');
         input1.value = '0.6';

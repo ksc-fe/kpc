@@ -61,7 +61,7 @@ export default class Spinner extends Intact {
 
         this.on('$receive', (c, keys) => {
             if ([
-                'max', 'min', 'precision', 
+                'max', 'min', 'precision',
                 'value', 'formatter', 'parser',
                 'prefix', 'suffix'
             ].find(key => ~keys.indexOf(key))) {
@@ -152,15 +152,17 @@ export default class Spinner extends Intact {
     }
 
     _disableDecrease() {
-        const {value, min, step, disabled} = this.get();
+        const {value, min, /* step,  */disabled} = this.get();
 
-        return disabled || +value <= min || Number((min + step).toFixed(10)) > value;
+        // enable btn as long as the value is greater than min
+        // otherwise we can't set the boundary value, #484
+        return disabled || +value <= min; // || Number((min + step).toFixed(10)) > value;
     }
 
     _disableIncrease() {
-        const {value, max, step, disabled} = this.get();
+        const {value, max, /* step,  */disabled} = this.get();
 
-        return disabled || +value >= max || Number((max - step).toFixed(10)) < value;
+        return disabled || +value >= max; // || Number((max - step).toFixed(10)) < value;
     }
 
     _changeValue(e) {
