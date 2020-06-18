@@ -3,11 +3,8 @@ title: 将搜索框内嵌到弹出菜单中
 order: 0
 ---
 
-`Select`嵌套`Option`使用，用`v-model`进行双向数据绑定。支持键盘选择。当数据正在加载中时，可以添加
-`loading`属性来标示加载状态
-
-> 当`Select`传入的`value`在`Option`中不存在时，组件会强制将`value`置为空字符串。你也可以通过
-> 添加`allowUnmatch`属性让它不置空
+给`Select`添加`searchable`属性即可在弹出菜单中展示搜索框，如果此时开启`multiple`支持多选，则还会展示`Checkbox`并添加“全选”，“反选”，
+“清空”操作按钮
 
 ```vdt
 import {Select, Option} from 'kpc/components/select';

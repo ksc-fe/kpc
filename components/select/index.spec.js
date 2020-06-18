@@ -1,5 +1,5 @@
 import BasicDemo from '~/components/select/demos/basic';
-import DisabledDemo from '~/components/select/demos/disabled'; 
+import DisabledDemo from '~/components/select/demos/disabled';
 import ClearableDemo from '~/components/select/demos/clearable';
 import FilterDemo from '~/components/select/demos/filterable';
 import GroupDemo from '~/components/select/demos/group';
@@ -8,6 +8,7 @@ import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 import Tooltip from 'kpc/components/tooltip';
 import Intact from 'intact';
 import {Select, Option} from 'kpc/components/select';
+import SearchableDemo from '~/components/select/demos/searchable';
 
 describe('Select', () => {
     let instance;
@@ -19,7 +20,7 @@ describe('Select', () => {
 
     it('should select value correctly', () => {
         instance = mount(BasicDemo);
-        
+
         const trigger = instance.element.querySelector('.k-wrapper');
         trigger.click();
         expect(instance.element.outerHTML).to.matchSnapshot();
@@ -79,7 +80,7 @@ describe('Select', () => {
 
     it('filterable', () => {
         instance = mount(FilterDemo);
-    
+
         const [input1, input2, input3] = instance.element.querySelectorAll('.k-inner');
         input1.value = 'm';
         dispatchEvent(input1, 'input');
@@ -150,7 +151,7 @@ describe('Select', () => {
         class Demo extends Intact {
             @Intact.template()
             static template = `<div><Tooltip content="hello">
-                <Select><Option value="1">option 1</Option></Select> 
+                <Select><Option value="1">option 1</Option></Select>
             </Tooltip></div>`
             _init() {
                 this.Tooltip = Tooltip;
@@ -166,5 +167,37 @@ describe('Select', () => {
 
         expect(getElement('.k-select-dropdown')).to.be.undefined;
         expect(getElement('.k-tooltip-content')).to.be.undefined;
+    });
+
+    it('Searchable with multiple', async () => {
+        instance = mount(SearchableDemo);
+
+        const [, select] = instance.element.querySelectorAll('.k-wrapper');
+        select.click();
+        const dropdown = getElement('.k-select-dropdown');
+        const [selectAll, toggleSelect, unselectAll] = dropdown.querySelectorAll('.k-select-op .k-btn');
+        const [confirm, cancel] = dropdown.querySelectorAll('.k-select-footer .k-btn');
+
+        // select all
+        selectAll.click();
+        confirm.click();
+        expect(instance.get('days')).have.length(7);
+
+        // unselect all
+        select.click();
+        unselectAll.click();
+        confirm.click();
+        expect(instance.get('days')).have.length(0);
+
+        // toggle select
+        select.click();
+        instance.set('days', ['Monday', 'Tuesday']);
+        const input = dropdown.querySelector('.k-inner');
+        input.value = 's'
+        dispatchEvent(input, 'input');
+        toggleSelect.click();
+        confirm.click();
+        expect(instance.get('days')).have.length(5);
+        expect(instance.get('days')).include('Monday')
     });
 });
