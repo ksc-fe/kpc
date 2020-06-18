@@ -83,11 +83,12 @@ export default class DropdownItem extends Intact {
         this.set('_isFocus', true);
 
         const elRect = this.element.getBoundingClientRect();
-        const pEl = this.parent.refs.menu.element;
+        const menuEl = this.parent.refs.menu.element;
+        const pEl = getScrollParent(this.element.parentNode, menuEl);
         const pElRect = pEl.getBoundingClientRect();
         const bottomOverflowDistance = elRect.bottom - pElRect.bottom;
         const topOverflowDistance = elRect.top - pElRect.top;
-        
+
         if (bottomOverflowDistance > 0) {
             pEl.scrollTop += bottomOverflowDistance;
         } else if (topOverflowDistance < 0) {
@@ -134,4 +135,9 @@ export default class DropdownItem extends Intact {
             items.splice(items.indexOf(this), 1);
         }
     }
+}
+
+function getScrollParent(node, breakEl) {
+    if (node === breakEl || node.scrollHeight > node.clientHeight) return node;
+    return getScrollParent(node.parentNode);
 }

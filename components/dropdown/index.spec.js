@@ -236,4 +236,39 @@ describe('Dropdown', () => {
         demo.destroy();
         document.body.removeChild(container);
     });
+
+    it('should scroll to view when we focus on DropdownItem', async () => {
+        class Demo extends Intact {
+            @Intact.template()
+            static template = `
+                <div>
+                    <Dropdown>
+                        <div ref="trigger">hover</div>
+                        <DropdownMenu>
+                            <div style="height: 40px; overflow: auto;">
+                                <DropdownItem>test</DropdownItem>
+                                <DropdownItem>test</DropdownItem>
+                            </div>
+                        </DropdownMenu>
+                    </Dropdown>
+                </div>
+            `;
+            _init() {
+                this.Dropdown = Dropdown;
+                this.DropdownItem = DropdownItem;
+                this.DropdownMenu = DropdownMenu;
+            }
+        }
+        instance = mount(Demo);
+
+        dispatchEvent(instance.refs.trigger, 'mouseenter');
+        await wait(300);
+
+        const dropdown = getElement('.k-dropdown-menu');
+        const [, item] = dropdown.querySelectorAll('.k-item');
+        const parent = item.parentNode;
+        dispatchEvent(item, 'mouseenter');
+
+        expect(parent.scrollTop).to.eql(item.offsetHeight * 2 - 40);
+    });
 });
