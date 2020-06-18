@@ -22,6 +22,7 @@ sidebar: doc
 | prefix | 定义展示的值的前缀，优先级低于`formatter` | `String` | `undefined` |
 | suffix | 定义展示的值的后缀，优先级低于`formatter` | `String` | `undefined` |
 | width | 指定`Input`输入框的宽度 | `String` &#124; `Number` | `undefined` |
+| devideByStep | `value`值除了边界值，都必须被`step`整除 | `Boolean` | `false` |
 
 # 事件
 

@@ -391,3 +391,16 @@ export const config = {
 export function configure(options) {
     extend(config, options);
 }
+
+/**
+ * return max min or multiple by step
+ */
+export function minMaxStep(value, min, max, step) {
+    if (value >= max) return max;
+    if (value <= min) return min;
+    if (step) {
+        value = Number((Math.round(value / step) * step).toFixed(10));
+        return minMaxStep(value, min, max);
+    }
+    return value;
+}

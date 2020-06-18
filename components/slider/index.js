@@ -5,6 +5,7 @@ import Intact from 'intact';
 import template from './index.vdt'
 import '../../styles/kpc.styl';
 import './index.styl';
+import {minMaxStep} from '../utils';
 
 const {isEqual} = Intact.utils;
 
@@ -134,24 +135,8 @@ export default class Slider extends Intact {
             return 0;
         }
 
-        if (Number.isNaN(Number(v))) {
-            return min;
-        } else if (v < min) {
-            return min;
-        } else if (v > max) {
-            return max;
-        } else if (step) {
-            // for the accuracy
-            let fixedValue = Number((Math.round(v / step) * step).toFixed(10));
-            if (fixedValue < min) {
-                return min;
-            } else if (fixedValue > max) {
-                return max;
-            } else {
-                return fixedValue;
-            }
-        }
-        return v;
+        if (Number.isNaN(Number(v))) return min;
+        return minMaxStep(v, min, max, step);
     }
 
     _clickWrapper(e) {
@@ -174,7 +159,7 @@ export default class Slider extends Intact {
             return [min, v];
         }
     }
-    
+
     _getSlidingValue(pos) {
         const rect = this.$slider.getBoundingClientRect();
         const percent = (pos - rect.left) / rect.width;
@@ -209,7 +194,7 @@ export default class Slider extends Intact {
         let fixedValue;
 
         tempValue = this._getTempValue(
-            tempValue, indexFlag, 
+            tempValue, indexFlag,
             this._min, this._max,
             indexFlag === '_isFirst'
         );
@@ -255,7 +240,7 @@ export default class Slider extends Intact {
                 return [
                     Math.min(value, min),
                     Math.max(value, min)
-                ] 
+                ]
             }
         }
         return value;
@@ -271,7 +256,7 @@ export default class Slider extends Intact {
 
                     this.set('_isFirst', false, {async: true});
                     newValue = [
-                        Math.min(newValue, this._max), 
+                        Math.min(newValue, this._max),
                         Math.max(newValue, this._max)
                     ];
                 } else {
@@ -303,7 +288,7 @@ export default class Slider extends Intact {
         if (this.get('disabled')) return;
 
         // when mouse down the handle will focus too
-        // if the focusin is invoked by mousedown for dragging 
+        // if the focusin is invoked by mousedown for dragging
         // let the handle element blur to ignore keyboard operations
         // but we also need to set the states
         if (this._isDragging) {
@@ -331,7 +316,7 @@ export default class Slider extends Intact {
                     _isFirst: false,
                     _isSecond: true
                 });
-            } 
+            }
         } else {
             this.set('_isDragging', true);
         }
@@ -387,9 +372,9 @@ export default class Slider extends Intact {
         } else {
             this._initValue += step;
             this._initValue = this._fix(this._initValue);
-            
+
             let _value = this._getTempValue(
-                this._initValue, indexFlag, 
+                this._initValue, indexFlag,
                 this._min, this._max,
                 indexFlag === '_isFirst'
             );

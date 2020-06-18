@@ -2,6 +2,7 @@ import Intact from 'intact';
 import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
+import {minMaxStep} from '../utils';
 
 const numberReg = /^(-|\+)?\d+(\.(\d+)?)?$/;
 
@@ -23,6 +24,7 @@ export default class Spinner extends Intact {
             prefix: undefined,
             suffix: undefined,
             width: undefined,
+            devideByStep: false,
 
             _value: 0,
         };
@@ -41,7 +43,8 @@ export default class Spinner extends Intact {
         parser: Function,
         prefix: String,
         suffix: String,
-        width: [String, Number]
+        width: [String, Number],
+        devideByStep: Boolean,
     }
 
     static events = {
@@ -79,7 +82,7 @@ export default class Spinner extends Intact {
     }
 
     _getFixedValue(value = this.get('value'), fallbackValue = 0) {
-        let {precision, max, min} = this.get();
+        let {precision, max, min, step, devideByStep} = this.get();
 
         if (min > max) {
             Intact.utils.error(new Error(`[Spinner] min must less than or equal to max, but got min: ${min} max: ${max}`));
@@ -92,12 +95,8 @@ export default class Spinner extends Intact {
         if (value == null || !numberReg.test(value)) {
             value = fallbackValue;
         }
-        value = Number(value);
-        if (value >= max) {
-            value = max;
-        } else if (value < min) {
-            value = min;
-        }
+
+        value = minMaxStep(Number(value), min, max, devideByStep && step);
 
         let _value = value;
         if (precision != null) {

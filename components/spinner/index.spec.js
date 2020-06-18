@@ -4,14 +4,15 @@ import {mount, unmount, dispatchEvent} from 'test/utils';
 import {Spinner} from 'kpc/components/spinner';
 import Intact from 'intact';
 import FormatterDemo from '~/components/spinner/demos/formatter';
+import DevideDemo from '~/components/spinner/demos/devide';
 
 describe('Spinner', () => {
     let instance;
 
-    // afterEach(() => {
-        // unmount(instance);
-        // instance = null
-    // });
+    afterEach(() => {
+        unmount(instance);
+        instance = null
+    });
 
     it('step/max/min test', () => {
         instance = mount(StepDemo);
@@ -182,5 +183,27 @@ describe('Spinner', () => {
         dispatchEvent(input, 'change');
         expect(onChange.callCount).to.eql(3);
         expect(onChange.calledWith(12)).to.be.true;
+    });
+
+    it('should devide by step', () => {
+        instance = mount(DevideDemo);
+
+        const [prev, next] = instance.element.querySelectorAll('.k-btn');
+        const input = instance.element.querySelector('.k-inner');
+
+        input.value = '1';
+        dispatchEvent(input, 'change');
+        expect(instance.get('value1')).to.eql(1.2);
+
+        input.value = '9.9';
+        dispatchEvent(input, 'change');
+        expect(instance.get('value1')).to.eql(9.6);
+
+        input.value = '10';
+        dispatchEvent(input, 'change');
+        expect(instance.get('value1')).to.eql(10);
+
+        prev.click();
+        expect(instance.get('value1')).to.eql(8.4);
     });
 });
