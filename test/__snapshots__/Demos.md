@@ -624,6 +624,12 @@
 "<form class=\"k-form k-horizontal\" novalidate=\"\"><div class=\"k-form-item\"><label class=\"k-label\">用户名</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div></form>"
 ```
 
+####     `Form value`
+
+```
+"<form class=\"k-form k-horizontal\" novalidate=\"\"><div class=\"k-form-item\"><label class=\"k-label\">Value</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div><div class=\"k-form-item\"><label class=\"k-label\"></label><div class=\"k-content\"><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"submit\"><span>提交</span></button><button class=\"k-btn k-default\" style=\"margin-left: 20px\" tabindex=\"0\" type=\"button\"><span>重置</span></button></div></div></form>"
+```
+
 ####     `Form variable`
 
 ```
@@ -2562,6 +2568,12 @@
 
 ```
 "<div><form class=\"k-form k-horizontal\" novalidate=\"\"><div class=\"k-form-item\"><label class=\"k-label\">用户名</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div></form></div>"
+```
+
+####     `Form value`
+
+```
+"<div><form class=\"k-form k-horizontal\" novalidate=\"\"><div class=\"k-form-item\"><label class=\"k-label\">Value</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div><div class=\"k-form-item\"><label class=\"k-label\"></label><div class=\"k-content\"><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"submit\"><span>提交</span></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\" style=\"margin-left: 20px;\"><span>重置</span></button></div></div></form></div>"
 ```
 
 ####     `Form variable`
