@@ -3,14 +3,14 @@ import RangeDemo from '~/components/slider/demos/range';
 import DisabledDemo from '~/components/slider/demos/disabled';
 import StepDemo from '~/components/slider/demos/step';
 import TooltipDemo from '~/components/slider/demos/tooltip';
-import {mount, unmount, dispatchEvent, getElement} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 import Slider from 'kpc/components/slider';
 import Intact from 'intact';
 
 describe('Slider', () => {
     let instance;
 
-    // afterEach(() => unmount(instance));
+    afterEach(() => unmount(instance));
 
     it('basic test', () => {
         instance = mount(BasicDemo);
@@ -308,11 +308,11 @@ describe('Slider', () => {
         expect(instance.get('b')).to.eql([-1, -1]);
     });
 
-    it('should set value by `min + value * n`', async () => {
+    it('should set value by `min + step * n`', async () => {
         class Component extends Intact {
             @Intact.template()
             static template = `<div>
-                <Slider min={{ -6 }} max={{ 20 }} v-model="a" step={{ 5 }} isShowStop />
+                <Slider min={{ -6 }} max={{ 20 }} v-model="value" step={{ 5 }} isShowStop />
             </div>`;
             _init() {
                 this.Slider = Slider;
@@ -320,5 +320,10 @@ describe('Slider', () => {
         }
         instance = mount(Component);
 
+        instance.set('value', 0);
+        expect(instance.get('value'), -1);
+
+        await wait(300);
+        expect(instance.element.innerHTML).to.matchSnapshot();
     });
 });

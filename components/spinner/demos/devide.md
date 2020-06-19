@@ -1,9 +1,9 @@
 ---
-title: 必须输入步长的整数倍 
+title: 被step整除
 order: 1
 ---
 
-当指定`step`并且同时指定`devideByStep`，则输入值除了边界值之外，都必须被`step`整除
+当指定`step`并且同时指定`devideByStep`，则输入值除了边界值之外，必须为满足条件`min + step * n`(`n`为整数)的等差数列
 
 ```vdt
 import Spinner from 'kpc/components/spinner';
