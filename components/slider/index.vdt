@@ -122,12 +122,12 @@ const tooltipProps = always ? {always, value: true} : {always: false};
                 </div>
                 {{ (() => {
                     if (isShowStop && step) {
-                        const counts = Math.floor((max - min) / step);
                         const ret = [];
-                        for (let i = 1; i < counts; i++) {
+                        const total = max - min;
+                        for (let i = min + step; i < max; i += step) {
                             ret.push(<i class="k-point" 
-                                style={{ {left: (i / counts * 100) + '%'} }}
-                            ></i>)
+                                style={{ {left: ((i - min) / total * 100) + '%'} }}
+                            ></i>);
                         }
                         return ret;
                     }

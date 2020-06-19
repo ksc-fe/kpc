@@ -5,7 +5,7 @@ import Intact from 'intact';
 import template from './index.vdt'
 import '../../styles/kpc.styl';
 import './index.styl';
-import {minMaxStep} from '../utils';
+import {minMaxStep, isNullOrUndefined} from '../utils';
 
 const {isEqual} = Intact.utils;
 
@@ -16,7 +16,7 @@ export default class Slider extends Intact {
         return {
             max: 100,
             min: 0,
-            value: 0,
+            value: undefined,
             isRange: false,
             unit: '',
             isShowEnd: true,
@@ -30,7 +30,7 @@ export default class Slider extends Intact {
             animate: true,
 
             _sliderValue: 0,
-            _inputValue:0,
+            _inputValue: 0,
             _isDragging: false,
             _isFirst: false,
             _isSecond: false,

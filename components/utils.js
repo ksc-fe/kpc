@@ -399,7 +399,8 @@ export function minMaxStep(value, min, max, step) {
     if (value >= max) return max;
     if (value <= min) return min;
     if (step) {
-        value = Number((Math.round(value / step) * step).toFixed(10));
+        value = Number((Math.round((value - min) / step) * step + min).toFixed(10))
+        // value = Number((Math.round(value / step) * step).toFixed(10))
         return minMaxStep(value, min, max);
     }
     return value;

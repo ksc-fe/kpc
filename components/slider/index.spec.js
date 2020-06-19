@@ -10,9 +10,7 @@ import Intact from 'intact';
 describe('Slider', () => {
     let instance;
 
-    afterEach(() => {
-        unmount(instance);
-    });
+    // afterEach(() => unmount(instance));
 
     it('basic test', () => {
         instance = mount(BasicDemo);
@@ -104,7 +102,7 @@ describe('Slider', () => {
         instance = mount(RangeDemo);
 
         const [first, second] = instance.element.querySelectorAll('.k-handle');
-        
+
         instance.set('values', [50, 51]);
         dispatchEvent(first, 'focusin');
         dispatchEvent(first, 'keydown', {keyCode: 39});
@@ -227,7 +225,10 @@ describe('Slider', () => {
         const spy = sinon.spy();
         class Component extends Intact {
             @Intact.template()
-            static template = `<Slider ev-change={{ self._onChange }} />`;
+            static template = `<Slider ev-change={{ self._onChange }} v-model="value" />`;
+            defaults() {
+                return {value: 0};
+            }
             _init() {
                 this.Slider = Slider;
             }
@@ -288,5 +289,36 @@ describe('Slider', () => {
         btn.click();
         expect(spy.callCount).to.eql(7);
         expect(spy.calledWith(0)).to.be.true;
+    });
+
+    it('should set init value to min value', async () => {
+        class Component extends Intact {
+            @Intact.template()
+            static template = `<div>
+                <Slider min={{ -1 }} max={{ 1 }} v-model="a"/>
+                <Slider min={{ -1 }} max={{ 1 }} isRange v-model="b" />
+            </div>`;
+            _init() {
+                this.Slider = Slider;
+            }
+        }
+        instance = mount(Component);
+
+        expect(instance.get('a')).to.eql(-1);
+        expect(instance.get('b')).to.eql([-1, -1]);
+    });
+
+    it('should set value by `min + value * n`', async () => {
+        class Component extends Intact {
+            @Intact.template()
+            static template = `<div>
+                <Slider min={{ -6 }} max={{ 20 }} v-model="a" step={{ 5 }} isShowStop />
+            </div>`;
+            _init() {
+                this.Slider = Slider;
+            }
+        }
+        instance = mount(Component);
+
     });
 });
