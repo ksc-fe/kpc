@@ -1,10 +1,10 @@
 import Intact from 'intact';
 
 const utils = Intact.utils;
-const {get, isNullOrUndefined, isObject, isFunction, noop, extend} = utils;
+const {get, isNullOrUndefined, isObject, isFunction, noop, extend, hasOwn} = utils;
 const Types = Intact.Vdt.miss.Types;
 
-export {get, isNullOrUndefined, isObject, isFunction, noop};
+export {get, isNullOrUndefined, isObject, isFunction, noop, hasOwn};
 
 export function addStyle(style, extra) {
     if (!style) return extra;

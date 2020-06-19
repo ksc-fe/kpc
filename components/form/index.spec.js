@@ -6,6 +6,7 @@ import {mount, unmount, dispatchEvent, wait} from 'test/utils';
 import Intact from 'intact';
 import {Form, FormItem} from 'kpc/components/form';
 import Input from 'kpc/components/input';
+import ValueDemo from '~/components/form/demos/value';
 
 RemoteDemo.prototype.validateUserName = function(value) {
     // mock api
@@ -373,5 +374,16 @@ describe('Form', () => {
         instance.set('value', '');
         await form.validate();
         expect(formItem.refs.error.parentElement.classList.contains('k-ellipsis')).to.be.true;
+    });
+
+    it('validate by value', async () => {
+        instance = mount(ValueDemo);
+        const form = instance.refs.form;
+
+        expect(await form.validate()).to.be.false;
+        instance.set('value', 'test');
+        expect(await form.validate()).to.be.true;
+        instance.set('value', '');
+        expect(await form.validate()).to.be.false;
     });
 });
