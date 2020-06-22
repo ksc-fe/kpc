@@ -24,7 +24,7 @@ export default class Spinner extends Intact {
             prefix: undefined,
             suffix: undefined,
             width: undefined,
-            devideByStep: false,
+            forceStep: false,
 
             _value: 0,
         };
@@ -44,7 +44,7 @@ export default class Spinner extends Intact {
         prefix: String,
         suffix: String,
         width: [String, Number],
-        devideByStep: Boolean,
+        forceStep: Boolean,
     }
 
     static events = {
@@ -82,7 +82,7 @@ export default class Spinner extends Intact {
     }
 
     _getFixedValue(value = this.get('value'), fallbackValue = 0) {
-        let {precision, max, min, step, devideByStep} = this.get();
+        let {precision, max, min, step, forceStep} = this.get();
 
         if (min > max) {
             Intact.utils.error(new Error(`[Spinner] min must less than or equal to max, but got min: ${min} max: ${max}`));
@@ -96,7 +96,7 @@ export default class Spinner extends Intact {
             value = fallbackValue;
         }
 
-        value = minMaxStep(Number(value), min, max, devideByStep && step);
+        value = minMaxStep(Number(value), min, max, forceStep && step);
 
         let _value = value;
         if (precision != null) {
