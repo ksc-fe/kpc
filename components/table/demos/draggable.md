@@ -3,6 +3,8 @@ title: 行可拖动
 order: 26
 ---
 
+给`Table`添加`draggable`属性，则可实现行拖动排序，拖动开始和结束会分别触发事件`dragstart`和`dragend`
+
 ```vdt
 import {Table, TableColumn} from 'kpc/components/table';
 import {Button, ButtonGroup} from 'kpc/components/button';
@@ -11,9 +13,10 @@ import {Button, ButtonGroup} from 'kpc/components/button';
     data={{ self.get('data') }}
     ref="table"
     rowKey={{ item => item.name }}
+    ev-dragend={{ self._onDragEnd }}
     draggable
 >
-    <TableColumn title="Name" key="name"/>
+    <TableColumn title="Name" key="name" />
     <TableColumn title="IP" key="ip" />
     <TableColumn title="Operation" key="op">
         <b:template params="data, index">
@@ -25,6 +28,7 @@ import {Button, ButtonGroup} from 'kpc/components/button';
 
 ```js
 import {range} from 'kpc/components/utils';
+import Message from 'kpc/components/message';
 
 export default class extends Intact {
     @Intact.template()
@@ -45,6 +49,15 @@ export default class extends Intact {
     _remove(index) {
         const data = this.get('data').slice(0);
         data.splice(index, 1);
+        this.set('data', data);
+    }
+
+    _onDragEnd({key, from, to}) {
+        Message.success(`Drag ${key} from ${from} to ${to}.`);
+        // change the data
+        const data = this.get('data').splice(0);
+        const row = data.splice(from, 1);
+        data.splice(to, 0, row[0]);
         this.set('data', data);
     }
 }

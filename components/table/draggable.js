@@ -2,17 +2,37 @@ import BaseTable from './base';
 import {debounce} from '../utils';
 
 export default class DraggableTable extends BaseTable {
+    static events = {
+        ...BaseTable.events,
+        dragstart: true,
+        dragend: true,
+    };
+
+    defaults() {
+        return {
+            ...super.defaults(),
+
+            _dragKey: undefined,
+        }
+    }
+
     _onRowDragStart(e, row) {
         this._draggingRow = row;
+        const key = row.get('rowKey');
+        this.set('_dragKey', key);
         this.scroll.querySelectorAll('tr').forEach(tr => {
             tr._height = tr.offsetHeight;
+        });
+
+        this._dragIndex = row.get('index');
+        this.trigger('dragstart', {
+            key,
+            from: this._dragIndex,
         });
     }
 
     _onRowDragOver(e, row) {
         if (row === this._draggingRow) return;
-
-        console.log('enter');
 
         const {clientY} = event;
         if (this._clientY === clientY) return;
@@ -28,11 +48,11 @@ export default class DraggableTable extends BaseTable {
 
         if (index === oldIndex) return;
 
-        console.log('exchange');
-
         const data = this.get('data').slice(0);
         const item = data.splice(oldIndex, 1)[0];
         data.splice(index, 0, item);
+
+        this._dropIndex = index;
 
         this.set('data', data);
     }
@@ -57,7 +77,15 @@ export default class DraggableTable extends BaseTable {
     }
 
 
-    _onRowDragEnd(e, index) {
+    _onRowDragEnd(e, row) {
         e.preventDefault();
+
+        this.set('_dragKey', undefined);
+
+        this.trigger('dragend', {
+            key: row.get('rowKey'),
+            from: this._dragIndex,
+            to: this._dropIndex,
+        });
     }
 }

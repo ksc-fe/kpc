@@ -44,6 +44,7 @@ sidebar: doc
 | childrenKey | 树形表格指定子元素键名 | `String` | `"children"` |
 | indent | 树形表格指定子元素缩进宽度 | `Number` | `32` |
 | spreadKeys | 树形表格指定展开的行 | `Array` | `[]` |
+| draggable | 表格行是否可拖动 | `Boolean` | `false` |
 
 ## TableColumn
 
@@ -112,3 +113,5 @@ sidebar: doc
 | $change:checked | 选中的数据变化会触发的事件 | `instance, newValue, oldValue` |
 | changeWidth | 当列宽拖动发生变化后触发 | `widthMap, tableWidth` |
 | click:row | 点击某行触发 | `data, index, key, event` |
+| dragstart | 行拖动开始 | `{key, from}` |
+| dragend | 行拖动结束 | `{key, from, to}` |

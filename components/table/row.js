@@ -4,7 +4,7 @@ import template from './row.vdt';
 const PROPS = [
     'value', 'index', 'rowKey', 'checkType', 'onlyRight', 'onlyLeft',
     'disabled', 'merge', 'level', 'indent', 'children', 'className',
-    'checked', 'draggable',
+    'checked', 'draggable', 'dragKey',
     // to make scheme compare at last
     'scheme'
 ];
@@ -34,13 +34,11 @@ export default class TableRow extends Intact {
 
     _onDragStart(e) {
         const {onRowDragStart} = this.get();
-        this.set('_dragging', true);
         onRowDragStart(e, this);
     }
 
     _onDragEnd(e) {
         const {onRowDragEnd} = this.get();
-        this.set('_dragging', false);
         onRowDragEnd(e, this);
     }
 

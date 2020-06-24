@@ -7,11 +7,11 @@ import Button from '../button';
 import Icon from '../icon';
 
 const {
-    className, checkType, rowkey,
+    className, checkType, rowKey,
     disabled, onlyRight, scheme,
     value, onlyLeft, index, merge,
     level, indent, children, grid,
-    checked, draggable, _dragging,
+    checked, draggable, dragKey,
 } = self.get();
 const normalize = Intact.normalize;
 
@@ -22,7 +22,7 @@ if (merge) {
 
 let columnIndex = -1;
 
-<tr class={{ {[className]: className, 'k-dragging': _dragging} }}
+<tr class={{ {[className]: className, 'k-dragging': dragKey === rowKey} }}
     ev-click={{ self._onClick }}
     ev-mouseenter={{ self._onMouseEnter }}
     ev-mouseleave={{ self._onMouseLeave }}
