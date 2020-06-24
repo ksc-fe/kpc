@@ -206,66 +206,6 @@ Array [
 ```
 
 ```
-"<div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">First floor-1</span></div><div class=\"k-tree\" style=\"\"><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Second floor-1.1</span></div><div class=\"k-tree\"><div class=\"k-node\"><div class=\"k-label k-leaf\"><span class=\"k-text\">This node can not be dragged and dropped.</span></div></div></div></div></div></div><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">First floor-2</span></div><div class=\"k-tree\"><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Second floor-2.1</span></div><div class=\"k-tree\"><div class=\"k-node c-expand-move\" style=\"position: relative; left: 0px; top: 27px; transform: translate(0px, -27px);\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Third floor-2.1.2</span></div></div><div class=\"k-node c-expand-move\" style=\"position: relative; left: 0px; top: -27px; transform: translate(0px, 27px);\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Third floor-2.1.1</span></div></div></div></div><div class=\"k-node\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Second floor-2.2</span></div></div><div class=\"k-node k-disabled\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Second floor-2.3</span></div></div></div></div>"
-```
-
-```
-Array [
-  Object {
-    "children": Array [
-      Object {
-        "children": Array [
-          Object {
-            "key": "1-1-1",
-            "label": "This node can not be dragged and dropped.",
-          },
-        ],
-        "key": "1-1",
-        "label": "Second floor-1.1",
-      },
-    ],
-    "key": "1",
-    "label": "First floor-1",
-  },
-  Object {
-    "children": Array [
-      Object {
-        "children": Array [
-          Object {
-            "key": "2-1-2",
-            "label": "Third floor-2.1.2",
-          },
-          Object {
-            "key": "2-1-1",
-            "label": "Third floor-2.1.1",
-          },
-        ],
-        "key": "2-1",
-        "label": "Second floor-2.1",
-      },
-      Object {
-        "children": Array [
-          Object {
-            "key": "2-2-1",
-            "label": "Third floor-2.2.1",
-          },
-        ],
-        "key": "2-2",
-        "label": "Second floor-2.2",
-      },
-      Object {
-        "disabled": true,
-        "key": "2-3",
-        "label": "Second floor-2.3",
-      },
-    ],
-    "key": "2",
-    "label": "First floor-2",
-  },
-]
-```
-
-```
 "<div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">First floor-1</span></div><div class=\"k-tree\" style=\"\"><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Second floor-1.1</span></div><div class=\"k-tree\"><div class=\"k-node\"><div class=\"k-label k-leaf\"><span class=\"k-text\">This node can not be dragged and dropped.</span></div></div></div></div></div></div><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">First floor-2</span></div><div class=\"k-tree\"><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Second floor-2.1</span></div><div class=\"k-tree\"><div class=\"k-node\" style=\"\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Third floor-2.1.2</span></div></div><div class=\"k-node\" style=\"\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Third floor-2.1.1</span></div></div></div></div><div class=\"k-node\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Second floor-2.2</span></div></div><div class=\"k-node k-disabled\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Second floor-2.3</span></div></div></div></div>"
 ```
 
@@ -326,7 +266,67 @@ Array [
 ```
 
 ```
-"<div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">First floor-1</span></div><div class=\"k-tree\" style=\"\"><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Second floor-1.1</span></div><div class=\"k-tree\"><div class=\"k-node\"><div class=\"k-label k-leaf\"><span class=\"k-text\">This node can not be dragged and dropped.</span></div></div></div></div></div></div><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">First floor-2</span></div><div class=\"k-tree\"><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Second floor-2.1</span></div><div class=\"k-tree\"><div class=\"k-node k-dragging c-expand-leave-active c-expand-leave\" style=\"position: absolute; height: 0px;\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Third floor-2.1.2</span></div></div><div class=\"k-node k-expanded c-expand-move\" style=\"position: relative; transform: translate(0px, -27px); left: 0px; top: 27px;\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Third floor-2.1.1</span></div><div class=\"k-tree c-expand-enter-active\" style=\"height: 27px;\"><div class=\"k-node\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Third floor-2.1.2</span></div></div></div></div></div></div><div class=\"k-node c-expand-move\" style=\"position: relative; transform: translate(0px, -27px); left: 0px; top: 27px;\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Second floor-2.2</span></div></div><div class=\"k-node k-disabled c-expand-move\" style=\"position: relative; transform: translate(0px, -27px); left: 0px; top: 27px;\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Second floor-2.3</span></div></div></div></div>"
+"<div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">First floor-1</span></div><div class=\"k-tree\" style=\"\"><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Second floor-1.1</span></div><div class=\"k-tree\"><div class=\"k-node\"><div class=\"k-label k-leaf\"><span class=\"k-text\">This node can not be dragged and dropped.</span></div></div></div></div></div></div><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">First floor-2</span></div><div class=\"k-tree\"><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Second floor-2.1</span></div><div class=\"k-tree\"><div class=\"k-node\" style=\"\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Third floor-2.1.1</span></div></div><div class=\"k-node\" style=\"\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Third floor-2.1.2</span></div></div></div></div><div class=\"k-node\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Second floor-2.2</span></div></div><div class=\"k-node k-disabled\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Second floor-2.3</span></div></div></div></div>"
+```
+
+```
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "children": Array [
+          Object {
+            "key": "1-1-1",
+            "label": "This node can not be dragged and dropped.",
+          },
+        ],
+        "key": "1-1",
+        "label": "Second floor-1.1",
+      },
+    ],
+    "key": "1",
+    "label": "First floor-1",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "children": Array [
+          Object {
+            "key": "2-1-1",
+            "label": "Third floor-2.1.1",
+          },
+          Object {
+            "key": "2-1-2",
+            "label": "Third floor-2.1.2",
+          },
+        ],
+        "key": "2-1",
+        "label": "Second floor-2.1",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "key": "2-2-1",
+            "label": "Third floor-2.2.1",
+          },
+        ],
+        "key": "2-2",
+        "label": "Second floor-2.2",
+      },
+      Object {
+        "disabled": true,
+        "key": "2-3",
+        "label": "Second floor-2.3",
+      },
+    ],
+    "key": "2",
+    "label": "First floor-2",
+  },
+]
+```
+
+```
+"<div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">First floor-1</span></div><div class=\"k-tree\" style=\"\"><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Second floor-1.1</span></div><div class=\"k-tree\"><div class=\"k-node\"><div class=\"k-label k-leaf\"><span class=\"k-text\">This node can not be dragged and dropped.</span></div></div></div></div></div></div><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">First floor-2</span></div><div class=\"k-tree\"><div class=\"k-node k-expanded\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Second floor-2.1</span></div><div class=\"k-tree\"><div class=\"k-node k-expanded\" style=\"\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Third floor-2.1.1</span></div><div class=\"k-tree\" style=\"\"><div class=\"k-node\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Third floor-2.1.2</span></div></div></div></div></div></div><div class=\"k-node\" style=\"\"><div class=\"k-label\"><i class=\"k-icon ion-android-arrow-dropdown\"></i><span class=\"k-text\">Second floor-2.2</span></div></div><div class=\"k-node k-disabled\" style=\"\"><div class=\"k-label k-leaf\"><span class=\"k-text\">Second floor-2.3</span></div></div></div></div>"
 ```
 
 ```

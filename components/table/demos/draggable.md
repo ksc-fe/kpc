@@ -56,7 +56,7 @@ export default class extends Intact {
     _onDragEnd({key, from, to}) {
         Message.success(`Drag ${key} from ${from} to ${to}.`);
         // change the data
-        const data = this.get('data').splice(0);
+        const data = this.get('data').slice(0);
         const row = data.splice(from, 1);
         data.splice(to, 0, row[0]);
         this.set('data', data);

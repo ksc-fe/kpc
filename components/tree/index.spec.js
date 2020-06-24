@@ -87,7 +87,7 @@ describe('Tree', () => {
     });
 
     it('append and remove node', () => {
-        instance = mount(CustomDemo);         
+        instance = mount(CustomDemo);
 
         const element = instance.element;
         const [btn1, btn2] = element.querySelectorAll('.k-btn');
@@ -216,6 +216,6 @@ async function dragInsert(srcElement, toElement, mode) {
         dispatchEvent(toElement, 'dragover', {clientY: top + des + 1});
     }
 
-    await wait(400);
+    await wait(700);
     dispatchEvent(toElement, 'dragend');
 }
