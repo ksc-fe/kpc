@@ -7,11 +7,11 @@ import Button from '../button';
 import Icon from '../icon';
 
 const {
-    className, checkType, key,
+    className, checkType, rowkey,
     disabled, onlyRight, scheme,
     value, onlyLeft, index, merge,
     level, indent, children, grid,
-    checked,
+    checked, draggable, _dragging,
 } = self.get();
 const normalize = Intact.normalize;
 
@@ -22,10 +22,14 @@ if (merge) {
 
 let columnIndex = -1;
 
-<tr class={{ className }}
+<tr class={{ {[className]: className, 'k-dragging': _dragging} }}
     ev-click={{ self._onClick }}
     ev-mouseenter={{ self._onMouseEnter }}
     ev-mouseleave={{ self._onMouseLeave }}
+    draggable={{ draggable ? true : undefined }}
+    ev-dragstart={{ self._onDragStart }}
+    ev-dragend={{ self._onDragEnd }}
+    ev-dragover={{ self._onDragOver }}
 >
     <td v-if={{ checkType === 'checkbox' }}
         class={{ {"k-th-check": true, 'k-invisible': onlyRight} }}

@@ -242,6 +242,13 @@
     tr.k-hidden
         display none
 
+    // draggable
+    &.k-draggable
+        tr
+            transition all $transition
+        tr.k-dragging
+            opacity 0
+
 .k-table-wrapper
     // overflow auto
     overflow hidden

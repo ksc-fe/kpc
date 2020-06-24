@@ -1,4 +1,4 @@
-import Intact from 'intact'; 
+import Intact from 'intact';
 import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
@@ -84,7 +84,7 @@ export default class Tree extends Intact {
             }
         });
 
-        this._handleDragOver = debounce(this._handleDragOver, 100);
+        this._handleDragOver = debounce(this._handleDragOver, 300);
 
         // add transitionEnd event
         this.expandAnimationCallbacks = {...expandAnimationCallbacks};
@@ -122,7 +122,7 @@ export default class Tree extends Intact {
     _mappingKeys() {
         const needRecheckNodes = [];
         this.root.children = Node.createNodes(
-            this.get('data'), 
+            this.get('data'),
             this.root,
             this,
             needRecheckNodes
@@ -133,7 +133,7 @@ export default class Tree extends Intact {
     async _toggleExpand(node, expanded, e) {
         // we can also expand or shrink disabled node
         // if (node.data.disabled) return;
-        
+
         const {load} = this.get();
         if (load && !expanded && !node.loaded) {
             node.loaded = false;
@@ -179,7 +179,7 @@ export default class Tree extends Intact {
     _updateCheckedKeys(node) {
         let checkedKeys = this.checkedKeys;
         if (node.checked) {
-            checkedKeys.add(node.key); 
+            checkedKeys.add(node.key);
         } else {
             checkedKeys.delete(node.key);
         }
@@ -301,7 +301,7 @@ export default class Tree extends Intact {
     }
 
     _onMouseDown(node, event) {
-        // dragend is not dispatched if the source node was moved or remove
+        // dragend is not dispatched if the source node was moved or removed
         // during the drag session
         // https://bugzilla.mozilla.org/show_bug.cgi?id=460801
         // we can not use mouseup instead, because the event does not trigger
@@ -331,9 +331,7 @@ export default class Tree extends Intact {
 
         let parentNode = node;
         do {
-            if (parentNode.key === draggingNode.key) {
-                return;
-            }
+            if (parentNode.key === draggingNode.key) return;
         } while (parentNode = parentNode.parent)
 
         const {_node, _mode} = this;
@@ -358,7 +356,7 @@ export default class Tree extends Intact {
     }
 
     _calcInsertMode(event, currentTarget) {
-        const {clientY} = event; 
+        const {clientY} = event;
         const {top, bottom, height} = currentTarget.getBoundingClientRect();
         const des = height * RANGE;
 

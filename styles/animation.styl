@@ -35,12 +35,14 @@ for type, value in $origins
 .c-fade-leave-to
 .c-fade-appear
     opacity 0 !important
+    // position relative !important
 .c-fade-enter-active
 .c-fade-leave-active
 .c-fade-appear-active
     transition opacity $transition 
 .c-fade-move
     transition transform $transition
+    pointer-events none
 
 .c-expand-enter
 .c-expand-leave

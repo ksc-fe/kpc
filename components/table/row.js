@@ -2,9 +2,9 @@ import Intact from 'intact';
 import template from './row.vdt';
 
 const PROPS = [
-    'value', 'index', 'key', 'checkType', 'onlyRight', 'onlyLeft',
+    'value', 'index', 'rowKey', 'checkType', 'onlyRight', 'onlyLeft',
     'disabled', 'merge', 'level', 'indent', 'children', 'className',
-    'checked',
+    'checked', 'draggable',
     // to make scheme compare at last
     'scheme'
 ];
@@ -14,8 +14,8 @@ export default class TableRow extends Intact {
     static template = template;
 
     _onClick(e) {
-        const {onClick, value, index, key, 'ev-click': click} = this.get();
-        onClick(value, index, key, e);
+        const {onClick, value, index, rowKey, 'ev-click': click} = this.get();
+        onClick(value, index, rowKey, e);
         click && click(e);
     }
 
@@ -32,19 +32,38 @@ export default class TableRow extends Intact {
         mouseLeave && mouseLeave(e);
     }
 
+    _onDragStart(e) {
+        const {onRowDragStart} = this.get();
+        this.set('_dragging', true);
+        onRowDragStart(e, this);
+    }
+
+    _onDragEnd(e) {
+        const {onRowDragEnd} = this.get();
+        this.set('_dragging', false);
+        onRowDragEnd(e, this);
+    }
+
+    _onDragOver(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const {onRowDragOver} = this.get();
+        onRowDragOver(e, this);
+    }
+
     _onToggleSpreadRow(e) {
-        const {onToggleSpreadRow, key} = this.get();
-        onToggleSpreadRow(key, e);
+        const {onToggleSpreadRow, rowKey} = this.get();
+        onToggleSpreadRow(rowKey, e);
     }
 
     _onChangeChecked(c, v) {
-        const {onChangeChecked, key} = this.get();
-        onChangeChecked(key, v);
+        const {onChangeChecked, rowKey} = this.get();
+        onChangeChecked(rowKey, v);
     }
 
     _destroy() {
-        const {onDestroy, key} = this.get();
-        onDestroy(key);
+        const {onDestroy, rowKey} = this.get();
+        onDestroy(rowKey);
     }
 
     update(lastVNode, nextVNode, flag) {
@@ -56,7 +75,7 @@ export default class TableRow extends Intact {
             for (let i = 0; i < PROPS.length; i++) {
                 const key = PROPS[i];
                 if (
-                    key === 'scheme' ? 
+                    key === 'scheme' ?
                         !isSameScheme(lastProps.scheme, nextProps.scheme) :
                         lastProps[key] !== nextProps[key]
                 ) {
@@ -71,11 +90,12 @@ export default class TableRow extends Intact {
                     grid.push(this.rowInGrid);
                 }
                 // update events for Tooltip
-                this.set({
-                    'ev-mouseenter': nextProps['ev-mouseenter'],
-                    'ev-mouseleave': nextProps['ev-mouseleave'],
-                    'ev-click': nextProps['ev-click'],
-                }, {silent: true})
+                this.set(nextProps, {silent: true});
+                // this.set({
+                    // 'ev-mouseenter': nextProps['ev-mouseenter'],
+                    // 'ev-mouseleave': nextProps['ev-mouseleave'],
+                    // 'ev-click': nextProps['ev-click'],
+                // }, {silent: true})
                 return this.element;
             }
         }
