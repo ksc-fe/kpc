@@ -6,15 +6,15 @@ sidebar: doc
 
 ## v1.4.0
 
-1. `Fix` 修复`Radio/Checkbox`，`click`事件会触发两次的问题 [#486](https://github.com/ksc-fe/kpc/issues/486)
+1. `Add` `Table`支持行拖拽排序 [#482](https://github.com/ksc-fe/kpc/issues/482)
 2. `Add` `DropdownItem`即使被其它元素包裹，依然可以在`focus`的时候自动滚动到可视区域 [#487](https://github.com/ksc-fe/kpc/issues/487)
 3. `Add` `Select`支持在菜单中展示搜索框，并且支持`Checkbox`的“全选”，“反选”，“清空”操作 [#481](https://github.com/ksc-fe/kpc/issues/481)
-4. `Fix` 修复`Spinner`在设置了`step`时，当边界值不能被`step`整除的时候，便不能通过加减按钮调节到边界值的问题 [#484](https://github.com/ksc-fe/kpc/issues/484)
-5. `Add` `Spinner`支持`forceStep`属性，当设置该属性时，组件的取值`value`将被限制为`step`的等差数列`min + step * n` [#485](https://github.com/ksc-fe/kpc/issues/485) 
-6. `Add` `FormItem`表单验证，支持直接指定`value`来验证，而无需通过取值路径字符串`model`来指定，在这循环中可能会比较方便，在`React`中无需指定`context`来获取属性值 [#480](https://github.com/ksc-fe/kpc/issues/480)
-7. `Fix` 修复`Slider`在某些情况下，断点`isShowStop`展示不正确的问题 [#489](https://github.com/ksc-fe/kpc/issues/489)
-8. `Change` 改变`Slider`设置了`step`的情况下，`value`的取值规则，不再是被`step`整除，而是`step`的等差数列`min + step * n` [#488](https://github.com/ksc-fe/kpc/issues/488) 
-9. `Add` `Table`支持行拖拽排序 [#482](https://github.com/ksc-fe/kpc/issues/482)
+4. `Add` `Spinner`支持`forceStep`属性，当设置该属性时，组件的取值`value`将被限制为`step`的等差数列`min + step * n` [#485](https://github.com/ksc-fe/kpc/issues/485) 
+5. `Add` `FormItem`表单验证，支持直接指定`value`来验证，而无需通过取值路径字符串`model`来指定，在这循环中可能会比较方便，在`React`中无需指定`context`来获取属性值 [#480](https://github.com/ksc-fe/kpc/issues/480)
+6. `Change` 改变`Slider`设置了`step`的情况下，`value`的取值规则，不再是被`step`整除，而是`step`的等差数列`min + step * n` [#488](https://github.com/ksc-fe/kpc/issues/488) 
+7. `Fix` 修复`Radio/Checkbox`，`click`事件会触发两次的问题 [#486](https://github.com/ksc-fe/kpc/issues/486)
+8. `Fix` 修复`Spinner`在设置了`step`时，当边界值不能被`step`整除的时候，便不能通过加减按钮调节到边界值的问题 [#484](https://github.com/ksc-fe/kpc/issues/484)
+9. `Fix` 修复`Slider`在某些情况下，断点`isShowStop`展示不正确的问题 [#489](https://github.com/ksc-fe/kpc/issues/489)
 
 ## v1.3.13
 

@@ -34,15 +34,7 @@
 "<div class=\"k-breadcrumb\"><div class=\"k-item\"><a class=\"k-item-link\">item 1</a><span class=\"k-separator\">&gt;</span></div><div class=\"k-item\"><a class=\"k-item-link\">item 2</a><span class=\"k-separator\">&gt;</span></div><div class=\"k-item\"><span class=\"k-item-link\">item 3</span></div></div>"
 ```
 
-```
-"<div class=\"k-breadcrumb\"><div class=\"k-item\"><a class=\"k-item-link\">item 1</a><span class=\"k-separator\">&gt;</span></div><div class=\"k-item\"><a class=\"k-item-link\">item 2</a><span class=\"k-separator\">&gt;</span></div><div class=\"k-item\"><span class=\"k-item-link\">item 3</span></div></div>"
-```
-
 ####   `Breadcrumb separator`
-
-```
-"<div class=\"k-breadcrumb\"><div class=\"k-item\"><a class=\"k-item-link\"><i class=\"ion-home\"></i><!-- react-mount-point-unstable --> item 1</a><span class=\"k-separator\"><b class=\"separator\">=&gt;</b><!-- react-mount-point-unstable --></span></div><div class=\"k-item\"><a class=\"k-item-link\"><i class=\"ion-earth\"></i><!-- react-mount-point-unstable --> item 2</a><span class=\"k-separator\"><b class=\"separator\">=&gt;</b><!-- react-mount-point-unstable --></span></div><div class=\"k-item\"><span class=\"k-item-link\"><i class=\"ion-planet\"></i><!-- react-mount-point-unstable --> item 3</span></div></div>"
-```
 
 ```
 "<div class=\"k-breadcrumb\"><div class=\"k-item\"><a class=\"k-item-link\"><i class=\"ion-home\"></i><!-- react-mount-point-unstable --> item 1</a><span class=\"k-separator\"><b class=\"separator\">=&gt;</b><!-- react-mount-point-unstable --></span></div><div class=\"k-item\"><a class=\"k-item-link\"><i class=\"ion-earth\"></i><!-- react-mount-point-unstable --> item 2</a><span class=\"k-separator\"><b class=\"separator\">=&gt;</b><!-- react-mount-point-unstable --></span></div><div class=\"k-item\"><span class=\"k-item-link\"><i class=\"ion-planet\"></i><!-- react-mount-point-unstable --> item 3</span></div></div>"
@@ -56,15 +48,7 @@
 "<div><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>default</span></button><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>primary</span></button><button class=\"k-btn k-secondary\" tabindex=\"0\" type=\"button\"><span>secondary</span></button><button class=\"k-btn k-warning\" tabindex=\"0\" type=\"button\"><span>warning</span></button><button class=\"k-btn k-danger\" tabindex=\"0\" type=\"button\"><span>danger</span></button><button class=\"k-btn k-success\" tabindex=\"0\" type=\"button\"><span>success</span></button><button class=\"k-btn k-none\" tabindex=\"0\" type=\"button\"><span>none</span></button><button class=\"k-btn k-link\" tabindex=\"0\" type=\"button\"><span>link</span></button></div>"
 ```
 
-```
-"<div><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>default</span></button><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>primay</span></button><button class=\"k-btn k-secondary\" tabindex=\"0\" type=\"button\"><span>secondary</span></button><button class=\"k-btn k-warning\" tabindex=\"0\" type=\"button\"><span>warning</span></button><button class=\"k-btn k-danger\" tabindex=\"0\" type=\"button\"><span>danger</span></button><button class=\"k-btn k-success\" tabindex=\"0\" type=\"button\"><span>success</span></button><button class=\"k-btn k-none\" tabindex=\"0\" type=\"button\"><span>none</span></button><button class=\"k-btn k-link\" tabindex=\"0\" type=\"button\"><span>link</span></button></div>"
-```
-
 ####   `Button disabled`
-
-```
-"<div><button class=\"k-btn k-default k-disabled\" tabindex=\"-1\" type=\"button\"><span>disabled</span></button><button class=\"k-btn k-none k-disabled\" tabindex=\"-1\" type=\"button\"><span>disabled text</span></button><button class=\"k-btn k-default k-btn-icon k-circle k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i><!-- react-mount-point-unstable --></button><button class=\"k-btn k-link k-disabled\" tabindex=\"-1\" type=\"button\"><span>link</span></button></div>"
-```
 
 ```
 "<div><button class=\"k-btn k-default k-disabled\" tabindex=\"-1\" type=\"button\"><span>disabled</span></button><button class=\"k-btn k-none k-disabled\" tabindex=\"-1\" type=\"button\"><span>disabled text</span></button><button class=\"k-btn k-default k-btn-icon k-circle k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"k-icon ion-ios-search\"></i><!-- react-mount-point-unstable --></button><button class=\"k-btn k-link k-disabled\" tabindex=\"-1\" type=\"button\"><span>link</span></button></div>"
@@ -114,15 +98,7 @@
 "<div><div class=\"k-card k-shadow\"><div class=\"k-header c-clearfix\"><div class=\"k-title\">用户信息</div></div><div class=\"k-body\"><div class=\"k-row\"><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div></div></div></div><div class=\"k-card k-border\"><div class=\"k-header c-clearfix\"><div class=\"k-title\">用户信息</div></div><div class=\"k-body\"><div class=\"k-row\"><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div></div></div></div></div>"
 ```
 
-```
-"<div><div class=\"k-card k-shadow\"><div class=\"k-header c-clearfix\"><div class=\"k-title\">用户信息</div></div><div class=\"k-body\"><div class=\"k-row\"><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div></div></div></div><div class=\"k-card k-border\"><div class=\"k-header c-clearfix\"><div class=\"k-title\">用户信息</div></div><div class=\"k-body\"><div class=\"k-row\"><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div></div></div></div></div>"
-```
-
 ####   `Card extra`
-
-```
-"<div><div class=\"k-card k-shadow\"><div class=\"k-header c-clearfix\"><div class=\"k-title\">用户信息</div><div class=\"k-extra\"><div class=\"k-tabs k-small\"><div class=\"k-scroll c-clearfix\"><div class=\"k-wrapper\" style=\"transform: translateX(0px);\"><div class=\"k-tab k-active\">数据集成</div><div class=\"k-tab\">数据采集</div><div class=\"k-active-bar\" style=\"left: 10px; width: 120px;\"></div></div></div></div></div></div><div class=\"k-body\"><div class=\"k-row\"><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div></div></div></div><div class=\"k-card k-border\"><div class=\"k-header c-clearfix\"><div class=\"k-title\">用户信息</div><div class=\"k-extra\"><div class=\"k-tabs k-small\"><div class=\"k-scroll c-clearfix\"><div class=\"k-wrapper\" style=\"transform: translateX(0px);\"><div class=\"k-tab k-active\">数据集成</div><div class=\"k-tab\">数据采集</div><div class=\"k-active-bar\" style=\"left: 10px; width: 120px;\"></div></div></div></div></div></div><div class=\"k-body\"><div class=\"k-row\"><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div></div></div></div></div>"
-```
 
 ```
 "<div><div class=\"k-card k-shadow\"><div class=\"k-header c-clearfix\"><div class=\"k-title\">用户信息</div><div class=\"k-extra\"><div class=\"k-tabs k-small\"><div class=\"k-scroll c-clearfix\"><div class=\"k-wrapper\" style=\"transform: translateX(0px);\"><div class=\"k-tab k-active\">数据集成</div><div class=\"k-tab\">数据采集</div><div class=\"k-active-bar\" style=\"left: 10px; width: 120px;\"></div></div></div></div></div></div><div class=\"k-body\"><div class=\"k-row\"><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div></div></div></div><div class=\"k-card k-border\"><div class=\"k-header c-clearfix\"><div class=\"k-title\">用户信息</div><div class=\"k-extra\"><div class=\"k-tabs k-small\"><div class=\"k-scroll c-clearfix\"><div class=\"k-wrapper\" style=\"transform: translateX(0px);\"><div class=\"k-tab k-active\">数据集成</div><div class=\"k-tab\">数据采集</div><div class=\"k-active-bar\" style=\"left: 10px; width: 120px;\"></div></div></div></div></div></div><div class=\"k-body\"><div class=\"k-row\"><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div></div></div></div></div>"
@@ -134,15 +110,7 @@
 "<div><div class=\"k-row k-gutter\" style=\"margin-left: -8px; margin-right: -8px;\"><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-shadow k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-shadow k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-shadow k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-shadow k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div></div><div class=\"k-row k-gutter\" style=\"margin-left: -8px; margin-right: -8px;\"><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-border k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-border k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-border k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-border k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div></div></div>"
 ```
 
-```
-"<div><div class=\"k-row k-gutter\" style=\"margin-left: -8px; margin-right: -8px;\"><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-shadow k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-shadow k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-shadow k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-shadow k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div></div><div class=\"k-row k-gutter\" style=\"margin-left: -8px; margin-right: -8px;\"><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-border k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-border k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-border k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div><div class=\"k-col k-6\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-card k-border k-no-header k-card-grid\"><div class=\"k-body\"><div class=\"k-column k-center\" style=\"width: 60px;\"><i class=\"k-icon ion-person k-large\"></i></div><div class=\"k-column k-fluid\">用户名：test</div></div></div></div></div></div></div>"
-```
-
 ####   `Card noHeader`
-
-```
-"<div><div class=\"k-card k-shadow k-no-header\"><div class=\"k-body\"><div class=\"k-row\"><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div></div></div></div><div class=\"k-card k-border k-no-header\"><div class=\"k-body\"><div class=\"k-row\"><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div></div></div></div></div>"
-```
 
 ```
 "<div><div class=\"k-card k-shadow k-no-header\"><div class=\"k-body\"><div class=\"k-row\"><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div></div></div></div><div class=\"k-card k-border k-no-header\"><div class=\"k-body\"><div class=\"k-row\"><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div><div class=\"k-col k-8\">登录账号：test</div></div></div></div></div>"
@@ -398,10 +366,6 @@
 "<div><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>Close Dialog Asynchronously</span></button><!--placeholder--></div>"
 ```
 
-```
-"<div><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\">Close Dialog Asynchronously</button><!--placeholder--></div>"
-```
-
 ####   `Dialog basic`
 
 ```
@@ -414,18 +378,10 @@
 "<div><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>Show Dialog</span></button><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>Show No Footer Dialog</span></button><!--placeholder--><!--placeholder--></div>"
 ```
 
-```
-"<div><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\">Show Dialog</button><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\">Show No Footer Dialog</button><!--placeholder--><!--placeholder--></div>"
-```
-
 ####   `Dialog events`
 
 ```
 "<div><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>Show Dialog</span></button><!--placeholder--></div>"
-```
-
-```
-"<div><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\">Show Dialog</button><!--placeholder--></div>"
 ```
 
 ####   `Dialog hide`
@@ -466,10 +422,6 @@
 "<div><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>Show Drawer</span></button><!--placeholder--></div>"
 ```
 
-```
-"<div><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\">Show Drawer</button><!--placeholder--></div>"
-```
-
 ####   `Drawer overlay`
 
 ```
@@ -490,18 +442,10 @@
 "<div><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>hover </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div>"
 ```
 
-```
-"<div><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>hover </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div>"
-```
-
 ####   `Dropdown checkbox`
 
 ```
 "<div><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>More &gt;</span></button><!--placeholder--></div>"
-```
-
-```
-"<div><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\">More &gt;</button><!--placeholder--></div>"
 ```
 
 ####   `Dropdown contextmenu`
@@ -510,15 +454,7 @@
 "<div><div class=\"contextmenu-area\">right click this area to show context menu</div><!--placeholder--></div>"
 ```
 
-```
-"<div><div class=\"contextmenu-area\">right click this area to show context menu</div><!--placeholder--></div>"
-```
-
 ####   `Dropdown disabled`
-
-```
-"<div><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>disabled </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>disabled item </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div>"
-```
 
 ```
 "<div><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>disabled </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--><button class=\"k-btn k-primary k-icon-right\" tabindex=\"0\" type=\"button\"><span>disabled item </span><i class=\"k-icon ion-ios-arrow-down\"></i></button><!--placeholder--></div>"
@@ -556,15 +492,7 @@
 "<div><div class=\"k-editable\"><i class=\"ion-edit k-edit\" title=\"编辑\"></i><div class=\"c-ellipsis\"><i class=\"ion-ios-location\"></i><!-- react-mount-point-unstable --><a href=\"\">editable text</a><!-- react-mount-point-unstable --></div></div><br><div class=\"k-editable k-disabled\"><div class=\"c-ellipsis\"><i class=\"ion-ios-location\"></i><!-- react-mount-point-unstable --><a href=\"\">disabled editable text</a><!-- react-mount-point-unstable --></div></div></div>"
 ```
 
-```
-"<div><div class=\"k-editable\"><i class=\"ion-edit k-edit\" title=\"编辑\"></i><div class=\"c-ellipsis\"><i class=\"ion-ios-location\"></i><!-- react-mount-point-unstable --><a href=\"\">editable text</a><!-- react-mount-point-unstable --></div></div><br><div class=\"k-editable k-disabled\"><div class=\"c-ellipsis\"><i class=\"ion-ios-location\"></i><!-- react-mount-point-unstable --><a href=\"\">disabled editable text</a><!-- react-mount-point-unstable --></div></div></div>"
-```
-
 ####   `Editable validate`
-
-```
-"<div><div class=\"k-editable\"><i class=\"ion-edit k-edit\" title=\"编辑\"></i><div class=\"c-ellipsis\">100</div></div><br><div class=\"k-editable\"><i class=\"ion-edit k-edit\" title=\"编辑\"></i><div class=\"c-ellipsis\">100</div></div><br><div class=\"k-editable\"><i class=\"ion-edit k-edit\" title=\"编辑\"></i><div class=\"c-ellipsis\">100</div></div></div>"
-```
 
 ```
 "<div><div class=\"k-editable\"><i class=\"ion-edit k-edit\" title=\"编辑\"></i><div class=\"c-ellipsis\">100</div></div><br><div class=\"k-editable\"><i class=\"ion-edit k-edit\" title=\"编辑\"></i><div class=\"c-ellipsis\">100</div></div><br><div class=\"k-editable\"><i class=\"ion-edit k-edit\" title=\"编辑\"></i><div class=\"c-ellipsis\">100</div></div></div>"
@@ -1134,12 +1062,6 @@
 "<div><div class=\"k-spinner\"><button class=\"k-btn k-default k-btn-icon k-left\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-minus-empty\"></i></button><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><button class=\"k-btn k-default k-btn-icon k-right\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-plus-empty\"></i></button></div><div class=\"k-spinner k-disabled\"><button class=\"k-btn k-default k-btn-icon k-left k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"k-icon ion-ios-minus-empty\"></i></button><div class=\"k-input k-disabled\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" disabled=\"\"></div></div><button class=\"k-btn k-default k-btn-icon k-right k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"k-icon ion-ios-plus-empty\"></i></button></div></div>"
 ```
 
-####   `Spinner devide`
-
-```
-"<div><div class=\"k-spinner\" devidebystep=\"true\"><button class=\"k-btn k-default k-btn-icon k-left k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"k-icon ion-ios-minus-empty\"></i></button><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><button class=\"k-btn k-default k-btn-icon k-right\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-plus-empty\"></i></button></div><div class=\"k-spinner\" devidebystep=\"true\"><button class=\"k-btn k-default k-btn-icon k-left\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-minus-empty\"></i></button><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div><button class=\"k-btn k-default k-btn-icon k-right\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-plus-empty\"></i></button></div></div>"
-```
-
 ####   `Spinner forceStep`
 
 ```
@@ -1616,12 +1538,6 @@
 "<div class=\"k-btns\"><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>hover</span></button><!--placeholder--><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>click</span></button><!--placeholder--><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>can hover</span></button><!--placeholder--></div>"
 ```
 
-####   `Tooltip closable`
-
-```
-"<div><span class=\"k-tooltip\" always=\"true\">always show this tootip</span><!--placeholder--><br><br><span class=\"k-tooltip\" always=\"true\">don't show if content is empty</span><!--placeholder--></div>"
-```
-
 ## `transfer`
 
 ####   `Transfer basic`
@@ -1798,53 +1714,5 @@
 
 ```
 "<div class=\"k-upload\"><input class=\"c-hidden\" type=\"file\" multiple=\"\"><div class=\"k-handle\"><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>选择文件</span></button></div><div class=\"k-tip\"><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>开始上传</span></button></div><div class=\"k-files\"></div><!--placeholder--></div>"
-```
-
-## `affix`
-
-####   `Affix basic`
-
-```
-"<div><div class=\"k-affix k-fixed\" style=\"height: 36px;\"><div style=\"position: fixed; width: 800px; top: 87px;\"><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>fix at 87px from the top</span></button></div></div><div class=\"k-affix\"><div><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>fix at the bottom</span></button></div></div></div>"
-```
-
-####   `Affix custom`
-
-```
-"<div><div class=\"k-affix\"><div><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>fix at 150px from the top while scroll top 100px</span></button></div></div><div class=\"k-affix\"><div><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"button\"><span>fix at the bottom only while this demo is in viewport</span></button></div></div></div>"
-```
-
-## `code`
-
-####   `Code basic`
-
-```
-"<div class=\"k-code\" style=\"height: 200px;\" data-keybinding-context=\"1\" data-mode-id=\"javascript\"><div class=\"k-spin k-small k-overlay c-fade-leave-active\"><div class=\"k-wrapper\"><div class=\"k-canvas\"><svg viewBox=\"0 0 120 120\"><circle class=\"k-circle\" cx=\"60\" cy=\"60\" r=\"57\"></circle></svg></div></div></div><div class=\"monaco-editor no-user-select  vs\" data-uri=\"inmemory://model/1\" style=\"width: 800px; height: 200px;\"><div data-mprt=\"3\" class=\"overflow-guard\" style=\"width: 800px; height: 200px;\"><div class=\"margin\" role=\"presentation\" aria-hidden=\"true\" style=\"position: absolute; will-change: transform; top: 0px; height: 200px; width: 68px;\"><div class=\"glyph-margin\" style=\"left: 0px; width: 0px; height: 200px;\"></div><div class=\"margin-view-zones\" role=\"presentation\" aria-hidden=\"true\" style=\"position: absolute;\"></div><div class=\"margin-view-overlays\" role=\"presentation\" aria-hidden=\"true\" style=\"position: absolute; width: 68px; font-family: &quot;Droid Sans Mono&quot;, monospace, monospace, &quot;Droid Sans Fallback&quot;; font-weight: normal; font-size: 14px; line-height: 19px; letter-spacing: 0px; height: 200px;\"><div style=\"position:absolute;top:0px;width:100%;height:19px;\"><div class=\"current-line\" style=\"width:68px; height:19px;\"></div><div class=\"line-numbers lh-odd\" style=\"left:0px;width:42px;\">1</div></div></div></div><div class=\"monaco-scrollable-element editor-scrollable vs\" role=\"presentation\" data-mprt=\"5\" style=\"position: absolute; overflow: hidden; left: 68px; width: 732px; height: 200px;\"><div class=\"lines-content monaco-editor-background\" style=\"position: absolute; overflow: hidden; width: 1e+06px; height: 1e+06px; will-change: transform; top: 0px; left: 0px;\"><div class=\"view-overlays\" role=\"presentation\" aria-hidden=\"true\" style=\"position: absolute; height: 0px; width: 657px;\"><div style=\"position:absolute;top:0px;width:100%;height:19px;\"><div class=\"current-line\" style=\"width:657px; height:19px;\"></div></div></div><div role=\"presentation\" aria-hidden=\"true\" class=\"view-rulers\"></div><div class=\"view-zones\" role=\"presentation\" aria-hidden=\"true\" style=\"position: absolute;\"></div><div class=\"view-lines\" role=\"presentation\" aria-hidden=\"true\" data-mprt=\"7\" style=\"position: absolute; font-family: &quot;Droid Sans Mono&quot;, monospace, monospace, &quot;Droid Sans Fallback&quot;; font-weight: normal; font-size: 14px; line-height: 19px; letter-spacing: 0px; width: 657px; height: 200px;\"><div style=\"top:0px;height:19px;\" class=\"view-line\"><span><span>&nbsp;</span></span></div></div><div data-mprt=\"1\" class=\"contentWidgets\" style=\"position: absolute; top: 0px;\"><div class=\"lightbulb-glyph\" title=\"Show Fixes (Ctrl+.)\" widgetid=\"LightBulbWidget\" style=\"position: absolute; visibility: hidden; max-width: 657px;\"></div></div><div role=\"presentation\" aria-hidden=\"true\" class=\"cursors-layer cursor-line-style cursor-solid\"><div class=\"cursor \" style=\"height: 19px; top: 0px; left: 0px; font-family: &quot;Droid Sans Mono&quot;, monospace, monospace, &quot;Droid Sans Fallback&quot;; font-weight: normal; font-size: 14px; line-height: 19px; letter-spacing: 0px; display: block; visibility: hidden; width: 2px;\"></div></div></div><div role=\"presentation\" aria-hidden=\"true\" class=\"invisible scrollbar horizontal\" style=\"position: absolute; width: 643px; height: 10px; left: 0px; bottom: 0px;\"><div class=\"slider\" style=\"position: absolute; top: 0px; left: 0px; height: 10px; will-change: transform; width: 643px;\"></div></div><canvas class=\"decorationsOverviewRuler\" aria-hidden=\"true\" width=\"14\" height=\"200\" style=\"position: absolute; will-change: transform; top: 0px; right: 0px; width: 14px; height: 200px;\"></canvas><div role=\"presentation\" aria-hidden=\"true\" class=\"invisible scrollbar vertical\" style=\"position: absolute; width: 14px; height: 200px; right: 0px; top: 0px;\"><div class=\"slider\" style=\"position: absolute; top: 0px; left: 0px; width: 14px; will-change: transform; height: 200px;\"></div></div></div><div role=\"presentation\" aria-hidden=\"true\" style=\"width: 711px;\"></div><textarea data-mprt=\"6\" class=\"inputarea\" wrap=\"off\" autocorrect=\"off\" autocapitalize=\"off\" autocomplete=\"off\" spellcheck=\"false\" aria-label=\"Editor content;Press Alt+F1 for Accessibility Options.\" role=\"textbox\" aria-multiline=\"true\" aria-haspopup=\"false\" aria-autocomplete=\"both\" style=\"font-size: 1px; line-height: 19px; top: 0px; left: 68px; width: 1px; height: 1px;\"></textarea><div style=\"position: absolute; top: 0px; left: 0px; width: 0px; height: 0px;\"></div><div data-mprt=\"4\" class=\"overlayWidgets\" style=\"width: 800px;\"><div class=\"accessibilityHelpWidget\" role=\"dialog\" aria-hidden=\"true\" widgetid=\"editor.contrib.accessibilityHelpWidget\" style=\"display: none; position: absolute;\"><div role=\"document\"></div></div></div><div data-mprt=\"8\" class=\"minimap slider-mouseover\" role=\"presentation\" aria-hidden=\"true\" style=\"position: absolute; left: 711px; width: 75px; height: 200px;\"><div class=\"minimap-shadow-hidden\" style=\"height: 200px;\"></div><canvas width=\"75\" height=\"200\" style=\"position: absolute; left: 0px; width: 75px; height: 200px;\"></canvas><div class=\"minimap-slider\" style=\"position: absolute; will-change: transform; width: 75px; height: 21px;\"><div class=\"minimap-slider-horizontal\" style=\"position: absolute; left: 0px; width: 75px; top: 0px; height: 21px;\"></div></div></div></div><div data-mprt=\"2\" class=\"overflowingContentWidgets\"></div><div class=\"context-view\" aria-hidden=\"true\" style=\"display: none;\"></div></div></div>"
-```
-
-####   `Code readonly`
-
-```
-"<div class=\"k-code\" data-keybinding-context=\"1\" data-mode-id=\"javascript\" style=\"height: 200px;\"><div class=\"k-spin k-small k-overlay c-fade-leave-active\"><div class=\"k-wrapper\"><div class=\"k-canvas\"><svg viewBox=\"0 0 120 120\"><circle class=\"k-circle\" cx=\"60\" cy=\"60\" r=\"57\"></circle></svg></div></div></div><div class=\"monaco-editor no-user-select  vs\" data-uri=\"inmemory://model/2\" style=\"width: 800px; height: 200px;\"><div data-mprt=\"3\" class=\"overflow-guard\" style=\"width: 800px; height: 200px;\"><div class=\"margin\" role=\"presentation\" aria-hidden=\"true\" style=\"position: absolute; will-change: transform; top: 0px; height: 200px; width: 68px;\"><div class=\"glyph-margin\" style=\"left: 0px; width: 0px; height: 200px;\"></div><div class=\"margin-view-zones\" role=\"presentation\" aria-hidden=\"true\" style=\"position: absolute;\"></div><div class=\"margin-view-overlays\" role=\"presentation\" aria-hidden=\"true\" style=\"position: absolute; width: 68px; font-family: &quot;Droid Sans Mono&quot;, monospace, monospace, &quot;Droid Sans Fallback&quot;; font-weight: normal; font-size: 14px; line-height: 19px; letter-spacing: 0px; height: 200px;\"><div style=\"position:absolute;top:0px;width:100%;height:19px;\"><div class=\"current-line\" style=\"width:68px; height:19px;\"></div><div class=\"line-numbers lh-odd\" style=\"left:0px;width:42px;\">1</div></div></div></div><div class=\"monaco-scrollable-element editor-scrollable vs\" role=\"presentation\" data-mprt=\"5\" style=\"position: absolute; overflow: hidden; left: 68px; width: 732px; height: 200px;\"><div class=\"lines-content monaco-editor-background\" style=\"position: absolute; overflow: hidden; width: 1e+06px; height: 1e+06px; will-change: transform; top: 0px; left: 0px;\"><div class=\"view-overlays\" role=\"presentation\" aria-hidden=\"true\" style=\"position: absolute; height: 0px; width: 657px;\"><div style=\"position:absolute;top:0px;width:100%;height:19px;\"><div class=\"current-line\" style=\"width:657px; height:19px;\"></div></div></div><div role=\"presentation\" aria-hidden=\"true\" class=\"view-rulers\"></div><div class=\"view-zones\" role=\"presentation\" aria-hidden=\"true\" style=\"position: absolute;\"></div><div class=\"view-lines\" role=\"presentation\" aria-hidden=\"true\" data-mprt=\"7\" style=\"position: absolute; font-family: &quot;Droid Sans Mono&quot;, monospace, monospace, &quot;Droid Sans Fallback&quot;; font-weight: normal; font-size: 14px; line-height: 19px; letter-spacing: 0px; width: 657px; height: 200px;\"><div style=\"top:0px;height:19px;\" class=\"view-line\"><span><span>&nbsp;</span></span></div></div><div data-mprt=\"1\" class=\"contentWidgets\" style=\"position: absolute; top: 0px;\"><div class=\"lightbulb-glyph\" title=\"Show Fixes (Ctrl+.)\" widgetid=\"LightBulbWidget\" style=\"position: absolute; visibility: hidden; max-width: 657px;\"></div></div><div role=\"presentation\" aria-hidden=\"true\" class=\"cursors-layer cursor-line-style cursor-solid\"><div class=\"cursor \" style=\"height: 19px; top: 0px; left: 0px; font-family: &quot;Droid Sans Mono&quot;, monospace, monospace, &quot;Droid Sans Fallback&quot;; font-weight: normal; font-size: 14px; line-height: 19px; letter-spacing: 0px; display: block; visibility: hidden; width: 2px;\"></div></div></div><div role=\"presentation\" aria-hidden=\"true\" class=\"invisible scrollbar horizontal\" style=\"position: absolute; width: 643px; height: 10px; left: 0px; bottom: 0px;\"><div class=\"slider\" style=\"position: absolute; top: 0px; left: 0px; height: 10px; will-change: transform; width: 643px;\"></div></div><canvas class=\"decorationsOverviewRuler\" aria-hidden=\"true\" width=\"14\" height=\"200\" style=\"position: absolute; will-change: transform; top: 0px; right: 0px; width: 14px; height: 200px;\"></canvas><div role=\"presentation\" aria-hidden=\"true\" class=\"invisible scrollbar vertical\" style=\"position: absolute; width: 14px; height: 200px; right: 0px; top: 0px;\"><div class=\"slider\" style=\"position: absolute; top: 0px; left: 0px; width: 14px; will-change: transform; height: 200px;\"></div></div></div><div role=\"presentation\" aria-hidden=\"true\" style=\"width: 711px;\"></div><textarea data-mprt=\"6\" class=\"inputarea\" wrap=\"off\" autocorrect=\"off\" autocapitalize=\"off\" autocomplete=\"off\" spellcheck=\"false\" aria-label=\"Editor content;Press Alt+F1 for Accessibility Options.\" role=\"textbox\" aria-multiline=\"true\" aria-haspopup=\"false\" aria-autocomplete=\"both\" style=\"font-size: 1px; line-height: 19px; top: 0px; left: 68px; width: 1px; height: 1px;\"></textarea><div style=\"position: absolute; top: 0px; left: 0px; width: 0px; height: 0px;\"></div><div data-mprt=\"4\" class=\"overlayWidgets\" style=\"width: 800px;\"><div class=\"accessibilityHelpWidget\" role=\"dialog\" aria-hidden=\"true\" widgetid=\"editor.contrib.accessibilityHelpWidget\" style=\"display: none; position: absolute;\"><div role=\"document\"></div></div></div><div data-mprt=\"8\" class=\"minimap slider-mouseover\" role=\"presentation\" aria-hidden=\"true\" style=\"position: absolute; left: 711px; width: 75px; height: 200px;\"><div class=\"minimap-shadow-hidden\" style=\"height: 200px;\"></div><canvas width=\"75\" height=\"200\" style=\"position: absolute; left: 0px; width: 75px; height: 200px;\"></canvas><div class=\"minimap-slider\" style=\"position: absolute; will-change: transform; width: 75px; height: 21px;\"><div class=\"minimap-slider-horizontal\" style=\"position: absolute; left: 0px; width: 75px; top: 0px; height: 21px;\"></div></div></div></div><div data-mprt=\"2\" class=\"overflowingContentWidgets\"></div><div class=\"context-view\" aria-hidden=\"true\" style=\"display: none;\"></div></div></div>"
-```
-
-####   `Code theme`
-
-```
-"<div>主题：<div class=\"k-btns\"><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>vs</span><input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>vs-dark</span><input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>hc-black</span><input type=\"radio\" tabindex=\"-1\"></button></div><div class=\"k-code\" data-keybinding-context=\"1\" data-mode-id=\"javascript\" style=\"height: 200px;\"><div class=\"k-spin k-small k-overlay c-fade-leave-active\"><div class=\"k-wrapper\"><div class=\"k-canvas\"><svg viewBox=\"0 0 120 120\"><circle class=\"k-circle\" cx=\"60\" cy=\"60\" r=\"57\"></circle></svg></div></div></div><div class=\"monaco-editor no-user-select  vs\" data-uri=\"inmemory://model/3\" style=\"width: 800px; height: 200px;\"><div data-mprt=\"3\" class=\"overflow-guard\" style=\"width: 800px; height: 200px;\"><div class=\"margin\" role=\"presentation\" aria-hidden=\"true\" style=\"position: absolute; will-change: transform; top: 0px; height: 200px; width: 68px;\"><div class=\"glyph-margin\" style=\"left: 0px; width: 0px; height: 200px;\"></div><div class=\"margin-view-zones\" role=\"presentation\" aria-hidden=\"true\" style=\"position: absolute;\"></div><div class=\"margin-view-overlays\" role=\"presentation\" aria-hidden=\"true\" style=\"position: absolute; width: 68px; font-family: &quot;Droid Sans Mono&quot;, monospace, monospace, &quot;Droid Sans Fallback&quot;; font-weight: normal; font-size: 14px; line-height: 19px; letter-spacing: 0px; height: 200px;\"><div style=\"position:absolute;top:0px;width:100%;height:19px;\"><div class=\"current-line\" style=\"width:68px; height:19px;\"></div><div class=\"line-numbers lh-odd\" style=\"left:0px;width:42px;\">1</div></div></div></div><div class=\"monaco-scrollable-element editor-scrollable vs\" role=\"presentation\" data-mprt=\"5\" style=\"position: absolute; overflow: hidden; left: 68px; width: 732px; height: 200px;\"><div class=\"lines-content monaco-editor-background\" style=\"position: absolute; overflow: hidden; width: 1e+06px; height: 1e+06px; will-change: transform; top: 0px; left: 0px;\"><div class=\"view-overlays\" role=\"presentation\" aria-hidden=\"true\" style=\"position: absolute; height: 0px; width: 657px;\"><div style=\"position:absolute;top:0px;width:100%;height:19px;\"><div class=\"current-line\" style=\"width:657px; height:19px;\"></div></div></div><div role=\"presentation\" aria-hidden=\"true\" class=\"view-rulers\"></div><div class=\"view-zones\" role=\"presentation\" aria-hidden=\"true\" style=\"position: absolute;\"></div><div class=\"view-lines\" role=\"presentation\" aria-hidden=\"true\" data-mprt=\"7\" style=\"position: absolute; font-family: &quot;Droid Sans Mono&quot;, monospace, monospace, &quot;Droid Sans Fallback&quot;; font-weight: normal; font-size: 14px; line-height: 19px; letter-spacing: 0px; width: 657px; height: 200px;\"><div style=\"top:0px;height:19px;\" class=\"view-line\"><span><span>&nbsp;</span></span></div></div><div data-mprt=\"1\" class=\"contentWidgets\" style=\"position: absolute; top: 0px;\"><div class=\"lightbulb-glyph\" title=\"Show Fixes (Ctrl+.)\" widgetid=\"LightBulbWidget\" style=\"position: absolute; visibility: hidden; max-width: 657px;\"></div></div><div role=\"presentation\" aria-hidden=\"true\" class=\"cursors-layer cursor-line-style cursor-solid\"><div class=\"cursor \" style=\"height: 19px; top: 0px; left: 0px; font-family: &quot;Droid Sans Mono&quot;, monospace, monospace, &quot;Droid Sans Fallback&quot;; font-weight: normal; font-size: 14px; line-height: 19px; letter-spacing: 0px; display: block; visibility: hidden; width: 2px;\"></div></div></div><div role=\"presentation\" aria-hidden=\"true\" class=\"invisible scrollbar horizontal\" style=\"position: absolute; width: 643px; height: 10px; left: 0px; bottom: 0px;\"><div class=\"slider\" style=\"position: absolute; top: 0px; left: 0px; height: 10px; will-change: transform; width: 643px;\"></div></div><canvas class=\"decorationsOverviewRuler\" aria-hidden=\"true\" width=\"14\" height=\"200\" style=\"position: absolute; will-change: transform; top: 0px; right: 0px; width: 14px; height: 200px;\"></canvas><div role=\"presentation\" aria-hidden=\"true\" class=\"invisible scrollbar vertical\" style=\"position: absolute; width: 14px; height: 200px; right: 0px; top: 0px;\"><div class=\"slider\" style=\"position: absolute; top: 0px; left: 0px; width: 14px; will-change: transform; height: 200px;\"></div></div></div><div role=\"presentation\" aria-hidden=\"true\" style=\"width: 711px;\"></div><textarea data-mprt=\"6\" class=\"inputarea\" wrap=\"off\" autocorrect=\"off\" autocapitalize=\"off\" autocomplete=\"off\" spellcheck=\"false\" aria-label=\"Editor content;Press Alt+F1 for Accessibility Options.\" role=\"textbox\" aria-multiline=\"true\" aria-haspopup=\"false\" aria-autocomplete=\"both\" style=\"font-size: 1px; line-height: 19px; top: 0px; left: 68px; width: 1px; height: 1px;\"></textarea><div style=\"position: absolute; top: 0px; left: 0px; width: 0px; height: 0px;\"></div><div data-mprt=\"4\" class=\"overlayWidgets\" style=\"width: 800px;\"><div class=\"accessibilityHelpWidget\" role=\"dialog\" aria-hidden=\"true\" widgetid=\"editor.contrib.accessibilityHelpWidget\" style=\"display: none; position: absolute;\"><div role=\"document\"></div></div></div><div data-mprt=\"8\" class=\"minimap slider-mouseover\" role=\"presentation\" aria-hidden=\"true\" style=\"position: absolute; left: 711px; width: 75px; height: 200px;\"><div class=\"minimap-shadow-hidden\" style=\"height: 200px;\"></div><canvas width=\"75\" height=\"200\" style=\"position: absolute; left: 0px; width: 75px; height: 200px;\"></canvas><div class=\"minimap-slider\" style=\"position: absolute; will-change: transform; width: 75px; height: 21px;\"><div class=\"minimap-slider-horizontal\" style=\"position: absolute; left: 0px; width: 75px; top: 0px; height: 21px;\"></div></div></div></div><div data-mprt=\"2\" class=\"overflowingContentWidgets\"></div><div class=\"context-view\" aria-hidden=\"true\" style=\"display: none;\"></div></div></div></div>"
-```
-
-## `app`
-
-####   `App basic`
-
-```
-"<div>page a</div>"
-```
-
-####   `App ssr`
-
-```
-"<div>page a</div>"
 ```
 
