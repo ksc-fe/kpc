@@ -368,7 +368,7 @@ export default class BaseTable extends Intact {
     async exportTable(data, filename = 'table') {
         let instance = this;
         if (data) {
-            instance = new Table({...this.get(), data});
+            instance = new this.constructor({...this.get(), data});
             instance._initMountedQueue();
             instance.init(null, this.vNode);
             instance._triggerMountedQueue();

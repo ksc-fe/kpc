@@ -76,7 +76,6 @@ export default class DraggableTable extends BaseTable {
         return i - 1;
     }
 
-
     _onRowDragEnd(e, row) {
         e.preventDefault();
 

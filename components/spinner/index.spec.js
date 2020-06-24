@@ -4,15 +4,15 @@ import {mount, unmount, dispatchEvent} from 'test/utils';
 import {Spinner} from 'kpc/components/spinner';
 import Intact from 'intact';
 import FormatterDemo from '~/components/spinner/demos/formatter';
-import DevideDemo from '~/components/spinner/demos/devide';
+import ForceStepDemo from '~/components/spinner/demos/forceStep';
 
 describe('Spinner', () => {
     let instance;
 
-    afterEach(() => {
-        unmount(instance);
-        instance = null
-    });
+    // afterEach(() => {
+        // unmount(instance);
+        // instance = null
+    // });
 
     it('step/max/min test', () => {
         instance = mount(StepDemo);
@@ -185,8 +185,8 @@ describe('Spinner', () => {
         expect(onChange.calledWith(12)).to.be.true;
     });
 
-    it('should devide by step', () => {
-        instance = mount(DevideDemo);
+    it('should be min + step * n', () => {
+        instance = mount(ForceStepDemo);
 
         const [prev, next] = instance.element.querySelectorAll('.k-btn');
         const input = instance.element.querySelector('.k-inner');

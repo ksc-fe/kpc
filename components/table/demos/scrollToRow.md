@@ -41,18 +41,20 @@ import {Button, ButtonGroup} from 'kpc/components/button';
 ```js
 import {range} from 'kpc/components/utils';
 
+const data =  range(1, 100).map(item => {
+    return {
+        name: 'name ' + item,
+        ip: '127.0.0.' + item
+    };
+});
+
 export default class extends Intact {
     @Intact.template()
     static template = template;
 
     defaults() {
         return {
-            data: range(1, 100).map(item => {
-                return {
-                    name: 'name ' + item,
-                    ip: '127.0.0.' + item
-                };
-            }),
+            data: data
         }
     }
 
@@ -64,4 +66,27 @@ export default class extends Intact {
         this.refs.table.scrollToRowByKey('name 25');
     }
 }
+```
+
+```vue-data
+data() {
+    return {
+        data
+    }
+},
+```
+
+```react-methods
+constructor(props) {
+    super(props);
+    this.state = {
+        data
+    };
+    this.scrollToRowByIndex = this.scrollToRowByIndex.bind(this);
+    this.scrollToRowByKey = this.scrollToRowByKey.bind(this);
+}
+```
+
+```angular-properties
+private data = data;
 ```

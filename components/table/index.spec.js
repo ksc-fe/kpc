@@ -15,6 +15,7 @@ import ScrollToRowDemo from '~/components/table/demos/scrollToRow';
 import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 import Intact from 'intact';
 import {Table, TableColumn} from 'kpc/components/table';
+import DraggableTable from '~/components/table/demos/draggable';
 
 describe('Table', () => {
     let instance;
@@ -350,5 +351,20 @@ describe('Table', () => {
         }
 
         instance = mount(Demo);
+    });
+
+    it('draggable', async () => {
+        instance = mount(DraggableTable);
+
+        const [tr1, tr2] = instance.element.querySelectorAll('.k-tbody tr');
+        const {top} = instance.element.getBoundingClientRect();
+        dispatchEvent(tr2, 'dragstart');
+        dispatchEvent(tr1, 'dragover', {
+            clientY: top + 41 + 20
+        });
+        dispatchEvent(tr2, 'dragend');
+
+        await wait(300);
+        expect(instance.element.innerHTML).to.matchSnapshot();
     });
 });

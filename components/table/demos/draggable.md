@@ -30,19 +30,20 @@ import {Button, ButtonGroup} from 'kpc/components/button';
 import {range} from 'kpc/components/utils';
 import Message from 'kpc/components/message';
 
+const data = range(1, 20).map(item => {
+    return {
+        name: 'name ' + item,
+        ip: '127.0.0.' + item
+    };
+});
+
 export default class extends Intact {
     @Intact.template()
     static template = template;
 
     defaults() {
-        window.i = this;
         return {
-            data: range(1, 100).map(item => {
-                return {
-                    name: 'name ' + item,
-                    ip: '127.0.0.' + item
-                };
-            }),
+            data: data 
         }
     }
 
@@ -61,4 +62,27 @@ export default class extends Intact {
         this.set('data', data);
     }
 }
+```
+
+```vue-data
+data() {
+    return {
+        data
+    }
+},
+```
+
+```react-methods
+constructor(props) {
+    super(props);
+    this.state = {
+        data
+    };
+    this._remove = this._remove.bind(this);
+    this._onDragEnd = this._onDragEnd.bind(this);
+}
+```
+
+```angular-properties
+private data = data;
 ```
