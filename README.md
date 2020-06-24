@@ -188,9 +188,9 @@ Welcome to join us by QQ. Group Number: 529739732
 * [KPC Document](https://design.ksyun.com)
 * [Intact MVVM Framework][1]
 * [Vdt Template Engine](http://javey.github.io/vdt.js/)
-* [Intact-Vue Compatibilty Layer](https://github.com/Javey/intact-vue)
-* [Intact-React Compatibilty Layer](https://github.com/ksc-fe/intact-react)
-* [Intact-Angular Compatibilty Layer](https://github.com/ksc-fe/intact-angular)
+* [Intact-Vue Compatibility Layer](https://github.com/Javey/intact-vue)
+* [Intact-React Compatibility Layer](https://github.com/ksc-fe/intact-react)
+* [Intact-Angular Compatibility Layer](https://github.com/ksc-fe/intact-angular)
 
 ## Develop 
 
