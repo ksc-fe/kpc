@@ -310,7 +310,7 @@ __Angular__
 
 1. `Change` `Drawer`由之前的点击抽屉外任何区域关闭抽屉，改为点击遮罩层才关闭
 1. `Change` `Datepicker`在选择时间时，去掉无用的年月展示信息
-1. `Change` 使用`es6 module`进行构建，例如代码编译优化 [#297](https://github.com/ksc-fe/kpc/issues/297)
+1. `Change` 使用`es6 module`进行构建，利于代码编译优化 [#297](https://github.com/ksc-fe/kpc/issues/297)
 
 ### 文档
 
