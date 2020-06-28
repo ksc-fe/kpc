@@ -36,3 +36,5 @@ packages/kpc-angular/node_modules
 packages/kpc-angular/index.ts
 packages/kpc-angular/components
 ~*
+
+.DS_Store

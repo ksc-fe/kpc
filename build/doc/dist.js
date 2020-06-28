@@ -63,17 +63,16 @@ function staticize(data) {
                 content = contents.replace(`<div id="page"></div>`, () => {
                     return `<div id="page">${content}</div>`;
                 });
-                return writeFile(path.join(dest, filePath, 'index.html'), content);            
+                return writeFile(path.join(dest, filePath, 'index.html'), content);
             });
         }));
     });
 }
 
-function upload() {
+function uploadPath(filePath) {
     const AK = process.env.KS3_AK;
     const SK = process.env.KS3_SK;
     const bucketName = 'damife';
-    const filePath = dest; 
     const key = 'kpc';
     const region = 'BEIJING'; //BEIJING|SHANGHAI|HONGKONG|AMERICA
 
@@ -103,6 +102,11 @@ function upload() {
             'Cache-Control': 'no-cache,max-age=0'
         });
     });
+
+}
+
+function upload() {
+    return uploadPath(dest);
 }
 
 exports.buildClient = buildClient;
@@ -110,3 +114,4 @@ exports.buildServer = buildServer;
 exports.buildDll = buildDll;
 exports.staticize = staticize;
 exports.upload = upload;
+exports.uploadPath = uploadPath;

@@ -1,7 +1,15 @@
 import Link from 'kpc/components/link';
 import {Select, Option} from 'kpc/components/select';
+import {Button} from 'kpc/components/button';
+import {Icon} from 'kpc/components/icon';
+import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
 
 const nav = [
+    {
+        title: '资源',
+        href: '/docs/resources/',
+        index: 'resources',
+    },
     {
         title: '设计',
         href: '/docs/design/language/',
@@ -17,6 +25,11 @@ const nav = [
         href: '/docs/blogs/design/',
         index: 'blog'
     },
+    {
+        title: '定制主题',
+        href: 'https://kpc-theme.ksyun.com/',
+        isOpen: true,
+    }
 ];
 
 <div class={{ {'main-wrapper': true, [scope.className]: scope.className} }}>
@@ -37,10 +50,26 @@ const nav = [
                                 active: value.index === scope.navIndex
                             } }}
                             href={{ `${value.href}` }}
+                            isReplace={{ !value.isOpen }}
                         >{{ value.title }}</Link>
-                        <a href="https://kpc-theme.ksyun.com/" target="_blank">定制主题</a>
                         <div class="border"></div>
                     </nav>
+                    <Dropdown container=".header-wrapper"
+                        trigger="click"
+                        position={{ {my: 'right top', at: 'right bottom'} }}
+                    >
+                        <Button type="none" icon class="menu-btn">
+                            <Icon class="ion-navicon" size="large" />
+                        </Button>
+                        <DropdownMenu class="nav-menu-list">
+                            <DropdownItem v-for={{ nav }}
+                                class={{ {
+                                    active: value.index === scope.navIndex
+                                } }}
+                                ev-select={{ () => Link.to({href: value.href, isReplace: true}) }}
+                            >{{ value.title }}</DropdownItem>
+                        </DropdownMenu>
+                    </Dropdown>
                     <div class="line"></div>
                     {{ /*<Select v-model="version" width="100" size="small">
                         <Option value="v1.1.1">v1.1.1</Option>

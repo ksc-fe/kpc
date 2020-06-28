@@ -123,6 +123,8 @@ blockquote
         position absolute
         bottom 1px 
         border-bottom 2px solid linkColor
+    .menu-btn
+        display none
 .transition
     transition all 350ms cubic-bezier(.55, 0, .1, 1)
 .blue
@@ -141,7 +143,12 @@ blockquote
                 .king
                     display none
             nav
-                a
-                    padding 0 5px
+                display none
         .k-select
             margin-right 15px
+        .menu-btn
+            display inline-block
+        .nav-menu-list
+            width 200px
+            .active
+                color $primary-color

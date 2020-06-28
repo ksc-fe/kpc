@@ -46,10 +46,8 @@ export default class extends Layout {
         if (this.refs.article) {
             this.set('demos', this.refs.article.get('demos'));
         }
-        
-        window.addEventListener('scroll', this._onScroll);
 
-        window.scrollTo(0, 0);
+        window.addEventListener('scroll', this._onScroll);
     }
 
     _onScroll() {

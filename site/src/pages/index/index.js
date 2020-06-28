@@ -13,8 +13,4 @@ export default class extends Layout {
             current: 'one'
         }
     }
-
-    _mount() {
-        window.scrollTo(0, 0);
-    }
 }

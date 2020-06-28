@@ -36,13 +36,21 @@ export default new Router([
         }
     },
     {
-        path: "/demo.html",
+        path: '/docs/resources',
         action: async context => {
             return {
-                Page: (await import('../pages/demo')).default,
+                Page: (await import('../pages/resource')).default,
             }
         }
     },
+    // {
+        // path: "/demo.html",
+        // action: async context => {
+            // return {
+                // Page: (await import('../pages/demo')).default,
+            // }
+        // }
+    // },
     {
         path: '/iframe\/(.*)/',
         action: async (context) => {

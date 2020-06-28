@@ -33,7 +33,8 @@
     "release-major": "lerna version major --force-publish && npm run _publish",
     "prelease-patch": "lerna version prepatch --preid beta --force-publish && npm run _publish -- --tag=beta",
     "prelease-minor": "lerna version preminor --preid beta --force-publish && npm run _publish -- --tag=beta",
-    "prelease-major": "lerna version premajor --preid beta --force-publish && npm run _publish -- --tag=beta"
+    "prelease-major": "lerna version premajor --preid beta --force-publish && npm run _publish -- --tag=beta",
+    "upload:resources": "gulp upload:resources"
   },
   "repository": {
     "type": "git",

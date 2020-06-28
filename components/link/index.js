@@ -1,6 +1,8 @@
 import Intact from 'intact';
 import template from './index.vdt';
 
+const externalRegExp = /^(https?:)?\/\//;
+
 export default class Link extends Intact {
     static history = undefined;
 
@@ -17,19 +19,7 @@ export default class Link extends Intact {
         click: true,
     };
 
-    defaults() {
-        return {
-            href: undefined,
-            name: undefined,
-            isReplace: false,
-        }
-    }
-
-    to(e) {
-        e.preventDefault();
-        this.trigger('click', e);
-        const href = this.get('href');
-        const name = this.get('name');
+    static to({href, name, isReplace}) {
         const history = Link.history;
         let url;
         if (href != null) {
@@ -42,16 +32,38 @@ export default class Link extends Intact {
             }
         }
         if (url) {
-            // if the href is equal to the current href, then do nothing
-            const {pathname, search} = history.location;
-            if (pathname + search === url) return;
-
-            if (this.get('isReplace')) {
-                history.replace(url);
+            if (externalRegExp.test(url)) {
+                if (isReplace) {
+                    location.href = url;
+                } else {
+                    window.open(url);
+                }
             } else {
-                history.push(url);
+                // if the href is equal to the current href, then do nothing
+                const {pathname, search} = history.location;
+                if (pathname + search === url) return;
+
+                if (isReplace) {
+                    history.replace(url);
+                } else {
+                    history.push(url);
+                }
             }
         }
+    };
+
+    defaults() {
+        return {
+            href: undefined,
+            name: undefined,
+            isReplace: false,
+        }
+    }
+
+    to(e) {
+        e.preventDefault();
+        this.trigger('click', e);
+        Link.to(this.get());
     }
 }
 

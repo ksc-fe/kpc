@@ -43,6 +43,8 @@ export default class extends Intact {
     _mount() {
         this.border = this.element.querySelector('.border');
         this._updateBorder();
+
+        window.scrollTo(0, 0);
     }
 
     _updateBorder() {
