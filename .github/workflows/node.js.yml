@@ -24,6 +24,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - env: 
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     - run: npm i -g codecov
     - run: npm ci
     - run: cd ./packages/kpc-angular && npm ci && cd ../../
