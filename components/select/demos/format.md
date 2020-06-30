@@ -51,7 +51,7 @@ import {Icon} from 'kpc/components/icon';
                 <Icon class={{ value }} />
             </Option>
             <b:values params="values, labels">
-                <div style="line-height: 22px;">已选择{{ values.length }}项 / 总共4项</div>
+                <div class="k-value">已选择{{ values.length }}项 / 总共4项</div>
             </b:values>
         </Select>
     </div>
