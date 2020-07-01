@@ -178,7 +178,7 @@
     "downloadjs": "^1.4.7",
     "enquire.js": "^2.1.6",
     "intact": "^2.5.15",
-    "intact-react": "^1.1.26",
+    "intact-react": "^1.1.27",
     "intact-vue": "^0.5.6",
     "monaco-editor": "^0.17.1",
     "mxgraphx": "^4.0.7",
