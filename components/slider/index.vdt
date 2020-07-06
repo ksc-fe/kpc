@@ -140,12 +140,25 @@ const tooltipProps = always ? {always, value: true} : {always: false};
         </div>
         <div class="k-marks" v-if={{ marks }}>{{ do {
             // const counts = step ? Math.floor((max - min) / step) : (max - min);
-            <span v-for={{ marks }}
-                style={{ {
-                    left: ((key - min) / (max - min) * 100) + '%'
-                } }}
-                ev-click={{ self._setOneValue.bind(self, key) }}
-            >{{ value }}</span>
+            const ret = [];
+            for (let key in marks) {
+                const mark = marks[key];
+                const isActive = !isRange ? key == value : value.find(v => v == key) !== undefined;
+                let text = mark;
+                if (Array.isArray(mark)) {
+                    text = isActive && mark[1] ? mark[1] : mark[0];
+                }
+                ret.push(
+                    <span
+                        style={{ {
+                            left: ((key - min) / (max - min) * 100) + '%'
+                        } }}
+                        ev-click={{ self._setOneValue.bind(self, key) }}
+                        class={{ {'k-active': isActive} }}
+                    >{{ text }}</span>
+                );
+            }
+            ret;
         } }}</div>
     </div>
     <div class="k-spinner-wrapper"
