@@ -11,6 +11,7 @@ import Input from 'kpc/components/input';
 <div>
     <Input type="textarea" placeholder="please enter" />
     <br />
+    <br />
     <Input type="textarea" rows="5" placeholder="please enter" />
 </div>
 ```

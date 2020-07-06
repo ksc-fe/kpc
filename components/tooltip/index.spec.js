@@ -13,13 +13,13 @@ import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 describe('Tooltip', () => {
     let instance;
 
-    // afterEach((done) => {
-        // if (instance) {
-            // unmount(instance);
-            // instance = null;
-        // }
-        // setTimeout(done, 500);
-    // });
+    afterEach((done) => {
+        if (instance) {
+            unmount(instance);
+            instance = null;
+        }
+        setTimeout(done, 500);
+    });
 
     it('should show and hide content correctly', async () => {
         instance = mount(BasicDemo);

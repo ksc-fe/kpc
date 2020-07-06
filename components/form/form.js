@@ -5,9 +5,9 @@ import '../../styles/kpc.styl';
 import './index.styl';
 
 export default class Form extends Intact {
-    static methods = methods; 
+    static methods = methods;
 
-    static messages = messages; 
+    static messages = messages;
 
     static classNames = classNames;
 
@@ -22,6 +22,7 @@ export default class Form extends Intact {
         labelWidth: [String, Number],
         layout: ['horizontal', 'vertical', 'inline'],
         starOnRequired: Boolean,
+        size: ['default', 'small', 'mini'],
     };
 
     static events = {
@@ -35,6 +36,7 @@ export default class Form extends Intact {
             labelWidth: undefined,
             layout: 'horizontal',
             starOnRequired: false,
+            size: 'default',
         }
     }
 

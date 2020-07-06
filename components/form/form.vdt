@@ -1,11 +1,12 @@
 import {getRestProps} from '../utils';
 
-const {children, className, layout} = self.get();
+const {children, className, layout, size} = self.get();
 
 const classNameObj = {
     'k-form': true,
     [className]: className,
     [`k-${layout}`]: layout,
+    [`k-${size}`]: size !== 'default',
 };
 
 <form {{ ...getRestProps(self) }} class={{ classNameObj }}

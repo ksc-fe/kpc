@@ -3,7 +3,7 @@ title: 表单布局
 order: 5
 ---
 
-通过`layout`指定表单布局：`horizontal`, `vertical`, `inline`
+通过`layout`指定表单布局：`horizontal`, `vertical`, `inline`，还可以通过`size`控制`FormItem`的间距
 
 ```vdt
 import {Form, FormItem} from 'kpc/components/form';
@@ -11,12 +11,19 @@ import {Input} from 'kpc/components/input';
 import {Select, Option} from 'kpc/components/select';
 import {ButtonGroup, Button} from 'kpc/components/button';
 
-<Form layout={{ self.get('layout') }}>
+<Form layout={{ self.get('layout') }} size={{ self.get('size') }}>
     <FormItem label="Layout">
         <ButtonGroup checkType="radio" v-model="layout">
             <Button value="horizontal">horizontal</Button>
             <Button value="vertical">vertical</Button>
             <Button value="inline">inline</Button>
+        </ButtonGroup>
+    </FormItem>
+    <FormItem label="Size">
+        <ButtonGroup checkType="radio" v-model="size">
+            <Button value="default">default</Button>
+            <Button value="small">small</Button>
+            <Button value="mini">mini</Button>
         </ButtonGroup>
     </FormItem>
     <FormItem label="Input" model="model.input" rules={{ {required: true} }}>
@@ -48,6 +55,7 @@ export default class extends Intact {
                 checkbox: [],
             },
             layout: 'horizontal',
+            size: 'default',
         };
     }
 }

@@ -93,6 +93,13 @@
             text-align left
             line-height inherit
             margin-bottom $form-item-vertical-label-margin-bottom 
-
+    // size
+    for size in small mini
+        &.k-{size}
+            .k-form-item
+                margin lookup('$form-' + size + '-item-margin')
+            &.k-inline
+                .k-form-item
+                    margin-right lookup('$form-' + size + '-item-inline-margin-right')
 
 requireTheme('form')
