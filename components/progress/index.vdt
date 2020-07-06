@@ -2,7 +2,7 @@ import Icon from '../icon';
 import {getRestProps} from '../utils';
 
 const {
-    type, className, percent, status, size,
+    type, className, percent, _status: status, size,
     isOuterText, isInnerText, strokeWidth,
     children
 } = self.get();

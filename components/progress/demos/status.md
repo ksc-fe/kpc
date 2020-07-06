@@ -5,6 +5,8 @@ order: 1
 
 通过`status`来指定状态：`active` `normal` `error` `success` `warning`
 
+> 除了`error`状态，其他状态如果`percent`为`100`，则都会渲染成`success`状态
+
 ```vdt
 import Progress from 'kpc/components/progress';
 
