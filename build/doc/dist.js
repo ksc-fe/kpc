@@ -88,7 +88,7 @@ function uploadPath(filePath) {
             ACL: 'public-read',
             fileSetting: {
                 isDeep: true,
-                ignore: /(.(swp|ds_store|git)$)/ig
+                ignore: /\.(swp|ds_store|git)$/i,
             }
         }, (err, data, res) => {
             if (err) {
