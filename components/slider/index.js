@@ -6,6 +6,7 @@ import template from './index.vdt'
 import '../../styles/kpc.styl';
 import './index.styl';
 import {minMaxStep, isNullOrUndefined} from '../utils';
+import Tooltip from '../tooltip/content';
 
 const {isEqual} = Intact.utils;
 
@@ -28,6 +29,8 @@ export default class Slider extends Intact {
             showTooltip: false,
             always: false,
             animate: true,
+            tooltipTheme: 'dark',
+            tooltipSize: 'default',
 
             _sliderValue: 0,
             _inputValue: 0,
@@ -52,6 +55,8 @@ export default class Slider extends Intact {
         showTooltip: Boolean,
         always: Boolean,
         animate: Boolean,
+        tooltipTheme: Tooltip.propTypes.theme,
+        tooltipSize: Tooltip.propTypes.size,
     };
 
     static events = {
