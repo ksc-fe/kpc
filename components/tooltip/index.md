@@ -23,6 +23,7 @@ sidebar: doc
 | theme | 指定主题 | `"dark"` &#124; `"light"` | `"dark"` |
 | disabled | 是否禁用提示 | `Boolean` | `false` |
 | always | 是否一直保持当前展示/隐藏状态 | `Boolean` | `false` |
+| size | 弹层尺寸 | `"default"` &#124; `"small"` | `"default"` |
 
 # 事件
 

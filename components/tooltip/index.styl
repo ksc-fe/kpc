@@ -66,6 +66,10 @@ arrow-short = $tooltip-arrow-width - 2px
         .k-btn:last-of-type
             margin-left $tooltip-confirm-buttons-gutter
 
+    // size
+    &.k-small
+        padding $tooltip-small-padding
+
     // theme 
     generate(theme)
         if theme == 'dark'

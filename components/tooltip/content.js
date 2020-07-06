@@ -32,6 +32,7 @@ export default class TooltipContent extends DropdownMenu {
         theme: ['dark', 'light'],
         disabled: Boolean,
         always: Boolean,
+        size: ['small', 'default'],
     };
 
     static events = {
@@ -54,6 +55,7 @@ export default class TooltipContent extends DropdownMenu {
             theme: 'dark',
             disabled: false,
             always: false,
+            size: 'default',
 
             _feedback: {},
         };
@@ -84,7 +86,7 @@ export default class TooltipContent extends DropdownMenu {
         if (this.get('disabled') || this.isEmptyChildren) return;
 
         clearTimeout(this.timer);
-        this.set('value', true); 
+        this.set('value', true);
     }
 
     hide(immediately) {
@@ -117,8 +119,8 @@ export default class TooltipContent extends DropdownMenu {
         }
         const element = this.refs.menu.element;
         position(element, {
-            my: 'center bottom-10', 
-            at: 'center top', 
+            my: 'center bottom-10',
+            at: 'center top',
             of: this.dropdown.element,
             collision,
             using: (feedback) => {

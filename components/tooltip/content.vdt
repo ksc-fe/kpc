@@ -4,7 +4,7 @@ import Button from '../button';
 const {
     children, value, trigger, showArrow, confirm,
     canHover, className, _feedback, transition,
-    container, theme, disabled, always,
+    container, theme, disabled, always, size,
 } = self.get();
 
 const events = {};
@@ -19,6 +19,7 @@ const classNameObj = {
     'k-cannot-hover': trigger === 'hover' && !canHover && !confirm,
     [className]: className,
     [`k-${theme}`]: true,
+    [`k-${size}`]: size !== 'default',
 };
 
 <MoveWrapper container={{ container }}>
