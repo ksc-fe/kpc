@@ -13,13 +13,13 @@ import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 describe('Tooltip', () => {
     let instance;
 
-    afterEach((done) => {
-        if (instance) {
-            unmount(instance);
-            instance = null;
-        }
-        setTimeout(done, 500);
-    });
+    // afterEach((done) => {
+        // if (instance) {
+            // unmount(instance);
+            // instance = null;
+        // }
+        // setTimeout(done, 500);
+    // });
 
     it('should show and hide content correctly', async () => {
         instance = mount(BasicDemo);
@@ -149,9 +149,15 @@ describe('Tooltip', () => {
         expect(content.textContent).eql('hello');
 
         document.body.click();
+        await wait(300);
         expect(getElement('.k-tooltip-content')).eql(content);
 
         instance.element.querySelector('.k-tooltip').click();
+        await wait(300);
+        expect(getElement('.k-tooltip-content')).eql(content);
+
+        dispatchEvent(content, 'mouseleave');
+        await wait(300);
         expect(getElement('.k-tooltip-content')).eql(content);
     });
 

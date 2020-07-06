@@ -12,7 +12,7 @@ order: 5
 import Tooltip from 'kpc/components/tooltip';
 
 <div>
-    <Tooltip content="hello" always value={{ true }}>
+    <Tooltip content="hello" always value={{ true }} canHover>
         always show this tootip 
     </Tooltip>
     <br /><br />

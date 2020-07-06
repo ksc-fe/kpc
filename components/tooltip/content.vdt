@@ -4,11 +4,11 @@ import Button from '../button';
 const {
     children, value, trigger, showArrow, confirm,
     canHover, className, _feedback, transition,
-    container, theme, disabled
+    container, theme, disabled, always,
 } = self.get();
 
 const events = {};
-if ((canHover || confirm) && trigger === 'hover') {
+if ((canHover || confirm) && trigger === 'hover' && !always) {
     events['ev-mouseenter'] = self.show;
     events['ev-mouseleave'] = self.hide.bind(self, false);
 }
