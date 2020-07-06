@@ -33,28 +33,28 @@ export default class Progress extends Intact{
             isOuterText: true,
             isInnerText: false,
             status: 'active',
-            strokeWidth: 4, 
+            strokeWidth: 4,
         };
     }
 
-    _init() {
+    _init(props) {
         this._initStatus = this.get('status');
 
         this.on('$change:percent', (c, percent) => {
             percent = fixPercent(percent);
-            const status = percent === 100 ? 'success' : this._initStatus;
+            const status = this._initStatus !== 'error' && percent === 100 ? 'success' : this._initStatus;
             this.set({
                 status: status,
                 percent: percent,
             });
         });
-        this.on('$change:status', (c, status) => {
+        this.on('$receive:status', (c, status) => {
             if (status !== 'success') this._initStatus = status;
         });
 
         this.set('percent', fixPercent(this.get('percent')));
 
-        if (this.get('percent') == 100) {
+        if (this.get('percent') == 100 && props.status !== 'error') {
             this.set('status', 'success');
         }
     }
