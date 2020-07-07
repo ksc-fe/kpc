@@ -4,17 +4,19 @@ import StepDemo from '~/components/timepicker/demos/step';
 import StepRangeDemo from '~/components/timepicker/demos/stepRange';
 import FormatDemo from '~/components/timepicker/demos/format';
 import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
+import Timepicker from 'kpc/components/timepicker';
+import Intact from 'intact';
 
 describe('Timepicker', () => {
     let instance;
 
-    afterEach(async () => {
-        unmount(instance);
-        await wait(400);
-    });
+    // afterEach(async () => {
+        // unmount(instance);
+        // await wait(400);
+    // });
 
     it('select time', () => {
-        instance = mount(BasicDemo); 
+        instance = mount(BasicDemo);
 
         const [picker1] = instance.element.querySelectorAll('.k-input');
         picker1.click();
@@ -119,5 +121,25 @@ describe('Timepicker', () => {
         expect(content.innerHTML).to.matchSnapshot();
         expect(instance.get('time3')).eql(['00:30:00.000', '01:00:00.000']);
         expect(input3.innerHTML).to.matchSnapshot();
+    });
+
+    it('can input', () => {
+        class Demo extends Intact {
+            @Intact.template()
+            static template = `
+                <div>
+                    <Timepicker v-model="basic" maxDate="2021-11-11" minDate="2020-01-01" />
+                    <Timepicker v-model="multiple" multiple />
+                    <Timepicker v-model="range" range maxDate="2021-11-11" minDate="2020-01-01" />
+                    <Timepicker v-model="datetime" type="datetime" />
+                </div>
+            `;
+            _init() { this.Timepicker = Timepicker; }
+        }
+
+        instance = mount(Demo);
+
+        const [basicInput, multipleInput, rangeInput, datetimeInput] = instance.element.querySelectorAll('input');
+
     });
 });
