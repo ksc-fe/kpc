@@ -76,7 +76,7 @@ const wrapperEvents = [
             ref="input"
             tabindex={{ tabindex }}
             autocomplete={{ autocomplete }}
-            {{ ...getRestProps(self, events) }}
+            {{ ...events }}
             style={{ autoWidth ? {width: _width + 'px'} : undefined }}
         />
         <textarea v-else 
@@ -95,7 +95,7 @@ const wrapperEvents = [
             rows={{ rows }}
             spellcheck={{ spellcheck }}
             tabindex={{ tabindex }}
-            {{ ...getRestProps(self, events) }}
+            {{ ...events }}
         ></textarea>
         <div class="k-suffix" v-if={{ blocks.suffix || clearable }}>
             <Icon v-if={{ clearable }}

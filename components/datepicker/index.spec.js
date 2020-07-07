@@ -14,10 +14,10 @@ import dayjs from 'dayjs';
 describe('Datepicker', () => {
     let instance;
 
-    afterEach(async () => {
-        unmount(instance);
-        await wait(400);
-    });
+    // afterEach(async () => {
+        // unmount(instance);
+        // await wait(400);
+    // });
 
     it('should select date', () => {
         instance = mount(BasicDemo);
@@ -97,7 +97,7 @@ describe('Datepicker', () => {
         expect(curDate.getMonth()).be.eql(month);
 
         // change year and month in year/month panel
-        input.click(); 
+        input.click();
         content = getElement('.k-datepicker-content');
         const yearMonth = content.querySelector('.k-text-wrapper');
         yearMonth.click();
@@ -178,7 +178,7 @@ describe('Datepicker', () => {
 
         dispatchEvent(instance.element.children[0].children[0], 'click');
         let content = getElement('.k-datepicker-content');
-       
+
         dispatchEvent(content.querySelector('.k-day'), 'click');
         await wait(0);
         dispatchEvent(content.querySelector('.k-scroll-item'), 'click');
@@ -191,7 +191,7 @@ describe('Datepicker', () => {
 
         dispatchEvent(instance.element.children[1].children[0], 'click');
         let content = getElement('.k-datepicker-content');
-       
+
         dispatchEvent(content.querySelector('.k-day'), 'click');
         await wait(500);
         dispatchEvent(content.querySelector('.k-col:nth-child(2) .k-scroll-item'), 'click');
@@ -199,7 +199,7 @@ describe('Datepicker', () => {
         expect(instance.get('datetime2').split(' ')[1]).eql('00:00:00');
         expect(content.querySelector('.k-scroll-select-group').innerHTML).to.matchSnapshot();
     });
-    
+
     it('range', () => {
         instance = mount(RangeDemo);
 
@@ -269,7 +269,7 @@ describe('Datepicker', () => {
 
     it('operate by keyboard', () => {
         instance = mount(BasicDemo);
-        
+
         const now = new Date();
         now.setDate(1);
         const input = instance.element.querySelector('.k-input');
@@ -284,7 +284,7 @@ describe('Datepicker', () => {
         now.setDate(1 - 7);
         const date = now.getDate();
         expect(+content.querySelector('.k-hover').textContent).to.eql(date);
-        
+
         // right
         dispatchEvent(input, 'keydown', {keyCode: 39});
         expect(+content.querySelector('.k-hover').textContent).to.eql(date + 1);
@@ -339,7 +339,7 @@ describe('Datepicker', () => {
             }
             _init() { this.Datepicker = Datepicker; }
             _onChange() { fn(); }
-        }        
+        }
         instance = mount(Demo);
         const input = instance.element.querySelector('.k-input');
         input.click();
@@ -390,7 +390,7 @@ describe('Datepicker', () => {
     });
 
     it('should auto select time of the minDate after selecting a date of datetime picker', () => {
-        instance = mount(MaxMinDemo); 
+        instance = mount(MaxMinDemo);
 
         const date = dayjs().format('YYYY-MM-DD');
         const time = '01:00:00';
@@ -401,5 +401,97 @@ describe('Datepicker', () => {
         const content = getElement('.k-datepicker-content');
         content.querySelector('.k-day:not(.k-disabled)').click();
         expect(instance.get('toTime')).to.eql(`${date} ${time}`);
+    });
+
+    it('can input', () => {
+        class Demo extends Intact {
+            @Intact.template()
+            static template = `
+                <div>
+                    <Datepicker v-model="basic" maxDate="2021-11-11" minDate="2020-01-01" />
+                    <Datepicker v-model="multiple" multiple />
+                    <Datepicker v-model="range" range maxDate="2021-11-11" minDate="2020-01-01" />
+                    <Datepicker v-model="datetime" type="datetime" />
+                </div>
+            `;
+            _init() { this.Datepicker = Datepicker; }
+        }
+
+        instance = mount(Demo);
+
+        const [basicInput, multipleInput, rangeInput, datetimeInput] = instance.element.querySelectorAll('input');
+
+        // input incorrect value
+        basicInput.value = '2020';
+        dispatchEvent(basicInput, 'input');
+        expect(instance.get('basic')).to.eql(undefined);
+        // input correct value
+        basicInput.value = '2020-02-02';
+        dispatchEvent(basicInput, 'input');
+        expect(instance.get('basic')).to.eql('2020-02-02');
+        // clear value
+        basicInput.value = '';
+        dispatchEvent(basicInput, 'input');
+        expect(instance.get('basic')).to.eql('');
+
+        // input multipe values
+        // input incorrect value
+        multipleInput.value = '2';
+        dispatchEvent(multipleInput, 'input');
+        expect(instance.get('multiple')).to.eql(undefined);
+        // input correct value
+        multipleInput.value = '2020-02-02';
+        dispatchEvent(multipleInput, 'input');
+        expect(instance.get('multiple')).to.eql(['2020-02-02']);
+        // input the second value with incorrect date
+        multipleInput.value = '2020-02-02, ';
+        dispatchEvent(multipleInput, 'input');
+        expect(instance.get('multiple')).to.eql(['2020-02-02']);
+        // input the second correct value
+        multipleInput.value = '2020-02-02, 2020-03-03';
+        dispatchEvent(multipleInput, 'input');
+        expect(instance.get('multiple')).to.eql(['2020-02-02', '2020-03-03']);
+        // clear value
+        multipleInput.value = '';
+        dispatchEvent(multipleInput, 'input');
+        expect(instance.get('multiple')).to.eql([]);
+
+        // input range value
+        rangeInput.value = '2020-03-03';
+        dispatchEvent(rangeInput, 'input');
+        expect(instance.get('range')).to.eql(undefined);
+        // input ~
+        rangeInput.value = '2020-03-03~';
+        dispatchEvent(rangeInput, 'input');
+        expect(instance.get('range')).to.eql(undefined);
+        // input correct value
+        dispatchEvent(rangeInput, 'click'); // show calendar
+        rangeInput.value = '2020-03-03~2020-03-04';
+        dispatchEvent(rangeInput, 'input');
+        expect(instance.get('range')).to.eql(['2020-03-03', '2020-03-04']);
+        expect(getElement('.k-datepicker-content').innerHTML).to.matchSnapshot();
+        // clear value
+        rangeInput.value = '';
+        dispatchEvent(rangeInput, 'input');
+        expect(instance.get('range')).to.eql([]);
+
+        // input datetime value
+        datetimeInput.value = '2020-03-03';
+        dispatchEvent(datetimeInput, 'input');
+        dispatchEvent(datetimeInput, 'change');
+        expect(instance.get('datetime')).to.eql(undefined);
+        // input correct value
+        datetimeInput.value = '2020-03-03 02:02:02';
+        dispatchEvent(datetimeInput, 'input');
+        expect(instance.get('datetime')).to.eql('2020-03-03 02:02:02');
+
+        // input disabled date
+        basicInput.value = '1999-01-01';
+        dispatchEvent(basicInput, 'input');
+        expect(instance.get('basic')).to.eql('');
+        // input disabled range date
+        rangeInput.value = '1999-01-01~2020-03-04';
+        dispatchEvent(rangeInput, 'input');
+        expect(instance.get('range')).to.eql([]);
     });
 });

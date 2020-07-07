@@ -91,7 +91,7 @@ export default class Input extends Intact {
     focus() {
         this.refs.input.focus();
     }
-    
+
     blur() {
         this.refs.input.blur();
     }
@@ -114,6 +114,11 @@ export default class Input extends Intact {
 
     _proxyEvent(name, e) {
         this.trigger(name, e);
+    }
+
+    _onChange(e) {
+        if (this.get('frozenOnInput')) this.update();
+        this.trigger('change', e);
     }
 }
 

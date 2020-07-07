@@ -1,7 +1,7 @@
 import Intact from 'intact'; import template from './calendar.vdt';
 import {strPad, range, toggleArray} from '../utils';
 import {
-    getNowDate, getDateString, getTimeString, 
+    getNowDate, getDateString, getTimeString,
     isEqual, createDate, isGT, isLT
 } from './utils';
 import dayjs from 'dayjs';
@@ -11,7 +11,7 @@ export default class Calendar extends Intact {
     static template = template;
 
     static propTypes = {
-        multiple: Boolean, 
+        multiple: Boolean,
         disabledDate: Function,
         type: String,
         hours: Array,
@@ -96,17 +96,23 @@ export default class Calendar extends Intact {
     }
 
     initShowDate(silent) {
-        const v = this.get('value');
+        const {value} = this._getRealValue();
         const type = this.get('type');
         if (type === 'year' || type === 'month') {
-            const showDate = v || dayjs();
+            const showDate = value || dayjs();
             this.set('_showDate', showDate, {silent});
         }
     }
 
+    _getRealValue() {
+        const {value, multiple} = this.get();
+        const values = value ? multiple ? value : [value] : [];
+        return {values, value: values[this._index]};
+    }
+
     _isYearOrMonth() {
         const type = this.get('type');
-        return type === 'year' || type === 'month'; 
+        return type === 'year' || type === 'month';
     }
 
     select(value, e) {
@@ -320,7 +326,7 @@ export default class Calendar extends Intact {
             if (!value || Array.isArray(value)) {
                 isSet = false;
             } else if (!Array.isArray(value)) {
-                _focusDate = value; 
+                _focusDate = value;
             }
         } else {
             if (_showDate) {
@@ -394,7 +400,7 @@ export default class Calendar extends Intact {
         return maxDate && isGT(date, maxDate) ||
             minDate && isLT(date, minDate) ||
             disabledDate && disabledDate.call(
-                this, 
+                this,
                 getDateString(date.toDate(), type), // for compatibility
                 date.clone()
             );

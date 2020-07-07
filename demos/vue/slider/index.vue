@@ -1,6 +1,6 @@
 <template>
     <div class="slider-demo">
-        <Slider></Slider>
+        <Slider :marks="marks"></Slider>
         <Slider disabled ></Slider>
         <div>
              <span>选中值为： {{ currentVal }}</span>
@@ -14,6 +14,7 @@
 
 <script>
 import Slider from 'components/slider';
+import Intact from 'intact';
 
 export default {
     data() {
@@ -21,6 +22,11 @@ export default {
             'currentVal': 25,
             'step': 5,
             'valueArr': [30, 50],
+            'marks': {
+                50: Intact.normalize(
+                    <div>test</div>
+                )
+            }
         }
     },
 

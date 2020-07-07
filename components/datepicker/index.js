@@ -34,7 +34,7 @@ export default class Datepicker extends Intact {
         disabledHours: Boolean,
         disabledMinutes: Boolean,
         disabledSeconds: Boolean,
-        multiple: Boolean, 
+        multiple: Boolean,
         format: String,
         valueFormat: String,
         showFormat: String,
@@ -42,7 +42,7 @@ export default class Datepicker extends Intact {
 
     defaults() {
         return {
-            value: undefined, 
+            value: undefined,
             clearable: false,
             placeholder: undefined,
             disabled: false,
@@ -50,7 +50,7 @@ export default class Datepicker extends Intact {
             type: 'date', // date | datetime
             range: false,
             transition: 'c-slidedown',
-            shortcuts: undefined, 
+            shortcuts: undefined,
             container: undefined,
             disabledHours: false,
             disabledMinutes: false,
@@ -179,7 +179,7 @@ export default class Datepicker extends Intact {
     _setBeginShowDate(c) {
         const [start] = this.get('_value') || [];
         const date = start || getNowDate();
-        c.set('_showDate', date, {silent: true})
+        c.set('_showDate', date);
     }
 
     _setEndShowDate(c) {
@@ -196,7 +196,7 @@ export default class Datepicker extends Intact {
             date = getNowDate().add(1, 'month');
         }
 
-        c.set('_showDate', date, {silent: true})
+        c.set('_showDate', date);
     }
 
     _checkDateInRange(date, isOut) {
@@ -206,8 +206,8 @@ export default class Datepicker extends Intact {
         if (start) {
             if (end) {
                 return {
-                    'k-in-range': !isOut && 
-                        isGT(date, start) && 
+                    'k-in-range': !isOut &&
+                        isGT(date, start) &&
                         isLT(date, end)
                 };
             } else if (_rangeEndDate) {
@@ -223,7 +223,7 @@ export default class Datepicker extends Intact {
     _onChangeValueForRange(type, c, v) {
         let value = this.get('_value');
 
-        if (v && value && v.length === value.length && 
+        if (v && value && v.length === value.length &&
             v.every((v, index) => v.isSame([value.index])) ||
             v === value
         ) return;
@@ -354,6 +354,57 @@ export default class Datepicker extends Intact {
 
     _confirm() {
         this.refs.calendar.hide();
+    }
+
+    _onInput(e) {
+        const value = e.target.value.trim();
+        const {multiple, range} = this.get();
+        if (multiple) {
+            this._setValueOnInputForArray(value.split(','));
+        } else if (range) {
+            if (this._setValueOnInputForArray(value.split('~'))) {
+                this._setBeginShowDate(this.refs.begin);
+                this._setEndShowDate(this.refs.end);
+            }
+        } else {
+            if (!value) {
+                this.set('_value', '');
+                return;
+            }
+            const date = this._createDate(value);
+            if (!this._isInvalidDate(date)) {
+                this.set('_value', date);
+            }
+        }
+    }
+
+    _setValueOnInputForArray(values) {
+        const ret = [];
+        let hasInvalid = false;
+        values.find(value => {
+            value = value.trim();
+            if (!value) return;
+            const date = this._createDate(value);
+            if (this._isInvalidDate(date)) {
+                return hasInvalid = true;
+            }
+            ret.push(date);
+        });
+
+        if (!hasInvalid) {
+            this.set('_value', ret);
+            return true;
+        }
+
+        return false;
+    }
+
+    _isInvalidDate(date) {
+        return !date.isValid() || this.refs.begin._isDisabledDate(date);
+    }
+
+    _forceUpdate() {
+        this.update();
     }
 }
 

@@ -13,7 +13,7 @@ import Icon from '../icon';
 import dayjs from 'dayjs';
 
 const {
-    value, dayClassNames,
+    dayClassNames,
     disabledDate, multiple, onMouseEnterDay,
     type, hours, minutes, seconds, 
     disabledHours, disabledMinutes, disabledSeconds,
@@ -21,8 +21,8 @@ const {
     _focusDate, _id,
 } = self.get();
 
-const values = value ? multiple ? value : [value] : [];
-const valueDate = values[self._index] || _now;
+const {value, values} = self._getRealValue();
+const valueDate = value || _now;
 const showDate = _showDate || valueDate;
 
 let yearMonthFormat = _$('yearMonthFormat');
@@ -50,8 +50,8 @@ const isYearOrMonth = self._isYearOrMonth();
         value={{ _isSelectTime ? "time" : "date" }}
         ev-$change:value={{ self._onChangeTab }}
     >
-        <Tab value="date">{{ values[self._index] ? getDateString(valueDate.toDate()) : '0000-00-00' }}</Tab>
-        <Tab value="time">{{ values[self._index] ? getTimeString(valueDate.toDate()) : '00:00:00' }}</Tab>
+        <Tab value="date">{{ value ? getDateString(valueDate.toDate()) : '0000-00-00' }}</Tab>
+        <Tab value="time">{{ value ? getTimeString(valueDate.toDate()) : '00:00:00' }}</Tab>
     </Tabs>
     <div v-if={{ !_isSelectTime }} class="k-date-picker">
         <div class="k-month c-clearfix">
@@ -195,7 +195,7 @@ const isYearOrMonth = self._isYearOrMonth();
                     minutes.map(v => strPad(v, 2)),
                     seconds.map(v => strPad(v, 2)),
                 ] }}
-                value={{ values[self._index] ||
+                value={{ value ||
                     // if exists _id, it indicate that this is a range time selection of Timepicker
                     // we don't let Time to trigger $change:value in initial
                     // otherwise the start time will be disabled due to the end time is 00:00:00

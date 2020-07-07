@@ -87,7 +87,7 @@ const content = <b:content>
             ev-hide={{ self._hide }}
             type={{ type }}
             ev-$change:_showDate={{ self._onChangeShowDate.bind(self, 'begin') }}
-            ev-$inited={{ self._setBeginShowDate }}
+            ev-$mounted={{ self._setBeginShowDate }}
             dayClassNames={{ self._checkDateInRange }}
             onMouseEnterDay={{ self._highlightRangeDays }}
             multiple
@@ -107,7 +107,7 @@ const content = <b:content>
             ev-hide={{ self._hide }}
             type={{ type }}
             ev-$change:_showDate={{ self._onChangeShowDate.bind(self, 'end') }}
-            ev-$inited={{ self._setEndShowDate }}
+            ev-$mounted={{ self._setEndShowDate }}
             dayClassNames={{ self._checkDateInRange }}
             onMouseEnterDay={{ self._highlightRangeDays }}
             multiple
@@ -156,7 +156,6 @@ const suffix = <b:suffix><i class="ion-ios-calendar-outline"></i></b:suffix>
     >
         <Input
             placeholder={{ _placeholder }}
-            readonly 
             value={{ self._format() }}
             clearable={{ clearable }}
             ev-clear={{ self.onClear }}
@@ -167,6 +166,9 @@ const suffix = <b:suffix><i class="ion-ios-calendar-outline"></i></b:suffix>
             tabindex="-1"
             ev-blur={{ self.onInputFocusOut }}
             stackClearIcon
+            ev-input={{ self._onInput }}
+            ev-change={{ self._forceUpdate }}
+            frozenOnInput
         >
             <b:suffix>{{ suffix }}</b:suffix>
         </Input>
