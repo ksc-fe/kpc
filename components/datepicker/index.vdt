@@ -164,6 +164,7 @@ const suffix = <b:suffix><i class="ion-ios-calendar-outline"></i></b:suffix>
             ev-input={{ self._onInput }}
             ev-change={{ self._forceUpdate }}
             frozenOnInput
+            fluid
         >
             <b:suffix>{{ suffix }}</b:suffix>
         </Input>

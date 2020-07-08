@@ -10,10 +10,10 @@ import Intact from 'intact';
 describe('Timepicker', () => {
     let instance;
 
-    // afterEach(async () => {
-        // unmount(instance);
-        // await wait(400);
-    // });
+    afterEach(async () => {
+        unmount(instance);
+        await wait(400);
+    });
 
     it('select time', () => {
         instance = mount(BasicDemo);

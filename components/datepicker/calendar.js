@@ -297,7 +297,7 @@ export default class Calendar extends Intact {
 
     _onKeydown(e) {
         // do nothing if it is time selection
-        if (this._get(_isSelectTime)) return;
+        if (this.get('_isSelectTime')) return;
 
         switch (e.keyCode) {
             case 38: // up
