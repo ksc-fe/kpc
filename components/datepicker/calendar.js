@@ -296,6 +296,9 @@ export default class Calendar extends Intact {
     }
 
     _onKeydown(e) {
+        // do nothing if it is time selection
+        if (this._get(_isSelectTime)) return;
+
         switch (e.keyCode) {
             case 38: // up
                 this._focusByOffset(e, -7);
@@ -411,6 +414,10 @@ export default class Calendar extends Intact {
         const max = this._getMaxDate();
 
         return min && date.isBefore(min) || max && date.isAfter(max);
+    }
+
+    _onWheel(e) {
+        this.trigger('wheel', e);
     }
 
     /**

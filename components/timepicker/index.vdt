@@ -33,6 +33,7 @@ const _placeholder = range ?
                 multiple={{ multiple }}
                 maxDate={{ maxDate }}
                 minDate={{ minDate }}
+                ev-wheel={{ self._onWheel }}
             />
         </b:singe-panel>
     </t:parent>

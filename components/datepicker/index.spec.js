@@ -412,6 +412,7 @@ describe('Datepicker', () => {
                     <Datepicker v-model="multiple" multiple />
                     <Datepicker v-model="range" range maxDate="2021-11-11" minDate="2020-01-01" />
                     <Datepicker v-model="datetime" type="datetime" />
+                    <Datepicker v-model="format" showFormat="YYYY年M月D日" />
                 </div>
             `;
             _init() { this.Datepicker = Datepicker; }
@@ -419,7 +420,10 @@ describe('Datepicker', () => {
 
         instance = mount(Demo);
 
-        const [basicInput, multipleInput, rangeInput, datetimeInput] = instance.element.querySelectorAll('input');
+        const [
+            basicInput, multipleInput,
+            rangeInput, datetimeInput, formatInput
+        ] = instance.element.querySelectorAll('input');
 
         // input incorrect value
         basicInput.value = '2020';
@@ -493,5 +497,10 @@ describe('Datepicker', () => {
         rangeInput.value = '1999-01-01~2020-03-04';
         dispatchEvent(rangeInput, 'input');
         expect(instance.get('range')).to.eql([]);
+
+        // input formated date
+        formatInput.value = '2020年2月19日';
+        dispatchEvent(formatInput, 'input');
+        expect(instance.get('format')).to.eql('2020-02-19');
     });
 });

@@ -13,6 +13,8 @@ import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 dayjs.extend(customParseFormat);
 
+const typeMap = {0: 'begin', 1: 'end'};
+
 export default class Datepicker extends Intact {
     @Intact.template()
     static template = template;
@@ -113,6 +115,10 @@ export default class Datepicker extends Intact {
         return dayjs(value, typeof value === 'string' ? this._getValueFormat() : undefined);
     }
 
+    _createDateByShowFormat(value) {
+        return dayjs(value, this._getShowFormat());
+    }
+
     _dateToString(value) {
         return value.format(this._getValueFormat());
     }
@@ -158,7 +164,8 @@ export default class Datepicker extends Intact {
         this._hasSelectByArrowKey = false;
     }
 
-    _onChangeShowDate(type, c, v) {
+    _onChangeShowDate(c, v) {
+        const type = typeMap[c.get('_id')];
         const begin = this.refs.begin;
         const end = this.refs.end;
         if (type === 'begin') {
@@ -220,7 +227,8 @@ export default class Datepicker extends Intact {
         }
     }
 
-    _onChangeValueForRange(type, c, v) {
+    _onChangeValueForRange(c, v) {
+        const type = typeMap[c.get('_id')];
         let value = this.get('_value');
 
         if (v && value && v.length === value.length &&
@@ -371,7 +379,7 @@ export default class Datepicker extends Intact {
                 this.set('_value', '');
                 return;
             }
-            const date = this._createDate(value);
+            const date = this._createDateByShowFormat(value);
             if (!this._isInvalidDate(date)) {
                 this.set('_value', date);
             }
@@ -384,7 +392,7 @@ export default class Datepicker extends Intact {
         values.find(value => {
             value = value.trim();
             if (!value) return;
-            const date = this._createDate(value);
+            const date = this._createDateByShowFormat(value);
             if (this._isInvalidDate(date)) {
                 return hasInvalid = true;
             }
@@ -407,6 +415,10 @@ export default class Datepicker extends Intact {
 
     _forceUpdate() {
         this.update();
+    }
+
+    _onWheel() {
+        this.refs.input.blur();
     }
 }
 

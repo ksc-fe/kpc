@@ -57,6 +57,26 @@ const Panel = scope.Panel || Calendar;
 const _maxDate = maxDate && self._createDate(maxDate);
 const _minDate = minDate && self._createDate(minDate);
 
+let panelProps;
+if (range) {
+    panelProps = {
+        value: _value,
+        type,
+        dayClassNames: self._checkDateInRange,
+        onMouseEnterDay: self._highlightRangeDays,
+        multiple: true,
+        range: true,
+        autoChangeToTimePicker: false,
+        maxDate: _maxDate,
+        minDate: _minDate,
+        _parent: self,
+        'ev-$change:value': self._onChangeValueForRange,
+        'ev-hide': self._hide,
+        'ev-$change:_showDate': self._onChangeShowDate,
+        'ev-wheel': self._onWheel,
+    }
+}
+
 const content = <b:content>
     <div class="k-shortcuts" v-if={{ hasShortcuts }}>
         <div v-for={{ shortcuts }} 
@@ -75,49 +95,24 @@ const content = <b:content>
                 ev-enter:select={{ self._focus }}
                 maxDate={{ _maxDate }}
                 minDate={{ _minDate }}
+                ev-wheel={{ self._onWheel }}
             />
         </b:singe-panel>
     </template>
     <div v-else class="k-range c-clearfix" ev-mouseleave={{ self._clearRangeEndDate }}>
         <Panel
             {{ ..._rest }}
-            value={{ _value }}
-            ev-$change:value={{ self._onChangeValueForRange.bind(self, 'begin') }}
+            {{ ...panelProps }}
             ref="begin"
-            ev-hide={{ self._hide }}
-            type={{ type }}
-            ev-$change:_showDate={{ self._onChangeShowDate.bind(self, 'begin') }}
-            ev-$mounted={{ self._setBeginShowDate }}
-            dayClassNames={{ self._checkDateInRange }}
-            onMouseEnterDay={{ self._highlightRangeDays }}
-            multiple
-            range={{ true }}
-            autoChangeToTimePicker={{ false }}
             _index={{ 0 }}
             _id="0"
-            maxDate={{ _maxDate }}
-            minDate={{ _minDate }}
-            _parent={{ self }}
         />
         <Panel
             {{ ..._rest }} 
-            value={{ _value }}
-            ev-$change:value={{ self._onChangeValueForRange.bind(self, 'end') }}
+            {{ ...panelProps }}
             ref="end"
-            ev-hide={{ self._hide }}
-            type={{ type }}
-            ev-$change:_showDate={{ self._onChangeShowDate.bind(self, 'end') }}
-            ev-$mounted={{ self._setEndShowDate }}
-            dayClassNames={{ self._checkDateInRange }}
-            onMouseEnterDay={{ self._highlightRangeDays }}
-            multiple
-            range={{ true }}
-            autoChangeToTimePicker={{ false }}
             _index={{ 1 }}
             _id="1"
-            maxDate={{ _maxDate }}
-            minDate={{ _minDate }}
-            _parent={{ self }}
         />
     </div>
     <div v-if={{ type === 'datetime' || type === 'year' || type === 'month' || scope.showFooter }}

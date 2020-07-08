@@ -55,6 +55,10 @@ export default class Timepicker extends Datepicker {
         return dayjs(PREFIX + value, YEAR_FORMAT + (useDefaultFormat ? TIME_FORMAT : this._getValueFormat()));
     }
 
+    _createDateByShowFormat(value) {
+        return dayjs(PREFIX + value, YEAR_FORMAT + this._getShowFormat());
+    }
+
     _getValueFormat() {
         const {format, valueFormat} = this.get();
         return valueFormat || format || TIME_FORMAT;

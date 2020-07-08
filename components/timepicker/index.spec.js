@@ -131,6 +131,7 @@ describe('Timepicker', () => {
                     <Timepicker v-model="basic" min="01:34:56" max="15:02:59" />
                     <Timepicker v-model="multiple" multiple />
                     <Timepicker v-model="range" range min="01:34:56" max="15:02:59" />
+                    <Timepicker v-model="format" range step="00:30:00" valueFormat="HH:mm:ss.SSS" showFormat="HH:mm"/>
                 </div>
             `;
             _init() { this.Timepicker = Timepicker; }
@@ -138,7 +139,10 @@ describe('Timepicker', () => {
 
         instance = mount(Demo);
 
-        const [basicInput, multipleInput, rangeInput] = instance.element.querySelectorAll('input');
+        const [
+            basicInput, multipleInput,
+            rangeInput, formatInput
+        ] = instance.element.querySelectorAll('input');
 
         // input disabled value
         basicInput.value = '01:01:01';
@@ -164,5 +168,10 @@ describe('Timepicker', () => {
         rangeInput.value = '03:03:03~05:05:05';
         dispatchEvent(rangeInput, 'input');
         expect(instance.get('range')).to.eql(['03:03:03', '05:05:05']);
+
+        // input correct formated value
+        formatInput.value = '01:00~02:00';
+        dispatchEvent(formatInput, 'input');
+        expect(instance.get('format')).to.eql(['01:00:00.000', '02:00:00.000']);
     });
 });
