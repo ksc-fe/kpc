@@ -406,6 +406,13 @@ export default class Calendar extends Intact {
             );
     }
 
+    _isDisabledTime(date) {
+        const min = this._getMinDate();
+        const max = this._getMaxDate();
+
+        return min && date.isBefore(min) || max && date.isAfter(max);
+    }
+
     /**
      * @brief clear the state when hide
      */

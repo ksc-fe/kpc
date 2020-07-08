@@ -213,6 +213,7 @@ const isYearOrMonth = self._isYearOrMonth();
                 min={{ self._getMinDate() }}
                 max={{ self._getMaxDate() }}
                 date={{ scope.date || valueDate }}
+                isDisabledTime={{ self._isDisabledTime }}
             >
                 <b:append>:</b:append>
             </Time>

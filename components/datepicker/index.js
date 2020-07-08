@@ -400,7 +400,9 @@ export default class Datepicker extends Intact {
     }
 
     _isInvalidDate(date) {
-        return !date.isValid() || this.refs.begin._isDisabledDate(date);
+        return !date.isValid() ||
+            this.refs.begin._isDisabledDate(date) ||
+            this.refs.begin._isDisabledTime(date);
     }
 
     _forceUpdate() {

@@ -1,4 +1,4 @@
-import Intact from 'intact'; 
+import Intact from 'intact';
 import Datepicker from '../datepicker';
 import template from './index.vdt';
 import '../../styles/kpc.styl';
@@ -46,11 +46,12 @@ export default class Timepicker extends Datepicker {
         this.on('$receive', (c, receivedKeys) => {
             if (keys.find(key => receivedKeys.indexOf(key) > -1)) {
                 this._options();
-            } 
+            }
         });
     }
 
     _createDate(value, useDefaultFormat) {
+        if (typeof value !== 'string') return value;
         return dayjs(PREFIX + value, YEAR_FORMAT + (useDefaultFormat ? TIME_FORMAT : this._getValueFormat()));
     }
 
@@ -101,7 +102,7 @@ export default class Timepicker extends Datepicker {
         const [hours, minutes, seconds] = time.split(':').map(item => {
             return parseInt(item, 10);
         });
-    
+
         return (hours * 60 + (minutes || 0)) * 60 + (seconds || 0);
     }
 

@@ -13,9 +13,13 @@ export default class DatepickerTime extends Intact {
         max: dayjs,
         date: {
             required: true,
-            type: dayjs 
+            type: dayjs
         },
         disabledItems: Array,
+        isDisabledTime: {
+            required: true,
+            type: Function,
+        },
     };
 
     defaults() {
@@ -26,6 +30,7 @@ export default class DatepickerTime extends Intact {
             max: undefined,
             date: undefined,
             disabledItems: [],
+            isDisabledTime: undefined,
 
             _value: undefined,
         };
@@ -66,11 +71,10 @@ export default class DatepickerTime extends Intact {
     _isDisabled(value) {
         if (!value.every((item) => item)) return true;
 
-        const {min, max, date} = this.get();
+        const {date, isDisabledTime} = this.get();
+        value = date.clone().hour(+value[0]).minute(+value[1]).second(+value[2]);
 
-        value = date.hour(+value[0]).minute(+value[1]).second(+value[2]);
-
-        return min && value.isBefore(min) || max && value.isAfter(max);
+        return isDisabledTime(value);
     }
 
     _beforeUpdate(vNode) {

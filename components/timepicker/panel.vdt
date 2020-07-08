@@ -21,6 +21,7 @@ const valueDate = values[self._index] || _now;
             max={{ self._getMaxDate() }}
             date={{ valueDate }}
             _parent={{ _parent }}
+            isDisabledTime={{ self._isDisabledTime }}
         />
     </b:time-body>
 </t:parent>

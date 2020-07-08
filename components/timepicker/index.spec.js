@@ -128,10 +128,9 @@ describe('Timepicker', () => {
             @Intact.template()
             static template = `
                 <div>
-                    <Timepicker v-model="basic" maxDate="2021-11-11" minDate="2020-01-01" />
+                    <Timepicker v-model="basic" min="01:34:56" max="15:02:59" />
                     <Timepicker v-model="multiple" multiple />
-                    <Timepicker v-model="range" range maxDate="2021-11-11" minDate="2020-01-01" />
-                    <Timepicker v-model="datetime" type="datetime" />
+                    <Timepicker v-model="range" range min="01:34:56" max="15:02:59" />
                 </div>
             `;
             _init() { this.Timepicker = Timepicker; }
@@ -139,7 +138,31 @@ describe('Timepicker', () => {
 
         instance = mount(Demo);
 
-        const [basicInput, multipleInput, rangeInput, datetimeInput] = instance.element.querySelectorAll('input');
+        const [basicInput, multipleInput, rangeInput] = instance.element.querySelectorAll('input');
 
+        // input disabled value
+        basicInput.value = '01:01:01';
+        dispatchEvent(basicInput, 'input');
+        expect(instance.get('basic')).to.eql(undefined);
+
+        // input correct value
+        basicInput.value = '03:03:03';
+        dispatchEvent(basicInput, 'input');
+        expect(instance.get('basic')).to.eql('03:03:03');
+
+        // input multple values
+        multipleInput.value = '01:01:01,02:02:02';
+        dispatchEvent(multipleInput, 'input');
+        expect(instance.get('multiple')).to.eql(['01:01:01', '02:02:02']);
+
+        // input disabled range value
+        rangeInput.value = '01:01:01~05:05:05';
+        dispatchEvent(rangeInput, 'input');
+        expect(instance.get('range')).to.eql(undefined);
+
+        // input correct range value
+        rangeInput.value = '03:03:03~05:05:05';
+        dispatchEvent(rangeInput, 'input');
+        expect(instance.get('range')).to.eql(['03:03:03', '05:05:05']);
     });
 });
