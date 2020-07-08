@@ -71,7 +71,7 @@
 ```
 
 ```
-"<div class=\"k-main\"><input type=\"hidden\" value=\"00:00:00\"><span class=\"k-value c-ellipsis\">00:00</span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"ion-ios-clock-outline\"></i></span></span>"
+"<div class=\"k-main\"><input type=\"hidden\" value=\"00:00:00\"><div class=\"k-input k-fluid\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请选择时间\"></div></div></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"ion-ios-clock-outline\"></i></span></span>"
 ```
 
 ```
