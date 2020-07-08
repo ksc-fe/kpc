@@ -60,10 +60,12 @@ export default class DropdownMenu extends Intact {
                 this.trigger('hide', this);
             }
         });
-        this.on('$changed:of', () => {
-            if (this.get('value')) {
-                this.position();
-            }
+        ['of', 'position'].forEach(item => {
+            this.on(`$changed:${item}`, () => {
+                if (this.get('value')) {
+                    this.position();
+                }
+            });
         });
 
         initMouseOutsidable(this);

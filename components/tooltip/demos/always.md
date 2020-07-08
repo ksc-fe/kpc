@@ -11,8 +11,10 @@ order: 5
 ```vdt
 import Tooltip from 'kpc/components/tooltip';
 
-<div>
-    <Tooltip content="hello" always value={{ true }} canHover>
+<div style={{ {position: 'relative'} }}>
+    <Tooltip content="hello" always value={{ true }} canHover 
+        container={{ dom => dom.parentElement }}
+    >
         always show this tootip 
     </Tooltip>
     <br /><br />

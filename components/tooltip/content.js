@@ -4,7 +4,7 @@ import position from '../moveWrapper/position';
 import template from './content.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
-import {findParentComponent, _$} from '../utils';
+import {findParentComponent, _$, clamp} from '../utils';
 
 const Types = Intact.Vdt.miss.Types;
 const isEmptyChildren = (vNodes) => {
@@ -130,14 +130,16 @@ export default class TooltipContent extends DropdownMenu {
 
                 const arrow = this.refs.arrow;
                 const {target, element} = feedback;
-                if (feedback.horizontal === 'center') {
-                    const left = target.left - element.left + target.width / 2;
+                if (feedback.important === 'vertical') {
+                    const arrowWidth = arrow.offsetWidth;
+                    let left = target.left - element.left + target.width / 2 - arrowWidth / 2;
+                    left = clamp(left, 1, element.width - 1 - arrowWidth);
                     arrow.setAttribute('style', `left: ${left}px`);
-                } else if (feedback.vertical === 'middle') {
-                    const top = target.top - element.top + target.height / 2;
-                    arrow.setAttribute('style', `top: ${top}px`);
                 } else {
-                    arrow.setAttribute('style', 'display: none');
+                    const arrowHeight = arrow.offsetHeight;
+                    let top = target.top - element.top + target.height / 2 - arrowHeight / 2;
+                    top = clamp(top, 1, element.height - 1 - arrowHeight);
+                    arrow.setAttribute('style', `top: ${top}px`);
                 }
             },
             ...pos
