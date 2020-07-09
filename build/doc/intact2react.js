@@ -243,7 +243,7 @@ function parseVModel(template, properties, methods) {
                 name = 'value';
             }
             properties.state = {};
-            const matches = value.match(/model\.(.*)/);
+            const matches = value.match(/(\w+)\.(.*)/);
             let valueStr = `${name}={this.state.${value}}`;
             let changeStr = `on$change-${name}={(c, ${value}) => this.setState({${value}})}`;
             if (matches) {
@@ -253,7 +253,7 @@ function parseVModel(template, properties, methods) {
                         `this.setState({`,
                         ...indent([
                             `model:{`,
-                            `    ...this.state.model,`,
+                            `    ...this.state.${matches[1]},`,
                             `    [key]: value`,
                             `}`,
                         ]),
@@ -263,7 +263,7 @@ function parseVModel(template, properties, methods) {
                     '',
                 ].join('\n')
                 valueStr = `value={this.state.${value}}`;
-                changeStr = `on$change-value={this._onChange.bind(this, '${matches[1]}')}`;
+                changeStr = `on$change-value={this._onChange.bind(this, '${matches[2]}')}`;
             }
             valueStr = `${spaces}${start}${valueStr}`;
             changeStr = `${changeStr}${isEnd || ''}`;

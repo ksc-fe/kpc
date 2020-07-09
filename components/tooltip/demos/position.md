@@ -25,21 +25,33 @@ import {Spinner} from 'kpc/components/spinner';
     <template v-if={{ self.get('position') === 'custom' }}>
         <FormItem label="my:">
             x: <Select width="100" v-model="pos.myX">
-                <Option v-for={{ self.get('xAxisKeywords') }} value={{ value }}>{{ value }}</Option>
+                <Option 
+                    v-for={{ self.get('xAxisKeywords') }} 
+                    value={{ value }}
+                >{{ value }}</Option>
             </Select>
             <Spinner vertical v-model="pos.myXOffset" />
             y: <Select width="100" v-model="pos.myY">
-                <Option v-for={{ self.get('yAxisKeywords') }} value={{ value }}>{{ value }}</Option>
+                <Option 
+                    v-for={{ self.get('yAxisKeywords') }} 
+                    value={{ value }}
+                >{{ value }}</Option>
             </Select>
             <Spinner vertical v-model="pos.myYOffset" />
         </FormItem>
         <FormItem label="at:">
             x: <Select width="100" v-model="pos.atX">
-                <Option v-for={{ self.get('xAxisKeywords') }} value={{ value }}>{{ value }}</Option>
+                <Option 
+                    v-for={{ self.get('xAxisKeywords') }} 
+                    value={{ value }}
+                >{{ value }}</Option>
             </Select>
             <Spinner vertical v-model="pos.atXOffset" />
             y: <Select width="100" v-model="pos.atY">
-                <Option v-for={{ self.get('yAxisKeywords') }} value={{ value }}>{{ value }}</Option>
+                <Option 
+                    v-for={{ self.get('yAxisKeywords') }} 
+                    value={{ value }}
+                >{{ value }}</Option>
             </Select>
             <Spinner vertical v-model="pos.atYOffset" />
         </FormItem>
