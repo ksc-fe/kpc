@@ -19,9 +19,9 @@ import Slider from 'kpc/components/slider';
     <Slider v-model="value1" min={{ 0 }} max={{ 500 }}
         step={{ {
             // 0~100 step: 10
-            100: 10,
+            '100': 10,
             // 100~500 step: 50
-            500: 50
+            '500': 50
         } }}
         showTooltip
         isShowStop
