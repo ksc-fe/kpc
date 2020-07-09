@@ -5,14 +5,15 @@ import {Spinner} from 'kpc/components/spinner';
 import Intact from 'intact';
 import FormatterDemo from '~/components/spinner/demos/formatter';
 import ForceStepDemo from '~/components/spinner/demos/forceStep';
+import DynamicStepDemo from '~/components/spinner/demos/dynamicStep';
 
 describe('Spinner', () => {
     let instance;
 
-    // afterEach(() => {
-        // unmount(instance);
-        // instance = null
-    // });
+    afterEach(() => {
+        unmount(instance);
+        instance = null
+    });
 
     it('step/max/min test', () => {
         instance = mount(StepDemo);
@@ -205,5 +206,42 @@ describe('Spinner', () => {
 
         prev.click();
         expect(instance.get('value1')).to.eql(8.4);
+    });
+
+    it('dynamic step', () => {
+        instance = mount(DynamicStepDemo);
+
+        const btns = instance.element.querySelectorAll('.k-btn');
+
+        function test(index) {
+            const [prev, next] = index === 1 ? btns : Array.from(btns).slice(2);
+            const model = `value${index}`;
+
+            prev.click();
+            expect(instance.get(model)).to.eql(-1);
+
+            instance.set(model, -5);
+            prev.click();
+            expect(instance.get(model)).to.eql(-10);
+
+            next.click();
+            expect(instance.get(model)).to.eql(-5);
+
+            next.click();
+            expect(instance.get(model)).to.eql(-4);
+
+            instance.set(model, 5);
+            next.click();
+            expect(instance.get(model)).to.eql(10);
+
+            prev.click();
+            expect(instance.get(model)).to.eql(5);
+
+            prev.click();
+            expect(instance.get(model)).to.eql(4);
+        }
+
+        test(1);
+        test(2);
     });
 });

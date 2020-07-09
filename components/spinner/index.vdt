@@ -3,7 +3,7 @@ import {Input} from '../input';
 import {getRestProps} from '../utils';
 
 const {
-    className, disabled, max, min, step,
+    className, disabled, max, min,
     style, size, vertical, _value, width,
 } = self.get();
 

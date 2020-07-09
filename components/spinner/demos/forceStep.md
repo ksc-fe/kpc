@@ -1,6 +1,6 @@
 ---
 title: 强制取值与step关联
-order: 1
+order: 1.1
 ---
 
 当指定`step`并且同时指定`forceStep`，则输入值除了边界值之外，必须为满足条件`min + step * n`(`n`为整数)的等差数列

@@ -35,7 +35,7 @@ export default class Spinner extends Intact {
         value: [Number, String],
         max: Number,
         min: Number,
-        step: Number,
+        step: [Number, Object, Function],
         size: ['large', 'default', 'small', 'mini'],
         vertical: Boolean,
         precision: Number,
@@ -54,7 +54,10 @@ export default class Spinner extends Intact {
     _init() {
         // make sure the min/max/step is valid
         const defaults = this.defaults();
-        ['min', 'max', 'step'].forEach(item => {
+        this.on('$receive:step', (c, v) => {
+            this._getStep = parseStep(v, defaults.step);
+        });
+        ['min', 'max'/* , 'step' */].forEach(item => {
             this.on(`$receive:${item}`, (c, v) => {
                 if (typeof v !== 'number') {
                     this.set(item, defaults[item], {async: true});
@@ -73,6 +76,11 @@ export default class Spinner extends Intact {
         });
     }
 
+    // default function to get step
+    _getStep() {
+        return this.get('step');
+    }
+
     _fixValue(value = this.get('value'), fallbackValue = 0, shouldTriggerChange) {
         const ret = this._getFixedValue(value, fallbackValue);
         this.set(this._getFixedValue(value, fallbackValue));
@@ -82,7 +90,8 @@ export default class Spinner extends Intact {
     }
 
     _getFixedValue(value = this.get('value'), fallbackValue = 0) {
-        let {precision, max, min, step, forceStep} = this.get();
+        let {precision, max, min, forceStep} = this.get();
+        const step = this._getStep(value);
 
         if (min > max) {
             Intact.utils.error(new Error(`[Spinner] min must less than or equal to max, but got min: ${min} max: ${max}`));
@@ -137,14 +146,16 @@ export default class Spinner extends Intact {
     }
 
     _increase(e) {
-        const {value, step} = this.get();
+        const {value} = this.get();
+        const step = this._getStep(value, 'increase');
 
         this.oldValue = value;
         this._fixValue(Number((+value + step).toFixed(10)), 0, true);
     }
 
     _decrease(e) {
-        const {value, step} = this.get();
+        const {value} = this.get();
+        const step = this._getStep(value, 'decrease');
 
         this.oldValue = value;
         this._fixValue(Number((+value - step).toFixed(10)), 0, true);
@@ -182,6 +193,43 @@ export default class Spinner extends Intact {
     // preserve old value on focus to detect we should trigger change event or not
     _onFocus() {
         this.oldValue = this.get('value');
+    }
+}
+
+export function parseStep(step, defaultValue) {
+    const type = typeof step;
+    switch (type) {
+        case 'number': return () => step;
+        case 'object':
+            const breakpoints = Object.keys(step).map(i => {
+                if (i === '$') {
+                    return {key: i, value: Number.POSITIVE_INFINITY};
+                }
+                return {key: i, value: Number(i)};
+            }).sort((a, b) => {
+                return a.value - b.value;
+            });
+            return (value, direction) => {
+                for (let i = 0; i < breakpoints.length; i++) {
+                    const breakpoint = breakpoints[i];
+                    if (value < breakpoint.value) {
+                        return step[breakpoint.key];
+                    }
+                    if (value === breakpoint.value) {
+                        // we must detect the direction when it is a breakpoint
+                        if (direction === 'increase') {
+                            const nextBreakpoint = breakpoints[i + 1];
+                            if (nextBreakpoint !== undefined) {
+                                return step[nextBreakpoint.key];
+                            }
+                        }
+                        return step[breakpoint.key];
+                    }
+                }
+                return defaultValue;
+            };
+        case 'function': return step;
+        default: return () => defaultValue;
     }
 }
 
