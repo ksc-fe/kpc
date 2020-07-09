@@ -58,7 +58,7 @@ const tooltip = (value) => {
 const tooltipProps = {
     theme: tooltipTheme,
     container: dom => dom.parentElement,
-    /* canHover: true, */
+    canHover: true,
     always,
     size: tooltipSize,
 };
@@ -132,7 +132,14 @@ if (always) {
                     if (isShowStop && step) {
                         const ret = [];
                         const total = max - min;
-                        for (let i = min + step; Number(i.toFixed(10)) < max; i += step) {
+                        let i = min;
+                        while (true) {
+                            let step = self._getStep(i, 'increase');
+                            i = i + step;
+                            if (Number(i.toFixed(10)) >= max) {
+                                break
+                            }
+
                             ret.push(<i class="k-point" 
                                 style={{ {left: ((i - min) / total * 100) + '%'} }}
                             ></i>);

@@ -22,7 +22,7 @@ import Spinner from 'kpc/components/spinner';
         // 大于-5，小于5
         5: 1,
         // 大于5
-        $: 5,
+        $: 5
     } }} />
     <Spinner v-model="value2" step={{ (value, direction) => {
         if (value < -5 || value > 5) return 5;

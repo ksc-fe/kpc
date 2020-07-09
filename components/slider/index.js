@@ -7,6 +7,7 @@ import '../../styles/kpc.styl';
 import './index.styl';
 import {minMaxStep, isNullOrUndefined} from '../utils';
 import Tooltip from '../tooltip/content';
+import {parseStep} from '../spinner';
 
 const {isEqual} = Intact.utils;
 
@@ -48,7 +49,7 @@ export default class Slider extends Intact {
         unit: String,
         isShowEnd: Boolean,
         isShowInput: Boolean,
-        step: Number,
+        step: [Number, Object, Function],
         isShowStop: Boolean,
         marks: Object,
         disabled: Boolean,
@@ -73,7 +74,10 @@ export default class Slider extends Intact {
         });
         // make sure the min/max/step is valid
         const defaults = this.defaults();
-        ['min', 'max', 'step'].forEach(item => {
+        this.on('$receive:step', (c, v) => {
+            this._getStep = parseStep(v, defaults.step);
+        });
+        ['min', 'max'].forEach(item => {
             this.on(`$receive:${item}`, (c, v) => {
                 if (typeof v !== 'number') {
                     this.set(item, defaults[item], {async: true});
@@ -106,6 +110,11 @@ export default class Slider extends Intact {
         });
     }
 
+    // default function to get step
+    _getStep() {
+        return this.get('step');
+    }
+
     _setFixedValue(value, isFromSpinner) {
         const fixedValue = this._getFixedValue(value);
         this.set({
@@ -133,7 +142,8 @@ export default class Slider extends Intact {
     }
 
     _fix(v) {
-        let {step, max, min} = this.get();
+        let {max, min} = this.get();
+        const step = this._getStep(v);
 
         if (min > max) {
             Intact.utils.error(new Error(`[Slider] min must less than or equal to max, but got min: ${min} max: ${max}`));
@@ -346,10 +356,12 @@ export default class Slider extends Intact {
     _onKeydown(indexFlag, e) {
         if (this.get('disabled')) return;
 
-        const step = this.get('step');
+        const value = this.get('value');
         if (e.keyCode === 37) { // left
+            const step = this._getStep(value, 'decrease');
             this._setValue(indexFlag, -step);
         } else if (e.keyCode === 39) { // right
+            const step = this._getStep(value, 'increase');
             this._setValue(indexFlag, step);
         }
     }
