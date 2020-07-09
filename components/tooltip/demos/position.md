@@ -112,7 +112,7 @@ export default class extends Intact {
     }
 
     getContent() {
-        return JSON.stringify(this.get('position'));
+        return JSON.stringify(this.getPosition());
     }
 }
 ```

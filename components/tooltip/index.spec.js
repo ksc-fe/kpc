@@ -13,13 +13,13 @@ import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 describe('Tooltip', () => {
     let instance;
 
-    // afterEach((done) => {
-        // if (instance) {
-            // unmount(instance);
-            // instance = null;
-        // }
-        // setTimeout(done, 500);
-    // });
+    afterEach((done) => {
+        if (instance) {
+            unmount(instance);
+            instance = null;
+        }
+        setTimeout(done, 500);
+    });
 
     it('should show and hide content correctly', async () => {
         instance = mount(BasicDemo);
@@ -49,22 +49,45 @@ describe('Tooltip', () => {
     it('should position correctly', () => {
         instance = mount(PositionDemo);
 
-        const [left, right, top, bottom] = instance.element.querySelectorAll('.k-btn');
-        dispatchEvent(left, 'mouseenter');
-        let content = getElement('.k-tooltip-content');
-        expect(content.textContent).eql('left');
+        const tooltipContent = instance.element.querySelector('.k-tooltip-content');
+        const arrow = tooltipContent.querySelector('.k-arrow');
+        const at = instance.element.querySelector('.opera .k-btn');
+        const {width, height, left, top} = at.getBoundingClientRect();
+        const contains = (name) => expect(arrow.classList.contains(name)).to.be.true;
+        const eql = (a, b) => expect(Math.round(a)).to.eql(Math.round(b));
 
-        dispatchEvent(right, 'mouseenter');
-        content = getElement('.k-tooltip-content');
-        expect(content.textContent).eql('right');
+        instance.set('position', 'left');
+        contains('k-right');
+        eql(arrow.offsetTop, tooltipContent.offsetHeight / 2 - arrow.offsetHeight / 2);
 
-        dispatchEvent(top, 'mouseenter');
-        content = getElement('.k-tooltip-content');
-        expect(content.textContent).eql('top');
+        instance.set('position', 'right');
+        contains('k-left');
+        eql(arrow.offsetTop, tooltipContent.offsetHeight / 2 - arrow.offsetHeight / 2);
 
-        dispatchEvent(bottom, 'mouseenter');
-        content = getElement('.k-tooltip-content');
-        expect(content.textContent).eql('bottom');
+        instance.set('position', 'top');
+        contains('k-bottom');
+        eql(arrow.offsetLeft, tooltipContent.offsetWidth / 2 - arrow.offsetWidth / 2);
+
+        instance.set('position', 'bottom');
+        contains('k-top');
+        eql(arrow.offsetLeft, tooltipContent.offsetWidth / 2 - arrow.offsetWidth / 2);
+
+        instance.set('position', 'custom');
+        instance.getPosition = () => ({my: 'left bottom', at: 'left top'});
+        instance.update();
+        eql(arrow.offsetLeft, width / 2 - arrow.offsetWidth / 2);
+
+        instance.getPosition = () => ({my: 'left+100 bottom', at: 'left top'});
+        instance.update();
+        eql(arrow.offsetLeft, 1);
+
+        instance.getPosition = () => ({my: 'left top', at: 'right top'});
+        instance.update();
+        eql(arrow.offsetTop, tooltipContent.offsetHeight / 2 - arrow.offsetHeight / 2);
+
+        instance.getPosition = () => ({my: 'left top+30', at: 'right top'});
+        instance.update();
+        eql(arrow.offsetTop, 1);
     });
 
     it('should trigger correctly', async () => {

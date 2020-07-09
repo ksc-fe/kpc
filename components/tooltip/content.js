@@ -132,12 +132,22 @@ export default class TooltipContent extends DropdownMenu {
                 const {target, element} = feedback;
                 if (feedback.important === 'vertical') {
                     const arrowWidth = arrow.offsetWidth;
-                    let left = target.left - element.left + target.width / 2 - arrowWidth / 2;
+                    let left;
+                    if (feedback.horizontal === 'center')  {
+                        left = (element.width - arrowWidth) / 2;
+                    } else {
+                        left = target.left - element.left + (target.width - arrowWidth) / 2;
+                    }
                     left = clamp(left, 1, element.width - 1 - arrowWidth);
                     arrow.setAttribute('style', `left: ${left}px`);
                 } else {
                     const arrowHeight = arrow.offsetHeight;
-                    let top = target.top - element.top + target.height / 2 - arrowHeight / 2;
+                    let top;
+                    if (feedback.vertical === 'middle') {
+                        top = (element.height - arrowHeight) / 2;
+                    } else {
+                        top = target.top - element.top + target.height / 2 - arrowHeight / 2;
+                    }
                     top = clamp(top, 1, element.height - 1 - arrowHeight);
                     arrow.setAttribute('style', `top: ${top}px`);
                 }
