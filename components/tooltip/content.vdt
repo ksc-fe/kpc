@@ -36,7 +36,7 @@ const classNameObj = {
         <i v-if={{ showArrow }}
             class={{ {
                 "k-arrow": true,
-                [`k-${_feedback[_feedback.important]}`]: true,
+                [`k-${_feedback[_feedback.important]}`]: _feedback.important,
             } }}
             ref="arrow"
         ></i>
