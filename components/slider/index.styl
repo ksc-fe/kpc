@@ -1,4 +1,5 @@
 @require('./variables.styl')
+@require('../dropdown/variables.styl')
 
 .k-slider
     position relative
@@ -34,6 +35,7 @@
             margin-top s('-%s', $slider-handle-height / 2)
             margin-left s('-%s', $slider-handle-width / 2)
             transition left $transition 
+            z-index 1
         .k-handle
             height $slider-handle-height
             width $slider-handle-width 
@@ -45,7 +47,8 @@
             background-color $slider-handle-bg-color 
             transition all $transition 
             outline none
-            z-index 1
+            z-index $dropdown-menu-z-index + 1 
+            position relative
             &:hover
             &:focus
                 transform $slider-handle-hover-transform 
