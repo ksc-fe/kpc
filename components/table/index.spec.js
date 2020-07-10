@@ -20,7 +20,7 @@ import DraggableTable from '~/components/table/demos/draggable';
 describe('Table', () => {
     let instance;
 
-    // afterEach(() => unmount(instance));
+    afterEach(() => unmount(instance));
 
     it('check & uncheck', () => {
         instance = mount(BasicDemo);
