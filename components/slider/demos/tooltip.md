@@ -4,8 +4,7 @@ order: 6
 ---
 
 给组件添加`showTooltip`可以在滑块上展示气泡提示，默认展示当前值，我们也可以通过`tooltip`扩展点自定义展示内容；
-当添加`always`属性时，将一直展示提示气泡。通过`tooltipTheme`和`tooltipSize`可以分别指定`Tooltip`的`theme`
-和`size`属性
+当添加`always`属性时，将一直展示提示气泡。通过`tooltipProps`可以设置`Tooltip`的所有属性
 
 > `tooltip`扩展点和`Tooltip`组件的`content`扩展点行为一样，如果你传入空的内容，则不会展示气泡
 
@@ -28,8 +27,7 @@ import Slider from 'kpc/components/slider';
     <Slider v-model="value3" min={{ 50 }} max={{ 500 }}
         showTooltip
         always
-        tooltipTheme="light"
-        tooltipSize="small"
+        tooltipProps={{ {'theme': 'light', 'size': 'small'} }}
     />
 </div>
 ```

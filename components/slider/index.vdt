@@ -9,7 +9,7 @@ const {
     step, _isDragging, _isFirst,
     _isSecond, _sliderValue, always,
     isShowStop, marks, showTooltip,
-    tooltipTheme, tooltipSize,
+    tooltipProps,
 } = self.get();
 
 const classNameObj = {
@@ -55,15 +55,14 @@ if (sliderWidth) {
 const tooltip = (value) => {
     return <b:tooltip args={{ [value] }}>{{ value }}</b:tooltip>;
 };
-const tooltipProps = {
-    theme: tooltipTheme,
+const _tooltipProps = {
     container: dom => dom.parentElement,
     canHover: true,
     always,
-    size: tooltipSize,
+    ...tooltipProps,
 };
 if (always) {
-    tooltipProps.value = true;
+    _tooltipProps.value = true;
 }
 
 <div class={{ classNameObj }} {{ ...getRestProps(self) }}>
@@ -78,7 +77,7 @@ if (always) {
                 <div class="k-handle-wrapper" style={{ handleStartStyle }}>
                     <Tooltip ref="tooltip1"
                         disabled={{ !showTooltip }}
-                        {{ ...tooltipProps }}
+                        {{ ..._tooltipProps }}
                     >
                         <div
                             class={{ {
@@ -109,7 +108,7 @@ if (always) {
                 >
                     <Tooltip ref="tooltip2" 
                         disabled={{ !showTooltip }}
-                        {{ ...tooltipProps }}
+                        {{ ..._tooltipProps }}
                     >
                         <div
                             class={{ {

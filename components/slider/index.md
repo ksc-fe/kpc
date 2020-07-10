@@ -21,8 +21,7 @@ sidebar: doc
 | showTooltip | 是否展示提示气泡，默认不展示 | `Boolean` | `false` |
 | always | 当展示气泡时，是否一直展示 | `Boolean` | `false` |
 | animate | 滑块的移动是否使用缓动动画 | `Boolean` | `true` |
-| tooltipTheme | `Tooltip`主题 | `"dark"` &#124; `"light"` | `"dark"` |
-| tooltipSize | `Tooltip`尺寸 | `"default"` &#124; `"small"` | `"default"` |
+| tooltipProps | 设置`Tooltip`的所有属性 | `Object` | `undefined` |
 
 # 扩展点
 
