@@ -1,11 +1,5 @@
 # `Dropdown`
 
-#### `should wrap dropdown when wrapDropdown is true`
-
-```
-"<div><div class=\"k-dropdown\"><div class=\"\">test</div><!-- react-mount-point-unstable --><!--placeholder--></div></div>"
-```
-
 #### `demos test`
 
 ```
@@ -84,5 +78,11 @@
 
 ```
 "<div class=\"k-item\"><span>click</span><i class=\"ion-ios-arrow-right\"></i></div><!--placeholder--><div class=\"k-item\">item 1</div>"
+```
+
+#### `should wrap dropdown when wrapDropdown is true`
+
+```
+"<div><div class=\"k-dropdown\"><div class=\"\">test</div><!-- react-mount-point-unstable --><!--placeholder--></div></div>"
 ```
 

@@ -300,7 +300,7 @@ describe('Table', () => {
 
         const checkbox = instance.element.querySelector('.k-checkbox');
         checkbox.click();
-        expect(instance.get('checkedKeys')).to.eql(['2', '3', '4']);
+        expect(instance.get('checkedKeys')).to.eql(['3', '2', '4']);
         checkbox.click();
         expect(instance.get('checkedKeys')).to.eql(['3']);
 
