@@ -20,7 +20,7 @@ import DraggableTable from '~/components/table/demos/draggable';
 describe('Table', () => {
     let instance;
 
-    afterEach(() => unmount(instance));
+    // afterEach(() => unmount(instance));
 
     it('check & uncheck', () => {
         instance = mount(BasicDemo);
@@ -366,5 +366,54 @@ describe('Table', () => {
 
         await wait(300);
         expect(instance.element.innerHTML).to.matchSnapshot();
+    });
+
+    it('should not check all if the checkedKeys have some keys that not in rowKeys', () => {
+        class Demo extends Intact {
+            @Intact.template()
+            static template = `
+                <Table v-model:checkedKeys="checkedKeys"
+                    data={{ self.get('data') }}
+                    rowKey={{ i => i.a }}
+                    ref="table"
+                    removeCheckedKeyOnRowDestroyed={{ false }}
+                >
+                    <TableColumn key="a" />
+                </Table>
+            `;
+            defaults() {
+                return {
+                    data: [
+                        {a: 1},
+                        {a: 2},
+                    ],
+                    checkedKeys: [3, 4],
+                };
+            }
+            _init() {
+                this.Table = Table;
+                this.TableColumn = TableColumn;
+            }
+        }
+
+        instance = mount(Demo);
+
+        expect(instance.refs.table.isCheckAll()).to.be.false;
+
+        instance.refs.table.checkAll();
+        expect(instance.get('checkedKeys')).to.eql([3, 4, 1, 2]);
+
+        instance.refs.table.uncheckAll();
+        expect(instance.get('checkedKeys')).to.eql([3, 4]);
+
+        instance.set('checkedKeys', [3, 4, 1]);
+        expect(instance.refs.table.isCheckAll()).to.be.false;
+
+        instance.refs.table.checkAll();
+        expect(instance.get('checkedKeys')).to.eql([3, 4, 1, 2]);
+
+        // destroy one row
+        instance.set('data', [{a: 1}]);
+        expect(instance.get('checkedKeys')).to.eql([3, 4, 1, 2]);
     });
 });

@@ -45,6 +45,7 @@ sidebar: doc
 | indent | 树形表格指定子元素缩进宽度 | `Number` | `32` |
 | spreadKeys | 树形表格指定展开的行 | `Array` | `[]` |
 | draggable | 表格行是否可拖动 | `Boolean` | `false` |
+| removeCheckedKeyOnRowDestroyed | 是否在行销毁的时候，也同步删除`checkedKeys`中的值，默认会同步删除（仅在销毁行的时候有效，如果整个`Table`被销毁，则不会执行该逻辑） | `Boolean` | `true` |
 
 ## TableColumn
 
@@ -103,6 +104,7 @@ sidebar: doc
 | shrinkRow | 收起某行 | `key` | `undefined` |
 | scrollToRowByIndex | 通过索引指定滚动的行 | `index` | `undefined` |
 | scrollToRowByKey | 通过key指定滚动的行 | `key` | `undefined` |
+| refreshHeader | 如果固定了表头，`Table`会在是否展示滚动条的时候自动设置表头的`padding`值，某些特殊情况下如果没有正确`padding`值，可以调用该方法强制更新 | - | `undefined` |
 
 # 事件
 

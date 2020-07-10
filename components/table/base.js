@@ -53,6 +53,7 @@ export default class BaseTable extends Intact {
             indent: 32,
             spreadKeys: [],
             draggable: false,
+            removeCheckedKeyOnRowDestroyed: true,
 
             _padding: 0,
             _paddingBottom: 0,
@@ -102,6 +103,7 @@ export default class BaseTable extends Intact {
         indent: Number,
         spreadKeys: Array,
         draggable: Boolean,
+        removeCheckedKeyOnRowDestroyed: Boolean,
     };
 
     static events = {
@@ -216,13 +218,8 @@ export default class BaseTable extends Intact {
     }
 
     isCheckAll() {
-        const {checkedKeys, _disabledKeys, _enabledKeys} = this.get();
-        const checkedKeysWithoutDisabled = _disabledKeys.length ?
-            checkedKeys.filter(key => _disabledKeys.indexOf(key) < 0) :
-            checkedKeys;
-        const amount = _enabledKeys.length;
-
-        return amount && checkedKeysWithoutDisabled.length >= amount;
+        const {checkedKeys, _enabledKeys} = this.get();
+        return _enabledKeys.every(key => checkedKeys.includes(key));
     }
 
     isChecked(key) {
@@ -262,21 +259,22 @@ export default class BaseTable extends Intact {
     }
 
     _getCheckUnCheckAllkeys(isCheck) {
-        const {rowKey, disableRow, checkedKeys} = this.get();
-        const newCheckedKeys = [];
-        this._breakForEach((value, index) => {
-            const key = rowKey.call(this, value, index);
-            const disabled = disableRow.call(this, value, index);
-            // if the row is disabled, we should keep its checked status, #437
-            if (isCheck ?
-                (!disabled || ~checkedKeys.indexOf(key)) :
-                (disabled && ~checkedKeys.indexOf(key))
-            ) {
-                newCheckedKeys.push(key);
+        let {checkedKeys, _enabledKeys} = this.get();
+        checkedKeys = checkedKeys.slice(0);
+        _enabledKeys.forEach(key => {
+            const index = checkedKeys.indexOf(key);
+            if (isCheck) {
+                if (index < 0) {
+                    checkedKeys.push(key);
+                }
+            } else {
+                /* istanbul ignore else */
+                if (index > -1) {
+                    checkedKeys.splice(index, 1);
+                }
             }
         });
-        return newCheckedKeys;
-
+        return checkedKeys;
     }
 
     checkRow(key) {
@@ -787,7 +785,9 @@ export default class BaseTable extends Intact {
         const keys = this._allDestroyedRows;
         if (keys.length) {
             this.shrinkRows(keys);
-            this.uncheckRows(keys);
+            if (this.get('removeCheckedKeyOnRowDestroyed')) {
+                this.uncheckRows(keys);
+            }
             this.unselectRows(keys);
 
             this._allDestroyedRows = [];
@@ -982,30 +982,10 @@ export default class BaseTable extends Intact {
         // const start = performance.now();
         this.set('_hoverIndex', index);
         // console.log('hover: ', performance.now() - start);
-        // this._hoverIndex = index;
-        // addClass(e.target, 'k-hover');
-        // const _class = vNode.props.className;
-        // const _className = className({
-            // [_class]: _class,
-            // 'k-hover': true,
-        // });
-        // vNode.className = _className;
-        // vNode.props.className = _className;
-        // // if has fixed columns, we must update the view
-        // if (this.hasFixedLeft || this.hasFixedRight) {
-            // this.update();
-        // }
     }
 
     _onRowLeave(e) {
         this.set('_hoverIndex', undefined);
-        // const vNode = e._vNode;
-        // this._hoverIndex = undefined;
-        // removeClass(e.target, 'k-hover');
-        // vNode.className = vNode.props.className = vNode.props.className.replace('k-hover', '');
-        // if (this.hasFixedLeft || this.hasFixedRight) {
-            // this.update();
-        // }
     }
 
     _onChangeChecked(key, value) {
