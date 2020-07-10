@@ -4,6 +4,28 @@ order: 99
 sidebar: doc
 ---
 
+## v1.4.1
+
+1. `Add` `Slider` `marks`支持分别设置常态和选中状态文案 [#491](https://github.com/ksc-fe/kpc/issues/491)
+2. `Add` `Tooltip`支持设置`size`属性，来控制弹层的`padding` [#498](https://github.com/ksc-fe/kpc/issues/498)
+3. `Add` `Form`支持设置`size`属性，来控制`FormItem`的间距 [#499](https://github.com/ksc-fe/kpc/issues/499)
+4. `Add` `Datepicker / Timepicker`支持直接输入日期和时间 [#494](https://github.com/ksc-fe/kpc/issues/494)
+5. `Add` 现在`Tooltip`的箭头`showArrow`，会根据位置动态调整，而非此前只能居中展示，否则隐藏 [#502](https://github.com/ksc-fe/kpc/issues/502)
+6. `Add` `Slider / Spinner`支持动态步长`step`，即对不同的取值区间，设置不同的`step` [#492](https://github.com/ksc-fe/kpc/issues/492)
+7. `Add` `Slider`新增`tooltipProps`属性，用来在展示`Tooltip`时，设置`Tooltip`的属性 [#496](https://github.com/ksc-fe/kpc/issues/496)
+8. `Add` `Table`新增`removeCheckedKeysOnRowDestroyed`属性，可以在行销毁时，不同步删除`checkedKeys`中的值 [#501](https://github.com/ksc-fe/kpc/issues/501)
+9. `Refactor` 重构`Table`判断是否全选，以及全选、非全选的逻辑，现在通过`key`精确匹配，而非只是之前的比较数组长度。这样你设置的`checkedKeys`如果不存在`rowKeys`中，也不会错误地展示全选状态 [#501](https://github.com/ksc-fe/kpc/issues/501)
+10. `Fix` 修复`Tooltip`当一值展示弹层`always`，此时如果指定`canHover`，则鼠标从弹层移出，依然会隐藏弹层的问题 [#497](https://github.com/ksc-fe/kpc/issues/497)
+11. `Fix` 修复`Progress`当`percent`为`100`时，此时设置`status=error`的错误状态无效的问题 [#495](https://github.com/ksc-fe/kpc/issues/495)
+
+__Vue__
+
+1. `Fix` 修复`Intact.normalize`包装Vue jsx，当作为`data`属性时，会报无限循环的错误的问题 [#500](https://github.com/ksc-fe/kpc/issues/500)
+
+__React__
+
+1. `Fix` 修复用`React`元素更新`Intact`函数式组件（如：`Tooltip`）报错的问题 [#493](https://github.com/ksc-fe/kpc/issues/493)
+
 ## v1.4.0
 
 1. `Add` `Table`支持行拖拽排序 [#482](https://github.com/ksc-fe/kpc/issues/482)
