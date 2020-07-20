@@ -78,20 +78,20 @@ export default class Spinner extends Intact {
 
     // default function to get step
     _getStep() {
-        return this.get('step');
+        return [this.get('step'), this.get('min')];
     }
 
     _fixValue(value = this.get('value'), fallbackValue = 0, shouldTriggerChange) {
         const ret = this._getFixedValue(value, fallbackValue);
-        this.set(this._getFixedValue(value, fallbackValue));
+        this.set(ret);
         if (shouldTriggerChange && ret.value !== this.oldValue) {
             this.trigger('change', ret.value);
         }
     }
 
     _getFixedValue(value = this.get('value'), fallbackValue = 0) {
-        let {precision, max, min, forceStep} = this.get();
-        const step = this._getStep(value);
+        let {precision, max, forceStep} = this.get();
+        const [step, min] = this._getStep(value);
 
         if (min > max) {
             Intact.utils.error(new Error(`[Spinner] min must less than or equal to max, but got min: ${min} max: ${max}`));
@@ -147,7 +147,7 @@ export default class Spinner extends Intact {
 
     _increase(e) {
         const {value} = this.get();
-        const step = this._getStep(value, 'increase');
+        const [step] = this._getStep(value, 'increase');
 
         this.oldValue = value;
         this._fixValue(Number((+value + step).toFixed(10)), 0, true);
@@ -155,7 +155,7 @@ export default class Spinner extends Intact {
 
     _decrease(e) {
         const {value} = this.get();
-        const step = this._getStep(value, 'decrease');
+        const [step] = this._getStep(value, 'decrease');
 
         this.oldValue = value;
         this._fixValue(Number((+value - step).toFixed(10)), 0, true);
@@ -196,7 +196,7 @@ export default class Spinner extends Intact {
     }
 }
 
-export function parseStep(step, defaultValue) {
+function _parseStep(step, defaultValue) {
     const type = typeof step;
     switch (type) {
         case 'number': return () => step;
@@ -212,24 +212,39 @@ export function parseStep(step, defaultValue) {
             return (value, direction) => {
                 for (let i = 0; i < breakpoints.length; i++) {
                     const breakpoint = breakpoints[i];
+                    const prevBreakpoint = breakpoints[i - 1];
                     if (value < breakpoint.value) {
-                        return step[breakpoint.key];
+                        return [step[breakpoint.key], prevBreakpoint && prevBreakpoint.value];
                     }
                     if (value === breakpoint.value) {
                         // we must detect the direction when it is a breakpoint
                         if (direction === 'increase') {
                             const nextBreakpoint = breakpoints[i + 1];
                             if (nextBreakpoint !== undefined) {
-                                return step[nextBreakpoint.key];
+                                return [step[nextBreakpoint.key], breakpoint.value];
                             }
                         }
-                        return step[breakpoint.key];
+                        return [step[breakpoint.key], prevBreakpoint && prevBreakpoint.value];
                     }
                 }
-                return defaultValue;
+                return [defaultValue, undefined];
             };
         case 'function': return step;
         default: return () => defaultValue;
+    }
+}
+
+export function parseStep(step, defaultValue) {
+    const getStep = _parseStep(step, defaultValue);
+
+    return function(value, direction) {
+        const step = getStep(value, direction);
+        const min = this.get('min');
+        if (Array.isArray(step)) {
+            return [step[0], step[1] === undefined ? min : Math.max(min, step[1])];
+        } else {
+            return [step, min];
+        }
     }
 }
 

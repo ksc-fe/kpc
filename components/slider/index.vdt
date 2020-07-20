@@ -133,7 +133,7 @@ if (always) {
                         const total = max - min;
                         let i = min;
                         while (true) {
-                            let step = self._getStep(i, 'increase');
+                            let [step] = self._getStep(i, 'increase');
                             i = i + step;
                             if (Number(i.toFixed(10)) >= max) {
                                 break

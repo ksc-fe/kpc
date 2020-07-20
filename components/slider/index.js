@@ -109,7 +109,7 @@ export default class Slider extends Intact {
 
     // default function to get step
     _getStep() {
-        return this.get('step');
+        return [this.get('step'), this.get('min')];
     }
 
     _setFixedValue(value, isFromSpinner) {
@@ -139,8 +139,8 @@ export default class Slider extends Intact {
     }
 
     _fix(v) {
-        let {max, min} = this.get();
-        const step = this._getStep(v);
+        let {max} = this.get();
+        const [step, min] = this._getStep(v);
 
         if (min > max) {
             Intact.utils.error(new Error(`[Slider] min must less than or equal to max, but got min: ${min} max: ${max}`));
@@ -355,10 +355,10 @@ export default class Slider extends Intact {
 
         const value = this.get('value');
         if (e.keyCode === 37) { // left
-            const step = this._getStep(value, 'decrease');
+            const [step] = this._getStep(value, 'decrease');
             this._setValue(indexFlag, -step);
         } else if (e.keyCode === 39) { // right
-            const step = this._getStep(value, 'increase');
+            const [step] = this._getStep(value, 'increase');
             this._setValue(indexFlag, step);
         }
     }

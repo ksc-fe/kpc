@@ -15,7 +15,7 @@ sidebar: doc
 | unit | 单位，用于刻度展示 | `String` | `""` |
 | isShowEnd | 是否展示最小值和最大值刻度 | `Boolean` | `true` |
 | isShowInput | 是否展示输入框 | `Boolean` | `true` |
-| step | 步长，支持动态步长，详见示例 | `Number` &#124; `Object` &#124; `Function` | `1` |
+| step | 步长，支持动态步长，详见示例 | `Number` &#124; `Object` | `1` |
 | isShowStop | 是否展示间隔点 | `Boolean` | `false` |
 | marks | 标注刻度 | `Object` | `undefined` |
 | showTooltip | 是否展示提示气泡，默认不展示 | `Boolean` | `false` |

@@ -242,6 +242,33 @@ describe('Spinner', () => {
         }
 
         test(1);
-        test(2);
+        // test(2);
+    });
+
+    it('should set correct value with dynamic step when min is not equal 0', () => {
+        class Demo extends Intact {
+            @Intact.template()
+            static template = `<Spinner min={{ 30 }}
+                max={{ 500 }}
+                step={{ {100: 10, 500: 50} }}
+                v-model="value"
+                forceStep
+            />`;
+            defaults() {
+                return {value: 100};
+            }
+            _init() {
+                this.Spinner = Spinner;
+            }
+        }
+        instance = mount(Demo);
+
+        const [prev, next] = instance.element.querySelectorAll('.k-btn');
+        next.click();
+        expect(instance.get('value')).to.eql(150);
+        prev.click();
+        expect(instance.get('value')).to.eql(100);
+        prev.click();
+        expect(instance.get('value')).to.eql(90);
     });
 });

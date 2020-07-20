@@ -12,7 +12,7 @@ sidebar: doc
 | value | 组件的值，可用`v-model`进行双向绑定 | `Number` | `0` |
 | max | 最大值 | `Number` | `Number.POSITIVE_INFINITY` |
 | min | 最小值 | `Number` | `Number.NEGATIVE_INFINITY` | 
-| step | 步长，支持动态步长，详见示例 | `Number` &#124; `Object` &#124; `Function` | `1` |
+| step | 步长，支持动态步长，详见示例 | `Number` &#124; `Object` | `1` |
 | disabled | 是否禁用 | `Boolean` | `false` |
 | size | 尺寸 | `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
 | vertical | 控制按钮是否竖直排列 | `Boolean` | `false` |
