@@ -327,31 +327,24 @@ describe('Slider', () => {
 
     it('dynamic step', () => {
         instance = mount(DynamicStepDemo);
-        const [slider1, slider2] = instance.element.querySelectorAll('.k-slider');
-        const test = (index) => {
-            const slider = index === 1 ? slider1 : slider2;
-            const handle = slider.querySelector('.k-handle');
-            const model = `value${index}`;
-            instance.set(model, 100);
+        const handle = instance.element.querySelector('.k-handle');
+        const model = `value${index}`;
+        instance.set(model, 100);
 
-            dispatchEvent(handle, 'focusin');
+        dispatchEvent(handle, 'focusin');
 
-            dispatchEvent(handle, 'keydown', {keyCode: 37});
-            expect(instance.get(model)).to.eql(90);
+        dispatchEvent(handle, 'keydown', {keyCode: 37});
+        expect(instance.get(model)).to.eql(90);
 
-            dispatchEvent(handle, 'keydown', {keyCode: 39});
-            expect(instance.get(model)).to.eql(100);
+        dispatchEvent(handle, 'keydown', {keyCode: 39});
+        expect(instance.get(model)).to.eql(100);
 
-            dispatchEvent(handle, 'keydown', {keyCode: 39});
-            expect(instance.get(model)).to.eql(150);
+        dispatchEvent(handle, 'keydown', {keyCode: 39});
+        expect(instance.get(model)).to.eql(150);
 
-            dispatchEvent(handle, 'keydown', {keyCode: 37});
-            expect(instance.get(model)).to.eql(100);
+        dispatchEvent(handle, 'keydown', {keyCode: 37});
+        expect(instance.get(model)).to.eql(100);
 
-            dispatchEvent(handle, 'focusout');
-        };
-
-        test(1);
-        // test(2);
+        dispatchEvent(handle, 'focusout');
     });
 });

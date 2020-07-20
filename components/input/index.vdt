@@ -97,8 +97,8 @@ const wrapperEvents = [
             tabindex={{ tabindex }}
             {{ ...events }}
         ></textarea>
-        <div class="k-suffix" v-if={{ blocks.suffix || clearable }}>
-            <Icon v-if={{ clearable }}
+        <div class="k-suffix" v-if={{ blocks.suffix || clearable && !disabled }}>
+            <Icon v-if={{ clearable && !disabled }}
                 class={{ {
                     "k-clear ion-ios-close": true, 
                     "k-show": value,
