@@ -75,7 +75,7 @@ export default class TooltipContent extends DropdownMenu {
     _mount() {
         super._mount();
 
-        if (this.get('value')) {
+        if (this.get('value') && !this.isEmptyChildren) {
             this.position('none');
             this._addDocumentEvents();
         }

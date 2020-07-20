@@ -47,7 +47,8 @@ function getDimensions(elem) {
         offset: {
             top: rect.top + window.pageYOffset,
             left: rect.left + window.pageXOffset
-        }
+        },
+        rect
     };
 }
 
@@ -114,15 +115,15 @@ export function scrollbarWidth() {
 }
 
 function getScrollInfo(within) {
-    const overflowX = within.isWindow || within.isDocument ? 
+    const overflowX = within.isWindow || within.isDocument ?
         '' : within.element.style.overflowX;
-    const overflowY = within.isWindow || within.isDocument ? 
+    const overflowY = within.isWindow || within.isDocument ?
         '' : within.element.style.overflowY;
-    const hasOverflowX = overflowX === 'scroll' || 
+    const hasOverflowX = overflowX === 'scroll' ||
         (overflowX === 'auto' && within.width < within.element.scrollWidth);
-    const hasOverflowY = overflowY === 'scroll' || 
+    const hasOverflowY = overflowY === 'scroll' ||
         (overflowY === 'auto' && within.height < within.element.scrollHeight);
-    
+
     return {
         width: hasOverflowY ? scrollbarWidth() : 0,
         height: hasOverflowX ? scrollbarWidth() : 0,
@@ -162,6 +163,15 @@ function parseCss(style, property) {
     return parseInt(style[property], 10) || 0;
 }
 
+function isInViewport(rect) {
+    if (!rect) return true;
+
+    const {top, bottom, left, right} = rect;
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+    return top <= windowHeight && bottom >= 0 && left <= windowWidth && right >= 0;
+}
+
 export default function position(elem, options) {
     options = Object.assign({}, options);
 
@@ -171,11 +181,13 @@ export default function position(elem, options) {
     }
     const {
         width: targetWidth,
-        height: targetHeight, 
-        offset: targetOffset
+        height: targetHeight,
+        offset: targetOffset,
+        rect: targetRect,
     } = getDimensions(target);
     const basePosition = Object.assign({}, targetOffset);
-    const collision = (options.collision || 'flip').split(' ');
+    // don't detect collison if the target is not in viewport
+    const collision = isInViewport(targetRect) ? (options.collision || 'flip').split(' ') : ['none', 'none'];
     const offsets = {};
     const within = getWithinInfo(options.within);
     const scrollInfo = getScrollInfo(within);
@@ -305,7 +317,7 @@ export default function position(elem, options) {
         }
 
         if (
-            position.top + elemHeight <= targetOffset.top || 
+            position.top + elemHeight <= targetOffset.top ||
             position.top >= targetOffset.top + targetHeight
         ) {
             feedback.important = 'vertical';
@@ -404,7 +416,7 @@ const rules = {
             const collisionPosLeft = position.left - data.collisionPosition.marginLeft;
             const overLeft = collisionPosLeft - offsetLeft;
             const overRight = collisionPosLeft + data.collisionWidth - outerWidth - offsetLeft;
-            const myOffset = data.my[0] === 'left' ? 
+            const myOffset = data.my[0] === 'left' ?
                 -data.elemWidth :
                 data.my[0] === 'right' ?
                     data.elemWidth : 0;
@@ -438,7 +450,7 @@ const rules = {
             const offsetTop = within.isWindow ? within.scrollTop : within.offset.top;
             const collisionPosTop = position.top - data.collisionPosition.marginTop;
             const overTop = collisionPosTop - offsetTop;
-            const overBottom = collisionPosTop + data.collisionHeight - outerHeight - offsetTop; 
+            const overBottom = collisionPosTop + data.collisionHeight - outerHeight - offsetTop;
             const myOffset = data.my[1] === 'top' ?
                 -data.elemHeight :
                 data.my[1] === 'bottom' ?

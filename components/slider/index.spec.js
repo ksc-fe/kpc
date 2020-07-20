@@ -328,7 +328,7 @@ describe('Slider', () => {
     it('dynamic step', () => {
         instance = mount(DynamicStepDemo);
         const handle = instance.element.querySelector('.k-handle');
-        const model = `value${index}`;
+        const model = `value1`;
         instance.set(model, 100);
 
         dispatchEvent(handle, 'focusin');

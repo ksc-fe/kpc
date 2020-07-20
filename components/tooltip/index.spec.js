@@ -289,4 +289,36 @@ describe('Tooltip', () => {
         content = getElement('.k-tooltip-content');
         expect(content).eql(undefined);
     });
+
+    it('should not detect collison when target is not in viewport', async () => {
+        class Demo extends Intact {
+            @Intact.template()
+            static template = `
+                <div>
+                    <Tooltip v-model="show"content="hello">
+                        <div ref="test">test</div>
+                    </Tooltip>
+                </div>
+            `;
+            defaults() {
+                this.Tooltip = Tooltip;
+                return {show: false};
+            }
+            _mount() {
+                const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                this.element.parentNode.style.height = `${windowHeight * 2}px`;
+            }
+        }
+
+        instance = mount(Demo);
+
+        await wait(500);
+        window.scrollTo(0, 10000);
+
+        instance.set('show', true);
+
+        await wait(500);
+        const content = getElement('.k-tooltip-content');
+        expect(content.getBoundingClientRect().top < 0).to.be.true;
+    });
 });
