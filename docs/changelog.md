@@ -4,6 +4,12 @@ order: 99
 sidebar: doc
 ---
 
+## v1.4.2
+
+1. `Fix` 修复`Tooltip`当`trigger`元素不在可视区域，通过属性控制`value`控制组件展示时，提示位置展示不对的问题 [#504](https://github.com/ksc-fe/kpc/issues/504)
+2. `Fix` 修复`Slider/Spinner`当`min`不为`0`时，动态设置`step`会导致取值不正确的问题 [#506](https://github.com/ksc-fe/kpc/issues/506)
+3. `Fix` 修复`Datepicker/Input/Timepicker`等组件在`disabled`状态下，`clearable`依然可用的问题 [#507](https://github.com/ksc-fe/kpc/issues/507)
+
 ## v1.4.1
 
 1. `Add` `Slider` `marks`支持分别设置常态和选中状态文案 [#491](https://github.com/ksc-fe/kpc/issues/491)
