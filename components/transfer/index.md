@@ -26,7 +26,7 @@ sidebar: doc
 # 扩展点
 
 | 名称 | 说明 | 参数 |
-| --- | --- |
+| --- | --- | --- |
 | label | 自定义每一项的渲染函数，类似于`label`属性 | `data, index, type` |
 | filter | 自定义检索内容 | `type` | 
 | header | 自定义整个头部内容 | `type` |
