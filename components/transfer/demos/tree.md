@@ -185,3 +185,53 @@ export default class extends Intact {
     }
 }
 ```
+
+```vue-script
+mounted() {
+    // expand all nodes
+    const data = this.data;
+    const allKeys = [];
+    const loop = (children => {
+        if (children) {
+            children.forEach(item => {
+                allKeys.push(item.key);
+                loop(item.children);
+            });
+        }
+    });
+    loop(data);
+    this.leftExpandedKeys= allKeys;
+    this.rightExpandedKeys = allKeys;
+    this.leftData = this.deepClone(data);
+}
+```
+
+```vue-methods
+set(data) {
+    for (let key in data) {
+        this[key] = data[key];
+    }
+}
+```
+
+```react-methods
+componentDidMount() {
+    // expand all nodes
+    const data = this.state.data;
+    const allKeys = [];
+    const loop = (children => {
+        if (children) {
+            children.forEach(item => {
+                allKeys.push(item.key);
+                loop(item.children);
+            });
+        }
+    });
+    loop(data);
+    this.setState({
+        leftExpandedKeys: allKeys,
+        rightExpandedKeys: allKeys,
+        leftData: this.deepClone(data),
+    });
+}
+```
