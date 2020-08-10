@@ -215,9 +215,9 @@ module.exports = {
           },
         ],
       };
-      let oneOf = webpackConfig.module.rules.find((rule) => rule.oneOf)
-        .oneOf;
+      const oneOf = webpackConfig.module.rules.find((rule) => rule.oneOf).oneOf;
       oneOf.splice(oneOf.length - 1, 0, stylusLoader);
+
       return webpackConfig;
     },
   },
@@ -247,18 +247,17 @@ configure: (webpackConfig, { env, paths }) => {
              loader: 'css-loader',
             ...
 
-+ if (isEnvProduction) {
++      if (isEnvProduction) {
 +         stylusLoader.use.unshift({
 +           loader: MiniCssExtractPlugin.loader,
 +           options: paths.publicUrlOrPath.startsWith('.')
 +             ? { publicPath: '../../' }
 +             : {},
 +         });
-+       } else {
++      } else {
 +         stylusLoader.use.unshift('style-loader');
-+       }
-      let oneOf = webpackConfig.module.rules.find((rule) => rule.oneOf)
-        .oneOf;
++      }
+      const oneOf = webpackConfig.module.rules.find((rule) => rule.oneOf).oneOf;
 ```
 
 
