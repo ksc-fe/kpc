@@ -144,6 +144,124 @@ npm install stylus stylus-loader -D
 
 > 如果主题没有生效，请检查`resolve.alias['kpc-react']`是否指向了`kpc-react/@stylus`
 
+## 不 Eject 进行主题修改
+
+> 在开发中，有时候你并不想将全部配置文件暴露出来，此时可以使用[craco](https://github.com/gsoft-inc/craco)来覆盖配置。
+
+首先安装stylus和stylus-loader
+
+```bash
+npm install stylus stylus-loader -D
+```
+
+安装[craco](https://github.com/gsoft-inc/craco)
+
+```bash
+npm install @craco/craco -D
+```
+
+更新`package.json`文件来使用 craco CLI
+
+```diff
+/* package.json */
+
+"scripts": {
+-   "start": "react-scripts start",
++   "start": "craco start",
+-   "build": "react-scripts build",
++   "build": "craco build"
+-   "test": "react-scripts test",
++   "test": "craco test"
+}
+```
+
+在项目根目录下创建`craco.config.js`文件
+
+```
+my-app
+├── node_modules
+├── craco.config.js
+└── package.json
+```
+
+编辑`craco.config.js`文件，新增以下内容：
+
+```javascript
+module.exports = {
+  webpack: {
+    alias: {
+      'kpc-react': 'kpc-react/@stylus',
+    },
+    configure: (webpackConfig, { env, paths }) => {
+      const stylusLoader = {
+        test: /\.styl$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2,
+            },
+          },
+          {
+            loader: 'stylus-loader',
+            options: {
+              'include css': true,
+              'resolve url': true,
+              import: [
+                '~kpc-react/@stylus/styles/themes/ksyun/index.styl',
+              ],
+            },
+          },
+        ],
+      };
+      let oneOf = webpackConfig.module.rules.find((rule) => rule.oneOf)
+        .oneOf;
+      oneOf.splice(oneOf.length - 1, 0, stylusLoader);
+      return webpackConfig;
+    },
+  },
+};
+```
+
+**注意：** 此时的配置将样式通过style的模式引入，在部署时，可能需要抽取为css文件，可以通过以下步骤来实现。
+
+安装`mini-css-extract-plugin`
+
+```bash
+npm install mini-css-extract-plugin -D
+```
+
+```diff
+/* craco.config.js */
+
++ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+configure: (webpackConfig, { env, paths }) => {
++      const isEnvProduction = env === 'production';
+       const stylusLoader = {
+         test: /\.styl$/,
+         use: [
+-          'style-loader',
+           {
+             loader: 'css-loader',
+            ...
+
++ if (isEnvProduction) {
++         stylusLoader.use.unshift({
++           loader: MiniCssExtractPlugin.loader,
++           options: paths.publicUrlOrPath.startsWith('.')
++             ? { publicPath: '../../' }
++             : {},
++         });
++       } else {
++         stylusLoader.use.unshift('style-loader');
++       }
+      let oneOf = webpackConfig.module.rules.find((rule) => rule.oneOf)
+        .oneOf;
+```
+
+
 # 使用
 
 ```js
