@@ -109,6 +109,92 @@
 <blockquote>
 <p>如果主题没有生效，请检查<code>resolve.alias[&#39;kpc-react&#39;]</code>是否指向了<code>kpc-react/@stylus</code></p>
 </blockquote>
+<h2 id='%E4%B8%8D%20Eject%20%E8%BF%9B%E8%A1%8C%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9'>不 Eject 进行主题修改</h2><blockquote>
+<p>在开发中，有时候你并不想将全部配置文件暴露出来，此时可以使用<a href="https://github.com/gsoft-inc/craco">craco</a>来覆盖配置。</p>
+</blockquote>
+<p>首先安装stylus和stylus-loader</p>
+<pre><code class="hljs bash">npm <span class="hljs-keyword">install</span> stylus stylus-loader -D</code></pre>
+<p>安装<a href="https://github.com/gsoft-inc/craco">craco</a></p>
+<pre><code class="hljs bash"><span class="hljs-built_in">npm</span> install @craco/craco -D</code></pre>
+<p>更新<code>package.json</code>文件来使用 craco CLI</p>
+<pre><code class="hljs diff"><span class="hljs-comment">/* package.json */</span>
+
+<span class="hljs-string">"scripts"</span>: {
+-   <span class="hljs-string">"start"</span>: <span class="hljs-string">"react-scripts start"</span>,
++   <span class="hljs-string">"start"</span>: <span class="hljs-string">"craco start"</span>,
+-   <span class="hljs-string">"build"</span>: <span class="hljs-string">"react-scripts build"</span>,
++   <span class="hljs-string">"build"</span>: <span class="hljs-string">"craco build"</span>
+-   <span class="hljs-string">"test"</span>: <span class="hljs-string">"react-scripts test"</span>,
++   <span class="hljs-string">"test"</span>: <span class="hljs-string">"craco test"</span>
+}</code></pre>
+<p>在项目根目录下创建<code>craco.config.js</code>文件</p>
+<pre><code><span class="hljs-selector-tag">my-app</span>
+├── <span class="hljs-selector-tag">node_modules</span>
+├── <span class="hljs-selector-tag">craco</span><span class="hljs-selector-class">.config</span><span class="hljs-selector-class">.js</span>
+└── <span class="hljs-selector-tag">package</span><span class="hljs-selector-class">.json</span></code></pre><p>编辑<code>craco.config.js</code>文件，新增以下内容：</p>
+<pre><code class="hljs javascript"><span class="hljs-string">module.exports</span> <span class="hljs-string">=</span> <span class="hljs-string">{</span>
+  <span class="hljs-attr">webpack:</span> <span class="hljs-string">{</span>
+    <span class="hljs-attr">alias:</span> <span class="hljs-string">{</span>
+      <span class="hljs-attr">'kpc-react':</span> <span class="hljs-string">'kpc-react/@stylus'</span><span class="hljs-string">,</span>
+    <span class="hljs-string">},</span>
+    <span class="hljs-attr">configure:</span> <span class="hljs-string">(webpackConfig,</span> <span class="hljs-string">{</span> <span class="hljs-string">env,</span> <span class="hljs-string">paths</span> <span class="hljs-string">})</span> <span class="hljs-string">=&gt;</span> <span class="hljs-string">{</span>
+      <span class="hljs-string">const</span> <span class="hljs-string">stylusLoader</span> <span class="hljs-string">=</span> <span class="hljs-string">{</span>
+        <span class="hljs-attr">test:</span> <span class="hljs-string">/\.styl$/,</span>
+        <span class="hljs-attr">use:</span> <span class="hljs-string">[</span>
+          <span class="hljs-string">'style-loader'</span><span class="hljs-string">,</span>
+          <span class="hljs-string">{</span>
+            <span class="hljs-attr">loader:</span> <span class="hljs-string">'css-loader'</span><span class="hljs-string">,</span>
+            <span class="hljs-attr">options:</span> <span class="hljs-string">{</span>
+              <span class="hljs-attr">importLoaders:</span> <span class="hljs-number">2</span><span class="hljs-string">,</span>
+            <span class="hljs-string">},</span>
+          <span class="hljs-string">},</span>
+          <span class="hljs-string">{</span>
+            <span class="hljs-attr">loader:</span> <span class="hljs-string">'stylus-loader'</span><span class="hljs-string">,</span>
+            <span class="hljs-attr">options:</span> <span class="hljs-string">{</span>
+              <span class="hljs-attr">'include css':</span> <span class="hljs-literal">true</span><span class="hljs-string">,</span>
+              <span class="hljs-attr">'resolve url':</span> <span class="hljs-literal">true</span><span class="hljs-string">,</span>
+              <span class="hljs-attr">import:</span> <span class="hljs-string">[</span>
+                <span class="hljs-string">'~kpc-react/@stylus/styles/themes/ksyun/index.styl'</span><span class="hljs-string">,</span>
+              <span class="hljs-string">],</span>
+            <span class="hljs-string">},</span>
+          <span class="hljs-string">},</span>
+        <span class="hljs-string">],</span>
+      <span class="hljs-string">};</span>
+      <span class="hljs-string">const</span> <span class="hljs-string">oneOf</span> <span class="hljs-string">=</span> <span class="hljs-string">webpackConfig.module.rules.find((rule)</span> <span class="hljs-string">=&gt;</span> <span class="hljs-string">rule.oneOf).oneOf;</span>
+      <span class="hljs-string">oneOf.splice(oneOf.length</span> <span class="hljs-bullet">-</span> <span class="hljs-number">1</span><span class="hljs-string">,</span> <span class="hljs-number">0</span><span class="hljs-string">,</span> <span class="hljs-string">stylusLoader);</span>
+
+      <span class="hljs-string">return</span> <span class="hljs-string">webpackConfig;</span>
+    <span class="hljs-string">},</span>
+  <span class="hljs-string">},</span>
+<span class="hljs-string">};</span></code></pre>
+<p><strong>注意：</strong> 此时的配置将样式通过style的模式引入，在部署时，可能需要抽取为css文件，可以通过以下步骤来实现。</p>
+<p>安装<code>mini-css-extract-plugin</code></p>
+<pre><code class="hljs bash">npm <span class="hljs-keyword">install</span> mini-css-<span class="hljs-keyword">extract</span>-<span class="hljs-keyword">plugin</span> -D</code></pre>
+<pre><code class="hljs diff"><span class="hljs-comment">/* craco.config.js */</span>
+
++ <span class="hljs-keyword">const</span> MiniCssExtractPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mini-css-extract-plugin'</span>);
+
+configure: <span class="hljs-function">(<span class="hljs-params">webpackConfig, { env, paths }</span>) =&gt;</span> {
++      <span class="hljs-keyword">const</span> isEnvProduction = env === <span class="hljs-string">'production'</span>;
+       <span class="hljs-keyword">const</span> stylusLoader = {
+         <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.styl$/</span>,
+         <span class="hljs-attr">use</span>: [
+-          <span class="hljs-string">'style-loader'</span>,
+           {
+             <span class="hljs-attr">loader</span>: <span class="hljs-string">'css-loader'</span>,
+            ...
+
++      <span class="hljs-keyword">if</span> (isEnvProduction) {
++         stylusLoader.use.unshift({
++           loader: MiniCssExtractPlugin.loader,
++           options: paths.publicUrlOrPath.startsWith(<span class="hljs-string">'.'</span>)
++             ? { <span class="hljs-attr">publicPath</span>: <span class="hljs-string">'../../'</span> }
++             : {},
++         });
++      } <span class="hljs-keyword">else</span> {
++         stylusLoader.use.unshift(<span class="hljs-string">'style-loader'</span>);
++      }
+      <span class="hljs-keyword">const</span> oneOf = webpackConfig.module.rules.find(<span class="hljs-function">(<span class="hljs-params">rule</span>) =&gt;</span> rule.oneOf).oneOf;</code></pre>
 <h1 id='%E4%BD%BF%E7%94%A8'>使用</h1><pre><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-type">React</span> from <span class="hljs-symbol">'reac</span>t';
 <span class="hljs-keyword">import</span> {<span class="hljs-type">Button</span>, <span class="hljs-type">Message</span>} from <span class="hljs-symbol">'kpc</span>-react';
 
@@ -209,4 +295,4 @@
 <blockquote>
 <p><code>Table</code>组件的<code>scheme</code>属性中<code>template</code>字段返回的vNode无需<code>normalize</code>，因为组件内部做了兼容，不过多次调用<code>normalize</code>也没有问题。</p>
 </blockquote>
-</div></div></div></article><div class="table-of-contents"><ul></ul><div class="aside-dot transition" style="display:none"></div></div></div></div></div></div><script src="//damife.ks3-cn-beijing.ksyun.com/kpc/static/client.79487021575c563c17f9.js"></script></body></html>
+</div></div></div></article><div class="table-of-contents"><ul></ul><div class="aside-dot transition" style="display:none"></div></div></div></div></div></div><script src="//damife.ks3-cn-beijing.ksyun.com/kpc/static/client.f514e40c6602e46a7d94.js"></script></body></html>
