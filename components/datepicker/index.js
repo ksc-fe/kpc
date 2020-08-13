@@ -40,6 +40,8 @@ export default class Datepicker extends Intact {
         format: String,
         valueFormat: String,
         showFormat: String,
+        minDate: [String, Date],
+        maxDate: [String, Date],
     };
 
     defaults() {
