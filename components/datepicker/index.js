@@ -389,13 +389,16 @@ export default class Datepicker extends Intact {
     }
 
     _setValueOnInputForArray(values) {
+        const {range} = this.get();
         const ret = [];
         let hasInvalid = false;
-        values.find(value => {
+        let ref = 'begin';
+        values.find((value, index) => {
             value = value.trim();
             if (!value) return;
             const date = this._createDateByShowFormat(value);
-            if (this._isInvalidDate(date)) {
+            if (range && index === 1) ref = 'end';
+            if (this._isInvalidDate(date, ref)) {
                 return hasInvalid = true;
             }
             ret.push(date);
@@ -409,10 +412,11 @@ export default class Datepicker extends Intact {
         return false;
     }
 
-    _isInvalidDate(date) {
+    _isInvalidDate(date, ref = 'begin') {
+        const calendar = this.refs[ref];
         return !date.isValid() ||
-            this.refs.begin._isDisabledDate(date) ||
-            this.refs.begin._isDisabledTime(date);
+            calendar._isDisabledDate(date) ||
+            calendar._isDisabledTime(date);
     }
 
     _forceUpdate() {
