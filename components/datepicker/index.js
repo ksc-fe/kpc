@@ -337,7 +337,9 @@ export default class Datepicker extends Intact {
     }
 
     _onHide() {
-        dispatchEvent(this.refs.input.refs.input, 'focusout');
+        // add _dispatch true to let Input knowns ignore this event
+        // and don't endInput, #523
+        dispatchEvent(this.refs.input.refs.input, 'focusout', {_dispatch: true});
     }
 
     _setValue(value) {
@@ -382,7 +384,7 @@ export default class Datepicker extends Intact {
                 return;
             }
             const date = this._createDateByShowFormat(value);
-            if (!this._isInvalidDate(date)) {
+            if (!this._isInvalidDate(date, 'begin')) {
                 this.set('_value', date);
             }
         }
@@ -412,7 +414,7 @@ export default class Datepicker extends Intact {
         return false;
     }
 
-    _isInvalidDate(date, ref = 'begin') {
+    _isInvalidDate(date, ref) {
         const calendar = this.refs[ref];
         return !date.isValid() ||
             calendar._isDisabledDate(date) ||

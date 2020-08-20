@@ -14,10 +14,10 @@ import dayjs from 'dayjs';
 describe('Datepicker', () => {
     let instance;
 
-    afterEach(async () => {
-        unmount(instance);
-        await wait(400);
-    });
+    // afterEach(async () => {
+        // unmount(instance);
+        // await wait(400);
+    // });
 
     it('should select date', () => {
         instance = mount(BasicDemo);
@@ -517,5 +517,12 @@ describe('Datepicker', () => {
         expect(instance.get('datetimeRange')).to.eql(['2020-08-11 00:01:00', '2020-08-11 01:00:00']);
         inputValue('2020-08-11 00:01:00 ~ 2020-08-11 01:01:00');
         expect(instance.get('datetimeRange')).to.eql(['2020-08-11 00:01:00', '2020-08-11 01:01:00']);
+
+        // should not break input
+        dispatchEvent(datetimeRangeInput, 'click');
+        dispatchEvent(datetimeRangeInput, 'focusin');
+        dispatchEvent(datetimeRangeInput, 'click');
+        inputValue('2020-08-11 00:01:00 ~ 2020-08-11 0:01:00');
+        expect(datetimeRangeInput.value).to.eql('2020-08-11 00:01:00 ~ 2020-08-11 0:01:00');
     });
 });
