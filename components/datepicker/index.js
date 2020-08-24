@@ -23,6 +23,10 @@ export default class Datepicker extends Intact {
 
     static createDate = createDate;
 
+    static events = {
+        change: true,
+    };
+
     static propTypes = {
         value: [String, Array, Date, Number],
         clearable: Boolean,
@@ -65,6 +69,8 @@ export default class Datepicker extends Intact {
             _value: undefined, // for range
             _rangeEndDate: undefined,
             _isShow: false,
+            _oldV: false,
+            _hasInvalid: false
         }
     }
 
@@ -141,6 +147,7 @@ export default class Datepicker extends Intact {
         begin.set('_isSelectTime', false);
         end && end.set('_isSelectTime', false);
         this.set('_value', undefined);
+        this.trigger('change', undefined);
     }
 
     _hide() {
@@ -258,6 +265,12 @@ export default class Datepicker extends Intact {
             this.set('value', undefined);
         }
 
+        if (!c.isSelectTime) {
+            value.sort((a, b) => a > b ? 1 : -1);
+        }
+
+        this.set('_value', value);
+
         // when the ScrollSelect changed, the refs may not exist
         if (begin && end) {
             // if we have selected two dates, change to time picker
@@ -273,12 +286,6 @@ export default class Datepicker extends Intact {
                 end.set('_isSelectTime', false, {async: true});
             }
         }
-
-        if (!c.isSelectTime) {
-            value.sort((a, b) => a > b ? 1 : -1);
-        }
-
-        this.set('_value', value);
     }
 
     _highlightRangeDays(date, isOut) {
@@ -336,6 +343,11 @@ export default class Datepicker extends Intact {
 
     _onHide() {
         dispatchEvent(this.refs.input.refs.input, 'focusout');
+        const value = this.get('value');
+        if (this.get('_oldV')!== value) {
+            this.trigger('change', value);
+            this.set('_oldV', value);
+        }
     }
 
     _setValue(value) {
@@ -367,6 +379,7 @@ export default class Datepicker extends Intact {
     _onInput(e) {
         const value = e.target.value.trim();
         const {multiple, range} = this.get();
+        this._hasInvalid = false;
         if (multiple) {
             this._setValueOnInputForArray(value.split(','));
         } else if (range) {
@@ -377,29 +390,31 @@ export default class Datepicker extends Intact {
         } else {
             if (!value) {
                 this.set('_value', '');
+                this.trigger('change','');
                 return;
             }
             const date = this._createDateByShowFormat(value);
             if (!this._isInvalidDate(date)) {
                 this.set('_value', date);
+            } else {
+                this._hasInvalid = true;
             }
         }
     }
 
     _setValueOnInputForArray(values) {
         const ret = [];
-        let hasInvalid = false;
         values.find(value => {
             value = value.trim();
             if (!value) return;
             const date = this._createDateByShowFormat(value);
             if (this._isInvalidDate(date)) {
-                return hasInvalid = true;
+                return this._hasInvalid = true;
             }
             ret.push(date);
         });
 
-        if (!hasInvalid) {
+        if (!this._hasInvalid) {
             this.set('_value', ret);
             return true;
         }
@@ -414,7 +429,15 @@ export default class Datepicker extends Intact {
     }
 
     _forceUpdate() {
+        this._triggerChange();
         this.update();
+    }
+
+    _triggerChange() {
+        if (!this._hasInvalid && !this.get('_isShow')) {
+            const value = this._format();
+            this.trigger('change', value);
+        }
     }
 
     _onWheel() {

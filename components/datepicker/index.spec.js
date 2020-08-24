@@ -503,4 +503,69 @@ describe('Datepicker', () => {
         dispatchEvent(formatInput, 'input');
         expect(instance.get('format')).to.eql('2020-02-19');
     });
+
+    it('should trigger change event correctly', () => {
+        const spy = sinon.spy();
+
+        class Demo extends Intact {
+            @Intact.template()
+            static template = `
+                <div>
+                    <Datepicker v-model="basic" ev-change={{ self._onChange }}/>
+                    <Datepicker v-model="clear" clearable ev-change={{ self._onChange }}/>
+                    <Datepicker v-model="range" range ev-change={{ self._onChange }}/>
+                </div>
+            `;
+            _init() {
+                this.Datepicker = Datepicker;
+            }
+            _onChange(v) {
+                console.log('change', v);
+                spy(v);
+            }
+        }
+
+        instance = mount(Demo);
+
+        const [
+            basicInput, clearInput, rangeInput
+        ] = instance.element.querySelectorAll('input');
+        
+        // click
+        basicInput.click();
+        let content = getElement('.k-datepicker-content');
+        content.querySelector('.k-today').click();
+        expect(spy.callCount).to.eql(1);
+        expect(spy.calledWith(instance.get('basic'))).to.eql(true);
+
+        // clear
+        clearInput.click();
+        console.log(instance.element.querySelector('.k-clear'),'ddddd')
+        dispatchEvent(instance.element.querySelector('.k-clear'), 'click');
+        expect(spy.callCount).to.eql(2);
+        expect(spy.calledWith(undefined)).to.eql(true);
+    
+        // range
+        rangeInput.click();
+        const content1 = getElement('.k-datepicker-content');
+        const [calendar1, calendar2] = content1.querySelectorAll('.k-calendar-wrapper');
+        const first = calendar1.querySelectorAll('.k-day')[17];
+        const second = calendar2.querySelectorAll('.k-day')[17];
+        first.click();
+        expect(spy.callCount).to.eql(2);
+        second.click();
+        expect(spy.callCount).to.eql(3);
+        expect(spy.calledWith(instance.get('range'))).to.eql(true);
+
+        // input 
+        basicInput.value = '2020';
+        dispatchEvent(basicInput, 'input');
+        dispatchEvent(basicInput, 'change');
+        expect(spy.callCount).to.eql(3);
+        basicInput.value = '2020-08-08';
+        dispatchEvent(basicInput, 'input');
+        dispatchEvent(basicInput, 'change');
+        expect(spy.callCount).to.eql(4);
+        expect(spy.calledWith('2020-08-08')).to.eql(true);
+    });
 });

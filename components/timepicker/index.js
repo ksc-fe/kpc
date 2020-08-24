@@ -118,6 +118,7 @@ export default class Timepicker extends Datepicker {
     onClear(e) {
         e.stopPropagation();
         this.set('_value', undefined);
+        this.trigger('change', undefined);
     }
 
     _confirm() {
