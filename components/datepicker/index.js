@@ -15,6 +15,8 @@ dayjs.extend(customParseFormat);
 
 const typeMap = {0: 'begin', 1: 'end'};
 
+const {isEqual} = Intact.utils;
+
 export default class Datepicker extends Intact {
     @Intact.template()
     static template = template;
@@ -69,7 +71,6 @@ export default class Datepicker extends Intact {
             _value: undefined, // for range
             _rangeEndDate: undefined,
             _isShow: false,
-            _oldV: false,
             _hasInvalid: false
         }
     }
@@ -147,6 +148,7 @@ export default class Datepicker extends Intact {
         begin.set('_isSelectTime', false);
         end && end.set('_isSelectTime', false);
         this.set('_value', undefined);
+        this._oldValue = undefined;
         this.trigger('change', undefined);
     }
 
@@ -344,9 +346,9 @@ export default class Datepicker extends Intact {
     _onHide() {
         dispatchEvent(this.refs.input.refs.input, 'focusout');
         const value = this.get('value');
-        if (this.get('_oldV')!== value) {
+        if (!isEqual(this._oldValue, value)) {
+            this._oldValue = value;
             this.trigger('change', value);
-            this.set('_oldV', value);
         }
     }
 
@@ -379,7 +381,6 @@ export default class Datepicker extends Intact {
     _onInput(e) {
         const value = e.target.value.trim();
         const {multiple, range} = this.get();
-        this._hasInvalid = false;
         if (multiple) {
             this._setValueOnInputForArray(value.split(','));
         } else if (range) {
@@ -390,31 +391,29 @@ export default class Datepicker extends Intact {
         } else {
             if (!value) {
                 this.set('_value', '');
-                this.trigger('change','');
                 return;
             }
             const date = this._createDateByShowFormat(value);
             if (!this._isInvalidDate(date)) {
                 this.set('_value', date);
-            } else {
-                this._hasInvalid = true;
             }
         }
     }
 
     _setValueOnInputForArray(values) {
         const ret = [];
+        let hasInvalid = false;
         values.find(value => {
             value = value.trim();
             if (!value) return;
             const date = this._createDateByShowFormat(value);
             if (this._isInvalidDate(date)) {
-                return this._hasInvalid = true;
+                return hasInvalid = true;
             }
             ret.push(date);
         });
 
-        if (!this._hasInvalid) {
+        if (!hasInvalid) {
             this.set('_value', ret);
             return true;
         }
@@ -434,8 +433,10 @@ export default class Datepicker extends Intact {
     }
 
     _triggerChange() {
-        if (!this._hasInvalid && !this.get('_isShow')) {
+        const {value} = this.get();
+        if (!isEqual(this._oldValue, value) && !this.get('_isShow')) {
             const value = this._format();
+            this._oldValue = value;
             this.trigger('change', value);
         }
     }

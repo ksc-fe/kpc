@@ -48,6 +48,13 @@ export default class Timepicker extends Datepicker {
                 this._options();
             }
         });
+
+        this.on('$change:value', (c, v) => {
+            let { _options, range } = this.get();
+            if (_options && !range) {
+                this.trigger('change', v);
+            }
+        })
     }
 
     _createDate(value, useDefaultFormat) {
@@ -118,6 +125,7 @@ export default class Timepicker extends Datepicker {
     onClear(e) {
         e.stopPropagation();
         this.set('_value', undefined);
+        this._oldValue = undefined;
         this.trigger('change', undefined);
     }
 
