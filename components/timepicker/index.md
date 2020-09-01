@@ -29,3 +29,4 @@ sidebar: doc
 | 事件名 | 说明 | 参数 |
 | --- | --- | --- |
 | selectStart | 该事件尽在范围选择(`range`)，并且只选择了第一个值时触发 | `timeString` |
+| change | 当用户操作完成且值`value`变化时触发 | `dateString` |
