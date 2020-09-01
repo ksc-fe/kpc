@@ -102,6 +102,8 @@ export default class Input extends Intact {
     }
 
     _endInput(e) {
+        // ignore dispatch event, #523
+        if (e._dispatch) return;
         this.set({_inputing: false});
         this.trigger('blur', e);
     }

@@ -4,6 +4,21 @@ order: 99
 sidebar: doc
 ---
 
+## v1.4.3
+
+1. `Fix` 修复`Tabs`在`card`模式下与`Card`组件样式冲突的问题 [#519](https://github.com/ksc-fe/kpc/issues/519) 
+2. `Fix` 修复`FormItem`在有些情况下，组件销毁了依然还会验证的问题 [#520](https://github.com/ksc-fe/kpc/issues/520)
+3. `Fix` 修复`Datepicker`当`datetime`支持`range`时，不能直接通过输入来修改结束时间的问题 [#521](https://github.com/ksc-fe/kpc/issues/521)
+4. `Refactor` `Table`组件变更分组`group`时，不再直接修改引用，而是拷贝之后再修改，做到数据不可变`immutable` [#513](https://github.com/ksc-fe/kpc/issues/513)
+5. `Change` `FormItem`不再给`.k-content`元素设置`line-height: 1` [#518](https://github.com/ksc-fe/kpc/issues/518)
+
+__Vue__
+
+1. `Fix` 修复`Datepicker``maxDate/minDate`属性，不支持连词符写法的问题 [#514](https://github.com/ksc-fe/kpc/issues/514)
+2. `Fix` 修复使用`$listeners`传递事件，可能会报`_cb is not a function`的问题 [#510](https://github.com/ksc-fe/kpc/issues/510)
+3. `Fix` 修复`vue-devtools`调试报错的问题 [#512](https://github.com/ksc-fe/kpc/issues/512)
+4. `Fix` 修复`Tag`当`closable`时，点击删除按钮后，Vue更新会报错的问题 [#515](https://github.com/ksc-fe/kpc/issues/515)
+
 ## v1.4.2
 
 1. `Fix` 修复`Tooltip`当`trigger`元素不在可视区域，通过属性控制`value`控制组件展示时，提示位置展示不对的问题 [#504](https://github.com/ksc-fe/kpc/issues/504)

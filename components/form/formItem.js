@@ -218,6 +218,7 @@ export default class FormItem extends Intact {
         // for select, the focusout event triggers before select
         // so we put off validating it
         setTimeout(() => {
+            if (this.destroyed) return;
             this.validate()
         }, 100);
     }

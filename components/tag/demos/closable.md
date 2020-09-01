@@ -13,10 +13,11 @@ order: 1
 import Tag from 'kpc/components/tag';
 
 <div>
-    <Tag v-for={{ ['default', 'primary', 'success', 'warning', 'danger'] }}
+    <Tag v-for={{ self.get('tags') }}
         key={{ value }}
         type={{ value }}
         closable
+        ev-close={{ self.onClose.bind(self, key) }}
     >{{ value }}</Tag>
     <Tag disabled closable>disabled</Tag>
 </div>
@@ -25,4 +26,27 @@ import Tag from 'kpc/components/tag';
 ```styl
 .k-tag
     margin-right 16px
+```
+
+```js
+export default class extends Intact {
+    @Intact.template()
+    static template = template;
+
+    defaults() {
+        return {tags: ['default', 'primary', 'success', 'warning', 'danger']};
+    }
+
+    onClose(index) {
+        const tags = this.get('tags').slice(0);
+        tags.splice(index, 1);
+        this.set('tags', tags);
+    }
+}
+```
+
+```vue-methods
+onClose(index) {
+    this.tags.splice(index, 1);
+}
 ```

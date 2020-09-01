@@ -992,6 +992,12 @@ export default class BaseTable extends Intact {
         this._checkUncheckRows([key], value, false);
     }
 
+    _onChangeGroup(key, c, v) {
+        let group = this.get('group') || {};
+        group = {...group, [key]: v};
+        this.set({group});
+    }
+
     _destroy() {
         this._dragEnd();
         window.removeEventListener('resize', this._onWindowResize);

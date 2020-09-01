@@ -46,6 +46,8 @@ export default class Datepicker extends Intact {
         format: String,
         valueFormat: String,
         showFormat: String,
+        minDate: [String, Date],
+        maxDate: [String, Date],
     };
 
     defaults() {
@@ -343,7 +345,9 @@ export default class Datepicker extends Intact {
     }
 
     _onHide() {
-        dispatchEvent(this.refs.input.refs.input, 'focusout');
+        // add _dispatch true to let Input knowns ignore this event
+        // and don't endInput, #523
+        dispatchEvent(this.refs.input.refs.input, 'focusout', {_dispatch: true});
         this._triggerChange();
     }
 
@@ -389,20 +393,23 @@ export default class Datepicker extends Intact {
                 return;
             }
             const date = this._createDateByShowFormat(value);
-            if (!this._isInvalidDate(date)) {
+            if (!this._isInvalidDate(date, 'begin')) {
                 this.set('_value', date);
             }
         }
     }
 
     _setValueOnInputForArray(values) {
+        const {range} = this.get();
         const ret = [];
         let hasInvalid = false;
-        values.find(value => {
+        let ref = 'begin';
+        values.find((value, index) => {
             value = value.trim();
             if (!value) return;
             const date = this._createDateByShowFormat(value);
-            if (this._isInvalidDate(date)) {
+            if (range && index === 1) ref = 'end';
+            if (this._isInvalidDate(date, ref)) {
                 return hasInvalid = true;
             }
             ret.push(date);
@@ -416,10 +423,11 @@ export default class Datepicker extends Intact {
         return false;
     }
 
-    _isInvalidDate(date) {
+    _isInvalidDate(date, ref) {
+        const calendar = this.refs[ref];
         return !date.isValid() ||
-            this.refs.begin._isDisabledDate(date) ||
-            this.refs.begin._isDisabledTime(date);
+            calendar._isDisabledDate(date) ||
+            calendar._isDisabledTime(date);
     }
 
     _onChange() {

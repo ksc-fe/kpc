@@ -22,7 +22,7 @@ sizes = large small mini
             margin-right unit(-($mini-height / 2 / $rem), rem)
             margin-left -(@margin-right)
             position relative
-            top -2px
+            // top -2px
             .k-icon
                 font-size $tabs-close-font-size
         &:hover
@@ -60,7 +60,7 @@ sizes = large small mini
             height auto
 
     // card
-    &.k-card
+    &.k-tabs-card
         .k-tab
             margin 0
         // active-bar
@@ -98,7 +98,7 @@ sizes = large small mini
                     height auto
 
     // border-card
-    &.k-border-card
+    &.k-tabs-border-card
         border $tabs-border
         border-bottom none
         background $tabs-border-card-bg-color
@@ -122,7 +122,7 @@ sizes = large small mini
                 right 0
 
     // no-border-card
-    &.k-no-border-card
+    &.k-tabs-no-border-card
         border-bottom none
         .k-tab
             margin-right $tabs-no-border-card-gutter
@@ -158,8 +158,8 @@ sizes = large small mini
             // @referece https://stackoverflow.com/questions/6421966/css-overflow-x-visible-and-overflow-y-hidden-causing-scrollbar-issue
             padding-bottom 1px
             margin-bottom -1px
-        &.k-border-card
-        &.k-no-border-card
+        &.k-tabs-border-card
+        &.k-tabs-no-border-card
             .k-scroll
                 padding-bottom 0
                 margin-bottom 0

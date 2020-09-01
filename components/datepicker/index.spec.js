@@ -14,10 +14,10 @@ import dayjs from 'dayjs';
 describe('Datepicker', () => {
     let instance;
 
-    afterEach(async () => {
-        unmount(instance);
-        await wait(400);
-    });
+    // afterEach(async () => {
+        // unmount(instance);
+        // await wait(400);
+    // });
 
     it('should select date', () => {
         instance = mount(BasicDemo);
@@ -413,6 +413,7 @@ describe('Datepicker', () => {
                     <Datepicker v-model="range" range maxDate="2021-11-11" minDate="2020-01-01" />
                     <Datepicker v-model="datetime" type="datetime" />
                     <Datepicker v-model="format" showFormat="YYYY年M月D日" />
+                    <Datepicker v-model="datetimeRange" type="datetime" range />
                 </div>
             `;
             _init() { this.Datepicker = Datepicker; }
@@ -422,7 +423,8 @@ describe('Datepicker', () => {
 
         const [
             basicInput, multipleInput,
-            rangeInput, datetimeInput, formatInput
+            rangeInput, datetimeInput,
+            formatInput, datetimeRangeInput
         ] = instance.element.querySelectorAll('input');
 
         // input incorrect value
@@ -502,6 +504,26 @@ describe('Datepicker', () => {
         formatInput.value = '2020年2月19日';
         dispatchEvent(formatInput, 'input');
         expect(instance.get('format')).to.eql('2020-02-19');
+
+        // input date time range value
+        const inputValue = (value) => {
+            datetimeRangeInput.value = value;
+            dispatchEvent(datetimeRangeInput, 'input');
+            dispatchEvent(datetimeRangeInput, 'change');
+        };
+        inputValue('2020-08-11 00:00:00 ~ 2020-08-11 01:00:00');
+        expect(instance.get('datetimeRange')).to.eql(['2020-08-11 00:00:00', '2020-08-11 01:00:00']);
+        inputValue('2020-08-11 00:01:00 ~ 2020-08-11 01:00:00');
+        expect(instance.get('datetimeRange')).to.eql(['2020-08-11 00:01:00', '2020-08-11 01:00:00']);
+        inputValue('2020-08-11 00:01:00 ~ 2020-08-11 01:01:00');
+        expect(instance.get('datetimeRange')).to.eql(['2020-08-11 00:01:00', '2020-08-11 01:01:00']);
+
+        // should not break input
+        dispatchEvent(datetimeRangeInput, 'click');
+        dispatchEvent(datetimeRangeInput, 'focusin');
+        dispatchEvent(datetimeRangeInput, 'click');
+        inputValue('2020-08-11 00:01:00 ~ 2020-08-11 0:01:00');
+        expect(datetimeRangeInput.value).to.eql('2020-08-11 00:01:00 ~ 2020-08-11 0:01:00');
     });
 
     it('should trigger change event correctly', () => {

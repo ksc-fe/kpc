@@ -93,7 +93,8 @@ const TheadCreator = ({onlyLeft, onlyRight, refContainer, style}) => {
             $parent={{ self }} 
             ev-click={{ item.sortable ? self._sort.bind(self, key, item) : undefined }}
             ev-dragStart={{ dragStart }}
-            v-model={{ `group.${key}` }}
+            value={{ self.get(`group.${key}`) }}
+            ev-$change:value={{ self._onChangeGroup.bind(self, key) }}
             invisible={{ invisible }}
             class={{ item.className }}
             ref={{ !invisible ? ref : undefined }}
