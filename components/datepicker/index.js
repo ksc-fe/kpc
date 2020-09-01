@@ -71,7 +71,6 @@ export default class Datepicker extends Intact {
             _value: undefined, // for range
             _rangeEndDate: undefined,
             _isShow: false,
-            _hasInvalid: false
         }
     }
 
@@ -345,11 +344,7 @@ export default class Datepicker extends Intact {
 
     _onHide() {
         dispatchEvent(this.refs.input.refs.input, 'focusout');
-        const value = this.get('value');
-        if (!isEqual(this._oldValue, value)) {
-            this._oldValue = value;
-            this.trigger('change', value);
-        }
+        this._triggerChange();
     }
 
     _setValue(value) {
@@ -427,15 +422,16 @@ export default class Datepicker extends Intact {
             this.refs.begin._isDisabledTime(date);
     }
 
-    _forceUpdate() {
-        this._triggerChange();
+    _onChange() {
+        if (!this.get('_isShow')) {
+            this._triggerChange();
+        }
         this.update();
     }
 
     _triggerChange() {
         const {value} = this.get();
-        if (!isEqual(this._oldValue, value) && !this.get('_isShow')) {
-            const value = this._format();
+        if (!isEqual(this._oldValue, value)) {
             this._oldValue = value;
             this.trigger('change', value);
         }
@@ -443,6 +439,10 @@ export default class Datepicker extends Intact {
 
     _onWheel() {
         this.refs.input.blur();
+    }
+
+    _onFocus() {
+        this._oldValue = this.get('value');
     }
 }
 
