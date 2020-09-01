@@ -520,7 +520,6 @@ describe('Datepicker', () => {
                 this.Datepicker = Datepicker;
             }
             _onChange(v) {
-                console.log('change', v);
                 spy(v);
             }
         }
@@ -540,7 +539,6 @@ describe('Datepicker', () => {
 
         // clear
         clearInput.click();
-        console.log(instance.element.querySelector('.k-clear'),'ddddd')
         dispatchEvent(instance.element.querySelector('.k-clear'), 'click');
         expect(spy.callCount).to.eql(2);
         expect(spy.calledWith(undefined)).to.eql(true);
@@ -558,13 +556,17 @@ describe('Datepicker', () => {
         expect(spy.calledWith(instance.get('range'))).to.eql(true);
 
         // input 
+        // The change method should not trigger when value is invalid 
         basicInput.value = '2020';
         dispatchEvent(basicInput, 'input');
         dispatchEvent(basicInput, 'change');
         expect(spy.callCount).to.eql(3);
+        // The change method should trigger once when input event is triggered while the tootip is show.
+        basicInput.click();
         basicInput.value = '2020-08-08';
         dispatchEvent(basicInput, 'input');
         dispatchEvent(basicInput, 'change');
+        basicInput.click(); 
         expect(spy.callCount).to.eql(4);
         expect(spy.calledWith('2020-08-08')).to.eql(true);
     });
