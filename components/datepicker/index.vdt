@@ -162,7 +162,8 @@ const suffix = <b:suffix><i class="ion-ios-calendar-outline"></i></b:suffix>
             ev-blur={{ self.onInputFocusOut }}
             stackClearIcon
             ev-input={{ self._onInput }}
-            ev-change={{ self._forceUpdate }}
+            ev-change={{ self._onChange }}
+            ev-focus={{ self._onFocus }}
             frozenOnInput
             fluid
         >

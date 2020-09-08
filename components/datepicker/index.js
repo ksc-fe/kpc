@@ -15,6 +15,8 @@ dayjs.extend(customParseFormat);
 
 const typeMap = {0: 'begin', 1: 'end'};
 
+const {isEqual} = Intact.utils;
+
 export default class Datepicker extends Intact {
     @Intact.template()
     static template = template;
@@ -22,6 +24,10 @@ export default class Datepicker extends Intact {
     static getDateString = getDateString;
 
     static createDate = createDate;
+
+    static events = {
+        change: true,
+    };
 
     static propTypes = {
         value: [String, Array, Date, Number],
@@ -143,6 +149,8 @@ export default class Datepicker extends Intact {
         begin.set('_isSelectTime', false);
         end && end.set('_isSelectTime', false);
         this.set('_value', undefined);
+        this._oldValue = undefined;
+        this.trigger('change', undefined);
     }
 
     _hide() {
@@ -260,6 +268,12 @@ export default class Datepicker extends Intact {
             this.set('value', undefined);
         }
 
+        if (!c.isSelectTime) {
+            value.sort((a, b) => a > b ? 1 : -1);
+        }
+
+        this.set('_value', value);
+
         // when the ScrollSelect changed, the refs may not exist
         if (begin && end) {
             // if we have selected two dates, change to time picker
@@ -275,12 +289,6 @@ export default class Datepicker extends Intact {
                 end.set('_isSelectTime', false, {async: true});
             }
         }
-
-        if (!c.isSelectTime) {
-            value.sort((a, b) => a > b ? 1 : -1);
-        }
-
-        this.set('_value', value);
     }
 
     _highlightRangeDays(date, isOut) {
@@ -340,6 +348,7 @@ export default class Datepicker extends Intact {
         // add _dispatch true to let Input knowns ignore this event
         // and don't endInput, #523
         dispatchEvent(this.refs.input.refs.input, 'focusout', {_dispatch: true});
+        this._triggerChange();
     }
 
     _setValue(value) {
@@ -421,12 +430,27 @@ export default class Datepicker extends Intact {
             calendar._isDisabledTime(date);
     }
 
-    _forceUpdate() {
+    _onChange() {
+        if (!this.get('_isShow')) {
+            this._triggerChange();
+        }
         this.update();
+    }
+
+    _triggerChange() {
+        const {value} = this.get();
+        if (!isEqual(this._oldValue, value)) {
+            this._oldValue = value;
+            this.trigger('change', value);
+        }
     }
 
     _onWheel() {
         this.refs.input.blur();
+    }
+
+    _onFocus() {
+        this._oldValue = this.get('value');
     }
 }
 
