@@ -14,10 +14,10 @@ import dayjs from 'dayjs';
 describe('Datepicker', () => {
     let instance;
 
-    // afterEach(async () => {
-        // unmount(instance);
-        // await wait(400);
-    // });
+    afterEach(async () => {
+        unmount(instance);
+        await wait(400);
+    });
 
     it('should select date', () => {
         instance = mount(BasicDemo);
