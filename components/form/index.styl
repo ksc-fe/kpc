@@ -96,7 +96,7 @@
     // size
     for size in small mini
         &.k-{size}
-            .k-form-item
+            .k-form-item:not(:last-of-type)
                 margin lookup('$form-' + size + '-item-margin')
             &.k-inline
                 .k-form-item
