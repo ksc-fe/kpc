@@ -58,7 +58,7 @@ describe('Select', () => {
         clear1.click();
         clear2.click();
         expect(instance.get('day')).to.eql('');
-        expect(instance.get('days')).to.eql('');
+        expect(instance.get('days')).to.eql([]);
     });
 
     it('multiple', () => {
@@ -199,5 +199,114 @@ describe('Select', () => {
         confirm.click();
         expect(instance.get('days')).have.length(5);
         expect(instance.get('days')).include('Monday')
+    });
+
+    it('should trigger change event correctly', () => {
+        const spy = sinon.spy();
+
+        class Demo extends Intact {
+            @Intact.template()
+            static template = `
+                <div>
+                    <Select v-model="basic" ev-change={{ self._onChange }}>
+                        <Option value="white">白色</Option>
+                        <Option value="black">黑色</Option>
+                    </Select>
+                    <Select v-model="clearAndmultiple" clearable multiple ev-change={{ self._onChange }}>
+                        <Option value="white">白色</Option>
+                        <Option value="black">黑色</Option>
+                    </Select>
+                    <Select v-model="multipleAndsearchable" multiple searchable ev-change={{ self._onChange }}>
+                        <Option value="white">白色</Option>
+                        <Option value="black">黑色</Option>
+                    </Select>
+                    <Select v-model="filterable" filterable ev-change={{ self._onChange }}>
+                        <Option value="white">白色</Option>
+                        <Option value="black">黑色</Option>
+                    </Select>
+                    <Select v-model="allowUnmatch" allowUnmatch filterable ev-change={{ self._onChange }}>
+                        <Option value="white">白色</Option>
+                        <Option value="black">黑色</Option>
+                    </Select>
+                </div>
+            `;
+            _init() {
+                this.Select = Select;
+                this.Option = Option
+            }
+            _onChange(v) {
+                spy(v);
+            }
+        }
+
+        instance = mount(Demo);
+
+        const [
+            basicTrigger, clearAndmultipleTrigger, multipleAndsearchableTrigger, filterableTrigger, allowUnmatchTrigger
+        ] = instance.element.querySelectorAll('.k-wrapper');
+        
+        // basic
+        basicTrigger.click();
+        const dropdown = getElement('.k-select-dropdown');
+        const item = dropdown.querySelector('.k-item');
+        item.click();
+        expect(spy.callCount).to.eql(1);
+        expect(spy.calledWith(instance.get('basic'))).to.eql(true);
+
+        //multiple
+        clearAndmultipleTrigger.click();
+        const dropdown1 = getElement('.k-select-dropdown');
+        const [item1, item2] = dropdown1.querySelectorAll('.k-item');
+        item1.click();
+        item2.click();
+        // The change method is not trigger while the operation not completed.
+        expect(spy.callCount).to.eql(1);
+        clearAndmultipleTrigger.click();
+        expect(spy.callCount).to.eql(2);
+        expect(spy.calledWith(instance.get('clearAndmultiple'))).to.eql(true);
+
+        //clear
+        const clearBtn = instance.element.querySelector('.k-clear');
+        clearBtn.click();
+        expect(spy.callCount).to.eql(3);
+        expect(spy.calledWith([])).to.eql(true);
+
+        // search
+        multipleAndsearchableTrigger.click();
+        const dropdown2 = getElement('.k-select-dropdown');
+        const selectAll = dropdown2.querySelector('.k-select-op .k-btn');
+        selectAll.click();
+        multipleAndsearchableTrigger.click();
+        // The change method is not trigger while the operation not completed.
+        expect(spy.callCount).to.eql(3);
+        multipleAndsearchableTrigger.click();
+        const dropdown3 = getElement('.k-select-dropdown');
+        const selectAll1 = dropdown3.querySelector('.k-select-op .k-btn');
+        const confirm = dropdown3.querySelector('.k-select-footer .k-btn');
+        selectAll1.click();
+        confirm.click();
+        expect(spy.callCount).to.eql(4);
+        expect(spy.calledWith(instance.get('multipleAndsearchable'))).to.eql(true);
+        // filterable
+        const input= instance.element.querySelector('.k-inner');
+        input.value = 'white';
+        dispatchEvent(input, 'input');
+        dispatchEvent(document, 'keydown', {keyCode: 13});
+        expect(spy.callCount).to.eql(5);
+        expect(spy.calledWith(instance.get('filterable'))).to.eql(true);
+        // The change method is not trigger while the input value that don't match.
+        const input1= instance.element.querySelector('.k-inner');
+        input1.value = 'red';
+        dispatchEvent(input, 'input');
+        filterableTrigger.click();
+        expect(spy.callCount).to.eql(5);
+
+        //allowUnmatch
+        const [, input2] = instance.element.querySelectorAll('.k-inner');
+        input2.value = 'xxx';
+        dispatchEvent(input2, 'input');
+        allowUnmatchTrigger.click();
+        expect(spy.callCount).to.eql(6);
+        expect(spy.calledWith('xxx')).to.eql(true);
     });
 });

@@ -74,3 +74,4 @@ sidebar: doc
 | --- | --- | --- |
 | show | 菜单弹出时触发 | - |
 | hide | 菜单隐藏时触发 | - |
+| change | 当用户操作完成且值`value`变化时触发 | `value` |

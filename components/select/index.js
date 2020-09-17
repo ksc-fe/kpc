@@ -7,6 +7,8 @@ import Group from './group';
 import {selectInput, _$, isStringOrNumber, toggleArray} from '../utils';
 import {dispatchEvent} from '../datepicker/utils';
 
+const {isEqual} = Intact.utils;
+
 export default class Select extends Intact {
     @Intact.template()
     static template = template;
@@ -38,6 +40,7 @@ export default class Select extends Intact {
         keydown: true,
         show: true,
         hide: true,
+        change: true
     };
 
     static blocks = ['format', 'value', 'values', 'menu'];
@@ -116,7 +119,11 @@ export default class Select extends Intact {
 
     _onClear(e) {
         e.stopPropagation();
-        this.set('value', '');
+        const clearV = !this._isMultiple()? '':[];
+        this.set('value', clearV);
+        if (!this.get('_show')) {
+            this.trigger('change', clearV);
+        }
     }
 
     _onSelect(value) {
@@ -152,6 +159,9 @@ export default class Select extends Intact {
     }
 
     _onChangeShow(c, value) {
+        if (value) {
+            this._oldValue = this.get('value');
+        }
         this.set('_show', value);
         // reset the _activeLabel if show
         this._setActiveLabelSilent(undefined);
@@ -207,6 +217,9 @@ export default class Select extends Intact {
         values.splice(index, 1);
         this.set('value', values);
         this._focusInput();
+        if (!this.get('_show')) {
+            this.trigger('change', values);
+        }
     }
 
     _focusInput() {
@@ -290,6 +303,7 @@ export default class Select extends Intact {
     }
 
     _onHide() {
+        this._triggerChange();
         dispatchEvent(this.element, 'focusout');
     }
 
@@ -319,6 +333,14 @@ export default class Select extends Intact {
     _confirm() {
         this.set('value', this.get('_checkedKeys'));
         this.hide();
+    }
+
+    _triggerChange() {
+        const {value} = this.get();
+        if (!isEqual(this._oldValue, value)) {
+            this._oldValue = value;
+            this.trigger('change', value);
+        }
     }
 }
 
