@@ -398,8 +398,19 @@ export default class Calendar extends Intact {
         }
     }
 
-    _isDisabledDate(date) {
-        const {maxDate, minDate, disabledDate, type} = this.get();
+    _isDisabledDate(value, _type) {
+        const {maxDate, minDate, disabledDate, type, _isShowYearPicker} = this.get();
+        let date = value;
+        if (_isShowYearPicker) {
+            let _date = this.getShowDate();
+            if (_type === 'year') {
+                _date = _date.year(value);
+            }
+            if (_type === 'month') {
+                _date = _date.month(value);
+            } 
+            date = _date;
+        }
         return maxDate && isGT(date, maxDate) ||
             minDate && isLT(date, minDate) ||
             disabledDate && disabledDate.call(
