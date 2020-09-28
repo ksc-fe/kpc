@@ -20,9 +20,10 @@ export default class extends Intact {
     static template = template;
 
     disabledDate(date, dateObject) {
-        // 禁用掉每月的5号和15号
+        // 禁用掉每年的5月及每月的5号和15号
         const d = dateObject.date();
-        return d === 5 || d === 15;
+        const m = dateObject.month() + 1;
+        return d === 5 || d === 15 || m === 5;
     }
 }
 ```
