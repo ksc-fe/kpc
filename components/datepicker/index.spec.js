@@ -200,7 +200,7 @@ describe('Datepicker', () => {
         expect(content.querySelector('.k-scroll-select-group').innerHTML).to.matchSnapshot();
     });
 
-    it('range', () => {
+    it('range', async () => {
         instance = mount(RangeDemo);
 
         // date
@@ -260,6 +260,7 @@ describe('Datepicker', () => {
         second = calendar2.querySelectorAll('.k-day')[17];
         first.click();
         second.click();
+        await wait();
         calendar1.querySelector('.k-col .k-active').nextElementSibling.click();
         calendar2.querySelector('.k-col .k-active').previousElementSibling.click();
         value = instance.get('time');
@@ -551,7 +552,7 @@ describe('Datepicker', () => {
         const [
             basicInput, clearInput, rangeInput
         ] = instance.element.querySelectorAll('input');
-        
+
         // click
         basicInput.click();
         let content = getElement('.k-datepicker-content');
@@ -564,7 +565,7 @@ describe('Datepicker', () => {
         dispatchEvent(instance.element.querySelector('.k-clear'), 'click');
         expect(spy.callCount).to.eql(2);
         expect(spy.calledWith(undefined)).to.eql(true);
-    
+
         // range
         rangeInput.click();
         const content1 = getElement('.k-datepicker-content');
@@ -577,8 +578,8 @@ describe('Datepicker', () => {
         expect(spy.callCount).to.eql(3);
         expect(spy.calledWith(instance.get('range'))).to.eql(true);
 
-        // input 
-        // The change method should not trigger when value is invalid 
+        // input
+        // The change method should not trigger when value is invalid
         basicInput.value = '2020';
         dispatchEvent(basicInput, 'input');
         dispatchEvent(basicInput, 'change');
@@ -588,7 +589,7 @@ describe('Datepicker', () => {
         basicInput.value = '2020-08-08';
         dispatchEvent(basicInput, 'input');
         dispatchEvent(basicInput, 'change');
-        basicInput.click(); 
+        basicInput.click();
         expect(spy.callCount).to.eql(4);
         expect(spy.calledWith('2020-08-08')).to.eql(true);
     });
