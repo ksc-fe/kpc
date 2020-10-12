@@ -1,4 +1,4 @@
-import Intact from 'intact'; 
+import Intact from 'intact';
 import template from './index.vdt';
 import Select from '../select';
 import '../../styles/kpc.styl';
@@ -52,7 +52,7 @@ export default class TreeSelect extends Select {
             filter: undefined,
 
             _selectedKeys: [],
-            _checkedKeys: [],
+            _treeCheckedKeys: [],
         };
     }
 
@@ -65,7 +65,7 @@ export default class TreeSelect extends Select {
             }
             this.set({
                 '_selectedKeys': v,
-                '_checkedKeys': v,
+                '_treeCheckedKeys': v,
             }, {async: true});
         };
         this.on('$change:value', (c, v) => {
@@ -115,7 +115,7 @@ export default class TreeSelect extends Select {
     }
 
     _select(node, e) {
-        const {checkbox, _checkedKeys} = this.get();
+        const {checkbox, _treeCheckedKeys} = this.get();
         const key = node.key;
         if (!checkbox) {
             this._onSelect(key);
@@ -135,7 +135,7 @@ export default class TreeSelect extends Select {
         // to make bellow do not update tree
         tree.set('checkedKeys', value, {silent: true});
         this.set({
-            _checkedKeys: value,
+            _treeCheckedKeys: value,
             value,
         });
     }
@@ -169,7 +169,7 @@ export default class TreeSelect extends Select {
         keywords = keywords.toLowerCase();
 
         return data.label.toLowerCase().includes(keywords) ||
-            isStringOrNumber(data.key) && 
+            isStringOrNumber(data.key) &&
             String(data.key).toLowerCase().includes(keywords);
     }
 }
