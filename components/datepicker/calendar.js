@@ -193,12 +193,31 @@ export default class Calendar extends Intact {
 
     setRelativeMonth(month) {
         const date = this.getShowDate();
-        this.set('_showDate', date.add(month, 'month'));
+        const num = this.getRelativeNum(month, 'month');
+        const dateNext = date.add(num, 'month');
+        if(dateNext.toDate().getMonth() + 1) {
+            this.set('_showDate', dateNext)
+        }
     }
 
     setRelativeYear(year) {
         const date = this.getShowDate();
-        this.set('_showDate', date.add(year, 'year'));
+        const num = this.getRelativeNum(year, 'year');
+        const dateRelative = date.add(num, 'year');
+        if(dateRelative.toDate().getFullYear()) {
+            this.set('_showDate', dateRelative)
+        }
+       
+    }
+
+    getRelativeNum(num, type) {
+        const _date = this.getShowDate();
+        let dateRelative = _date.add(num, type);
+        while(this._isDisabledDate(dateRelative)) {
+            num > 0 ? num++ : num--;
+            dateRelative = _date.add(num, type);
+        }
+        return num;
     }
 
     setMonth(month) {
@@ -401,7 +420,7 @@ export default class Calendar extends Intact {
     _isDisabledDate(value, _type) {
         const {maxDate, minDate, disabledDate, type, _isShowYearPicker} = this.get();
         let date = value;
-        if (_isShowYearPicker) {
+        if (_isShowYearPicker && _type) {
             let _date = this.getShowDate();
             if (_type === 'year') {
                 _date = _date.year(value);
